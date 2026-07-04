@@ -3,7 +3,8 @@
 テーブルは3層に分かれる:
   - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 再クロールでupsert上書きされる。
   - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
-  - 履歴層 (snapshot / card_change): 弾追加・修正・再録の検知履歴。
+  - 履歴層 (snapshot / card_change): card_changeはfetch時の新規カード(__new__)と、apply_changeで
+    手動適用した能力調整(ナーフ/アッパー)の履歴を溜める。全件fetchでの自動差分検出は行わない。
 """
 
 import sqlite3
