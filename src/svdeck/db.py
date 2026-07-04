@@ -1,10 +1,9 @@
 """SQLiteスキーマ定義と接続ヘルパー。
 
-テーブルは3層に分かれる:
-  - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 再クロールでupsert上書きされる。
+テーブルは2層に分かれる:
+  - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 公式データのコピー。cardは新規
+    カードだけINSERT、辞書(card_set/skill_name/tribe)は取得のたび作り直す。
   - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
-  - 履歴層 (snapshot / card_change): card_changeはfetch時の新規カード(__new__)と、apply_changeで
-    手動適用した能力調整(ナーフ/アッパー)の履歴を溜める。全件fetchでの自動差分検出は行わない。
 """
 
 import sqlite3
@@ -76,27 +75,12 @@ CREATE TABLE IF NOT EXISTS card_flag (
     card_id INTEGER PRIMARY KEY,
     favorite INTEGER DEFAULT 0
 );
-
-CREATE TABLE IF NOT EXISTS snapshot (
-    date TEXT PRIMARY KEY,
-    fetched_at TEXT,
-    card_count INTEGER
-);
-
-CREATE TABLE IF NOT EXISTS card_change (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    snapshot_date TEXT,
-    card_id INTEGER,
-    field TEXT,
-    old_value TEXT,
-    new_value TEXT
-);
 """
 
 
 def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
     # AI_NOTE: DB接続とスキーマ作成を一体化。存在しないテーブルのみCREATE IF NOT EXISTSで作るため、
-    # ユーザレイヤ・履歴層のデータは再実行時も消えない。境界（DB接続失敗）は例外を握りつぶさずそのまま伝播させる。
+    # ユーザレイヤのデータは再実行時も消えない。境界（DB接続失敗）は例外を握りつぶさずそのまま伝播させる。
     db_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys = ON")
