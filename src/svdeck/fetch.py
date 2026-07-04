@@ -1,4 +1,7 @@
-"""公式Deck Portal APIから全カードを取得し、原本保存 -> 差分検出 -> ミラーupsertを行う。
+"""公式Deck Portal APIから全カードを取得し、原本保存 -> 新規カード検出 -> 新規のみミラー登録を行う。
+
+APIはcard_id単体指定に非対応(常に全件返る)なため取得は毎回全件。ただしDBには「自分のDBに無い
+新規カードだけ」INSERTし、既存カードの能力値は書き換えない。能力調整は apply_change に一本化する。
 
 実行: python -m svdeck.fetch
 """
@@ -152,8 +155,11 @@ def detect_new_cards(conn: sqlite3.Connection, raw: dict[str, Any], today: str) 
     return new_count
 
 
-def upsert_mirror(conn: sqlite3.Connection, raw: dict[str, Any]) -> None:
-    # AI_NOTE: card/card_set/skill_name/tribe/card_tribeをupsertする。ユーザレイヤ(card_note/card_tag/card_flag)には一切触れない。
+def insert_new_cards(conn: sqlite3.Connection, raw: dict[str, Any]) -> None:
+    # AI_NOTE: 参照テーブル(card_set/skill_name/tribe)は名称の追加・更新に追従するため常にupsertする。
+    # cardは「自分のDBに無い新規カードだけINSERT」する方針。既存カードの能力値はfetchでは一切書き換えない
+    # ——上書きすると能力調整が黙って反映され card_change 履歴が飛ぶため。能力調整は apply_change に一本化する。
+    # ユーザレイヤ(card_note/card_tag/card_flag)には一切触れない。
     for id_str, name in raw["card_set_names"].items():
         conn.execute(
             "INSERT INTO card_set (id, name) VALUES (?, ?) ON CONFLICT(id) DO UPDATE SET name = excluded.name",
@@ -170,20 +176,19 @@ def upsert_mirror(conn: sqlite3.Connection, raw: dict[str, Any]) -> None:
             (int(id_str), name),
         )
 
+    existing_ids = {row[0] for row in conn.execute("SELECT card_id FROM card")}
     for card_id_str, detail in raw["card_details"].items():
         card_id = int(card_id_str)
+        if card_id in existing_ids:
+            continue
         common = detail["common"]
         row = _to_row(card_id, common, detail.get("evo", []), detail.get("style_card_list", []))
         columns = list(row.keys())
         placeholders = ", ".join(f":{col}" for col in columns)
-        update_clause = ", ".join(f"{col} = excluded.{col}" for col in columns if col != "card_id")
         conn.execute(
-            f"INSERT INTO card ({', '.join(columns)}) VALUES ({placeholders}) "
-            f"ON CONFLICT(card_id) DO UPDATE SET {update_clause}",
+            f"INSERT INTO card ({', '.join(columns)}) VALUES ({placeholders})",
             row,
         )
-
-        conn.execute("DELETE FROM card_tribe WHERE card_id = ?", (card_id,))
         for tribe_id in common.get("tribes", []) or []:
             conn.execute(
                 "INSERT INTO card_tribe (card_id, tribe_id) VALUES (?, ?) ON CONFLICT DO NOTHING",
@@ -207,7 +212,7 @@ def run() -> None:
     conn = connect()
     try:
         new_count = detect_new_cards(conn, raw, today)
-        upsert_mirror(conn, raw)
+        insert_new_cards(conn, raw)
         conn.execute(
             "INSERT INTO snapshot (date, fetched_at, card_count) VALUES (?, ?, ?) "
             "ON CONFLICT(date) DO UPDATE SET fetched_at = excluded.fetched_at, card_count = excluded.card_count",
