@@ -46,9 +46,6 @@ TYPE_CATEGORIES: dict[int, str] = {
     4: "spell",
 }
 
-# card_change で監視する項目（差分が出たら履歴に残す）
-WATCHED_FIELDS = ("skill_text", "atk", "life", "cost", "deck_enabled_num", "rarity", "card_set_id")
-
 
 def _get_page(offset: int) -> dict[str, Any]:
     # AI_NOTE: 単一offsetのAPI応答dataを返すHTTP境界。例外は握りつぶさず呼び出し元へ伝播させる。
@@ -135,41 +132,24 @@ def _to_row(card_id: int, common: dict[str, Any], evo: list[Any], style: list[An
     }
 
 
-def detect_changes(conn: sqlite3.Connection, raw: dict[str, Any], today: str) -> int:
-    # AI_NOTE: 既存cardテーブルと今回取得を比較し、監視対象フィールドの変化・新規card_idをcard_changeへ記録する。
-    # DB書き込みはこの関数内で完結させ、呼び出し元がcommitする。
-    existing_rows = conn.execute(
-        f"SELECT card_id, {', '.join(WATCHED_FIELDS)} FROM card"
-    ).fetchall()
-    existing: dict[int, dict[str, Any]] = {
-        row[0]: dict(zip(WATCHED_FIELDS, row[1:])) for row in existing_rows
-    }
+def detect_new_cards(conn: sqlite3.Connection, raw: dict[str, Any], today: str) -> int:
+    # AI_NOTE: 既存cardに無いcard_idだけをcard_changeへ__new__記録する。DB書き込みはこの関数内で完結。
+    # 能力調整(ナーフ/アッパー)の差分検出は「月数枚・外部告知される離散イベント」なので、全件fetchで
+    # 毎回フィールド比較する方式は廃止し、告知を受けてcard_id指定で個別更新する運用に寄せる。
+    existing_ids = {row[0] for row in conn.execute("SELECT card_id FROM card")}
 
-    change_count = 0
-    for card_id_str, detail in raw["card_details"].items():
+    new_count = 0
+    for card_id_str in raw["card_details"]:
         card_id = int(card_id_str)
-        new_row = _to_row(card_id, detail["common"], detail.get("evo", []), detail.get("style_card_list", []))
-
-        if card_id not in existing:
-            conn.execute(
-                "INSERT INTO card_change (snapshot_date, card_id, field, old_value, new_value) VALUES (?, ?, ?, ?, ?)",
-                (today, card_id, "__new__", None, "new card"),
-            )
-            change_count += 1
+        if card_id in existing_ids:
             continue
+        conn.execute(
+            "INSERT INTO card_change (snapshot_date, card_id, field, old_value, new_value) VALUES (?, ?, ?, ?, ?)",
+            (today, card_id, "__new__", None, "new card"),
+        )
+        new_count += 1
 
-        old = existing[card_id]
-        for field in WATCHED_FIELDS:
-            old_value = old[field]
-            new_value = new_row[field]
-            if str(old_value) != str(new_value):
-                conn.execute(
-                    "INSERT INTO card_change (snapshot_date, card_id, field, old_value, new_value) VALUES (?, ?, ?, ?, ?)",
-                    (today, card_id, field, str(old_value), str(new_value)),
-                )
-                change_count += 1
-
-    return change_count
+    return new_count
 
 
 def upsert_mirror(conn: sqlite3.Connection, raw: dict[str, Any]) -> None:
@@ -212,7 +192,7 @@ def upsert_mirror(conn: sqlite3.Connection, raw: dict[str, Any]) -> None:
 
 
 def run() -> None:
-    # AI_NOTE: fetch.pyのエントリポイント。全体の流れ(取得->原本保存->差分検出->upsert->snapshot記録->サマリ出力)を統括する。
+    # AI_NOTE: fetch.pyのエントリポイント。全体の流れ(取得->原本保存->新規検出->upsert->snapshot記録->サマリ出力)を統括する。
     today = datetime.now(timezone.utc).astimezone().date().isoformat()
     fetched_at = datetime.now(timezone.utc).astimezone().isoformat()
 
@@ -226,7 +206,7 @@ def run() -> None:
 
     conn = connect()
     try:
-        change_count = detect_changes(conn, raw, today)
+        new_count = detect_new_cards(conn, raw, today)
         upsert_mirror(conn, raw)
         conn.execute(
             "INSERT INTO snapshot (date, fetched_at, card_count) VALUES (?, ?, ?) "
@@ -239,7 +219,7 @@ def run() -> None:
 
     print(
         f"[fetch] 完了: 取得={fetched_count}枚 / API総count={raw['count']} / "
-        f"新規・変更={change_count}件 / DB={DB_PATH}"
+        f"新規={new_count}枚 / DB={DB_PATH}"
     )
 
 
