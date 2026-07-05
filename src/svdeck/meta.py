@@ -1,7 +1,7 @@
 """攻略サイト(gamewith/game8)のTier表とデッキ詳細ページから環境デッキを収集し、
 外部メタ層(meta_deck / meta_deck_card)へミラーする。
 
-対象はロ―テーションのTier表とそこからリンクされるデッキ詳細ページのみ。
+対象はローテーション/アンリミテッド両フォーマットのTier表とそこからリンクされるデッキ詳細ページ。
 外部メタ層は鮮度が命なので、毎回 DELETE→全INSERT で作り直す(ミラー層の作り直し方式)。
 
 実行: python -m svdeck.meta
@@ -19,8 +19,14 @@ from svdeck.db import connect
 USER_AGENT = "Mozilla/5.0"
 REQUEST_INTERVAL_SEC = 1.0
 
-GAMEWITH_TIER_URL = "https://gamewith.jp/shadowverse-wb/497197"
-GAME8_TIER_URL = "https://game8.jp/shadowverse-beyond/694512"
+# AI_NOTE: (site, format, url)のタプル一覧。ローテ/アンリミ両方を同じループで回すため
+# サイト別URL定数ではなくテーブル形式にした(フォーマット追加時はここに1行足すだけで済む)。
+TIER_SOURCES: list[tuple[str, str, str]] = [
+    ("gamewith", "rotation", "https://gamewith.jp/shadowverse-wb/497197"),
+    ("game8", "rotation", "https://game8.jp/shadowverse-beyond/694512"),
+    ("gamewith", "unlimited", "https://gamewith.jp/shadowverse-wb/550564"),
+    ("game8", "unlimited", "https://game8.jp/shadowverse-beyond/780976"),
+]
 
 
 class DeckLink(NamedTuple):
@@ -28,6 +34,7 @@ class DeckLink(NamedTuple):
     url: str
     name: str
     tier: str
+    format: str
 
 
 class DeckDetail(NamedTuple):
@@ -48,16 +55,20 @@ def _normalize_name(name: str) -> str:
     return name.replace("・", "").replace("&", "＆").replace("=", "＝").strip()
 
 
-def parse_gamewith_tier(html_text: str) -> list[DeckLink]:
+def parse_gamewith_tier(html_text: str, deck_format: str = "rotation") -> list[DeckLink]:
     # AI_NOTE: Tier表本体は<div class="w-tier-table-ui">直下の<li d-name d-tier d-link>群。
-    # d-tierは数値(1〜4)なのでそのまま文字列化してtier表現とする。
+    # d-tierは数値(1〜4)なのでそのまま文字列化してtier表現とする。deck_formatは呼び出し元(TIER_SOURCES)
+    # から渡してもらう単なるラベルで、パース対象の構造には影響しない。
     start = html_text.find('class="w-tier-table-ui"')
     if start == -1:
         return []
     end = html_text.find("</div>", start)
     segment = html_text[start:end]
     items = re.findall(r'd-name="([^"]+)" d-tier="(\d+)"[^>]*d-link="([^"]+)"', segment)
-    return [DeckLink(site="gamewith", url=url, name=html.unescape(name), tier=tier) for name, tier, url in items]
+    return [
+        DeckLink(site="gamewith", url=url, name=html.unescape(name), tier=tier, format=deck_format)
+        for name, tier, url in items
+    ]
 
 
 def parse_gamewith_deck(html_text: str) -> DeckDetail:
@@ -82,11 +93,15 @@ def parse_gamewith_deck(html_text: str) -> DeckDetail:
     return DeckDetail(updated_on=updated_on, cards=cards)
 
 
-def parse_game8_tier(html_text: str) -> list[DeckLink]:
-    # AI_NOTE: Tier表は「Tier表」見出し(hm_2)〜次見出し(hm_3)の区間にあるa-table。
+def parse_game8_tier(html_text: str, deck_format: str = "rotation") -> list[DeckLink]:
+    # AI_NOTE: Tier表は目次アンカー"Tier表"見出し(hl_N)〜次のhl見出しの区間にあるa-table。
+    # 元はhm_2〜hm_3固定だったが、アンリミページはセクション内のhm番号がローテと1つずれる
+    # (ローテはhm_1が別セクション・hm_2がTier表、アンリミはhm_1が直接Tier表)ため0件になった。
+    # hl_N(目次の大見出し)は両ページで「Tier表」セクションの開始/終了として安定しているのでそちらへ広げる。
     # Sバナー等の画像altでTierを判定し、直後の<div class="align">内の<a href alt>がそのTierのデッキ。
-    start = html_text.find('id="hm_2"')
-    end = html_text.find('id="hm_3"', start)
+    # deck_formatは呼び出し元(TIER_SOURCES)から渡してもらう単なるラベル。
+    start = html_text.find('id="hl_1"')
+    end = html_text.find('id="hl_2"', start)
     if start == -1 or end == -1:
         return []
     segment = html_text[start:end]
@@ -95,7 +110,7 @@ def parse_game8_tier(html_text: str) -> list[DeckLink]:
     for tier_match in pattern.finditer(segment):
         tier, block = tier_match.group(1), tier_match.group(2)
         for url, name in re.findall(r'href="([^"]+)"[^>]*><img[^>]*alt="([^"]+)"', block):
-            links.append(DeckLink(site="game8", url=url, name=html.unescape(name), tier=tier))
+            links.append(DeckLink(site="game8", url=url, name=html.unescape(name), tier=tier, format=deck_format))
     return links
 
 
@@ -133,11 +148,14 @@ def _resolve_card_id(conn: sqlite3.Connection, card_name: str) -> int | None:
 
 
 def collect_deck_links() -> list[DeckLink]:
-    # AI_NOTE: 両サイトのTier表を取得しデッキリンク一覧を返す。取得間隔を空けてサーバ負荷を抑える。
+    # AI_NOTE: TIER_SOURCES(サイト×フォーマットの全組)を順にループしてデッキリンクを集める。
+    # 取得間隔を空けてサーバ負荷を抑える(ソース数が増えてもリクエスト間は一律REQUEST_INTERVAL_SEC)。
     links: list[DeckLink] = []
-    links.extend(parse_gamewith_tier(_get_html(GAMEWITH_TIER_URL)))
-    time.sleep(REQUEST_INTERVAL_SEC)
-    links.extend(parse_game8_tier(_get_html(GAME8_TIER_URL)))
+    for site, deck_format, url in TIER_SOURCES:
+        html_text = _get_html(url)
+        parser = parse_gamewith_tier if site == "gamewith" else parse_game8_tier
+        links.extend(parser(html_text, deck_format))
+        time.sleep(REQUEST_INTERVAL_SEC)
     return links
 
 
@@ -163,14 +181,14 @@ def run() -> None:
             detail = collect_deck_detail(link)
             deck_id = i + 1
             deck_rows.append(
-                (deck_id, link.site, link.url, link.name, link.tier, "rotation", detail.updated_on)
+                (deck_id, link.site, link.url, link.name, link.tier, link.format, detail.updated_on)
             )
             for card_name, count in detail.cards:
                 card_id = _resolve_card_id(conn, card_name)
                 total_cards += 1
                 matched += card_id is not None
                 card_rows.append((deck_id, card_name, count, card_id))
-            print(f"[meta] {i + 1}/{len(links)}: [{link.site}] {link.name} カード{len(detail.cards)}種")
+            print(f"[meta] {i + 1}/{len(links)}: [{link.site}/{link.format}] {link.name} カード{len(detail.cards)}種")
 
         conn.execute("DELETE FROM meta_deck_card")
         conn.execute("DELETE FROM meta_deck")
