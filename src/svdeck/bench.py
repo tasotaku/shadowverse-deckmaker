@@ -1,9 +1,17 @@
-"""回帰ベンチv4: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
+"""回帰ベンチv5: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
 
 design.md §8-7の自己改善ループ①。meta_deck/meta_deck_card(環境デッキ81件)を教師データとし、
 「要求タグ持ちカードの各要求が、同じデッキの他のカードの供給タグで充足できるか」を採点する。
 充足できない組は人類が正解を知っているのにタグ語彙・充足マップでは繋がらない語彙の穴の候補で、
 充足率がリコール指標になる。
+
+v4からの変更(レート寄与モデルの過小評価2点の修正):
+  - 手札生成トークンの計上(ユーザー確認済み2026-07-06): 手札生成(X)のXがフォロワー系トークンなら
+    寄与を連携+1・墓場+1し、分母にそのトークンのプレイコストを加算する(手札に加わったトークンは
+    後でプレイされて場に出て死ぬ・そのPPも払う、という会計)。例: ルルミ=(本体1+バット1)/(2+1)≈0.67/PP
+  - トークン体数の推定: card_atom.atoms_jsonのeffect欄「トークン召喚(X, N)」「手札生成(X, N)」の
+    Nを正規表現で抽出。同じタグが複数effect(FF+進化等)に出る場合は最大値を採用(条件付き重複を
+    常時扱いにしない)。抽出できなければ1体近似(v4どおり)
 
 v3(100%)からの変更(design.md§6.2「自然増レートは環境デッキから実測する」・コミット816ff3a):
   - 自然増レートを目分量定数(墓場0.5/PP・連携0.55/PP)から環境デッキ実リストの実測計算に置き換え。
@@ -371,35 +379,76 @@ def _token_is_follower(param: str, category_lookup: CategoryLookup) -> bool:
     return "フォロワー" in param
 
 
+# AI_NOTE: v5。atoms_jsonのeffect欄「トークン召喚(X, N)」「手札生成(X, N)」から体数Nを抽出する。
+# 全角数字も許容(過剰には凝らない)。第2引数が無い形式は体数情報なしとして拾わない(呼び出し側で1体近似)。
+_EFFECT_COUNT_PATTERN = re.compile(r"(トークン召喚|手札生成)\(([^,()]+),\s*([0-9０-９]+)\)")
+_ZENKAKU_DIGITS = str.maketrans("０１２３４５６７８９", "0123456789")
+
+
+def _token_counts_from_atoms(atoms_json: str | None) -> dict[tuple[str, str], int]:
+    # AI_NOTE: (タグベース名, 正規化済みトークン名)→体数。同じ組が複数effect(FF+進化時の再発動等)に
+    # 出る場合は最大値を採用する——合計すると条件付きの重複発動を常時扱いにして過大になるため。
+    if atoms_json is None:
+        return {}
+    counts: dict[tuple[str, str], int] = {}
+    for base, name, count_text in _EFFECT_COUNT_PATTERN.findall(atoms_json):
+        key = (base, _normalize_param(name))
+        count = int(count_text.translate(_ZENKAKU_DIGITS))
+        counts[key] = max(counts.get(key, 0), count)
+    return counts
+
+
+class CardContrib(NamedTuple):
+    renkei: float
+    graveyard: float
+    extra_pp: int  # 手札生成トークンを後でプレイするためのPP(デッキレート分母に加算)
+
+
 def _card_counter_contrib(
-    type_category: str | None, supply_tags: list[Tag], category_lookup: CategoryLookup
-) -> tuple[float, float]:
-    # AI_NOTE: カード1枚をプレイした時のカウンタ寄与(連携, 墓場)。design.md§6.2実測方式の寄与モデル:
-    # 連携=フォロワー本体+1・フォロワー系トークン召喚 各タグ+1(体数はタグから取れないため1体近似)。
+    type_category: str | None,
+    supply_tags: list[Tag],
+    category_lookup: CategoryLookup,
+    token_counts: dict[tuple[str, str], int] | None = None,
+) -> CardContrib:
+    # AI_NOTE: カード1枚をプレイした時のカウンタ寄与(連携, 墓場, 追加PP)。design.md§6.2実測方式:
+    # 連携=フォロワー本体+1・フォロワー系トークン(召喚/手札生成) 各+体数。
     # 墓場=スペル+1(使用) / フォロワー+1(いずれ死亡) / アミュレット+1(いずれ破壊) /
-    # フォロワー系トークン召喚 各+1(いずれ死亡) / 供給タグ墓場+(k)のk(数値パース不能は+1近似)。
+    # フォロワー系トークン 各+体数(いずれ死亡) / 供給タグ墓場+(k)のk(数値パース不能は+1近似)。
+    # v5: 手札生成トークンは後でプレイするPPも払う(ユーザー確認済み会計)ため、
+    # トークンのプレイコスト×体数をextra_ppとして返し分母に加算させる。トークン召喚は場直行なので加算なし。
+    # 体数はtoken_counts(atoms_json由来)から引き、無ければ1体近似。
+    counts = token_counts or {}
     renkei = 0.0
     graveyard = 0.0
+    extra_pp = 0
     if type_category == "follower":
         renkei += 1
         graveyard += 1
     elif type_category in ("spell", "amulet"):
         graveyard += 1
     for tag in supply_tags:
-        if tag.base == "トークン召喚" and tag.param is not None and _token_is_follower(tag.param, category_lookup):
-            renkei += 1
-            graveyard += 1
+        if tag.base in ("トークン召喚", "手札生成") and tag.param is not None:
+            if not _token_is_follower(tag.param, category_lookup):
+                continue
+            count = counts.get((tag.base, tag.param), 1)
+            renkei += count
+            graveyard += count
+            if tag.base == "手札生成":
+                token = category_lookup.get(tag.param)
+                token_cost = token.cost if token is not None and token.cost is not None else 1
+                extra_pp += max(token_cost, 1) * count
         elif tag.base == "墓場+":
             try:
                 graveyard += int(tag.param) if tag.param is not None else 1
             except ValueError:
                 graveyard += 1
-    return renkei, graveyard
+    return CardContrib(renkei=renkei, graveyard=graveyard, extra_pp=extra_pp)
 
 
 def measure_deck_rates(conn: sqlite3.Connection, category_lookup: CategoryLookup) -> list[DeckRate]:
-    # AI_NOTE: デッキのレート = Σ(寄与×採用枚数) / Σ(max(cost,1)×採用枚数)。分母はプレイに要するPP総量の
-    # 近似で、コスト0カードはプレイ行動1回分として1PP扱いにする(0除算と「タダで無限に増える」誤近似の回避)。
+    # AI_NOTE: デッキのレート = Σ(寄与×採用枚数) / Σ((max(cost,1)+extra_pp)×採用枚数)。分母はプレイに
+    # 要するPP総量の近似で、コスト0カードはプレイ行動1回分として1PP扱いにする(0除算と「タダで無限に
+    # 増える」誤近似の回避)。extra_ppは手札生成トークンを後でプレイするPP(v5)。
     # card_id未解決の行はJOINで自然に落ちる。1枚も解決できないデッキはレート計算不能としてスキップ。
     rates: list[DeckRate] = []
     for deck_id, deck_name, deck_format in conn.execute("SELECT id, name, format FROM meta_deck").fetchall():
@@ -416,10 +465,12 @@ def measure_deck_rates(conn: sqlite3.Connection, category_lookup: CategoryLookup
                 parse_tag(row[0])
                 for row in conn.execute("SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (card_id,))
             ]
-            renkei, graveyard = _card_counter_contrib(type_category, supply_tags, category_lookup)
-            renkei_total += renkei * count
-            graveyard_total += graveyard * count
-            cost_total += max(cost or 1, 1) * count
+            atom_row = conn.execute("SELECT atoms_json FROM card_atom WHERE card_id = ?", (card_id,)).fetchone()
+            token_counts = _token_counts_from_atoms(atom_row[0] if atom_row else None)
+            contrib = _card_counter_contrib(type_category, supply_tags, category_lookup, token_counts)
+            renkei_total += contrib.renkei * count
+            graveyard_total += contrib.graveyard * count
+            cost_total += (max(cost or 1, 1) + contrib.extra_pp) * count
         if cost_total == 0:
             continue
         rates.append(
@@ -623,7 +674,7 @@ def format_report(
     # AI_NOTE: 標準出力とdata/bench_report.txtの両方に同じ全文を出す前提のフォーマット関数。
     lines: list[str] = []
     fulfillment_rate = result.fulfilled_total / result.scored_total if result.scored_total else 0.0
-    lines.append("=== 回帰ベンチv4: 要求充足の機械採点 ===")
+    lines.append("=== 回帰ベンチv5: 要求充足の機械採点 ===")
     lines.append(
         f"総計: スコア対象{result.scored_total}件 / 充足{result.fulfilled_total}件 / "
         f"充足率{fulfillment_rate:.1%}"
@@ -660,7 +711,7 @@ def format_report(
         lines.append("(なし)")
     lines.append("")
 
-    lines.append("=== v4 実測自然増レート(環境デッキ実リスト・1PPあたり) ===")
+    lines.append("=== 実測自然増レート(環境デッキ実リスト・1PPあたり・v5寄与モデル) ===")
     lines.append(f"- 期限: 累積PP(T{DEADLINE_TURN})={_CUM_PP_BASE} + 後攻エクストラPP楽観+2 = {DEADLINE_CUM_PP}")
     lines.append(f"- 対象デッキ数: {len(deck_rates)}件 / 導出: dedicated=90パーセンタイル・generic=中央値")
     if measured is None:
