@@ -1,8 +1,8 @@
 """SQLiteスキーマ定義と接続ヘルパー。
 
 テーブルは4層に分かれる:
-  - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 公式データのコピー。cardは新規
-    カードだけINSERT、辞書(card_set/skill_name/tribe)は取得のたび作り直す。
+  - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe / ability_keyword): 公式データのコピー。
+    cardは新規カードだけINSERT、辞書(card_set/skill_name/tribe/ability_keyword)は取得のたび作り直す。
   - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
   - 派生層 (card_atom / atom_tag): LLM抽出で作る供給/要求アトム。再抽出でいつでも作り直してよい。
   - 外部メタ層 (meta_deck / meta_deck_card): 攻略サイトのTier表・デッキレシピのコピー。鮮度が命なので
@@ -126,6 +126,12 @@ CREATE TABLE IF NOT EXISTS meta_deck_card (
     card_name TEXT,
     count INTEGER,
     card_id INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS ability_keyword (
+    title TEXT PRIMARY KEY,
+    text TEXT NOT NULL,
+    fetched_at TEXT
 );
 """
 
