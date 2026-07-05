@@ -1,10 +1,12 @@
 """SQLiteスキーマ定義と接続ヘルパー。
 
-テーブルは3層に分かれる:
+テーブルは4層に分かれる:
   - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 公式データのコピー。cardは新規
     カードだけINSERT、辞書(card_set/skill_name/tribe)は取得のたび作り直す。
   - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
   - 派生層 (card_atom / atom_tag): LLM抽出で作る供給/要求アトム。再抽出でいつでも作り直してよい。
+  - 外部メタ層 (meta_deck / meta_deck_card): 攻略サイトのTier表・デッキレシピのコピー。鮮度が命なので
+    再クロールのたびDELETE→全INSERTで作り直す。
 """
 
 import sqlite3
@@ -107,6 +109,24 @@ CREATE TABLE IF NOT EXISTS atom_tag (
 );
 
 CREATE INDEX IF NOT EXISTS idx_atom_tag_tag ON atom_tag (kind, tag);
+
+CREATE TABLE IF NOT EXISTS meta_deck (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site TEXT,
+    url TEXT UNIQUE,
+    name TEXT,
+    tier TEXT,
+    format TEXT,
+    updated_on TEXT,
+    fetched_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS meta_deck_card (
+    deck_id INTEGER,
+    card_name TEXT,
+    count INTEGER,
+    card_id INTEGER
+);
 """
 
 
