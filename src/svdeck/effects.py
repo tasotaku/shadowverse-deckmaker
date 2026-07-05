@@ -46,27 +46,35 @@ def save_effects(conn: sqlite3.Connection, card_id: int, data: dict[str, Any]) -
     return len(info)
 
 
-def run() -> None:
-    # AI_NOTE: 全カードを対象に単体APIを周回する。既取得カードはスキップしないと再実行が重いので、
-    # specific_effectに親として登場済みのcard_idは飛ばす(全作り直しは滅多に不要・必要ならDROPして再実行)。
-    conn = connect()
+def run(conn: sqlite3.Connection | None = None) -> None:
+    # AI_NOTE: 未クロールのカードだけ単体APIを周回する。効果の有無に関わらず effect_crawl に記録する
+    # ことで再実行・新弾追加時の増分クロールになる(結晶/アクセラレートはskill_textに現れないため
+    # テキストフィルタでは対象を絞れず、クロール記録方式にしている)。fetch.pyから接続を受け取れる。
+    own_conn = conn is None
+    conn = conn or connect()
     try:
-        done = {row[0] for row in conn.execute("SELECT DISTINCT card_id FROM specific_effect")}
-        targets = [row[0] for row in conn.execute("SELECT card_id FROM card ORDER BY card_id")]
+        targets = [
+            row[0] for row in conn.execute(
+                "SELECT card_id FROM card WHERE card_id NOT IN (SELECT card_id FROM effect_crawl) ORDER BY card_id"
+            )
+        ]
+        if not targets:
+            print("[effects] 未クロールのカードなし")
+            return
         total_effects = 0
         for i, card_id in enumerate(targets):
-            if card_id in done:
-                continue
             total_effects += save_effects(conn, card_id, fetch_card(card_id))
+            conn.execute("INSERT OR REPLACE INTO effect_crawl (card_id, fetched_at) VALUES (?, datetime('now'))", (card_id,))
             if i % 50 == 0:
                 conn.commit()
                 print(f"[effects] {i}/{len(targets)}枚 走査 / 効果{total_effects}件")
             time.sleep(REQUEST_INTERVAL_SEC)
         conn.commit()
         count = conn.execute("SELECT COUNT(*) FROM specific_effect").fetchone()[0]
-        print(f"[effects] 完了: specific_effect 総数 {count}件")
+        print(f"[effects] 完了: 新規走査{len(targets)}枚 / specific_effect 総数 {count}件")
     finally:
-        conn.close()
+        if own_conn:
+            conn.close()
 
 
 if __name__ == "__main__":

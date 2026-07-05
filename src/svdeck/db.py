@@ -87,6 +87,11 @@ CREATE TABLE IF NOT EXISTS specific_effect (
     fetched_at TEXT
 );
 
+CREATE TABLE IF NOT EXISTS effect_crawl (
+    card_id INTEGER PRIMARY KEY,
+    fetched_at TEXT
+);
+
 CREATE TABLE IF NOT EXISTS card_atom (
     card_id INTEGER PRIMARY KEY,
     atoms_json TEXT NOT NULL,

@@ -16,6 +16,7 @@ import urllib.request
 from typing import Any
 
 from svdeck.db import DB_PATH, connect
+from svdeck.effects import run as effects_run
 
 API_URL = "https://shadowverse-wb.com/web/CardList/cardList"
 USER_AGENT = "Mozilla/5.0"
@@ -197,6 +198,11 @@ def run() -> None:
         after = conn.execute("SELECT COUNT(*) FROM card").fetchone()[0]
         conn.commit()
         print(f"[fetch] 完了: 追加={after - before}枚 / DB総数={after}枚 / {DB_PATH}")
+
+        # AI_NOTE: 新カードのクレスト/結晶/アクセラレート/信仰は一覧APIに無いため、追加分だけ
+        # 単体カードAPIを増分クロールする(effect_crawl記録済みはスキップされる)。
+        if after > before:
+            effects_run(conn)
     finally:
         conn.close()
 
