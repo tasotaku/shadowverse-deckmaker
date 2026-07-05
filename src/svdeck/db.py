@@ -1,9 +1,10 @@
 """SQLiteスキーマ定義と接続ヘルパー。
 
-テーブルは2層に分かれる:
+テーブルは3層に分かれる:
   - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe): 公式データのコピー。cardは新規
     カードだけINSERT、辞書(card_set/skill_name/tribe)は取得のたび作り直す。
   - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
+  - 派生層 (card_atom / atom_tag): LLM抽出で作る供給/要求アトム。再抽出でいつでも作り直してよい。
 """
 
 import sqlite3
@@ -75,6 +76,22 @@ CREATE TABLE IF NOT EXISTS card_flag (
     card_id INTEGER PRIMARY KEY,
     favorite INTEGER DEFAULT 0
 );
+
+CREATE TABLE IF NOT EXISTS card_atom (
+    card_id INTEGER PRIMARY KEY,
+    atoms_json TEXT NOT NULL,
+    model TEXT,
+    extracted_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS atom_tag (
+    card_id INTEGER NOT NULL,
+    kind TEXT NOT NULL CHECK (kind IN ('supply', 'require')),
+    tag TEXT NOT NULL,
+    PRIMARY KEY (card_id, kind, tag)
+);
+
+CREATE INDEX IF NOT EXISTS idx_atom_tag_tag ON atom_tag (kind, tag);
 """
 
 
