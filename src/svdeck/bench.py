@@ -1,15 +1,16 @@
-"""回帰ベンチv2: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
+"""回帰ベンチv3: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
 
 design.md §8-7の自己改善ループ①。meta_deck/meta_deck_card(環境デッキ81件)を教師データとし、
 「要求タグ持ちカードの各要求が、同じデッキの他のカードの供給タグで充足できるか」を採点する。
 充足できない組は人類が正解を知っているのにタグ語彙・充足マップでは繋がらない語彙の穴の候補で、
 充足率がリコール指標になる。
 
-v1(55.3%)からの追加(親レビュー: 未充足の大半は語彙の穴でなく充足モデルの分類不足だった):
-  - auto_or_supply: 進化イベント・進化状態の存在要求など標準行動で常に満たせる要求を常時充足扱い
-  - natural: ネクロマンス・墓場≥N・連携の蓄積型要求を自然増レート×期限ターンの閾値で自動充足判定
-  - construction: スペルブースト・破壊履歴(種類数)をデッキ形状由来の充足としてscored対象から除外
-  - 同名自己充足: 存在(自場:X)のXがカード自身の名前ならそのカード自身が供給になる
+v2(72.7%)からの追加(親レビュー: 残り未充足7件はv2の自然増モデル誤りとカテゴリ階層欠如):
+  - natural: 自然増を「ターン単位固定レート」から「PP単位×デッキ形状」へ置き換え(rules.md#墓場の自然増)。
+    累積PP(T)=T(T+1)/2に後攻エクストラPP楽観+2を足した値を期限とし、per_pp レートで判定する
+  - category_resolution: 要求パラメータがカテゴリ(tribe名+フォロワー、コスト修飾可)で供給パラメータが
+    個体名の場合、DBのcard_tribe/tribeとcard.type_categoryから個体名→種族集合を引いて階層解決する
+  - トークン召喚(*)を連携・ネクロマンス・墓場≥Nの間接供給として追加(死亡→墓場+1、召喚→連携+1)
 
 実行: python -m svdeck.bench
 """
@@ -27,6 +28,14 @@ from svdeck.meta import _normalize_name
 FULFILLMENT_MAP_PATH = Path(__file__).resolve().parent / "data" / "fulfillment_map.json"
 REPORT_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "bench_report.txt"
 RANKING_TOP_N = 15
+
+# AI_NOTE: PP単位自然増モデル(rules.md#墓場の自然増・design.md§6.2)。累積PP(T)=T(T+1)/2に
+# 後攻エクストラPP(T1-5で+1・T6以降で+1)を楽観的に加算した値をT8の期限として固定する。
+# +2込みにする判断根拠: ユーザー確定「連携20はT8前後で達成しうる」から逆算したdedicatedレート0.55/PPだと
+# 素の累積36PPでは19.8となり閾値未達になってしまうため、エクストラ込みの38PPで19.8→20.9とし整合させた。
+DEADLINE_TURN = 8
+_CUM_PP_BASE = DEADLINE_TURN * (DEADLINE_TURN + 1) // 2
+DEADLINE_CUM_PP = _CUM_PP_BASE + 2  # 後攻エクストラPP楽観込み(36+2=38)
 
 # AI_NOTE: 「ベース名(パラメータ)」形式のタグを分解する正規表現。パラメータの丸括弧は
 # 「墓場≥6」のように付かないタグもあるため、マッチしない場合はベース名=タグ全体・パラメータ無しとして扱う。
@@ -108,16 +117,18 @@ def extract_n(raw_tag: str) -> int | None:
     return None
 
 
-class FulfillmentRule(TypedDict):
+class FulfillmentRule(TypedDict, total=False):
     require: str
     supplies: list[str]
     confidence: str
+    category_resolution: bool
 
 
 class NaturalRule(TypedDict):
+    # AI_NOTE: v3でdeadline_turnを廃止しDEADLINE_CUM_PP固定値に統一(rules.md#墓場の自然増)。
+    # natural_rateはper_pp単位(1PPあたりの増加量)。deckプロファイルはconfidence注記とnoteで人が追える。
     require: str
     natural_rate: float
-    deadline_turn: int
     supplies: list[str]
     confidence: str
 
@@ -134,8 +145,13 @@ class FulfillmentMapRaw(TypedDict, total=False):
 class CompiledNaturalRule(NamedTuple):
     require_base: str
     natural_rate: float
-    deadline_turn: int
     supplies: list[SupplyPattern]
+
+
+class CompiledRule(NamedTuple):
+    require: SupplyPattern
+    supplies: list[SupplyPattern]
+    category_resolution: bool
 
 
 class FulfillmentMap:
@@ -149,13 +165,17 @@ class FulfillmentMap:
             CompiledNaturalRule(
                 require_base=parse_pattern(rule["require"]).base,
                 natural_rate=rule["natural_rate"],
-                deadline_turn=rule["deadline_turn"],
                 supplies=[parse_pattern(s) for s in rule["supplies"]],
             )
             for rule in raw.get("natural_rules", [])
         ]
-        self.rules: list[tuple[SupplyPattern, list[SupplyPattern]]] = [
-            (parse_pattern(rule["require"]), [parse_pattern(s) for s in rule["supplies"]]) for rule in raw["rules"]
+        self.rules: list[CompiledRule] = [
+            CompiledRule(
+                require=parse_pattern(rule["require"]),
+                supplies=[parse_pattern(s) for s in rule["supplies"]],
+                category_resolution=rule.get("category_resolution", False),
+            )
+            for rule in raw["rules"]
         ]
         self.unclassified_bases: set[str] = {parse_pattern(t).base for t in raw.get("unclassified", [])}
 
@@ -173,7 +193,7 @@ class FulfillmentMap:
             return "unclassified"
         if any(require.base == rule.require_base for rule in self.natural_rules):
             return "natural"
-        if any(require.base == rule_require.base for rule_require, _ in self.rules):
+        if any(require.base == rule.require.base for rule in self.rules):
             return "scored"
         return "unclassified"
 
@@ -186,10 +206,14 @@ class FulfillmentMap:
     def supplies_for(self, require: Tag) -> list[SupplyPattern]:
         # AI_NOTE: 同じベース名のruleが複数あっても(現状は無い想定)全部合成して候補を返す。
         supplies: list[SupplyPattern] = []
-        for rule_require, rule_supplies in self.rules:
-            if rule_require.base == require.base:
-                supplies.extend(rule_supplies)
+        for rule in self.rules:
+            if rule.require.base == require.base:
+                supplies.extend(rule.supplies)
         return supplies
+
+    def category_resolution_for(self, require: Tag) -> bool:
+        # AI_NOTE: 該当ベース名のruleでcategory_resolution:trueが1つでも立っていれば階層解決を許す。
+        return any(rule.require.base == require.base and rule.category_resolution for rule in self.rules)
 
 
 def load_fulfillment_map(path: Path = FULFILLMENT_MAP_PATH) -> FulfillmentMap:
@@ -197,10 +221,97 @@ def load_fulfillment_map(path: Path = FULFILLMENT_MAP_PATH) -> FulfillmentMap:
     return FulfillmentMap(raw)
 
 
-def _matches(require: Tag, supply_tags: list[Tag], allowed_patterns: list[SupplyPattern]) -> bool:
+class CardCategory(NamedTuple):
+    tribe_names: set[str]
+    type_category: str | None  # follower/amulet/spell
+    cost: int | None
+
+
+class CategoryLookup:
+    """個体名(正規化済み) → (種族集合, タイプ, コスト) の逆引き。
+
+    要求パラメータがカテゴリ(tribe名+フォロワー等)で供給パラメータが個体名の場合の階層解決に使う
+    (design.md §6.1「タグの文字列一致だけでは噛まないペア」への対応・v3追加)。トークンも含めて
+    card.card_id全件を対象にする。名前照合はmeta.py._normalize_name準拠。
+    """
+
+    def __init__(self, conn: sqlite3.Connection) -> None:
+        self._by_name: dict[str, CardCategory] = {}
+        self.tribe_names: set[str] = {row[0] for row in conn.execute("SELECT name FROM tribe")}
+        rows = conn.execute("SELECT card_id, name, type_category, cost FROM card").fetchall()
+        tribe_rows = conn.execute(
+            "SELECT ct.card_id, t.name FROM card_tribe ct JOIN tribe t ON t.id = ct.tribe_id"
+        ).fetchall()
+        tribes_by_card: dict[int, set[str]] = {}
+        for card_id, tribe_name in tribe_rows:
+            tribes_by_card.setdefault(card_id, set()).add(tribe_name)
+        for card_id, name, type_category, cost in rows:
+            normalized = _normalize_name(name)
+            self._by_name[normalized] = CardCategory(
+                tribe_names=tribes_by_card.get(card_id, set()), type_category=type_category, cost=cost
+            )
+
+    def get(self, name: str) -> CardCategory | None:
+        return self._by_name.get(_normalize_name(name))
+
+
+# AI_NOTE: 要求パラメータの「(コストN以下)?種族名(・)?フォロワー」形式を種族名・上限コストへ分解する。
+# 「アーティファクト・フォロワー」「妖精フォロワー」(中黒なし)「コスト5以下アーティファクト・フォロワー」の
+# 3パターンを吸収する。「フォロワーコスト2以下」のようなサフィックス修飾やロイヤル等クラス名は対象外
+# (パースできなければ非マッチのままレポートに「階層解決不能」として出す設計)。
+_CATEGORY_PARAM_PATTERN = re.compile(r"^(?:コスト(\d+)以下)?(.+?)・?フォロワー$")
+
+
+def _resolve_category_param(param: str, tribe_names: set[str]) -> tuple[str, int | None] | None:
+    match = _CATEGORY_PARAM_PATTERN.match(param)
+    if not match:
+        return None
+    max_cost_text, tribe_name = match.groups()
+    if tribe_name not in tribe_names:
+        return None  # tribeテーブルに存在しない語(例:単なる「フォロワー」)は種族カテゴリ要求ではない
+    max_cost = int(max_cost_text) if max_cost_text is not None else None
+    return tribe_name, max_cost
+
+
+def _category_matches(
+    require: Tag, supply_tags: list[Tag], allowed_patterns: list[SupplyPattern], category_lookup: CategoryLookup
+) -> bool:
+    # AI_NOTE: 要求パラメータがtribe名+フォロワー形式(コスト修飾可)の場合のみ試す。供給側の個体名
+    # パラメータをCategoryLookupで引き、その種族を持つフォロワーであれば充足とみなす(design.md
+    # 「個体名タグ→カテゴリ要求の階層欠如」への対応)。マッチしうるルール(capture=True)にのみ適用する。
+    if require.param is None:
+        return False
+    resolved = _resolve_category_param(require.param, category_lookup.tribe_names)
+    if resolved is None:
+        return False
+    tribe_name, max_cost = resolved
+    for allowed in allowed_patterns:
+        if not allowed.capture:
+            continue
+        for supply in supply_tags:
+            if supply.base != allowed.base or supply.param is None:
+                continue
+            category = category_lookup.get(supply.param)
+            if category is None or category.type_category != "follower":
+                continue
+            if tribe_name not in category.tribe_names:
+                continue
+            if max_cost is not None and (category.cost is None or category.cost > max_cost):
+                continue
+            return True
+    return False
+
+
+def _matches(
+    require: Tag,
+    supply_tags: list[Tag],
+    allowed_patterns: list[SupplyPattern],
+    category_lookup: CategoryLookup | None = None,
+) -> bool:
     # AI_NOTE: allowed_patterns(ルールのsupplies)のうち、ベース名が一致し
     # ((X))ケースは要求側paramと供給側paramの正規化済み完全一致まで見る供給タグが、
-    # 実際に候補集合の中にあるか判定する。
+    # 実際に候補集合の中にあるか判定する。通常一致で見つからずcategory_lookupが渡された場合のみ
+    # (=呼び出し元がそのルールのcategory_resolution:trueを確認済み)階層解決にフォールバックする。
     for allowed in allowed_patterns:
         for supply in supply_tags:
             if supply.base != allowed.base:
@@ -209,6 +320,8 @@ def _matches(require: Tag, supply_tags: list[Tag], allowed_patterns: list[Supply
                 return True  # (*)相当・パラメータ無し: パラメータ不問
             if supply.param == require.param:
                 return True  # ((X))相当: 要求・供給のパラメータが一致して初めて充足
+    if category_lookup is not None:
+        return _category_matches(require, supply_tags, allowed_patterns, category_lookup)
     return False
 
 
@@ -275,20 +388,23 @@ def _self_name_fulfilled(require: Tag, card_name: str) -> bool:
 
 
 def _natural_fulfilled(raw_tag: str, rule: CompiledNaturalRule) -> bool | None:
-    # AI_NOTE: 蓄積型要求(ネクロマンス/墓場≥N/連携)の自然増閾値モデル(design.md§6.2)。
-    # N <= rate×deadline なら供給タグ無しでも自動充足。Nがプレースホルダで数値抽出できない
-    # タグ(「墓場≥N」「連携(N)」)はNoneを返し、呼び出し元に供給照合へのフォールバックを促す。
+    # AI_NOTE: 蓄積型要求(ネクロマンス/墓場≥N/連携)のPP単位自然増モデル(rules.md#墓場の自然増・
+    # design.md§6.2)。N <= rate(per_pp)×DEADLINE_CUM_PP なら供給タグ無しでも自動充足。
+    # rateはdedicated(専用構築)値を使う——環境デッキにその要求カードが入っている時点で専用構築と
+    # みなせるため(design.md§6.2の注記どおり)。Nがプレースホルダで数値抽出できないタグ
+    # (「墓場≥N」「連携(N)」)はNoneを返し、呼び出し元に供給照合へのフォールバックを促す。
     n = extract_n(raw_tag)
     if n is None:
         return None
-    return n <= rule.natural_rate * rule.deadline_turn
+    return n <= rule.natural_rate * DEADLINE_CUM_PP
 
 
 def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
     # AI_NOTE: 各デッキ×各カード×そのカードのrequireタグごとに分類する。auto/auto_or_supplyは
     # 常時充足、construction/unclassifiedはスコア対象外。naturalは閾値内なら自動充足、超過または
-    # N不明なら通常の供給照合(rulesと同じ_matches)にフォールバックする。scored/naturalはどちらも
-    # 最終的にscored_total/fulfilled_totalへ計上し充足率の分母に含める。
+    # N不明なら通常の供給照合(rulesと同じ_matches、category_lookup併用)にフォールバックする。
+    # scored/naturalはどちらも最終的にscored_total/fulfilled_totalへ計上し充足率の分母に含める。
+    category_lookup = CategoryLookup(conn)
     decks = _load_decks(conn)
     category_counts: Counter[str] = Counter()
     scored_total = 0
@@ -330,8 +446,10 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
                         fulfilled_total += 1
                         continue
                     allowed = rule.supplies
+                    use_category = False
                 else:
                     allowed = fmap.supplies_for(require)
+                    use_category = fmap.category_resolution_for(require)
 
                 scored_total += 1
                 other_supplies = [
@@ -340,7 +458,7 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
                     if other_id != card.card_id
                     for tag in tags
                 ]
-                if _matches(require, other_supplies, allowed):
+                if _matches(require, other_supplies, allowed, category_lookup if use_category else None):
                     fulfilled_total += 1
                     continue
 
@@ -366,7 +484,7 @@ def format_report(result: BenchResult) -> str:
     # AI_NOTE: 標準出力とdata/bench_report.txtの両方に同じ全文を出す前提のフォーマット関数。
     lines: list[str] = []
     fulfillment_rate = result.fulfilled_total / result.scored_total if result.scored_total else 0.0
-    lines.append("=== 回帰ベンチv2: 要求充足の機械採点 ===")
+    lines.append("=== 回帰ベンチv3: 要求充足の機械採点 ===")
     lines.append(
         f"総計: スコア対象{result.scored_total}件 / 充足{result.fulfilled_total}件 / "
         f"充足率{fulfillment_rate:.1%}"
@@ -403,10 +521,10 @@ def format_report(result: BenchResult) -> str:
         lines.append("(なし)")
     lines.append("")
 
-    lines.append("=== v2 draft注記(親レビュー予定のfulfillment_map.jsonエントリ) ===")
-    lines.append("- natural_rules: ネクロマンス((X)) rate=1.0 deadline=8 (draft)")
-    lines.append("- natural_rules: 墓場≥N rate=1.0 deadline=8 (draft)")
-    lines.append("- natural_rules: 連携((X)) rate=1.75 deadline=8 (draft)")
+    lines.append("=== v3 natural_rules注記(PP単位・dedicated形状で採点、user_confirmed_2026-07-06) ===")
+    lines.append(f"- 期限: 累積PP(T{DEADLINE_TURN})={_CUM_PP_BASE} + 後攻エクストラPP楽観+2 = {DEADLINE_CUM_PP}")
+    lines.append("- natural_rules: ネクロマンス((X))・墓場≥N rate=0.5/PP (user_confirmed)")
+    lines.append("- natural_rules: 連携((X)) rate=0.55/PP (user_confirmed、T8で連携20達成の逆算値)")
 
     return "\n".join(lines) + "\n"
 
