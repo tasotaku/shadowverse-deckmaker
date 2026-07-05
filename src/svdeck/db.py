@@ -77,6 +77,16 @@ CREATE TABLE IF NOT EXISTS card_flag (
     favorite INTEGER DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS specific_effect (
+    effect_card_id INTEGER PRIMARY KEY,
+    card_id INTEGER NOT NULL,
+    effect_type INTEGER,
+    effect_type_name TEXT,
+    cost INTEGER,
+    skill_text TEXT,
+    fetched_at TEXT
+);
+
 CREATE TABLE IF NOT EXISTS card_atom (
     card_id INTEGER PRIMARY KEY,
     atoms_json TEXT NOT NULL,
