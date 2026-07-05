@@ -1,9 +1,15 @@
-"""回帰ベンチ: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
+"""回帰ベンチv2: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
 
 design.md §8-7の自己改善ループ①。meta_deck/meta_deck_card(環境デッキ81件)を教師データとし、
 「要求タグ持ちカードの各要求が、同じデッキの他のカードの供給タグで充足できるか」を採点する。
 充足できない組は人類が正解を知っているのにタグ語彙・充足マップでは繋がらない語彙の穴の候補で、
 充足率がリコール指標になる。
+
+v1(55.3%)からの追加(親レビュー: 未充足の大半は語彙の穴でなく充足モデルの分類不足だった):
+  - auto_or_supply: 進化イベント・進化状態の存在要求など標準行動で常に満たせる要求を常時充足扱い
+  - natural: ネクロマンス・墓場≥N・連携の蓄積型要求を自然増レート×期限ターンの閾値で自動充足判定
+  - construction: スペルブースト・破壊履歴(種類数)をデッキ形状由来の充足としてscored対象から除外
+  - 同名自己充足: 存在(自場:X)のXがカード自身の名前ならそのカード自身が供給になる
 
 実行: python -m svdeck.bench
 """
@@ -16,10 +22,11 @@ from pathlib import Path
 from typing import NamedTuple, TypedDict
 
 from svdeck.db import connect
+from svdeck.meta import _normalize_name
 
 FULFILLMENT_MAP_PATH = Path(__file__).resolve().parent / "data" / "fulfillment_map.json"
 REPORT_PATH = Path(__file__).resolve().parent.parent.parent / "data" / "bench_report.txt"
-RANKING_TOP_N = 20
+RANKING_TOP_N = 15
 
 # AI_NOTE: 「ベース名(パラメータ)」形式のタグを分解する正規表現。パラメータの丸括弧は
 # 「墓場≥6」のように付かないタグもあるため、マッチしない場合はベース名=タグ全体・パラメータ無しとして扱う。
@@ -84,42 +91,97 @@ def parse_pattern(raw_pattern: str) -> SupplyPattern:
     return SupplyPattern(base=parse_tag(raw_pattern).base, capture=False)
 
 
+# AI_NOTE: natural判定用にタグ生文字列から閾値Nを数値抽出する。「ネクロマンス(6)」→6、
+# 「墓場≥6」→6、「墓場≥N」「連携(N)」のようにNがプレースホルダで数値化できないものはNoneを返す
+# (bench.py側でN不明として供給照合のみにフォールバックする合図に使う)。
+_N_IN_PARENS = re.compile(r"\((\d+)\)$")
+_N_AFTER_THRESHOLD = re.compile(r"[≥](\d+)$")
+
+
+def extract_n(raw_tag: str) -> int | None:
+    paren_match = _N_IN_PARENS.search(raw_tag)
+    if paren_match:
+        return int(paren_match.group(1))
+    threshold_match = _N_AFTER_THRESHOLD.search(raw_tag)
+    if threshold_match:
+        return int(threshold_match.group(1))
+    return None
+
+
 class FulfillmentRule(TypedDict):
     require: str
     supplies: list[str]
     confidence: str
 
 
+class NaturalRule(TypedDict):
+    require: str
+    natural_rate: float
+    deadline_turn: int
+    supplies: list[str]
+    confidence: str
+
+
 class FulfillmentMapRaw(TypedDict, total=False):
     auto: list[str]
+    auto_or_supply: list[str]
     construction: list[str]
+    natural_rules: list[NaturalRule]
     rules: list[FulfillmentRule]
     unclassified: list[str]
 
 
+class CompiledNaturalRule(NamedTuple):
+    require_base: str
+    natural_rate: float
+    deadline_turn: int
+    supplies: list[SupplyPattern]
+
+
 class FulfillmentMap:
-    """要求タグ→供給タグの充足マップ。auto/construction/rules/unclassifiedの4分類を保持する。"""
+    """要求タグ→供給タグの充足マップ。auto/auto_or_supply/construction/natural/rules/unclassifiedの6分類を保持する。"""
 
     def __init__(self, raw: FulfillmentMapRaw) -> None:
         self.auto_bases: set[str] = {parse_pattern(t).base for t in raw["auto"]}
+        self.auto_or_supply_bases: set[str] = {parse_pattern(t).base for t in raw.get("auto_or_supply", [])}
         self.construction_bases: set[str] = {parse_pattern(t).base for t in raw["construction"]}
+        self.natural_rules: list[CompiledNaturalRule] = [
+            CompiledNaturalRule(
+                require_base=parse_pattern(rule["require"]).base,
+                natural_rate=rule["natural_rate"],
+                deadline_turn=rule["deadline_turn"],
+                supplies=[parse_pattern(s) for s in rule["supplies"]],
+            )
+            for rule in raw.get("natural_rules", [])
+        ]
         self.rules: list[tuple[SupplyPattern, list[SupplyPattern]]] = [
             (parse_pattern(rule["require"]), [parse_pattern(s) for s in rule["supplies"]]) for rule in raw["rules"]
         ]
         self.unclassified_bases: set[str] = {parse_pattern(t).base for t in raw.get("unclassified", [])}
 
     def classify(self, require: Tag) -> str:
-        # AI_NOTE: 分類の優先順はauto/construction/unclassified→rulesにマッチしなければ「no_rule」
-        # (rulesにもauto/constructionにも無いタグ=マップの穴。unclassified集計に回す)。
+        # AI_NOTE: 分類の優先順はauto/auto_or_supply/construction/unclassified→natural→rules→
+        # どれにもマッチしなければunclassified(マップの穴)。auto_or_supplyはautoの次に判定し、
+        # 供給タグも別途保持したい要求(進化イベント等)をauto単独と区別する。
         if require.base in self.auto_bases:
             return "auto"
+        if require.base in self.auto_or_supply_bases:
+            return "auto_or_supply"
         if require.base in self.construction_bases:
             return "construction"
         if require.base in self.unclassified_bases:
             return "unclassified"
+        if any(require.base == rule.require_base for rule in self.natural_rules):
+            return "natural"
         if any(require.base == rule_require.base for rule_require, _ in self.rules):
             return "scored"
         return "unclassified"
+
+    def natural_rule_for(self, require: Tag) -> CompiledNaturalRule | None:
+        for rule in self.natural_rules:
+            if rule.require_base == require.base:
+                return rule
+        return None
 
     def supplies_for(self, require: Tag) -> list[SupplyPattern]:
         # AI_NOTE: 同じベース名のruleが複数あっても(現状は無い想定)全部合成して候補を返す。
@@ -200,17 +262,40 @@ class BenchResult(NamedTuple):
     unfulfilled_by_tag: dict[str, list[UnfulfilledExample]]
     affected_decks_by_tag: dict[str, set[int]]  # 未充足タグ→影響デッキid集合(同名デッキを正しく別カウントするため)
     unclassified_tags: set[str]
+    natural_unknown_tags: set[str]  # natural対象だがNが数値抽出できず供給照合のみにフォールバックしたタグ
+
+
+def _self_name_fulfilled(require: Tag, card_name: str) -> bool:
+    # AI_NOTE: 「存在(自場:X)」のXがカード自身の名前(正規化一致)なら、そのカード自身(同名3積みの
+    # 自分自身)が供給になるため他カード探索より前に充足扱いにする(design.md v2の自己除外ルール例外)。
+    # meta.py._normalize_nameを流用し、攻略サイト表記の揺れ吸収と同じ正規化で比較する。
+    if require.base != "存在" or require.param is None:
+        return False
+    return _normalize_name(require.param) == _normalize_name(card_name)
+
+
+def _natural_fulfilled(raw_tag: str, rule: CompiledNaturalRule) -> bool | None:
+    # AI_NOTE: 蓄積型要求(ネクロマンス/墓場≥N/連携)の自然増閾値モデル(design.md§6.2)。
+    # N <= rate×deadline なら供給タグ無しでも自動充足。Nがプレースホルダで数値抽出できない
+    # タグ(「墓場≥N」「連携(N)」)はNoneを返し、呼び出し元に供給照合へのフォールバックを促す。
+    n = extract_n(raw_tag)
+    if n is None:
+        return None
+    return n <= rule.natural_rate * rule.deadline_turn
 
 
 def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
-    # AI_NOTE: 各デッキ×各カード×そのカードのrequireタグごとに、分類してscored対象のみ
-    # 同デッキの他カードの供給タグと照合する。unclassified/no_ruleは同じ集合にまとめて報告する。
+    # AI_NOTE: 各デッキ×各カード×そのカードのrequireタグごとに分類する。auto/auto_or_supplyは
+    # 常時充足、construction/unclassifiedはスコア対象外。naturalは閾値内なら自動充足、超過または
+    # N不明なら通常の供給照合(rulesと同じ_matches)にフォールバックする。scored/naturalはどちらも
+    # 最終的にscored_total/fulfilled_totalへ計上し充足率の分母に含める。
     decks = _load_decks(conn)
     category_counts: Counter[str] = Counter()
     scored_total = 0
     fulfilled_total = 0
     unfulfilled_by_tag: dict[str, list[UnfulfilledExample]] = {}
     unclassified_tags: set[str] = set()
+    natural_unknown_tags: set[str] = set()
     affected_decks_by_tag: dict[str, set[int]] = {}
 
     for deck_id, (deck_name, cards) in decks.items():
@@ -220,10 +305,33 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
                 require = parse_tag(raw_tag)
                 category = fmap.classify(require)
                 category_counts[category] += 1
-                if category != "scored":
-                    if category == "unclassified":
-                        unclassified_tags.add(raw_tag)
+
+                if category in ("auto", "auto_or_supply"):
                     continue
+                if category == "construction":
+                    continue
+                if category == "unclassified":
+                    unclassified_tags.add(raw_tag)
+                    continue
+
+                if _self_name_fulfilled(require, card.card_name):
+                    scored_total += 1
+                    fulfilled_total += 1
+                    continue
+
+                if category == "natural":
+                    rule = fmap.natural_rule_for(require)
+                    assert rule is not None
+                    natural_ok = _natural_fulfilled(raw_tag, rule)
+                    if natural_ok is None:
+                        natural_unknown_tags.add(raw_tag)
+                    elif natural_ok:
+                        scored_total += 1
+                        fulfilled_total += 1
+                        continue
+                    allowed = rule.supplies
+                else:
+                    allowed = fmap.supplies_for(require)
 
                 scored_total += 1
                 other_supplies = [
@@ -232,7 +340,6 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
                     if other_id != card.card_id
                     for tag in tags
                 ]
-                allowed = fmap.supplies_for(require)
                 if _matches(require, other_supplies, allowed):
                     fulfilled_total += 1
                     continue
@@ -251,6 +358,7 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
         unfulfilled_by_tag=unfulfilled_by_tag,
         affected_decks_by_tag=affected_decks_by_tag,
         unclassified_tags=unclassified_tags,
+        natural_unknown_tags=natural_unknown_tags,
     )
 
 
@@ -258,13 +366,13 @@ def format_report(result: BenchResult) -> str:
     # AI_NOTE: 標準出力とdata/bench_report.txtの両方に同じ全文を出す前提のフォーマット関数。
     lines: list[str] = []
     fulfillment_rate = result.fulfilled_total / result.scored_total if result.scored_total else 0.0
-    lines.append("=== 回帰ベンチ: 要求充足の機械採点 ===")
+    lines.append("=== 回帰ベンチv2: 要求充足の機械採点 ===")
     lines.append(
         f"総計: スコア対象{result.scored_total}件 / 充足{result.fulfilled_total}件 / "
         f"充足率{fulfillment_rate:.1%}"
     )
     lines.append("区分別件数:")
-    for category in ("scored", "auto", "construction", "unclassified"):
+    for category in ("scored", "natural", "auto", "auto_or_supply", "construction", "unclassified"):
         lines.append(f"  {category}: {result.category_counts.get(category, 0)}件")
     lines.append("")
 
@@ -285,6 +393,20 @@ def format_report(result: BenchResult) -> str:
     lines.append("=== unclassifiedタグ一覧(分類待ち) ===")
     for tag in sorted(result.unclassified_tags):
         lines.append(f"- {tag}")
+    lines.append("")
+
+    lines.append("=== natural判定でN不明のため供給照合のみにフォールバックしたタグ(注記) ===")
+    if result.natural_unknown_tags:
+        for tag in sorted(result.natural_unknown_tags):
+            lines.append(f"- {tag}")
+    else:
+        lines.append("(なし)")
+    lines.append("")
+
+    lines.append("=== v2 draft注記(親レビュー予定のfulfillment_map.jsonエントリ) ===")
+    lines.append("- natural_rules: ネクロマンス((X)) rate=1.0 deadline=8 (draft)")
+    lines.append("- natural_rules: 墓場≥N rate=1.0 deadline=8 (draft)")
+    lines.append("- natural_rules: 連携((X)) rate=1.75 deadline=8 (draft)")
 
     return "\n".join(lines) + "\n"
 
