@@ -1,11 +1,19 @@
-"""回帰ベンチv3: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
+"""回帰ベンチv4: 環境デッキを教師データに要求タグ充足の見逃しを機械採点する。
 
 design.md §8-7の自己改善ループ①。meta_deck/meta_deck_card(環境デッキ81件)を教師データとし、
 「要求タグ持ちカードの各要求が、同じデッキの他のカードの供給タグで充足できるか」を採点する。
 充足できない組は人類が正解を知っているのにタグ語彙・充足マップでは繋がらない語彙の穴の候補で、
 充足率がリコール指標になる。
 
-v2(72.7%)からの追加(親レビュー: 残り未充足7件はv2の自然増モデル誤りとカテゴリ階層欠如):
+v3(100%)からの変更(design.md§6.2「自然増レートは環境デッキから実測する」・コミット816ff3a):
+  - 自然増レートを目分量定数(墓場0.5/PP・連携0.55/PP)から環境デッキ実リストの実測計算に置き換え。
+    カード1枚のカウンタ寄与(連携=フォロワー+1・フォロワー系トークン各+1 / 墓場=カード種別+1・
+    トークン+1・墓場+(k)のk)をコスト加重で合計し「1PPあたり増加率」をデッキごとに算出、
+    dedicated=全デッキ分布の90パーセンタイル・generic=中央値として導出する
+  - fulfillment_map.jsonの目分量定数はfallbackとして残し、bench実行時に実測dedicatedで上書きする
+    (meta_deck再取得でレートが自動追随する)
+
+v2(72.7%)→v3の追加(親レビュー: 残り未充足7件はv2の自然増モデル誤りとカテゴリ階層欠如):
   - natural: 自然増を「ターン単位固定レート」から「PP単位×デッキ形状」へ置き換え(rules.md#墓場の自然増)。
     累積PP(T)=T(T+1)/2に後攻エクストラPP楽観+2を足した値を期限とし、per_pp レートで判定する
   - category_resolution: 要求パラメータがカテゴリ(tribe名+フォロワー、コスト修飾可)で供給パラメータが
@@ -18,6 +26,7 @@ v2(72.7%)からの追加(親レビュー: 残り未充足7件はv2の自然増�
 import json
 import re
 import sqlite3
+import statistics
 from collections import Counter
 from pathlib import Path
 from typing import NamedTuple, TypedDict
@@ -126,8 +135,10 @@ class FulfillmentRule(TypedDict, total=False):
 
 class NaturalRule(TypedDict):
     # AI_NOTE: v3でdeadline_turnを廃止しDEADLINE_CUM_PP固定値に統一(rules.md#墓場の自然増)。
-    # natural_rateはper_pp単位(1PPあたりの増加量)。deckプロファイルはconfidence注記とnoteで人が追える。
+    # natural_rateはper_pp単位(1PPあたりの増加量)。v4からJSONの値はfallbackで、counter種別
+    # (graveyard/renkei)ごとに環境デッキ実測レートが実行時に上書きする。
     require: str
+    counter: str
     natural_rate: float
     supplies: list[str]
     confidence: str
@@ -144,6 +155,7 @@ class FulfillmentMapRaw(TypedDict, total=False):
 
 class CompiledNaturalRule(NamedTuple):
     require_base: str
+    counter: str  # カウンタ種別(graveyard/renkei)。実測レートの上書き対象を特定するキー
     natural_rate: float
     supplies: list[SupplyPattern]
 
@@ -164,6 +176,7 @@ class FulfillmentMap:
         self.natural_rules: list[CompiledNaturalRule] = [
             CompiledNaturalRule(
                 require_base=parse_pattern(rule["require"]).base,
+                counter=rule["counter"],
                 natural_rate=rule["natural_rate"],
                 supplies=[parse_pattern(s) for s in rule["supplies"]],
             )
@@ -214,6 +227,16 @@ class FulfillmentMap:
     def category_resolution_for(self, require: Tag) -> bool:
         # AI_NOTE: 該当ベース名のruleでcategory_resolution:trueが1つでも立っていれば階層解決を許す。
         return any(rule.require.base == require.base and rule.category_resolution for rule in self.rules)
+
+    def apply_measured_rates(self, rates_by_counter: dict[str, float]) -> None:
+        # AI_NOTE: v4。JSONのnatural_rate(目分量fallback)を環境デッキ実測レートで上書きする。
+        # counter種別が実測に無いruleはfallbackのまま残す(meta_deckが空の場合など)。
+        self.natural_rules = [
+            rule._replace(natural_rate=rates_by_counter[rule.counter])
+            if rule.counter in rates_by_counter
+            else rule
+            for rule in self.natural_rules
+        ]
 
 
 def load_fulfillment_map(path: Path = FULFILLMENT_MAP_PATH) -> FulfillmentMap:
@@ -325,6 +348,109 @@ def _matches(
     return False
 
 
+class DeckRate(NamedTuple):
+    deck_id: int
+    deck_name: str
+    deck_format: str | None
+    renkei: float  # 1PPあたりの連携カウンタ増加率(実測)
+    graveyard: float  # 1PPあたりの墓場カウンタ増加率(実測)
+
+
+class MeasuredRates(NamedTuple):
+    dedicated: dict[str, float]  # counter種別→全デッキ分布の90パーセンタイル(専用構築の近似)
+    generic: dict[str, float]  # counter種別→中央値(汎用デッキの近似)
+
+
+def _token_is_follower(param: str, category_lookup: CategoryLookup) -> bool:
+    # AI_NOTE: トークン召喚(X)のXがフォロワー系か判定する。個体名はCategoryLookupのtype_categoryが正。
+    # lookupに無い表現(「コスト3以下のフォロワー」「アーティファクト・フォロワーのコピー」等のカテゴリ表現)は
+    # 文字列に「フォロワー」を含むかで近似する。「◯◯」等の不明プレースホルダは偽=寄与に数えない(保守側)。
+    category = category_lookup.get(param)
+    if category is not None:
+        return category.type_category == "follower"
+    return "フォロワー" in param
+
+
+def _card_counter_contrib(
+    type_category: str | None, supply_tags: list[Tag], category_lookup: CategoryLookup
+) -> tuple[float, float]:
+    # AI_NOTE: カード1枚をプレイした時のカウンタ寄与(連携, 墓場)。design.md§6.2実測方式の寄与モデル:
+    # 連携=フォロワー本体+1・フォロワー系トークン召喚 各タグ+1(体数はタグから取れないため1体近似)。
+    # 墓場=スペル+1(使用) / フォロワー+1(いずれ死亡) / アミュレット+1(いずれ破壊) /
+    # フォロワー系トークン召喚 各+1(いずれ死亡) / 供給タグ墓場+(k)のk(数値パース不能は+1近似)。
+    renkei = 0.0
+    graveyard = 0.0
+    if type_category == "follower":
+        renkei += 1
+        graveyard += 1
+    elif type_category in ("spell", "amulet"):
+        graveyard += 1
+    for tag in supply_tags:
+        if tag.base == "トークン召喚" and tag.param is not None and _token_is_follower(tag.param, category_lookup):
+            renkei += 1
+            graveyard += 1
+        elif tag.base == "墓場+":
+            try:
+                graveyard += int(tag.param) if tag.param is not None else 1
+            except ValueError:
+                graveyard += 1
+    return renkei, graveyard
+
+
+def measure_deck_rates(conn: sqlite3.Connection, category_lookup: CategoryLookup) -> list[DeckRate]:
+    # AI_NOTE: デッキのレート = Σ(寄与×採用枚数) / Σ(max(cost,1)×採用枚数)。分母はプレイに要するPP総量の
+    # 近似で、コスト0カードはプレイ行動1回分として1PP扱いにする(0除算と「タダで無限に増える」誤近似の回避)。
+    # card_id未解決の行はJOINで自然に落ちる。1枚も解決できないデッキはレート計算不能としてスキップ。
+    rates: list[DeckRate] = []
+    for deck_id, deck_name, deck_format in conn.execute("SELECT id, name, format FROM meta_deck").fetchall():
+        card_rows = conn.execute(
+            "SELECT c.card_id, c.type_category, c.cost, mdc.count FROM meta_deck_card mdc "
+            "JOIN card c ON c.card_id = mdc.card_id WHERE mdc.deck_id = ?",
+            (deck_id,),
+        ).fetchall()
+        renkei_total = 0.0
+        graveyard_total = 0.0
+        cost_total = 0
+        for card_id, type_category, cost, count in card_rows:
+            supply_tags = [
+                parse_tag(row[0])
+                for row in conn.execute("SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (card_id,))
+            ]
+            renkei, graveyard = _card_counter_contrib(type_category, supply_tags, category_lookup)
+            renkei_total += renkei * count
+            graveyard_total += graveyard * count
+            cost_total += max(cost or 1, 1) * count
+        if cost_total == 0:
+            continue
+        rates.append(
+            DeckRate(
+                deck_id=deck_id,
+                deck_name=deck_name,
+                deck_format=deck_format,
+                renkei=renkei_total / cost_total,
+                graveyard=graveyard_total / cost_total,
+            )
+        )
+    return rates
+
+
+def derive_rates(deck_rates: list[DeckRate]) -> MeasuredRates | None:
+    # AI_NOTE: dedicated=90パーセンタイル(専用構築は分布の上位に自然に来る前提)・generic=中央値。
+    # quantilesは最低2データ必要なため、デッキが足りない場合はNone=JSONのfallback定数を使う合図。
+    if len(deck_rates) < 2:
+        return None
+    renkei_values = [rate.renkei for rate in deck_rates]
+    graveyard_values = [rate.graveyard for rate in deck_rates]
+
+    def p90(values: list[float]) -> float:
+        return statistics.quantiles(values, n=10, method="inclusive")[8]
+
+    return MeasuredRates(
+        dedicated={"renkei": p90(renkei_values), "graveyard": p90(graveyard_values)},
+        generic={"renkei": statistics.median(renkei_values), "graveyard": statistics.median(graveyard_values)},
+    )
+
+
 class DeckCard(NamedTuple):
     card_id: int
     card_name: str
@@ -399,12 +525,16 @@ def _natural_fulfilled(raw_tag: str, rule: CompiledNaturalRule) -> bool | None:
     return n <= rule.natural_rate * DEADLINE_CUM_PP
 
 
-def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
+def run_bench(
+    conn: sqlite3.Connection, fmap: FulfillmentMap, category_lookup: CategoryLookup | None = None
+) -> BenchResult:
     # AI_NOTE: 各デッキ×各カード×そのカードのrequireタグごとに分類する。auto/auto_or_supplyは
     # 常時充足、construction/unclassifiedはスコア対象外。naturalは閾値内なら自動充足、超過または
     # N不明なら通常の供給照合(rulesと同じ_matches、category_lookup併用)にフォールバックする。
     # scored/naturalはどちらも最終的にscored_total/fulfilled_totalへ計上し充足率の分母に含める。
-    category_lookup = CategoryLookup(conn)
+    # category_lookupは省略可(v4でmain側がレート実測にも使うため二重構築を避ける引数化)。
+    if category_lookup is None:
+        category_lookup = CategoryLookup(conn)
     decks = _load_decks(conn)
     category_counts: Counter[str] = Counter()
     scored_total = 0
@@ -480,11 +610,20 @@ def run_bench(conn: sqlite3.Connection, fmap: FulfillmentMap) -> BenchResult:
     )
 
 
-def format_report(result: BenchResult) -> str:
+RATE_TABLE_TOP_N = 10
+# AI_NOTE: v4レポートの目分量比較用。fulfillment_map.jsonのfallback値と同じユーザー確定値
+# (レートを実測上書きした後のfmapからは取れないため定数で保持)。
+EYEBALL_RATES = {"graveyard": 0.5, "renkei": 0.55}
+_COUNTER_LABELS = {"renkei": "連携", "graveyard": "墓場"}
+
+
+def format_report(
+    result: BenchResult, deck_rates: list[DeckRate], measured: MeasuredRates | None
+) -> str:
     # AI_NOTE: 標準出力とdata/bench_report.txtの両方に同じ全文を出す前提のフォーマット関数。
     lines: list[str] = []
     fulfillment_rate = result.fulfilled_total / result.scored_total if result.scored_total else 0.0
-    lines.append("=== 回帰ベンチv3: 要求充足の機械採点 ===")
+    lines.append("=== 回帰ベンチv4: 要求充足の機械採点 ===")
     lines.append(
         f"総計: スコア対象{result.scored_total}件 / 充足{result.fulfilled_total}件 / "
         f"充足率{fulfillment_rate:.1%}"
@@ -521,10 +660,33 @@ def format_report(result: BenchResult) -> str:
         lines.append("(なし)")
     lines.append("")
 
-    lines.append("=== v3 natural_rules注記(PP単位・dedicated形状で採点、user_confirmed_2026-07-06) ===")
+    lines.append("=== v4 実測自然増レート(環境デッキ実リスト・1PPあたり) ===")
     lines.append(f"- 期限: 累積PP(T{DEADLINE_TURN})={_CUM_PP_BASE} + 後攻エクストラPP楽観+2 = {DEADLINE_CUM_PP}")
-    lines.append("- natural_rules: ネクロマンス((X))・墓場≥N rate=0.5/PP (user_confirmed)")
-    lines.append("- natural_rules: 連携((X)) rate=0.55/PP (user_confirmed、T8で連携20達成の逆算値)")
+    lines.append(f"- 対象デッキ数: {len(deck_rates)}件 / 導出: dedicated=90パーセンタイル・generic=中央値")
+    if measured is None:
+        lines.append("- 実測不能(デッキ不足)のためfulfillment_map.jsonのfallback定数で採点した")
+    else:
+        lines.append("- 採点にはdedicated実測値を使用(fulfillment_map.jsonの目分量定数はfallback)")
+        for counter in ("renkei", "graveyard"):
+            label = _COUNTER_LABELS[counter]
+            lines.append(
+                f"  {label}: dedicated={measured.dedicated[counter]:.3f}/PP "
+                f"generic={measured.generic[counter]:.3f}/PP "
+                f"(目分量 {EYEBALL_RATES[counter]}/PP user_confirmed_2026-07-06)"
+            )
+    lines.append("")
+
+    # AI_NOTE: サニティ確認用のデッキ別レート表(連携降順・墓場降順の2表)。連携ロイヤル系が連携上位・
+    # ナイトメア系が墓場上位に来なければ寄与モデルのバグを疑う、という使い方。
+    for counter, key in (("renkei", lambda r: r.renkei), ("graveyard", lambda r: r.graveyard)):
+        label = _COUNTER_LABELS[counter]
+        lines.append(f"=== デッキ別{label}レート上位{RATE_TABLE_TOP_N}(降順) ===")
+        for rate in sorted(deck_rates, key=key, reverse=True)[:RATE_TABLE_TOP_N]:
+            lines.append(
+                f"- {rate.deck_name} ({rate.deck_format or '-'}) "
+                f"連携{rate.renkei:.3f} 墓場{rate.graveyard:.3f}"
+            )
+        lines.append("")
 
     return "\n".join(lines) + "\n"
 
@@ -533,10 +695,15 @@ def main() -> None:
     conn = connect()
     try:
         fmap = load_fulfillment_map()
-        result = run_bench(conn, fmap)
+        category_lookup = CategoryLookup(conn)
+        deck_rates = measure_deck_rates(conn, category_lookup)
+        measured = derive_rates(deck_rates)
+        if measured is not None:
+            fmap.apply_measured_rates(measured.dedicated)
+        result = run_bench(conn, fmap, category_lookup)
     finally:
         conn.close()
-    report = format_report(result)
+    report = format_report(result, deck_rates, measured)
     print(report)
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text(report, encoding="utf-8")
