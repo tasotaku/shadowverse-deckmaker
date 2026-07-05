@@ -8,8 +8,8 @@ venv/
 .pytest_cache/
 .ruff_cache/
 
-# データ（権利物は同梱しない）
-data/
+# データ（権利物は同梱しない。ルート直下のdata/のみ対象。src/svdeck/data/はコードの一部として管理する設定ファイル置き場）
+/data/
 *.csv
 *.sqlite
 
