@@ -1,11 +1,13 @@
-"""アンカー深掘りCLI(explore)。design.md §6検索はしごの1〜2段目+算術チェック+クロージャ組みを1コマンドに
-まとめる。
+"""アンカー深掘りCLI(explore)。design.md §6検索はしごの1〜2段目+算術チェック+クロージャ組み+
+§7novelty照合+LLM走査パック出しを1コマンドにまとめる。
 
-.claude/plans/anchor-require-and-explore.md のフェーズ2・Step7/Step8。anchor_requireから対象アンカーの
+.claude/plans/anchor-require-and-explore.md のフェーズ2・Step7〜9。anchor_requireから対象アンカーの
 要求を読み、要求ごとに(1)タグ検索(bench.pyの_matches経由・同クラス+ニュートラル) (2)skill_text全文検索
 の供給候補card_idを列挙し、蓄積型(accumulate)要求には(3)算術チェック(自然増レート+候補上乗せの貪欲
-スケジュール)を接続する。さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙する。
-novelty照合・LLM走査パックはStep9で追加する(このファイルでは対象外)。
+スケジュール)を接続する。さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙し、
+クロージャ候補card_idについてnovelty照合(meta_deck/meta_deck_cardでアンカーとの同居デッキ検索・
+design.md§7「フィルタしない・全部見せる」)、機械検索0件/manual要求についてLLM走査パック
+(data/card_memo.txtを読ませる走査指示文)を調書末尾に添える。
 
 実行: PYTHONPATH=src python -m svdeck.explore <card_id> [--format rotation|unlimited]
 """
@@ -584,9 +586,87 @@ def format_closures(reports: list[RequirementReport], closures: list[ClosureCand
     return "\n".join(lines) + "\n"
 
 
+class NoveltyHit(NamedTuple):
+    deck_name: str
+    tier: str | None
+
+
+def check_novelty(conn: sqlite3.Connection, anchor_card_id: int, candidate_card_id: int) -> list[NoveltyHit]:
+    # AI_NOTE: design.md§7「主判定=ローカルの環境デッキDB」の実装。アンカーと候補が同居する
+    # meta_deck行をmeta_deck_card二回JOINで検索する(即答・全ペアコストゼロ)。ヒットなし=「未踏」
+    # ではなくTier表DBの限界(§7)であり、この関数の戻り値だけでは判断しない
+    # (format_noveltyが注記を必ず添える)。
+    rows = conn.execute(
+        """
+        SELECT DISTINCT d.name, d.tier
+        FROM meta_deck_card mc1
+        JOIN meta_deck_card mc2 ON mc1.deck_id = mc2.deck_id
+        JOIN meta_deck d ON d.id = mc1.deck_id
+        WHERE mc1.card_id = ? AND mc2.card_id = ?
+        """,
+        (anchor_card_id, candidate_card_id),
+    ).fetchall()
+    return [NoveltyHit(name, tier) for name, tier in rows]
+
+
+def format_novelty(
+    conn: sqlite3.Connection, anchor_card_id: int, anchor_name: str, closures: list[ClosureCandidateSet]
+) -> str:
+    # AI_NOTE: クロージャ候補に登場した各card_idについてアンカーとの同居デッキを照合する
+    # (計画書Step9「候補は落とさない」)。1枚が複数クロージャに出ても照合は1回で済むようcard_id単位で
+    # 重複除去してから調書行を作る。
+    lines = ["=== novelty照合 ==="]
+    seen: dict[int, str] = {}
+    for closure in closures:
+        for card_id, name in zip(closure.card_ids, closure.names):
+            seen[card_id] = name
+    if not seen:
+        lines.append("(クロージャ候補なし・照合対象なし)")
+        return "\n".join(lines) + "\n"
+    for card_id in sorted(seen):
+        name = seen[card_id]
+        hits = check_novelty(conn, anchor_card_id, card_id)
+        if hits:
+            deck_text = ", ".join(f"「{h.deck_name}」({h.tier})" if h.tier else f"「{h.deck_name}」" for h in hits)
+            lines.append(
+                f"- ペア({anchor_name}×{name}): {deck_text}に同居→既出壁"
+                "(再浮上条件はcard_note/要求noteの別達成手段・底上げ新カードを参照)"
+            )
+        else:
+            lines.append(
+                f"- ペア({anchor_name}×{name}): meta_deck共起なし"
+                "(注: Tier表DBの限界により未踏の証拠ではない・提示前にWeb確認必須)"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def format_scan_pack(card_id: int, class_name: str, reports: list[RequirementReport]) -> str:
+    # AI_NOTE: 機械検索0件(タグ0件かつ全文0件)またはmanual(タグ文法非合致)の要求をLLM走査対象として
+    # 列挙し、メインセッションにそのまま貼れる走査指示文を1つ添える(計画書Step9・design.md§6実走査は
+    # ここでは行わない=完成形の具体像通りパック出力止まり)。対象が無ければ節自体を出さない。
+    targets = [
+        (i, report.require)
+        for i, report in enumerate(reports, start=1)
+        if report.manual or (len(report.tag_hits) == 0 and len(report.fulltext_hits) == 0)
+    ]
+    if not targets:
+        return ""
+    lines = ["=== LLM走査パック(タグ・全文で埋まらなかった要求) ==="]
+    for i, require in targets:
+        lines.append(f"要求{i}「{require.requirement}」")
+    lines.append("")
+    requirement_list = "\n".join(f"- 要求{i}「{require.requirement}」" for i, require in targets)
+    lines.append(
+        "data/card_memo.txt を読み、以下の各要求について該当する card_id を列挙せよ。"
+        f"クラスは{class_name}+ニュートラルに限定。判定は型の一致で行い、意味の近さだけで拾わないこと。\n"
+        f"{requirement_list}"
+    )
+    return "\n".join(lines) + "\n"
+
+
 def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
-    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのはしご1〜2段+算術→クロージャ組み→調書整形、を
-    # 1関数で通す(novelty照合・LLM走査パックはStep9で追加)。measure_deck_rates/derive_ratesは
+    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのはしご1〜2段+算術→クロージャ組み→
+    # novelty照合→LLM走査パック→調書整形、を1関数で通す。measure_deck_rates/derive_ratesは
     # explore全体で1回だけ実行し、全要求の算術チェック+クロージャのPP収支検査で使い回す。
     conn = connect()
     try:
@@ -622,7 +702,12 @@ def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
         ]
         closures = find_closures(conn, reports, category_lookup)
         report_text = format_report(card_id, card_name, class_name, card_note, reports, format_warning)
-        return report_text + "\n" + format_closures(reports, closures)
+        novelty_text = format_novelty(conn, card_id, card_name, closures)
+        scan_pack_text = format_scan_pack(card_id, class_name, reports)
+        sections = [report_text, format_closures(reports, closures), novelty_text]
+        if scan_pack_text:
+            sections.append(scan_pack_text)
+        return "\n".join(sections)
     finally:
         conn.close()
 
