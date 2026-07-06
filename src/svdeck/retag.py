@@ -60,6 +60,11 @@ class TagVerdict(NamedTuple):
     old_tag: str
     new_kind: str  # "grant"(付与維持) / "keep"(保持へ変更) / "boundary"(境界保留)
     evidence: str  # 判定根拠になった文
+    # AI_NOTE: boundaryの内訳を区別するフラグ(2026-07-06追加)。"summon"=自分が直前に場へ出した
+    # トークンへの付与(_SUMMON_PREFIX+_PRONOUN_STARTで検出。17件中16件がこれ)、"unknown"=それ以外の
+    # 未知文型(ソフィーナの名詞修飾1件のみ)。grant/keepではNoneのまま。run_retag_own_tokenの
+    # 対象選定に使う(summonのみ`X付与(自トークン)`へ分離しunknownは判断せず保留)。
+    boundary_kind: str | None = None
 
 
 def _strip_markup(text: str) -> str:
@@ -88,7 +93,7 @@ def classify_keyword(card_id: int, card_name: str, keyword: str, full_text: str)
     old_tag = f"{keyword}付与"
     text = _strip_markup(full_text)
     sentences = _split_sentences(text)
-    verdicts: list[tuple[str, str]] = []
+    verdicts: list[tuple[str, str, str | None]] = []
     for i, sentence in enumerate(sentences):
         if keyword not in sentence:
             continue
@@ -98,23 +103,23 @@ def classify_keyword(card_id: int, card_name: str, keyword: str, full_text: str)
             continue
         prev = sentences[i - 1] if i > 0 else ""
         if _GIVE_GRANT.search(sentence):
-            verdicts.append(("grant", sentence))
+            verdicts.append(("grant", sentence, None))
         elif _SELF_GRANT.search(sentence):
-            verdicts.append(("self", sentence))
+            verdicts.append(("self", sentence, None))
         elif _SUMMON_PREFIX.search(prev) and _PRONOUN_START.match(sentence):
-            verdicts.append(("boundary", f"{prev}。{sentence}"))
+            verdicts.append(("boundary", f"{prev}。{sentence}", "summon"))
         elif _OTHER_GRANT.search(sentence):
-            verdicts.append(("grant", sentence))
+            verdicts.append(("grant", sentence, None))
         else:
-            verdicts.append(("boundary", sentence))  # 未知文型は安全側(境界保留)に倒す
+            verdicts.append(("boundary", sentence, "unknown"))  # 未知文型は安全側(境界保留)に倒す
 
-    kinds = [k for k, _ in verdicts]
+    kinds = [k for k, _, _ in verdicts]
     if "grant" in kinds:
-        evidence = next(s for k, s in verdicts if k == "grant")
+        evidence = next(s for k, s, _ in verdicts if k == "grant")
         return TagVerdict(card_id, card_name, keyword, old_tag, "grant", evidence)
     if "boundary" in kinds:
-        evidence = next(s for k, s in verdicts if k == "boundary")
-        return TagVerdict(card_id, card_name, keyword, old_tag, "boundary", evidence)
+        evidence, boundary_kind = next((s, bk) for k, s, bk in verdicts if k == "boundary")
+        return TagVerdict(card_id, card_name, keyword, old_tag, "boundary", evidence, boundary_kind)
     evidence = verdicts[0][1] if verdicts else "(【" + keyword + "】ブラケットのみ)"
     return TagVerdict(card_id, card_name, keyword, old_tag, "keep", evidence)
 
@@ -145,6 +150,15 @@ def run_retag(conn: sqlite3.Connection) -> list[TagVerdict]:
                 "UPDATE atom_tag SET tag = ? WHERE card_id = ? AND kind = 'supply' AND tag = ?",
                 (new_tag, verdict.card_id, verdict.old_tag),
             )
+        elif verdict.new_kind == "boundary" and verdict.boundary_kind == "summon":
+            # AI_NOTE: 自トークン限定付与の分離(design.md§6.1「自トークン限定付与のパラメータ分け」
+            # 2026-07-06)。アンカーの相方(既存の別フォロワー等)には疾走等を与えられない特殊形のため、
+            # 汎用の「X付与」検索から分離する。ソフィーナ(boundary_kind="unknown")は対象外のまま残す。
+            new_tag = f"{verdict.keyword}付与(自トークン)"
+            conn.execute(
+                "UPDATE atom_tag SET tag = ? WHERE card_id = ? AND kind = 'supply' AND tag = ?",
+                (new_tag, verdict.card_id, verdict.old_tag),
+            )
     conn.commit()
     return verdicts
 
@@ -157,24 +171,40 @@ def format_report(verdicts: list[TagVerdict]) -> str:
     for v in verdicts:
         by_keyword.setdefault(v.keyword, []).append(v)
 
-    lines.append("タグ別件数(付与残存 / 保持へ変更 / 境界保留):")
+    # AI_NOTE: boundaryは2種に分けて集計する(2026-07-06)。summon=自トークン限定付与へ分離済み
+    # (`X付与(自トークン)`にUPDATE済み)・unknown=真の境界保留(タグ未変更・親レビュー対象)。
+    lines.append("タグ別件数(付与残存 / 保持へ変更 / 自トークン限定付与へ分離 / 境界保留(未変更)):")
     for keyword in TARGET_KEYWORDS:
         vs = by_keyword.get(keyword, [])
         grant_n = sum(1 for v in vs if v.new_kind == "grant")
         keep_n = sum(1 for v in vs if v.new_kind == "keep")
-        boundary_n = sum(1 for v in vs if v.new_kind == "boundary")
-        lines.append(f"  {keyword}: 付与{grant_n} / 保持へ変更{keep_n} / 境界保留{boundary_n} (総{len(vs)})")
+        own_token_n = sum(1 for v in vs if v.new_kind == "boundary" and v.boundary_kind == "summon")
+        boundary_n = sum(1 for v in vs if v.new_kind == "boundary" and v.boundary_kind == "unknown")
+        lines.append(
+            f"  {keyword}: 付与{grant_n} / 保持へ変更{keep_n} / "
+            f"自トークン限定へ分離{own_token_n} / 境界保留{boundary_n} (総{len(vs)})"
+        )
     lines.append("")
 
     total_grant = sum(1 for v in verdicts if v.new_kind == "grant")
     total_keep = sum(1 for v in verdicts if v.new_kind == "keep")
-    total_boundary = sum(1 for v in verdicts if v.new_kind == "boundary")
-    lines.append(f"総計: 付与残存{total_grant} / 保持へ変更{total_keep} / 境界保留{total_boundary} / 全{len(verdicts)}件")
+    total_own_token = sum(1 for v in verdicts if v.new_kind == "boundary" and v.boundary_kind == "summon")
+    total_boundary = sum(1 for v in verdicts if v.new_kind == "boundary" and v.boundary_kind == "unknown")
+    lines.append(
+        f"総計: 付与残存{total_grant} / 保持へ変更{total_keep} / "
+        f"自トークン限定へ分離{total_own_token} / 境界保留{total_boundary} / 全{len(verdicts)}件"
+    )
+    lines.append("")
+
+    lines.append("=== 自トークン限定付与へ分離した一覧(`X付与(自トークン)`にUPDATE済み) ===")
+    for v in verdicts:
+        if v.new_kind == "boundary" and v.boundary_kind == "summon":
+            lines.append(f"- {v.card_id} {v.card_name} [{v.keyword}] 根拠: {v.evidence}")
     lines.append("")
 
     lines.append("=== 境界保留一覧(親レビュー対象・タグ未変更) ===")
     for v in verdicts:
-        if v.new_kind == "boundary":
+        if v.new_kind == "boundary" and v.boundary_kind == "unknown":
             lines.append(f"- {v.card_id} {v.card_name} [{v.keyword}] 根拠: {v.evidence}")
     lines.append("")
 

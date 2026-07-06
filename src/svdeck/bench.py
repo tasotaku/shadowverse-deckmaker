@@ -417,6 +417,11 @@ def _card_counter_contrib(
     # v5: 手札生成トークンは後でプレイするPPも払う(ユーザー確認済み会計)ため、
     # トークンのプレイコスト×体数をextra_ppとして返し分母に加算させる。トークン召喚は場直行なので加算なし。
     # 体数はtoken_counts(atoms_json由来)から引き、無ければ1体近似。
+    # v6(二重計上修正・design.md§6.2): spellカードの「墓場+(k)」タグは「スペル自身のプレイで+1」を
+    # 明示した抽出タグであり、上のspell本体+1と同一イベントを指す。素通しで加算すると二重計上になるため、
+    # spellの場合のみ寄与をmax(k-1, 0)に畳む(k=1なら本体分と同一で寄与0・k≥2なら差分だけ加算)。
+    # follower/amuletの墓場+(k)は「死亡/破壊時+1」の本体分とは別イベント(墓場+はプレイ時発動の効果)
+    # のため畳まず素通しのまま加算する。
     counts = token_counts or {}
     renkei = 0.0
     graveyard = 0.0
@@ -439,9 +444,10 @@ def _card_counter_contrib(
                 extra_pp += max(token_cost, 1) * count
         elif tag.base == "墓場+":
             try:
-                graveyard += int(tag.param) if tag.param is not None else 1
+                k = int(tag.param) if tag.param is not None else 1
             except ValueError:
-                graveyard += 1
+                k = 1
+            graveyard += max(k - 1, 0) if type_category == "spell" else k
     return CardContrib(renkei=renkei, graveyard=graveyard, extra_pp=extra_pp)
 
 
