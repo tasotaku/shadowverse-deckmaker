@@ -118,11 +118,11 @@ card_note: (既存noteを表示)
 - 依存: Step 9
 
 ## 進捗チェックリスト（実行中に更新する）
-- [ ] Step 1: コンパイル材料の準備
-- [ ] Step 2: バッチ1(card_id昇順 1〜8枚目)
-- [ ] Step 3: バッチ2(9〜16枚目)
-- [ ] Step 4: バッチ3(17〜24枚目)
-- [ ] Step 5: バッチ4(25〜32枚目)
+- [x] Step 1: コンパイル材料の準備(scratchpad/anchor_materials.json・32件欠落なし)
+- [x] Step 2: バッチ1(6行・検品PASS)
+- [x] Step 3: バッチ2(11行・検品PASS)
+- [x] Step 4: バッチ3(11行・検品PASS)
+- [x] Step 5: バッチ4(8行・検品PASS)
 - [ ] Step 6: ユーザーレビュー → load → コミット
 - [ ] Step 7: explore.py 骨格 + はしご1〜2段
 - [ ] Step 8: 算術チェック + クロージャ組み
