@@ -1,9 +1,11 @@
-"""アンカー深掘りCLI(explore)。design.md §6検索はしごの1〜2段目を1コマンドにまとめる。
+"""アンカー深掘りCLI(explore)。design.md §6検索はしごの1〜2段目+算術チェック+クロージャ組みを1コマンドに
+まとめる。
 
-.claude/plans/anchor-require-and-explore.md のフェーズ2・Step7。anchor_requireから対象アンカーの
+.claude/plans/anchor-require-and-explore.md のフェーズ2・Step7/Step8。anchor_requireから対象アンカーの
 要求を読み、要求ごとに(1)タグ検索(bench.pyの_matches経由・同クラス+ニュートラル) (2)skill_text全文検索
-の供給候補card_idを列挙し、人が読める調書テキストを出す。算術チェック・クロージャ組み・novelty照合・
-LLM走査パックはStep8/9で追加する(このファイルでは対象外)。
+の供給候補card_idを列挙し、蓄積型(accumulate)要求には(3)算術チェック(自然増レート+候補上乗せの貪欲
+スケジュール)を接続する。さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙する。
+novelty照合・LLM走査パックはStep9で追加する(このファイルでは対象外)。
 
 実行: PYTHONPATH=src python -m svdeck.explore <card_id> [--format rotation|unlimited]
 """
@@ -11,12 +13,30 @@ LLM走査パックはStep8/9で追加する(このファイルでは対象外)�
 import re
 import sqlite3
 import sys
+from itertools import combinations
 from typing import NamedTuple
 
-from svdeck.bench import CategoryLookup, FulfillmentMap, Tag, _matches, load_fulfillment_map, parse_tag
+from svdeck.bench import (
+    CategoryLookup,
+    FulfillmentMap,
+    MeasuredRates,
+    SupplyPattern,
+    Tag,
+    _card_counter_contrib,
+    _matches,
+    _token_counts_from_atoms,
+    cumulative_pp_for_turn,
+    derive_rates,
+    extract_n,
+    load_fulfillment_map,
+    measure_deck_rates,
+    parse_tag,
+)
 from svdeck.db import connect
 
 DEFAULT_FORMAT = "rotation"
+CLOSURE_CANDIDATE_TOP_N = 8  # AI_NOTE: 組合せ爆発対策(計画書「詰まったときのルール」)。8枚→遅ければ5枚に下げる想定
+CLOSURE_MAX_SIZE = 3
 
 
 class RequireRow(NamedTuple):
@@ -65,11 +85,12 @@ def _requirement_tag(req_tag: str | None, requirement: str) -> Tag:
 
 def _class_filtered_candidates(
     conn: sqlite3.Connection, class_name: str, format_name: str, exclude_card_id: int
-) -> list[tuple[int, str, int | None, list[Tag]]]:
+) -> list[tuple[int, str, int | None, list[tuple[str, Tag]]]]:
     # AI_NOTE: require.py._class_filtered_supply_tagsはタグの集合しか返さずcard_id対応が失われるため
     # ここではカード単位(card_id, name, cost, supply_tags)で持ち直す。design.md§6.1の
     # 「同クラス+ニュートラル」フィルタとStep7要件の「アンカー自身は除外」「rotation時is_include_rotation」を
-    # 同時に満たす。
+    # 同時に満たす。supply_tagsは(生タグ文字列, パース済みTag)のペア——調書のヒット根拠に
+    # マッチした供給側タグの生文字列を表示するため両方持つ。
     format_filter = " AND c.is_include_rotation = 1" if format_name == "rotation" else ""
     rows = conn.execute(
         f"""
@@ -83,13 +104,25 @@ def _class_filtered_candidates(
     candidates = []
     for candidate_id, name, cost in rows:
         supply_tags = [
-            parse_tag(row[0])
+            (row[0], parse_tag(row[0]))
             for row in conn.execute(
                 "SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (candidate_id,)
             )
         ]
         candidates.append((candidate_id, name, cost, supply_tags))
     return candidates
+
+
+def _matched_supply_tag(
+    tag: Tag, supply_tags: list[tuple[str, Tag]], allowed: list[SupplyPattern], lookup: CategoryLookup | None
+) -> str | None:
+    # AI_NOTE: _matchesはboolしか返さないため、供給側タグを1つずつ_matchesに通して「どのタグで
+    # 当たったか」を特定する(bench.pyのロジック複製はしない)。直接一致もカテゴリ階層解決も
+    # タグ単位の呼び出しで元の全体判定と同値(どちらもタグごとの独立判定のOR)。
+    for raw, parsed in supply_tags:
+        if _matches(tag, [parsed], allowed, lookup):
+            return raw
+    return None
 
 
 def tag_search(
@@ -118,8 +151,11 @@ def tag_search(
     lookup = category_lookup if use_category else None
     hits = []
     for candidate_id, name, cost, supply_tags in candidates:
-        if _matches(tag, supply_tags, allowed, lookup):
-            hits.append(Candidate(candidate_id, name, cost, f"タグ:{tag.base}"))
+        # AI_NOTE: ヒット根拠にはマッチした供給側の生タグ(例:墓場+(1))を出す。要求側タグを出すと
+        # 全候補が同じラベルになり調書の根拠として読めないため(司令塔レビュー指摘)。
+        matched = _matched_supply_tag(tag, supply_tags, allowed, lookup)
+        if matched is not None:
+            hits.append(Candidate(candidate_id, name, cost, f"タグ:{matched}"))
     return hits
 
 
@@ -175,11 +211,146 @@ def fulltext_search(
     return list(hits.values())
 
 
+class CardContribInfo(NamedTuple):
+    # AI_NOTE: クロージャのPP収支検査でも算術チェックでも同じ「1枚あたりの寄与」が要るため、
+    # 候補card_idに対する寄与情報をここで1回だけ引いて使い回す形にする。
+    card_id: int
+    name: str
+    cost: int | None
+    renkei: float
+    graveyard: float
+    extra_pp: int
+
+
+def _card_contrib_info(conn: sqlite3.Connection, card_id: int, category_lookup: CategoryLookup) -> CardContribInfo:
+    # AI_NOTE: bench._card_counter_contribは(type_category, supply_tags, category_lookup, token_counts)を
+    # 取るラッパ無し関数のため、explore側でcard1枚分の入力(type_category・supply_tags・atoms_json)を
+    # DBから集めてから渡す。bench.pyのロジック自体は複製せずそのままimportして使う(計画書の決定事項)。
+    row = conn.execute("SELECT name, cost, type_category FROM card WHERE card_id = ?", (card_id,)).fetchone()
+    name, cost, type_category = row
+    supply_tags = [
+        parse_tag(r[0]) for r in conn.execute("SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (card_id,))
+    ]
+    atom_row = conn.execute("SELECT atoms_json FROM card_atom WHERE card_id = ?", (card_id,)).fetchone()
+    token_counts = _token_counts_from_atoms(atom_row[0] if atom_row else None)
+    contrib = _card_counter_contrib(type_category, supply_tags, category_lookup, token_counts)
+    return CardContribInfo(card_id, name, cost, contrib.renkei, contrib.graveyard, contrib.extra_pp)
+
+
+_COUNTER_BY_TAG_BASE = {"墓場≥N": "graveyard", "ネクロマンス": "graveyard", "連携": "renkei"}
+
+
+def _counter_for_tag(tag: Tag) -> str | None:
+    # AI_NOTE: 蓄積型のカウンタ種別(graveyard/renkei)をタグベース名から引く。fulfillment_mapの
+    # natural_rulesが持つcounter属性と同じ語彙(design.md§6.2)。未知のベース名はNone=算術スキップの合図。
+    return _COUNTER_BY_TAG_BASE.get(tag.base)
+
+
+class GreedyStep(NamedTuple):
+    card_id: int
+    name: str
+    copies: int
+    gained: float
+    pp_spent: int
+
+
+class ArithmeticResult(NamedTuple):
+    counter: str
+    threshold: int
+    deadline_turn: int
+    cum_pp: int
+    dedicated_rate: float
+    generic_rate: float
+    natural_only_dedicated: float  # dedicatedレートのみでの到達見込み値
+    generic_warning: bool  # 汎用レートでは自然増だけで届かない(表示のみの警告)
+    topup_schedule: list[GreedyStep]
+    topup_total: float
+    passed: bool  # 専用構築レート+候補上乗せの楽観上界で届くか(これがFalseの時だけハードフィルタ相当)
+    shortfall: float  # 不足量(0以上。passed時は0)
+
+
+def compute_arithmetic(
+    conn: sqlite3.Connection,
+    tag: Tag,
+    threshold: int,
+    deadline_turn: int,
+    candidates: list[Candidate],
+    measured: MeasuredRates | None,
+    fmap: FulfillmentMap,
+    category_lookup: CategoryLookup,
+) -> ArithmeticResult | None:
+    # AI_NOTE: design.md§6.2「蓄積型の算術チェック」+「実測レートの限界と却下の運用」の実装。
+    # (a)専用構築レート(dedicated)のみで届くか (b)候補供給の上乗せ(Δ/PP効率順の貪欲・各3積み)込みで
+    # 届くかを計算する。passed=Falseは「専用構築+上乗せの楽観上界でも届かない」場合のみ=計画書が
+    # ハードフィルタを許す唯一のケース。汎用レート(generic_warning)は表示専用の警告に留める
+    # (計画書「算術FAILはハードフィルタにしない」)。
+    counter = _counter_for_tag(tag)
+    if counter is None:
+        return None
+    rule = fmap.natural_rule_for(tag)
+    fallback_rate = rule.natural_rate if rule is not None else 0.0
+    dedicated_rate = measured.dedicated.get(counter, fallback_rate) if measured is not None else fallback_rate
+    generic_rate = measured.generic.get(counter, fallback_rate) if measured is not None else fallback_rate
+
+    cum_pp = cumulative_pp_for_turn(deadline_turn)
+    natural_only_dedicated = dedicated_rate * cum_pp
+    generic_warning = generic_rate * cum_pp < threshold
+
+    gap = threshold - natural_only_dedicated
+    schedule: list[GreedyStep] = []
+    topped_up = natural_only_dedicated
+    if gap > 0:
+        efficiency: list[tuple[float, CardContribInfo]] = []
+        for candidate in candidates:
+            info = _card_contrib_info(conn, candidate.card_id, category_lookup)
+            per_copy_gain = info.graveyard if counter == "graveyard" else info.renkei
+            if per_copy_gain <= 0:
+                continue
+            pp_per_copy = max(info.cost or 1, 1) + info.extra_pp
+            efficiency.append((per_copy_gain / pp_per_copy, info))
+        efficiency.sort(key=lambda item: item[0], reverse=True)
+        for _, info in efficiency:
+            if topped_up >= threshold:
+                break
+            pp_per_copy = max(info.cost or 1, 1) + info.extra_pp
+            per_copy_gain = info.graveyard if counter == "graveyard" else info.renkei
+            copies = 0
+            gained = 0.0
+            pp_spent = 0
+            for _ in range(3):  # AI_NOTE: 各3積み上限(計画書の絞り込みルール)
+                if topped_up >= threshold:
+                    break
+                topped_up += per_copy_gain
+                copies += 1
+                gained += per_copy_gain
+                pp_spent += pp_per_copy
+            if copies > 0:
+                schedule.append(GreedyStep(info.card_id, info.name, copies, gained, pp_spent))
+
+    passed = topped_up >= threshold
+    shortfall = max(threshold - topped_up, 0.0)
+    return ArithmeticResult(
+        counter=counter,
+        threshold=threshold,
+        deadline_turn=deadline_turn,
+        cum_pp=cum_pp,
+        dedicated_rate=dedicated_rate,
+        generic_rate=generic_rate,
+        natural_only_dedicated=natural_only_dedicated,
+        generic_warning=generic_warning,
+        topup_schedule=schedule,
+        topup_total=topped_up,
+        passed=passed,
+        shortfall=shortfall,
+    )
+
+
 class RequirementReport(NamedTuple):
     require: RequireRow
     tag_hits: list[Candidate]
     fulltext_hits: list[Candidate]
     manual: bool  # タグ文法非合致(unclassified等)で機械検索が成立しなかった要求
+    arithmetic: ArithmeticResult | None  # accumulate要求のみ設定。閾値抽出不能ならNone(算術スキップ)
 
 
 def build_requirement_report(
@@ -190,16 +361,25 @@ def build_requirement_report(
     class_name: str,
     format_name: str,
     anchor_card_id: int,
+    measured: MeasuredRates | None,
 ) -> RequirementReport:
-    # AI_NOTE: 1要求分のはしご1〜2段をまとめて実行する。tag_searchが0件でもmanualとは限らない
-    # (分類は通ったが該当カードが無いだけ)ため、manual判定はclassifyの結果だけで独立に見る。
+    # AI_NOTE: 1要求分のはしご1〜2段+算術チェックをまとめて実行する。tag_searchが0件でもmanualとは
+    # 限らない(分類は通ったが該当カードが無いだけ)ため、manual判定はclassifyの結果だけで独立に見る。
     tag = _requirement_tag(require.req_tag, require.requirement)
     category = fmap.classify(tag)
     manual = category == "unclassified"
     tag_hits = tag_search(conn, tag, fmap, category_lookup, class_name, format_name, anchor_card_id)
     already_hit = {hit.card_id for hit in tag_hits}
     fulltext_hits = fulltext_search(conn, tag, fmap, class_name, format_name, anchor_card_id, already_hit)
-    return RequirementReport(require, tag_hits, fulltext_hits, manual)
+
+    arithmetic = None
+    if require.req_type == "accumulate" and require.deadline_turn is not None:
+        threshold = extract_n(require.req_tag if require.req_tag else require.requirement)
+        if threshold is not None:
+            arithmetic = compute_arithmetic(
+                conn, tag, threshold, require.deadline_turn, tag_hits + fulltext_hits, measured, fmap, category_lookup
+            )
+    return RequirementReport(require, tag_hits, fulltext_hits, manual, arithmetic)
 
 
 def format_candidate(candidate: Candidate) -> str:
@@ -207,12 +387,43 @@ def format_candidate(candidate: Candidate) -> str:
     return f"    {candidate.card_id} {candidate.name} (コスト{cost_text}) [{candidate.reason}]"
 
 
+def format_arithmetic(arithmetic: ArithmeticResult) -> list[str]:
+    # AI_NOTE: design.md§6.2の表示規約通り「専用構築レート+上乗せの楽観上界でも届かない」場合のみ
+    # FAILとして不足量を添えて出す。汎用レートの不足は警告(⚠)止まりで非表示フィルタにしない
+    # (計画書「算術FAILはハードフィルタにしない」)。
+    lines = [
+        f"  [算術] 自然増: 専用構築レート{arithmetic.dedicated_rate:.3f}/PP × 累積PP{arithmetic.cum_pp}"
+        f"(T{arithmetic.deadline_turn}) ≈ {arithmetic.natural_only_dedicated:.1f} / 要求{arithmetic.threshold}"
+    ]
+    if arithmetic.generic_warning:
+        lines.append(
+            f"  ⚠ 汎用レート{arithmetic.generic_rate:.3f}/PPでは自然増のみで不足(専用構築寄りの前提が必要)"
+        )
+    if arithmetic.topup_schedule:
+        schedule_text = ", ".join(
+            f"{step.name}×{step.copies}(+{step.gained:.1f}/{step.pp_spent}PP)" for step in arithmetic.topup_schedule
+        )
+        lines.append(f"  上乗せ貪欲スケジュール: {schedule_text} → 合計{arithmetic.topup_total:.1f}")
+    if arithmetic.passed:
+        lines.append(f"  → PASS(専用構築レート+上乗せの楽観上界で到達: {arithmetic.topup_total:.1f} ≥ {arithmetic.threshold})")
+    else:
+        lines.append(f"  → FAIL(楽観上界でも不足量{arithmetic.shortfall:.1f}。候補は非表示にせず上に列挙済み)")
+    return lines
+
+
 def format_report(
-    card_id: int, card_name: str, class_name: str, card_note: str | None, reports: list[RequirementReport]
+    card_id: int,
+    card_name: str,
+    class_name: str,
+    card_note: str | None,
+    reports: list[RequirementReport],
+    format_warning: str | None = None,
 ) -> str:
     # AI_NOTE: 計画書「完成形の具体像」の調書フォーマットに合わせる。要求ごとに
     # [タグ検索]/[全文検索]の件数+候補一覧、0件は「機械検索0件」を明示する(Step9のLLM走査パック接続点)。
     lines = [f"=== アンカー調書: [{card_id}] {card_name} ({class_name}) ==="]
+    if format_warning:
+        lines.append(format_warning)
     lines.append(f"card_note: {card_note}" if card_note else "card_note: (なし)")
     lines.append("")
 
@@ -232,33 +443,186 @@ def format_report(
             lines.append(f"  [全文検索] 追加{len(report.fulltext_hits)}件")
             for hit in report.fulltext_hits:
                 lines.append(format_candidate(hit))
+        if report.require.req_type == "accumulate":
+            if report.arithmetic is not None:
+                lines.extend(format_arithmetic(report.arithmetic))
+            else:
+                lines.append("  [算術] 閾値/deadlineが機械抽出できないため算術スキップ")
         lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"
 
 
+def _closure_candidate_pool(
+    conn: sqlite3.Connection, reports: list[RequirementReport], category_lookup: CategoryLookup
+) -> dict[int, list[Candidate]]:
+    # AI_NOTE: 要求ごとの候補プールを効率順(Δ/PP)上位CLOSURE_CANDIDATE_TOP_N枚に絞る
+    # (計画書「組合せ爆発対策」)。accumulate要求は算術のΔ/PPで並べ、それ以外(event/presence/construction)は
+    # ヒット順のまま(優劣を機械判定する材料が無いため)先頭から取る。activeのみ対象(dead要求は閉じない)。
+    pool: dict[int, list[Candidate]] = {}
+    for idx, report in enumerate(reports):
+        if report.require.status != "active":
+            continue
+        all_hits = report.tag_hits + report.fulltext_hits
+        if not all_hits:
+            continue
+        if report.arithmetic is not None:
+            tag = _requirement_tag(report.require.req_tag, report.require.requirement)
+            counter = _counter_for_tag(tag)
+            scored = []
+            for candidate in all_hits:
+                info = _card_contrib_info(conn, candidate.card_id, category_lookup)
+                gain = info.graveyard if counter == "graveyard" else info.renkei
+                pp = max(info.cost or 1, 1) + info.extra_pp
+                scored.append((gain / pp if pp else 0.0, candidate))
+            scored.sort(key=lambda item: item[0], reverse=True)
+            pool[idx] = [candidate for _, candidate in scored[:CLOSURE_CANDIDATE_TOP_N]]
+        else:
+            pool[idx] = all_hits[:CLOSURE_CANDIDATE_TOP_N]
+    return pool
+
+
+class ClosureCandidateSet(NamedTuple):
+    card_ids: tuple[int, ...]
+    names: tuple[str, ...]
+    covered_require_indices: frozenset[int]
+    pp_notes: list[str]  # accumulate要求を含む場合のPP収支検査結果(PASS/不足量)
+
+
+def find_closures(
+    conn: sqlite3.Connection,
+    reports: list[RequirementReport],
+    category_lookup: CategoryLookup,
+) -> list[ClosureCandidateSet]:
+    # AI_NOTE: design.md§6.3「提案単位=要求クロージャ」の実装。全active要求を同時に閉じる3枚以内の
+    # 「最小」カードセットを列挙する。サイズ昇順で列挙するため1枚で複数要求を満たすカードのセットが
+    # 先に出る。既に全要求を閉じたセットの上位集合(スーパーセット)は最小でないため列挙しない
+    # (§6.3「最小カード集合」・司令塔レビュー指摘)。要求が無ければ空リスト(「不成立」表示はexplore側)。
+    active_indices = [idx for idx, r in enumerate(reports) if r.require.status == "active"]
+    if not active_indices:
+        return []
+    pool = _closure_candidate_pool(conn, reports, category_lookup)
+    if not pool:
+        return []
+
+    # AI_NOTE: card_id -> それが満たす要求indexの集合(候補プールに出現した全要求から逆引き)。
+    coverage: dict[int, set[int]] = {}
+    card_names: dict[int, str] = {}
+    for idx, candidates in pool.items():
+        for candidate in candidates:
+            coverage.setdefault(candidate.card_id, set()).add(idx)
+            card_names[candidate.card_id] = candidate.name
+
+    all_card_ids = sorted(coverage.keys())
+    results: list[ClosureCandidateSet] = []
+    found_sets: list[set[int]] = []  # 既に成立したセット(card_id集合)。スーパーセット除外に使う
+    target = set(pool.keys())  # 候補が1件もない要求は「閉じられない」ので対象外にする(候補ゼロは明示済み)
+    for size in range(1, CLOSURE_MAX_SIZE + 1):
+        for combo in combinations(all_card_ids, size):
+            combo_set = set(combo)
+            if any(prev <= combo_set for prev in found_sets):
+                continue  # 既成立セットを含む冗長な組(サイズ昇順列挙なのでprevは常により小さい成立セット)
+            covered: set[int] = set()
+            for card_id in combo:
+                covered |= coverage[card_id]
+            if covered != target:
+                continue
+            found_sets.append(combo_set)
+            results.append(
+                ClosureCandidateSet(
+                    card_ids=combo,
+                    names=tuple(card_names[c] for c in combo),
+                    covered_require_indices=frozenset(covered),
+                    pp_notes=_closure_pp_notes(conn, combo, reports, target, category_lookup),
+                )
+            )
+    return results
+
+
+def _closure_pp_notes(
+    conn: sqlite3.Connection,
+    combo: tuple[int, ...],
+    reports: list[RequirementReport],
+    target: set[int],
+    category_lookup: CategoryLookup,
+) -> list[str]:
+    # AI_NOTE: comboにaccumulate要求が含まれる場合のみPP収支検査を添える(design.md§6.2「消費の会計」は
+    # 消費側複数の合算だが、explore Step8スコープでは供給合計と閾値の比較のみを対象にする)。
+    notes: list[str] = []
+    for idx in sorted(target):
+        report = reports[idx]
+        if report.arithmetic is None:
+            continue
+        tag = _requirement_tag(report.require.req_tag, report.require.requirement)
+        counter = _counter_for_tag(tag)
+        combo_gain = report.arithmetic.natural_only_dedicated
+        for card_id in combo:
+            info = _card_contrib_info(conn, card_id, category_lookup)
+            combo_gain += (info.graveyard if counter == "graveyard" else info.renkei) * 3  # 各3積み前提
+        threshold = report.arithmetic.threshold
+        if combo_gain >= threshold:
+            notes.append(f"要求{idx + 1}のPP収支: PASS({combo_gain:.1f} ≥ {threshold})")
+        else:
+            notes.append(f"要求{idx + 1}のPP収支: 不足{threshold - combo_gain:.1f}")
+    return notes
+
+
+def format_closures(reports: list[RequirementReport], closures: list[ClosureCandidateSet]) -> str:
+    active_count = sum(1 for r in reports if r.require.status == "active")
+    lines = ["=== クロージャ候補(全active要求を閉じる最小セット) ==="]
+    if active_count == 0:
+        lines.append("(active要求なし)")
+        return "\n".join(lines) + "\n"
+    if not closures:
+        lines.append(f"クロージャ不成立(active要求{active_count}件を同時に閉じる3枚以内のセットが候補プール内に無い)")
+        return "\n".join(lines) + "\n"
+    for i, closure in enumerate(closures, start=1):
+        names = ", ".join(f"{cid} {name}" for cid, name in zip(closure.card_ids, closure.names))
+        lines.append(f"{i}. {{{names}}} {len(closure.card_ids)}枚 / 充足要求: {sorted(i + 1 for i in closure.covered_require_indices)}")
+        for note in closure.pp_notes:
+            lines.append(f"    {note}")
+    return "\n".join(lines) + "\n"
+
+
 def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
-    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのはしご1〜2段→調書整形、を1関数で通す
-    # (Step7スコープはここまで。算術/クロージャ/novelty/LLM走査パックはStep8/9で追加)。
+    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのはしご1〜2段+算術→クロージャ組み→調書整形、を
+    # 1関数で通す(novelty照合・LLM走査パックはStep9で追加)。measure_deck_rates/derive_ratesは
+    # explore全体で1回だけ実行し、全要求の算術チェック+クロージャのPP収支検査で使い回す。
     conn = connect()
     try:
         if not is_anchor(conn, card_id):
             return f"[{card_id}] はアンカー(card_tag='anchor')ではありません。explore対象外です。\n"
-        row = conn.execute("SELECT name, class_name FROM card WHERE card_id = ?", (card_id,)).fetchone()
+        row = conn.execute(
+            "SELECT name, class_name, is_include_rotation FROM card WHERE card_id = ?", (card_id,)
+        ).fetchone()
         if row is None:
             return f"card_id {card_id} はcardテーブルに存在しません。\n"
-        card_name, class_name = row
+        card_name, class_name, is_include_rotation = row
+        # AI_NOTE: アンカー自身が指定フォーマットで非合法なら調書冒頭に警告する(design.md§1.5
+        # 「種・クロージャは必ずフォーマットを明示し全カードが同一フォーマットで合法」の入口チェック。
+        # 調書自体は出す——候補検索はフォーマットで絞れており、判断は人に残す)。
+        format_warning = None
+        if format_name == "rotation" and not is_include_rotation:
+            format_warning = (
+                "⚠ このアンカー自身はローテーション非合法(is_include_rotation=0)。"
+                "--format unlimited での探索を検討"
+            )
         note_row = conn.execute("SELECT note FROM card_note WHERE card_id = ?", (card_id,)).fetchone()
         card_note = note_row[0] if note_row else None
 
         fmap = load_fulfillment_map()
         category_lookup = CategoryLookup(conn)
+        deck_rates = measure_deck_rates(conn, category_lookup)
+        measured = derive_rates(deck_rates)
+
         requires = load_requires(conn, card_id)
         reports = [
-            build_requirement_report(conn, require, fmap, category_lookup, class_name, format_name, card_id)
+            build_requirement_report(conn, require, fmap, category_lookup, class_name, format_name, card_id, measured)
             for require in requires
         ]
-        return format_report(card_id, card_name, class_name, card_note, reports)
+        closures = find_closures(conn, reports, category_lookup)
+        report_text = format_report(card_id, card_name, class_name, card_note, reports, format_warning)
+        return report_text + "\n" + format_closures(reports, closures)
     finally:
         conn.close()
 

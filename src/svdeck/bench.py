@@ -54,6 +54,13 @@ DEADLINE_TURN = 8
 _CUM_PP_BASE = DEADLINE_TURN * (DEADLINE_TURN + 1) // 2
 DEADLINE_CUM_PP = _CUM_PP_BASE + 2  # 後攻エクストラPP楽観込み(36+2=38)
 
+
+def cumulative_pp_for_turn(deadline_turn: int) -> int:
+    # AI_NOTE: explore.py Step8向けの公開ラッパ(挙動変更なし)。DEADLINE_CUM_PPはT8固定値だが、
+    # anchor_requireのdeadline_turnはアンカーごとに異なるため同じ式(T(T+1)/2+後攻エクストラ楽観+2)を
+    # 任意ターンで再利用する。cumulative_pp_for_turn(DEADLINE_TURN) == DEADLINE_CUM_PPで一致する。
+    return deadline_turn * (deadline_turn + 1) // 2 + 2
+
 # AI_NOTE: 「ベース名(パラメータ)」形式のタグを分解する正規表現。パラメータの丸括弧は
 # 「墓場≥6」のように付かないタグもあるため、マッチしない場合はベース名=タグ全体・パラメータ無しとして扱う。
 _TAG_PATTERN = re.compile(r"^(.+?)\((.+)\)$")
