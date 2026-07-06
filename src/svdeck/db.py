@@ -3,7 +3,9 @@
 テーブルは4層に分かれる:
   - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe / ability_keyword): 公式データのコピー。
     cardは新規カードだけINSERT、辞書(card_set/skill_name/tribe/ability_keyword)は取得のたび作り直す。
-  - ユーザレイヤ (card_note / card_tag / card_flag): 再クロールで絶対に触らない・DROPしない。
+  - ユーザレイヤ (card_note / card_tag / card_flag / anchor_require): 再クロールで絶対に触らない・DROPしない。
+    anchor_requireはアンカーの要求コンパイル結果の永続化(design.md §8-7)。行単位でupsertし、
+    不成立確定時もDELETEせずstatus='dead'で残す(判定根拠を失わないため)。
   - 派生層 (card_atom / atom_tag): LLM抽出で作る供給/要求アトム。再抽出でいつでも作り直してよい。
   - 外部メタ層 (meta_deck / meta_deck_card): 攻略サイトのTier表・デッキレシピのコピー。鮮度が命なので
     再クロールのたびDELETE→全INSERTで作り直す。
@@ -133,6 +135,21 @@ CREATE TABLE IF NOT EXISTS ability_keyword (
     text TEXT NOT NULL,
     fetched_at TEXT
 );
+
+CREATE TABLE IF NOT EXISTS anchor_require (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    card_id INTEGER NOT NULL,
+    req_type TEXT NOT NULL CHECK (req_type IN ('event', 'accumulate', 'presence', 'construction')),
+    requirement TEXT NOT NULL,
+    req_tag TEXT,
+    deadline_turn INTEGER,
+    source TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'active',
+    note TEXT,
+    updated_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_anchor_require_card ON anchor_require (card_id);
 """
 
 
