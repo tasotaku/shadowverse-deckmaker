@@ -575,6 +575,15 @@ def format_closures(reports: list[RequirementReport], closures: list[ClosureCand
     if active_count == 0:
         lines.append("(active要求なし)")
         return "\n".join(lines) + "\n"
+    # AI_NOTE: 候補0件のactive要求はfind_closuresが対象から外すため、「全active要求を閉じた」と
+    # 誤読されないよう対象外の要求を明示する(self-review指摘)。
+    no_candidate = [
+        i for i, r in enumerate(reports, start=1)
+        if r.require.status == "active" and not r.tag_hits and not r.fulltext_hits
+    ]
+    if no_candidate:
+        nums = ", ".join(f"要求{i}" for i in no_candidate)
+        lines.append(f"注: {nums} は候補0件のためクロージャ対象外(LLM走査パック参照)")
     if not closures:
         lines.append(f"クロージャ不成立(active要求{active_count}件を同時に閉じる3枚以内のセットが候補プール内に無い)")
         return "\n".join(lines) + "\n"
@@ -721,7 +730,12 @@ def main() -> None:
     card_id = int(args[0])
     format_name = DEFAULT_FORMAT
     if "--format" in args:
-        format_name = args[args.index("--format") + 1]
+        # AI_NOTE: 人手入力のCLIのためtypo(例: unlimted)を黙ってunlimited扱いにせずusageで落とす。
+        format_index = args.index("--format") + 1
+        if format_index >= len(args) or args[format_index] not in ("rotation", "unlimited"):
+            print("usage: python -m svdeck.explore <card_id> [--format rotation|unlimited]")
+            sys.exit(1)
+        format_name = args[format_index]
     print(explore(card_id, format_name))
 
 
