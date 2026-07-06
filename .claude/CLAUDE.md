@@ -17,3 +17,9 @@
 ## 前提ドキュメント
 
 作業開始時は `docs/design.md` を読む（§1.5 フォーマット公理・§5 アンカー基準・§6 マッチング・§7 novelty は毎周使う）。
+
+## 新弾取得後の運用（2026-07-06追加）
+
+新弾取得後は `python -m svdeck.require recheck` を回す（design.md §8-7）。anchor_requireの
+dead/active各行を最新のタグ語彙・fulfillment_mapで再検索し、「前回dead判定だが今は供給が存在する」
+変化点をレポートする。DBは変更しない・判断は人とメインセッションの仕事。
