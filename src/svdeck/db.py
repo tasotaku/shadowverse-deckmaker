@@ -153,9 +153,11 @@ CREATE INDEX IF NOT EXISTS idx_anchor_require_card ON anchor_require (card_id);
 """
 
 
-def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
+def connect(db_path: Path | None = None) -> sqlite3.Connection:
     # AI_NOTE: DB接続とスキーマ作成を一体化。存在しないテーブルのみCREATE IF NOT EXISTSで作るため、
     # ユーザレイヤのデータは再実行時も消えない。境界（DB接続失敗）は例外を握りつぶさずそのまま伝播させる。
+    # AI_NOTE: DB_PATHは呼び出し時に解決する(デフォルト引数のdef時束縛だとテストのmonkeypatchが効かない)。
+    db_path = DB_PATH if db_path is None else db_path
     db_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys = ON")

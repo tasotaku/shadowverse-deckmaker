@@ -123,8 +123,8 @@ card_note: (既存noteを表示)
 - [x] Step 3: バッチ2(11行・検品PASS)
 - [x] Step 4: バッチ3(11行・検品PASS)
 - [x] Step 5: バッチ4(8行・検品PASS)
-- [ ] Step 6: ユーザーレビュー → load → コミット
-- [ ] Step 7: explore.py 骨格 + はしご1〜2段
+- [x] Step 6: ユーザーレビュー承認 → load(新規36/更新0) → recheck通過 → コミット(c221885)
+- [x] Step 7: explore.py 骨格 + はしご1〜2段(mypy PASS・pytest既存差分は事前存在の無関係failure3件)
 - [ ] Step 8: 算術チェック + クロージャ組み
 - [ ] Step 9: novelty照合 + LLM走査パック + テスト
 - [ ] Step 10: 実アンカー3枚照合 + 最終ゲート(/self-review + 全体検証)
