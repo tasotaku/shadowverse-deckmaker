@@ -84,17 +84,48 @@ def _requirement_tag(req_tag: str | None, requirement: str) -> Tag:
     return parse_tag(req_tag if req_tag else requirement)
 
 
+def card_supply_tags(conn: sqlite3.Connection, card_id: int) -> list[tuple[str, Tag]]:
+    # AI_NOTE: _class_filtered_candidates内にあった「1カード分の供給タグ取得+トークン伝播」を
+    # 独立ヘルパーに抽出(計画書Step1(A)・挙動不変)。reverse.py(逆方向マッチング)からも同じ
+    # 「カードの供給タグ(トークン伝播込み)」が要るため共用する。戻り値は(生タグ文字列, パース済みTag)の
+    # ペアのリスト——調書のヒット根拠にマッチした供給側タグの生文字列を表示するため両方持つ。
+    # AI_NOTE: トークン能力の伝播(design.md§6.1)。トークン召喚(X)/存在(X)を持つカードについて、
+    # Xをis_token=1のカードとして解決しその供給タグを注記付きで追記する。単層のみ(伝播で得た
+    # タグをさらに再伝播しない=supply_tagsの元のスナップショットだけを走査)。X=プレースホルダ
+    # (◯◯)/自カード名(自己参照)はスキップ——呼び出し側で既にクラス/フォーマット絞り込み済みの
+    # 候補が前提であり、TはAの効果が生む同文脈のカードなので追加のクラスチェックが不要なため。
+    # トークン召喚(X)と存在(X)は同じXを指すことが多く伝播が重複しうるため(raw, Tag)で重複除去する。
+    name_row = conn.execute("SELECT name FROM card WHERE card_id = ?", (card_id,)).fetchone()
+    name = name_row[0] if name_row else None
+    supply_tags = [
+        (row[0], parse_tag(row[0]))
+        for row in conn.execute("SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (card_id,))
+    ]
+    propagated: dict[tuple[str, Tag], None] = {}
+    for _, parsed in supply_tags:
+        if parsed.base not in ("トークン召喚", "存在") or not parsed.param:
+            continue
+        token_name = parsed.param
+        if token_name in ("◯◯", name):
+            continue
+        for entry in _token_supply_tags(conn, token_name):
+            propagated.setdefault(entry, None)
+    supply_tags.extend(propagated.keys())
+    return supply_tags
+
+
 def _class_filtered_candidates(
     conn: sqlite3.Connection, class_name: str, format_name: str, exclude_card_id: int
 ) -> list[tuple[int, str, int | None, list[tuple[str, Tag]]]]:
     # AI_NOTE: require.py._class_filtered_supply_tagsはタグの集合しか返さずcard_id対応が失われるため
     # ここではカード単位(card_id, name, cost, supply_tags)で持ち直す。design.md§6.1の
     # 「同クラス+ニュートラル」フィルタとStep7要件の「アンカー自身は除外」「rotation時is_include_rotation」を
-    # 同時に満たす。supply_tagsは(生タグ文字列, パース済みTag)のペア——調書のヒット根拠に
-    # マッチした供給側タグの生文字列を表示するため両方持つ。
+    # 同時に満たす。
     # AI_NOTE: トークン(is_token=1)は非デッキ(単独でデッキに入らない)なので供給候補から除外する
-    # (NULL安全な IS NOT 1=「トークンでない」で判定)。トークンの能力は下の伝播ロジックで生成カード側に
-    # 載るため、直接候補に出すと非デッキ供給の偽候補になる。
+    # (NULL安全な IS NOT 1=「トークンでない」で判定)。トークンの能力は card_supply_tags の伝播ロジックで
+    # 生成カード側に載るため、直接候補に出すと非デッキ供給の偽候補になる。
+    # AI_NOTE: 計画書Step1(A)でトークン伝播ロジックをcard_supply_tagsへ抽出し、ここはそれを呼ぶだけの
+    # 薄い形にした(挙動不変)。
     format_filter = " AND c.is_include_rotation = 1" if format_name == "rotation" else ""
     rows = conn.execute(
         f"""
@@ -105,32 +136,7 @@ def _class_filtered_candidates(
         """,
         (class_name, exclude_card_id),
     ).fetchall()
-    candidates = []
-    for candidate_id, name, cost in rows:
-        supply_tags = [
-            (row[0], parse_tag(row[0]))
-            for row in conn.execute(
-                "SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (candidate_id,)
-            )
-        ]
-        # AI_NOTE: トークン能力の伝播(design.md§6.1)。トークン召喚(X)/存在(X)を持つ候補について、
-        # Xをis_token=1のカードとして解決しその供給タグを注記付きで追記する。単層のみ(伝播で得た
-        # タグをさらに再伝播しない=supply_tagsの元のスナップショットだけを走査)。X=プレースホルダ
-        # (◯◯)/自カード名(自己参照)はスキップ——is_token限定なのは候補Aが既にクラス/フォーマットで
-        # 絞られており、TはAの効果が生む同文脈のカードなので追加のクラスチェックが不要なため。
-        # トークン召喚(X)と存在(X)は同じXを指すことが多く伝播が重複しうるため(raw, Tag)で重複除去する。
-        propagated: dict[tuple[str, Tag], None] = {}
-        for _, parsed in supply_tags:
-            if parsed.base not in ("トークン召喚", "存在") or not parsed.param:
-                continue
-            token_name = parsed.param
-            if token_name in ("◯◯", name):
-                continue
-            for entry in _token_supply_tags(conn, token_name):
-                propagated.setdefault(entry, None)
-        supply_tags.extend(propagated.keys())
-        candidates.append((candidate_id, name, cost, supply_tags))
-    return candidates
+    return [(candidate_id, name, cost, card_supply_tags(conn, candidate_id)) for candidate_id, name, cost in rows]
 
 
 def _token_supply_tags(conn: sqlite3.Connection, token_name: str) -> list[tuple[str, Tag]]:
