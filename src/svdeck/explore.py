@@ -26,6 +26,7 @@ from svdeck.bench import (
     _card_counter_contrib,
     _matches,
     _token_counts_from_atoms,
+    _token_supply_tags,
     cumulative_pp_for_turn,
     derive_rates,
     extract_n,
@@ -137,26 +138,6 @@ def _class_filtered_candidates(
         (class_name, exclude_card_id),
     ).fetchall()
     return [(candidate_id, name, cost, card_supply_tags(conn, candidate_id)) for candidate_id, name, cost in rows]
-
-
-def _token_supply_tags(conn: sqlite3.Connection, token_name: str) -> list[tuple[str, Tag]]:
-    # AI_NOTE: design.md§6.1「トークン能力の伝播」。名前→is_token=1のcard_idで解決し、そのカードの
-    # supply_tagsを注記(トークンX経由)付きで返す。注記はraw文字列(表示用)にのみ埋め、parse_tagには
-    # 注記を含まないtok_rawを渡す(_matchesの型一致判定を注記文字列で壊さないため)。同名が複数体
-    # 存在する場合(is_token=1内の重複)は全件合算し、(raw, パース済みTag)の組で重複除去する。
-    token_ids = [
-        row[0] for row in conn.execute("SELECT card_id FROM card WHERE name = ? AND is_token = 1", (token_name,))
-    ]
-    if not token_ids:
-        return []
-    seen: dict[tuple[str, Tag], None] = {}
-    for token_id in token_ids:
-        for (tok_raw,) in conn.execute(
-            "SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (token_id,)
-        ):
-            annotated = (f"{tok_raw}(トークン{token_name}経由)", parse_tag(tok_raw))
-            seen.setdefault(annotated, None)
-    return list(seen.keys())
 
 
 def _matched_supply_tag(

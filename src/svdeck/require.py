@@ -19,7 +19,15 @@ import sys
 from pathlib import Path
 from typing import Any, NamedTuple
 
-from svdeck.bench import CategoryLookup, FulfillmentMap, Tag, _matches, load_fulfillment_map, parse_tag
+from svdeck.bench import (
+    CategoryLookup,
+    FulfillmentMap,
+    Tag,
+    _matches,
+    _token_supply_tags,
+    load_fulfillment_map,
+    parse_tag,
+)
 from svdeck.db import connect
 
 DUMP_COLUMNS = "id, card_id, req_type, requirement, req_tag, deadline_turn, source, status, note, updated_at"
@@ -153,12 +161,32 @@ def _class_filtered_supply_tags(
 ) -> list[Tag]:
     # AI_NOTE: design.md§6.1「クラス固有キーワードはそのクラス内でのみ意味を持つ」に沿い、
     # 供給候補の列挙は常に「同クラス+ニュートラル」に絞る(試作v0でAIがこの違反を出したため明文化済み)。
+    # AI_NOTE: トークン(is_token=1)は非デッキ(単独でデッキに入らない)なので供給語彙から除外する
+    # (NULL安全な IS NOT 1)。トークンの内在能力はこの後の伝播で生成カード側に載せる——直接混ぜると
+    # exploreと食い違い「dead要求が今は充足可能」の偽判定を生む(task_b5b8caa6・explore側は既にfix済み)。
     rows = conn.execute(
-        "SELECT at.tag FROM atom_tag at JOIN card c ON c.card_id = at.card_id "
-        "WHERE at.kind = 'supply' AND c.class_name IN (?, 'ニュートラル')",
+        "SELECT c.card_id, c.name, at.tag FROM atom_tag at JOIN card c ON c.card_id = at.card_id "
+        "WHERE at.kind = 'supply' AND c.class_name IN (?, 'ニュートラル') AND c.is_token IS NOT 1",
         (class_name,),
     ).fetchall()
-    return [parse_tag(row[0]) for row in rows]
+    by_card: dict[int, tuple[str, list[Tag]]] = {}
+    for card_id, name, raw in rows:
+        by_card.setdefault(card_id, (name, []))[1].append(parse_tag(raw))
+
+    # AI_NOTE: トークン能力の伝播(design.md§6.1・explore._class_filtered_candidatesと同一規約)。
+    # トークン召喚(X)/存在(X)のXをis_token=1で解決しXの供給タグを索引に足す。X=◯◯(自己存在の
+    # プレースホルダ)/自カード名(自己参照)はスキップ。ここはboolの_matches用なので重複除去はしない
+    # (OR判定に影響しない)——explore側の表示用dedupと違うのはその点だけ。
+    supply_tags: list[Tag] = []
+    for name, tags in by_card.values():
+        supply_tags.extend(tags)
+        for tag in tags:
+            if tag.base not in ("トークン召喚", "存在") or not tag.param:
+                continue
+            if tag.param in ("◯◯", name):
+                continue
+            supply_tags.extend(parsed for _, parsed in _token_supply_tags(conn, tag.param))
+    return supply_tags
 
 
 def recheck() -> list[RecheckRow]:
