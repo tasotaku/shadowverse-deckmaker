@@ -92,13 +92,16 @@ def _class_filtered_candidates(
     # 「同クラス+ニュートラル」フィルタとStep7要件の「アンカー自身は除外」「rotation時is_include_rotation」を
     # 同時に満たす。supply_tagsは(生タグ文字列, パース済みTag)のペア——調書のヒット根拠に
     # マッチした供給側タグの生文字列を表示するため両方持つ。
+    # AI_NOTE: トークン(is_token=1)は非デッキ(単独でデッキに入らない)なので供給候補から除外する
+    # (NULL安全な IS NOT 1=「トークンでない」で判定)。トークンの能力は下の伝播ロジックで生成カード側に
+    # 載るため、直接候補に出すと非デッキ供給の偽候補になる。
     format_filter = " AND c.is_include_rotation = 1" if format_name == "rotation" else ""
     rows = conn.execute(
         f"""
         SELECT DISTINCT c.card_id, c.name, c.cost
         FROM card c JOIN atom_tag at ON at.card_id = c.card_id
         WHERE at.kind = 'supply' AND c.class_name IN (?, 'ニュートラル')
-          AND c.card_id != ?{format_filter}
+          AND c.is_token IS NOT 1 AND c.card_id != ?{format_filter}
         """,
         (class_name, exclude_card_id),
     ).fetchall()
