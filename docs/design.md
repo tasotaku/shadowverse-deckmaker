@@ -339,6 +339,11 @@ novelty壁としては過剰に厳しい**（広まらなかった良デッキ�
    ③の運用: **新弾取得後は `python -m svdeck.require recheck` を回す**（2026-07-06追加）。
    anchor_requireのdead/active各行をタグ語彙・fulfillment_map経由で再検索し、「前回dead判定だが
    今は供給が存在する」変化点だけをレポートする（DBは変更しない・判断は人とメインセッションの仕事）。
+8. **アイデアの恒久保存（2026-07-07ユーザー指示）**: 台帳の本体 `data/cards.db` は権利物同梱回避で
+   git管理外（`/data/`は.gitignore）。**未成立アイデアは新弾で解ける可能性があるため全て残す**——
+   dead行も「失敗理由＋どんなカードが来れば再浮上するか」をnoteに保持する。恒久ミラーとして
+   `src/svdeck/data/anchor_require_ledger.json`（全48行の完全スナップショット・git追跡）を置き、
+   台帳を更新したら書き出し直す。復元は `python -m svdeck.require load` で再取り込み。
 
 ## 9. 後回しにした改善（実装しない。必要を感じたら着手）
 
