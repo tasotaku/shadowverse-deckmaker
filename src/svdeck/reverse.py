@@ -99,9 +99,13 @@ def format_reverse_report(
     format_name: str,
     supply_tags: list[tuple[str, Tag]],
     matches: list[ReverseMatch],
+    format_warning: str | None = None,
 ) -> str:
     # AI_NOTE: 完成形の具体像(計画書)通りのフォーマット。供給タグ一覧は生文字列(注記込み)をそのまま出す。
+    # format_warningは対象カード自身がフォーマット非合法な場合の注意(explore.pyと対称・調書は出す)。
     lines = [f"=== 逆方向マッチング: [{card_id}] {card_name} ({class_name}) ==="]
+    if format_warning:
+        lines.append(format_warning)
     tag_text = ", ".join(raw for raw, _ in supply_tags) if supply_tags else "(なし)"
     lines.append(f"供給タグ: {tag_text}")
     format_note = "rotation合法" if format_name == "rotation" else "unlimited"
@@ -126,6 +130,13 @@ def reverse(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
         if row is None:
             return f"card_id {card_id} はcardテーブルに存在しません。\n"
         card_name, class_name, is_include_rotation = row
+        # AI_NOTE: 対象カード自身がrotation非合法なら、満たすアンカーがあっても同一フォーマットで閉じない。
+        # explore.pyと対称に警告する(調書自体は出し判断は人に残す・design.md§1.5フォーマット公理)。
+        format_warning = None
+        if format_name == "rotation" and not is_include_rotation:
+            format_warning = (
+                "⚠ このカード自身はローテーション非合法(is_include_rotation=0)。--format unlimited での探索を検討"
+            )
 
         fmap = load_fulfillment_map()
         category_lookup = CategoryLookup(conn)
@@ -134,7 +145,9 @@ def reverse(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
         matches = find_reverse_matches(
             conn, card_id, class_name, is_neutral, format_name, fmap, category_lookup, supply_tags
         )
-        return format_reverse_report(card_id, card_name, class_name, format_name, supply_tags, matches)
+        return format_reverse_report(
+            card_id, card_name, class_name, format_name, supply_tags, matches, format_warning
+        )
     finally:
         conn.close()
 
