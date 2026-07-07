@@ -110,8 +110,44 @@ def _class_filtered_candidates(
                 "SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (candidate_id,)
             )
         ]
+        # AI_NOTE: トークン能力の伝播(design.md§6.1)。トークン召喚(X)/存在(X)を持つ候補について、
+        # Xをis_token=1のカードとして解決しその供給タグを注記付きで追記する。単層のみ(伝播で得た
+        # タグをさらに再伝播しない=supply_tagsの元のスナップショットだけを走査)。X=プレースホルダ
+        # (◯◯)/自カード名(自己参照)はスキップ——is_token限定なのは候補Aが既にクラス/フォーマットで
+        # 絞られており、TはAの効果が生む同文脈のカードなので追加のクラスチェックが不要なため。
+        # トークン召喚(X)と存在(X)は同じXを指すことが多く伝播が重複しうるため(raw, Tag)で重複除去する。
+        propagated: dict[tuple[str, Tag], None] = {}
+        for _, parsed in supply_tags:
+            if parsed.base not in ("トークン召喚", "存在") or not parsed.param:
+                continue
+            token_name = parsed.param
+            if token_name in ("◯◯", name):
+                continue
+            for entry in _token_supply_tags(conn, token_name):
+                propagated.setdefault(entry, None)
+        supply_tags.extend(propagated.keys())
         candidates.append((candidate_id, name, cost, supply_tags))
     return candidates
+
+
+def _token_supply_tags(conn: sqlite3.Connection, token_name: str) -> list[tuple[str, Tag]]:
+    # AI_NOTE: design.md§6.1「トークン能力の伝播」。名前→is_token=1のcard_idで解決し、そのカードの
+    # supply_tagsを注記(トークンX経由)付きで返す。注記はraw文字列(表示用)にのみ埋め、parse_tagには
+    # 注記を含まないtok_rawを渡す(_matchesの型一致判定を注記文字列で壊さないため)。同名が複数体
+    # 存在する場合(is_token=1内の重複)は全件合算し、(raw, パース済みTag)の組で重複除去する。
+    token_ids = [
+        row[0] for row in conn.execute("SELECT card_id FROM card WHERE name = ? AND is_token = 1", (token_name,))
+    ]
+    if not token_ids:
+        return []
+    seen: dict[tuple[str, Tag], None] = {}
+    for token_id in token_ids:
+        for (tok_raw,) in conn.execute(
+            "SELECT tag FROM atom_tag WHERE card_id = ? AND kind = 'supply'", (token_id,)
+        ):
+            annotated = (f"{tok_raw}(トークン{token_name}経由)", parse_tag(tok_raw))
+            seen.setdefault(annotated, None)
+    return list(seen.keys())
 
 
 def _matched_supply_tag(
