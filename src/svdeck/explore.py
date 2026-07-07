@@ -1,18 +1,17 @@
-"""アンカー深掘りCLI(explore)。design.md §6検索はしごの1〜2段目+算術チェック+クロージャ組み+
+"""アンカー深掘りCLI(explore)。design.md §6検索の2本(タグ検索+LLM走査)+算術チェック+クロージャ組み+
 §7novelty照合+LLM走査パック出しを1コマンドにまとめる。
 
 .claude/plans/anchor-require-and-explore.md のフェーズ2・Step7〜9。anchor_requireから対象アンカーの
-要求を読み、要求ごとに(1)タグ検索(bench.pyの_matches経由・同クラス+ニュートラル) (2)skill_text全文検索
-の供給候補card_idを列挙し、蓄積型(accumulate)要求には(3)算術チェック(自然増レート+候補上乗せの貪欲
-スケジュール)を接続する。さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙し、
-クロージャ候補card_idについてnovelty照合(meta_deck/meta_deck_cardでアンカーとの同居デッキ検索・
-design.md§7「フィルタしない・全部見せる」)、機械検索0件/manual要求についてLLM走査パック
-(data/card_memo.txtを読ませる走査指示文)を調書末尾に添える。
+要求を読み、要求ごとにタグ検索(bench.pyの_matches経由・同クラス+ニュートラル)で供給候補card_idを列挙し、
+蓄積型(accumulate)要求には算術チェック(自然増レート+候補上乗せの貪欲スケジュール)を接続する。
+さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙し、クロージャ候補card_idについて
+novelty照合(meta_deck/meta_deck_cardでアンカーとの同居デッキ検索・design.md§7「フィルタしない・
+全部見せる」)、全active要求についてLLM走査パック(skill_text+card_noteコーパスdata/card_memo.txtを
+読ませる走査指示文。2026-07-07改訂でLIKE全文検索(旧はしご2段目)を廃止し常設化)を調書末尾に添える。
 
 実行: PYTHONPATH=src python -m svdeck.explore <card_id> [--format rotation|unlimited]
 """
 
-import re
 import sqlite3
 import sys
 from itertools import combinations
@@ -161,58 +160,6 @@ def tag_search(
     return hits
 
 
-# AI_NOTE: パラメータからノイズ語(所有者prefix・比較演算子)を除いた名詞句だけを検索語にする。
-# bench.pyの_normalize_paramと同じ正規化方針だが、全文検索語としては短すぎる語(1文字)は拾わない。
-_SEARCH_NOISE = re.compile(r"[≥()（）]")
-
-
-def _search_terms(tag: Tag, fmap: FulfillmentMap) -> list[str]:
-    # AI_NOTE: 検索語の機械生成。(1)要求タグのベース名 (2)要求タグのパラメータ (3)fulfillment_mapで
-    # 該当ベース名に紐づくsupplies語(自然/rulesどちらも)のベース名、の3系統を集めて重複除去する。
-    terms = {tag.base}
-    if tag.param:
-        cleaned = _SEARCH_NOISE.sub("", tag.param)
-        if len(cleaned) >= 2:
-            terms.add(cleaned)
-    for natural_rule in fmap.natural_rules:
-        if natural_rule.require_base == tag.base:
-            terms.update(pattern.base for pattern in natural_rule.supplies if len(pattern.base) >= 2)
-    for scored_rule in fmap.rules:
-        if scored_rule.require.base == tag.base:
-            terms.update(pattern.base for pattern in scored_rule.supplies if len(pattern.base) >= 2)
-    return [term for term in terms if len(term) >= 2]
-
-
-def fulltext_search(
-    conn: sqlite3.Connection,
-    tag: Tag,
-    fmap: FulfillmentMap,
-    class_name: str,
-    format_name: str,
-    exclude_card_id: int,
-    already_hit: set[int],
-) -> list[Candidate]:
-    # AI_NOTE: はしご2段目。タグ化されていない字面の概念をskill_text LIKE検索で拾う
-    # (design.md§6.1検索手段のはしご・2段目)。1段目で既にヒットしたcard_idは「追加ヒット」から除外する。
-    format_filter = " AND c.is_include_rotation = 1" if format_name == "rotation" else ""
-    hits: dict[int, Candidate] = {}
-    for term in _search_terms(tag, fmap):
-        rows = conn.execute(
-            f"""
-            SELECT DISTINCT c.card_id, c.name, c.cost
-            FROM card c
-            WHERE c.class_name IN (?, 'ニュートラル') AND c.card_id != ?
-              AND c.skill_text LIKE ?{format_filter}
-            """,
-            (class_name, exclude_card_id, f"%{term}%"),
-        ).fetchall()
-        for candidate_id, name, cost in rows:
-            if candidate_id in already_hit or candidate_id in hits:
-                continue
-            hits[candidate_id] = Candidate(candidate_id, name, cost, f"全文:{term}")
-    return list(hits.values())
-
-
 class CardContribInfo(NamedTuple):
     # AI_NOTE: クロージャのPP収支検査でも算術チェックでも同じ「1枚あたりの寄与」が要るため、
     # 候補card_idに対する寄与情報をここで1回だけ引いて使い回す形にする。
@@ -350,7 +297,6 @@ def compute_arithmetic(
 class RequirementReport(NamedTuple):
     require: RequireRow
     tag_hits: list[Candidate]
-    fulltext_hits: list[Candidate]
     manual: bool  # タグ文法非合致(unclassified等)で機械検索が成立しなかった要求
     arithmetic: ArithmeticResult | None  # accumulate要求のみ設定。閾値抽出不能ならNone(算術スキップ)
 
@@ -365,23 +311,22 @@ def build_requirement_report(
     anchor_card_id: int,
     measured: MeasuredRates | None,
 ) -> RequirementReport:
-    # AI_NOTE: 1要求分のはしご1〜2段+算術チェックをまとめて実行する。tag_searchが0件でもmanualとは
-    # 限らない(分類は通ったが該当カードが無いだけ)ため、manual判定はclassifyの結果だけで独立に見る。
+    # AI_NOTE: 1要求分のタグ検索+算術チェックをまとめて実行する(2026-07-07・全文検索(旧はしご2段目)は
+    # 廃止・LLM走査パックの常設化で代替)。tag_searchが0件でもmanualとは限らない(分類は通ったが
+    # 該当カードが無いだけ)ため、manual判定はclassifyの結果だけで独立に見る。
     tag = _requirement_tag(require.req_tag, require.requirement)
     category = fmap.classify(tag)
     manual = category == "unclassified"
     tag_hits = tag_search(conn, tag, fmap, category_lookup, class_name, format_name, anchor_card_id)
-    already_hit = {hit.card_id for hit in tag_hits}
-    fulltext_hits = fulltext_search(conn, tag, fmap, class_name, format_name, anchor_card_id, already_hit)
 
     arithmetic = None
     if require.req_type == "accumulate" and require.deadline_turn is not None:
         threshold = extract_n(require.req_tag if require.req_tag else require.requirement)
         if threshold is not None:
             arithmetic = compute_arithmetic(
-                conn, tag, threshold, require.deadline_turn, tag_hits + fulltext_hits, measured, fmap, category_lookup
+                conn, tag, threshold, require.deadline_turn, tag_hits, measured, fmap, category_lookup
             )
-    return RequirementReport(require, tag_hits, fulltext_hits, manual, arithmetic)
+    return RequirementReport(require, tag_hits, manual, arithmetic)
 
 
 def format_candidate(candidate: Candidate) -> str:
@@ -421,8 +366,9 @@ def format_report(
     reports: list[RequirementReport],
     format_warning: str | None = None,
 ) -> str:
-    # AI_NOTE: 計画書「完成形の具体像」の調書フォーマットに合わせる。要求ごとに
-    # [タグ検索]/[全文検索]の件数+候補一覧、0件は「機械検索0件」を明示する(Step9のLLM走査パック接続点)。
+    # AI_NOTE: 計画書「完成形の具体像」の調書フォーマットに合わせる。要求ごとに[タグ検索]の件数+
+    # 候補一覧、0件は「機械検索0件」を明示する(2026-07-07・全文検索セクションは廃止、代わりにLLM走査
+    # パックが全active要求に付く=format_scan_pack側)。
     lines = [f"=== アンカー調書: [{card_id}] {card_name} ({class_name}) ==="]
     if format_warning:
         lines.append(format_warning)
@@ -435,15 +381,12 @@ def format_report(
         lines.append(f"--- 要求{i} ({require.req_type}/{require.status}): {require.requirement}{deadline}")
         if report.manual:
             lines.append("  [manual] requirementがタグ文法に合致せず機械検索対象外(要LLM走査)")
-        total_hits = len(report.tag_hits) + len(report.fulltext_hits)
+        total_hits = len(report.tag_hits)
         if total_hits == 0:
             lines.append("  機械検索0件")
         else:
             lines.append(f"  [タグ検索] {len(report.tag_hits)}件")
             for hit in report.tag_hits:
-                lines.append(format_candidate(hit))
-            lines.append(f"  [全文検索] 追加{len(report.fulltext_hits)}件")
-            for hit in report.fulltext_hits:
                 lines.append(format_candidate(hit))
         if report.require.req_type == "accumulate":
             if report.arithmetic is not None:
@@ -461,11 +404,13 @@ def _closure_candidate_pool(
     # AI_NOTE: 要求ごとの候補プールを効率順(Δ/PP)上位CLOSURE_CANDIDATE_TOP_N枚に絞る
     # (計画書「組合せ爆発対策」)。accumulate要求は算術のΔ/PPで並べ、それ以外(event/presence/construction)は
     # ヒット順のまま(優劣を機械判定する材料が無いため)先頭から取る。activeのみ対象(dead要求は閉じない)。
+    # 2026-07-07: 全文検索(fulltext_hits)廃止によりtag_hitsのみで組む(LLM走査ヒットは人が手で足す
+    # 現状の人間協働モデルを踏襲・計画書「技術的決定事項」)。
     pool: dict[int, list[Candidate]] = {}
     for idx, report in enumerate(reports):
         if report.require.status != "active":
             continue
-        all_hits = report.tag_hits + report.fulltext_hits
+        all_hits = report.tag_hits
         if not all_hits:
             continue
         if report.arithmetic is not None:
@@ -576,10 +521,11 @@ def format_closures(reports: list[RequirementReport], closures: list[ClosureCand
         lines.append("(active要求なし)")
         return "\n".join(lines) + "\n"
     # AI_NOTE: 候補0件のactive要求はfind_closuresが対象から外すため、「全active要求を閉じた」と
-    # 誤読されないよう対象外の要求を明示する(self-review指摘)。
+    # 誤読されないよう対象外の要求を明示する(self-review指摘)。2026-07-07: 全文検索廃止によりtag_hits
+    # のみで判定(fulltext_hits参照を削除)。
     no_candidate = [
         i for i, r in enumerate(reports, start=1)
-        if r.require.status == "active" and not r.tag_hits and not r.fulltext_hits
+        if r.require.status == "active" and not r.tag_hits
     ]
     if no_candidate:
         nums = ", ".join(f"要求{i}" for i in no_candidate)
@@ -650,33 +596,30 @@ def format_novelty(
 
 
 def format_scan_pack(card_id: int, class_name: str, reports: list[RequirementReport]) -> str:
-    # AI_NOTE: 機械検索0件(タグ0件かつ全文0件)またはmanual(タグ文法非合致)の要求をLLM走査対象として
-    # 列挙し、メインセッションにそのまま貼れる走査指示文を1つ添える(計画書Step9・design.md§6実走査は
-    # ここでは行わない=完成形の具体像通りパック出力止まり)。対象が無ければ節自体を出さない。
-    targets = [
-        (i, report.require)
-        for i, report in enumerate(reports, start=1)
-        if report.manual or (len(report.tag_hits) == 0 and len(report.fulltext_hits) == 0)
-    ]
+    # AI_NOTE: 2026-07-07・design.md§6.1改訂によりLLM走査を全active要求で常設化する(旧: 機械検索0件or
+    # manualのみが対象だったが、全文検索(はしご2段目)廃止に伴いタグで拾えない要求を毎回LLMに回す構え
+    # に変更・計画書Step2)。dead要求は対象外(既に不要と判定済み)。対象が無ければ節自体を出さない。
+    targets = [(i, report.require) for i, report in enumerate(reports, start=1) if report.require.status == "active"]
     if not targets:
         return ""
-    lines = ["=== LLM走査パック(タグ・全文で埋まらなかった要求) ==="]
+    lines = ["=== LLM走査パック(全active要求・タグ検索と併用) ==="]
     for i, require in targets:
         lines.append(f"要求{i}「{require.requirement}」")
     lines.append("")
     requirement_list = "\n".join(f"- 要求{i}「{require.requirement}」" for i, require in targets)
     lines.append(
-        "data/card_memo.txt を読み、以下の各要求について該当する card_id を列挙せよ。"
-        f"クラスは{class_name}+ニュートラルに限定。判定は型の一致で行い、意味の近さだけで拾わないこと。\n"
-        f"{requirement_list}"
+        "data/card_memo.txt(skill_text+card_noteのコーパス)を読み、以下の各要求について該当する card_id "
+        f"を列挙せよ。クラスは{class_name}+ニュートラルに限定。判定は型の一致で行い、意味の近さだけで"
+        f"拾わないこと。\n{requirement_list}"
     )
     return "\n".join(lines) + "\n"
 
 
 def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
-    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのはしご1〜2段+算術→クロージャ組み→
-    # novelty照合→LLM走査パック→調書整形、を1関数で通す。measure_deck_rates/derive_ratesは
-    # explore全体で1回だけ実行し、全要求の算術チェック+クロージャのPP収支検査で使い回す。
+    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのタグ検索+算術→クロージャ組み→
+    # novelty照合→LLM走査パック(全active要求に常設)→調書整形、を1関数で通す。measure_deck_rates/
+    # derive_ratesはexplore全体で1回だけ実行し、全要求の算術チェック+クロージャのPP収支検査で使い回す。
+    # scan_pack_textが空になるのはactive要求が1つも無い時のみ(format_scan_pack参照)。
     conn = connect()
     try:
         if not is_anchor(conn, card_id):
