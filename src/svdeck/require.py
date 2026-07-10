@@ -7,7 +7,7 @@ design.md §8-7 自己改善ループ③「要求の永続化とイベント駆�
 作り直しではなく永続台帳のため、既存行は消さず更新する)。
 
 実行:
-  python -m svdeck.require dump [card_id ...] > requires.json   # 省略時は全アンカー(card_tag='anchor')
+  python -m svdeck.require dump [card_id ...] > requires.json   # 省略時はanchor_require全行(台帳=完全スナップショット)
   python -m svdeck.require load requires.json
   python -m svdeck.require list
   python -m svdeck.require recheck   # 供給の再検索レポート(DBは変更しない・新弾取得後の運用)
@@ -33,22 +33,20 @@ from svdeck.db import connect
 DUMP_COLUMNS = "id, card_id, req_type, requirement, req_tag, deadline_turn, source, status, note, updated_at"
 
 
-def _anchor_card_ids(conn: sqlite3.Connection) -> list[int]:
-    return [row[0] for row in conn.execute("SELECT card_id FROM card_tag WHERE tag = 'anchor'")]
-
-
 def dump(card_ids: list[int]) -> str:
-    # AI_NOTE: card_ids省略時は全アンカー(card_tag='anchor')を対象にする。指定時はそのcard_idのみ。
+    # AI_NOTE: card_ids省略時はanchor_requireの全行を出す(台帳=design§8-8「dead行も残す完全スナップショット」の
+    # 意図に合わせる)。旧実装はcard_tag='anchor'付きに絞っていたため、アンカーをクビにして残したdead行
+    # (非anchorタグ)がdump省略で消える台帳データ欠落バグがあった。指定時はそのcard_idのみ。
     conn = connect()
     try:
-        target_ids = card_ids or _anchor_card_ids(conn)
-        if not target_ids:
-            return json.dumps([], ensure_ascii=False, indent=1)
-        marks = ",".join("?" * len(target_ids))
-        cursor = conn.execute(
-            f"SELECT {DUMP_COLUMNS} FROM anchor_require WHERE card_id IN ({marks}) ORDER BY card_id, id",
-            target_ids,
-        )
+        if card_ids:
+            marks = ",".join("?" * len(card_ids))
+            cursor = conn.execute(
+                f"SELECT {DUMP_COLUMNS} FROM anchor_require WHERE card_id IN ({marks}) ORDER BY card_id, id",
+                card_ids,
+            )
+        else:
+            cursor = conn.execute(f"SELECT {DUMP_COLUMNS} FROM anchor_require ORDER BY card_id, id")
         columns = [d[0] for d in cursor.description]
         rows = [dict(zip(columns, row)) for row in cursor]
     finally:
