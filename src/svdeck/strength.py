@@ -75,6 +75,8 @@ class Mode:
     conds: list[str]
     disruptions: set[str] = field(default_factory=set)
     unresolved: list[str] = field(default_factory=list)
+    body_count: int = 0  # 横=盤面に出る体数
+    max_body: int = 0  # 縦=最大単体の大きさ(攻+体)
 
 
 def _enemy(target: str) -> bool:
@@ -150,7 +152,7 @@ def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
     if head == "バフ":
         stat = re.search(r"([+\-]?\d+)\s*/\s*([+\-]?\d+)", text)
         if stat and _is_self(target):
-            return Effect("num2", atk=int(stat.group(1)), life=int(stat.group(2)))
+            return Effect("selfstat", atk=int(stat.group(1)), life=int(stat.group(2)))
         if stat and _own_other(target):
             return Effect("sup", label="スタッツ")
         return Effect("skip", label="バフ他")  # TODO: 他対象の値化(§11.8残ギャップ48件)
@@ -169,7 +171,7 @@ def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
         count = int(args[1]) if len(args) > 1 and args[1].isdigit() else 1
         if name in tokens:
             atk, life = tokens[name]
-            return Effect("num2", atk=atk * count, life=life * count)
+            return Effect("summon", atk=atk, life=life, count=count)  # 縦/横用に1体分と体数を分けて返す
         return Effect("skip", label=f"召喚?{name[:8]}")  # TODO: 位置指定召喚(§11.8残ギャップ21件)
     if head == "リアニメイト":
         return Effect("flag", label="リアニメイト")  # 蘇生対象は構築次第=固定スタッツを置かずフラグのみ(§11.7)
@@ -220,7 +222,7 @@ def build_vector(
     cost: int,
     spent_evo: str | None,
     tokens: dict[str, tuple[int, int]],
-) -> tuple[Counter[str], list[Removal], set[str], set[str], set[str], list[str]]:
+) -> tuple[Counter[str], list[Removal], set[str], set[str], set[str], list[str], int, int]:
     # AI_NOTE: atom群を軸へ集計。フォロワーは素のスタッツを、全カードは実コストPPを土台に置く。置換(numR)は
     # 加算でなくaxisごとの最大値へ畳む(§11.7)。spent_evoは進化/超進化権の消費で符号付き-1(§11.3)。
     vector: Counter[str] = Counter()
@@ -235,15 +237,25 @@ def build_vector(
         vector["体力"] += life
     vector["PP"] += cost
     vector["カード枚数"] -= 1  # AI_NOTE: カードは1枚使えば手札から消える(§11.4 手札-1)。ドロー/生成でこれを相殺。充足軸
+    # AI_NOTE: 縦/横(§11.3)。self_body=自分の体の大きさ(縦)・body_count=体数(横)・max_token=召喚体の最大単体
+    self_body = atk + life if type_category == "follower" else 0
+    body_count = 1 if type_category == "follower" else 0
+    max_token = 0
     for text, _requires in items:
         effect = parse_effect(text, tokens)
         if effect.kind == "num":
             vector[effect.axis] += effect.value
         elif effect.kind == "numR":
             replaced[effect.axis] = max(replaced.get(effect.axis, 0), effect.value)
-        elif effect.kind == "num2":
+        elif effect.kind == "selfstat":  # 自分の体を大きくする=縦を伸ばす
             vector["攻撃力"] += effect.atk
             vector["体力"] += effect.life
+            self_body += effect.atk + effect.life
+        elif effect.kind == "summon":  # 体をN体出す=横を増やす・召喚体の最大単体は縦候補
+            vector["攻撃力"] += effect.atk * effect.count
+            vector["体力"] += effect.life * effect.count
+            body_count += effect.count
+            max_token = max(max_token, effect.atk + effect.life)
         elif effect.kind == "cnt":
             vector[f"{effect.axis}産出"] += effect.count
         elif effect.kind == "rem" and effect.removal is not None:
@@ -263,7 +275,8 @@ def build_vector(
         vector[axis] = max(vector[axis], val)
     if spent_evo is not None:
         vector[spent_evo] -= 1
-    return vector, removals, flags, supplies, disruptions, unresolved
+    max_body = max(self_body, max_token)  # 縦=自分の体と召喚体の大きい方
+    return vector, removals, flags, supplies, disruptions, unresolved, body_count, max_body
 
 
 def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, int]]) -> tuple[str, list[Mode]]:
@@ -303,11 +316,12 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         floor_items = list(groups["base"]) + ([] if trigger == "base" else groups[trigger])
         ceiling_items = floor_items + situational
         floor_vec, *_ = build_vector(floor_items, type_category, atk, life, mode_cost, spent_evo, tokens)
-        ceiling_vec, removals, flags, supplies, disruptions, unresolved = build_vector(
+        ceiling_vec, removals, flags, supplies, disruptions, unresolved, body_count, max_body = build_vector(
             ceiling_items, type_category, atk, life, mode_cost, spent_evo, tokens
         )
         modes.append(
-            Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies, list(conds), disruptions, unresolved)
+            Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies,
+                 list(conds), disruptions, unresolved, body_count, max_body)
         )
     return name, modes
 
@@ -347,6 +361,8 @@ def main() -> None:
         print(f"■ {name} (card_id={row[0]})")
         for mode in modes:
             print(f"  [{mode.label} PP{mode.cost}] {_format_vector(mode.floor, mode.ceiling)}")
+            if mode.body_count:
+                print(f"      盤面: 体数{mode.body_count}(横) 最大単体{mode.max_body}(縦)")
             if mode.removals:
                 print(f"      除去: {[_format_removal(r) for r in mode.removals]}")
             if mode.flags:
