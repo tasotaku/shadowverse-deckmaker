@@ -129,12 +129,14 @@ def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
         return Effect("numR", axis=axis, value=val) if replace else Effect("num", axis=axis, value=val)
 
     if head == "ダメージ":
+        # AI_NOTE: 対象に「相手」明記が無いバーンも多い(例「体力最小のリーダーに3」)。リーダー/フォロワーは
+        # 「自」が付かなければ相手既定で顔/盤面に振る。「自(分の)」明記のみ自傷として非計上(§11.8 対象パース)。
         n = _first_int(args)
-        if "リーダー" in target and _enemy(target):
+        if "リーダー" in target and "自" not in target:
             return numbered("リーダーダメージ", n)
-        if _enemy(target) or "場" in target:
+        if "自" not in target and ("フォロワー" in target or "場" in target or _enemy(target)):
             return Effect("rem", removal=Removal(kill=n, reach=_reach(target), kind="一方的"))
-        return Effect("skip", label="ダメージ?")  # TODO: 対象パース(§11.8残ギャップ30件)
+        return Effect("skip", label="ダメージ?")
     if head in ("ダメージ割りふり", "ダメージ割り振り"):
         return Effect("rem", removal=Removal(kill=_first_int(args), reach="割振", kind="一方的"))
     if head == "回復":
