@@ -73,6 +73,7 @@ class Mode:
     flags: set[str]
     supplies: set[str]
     conds: list[str]
+    disruptions: set[str] = field(default_factory=set)
     unresolved: list[str] = field(default_factory=list)
 
 
@@ -217,7 +218,7 @@ def build_vector(
     cost: int,
     spent_evo: str | None,
     tokens: dict[str, tuple[int, int]],
-) -> tuple[Counter[str], list[Removal], set[str], set[str], list[str]]:
+) -> tuple[Counter[str], list[Removal], set[str], set[str], set[str], list[str]]:
     # AI_NOTE: atom群を軸へ集計。フォロワーは素のスタッツを、全カードは実コストPPを土台に置く。置換(numR)は
     # 加算でなくaxisごとの最大値へ畳む(§11.7)。spent_evoは進化/超進化権の消費で符号付き-1(§11.3)。
     vector: Counter[str] = Counter()
@@ -225,6 +226,7 @@ def build_vector(
     removals: list[Removal] = []
     flags: set[str] = set()
     supplies: set[str] = set()
+    disruptions: set[str] = set()
     unresolved: list[str] = []
     if type_category == "follower":
         vector["攻撃力"] += atk
@@ -249,14 +251,16 @@ def build_vector(
             flags.add(f"遅延{effect.count}ターン")
         elif effect.kind == "sup":
             supplies.add(effect.label if effect.label == "スタッツ" else effect.label + "付与")
+        elif effect.kind == "disr":
+            disruptions.add(effect.label)  # 妨害=その他枠フラグでベクトルに載せる(§11.7・値の重みはフェーズ2)
         elif effect.kind == "skip":
             unresolved.append(effect.label)
-        # setup/struct/disr はphase-1では軸に載せない(お膳立て・構造・妨害=重み/対象外は§11.7)
+        # setup/struct はphase-1では軸に載せない(お膳立て・構造は値でない・§11.7)
     for axis, val in replaced.items():
         vector[axis] = max(vector[axis], val)
     if spent_evo is not None:
         vector[spent_evo] -= 1
-    return vector, removals, flags, supplies, unresolved
+    return vector, removals, flags, supplies, disruptions, unresolved
 
 
 def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, int]]) -> tuple[str, list[Mode]]:
@@ -296,10 +300,12 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         floor_items = list(groups["base"]) + ([] if trigger == "base" else groups[trigger])
         ceiling_items = floor_items + situational
         floor_vec, *_ = build_vector(floor_items, type_category, atk, life, mode_cost, spent_evo, tokens)
-        ceiling_vec, removals, flags, supplies, unresolved = build_vector(
+        ceiling_vec, removals, flags, supplies, disruptions, unresolved = build_vector(
             ceiling_items, type_category, atk, life, mode_cost, spent_evo, tokens
         )
-        modes.append(Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies, list(conds), unresolved))
+        modes.append(
+            Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies, list(conds), disruptions, unresolved)
+        )
     return name, modes
 
 
@@ -344,6 +350,8 @@ def main() -> None:
                 print(f"      フラグ: {sorted(mode.flags)}")
             if mode.supplies:
                 print(f"      供給(相方次第): {sorted(mode.supplies)}")
+            if mode.disruptions:
+                print(f"      妨害: {sorted(mode.disruptions)}")
             if mode.conds:
                 print(f"      発動条件(天井を開く): {mode.conds}")
             if mode.unresolved:
