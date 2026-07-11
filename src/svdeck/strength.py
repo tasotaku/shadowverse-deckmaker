@@ -234,6 +234,7 @@ def build_vector(
         vector["攻撃力"] += atk
         vector["体力"] += life
     vector["PP"] += cost
+    vector["カード枚数"] -= 1  # AI_NOTE: カードは1枚使えば手札から消える(§11.4 手札-1)。ドロー/生成でこれを相殺。充足軸
     for text, _requires in items:
         effect = parse_effect(text, tokens)
         if effect.kind == "num":
