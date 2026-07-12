@@ -26,7 +26,7 @@ from sqlite3 import Connection
 from svdeck.db import connect
 
 # AI_NOTE: 符号付き産出量として軸化するカウンタ資源(§11.7)。headがこの語で始まればcnt軸へ。
-COUNTER_RESOURCES = ("スペルブースト", "土の印", "信仰", "カウンタ", "PP最大")
+COUNTER_RESOURCES = ("スペルブースト", "土の印", "信仰", "カウンタ", "PP最大", "墓場")
 # AI_NOTE: 生存キーワード。数値でなくフラグでベクトルに載せ、価値の重みはフェーズ2(§11.7)。
 SURVIVAL_KEYWORDS = frozenset({"守護", "潜伏", "オーラ", "バリア", "威圧"})
 # AI_NOTE: 妨害。数が少ないので専用軸を作らず、phase-1では軸へ載せない(その他枠はフェーズ2で§11.7)。
@@ -99,6 +99,26 @@ def _reach(target: str) -> int | str:
     return "全体" if ("すべて" in target or "全体" in target) else 1
 
 
+def _split_top(text: str) -> list[str]:
+    # AI_NOTE: ∧はトップレベル(括弧の外)のみで分割(§前回のfixの回帰対策)。括弧内の∧は付与能力等の引数の一部で、
+    # 分割すると括弧が壊れる(例「能力付与(A∧B)」)。深さ0の∧だけで区切り、空片は捨てる。
+    parts: list[str] = []
+    depth = 0
+    buf: list[str] = []
+    for ch in text:
+        if ch in "（(":
+            depth += 1
+        elif ch in "）)":
+            depth = max(0, depth - 1)
+        if ch == "∧" and depth == 0:
+            parts.append("".join(buf))
+            buf = []
+        else:
+            buf.append(ch)
+    parts.append("".join(buf))
+    return [p.strip() for p in parts if p.strip()]
+
+
 def _first_int(parts: list[str], default: int = 1) -> int:
     # AI_NOTE: 引数リストから最初の整数を拾う(符号付き可)。無ければdefault。数値未指定の効果向け。
     for part in parts:
@@ -143,10 +163,12 @@ def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
         if "自" not in target and ("フォロワー" in target or "場" in target or _enemy(target)):
             return Effect("rem", removal=Removal(kill=n, reach=_reach(target), kind="一方的"))
         return Effect("skip", label="ダメージ?")
-    if head in ("ダメージ割りふり", "ダメージ割り振り"):
+    if head in ("ダメージ割りふり", "ダメージ割り振り", "ダメージ割振"):
         return Effect("rem", removal=Removal(kill=_first_int(args), reach="割振", kind="一方的"))
     if head == "回復":
         return numbered("回復・軽減", _first_int(args))
+    if head == "EP回復":  # 進化権の回復=符号付き産出+N(§11.3・spent_evoの消費-1と相殺しうる)
+        return Effect("num", axis="進化権", value=_first_int(args))
     if head in ("ドロー", "サーチ"):
         return Effect("num", axis="カード枚数", value=1)
     if head == "手札生成":
@@ -253,7 +275,7 @@ def build_vector(
     body_count = 1 if type_category == "follower" else 0
     max_token = 0
     # AI_NOTE: ∧複合効果(例「フォロワー全体4∧リーダー4」)は各項を独立にパース(67枚で2項目以降が落ちていた)。
-    parts = [(p.strip(), req) for text, req in items for p in text.split("∧") if p.strip()]
+    parts = [(p, req) for text, req in items for p in _split_top(text)]
     for text, _requires in parts:
         effect = parse_effect(text, tokens)
         if effect.kind == "num":
