@@ -252,7 +252,9 @@ def build_vector(
     self_body = atk + life if type_category == "follower" else 0
     body_count = 1 if type_category == "follower" else 0
     max_token = 0
-    for text, _requires in items:
+    # AI_NOTE: ∧複合効果(例「フォロワー全体4∧リーダー4」)は各項を独立にパース(67枚で2項目以降が落ちていた)。
+    parts = [(p.strip(), req) for text, req in items for p in text.split("∧") if p.strip()]
+    for text, _requires in parts:
         effect = parse_effect(text, tokens)
         if effect.kind == "num":
             vector[effect.axis] += effect.value
@@ -330,14 +332,15 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         ceiling_vec, removals, flags, supplies, disruptions, unresolved, body_count, max_body = build_vector(
             ceiling_items, type_category, atk, life, mode_cost, spent_evo, tokens
         )
-        # AI_NOTE: 発動ターン(§11.9)。floor=最速で出せるターン=コスト、進化/超進化は権利が使えるターンで底上げ。
-        # ceiling=天井が開くターン=floorとルール確定conds(覚醒等)の最大。デッキ依存condは0なので下限のまま。
+        # AI_NOTE: 発動ターン(§11.9)。floor=最速で出せる(プレイ)ターン=コスト、進化/超進化は権利が使えるターンで底上げ。
+        # ceiling=天井の"値"が実現するターン=floorとルール確定conds(覚醒等)の最大＋遅延Nターン(カウントダウン等の確定ディレイ)。
         turn_floor = max(mode_cost, 1)  # cost0でも最速はT1(ゲームにT0は無い)
         if spent_evo == "進化権":
             turn_floor = max(turn_floor, 5)  # 進化=先攻T5(rules.md)
         elif spent_evo == "超進化権":
             turn_floor = max(turn_floor, 7)  # 超進化=先攻T7(rules.md)
-        turn_ceiling = max([turn_floor] + [cond_turn(c) for c in conds])
+        delays = [int(m.group(1)) for f in flags if (m := re.match(r"遅延(\d+)ターン", f))]
+        turn_ceiling = max([turn_floor] + [cond_turn(c) for c in conds]) + (max(delays) if delays else 0)
         modes.append(
             Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies,
                  list(conds), turn_floor, turn_ceiling, disruptions, unresolved, body_count, max_body)
