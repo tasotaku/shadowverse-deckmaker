@@ -73,6 +73,8 @@ class Mode:
     flags: set[str]
     supplies: set[str]
     conds: list[str]
+    turn_floor: int  # 発動ターン: このモードを出せる最速ターン(§11.9・実コスト＋進化ルール)
+    turn_ceiling: int  # 天井が開くターン。ルール確定の条件のみ底上げ・デッキ依存条件は据え置きの下限(§11.9)
     disruptions: set[str] = field(default_factory=set)
     unresolved: list[str] = field(default_factory=list)
     body_count: int = 0  # 横=盤面に出る体数
@@ -118,6 +120,8 @@ def load_token_stats(conn: Connection) -> dict[str, tuple[int, int]]:
 def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
     # AI_NOTE: 効果文1つを型付き量へ。head=先頭語・args=括弧内の引数。"ではなく"/"置換"は最高値を開く置換で、
     # 足さず後で最大化する(§11.7)。分岐順は具体的なhead一致を先に、汎用のカウンタ資源判定を最後に置く。
+    if "勝利のカード" in text:  # 特殊勝利=勝ちライン20点に載せる(§11.9・826枚中マゼルベイン1枚のみ)
+        return Effect("num", axis="リーダーダメージ", value=20)
     replace = ("ではなく" in text) or ("置換" in text)
     head_match = re.match(r"\s*([^\(（,]+)", text)
     if not head_match:
@@ -194,6 +198,13 @@ def parse_effect(text: str, tokens: dict[str, tuple[int, int]]) -> Effect:
     if soil:
         return Effect("cnt", axis="土の印", count=int(soil.group(1)))
     return Effect("skip", label=head)
+
+
+def cond_turn(cond: str) -> int:
+    # AI_NOTE: 発動条件が最高値を開くターン(§11.9・rules.md確定・先攻基準)。進化/超進化/エンハンスはモード側で
+    # 扱うのでconds(sit群)には来ない。ここに来るのは覚醒等。ルール未確定・デッキ依存(スペブ/連携/ネクロ)は0=
+    # 底上げしない(実ターンはデッキ文脈=スライス2の見積り。ここではルール確定の下限だけ返す)。
+    return 7 if cond == "覚醒" else 0  # 覚醒=PP最大7以上(rules.md)
 
 
 def classify(requires: list[str]) -> str | tuple[str, int]:
@@ -319,9 +330,17 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         ceiling_vec, removals, flags, supplies, disruptions, unresolved, body_count, max_body = build_vector(
             ceiling_items, type_category, atk, life, mode_cost, spent_evo, tokens
         )
+        # AI_NOTE: 発動ターン(§11.9)。floor=最速で出せるターン=コスト、進化/超進化は権利が使えるターンで底上げ。
+        # ceiling=天井が開くターン=floorとルール確定conds(覚醒等)の最大。デッキ依存condは0なので下限のまま。
+        turn_floor = max(mode_cost, 1)  # cost0でも最速はT1(ゲームにT0は無い)
+        if spent_evo == "進化権":
+            turn_floor = max(turn_floor, 5)  # 進化=先攻T5(rules.md)
+        elif spent_evo == "超進化権":
+            turn_floor = max(turn_floor, 7)  # 超進化=先攻T7(rules.md)
+        turn_ceiling = max([turn_floor] + [cond_turn(c) for c in conds])
         modes.append(
             Mode(label, mode_cost, dict(floor_vec), dict(ceiling_vec), removals, flags, supplies,
-                 list(conds), disruptions, unresolved, body_count, max_body)
+                 list(conds), turn_floor, turn_ceiling, disruptions, unresolved, body_count, max_body)
         )
     return name, modes
 
@@ -360,7 +379,8 @@ def main() -> None:
         name, modes = evaluate_card(conn, row[0], tokens)
         print(f"■ {name} (card_id={row[0]})")
         for mode in modes:
-            print(f"  [{mode.label} PP{mode.cost}] {_format_vector(mode.floor, mode.ceiling)}")
+            turn = f"T{mode.turn_floor}" if mode.turn_ceiling == mode.turn_floor else f"T{mode.turn_floor}→{mode.turn_ceiling}"
+            print(f"  [{mode.label} PP{mode.cost} 発動{turn}] {_format_vector(mode.floor, mode.ceiling)}")
             if mode.body_count:
                 print(f"      盤面: 体数{mode.body_count}(横) 最大単体{mode.max_body}(縦)")
             if mode.removals:
