@@ -100,6 +100,17 @@ def _validate_effect(p: str, kind: str, e: dict[str, Any]) -> list[str]:
                     errs.append(f"{p}.効果 に未知キー '{k}'")
             if eff.get("除去") is not None and eff["除去"] not in REMOVAL:
                 errs.append(f"{p}.効果.除去 が不正: {eff.get('除去')}")
+        # AI_NOTE: 変化=置き換え(§11.10)。条件必須＋上書きは対象/範囲/効果のみ。dict単体かリスト(段階型)を許す。
+        henka = e.get("変化")
+        if henka is not None:
+            for j, v in enumerate(henka if isinstance(henka, list) else [henka]):
+                q = f"{p}.変化[{j}]"
+                if not isinstance(v, dict) or not isinstance(v.get("条件"), list):
+                    errs.append(f"{q} が辞書でないか条件がリストでない")
+                    continue
+                for k in v:
+                    if k not in ("条件", "対象", "範囲", "効果"):
+                        errs.append(f"{q} に未知キー '{k}'")
     elif kind == "随伴":
         if not isinstance(e.get("何を"), str):
             errs.append(f"{p}.何を が文字列でない")
