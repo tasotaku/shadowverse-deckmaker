@@ -58,7 +58,9 @@ def validate(card: dict[str, Any]) -> list[str]:
         if not isinstance(body, dict):
             errs.append("自身 が辞書でもnullでもない")
         else:
-            if not isinstance(body.get("攻"), int) or not isinstance(body.get("体"), int):
+            # AI_NOTE: フォロワー=攻体+特性 / アミュレット=特性のみ(攻体なし・カウントダウンNも特性)。スペルはnull。
+            has_atk = "攻" in body or "体" in body
+            if has_atk and (not isinstance(body.get("攻"), int) or not isinstance(body.get("体"), int)):
                 errs.append("自身.攻/体 が整数でない")
             if not isinstance(body.get("特性"), list):
                 errs.append("自身.特性 がリストでない")
