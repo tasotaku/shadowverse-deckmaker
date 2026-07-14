@@ -21,8 +21,8 @@ from svdeck.db import connect
 DUMP_COLUMNS = "card_id, name, class_name, type_category, cost, atk, life, skill_text"
 
 # AI_NOTE: v5スキーマの閉じた語彙(design.md §11.10)。validateはこの集合で未知値を弾く=LLMのドリフト検出。
-KIND = {"随伴", "処理", "リソース", "手札処理", "デッキ処理", "クレスト", "資源", "その他"}
-TARGET = {"自フォロワー", "相手フォロワー", "自アミュレット", "相手アミュレット", "自リーダー", "相手リーダー"}
+KIND = {"登場", "随伴", "処理", "リソース", "手札処理", "デッキ処理", "クレスト", "資源", "その他"}
+TARGET = {"自身", "自フォロワー", "相手フォロワー", "自アミュレット", "相手アミュレット", "自リーダー", "相手リーダー"}
 RANGE_TYPE = {"選択", "ランダム", "全体", "全体(自身除く)", "割り振り"}
 REMOVAL = {"破壊", "消滅", "変身", "バウンス"}
 GEN_TYPE = {"特定", "コピー", "参照", "変身"}
@@ -86,6 +86,11 @@ def validate(card: dict[str, Any]) -> list[str]:
 def _validate_effect(p: str, kind: str, e: dict[str, Any]) -> list[str]:
     # AI_NOTE: 種類ごとの必須フィールドと語彙を検査。分岐は種類で機械的に。
     errs: list[str] = []
+    if kind == "登場":
+        # AI_NOTE: この体自身の別の出方(直接召喚等・非手札プレイ=FF不発)。経路は必須・自由記述可(直接召喚が主)。
+        if not isinstance(e.get("経路"), str):
+            errs.append(f"{p}.経路 が文字列でない")
+        return errs
     if kind == "処理":
         tgt = e.get("対象")
         if not isinstance(tgt, list) or not tgt or any(t not in TARGET for t in tgt):
