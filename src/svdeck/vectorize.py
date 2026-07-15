@@ -200,6 +200,22 @@ def load(path: Path) -> tuple[int, int]:
         conn.close()
 
 
+def check(path: Path) -> int:
+    # AI_NOTE: 抽出結果JSONをDBに触らず検証だけする(バッチ抽出でサブエージェントが自己検証する用)。
+    # 違反件数を返し、違反内容を標準出力へ列挙。card存在チェックはしない(loadが最終防衛)。
+    cards: list[dict[str, Any]] = json.loads(path.read_text(encoding="utf-8"))
+    flawed = 0
+    for card in cards:
+        errs = validate(card)
+        if errs:
+            flawed += 1
+            print(f"  ⚠ {card.get('card_id')}: 検証エラー{len(errs)}件")
+            for m in errs:
+                print(f"      - {m}")
+    print(f"[vectorize] check: {len(cards)}枚 (違反あり{flawed})")
+    return flawed
+
+
 def show(card_id: int) -> str:
     # AI_NOTE: 取り込み済みスキーマを整形表示。無ければメッセージ。人手の確認用。
     conn = connect()
@@ -218,6 +234,8 @@ def main() -> None:
     if args and args[0] == "dump":
         print(dump([int(a) for a in args[1:]]))
         return
+    if len(args) == 2 and args[0] == "check":
+        sys.exit(1 if check(Path(args[1])) else 0)
     if len(args) == 2 and args[0] == "load":
         ok, flawed = load(Path(args[1]))
         print(f"[vectorize] 取り込み: {ok + flawed}枚 (合格{ok} / 違反あり{flawed})")
@@ -225,7 +243,7 @@ def main() -> None:
     if len(args) == 2 and args[0] == "show":
         print(show(int(args[1])))
         return
-    print("usage: python -m svdeck.vectorize dump [card_id ...] | load <json> | show <card_id>")
+    print("usage: python -m svdeck.vectorize dump [card_id ...] | check <json> | load <json> | show <card_id>")
     sys.exit(1)
 
 
