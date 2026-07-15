@@ -44,6 +44,17 @@ class Removal:
 
 
 @dataclass
+class Body:
+    # AI_NOTE: 盤面に出る体1種(自身/随伴)の素の姿。合計スタッツ・体数・最大単体はここから導出できるが、
+    # 「9/1が1体+1/1が3体」か「3/3が4体」かの分布は合計では復元できないためリストで保持する(2026-07-15ユーザー指摘)。
+    name: str
+    atk: int
+    life: int
+    count: int = 1
+    conds: list[str] = field(default_factory=list)
+
+
+@dataclass
 class Mode:
     # AI_NOTE: 1プレイ版の強度(strength.Modeと同設計)。floor=無条件の最低値 / ceiling=条件込み最高値。
     # removalsは幅・条件を各エントリが持つので1リスト。notes=その他枠・自傷等の非数値情報(silent禁止の受け皿)。
@@ -59,6 +70,7 @@ class Mode:
     turn_ceiling: int
     disruptions: set[str] = field(default_factory=set)
     notes: list[str] = field(default_factory=list)
+    bodies: list[Body] = field(default_factory=list)  # 出る体のリスト(形の保持・合計/縦横の源泉)
     body_count: int = 0  # 横=盤面に出る体数
     max_body: int = 0  # 縦=最大単体の大きさ(攻+体)
 
@@ -74,7 +86,7 @@ class _Acc:
     disruptions: set[str] = field(default_factory=set)
     notes: list[str] = field(default_factory=list)
     conds: list[str] = field(default_factory=list)
-    body_count: int = 0
+    bodies: list[Body] = field(default_factory=list)
     max_token: int = 0
     self_stat: int = 0
 
@@ -126,19 +138,17 @@ def classify(conds: list[str]) -> tuple[str | tuple[str, int], list[str]]:
 
 def _overlay(entry: dict[str, Any], henka: dict[str, Any] | list[dict[str, Any]]) -> tuple[dict[str, Any], list[str]]:
     # AI_NOTE: 変化=置き換え(§11.10)。書かないフィールドは基本を引き継ぐ。効果はキー単位でマージ・
-    # 対象/範囲は丸ごと差し替え。段階型(リスト)は順に重ねる=最終段が最大。条件は全段の和。
+    # 他のフィールド(対象/範囲/何枚等)は丸ごと差し替え。段階型(リスト)は順に重ねる=最終段が最大。条件は全段の和。
     merged = dict(entry)
     conds: list[str] = []
     for stage in henka if isinstance(henka, list) else [henka]:
-        for c in stage.get("条件", []):
-            if c not in conds:
-                conds.append(c)
-        if "対象" in stage:
-            merged["対象"] = stage["対象"]
-        if "範囲" in stage:
-            merged["範囲"] = stage["範囲"]
-        if "効果" in stage:
-            merged["効果"] = {**merged.get("効果", {}), **stage["効果"]}
+        for key, value in stage.items():
+            if key == "条件":
+                conds.extend(c for c in value if c not in conds)
+            elif key == "効果":
+                merged["効果"] = {**merged.get("効果", {}), **value}
+            else:
+                merged[key] = value
     return merged, conds
 
 
@@ -370,7 +380,7 @@ def _apply_escort(acc: _Acc, entry: dict[str, Any], gate: list[str], sure: bool,
     atk, life = atk + g_atk, life + g_life
     acc.add("攻撃力", atk * count, sure)
     acc.add("体力", life * count, sure)
-    acc.body_count += count
+    acc.bodies.append(Body(name, atk, life, count, list(gate)))
     acc.max_token = max(acc.max_token, atk + life)
     for kw in grant.get("特性", []):
         acc.flags.add(f"随伴に{kw}")
@@ -388,18 +398,7 @@ def _apply_entry(acc: _Acc, entry: dict[str, Any], residual: list[str],
     elif kind == "随伴":
         _apply_escort(acc, entry, gate, sure, tokens)
     elif kind == "リソース":
-        n, x_n = _xnum(entry.get("何枚", 1), default=1)
-        acc.add("カード枚数", max(n, 1) if not x_n else 0, sure)
-        if x_n:
-            acc.add_conds(gate + [x_n])
-        else:
-            acc.add_conds(gate)
-        made = entry.get("生成対象") or entry.get("変身先")
-        if made:
-            acc.supplies.add(f"生成:{made}")  # お膳立て(§11.9)の型。枚数Nの見積りは非対象
-        drew = entry.get("何を")
-        if drew:
-            acc.notes.append(f"引くフィルタ:{drew}")  # サーチ対象=構築文脈で効く情報(§11.10)。値化しない
+        _apply_resource_gain(acc, entry, gate, sure)
     elif kind in ("手札処理", "デッキ処理"):
         eff = entry.get("効果", {})
         desc = " ".join(f"{k}{v}" for k, v in eff.items())
@@ -412,6 +411,37 @@ def _apply_entry(acc: _Acc, entry: dict[str, Any], residual: list[str],
     elif kind == "その他":
         acc.notes.append(str(entry.get("記述", "")))
         acc.add_conds(gate)
+
+
+def _resource_delta(entry: dict[str, Any]) -> tuple[str, int, list[str]]:
+    # AI_NOTE: 引く=実カード(カード枚数)/生成=トークン(トークン生成軸)。トークンは価値が実カードと別物なので
+    # 同じ軸に混ぜない(2026-07-15ユーザー決定・案A)。X型は数値にせず条件へ。
+    n, x_n = _xnum(entry.get("何枚", 1), default=1)
+    axis = "カード枚数" if entry.get("動作") == "引く" else "トークン生成"
+    return axis, (max(n, 1) if not x_n else 0), ([x_n] if x_n else [])
+
+
+def _apply_resource_gain(acc: _Acc, entry: dict[str, Any], gate: list[str], sure: bool) -> None:
+    # AI_NOTE: 変化(置き換え)はリソースにも効く(花園の導き「1枚ではなく2枚」)。基本値=floor・
+    # 変化を上書きした値=ceilingで、処理(B)と同じ「最高値にだけ差分上書き・加算しない」の規律。
+    henka = entry.get("変化")
+    axis, n, x_conds = _resource_delta(entry)
+    if henka is None:
+        acc.add(axis, n, sure)
+        acc.add_conds(gate + x_conds)
+    else:
+        changed, henka_conds = _overlay(entry, henka)
+        c_axis, c_n, c_x_conds = _resource_delta(changed)
+        if sure:
+            acc.floor[axis] += n
+        acc.ceiling[c_axis] += c_n
+        acc.add_conds(gate + x_conds + henka_conds + c_x_conds)
+    made = entry.get("生成対象") or entry.get("変身先")
+    if made:
+        acc.supplies.add(f"生成:{made}")  # お膳立て(§11.9)の型。枚数Nの見積りは非対象
+    drew = entry.get("何を")
+    if drew:
+        acc.notes.append(f"引くフィルタ:{drew}")  # サーチ対象=構築文脈で効く情報(§11.10)。値化しない
 
 
 def _apply_crest(acc: _Acc, entry: dict[str, Any], gate: list[str],
@@ -496,7 +526,7 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         if type_category == "follower":
             acc.add("攻撃力", atk, guaranteed=True)
             acc.add("体力", life, guaranteed=True)
-            acc.body_count += 1
+            acc.bodies.append(Body("自身", atk, life))
             acc.self_stat = atk + life
         acc.add("PP", mode_cost, guaranteed=True)
         if label != "登場":  # 登場=手札を使わない(デッキから直接出る)ので手札-1を課さない
@@ -510,6 +540,11 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         for e, residual in entries:
             _apply_entry(acc, e, residual, tokens)
         conds = entry_conds if label == "登場" else acc.conds
+        if any("融合" in c for c in conds):
+            # AI_NOTE: 融合=手札のカードを素材として消費する(最低1枚・実枚数は手札次第)。融合条件の効果は
+            # 天井側なので素材消費も天井にだけ-1で計上する(2026-07-15ユーザー指摘)。
+            acc.ceiling["カード枚数"] -= 1
+            acc.notes.append("融合素材:手札-1(最低・実枚数は手札次第)")
         turn_floor = max(mode_cost, 1)
         if spent_evo == "進化権":
             turn_floor = max(turn_floor, 5)  # 進化=先攻T5(rules.md)
@@ -520,7 +555,7 @@ def evaluate_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, i
         modes.append(
             Mode(label, mode_cost, dict(acc.floor), dict(acc.ceiling), acc.removals, acc.flags,
                  acc.supplies, conds, turn_floor, turn_ceiling, acc.disruptions, acc.notes,
-                 acc.body_count, max(acc.self_stat, acc.max_token))
+                 acc.bodies, sum(b.count for b in acc.bodies), max(acc.self_stat, acc.max_token))
         )
     return str(name), modes
 
@@ -548,8 +583,13 @@ def _print_card(conn: Connection, card_id: int, tokens: dict[str, tuple[int, int
     for m in modes:
         turn = f"T{m.turn_floor}" if m.turn_ceiling == m.turn_floor else f"T{m.turn_floor}→{m.turn_ceiling}"
         print(f"  [{m.label} PP{m.cost} 発動{turn}] {_format_vector(m.floor, m.ceiling)}")
-        if m.body_count:
-            print(f"      盤面: 体数{m.body_count}(横) 最大単体{m.max_body}(縦)")
+        if m.bodies:
+            shapes = ", ".join(
+                f"{b.name}{b.atk}/{b.life}" + (f"×{b.count}" if b.count > 1 else "")
+                + (f"({'・'.join(b.conds)})" if b.conds else "")
+                for b in m.bodies
+            )
+            print(f"      盤面: 体数{m.body_count}(横) 最大単体{m.max_body}(縦) [{shapes}]")
         if m.removals:
             print(f"      除去: {[_format_removal(r) for r in m.removals]}")
         if m.flags:

@@ -17,9 +17,13 @@ from svdeck.strength import load_token_stats  # noqa: E402
 from svdeck.vector import _hits, _overlay, _xnum, classify, evaluate_card  # noqa: E402
 
 # AI_NOTE: 検算対象(ユーザー指定): ドラクラ=変化2→4 / サンダルフォン=登場モード / オルトロス=繰り返し×N
+# 追加(2026-07-15): 花園の導き=リソースの変化+融合素材 / 繚乱の庭=トークン別軸 / クオン=体リスト
 DRAGONEWT_CRUSH = 10041310
 SANDALPHON = 10404110
 ORTHROS = 10153120
+HANAZONO = 10213310
+RYOURAN = 10011210
+KUON = 10134110
 
 
 def test_classify_priority_and_residual() -> None:
@@ -101,6 +105,49 @@ def test_sandalphon_entry_mode_and_repeat() -> None:
     assert base.ceiling["リーダーダメージ"] == 10  # 2ダメージ×5回の全弾顔想定
     (removal,) = base.removals
     assert (removal.kill, removal.reach) == (2, 5)
+
+
+@needs_db
+def test_hanazono_resource_henka_and_fusion_material() -> None:
+    # リソースの変化=置き換え(1枚→2枚・加算しない)＋融合素材の手札-1が天井に効き、収支は0→0
+    conn = connect()
+    try:
+        _, modes = evaluate_card(conn, HANAZONO, load_token_stats(conn))
+    finally:
+        conn.close()
+    (mode,) = modes
+    assert mode.floor["カード枚数"] == 0  # プレイ-1+ドロー1
+    assert mode.ceiling["カード枚数"] == 0  # プレイ-1+2枚(置き換え)-融合素材1
+    assert "融合" in mode.conds
+
+
+@needs_db
+def test_ryouran_token_axis_is_separate() -> None:
+    # 生成=トークンは実カード(カード枚数)と混ぜず別軸に載る
+    conn = connect()
+    try:
+        _, modes = evaluate_card(conn, RYOURAN, load_token_stats(conn))
+    finally:
+        conn.close()
+    (mode,) = modes
+    assert mode.floor["カード枚数"] == -1  # プレイ消費のみ(トークンで相殺しない)
+    assert mode.floor["トークン生成"] == 1
+    assert "生成:フェアリー" in mode.supplies
+
+
+@needs_db
+def test_kuon_bodies_keep_shape() -> None:
+    # 盤面の形は体リストで保持(合計12/12だけでは分布が消える)
+    conn = connect()
+    try:
+        _, modes = evaluate_card(conn, KUON, load_token_stats(conn))
+    finally:
+        conn.close()
+    base = {m.label: m for m in modes}["素"]
+    assert [(b.name, b.atk, b.life) for b in base.bodies] == [
+        ("自身", 3, 3), ("式神・天后", 4, 5), ("式神・暴鬼", 3, 3), ("式神・形代", 2, 1)
+    ]
+    assert (base.body_count, base.max_body) == (4, 9)
 
 
 @needs_db

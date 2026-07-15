@@ -126,6 +126,18 @@ def _validate_effect(p: str, kind: str, e: dict[str, Any]) -> list[str]:
             errs.append(f"{p}.動作 が不正: {e.get('動作')}")
         if e.get("動作") == "生成" and e.get("生成種別") not in GEN_TYPE:
             errs.append(f"{p}.生成種別 が不正: {e.get('生成種別')}")
+        # AI_NOTE: 変化(置き換え)はリソースにも許す(「1枚ではなく2枚」型・2026-07-15決定)。条件必須＋
+        # 上書きできるのはリソース自身のフィールドのみ。
+        henka = e.get("変化")
+        if henka is not None:
+            for j, v in enumerate(henka if isinstance(henka, list) else [henka]):
+                q = f"{p}.変化[{j}]"
+                if not isinstance(v, dict) or not isinstance(v.get("条件"), list):
+                    errs.append(f"{q} が辞書でないか条件がリストでない")
+                    continue
+                for k in v:
+                    if k not in ("条件", "動作", "何枚", "何を", "生成種別", "生成対象", "元"):
+                        errs.append(f"{q} に未知キー '{k}'")
     elif kind in ("手札処理", "デッキ処理"):
         if not isinstance(e.get("対象"), str):
             errs.append(f"{p}.対象 が文字列でない")
