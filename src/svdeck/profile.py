@@ -53,6 +53,9 @@ class CardShare:
     # AI_NOTE: 手札に加わったトークンは後でプレイされ効果が出る(バットのドレイン・0コススペルのバーン等)。
     # (トークン名, 枚数, 生成が無条件か)を積み、card_shareが再帰解決してマージする(§6.5.1 トークン漏れ防止)。
     pending_tokens: list[tuple[str, int, bool]] = field(default_factory=list)
+    # AI_NOTE: 条件付きの数値は捨てずに(軸, 条件, 点数)で持ち、デッキ側で条件ごとに小計する
+    # (2026-07-16ユーザー: 条件としてカウントする)。数値にならないX型・ドレイン体だけがmaterialsに残る。
+    cond_points: list[tuple[str, str, int]] = field(default_factory=list)
 
 
 def load_tokens(conn: Connection) -> dict[str, TokenInfo]:
@@ -106,7 +109,7 @@ def _leader_and_heal(share: CardShare, entry: dict[str, Any], gate: list[str], n
             if not gate:
                 share.leader_floor += total
             else:
-                share.materials.append(f"条件付きバーン: {name} {total}点 ({'・'.join(gate)})")
+                share.cond_points.append(("バーン", "・".join(gate), total))
     if "自リーダー" in targets:
         heal, x_heal = _xnum(eff.get("回復", 0))
         if x_heal:
@@ -117,7 +120,7 @@ def _leader_and_heal(share: CardShare, entry: dict[str, Any], gate: list[str], n
             if not gate:
                 share.heal_floor += total
             else:
-                share.materials.append(f"条件付き回復: {name} {total}点 ({'・'.join(gate)})")
+                share.cond_points.append(("回復", "・".join(gate), total))
     grants = eff.get("特性付与") or []
     for kw in ("疾走", "ドレイン"):
         if any(kw in str(g) for g in grants):
@@ -141,8 +144,10 @@ def _storm_bodies(share: CardShare, entry: dict[str, Any], gate: list[str],
         share.leader_ceiling += total
         if not gate and not x_count:
             share.leader_floor += total
+        elif x_count:
+            share.materials.append(f"疾走X型: {name}→{token_name} ({x_count})")
         else:
-            share.materials.append(f"条件付き疾走: {name}→{token_name} {total}点 ({'・'.join(gate) or x_count})")
+            share.cond_points.append(("疾走打点", "・".join(gate), total))
     if any("ドレイン" in t for t in traits):
         share.materials.append(
             f"ドレイン体: {name}→{token_name}×{count} 攻{info.atk} ({'・'.join(gate) or '無条件'})"
@@ -190,6 +195,7 @@ def _merge_token(share: CardShare, token_share: "CardShare", token_name: str, co
             setattr(share, f"{axis}_floor",
                     getattr(share, f"{axis}_floor") + getattr(token_share, f"{axis}_floor") * count)
     share.materials += [f"{m} (手札加算: {token_name}×{count})" for m in token_share.materials]
+    share.cond_points += [(axis, cond, pts * count) for axis, cond, pts in token_share.cond_points]
     share.skipped_evo += token_share.skipped_evo * count
     share.skipped_henka += token_share.skipped_henka * count
 
@@ -250,6 +256,7 @@ def profile(conn: Connection, deck_id: int, tokens: dict[str, TokenInfo]) -> str
     cards = 0
     materials: list[str] = []
     missing: list[str] = []
+    cond_totals: dict[tuple[str, str], int] = {}
     for card_id, card_name, count, cost in rows:
         cards += count
         cost_sum += (cost or 0) * count
@@ -264,6 +271,8 @@ def profile(conn: Connection, deck_id: int, tokens: dict[str, TokenInfo]) -> str
         total.skipped_henka += share.skipped_henka * count
         total.hand_tokens += share.hand_tokens * count
         materials += [f"{m} ×{count}" for m in share.materials]
+        for axis, cond, pts in share.cond_points:
+            cond_totals[(axis, cond)] = cond_totals.get((axis, cond), 0) + pts * count
 
     lines = [f"=== [{deck[2]}/T{deck[1]}] {deck[0]} ({cards}枚) ==="]
     lines.append(f"  リーダーダメージ: {total.leader_floor} → {total.leader_ceiling} (疾走素点+バーン・進化権抜き)")
@@ -277,8 +286,13 @@ def profile(conn: Connection, deck_id: int, tokens: dict[str, TokenInfo]) -> str
             f"  リソース力A:     {a_floor:.2f} → {a_ceil:.2f} "
             f"(コスト計{cost_sum}・ドロー{floor_d}→{ceil_d}・手札加算トークンコスト{floor_t}→{ceil_t})"
         )
+    if cond_totals:
+        # AI_NOTE: 条件付きの数値は条件ごとに小計して見せる(2026-07-16ユーザー)。「この条件が通れば+N」の一覧。
+        lines.append("  --- 条件付きの内訳(条件が通れば加算) ---")
+        for (axis, cond), pts in sorted(cond_totals.items(), key=lambda kv: (kv[0][0], -kv[1])):
+            lines.append(f"    {axis}: +{pts} ({cond})")
     if materials:
-        lines.append("  --- 素材リスト(条件付き・人/LLMが見積もる) ---")
+        lines.append("  --- 素材リスト(数値化できない残り・人/LLMが見積もる) ---")
         lines += [f"    - {m}" for m in sorted(set(materials))]
     if total.hand_tokens:
         uniq = sorted(set(total.hand_tokens))
