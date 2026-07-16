@@ -116,7 +116,8 @@ def _validate_effect(p: str, kind: str, e: dict[str, Any]) -> list[str]:
                     errs.append(f"{q} が辞書でないか条件がリストでない")
                     continue
                 for k in v:
-                    if k not in ("条件", "対象", "範囲", "効果"):
+                    # AI_NOTE: 繰り返しも変化で書き換え可(「進化後は代わりに3回」型・2026-07-15の826枚抽出で発見)
+                    if k not in ("条件", "対象", "範囲", "効果", "繰り返し"):
                         errs.append(f"{q} に未知キー '{k}'")
     elif kind == "随伴":
         if not isinstance(e.get("何を"), str):
