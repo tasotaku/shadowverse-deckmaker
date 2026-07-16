@@ -33,6 +33,8 @@ EFFECT_KEYS = {"攻", "体", "特性付与", "ダメージ", "回復", "除去",
 
 def dump(card_ids: list[int]) -> str:
     # AI_NOTE: 抽出のLLM入力となるカード情報をJSON文字列で返す(atoms.dumpと同形式)。card_ids省略時は全カード。
+    # 参照先効果(specific_effect=クレスト/結晶/アクセラレート/信仰の本文)を同梱する(2026-07-16追加。
+    # これが無いとクレスト持ち69枚のスキーマがクレスト欄空で抽出される)。
     conn = connect()
     try:
         if card_ids:
@@ -42,6 +44,15 @@ def dump(card_ids: list[int]) -> str:
             cursor = conn.execute(f"SELECT {DUMP_COLUMNS} FROM card")
         columns = [d[0] for d in cursor.description]
         cards = [dict(zip(columns, row)) for row in cursor]
+        for card in cards:
+            effects = conn.execute(
+                "SELECT effect_type_name, cost, skill_text FROM specific_effect WHERE card_id = ?",
+                (card["card_id"],),
+            ).fetchall()
+            if effects:
+                card["参照先効果"] = [
+                    {"種別": t, "コスト": c, "skill_text": s} for t, c, s in effects
+                ]
     finally:
         conn.close()
     return json.dumps(cards, ensure_ascii=False, indent=1)
