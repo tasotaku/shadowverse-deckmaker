@@ -22,8 +22,9 @@ from typing import Any
 from svdeck.db import connect
 from svdeck.vector import ENHANCE, _gating, _xnum
 
-# AI_NOTE: 素で使う想定のない融合用等のトークン(§6.5.1)。ユーザーの○×で育てる除外リスト。
-EXCLUDED_TOKENS: set[str] = set()
+# AI_NOTE: 素で使う想定のない融合用等のトークン(§6.5.1)。ユーザーの○×で育てる除外リスト
+# (2026-07-16ユーザー確定: ×は財宝系と〜コア系。財宝系トークンは現プール未収録・新弾で出たら追加)。
+EXCLUDED_TOKENS: set[str] = {"フューチャー・コア", "パスト・コア"}
 
 
 @dataclass
