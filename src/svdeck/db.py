@@ -41,8 +41,7 @@ CREATE TABLE IF NOT EXISTS card (
     evo_json TEXT,
     style_json TEXT,
     common_json TEXT,
-    ref_effect_text TEXT,
-    effect_crawled_at TEXT
+    ref_effect_text TEXT
 );
 
 CREATE TABLE IF NOT EXISTS card_set (
@@ -155,18 +154,21 @@ def connect(db_path: Path | None = None) -> sqlite3.Connection:
 
 
 def _migrate_ref_effect(conn: sqlite3.Connection) -> None:
-    # AI_NOTE: 2026-07-17のスキーマ統合(specific_effect/effect_crawl廃止→card列)の移行。
-    # 旧スキーマのDBだけが対象で、移行済み・新規DBでは何もしない冪等処理。全DBコピーが
-    # 新スキーマに揃ったら丸ごと削除してよい。
+    # AI_NOTE: 2026-07-17のスキーマ統合(specific_effect/effect_crawl廃止→card.ref_effect_text列)の
+    # 移行。旧スキーマのDBだけが対象で、移行済み・新規DBでは何もしない冪等処理。全DBコピーが
+    # 新スキーマに揃ったら丸ごと削除してよい。走査記録(effect_crawl)は移さない:
+    # 取得済み判定は「card行の有無」に変わったため(既存DBは全カード走査済みが前提)。
     cols = {row[1] for row in conn.execute("PRAGMA table_info(card)")}
     if "ref_effect_text" not in cols:
         conn.execute("ALTER TABLE card ADD COLUMN ref_effect_text TEXT")
-        conn.execute("ALTER TABLE card ADD COLUMN effect_crawled_at TEXT")
+    if "effect_crawled_at" in cols:
+        # AI_NOTE: 統合の途中形(同日中の旧設計)で足した列。作り直し前に消す。
+        conn.execute("ALTER TABLE card DROP COLUMN effect_crawled_at")
     tables = {row[0] for row in conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('specific_effect', 'effect_crawl')"
     )}
     if "specific_effect" in tables:
-        # AI_NOTE: 見出し形式「種別名(コスト): 本文」はeffects.pyの保存形式と揃える。
+        # AI_NOTE: 見出し形式「種別名(コスト): 本文」はfetch.pyの保存形式と揃える。
         # コスト0(クレスト/信仰)は数値に意味が無いので「種別名: 本文」にする。
         conn.execute(
             "UPDATE card SET ref_effect_text = ("
@@ -178,9 +180,4 @@ def _migrate_ref_effect(conn: sqlite3.Connection) -> None:
         )
         conn.execute("DROP TABLE specific_effect")
     if "effect_crawl" in tables:
-        conn.execute(
-            "UPDATE card SET effect_crawled_at = ("
-            "  SELECT fetched_at FROM effect_crawl WHERE effect_crawl.card_id = card.card_id"
-            ") WHERE card_id IN (SELECT card_id FROM effect_crawl)"
-        )
         conn.execute("DROP TABLE effect_crawl")
