@@ -200,7 +200,7 @@ def run() -> None:
         print(f"[fetch] 完了: 追加={after - before}枚 / DB総数={after}枚 / {DB_PATH}")
 
         # AI_NOTE: 新カードのクレスト/結晶/アクセラレート/信仰は一覧APIに無いため、追加分だけ
-        # 単体カードAPIを増分クロールする(effect_crawl記録済みはスキップされる)。
+        # 単体カードAPIを増分クロールする(effect_crawled_at記録済みはスキップされる)。
         if after > before:
             effects_run(conn)
     finally:

@@ -76,13 +76,12 @@ def _split_sentences(text: str) -> list[str]:
 
 
 def _load_full_text(conn: sqlite3.Connection, card_id: int, skill_text: str | None) -> str:
-    # AI_NOTE: specific_effect(進化後能力等の派生カード)は同一card_id分を連結してから判定する
-    # (仕様: specific_effectの参照効果も同一card_id分は連結して判定)。
+    # AI_NOTE: 参照先効果(クレスト/結晶/アクセラレート/信仰)は本文に連結してから判定する
+    # (仕様: 参照先効果も本文と合わせて判定)。card.ref_effect_text列を読むだけ(2026-07-17統合)。
     text = skill_text or ""
-    rows = conn.execute("SELECT skill_text FROM specific_effect WHERE card_id = ?", (card_id,)).fetchall()
-    for (se_text,) in rows:
-        if se_text:
-            text += "\n" + se_text
+    row = conn.execute("SELECT ref_effect_text FROM card WHERE card_id = ?", (card_id,)).fetchone()
+    if row and row[0]:
+        text += "\n" + row[0]
     return text
 
 

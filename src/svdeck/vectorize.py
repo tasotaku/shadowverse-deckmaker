@@ -18,7 +18,7 @@ from typing import Any
 
 from svdeck.db import connect
 
-DUMP_COLUMNS = "card_id, name, class_name, type_category, cost, atk, life, skill_text"
+DUMP_COLUMNS = "card_id, name, class_name, type_category, cost, atk, life, skill_text, ref_effect_text"
 
 # AI_NOTE: v5スキーマの閉じた語彙(design.md §11.10)。validateはこの集合で未知値を弾く=LLMのドリフト検出。
 KIND = {"登場", "随伴", "処理", "リソース", "手札処理", "デッキ処理", "クレスト", "資源", "その他"}
@@ -33,8 +33,10 @@ EFFECT_KEYS = {"攻", "体", "特性付与", "ダメージ", "回復", "除去",
 
 def dump(card_ids: list[int]) -> str:
     # AI_NOTE: 抽出のLLM入力となるカード情報をJSON文字列で返す(atoms.dumpと同形式)。card_ids省略時は全カード。
-    # 参照先効果(specific_effect=クレスト/結晶/アクセラレート/信仰の本文)を同梱する(2026-07-16追加。
+    # 参照先効果(クレスト/結晶/アクセラレート/信仰の本文)を同梱する(2026-07-16追加。
     # これが無いとクレスト持ち69枚のスキーマがクレスト欄空で抽出される)。
+    # AI_NOTE: 2026-07-17統合でcard.ref_effect_text列(「種別名(コスト): 本文」見出し付き)を
+    # 読むだけになった。LLM入力のキー名「参照先効果」は据え置き、値は辞書リスト→文字列に変わった。
     conn = connect()
     try:
         if card_ids:
@@ -45,14 +47,9 @@ def dump(card_ids: list[int]) -> str:
         columns = [d[0] for d in cursor.description]
         cards = [dict(zip(columns, row)) for row in cursor]
         for card in cards:
-            effects = conn.execute(
-                "SELECT effect_type_name, cost, skill_text FROM specific_effect WHERE card_id = ?",
-                (card["card_id"],),
-            ).fetchall()
-            if effects:
-                card["参照先効果"] = [
-                    {"種別": t, "コスト": c, "skill_text": s} for t, c, s in effects
-                ]
+            ref_text = card.pop("ref_effect_text", None)
+            if ref_text:
+                card["参照先効果"] = ref_text
     finally:
         conn.close()
     return json.dumps(cards, ensure_ascii=False, indent=1)
