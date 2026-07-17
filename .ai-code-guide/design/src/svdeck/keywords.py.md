@@ -4,10 +4,10 @@ source_file: src/svdeck/keywords.py
 
 # ファイル: keywords.py
 ## 目的
-公式のキーワード用語辞書API（abilityKeywordList）から「ファンファーレ」等のゲーム用語の公式定義文を取得し、ability_keyword 表（ミラー層）へ保存する。ability_keyword は用語の正準定義で、推論・目利きでキーワード挙動に迷ったらこの表を引く。 <!-- @inferred -->
+公式のキーワード用語辞書API（abilityKeywordList）から「ファンファーレ」等のゲーム用語の公式定義文を取得し、ability_keyword 表（ミラー層）へ保存する。APIは1回のアクセスで全37語の（title, text）ペアを返すので、ページ繰りは不要。ability_keyword は用語の正準定義で、推論・目利きでキーワード挙動に迷ったらこの表を引く。 <!-- @confirmed 2026-07-17 -->
 
 ## 要件・制約
-- 約2.6KBの小さなマスタなので、fetch.py の名称辞書（card_set/skill_name/tribe）と同じ扱いで毎回 DELETE→全INSERT で作り直す。差分更新はしない。 <!-- @inferred -->
+- 約2.6KBの小さなマスタなので、fetch.py の名称辞書（card_set/skill_name/tribe）と同じ扱いで毎回 DELETE→全INSERT で作り直す。差分更新はしない。単純さゆえ設計の選択肢は実質なく、開発者レビューで方式ごと承認済み。 <!-- @confirmed 2026-07-17 -->
 - 取得成功後に消す順序（通信→DELETE→INSERT→commit）なので、通信失敗時は古いデータがそのまま残り、表が空になる事故は起きない。 <!-- @inferred -->
 - HTTP境界の例外は握りつぶさず伝播（fetch.py / meta.py と同じ作法）。 <!-- @inferred -->
 
