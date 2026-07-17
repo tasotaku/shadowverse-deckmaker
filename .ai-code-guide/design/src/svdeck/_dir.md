@@ -9,7 +9,7 @@
 公式API・攻略サイトのデータをローカルSQLiteへ写す。ミラー層は作り直し可、ユーザレイヤ（card_note等）は再クロールで絶対に触らない、の分離が背骨。 <!-- @inferred -->
 - `fetch.py` — 公式APIから全カードをSQLiteへ。DBが空なら全件、あれば新弾パックだけ取得。カードは新規のみINSERT。
 - `keywords.py` — 公式キーワード用語辞書（ability_keyword）。用語の正準定義で、毎回作り直す。
-- `effects.py` — クレスト/結晶/アクセラレート/信仰の参照先効果文（specific_effect）を単体カードAPIから収集。一覧APIに含まれないための補完。
+- `effects.py` — クレスト/結晶/アクセラレート/信仰の参照先効果文（card.ref_effect_text 列）を単体カードAPIから収集。一覧APIに含まれないための補完。
 - `meta.py` — gamewith/game8のTier表から環境デッキを収集（meta_deck）。新規性チェックの「既知の壁」に使う。鮮度が命なので毎回作り直す。
 - `db.py` — スキーマ定義と接続ヘルパー。公式ミラー層／ユーザレイヤ／派生層／外部メタ層の4層を定義。
 
