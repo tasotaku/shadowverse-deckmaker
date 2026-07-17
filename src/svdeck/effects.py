@@ -34,7 +34,13 @@ def save_effects(conn: sqlite3.Connection, card_id: int, data: dict[str, Any]) -
     # AI_NOTE: 1カード分の specific_effect を upsert して件数を返す。type名はAPI同梱の辞書から引く。
     info = data.get("specific_effect_card_info") or {}
     type_names = data.get("specific_effect_type_names") or {}
+    saved = 0
     for effect_id_str, effect in info.items():
+        # AI_NOTE: APIは参照先(随伴トークン・相方カード)の効果も同梱する。effect_card_idは
+        # 持ち主カードの末尾違いID(card_id+2)なので、基底一致する「本人の効果」だけ保存する。
+        # 他人の効果を保存すると INSERT OR REPLACE で正しい帰属行を横取りする(2026-07-17のバグ)。
+        if int(effect_id_str) // 10 != card_id // 10:
+            continue
         effect_type = effect.get("specific_effect_type")
         conn.execute(
             "INSERT OR REPLACE INTO specific_effect "
@@ -43,7 +49,8 @@ def save_effects(conn: sqlite3.Connection, card_id: int, data: dict[str, Any]) -
             (int(effect_id_str), card_id, effect_type,
              type_names.get(str(effect_type)), effect.get("cost"), effect.get("skill_text")),
         )
-    return len(info)
+        saved += 1
+    return saved
 
 
 def run(conn: sqlite3.Connection | None = None) -> None:
