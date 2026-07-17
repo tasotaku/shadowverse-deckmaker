@@ -85,5 +85,5 @@ DBに無いIDだけ単体APIを周回して INSERT し、追加枚数を返す�
 エントリポイント。card 表が空なら全件取得、あれば新弾検出→パック単位で追加取得。一覧APIでID・辞書を集め、中身は単体APIで1枚ずつ取り込む。commit は初回＝全件で1回・新弾＝パック完了ごと。
 ### 構成
 1. 空DB/新弾の自動分岐 → anchor: "if before == 0:"
-2. 単体APIでの取り込み → anchor: "fetch_new_cards(conn, raw"
-3. 確定と報告 → anchor: "conn.commit()"
+2. 単体APIでの取り込み → anchor: "added = fetch_new_cards("
+3. 確定と報告 → anchor: "after = conn.execute("

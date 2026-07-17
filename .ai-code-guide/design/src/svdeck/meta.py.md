@@ -75,5 +75,5 @@ TIER_SOURCES の全ページ（サイト×フォーマットの4組）を順に�
 ### 構成
 1. Tier表からリンク収集 → anchor: "links = collect_deck_links()"
 2. 詳細収集とcard_id照合 → anchor: "card_id = _resolve_card_id(conn, card_name)"
-3. 作り直しと確定 → anchor: "conn.execute(\"DELETE FROM meta_deck_card\")"
+3. 作り直しと確定 → anchor: "DELETE FROM meta_deck_card"
 4. マッチ率の報告 → anchor: "rate = "

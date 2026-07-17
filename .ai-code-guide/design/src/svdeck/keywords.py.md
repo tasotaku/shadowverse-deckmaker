@@ -27,5 +27,5 @@ API応答から（用語名, 説明文）のペアのリストを取り出す。
 ### 目的
 エントリポイント。DBを開き、ability_keyword を DELETE→全INSERT で作り直して確定し、件数を報告する。
 ### 構成
-1. 作り直し → anchor: "conn.execute(\"DELETE FROM ability_keyword\")"
-2. 確定と報告 → anchor: "print(f\"[keywords] 完了: {len(keywords)}件\")"
+1. 作り直し → anchor: "DELETE FROM ability_keyword"
+2. 確定と報告 → anchor: "[keywords] 完了"
