@@ -94,20 +94,31 @@ def parse_gamewith_deck(html_text: str) -> DeckDetail:
 
 
 def parse_game8_tier(html_text: str, deck_format: str = "rotation") -> list[DeckLink]:
-    # AI_NOTE: Tier表は目次アンカー"Tier表"見出し(hl_N)〜次のhl見出しの区間にあるa-table。
-    # 元はhm_2〜hm_3固定だったが、アンリミページはセクション内のhm番号がローテと1つずれる
-    # (ローテはhm_1が別セクション・hm_2がTier表、アンリミはhm_1が直接Tier表)ため0件になった。
-    # hl_N(目次の大見出し)は両ページで「Tier表」セクションの開始/終了として安定しているのでそちらへ広げる。
-    # Sバナー等の画像altでTierを判定し、直後の<div class="align">内の<a href alt>がそのTierのデッキ。
-    # deck_formatは呼び出し元(TIER_SOURCES)から渡してもらう単なるラベル。
+    # AI_NOTE: Game8は2026-07に「Tierバナー+横並び」から「Tierごとの表」へローテページを変更した。
+    # Tier 1〜3見出しごとに次の見出しまでを切り、カード画像のalt末尾「画像」だけを読むことで、
+    # 表中の「評価コメント」リンクをデッキとして誤収集せず、旧レイアウトにも依存しない。
+    heading_pattern = re.compile(r'<h3[^>]*>Tier([123])[^<]*</h3>', re.DOTALL)
+    links: list[DeckLink] = []
+    headings = list(heading_pattern.finditer(html_text))
+    for index, heading in enumerate(headings):
+        tier = heading.group(1)
+        end = headings[index + 1].start() if index + 1 < len(headings) else len(html_text)
+        block = html_text[heading.end() : end]
+        for url, name in re.findall(r'href="([^"]+)"[^>]*><img[^>]*alt="([^"]+?)画像"', block):
+            links.append(
+                DeckLink(site="game8", url=url, name=html.unescape(name), tier=tier, format=deck_format)
+            )
+    if links:
+        return links
+
+    # AI_NOTE: 保存済みHTMLや未移行ページは旧バナー形式のままなので、移行前の抽出も後方互換として残す。
     start = html_text.find('id="hl_1"')
     end = html_text.find('id="hl_2"', start)
     if start == -1 or end == -1:
         return []
     segment = html_text[start:end]
-    pattern = re.compile(r'alt="(SS|S|A|B|C)バナー".*?<div class="align">(.*?)</div>', re.DOTALL)
-    links: list[DeckLink] = []
-    for tier_match in pattern.finditer(segment):
+    legacy_pattern = re.compile(r'alt="(SS|S|A|B|C)バナー".*?<div class="align">(.*?)</div>', re.DOTALL)
+    for tier_match in legacy_pattern.finditer(segment):
         tier, block = tier_match.group(1), tier_match.group(2)
         for url, name in re.findall(r'href="([^"]+)"[^>]*><img[^>]*alt="([^"]+)"', block):
             links.append(DeckLink(site="game8", url=url, name=html.unescape(name), tier=tier, format=deck_format))
