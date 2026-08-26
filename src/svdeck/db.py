@@ -2,7 +2,8 @@
 
 テーブルは4層に分かれる:
   - 公式ミラー層 (card / card_set / skill_name / tribe / card_tribe / ability_keyword): 公式データのコピー。
-    cardは新規カードだけINSERT、辞書(card_set/skill_name/tribe/ability_keyword)は取得のたび作り直す。
+    cardは通常取得では新規だけINSERTし、公式の能力変更時だけ明示的な再確認でUPDATEする。
+    辞書(card_set/skill_name/tribe/ability_keyword)は取得のたび作り直す。
   - ユーザレイヤ (card_note / card_tag / card_flag / anchor_require): 再クロールで絶対に触らない・DROPしない。
     anchor_requireはアンカーの要求コンパイル結果の永続化(design.md §8-7)。行単位でupsertし、
     不成立確定時もDELETEせずstatus='dead'で残す(判定根拠を失わないため)。
