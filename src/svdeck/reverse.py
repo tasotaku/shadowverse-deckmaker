@@ -62,14 +62,14 @@ def find_reverse_matches(
     supply_tags: list[tuple[str, Tag]],
 ) -> list[ReverseMatch]:
     # AI_NOTE: design.md§6.4の実体。対象要求の絞り込みは(1)アンカーclassが対象カードのclassと一致、
-    # または対象カードがニュートラル(ニュートラルは全クラスのアンカーを供給しうる)(2)format='rotation'なら
+    # または対象カード/アンカーのどちらかがニュートラル(ニュートラルは任意の1クラスと組める)(2)format='rotation'なら
     # アンカーがis_include_rotation=1、の2条件(計画書(B)本文どおり)。判定はexplore.pyのtag_searchと同じ
     # classify→natural/rules振り分け→_matched_supply_tagの型一致経路を再利用し、独自ロジックは複製しない。
     matches: list[ReverseMatch] = []
     for row in load_active_anchor_requires(conn):
         if row.anchor_card_id == target_card_id:
             continue
-        if not (target_is_neutral or row.anchor_class_name == target_class_name):
+        if not (target_is_neutral or row.anchor_class_name == "ニュートラル" or row.anchor_class_name == target_class_name):
             continue
         if format_name == "rotation" and not row.anchor_is_include_rotation:
             continue

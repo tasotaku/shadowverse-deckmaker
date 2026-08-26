@@ -149,23 +149,24 @@ class RecheckRow(NamedTuple):
 
 
 def _requirement_tag(req_tag: str | None, requirement: str) -> Tag:
-    # AI_NOTE: req_tag列が埋まっていればそちらを正とする(将来req_tagが構造化データとして
-    # 埋まった場合の前方互換)。現状は全行req_tag空のためrequirement自由文をそのままparse_tagにかける。
+    # AI_NOTE: req_tag列が埋まっていればそちらを正とし、未設定の旧行だけrequirement自由文を解釈する。
     return parse_tag(req_tag if req_tag else requirement)
 
 
 def _class_filtered_supply_tags(
-    conn: sqlite3.Connection, class_name: str
+    conn: sqlite3.Connection, class_name: str, rotation_only: bool = False
 ) -> list[Tag]:
-    # AI_NOTE: design.md§6.1「クラス固有キーワードはそのクラス内でのみ意味を持つ」に沿い、
-    # 供給候補の列挙は常に「同クラス+ニュートラル」に絞る(試作v0でAIがこの違反を出したため明文化済み)。
+    # AI_NOTE: design.md§6.1に沿い、通常は「同クラス+ニュートラル」、ニュートラルアンカーは
+    # 全クラスから供給を探す。後者の完成候補を1クラスに揃える検査はexplore側が担う。
     # AI_NOTE: トークン(is_token=1)は非デッキ(単独でデッキに入らない)なので供給語彙から除外する
     # (NULL安全な IS NOT 1)。トークンの内在能力はこの後の伝播で生成カード側に載せる——直接混ぜると
     # exploreと食い違い「dead要求が今は充足可能」の偽判定を生む(task_b5b8caa6・explore側は既にfix済み)。
+    class_filter = "" if class_name == "ニュートラル" else " AND c.class_name IN (?, 'ニュートラル')"
+    format_filter = " AND c.is_include_rotation = 1" if rotation_only else ""
     rows = conn.execute(
         "SELECT c.card_id, c.name, at.tag FROM atom_tag at JOIN card c ON c.card_id = at.card_id "
-        "WHERE at.kind = 'supply' AND c.class_name IN (?, 'ニュートラル') AND c.is_token IS NOT 1",
-        (class_name,),
+        f"WHERE at.kind = 'supply'{class_filter}{format_filter} AND c.is_token IS NOT 1",
+        () if class_name == "ニュートラル" else (class_name,),
     ).fetchall()
     by_card: dict[int, tuple[str, list[Tag]]] = {}
     for card_id, name, raw in rows:
@@ -198,7 +199,8 @@ def recheck() -> list[RecheckRow]:
         category_lookup = CategoryLookup(conn)
         rows = conn.execute(
             """
-            SELECT r.id, c.card_id, c.name, c.class_name, r.requirement, r.req_tag, r.status
+            SELECT r.id, c.card_id, c.name, c.class_name, c.is_include_rotation,
+                   r.requirement, r.req_tag, r.status
             FROM anchor_require r
             JOIN card c ON c.card_id = r.card_id
             WHERE r.status IN ('dead', 'active')
@@ -206,9 +208,9 @@ def recheck() -> list[RecheckRow]:
             """
         ).fetchall()
 
-        supply_cache: dict[str, list[Tag]] = {}
+        supply_cache: dict[tuple[str, bool], list[Tag]] = {}
         results: list[RecheckRow] = []
-        for anchor_id, card_id, card_name, class_name, requirement, req_tag, status in rows:
+        for anchor_id, card_id, card_name, class_name, is_include_rotation, requirement, req_tag, status in rows:
             tag = _requirement_tag(req_tag, requirement)
             category = fmap.classify(tag)
             if category in ("unclassified",):
@@ -232,9 +234,12 @@ def recheck() -> list[RecheckRow]:
                 allowed = fmap.supplies_for(tag)
                 use_category = fmap.category_resolution_for(tag)
 
-            if class_name not in supply_cache:
-                supply_cache[class_name] = _class_filtered_supply_tags(conn, class_name)
-            supply_tags = supply_cache[class_name]
+            cache_key = (class_name, bool(is_include_rotation))
+            if cache_key not in supply_cache:
+                supply_cache[cache_key] = _class_filtered_supply_tags(
+                    conn, class_name, rotation_only=bool(is_include_rotation)
+                )
+            supply_tags = supply_cache[cache_key]
 
             found = _matches(tag, supply_tags, allowed, category_lookup if use_category else None)
             outcome = "supply_found" if found else "no_supply"

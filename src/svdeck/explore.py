@@ -128,14 +128,16 @@ def _class_filtered_candidates(
     # AI_NOTE: 計画書Step1(A)でトークン伝播ロジックをcard_supply_tagsへ抽出し、ここはそれを呼ぶだけの
     # 薄い形にした(挙動不変)。
     format_filter = " AND c.is_include_rotation = 1" if format_name == "rotation" else ""
+    class_filter = "" if class_name == "ニュートラル" else " AND c.class_name IN (?, 'ニュートラル')"
+    params: tuple[object, ...] = (exclude_card_id,) if class_name == "ニュートラル" else (class_name, exclude_card_id)
     rows = conn.execute(
         f"""
         SELECT DISTINCT c.card_id, c.name, c.cost
         FROM card c JOIN atom_tag at ON at.card_id = c.card_id
-        WHERE at.kind = 'supply' AND c.class_name IN (?, 'ニュートラル')
+        WHERE at.kind = 'supply'{class_filter}
           AND c.is_token IS NOT 1 AND c.card_id != ?{format_filter}
         """,
-        (class_name, exclude_card_id),
+        params,
     ).fetchall()
     return [(candidate_id, name, cost, card_supply_tags(conn, candidate_id)) for candidate_id, name, cost in rows]
 
@@ -495,6 +497,16 @@ def find_closures(
             combo_set = set(combo)
             if any(prev <= combo_set for prev in found_sets):
                 continue  # 既成立セットを含む冗長な組(サイズ昇順列挙なのでprevは常により小さい成立セット)
+            marks = ",".join("?" * len(combo))
+            candidate_classes = {
+                row[0]
+                for row in conn.execute(
+                    f"SELECT DISTINCT class_name FROM card WHERE card_id IN ({marks}) AND class_name != 'ニュートラル'",
+                    combo,
+                )
+            }
+            if len(candidate_classes) > 1:
+                continue
             covered: set[int] = set()
             for card_id in combo:
                 covered |= coverage[card_id]
@@ -633,9 +645,14 @@ def format_scan_pack(card_id: int, class_name: str, reports: list[RequirementRep
         lines.append(f"要求{i}「{require.requirement}」")
     lines.append("")
     requirement_list = "\n".join(f"- 要求{i}「{require.requirement}」" for i, require in targets)
+    class_scope = (
+        "全クラスを検索し、組み合わせ内ではニュートラル以外を1クラスに揃える"
+        if class_name == "ニュートラル"
+        else f"{class_name}+ニュートラルに限定"
+    )
     lines.append(
         "data/card_memo.txt(skill_text+card_noteのコーパス)を読み、以下の各要求について該当する card_id "
-        f"を列挙せよ。クラスは{class_name}+ニュートラルに限定。判定は型の一致で行い、意味の近さだけで"
+        f"を列挙せよ。クラスは{class_scope}。判定は型の一致で行い、意味の近さだけで"
         f"拾わないこと。\n{requirement_list}"
     )
     return "\n".join(lines) + "\n"
