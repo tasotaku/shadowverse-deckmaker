@@ -1,0 +1,855 @@
+[
+  {
+    "id": "role-chain",
+    "title": "仮想カードで役割の読み替えと接続を検査",
+    "category": "method",
+    "status": "completed",
+    "summary": "9枚の仮想カードを使う正例と、一条件を変えた対照で2/2件PASS。複数改訂の効果や実カードの発見力は未確認。",
+    "method": "場に生成されるカードを、手札条件を満たす材料へ読み替え、手札戻しとコスト軽減をつなげられるかを確かめる。",
+    "procedure": "探索担当は実装と事前の正解を読まず、READMEと公開CLIのstart → packet → submitで初版を提出。別担当がpacket --stage review → review → reportで評価を保存し、入力・正解の作成者が封印した期待値と照合した。",
+    "inputs": "ウィッチ・ローテーション。固定した仮想9枚、共通の初期状態と13点目的。直接採用上限3枚・生成物の直接採用0枚。a/bの違いは生成物の元コスト12→9の一条件。固定SQL・目的文・期待値・実際の資料を保存。",
+    "criteria": "aは9PPで13点に届く合法な手順（事前例と異なる合法な別解も可）。bは元コスト条件が開かず最大8点であること。PP・手札・盤面・生成先・進化権を整合させ、指定手順の成立と実戦推薦・新発見を区別する。",
+    "result": {
+      "outcome": "pass",
+      "summary": "aは合法な別解で9PP・13点。bは8点の到達手順と上限の根拠を示し、固定条件で13点を目指す枝だけを終了。両件PASS。生成物の役割欄と読出し負担の問題は後の実装で修正したが、その形式確認を新しい発見得点へ加算していない。",
+      "limitations": "両件とも初版で解け、追加検索や複数改訂は使っていない。採点者は正解の作成者であり、正解を知らない盲検採点ではない。実カードの新発見、従来方式との差、未知課題への一般化、取得頻度、勝率・Tier・実戦推薦は未検証。以後この入力は開発用。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "fixed-input",
+        "title": "仮想入力と期待値の固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "固定済み。工程開始・終了日時は未記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "proposal",
+        "title": "正例・対照の初版提出",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "a/bともrevision1で提出。",
+        "budget_minutes": null
+      },
+      {
+        "id": "independent-review",
+        "title": "別評価と事前期待値の照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "2/2件PASS。正解作成者による採点という限界を保持。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/role-chain"
+    ]
+  },
+  {
+    "id": "known-candidate-review",
+    "title": "既知の弱い案を再評価",
+    "category": "method",
+    "status": "completed",
+    "summary": "固定条件との一致は1/2件でFAIL。ナイフ案は見送り、イマリ17枚型は追加調査に残った。2件とも試行推薦には上がっていない。",
+    "method": "既存の記録から再構成した弱い案を、説明項目が埋まっただけで推薦や調査継続へ戻さないかを検査する。",
+    "procedure": "入力担当がナイフとイマリの案を再構成し、公開入口へ未評価の初版（revision1・parent0）として登録。別担当は固定資料と案だけを読み、期待値・実装・過去の報告・他担当の評価を見ずにreviewを保存。事前のexpected.jsonと独立照合した。",
+    "inputs": "ネメシス・ローテーション。ナイフ2体21点型とイマリのスペル17枚型。主役と相方の注記は保持。イマリの現行注記は空。比較元の完全な旧40枚と、9/7の具体的な序盤・対面経験は入力に欠ける。外部再検索・公式再照合なし。",
+    "criteria": "両案のvalue=dropを事前固定し、指定状態の成立と採用負担に見合う価値を分ける。資源計算・生存や当て先の条件・交換負担・他用途への一般化禁止・出典限界も確認。推薦0件だけでPASSにしない。",
+    "result": {
+      "outcome": "fail",
+      "summary": "ナイフはconditional / drop / unconfirmedで期待に一致。イマリはconditional / develop / unconfirmedで不一致。採否一致1/2件の正式FAILを保持。イマリの継続判断は比較で変わりうるとしたが、新たな解決根拠は示していない。",
+      "limitations": "入力欠落と判断基準の弱さという仮説が併存し、唯一の原因は未確定。初回の未評価案として渡したため、同じ枝を何度も保留する挙動は未検査。イマリを実戦推薦した、7PP計算が破綻した、ユーザーが直接却下したとは扱わない。種別の純増8枚から交換総数や旧40枚を推測しない。既知フィードバックの検査で、未知の発見力・勝率は未検証。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "reconstruct",
+        "title": "既知案の再構成と期待値固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "初版として登録。旧40枚と具体的経験の不足を保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review",
+        "title": "固定資料による別評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "ナイフdrop、イマリdevelop。試行推薦は2件ともなし。",
+        "budget_minutes": null
+      },
+      {
+        "id": "grading",
+        "title": "期待値との照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "1/2件一致、FAIL。基準変更なし。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/known-candidate-review",
+      "evals/discovery/continuation-audit.md"
+    ]
+  },
+  {
+    "id": "source-only-review",
+    "title": "事実資料だけを補ったイマリ再評価",
+    "category": "method",
+    "status": "completed",
+    "summary": "3資料の受け渡しと引用は3/3件確認。イマリはdevelopのままで、固定したdrop期待との一致は再びFAIL。",
+    "method": "評価指示を厳しくせず、欠けていた事実資料だけを補い、入力不足が判断へ与える影響を切り分ける。",
+    "procedure": "旧資料の全項目を機械照合し、sourcesと引用形式の案内だけを追加。新しい別担当へ固定資料のみを渡し、公開review → reportで保存と読戻しを確認した。Webを再取得せず、過去のAI採否ラベルも渡していない。",
+    "inputs": "既知案再評価と同じsnapshot DB・context・イマリ案・REVIEW指示・期待値drop。追加は序盤/対面の使用者経験、反復展開への対応という反対側の材料、当時の比較元の部分抜粋の3件。比較元の完全な旧40枚と具体的な過去の調査履歴は依然欠落。",
+    "criteria": "既存expected.jsonのイマリ条件とdrop期待を固定し、旧項目不変と追加3資料の引用を別々に確認。dropでもdevelopでも1回の結果から単一原因を確定しない。",
+    "result": {
+      "outcome": "fail",
+      "summary": "conditional / develop / unconfirmed。固定採否一致はFAIL、資料受け渡しと引用は3/3件PASS。別担当は、当日イマリを出す補足ではニューロンが自動進化しない点も指摘し、主例7PPとは分離した。",
+      "limitations": "イマリ1件の入力補充検査。旧2件の採点や未知発見の成績へ加算しない。旧40枚と履歴の欠落が残り、判断の甘さだけを原因と断定できない。問いの「入れ替えた8枚分」には種類別純増を交換総数へ誤読する余地が残る。実戦の強さは未確認。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "freeze",
+        "title": "追加範囲の固定と旧資料照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "案・カード・原則・評価指示・回答例を保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review",
+        "title": "3資料追加後の別評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "3/3資料を引用したがvalueはdevelop。",
+        "budget_minutes": null
+      },
+      {
+        "id": "grading",
+        "title": "固定採否との照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "dropとの不一致FAIL。旧結果を書き換えない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/source-only-review"
+    ]
+  },
+  {
+    "id": "deck-comparison",
+    "title": "全40枚から実際の交換枚数を計算",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "種類別の純増減0枚と実際の交換2枚を区別。不完全な比較元は拒否し、同じ比較の再実行でも同じ資料識別値を保った。",
+    "method": "構築の全リストから実際の追加・除去を計算し、種類の純増減だけから交換総数を推定する誤りを防ぐ。",
+    "procedure": "公開CLIのstart → attach → compare → packetを実行。全40枚のpublished/mixedを比較し、種類内訳だけの不完全資料でも実行して拒否と書込みなしを確認。同一比較の再実行と次の資料への引継ぎも照合した。",
+    "inputs": "9/6保存のdocs/rechecks/2026-09-06-knife-followup/decks.json内publishedとmixed。能力・種類・コストは探索開始時の保存DB値。新しい構築を考案する検査ではない。",
+    "criteria": "ベルゼバブ1枚とマリオネットランサー1枚を除きリオナ2枚を追加する交換総数2枚、種類別純増減0枚が得られる。不完全入力を終了値2で拒否し計算資料を追加しない。同じ比較の識別値と次の資料への保存が安定する。",
+    "result": {
+      "outcome": "pass",
+      "summary": "交換総数2枚、フォロワー・スペル・アミュレットの純増減はいずれも0枚。不完全入力は書込みせず拒否。同じ入力は同じ資料識別値となり、次のpacketに計算結果を保持した。",
+      "limitations": "交換計算と証拠の受け渡しの確認。元Webは再取得しておらず、過去の能力へ復元していない。比較した構築の強さ・推薦・AIの価値判断改善・勝率は評価していない。別リストでのスペル純増8枚/交換総数10枚はコード検査であり、この実入力と分ける。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "取得処理の修正・本体反映と確認は保存されているが、この記録に独立した採否決裁はない。探索方式の採用判断には用いない。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "input",
+        "title": "保存済み全リストの入力",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "9/6のpublished/mixedを利用。工程時刻は未記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "comparison",
+        "title": "交換計算と不完全入力の拒否",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "交換2枚・種類純増減0枚、不完全入力は保存なしで拒否。",
+        "budget_minutes": null
+      },
+      {
+        "id": "persistence",
+        "title": "同一再実行と資料への引継ぎ確認",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同一識別値と次のpacket内の計算資料を確認。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/deck-comparison",
+      "docs/rechecks/2026-09-06-knife-followup/decks.json"
+    ]
+  },
+  {
+    "id": "history-review",
+    "title": "改訂履歴と実施結果を読んで継続判断",
+    "category": "method",
+    "status": "completed",
+    "summary": "意味のある改善を残すaと、確認済みの問いを言い換えるbを区別し、固定条件2/2件PASS。自然に改訂を発想した実績ではない。",
+    "method": "初回案だけでなく先祖案・実施済みの比較・検索結果を渡し、進展のある改訂と同じ未解決点の再掲を区別して評価する。",
+    "procedure": "入力担当が既知の仮想カードから初版と改訂を意図的に構成。公開入口で2改訂と資料を保存し、新しい別担当が履歴・本文・資料から評価。その後、別の採点担当が事前条件、引用、因果関係、公開reportの保存を照合した。価値判断の指示を厳しくする変更はない。",
+    "inputs": "role-chainの仮想9枚SQLを再利用。aは初版10PPの不足を軽減札込み9PP・13点へ改訂。bは全9枚・固定手札8種類各1枚・生成先から最大8点と確認後も同じ13点の問いを言い換えた。過去の評価ラベルは入力から除外。",
+    "criteria": "aは支払1PPで戻し札2→0の正味1PP節約を認め、9PP・13点への実質改善と判定。bは元コスト12以上の不在と最大8点の実施結果を読み、固定条件の13点の枝だけを打切る。引用・資源・対象範囲・公開reportへの保存が正しいこと。",
+    "result": {
+      "outcome": "pass",
+      "summary": "aはsupported / test / unconfirmed、bはrefuted / drop / unconfirmedで、固定2件PASS。aのtestは指定初期状態での13点の試験範囲。bのdropは固定集合の同じ13点の枝だけに限定。",
+      "limitations": "入力担当が作った履歴を読む機能の検査であり、探索担当が自然に改善を発想した証拠ではない。未知入力、実カードの発見力、歴史的成功例の再現、従来方式との差、実戦推薦・勝率・Tierは未確認。既知案再評価等のFAILを取り消さない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "history-input",
+        "title": "初版・改訂・実施結果の固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "a/bとも2改訂を人工的に構成。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review",
+        "title": "履歴を含む資料での別評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "aは改善を認め、bは固定条件の枝を終了。",
+        "budget_minutes": null
+      },
+      {
+        "id": "grading",
+        "title": "因果関係・引用・保存の独立照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "2/2件PASS。価値判断の指示は厳しく変更していない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/history-review"
+    ]
+  },
+  {
+    "id": "mazel-role-review",
+    "title": "前半の攻撃と後半の補充の役割分担を評価",
+    "category": "method",
+    "status": "completed",
+    "summary": "前半/後半の役割分担を認め、置換後に元山札の札を引けるという追加主張だけを退けた。意味解釈は2/2件PASS。",
+    "method": "単体カード間の直接的な組合せだけでなく、元構築を前半の攻撃・手札消費へ寄せ、後半の補充を置換先へ任せる構築全体の役割分担を読めるかを検査する。",
+    "procedure": "入力担当が保存カード本文と既知ユーザー注記を含む2案を意図的に作成。公開start → attach → packet → submit → review用packetを保存し、別担当が評価。採点担当が固定条件、本文引用、資源と時間の境界、公開reportを照合した。",
+    "inputs": "エルフ・アンリミテッド。ベイル2枚を手札に持つ間に味方が4回場を離れ、8PP・通常進化権1の指定状態。aは前半/後半の役割分担、bは元山札の3枚目のベイルを置換後の通常6ドローで得る主張。初版の資料で履歴・過去評価は空。",
+    "criteria": "aの役割分担は置換後の元札取得を要しないと認める。ベイル4PP＋マゼル4PP、終了前2枚からベイルを捨て証明1＋置換先6＝7枚、純増5を正しく処理する。bの元札取得だけを反証し、既手札の残存と終了時破棄を分ける。特定の優先度ラベルではなく意味と資源処理を採点。",
+    "result": {
+      "outcome": "pass",
+      "summary": "aはconditional / develop / known、bはrefuted / drop / unconfirmed。2/2件の意味解釈PASS。aのknownは既知注記にある役割分担の範囲。bの誤りをカード全般や前半/後半の役割分担の禁止へ広げなかった。",
+      "limitations": "既知説明を読む検査で、自然発見・未知の役割変更・方式比較の実績ではない。76枚の用語定義と保存DB同パック77行の不一致は未解決で、除外1枚・全構成・抽選率を推測しない。正確な40枚、取得頻度、実戦・勝率・Tier、過去構築の完全再現、最新公式再照合は未確認。置換直後から終了前の追加プレイは未検証（指定例は残PP0）。既知案のFAILを覆さない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "input",
+        "title": "既知注記を含む正例・誤主張の固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "優先度ラベルの一致は正解条件にしていない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review",
+        "title": "役割分担と山札置換の別評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "a conditional/develop/known、b refuted/drop/unconfirmed。",
+        "budget_minutes": null
+      },
+      {
+        "id": "grading",
+        "title": "意味・資源・引用・report照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "2/2件PASS。evaluated_atは採点記録時刻のため工程終了へ転用しない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/mazel-role-review"
+    ]
+  },
+  {
+    "id": "natural-trial-01",
+    "title": "主役を指定しない自然試行1",
+    "category": "method",
+    "status": "running",
+    "summary": "第4段階で原6枚配分を限定停止。独立評価4はconditional/develop/unconfirmedで、仮説全体の打切りは支持しなかった。試行全体の固定5項目を採点中。",
+    "method": "特定の主役を与えずに資料から着想し、外部調査・全リスト比較・別評価・改訂を公開入口で循環させ、試す理由のある種へ進めるかを検証する。",
+    "procedure": "初回回答前に手順と5項目の採点条件を固定。新しい探索担当が公開資料とREADMEから提案し、別担当が評価。実際の評価を同じ探索担当へ返し、最大3提出の範囲で追加調査・改訂または理由付き停止。現在は2提出、4段階の調査を実施。最後に別担当が工程・正確さ・発展・有用な出力・誠実さを個別採点する予定。",
+    "inputs": "エルフ・ローテーション。採用可能113枚と関連99枚、双方の注記・ルール・当日取得した同クラス公開構築4件。先に主役や正解は指定しない。カードはローカル保存版。初期資料の識別値と入力来歴を固定。途中比較は全40枚の6枚/1枚/3枚交換、指定局面2件、9条件の取得率、残山札23枚と共通札順を揃えた指定引き順3組、相手の除去順変更。",
+    "criteria": "公開入口で案・根拠・必要な改訂・別評価・reportまで完了する工程、手順の重大誤りの有無、疑問解消/方針変更/適切な停止という発展、採用負担に見合い試す理由のある種が残る有用性、調査範囲・未確認・勝率を偽らない誠実さを別々に判定。全棄却や未完成保留だけなら有用な出力は得られなかったとする。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "初回・評価2・評価3はいずれもconditional / develop / unconfirmed。第2段階で提案者は停止したが評価者は終了盤面と次ターン比較が不足と判断。第3段階でT9比較を加え停止理由を撤回しrevision2を提出。評価3は相手の除去順でバリア付きルリアが残る反証を指摘。第4段階で元18点手順は場6枚となると確認し、同じ手札で14点・全体処理・手札6を残す代替を記録。ただし既存少数補充案のGet検索分岐でも再現し、全6枠の負担を正当化する根拠が不足するため原6枚配分だけ限定停止。独立評価4もconditional / develop / unconfirmed。原6枚をそのまま推奨しない理由は認めたが、必要時に補充役を確定検索できる差は残り、仮説全体のdropは支持しなかった。次の調査は同じ局面の計算修正でなく、序中盤の交換札と補充機会の比較へ限定した。停止/継続の対象範囲を保持し、試行全体の固定5項目を採点中。",
+      "limitations": "停止はGetの8枚補充の可能性全体・少数補充・エルフ全体・探索システムの終了ではない。指定局面・指定順の比較で無作為標本ではなく、T1からの完全な到達履歴/頻度、全合法手順の最適値、T9決着不能、相手T9以降、全6枠の必要性・独自性・勝率は未確認。初回reviewは回答例不足で2回失敗し3回目登録、評価2は修正後1回で登録したが担当差もあり単独効果は未確定。取得65記事全件の正しさも初期入力時点では未確認。1クラス1試行・実対戦0。過去FAILを保持する。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "protocol",
+        "title": "手順・判断条件・初期資料の固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "fixed_atは固定した時刻。工程開始には用いない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-1-generation",
+        "title": "初回の着想・調査・提出",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "revision1と追加9資料を保存。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-1-review",
+        "title": "初回の独立評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "conditional/develop/unconfirmed。回答形式で2回失敗後、3回目登録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-2-comparison",
+        "title": "全40枚・局面・取得率の比較",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "提案者は原6枚枝を停止。専用の状態変更ではなく追加資料として保存。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-2-review",
+        "title": "停止判断への独立評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "develop。終了盤面と次ターン接続の比較不足を指摘。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-3-comparison",
+        "title": "T9まで比較して改訂",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": "2026-09-08T09:42:44.138741+00:00",
+        "note": "停止理由を撤回しrevision2提出。終了日時はexecution.jsonのfinished_at、開始は未記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-3-review",
+        "title": "改訂案の独立評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "develop。除去順変更でバリア付きルリアが残る問題を指摘。操作ログの時刻を工程開始/終了とは扱わない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-4-comparison",
+        "title": "除去順変更への対応と限定停止",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": "2026-09-08T10:05:12.747519+00:00",
+        "note": "原18点手順の場6枚を確認。代替14点は少数補充でも再現。原6枚配分の検討を限定停止。終了時刻は保存済みround-4/execution.jsonのfinished_at。",
+        "budget_minutes": null
+      },
+      {
+        "id": "round-4-review",
+        "title": "第4段階と限定停止の独立評価",
+        "status": "completed",
+        "started_at": "2026-09-08T10:08:28+00:00",
+        "ended_at": "2026-09-08T10:19:17.529947+00:00",
+        "note": "conditional/develop/unconfirmed。原6枚の現状推奨を支持せず、補充仮説全体のdropまでは支持しない。実質評価1件・登録1回・形式再試行0。開始前の委譲待ちは経過に含めない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "final-grading",
+        "title": "固定5項目の最終採点",
+        "status": "running",
+        "started_at": null,
+        "ended_at": null,
+        "note": "round-4 manifestのphaseに固定5項目採点中と明記。採点開始時刻と最終結果は未記録。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/natural-trial-01",
+      "docs/progress.md"
+    ]
+  },
+  {
+    "id": "idea-comparison-01",
+    "title": "一案を掘る方法と短い着想比較を試す",
+    "category": "method",
+    "status": "running",
+    "summary": "同じ初期資料でa/bとも初回を1案提出し、独立評価1を実行中。有用性と本採用は未判定。各方式最大3検討回、初回調査25分＋保存猶予5分を固定。",
+    "method": "一案を選んで掘る既存手順aと、異なる役割変化を狙う最大3着想を短く比較し記録してから一案を選ぶ追加手順bを試す。同じ案への調査の偏りを減らせるかは仮説。",
+    "procedure": "開始前に手順・担当指示全文・初期資料を固定し独立点検。別々の新しい担当へ同じ資料を渡し、bのみ短い比較記録をattachしてからsubmit。提出や追加比較を新しい別担当が評価し、同じ考案担当へ実際の指摘を返す。1方式は初回を含む最大3検討回、資料追加だけの回も数える。各回の実質評価は1件で形式再試行を別計数。最後に両方式を同じ5項目と操作負担で独立採点。",
+    "inputs": "ローテーション・エルフ。採用可能113枚＋関連99枚、公開構築4件。両方式の初期packetは同一バイト列、内部hash=f5ac6daea48cdbe24c392e149739c28fda48e6b8f13774d6ffe21aa1e722df94。自然試行1とカード・構築内容は同じだが、その案・調査・評価は含まない。来歴source:null欄の明示差分を記録。aで内心の複数案比較は禁止しない。",
+    "criteria": "工程・正確さ・発展・有用な出力・誠実さの固定5項目を別採点し、開始/終了・待機込み経過・検討回/正式提出数・公開操作回数/失敗/資料数・未読範囲を記録。調査25分＋保存/形式修正5分、評価20分。停止対develop/unknownの不一致・上限・案なし終了を保存。適切な停止や比較記録の充実だけでは有用性の成功としない。総合得点・勝者は作らない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "開始前の独立点検は致命的な未固定事項0件。準備時の構築JSON比較1回失敗はsource:nullの明示差分と確認した。aは余ったフェアリーを強化済みレイピアの追加分へ替える案を提出（公開コマンド13回、すべて終了0、正式submit1）。bは補充役と防御役の2着想を比較し、選んだ補充役の利益・配分が既出と分かり、防御役を1枠加える案へ切替えて提出。防御の基本機構も既出と明記。両方式の独立評価1は実行中で、有用性の合格・方式採用・最終5項目採点は未判定。",
+      "limitations": "担当差を含む1組の探索的比較。同じ既使用クラスの再利用であり、未使用入力への一般化・因果効果・方式優越・成功率・同費用での優位・実戦の強さを示さない。比較記録から方式を推測でき、完全盲検ではない。好結果でも別入力で再検査してから本採用を判断する。dispatchの時刻幅と担当の実開始を分ける。実作業と待機を分離できない時間は限界として残す。 aの調査のみの終了時刻は未記録。a/bの終了は保存作業を含む実経過で思考時間だけを比べた値ではない。bの調査終了は10:11:57 UTC。aは公式URL4件の取得が失敗し、新規の公式本文再照合を行ったとは扱わない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "この保存記録には、探索手法そのものの本採用・却下・保留を確定した判断がない。試行内の案への判定とは分け、未判定として保持する。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "protocol",
+        "title": "両方式の手順・指示・同一入力を固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "準備時のJSON比較1失敗とsource:null差分を保存。",
+        "budget_minutes": null
+      },
+      {
+        "id": "audit",
+        "title": "開始前の独立点検",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "致命的な未固定事項0件。開始可能は方式の有用性を認める判定ではない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "arm-a-round-1",
+        "title": "a：初回の考案・調査・提出と保存",
+        "status": "completed",
+        "started_at": "2026-09-08T09:51:52Z",
+        "ended_at": "2026-09-08T10:16:40.005956+00:00",
+        "note": "原operations.mdの実開始〜保存終了。調査だけの終了は未記録で、提出結果ファイル時刻を代用しない。調査25分目安＋保存猶予5分。公開操作13回・正式提出1。",
+        "budget_minutes": 25
+      },
+      {
+        "id": "arm-b-round-1",
+        "title": "b：初回の着想比較・調査・提出と保存",
+        "status": "completed",
+        "started_at": "2026-09-08T09:51:59Z",
+        "ended_at": "2026-09-08T10:14:45.570285+00:00",
+        "note": "start.jsonの実開始〜completion.jsonの保存終了。調査終了は10:11:57 UTC。2着想を比較し選び直して1案提出。調査25分目安＋保存猶予5分。aと並行し時間を単純合算しない。",
+        "budget_minutes": 25
+      },
+      {
+        "id": "arm-a-review-1",
+        "title": "a：初回の独立評価",
+        "status": "running",
+        "started_at": null,
+        "ended_at": null,
+        "note": "READMEとround-1-progress.jsonに独立評価中と明記。評価の実開始時刻は未記録。dispatch時刻を工程開始として使わない。",
+        "budget_minutes": 20
+      },
+      {
+        "id": "arm-b-review-1",
+        "title": "b：初回の独立評価",
+        "status": "running",
+        "started_at": null,
+        "ended_at": null,
+        "note": "READMEとround-1-progress.jsonに独立評価中と明記。評価の実開始時刻は未記録。dispatch時刻を工程開始として使わない。",
+        "budget_minutes": 20
+      },
+      {
+        "id": "final-grading",
+        "title": "両方式の固定5項目と負担の採点",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "必要な後続回を含み各方式最大3検討回。結果は未判定。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/idea-comparison-01"
+    ]
+  },
+  {
+    "id": "meta-integrity",
+    "title": "参考デッキ取得の整合性を修正・検証",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "修正前の37枚/81枚という取得不整合を保持。修正後は65記事から66構築、全件40枚、1005件のカードID照合一致。探索手法の発見力の検査とは分ける。",
+    "method": "Game8の主レシピ見出しのコピー対象リストを取得対象とし、表示表との差・複数レシピの見出し・来歴を残して、探索入力へ正しい全リストを渡す。",
+    "procedure": "複製DBで公開CLIを修正前後に実行。全構築の総枚数・正の整数枚数・同名重複・カードIDを照合。対象2記事の3構築は公式コピー先のID別枚数・カード名と全件比較し、回帰検査用の最小HTMLと期待値を保存。公開discovery start / packetへ表示表との差が渡ること、取得/解析/保存の失敗時に旧ミラーを保持すること、テスト前後に本番と作業木のカードDBが不変なことも確認。",
+    "inputs": "当日取得したGame8/GameWith・ローテーション/アンリミテッドの65記事。取得対象は記事のコピー対象リスト。対象確認はフェイスドラゴンと連携ロイヤルの2記事3構築、次の自然試行に使うエルフ4構築は修正前後で全札/枚数を比較。",
+    "criteria": "全保存構築が40枚・正の整数枚数・同名重複なし、カードID対応一致。複数構築を実在見出しhm_1/hm_2へ分ける。表示表とコピー対象との差を隠さず保存・公開資料へ維持する。失敗時に旧ミラー保持、本番の非対象データとカードDBを変更しない。",
+    "result": {
+      "outcome": "pass",
+      "summary": "修正前は65記事を65構築として保存し、フェイスドラゴン37枚・連携ロイヤル81枚。修正後は66構築、全件40枚、1005件のID一致。表示表にはフェイス3枚欠落、連携後ろ寄せ1枚過多、両方40枚のアンリミランプでも1枚相違があり保持した。対象3構築は公式コピー先に一致。エルフ4構築は修正前後一致。本体反映後も来歴差分の引継ぎ、162テストとmypy8ファイル、本番DB元バイト列を確認した。",
+      "limitations": "記事による強さ評価・勝率の正しさ、デッキ探索の発見力は対象外。Game8のコピー対象リストを取得対象と定義しており、表示表と同じと偽らない。全記事本文/公式API全応答は保存せず、必要構造・カード名・枚数・比較結果のみを保持。checked_at等は検査記録時刻であり、工程開始/終了には転用しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "取得処理の修正・本体反映と確認は保存されているが、この記録に独立した採否決裁はない。探索方式の採用判断には用いない。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "before",
+        "title": "修正前の取得結果を記録",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "65構築。37枚と81枚の不整合を確認。",
+        "budget_minutes": null
+      },
+      {
+        "id": "repair",
+        "title": "取得処理を修正し複製DBへ再取得",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "65記事から66構築。表示表とコピー対象を区別。",
+        "budget_minutes": null
+      },
+      {
+        "id": "integrity",
+        "title": "全リスト・公式コピー・入力継承を照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "66構築すべて40枚・1005件一致。対象2記事3構築を公式コピー先と比較。",
+        "budget_minutes": null
+      },
+      {
+        "id": "integration",
+        "title": "本体反映とDB不変・回帰確認",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "root-integration.jsonに162テスト、mypy8ファイル、本番DBの識別値を保存。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/meta-integrity",
+      "tests/fixtures/meta/README.md"
+    ]
+  },
+  {
+    "id": "pair-first-2026-09-06",
+    "title": "2枚の組合せを入口にした試行と再考",
+    "category": "method",
+    "status": "completed",
+    "summary": "初回は29案を検査し、新規性と試す価値を示せた有望案0件。追加再考の13案ではヒエン早出しの誤計算を訂正したが、ユーザーが素直な用法と評価し、発見成果から外した。",
+    "method": "登録アンカーの要求から始めず、2枚の効果を合わせて初めて繰り返し・負担の転用・処理回数の変化が生じる動きを入口にする。成果が出ることを本採用の条件とした試行。",
+    "procedure": "ローテ対象の本文と注記を読み、旧札も加えて4担当範囲で29案を検査。成立手順・普通の使い方との差・既出を記録。報告後の継続指示により追加13案を再考し、ミロクのPP回復見落としを訂正。ヒエン早出しは別担当も手順を照合したが、提示後のユーザー評価を受け優先候補扱いを撤回した。",
+    "inputs": "初回はローテーション対象516枚＋追加の旧アンリミ限定札。エルフ/ウィッチ8案、ナイトメア/ドラゴン7案、ビショップ/ロイヤル7案、ネメシス7案で計29案。追加再考は同じ成果集計に混ぜず、エルフ/ウィッチ3・ナイトメア/ドラゴン6・ビショップ/ロイヤル4の計13案を記録。初回の正確な全固定入力manifestや事前の数値採点条件は未記録。",
+    "criteria": "成立手順、従来の普通の使い方と異なる実用的な利点、既出状況を分離する。PP途中残高・盤面枠・手札・進化権・生成物・両側注記を照合。既知の同居だけで全用途を除外せず、検索未発見や古い環境DBの共起0を新規性の証明にしない。成立訂正や素直な用法は発見成果に数えない。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "初回29案の有望な新規案は0。ミーヴェ＋アズヴォルトの既出循環にユラティオを加える再始動と、ダストデイズ強化でグロースベアの耐久回数が2→3になる既出用法を再検討用に保持。追加再考では二枚看板＋ミロク＋ヒエンが後攻T5（各1枚）/T4（二枚看板2枚）に成立すると訂正し、旧T5/T6不成立判断を撤回。しかしユーザーは運営想定の素直な用法と評価し、同案を発見成果として不採用。再考や計算訂正を元29案の成功へ遡って加算しない。",
+      "limitations": "全ペアの網羅調査でも従来法との同条件比較でもない。初回主要7枚、再考主要5枚の当日公式照合はあるが、実対戦・勝率・取得確率・全範囲の発見力は未検証。初回の環境DB69件は7/30取得で、新弾の共起なしを新規性に使わない。ヒエンの見送りはその案へのユーザー評価であり、探索方式全体の却下ではない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "初回報告は本採用の保留を勧めたが、保存設計と再考記録は方式の本採用を引き続き「未決定」としている。ユーザーが不採用としたのはヒエン早出し案の発見成果扱いであり、方式全体への却下に置き換えない。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "initial-search",
+        "title": "2枚起点で29案を調査",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "既出・不成立・利点不足など全29案の判定を保存。有望な新規案0。開始/終了は未記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "initial-evaluation",
+        "title": "既出・手順・利点を確認",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "既出循環と耐久力変化の2案を再検討用に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "rethink",
+        "title": "追加13案とヒエンのPP計算を再考",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "初回29案と別集計。後攻T4/T5成立を確認し誤計算を訂正。",
+        "budget_minutes": null
+      },
+      {
+        "id": "user-evaluation",
+        "title": "提示後のユーザー評価を記録",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "ヒエンは素直な用法と評価され、優先候補/発見成果扱いを撤回。方式本採用は未決定。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "docs/design.md",
+      "docs/rechecks/2026-09-06-pair-first.md",
+      "docs/rechecks/2026-09-06-pair-first/elf-witch.md",
+      "docs/rechecks/2026-09-06-pair-first/nightmare-dragon.md",
+      "docs/rechecks/2026-09-06-pair-first/bishop-royal.md",
+      "docs/rechecks/2026-09-06-pair-first/nemesis.md",
+      "docs/rechecks/2026-09-06-rethink.md",
+      "docs/rechecks/2026-09-06-rethink/elf-witch.md",
+      "docs/rechecks/2026-09-06-rethink/nightmare-dragon.md",
+      "docs/rechecks/2026-09-06-rethink/bishop-royal.md"
+    ]
+  },
+  {
+    "id": "method-trial-2026-09-06",
+    "title": "登録要求起点と役割・構築更新の方式比較",
+    "category": "method",
+    "status": "completed",
+    "summary": "同じ113枚で従来法13仮説・提出1、提案法7仮説・提出0。独立確認はイマリを試作候補、ナイフを保留としたが、後の評価で両案を優先候補から除外。方式の本採用は保留。",
+    "method": "五つの過去事例を分析した設計案に基づき、登録要求から直接/間接供給を探す従来法と、役割・構築配分・次の問いを更新する提案法を同じ入力で比較する。従来法の複数段探索を意図的に制限しない。",
+    "procedure": "明越花・ミルティオ・ビバティー・ササニド・マゼルテンポエルフの分析を設計背景とし、実行前に共通入力・各30分・最終最大3案・採点条件を固定。会話履歴なしの各1担当が独立探索し、方法名を伏せた別担当が候補2件を確認。初回結果を凍結した後、保留ナイフを公開40枚で追加比較し、AIによる優先度低下、9/7のユーザー見送りまで同じ試行の追跡経緯として保持した。",
+    "inputs": "ローテのネメシス67＋ニュートラル46＝113枚、うち新弾10009対象16枚から最低1枚を各案に含める。共通本文・注記・生成物を確認できるDB・既存要求17行・既知ネメシス調査。凍結DB SHA256=b95ebacb909779b4c876e3bcb14a4d1365069b84658a97f4cca5439d45fb662c。初回は各30分まで、最終最大3案。追加ナイフ比較はGame8 9/5更新の公開40枚と全抜き/ベルゼバブ残しの3リスト。",
+    "criteria": "事前固定の5観点：成立、普通の用法と違う構築理由、準備と核なし/抜く札の損失、役割・配分・手順・勝ち方単位の独自性、ユーザーが試したいか。別担当は1〜4を確認し、5を代行しない。既出組に近い案でも減らせる/早められる/失うものを扱い、説明量を成果へ加点しない。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "凍結時点：従来法25分48秒・13仮説＝提出1/既出2/不成立3/利点不足6/保留1、提案法15分18秒・7仮説＝提出0/既出2/不成立0/利点不足5/保留0。別評価は潜伏イマリを試作候補、提案者が取り下げた潜伏ナイフは構築発展を認めつつ損失未整理で保留。凍結後にナイフを2枠交換（ベルゼバブ3→2、ランサー1→0、リオナ0→2）で追加検討し条件付き21点を確認したが、11点が残存味方の攻撃、リオナ除去時は同条件16点。追加ヨグの3体分岐も別条件を要する。AIが低優先へ下げ、9/7にユーザーの「ダメそうでは」で同案を見送り。イマリ17枚型も9/7の別小試行でAIが優先候補から除外。後日判断は元の候補数と採点を上書きしない。",
+      "limitations": "提案法の優位は確認できず、従来法の優位も断定しない。対象1組・各方法1担当・作業時間差10分30秒。従来法でも複数段の発展が生じた。対戦・到達頻度・勝率・Tier・未知入力への一般化は未確認。五事例の分析は設計検討であり発見力の検証件数にしない。ナイフの追加検討を凍結前の提案法の成果へ加算しない。条件付き21点の成立と、枠や進化権の負担を払う価値は別。イマリへの除外判断はユーザーが直接却下したものではない。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "比較報告とdocs/design.mdが方式の本採用を明示的に保留。提案法の優位が確認できず、後日も試す価値がある新しい案を残せていない。ナイフ案へのユーザー見送りを方式全体の却下へ広げない。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "design-background",
+        "title": "五事例から方式案を検討",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "設計背景。実装済み/自然発見を実証済みとは扱わない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "protocol",
+        "title": "共通入力・30分・採点条件を固定",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "結果より前に条件を保存。",
+        "budget_minutes": null
+      },
+      {
+        "id": "anchor-generation",
+        "title": "従来法の独立探索",
+        "status": "completed",
+        "started_at": "2026-09-06T07:18:06+00:00",
+        "ended_at": "2026-09-06T07:43:54+00:00",
+        "note": "報告所要25分48秒。原ログは開始2026-09-06 07:18:06 UTC、調査終了07:43:54 UTCをclock実測と明記。保存/提出は所要に含まない。原ログの実測開始/終了を工程時刻へ転記。並行工程のため他方式の時間と単純合算しない。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "iterative-generation",
+        "title": "提案法の独立探索",
+        "status": "completed",
+        "started_at": "2026-09-06T07:18:28+00:00",
+        "ended_at": "2026-09-06T07:33:46+00:00",
+        "note": "報告所要15分18秒。原ログは開始2026-09-06 07:18:28 UTC、終了07:33:46 UTC、意図的待機なしと明記。終了記録追記/提出は含まない。原ログの実測開始/終了を工程時刻へ転記。並行工程のため他方式の時間と単純合算しない。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "independent-review",
+        "title": "方法名を伏せた候補2件の確認",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "イマリ試作1＋ナイフ保留1。凍結時点の提案者提出数1/0とは別。",
+        "budget_minutes": null
+      },
+      {
+        "id": "knife-followup",
+        "title": "凍結後のナイフ40枚比較と追加分岐",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "2枠交換と条件付き21点を確認。元の方式比較の得点へ加算しない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "followup-judgment",
+        "title": "AI再評価とユーザー見送り",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "9/6 AIが低優先化、9/7ユーザーがナイフ案を見送り。イマリ除外は9/7 win-firstのAI判断として関連づける。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "docs/design.md",
+      "docs/rechecks/2026-09-06-discovery-design.md",
+      "docs/rechecks/2026-09-06-discovery-design-evidence.md",
+      "docs/rechecks/2026-09-06-method-trial-protocol.md",
+      "docs/rechecks/2026-09-06-method-trial.md",
+      "docs/rechecks/2026-09-06-method-trial/anchor-log.md",
+      "docs/rechecks/2026-09-06-method-trial/iterative-log.md",
+      "docs/rechecks/2026-09-06-method-trial/blind-review-c1.md",
+      "docs/rechecks/2026-09-06-method-trial/blind-review-c2.md",
+      "docs/rechecks/2026-09-06-method-trial/evidence.json",
+      "docs/rechecks/2026-09-06-knife-followup.md",
+      "docs/rechecks/2026-09-06-knife-followup/decks.json",
+      "docs/rechecks/2026-09-06-knife-followup/review.md",
+      "docs/rechecks/2026-09-07-win-first.md"
+    ]
+  },
+  {
+    "id": "win-first-2026-09-07",
+    "title": "負け方から役割・配分を変える小試行",
+    "category": "method",
+    "status": "completed",
+    "summary": "過去イマリ案の再評価1件＋エルフ3仮説＋ウィッチ3仮説＝7件、推薦0件。弱い案を落とす判断と、新しい有望案を見つける成果を分け、本採用は進めていない。",
+    "method": "既存構築の具体的な負け方から勝つ道を増やす条件を置き、役割・配分を変える少数案を検討。採る理由と採らない理由を比べ、説明が揃ったことだけで候補を残さない。",
+    "procedure": "既存の目利き基準§5-2/9の適用漏れを確認し、イマリ17枚型を再評価。エルフとウィッチの使用者記事にある負け方を入口として各最大3仮説、1案の未解決点につき最大2方向へ発展させた。中心と相方の注記、生成物・別モード、主要25枚の公式本文等を照合し、7件すべて採る理由/見送り理由を保存。",
+    "inputs": "既存潜伏イマリ案1件。エルフは体力5以上の複数体処理で攻撃が遅れる場面、ウィッチは大きな盤面への処理で手札・進化権を使い決着へ届かない場面から各3仮説。主要25枚＝イマリ6＋エルフ8＋ウィッチ11。使用者の経験を仮説に使うが対面全体の勝率・記事の確率計算は転用しない。共通入力/時間を揃えた方式比較ではなく、全入力manifestと開始終了は未記録。",
+    "criteria": "必要札が揃った最大値だけでなく、核なし・通常の除去を受ける時・抜く札・序盤の弱さと専用枠/手札/進化権の負担を比較する。未実戦や直接打点0だけを一律棄却に使わず、Tier3〜4でも独自で試す理由があるという元目的を維持。説明が整っただけでは推薦にせず、推薦0件もそのまま残す。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "7件から推薦0。イマリは核が揃う前からスペル17枚の負担を払う一方、失う勝ち札に見合う比較がないためAI判断で優先候補から除外。エルフ3件は既存用法へ収束1・利点不足2。静かなる応援＋マガチヨの指定7PP・全体6点＋顔7点は検算したが、マガチヨ2枚の全体8点や序盤/強化対象の負担と比べ見送り。ウィッチ3件は見送り2・未解決比較1。軍配＋フィーリンは手札保持・不発・ワムデュスとの交換負担が未解消で推薦しない。主要25枚の現在本文等は全件一致。",
+      "limitations": "同条件で方法を比べた試験ではなく、弱い案を見送りできたことだけでは発見力の改善を示さない。40枚の新調整・対戦・成立頻度・勝率・未知の有望案獲得は未確認。イマリ除外はAIの再評価で、ユーザーの直接却下ではない。未解決軍配案は有望候補として提出していない。次のエルフ補充役と序盤攻撃配分の問いは自然試行へつながる検討課題で、解決札をこの時点で発見済みとはしない。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "保存報告は「この判断を通ってなお試す理由が残る新しい案が出るまで、探索方法の本採用は進めない」と明記。推薦0件を成果へ置き換えず、採用判断を保留する。既存の目利き基準を適用し直したのであり、新判定基準の本採用ではない。"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prior-candidate-review",
+        "title": "既存イマリ17枚型を再評価",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "AIが優先候補から除外。ユーザーの直接評価と区別。",
+        "budget_minutes": null
+      },
+      {
+        "id": "elf-hypotheses",
+        "title": "エルフ3仮説と発展を比較",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "既存用法へ収束1・利点不足2、推薦0。",
+        "budget_minutes": null
+      },
+      {
+        "id": "witch-hypotheses",
+        "title": "ウィッチ3仮説と発展を比較",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "見送り2・未解決比較1。未解決を推薦へ数えない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "official-check",
+        "title": "主要25枚と7件の判断を照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "主要25枚は現在の公式本文等と全件一致。実戦/到達頻度は未検証。",
+        "budget_minutes": null
+      },
+      {
+        "id": "next-question",
+        "title": "次の補充役と序盤配分の問いを記録",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "次の対象へ移る方針を残しただけで解決札発見とはしない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "docs/design.md",
+      "docs/rechecks/2026-09-07-win-first.md",
+      "docs/rechecks/2026-09-07-win-first/imari.md",
+      "docs/rechecks/2026-09-07-win-first/elf.md",
+      "docs/rechecks/2026-09-07-win-first/witch.md",
+      "docs/rechecks/2026-09-07-win-first/evidence.json",
+      "docs/rechecks/2026-09-07-win-first/imari-facts.json",
+      "docs/rechecks/2026-09-07-win-first/elf-official-check.json",
+      "docs/rechecks/2026-09-07-win-first/witch-evidence.json"
+    ]
+  }
+]

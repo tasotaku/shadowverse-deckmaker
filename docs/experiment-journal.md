@@ -121,7 +121,7 @@ python -m svdeck.experiments backup /保存先/experiments-20260908.sqlite3
 
 この操作は更新中でも整合したコピーを作ります。同名の既存ファイルは上書きしません。
 別PCへはリポジトリのコードと、このバックアップファイルを移します。
-Pythonでプロジェクトをインストールしてから、新しいリポジトリで復元します。
+[READMEの準備](../README.md#準備)に従い、新しいリポジトリで仮想環境を作って `python -m pip install -e .` を実行してから復元します。
 
 ```bash
 python -m svdeck.experiments restore /移した場所/experiments-20260908.sqlite3

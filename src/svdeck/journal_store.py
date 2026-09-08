@@ -32,6 +32,8 @@ def instant(value: Any) -> datetime | None:
         return None
     if not isinstance(value, str):
         raise ValueError('日時はタイムゾーン付き ISO 8601 文字列か null にしてください')
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})', value):
+        raise ValueError('日時は YYYY-MM-DDTHH:MM:SS[.小数]+09:00 または Z の形式にしてください')
     try:
         result = datetime.fromisoformat(value.replace('Z', '+00:00'))
     except ValueError as exc:
@@ -65,7 +67,7 @@ def validate(record: dict[str, Any]) -> None:
     # AI_NOTE: 結果と採否は別々の値として検査し、成功から採用を自動生成しない。
     if set(record) != RECORD_FIELDS:
         raise ValueError(f'記録項目が一致しません。不足: {sorted(RECORD_FIELDS-set(record))} / 不明: {sorted(set(record)-RECORD_FIELDS)}')
-    require_text(record, {'id', 'title', 'summary', 'method', 'procedure', 'inputs', 'criteria'})
+    require_text(record, {'id', 'title', 'summary', 'method', 'procedure', 'inputs', 'criteria', 'status', 'category'})
     if not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,79}', record['id']):
         raise ValueError('id は英小文字・数字・ハイフンで80文字以内にしてください')
     if record['status'] not in STATES or record['category'] not in {'method', 'infrastructure'}:
@@ -74,12 +76,12 @@ def validate(record: dict[str, Any]) -> None:
     result, decision = record['result'], record['decision']
     if not isinstance(result, dict) or set(result) != {'outcome', 'summary', 'limitations'}:
         raise ValueError('result は outcome / summary / limitations が必要です')
-    require_text(result, {'summary', 'limitations'})
+    require_text(result, {'outcome', 'summary', 'limitations'})
     if result['outcome'] not in {'unassessed', 'mixed', 'pass', 'fail'}:
         raise ValueError('試行結果が不正です')
     if not isinstance(decision, dict) or set(decision) != {'status', 'reason'}:
         raise ValueError('decision は status / reason が必要です')
-    require_text(decision, {'reason'})
+    require_text(decision, {'status', 'reason'})
     if decision['status'] not in {'unassessed', 'adopted', 'rejected', 'deferred'}:
         raise ValueError('採否が不正です')
     stages = record['stages']
@@ -89,7 +91,7 @@ def validate(record: dict[str, Any]) -> None:
     for stage in stages:
         if set(stage) != {'id', 'title', 'status', 'started_at', 'ended_at', 'note', 'budget_minutes'}:
             raise ValueError('工程項目は id/title/status/started_at/ended_at/note/budget_minutes です')
-        require_text(stage, {'id', 'title', 'note'})
+        require_text(stage, {'id', 'title', 'note', 'status'})
         if stage['id'] in seen or stage['status'] not in STATES:
             raise ValueError('工程IDの重複または状態が不正です')
         seen.add(stage['id'])
@@ -99,6 +101,10 @@ def validate(record: dict[str, Any]) -> None:
         time_range(stage)
         if record['status'] in {'completed', 'interrupted'} and stage['status'] in {'running', 'waiting'}:
             raise ValueError('試行終了の前に作業中・待機中の工程を完了または中断にしてください')
+        if record['status'] == 'completed' and stage['status'] == 'planned':
+            raise ValueError('試行終了の前に未着手の工程を完了または中断にしてください')
+        if record['status'] == 'planned' and stage['status'] != 'planned':
+            raise ValueError('開始済みの工程があります。試行全体の状態も更新してください')
         for key in ('started_at', 'ended_at'):
             value = instant(stage[key])
             start, end = instant(record['started_at']), instant(record['ended_at'])
@@ -160,9 +166,11 @@ class Journal:
         for name in paths:
             relative = Path(name)
             path = (self.root / relative).resolve()
-            if not relative.parts or relative.is_absolute() or not path.is_relative_to(self.root) or relative.parts[0] not in {'evals', 'docs', 'README.md'}:
-                raise ValueError(f'資料は root 内の evals/・docs/・README.md に限定しています: {name}')
-            if path.relative_to(self.root).parts[0] not in {'evals', 'docs', 'README.md'}:
+            allowed = ('evals/', 'docs/', 'tests/fixtures/')
+            if not relative.parts or relative.is_absolute() or not path.is_relative_to(self.root):
+                raise ValueError(f'資料は root 内の evals/・docs/・tests/fixtures/・README.md に限定しています: {name}')
+            canonical = path.relative_to(self.root).as_posix()
+            if not (canonical == 'README.md' or any(canonical == p.rstrip('/') or canonical.startswith(p) for p in allowed)):
                 raise ValueError('資料領域外へのリンクは保存できません')
             if not path.exists():
                 raise ValueError(f'資料がありません: {name}')
@@ -201,7 +209,7 @@ class Journal:
             db.execute('INSERT INTO revisions VALUES (?,?,?,?,?,?,?)',
                        (record['id'], current + 1, now(), actor.strip(), reason.strip(),
                         json.dumps(record, ensure_ascii=False, allow_nan=False), json.dumps(evidence)))
-        return self.get(record['id'])
+        return self.get(record['id'], current + 1)
 
     def get(self, identifier: str, revision: int | None = None) -> dict[str, Any]:
         # AI_NOTE: 旧版も当時の根拠との組で返し、現在の原本で書き換えない。

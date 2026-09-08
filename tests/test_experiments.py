@@ -77,6 +77,8 @@ def test_conflict_and_transaction(journal: Journal) -> None:
 
 @pytest.mark.parametrize('mutation', [
     {'started_at': '2026-01-01T00:00:00'},
+    {'started_at': '20260901T090000+0900', 'status': 'running'},
+    {'status': []},
     {'started_at': '2026-02-01T00:00:00Z', 'ended_at': '2026-01-01T00:00:00Z', 'status': 'completed'},
     {'started_at': '2999-01-01T00:00:00Z', 'status': 'running'},
     {'evidence_paths': ['../secret']},
@@ -113,6 +115,20 @@ def test_time_facts_and_corrections(journal: Journal) -> None:
     r['stages'][2]['status'] = 'completed'
     journal.save(r, 2, 'a', '実施完了。過去の時刻は未記録')
     assert journal.get(r['id'])['record']['ended_at'] is None
+
+
+def test_experiment_stage_status_agrees(journal: Journal) -> None:
+    # AI_NOTE: 開始済み工程が未着手一覧へ隠れたり、未着手工程を実施完了と扱わない。
+    r = record()
+    stage = dict(id='a', title='独立評価', status='running', started_at=None,
+                 ended_at=None, note='実行中', budget_minutes=None)
+    r['stages'] = [stage]
+    with pytest.raises(ValueError, match='試行全体'):
+        journal.save(r, 0, 'a', '開始')
+    r['status'] = 'completed'
+    stage['status'] = 'planned'
+    with pytest.raises(ValueError, match='未着手'):
+        journal.save(r, 0, 'a', '完了')
 
 
 def test_backup_and_restore_cli(journal: Journal, tmp_path: Path) -> None:
@@ -182,3 +198,27 @@ def test_http_write_restart_and_source(journal: Journal) -> None:
         server.server_close()
         thread.join()
     assert Journal(journal.root).get(r['id'])['revision'] == 1
+
+
+def test_save_returns_own_revision(journal: Journal, monkeypatch: pytest.MonkeyPatch) -> None:
+    # AI_NOTE: 確定直後に次の担当が保存しても、最初の担当への応答は本人の版を返す。
+    r = record()
+    journal.save(r, 0, 'seed', '初回')
+    committed = threading.Event()
+    release = threading.Event()
+    original_get = journal.get
+    def interleaved_get(identifier: str, revision: int | None = None) -> dict[str, Any]:
+        if threading.current_thread().name == 'writer-a':
+            committed.set()
+            assert release.wait(3)
+        return original_get(identifier, revision)
+    monkeypatch.setattr(journal, 'get', interleaved_get)
+    responses: list[dict[str, Any]] = []
+    thread = threading.Thread(name='writer-a', target=lambda: responses.append(journal.save(deepcopy(r), 1, 'a', '最初の更新')))
+    thread.start()
+    assert committed.wait(3)
+    second = journal.save(deepcopy(r), 2, 'b', '次の更新')
+    release.set()
+    thread.join(3)
+    assert responses[0]['revision'] == 2 and responses[0]['actor'] == 'a'
+    assert second['revision'] == 3 and second['actor'] == 'b'
