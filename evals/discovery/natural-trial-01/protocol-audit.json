@@ -1,0 +1,116 @@
+{
+  "audited_at": "2026-09-08T08:30:24.037489+00:00",
+  "auditor": "/root/system_eval_cases",
+  "read_scope": {
+    "only_input_read": "/tmp/sv-natural-system-trial/protocol.json",
+    "protocol_sha256": "3f750883c6a3be211399ddd7cf028d4b7731d05831bea491b07235eefd425691",
+    "protocol_fixed_at": "2026-09-08T08:21:04.120623+00:00",
+    "proposals_rounds_sessions_read": false,
+    "review_answers_or_results_read": false,
+    "readme_or_packets_read": false,
+    "notes": "この監査は条件文だけを読み、自然試行の結果を閲覧する前に行った。試行そのものが既にどこまで進んでいるかは確認していない。"
+  },
+  "verdict": "限定した観測試行として実施可能。5項目を個別報告する前提では致命的な停止理由は見つからない。客観的な総合PASSや未知発見・方式優越を認定する設計ではない。",
+  "blocking_ambiguities_for_declared_separate_observations": 0,
+  "criteria_modified": false,
+  "code_or_trial_inputs_modified": false,
+  "strengths": [
+    "公開工程・手順・追加工程・有用な出力・誠実な説明を別項目にしている。",
+    "初回終了を追加工程未実施とし、回数稼ぎの改訂を要求しない。",
+    "全棄却・未完成保留だけなら有用な出力なしと明示し、手順正解だけを合格にしない。",
+    "主役を固定せず、過去正解を渡さず、独立評価を用いる。過去FAILを上書きしない。"
+  ],
+  "issues": [
+    {
+      "id": "utility-judgment",
+      "severity": "high",
+      "protocol_pointer": "grading.utility",
+      "finding": "試す理由・採用負担に見合う可能性は適切な対象だが、どの比較根拠なら十分か、未解決事項の重大さ、採点担当間の不一致処理は定められていない。具体的な説明の充足を利益の裏付けと読み替える余地が残る。",
+      "impact": "utilityを客観的で再現性の確認済みな合否として主張できない。独立担当がどの具体的利益・失う役割・負担・未確認を比較して判断したかを伴う、当該案への評価者判断に限る。",
+      "fatal_for_declared_trial": false,
+      "fatal_for_stronger_claim": "説明欄が埋まれば有用性PASS、またはこの一件でシステムの有用性が客観的に証明されたという主張。"
+    },
+    {
+      "id": "input-isolation",
+      "severity": "high",
+      "protocol_pointer": "procedure[0], scope.references, limits[1]",
+      "finding": "公開packetとREADMEの具体的なパス・識別値・版が条件文にはない。過去正解を渡さないとする一方、ユーザー注記には既知用途が含まれ得ることを認めている。4構築も出典と内容の識別値はこのファイルからは確認できない。",
+      "impact": "資料の固定と探索担当へ実際に渡った範囲は、最終記録による照合が必要。注記を読んだ既知用途の再認と、自分で生じた着想を区別する。READMEに答えが入っているとは確認していない。",
+      "fatal_for_declared_trial": false,
+      "fatal_for_stronger_claim": "公開資料を特定できないまま、正解を知らない盲検・既知用途から独立した未知発見と主張すること。"
+    },
+    {
+      "id": "empty-or-conditional-output",
+      "severity": "medium",
+      "protocol_pointer": "grading.correctness, grading.utility",
+      "finding": "全棄却または最終案に重大な未確認が残る場合、correctnessをPASS・未確認・対象なしのどれで記録するかは明文化されていない。",
+      "impact": "最終案がないことを誤り0のPASSへ変換しない。条件付きの検算ができても、条件の取得や効果解釈が未確認ならその範囲を留保する。全棄却はutility出力なしという既存条件のままであり、工程障害と区別する。",
+      "fatal_for_declared_trial": false
+    },
+    {
+      "id": "development-size",
+      "severity": "medium",
+      "protocol_pointer": "grading.development",
+      "finding": "疑問1つの解消は、その疑問の影響が小さくても満たし得る。工程を通じて疑問が解けたことと、採用価値を高めたことは同じではない。",
+      "impact": "developmentの達成をutilityの達成へ自動転用しない。適切な枝の打切りは調査上の有益な結果だが、試す種が残ったという意味ではない。",
+      "fatal_for_declared_trial": false
+    },
+    {
+      "id": "three-submissions",
+      "severity": "medium",
+      "protocol_pointer": "procedure[3], grading.development",
+      "finding": "最大3提出は改訂機会の上限であり、3回の改訂・3独立試行・十分な探索時間を意味しない。同じ探索担当が評価を受けるため、改訂は互いに独立でもない。初回終了は追加工程未実施と定義済み。",
+      "impact": "初回終了から改訂機能の有用性は測れない。初回の有望案ならutilityの評価は可能だが、追加工程の寄与は未確認。上限到達時の未完成・全棄却は、この範囲内で有用な出力が得られなかったという観測であり、方法全体の無効の証明ではない。",
+      "fatal_for_declared_trial": false
+    },
+    {
+      "id": "saved-versus-current",
+      "severity": "medium",
+      "protocol_pointer": "scope.card_data, scope.references, grading.correctness, grading.honesty",
+      "finding": "カードはローカル保存版、比較構築は当日取得という時点差がある。4構築の40枚・既知ID・採用制約確認はデータの整合性であり、その4件が最良・網羅的・現行本文と完全整合することの証明ではない。",
+      "impact": "手順の正しさは確認した保存本文と条件の範囲で扱う。必要な外部確認が行われた主張と未確認を分け、既知標準用法との差は調べた範囲に限定する。",
+      "fatal_for_declared_trial": false
+    },
+    {
+      "id": "attribution-and-budget",
+      "severity": "medium",
+      "protocol_pointer": "scope, procedure, limits[0]",
+      "finding": "モデル・時間・調査量・選んだ枝・終了理由が条件文では固定されておらず、同じ担当の改訂と道具の寄与を比較する対照もない。",
+      "impact": "工程が利用できた実例は示せるが、別方式より優れる、改訂機能のおかげで改善した、成功率が一定以上という因果・頻度の主張はできない。1クラス1試行という既存の限界と整合する。",
+      "fatal_for_declared_trial": false
+    }
+  ],
+  "allowed_claims_by_item": [
+    {
+      "item": "workflow",
+      "can_claim": "実際に完了した公開操作、保存・読戻しの範囲、コード手直しの有無と観測した障害。",
+      "cannot_claim": "起動やファイル作成だけで、正しい・有用な種まで得たとすること。"
+    },
+    {
+      "item": "correctness",
+      "can_claim": "最終案のどの手順・資源・対象・時間境界が保存本文や実確認で裏付けられ、何が未確認か。",
+      "cannot_claim": "既知の重大誤りが見つからないことから、すべての未知ルール・現行能力・実戦成立を証明したとすること。"
+    },
+    {
+      "item": "development",
+      "can_claim": "追加工程があったとき、何の疑問が解消し、根拠によって何が変わったか、またはどの枝をどの範囲で止めたか。",
+      "cannot_claim": "初回終了から追加工程を評価すること。言い換えや、質問1件の解消から実戦価値の向上を自動認定すること。"
+    },
+    {
+      "item": "utility",
+      "can_claim": "この試行の最終時点に、明示した理由と留保のもとで独立評価者が試す理由を認める種が残ったか。全棄却・未完成保留だけなら、この試行でその出力は得られなかった。",
+      "cannot_claim": "実戦強度の確定、全棄却からシステムが動かないとの断定、1成功から方法全体の成功率・優越の証明。"
+    },
+    {
+      "item": "honesty",
+      "can_claim": "調べた出典と範囲を明示し、既知注記由来の用途と今回の追加着想を区別して説明できたか。",
+      "cannot_claim": "共起0、4構築にない、Webで見つからないだけで人類未発見や勝率加点を認定すること。"
+    }
+  ],
+  "answer_guidance_assessment": {
+    "status": "条件文に特定カード・既知の正解手順への直接誘導はない。",
+    "limits": "別用途・複数段・前後半配分という発想の方向は明示されているため、完全に無誘導な探索とはいえない。ユーザー注記保持は本番条件として妥当だが、そこにある既知用途を再発見と扱えない。実際のREADMEとpacketは未読なので内容の独立性は未確認。"
+  },
+  "no_posthoc_repair": "本監査は判定条件を追加・変更したものではない。曖昧さにより根拠が足りない主張は未確認または評価者判断の範囲へ留める。結果を見て全棄却をutility成功に変える、初回終了をdevelopment成功に数える、上限を延ばした続きでこの固定試行を上書きすることは、元条件の達成証拠にならない。",
+  "recommended_result_shape": "単一の総合PASSへ潰さず、workflow / correctness / development / utility / honestyの観測・根拠・未確認を分けて報告し、提出数と終了理由を付す。これは既存条件の個別記録方針の確認であり、新しい採点基準ではない。"
+}
