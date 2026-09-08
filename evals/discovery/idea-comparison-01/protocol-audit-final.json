@@ -1,0 +1,80 @@
+{
+  "audited_at": "2026-09-08T09:48:30.981645+00:00",
+  "auditor": "/root/system_eval_cases",
+  "scope": "候補生成開始前の固定候補と実際の担当指示の再照合。探索的な1組の開始を妨げる未固定事項だけを点検する。",
+  "readiness": "開始可能",
+  "fatal_unfixed_items": [],
+  "fatal_unfixed_count": 0,
+  "assessment": "この候補と照合した指示を固定版として扱う範囲では、開始を妨げる致命的な未固定事項は残っていない。方法の優越や実戦の有用性を保証する判定ではない。",
+  "read_scope": {
+    "files_sha256": {
+      "protocol-candidate.json": "6a95333e11e9a5ae903f53c0dccb18eb6b6bda645907df15ff961f2ee53dc049",
+      "generator-instructions-common.txt": "21ff0df008628f85a2864fa8912ada243c7c56a33049897a12add8cd64603e31",
+      "comparison-addition.txt": "a06c7d8741fa6bab3198dbad6378fb16031c573ac4ce6e90e11d6579ec38d0b4",
+      "a/generator-instructions.txt": "3a0f0782f75850c20b34b4000f4e5741fd2a21eb6a9f2cafdb5d981eb50cc946",
+      "b/generator-instructions.txt": "b864eae9c1b52dc9284a93175baeb2fc8adb3b6eda353f8093e0b4c563eca771",
+      "reviewer-instructions.txt": "3f9395c9e54449bcec5f0d64c16aad4060aba392a17ad2dc6db2c6b6fc46174e",
+      "grader-instructions.txt": "fc29c8af67575b998c697457e9c7b65b7cb40f8b596b27e8765af6682aff62e0"
+    },
+    "previous_audit_read": "protocol-audit.json",
+    "initial_packets_byte_identity_only_checked": true,
+    "initial_packet_bytes_sha256": "b7e8d2ffcbbb42d76f0bd5d835ec2ab6dec474b60f5c8465fc1391960beb144e",
+    "initial_packet_inner_hash_declared_in_instructions": "f5ac6daea48cdbe24c392e149739c28fda48e6b8f13774d6ffe21aa1e722df94",
+    "operator_readme_sha256": "ea8d4eaaa65bf78605f661414eb854d4ec2bf50b4e89ecae3c6e9456ffeff16e",
+    "candidate_or_answer_contents_read": false,
+    "candidate_generation_performed": false,
+    "protocol_or_instruction_or_input_modified": false,
+    "natural_trial1_final_grading_separate_and_pending_review3": true
+  },
+  "consistency_checks": {
+    "a_exact_common_template_match": true,
+    "b_exact_common_template_plus_addition_match": true,
+    "same_initial_packet_bytes": true,
+    "common_reviewer_and_grader_instructions_saved": true,
+    "known_answer_or_expected_card_added_to_generator_instructions": false
+  },
+  "resolved_before_start": [
+    {
+      "id": "instructions",
+      "finding": "初回指示全文、共通本文、b追加、評価担当と採点担当の指示を実ファイルで確認。後続依頼は実際の評価に基づき次ラウンドとして返し、同ラウンドへ新判断課題を追加しない。"
+    },
+    {
+      "id": "short-comparison",
+      "finding": "最大3着想、各600字と選択600字の目安、異なる役割の意味、引用の扱い、1件以下の許容、選択と見送り記録を固定。記録量や件数自体へ有用性を加点しない。"
+    },
+    {
+      "id": "round-and-stop",
+      "finding": "依頼開始から最大1提出または停止/未完と別評価までを1ラウンドとし、資料追加も最大3ラウンドを消費する。初回b比較は初回依頼内。25分調査と5分保存、20分評価、超過の記録を明示。"
+    },
+    {
+      "id": "runtime-and-resources",
+      "finding": "同じ設定を継承し上書きしない、同じ道具と保存版READMEを使う、両入力同一、途中修正は両方式へ適用する障害修正のみで前後版と失敗を残す。追加作業込みの費用観測であり同費用優越試験としない。"
+    },
+    {
+      "id": "review-disagreement",
+      "finding": "1ラウンド1実質評価と形式再試行を区別し、有利なラベルまで評価を増やさない。停止対develop/unknownは次ラウンドで実評価を返し、上限では不一致を保存。test/dropの妥当性も最終採点で別確認。"
+    },
+    {
+      "id": "no-proposal",
+      "finding": "案なし時は範囲と未完/停止をsourcesとpacket/reportへ保存し、偽案を作らない。有用な出力なしとし、上限終了を不可能の証明へ変えない。"
+    },
+    {
+      "id": "outcome-interpretation",
+      "finding": "固定5項目と負担を別判定し、総合得点や勝者を作らない。全棄却・未完成保留をutilityへ加点せず、初回のみのdevelopmentは未実施。手順の正確さと採用利益を区別する。"
+    }
+  ],
+  "claim_boundaries": [
+    "今回示せるのは、この共通入力と担当組で、明示比較を加える手順の実施、最終出力の根拠と未確認、5項目と作業負担に観測された差。",
+    "aで内心の比較は禁止していないため、比較思考の有無の試験ではなく、明示指示と記録を加える手順全体の試行。",
+    "1組の担当差・既使用クラスの再利用・比較記録から方式が推測できる点が残り、因果効果、成功率、一般的優越、完全盲検は主張できない。",
+    "実戦の強さ、勝率、網羅的な未知の証明は未確認。好結果でも本採用やシステム全体の目標達成を確定せず、別入力の再検査が必要。",
+    "根拠に基づく適切な停止はdevelopmentの観測になりうるが、試す理由のある種が残らなければutilityの成功に置き換えない。",
+    "初回のtest/dropで早期終了した側や予算終了した側は、実施できた範囲と未実施を残す。上限は有用な案が存在しないことの証明ではない。"
+  ],
+  "nonblocking_limits": [
+    "後続依頼の具体文は実際の評価に依存するため今は存在しない。共通運用の境界は固定されたので、今回の探索的な1組に全分岐の定型文までは要求しない。実際の返却文と介入を記録して固定範囲との一致を後で確認する。",
+    "途中の障害修正や時刻超過が起きた場合、保存するという規定は影響が消えることを意味しない。未修正で完了した範囲、版ごとの露出、差への交絡を報告する。",
+    "有用性は原文・採用負担・得失に基づく理由付き判断を要する。事前にカード別正解を指定しないことは本試行の性質であり、説明欄の充足へ採点を置き換えることは認められていない。"
+  ],
+  "separation": "既存protocol-draftと前回監査は保持する。本監査はtrial1の採点条件・停止/継続判断・過去FAILを変更しない。trial1の最終採点はreview3完了後の別作業。"
+}
