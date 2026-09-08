@@ -1,0 +1,40 @@
+{
+  "manifest_files_verified": 53,
+  "checks": {
+    "a": {
+      "packet_hash": "9a4474692c2bc7834d2c1e3c6cfb69bfe3885bb29578ff64f1dcfbf7c08403ac",
+      "revision_files": 2,
+      "readback": {
+        "history": {
+          "pages": 6,
+          "line_count": 110,
+          "elements": 1
+        },
+        "sources": {
+          "pages": 3,
+          "line_count": 45,
+          "elements": 2
+        }
+      },
+      "reviews_saved": 0
+    },
+    "b": {
+      "packet_hash": "79f56bd20974c3df7611c7a323eaa30f9886a3b0fa694645acfa26957bf50324",
+      "revision_files": 2,
+      "readback": {
+        "history": {
+          "pages": 6,
+          "line_count": 110,
+          "elements": 1
+        },
+        "sources": {
+          "pages": 3,
+          "line_count": 47,
+          "elements": 2
+        }
+      },
+      "reviews_saved": 0
+    }
+  },
+  "limitation": "私的検査はread結果のhashキー名・総数単位・source本文の行配列表現を正しく扱うよう修正した。公開readはsha256を返しhistory/sourcesを行で分割する。全ページを実際に読み、source.contentの行配列を連結したJSON復元後に元packetと一致を確認した。"
+}

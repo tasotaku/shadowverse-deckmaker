@@ -1,0 +1,118 @@
+{
+  "verdict": "PASS",
+  "passed": 2,
+  "total": 2,
+  "evaluator": "/root/system_eval_cases",
+  "expected_path": "/tmp/sv-history-eval/expected.json",
+  "expected_sha256": "97c6c8bfdf823f3871f9f9ad456b7fe2ceaf4d12eeb87ab33c2282692b6ea766",
+  "criteria_modified": false,
+  "scope": "公開入口で固定された履歴と実施結果から、意味のある改訂と未解決の言い換えを区別できるか。入力担当が人工的に構成した開発用検査。",
+  "provenance": "既知の仮想role-chain SQLを再使用。探索AIが自然に発見した履歴ではない。実カード・未知入力・方式優位・実戦強度の検査ではない。",
+  "grading_independence": "公開回答、渡された原文・history・sourcesと固定expectedで独立採点。rootや他担当へ採否相談なし。",
+  "cases": [
+    {
+      "case": "a",
+      "verdict": "PASS",
+      "observed": {
+        "procedure": "supported",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "required_checks": [
+        {
+          "name": "history_initial_pp_gap",
+          "verdict": "PASS",
+          "reason": "history初版は生成4＋戻し2＋対句4＝10PP。回答は初版の1PP不足を改訂が解決したと明示。"
+        },
+        {
+          "name": "actual_cost_reduction",
+          "verdict": "PASS",
+          "reason": "1PPを支払って紙梯子2→0。1＋4＋0＋4＝9PPと正味1PP節約を計上。"
+        },
+        {
+          "name": "zone_and_original_cost",
+          "verdict": "PASS",
+          "reason": "場への生成後に手札へ戻す必要と、番兵の元コスト12を原文で確認。"
+        },
+        {
+          "name": "causal_progress",
+          "verdict": "PASS",
+          "reason": "役割と条件は同じまま、資源不足を解決した点を説明量・検算訂正から区別。"
+        },
+        {
+          "name": "value_scope",
+          "verdict": "PASS",
+          "reason": "testは固定初期状態の13点に限定。実戦・取得頻度・40枚・勝率・方式の優位は対象外。"
+        }
+      ],
+      "hard_errors_observed": [],
+      "exact_quotes_verified": true,
+      "public_report_matches_all_response_fields": true,
+      "packet_hash": "9a4474692c2bc7834d2c1e3c6cfb69bfe3885bb29578ff64f1dcfbf7c08403ac",
+      "packet_file_sha256": "7f458a2b8b1123605b15ca82e707c3eb256b5ada2a7ab7cb94e37c5b28a00f04",
+      "response_file_sha256": "6b394c80fe70545b6016cb181df1be438ceb6dfac6477534971cf67d917e954b",
+      "report_file": "/tmp/sv-history-eval/a/evaluation-public-report.json"
+    },
+    {
+      "case": "b",
+      "verdict": "PASS",
+      "observed": {
+        "procedure": "refuted",
+        "value": "drop",
+        "novelty": "unconfirmed"
+      },
+      "required_checks": [
+        {
+          "name": "unchanged_question",
+          "verdict": "PASS",
+          "reason": "先祖案と現改訂の役割・手順・資源・条件を比較し、問いの言い換えのみと判定。"
+        },
+        {
+          "name": "completed_evidence_scope",
+          "verdict": "PASS",
+          "reason": "全9枚・初期8種類各1枚・生成物の実施結果を予定と混同せず、本文とも照合。"
+        },
+        {
+          "name": "unmet_cost_condition",
+          "verdict": "PASS",
+          "reason": "初期2/3・番兵9で12以上は存在せず、しるしはスペルの支払額を下げるだけと判定。"
+        },
+        {
+          "name": "maximum_damage",
+          "verdict": "PASS",
+          "reason": "各1枚の4点札2枚で最大8点。追加取得・再使用・当日攻撃の不在と到達手順を提示。"
+        },
+        {
+          "name": "drop_scope",
+          "verdict": "PASS",
+          "reason": "固定8枚と生成先で13点を繰り返す枝だけをdrop。他用途・他初期状態・実戦構築へ一般化しない。"
+        }
+      ],
+      "hard_errors_observed": [],
+      "exact_quotes_verified": true,
+      "public_report_matches_all_response_fields": true,
+      "packet_hash": "79f56bd20974c3df7611c7a323eaa30f9886a3b0fa694645acfa26957bf50324",
+      "packet_file_sha256": "3a862b8e520b5d0264aded93003ca71fd00895c12d5469fb0dc4245546feb53d",
+      "response_file_sha256": "4a0111414e49bd417883e214ea27d91b941f60db222acdfafaeef5e639acf47b",
+      "report_file": "/tmp/sv-history-eval/b/evaluation-public-report.json"
+    }
+  ],
+  "common_checks": {
+    "prior_review_labels_absent_from_input": true,
+    "sources_crosschecked_against_card_text": true,
+    "external_search_not_claimed": true,
+    "natural_discovery_not_claimed": true,
+    "only_revision_2_has_saved_review": true
+  },
+  "unverified": [
+    "自然な探索でこの改訂に到達できるか",
+    "未知入力への一般化",
+    "歴史的成功例の再現",
+    "実カードでの発見力",
+    "方式の優位",
+    "実戦の勝率・Tier・推薦の妥当性"
+  ],
+  "previous_failures_replaced": false,
+  "code_input_or_db_changed": false,
+  "details_path": "/tmp/sv-history-eval/evaluation.md"
+}
