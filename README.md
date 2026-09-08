@@ -155,6 +155,7 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 | `python -m svdeck.reverse CARD_ID --format rotation` | 供給する効果から登録済みの要求を逆引きする |
 | `python -m svdeck.require recheck` | 新弾取得後、以前供給がなかった要求を再検索する。DB変更なし |
 | `python -m svdeck.profile decks` | 保存した環境デッキを一覧する。数値資料は強さ点数として使わない |
+| `python -m svdeck.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
 
 設計は [docs/design.md](docs/design.md)、ゲームルールの索引は [docs/rules.md](docs/rules.md) を参照してください。
 

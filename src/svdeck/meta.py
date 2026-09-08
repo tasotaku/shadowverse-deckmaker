@@ -7,14 +7,16 @@
 実行: python -m svdeck.meta
 """
 
+import argparse
 import html
+from pathlib import Path
 import re
 import sqlite3
 import time
 import urllib.request
 from typing import NamedTuple
 
-from svdeck.db import connect
+from svdeck.db import DB_PATH, connect
 
 USER_AGENT = "Mozilla/5.0"
 REQUEST_INTERVAL_SEC = 1.0
@@ -178,9 +180,9 @@ def collect_deck_detail(link: DeckLink) -> DeckDetail:
     return parse_game8_deck(html_text)
 
 
-def run() -> None:
-    # AI_NOTE: エントリポイント。meta_deck/meta_deck_cardを毎回作り直す(外部メタ層は鮮度優先)。
-    conn = connect()
+def run(db: Path = DB_PATH) -> None:
+    # AI_NOTE: 指定した保存先の外部メタ層だけを、全取得が終わってから置き換える。
+    conn = connect(db)
     try:
         links = collect_deck_links()
         print(f"[meta] Tier表からデッキ{len(links)}件を検出")
@@ -220,5 +222,13 @@ def run() -> None:
         conn.close()
 
 
+def main(argv: list[str] | None = None) -> None:
+    # AI_NOTE: ヘルプや不正な引数は、DB接続・Web取得より前に処理する。
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--db", type=Path, default=DB_PATH, help="取得結果を保存するカードDB")
+    args = parser.parse_args(argv)
+    run(args.db)
+
+
 if __name__ == "__main__":
-    run()
+    main()
