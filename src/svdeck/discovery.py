@@ -34,8 +34,9 @@ DEVELOP = """あなたはデッキの種を考案・改訂する担当です。�
 指定状態で成立すること、試す価値、未発見であることを混同しません。初見効果やTierを推測で加点しません。
 stepsには行動順、各時点のPP/手札/場/進化権/相手依存を書き、最高値を別々に足さないでください。
 未確認の効果・生存・引き込みはuncertaintiesに残します。着想段階では空欄や未解決を許します。
-生成物・進化・参照先と、主役・相方双方のnoteを読んでください。旧注記はその用途・時点の範囲で解釈します。
+生成物・進化・参照先・種族・公式キーワード定義と、主役・相方双方のnoteを読んでください。旧注記はその用途・時点の範囲で解釈します。
 引用は固定資料のskill_text/evolution_text/ref_effect_text/noteから正確に抜きます。
+公式定義はevidenceの{keyword: 定義名, quote: 正確な引用}で参照できます。
 タグ候補が0でも全文を読みます。既知デッキ同居なしは新規性の証明ではありません。
 response_exampleと同じ形式のJSONを一つ返してください。既存DBや資料を変更してはいけません。"""
 
@@ -216,7 +217,7 @@ def _validate_proposal(response: JSONDict, context: JSONDict) -> None:
     for step in _objects(response.get("steps"), "steps"):
         for field in ("action", "resources", "result"):
             _text(step.get(field), field)
-        check_evidence(step.get("evidence"), cards)
+        check_evidence(step.get("evidence"), cards, context["ability_keywords"])
     plan = response.get("plan")
     fields = {"early", "transition", "finish", "without_core", "allocation", "comparison"}
     if not isinstance(plan, dict) or set(plan) - fields or any(not isinstance(v, str) for v in plan.values()):
@@ -266,7 +267,7 @@ def review(session: Path, response: JSONDict) -> JSONDict:
         raise ValueError("procedure/value/noveltyの各判断に理由が必要です")
     for finding in findings:
         _text(finding.get("reason"), "reason")
-        check_evidence(finding.get("evidence"), cards)
+        check_evidence(finding.get("evidence"), cards, data["context"]["ability_keywords"])
     _strings(response.get("next_questions"), "next_questions")
     checks = _objects(response.get("web_checks"), "web_checks")
     for check in checks:

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import copy
 import json
 from pathlib import Path
 import sqlite3
@@ -14,7 +13,6 @@ import pytest
 
 from svdeck.db import connect
 from svdeck.discovery import packet, report, review, start, submit
-from svdeck.discovery_evidence import digest
 
 
 def make_db(path: Path) -> None:
@@ -37,6 +35,13 @@ def make_db(path: Path) -> None:
     conn.execute("INSERT INTO atom_tag VALUES (2,'supply','潜伏付与')")
     conn.execute("INSERT INTO anchor_require(card_id,req_type,requirement,req_tag,source,note) "
                  "VALUES (2,'event','進化権','進化権','test','供給側の条件')")
+    conn.execute("INSERT INTO tribe VALUES (1,'架空種族')")
+    conn.execute("INSERT INTO card_tribe VALUES (2,1)")
+    conn.execute("INSERT INTO ability_keyword VALUES ('守護','相手は守護を攻撃する。','2026-09-08')")
+    for did, fmt in [(1, 'rotation'), (2, 'unlimited')]:
+        conn.execute("INSERT INTO meta_deck(id,name,format) VALUES (?,?,?)", (did, '過去の構築', fmt))
+        conn.executemany("INSERT INTO meta_deck_card(deck_id,card_id,card_name,count) VALUES (?,?,?,?)",
+                         [(did, 1, '核', 3), (did, 4, '旧札', 3)])
     conn.commit()
     conn.close()
 
@@ -73,6 +78,8 @@ def test_unregistered_role_and_recursive_evidence(session: Path) -> None:
     p = packet(session, 0, 'develop')
     cards = {c['card_id']: c for c in p['data']['context']['cards']}
     assert set(cards) == {1, 2, 5, 6}
+    assert cards[2]['tribes'] == ['架空種族']
+    assert p['data']['context']['ability_keywords']['守護'] == '相手は守護を攻撃する。'
     assert cards[2]['note'] == '効果では進化時を誘発しない'
     assert cards[2]['requirements'][0]['note'] == '供給側の条件'
     assert cards[6]['ref_effect_text'] == '参照先で2ダメージ。'
@@ -201,3 +208,23 @@ def test_cli_start_packet_submit_report(tmp_path: Path) -> None:
     bad = subprocess.run(base + ['submit', str(dest), str(tmp_path / 'missing.json')], capture_output=True, text=True)
     assert bad.returncode == 2
     assert 'Traceback' not in bad.stderr
+
+
+def test_stale_known_deck_is_preserved_with_legality_mark(session: Path) -> None:
+    context = packet(session, 0, 'develop')['data']['context']
+    assert len(context['known_decks']) == 1
+    known = context['known_decks'][0]
+    assert known['id'] == 1
+    assert not known['currently_legal_list']
+    assert not next(c for c in known['cards'] if c['card_id'] == 4)['currently_eligible']
+
+
+def test_keyword_evidence_and_no_hit_question(session: Path) -> None:
+    data = proposal(packet(session, 0, 'develop'))
+    data['steps'][0]['evidence'].append({'keyword': '守護', 'quote': '相手は守護を攻撃する。'})
+    data['questions'][0]['tag'] = '存在しないタグ'
+    submit(session, data)
+    p = packet(session, 1, 'develop')
+    assert p['data']['search'][0]['tag_hits'] == []
+    assert p['data']['search'][0]['question'] == '隠せるか'
+    assert len(p['data']['context']['cards']) == 4

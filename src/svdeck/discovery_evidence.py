@@ -8,9 +8,9 @@ import json
 import re
 import sqlite3
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
-from svdeck.bench import CategoryLookup, load_fulfillment_map, parse_tag
+from svdeck.bench import CategoryLookup, FULFILLMENT_MAP_PATH, FulfillmentMap, FulfillmentMapRaw, parse_tag
 from svdeck.explore import tag_search
 
 JSONDict = dict[str, Any]
@@ -66,6 +66,8 @@ def _card_rows(conn: sqlite3.Connection, class_name: str, format_name: str) -> l
             "card_id": cid, "name": name, "class_name": cls, "cost": cost, "atk": atk, "life": life,
             "type": kind, "is_token": bool(token), "rotation": bool(rotation), "copy_limit": limit,
             "card_set_id": pack, "deck_eligible": eligible,
+            "tribes": [r[0] for r in conn.execute(
+                "SELECT t.name FROM tribe t JOIN card_tribe ct ON ct.tribe_id=t.id WHERE ct.card_id=? ORDER BY t.id", (cid,))],
             "skill_text": plain(skill), "evolution_text": plain(evo_text), "ref_effect_text": plain(ref),
             "note": note or "", "note_updated_at": date,
             "raw": {"skill_text": skill, "evo": evolution, "ref_effect_text": ref},
@@ -103,15 +105,21 @@ def _related_cards(cards: list[JSONDict]) -> list[JSONDict]:
 def _known_decks(conn: sqlite3.Connection, cards: list[JSONDict], format_name: str) -> list[JSONDict]:
     # AI_NOTE: フォーマットとクラスを揃え、同居を新規性の証明や強さの加点にしない素材を返す。
     eligible = {c["card_id"] for c in cards if c["deck_eligible"]}
+    classes = {c["class_name"] for c in cards if c["deck_eligible"]} - {"ニュートラル"}
     decks = []
     for did, name, url, tier, updated, fetched in conn.execute(
         "SELECT id,name,url,tier,updated_on,fetched_at FROM meta_deck WHERE format=? ORDER BY id", (format_name,)
     ):
-        entries = [{"card_id": cid, "name": cname, "count": count} for cid, cname, count in conn.execute(
-            "SELECT card_id,card_name,count FROM meta_deck_card WHERE deck_id=?", (did,))]
-        if entries and all(e["card_id"] in eligible for e in entries):
+        entries = [{"card_id": cid, "name": cname, "count": count, "class_name": cls,
+                    "currently_eligible": cid in eligible} for cid, cname, count, cls in conn.execute(
+            "SELECT m.card_id,m.card_name,m.count,c.class_name FROM meta_deck_card m "
+            "LEFT JOIN card c ON c.card_id=m.card_id WHERE deck_id=?", (did,))]
+        deck_classes = {e["class_name"] for e in entries} - {"ニュートラル", None}
+        if entries and deck_classes and deck_classes <= classes:
             decks.append({"id": did, "name": name, "url": url, "tier": tier, "updated_on": updated,
-                          "fetched_at": fetched, "cards": entries})
+                          "fetched_at": fetched, "cards": entries,
+                          "currently_legal_list": all(e["currently_eligible"] for e in entries),
+                          "interpretation": "保存時点の既知例。更新日と各札の現在の合法性を確認して比較する。"})
     return decks
 
 
@@ -129,12 +137,15 @@ def build_context(conn: sqlite3.Connection, class_name: str, format_name: str,
     return {"version": 1, "objective": objective, "class_name": class_name, "format": format_name,
             "captured_at": captured_at, "freshness": "ローカルDBの保存版。取得時刻は能力の適用日や公式再確認日ではない。",
             "cards": cards, "known_decks": _known_decks(conn, cards, format_name),
-            "rules": (docs / "rules.md").read_text(encoding="utf-8"), "principles": principles}
+            "rules": (docs / "rules.md").read_text(encoding="utf-8"), "principles": principles,
+            "ability_keywords": {title: text for title, text in conn.execute(
+                "SELECT title,text FROM ability_keyword ORDER BY title")},
+            "fulfillment_map": read_object(FULFILLMENT_MAP_PATH)}
 
 
 def search_questions(conn: sqlite3.Connection, context: JSONDict, questions: list[JSONDict]) -> list[JSONDict]:
     # AI_NOTE: 仮説から新しく生じた要求を既存の型検索へ戻し、0件でも全文走査を残す。
-    fmap = load_fulfillment_map()
+    fmap = FulfillmentMap(cast(FulfillmentMapRaw, context["fulfillment_map"]))
     lookup = CategoryLookup(conn)
     result = []
     allowed = {c["card_id"] for c in context["cards"] if c["deck_eligible"]}
@@ -151,7 +162,7 @@ def search_questions(conn: sqlite3.Connection, context: JSONDict, questions: lis
     return result
 
 
-def check_evidence(items: object, cards: dict[int, JSONDict]) -> None:
+def check_evidence(items: object, cards: dict[int, JSONDict], keywords: dict[str, str] | None = None) -> None:
     # AI_NOTE: 架空の出典や引用を拒む。引用が主張を支えるかは別評価で判断する。
     if not isinstance(items, list):
         raise ValueError("evidence は配列で指定してください")
@@ -159,6 +170,12 @@ def check_evidence(items: object, cards: dict[int, JSONDict]) -> None:
         if not isinstance(ref, dict):
             raise ValueError("根拠は card_id / field / quote を持つオブジェクトです")
         cid, field, quote = ref.get("card_id"), ref.get("field"), ref.get("quote")
+        if "keyword" in ref:
+            title = ref["keyword"]
+            if (not isinstance(title, str) or not keywords or title not in keywords or not isinstance(quote, str)
+                    or not quote.strip() or quote not in keywords[title]):
+                raise ValueError("キーワードの引用が固定資料の定義と一致しません")
+            continue
         if type(cid) is not int or cid not in cards or field not in TEXT_FIELDS:
             raise ValueError("資料内のカードIDと本文・進化・参照先・注記を参照してください")
         if not isinstance(quote, str) or not quote.strip() or quote not in cards[cid][field]:
