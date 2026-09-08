@@ -1,0 +1,157 @@
+{
+  "dispatch_at": "2026-09-08T14:15:31.722757+00:00",
+  "work_started_at": "2026-09-08T14:16:05+00:00",
+  "first_clock_observation": "2026-09-08 14:16:05 UTC",
+  "input_hash": "8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0",
+  "note": "開始は最初の時計観測値を使用。指示の初回読出しはそれ以前で秒値未計測。大きな初回読出しは出力切断を含んだため区分別に再読。",
+  "commands": [
+    {
+      "at": "2026-09-08T14:17:16.787322+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 cards --offset 0 --limit 212",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/cards.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:17:16.861230+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 rules --offset 0 --limit 200",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/rules.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:17:16.933717+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 keywords --offset 0 --limit 50",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/keywords.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:17:17.004103+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 known_decks --offset 0 --limit 10",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/known_decks.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:17:17.072658+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 context_metadata --offset 0 --limit 30",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/context_metadata.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:17:17.142614+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 principles --offset 0 --limit 600",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/principles.json",
+      "stderr": ""
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery packet /tmp/sv-sketch-first-01/a/session --summary",
+      "exit_code": 0,
+      "output": "会話内ツール出力",
+      "result": "開始時の識別値と212枚等の概要を確認。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0 cards --offset 0 --limit 2",
+      "exit_code": 0,
+      "output": "会話内ツール出力",
+      "result": "カードの項目構造を確認。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery attach /tmp/sv-sketch-first-01/a/session /tmp/sv-sketch-first-01/a/round-1/sources-to-attach.json",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/attach-result.json",
+      "result": "資料3件追加。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery packet /tmp/sv-sketch-first-01/a/session",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/packet-after-attach.json",
+      "result": "追加後資料を保存。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery compare /tmp/sv-sketch-first-01/a/session d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/compare-result.json",
+      "result": "40枚同士を比較。交換3枚、種別純増0、採用上問題なし。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery packet /tmp/sv-sketch-first-01/a/session",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/submission-packet.json",
+      "result": "正式提出に使う追加資料込み版。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery submit /tmp/sv-sketch-first-01/a/session /tmp/sv-sketch-first-01/a/round-1/answer.json",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/submit-result.json",
+      "result": "revision 1、未評価。正式提出1回のみ。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/a/session",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-1/report.json",
+      "result": "revision 1が1件、reviews空、資料10件を確認。",
+      "timestamp_note": "コマンド別の開始秒は未計測。保存出力がある場合のmtimeは保存時点であり開始時刻ではない。"
+    }
+  ],
+  "research_ended_at": "2026-09-08T14:33:34.799422+00:00",
+  "research_end_reason": "選択案の指定状態計算と既出調査の範囲を保存したため、新規調査を終了。時間切れではない。",
+  "read_scope": {
+    "instructions": [
+      "提供AGENTSとimport先10ファイル",
+      "generator-instructions.txt全文",
+      "operator-readme.md全文"
+    ],
+    "design_read_lines": [
+      "1-130",
+      "199-585"
+    ],
+    "design_structure": "見出し一覧。§1.5、§5、§6、既出調査原則を読んだ。全文取得の初回出力は切断を含み、未表示部分を全読扱いしていない。",
+    "public_context": {
+      "cards": "212/212の名前・コスト・能力・異なる進化文・参照効果・note・関連IDを表示して走査。rawの画像ハッシュ・フレーバーは判断対象外。",
+      "rules": "117/117行",
+      "keywords": "37/37件",
+      "known_decks": "6/6件の全40枚と来歴",
+      "principles": "506行を公開readで取得。実際の関連箇所の読解は上記design範囲。",
+      "initial_sources": "6件の比較用40枚リスト。"
+    }
+  },
+  "failures": [
+    "初回の大きなまとめ読みがツール出力上限で切断。カード・ルール・キーワード・既知構築を区分別に再読。",
+    "公式カードページ3件は枠68行の抽出のみで本文再確認ができなかった。",
+    "公式データURL3件はwebツールのnot safe to openで取得失敗。",
+    "手札順の計算メモでドロー札の仮名が重複した箇所を、attach前に一意な番号へ修正。数や結論の変更なし。"
+  ],
+  "submission": {
+    "count": 1,
+    "revision": 1,
+    "title": "軽減済みの守り・補充・コピー役を回すスペルウィッチ",
+    "packet_hash": "902e865eba0ae061413cf9a539127966fe2073d89e860ae2d99fbaf7d214d025",
+    "answer_sha256": "0ab02101f653edee00698105b5514d958a47d7754d462aeaf880e724dfef92b3",
+    "evaluation": "未評価。reviewは実行していない。"
+  },
+  "remaining": [
+    "開始状態に到達する序盤の手順・頻度",
+    "同じ条件のジンジャー案との採用利益比較",
+    "循環を止めて攻めへ転じる条件と実用的な決着",
+    "動画・画像構築を含む3役循環の既出状況",
+    "最新の公式本文・裁定の外部再確認"
+  ],
+  "operations_boundary": "本番DB、snapshot、既存資料・記録、実装コードを編集していない。src/evals/protocol/他方式や過去試行の保存先へアクセスせず、追加担当を起動していない。許可された公開コマンドによる自分のsession保存とround-1の新規記録だけを作成。",
+  "saving_ended_at": "2026-09-08T14:35:21.284682+00:00",
+  "elapsed_seconds": {
+    "observed_start_to_research_end": 1049.799422,
+    "research_end_to_saving_end": 106.48526,
+    "dispatch_to_saving_end": 1189.561925
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "kind": "生成担当による指定状態の算術・手札順検算。対戦シミュレーションではない。",
+  "events": [
+    {
+      "turn": 7,
+      "action": "指定開始状態。F0=10回以上軽減済フィーリン、S0=5回以上軽減済サミー＆マリー。場は空。通常ドロー後の手札。",
+      "pp_remaining": 7,
+      "ep_remaining": 1,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "F0",
+        "S0",
+        "G1",
+        "G2",
+        "overreaction"
+      ],
+      "own_board_count": 0
+    },
+    {
+      "turn": 7,
+      "action": "過剰反応。生成札3枚を捨て札用に確保。",
+      "pp_remaining": 6,
+      "ep_remaining": 1,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "F0",
+        "S0",
+        "G1",
+        "G2",
+        "summon1",
+        "summon2",
+        "summon3"
+      ],
+      "own_board_count": 0
+    },
+    {
+      "turn": 7,
+      "action": "右側のゴッデスG2をプレイ。",
+      "pp_remaining": 1,
+      "ep_remaining": 1,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "F0",
+        "S0",
+        "G1",
+        "summon1",
+        "summon2",
+        "summon3"
+      ],
+      "own_board_count": 1
+    },
+    {
+      "turn": 7,
+      "action": "EP1で進化。召喚3枚を捨て、左3枚F0/S0/G1をコピー。",
+      "pp_remaining": 1,
+      "ep_remaining": 0,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "F0",
+        "S0",
+        "G1",
+        "F0copy1",
+        "S0copy1",
+        "Gcopy1"
+      ],
+      "own_board_count": 1
+    },
+    {
+      "turn": 7,
+      "action": "F0とS0を0PPでプレイ。自分2ドロー、相手1ドロー。",
+      "pp_remaining": 1,
+      "ep_remaining": 0,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "G1",
+        "F0copy1",
+        "S0copy1",
+        "Gcopy1",
+        "draw1",
+        "draw2"
+      ],
+      "own_board_count": 3
+    },
+    {
+      "turn": 8,
+      "action": "通常ドロー後、左端のG1を5PPでプレイ。既存の自分の場は最大2枚という分岐。",
+      "pp_remaining": 3,
+      "ep_remaining": 0,
+      "sep_remaining": 2,
+      "hand_left_to_right": [
+        "F0copy1",
+        "S0copy1",
+        "Gcopy1",
+        "draw1",
+        "draw2",
+        "draw3"
+      ],
+      "own_board_count": 3
+    },
+    {
+      "turn": 8,
+      "action": "SEP1で超進化。新規ドロー3枚を捨てて左3枚をコピー。",
+      "pp_remaining": 3,
+      "ep_remaining": 0,
+      "sep_remaining": 1,
+      "hand_left_to_right": [
+        "F0copy1",
+        "S0copy1",
+        "Gcopy1",
+        "F0copy2",
+        "S0copy2",
+        "Gcopy2"
+      ],
+      "own_board_count": 3
+    },
+    {
+      "turn": 8,
+      "action": "前回コピーのF/Sを0PPでプレイ。自分2ドロー、相手1ドロー。場の空き2枚が必要。",
+      "pp_remaining": 3,
+      "ep_remaining": 0,
+      "sep_remaining": 1,
+      "hand_left_to_right": [
+        "Gcopy1",
+        "F0copy2",
+        "S0copy2",
+        "Gcopy2",
+        "draw4",
+        "draw5"
+      ],
+      "own_board_count": 5
+    },
+    {
+      "turn": 9,
+      "action": "通常ドロー後、左端のGcopy1を5PPでプレイ。既存の自分の場は最大2枚という分岐。",
+      "pp_remaining": 4,
+      "ep_remaining": 0,
+      "sep_remaining": 1,
+      "hand_left_to_right": [
+        "F0copy2",
+        "S0copy2",
+        "Gcopy2",
+        "draw4",
+        "draw5",
+        "draw6"
+      ],
+      "own_board_count": 3
+    },
+    {
+      "turn": 9,
+      "action": "SEP1で超進化。新規ドロー3枚を捨てて左3枚をコピー。",
+      "pp_remaining": 4,
+      "ep_remaining": 0,
+      "sep_remaining": 0,
+      "hand_left_to_right": [
+        "F0copy2",
+        "S0copy2",
+        "Gcopy2",
+        "F0copy3",
+        "S0copy3",
+        "Gcopy3"
+      ],
+      "own_board_count": 3
+    },
+    {
+      "turn": 9,
+      "action": "前回コピーのF/Sを0PPでプレイ。自分2ドロー、相手1ドロー。場の空き2枚が必要。",
+      "pp_remaining": 4,
+      "ep_remaining": 0,
+      "sep_remaining": 0,
+      "hand_left_to_right": [
+        "Gcopy2",
+        "F0copy3",
+        "S0copy3",
+        "Gcopy3",
+        "draw7",
+        "draw8"
+      ],
+      "own_board_count": 5
+    }
+  ],
+  "limitations": [
+    "開始状態の到達率は未測定。",
+    "各継続ターンの場の空きと生存・相手盤面への対処は独立条件。",
+    "2枚ドローの内容を捨ててよいか、相手への毎回1ドローの不利益は未検証。",
+    "T9以降の追加進化権を持つとは仮定しない。",
+    "最終コピー後に残る4枚目のF/Sを使うならさらに場の空き2枚が必要。"
+  ]
+}
