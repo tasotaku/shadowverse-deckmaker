@@ -1,0 +1,991 @@
+{
+  "schema_version": 1,
+  "trial": "idea-comparison-01",
+  "archive_root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/idea-comparison-01",
+  "input_manifest": "/tmp/sv-idea-comparison-01/final-evaluation/input-manifest.json",
+  "evaluation_scope": "全6検討回と対応する全6別評価。初期固定条件での一度の最終採点。新規探索・改善案・現画面は対象外。",
+  "grading_criteria_verbatim": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "new_grading_thresholds_added": false,
+  "grades": {
+    "a": {
+      "workflow": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "a/round-1/operations.md",
+          "a/round-2/operations.md",
+          "a/round-3/operations.md",
+          "a/round-3/review-report.json"
+        ],
+        "claim": "公開読出し・資料追加・比較・2提出・3別評価・レポート対応まで実行できた。第3回の追加資料だけの停止も保存され、偽の第3案は作られていない。",
+        "limits": "探索用コードの障害修正は記録上不要だった。試行中の別機能統合・設計文書追記とrootの保存補助エラーは別記し、全環境不変・厳密な統制達成とは呼ばない。"
+      },
+      "correctness": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "initial-packet.json.gz",
+          "a/round-2/answer.json",
+          "a/round-3/answer.json",
+          "a/round-3/review-response.json"
+        ],
+        "claim": "最終の提案と訂正資料を一緒に読む範囲では、指定した手順の合法性・効果・PP・手札・場・進化権に既知の重大な誤りは残らない。7→6→3→6枚、T8の9-(5+0+2+2)=0PP/10点、T9の9-(0+0+2+2)=5PP/13点は整合する。通常側に残る追加PPを含めれば4PPで、差は1。",
+        "limits": "正式revision2本文のPP2差はそのまま残り、訂正は追加資料として保持されている。本文だけを最新の結論とみなしてはいけない。指定ドロー・相手の対象・空き枠・生存・権利温存は条件で、初手からの実用到達や実ゲーム動作をPASSとしたものではない。"
+      },
+      "development": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "a/round-1/review-response.json",
+          "a/round-2/answer.json",
+          "a/round-2/hand-trace.md",
+          "a/round-3/answer.json"
+        ],
+        "claim": "実際の指摘から4枚交換を1枚へ縮め、モエルを保持し、手札9枚・フェアリー3枚保持・順番調整を外した。通常側の同時期出力を比較し、PP差の訂正と、利益を補う根拠を得られない枝の停止まで進んだ。言い換えだけではない。",
+        "limits": "全ての疑問が解決したわけではない。停止は案一般の無価値や不成立の証明ではなく、この枝・この資料範囲の判断。"
+      },
+      "utility": {
+        "verdict": "FAIL",
+        "evidence_files": [
+          "a/round-2/answer.json",
+          "a/round-3/answer.json",
+          "a/round-3/review-response.json"
+        ],
+        "claim": "この試行の最終時点では有用な出力は得られなかった。核がない時の通常の攻撃方針と失う役割は説明されたが、差1点/1PPを、5PP・進化権・機能のある捨て札3枚・通常側の守護/追加破壊/手札1枚の損失に見合う利益へ結びつけられず、考案担当と最終別評価とも現案を見送った。",
+        "limits": "手順の正しさ、引用一致、改訂の実施を有用性へ加点しない。実戦未実施だけを不合格理由にはしていない。"
+      },
+      "honesty": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "a/round-1/research-sources.json",
+          "a/round-2/review-web-log.json",
+          "a/round-3/review-packet.json.gz",
+          "a/round-3/review-response.json"
+        ],
+        "claim": "検索範囲・取得失敗・仮定計算・未確認を分け、共起や検索不一致から未発見とせず、Tier・勝率・初見加点を作っていない。既出の中核と緋岸同時コピー全体を区別し、過大なPP差も公開資料で撤回した。",
+        "limits": "記録には記事名をSpicaメンバー紹介とした誤記があり、保存Web出力の実題名はおさかな鯖メンバー紹介。中核の言及自体は保存本文にもある。全外部出典の真正性を独立に再取得した評価ではない。"
+      }
+    },
+    "b": {
+      "workflow": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "b/round-1/operation-record.json",
+          "b/round-2/operation-record.json",
+          "b/round-3/operation-record.json",
+          "b/round-3/review-report.json"
+        ],
+        "claim": "短い2着想の比較を最初に公開attachへ残し、選択変更、2提出、追加資料、3別評価、レポート対応まで進んだ。第3回の提出なし停止と別評価の継続余地を両方保持できた。",
+        "limits": "初回の補助JavaScript構文エラー1件やWeb/UI取得失敗はあった。公開CLIの記録上の失敗は0。探索用コードの修正は記録上不要だが、試行中の外部統合による統制逸脱は別記。"
+      },
+      "correctness": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "initial-packet.json.gz",
+          "b/round-2/proposal.json",
+          "b/round-2/fixed-state-comparison.json",
+          "b/round-3/continuation-clarification.json",
+          "b/round-3/review-response.json"
+        ],
+        "claim": "指定条件の手順と最終補足に既知の重大な誤りは残らない。7/7ベア2体は5点を各3点にして7/4、全体4点を各3点にして7/1。Aではヒエン6PPと超進化マガチヨの攻撃を処理に使わせる。B/C/Dの敗北も保持。次ターンは相手14、自分4、既知の3PP+7PPを9PPで併用できず、ヒエン再登場を引き継ぐ。",
+        "limits": "先攻の到達例と後攻T8・EP0/SEP0の比較は別々の指定状態であり、同じ完全な一試合ではない。相手体力12→14は第3回資料で補足される。手札取得・生存頻度・全自然ドロー分岐・実ゲーム動作は未確認。"
+      },
+      "development": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "b/round-1/review-response.json",
+          "b/round-2/proposal.json",
+          "b/round-2/fixed-state-comparison.json",
+          "b/round-3/decision.json",
+          "b/round-3/continuation-clarification.json"
+        ],
+        "claim": "3回強化と適時取得への依存を1回強化後の保持へ減らし、単体耐久から同じ全手札での防御比較へ進んだ。守った次のターンの残状態を追って、反撃へ接続したとは言えないことを具体化した。既出資料を加えて水増しの第3案を出さず停止した。",
+        "limits": "最終別評価はdevelopであり、停止の適切性への完全な一致はない。ただし第2回の構築方針変更と比較の進展だけでも固定development条件を満たす。停止の一致をPASSの必須根拠にしていない。"
+      },
+      "utility": {
+        "verdict": "FAIL",
+        "evidence_files": [
+          "b/round-2/fixed-state-comparison.json",
+          "b/round-3/decision.json",
+          "b/round-3/continuation-clarification.json",
+          "b/round-3/review-response.json"
+        ],
+        "claim": "この試行の最終時点では有用な出力は得られなかった。守護1体では敗北する指定例で一手を稼ぐ差はあるが、その後に有効な攻撃・防御へ戻れる根拠、ヒエンの早出し・復帰を減らす負担との比較が残る。考案担当は推薦せず停止し、別評価もtestではなくdevelopにとどまった。",
+        "limits": "不一致や未完成の保留を有用性へ加点しない。基本用途の既出だけで棄却せず、1枚配分の追加利益も検討したが未証明。全状態で弱いという結論ではない。"
+      },
+      "honesty": {
+        "verdict": "PASS",
+        "evidence_files": [
+          "b/round-1/idea-comparison.json",
+          "b/round-1/selection-update.json",
+          "b/round-3/operation-record.json",
+          "b/round-3/review-response.json"
+        ],
+        "claim": "2着想を自己仮説と明示し、基本用途の既出、1枚配分の未確認、検索・本文・画像の読取範囲、取得失敗、対戦0を分けた。公開仮組と自案の11枚差を残し、第三者の旧対戦成績を今回の勝率へ転用していない。",
+        "limits": "最終別評価実行記録は現提案を6手順と記すがproposal.stepsは5件で、件数の記録誤りがある。公開X画像そのものは今回の181ファイルに保存されておらず、最終採点者は画像の再目視をしていない。記録された考案者・別評価者の一致以上の一次確認を主張しない。"
+      }
+    }
+  },
+  "rounds": [
+    {
+      "arm": "a",
+      "round": 1,
+      "formal_submissions_this_round": 1,
+      "formal_revision": 1,
+      "proposal_title": "余ったフェアリーを、強化済みレイピアの追加分へ替える",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "observed_result": "ゴッデスで余剰フェアリーを強化レイピア等へ替える4枚交換を提出。T8/T9の指定例は5点/15点。",
+      "limits_and_changes": "手札9枚・捨て札3枚・手札順・EP確保は未解決。別評価はモエルの戻し機能とルリアの確定した大型取得の損失を指摘。",
+      "evidence_files": [
+        "a/round-1/answer.json",
+        "a/round-1/review-response.json",
+        "a/round-1/review-packet.json.gz",
+        "a/round-1/review-report.json"
+      ]
+    },
+    {
+      "arm": "a",
+      "round": 2,
+      "formal_submissions_this_round": 1,
+      "formal_revision": 2,
+      "proposal_title": "手札7枚から攻撃札を補う、ゴッデス1枠",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "known"
+      },
+      "observed_result": "4枚交換からルリア1→ゴッデス1へ縮小。7枚から3枚だけ残す方式で手札順とフェアリー専用保持を外し、指定ドロー会計を追加。",
+      "limits_and_changes": "23点対22点の対応例を作ったが、翌ターンPP差2という記述は通常側の追加PP未使用断面。別評価は実使用差1を指摘。5月の既出言及を確認。",
+      "evidence_files": [
+        "a/round-2/answer.json",
+        "a/round-2/review-response.json",
+        "a/round-2/review-packet.json.gz",
+        "a/round-2/review-report.json.gz"
+      ]
+    },
+    {
+      "arm": "a",
+      "round": 3,
+      "formal_submissions_this_round": 0,
+      "formal_revision": 2,
+      "proposal_title": "手札7枚から攻撃札を補う、ゴッデス1枠",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "drop",
+        "novelty": "unconfirmed"
+      },
+      "observed_result": "正式提出なし。追加6資料にPP差1への訂正と理由付き停止を保存。別評価も現案をdropとした。",
+      "limits_and_changes": "自然な防御・補充と7枚保持の両立、差1点/1PPが必要な局面、旧作者の全40枚・同時コピーの実使用は未解決。",
+      "evidence_files": [
+        "a/round-3/answer.json",
+        "a/round-3/review-response.json",
+        "a/round-3/review-packet.json.gz",
+        "a/round-3/review-report.json"
+      ]
+    },
+    {
+      "arm": "b",
+      "round": 1,
+      "formal_submissions_this_round": 1,
+      "formal_revision": 1,
+      "proposal_title": "ヒエン1枠を強化したベアへ替え、攻撃を止める一手を持つ",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "observed_result": "短い2着想をattach後、エルタロの補充からベアの防御へ調査対象を変更。ヒエン1→ベア1を提出。",
+      "limits_and_changes": "両着想の基本用途は既知。3回強化の取得経路や従来の防御との比較不足でdevelop。比較記録自体は採用利益に加点しない。",
+      "evidence_files": [
+        "b/round-1/proposal.json",
+        "b/round-1/review-response.json",
+        "b/round-1/review-packet.json.gz",
+        "b/round-1/review-report.json"
+      ]
+    },
+    {
+      "arm": "b",
+      "round": 2,
+      "formal_submissions_this_round": 1,
+      "formal_revision": 2,
+      "proposal_title": "1回強化で保持するベア1枚を、進化権を使い切った後の守りへ回す",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "observed_result": "1回強化で引いたら保持へ変更。指定した同じ全手札で従来札と比較し、A/Eはそのターンの敗北を防ぎB/C/Dは防がないことを示した。",
+      "limits_and_changes": "先攻T5からの到達例と後攻T8の防御例は別条件。一手を稼いだ後の攻撃・防御の継続とヒエン減の費用は未解決。",
+      "evidence_files": [
+        "b/round-2/proposal.json",
+        "b/round-2/review-response.json",
+        "b/round-2/review-packet.json.gz",
+        "b/round-2/review-report.json.gz"
+      ]
+    },
+    {
+      "arm": "b",
+      "round": 3,
+      "formal_submissions_this_round": 0,
+      "formal_revision": 2,
+      "proposal_title": "1回強化で保持するベア1枚を、進化権を使い切った後の守りへ回す",
+      "review_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "known"
+      },
+      "observed_result": "正式提出なし。相手回復14・ヒエン復帰を含む次ターン補足と、ベア1枚を含む8月公開仮組など9資料を追加し、考案担当は停止。",
+      "limits_and_changes": "独立評価はdevelop/known。停止と継続余地の不一致を残す。既知手札2枚では稼いだ一手から反撃へ接続せず、自然ドローを含む全否定でもない。",
+      "evidence_files": [
+        "b/round-3/answer.md",
+        "b/round-3/review-response.json",
+        "b/round-3/review-packet.json.gz",
+        "b/round-3/review-report.json"
+      ]
+    }
+  ],
+  "workload": {
+    "rounds": [
+      {
+        "arm": "a",
+        "round": 1,
+        "dispatch_utc": "2026-09-08T09:51:23+00:00",
+        "dispatch_time_definition": "初回は両担当連続配信の開始境界。個別配信時刻は未記録。",
+        "generation_start_utc": "2026-09-08T09:51:52+00:00",
+        "generation_research_end_utc": null,
+        "generation_research_end_upper_bound_utc": "2026-09-08T10:12:28.750236+00:00",
+        "generation_save_end_utc": "2026-09-08T10:16:40.005956+00:00",
+        "generation_elapsed_to_save_seconds": 1488.005956,
+        "generation_dispatch_to_start_observed_seconds": 29.0,
+        "review_dispatch_utc": "2026-09-08T10:17:24+00:00",
+        "review_start_utc": "2026-09-08T10:17:52+00:00",
+        "review_end_recorded_utc": "2026-09-08T10:31:18.453400+00:00",
+        "review_elapsed_seconds": 806.4534,
+        "review_dispatch_to_start_observed_seconds": 28.0,
+        "dispatch_to_last_review_observation_seconds": 2395.4534,
+        "public_cli_generation": {
+          "attempts": 13,
+          "successes": 13,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 15,
+        "sources_added_this_round": 11,
+        "formal_submissions_this_round": 1,
+        "generation_web_calls": 11,
+        "generation_search_queries": 31,
+        "generation_cua_calls": 0,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "a/round-1/operations.md",
+          "a/round-1/review-execution.json",
+          "round-2-progress.json"
+        ]
+      },
+      {
+        "arm": "a",
+        "round": 2,
+        "dispatch_utc": "2026-09-08T10:32:37+00:00",
+        "dispatch_time_definition": "rootの配信直前時計",
+        "generation_start_utc": "2026-09-08T10:33:10.721498+00:00",
+        "generation_research_end_utc": null,
+        "generation_research_end_upper_bound_utc": "2026-09-08T10:51:02.140630+00:00",
+        "generation_save_end_utc": "2026-09-08T10:53:54.429953+00:00",
+        "generation_elapsed_to_save_seconds": 1243.708455,
+        "generation_dispatch_to_start_observed_seconds": 33.721498,
+        "review_dispatch_utc": "2026-09-08T10:54:30+00:00",
+        "review_start_utc": "2026-09-08T10:55:07+00:00",
+        "review_end_recorded_utc": "2026-09-08T11:07:08+00:00",
+        "review_elapsed_seconds": 721.0,
+        "review_dispatch_to_start_observed_seconds": 37.0,
+        "dispatch_to_last_review_observation_seconds": 2071.0,
+        "public_cli_generation": {
+          "attempts": 6,
+          "successes": 6,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 24,
+        "sources_added_this_round": 9,
+        "formal_submissions_this_round": 1,
+        "generation_web_calls": 5,
+        "generation_search_queries": 12,
+        "generation_cua_calls": 5,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "a/round-2/operations.md",
+          "a/round-2/review-execution.json",
+          "round-2-progress.json"
+        ]
+      },
+      {
+        "arm": "a",
+        "round": 3,
+        "dispatch_utc": "2026-09-08T11:11:35+00:00",
+        "dispatch_time_definition": "rootの配信直前時計",
+        "generation_start_utc": "2026-09-08T11:12:19.700994+00:00",
+        "generation_research_end_utc": "2026-09-08T11:21:00+00:00",
+        "generation_research_end_upper_bound_utc": null,
+        "generation_save_end_utc": "2026-09-08T11:25:27.948996+00:00",
+        "generation_elapsed_to_save_seconds": 788.248002,
+        "generation_dispatch_to_start_observed_seconds": 44.700994,
+        "review_dispatch_utc": "2026-09-08T11:26:17+00:00",
+        "review_start_utc": "2026-09-08T11:26:55+00:00",
+        "review_end_recorded_utc": "2026-09-08T11:39:55+00:00",
+        "review_elapsed_seconds": 780.0,
+        "review_dispatch_to_start_observed_seconds": 38.0,
+        "dispatch_to_last_review_observation_seconds": 1700.0,
+        "public_cli_generation": {
+          "attempts": 3,
+          "successes": 3,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 30,
+        "sources_added_this_round": 6,
+        "formal_submissions_this_round": 0,
+        "generation_web_calls": 7,
+        "generation_search_queries": 18,
+        "generation_cua_calls": 13,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "a/round-3/operations.md",
+          "a/round-3/review-execution.json",
+          "round-3-progress.json"
+        ]
+      },
+      {
+        "arm": "b",
+        "round": 1,
+        "dispatch_utc": "2026-09-08T09:51:23+00:00",
+        "dispatch_time_definition": "初回は両担当連続配信の開始境界。個別配信時刻は未記録。",
+        "generation_start_utc": "2026-09-08T09:51:59+00:00",
+        "generation_research_end_utc": "2026-09-08T10:11:57+00:00",
+        "generation_research_end_upper_bound_utc": null,
+        "generation_save_end_utc": "2026-09-08T10:14:45.570285+00:00",
+        "generation_elapsed_to_save_seconds": 1366.570285,
+        "generation_dispatch_to_start_observed_seconds": 36.0,
+        "review_dispatch_utc": "2026-09-08T10:15:28+00:00",
+        "review_start_utc": "2026-09-08T10:15:56+00:00",
+        "review_end_recorded_utc": "2026-09-08T10:30:02.398870+00:00",
+        "review_elapsed_seconds": 846.39887,
+        "review_dispatch_to_start_observed_seconds": 28.0,
+        "dispatch_to_last_review_observation_seconds": 2319.39887,
+        "public_cli_generation": {
+          "attempts": 10,
+          "successes": 10,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 14,
+        "sources_added_this_round": 10,
+        "formal_submissions_this_round": 1,
+        "generation_web_calls": 7,
+        "generation_search_queries": 7,
+        "generation_cua_calls": 0,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "b/round-1/operation-record.json",
+          "b/round-1/review-execution.json",
+          "round-2-progress.json"
+        ]
+      },
+      {
+        "arm": "b",
+        "round": 2,
+        "dispatch_utc": "2026-09-08T10:31:15+00:00",
+        "dispatch_time_definition": "rootの配信直前時計",
+        "generation_start_utc": "2026-09-08T10:31:50+00:00",
+        "generation_research_end_utc": "2026-09-08T10:49:50.267823+00:00",
+        "generation_research_end_upper_bound_utc": null,
+        "generation_save_end_utc": "2026-09-08T10:52:15.773678+00:00",
+        "generation_elapsed_to_save_seconds": 1225.773678,
+        "generation_dispatch_to_start_observed_seconds": 35.0,
+        "review_dispatch_utc": "2026-09-08T10:52:57+00:00",
+        "review_start_utc": "2026-09-08T10:53:35+00:00",
+        "review_end_recorded_utc": "2026-09-08T11:05:40+00:00",
+        "review_elapsed_seconds": 725.0,
+        "review_dispatch_to_start_observed_seconds": 38.0,
+        "dispatch_to_last_review_observation_seconds": 2065.0,
+        "public_cli_generation": {
+          "attempts": 5,
+          "successes": 5,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 20,
+        "sources_added_this_round": 6,
+        "formal_submissions_this_round": 1,
+        "generation_web_calls": 4,
+        "generation_search_queries": 6,
+        "generation_cua_calls": 5,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "b/round-2/operation-record.json",
+          "b/round-2/review-execution.json",
+          "round-2-progress.json"
+        ]
+      },
+      {
+        "arm": "b",
+        "round": 3,
+        "dispatch_utc": "2026-09-08T11:10:01+00:00",
+        "dispatch_time_definition": "rootの配信直前時計",
+        "generation_start_utc": "2026-09-08T11:10:39+00:00",
+        "generation_research_end_utc": "2026-09-08T11:29:21.516320+00:00",
+        "generation_research_end_upper_bound_utc": null,
+        "generation_save_end_utc": "2026-09-08T11:33:27.868816+00:00",
+        "generation_elapsed_to_save_seconds": 1368.868816,
+        "generation_dispatch_to_start_observed_seconds": 38.0,
+        "review_dispatch_utc": "2026-09-08T11:36:37+00:00",
+        "review_start_utc": "2026-09-08T11:37:17+00:00",
+        "review_end_recorded_utc": "2026-09-08T11:50:45.855632+00:00",
+        "review_elapsed_seconds": 808.855632,
+        "review_dispatch_to_start_observed_seconds": 40.0,
+        "dispatch_to_last_review_observation_seconds": 2444.855632,
+        "public_cli_generation": {
+          "attempts": 5,
+          "successes": 5,
+          "failures": 0
+        },
+        "review_registration_attempts": 1,
+        "review_substantive_evaluations": 1,
+        "review_format_retries": 0,
+        "sources_total": 29,
+        "sources_added_this_round": 9,
+        "formal_submissions_this_round": 0,
+        "generation_web_calls": 9,
+        "generation_search_queries": 8,
+        "generation_cua_calls": 21,
+        "active_work_seconds": null,
+        "waiting_seconds": null,
+        "evidence_files": [
+          "b/round-3/operation-record.json",
+          "b/round-3/review-execution.json",
+          "round-3-progress.json"
+        ]
+      }
+    ],
+    "arm_totals": {
+      "a": {
+        "rounds": 3,
+        "formal_submissions": 2,
+        "substantive_reviews": 3,
+        "generation_public_cli_attempts": 22,
+        "generation_public_cli_failures": 0,
+        "review_format_retries": 0,
+        "initial_sources": 4,
+        "final_sources": 30,
+        "generation_elapsed_windows_sum_seconds": 3519.962413,
+        "review_elapsed_windows_sum_seconds": 2307.4534,
+        "active_work_seconds": null,
+        "waiting_seconds": null
+      },
+      "b": {
+        "rounds": 3,
+        "formal_submissions": 2,
+        "substantive_reviews": 3,
+        "generation_public_cli_attempts": 20,
+        "generation_public_cli_failures": 0,
+        "review_format_retries": 0,
+        "initial_sources": 4,
+        "final_sources": 29,
+        "generation_elapsed_windows_sum_seconds": 3961.212779,
+        "review_elapsed_windows_sum_seconds": 2380.254502,
+        "active_work_seconds": null,
+        "waiting_seconds": null
+      }
+    },
+    "limits": [
+      "各時計差は推論・読取り・通信・保存・ツール待ちを含む実経過。能動作業と待機は分離不能。配信→開始も純待機ではない。",
+      "初回の個別dispatchは09:51:23〜09:52:35.608016の範囲で連続実施。上表の29秒/36秒は共通開始境界からの差であり個別待機時間ではない。",
+      "a初回・第2回は調査終了専用の時計なし。提出結果ファイル保存時刻は上限にだけ使用。a第2回は主保存10:53:26.298229の後に時刻精度を追記し10:53:54.429953が最終保存。",
+      "生成終了は保存終了を用いた。評価終了はa1が記録保存時刻、a2/a3/b2が評価・登録・照合後の時計で、その後に最終時刻保存のみが続く。b1は最初のREADME読取直後から保存終了、b3は排他的最終書込時刻。定義は同一ではない。",
+      "protocolのラウンド終了は評価登録時点。上表のreview_endは照合・保存まで含み、その時点と混同しない。a1登録の秒は未記録、b1登録完了観測10:28:48、a2コマンド終了11:04:55.049466、b2終了11:03:30.193243、a3登録観測区間11:36:52〜11:37:56、b3終了11:47:26.936851。",
+      "生成担当の公開CLIはa=13/6/3、b=10/5/5の自己記録を原結果と対応確認した。全シェル履歴による完全な再計数ではない。レビューの中核登録/レポートは各回1ずつ。a1は追加read2とhelp1を記録、b1は追加read1、b3はhelp1を記録。review以外も含む初回の厳密総数は不足。",
+      "初期4資料を含む資料件数。機械比較・自己計算・公開記事要約・40枚転記を含み、独立した実戦観察数ではない。両方式とも同条件の対戦観察・ゲーム内試行・勝率推計は0。",
+      "全6回で正式提出は各回最大1。第3回は両方式とも時間上限前の理由付き停止で、未解決は残る。全評価は配信基準20分以内の終了記録。初回a保存は25分目安を17.006秒越えるが5分の保存猶予内、調査終了の独立時計はない。"
+    ]
+  },
+  "integrity": {
+    "file_hash_audit": {
+      "checked_count": 181,
+      "mismatches": [],
+      "meaning": "全181ファイルのバイト一致。全行の読了や内容の正しさの認定ではない。"
+    },
+    "initial_packet_canonical_hash": "f5ac6daea48cdbe24c392e149739c28fda48e6b8f13774d6ffe21aa1e722df94",
+    "initial_packet_hash_matches": true,
+    "initial_uncompressed_file_sha256": "b7e8d2ffcbbb42d76f0bd5d835ec2ab6dec474b60f5c8465fc1391960beb144e",
+    "initial_eligible_cards": 113,
+    "initial_card_count": 212,
+    "initial_source_count": 4,
+    "initial_source_count_not_final_source_count": true,
+    "packet_checks": [
+      {
+        "file": "a/round-1/review-packet.json.gz",
+        "canonical_hash": "8c80d38c0b76f5bbc33ec93d720bbee51e74a2e89814d1273db036413caf7f13",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 1,
+        "source_count": 15
+      },
+      {
+        "file": "a/round-1/submission-input-packet.json.gz",
+        "canonical_hash": "92f90163012e8f4d1657d736e6ea0a5619185914d6e3a9e52d6d54894f72aba5",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 0,
+        "source_count": 15
+      },
+      {
+        "file": "a/round-2/input-packet.json.gz",
+        "canonical_hash": "28440c4fa10285613250a77ad812422769bfe898dfddd8b5ff4b5ef90b1dd908",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 1,
+        "source_count": 15
+      },
+      {
+        "file": "a/round-2/review-packet.json.gz",
+        "canonical_hash": "93d58ca089e887aa2549bfc23cbb4cdfaa25c51b0a485a6b8ecdd95dc72b20c4",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 2,
+        "source_count": 24
+      },
+      {
+        "file": "a/round-2/submission-input-packet.json.gz",
+        "canonical_hash": "613629f384b5bc4b943750374b1340867c4b89c61969888aeec13ef48c4488d8",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 1,
+        "source_count": 24
+      },
+      {
+        "file": "a/round-3/input-packet.json.gz",
+        "canonical_hash": "3c08d52a18f75ebe13c9aaf8e6a800947e6531d4b87e7311a45eeded91438781",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 2,
+        "source_count": 24
+      },
+      {
+        "file": "a/round-3/review-packet.json.gz",
+        "canonical_hash": "840cd5d3d3f49bf9d3b9b12df9c62d0b16f8dc56fb9a61cfbbfaffe9df7aa8af",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 2,
+        "source_count": 30
+      },
+      {
+        "file": "b/round-1/review-packet.json.gz",
+        "canonical_hash": "d9c9df6f1aeb24dbffc395e21acee7c888e5e85e8242665265a91d43a8b1f079",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 1,
+        "source_count": 14
+      },
+      {
+        "file": "b/round-1/submission-input-packet.json.gz",
+        "canonical_hash": "a1bba3e581abeeded2b4aaa3a78beffc7bc74d883ca8ca183b16ceea4884febd",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 0,
+        "source_count": 14
+      },
+      {
+        "file": "b/round-2/develop-packet.json.gz",
+        "canonical_hash": "8cd75d06b06ecf42a036082ffdcd7b43e0b45c6fabf25132735e8379d634d4a5",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 1,
+        "source_count": 20
+      },
+      {
+        "file": "b/round-2/input-packet.json.gz",
+        "canonical_hash": "911beb61a6ed48ee57b4939f460f0f6ced1ba593116ba4200c2a9b9e5123fdec",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 1,
+        "source_count": 14
+      },
+      {
+        "file": "b/round-2/review-packet.json.gz",
+        "canonical_hash": "82c5947d9b77535dc8fb47206d51860215c2e8dadec8c78769db7ccd2b1bcf07",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 2,
+        "source_count": 20
+      },
+      {
+        "file": "b/round-3/input-packet.json.gz",
+        "canonical_hash": "4c4c885bffd2d627a3af16f88660033b9beddeb5a02392c6498a513b383fd641",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 2,
+        "source_count": 20
+      },
+      {
+        "file": "b/round-3/review-packet.json.gz",
+        "canonical_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "review",
+        "revision": 2,
+        "source_count": 29
+      },
+      {
+        "file": "initial-packet.json.gz",
+        "canonical_hash": "f5ac6daea48cdbe24c392e149739c28fda48e6b8f13774d6ffe21aa1e722df94",
+        "canonical_hash_matches": true,
+        "context_equals_initial": true,
+        "stage": "develop",
+        "revision": 0,
+        "source_count": 4
+      }
+    ],
+    "review_report_checks": [
+      {
+        "arm": "a",
+        "round": 1,
+        "report_file": "a/round-1/review-report.json",
+        "review_packet_file": "a/round-1/review-packet.json.gz",
+        "response_file": "a/round-1/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      },
+      {
+        "arm": "a",
+        "round": 2,
+        "report_file": "a/round-2/review-report.json.gz",
+        "review_packet_file": "a/round-2/review-packet.json.gz",
+        "response_file": "a/round-2/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      },
+      {
+        "arm": "a",
+        "round": 3,
+        "report_file": "a/round-3/review-report.json",
+        "review_packet_file": "a/round-3/review-packet.json.gz",
+        "response_file": "a/round-3/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      },
+      {
+        "arm": "b",
+        "round": 1,
+        "report_file": "b/round-1/review-report.json",
+        "review_packet_file": "b/round-1/review-packet.json.gz",
+        "response_file": "b/round-1/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      },
+      {
+        "arm": "b",
+        "round": 2,
+        "report_file": "b/round-2/review-report.json.gz",
+        "review_packet_file": "b/round-2/review-packet.json.gz",
+        "response_file": "b/round-2/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      },
+      {
+        "arm": "b",
+        "round": 3,
+        "report_file": "b/round-3/review-report.json",
+        "review_packet_file": "b/round-3/review-packet.json.gz",
+        "response_file": "b/round-3/review-response.json",
+        "matching_reviews": 1,
+        "all_response_fields_equal": true,
+        "source_count_equal": true,
+        "previous_reviews_empty": true,
+        "review_contexts_empty": true
+      }
+    ],
+    "quote_checks": [
+      {
+        "arm": "a",
+        "round": 1,
+        "review": {
+          "quote_count": 17,
+          "mismatches": []
+        },
+        "proposal": {
+          "quote_count": 23,
+          "mismatches": []
+        }
+      },
+      {
+        "arm": "a",
+        "round": 2,
+        "review": {
+          "quote_count": 19,
+          "mismatches": []
+        },
+        "proposal": {
+          "quote_count": 29,
+          "mismatches": []
+        }
+      },
+      {
+        "arm": "a",
+        "round": 3,
+        "review": {
+          "quote_count": 20,
+          "mismatches": []
+        },
+        "proposal": "既存revision2を維持。前回の引用検査対象と同じ提案。"
+      },
+      {
+        "arm": "b",
+        "round": 1,
+        "review": {
+          "quote_count": 16,
+          "mismatches": []
+        },
+        "proposal": {
+          "quote_count": 16,
+          "mismatches": []
+        }
+      },
+      {
+        "arm": "b",
+        "round": 2,
+        "review": {
+          "quote_count": 17,
+          "mismatches": []
+        },
+        "proposal": {
+          "quote_count": 18,
+          "mismatches": []
+        }
+      },
+      {
+        "arm": "b",
+        "round": 3,
+        "review": {
+          "quote_count": 11,
+          "mismatches": []
+        },
+        "proposal": "既存revision2を維持。前回の引用検査対象と同じ提案。"
+      }
+    ],
+    "verification_limit": "引用一致と入出力対応は構造確認。発見成功・有用性・外部観察の真正性の代用ではない。両担当に配信した初期バイトの同一性は固定protocol/manifestと操作記録に基づく。全段階の保存contextの初期との一致は独立計算した。"
+  },
+  "protocol_deviations_and_interventions": {
+    "initial_system_commit": "5a1fcef462ba961acd09a94b6d6750377f764245",
+    "system_changes": [
+      {
+        "recorded_at": "2026-09-08T10:43:02.584511+00:00",
+        "request": "ユーザーが別タスクで依頼した検証記録画面の本体統合",
+        "before_commit": "fc7e6d0d79ff9662ac7d948dadee313c450634fb",
+        "integrated_commit": "300f0dd19c6358a220c246a42d91fed6f8e329d5",
+        "source_commits": [
+          "6959ea9",
+          "0de0318"
+        ],
+        "changed_existing_src_files": [],
+        "added_src_files": [
+          "src/svdeck/data/experiment_catalog.json",
+          "src/svdeck/experiments.py",
+          "src/svdeck/journal_store.py",
+          "src/svdeck/journal_web/app.js",
+          "src/svdeck/journal_web/index.html",
+          "src/svdeck/journal_web/style.css"
+        ],
+        "paired_initial_inputs_still_identical": true,
+        "paired_initial_packet_sha256": "b7e8d2ffcbbb42d76f0bd5d835ec2ab6dec474b60f5c8465fc1391960beb144e",
+        "frozen_operator_readme_unchanged": true,
+        "game_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+        "existing_discovery_and_design_diff": "git diff fc7e6d0 -- discovery関連5モジュール/explore/docs/design.md は空",
+        "validation": {
+          "pytest_command": "/tmp/sv-system-venv/bin/python -m pytest -q tests --ignore=tests/temp",
+          "pytest_passed": 197,
+          "pytest_elapsed_seconds": 13.43,
+          "mypy_command": "/tmp/sv-system-venv/bin/python -m mypy src/svdeck/experiments.py src/svdeck/journal_store.py",
+          "mypy": "Success: no issues found in 2 source files"
+        },
+        "trial_control_note": "固定条件は途中の本体変更を障害修正に限っていたが、ユーザーが新たに依頼した独立の記録機能を比較中に統合した変更として記録する。既存の探索コード・評価条件・両方式の固定入力は変えていない。方式の改善効果へこの追加を加点しない。",
+        "live_record_updates": {
+          "natural-trial-01": 2,
+          "idea-comparison-01": 3
+        },
+        "delivery": "CLI再読込で実結果・時刻の保存を確認。HTTP APIから第2版と第1版の差分保持を確認済み。mainからの持続起動と最終画面確認は記録画面の担当が実施中。"
+      },
+      {
+        "recorded_at": "2026-09-08T11:53:09.919951+00:00",
+        "request": "比較試行終了時の変更範囲確認",
+        "initial_system_commit": "5a1fcef462ba961acd09a94b6d6750377f764245",
+        "main_commit": "e1f2acc12a05931f1a4bd9f7fc52b6c28ae7dd93",
+        "discovery_and_explore_code_diff": "上記基準版から探索関連5モジュールおよびexplore.pyへの差分なし",
+        "frozen_manifest_files_checked": 17,
+        "frozen_files_changed": [],
+        "journal_followup_commits": [
+          "28f3779",
+          "ba38d0d"
+        ],
+        "design_change": "docs/design.md §4.5 に保存分析からの機械導出が未実装という監査結果7行を追記。固定packetは不変だが、開始時に現在のdesign.mdを読む担当には見える可能性を残す。",
+        "trial_conditions_changed": false,
+        "optional_effect_prototype": "codex/effect-evidence-prototype のみに存在し、mainと両試行に未適用",
+        "production_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+        "limits": "人間側の全画面や全環境変化が同一だった証明ではない。固定資料とコード差分の確認範囲。"
+      }
+    ],
+    "scheduled_notices_and_actual_delivery": [
+      {
+        "type": "save_notice",
+        "scheduled_at": "2026-09-08T10:11:23+00:00",
+        "dispatch_window_start_utc": "2026-09-08T10:11:23+00:00",
+        "dispatch_window_end_utc": "2026-09-08T10:11:58.890486+00:00",
+        "recipients": [
+          "a",
+          "b"
+        ],
+        "delivery_tools_returned_success": true,
+        "new_judgment_task_added": false,
+        "content": "20分経過。10:16:23新規調査終了、10:21:23保存猶予終了。確認済み・未確認・実時刻・操作回数と失敗の保存準備。"
+      },
+      {
+        "type": "stop_new_research_notice",
+        "scheduled_at": "2026-09-08T10:16:23+00:00",
+        "dispatch_window_start_utc": "2026-09-08T10:16:15+00:00",
+        "dispatch_window_end_utc": "2026-09-08T10:16:50.439015+00:00",
+        "recipients": [
+          "a"
+        ],
+        "delivery_tools_returned_success": true,
+        "new_judgment_task_added": false,
+        "b_not_notified_reason": "b completed generation/save before the limit; its independent review is running.",
+        "content": "25分時点で新規調査終了。10:21:23まで保存・形式修正のみ。実際の時刻・未確認を保持。"
+      },
+      {
+        "type": "actual_start_inquiry",
+        "exact_dispatch_timestamp": null,
+        "limitation": "Operational inquiry was sent in the preceding root context; exact dispatch time is not retained in this file. No new evaluation question was supplied.",
+        "new_judgment_task_added": false
+      },
+      {
+        "type": "round-2-save-notice",
+        "recipients": [
+          "b"
+        ],
+        "scheduled_at": "2026-09-08T10:51:15+00:00",
+        "dispatch_window_start_utc": "2026-09-08T10:50:55+00:00",
+        "dispatch_window_end_utc": "2026-09-08T10:51:24+00:00",
+        "delivery_tools_returned_success": true,
+        "new_judgment_task_added": false
+      },
+      {
+        "type": "round-2-save-notice",
+        "recipients": [
+          "a"
+        ],
+        "scheduled_at": "2026-09-08T10:52:37+00:00",
+        "dispatch_window_start_utc": "2026-09-08T10:52:20+00:00",
+        "dispatch_window_end_utc": "2026-09-08T10:52:47+00:00",
+        "delivery_tools_returned_success": true,
+        "new_judgment_task_added": false
+      },
+      {
+        "type": "round-3-save-notice",
+        "recipients": [
+          "b"
+        ],
+        "scheduled_at": "2026-09-08T11:30:01+00:00",
+        "dispatch_window_start_utc": "2026-09-08T11:29:56+00:00",
+        "dispatch_window_end_utc": "2026-09-08T11:31:02+00:00",
+        "delivery_tools_returned_success": true,
+        "new_judgment_task_added": false,
+        "notice_received": true,
+        "timing_limitation": "通知の個別タイムスタンプは保持されず、前後の観測区間を保存。"
+      }
+    ],
+    "root_operator_failures": [
+      {
+        "observed_at": "2026-09-08T11:13:22+00:00",
+        "step": "round-3 progress archive",
+        "error": "KeyError: procedure; root assumed both reviewer execution logs put labels at top level",
+        "resolution": "Read labels from the actual review response. Failed attempt wrote no archive or state file.",
+        "reviewer_retry": false
+      },
+      {
+        "observed_at": "2026-09-08T11:43:32.415435+00:00",
+        "step": "round-3 review archive before any archive write",
+        "error": "KeyError: id; card records use card_id, root archive helper used id",
+        "classification": "root operator error; not reviewer retry",
+        "recovery": "Inspected actual card keys, corrected local archive helper, reran successfully",
+        "modified_trial_input_or_response": false
+      }
+    ],
+    "interpretation": "障害修正だけを許す固定条件に対し別機能統合は逸脱。記録上、探索関連コードと固定入力に差分なし。現在design.mdを読んだ評価担当には追記が見えた可能性がある。影響ゼロ・全環境同一とは断定しない。初回protocolが未実行/候補というstatus文を残すこと、進捗ファイルの古いトップレベル時刻、manifestの保存時刻と更新時刻の違いは原記録として保持し、各roundの実時計を優先。"
+  },
+  "observed_differences": [
+    "この1組ではaは主役を維持しながら交換負担を減らし、最終別評価がdropになった。bは公開した2着想から初回中に選択変更し、最終別評価はdevelop/knownだが考案担当は停止した。",
+    "両方式とも3検討回・2正式提出・3別評価。初期4資料からaは30、bは29へ増えた。生成CLIはa計22、b計20。これらは成果点や独立観測数ではない。",
+    "初回bでは短い比較が選択変更の経緯として残った。一方aにも未提出のイヴを山札へ戻す仮説メモがある。aが一案しか考えなかった比較ではない。",
+    "中核の既出と、具体的な配分/追加カードによる改善の未証明を両方式とも保持した。a最終novelty=unconfirmedと前回knownは対象範囲の違いで、中核の既出が撤回された意味ではない。"
+  ],
+  "unconfirmed_cause_hypotheses": [
+    "短い比較の明示がbの初回の切替を助けた可能性はある。しかし異なる担当・異なる案・異なるWeb到達で、因果効果は分離できない。",
+    "最終の別評価ラベルの差には、案の限定利益の差と評価担当の判断差の双方があり得る。1組では方式の優越へ帰属できない。",
+    "両方式で同じ枝の追加調査が増えた原因が比較工程の不足か、資料・探索方針・候補そのもの・時間/担当差かは確定していない。"
+  ],
+  "interpretation_limits": [
+    "総合点・勝者・方式の優越・成功率を作らない。",
+    "エルフという同じ開発用クラス、1組の担当差を含む観測。他入力や未使用クラスへ一般化しない。",
+    "この試行の両utility FAILは、本番システム全体の不可能性の証明ではない。どの好結果も本採用・全体目標達成と呼ばない。",
+    "外部URLの再調査や実ゲームは行わず、固定保存資料に対する評価。"
+  ],
+  "evaluation_completed_at_utc": "2026-09-08T12:08:06.068349+00:00"
+}

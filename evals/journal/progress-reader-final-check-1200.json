@@ -1,0 +1,68 @@
+{
+  "started_at": "2026-09-08T12:14:41Z",
+  "ended_at": "2026-09-08T12:14:55Z",
+  "timing_definition": "開始は対象3ファイルの読取直前の時計確認、終了は読取確認と問題箇所の特定を終えた時計確認。報告ファイルの保存時間は含まない。",
+  "targets": [
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/progress.md",
+    "/tmp/idea-comparison-01-latest-journal.json",
+    "/tmp/sketch-first-01-latest-journal.json"
+  ],
+  "scope": "読み手に現在状態、結果、採否、合格範囲と未確認、実際の工程時刻が伝わるかの読取確認。原文変更なし。コード・カード価値の採点および対象外資料による事実検証なし。",
+  "current_state": [
+    "最初の試行と二方式の比較は終了し、試す理由のある最終案を残せなかったため、有用性は不合格で本採用は保留または見送りと理解した。",
+    "短い着想を先に保存する入口は隔離した場所で実装・機能確認を終え、ウィッチで従来方式と比べる条件を準備中で、実際の比較・有用性判定・採否はまだ終わっていないと理解した。"
+  ],
+  "checks": [
+    {
+      "item": 1,
+      "subject": "完了と進行中の区別",
+      "verdict": "要修正",
+      "finding": "sketch-first の結果と実装工程は完了だが、採否理由だけ『実装と実際の比較が未完了』と書かれ、実装が終わったかの説明が食い違う。",
+      "location": "/tmp/sketch-first-01-latest-journal.json:18",
+      "cross_reference": "/tmp/sketch-first-01-latest-journal.json:13",
+      "minimum_fix": "実装済みで、実際の比較が未完了のため未判断であることに合わせる。"
+    },
+    {
+      "item": 2,
+      "subject": "有用性と機能検査の区別",
+      "verdict": "PASS",
+      "finding": "有用性の不合格・未判定と、197件・32件・164件などの機能検査合格は明示的に分けられている。検査合格から方式の有用性を合格と読む必要はない。"
+    },
+    {
+      "item": 3,
+      "subject": "採否と理由",
+      "verdict": "要修正",
+      "finding": "比較方式を見送る理由と、提案担当の停止・別評価の追加検討という違いは明瞭。sketch-first の採否は未判断と分かるが、その理由に実装未完了が残っている。項目1と同一の1箇所。",
+      "location": "/tmp/sketch-first-01-latest-journal.json:18"
+    },
+    {
+      "item": 4,
+      "subject": "合格範囲・誤記・未確認",
+      "verdict": "PASS",
+      "finding": "指定条件と訂正資料を含む合格だと明記され、正式提案に古い2PP差が残ること、先攻と後攻の例が別条件であること、自然な到達や実際の対戦・勝率・一般化が未確認であることを隠していない。"
+    },
+    {
+      "item": 5,
+      "subject": "実測時刻・純作業時間・準備・予定",
+      "verdict": "PASS",
+      "finding": "各工程の実測開始終了、調査終了と保存終了、未記録時刻、並行作業で合算しないことを区別している。新方式の準備は待機を含むと明示され、比較と採否は予定で実行時刻が入っていない。目安の分数を実績時間とは扱っていない。"
+    }
+  ],
+  "unique_required_fixes": 1,
+  "overall_verdict": "要修正",
+  "minor_wording_preferences_used_as_failures": false,
+  "follow_up_checks": [
+    {
+      "started_at": "2026-09-08T12:18:06Z",
+      "ended_at": "2026-09-08T12:18:24Z",
+      "timing_definition": "開始は対象項目の読取直前の時計確認。終了は読取内容の判定後、報告保存直前の時計確認。保存処理時間は含まない。",
+      "target": "/tmp/sketch-first-01-latest-journal.json",
+      "field": "decision.reason",
+      "observed_text": "任意の入口の実装と機能確認は完了しましたが、実際の探索での比較が未完了のため、方式の採否はまだ判断していません。機能検査の合格を本採用とは扱いません。",
+      "verdict": "PASS",
+      "finding": "実装と機能確認は完了、実際の探索比較は未完了、そのため採否は未判断という現在状態と一致する。前回の項目1・3で指摘した同一箇所の矛盾は解消。",
+      "scope": "decision.reason のみを再読。他の項目・ファイル内容・採否基準・結果は再確認していない。"
+    }
+  ],
+  "overall_verdict_after_follow_up": "PASS"
+}
