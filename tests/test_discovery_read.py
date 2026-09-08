@@ -93,7 +93,7 @@ def test_all_sections_reassemble_the_saved_data(session: Path) -> None:
                     if k not in {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}}
     packet_meta = json.loads("".join(read_all(session, key, "packet_metadata", 2)))
     assert packet_meta == {k: v for k, v in data.items()
-                           if k not in {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources"}}
+                           if k not in {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history"}}
 
 
 def test_empty_and_exact_end_pages_report_completion(session: Path) -> None:

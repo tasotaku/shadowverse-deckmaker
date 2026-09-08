@@ -36,7 +36,7 @@ def _sections(data: JSONDict) -> dict[str, Section]:
     # AI_NOTE: よく読む資料を独立区分にし、残りの属性も残す。新しい属性が増えても読出しで失わない。
     context: JSONDict = data["context"]
     context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
-    packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources"}
+    packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history"}
     return {
         "cards": Section("cards", context["cards"]),
         "rules": _lines(context["rules"]),
@@ -47,6 +47,7 @@ def _sections(data: JSONDict) -> dict[str, Section]:
         "search": Section("questions", data["search"]),
         "proposal": _lines(data["proposal"]) if data["proposal"] is not None else Section("lines", []),
         "previous_reviews": Section("reviews", data["previous_reviews"]),
+        "history": _lines(data.get("history", [])),
         # AI_NOTE: 本文を改行保持の配列へ展開し、長い1資料を1項目・1JSON行へ詰め込まない。
         "sources": _lines([{**source, "content": source["content"].splitlines(keepends=True)}
                            for source in data.get("sources", [])]),

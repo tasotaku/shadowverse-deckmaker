@@ -184,6 +184,27 @@ def attach(session: Path, payload: JSONDict) -> JSONDict:
     return save_sources(session, payload)
 
 
+def _history(session: Path, proposal: JSONDict | None) -> list[JSONDict]:
+    # AI_NOTE: 選んだ枝の先祖案と当時の検索だけを渡し、他の枝や過去の評価値を混ぜない。
+    records = []
+    while proposal is not None:
+        parent = proposal.get("parent_revision")
+        if type(parent) is not int or not 0 <= parent < proposal["revision"]:
+            raise ValueError("先祖案の番号が不正です。親は現在の改訂より前の番号です")
+        proposal = _revision(session, parent)
+        if proposal is None:
+            break
+        key = proposal.get("packet_hash")
+        if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key):
+            raise ValueError("先祖案のpacket_hashが不正です")
+        prior = _read_envelope(session / "packets" / f"{key}.json")
+        if digest(prior) != key or prior["context_hash"] != proposal["context_hash"]:
+            raise ValueError("先祖案と当時の資料が一致しません")
+        records.append({"proposal": proposal, "input_search": prior["search"],
+                        "input_source_hashes": [s["source_hash"] for s in prior.get("sources", [])]})
+    return list(reversed(records))
+
+
 def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     # AI_NOTE: 改訂から不足を再検索し、全文と別評価を次の担当へ渡す。
     context = _context(session)
@@ -207,6 +228,7 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
             "instruction": REVIEW if stage == "review" else DEVELOP,
             "proposal": proposal, "previous_reviews": previous_reviews, "search": search,
+            "history": _history(session, proposal),
             "sources": load_sources(session),
             "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。"
                             "資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",

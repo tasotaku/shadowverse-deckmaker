@@ -107,6 +107,10 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --of
 
 前の案を変えた理由と内容を記し、次の回答も `submit` で取り込みます。
 `packet --revision 1` のように親を選べば枝分かれでき、`--revision 0` は別の着想の入口です。
+`history` には選んだ案の先祖だけが古い順に入り、各案を提出する際の検索結果と追加資料の識別値も残ります。
+別評価でもこの履歴を読めます。無関係な枝や過去の評価記録は含めません。
+検索の一致件数は、その条件を調べ尽くした証明ではありません。実施した比較・全文検査の結果は、
+範囲と限界を記した資料として `attach` で加えてください。履歴の読出しは `read SESSION HASH history` です。
 
 推薦する前は、提案担当とは別のAIセッションで評価します。
 
