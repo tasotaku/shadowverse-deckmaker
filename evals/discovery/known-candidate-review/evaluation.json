@@ -1,0 +1,52 @@
+{
+  "verdict": "FAIL",
+  "matched_case_count": 1,
+  "case_count": 2,
+  "expected_file": "/tmp/sv-discovery-negative-cases/expected.json",
+  "expected_sha256": "9e7b5bfff072be49b7dca913699db7cd3ac1cf7f23c0a515aae98b5bd66e88d8",
+  "criteria_changed": false,
+  "cases": [
+    {
+      "case": "knife",
+      "expected_value": "drop",
+      "actual_value": "drop",
+      "procedure": "conditional",
+      "novelty": "unconfirmed",
+      "value_regression_verdict": "PASS",
+      "review_file": "/tmp/sv-discovery-value-review/a-review.json",
+      "review_sha256": "73ecfa9a599541827095a4742d89b82a03b5d41b010bb9c51eecc517f7d13185",
+      "packet_hash": "0dd61a139de78d0629ee78dd5ab6b601e36d86dd5ea792352d34ab47d7899994",
+      "scope": "手順は条件付き成立。実戦推薦と新発見は未確認。"
+    },
+    {
+      "case": "imari",
+      "expected_value": "drop",
+      "actual_value": "develop",
+      "procedure": "conditional",
+      "novelty": "unconfirmed",
+      "value_regression_verdict": "FAIL",
+      "review_file": "/tmp/sv-discovery-value-review/b-review.json",
+      "review_sha256": "bb9c5ed684bd1722253f1e2d6869568981cdc096f6bb8d35170bf27b012b4824",
+      "packet_hash": "d4f034cde9802fc9535579ed9e118575246f3821f13e0ca651c7efea8c81dff2",
+      "scope": "成立や推薦ではなく、現17枚型への調査継続判断の未達。"
+    }
+  ],
+  "observed_input_gaps": [
+    "比較元40枚全体と個々の増減が入力にない。変更後40枚は全件ある。",
+    "9/7元文書にある序盤・対面と反復展開への使用者経験を具体的には転記していない。",
+    "イマリnoteは空。ナイフの両側にはユーザーの明示的見送りがあり、入力の非対称性がある。"
+  ],
+  "observed_judgment": "レビューは具体的な利益と負担を正しく読んだが、同じ未解決点を比較すれば変わりうるとしてdevelopへ残した。新しい解決根拠は示していない。",
+  "diagnosis": "入力欠落は確認済み。調査継続のための積極的な根拠を求める判断基準が弱いという仮説も支持される。同時に発生しているため唯一の原因は未確定。",
+  "root_cause_confirmed": false,
+  "not_a_failure_claim": [
+    "イマリを実戦推薦したとは扱わない。",
+    "本文や7PPの計算が破綻したとは扱わない。",
+    "条件数・直接打点0・除去一般を一律の棄却理由にしない。"
+  ],
+  "next_discriminator": "指示・カード・採点を固定し、欠けた既存事実と両側の経験根拠だけを新入力へ追加して独立評価する。元評価は変更しない。",
+  "followup_executed": false,
+  "code_or_db_changed": false,
+  "source_lookup_limit": "対象の試行資料・当時の一時保存・現行および当時DBでは完全な比較元40枚を確認できず。全領域の不存在とは主張しない。",
+  "details": "/tmp/sv-discovery-negative-cases/evaluation.md"
+}
