@@ -1,0 +1,57 @@
+{
+  "actor": "/root/natural_trial_generator",
+  "public_session": "/tmp/sv-natural-system-trial/session",
+  "commands": [
+    {
+      "command": "python -m svdeck.discovery packet SESSION",
+      "result": "初期packetを保存し本文・注記等を分割表示して読取"
+    },
+    {
+      "command": "python -m svdeck.discovery attach SESSION rounds/round-1-sources.json",
+      "result": {
+        "added": 8,
+        "existing": 0,
+        "total": 12
+      }
+    },
+    {
+      "command": "python -m svdeck.discovery attach SESSION rounds/round-1-rules-source.json",
+      "result": {
+        "added": 1,
+        "existing": 0,
+        "total": 13
+      }
+    },
+    {
+      "command": "python -m svdeck.discovery packet SESSION",
+      "result": {
+        "sha256": "19dcb85050b37280905d2fcf9c215bad8058e2e4adbad1fe7da2557fe8799c36"
+      }
+    },
+    {
+      "command": "python -m svdeck.discovery submit SESSION rounds/round-1-proposal.json",
+      "result": {
+        "revision": 1,
+        "procedure": "未評価",
+        "value": "未評価",
+        "next": "不足を調べるならpacket、別評価するならpacket --stage review"
+      }
+    },
+    {
+      "command": "python -m svdeck.discovery report SESSION",
+      "result_file": "round-1-report.json"
+    }
+  ],
+  "friction": [
+    "READMEはsummary/readを説明しているが、全文packetのcontext内のフィールド階層を最初は取り違えた。data.rulesではなくdata.context.rulesだった。公開packetのキー表示で自己解決。",
+    "212枚の資料を一度に表示せず数回に分割した。カード読取は途切れず終えたが、一般ルール群の最初の結合読出しは出力が切れ、関係ファイルを再読した。",
+    "Webツールで公式API4件はInternal Error。同じ公開URLをurllibで読み、HTTP200と本文を取得できた。公開ヘルプは動的な本文がWebツールに出ず、進化の数値補正は公式検索抜粋の範囲に限定。",
+    "検索結果のエズディア記事要約と開いた記事本文でゲテンオウの有無が一致せず、確認済みの先行用法資料としては使わなかった。",
+    "調査をattachすると新packetが必要な点はREADMEどおりに操作できた。提出JSONの本文引用はpacketから正確に抜いて作成できた。"
+  ],
+  "limits": [
+    "コード・DB・evals・採点資料・他の実験は読まず、本文と公開操作だけで初回案を作成。",
+    "ゲーム内対戦、提出案の手順・価値・独自性の別評価は未実施。",
+    "セルフreviewコマンドは実行していない。別担当の評価待ち。"
+  ]
+}

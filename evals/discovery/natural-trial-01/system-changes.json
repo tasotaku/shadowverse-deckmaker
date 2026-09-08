@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-09-08T08:41:44.896131+00:00",
+  "changes": [
+    {
+      "commit": "7c82fa6e95d3a87f7258d5349d70be96e2daacb8",
+      "trigger": "探索担当とrootがともに全文JSONのdata.contextの位置を取り違えた。担当は自己解決して初回submitを完了した。",
+      "change": "packet --summary の各区分へ full_packet_path を追加。READMEにも全文の階層を記載。既存packet・response形式・考案/評価指示・採点条件は変更しない。",
+      "phase": "revision1の提出後、独立レビュー進行中。",
+      "verification": "関連50tests・mypy2files・実保存review packetの全16参照位置が解決し、hashは追加前と同一。",
+      "limits": "修正後に迷いが減ったかの自然操作による評価は、まだ行っていない。初回提出自体は修正前の公開入口で完了。"
+    },
+    {
+      "commit": "9cd1b02",
+      "change": "meta取得の完全性と来歴保持を修正。新しく開始するcontextに来歴を渡す。既に開始済みの今回のtrialのcontextとsnapshotは変更しない。",
+      "phase": "revision1提出後、独立レビュー進行中。",
+      "verification": "統合後162tests/mypy8files PASS。今回のElf比較元4構築は再取得後と全札/count一致を別記録で確認。",
+      "limits": "今回の固定済み4資料へ後から来歴フィールドを追加したことにはしない。新機能の確認は別の公開start/packetで行った。"
+    },
+    {
+      "commit": "5b832ed4c5b2f9ba37f1fc261037a7de698c103d",
+      "trigger": "独立レビュー担当が公開の空配列の例からweb_checksの必要キーを分からず、urlとfindingで2回登録に失敗。",
+      "change": "review回答例とREADMEにurl/query/checked_at/findingの記録例と未調査時の空配列を説明。判定基準のREVIEW本文・validatorは変更しない。",
+      "phase": "revision1の評価完了後、revision2用調査中。",
+      "verification": "公開回答例から作成した形式検査が1回で通り、全163tests・mypy2filesもPASS。",
+      "limits": "元の独立評価は形式修正のみで3回目に登録された記録を保持。新しい例の自然な利用による改善は次回評価で観測する。"
+    }
+  ]
+}

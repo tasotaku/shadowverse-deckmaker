@@ -1,0 +1,44 @@
+{
+  "author": "/root/natural_trial_review_1",
+  "packet_hash": "28e7400a84bf198da332225ab92a5babc4bc2a5c9ecd1e593bfdf3fc9e77b134",
+  "obstacles": [
+    {
+      "operation": "python -m svdeck.discovery review SESSION ANSWER",
+      "attempt": 1,
+      "exit_code": 2,
+      "error": "探索入力エラー: url に空でない文字列が必要です",
+      "cause_observed": "response_exampleではweb_checksが空配列で、配列内の項目に必要なキーが示されていない。最初の回答はurls配列で記録したところurl単数を要求された。",
+      "recovery": "web_checksをURLごとの項目にし、urlへ単一文字列を置いて再登録する。評価内容は変更していない。"
+    },
+    {
+      "operation": "python -m svdeck.discovery review SESSION ANSWER",
+      "attempt": 2,
+      "exit_code": 2,
+      "error": "探索入力エラー: finding に空でない文字列が必要です",
+      "cause_observed": "web_checksの観察結果欄はresultではなくfindingを要求された。",
+      "recovery": "resultをfindingへ変更。評価内容は維持。"
+    }
+  ],
+  "scope": "README、同一hashのreview資料と公開read、許可されたルール、外部公開情報のみ。src/evals/DB直読み/他の実験・採点資料は読んでいない。",
+  "reading_note": "カードは提案の役割・比較元・生成物に関係する21枚の本文と注記を確認。proposal全306行、sources全505行、rules全117行、principles全498行、keywords全37件、known_decks全4件、search全5件、context_metadataを分割で読んだ。カード表示が一度切れた部分は小さく分割して再読した。全212枚の新規探索は担当範囲に含めていない。",
+  "result": "公開reviewは3回目に成功。直後の公開reportで同じauthor/hashの評価1件と判定・全findings・全next_questionsの一致を確認。",
+  "report_confirmation": {
+    "revision": 1,
+    "author": "/root/natural_trial_review_1",
+    "packet_hash": "28e7400a84bf198da332225ab92a5babc4bc2a5c9ecd1e593bfdf3fc9e77b134",
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed",
+    "findings": 5,
+    "next_questions": 3,
+    "web_checks": 7,
+    "saved_fields_match": true,
+    "web_check_keys": [
+      "query",
+      "checked_at",
+      "limitations",
+      "url",
+      "finding"
+    ]
+  }
+}
