@@ -1,0 +1,151 @@
+{
+  "started_at": "2026-09-08T12:17:49.550670+00:00",
+  "production_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "copy_db": "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+  "original_base_session": "/tmp/sv-sketch-first-01/base-session",
+  "known_decks_before": "8件、2026-07-30取得、1件は現在の採用条件外。元保存版は保持。",
+  "non_meta_tables_before": {
+    "ability_keyword": {
+      "rows": 37,
+      "columns": [
+        "title",
+        "text",
+        "fetched_at"
+      ],
+      "sha256": "004465e32217b66bce4c4cb3cce408ebb33be2c1e7682242fbbd03ff137e95de"
+    },
+    "anchor_require": {
+      "rows": 70,
+      "columns": [
+        "id",
+        "card_id",
+        "req_type",
+        "requirement",
+        "req_tag",
+        "deadline_turn",
+        "source",
+        "status",
+        "note",
+        "updated_at"
+      ],
+      "sha256": "9f63c4dccdaa5baa4be96bfc3d3af6fa2b047fb1445bb051fc98d57175c2a1a9"
+    },
+    "atom_tag": {
+      "rows": 3198,
+      "columns": [
+        "card_id",
+        "kind",
+        "tag"
+      ],
+      "sha256": "84e6f0c4879fe88259928eb7f1a90571a73a9184305294d55d9c9d9936b28c96"
+    },
+    "card": {
+      "rows": 904,
+      "columns": [
+        "card_id",
+        "name",
+        "name_ruby",
+        "skill_text",
+        "flavour_text",
+        "cost",
+        "atk",
+        "life",
+        "class",
+        "class_name",
+        "type",
+        "type_category",
+        "rarity",
+        "rarity_name",
+        "card_set_id",
+        "is_token",
+        "deck_enabled_num",
+        "is_include_rotation",
+        "base_card_id",
+        "original_card_id",
+        "evo_json",
+        "style_json",
+        "common_json",
+        "ref_effect_text"
+      ],
+      "sha256": "1c07532ecfe97403275bf61b82b3cf4d8f6a083665f94edc4a8ddb815f36d04e"
+    },
+    "card_atom": {
+      "rows": 904,
+      "columns": [
+        "card_id",
+        "atoms_json",
+        "model",
+        "extracted_at"
+      ],
+      "sha256": "3a663f4aa84843ee01ff9604ca1cb4120fcfaddb88c28dff9140947ff33bcd1c"
+    },
+    "card_flag": {
+      "rows": 0,
+      "columns": [
+        "card_id",
+        "favorite"
+      ],
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "card_note": {
+      "rows": 82,
+      "columns": [
+        "card_id",
+        "note",
+        "updated_at"
+      ],
+      "sha256": "1bf41f9228ddfe47e114fb086546b40313d8adc3d9e05d218cdc103c6631f208"
+    },
+    "card_set": {
+      "rows": 10,
+      "columns": [
+        "id",
+        "name"
+      ],
+      "sha256": "2c0866f2bc1eed284385ca7942f32bef6c5e7d29fdb780e2ceeadee760005f19"
+    },
+    "card_tag": {
+      "rows": 44,
+      "columns": [
+        "card_id",
+        "tag"
+      ],
+      "sha256": "f7a120ca2fa30878b0890a025e5de5ca42de1fd583ddd47b68625c5a24be578b"
+    },
+    "card_tribe": {
+      "rows": 904,
+      "columns": [
+        "card_id",
+        "tribe_id"
+      ],
+      "sha256": "dd2ddbc22bc83d82e6ab28b957af43daba41825e28fdb4a37a65ab940822bd37"
+    },
+    "card_vschema": {
+      "rows": 826,
+      "columns": [
+        "card_id",
+        "schema_json",
+        "model",
+        "extracted_at"
+      ],
+      "sha256": "3452513eaf26fd864df0f84397040c68e5bae3b1ed645a87c4c805eab1669da6"
+    },
+    "skill_name": {
+      "rows": 38,
+      "columns": [
+        "id",
+        "name"
+      ],
+      "sha256": "196ec40b21fd084490f9544f3a27e932d2d67df3c285de8ee21a98dfce68e9ba"
+    },
+    "tribe": {
+      "rows": 16,
+      "columns": [
+        "id",
+        "name"
+      ],
+      "sha256": "c478eb6e4d22d7424825fb3aa13ec2bea5c6339308fbd0a8e8ba6bd8e2675d52"
+    }
+  },
+  "method": "sqlite read-only source backup; public meta --db copy only"
+}
