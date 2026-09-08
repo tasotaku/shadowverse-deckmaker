@@ -1,10 +1,10 @@
-"""アンカー深掘りCLI(explore)。design.md §6検索の2本(タグ検索+LLM走査)+算術チェック+クロージャ組み+
+"""アンカー深掘りCLI(explore)。design.md §6検索の2本(タグ検索+LLM走査)+数量概算+候補集合の列挙+
 §7novelty照合+LLM走査パック出しを1コマンドにまとめる。
 
 .claude/plans/anchor-require-and-explore.md のフェーズ2・Step7〜9。anchor_requireから対象アンカーの
 要求を読み、要求ごとにタグ検索(bench.pyの_matches経由・同クラス+ニュートラル)で供給候補card_idを列挙し、
-蓄積型(accumulate)要求には算術チェック(自然増レート+候補上乗せの貪欲スケジュール)を接続する。
-さらに全active要求を同時に閉じる3枚以内のクロージャ候補を列挙し、クロージャ候補card_idについて
+蓄積型(accumulate)要求には数量の概算(自然増レート+候補上乗せ)を接続する。PP収支・使用手順は検証しない。
+さらに全active要求に型が合う3枚以内の候補集合を列挙し、その候補card_idについて
 novelty照合(meta_deck/meta_deck_cardでアンカーとの同居デッキ検索・design.md§7「フィルタしない・
 全部見せる」)、全active要求についてLLM走査パック(skill_text+card_noteコーパスdata/card_memo.txtを
 読ませる走査指示文。2026-07-07改訂でLIKE全文検索(旧はしご2段目)を廃止し常設化)を調書末尾に添える。
@@ -39,6 +39,10 @@ from svdeck.db import connect
 DEFAULT_FORMAT = "rotation"
 CLOSURE_CANDIDATE_TOP_N = 8  # AI_NOTE: 組合せ爆発対策(計画書「詰まったときのルール」)。8枚→遅ければ5枚に下げる想定
 CLOSURE_MAX_SIZE = 3
+QUANTITY_LIMITS = (
+    "未検証: PP総支出、自然増と候補加算で使うPPの重複、各ターンの使用順・起動条件。"
+    "この概算は数量の上限や手順成立の証明ではなく、不足だけで候補を棄却しません。"
+)
 
 
 class RequireRow(NamedTuple):
@@ -56,6 +60,7 @@ class Candidate(NamedTuple):
     name: str
     cost: int | None
     reason: str  # ヒット根拠(タグ名 or マッチ語)
+    note: str | None = None
 
 
 def is_anchor(conn: sqlite3.Connection, card_id: int) -> bool:
@@ -184,12 +189,14 @@ def tag_search(
         # 全候補が同じラベルになり調書の根拠として読めないため(司令塔レビュー指摘)。
         matched = _matched_supply_tag(tag, supply_tags, allowed, lookup)
         if matched is not None:
-            hits.append(Candidate(candidate_id, name, cost, f"タグ:{matched}"))
+            # AI_NOTE: 供給側の過去の訂正も候補と一緒に渡し、アンカー側だけ読む取りこぼしを防ぐ。
+            note_row = conn.execute("SELECT note FROM card_note WHERE card_id = ?", (candidate_id,)).fetchone()
+            hits.append(Candidate(candidate_id, name, cost, f"タグ:{matched}", note_row[0] if note_row else None))
     return hits
 
 
 class CardContribInfo(NamedTuple):
-    # AI_NOTE: クロージャのPP収支検査でも算術チェックでも同じ「1枚あたりの寄与」が要るため、
+    # AI_NOTE: 候補集合と要求単位の数量概算で同じ「1枚あたりの寄与」が要るため、
     # 候補card_idに対する寄与情報をここで1回だけ引いて使い回す形にする。
     card_id: int
     name: str
@@ -232,6 +239,7 @@ class GreedyStep(NamedTuple):
 
 
 class ArithmeticResult(NamedTuple):
+    # AI_NOTE: boolは数量の比較だけを表し、PP収支や使用手順の成否として扱えない名前にする。
     counter: str
     threshold: int
     deadline_turn: int
@@ -242,8 +250,8 @@ class ArithmeticResult(NamedTuple):
     generic_warning: bool  # 汎用レートでは自然増だけで届かない(表示のみの警告)
     topup_schedule: list[GreedyStep]
     topup_total: float
-    passed: bool  # 専用構築レート+候補上乗せの楽観上界で届くか(これがFalseの時だけハードフィルタ相当)
-    shortfall: float  # 不足量(0以上。passed時は0)
+    quantity_reached: bool  # この概算で要求量以上か。手順成立や棄却の判定には使わない
+    shortfall: float  # この概算の不足量(0以上)
 
 
 def compute_arithmetic(
@@ -256,11 +264,8 @@ def compute_arithmetic(
     fmap: FulfillmentMap,
     category_lookup: CategoryLookup,
 ) -> ArithmeticResult | None:
-    # AI_NOTE: design.md§6.2「蓄積型の算術チェック」+「実測レートの限界と却下の運用」の実装。
-    # (a)専用構築レート(dedicated)のみで届くか (b)候補供給の上乗せ(Δ/PP効率順の貪欲・各3積み)込みで
-    # 届くかを計算する。passed=Falseは「専用構築+上乗せの楽観上界でも届かない」場合のみ=計画書が
-    # ハードフィルタを許す唯一のケース。汎用レート(generic_warning)は表示専用の警告に留める
-    # (計画書「算術FAILはハードフィルタにしない」)。
+    # AI_NOTE: 既存構築のレートと各3枚までの候補加算を比較する数量概算。PP支出と自然増の
+    # 二重使用・使用時点・条件は未検証なので、到達でも成立とはせず、未達でも候補を棄却しない。
     counter = _counter_for_tag(tag)
     if counter is None:
         return None
@@ -304,7 +309,7 @@ def compute_arithmetic(
             if copies > 0:
                 schedule.append(GreedyStep(info.card_id, info.name, copies, gained, pp_spent))
 
-    passed = topped_up >= threshold
+    quantity_reached = topped_up >= threshold
     shortfall = max(threshold - topped_up, 0.0)
     return ArithmeticResult(
         counter=counter,
@@ -317,7 +322,7 @@ def compute_arithmetic(
         generic_warning=generic_warning,
         topup_schedule=schedule,
         topup_total=topped_up,
-        passed=passed,
+        quantity_reached=quantity_reached,
         shortfall=shortfall,
     )
 
@@ -358,16 +363,16 @@ def build_requirement_report(
 
 
 def format_candidate(candidate: Candidate) -> str:
+    # AI_NOTE: 候補の根拠と同じ場所にユーザー注記を表示し、過去の棄却理由を参照できるようにする。
     cost_text = str(candidate.cost) if candidate.cost is not None else "?"
-    return f"    {candidate.card_id} {candidate.name} (コスト{cost_text}) [{candidate.reason}]"
+    line = f"    {candidate.card_id} {candidate.name} (コスト{cost_text}) [{candidate.reason}]"
+    return f"{line}\n      card_note: {candidate.note}" if candidate.note else line
 
 
 def format_arithmetic(arithmetic: ArithmeticResult) -> list[str]:
-    # AI_NOTE: design.md§6.2の表示規約通り「専用構築レート+上乗せの楽観上界でも届かない」場合のみ
-    # FAILとして不足量を添えて出す。汎用レートの不足は警告(⚠)止まりで非表示フィルタにしない
-    # (計画書「算術FAILはハードフィルタにしない」)。
+    # AI_NOTE: 数量比較をPASS/FAILと呼ばず、PP収支と時間を検証していないことを同時に見せる。
     lines = [
-        f"  [算術] 自然増: 専用構築レート{arithmetic.dedicated_rate:.3f}/PP × 累積PP{arithmetic.cum_pp}"
+        f"  [数量の概算] 自然増: 専用構築レート{arithmetic.dedicated_rate:.3f}/PP × 累積PPの仮定{arithmetic.cum_pp}"
         f"(T{arithmetic.deadline_turn}) ≈ {arithmetic.natural_only_dedicated:.1f} / 要求{arithmetic.threshold}"
     ]
     if arithmetic.generic_warning:
@@ -378,11 +383,12 @@ def format_arithmetic(arithmetic: ArithmeticResult) -> list[str]:
         schedule_text = ", ".join(
             f"{step.name}×{step.copies}(+{step.gained:.1f}/{step.pp_spent}PP)" for step in arithmetic.topup_schedule
         )
-        lines.append(f"  上乗せ貪欲スケジュール: {schedule_text} → 合計{arithmetic.topup_total:.1f}")
-    if arithmetic.passed:
-        lines.append(f"  → PASS(専用構築レート+上乗せの楽観上界で到達: {arithmetic.topup_total:.1f} ≥ {arithmetic.threshold})")
+        lines.append(f"  候補加算の内訳: {schedule_text} → 合計{arithmetic.topup_total:.1f}")
+    if arithmetic.quantity_reached:
+        lines.append(f"  → 数量概算は要求以上({arithmetic.topup_total:.1f} ≥ {arithmetic.threshold})")
     else:
-        lines.append(f"  → FAIL(楽観上界でも不足量{arithmetic.shortfall:.1f}。候補は非表示にせず上に列挙済み)")
+        lines.append(f"  → 数量概算は未達(不足{arithmetic.shortfall:.1f}。候補は上に列挙済み)")
+    lines.append(f"  {QUANTITY_LIMITS}")
     return lines
 
 
@@ -407,6 +413,9 @@ def format_report(
         require = report.require
         deadline = f" deadline=T{require.deadline_turn}" if require.deadline_turn is not None else ""
         lines.append(f"--- 要求{i} ({require.req_type}/{require.status}): {require.requirement}{deadline}")
+        # AI_NOTE: 同じ使い方を再提案しないため、カード全般への注記とは別に要求固有の注記も表示する。
+        if require.note:
+            lines.append(f"  要求note: {require.note}")
         if report.manual:
             lines.append("  [manual] requirementがタグ文法に合致せず機械検索対象外(要LLM走査)")
         total_hits = len(report.tag_hits)
@@ -420,7 +429,7 @@ def format_report(
             if report.arithmetic is not None:
                 lines.extend(format_arithmetic(report.arithmetic))
             else:
-                lines.append("  [算術] 閾値/deadlineが機械抽出できないため算術スキップ")
+                lines.append("  [数量の概算] 閾値・期限・対応する計数のいずれかが不明のため算出できません")
         lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"
@@ -461,7 +470,7 @@ class ClosureCandidateSet(NamedTuple):
     card_ids: tuple[int, ...]
     names: tuple[str, ...]
     covered_require_indices: frozenset[int]
-    pp_notes: list[str]  # accumulate要求を含む場合のPP収支検査結果(PASS/不足量)
+    quantity_notes: list[str]  # accumulate要求の数量概算と未検証の範囲
 
 
 def find_closures(
@@ -469,15 +478,16 @@ def find_closures(
     reports: list[RequirementReport],
     category_lookup: CategoryLookup,
 ) -> list[ClosureCandidateSet]:
-    # AI_NOTE: design.md§6.3「提案単位=要求クロージャ」の実装。全active要求を同時に閉じる3枚以内の
-    # 「最小」カードセットを列挙する。サイズ昇順で列挙するため1枚で複数要求を満たすカードのセットが
+    # AI_NOTE: 全active要求に型が合う3枚以内の「最小」カード集合を列挙する。候補ゼロの要求を
+    # 除外すると未充足なのに全要求を閉じたように扱えるため、1件でもあれば集合を返さない。
+    # サイズ昇順で列挙するため1枚で複数要求を満たすカードのセットが
     # 先に出る。既に全要求を閉じたセットの上位集合(スーパーセット)は最小でないため列挙しない
     # (§6.3「最小カード集合」・司令塔レビュー指摘)。要求が無ければ空リスト(「不成立」表示はexplore側)。
     active_indices = [idx for idx, r in enumerate(reports) if r.require.status == "active"]
     if not active_indices:
         return []
     pool = _closure_candidate_pool(conn, reports, category_lookup)
-    if not pool:
+    if set(pool) != set(active_indices):
         return []
 
     # AI_NOTE: card_id -> それが満たす要求indexの集合(候補プールに出現した全要求から逆引き)。
@@ -491,7 +501,7 @@ def find_closures(
     all_card_ids = sorted(coverage.keys())
     results: list[ClosureCandidateSet] = []
     found_sets: list[set[int]] = []  # 既に成立したセット(card_id集合)。スーパーセット除外に使う
-    target = set(pool.keys())  # 候補が1件もない要求は「閉じられない」ので対象外にする(候補ゼロは明示済み)
+    target = set(active_indices)
     for size in range(1, CLOSURE_MAX_SIZE + 1):
         for combo in combinations(all_card_ids, size):
             combo_set = set(combo)
@@ -518,21 +528,21 @@ def find_closures(
                     card_ids=combo,
                     names=tuple(card_names[c] for c in combo),
                     covered_require_indices=frozenset(covered),
-                    pp_notes=_closure_pp_notes(conn, combo, reports, target, category_lookup),
+                    quantity_notes=_closure_quantity_notes(conn, combo, reports, target, category_lookup),
                 )
             )
     return results
 
 
-def _closure_pp_notes(
+def _closure_quantity_notes(
     conn: sqlite3.Connection,
     combo: tuple[int, ...],
     reports: list[RequirementReport],
     target: set[int],
     category_lookup: CategoryLookup,
 ) -> list[str]:
-    # AI_NOTE: comboにaccumulate要求が含まれる場合のみPP収支検査を添える(design.md§6.2「消費の会計」は
-    # 消費側複数の合算だが、explore Step8スコープでは供給合計と閾値の比較のみを対象にする)。
+    # AI_NOTE: 自然増と各候補3枚の寄与を加算するだけなので、PP収支検査と呼ばず数量概算に限定する。
+    # 概算の不足を理由にこの集合を落とすことはせず、全行の後に検証していない範囲を示す。
     notes: list[str] = []
     for idx in sorted(target):
         report = reports[idx]
@@ -546,35 +556,40 @@ def _closure_pp_notes(
             combo_gain += (info.graveyard if counter == "graveyard" else info.renkei) * 3  # 各3積み前提
         threshold = report.arithmetic.threshold
         if combo_gain >= threshold:
-            notes.append(f"要求{idx + 1}のPP収支: PASS({combo_gain:.1f} ≥ {threshold})")
+            notes.append(f"要求{idx + 1}の数量概算(各候補3枚): 要求以上({combo_gain:.1f} ≥ {threshold})")
         else:
-            notes.append(f"要求{idx + 1}のPP収支: 不足{threshold - combo_gain:.1f}")
+            notes.append(f"要求{idx + 1}の数量概算(各候補3枚): 不足{threshold - combo_gain:.1f}")
+    if notes:
+        notes.append(QUANTITY_LIMITS)
     return notes
 
 
 def format_closures(reports: list[RequirementReport], closures: list[ClosureCandidateSet]) -> str:
+    # AI_NOTE: 型が合う集合だけを表示し、手順成立と取り違えない。未充足の要求は除外せず明示する。
     active_count = sum(1 for r in reports if r.require.status == "active")
-    lines = ["=== クロージャ候補(全active要求を閉じる最小セット) ==="]
+    lines = ["=== 型が合う候補集合(全active要求・手順成立は未検証) ==="]
     if active_count == 0:
         lines.append("(active要求なし)")
         return "\n".join(lines) + "\n"
-    # AI_NOTE: 候補0件のactive要求はfind_closuresが対象から外すため、「全active要求を閉じた」と
-    # 誤読されないよう対象外の要求を明示する(self-review指摘)。2026-07-07: 全文検索廃止によりtag_hits
-    # のみで判定(fulltext_hits参照を削除)。
     no_candidate = [
         i for i, r in enumerate(reports, start=1)
         if r.require.status == "active" and not r.tag_hits
     ]
     if no_candidate:
         nums = ", ".join(f"要求{i}" for i in no_candidate)
-        lines.append(f"注: {nums} は候補0件のためクロージャ対象外(LLM走査パック参照)")
+        lines.append(f"未充足: {nums} に型が合う候補がありません。全要求を覆う集合は出しません。")
+        lines.append("本文を読むLLM走査で追加候補を検討してください。手順の不成立が確定したわけではありません。")
+        return "\n".join(lines) + "\n"
     if not closures:
-        lines.append(f"クロージャ不成立(active要求{active_count}件を同時に閉じる3枚以内のセットが候補プール内に無い)")
+        lines.append(
+            f"active要求{active_count}件を覆う3枚以内の集合は候補プール内にありません。"
+            "手順の不成立が確定したわけではありません。"
+        )
         return "\n".join(lines) + "\n"
     for i, closure in enumerate(closures, start=1):
         names = ", ".join(f"{cid} {name}" for cid, name in zip(closure.card_ids, closure.names))
-        lines.append(f"{i}. {{{names}}} {len(closure.card_ids)}枚 / 充足要求: {sorted(i + 1 for i in closure.covered_require_indices)}")
-        for note in closure.pp_notes:
+        lines.append(f"{i}. {{{names}}} {len(closure.card_ids)}枚 / 型が合う要求: {sorted(i + 1 for i in closure.covered_require_indices)}")
+        for note in closure.quantity_notes:
             lines.append(f"    {note}")
     return "\n".join(lines) + "\n"
 
@@ -584,31 +599,34 @@ class NoveltyHit(NamedTuple):
     tier: str | None
 
 
-def check_novelty(conn: sqlite3.Connection, anchor_card_id: int, candidate_card_id: int) -> list[NoveltyHit]:
+def check_novelty(
+    conn: sqlite3.Connection, anchor_card_id: int, candidate_card_id: int, format_name: str
+) -> list[NoveltyHit]:
     # AI_NOTE: design.md§7「主判定=ローカルの環境デッキDB」の実装。アンカーと候補が同居する
     # meta_deck行をmeta_deck_card二回JOINで検索する(即答・全ペアコストゼロ)。ヒットなし=「未踏」
     # ではなくTier表DBの限界(§7)であり、この関数の戻り値だけでは判断しない
-    # (format_noveltyが注記を必ず添える)。
+    # (format_noveltyが注記を必ず添える)。別フォーマットの同居を既出根拠として混ぜない。
     rows = conn.execute(
         """
         SELECT DISTINCT d.name, d.tier
         FROM meta_deck_card mc1
         JOIN meta_deck_card mc2 ON mc1.deck_id = mc2.deck_id
         JOIN meta_deck d ON d.id = mc1.deck_id
-        WHERE mc1.card_id = ? AND mc2.card_id = ?
+        WHERE mc1.card_id = ? AND mc2.card_id = ? AND d.format = ?
         """,
-        (anchor_card_id, candidate_card_id),
+        (anchor_card_id, candidate_card_id, format_name),
     ).fetchall()
     return [NoveltyHit(name, tier) for name, tier in rows]
 
 
 def format_novelty(
-    conn: sqlite3.Connection, anchor_card_id: int, anchor_name: str, closures: list[ClosureCandidateSet]
+    conn: sqlite3.Connection, anchor_card_id: int, anchor_name: str,
+    closures: list[ClosureCandidateSet], format_name: str
 ) -> str:
     # AI_NOTE: クロージャ候補に登場した各card_idについてアンカーとの同居デッキを照合する
     # (計画書Step9「候補は落とさない」)。1枚が複数クロージャに出ても照合は1回で済むようcard_id単位で
     # 重複除去してから調書行を作る。
-    lines = ["=== novelty照合 ==="]
+    lines = [f"=== 既出照合({format_name}) ==="]
     seen: dict[int, str] = {}
     for closure in closures:
         for card_id, name in zip(closure.card_ids, closure.names):
@@ -618,7 +636,7 @@ def format_novelty(
         return "\n".join(lines) + "\n"
     for card_id in sorted(seen):
         name = seen[card_id]
-        hits = check_novelty(conn, anchor_card_id, card_id)
+        hits = check_novelty(conn, anchor_card_id, card_id, format_name)
         if hits:
             deck_text = ", ".join(f"「{h.deck_name}」({h.tier})" if h.tier else f"「{h.deck_name}」" for h in hits)
             lines.append(
@@ -643,6 +661,9 @@ def format_scan_pack(card_id: int, class_name: str, reports: list[RequirementRep
     lines = ["=== LLM走査パック(全active要求・タグ検索と併用) ==="]
     for i, require in targets:
         lines.append(f"要求{i}「{require.requirement}」")
+        # AI_NOTE: 要求に残した棄却理由を、LLMへ渡す節だけ取り出しても失わないようにする。
+        if require.note:
+            lines.append(f"  要求note: {require.note}")
     lines.append("")
     requirement_list = "\n".join(f"- 要求{i}「{require.requirement}」" for i, require in targets)
     class_scope = (
@@ -659,9 +680,9 @@ def format_scan_pack(card_id: int, class_name: str, reports: list[RequirementRep
 
 
 def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
-    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのタグ検索+算術→クロージャ組み→
+    # AI_NOTE: CLI本体。アンカー判定→要求読込→要求ごとのタグ検索+数量概算→候補集合の列挙→
     # novelty照合→LLM走査パック(全active要求に常設)→調書整形、を1関数で通す。measure_deck_rates/
-    # derive_ratesはexplore全体で1回だけ実行し、全要求の算術チェック+クロージャのPP収支検査で使い回す。
+    # derive_ratesはexplore全体で1回だけ実行し、要求と候補集合の数量概算で使い回す。
     # scan_pack_textが空になるのはactive要求が1つも無い時のみ(format_scan_pack参照)。
     conn = connect()
     try:
@@ -697,7 +718,7 @@ def explore(card_id: int, format_name: str = DEFAULT_FORMAT) -> str:
         ]
         closures = find_closures(conn, reports, category_lookup)
         report_text = format_report(card_id, card_name, class_name, card_note, reports, format_warning)
-        novelty_text = format_novelty(conn, card_id, card_name, closures)
+        novelty_text = format_novelty(conn, card_id, card_name, closures, format_name)
         scan_pack_text = format_scan_pack(card_id, class_name, reports)
         sections = [report_text, format_closures(reports, closures), novelty_text]
         if scan_pack_text:
