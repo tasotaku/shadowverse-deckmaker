@@ -23,6 +23,14 @@
       "phase": "revision1の評価完了後、revision2用調査中。",
       "verification": "公開回答例から作成した形式検査が1回で通り、全163tests・mypy2filesもPASS。",
       "limits": "元の独立評価は形式修正のみで3回目に登録された記録を保持。新しい例の自然な利用による改善は次回評価で観測する。"
+    },
+    {
+      "commit": "11a78e0049c8075756bd2d88397d31792338a75f",
+      "trigger": "同じ提出に13資料と23資料を渡した評価が保存され、旧問いも再検索へ残る。評価の入力版と現資料の差分は参照先を開かないと見えなかった。",
+      "change": "新しいdevelop資料とreportにreview_contextsを追加。各評価の入力版、当時の資料、現在との差分と問いを対応させる。旧問いの自動解決・評価の自動採用は行わない。",
+      "phase": "別評価2完了後、提案担当は変更前に固定したround-3-input-packetで追加比較中。固定カード、初期入力、REVIEW/DEVELOP、採点条件は変更しない。",
+      "verification": "統合後178testsとmypy4files PASS。本番DB不変。自然試行コピーで公開report/packet/summary/readの2評価が入力13→差分10、入力23→差分0を示し、新packetはreview_contexts以外が変更前と完全一致。",
+      "limits": "対応情報が表示されることまでの確認。問いの解決やAI判断の質の改善は未評価。"
     }
   ]
 }
