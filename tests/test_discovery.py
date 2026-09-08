@@ -74,6 +74,27 @@ def assessment(p: dict[str, Any]) -> dict[str, Any]:
             'web_checks': []}
 
 
+def test_public_review_example_describes_usable_web_check_fields(session: Path) -> None:
+    # AI_NOTE: 初利用で必要キーを2度推測した失敗を再現し、公開例だけから作った回答が一度で保存されるか確認する。
+    submit(session, proposal(packet(session, 0, 'develop')))
+    command = [sys.executable, '-m', 'svdeck.discovery']
+    output = subprocess.run(command + ['packet', str(session), '--stage', 'review', '--summary'],
+                            capture_output=True, text=True, check=True)
+    summary = json.loads(output.stdout)
+    fields = summary['response_example']['web_checks'][0]
+    # 実Web調査ではなく、回答形式の検査専用の値。
+    observed = {'url': 'https://example.test/fixture', 'query': '検査用の検索語',
+                'checked_at': '2026-09-08T00:00:00Z', 'finding': '検査用の資料との比較結果'}
+    assert set(fields) == set(observed)
+    response = assessment(packet(session, 1, 'review'))
+    response['web_checks'] = [{key: observed[key] for key in fields}]
+    path = session.parent / 'review-answer.json'
+    path.write_text(json.dumps(response), encoding='utf-8')
+    result = subprocess.run(command + ['review', str(session), str(path)], capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert report(session)['revisions'][0]['reviews'][0]['web_checks'] == response['web_checks']
+
+
 def test_unregistered_role_and_recursive_evidence(session: Path) -> None:
     p = packet(session, 0, 'develop')
     cards = {c['card_id']: c for c in p['data']['context']['cards']}

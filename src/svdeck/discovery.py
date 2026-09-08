@@ -167,7 +167,11 @@ def _example(stage: str, revision: int) -> JSONDict:
                 "findings": [{"axis": "procedure", "reason": "何を確認し何が残ったか", "evidence": []},
                              {"axis": "value", "reason": "比較した利益と負担", "evidence": []},
                              {"axis": "novelty", "reason": "既知との用途差と調査限界", "evidence": []}],
-                "next_questions": ["判断を変えうる次の問い"], "web_checks": []}
+                "next_questions": ["判断を変えうる次の問い"],
+                "web_checks": [{"url": "実際に開いたURL。1件につき1URL。未調査ならweb_checks全体を空配列にする",
+                                "query": "実際に使った検索語・照合対象",
+                                "checked_at": "実際の確認日時",
+                                "finding": "この出典で確認できた内容と限界。例の文字列をそのまま提出しない"}]}
     return {**common, "parent_revision": revision, "title": "案の短い名前", "hypothesis": "どう勝ちや役割配分が変わるか",
             "change": "初回の着眼点、または前の案から変えたこと",
             "roles": [{"card_id": 0, "role": "この案で担う役割", "access": "deck"}],
