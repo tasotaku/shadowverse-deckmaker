@@ -119,8 +119,10 @@ def _known_decks(conn: sqlite3.Connection, cards: list[JSONDict], format_name: s
     eligible = {c["card_id"] for c in cards if c["deck_eligible"]}
     classes = {c["class_name"] for c in cards if c["deck_eligible"]} - {"ニュートラル"}
     decks = []
-    for did, name, url, tier, updated, fetched in conn.execute(
-        "SELECT id,name,url,tier,updated_on,fetched_at FROM meta_deck WHERE format=? ORDER BY id", (format_name,)
+    # AI_NOTE: 固定済みの旧DBは移行せず、来歴列が無い場合も未保存として読み出す。
+    source_column = "source_json" if "source_json" in {r[1] for r in conn.execute("PRAGMA table_info(meta_deck)")} else "NULL"
+    for did, name, url, tier, updated, fetched, source in conn.execute(
+        f"SELECT id,name,url,tier,updated_on,fetched_at,{source_column} FROM meta_deck WHERE format=? ORDER BY id", (format_name,)
     ):
         entries = [{"card_id": cid, "name": cname, "count": count, "class_name": cls,
                     "currently_eligible": cid in eligible} for cid, cname, count, cls in conn.execute(
@@ -129,7 +131,7 @@ def _known_decks(conn: sqlite3.Connection, cards: list[JSONDict], format_name: s
         deck_classes = {e["class_name"] for e in entries} - {"ニュートラル", None}
         if entries and deck_classes and deck_classes <= classes:
             decks.append({"id": did, "name": name, "url": url, "tier": tier, "updated_on": updated,
-                          "fetched_at": fetched, "cards": entries,
+                          "fetched_at": fetched, "cards": entries, "source": json.loads(source) if source else None,
                           "currently_legal_list": all(e["currently_eligible"] for e in entries),
                           "interpretation": "保存時点の既知例。更新日と各札の現在の合法性を確認して比較する。"})
     return decks

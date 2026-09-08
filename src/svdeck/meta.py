@@ -8,13 +8,18 @@
 """
 
 import argparse
+from collections import Counter
 import html
+import json
 from pathlib import Path
 import re
 import sqlite3
+import sys
 import time
 import urllib.request
+from urllib.parse import parse_qs, urlparse
 from typing import NamedTuple
+from typing import Any
 
 from svdeck.db import DB_PATH, connect
 
@@ -42,6 +47,9 @@ class DeckLink(NamedTuple):
 class DeckDetail(NamedTuple):
     updated_on: str | None
     cards: list[tuple[str, int]]  # (card_name, count)
+    variant: str = ""
+    anchor: str = ""
+    copy_url: str = ""
 
 
 def _get_html(url: str) -> str:
@@ -91,7 +99,10 @@ def parse_gamewith_deck(html_text: str) -> DeckDetail:
     dict_segment = html_text[dict_start + len("window.wmt.cardDatas=[") : dict_end] if dict_start != -1 else ""
     id_to_name = dict(re.findall(r"id:'(\d+)',[^}]*?n:'([^']+)'", dict_segment))
 
-    cards = [(id_to_name[card_id], int(count)) for count, card_id in entries if card_id in id_to_name]
+    missing = [card_id for _, card_id in entries if card_id not in id_to_name]
+    if missing:
+        raise ValueError(f"GameWithのカード名辞書にIDがありません: {missing}。該当札を省いて更新しません")
+    cards = [(id_to_name[card_id], int(count)) for count, card_id in entries]
     return DeckDetail(updated_on=updated_on, cards=cards)
 
 
@@ -127,25 +138,106 @@ def parse_game8_tier(html_text: str, deck_format: str = "rotation") -> list[Deck
     return links
 
 
-def parse_game8_deck(html_text: str) -> DeckDetail:
-    # AI_NOTE: 「デッキレシピ」見出し(hl_1)〜「みんなの評価」見出しの区間にあるtdブロックを走査する。
-    # 各tdはtooltip内のalt="{名前}画像"とその後の<b class="a-bold">×{枚数}</b>のペア。
-    # 更新日はJSON-LDのdateModifiedから取る(記事メタなので構造が安定している)。
+def parse_game8_decks(html_text: str) -> list[DeckDetail]:
+    # AI_NOTE: 主レシピ節の小見出しごとに分離し、表示表と同じ見出しのコピー先を対応付ける。
     updated_match = re.search(r'"dateModified":"([^"]+)"', html_text)
     updated_on = updated_match.group(1) if updated_match else None
-
-    start = html_text.find('id="hl_1"')
-    end = html_text.find('id="hl_2"', start) if start != -1 else -1
-    if start == -1 or end == -1:
-        return DeckDetail(updated_on=updated_on, cards=[])
-    segment = html_text[start:end]
+    start = re.search(r'<h2\b[^>]*\bid="hl_1"[^>]*>', html_text)
+    if start is None:
+        raise ValueError("Game8の主レシピ節hl_1が見つかりません")
+    segment = re.split(r'<h2\b', html_text[start.end():], maxsplit=1)[0]
+    headings = list(re.finditer(r'<h3\b[^>]*\bid="([^"]+)"[^>]*>(.*?)</h3>', segment, re.DOTALL))
     pattern = re.compile(
         r'<td width="20%" class="center">\s*<span class="js-detail-tooltip.*?alt="([^"]+?)画像".*?</span>\s*'
         r'<b class="a-bold">×(\d+)</b>',
         re.DOTALL,
     )
-    cards = [(html.unescape(name), int(count)) for name, count in pattern.findall(segment)]
-    return DeckDetail(updated_on=updated_on, cards=cards)
+    details = []
+    for index, heading in enumerate(headings):
+        end = headings[index + 1].start() if index + 1 < len(headings) else len(segment)
+        block = segment[heading.end():end]
+        if not re.search(r'<th\b[^>]*\bcolspan="5"[^>]*>\s*デッキレシピ\s*</th>', block):
+            continue
+        links = list(dict.fromkeys(html.unescape(url) for url in re.findall(r'href="([^"]+)"', block)
+                                   if urlparse(html.unescape(url)).hostname == "shadowverse-wb.com"
+                                   and urlparse(html.unescape(url)).path.endswith("/deck/detail/")))
+        if len(links) > 1:
+            raise ValueError("1つのレシピ見出しに複数のコピー先があります。対応を確認してください")
+        cards = [(html.unescape(name), int(count)) for name, count in pattern.findall(block)]
+        variant = html.unescape(re.sub(r'<[^>]+>', '', heading.group(2))).strip()
+        details.append(DeckDetail(updated_on, cards, variant, heading.group(1), links[0] if links else ""))
+    if not details:
+        raise ValueError("Game8の主レシピ節から独立したデッキレシピを読めません")
+    return details
+
+
+def parse_game8_deck(html_text: str) -> DeckDetail:
+    # AI_NOTE: 単一レシピ用の既存入口で複数構築を混ぜたり、黙って1件だけ落としたりしない。
+    details = parse_game8_decks(html_text)
+    if len(details) != 1:
+        raise ValueError("複数レシピがあります。parse_game8_decksを使って別々に取得してください")
+    return details[0]
+
+
+def validate_deck(cards: list[tuple[str, int]], label: str) -> None:
+    # AI_NOTE: 不完全なリストをミラーへ入れず、同名の重複も合算で隠さない。
+    names = set()
+    for name, count in cards:
+        if not isinstance(name, str) or not name.strip() or type(count) is not int or count <= 0:
+            raise ValueError(f"{label}: 空でないカード名と正の整数枚数が必要です")
+        normalized = _normalize_name(name)
+        if normalized in names:
+            raise ValueError(f"{label}: カード名が重複しています: {name}")
+        names.add(normalized)
+    total = sum(count for _, count in cards)
+    if total != 40:
+        raise ValueError(f"{label}: 全40枚が必要ですが{total}枚です。欠けた札は推測しません")
+
+
+def _recipe_cards(conn: sqlite3.Connection, detail: DeckDetail, label: str,
+                  deck_format: str | None = None) -> list[tuple[str, int, int | None]]:
+    # AI_NOTE: コピーURLが明示するカードIDを直接使う。表示表との不一致は報告し、欠落を推測しない。
+    if not detail.copy_url:
+        validate_deck(detail.cards, label)
+        return [(name, count, _resolve_card_id(conn, name)) for name, count in detail.cards]
+    values = parse_qs(urlparse(detail.copy_url).query).get("hash", [])
+    if len(values) != 1 or not re.fullmatch(r'[12]\.[1-7](?:\.[0-9A-Za-z_-]+){40}', values[0]):
+        raise ValueError(f"{label}: コピーURLの40枚形式を読めません")
+    if deck_format is not None and values[0][0] != {"rotation": "1", "unlimited": "2"}[deck_format]:
+        raise ValueError(f"{label}: コピーURLとTier表のフォーマットが一致しません")
+    alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_"
+    counts: Counter[int] = Counter()
+    for token in values[0].split(".")[2:]:
+        cid = 0
+        for character in token:
+            cid = cid * 64 + alphabet.index(character)
+        counts[cid] += 1
+    result: list[tuple[str, int, int | None]] = []
+    for cid, count in counts.items():
+        row = conn.execute("SELECT name FROM card WHERE card_id=?", (cid,)).fetchone()
+        if row is None:
+            raise ValueError(f"{label}: コピー先のカードID{cid}が保存DBにありません")
+        result.append((str(row[0]), count, cid))
+    cards = [(name, count) for name, count, _ in result]
+    validate_deck(cards, label)
+    return result
+
+
+def _recipe_source(link: DeckLink, detail: DeckDetail, cards: list[tuple[str, int, int | None]]) -> dict[str, Any]:
+    # AI_NOTE: 取得対象・元見出し・表との差分をDBへ残し、次の探索担当にも同じ根拠を渡す。
+    shown: Counter[str] = Counter()
+    for name, count in detail.cards:
+        shown[_normalize_name(name)] += count
+    copied = Counter({_normalize_name(name): count for name, count, _ in cards})
+    copied_names = {_normalize_name(name): name for name, _, _ in cards}
+    shown_names = {_normalize_name(name): name for name, _ in detail.cards}
+    difference = {"copy_only_or_extra": [{"name": copied_names[name], "count": count} for name, count in (copied - shown).items()],
+                  "display_only_or_extra": [{"name": shown_names[name], "count": count} for name, count in (shown - copied).items()]}
+    return {"article_url": link.url, "heading": detail.variant or None, "heading_id": detail.anchor or None,
+            "selected_list": "copy_url" if detail.copy_url else "display_table", "copy_url": detail.copy_url or None,
+            "display_total": sum(shown.values()), "selected_total": sum(count for _, count, _ in cards),
+            "display_matches_copy": shown == copied if detail.copy_url else None,
+            "display_copy_difference": difference if detail.copy_url else None}
 
 
 def _resolve_card_id(conn: sqlite3.Connection, card_name: str) -> int | None:
@@ -167,17 +259,20 @@ def collect_deck_links() -> list[DeckLink]:
     for site, deck_format, url in TIER_SOURCES:
         html_text = _get_html(url)
         parser = parse_gamewith_tier if site == "gamewith" else parse_game8_tier
-        links.extend(parser(html_text, deck_format))
+        found = parser(html_text, deck_format)
+        if not found:
+            raise ValueError(f"{url}: Tier表にデッキが見つかりません。既存ミラーを維持します")
+        links.extend(found)
         time.sleep(REQUEST_INTERVAL_SEC)
     return links
 
 
-def collect_deck_detail(link: DeckLink) -> DeckDetail:
+def collect_deck_details(link: DeckLink) -> list[DeckDetail]:
     time.sleep(REQUEST_INTERVAL_SEC)
     html_text = _get_html(link.url)
     if link.site == "gamewith":
-        return parse_gamewith_deck(html_text)
-    return parse_game8_deck(html_text)
+        return [parse_gamewith_deck(html_text)]
+    return parse_game8_decks(html_text)
 
 
 def run(db: Path = DB_PATH) -> None:
@@ -185,29 +280,41 @@ def run(db: Path = DB_PATH) -> None:
     conn = connect(db)
     try:
         links = collect_deck_links()
+        if not links:
+            raise ValueError("取得したデッキが0件です。既存ミラーを維持します")
         print(f"[meta] Tier表からデッキ{len(links)}件を検出")
 
-        deck_rows = []
+        deck_rows: list[tuple[int, str, str, str, str, str, str | None, str]] = []
         card_rows: list[tuple[int, str, int, int | None]] = []
         matched, total_cards = 0, 0
         for i, link in enumerate(links):
-            detail = collect_deck_detail(link)
-            deck_id = i + 1
-            deck_rows.append(
-                (deck_id, link.site, link.url, link.name, link.tier, link.format, detail.updated_on)
-            )
-            for card_name, count in detail.cards:
-                card_id = _resolve_card_id(conn, card_name)
-                total_cards += 1
-                matched += card_id is not None
-                card_rows.append((deck_id, card_name, count, card_id))
-            print(f"[meta] {i + 1}/{len(links)}: [{link.site}/{link.format}] {link.name} カード{len(detail.cards)}種")
+            details = collect_deck_details(link)
+            if not details:
+                raise ValueError(f"{link.url}: デッキリストが0件です")
+            for detail in details:
+                name = f"{link.name}（{detail.variant}）" if len(details) > 1 else link.name
+                url = f"{link.url}#{detail.anchor}" if len(details) > 1 else link.url
+                resolved = _recipe_cards(conn, detail, f"{name} {url}", link.format)
+                source = _recipe_source(link, detail, resolved)
+                if source["display_matches_copy"] is False:
+                    print(f"[meta] 表示表とコピー先が不一致: {name} {url} 表{source['display_total']}枚/コピー40枚。"
+                          f"差分={source['display_copy_difference']} コピー先={detail.copy_url}")
+                deck_id = len(deck_rows) + 1
+                deck_rows.append((deck_id, link.site, url, name, link.tier, link.format, detail.updated_on,
+                                  json.dumps(source, ensure_ascii=False)))
+                for card_name, count, card_id in resolved:
+                    total_cards += 1
+                    matched += card_id is not None
+                    card_rows.append((deck_id, card_name, count, card_id))
+                origin = "記事のコピー対象リスト" if detail.copy_url else "記事の表示リスト"
+                print(f"[meta] {i + 1}/{len(links)}: [{link.site}/{link.format}] {name} "
+                      f"カード{len(resolved)}種/40枚 取得対象={origin}")
 
         conn.execute("DELETE FROM meta_deck_card")
         conn.execute("DELETE FROM meta_deck")
         conn.executemany(
-            "INSERT INTO meta_deck (id, site, url, name, tier, format, updated_on, fetched_at) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))",
+            "INSERT INTO meta_deck (id, site, url, name, tier, format, updated_on, source_json, fetched_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))",
             deck_rows,
         )
         conn.executemany(
@@ -222,13 +329,18 @@ def run(db: Path = DB_PATH) -> None:
         conn.close()
 
 
-def main(argv: list[str] | None = None) -> None:
+def main(argv: list[str] | None = None) -> int:
     # AI_NOTE: ヘルプや不正な引数は、DB接続・Web取得より前に処理する。
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", type=Path, default=DB_PATH, help="取得結果を保存するカードDB")
     args = parser.parse_args(argv)
-    run(args.db)
+    try:
+        run(args.db)
+    except (OSError, ValueError, sqlite3.Error) as exc:
+        print(f"[meta] 取得中止: {exc}。既存ミラーを置き換えていません", file=sys.stderr)
+        return 2
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

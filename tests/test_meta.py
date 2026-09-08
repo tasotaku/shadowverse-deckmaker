@@ -41,11 +41,11 @@ def test_selected_database_receives_only_meta_changes(tmp_path: Path, monkeypatc
 
     monkeypatch.setattr(meta, "connect", selected_connect)
     monkeypatch.setattr(meta, "collect_deck_links", lambda: [meta.DeckLink("gamewith", "test://deck", "保存例", "1", "rotation")])
-    monkeypatch.setattr(meta, "collect_deck_detail", lambda link: meta.DeckDetail("2026-09-08", [("核", 3)]))
+    monkeypatch.setattr(meta, "collect_deck_details", lambda link: [meta.DeckDetail("2026-09-08", [("核", 40)])])
     meta.main(["--db", str(selected)])
     conn = connect(selected)
     assert conn.execute("SELECT name,url,format FROM meta_deck").fetchall() == [("保存例", "test://deck", "rotation")]
-    assert conn.execute("SELECT card_id,count FROM meta_deck_card").fetchall() == [(1, 3)]
+    assert conn.execute("SELECT card_id,count FROM meta_deck_card").fetchall() == [(1, 40)]
     assert conn.execute("SELECT * FROM card ORDER BY card_id").fetchall() == original_cards
     assert conn.execute("SELECT * FROM card_note ORDER BY card_id").fetchall() == original_notes
     conn.close()

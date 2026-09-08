@@ -2,7 +2,7 @@
 
 純粋関数(classify/_overlay/_hits/_xnum)はDBなしで検証し、evaluate_cardの結合テストは
 card_vschemaの保存済みカード(ドラクラ/サンダルフォン/オルトロス)で検算する。
-worktreeのdata/cards.dbは空(gitignore)なので、結合テストはデータ欠落時にskipする。
+結合テストはDBを読み取り専用で使い、DBや効果スキーマの欠落時にskipする。
 """
 
 import sys
@@ -12,7 +12,8 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from svdeck.db import connect  # noqa: E402
+from svdeck.db import DB_PATH  # noqa: E402
+from svdeck.discovery_evidence import read_only  # noqa: E402
 from svdeck.strength import load_token_stats  # noqa: E402
 from svdeck.vector import _hits, _overlay, _xnum, classify, evaluate_card  # noqa: E402
 
@@ -59,7 +60,9 @@ def test_overlay_merges_only_written_fields() -> None:
 
 
 def _db_has_vschema() -> bool:
-    conn = connect()
+    if not DB_PATH.exists():
+        return False
+    conn = read_only(DB_PATH)
     try:
         row = conn.execute(
             "SELECT count(*) FROM sqlite_master WHERE type='table' AND name='card_vschema'"
@@ -75,7 +78,7 @@ needs_db = pytest.mark.skipif(not _db_has_vschema(), reason="card_vschema未取�
 @needs_db
 def test_dragonewt_crush_removal_span() -> None:
     # 変化(覚醒)が除去を2→4の幅1エントリに畳み(加算しない)、天井ターンが覚醒=7に開く
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, DRAGONEWT_CRUSH, load_token_stats(conn))
     finally:
@@ -90,7 +93,7 @@ def test_dragonewt_crush_removal_span() -> None:
 def test_sandalphon_entry_mode_and_repeat() -> None:
     # 登場(直接召喚)=コスト0・手札-1なし・自身バウンスで手札+1。素モードは繰り返し5が
     # リーダーダメージ天井10と除去到達5に効く
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, SANDALPHON, load_token_stats(conn))
     finally:
@@ -110,7 +113,7 @@ def test_sandalphon_entry_mode_and_repeat() -> None:
 @needs_db
 def test_hanazono_resource_henka_and_fusion_material() -> None:
     # リソースの変化=置き換え(1枚→2枚・加算しない)＋融合素材の手札-1が天井に効き、収支は0→0
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, HANAZONO, load_token_stats(conn))
     finally:
@@ -124,7 +127,7 @@ def test_hanazono_resource_henka_and_fusion_material() -> None:
 @needs_db
 def test_ryouran_token_axis_is_separate() -> None:
     # 生成=トークンは実カード(カード枚数)と混ぜず別軸に載る
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, RYOURAN, load_token_stats(conn))
     finally:
@@ -138,7 +141,7 @@ def test_ryouran_token_axis_is_separate() -> None:
 @needs_db
 def test_kuon_bodies_keep_shape() -> None:
     # 盤面の形は体リストで保持(合計12/12だけでは分布が消える)
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, KUON, load_token_stats(conn))
     finally:
@@ -153,7 +156,7 @@ def test_kuon_bodies_keep_shape() -> None:
 @needs_db
 def test_orthros_repeat_in_evo_mode() -> None:
     # 進化時+ネクロマンス4の繰り返し2=進化モードの条件付き除去(殺傷2×到達2)
-    conn = connect()
+    conn = read_only(DB_PATH)
     try:
         _, modes = evaluate_card(conn, ORTHROS, load_token_stats(conn))
     finally:

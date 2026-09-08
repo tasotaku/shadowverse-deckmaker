@@ -107,7 +107,8 @@ CREATE TABLE IF NOT EXISTS meta_deck (
     tier TEXT,
     format TEXT,
     updated_on TEXT,
-    fetched_at TEXT
+    fetched_at TEXT,
+    source_json TEXT
 );
 
 CREATE TABLE IF NOT EXISTS meta_deck_card (
@@ -150,6 +151,9 @@ def connect(db_path: Path | None = None) -> sqlite3.Connection:
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(_SCHEMA)
     _migrate_ref_effect(conn)
+    # AI_NOTE: 旧ミラーに来歴を捏造せず、未保存のまま追加資料用の列だけを足す。
+    if "source_json" not in {row[1] for row in conn.execute("PRAGMA table_info(meta_deck)")}:
+        conn.execute("ALTER TABLE meta_deck ADD COLUMN source_json TEXT")
     conn.commit()
     return conn
 
