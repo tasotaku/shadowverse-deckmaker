@@ -1,0 +1,97 @@
+{
+  "author": "sketch_trial_review_b_1",
+  "session": "/tmp/sv-sketch-first-01/b/session",
+  "packet_hash": "76bb8bf71760c479600bf07527cdb63dd3da33a3b80e8a21a6febc6c38800361",
+  "revision": 1,
+  "dispatch_at": "2026-09-08T14:30:33.141708+00:00",
+  "started_at": "2026-09-08T14:31:15+00:00",
+  "start_time_precision": "最初に保存できた実時計。共通指示の最初の読取はこの時計照会以前。開始の厳密な秒は未計測でありdispatch時刻を代用しない。",
+  "observation_started_before_first_clock": true,
+  "check_finished_at": "2026-09-08T14:38:42.448756+00:00",
+  "save_finished_at": "2026-09-08T14:40:03.360129+00:00",
+  "commands": [
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review /tmp/sv-sketch-first-01/b/session /tmp/sv-sketch-first-01/b/round-1/review-response.json",
+      "started_at": "2026-09-08T14:38:57.212986+00:00",
+      "finished_at": "2026-09-08T14:38:57.367882+00:00",
+      "exit_code": 0,
+      "stdout_file": "/tmp/sv-sketch-first-01/b/round-1/review-register-output.json",
+      "stderr": ""
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/b/session",
+      "started_at": "2026-09-08T14:39:13.152639+00:00",
+      "finished_at": "2026-09-08T14:39:13.314552+00:00",
+      "exit_code": 0,
+      "stdout_file": "/tmp/sv-sketch-first-01/b/round-1/review-public-report.json",
+      "stderr": ""
+    }
+  ],
+  "formal_retry_count": 0,
+  "substantive_review_count": 1,
+  "read_scope": {
+    "common_instructions": "/tmp/sv-sketch-first-01/reviewer-instructions.txt 全文",
+    "rules": "AGENTSで列挙された共通10ファイルを読み、長い一括出力で途切れたexplain/workflowを個別再読。",
+    "operator_readme": "/tmp/sv-sketch-first-01/operator-readme.md 全236行",
+    "project_design": "docs/design.md 1-130、199-553行を分割再読（§1.5、§5、§6、既出運用を含む）。最初の全文catは出力打切りで全読完了とは扱わない。",
+    "review_packet": "data.instruction、response_example、proposal、search全件、history空、metadata。過去レビューは読み取らない。初回全文catは169506tokensで打切り、必要項目をJSONで抽出して再読。",
+    "cards": "比較前後2構築と相手2構築の全採用札、本文で名前参照された関連カードを2段まで読取。主役/供給候補のカード本文・進化本文・参照効果・注記。ID一覧はreview-static-checks.json。",
+    "rules_packet": "data.context.rules全文",
+    "keywords": "進化時、超進化時、スペルブースト時、オーラ、守護、必殺",
+    "sources": "全14件のメタ情報。草案・Web確認要約・調査範囲・計算の本文全6件。比較前後および相手2構築の全40枚、機械compareの交換欄。残りの魔手2構築・GameWithスペルは既知構築側のリストと照合する限定範囲。",
+    "known_decks": "6構築の名前、URL、カードと枚数・軍配の採用有無・アラとフィーリン。最初の全JSON出力は打切りあり、要点を後続で再抽出。"
+  },
+  "unread_or_unverified": [
+    "対象ウィッチ以外を含む全212枚の通読はしていない。",
+    "未掲載の現行大会/SNS/動画/Deck Portalを網羅調査していない。",
+    "4～6ターンの手札成立頻度、進化権の競合、比較構築の対戦実測は未確認。"
+  ],
+  "tool_failures": [
+    {
+      "tool": "web.open",
+      "urls": [
+        "https://shadowverse-wb.com/web/CardList/card?card_id=10502120&lang=ja",
+        "https://shadowverse-wb.com/web/CardList/card?card_id=10934120&lang=ja"
+      ],
+      "error": "URL is not safe to open (non-retryable error)",
+      "recovery": "urllibによる同じ公開URLの通常GETでHTTP200、取得原文をreview-official-checks.jsonに保存。"
+    }
+  ],
+  "created_at": "2026-09-08T14:36:17.323161+00:00",
+  "web_search_queries": [
+    "\"軍配\" \"フィーリン\" \"スペル\"",
+    "\"軍配の偉丈夫\" \"スペルウィッチ\""
+  ],
+  "web_check_time_note": "note3件のchecked_atは各公開ページの読取と照合を完了した実時計。API4件は各GET直前の実時計。",
+  "judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "known"
+  },
+  "response_saved_at": "2026-09-08T14:38:42.460308+00:00",
+  "report_verification": {
+    "matching_review_count": 1,
+    "all_response_fields_preserved": true,
+    "revision_matches": true,
+    "input_packet_matches": true,
+    "matching_context_count": 1,
+    "source_hashes_match": true,
+    "additional_sources_empty": true,
+    "next_questions_match": true,
+    "review_hash": "0c25491bd7be35f1833b528ade514f192cd81903dd3b5457e4764424edbc48c0",
+    "verified_at": "2026-09-08T14:40:03.350332+00:00",
+    "passed": true
+  },
+  "public_review_registration": "成功・1回・形式再試行0",
+  "public_report": "成功・登録した1件と回答全項目・revision・入力packet・14件の資料識別値・残った問いが一致",
+  "dispatch_to_save_seconds": 570.218421,
+  "artifacts": [
+    "/tmp/sv-sketch-first-01/b/round-1/review-response.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-execution.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-static-checks.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-official-checks.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-register-output.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-public-report.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-report-check.json"
+  ]
+}

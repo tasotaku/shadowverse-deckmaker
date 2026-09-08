@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-08T14:43:22.035761+00:00",
+  "scope": "root collection helper only",
+  "issue": "初回の引用照合が回答直下のevidenceだけを検査し、別評価のfindings内の引用を辿っていなかった。",
+  "fix": "findings[].evidenceも集約して既存validatorへ渡し、同じ登録済み評価を再照合。評価や採点条件は変更せず実質的評価を追加していない。",
+  "after_check": [
+    {
+      "file": "revision-0001.json",
+      "hash": "695e1bb5ce6aac2ba74900da6a9f61c7aa24b9a17bc2d4d64beaa9b7644b83f8",
+      "input_packet_hash": "7ca8b20fbd13e1a2a92512f3619da0a5f8bd4015abc467007827ca85212021d2",
+      "valid_quote_count": 0
+    },
+    {
+      "file": "review-0001-0c25491bd7be35f1.json",
+      "hash": "0c25491bd7be35f1833b528ade514f192cd81903dd3b5457e4764424edbc48c0",
+      "input_packet_hash": "76bb8bf71760c479600bf07527cdb63dd3da33a3b80e8a21a6febc6c38800361",
+      "valid_quote_count": 11
+    }
+  ]
+}
