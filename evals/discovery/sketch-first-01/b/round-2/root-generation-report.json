@@ -1,0 +1,407 @@
+{
+  "objective": "主役を指定せず、既存の主な使い方と差があり、そこそこ戦える可能性のあるデッキの種を探す。カードの別用途、複数段の発展、序盤と後半の役割配分を検討し、既知の使い方を名前だけ変えて推薦しない。出力は核数枚と構築方針までとする。",
+  "captured_at": "2026-09-08T14:13:14.588966+00:00",
+  "format": "rotation",
+  "class_name": "ウィッチ",
+  "revisions": [
+    {
+      "revision": 1,
+      "parent_revision": 0,
+      "packet_hash": "7ca8b20fbd13e1a2a92512f3619da0a5f8bd4015abc467007827ca85212021d2",
+      "title": "実験体の複数展開へ軍配1枚を足すスペルウィッチ",
+      "hypothesis": "ローテーションの通常スペル基盤で、元コストの高いアラ・フィーリン等を軍配の偉丈夫の条件にも使う。保存された実験体／セフィー2構築を相手にする範囲では、軍配を出した後の手札上位3枚が22以上なら全体破壊の条件を満たせる。ジンジャーの一部を4PPの受け札へ替え、実験体の5/5複数展開を7PPより前に処理する余地を調べる。手札を必要な時点で揃える頻度と採用利益は未確認であり、完成デッキとしての推薦ではない。",
+      "change": "草案は対面を限定しない全体除去の案だった。公開記事で高コスト札を軍配に使う原理が魔手構築で既に広く知られていると確認し、新発見とは扱わない。正式案は保存された実験体2構築の上限21を利用する少数採用に絞った。Game8の現行スペル40枚からジンジャー1枚を軍配1枚へ替えた比較を保存した。フィーリンとアラの採用枚数は増やしていない。",
+      "questions": [
+        {
+          "question": "必要な4～6ターンに、軍配を持ちつつ残す手札3枚の元コストを22以上にできるか。",
+          "tag": null,
+          "why": "指定状態での成立と、実用上の出番の多さを分けるため。早期に守るためのアラ・フィーリンを温存できるとは限らない。"
+        },
+        {
+          "question": "実験体の複数展開に対して、既存のティコ・アラ・フィーリンによる処理では足りず軍配が改善する局面が十分あるか。",
+          "tag": null,
+          "why": "全体除去が可能というだけで、ジンジャーを1枚減らす利益を確定しないため。"
+        },
+        {
+          "question": "軍配へ回すEPにより、ティコの軽減やアラの打点を失う損を許容できるか。",
+          "tag": null,
+          "why": "防御札を加えた結果、決着の手段が間に合わなくなる可能性があるため。"
+        },
+        {
+          "question": "現行フィーリン入りスペル構築で同じ採用と役割が既に普及しているか。",
+          "tag": null,
+          "why": "今回の公開検索では中心原理の既出は確認できたが、当該構築での同じ採用と実益を確認しきれていないため。"
+        }
+      ],
+      "uncertainties": [
+        "ゲーム内対戦、勝率推計、マリガン試行は行っていない。指定した5ターンの手札を通常の引き方で用意できる頻度は未確認。",
+        "相手の上限21は保存されたセフィー／実験体2構築とその生成物だけに適用する。魔手・スペル同型や高コスト札を加えた構築には使えない。",
+        "軍配が他の防御札より必要な場面、EPを使う損、ジンジャー減少によるスペルブーストの遅れは未測定。",
+        "基本原理は既知。公開検索で同一のフィーリン入りスペル案を確認できなかったことを、新規性の証明にしていない。",
+        "フィーリン以前の歴史的な40枚と比較していないため、新弾によって軍配採用が改善したと確定していない。",
+        "これは別評価へ渡す未完成の検討案であり、強さ・独自性・採用利益の合格判断ではない。"
+      ],
+      "reviews": [
+        {
+          "packet_hash": "76bb8bf71760c479600bf07527cdb63dd3da33a3b80e8a21a6febc6c38800361",
+          "author": "sketch_trial_review_b_1",
+          "procedure": "conditional",
+          "value": "develop",
+          "novelty": "known",
+          "findings": [
+            {
+              "axis": "procedure",
+              "reason": "指定状態での手順は成立する。軍配を4PPで出してEP進化すると、残るアラ10＋フィーリン10＋テトラ6＝26。固定された相手2構築を全40枚と参照生成物まで読み直すと元コストは7以下で、相手上位3枚は最大21となる。軍配自身を除外し、同値で失敗する点も正しい。先攻5ターンは通常進化可能で、PP5→1、手札5→4、EP1消費、場1。知恵でPP1→0、手札4→3→4、残る対象3枚に1回ずつスペルブーストが働く。採用札のクラス・保存版ローテ合法性・採用上限は整合し、両側注記にこの組の否定はない。conditionalは通常プレイを保証しない意味であり、本文の誤読を発見した判定ではない。相手が保存リストそのものであること、判定用の札を引いて残せること、相手が破壊を防がないことが条件。22は相手上限に対する十分条件であり、全対面で必要な固定閾値ではない。",
+              "evidence": [
+                {
+                  "card_id": 10502120,
+                  "field": "skill_text",
+                  "quote": "【進化時】自分の手札の元のコストの大きい順に3枚の合計が相手の手札の元のコストの大きい順に3枚の合計より大きいなら、相手の場のフォロワーすべてを破壊。"
+                },
+                {
+                  "source_hash": "b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0",
+                  "quote": "この2構築そのものを相手にし、外部の高コスト札が混ざらない範囲では、相手の上位3枚の元コスト合計は最大21。"
+                },
+                {
+                  "keyword": "進化時",
+                  "quote": "EPを使って進化したときやSEPを使って超進化したときに働く能力。"
+                },
+                {
+                  "card_id": 10031310,
+                  "field": "skill_text",
+                  "quote": "自分のデッキから1枚を引く。"
+                }
+              ]
+            },
+            {
+              "axis": "value",
+              "reason": "追加検討には残すが、現段階で試す推薦には上げない。交換は本当にジンジャー1→軍配1の1枚だけで、既存の元コスト10の6枚を増やしていない。通常進化だけで体力に依存しない一掃ができるため、3体以上の大型が並び、軽減途中のアラ等では返せない時の利点は考えられる。しかし比較の中心が7PPのジンジャーとの差に寄っており、実際の4～6ターンで競合する札との損得が閉じていない。例えば通常の2/2実験体3体なら、ティコ3PP＋EPで0PP魔弾2枚と進化攻撃を使う方が、軍配4PP＋EPより軽く、2回のスペルブーストも進む。大型2体なら軽減済みアラの10点と進化攻撃も比較相手になる。軍配のための10コスト札温存は、そのアラの除去やフィーリンの守護を先送りする負担と表裏一体である。さらにジンジャーの守護生成・連続ブースト・突進付与を1枚分失い、軍配自体はブーストしない。提示した5ターン手順は相手の体数・体力とアラの軽減回数が未指定なので、上記の競合より得になる実例をまだ示していない。採用理由を狭い実例比較で確認できれば判断は変わるため、実戦未検証という理由だけでdropにはしない。",
+              "evidence": [
+                {
+                  "source_hash": "b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0",
+                  "quote": "アラ3枚とフィーリン3枚を含む元コスト10の6枚は増やさず維持する。"
+                },
+                {
+                  "card_id": 10833110,
+                  "field": "skill_text",
+                  "quote": "【ファンファーレ】『マナリアの魔弾』2枚を自分の手札に加える。"
+                },
+                {
+                  "card_id": 10833110,
+                  "field": "skill_text",
+                  "quote": "【進化時】自分の手札のマナリア・スペルすべてのコストを-1する。"
+                },
+                {
+                  "card_id": 90031310,
+                  "field": "skill_text",
+                  "quote": "相手の場のフォロワーからランダム1枚に3ダメージ。"
+                },
+                {
+                  "card_id": 10834120,
+                  "field": "skill_text",
+                  "quote": "自分の他のフォロワーが場に出たとき、それは【突進】を持つ。自分の手札すべては1回スペルブーストする。"
+                }
+              ]
+            },
+            {
+              "axis": "novelty",
+              "reason": "中心の使い方は既出と評価する。高い元コストを持ちつつ安く使えるフォロワーを手札に残し、軍配の通常進化で大型盤面を返して既存の勝ち筋につなぐ原理は、7月の魔手解説と8月の分析で既に公開されている。公開部分を今回も独立に開いて確認した。フィーリン入りスペルでジンジャーを1枚だけ替えた同一40枚の普及までは未確認だが、デッキ名・相手・10コストの札を替えただけで別用途になったとは評価しない。新カードによって従来の負担が減った可能性は残るものの、その改善比較は未実施なのでdifferentiatedではない。今回の検索語は「軍配 フィーリン スペル」「軍配の偉丈夫 スペルウィッチ」。固定の既知6構築に軍配がないこと、検索で現行の同一リストが見つからなかったことを未発見の証明に使っていない。",
+              "evidence": [
+                {
+                  "source_hash": "3542ac1d2eb73466370629d215e364ee15055440ac754fca4c412da04aca92d8",
+                  "quote": "高コスト札を採用して軍配の偉丈夫で盤面を取り返す使い方、進化権を補う札、コスト10のカルギデンスラ2枚とコスト5の札で合計25を作る例がある。"
+                },
+                {
+                  "source_hash": "1503dad72801b461225c56d1daf2e8261facdc5984ebf37c46b3b71ed44cba1d",
+                  "quote": "軍配を引いても判定用の手札が足りない場面や、先にドローして条件を強める選択も説明される。"
+                }
+              ]
+            }
+          ],
+          "next_questions": [
+            "軍配が最も必要とされる、実際に到達可能な5～6ターンの相手盤面を1～2局面に固定し、相手の体数・体力、自分の手札と各札の軽減回数、PP・EPを同じにして、軍配、ティコ、アラ、ストームブラストの処理後を比較できるか。小型盤面だけならティコを優先し、大型が3体以上残る局面で差が出るかを見る。",
+            "その時点に軍配と判定用の高コスト札を保つため、序盤の除去・守護・ドローを何回先送りする必要があるか。軍配を持っているのに手札条件が足りない例と、温存せず既存札で処理した方がよい例も同じ範囲で記録できるか。",
+            "ジンジャー2枚で従来の決着準備が足りるか、軍配へEPを1回回した後のティコ・アラの必要な仕事が残るか。軍配で得た防御1回と、失ったブースト・守護・攻めへの移行を比べられるか。",
+            "フィーリン追加前の軍配採用と比べ、現在のスペル基盤なら高コスト維持のためだけの弱い札や補助札を減らせたという具体差があるか。単なる既出の移植なら新しい種としての成果に数えない。"
+          ],
+          "web_checks": [
+            {
+              "url": "https://note.com/a0923_sv/n/n8b2b7605ab26",
+              "query": "固定資料の7月魔手解説と軍配の既知用途を照合",
+              "checked_at": "2026-09-08T14:38:42.448756+00:00",
+              "finding": "公開部分の軍配・オリヴィエ・コスト合計25・マリガン説明を確認。高コスト手札による全体破壊は既知。有料部分、大会原リスト全件、現在のスペル採用利益は未確認。"
+            },
+            {
+              "url": "https://note.com/shostp/n/n2250cfa9d2fa",
+              "query": "固定資料の8月記事と高コスト手札条件・普及記述を照合",
+              "checked_at": "2026-09-08T14:38:42.448756+00:00",
+              "finding": "はじめに、手札条件の不足、ドロー後に進化する判断、元コスト合計が相手より大きい必要を確認。大会での広い採用は著者報告で、全原リストを独立照合していない。記事の確率・成績を今回の予測に転用しない。"
+            },
+            {
+              "url": "https://note.com/wise_fairy8256/n/nce93da703a4a",
+              "query": "固定資料の9弾魔手所感と実験体5～6ターンの課題を照合",
+              "checked_at": "2026-09-08T14:38:42.448756+00:00",
+              "finding": "公開部分に、正常の侵食変更後のドロー重視、ティコ・アラ採用、軍配を採用できなくなったとの著者所感、5～6ターンの実験体5/5複数展開の重さがある。これは魔手側の初期所感で、軍配入りスペルの採用利益を直接支えない。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10502120&lang=ja",
+              "query": "固定カード本文・コスト・ローテ採用可否と現行公式APIの照合",
+              "checked_at": "2026-09-08T14:34:10.017500+00:00",
+              "finding": "通常GETでHTTP200を取得。カード本文、印刷コスト、ローテーション対象フラグは固定資料と一致する。軍配・フィーリンのweb.openは取得エラーだったためurllibで確認。関連カードが含まれる場合は生成物本文も読んだ。全カードの現行再取得ではない。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10534120&lang=ja",
+              "query": "固定カード本文・コスト・ローテ採用可否と現行公式APIの照合",
+              "checked_at": "2026-09-08T14:34:10.126176+00:00",
+              "finding": "通常GETでHTTP200を取得。カード本文、印刷コスト、ローテーション対象フラグは固定資料と一致する。軍配・フィーリンのweb.openは取得エラーだったためurllibで確認。関連カードが含まれる場合は生成物本文も読んだ。全カードの現行再取得ではない。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10934120&lang=ja",
+              "query": "固定カード本文・コスト・ローテ採用可否と現行公式APIの照合",
+              "checked_at": "2026-09-08T14:34:10.293777+00:00",
+              "finding": "通常GETでHTTP200を取得。カード本文、印刷コスト、ローテーション対象フラグは固定資料と一致する。軍配・フィーリンのweb.openは取得エラーだったためurllibで確認。関連カードが含まれる場合は生成物本文も読んだ。全カードの現行再取得ではない。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10834120&lang=ja",
+              "query": "固定カード本文・コスト・ローテ採用可否と現行公式APIの照合",
+              "checked_at": "2026-09-08T14:34:10.383050+00:00",
+              "finding": "通常GETでHTTP200を取得。カード本文、印刷コスト、ローテーション対象フラグは固定資料と一致する。軍配・フィーリンのweb.openは取得エラーだったためurllibで確認。関連カードが含まれる場合は生成物本文も読んだ。全カードの現行再取得ではない。"
+            }
+          ],
+          "revision": 1,
+          "proposal_hash": "695e1bb5ce6aac2ba74900da6a9f61c7aa24b9a17bc2d4d64beaa9b7644b83f8"
+        }
+      ],
+      "review_contexts": [
+        {
+          "review_hash": "0c25491bd7be35f1833b528ade514f192cd81903dd3b5457e4764424edbc48c0",
+          "input_packet_hash": "76bb8bf71760c479600bf07527cdb63dd3da33a3b80e8a21a6febc6c38800361",
+          "input_source_hashes": [
+            "14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e",
+            "1503dad72801b461225c56d1daf2e8261facdc5984ebf37c46b3b71ed44cba1d",
+            "199b65f6cb09c2b45bbcc804e33d95c8adfecbc174ede3a8125b9daf5e05c0ec",
+            "25a6ca060d5d7b3764120834de861059c371a0e3c97160b33da42d0589a39db6",
+            "3542ac1d2eb73466370629d215e364ee15055440ac754fca4c412da04aca92d8",
+            "3f86400c00f3e2df6f231029992131dcf1e03542afb8f77408da694c00212f36",
+            "85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee",
+            "928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8",
+            "a81c74d6e040b0934af57c8ff7ce7429dbc556ad3b2e7b3115da54ad5b624ed5",
+            "b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0",
+            "c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce",
+            "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+            "fdd938d5a2fc82a8c1591f4b1ea4828d0d63a09197564c2e85a10006674bcdf2",
+            "fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec"
+          ],
+          "additional_source_hashes": [
+            "6fefea46d1115b5558fbb8d6d78f533b64efde4af553c216abea6f8af346e3fa",
+            "a3ae56688eb2a0607e0dffb4cc616a8911c9ae82a2e040260c67dc6312422af7"
+          ],
+          "next_questions": [
+            "軍配が最も必要とされる、実際に到達可能な5～6ターンの相手盤面を1～2局面に固定し、相手の体数・体力、自分の手札と各札の軽減回数、PP・EPを同じにして、軍配、ティコ、アラ、ストームブラストの処理後を比較できるか。小型盤面だけならティコを優先し、大型が3体以上残る局面で差が出るかを見る。",
+            "その時点に軍配と判定用の高コスト札を保つため、序盤の除去・守護・ドローを何回先送りする必要があるか。軍配を持っているのに手札条件が足りない例と、温存せず既存札で処理した方がよい例も同じ範囲で記録できるか。",
+            "ジンジャー2枚で従来の決着準備が足りるか、軍配へEPを1回回した後のティコ・アラの必要な仕事が残るか。軍配で得た防御1回と、失ったブースト・守護・攻めへの移行を比べられるか。",
+            "フィーリン追加前の軍配採用と比べ、現在のスペル基盤なら高コスト維持のためだけの弱い札や補助札を減らせたという具体差があるか。単なる既出の移植なら新しい種としての成果に数えない。"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_hash": "14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e",
+      "title": "魔手ウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/764034",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/764034\", \"heading\": \"サンプルデッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.e4Gg.e4Gg.e4Gg.eBpe.eBpe.eZV6.eZV6.eZV6.eZYE.eZYE.eZYE.eZns.eZns.eZns.ea1U.ea1U.ea1U.eaD-.eaD-.eaD-.eaE8.eaE8.eaE8.fDXk.fDXk.fDXk.cfTu.cfTu.cfTu.fKZk.fKpM.fKpM.fKpM.fKsU.fKsU.fKsU.fL2-\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "1503dad72801b461225c56d1daf2e8261facdc5984ebf37c46b3b71ed44cba1d",
+      "title": "軍配の普及と手札条件に関する公開分析",
+      "kind": "公開Web記事の確認要約",
+      "location": "https://note.com/shostp/n/n2250cfa9d2fa",
+      "observed_at": "2026-09-08 14:20:06 UTC",
+      "limitations": [
+        "大会全チームの原リストは本試行で独立照合していない。",
+        "記事の期待値・確率・勝率は転載せず、本試行の予測にも使っていない。",
+        "旧環境の記録であり、現在の全構築を示さない。"
+      ]
+    },
+    {
+      "source_hash": "199b65f6cb09c2b45bbcc804e33d95c8adfecbc174ede3a8125b9daf5e05c0ec",
+      "title": "比較専用：Game8スペル構築のジンジャー1枚を軍配1枚へ交換",
+      "kind": "担当が作成した仮説比較用40枚・推薦ではない",
+      "location": "/tmp/sv-sketch-first-01/b/round-1/contrast-after-40.json",
+      "observed_at": "2026-09-08 14:23:50 UTC",
+      "limitations": [
+        "元資料d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecbを担当が1枚だけ変更した比較物。公開記事にこの変更案が掲載されているわけではない。",
+        "完成デッキとして推薦しない。初手、対戦、勝率は未検証。"
+      ]
+    },
+    {
+      "source_hash": "25a6ca060d5d7b3764120834de861059c371a0e3c97160b33da42d0589a39db6",
+      "title": "初回Web検索の範囲と限界",
+      "kind": "担当による調査実施記録",
+      "location": "/tmp/sv-sketch-first-01/b/round-1",
+      "observed_at": "2026-09-08 14:22:39 UTC",
+      "limitations": [
+        "検索語による公開Webのスポット調査。動画全編、SNS投稿全件、Deck Portal投稿全件、大会全リストは未調査。",
+        "フィーリンと軍配の同じ目的の採用が見当たらないことは未発見の証明にならない。",
+        "読めた既知原理を他のデッキへ移すだけで独自性が確立するとは扱わない。"
+      ]
+    },
+    {
+      "source_hash": "3542ac1d2eb73466370629d215e364ee15055440ac754fca4c412da04aca92d8",
+      "title": "軍配の既知用途：7月の魔手構築解説",
+      "kind": "公開Web記事の確認要約",
+      "location": "https://note.com/a0923_sv/n/n8b2b7605ab26",
+      "observed_at": "2026-09-08 14:20:06 UTC",
+      "limitations": [
+        "公開部分だけを確認し、有料部分は読んでいない。",
+        "7月の旧環境の構築。現在の正常の侵食には限定サーチがない。",
+        "本文中の成績は著者の報告であり、本試行で再現した実績ではない。"
+      ]
+    },
+    {
+      "source_hash": "3f86400c00f3e2df6f231029992131dcf1e03542afb8f77408da694c00212f36",
+      "title": "着想: スペルウィッチに軍配の偉丈夫を少数加え、アラとフィーリンの元コスト10を全体除去の条件にも使う。",
+      "kind": "生成した着想（未検証の仮説）",
+      "location": "discovery sketch packet:e0d98ee51b5260a09cc4de376106964f6226a0c90e9bcc8d1fa38f03afd8ac8e",
+      "observed_at": "2026-09-08T14:13:14.588966+00:00",
+      "limitations": [
+        "observed_atは固定資料の保存時刻であり、着想の生成時刻・能力適用日・公式再確認日ではありません。",
+        "形式と参照対応の検査のみ。成立・採用利益・強さ・勝率・独自性は未検証です。"
+      ]
+    },
+    {
+      "source_hash": "6fefea46d1115b5558fbb8d6d78f533b64efde4af553c216abea6f8af346e3fa",
+      "title": "第2回：公開Web調査8検索語と4ページの読取範囲",
+      "kind": "検索・公開本文読取の要約記録",
+      "location": "/tmp/sv-sketch-first-01/b/round-2/web-research.json",
+      "observed_at": "2026-09-08T14:59:21+00:00",
+      "limitations": [
+        "著者・取材者の報告を含む。大会実績と対面評価を独立検証していない。",
+        "検索で同一案を見つけなかったことを新規性の証明にしない。",
+        "最初の3ページはアクセスの秒を別記録していないため、観測された前後の実時計の範囲で記載した。"
+      ]
+    },
+    {
+      "source_hash": "85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee",
+      "title": "セフィーウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/573926",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/573926\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8",
+      "title": "実験体ウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/811845",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/811845\", \"heading\": \"サンプルデッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.cfTu.cfTu.cfTu.e4Gg.e4Gg.e4Gg.eB7k.eB7k.eB7k.fDXk.fDXk.fDXk.fKsU.fKsU.fKsU.fL2-.fikc.fikc.fikc.fink.fink.fink.fi-E.fi-E.fi-E.fj1M.fj1M.fj1M.fjDs.fjDs.fjDs.fjG-.fjG-.fjG-.fjTU.fjTU.fjTU\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "a3ae56688eb2a0607e0dffb4cc616a8911c9ae82a2e040260c67dc6312422af7",
+      "title": "第2回：軍配1枚案の同条件比較と枝の停止",
+      "kind": "固定本文を用いた手計算の調査メモ・停止理由",
+      "location": "/tmp/sv-sketch-first-01/b/round-2/same-state-investigation.md",
+      "observed_at": "2026-09-08T14:59:21+00:00",
+      "limitations": [
+        "ゲーム内対戦、勝率予測、独立した別評価ではない。",
+        "引き順・相手行動・一部ランダム結果を指定した局面の成立例で、頻度や双方の最善手を示さない。",
+        "全分岐の最適化とジンジャー減少後の決着は未確認。",
+        "止める範囲は今回の新しい種としての軍配少数採用の枝で、全状況の採用可否ではない。",
+        "微睡みを引いた時の細かな強化順は未確定だが、比較に残るカードの数値とPP回復条件に影響しない。"
+      ]
+    },
+    {
+      "source_hash": "a81c74d6e040b0934af57c8ff7ce7429dbc556ad3b2e7b3115da54ad5b624ed5",
+      "title": "全40枚の構築間での交換札と分布",
+      "kind": "機械計算",
+      "location": "before source_hash=d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb; after source_hash=199b65f6cb09c2b45bbcc804e33d95c8adfecbc174ede3a8125b9daf5e05c0ec",
+      "observed_at": null,
+      "limitations": [
+        "元資料の実在・正しさ、勝率、交換の強さは判定しない。",
+        "名前・種類・コスト・採用上限と採用上の問題は探索開始時の保存DBによる。過去の能力・合法性を復元しない。",
+        "原資料の名前はrecorded_nameに保持し、nameは保存DBから取得した名前。",
+        "exchanged_countは入れた総枚数（抜いた総枚数と同じ）。種別の純増減type_net_changeとは別。"
+      ]
+    },
+    {
+      "source_hash": "b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0",
+      "title": "軍配入りスペル案：対象範囲・条件計算・1枚交換の損得",
+      "kind": "担当の仮説と固定資料からの計算（対戦結果ではない）",
+      "location": "/tmp/sv-sketch-first-01/b/round-1/deck-cost-check.json",
+      "observed_at": "2026-09-08 14:24:41 UTC",
+      "limitations": [
+        "手札条件付きの本文解釈と算術。マリガン・引く順序・相手行動を含む対戦実測をしていない。",
+        "元コスト上限21は保存した相手2構築に限る。魔手、スペル同型、高コストを足した実験体構築には一般化しない。",
+        "破壊を防ぐ能力や特殊な変身・相手由来カードが加わる場合は別に確認する必要がある。",
+        "1枚交換の比較40枚は計算材料であり完成デッキの推薦ではない。",
+        "フィーリンが加わる前の歴史的40枚との改善比較は未実施。新カードだから採用が改善したとは確定しない。"
+      ]
+    },
+    {
+      "source_hash": "c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce",
+      "title": "魔手ウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/546341",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/546341\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+      "title": "スペルウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/781945",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/781945\", \"heading\": \"デッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.cfTu.cfTu.cfTu.eB7k.eB7k.eBKO.eBKO.eBKO.eBpe.eBpe.eBpe.fKZk.fKZk.fKZk.fKcs.fKcs.fKpM.fKpM.fKpM.fKsU.fKsU.fKsU.fL2-.fL2-.fL2-.fL38.fL38.fL38.fbPs.fbPs.fbPs.fink.fink.fink.fjTe.fjTe.fjTe\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "fdd938d5a2fc82a8c1591f4b1ea4828d0d63a09197564c2e85a10006674bcdf2",
+      "title": "9弾の魔手構築：変更後の制約と実験体の盤面",
+      "kind": "公開Web記事の確認要約",
+      "location": "https://note.com/wise_fairy8256/n/nce93da703a4a",
+      "observed_at": "2026-09-08 14:22:39 UTC",
+      "limitations": [
+        "著者自身が環境初期の暫定所感と明記している。",
+        "成績・対面相性は著者の申告であり採用利益の実証に転用しない。",
+        "スペルウィッチへの軍配採用を記事が推奨しているわけではない。"
+      ]
+    },
+    {
+      "source_hash": "fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec",
+      "title": "スペルウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/527318",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/527318\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    }
+  ],
+  "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+}

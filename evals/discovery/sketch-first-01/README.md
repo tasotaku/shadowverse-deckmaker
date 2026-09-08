@@ -24,3 +24,5 @@
 - [短い着想を先に残す方式の初案](b/round-1/submission.json)・[実際の工程時刻](b/round-1/execution-log.md)
 - [後者の初回別評価](b/round-1/review-response.json)・[評価の時刻と範囲](b/round-1/review-execution.json)
 - [過去成功例と基準文の限定点検](utility-criteria-calibration.md)。今回の案の採点や、4成功例すべての再現検査ではありません。
+
+短い着想を先に残す側の第2回は、指示から保存まで19分33秒で終了。担当は小型3体・大型5体と、前のターンに守護を出す場合を比較し、今回の枝を止める理由を資料2件へ保存しました。正式改訂は0件。現在は追加資料を含む16件の入力で別担当が確認中です。[調査と停止理由](b/round-2/same-state-investigation.md)・[実測時刻と操作件数](b/round-2/completion.json)。
