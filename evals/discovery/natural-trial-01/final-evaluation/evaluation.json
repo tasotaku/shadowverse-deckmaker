@@ -1,0 +1,344 @@
+{
+  "auditor": "/root/system_eval_cases",
+  "started_at_utc": "2026-09-08T10:21:24.888236+00:00",
+  "ended_at_utc": "2026-09-08T10:31:24.626853+00:00",
+  "scope": "自然試行1のround1〜4、正式提出2件、独立評価4件、最後の限定停止まで。既存の独立検算を再利用し、round3/4の追加資料・回答・公開保存との対応を再照合。新しい探索・候補提案は行わない。",
+  "protocol_sha256": "3f750883c6a3be211399ddd7cf028d4b7731d05831bea491b07235eefd425691",
+  "criteria_unchanged": true,
+  "fixed_grading_text": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "overall_verdict": null,
+  "overall_verdict_policy": "5項目を総合PASSや総合得点へ畳まない。",
+  "grades": {
+    "workflow": {
+      "verdict": "PASS",
+      "qualification": "実際の公開工程の完了に限定。途中の本体修正と操作失敗を含むため、初期版だけで無修正・無障害の完走とはしない。",
+      "reason": "公開read/packet、提案2件、追加資料27件、compare、fresh別評価4件、reportの保存・読戻しが完了。最終公開reportは保存版と意味的に完全一致し、4回答の全項目と入力hashが一致した。",
+      "evidence": [
+        "evaluation-final-checks.json",
+        "evaluation-public-final-report.json",
+        "rounds/round-1〜4-execution.json",
+        "rounds/round-1〜4-review-execution.json",
+        "system-changes.json"
+      ],
+      "limits": [
+        "停止は通常sourceで保存され、専用の終了状態ではない。原案と訂正の対応は人が読む必要がある。",
+        "本体は試行中に4件修正。初回提出と初回評価は担当の自己解決/形式修正で完了した。修正後の一連の操作成功を初期版の成功へ遡及しない。",
+        "第四評価の想定READMEパスが不存在で、本体READMEの公開利用節へ切り替えた。READMEの単一固定版を全担当が使ったとはいえない。"
+      ]
+    },
+    "correctness": {
+      "verdict": "UNCONFIRMED",
+      "display": "未確認（訂正を含む限定手順は検算済み。提案本文に旧誤記が残存）",
+      "reason": "T8/T9の指定境界からの資源・対象・時間は追加訂正を含めて確認できるが、原6枚配分は停止、最終に残るのは未完成の仮説。T1からの到達履歴・必要時期の取得・生存は未確認。最終案が残らないことを誤り0のPASSにしない。",
+      "known_error_kept": {
+        "location": "round-3-proposal.json steps[3].resources / source 87640... のB",
+        "literal_claim": "ダスト4でオルテニア処理→飛翔2→マガチヨ3。元比較には-0/-10して破壊とある。",
+        "status": "誤り。ダスト自身の攻撃力は3+3=6で、オルテニア10体力を単独破壊しない。公開readの最終proposalにも旧中間処理が残る。",
+        "correction_location": "round-4-comparison.json B_correction / source 5add9dd0... / review4 findings[1]",
+        "corrected_line": "ダスト4で10/4→追加コンボによりマガチヨ3がコンボ3、全体4点。8点・全処理・2PP・手札7、飛翔を保持。",
+        "interpretation": "誤記が不明という意味の未確認ではない。誤記は確定し、訂正は同じ評価資料に保存されている。単体の提案本文へ無誤りの合格を与えず、訂正済み部分の成立も失敗扱いへ一括しない。"
+      },
+      "supported_checks": [
+        "ルリア8→回復7、ミロク3→回復2→SEP回復2、ゲテンオウ8で0PP。T9用SEP1が別に残る。",
+        "A旧指定応手ではバリアを失ったルリアを守護へ攻撃して退かせ、9PP/場5/18点が成立。",
+        "A別応手ではバリア付きルリアが残るので旧5枚展開は場6枠となる。D/Sはそれぞれ14点・全処理・場4・手札6で成立。",
+        "C旧13点は指定手順の出力。review4の指摘するダスト→マガチヨ→レイピアと旧ルリア攻撃による14点も同手札で成立し、13点を最高値にしない。",
+        "全40枚→共通の山札外16枚→検索1枚→残23枚の4分岐と、3組×4分岐の全12引き順が一致。共通札の順序は保持され、round4でAを変えていない。"
+      ],
+      "evidence": [
+        "evaluation-arithmetic-checks.json",
+        "evaluation-final-checks.json",
+        "evaluation-public-final-proposal-read.json",
+        "rounds/round-3-comparison.json",
+        "rounds/round-4-comparison.json"
+      ],
+      "unconfirmed": [
+        "T1から境界状態への完全な移動履歴、到達頻度",
+        "全合法手順の最適値、A別応手での決着不能",
+        "相手T9以降、全応手に対する成立・成績",
+        "保存全212枚の現行本文の全件確認。今回保存公式API11枚の本文/進化/数値はsnapshotと一致した。"
+      ]
+    },
+    "development": {
+      "verdict": "PASS",
+      "qualification": "具体的な疑問の解消と根拠による改訂を実測。有用な完成案を得たという意味ではない。",
+      "reason": "初回から3段の追加調査を実施。比較元40枚の実差分、取得算術、相手の攻撃継続、T9で手札差が決着へ変わる条件、別除去順での場不足と代わりの全処理を確認した。round2の停止理由はround3で撤回され、revision2を実提出。round4は新資料に基づき原6枚だけを理由付きで止めた。言い換えや質問再掲だけではない。",
+      "evidence": [
+        "rounds/round-2-comparison.json",
+        "rounds/round-2-decision.json",
+        "rounds/round-3-decision.json",
+        "rounds/round-3-proposal.json",
+        "rounds/round-4-comparison.json",
+        "rounds/round-4-decision.json"
+      ],
+      "limits": [
+        "追加工程による問いの解消を実用上の勝率改善へ移さない。",
+        "最後の広い補充仮説とその到達負担は未解決。継続余地がなくなったとはしていない。"
+      ]
+    },
+    "utility": {
+      "verdict": "FAIL",
+      "display": "この試行では、試す理由を根拠付きで残せた種は得られなかった。",
+      "reason": "原6枚の採用をさらに進める作業は停止し、独立評価も原6枚を試す利益の確立を認めていない。残る確定補充の仮説にはAの具体的な局面内利益があるが、セタスの守護・即時破壊・先行打点と軽い補充3枠を失う負担に対して、核の取得とT8生存をどう保つか、追加防御4枠の必要性は未確認。最終時点は未完成の検討保留であり、固定条件の「未完成の保留のみなら有用な出力なし」に当たる。",
+      "positive_evidence_not_erased": [
+        "Aの旧応手では18点決着、別応手でも14点・全処理・手札6があり、基準Aの保持手札にはない働きが示された。",
+        "原案は残る高コスト札を補充役へ限定するため、少数補充案のGet取得分岐より補充へ到達する確かさという違いは残る。"
+      ],
+      "burden_evidence": [
+        "攻撃継続例でセタスの除去・守護を失う生存差。",
+        "B/Cで基準が8点でT9決着する一方、選んだ原案手順は相手を残す。",
+        "少数補充案のGet取得分岐でもAの同じ出力を再現するため、原6枚すべてに固有の利益ではない。",
+        "序盤に必要なダストデイズ等を探す小分け補充を3枠減らす負担が残る。"
+      ],
+      "not_used_as_rejection": [
+        "条件が多いことだけ",
+        "14点で相手3を残すことだけ",
+        "実対戦0や未使用提出枠だけ",
+        "A/B/Cの勝ち例件数",
+        "全手順の最適値や勝率を証明できないことだけ"
+      ],
+      "evidence": [
+        "protocol.json grading.utility",
+        "rounds/round-4-decision.json",
+        "rounds/round-4-review-response.json findings[2]",
+        "rounds/round-2-comparison.json",
+        "rounds/round-3-comparison.json"
+      ],
+      "limits": [
+        "システム全体の無効、エルフ全域に有用案がないこと、カード一般の禁止は意味しない。",
+        "最後のreview4のdevelopをdropへ書き換えず、この試行の出力へのutility判定を別に置く。"
+      ]
+    },
+    "honesty": {
+      "verdict": "PASS",
+      "qualification": "保存された調査・説明の範囲。未知発見や実戦価値の認定ではない。",
+      "reason": "4公開構築、検索範囲、既知用途、両側注記、算術と合成局面、意図的な引き順、未確認を区別している。8枚補充・PP回復・山札強化という既知機能を新発見とせず、共起0や未発見を未知の証明にしていない。勝率・Tier・初見加点は捏造していない。最後の独立評価も別クラスの先行用法と調査未及範囲を残しunconfirmedを維持した。",
+      "evidence": [
+        "rounds/round-1-research.json",
+        "rounds/round-1-sources.json",
+        "rounds/round-3-proposal.json uncertainties",
+        "rounds/round-4-decision.json not_claimed/limits",
+        "rounds/round-4-review-response.json findings[3]/web_checks"
+      ],
+      "limits": [
+        "初期READMEと目的は役割変更・前後半配分という発想の方向を示す。完全無誘導・未知正解への盲検ではない。",
+        "調査の全SNS・動画本文・全大会構築への網羅性は未確認。"
+      ]
+    }
+  },
+  "stop_and_review_scope": {
+    "generator_final_action": "原6枚配分を採用候補としてさらに進める作業の停止。全てのゲテンオウ用途・他配分・確認済み利益は止めない。",
+    "review4_actual_labels": {
+      "procedure": "conditional",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    },
+    "review4_scope": "仮置き配分を含む途中の確定補充仮説の調査価値。原6枚を試す理由の確立ではない。",
+    "finding": "同一対象への単純な採否不一致ではない。原6枚の採用理由は未確立、広い補充仮説の局面内利益は残るという点は整合する。review4は将来の到達負担比較を続ける余地を述べ、提案者は現6枚への追加作業を止めた。この優先順位・次作業の差は未解決として残す。",
+    "historical_disagreement": "round2では、未比較のT9接続を残して止めた提案者とreview2の継続は実際に不一致。round3の新資料で停止根拠を撤回し改訂した。この履歴を最後の限定停止と混同して消さない。",
+    "review4_returned_to_generator_again": false,
+    "unused_submission_slot": "正式提出2/上限3、残り1。上限は義務ではなく理由付き停止を許すため、第3提出やラベル変更を要求しない。資料追加と評価は提出数を消費しない。"
+  },
+  "independent_arithmetic_summary": {
+    "public_compare_actual_exchange_counts": [
+      6,
+      1,
+      3
+    ],
+    "all_three_decks_40_and_eligible": true,
+    "acquisition_cases": 9,
+    "probability_values_checked": 36,
+    "all_match": true,
+    "example": "N23、マガチヨ3・レイピア3、9枚取得で前者1以上かつ後者2以上は1180/4807 = 24.547534845%。",
+    "limits": "無作為な非復元抽出の指定残数に対する取得算術。先行2プレイ、PP、場、生存、SEP、相手、到達頻度を含む全手順成功率や勝率ではない。3つの意図的引き順の件数も頻度でない。",
+    "new_checks": "A/B/Cの全12順番と残23枚、共通札の順序、round4の境界/順番不変、D/SとB訂正のPP・手札・場・打点を照合。",
+    "evidence": [
+      "evaluation-arithmetic-checks.json",
+      "evaluation-final-checks.json"
+    ]
+  },
+  "observed_workload": {
+    "formal_submissions": 2,
+    "formal_revisions_added_after_first": 1,
+    "independent_substantive_reviews": 4,
+    "generation_or_additional_investigation_stages": 4,
+    "source_counts_at_each_review": [
+      13,
+      23,
+      25,
+      27
+    ],
+    "review_registration_attempts": [
+      3,
+      1,
+      1,
+      1
+    ],
+    "review_format_failures": [
+      2,
+      0,
+      0,
+      0
+    ],
+    "web_check_records_per_review": [
+      7,
+      3,
+      1,
+      18
+    ],
+    "timing": "今回の最終採点開始・終了は実UTC。試行全体の固定時刻08:21:04から最後の別評価完了10:19:17まで約118分だが、委譲待機やroot作業を含む記録境界の差で、担当の実作業時間の総計ではない。初期担当全員の実開始/終了は統一形式で残らず完全な費用比較は不可。",
+    "review4_elapsed_seconds_recorded": 649.529947,
+    "review2_example_observation": "必須web_checksの例を足した後、freshレビュー2は実Web確認3件を1回で登録。レビュー3/4も1回。異なる担当・資料のため因果効果量や再発率は未確認。",
+    "read_friction": [
+      "初回data.contextの階層取り違えを自己解決。修正後の2/3/4では同じ取り違えを報告していない。",
+      "長い表示の切れによる再読は後続でも起きた。",
+      "第四評価のREADMEパス不存在は別の読出し障害として保存。"
+    ]
+  },
+  "system_changes": {
+    "record": "system-changes.json",
+    "repository_archive_matches": true,
+    "count": 4,
+    "commits": [
+      "7c82fa6e95d3a87f7258d5349d70be96e2daacb8",
+      "9cd1b02",
+      "5b832ed4c5b2f9ba37f1fc261037a7de698c103d",
+      "11a78e0049c8075756bd2d88397d31792338a75f"
+    ],
+    "scope": "参照位置、meta完全性/来歴、回答例、評価時の資料対応を追加。固定カード/初期資料/context、REVIEW/DEVELOP判定本文、採点条件は変更されていない。",
+    "not_claimed": "review_contextsは入力25→現追加2等を保存表示するが、旧問いの解消や正しい終了判定を自動化したとはしない。生成round3は修正前固定inputを使ったため、その考案改善を新表示の効果としない。"
+  },
+  "limitations": [
+    "1クラス1試行・1仮説の発展で、方式の優越・自然発見力全般・成功率は測れない。",
+    "ゲーム実対戦0。合成局面は資源条件の検査であり現実の成績ではない。",
+    "最終proposal単体と追加訂正の内容差が残る。",
+    "広い仮説の次調査の価値とこの試行で試せる出力の有無は別。",
+    "過去のFAILを上書きしない。idea-comparison-01の結果や候補は本採点へ使用していない。"
+  ],
+  "read_scope": {
+    "reused_prior_independent_records": [
+      "evaluation-arithmetic-checks.json",
+      "evaluation-evidence-checks.json",
+      "evaluation-review2-checks.json",
+      "evaluation-preliminary-observations.json",
+      "improvement-observations.json"
+    ],
+    "new_primary_records": "round3/4のproposal、comparison、decision、review-response、execution、review packet、source、最終report。必要な固定カード本文/注記と保存公式API11枚。",
+    "public_readonly_commands": [
+      "python -m svdeck.discovery report SESSION",
+      "python -m svdeck.discovery read SESSION bbac3969... proposal --offset 0 --limit 1000"
+    ],
+    "not_performed": [
+      "新しい候補・カード探索",
+      "入力/DB/本体コードの編集",
+      "採否の他担当への相談",
+      "新しい外部検索",
+      "別方式比較の成果の参照"
+    ]
+  },
+  "evidence_manifest_sha256": {
+    "protocol.json": "3f750883c6a3be211399ddd7cf028d4b7731d05831bea491b07235eefd425691",
+    "protocol-audit.json": "f1e21c87a13226ff6312a11630bea4f5225f3b893790ca55ed818f6bd7ab9c57",
+    "system-changes.json": "2e61b2688d0ea336832e3e75abb1ca4ea35bb9305b5fd95a19f0440d22530d7a",
+    "evaluation-arithmetic-checks.json": "a339e59b05dbd7241a9d44ed4993de24c64a15017c28d06c39a6c3a3c8243471",
+    "evaluation-evidence-checks.json": "e7ffdba2c8e59c0afc66090c399d04feac65f6c356cd34717a4797bd2fe9c42e",
+    "evaluation-review2-checks.json": "e1d3cb9cde4c02453257217f440cf86f291d37880ded87f04eb93076f77f831a",
+    "evaluation-preliminary-observations.json": "af9256d74949df3d63a343ff36ccb3eadb892d01264b29ccf7fc23bc0f9b122e",
+    "improvement-observations.json": "c97ce1b9cfb1b38de072764a1fcd5e59f274dd8d8a282435d596abbc5e8548b7",
+    "rounds/round-1-execution.json": "f45ee1d9df2b910fc05100f6fc27b972536c4f08cb4a0970de3252e2dc8738ff",
+    "rounds/round-1-official-10403120.json": "dede91e4873282e20da1b8a32b58255becf1b9ba52b50fa65ee96cc8cffcb8d3",
+    "rounds/round-1-official-10504110.json": "bb8b94538aa6b1ce800af5051cc66040c9de85a901a656fddbf7b4f3bbe22036",
+    "rounds/round-1-official-10514120.json": "518bff31532b6495d67f86971dbfda57bf3376747e1b497aac00fdabc7241b0a",
+    "rounds/round-1-official-10714110.json": "26c00e74cfcdee60b7e5f28ba3a970e491851fe6687377e6b6eae17074c21edc",
+    "rounds/round-1-packet.json": "bd8df45ae6a264118e7db1852709b71a064cae48c6cd32a41f168d38c3c26b57",
+    "rounds/round-1-proposal.json": "2c3c9d8d8c9a101645d1aace1155c28af7043431c2c96f671dc9b8dfefd69bf3",
+    "rounds/round-1-report.json": "ce165991c60c5fb28be3a83c2b9185e9129a509463e90d91ceadda0315f11bad",
+    "rounds/round-1-research.json": "732d8efacb3fd161df8f49d6de14a7782c7dce22db0fae0e2d2f388762adf6df",
+    "rounds/round-1-review-execution.json": "7a91bf647ab5c5778ed6ecb43a6c6ef15c3884e059220a2f8efe52fbaf37a1a0",
+    "rounds/round-1-review-packet.json": "5f70f09a237bbe08580d7c4b0ce2d8348df7792b85714b9bcbe2d39eae65b378",
+    "rounds/round-1-review-response.json": "d14266f839632b2ad2518acfa5210e805e84c99047c9ded3ff81222f68d2cda5",
+    "rounds/round-1-review-summary-with-paths.json": "d3a6774af12445853540cde7e1133e6ae3357e72f61fe528422a9232fe27fa18",
+    "rounds/round-1-review-summary.json": "0e5206eabf01161b717d6437920ff5c2c83378f9af41b4d97c3c29f743d64cc5",
+    "rounds/round-1-rules-source.json": "40bb224cb160ea7ea833ae127673be4a25c055b0e568cf5b530b404975dd54fe",
+    "rounds/round-1-sources.json": "aacde901ef7d7e37e2db8292cebf230d6abda1cfa477b302f5cd9ee873a964ae",
+    "rounds/round-1-submit-packet.json": "c4cc928928bcd6721a638c17ff2647530508fd0a459504d2d2459d0aa1e94e28",
+    "rounds/round-2-compare-defense.json": "5f8b779408a37e852f4bea61b82350b8357dbf4b73dc2335dfbd4e3062015943",
+    "rounds/round-2-compare-one.json": "7d673afd0bbb058b9eacdc63ab62a494020afab72e091685d05f498b98ed16e5",
+    "rounds/round-2-compare-six.json": "427ee5dff9efe7fb0d60c37a53e689716bbd7cf78a641ea31f41b7cb3a860838",
+    "rounds/round-2-comparison.json": "37578ea522a08dcb9739bb1da5196944b2c5ac15b5151c347484c702a8a96223",
+    "rounds/round-2-decision.json": "c8bd3609f0e6d79ce58f4781818a0961e03aa198c86b56fbe0b179e3a8c637ce",
+    "rounds/round-2-defense_only.json": "4065645e84c7eac9e8c8a744b95af9645da53b6e3a1b9d25f9ce853dd08f12b8",
+    "rounds/round-2-draw-arithmetic.json": "c168ad9593f708e007892bda19b3eb11640f38d1b0a863c6cfea6615e3873ffc",
+    "rounds/round-2-execution.json": "ce24a9bb81c42dffca1f5d2818d938cfc48494226a46363d4ee762c6f0f42397",
+    "rounds/round-2-findings-sources.json": "b08e157975356a511823ce5306b1dfebd7df7701cc5f1c57b2d216d3f4e2ab82",
+    "rounds/round-2-input-packet.json": "6fe24e743dbabdddac277325c72ce8d8da8c0f0a7046e79dbc13030d4a8f6cfa",
+    "rounds/round-2-input-summary.json": "6db86026cc421b18248069798647720c2a4b591c4f5fb2b6b3ca931f3267ceb6",
+    "rounds/round-2-list-sources.json": "71e4189a4881a82c37a2be08e057067fecb9269fc3eda63a61638d508d550a21",
+    "rounds/round-2-one_refill.json": "f048d6a199c85e708d00f2c375a557a9d5d5fe1c66c6f4b41e1b74408547f81a",
+    "rounds/round-2-original_six.json": "5a8526fd9fce8d09427f5ba979cf47c6f2fe44db269b0762fd6061f5eaabedc1",
+    "rounds/round-2-report.json": "f03ecde3d0bf5e529141173a1b9f1f3d3d231621bb244630c028aa9c9acd80a6",
+    "rounds/round-2-review-execution.json": "bc2ae852822f2b01d05d5cb746518027f929fb87ebfe5709d9b4acf0bad8c246",
+    "rounds/round-2-review-packet.json": "f1a5b88dc5cd3ed1b2feaaf6d4daec71f97306618bfdc48a187ed8e76fbf90d6",
+    "rounds/round-2-review-report.json": "fd303d4135d7160f684030900e8e9cf0ff71eee91175b5e160351df062e05eea",
+    "rounds/round-2-review-response.json": "6777dc1f208785672707de3b2f1be1b8a21b1fec05f0881001b9fc03dc6a1d3f",
+    "rounds/round-3-attach-result.json": "3e9bf8a5eae232f06dd61841552a6a10214d8c2371849535f456ec19af0e5fba",
+    "rounds/round-3-build-comparison.py": "40cd5f8b0f47e94325152bfa570d6a1697584f0a0e0f0409c3faab41fe77041a",
+    "rounds/round-3-build-proposal.py": "609474ba65387b89f6765292a94b3768570ef15b44fcbbd6d5e320b6299cb334",
+    "rounds/round-3-cards-read.json": "2113c0d80d99235b342a16a5cd6b276058870f833d1a704bed5ee05e2dfafb9c",
+    "rounds/round-3-comparison.json": "89951262b59b0e2ffbd4e18da657eeb64c6fe871f0facdf4cb47984c15c693af",
+    "rounds/round-3-decision.json": "3c8d95d9edf7fa86910e2f547e89a7836955ac5a1abcb6fdad7ebddd14997191",
+    "rounds/round-3-execution.json": "74837d6270769ebe42198d4e3d05e207bd70a391d1643c4fd2159a7a943ab549",
+    "rounds/round-3-history-read.json": "56b1bba146adf6605a17c5f6b6d95ac93b48cef5b4286e5da911677b3dde3593",
+    "rounds/round-3-input-packet.json": "a896b451f313e5403dc458cf63282a1e12214765407301fdbbb207a1c3e73b65",
+    "rounds/round-3-keywords-read.json": "679b0828e34dc4d7fd086f824a60751e5df54bbec093d5309f93aa6f472a3058",
+    "rounds/round-3-known_decks-read.json": "f7526379e0caee51eec3e052629d39ddfa2d0f311eaac276be7060cc1817f86b",
+    "rounds/round-3-proposal-read.json": "8d432a2dab123ecdb4dc34851d6b2042a0a98bcb360361c1b5b933994da1219e",
+    "rounds/round-3-proposal.json": "2ff2cf9fa7897292e048547934e6874728f3851eb7142afe3d42f88ed378c043",
+    "rounds/round-3-report-own-review.json": "339c005283395e25b60a366b9fa936d6ee8083fdddaff8bbf77ac6526b3ba43d",
+    "rounds/round-3-report.json": "668069ff65c5ef4954978032e1d0366231dc653d1500756cae48c87944dd745f",
+    "rounds/round-3-review-execution.json": "558d614ccddf8b430b68b246cd1050c44386ce8441394a481ec50f993591b55e",
+    "rounds/round-3-review-packet.json": "dccfe608bc4a0f3c7cd32c020b86e9ee8def96ab03bd1faf405a3c19d4292871",
+    "rounds/round-3-review-registration.json": "0c70aaaf34bd439e666f6506c03a4dddd3dfcc6424994518fa6d92ffac12f267",
+    "rounds/round-3-review-report.json": "3b9ba6245e26f8255f4bd5d906080c37267c8fc629f8876ebd46bef0df5eaf0e",
+    "rounds/round-3-review-response.json": "674d512ec245ac62169f10b44bc44bac5f34756a413d1139da3383b7d7030c0e",
+    "rounds/round-3-root-evidence-check.json": "643a00fc59eb38254a7015499ddaa66f90be7dd066dd984955983e077968f38f",
+    "rounds/round-3-rules-read.json": "b39cf4df3d5da7951d94fabc094ea713a8c6c60439bd8c05aed8f758096ac8da",
+    "rounds/round-3-sources-read.json": "4bb23349779df4fc9847db9c09b49d482aa39ce5030c9bccf102e518e3cfbf11",
+    "rounds/round-3-sources.json": "08be524a5159d1ab53e5058b43baa35793c219f243294f79e9f9db91fb4f0f7f",
+    "rounds/round-3-submit-packet.json": "e0152672c5037fe69b826b282442a70e814cd12ecbe2ff6391e20494fd116eb1",
+    "rounds/round-3-submit-result.json": "4997bcbf541b05d67151b007b18bd993af8426063e72ab179eaec741fe270fe1",
+    "rounds/round-3-write-review.py": "14b67aa9a016a91888aa399701ad0fc8079c43cd1d5d3048960ab63db7ad56fa",
+    "rounds/round-4-attach-result.json": "ab2da6a7d292b3a54d6580fd0f0415ffdfcde0a16bb6e4dd542c0cd1e6c11c47",
+    "rounds/round-4-build-record.py": "170a3c1231480aa434e9e02c181e1e26c44f705199b34a126912fe714ca18458",
+    "rounds/round-4-comparison.json": "50e845e8111229a1eb5bfdda00c3d92a65d13cb20992c4e8631f629065a37446",
+    "rounds/round-4-decision.json": "58a6a903cd59a067d00b300780f4bc24f1464a45d464b1098ebf029cc3b0fb25",
+    "rounds/round-4-execution.json": "e7019508b0130635fff66f9955f9a6b33f878e38bf491b679d176a001b78c719",
+    "rounds/round-4-final-report.json": "1112e50fe62d0b5a614eb90bdb00930f574af143cbfbccabdd80d28e995c2144",
+    "rounds/round-4-input-packet.json": "206fafdac57789cb958cdaea955f4bd8295cd46c78b4c016a95bb8c073389838",
+    "rounds/round-4-report.json": "34ae6f12a6ec1e864d1632073c40c9421b50a1c2b9be8d3fef5cea5e6d457b68",
+    "rounds/round-4-review-command-log.json": "422d00a313a16c32121d2a224456d844373bf512ec404fa77ed0b3ab5e995008",
+    "rounds/round-4-review-execution.json": "1c1c9f3582fc908afb4b43c66baf200674842f870019ff2ca1c25789aa8f0967",
+    "rounds/round-4-review-official-fetch.json": "e34c5c0cf32f6c855785af320eb25c895c112b113d6ee38e252f2baa65d6e3da",
+    "rounds/round-4-review-packet.json": "9c499c3be76a87758312e722bc9946c1e3cebe1870f68efd8803311b140d8b92",
+    "rounds/round-4-review-response.json": "9211beb5047137abf559ce53df4a63712633852617445bd1565bcb9ded07630f",
+    "rounds/round-4-review-result.json": "0c70aaaf34bd439e666f6506c03a4dddd3dfcc6424994518fa6d92ffac12f267",
+    "rounds/round-4-root-evidence-check.json": "c3d308e3f87df2e5d2673eb2f96634c63ac9ec54b4ccb20cd932458ac275547f",
+    "rounds/round-4-sources.json": "88c3e25f6274cb17fafcf83b80ff68af50d749e9ad5a425795ba468821420b0f",
+    "session/snapshot.db": "22fd3940ee057ee2d55f8da1ab928081e9d0cd8459c30f856117f9779f7a5f83",
+    "session/context.json": "1e060b231308c687a8e35bfbc6e9f9c55a2989933f8e7cd05a8d3ce4581aec67"
+  },
+  "supporting_artifacts": [
+    "evaluation-final-checks.json",
+    "evaluation-public-final-report.json",
+    "evaluation-public-final-proposal-read.json",
+    "improvement-observations-final.json",
+    "improvement-observations-final.md"
+  ],
+  "elapsed_seconds": 599.738617
+}

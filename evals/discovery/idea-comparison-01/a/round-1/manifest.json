@@ -1,6 +1,6 @@
 {
   "archived_at": "2026-09-08T10:18:34.094717+00:00",
-  "phase": "初回提出完了・独立評価実行中",
+  "phase": "初回の独立評価完了・実際の評価を返して第2検討回を開始",
   "files": {
     "answer.json": {
       "source_relative_path": "a/rounds/answer.json",
@@ -61,6 +61,42 @@
       "sha256": "71299912ffeab8dbcb8018270d7137b25ad52f247fe83d573460bb03c2e386fe",
       "source_sha256": "dc6a9b7a114dd97d07e4f5e45a94f3978d57d2569864d08d888b2679bf046643",
       "encoding": "gzip"
+    },
+    "review-start-observation.json": {
+      "source_relative_path": "a/rounds/review-start-observation.json",
+      "sha256": "d3496e5c47ab3f4e0fe933e34cef2cb88d1a719a0365437f5744d4f83dbaa2c9",
+      "source_sha256": "d3496e5c47ab3f4e0fe933e34cef2cb88d1a719a0365437f5744d4f83dbaa2c9",
+      "encoding": "identity"
+    },
+    "review-response.json": {
+      "source_relative_path": "a/rounds/review-response.json",
+      "sha256": "3e95e2675f461ec210224ee3db585c590665dec40b1c1eac977cfa3f1cdc30cc",
+      "source_sha256": "3e95e2675f461ec210224ee3db585c590665dec40b1c1eac977cfa3f1cdc30cc",
+      "encoding": "identity"
+    },
+    "review-execution.json": {
+      "source_relative_path": "a/rounds/review-execution.json",
+      "sha256": "40db40b921f0121b7733f33cb42956dde413fce7334e6646875a318f7b118b69",
+      "source_sha256": "40db40b921f0121b7733f33cb42956dde413fce7334e6646875a318f7b118b69",
+      "encoding": "identity"
+    },
+    "review-result.json": {
+      "source_relative_path": "a/rounds/review-result.json",
+      "sha256": "a714f430f6874530f2d54bac633bdc421de5b405d26b5ab8b4a5ab3a76c9e0f2",
+      "source_sha256": "a714f430f6874530f2d54bac633bdc421de5b405d26b5ab8b4a5ab3a76c9e0f2",
+      "encoding": "identity"
+    },
+    "review-report.json": {
+      "source_relative_path": "a/rounds/review-report.json",
+      "sha256": "518712feb9bfbdae30291af5248ad8ff81bfc00a75751996f592d645d4e13b05",
+      "source_sha256": "518712feb9bfbdae30291af5248ad8ff81bfc00a75751996f592d645d4e13b05",
+      "encoding": "identity"
+    },
+    "root-review-evidence-check.json": {
+      "source_relative_path": "a/rounds/root-review-evidence-check.json",
+      "sha256": "7dfb842b4010a7d6430cceca59236ef3cc721743fc7791b4f62dfba561355419",
+      "source_sha256": "7dfb842b4010a7d6430cceca59236ef3cc721743fc7791b4f62dfba561355419",
+      "encoding": "identity"
     }
   },
   "submission_packet_hash": "92f90163012e8f4d1657d736e6ea0a5619185914d6e3a9e52d6d54894f72aba5",
@@ -80,8 +116,16 @@
     "review_dispatch_end_observed_utc": "2026-09-08T10:18:34.049240+00:00",
     "review_due_utc": "2026-09-08T10:37:24+00:00",
     "review_agent": "/root/idea_trial_review_a_1",
-    "review_packet_hash": "8c80d38c0b76f5bbc33ec93d720bbee51e74a2e89814d1273db036413caf7f13"
+    "review_packet_hash": "8c80d38c0b76f5bbc33ec93d720bbee51e74a2e89814d1273db036413caf7f13",
+    "review_started_at": "2026-09-08T10:17:52+00:00"
   },
   "verification": "保存バイト列と圧縮復元一致、JSON読込、評価入力revision1と過去評価なしを確認。担当の操作数・時間の申告は独立検証前。",
-  "not_a_verdict": "提出できたことを手法の有用性・案の採用価値の合格としない。5項目の採点は未完了。"
+  "not_a_verdict": "提出できたことを手法の有用性・案の採用価値の合格としない。5項目の採点は未完了。",
+  "updated_at": "2026-09-08T10:35:58.943089+00:00",
+  "actual_review": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "review_report_all_fields_match": true
 }

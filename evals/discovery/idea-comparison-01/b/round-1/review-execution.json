@@ -1,0 +1,303 @@
+{
+  "reviewer": "/root/idea_trial_review_b_1",
+  "status": "completed",
+  "session": "/tmp/sv-idea-comparison-01/b/session",
+  "packet_path": "/tmp/sv-idea-comparison-01/b/rounds/review-packet.json",
+  "packet_hash": "d9c9df6f1aeb24dbffc395e21acee7c888e5e85e8242665265a91d43a8b1f079",
+  "revision": 1,
+  "dispatched_at_utc": "2026-09-08T10:15:28Z",
+  "first_observed_started_at_utc": "2026-09-08T10:15:56Z",
+  "started_at_utc": "2026-09-08T10:15:56Z",
+  "start_time_limitation": "実開始の最初の時計観測。最初のREADME読取り直後の値であり、最初の発話・呼出し開始はこの値よりわずかに前。配信からこの観測までの28秒を待機と実作業へ分離できない。",
+  "planned_research_cutoff_utc": "2026-09-08T10:35:28Z",
+  "ended_at_utc": "2026-09-08T10:30:02.398870+00:00",
+  "content_evaluation_count": 1,
+  "registered_review_count": 1,
+  "format_retry_count": 0,
+  "format_retries": [],
+  "wait_measurement": {
+    "intentional_sleep_calls": 0,
+    "active_work_seconds": null,
+    "waiting_seconds": null,
+    "limitation": "UTCの観測間隔は壁時計時間で、推論・読取り・通信・実行待ちを厳密に分離していない。20分目安を満たすための人工的な待機は行わない。"
+  },
+  "operations": [
+    {
+      "interval_utc": [
+        "2026-09-08T10:15:56Z",
+        "2026-09-08T10:17:15Z"
+      ],
+      "action": "固定reviewer-instructionsと保存README、公開packetのreview instruction/回答例/案/履歴/検索/資料一覧、関連カード、ルール、原則を読取り",
+      "result": "指定hash/revisionに一致。historyとprevious_reviewsは空配列。初回の大量出力で省略が発生したため、必要な区分を選択して再読した。内容評価の再提出ではない。"
+    },
+    {
+      "interval_utc": [
+        "2026-09-08T10:17:15Z",
+        "2026-09-08T10:23:09Z"
+      ],
+      "action": "Web検索・公開記事本文の照合、公式カード本文とTipsのブラウザー照合、全40枚の差分とダメージの独立再計算",
+      "result": "ベア・ダストデイズ・マガチヨ・舎弟頭の公式本文を画面のテキストで確認。コピーの効果引継ぎを公式Tipsで確認。比較はヒエン-1/ベア+1で双方40枚。"
+    },
+    {
+      "observed_at_utc": "2026-09-08T10:21:27Z",
+      "action": "公開read入口で指定hashのproposal offset0 limit8を読取り",
+      "result": "指定の保存版・提案題名に一致。提案全文は既に指定公開packetで読んでいる。"
+    },
+    {
+      "observed_at_utc": "2026-09-08T10:25:59Z",
+      "action": "ヒエンの公式本文確認と確認用タブの終了、原則の省略部分再読",
+      "result": "本文確認5枚、コピー定義を含む公式Tips確認済み。"
+    },
+    {
+      "observed_at_utc": "2026-09-08T10:29:10Z",
+      "action": "公開reviewの成功出力とreportを保存し、登録数・入力hash・回答各項目を照合",
+      "result": "reviewは初回で成功。登録は1件。公開reportの全回答項目と入力hashが一致。"
+    }
+  ],
+  "scope": {
+    "packet_card_total": 212,
+    "card_text_and_note_ids_read": [
+      10403110,
+      10403120,
+      10503210,
+      10511310,
+      10513310,
+      10514120,
+      10614120,
+      10711110,
+      10711120,
+      10711310,
+      10714110,
+      10714120,
+      10814110,
+      10911110,
+      10912110,
+      10912310,
+      10913110,
+      10914110,
+      10914120,
+      90011110,
+      90011310
+    ],
+    "card_scope_note": "比較元・交換後の全18種類、ルリアへの影響、生成物フェアリー/森の神秘を確認。残りのカードを全件意味判定したとは扱わない。",
+    "rules": "公開packetのrules全文、37語のability_keywords、特にコンボ/カウントダウン/進化/ファンファーレ/守護/突進/生成物/上限を確認。公式Tipsでコピーと手札から山札への引継ぎを追加確認。",
+    "principles": "作業開始のdocs/design.md §§1–4を読取り、固定packetの§§5–7を照合。実装コード・evals・採点条件・他方式の出力へは移動していない。",
+    "proposal": "revision 1 全文",
+    "history": "0件",
+    "previous_reviews": "0件",
+    "sources": "14件。8件の説明資料全文、5件の40枚リストの全行、1件の公開比較結果を確認。",
+    "known_decks": "保存された4件の全リスト。Webの再照合はGame8/GameWithのコンボエルフを中心に限定。"
+  },
+  "search_queries": [
+    "\"グロースベア\" \"マガチヨ\"",
+    "\"グロースベア\" \"ダストデイズ\" コンボ エルフ",
+    "\"グロースベア\" コピー 強化 引き継ぐ",
+    "site:shadowverse-wb.com \"コピー\" \"グロースベア\"",
+    "site:shadowverse-wb.com \"コピー\" \"引き継\"",
+    "\"グロースベア\" \"ヒエン\"",
+    "\"グロースベア\" \"枝葉の舎弟頭\"",
+    "site:shadowverse-wb.com/ja \"コピー\" \"受けたダメージ\"",
+    "site:shadowverse-wb.com \"グロースベア\" \"Q\"",
+    "\"グロースベア\" \"コンボエルフ\" 2026 9"
+  ],
+  "arithmetic": {
+    "before_total": 40,
+    "after_total": 40,
+    "changed_count": 1,
+    "added": {
+      "10711110": 1
+    },
+    "removed": {
+      "10914120": 1
+    },
+    "both_type_counts": {
+      "follower": 31,
+      "spell": 6,
+      "amulet": 3
+    },
+    "life_per_bear_after_5_damage_combat_then_4_damage_aoe_by_buff_count": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "arithmetic_limitation": "指定状態の算術であり対戦や抽選順の再現ではない。"
+  },
+  "tool_recovery": [
+    {
+      "kind": "truncated_read",
+      "detail": "最初の大量出力に省略があり、案/関連カード/資料を絞った読取りで必要範囲を再確認した。"
+    },
+    {
+      "kind": "web_dynamic_content",
+      "detail": "公式カードページのWeb本文はカード本体が欠けた。取得成功の検索抜粋と同一視せず、非表示のブラウザーで本文とTipsを実表示して確認した。"
+    },
+    {
+      "kind": "browser_visibility",
+      "detail": "追加の非表示タブ作成が「IAB visibility is not supported in a subagent thread」で失敗。既存の自作タブ1件を使う公開ページ遷移で確認を継続。評価形式の再試行には数えない。"
+    }
+  ],
+  "unverified": [
+    "ゲーム内の対戦・勝率・Tier・初見の加点",
+    "T6/T7の全行動と山札順を含む連続した到達経路・到達頻度",
+    "ヒエン1枚を減らす機会損失と守護による生存機会の実測比較",
+    "現行構築戦全体での同じ1枚交換の普及率",
+    "全投稿/動画/画像リスト/大会構築の網羅調査"
+  ],
+  "web_checks": [
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10711110",
+      "query": "グロースベアの現行本文／バトルTipsのコピー・ファンファーレ・コンボ・場上限・エクストラPP",
+      "checked_at": "2026-09-08T10:19:35Z–2026-09-08T10:21:27Z（実施区間。個別秒は未計測）",
+      "finding": "Webの本文取得ではカードが欠けたため非表示ブラウザーで表示を確認。コピー1体、突進、守護、4以上のダメージを3にする本文が固定資料と一致。バトルTipsを開き、コピーが受けたダメージとかかっている効果を引き継ぐことを確認した。山札強化の引継ぎを本文上支持できる。ゲーム内対戦はしていない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10714110",
+      "query": "ダストデイズ本文とクレスト本文",
+      "checked_at": "2026-09-08T10:21:27Z（表示確認直後の時計観測）",
+      "finding": "非表示ブラウザーの公式本文で体力減少、コンボ+1、進化時のクレスト、カウントダウン3、ターン終了時のコンボ3による山札全体+1/+1を確認。Web本文のみではカードが欠けていた。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10914110",
+      "query": "マガチヨの4点除去・コンボ3・超進化時疾走",
+      "checked_at": "2026-09-08T10:21:27Z–2026-09-08T10:23:09Z（実施区間。個別秒は未計測）",
+      "finding": "非表示ブラウザーの公式本文で固定資料と一致を確認。通常の4点全体除去と、SEPを使う疾走が別の条件であることを照合した。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10913110",
+      "query": "枝葉の舎弟頭の補充と進化時能力",
+      "checked_at": "2026-09-08T10:21:27Z–2026-09-08T10:23:09Z（実施区間。個別秒は未計測）",
+      "finding": "非表示ブラウザーの公式本文でコンボ3の2枚ドロー、進化時の他の1体への+1/+1と突進付与を確認。補充は無条件ではない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10914120",
+      "query": "交換で減るヒエンのコスト低下と再出現",
+      "checked_at": "2026-09-08T10:23:09Z–2026-09-08T10:25:59Z（実施区間。個別秒は未計測）",
+      "finding": "非表示ブラウザーの公式本文で、手札にある間のプレイごとのコスト-1、登場時の4点、ラストワードの同名再出現を確認。新個体はコピーという記述ではなく、強化の永続を加算しない。"
+    },
+    {
+      "url": "https://game8.jp/shadowverse-beyond/781941",
+      "query": "比較元コンボエルフの17種類40枚と序盤・5PP以降の立ち回り",
+      "checked_at": "2026-09-08T10:17:15Z–2026-09-08T10:18:07Z（実施区間。個別秒は未計測）",
+      "finding": "掲載表は固定の比較元と一致しヒエン3枚・ベア0枚。5PPのダストデイズ進化と1コスト札、強化後の引き込み、余裕があれば早く相手を削る計画を確認。記事のTier表記を本案の強さへ転用しない。コピーリンクの対象リストは今回再取得していない。"
+    },
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/559139",
+      "query": "コンボエルフの現行掲載範囲とグロースベアの有無",
+      "checked_at": "2026-09-08T10:17:15Z–2026-09-08T10:19:35Z（実施区間。個別秒は未計測）",
+      "finding": "現行コンボエルフの記事を開き、デッキ節を確認。本文検索でグロースベアは一致しなかった。固定資料のルリア入り40枚とは別のGame8リストを本案の比較元とする。この不一致・不在だけで未発見や不採用の正しさとは判定しない。"
+    },
+    {
+      "url": "https://shiroiseijin.hatenablog.jp/entry/2026/05/07/181812",
+      "query": "グロースベア ダストデイズ／入れ替え候補節",
+      "checked_at": "2026-09-08T10:17:15Z–2026-09-08T10:21:27Z（実施区間。個別秒は未計測）",
+      "finding": "個人記事のベア節を本文で確認。山札強化後のコピー2体、除去しにくさ、8コストと処理2面の限界、重い他札との枠交換を既に論じる。採用検討の記録で、現在のヒエン1枚交換の効果や普及率を示すものではない。"
+    },
+    {
+      "url": "https://hanhans.hatenablog.com/entry/2026/04/27/230240",
+      "query": "グロースベア コピー 強化 引き継ぐ／ベアと手札戻しの各節",
+      "checked_at": "2026-09-08T10:18:07Z–2026-09-08T10:21:27Z（実施区間。個別秒は未計測）",
+      "finding": "発売前の個人検討記事で、強化した9/9のコピー2体、終盤の防御、引き込みの不確かさ、手札から山札へ戻す手段を既に説明。役割の先行言及の証拠として扱い、実戦成功の証明にはしない。"
+    },
+    {
+      "url": "https://note.com/_m_k_s_n_/n/naeb0c6139e90",
+      "query": "グロースベア ダストデイズの既出検索からゼラエルエルフ節を確認",
+      "checked_at": "2026-09-08T10:18:07Z–2026-09-08T10:19:35Z（実施区間。個別秒は未計測）",
+      "finding": "本文は表記「グローズベア」で、ダストデイズ採用構築における守護と進化権を使わない処理を説明する。別の勝ち方を目的とした構築であり、本案の現行コンボエルフ1枚交換と同一とは判定しない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10711110&lang=ja",
+      "query": "固定資料の公式出典URL",
+      "checked_at": "2026-09-08T10:17:15Z–2026-09-08T10:18:07Z（実施区間。個別秒は未計測）",
+      "finding": "Web openはInternal Errorで本文を得られなかった。公開カードページとブラウザー表示で別途本文を確認した。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=90054110",
+      "query": "公式コピー定義の検索結果との照合",
+      "checked_at": "2026-09-08T10:18:07Z–2026-09-08T10:19:35Z（実施区間。個別秒は未計測）",
+      "finding": "検索抜粋にコピーの効果引継ぎが出たが、開いたページ本文は枠だけだった。この取得だけを本文確認と扱わず、ベアの公式Tipsをブラウザーで確認した。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/rules/",
+      "query": "公式ルールの公開ページ確認",
+      "checked_at": "2026-09-08T10:18:07Z–2026-09-08T10:19:35Z（実施区間。個別秒は未計測）",
+      "finding": "Web openはInternal Error。ルール根拠として採用していない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/help?tab=tab0",
+      "query": "公式ヘルプでコピー定義を照合",
+      "checked_at": "2026-09-08T10:19:35Z–2026-09-08T10:21:27Z（実施区間。個別秒は未計測）",
+      "finding": "開いた本文は枠だけで、コピーの本文検索は一致なし。コピー定義は別途ベアの公式Tipsで確認した。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/build_edit/?battle_format=2&bk_u_class=2&bk_u_key=deck_build&class=2",
+      "query": "公式コピー定義の検索結果との照合",
+      "checked_at": "2026-09-08T10:19:35Z–2026-09-08T10:21:27Z（実施区間。個別秒は未計測）",
+      "finding": "読取りのみ。検索抜粋の定義と開いたページを区別し、この頁は定義確認の最終根拠にしない。構築の作成・保存は行っていない。"
+    }
+  ],
+  "official_card_text_ids_checked": [
+    10711110,
+    10714110,
+    10914110,
+    10913110,
+    10914120
+  ],
+  "browser_cleanup": "自作の確認用タブ1件を閉じた。利用者の既存タブは操作していない。",
+  "registration": {
+    "command": "/tmp/sv-system-venv/bin/python -m svdeck.discovery review /tmp/sv-idea-comparison-01/b/session /tmp/sv-idea-comparison-01/b/rounds/review-response.json",
+    "completed_observed_at_utc": "2026-09-08T10:28:48Z",
+    "exit_code": 0,
+    "registered_review_count": 1,
+    "format_retry_count": 0,
+    "public_result_matches": true,
+    "public_report_all_response_fields_match": true,
+    "review_context": {
+      "review_hash": "47fe2fdd7a851839b82562b47a041261f2aed46d5311b92b892ef85544915351",
+      "input_packet_hash": "d9c9df6f1aeb24dbffc395e21acee7c888e5e85e8242665265a91d43a8b1f079",
+      "input_source_hashes": [
+        "13a4fceac11cf88a31f1134440cddb13695b20c70b1cac5c426257eeb36ee5ae",
+        "1e9223c82568cf6d0b52bee91581ae0059481d2facefedd688055ed3a61a7e7e",
+        "3f5085652f7a6a84820c88f9127e0d93b3057d32041ce691d1268b18fe7ad622",
+        "47e0b21f0bbfb7d621a8b320f84bdc15b4bc7f0ae38d7d89f38e2abce159cbf7",
+        "4a0af9287a273b68f2741f3b3188d8147821cabad9f5d05a5ee39ceb41f554c6",
+        "6637e0fadefe3f0a0ac57bad83fd3da88438f0ac2b5ea2f8d130e8f9f181a9df",
+        "74356e4cc71396a87e6c6e62ed8c5540f2164e0ede75d88a2e85f14db89bd96e",
+        "8ab684d6ba0f6f6d481f8dea1c56935109655a3625ed9eb28342ad034a21c395",
+        "97489fd30610d70c58ad49d81e5b54e9dd19628dad5f09a732ab7545e39dc067",
+        "caa7a451732a93ceb3e4cc61b83e87654b2bd5d11f91c9c10f91b81e0f1713fd",
+        "d6f391febf0a6e9759d99288f359ee385419bcbeca87ffa6aaeed91e4a878367",
+        "efa6d606efd8a7275a8d1212884ee522f6c16a68aeca96dbd1ee5e0b1cb091b5",
+        "f510e41c1c96d1863d152fb5d56606c56eeb21e61ace721ee6c210a7293205fb",
+        "f995e6ffec1ca1830b4d214518761b1b74369103458418578df1ca695e265cb3"
+      ],
+      "additional_source_hashes": [],
+      "next_questions": [
+        "同じ8PP・両リーダー体力・自分の残り4枚・相手の全手札とSEPを固定した比較で、ベアは従来の除去やヒエンでは防げない決着を防げるか。ダメージ中心の返しと、必殺・体力減少・破壊を含む返しで、残りPPと失った攻撃機会まで比べたい。",
+        "先攻T5または後攻T4のダストデイズから、2～3回の山札強化とベアの取得までを一続きで示せるか。早く引く・必要なときに引かない場合も含め、手札を戻す負担、各ターンのコンボ3、進化権と場5枠を同じ記録で確認したい。後攻T7のエクストラPPによる8PP使用は、本文上の補助案として分けて検討できる。",
+        "ヒエン1枚を減らして失う早い攻撃・復活の機会と、ベアが進化権を使わず守る機会を、同じ対面の少数の具体的な観察で比較できるか。新弾の安い除去・補充が、従来ベアのどの弱点を解決したかを確かめたい。",
+        "現在の構築戦で同じ1枚防御枠が使われる資料はあるか。先行するベアの防御用途と、今回の配分による実際の改善を分けて比較したい。"
+      ]
+    }
+  },
+  "elapsed_wall_clock_seconds": 846.39887,
+  "research_last_observed_at_utc": "2026-09-08T10:25:59Z",
+  "response_and_registration_last_observed_at_utc": "2026-09-08T10:28:48Z",
+  "report_verification_completed_observed_at_utc": "2026-09-08T10:29:32Z",
+  "completion_note": "20分を目安に必要範囲を確認し、約14分で1件の評価・公開登録・report照合を終了。残る問いは対戦観察と比較状態の追加固定が必要であり、同じ資料の再読や人工的な待機で時間を埋めていない。",
+  "artifacts": {
+    "review-response.json": "/tmp/sv-idea-comparison-01/b/rounds/review-response.json",
+    "review-execution.json": "/tmp/sv-idea-comparison-01/b/rounds/review-execution.json",
+    "review-result.json": "/tmp/sv-idea-comparison-01/b/rounds/review-result.json",
+    "review-report.json": "/tmp/sv-idea-comparison-01/b/rounds/review-report.json"
+  },
+  "prohibited_actions": {
+    "production_db_edited": false,
+    "code_edited": false,
+    "original_material_edited": false,
+    "src_or_evals_or_scoring_conditions_read": false,
+    "other_method_output_read": false,
+    "consulted_proposer_on_judgment": false,
+    "spawned_subagents": false
+  }
+}

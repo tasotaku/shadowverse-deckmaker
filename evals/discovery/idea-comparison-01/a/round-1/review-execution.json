@@ -1,0 +1,171 @@
+{
+  "author": "/root/idea_trial_review_a_1",
+  "revision": 1,
+  "session": "/tmp/sv-idea-comparison-01/a/session",
+  "packet_path": "/tmp/sv-idea-comparison-01/a/rounds/review-packet.json",
+  "packet_hash": "8c80d38c0b76f5bbc33ec93d720bbee51e74a2e89814d1273db036413caf7f13",
+  "dispatched_at_utc": "2026-09-08T10:17:24+00:00",
+  "actual_start_utc": "2026-09-08T10:17:52+00:00",
+  "actual_end_utc": "2026-09-08T10:31:18.453400+00:00",
+  "started_at": "2026-09-08T10:17:52+00:00",
+  "finished_at": "2026-09-08T10:31:18.453400+00:00",
+  "wall_elapsed_seconds": 806.4534,
+  "dispatch_to_first_clock_seconds": 28.0,
+  "target_duration_seconds": 1200,
+  "target_end_utc": "2026-09-08T10:37:24+00:00",
+  "duration_interpretation": "20分は目安。必要な公開確認と評価登録・対応確認が終わったため目安前に終了。起動待ち、推論、通信待ちの内訳を完全には測れず、wall_elapsed_secondsを能動調査時間とは扱わない。",
+  "timing_limitations": [
+    "開始は最初のclockツールが実際に返したUTC日時。タスクの起動自体の正確な時刻は未取得。",
+    "Webの個別URLを開いた秒単位時刻は未計測。web_checks.checked_atは実際の全閲覧を含む確認区間であり、各URLをその区間中ずっと調べていた意味ではない。",
+    "処理待ち・モデル推論・出力待ちの完全な分離はできない。明示的なsleepや待機ツールは使っていない。",
+    "終了時刻は報告との一致確認を完了し、本実行記録を保存する時刻。"
+  ],
+  "explicit_wait_seconds": 0,
+  "active_work_seconds": null,
+  "substantive_review_count": 1,
+  "public_review_submit_attempts": 1,
+  "format_retry_count": 0,
+  "format_retries": [],
+  "operations": [
+    {
+      "operation": "固定reviewer-instructionsと保存版operator-readmeを読む",
+      "surface": "指定された公開評価資料",
+      "status": "complete"
+    },
+    {
+      "operation": "適用されるAGENTSの外部ルールとdocs/design.mdを読む",
+      "surface": "指示で指定されたルール文書。採点条件・src/evals・他方式出力は読んでいない",
+      "status": "complete for applicable review sections"
+    },
+    {
+      "operation": "固定review packetから提案、履歴、関連カード本文・両側注記、ルール、追加資料を読む",
+      "surface": "/tmp/sv-idea-comparison-01/a/rounds/review-packet.json",
+      "status": "complete for declared scope"
+    },
+    {
+      "operation": "公開discovery readでproposalの後半とknown_decks全4件を確認",
+      "surface": "python -m svdeck.discovery read SESSION HASH SECTION",
+      "status": "complete"
+    },
+    {
+      "operation": "公開追加資料の比較前後40枚とpacketカード情報から交換枚数・種類・コスト・合法性・ルリア対象を再計算",
+      "surface": "固定packetのみを使う一時的なPython計算",
+      "status": "40/40枚、4枚交換、各側34 followers/3 spells/3 amulets、採用問題なし、7コスト以上はセタス＆メイシアのみ"
+    },
+    {
+      "operation": "公開Web検索17件と関連ページの本文確認",
+      "surface": "web search/open/find",
+      "status": "declared web_checks and search_queries"
+    },
+    {
+      "operation": "主要4枚の公式別URLをバックグラウンドのブラウザーで表示",
+      "surface": "CUA / Codex in-app browser",
+      "status": "ゴッデス・ダストデイズ・レイピア・緋岸橙酔の本文確認。自分が作ったタブは閉じた。"
+    },
+    {
+      "operation": "公開review --helpを確認",
+      "surface": "python -m svdeck.discovery review --help",
+      "status": "exit 0"
+    },
+    {
+      "operation": "回答JSONを作成し公開reviewへ1件登録",
+      "surface": "python -m svdeck.discovery review SESSION review-response.json",
+      "status": "exit 0; first attempt accepted"
+    },
+    {
+      "operation": "公開reportを保存し今回の入力版・回答・参照資料・次の問いの対応を確認",
+      "surface": "python -m svdeck.discovery report SESSION",
+      "status": "exit 0; all response fields equal the sole review in revision 1"
+    }
+  ],
+  "checked_scope": {
+    "proposal": "revision 1全文、手順6段、構築方針・質問・不確実性",
+    "history": "空配列を確認",
+    "previous_reviews": "review packetの空配列のみ。過去評価を参照していない",
+    "cards_total_in_packet": 212,
+    "deck_card_ids_read": [
+      10403120,
+      10502110,
+      10503210,
+      10513310,
+      10514120,
+      10614120,
+      10711120,
+      10712110,
+      10714110,
+      10714120,
+      10811130,
+      10814110,
+      10911110,
+      10912110,
+      10913110,
+      10913310,
+      10914110
+    ],
+    "generated_card_ids_read": [
+      90011110,
+      90011310
+    ],
+    "notes": "上記カード全てのnoteを確認。note空欄のカードも含む。",
+    "rules": "packetのrules全文、principlesの1.5・5・6・7の該当運用、コンボ・進化時・超進化時・カウントダウン・クレスト・疾走・突進の定義",
+    "known_decks": "全4件を公開readで確認。GameWithとGame8のコンボ2件は今回Web本文とも照合。進化・テンポは保存リストの確認まで。",
+    "sources": "15件の表題・出典・限界を確認。14件の短いcontentは全文。長い機械比較contentは構造とdeltaを読み、比較元・比較先の全文とカード情報から重要値を再計算。",
+    "procedure": "T4〜T9のPP、手札、場、進化権、生成元、強化と軽減の時点、相手条件を検算。指定状態からの計算であり実ゲーム操作ではない。"
+  },
+  "search_queries": [
+    "スターライトゴッデス レイピア ダストデイズ",
+    "スターライトゴッデス コピー バフ コスト 引き継ぐ",
+    "スターライトゴッデス 緋岸橙酔",
+    "\"スターライトゴッデス\" \"レイピア\"",
+    "\"スターライトゴッデス\" \"ダストデイズ\"",
+    "\"スターライトゴッデス\" \"緋岸橙酔\"",
+    "site:shadowverse-wb.com \"スターライトゴッデス\"",
+    "site:shadowverse-wb.com \"コピー\" \"変更\"",
+    "\"スターライトゴッデス\" \"エルフ\" \"バフ\"",
+    "site:shadowverse-wb.com/ja/deck/cardslist/card \"コピー\" \"状態\"",
+    "site:shadowverse-wb.com \"コピー\" \"コスト\"",
+    "\"スターライトゴッデス\" \"Q＆A\"",
+    "\"スターライトゴッデス\" \"レイピア使い\" \"エルフ\"",
+    "\"スターライトゴッデス\" \"レイピア\" site:youtube.com",
+    "\"スターライトゴッデス\" \"ダストデイズ\" site:note.com",
+    "\"スターライトゴッデス\" \"エルフトラッパー\"",
+    "\"スターライトゴッデス\" \"緋岸\""
+  ],
+  "non_review_retry_notes": [
+    "一度の資料整形用Pythonでability_keywordsを配列と誤認しAttributeError。辞書と確認して読み直した。内容評価の再試行ではない。",
+    "大きい結合出力で一部が切れたため、提案の後半・関連カード・追加資料・該当設計節を分割して読み直した。未読範囲を全文確認済みとは扱わない。",
+    "Web findがベイル記事やWikiについて不一致を返しても、openで該当本文が表示された。findの不一致を既出不存在の根拠には採用していない。",
+    "公式旧URLのエラーと別URLのWeb本文欠落は、公式別URLのブラウザー実表示で主要4枚の本文を補った。継承細則までは補えていない。",
+    "緋岸橙酔のブラウザー初回取得では本文が未読込だったため、読込後のAX全文で確認した。"
+  ],
+  "unverified": [
+    "実ゲームでの対戦、コピー後の強化・軽減の状態、初手からの到達頻度、手札の取得順と防御負担。",
+    "ルリア・モエルを残す構築とゴッデス少数採用・4枚交換の実際の優劣。",
+    "特定相手への生存率、回復や守護への対応、勝率、Tier、初見の有利さ。",
+    "動画全編・画像内リスト・SNS全投稿・非公開構築・一般への普及度。",
+    "212カード全件の精読と全公式本文・全Q&Aの再確認。"
+  ],
+  "public_review_result": {
+    "revision": 1,
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed",
+    "limit": "担当者の根拠付き評価。勝率・強さ・新発見の証明ではありません"
+  },
+  "review_hash": "87f00e0cd0bd67af1fbebebf78eb37eefae8fc99878ab0cabd37eebfb883978b",
+  "report_correspondence": {
+    "verified": true,
+    "revision": 1,
+    "review_count": 1,
+    "all_response_fields_match": true,
+    "input_packet_hash_match": true,
+    "input_source_hashes_match": true,
+    "next_questions_match": true
+  },
+  "outputs": {
+    "response": "/tmp/sv-idea-comparison-01/a/rounds/review-response.json",
+    "execution": "/tmp/sv-idea-comparison-01/a/rounds/review-execution.json",
+    "result": "/tmp/sv-idea-comparison-01/a/rounds/review-result.json",
+    "report": "/tmp/sv-idea-comparison-01/a/rounds/review-report.json"
+  }
+}
