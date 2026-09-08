@@ -39,6 +39,34 @@
       "new_judgment_task_added": false,
       "b_not_notified_reason": "b completed generation/save before the limit; its independent review is running.",
       "content": "25分時点で新規調査終了。10:21:23まで保存・形式修正のみ。実際の時刻・未確認を保持。"
+    },
+    {
+      "type": "actual_start_inquiry",
+      "exact_dispatch_timestamp": null,
+      "limitation": "Operational inquiry was sent in the preceding root context; exact dispatch time is not retained in this file. No new evaluation question was supplied.",
+      "new_judgment_task_added": false
+    },
+    {
+      "type": "round-2-save-notice",
+      "recipients": [
+        "b"
+      ],
+      "scheduled_at": "2026-09-08T10:51:15+00:00",
+      "dispatch_window_start_utc": "2026-09-08T10:50:55+00:00",
+      "dispatch_window_end_utc": "2026-09-08T10:51:24+00:00",
+      "delivery_tools_returned_success": true,
+      "new_judgment_task_added": false
+    },
+    {
+      "type": "round-2-save-notice",
+      "recipients": [
+        "a"
+      ],
+      "scheduled_at": "2026-09-08T10:52:37+00:00",
+      "dispatch_window_start_utc": "2026-09-08T10:52:20+00:00",
+      "dispatch_window_end_utc": "2026-09-08T10:52:47+00:00",
+      "delivery_tools_returned_success": true,
+      "new_judgment_task_added": false
     }
   ],
   "limits": "二つのdispatchは同一時刻ではない。上の期間中に連続して起動し、担当側の実開始時刻も別途保存する。",
@@ -47,31 +75,50 @@
       "recorded_at": "2026-09-08T10:37:22.052674+00:00",
       "round": 2,
       "agent": "/root/idea_trial_generator_b",
-      "stage": "generation_running",
+      "stage": "independent_review_running",
       "input_packet_hash": "911beb61a6ed48ee57b4939f460f0f6ced1ba593116ba4200c2a9b9e5123fdec",
       "dispatch_clock_utc": "2026-09-08T10:31:15+00:00",
       "notice_due_utc": "2026-09-08T10:51:15+00:00",
       "new_research_cutoff_utc": "2026-09-08T10:56:15+00:00",
       "save_grace_end_utc": "2026-09-08T11:01:15+00:00",
-      "actual_started_at": null,
+      "actual_started_at": "2026-09-08T10:31:50+00:00",
       "previous_review": "conditional / develop / unconfirmed",
       "initial_protocol_unchanged": true,
-      "note": "配信直前に観測したUTC時刻。担当の実開始とは別で、終了時の実行記録に従う。実際の評価のみを返し、新しい判断課題や期待ラベルは加えていない。"
+      "note": "配信直前に観測したUTC時刻。担当の実開始とは別で、終了時の実行記録に従う。実際の評価のみを返し、新しい判断課題や期待ラベルは加えていない。",
+      "generation_research_finished_at": "2026-09-08T10:49:50.267823+00:00",
+      "generation_save_finished_at": "2026-09-08T10:52:15.773678+00:00",
+      "review_dispatch_start_utc": "2026-09-08T10:52:57+00:00",
+      "review_dispatch_end_observed_utc": "2026-09-08T10:54:20.026925+00:00",
+      "review_due_utc": "2026-09-08T11:12:57+00:00",
+      "review_agent": "/root/idea_trial_review_b_2",
+      "review_packet_hash": "82c5947d9b77535dc8fb47206d51860215c2e8dadec8c78769db7ccd2b1bcf07",
+      "review_actual_started_at": null
     },
     "a": {
       "recorded_at": "2026-09-08T10:37:22.028306+00:00",
       "round": 2,
       "agent": "/root/idea_trial_generator_a",
-      "stage": "generation_running",
+      "stage": "independent_review_running",
       "input_packet_hash": "28440c4fa10285613250a77ad812422769bfe898dfddd8b5ff4b5ef90b1dd908",
       "dispatch_clock_utc": "2026-09-08T10:32:37+00:00",
       "notice_due_utc": "2026-09-08T10:52:37+00:00",
       "new_research_cutoff_utc": "2026-09-08T10:57:37+00:00",
       "save_grace_end_utc": "2026-09-08T11:02:37+00:00",
-      "actual_started_at": null,
+      "actual_started_at": "2026-09-08T10:33:10.721498+00:00",
       "previous_review": "conditional / develop / unconfirmed",
       "initial_protocol_unchanged": true,
-      "note": "配信直前に観測したUTC時刻。担当の実開始とは別で、終了時の実行記録に従う。実際の評価のみを返し、新しい判断課題や期待ラベルは加えていない。"
+      "note": "配信直前に観測したUTC時刻。担当の実開始とは別で、終了時の実行記録に従う。実際の評価のみを返し、新しい判断課題や期待ラベルは加えていない。",
+      "generation_research_finished_at": null,
+      "generation_research_end_upper_bound": "2026-09-08T10:51:02.140630+00:00",
+      "generation_main_save_finished_at": "2026-09-08T10:53:26.298229+00:00",
+      "generation_save_finished_at": "2026-09-08T10:53:54.429953+00:00",
+      "review_dispatch_start_utc": "2026-09-08T10:54:30+00:00",
+      "review_dispatch_end_observed_utc": "2026-09-08T10:56:43.715572+00:00",
+      "review_due_utc": "2026-09-08T11:14:30+00:00",
+      "review_agent": "/root/idea_trial_review_a_2",
+      "review_packet_hash": "93d58ca089e887aa2549bfc23cbb4cdfaa25c51b0a485a6b8ecdd95dc72b20c4",
+      "review_actual_started_at": null,
+      "timestamp_limit": "調査終了の専用時計は未記録。提出結果の保存時刻は調査終了の上限のみ。最後の時刻精度追記までを保存終了として記録。"
     }
   },
   "completed_rounds": {

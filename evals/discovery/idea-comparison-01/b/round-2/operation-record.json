@@ -1,0 +1,135 @@
+{
+  "round": 2,
+  "actual_start_utc": "2026-09-08 10:31:50 UTC",
+  "input_packet_hash": "911beb61a6ed48ee57b4939f460f0f6ced1ba593116ba4200c2a9b9e5123fdec",
+  "research_and_proposal_end_utc": "2026-09-08T10:49:50.267823+00:00",
+  "submission_and_public_results_confirmed_utc": "2026-09-08 10:50:14 UTC",
+  "last_clock_before_final_save_utc": "2026-09-08 10:50:41 UTC",
+  "time_limit_reached": false,
+  "outcome": "第2回として追加資料6件と正式改訂1件を公開保存。revision2は未評価。調査上限による未完停止ではなく、残る観測課題を明記して改訂を別評価へ渡す。",
+  "public_result": {
+    "revision": 2,
+    "parent_revision": 1,
+    "submit_packet_hash": "8cd75d06b06ecf42a036082ffdcd7b43e0b45c6fabf25132735e8379d634d4a5",
+    "review_packet_hash": "82c5947d9b77535dc8fb47206d51860215c2e8dadec8c78769db7ccd2b1bcf07",
+    "review_packet": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-packet.json",
+    "report": "/tmp/sv-idea-comparison-01/b/rounds/round-2/report.json",
+    "sources_total": 20,
+    "new_sources": 6,
+    "reviews_on_revision2": 0,
+    "formal_submissions_this_round": 1,
+    "formal_submissions_session_total": 2,
+    "rounds_consumed_total": 2
+  },
+  "read_scope": {
+    "local": [
+      "固定generator-instructions.txtと共通operator-readme.mdをこの回でも確認",
+      "自分のround-2/input-packet.jsonの実際の評価全文・review_contexts・next_questions・instruction・回答例・目的",
+      "同packetの固定カード本文/進化/参照先/両側note、ルール全文と必要用語",
+      "自分の追加資料・公開develop packet・submit結果・公開review packet・report",
+      "適用AGENTS/import先と原則は初回で読了した固定の指示を継続適用。第2回で隣接した他の出力は読まない。"
+    ],
+    "rechecked_card_ids": [
+      10711110,
+      10714110,
+      10914110,
+      10913110,
+      10914120,
+      10911110,
+      10514120,
+      10814110,
+      10714120,
+      90011310,
+      90011110,
+      10912310,
+      10711120,
+      10711310,
+      10912110,
+      10503210,
+      10403110,
+      10511310,
+      10513310,
+      10614120
+    ],
+    "rechecked_card_count": 20,
+    "additional_removal_text_scan_ids": [
+      10001210,
+      10002210,
+      10502120,
+      10503310,
+      10601120,
+      10613310,
+      10701310,
+      10703210,
+      10704110,
+      10803110,
+      10811110,
+      10812310,
+      10814110,
+      10901310,
+      10911210,
+      10913310
+    ],
+    "additional_removal_text_scan_count": 16,
+    "web": "web-research.jsonに6検索語・4つの直接照合URL・読んだ本文と取得の限界を保存。",
+    "excluded": [
+      "隣の探索保存先・他担当の非公開成果",
+      "protocol・監査・採点条件・src/evals",
+      "実装src・本番DB・snapshotの直接読出し",
+      "過去の自然試行",
+      "ゲーム内対戦・対戦動画・ユーザーのブラウザー履歴・他のタブ"
+    ]
+  },
+  "operations": {
+    "public_cli": {
+      "total": 5,
+      "attach": 1,
+      "packet_develop": 1,
+      "submit": 1,
+      "packet_review": 1,
+      "report": 1,
+      "read": 0,
+      "compare": 0,
+      "review": 0,
+      "successes": 5,
+      "failures": 0
+    },
+    "web_run": {
+      "calls": 4,
+      "search_queries": 6,
+      "explicit_opens": 5,
+      "finds": 5
+    },
+    "cua_repl": {
+      "calls": 5,
+      "successes": 4,
+      "failures": 1,
+      "created_chrome_tabs": 2,
+      "ui_actions": "Chromeセッション命名1、タブ作成2、ページ移動2、バトルTipsクリック1、DOM本文取得3。iab作成失敗後に利用可能なChromeを選択した。"
+    },
+    "exec_command": {
+      "calls_including_this_final_save": 22,
+      "failed_processes": 0,
+      "notes": "最初の入力packet読取1回を含む。保存・書式確認・公開CLIもこの総数に含む。CLI5回は上で別掲。"
+    },
+    "child_agents": 0,
+    "self_review_registration": 0
+  },
+  "failures_and_corrections": [
+    "CUAで非表示iabを作る試み1回はBrowser is not available: iabで失敗。Chromeを選び直して公式本文を表示確認した。",
+    "Web openの公式ヘルプは外枠のみ。noteのWeb抽出では対象節が欠け、グローズ/エルフ/ベアの3検索は一致なし。どちらもChromeの表示本文で必要箇所を確認した。",
+    "4月記事の9/9検索は一致なし、本文が9の9表記であることをベア節で確認。",
+    "長いカード・ルール・Web結果を混ぜた出力1回で省略が起きた。ルール全文と必要用語を再読し、対象記事を再open/find/ブラウザーで確認。無関係な検索結果全件は精読しない。",
+    "作成途中のT7相手5/5は強化時期に合わないため、提出前に+2の4/4へ訂正。場の空きは旧発芽が残った場合の交戦死亡で確保し、不要な進化を使う前提も外した。詳細arrival-and-costs.json。",
+    "先攻T8でSEP0という不可能な消費履歴を避け、同じ手札の防御比較は後攻T8、相手返し先攻T9の9PPに固定した。"
+  ],
+  "unconfirmed": [
+    "固定局面と連続手順は別条件であり、同じ対戦の最初から最後までを確認したものではない。",
+    "進化権切れ後にこの防御が必要になる頻度、ヒエン1枚減の損失、重い札としての負担、実戦での採用価値。",
+    "ベアを1回以上強化して必要時に引ける頻度と、無強化で早引きした際の再取得。",
+    "後攻T4からT7の完全手順、実戦の両リーダー体力と生存。",
+    "現在の同じ1枚配分の既出状況。基本の強化・守護用途の既出は確認した。",
+    "新弾の補充・除去で古いベアの遅さや不安定さがどこまで改善するか。"
+  ],
+  "prohibited_actions_performed": []
+}

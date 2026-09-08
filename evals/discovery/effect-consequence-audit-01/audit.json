@@ -1,0 +1,1151 @@
+{
+  "started_utc": "2026-09-08 10:34:24 UTC",
+  "captured_utc": "2026-09-08 10:39:47 UTC",
+  "workspace": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+  "git_head": "cd2c7591e0a7b72bcd6f74090c2e1b2d3e7e9c16",
+  "db_access": "sqlite mode=ro; no svdeck.db.connect invocation",
+  "db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "file_sha256": {
+    "src/svdeck/atoms.py": "2f9d97ca5f5090820025deb86af02a5c0dce78b28511d795dd47b501d90381ba",
+    "src/svdeck/db.py": "f767b249a5074df2be2ba817f0b3f2575cac4d87494435ef541de8052aa7b14e",
+    "src/svdeck/explore.py": "14cc5ccec322c4eab5defd783abf333ed03f9fbb44ede91c4f46cd43ed3f2ff6",
+    "src/svdeck/reverse.py": "a6dfba16780d50c53c029d72be902d815414a05a14653fa2744c50fb4fcedc7f",
+    "src/svdeck/bench.py": "3bc82565ffeabfa3e43b60babe4f9080fad7571211949fb66e04ba196d6cbe8b",
+    "src/svdeck/strength.py": "02d5e7268b9c69df3a8ad7930b88f7b45eb438563ec0d9aa6b67719cd829e25f",
+    "src/svdeck/vector.py": "e40c33f5f478a07d79331a1ddfc13c90fdbc244203e1d51be669e7e042c4a8a3",
+    "src/svdeck/vectorize.py": "5129ea0f3f66585f63821c761f19aaac9c1f9dadb118350724836f12dacae7bc",
+    "src/svdeck/discovery.py": "2cff40115bff0c04cd8e9bc55ff55f0a3a18bcabee7730b9a85aa9cdc13bc26a",
+    "src/svdeck/discovery_evidence.py": "1e502d6749068dce3aad793b0e9ae9db552fd09c7e5a1b23d2a508965c06616e",
+    "src/svdeck/discovery_sources.py": "6f66ccfd143e9d13d07e8dfe9c274cd4e055a24123889106791927bd9d54e0af",
+    "src/svdeck/discovery_read.py": "2aa03f60546a9d53f0157ac5082e715ac93fd78826f842a5c0b64d371ad28b46",
+    "src/svdeck/fetch.py": "0dae9e6b228c37801e4c4597ecb849d84421c205fc168070d244848c1b949810",
+    "docs/design.md": "c5fc0db9e49f48abf526af6a968effb76923491bbdf2211ed621bd315263f0a4",
+    "docs/extraction-prompt.md": "4bc314b543680cd9ea715194cff264c06979477c676a9a7e73a92464eaf0aaa7",
+    "docs/rules.md": "fef89985049964b6f6057e42c4d8028954b156c9ae05d3db2623f6a2c616de59"
+  },
+  "statistics": {
+    "card_rows": 904,
+    "card_atom_rows": 904,
+    "nonempty_delta_cards": 623,
+    "deltas": 1347,
+    "delta_keys": {
+      "zone": 1347,
+      "owner": 1347,
+      "filter": 1347,
+      "delta": 1347,
+      "note": 77
+    },
+    "delta_value_types": {
+      "int": 1319,
+      "str": 28
+    },
+    "effect_schema_rows": 826,
+    "atom_keys": {
+      "requires": 2283,
+      "effect": 2283
+    },
+    "atom_extraction_range": [
+      "2026-07-05 07:26:46",
+      "2026-08-26 07:33:56"
+    ]
+  },
+  "cards": [
+    {
+      "card_id": 10051310,
+      "name": "カオティックカース",
+      "class_name": "ナイトメア",
+      "cost": 2,
+      "type_category": "spell",
+      "is_token": 0,
+      "is_include_rotation": 1,
+      "skill_text": "【<color=Keyword>モード</color>】1つを選んでその能力が働く。\n<ridx=0>（1）自分のデッキからフォロワー1枚を引く。</ridx>\n<ridx=1>（2）【<color=Keyword>リアニメイト</color>_2】を行う。</ridx>",
+      "evo_json": "[]",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10051310,
+        "atoms_json": {
+          "card_id": 10051310,
+          "model": "claude-sonnet-5",
+          "atoms": [
+            {
+              "requires": [
+                "モード(1)"
+              ],
+              "effect": "ドロー(指定:フォロワー)"
+            },
+            {
+              "requires": [
+                "モード(2)"
+              ],
+              "effect": "リアニメイト(2)"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "手札",
+              "owner": "自分",
+              "filter": "フォロワー",
+              "delta": 1
+            },
+            {
+              "zone": "山札",
+              "owner": "自分",
+              "filter": "フォロワー",
+              "delta": -1
+            },
+            {
+              "zone": "墓場",
+              "owner": "自分",
+              "filter": null,
+              "delta": 1
+            }
+          ],
+          "supply_tags": [
+            "ドロー(指定:フォロワー)",
+            "山札密度操作(フォロワー)",
+            "リアニメイト(N)"
+          ],
+          "require_tags": [],
+          "headroom": {
+            "rank": "中",
+            "base": "2コスでモード択一(フォロワー1ドロー or リアニメイト2)",
+            "max": "墓場のフォロワー構成次第でリアニメイト2の価値変動"
+          },
+          "notes": "モード択一のため両方は同時発生しない。リアニメイトは墓場のフォロワーをコスト2以下の範囲で場に戻す想定(数値2はコストコスト上限)。スペル自身のプレイで墓場+1(これはどちらのモードでも発生)。"
+        },
+        "model": "claude-sonnet-5",
+        "extracted_at": "2026-07-05 07:26:46"
+      },
+      "saved_effect_schema": {
+        "card_id": 10051310,
+        "schema_json": {
+          "card_id": 10051310,
+          "model": "sonnet-batch-20260715",
+          "自身": null,
+          "効果": [
+            {
+              "種類": "リソース",
+              "条件": [
+                "モード:1を選択"
+              ],
+              "動作": "引く",
+              "何枚": 1,
+              "何を": "フォロワー"
+            },
+            {
+              "種類": "その他",
+              "条件": [
+                "モード:2を選択"
+              ],
+              "記述": "リアニメイト_2を行う"
+            }
+          ]
+        },
+        "model": "sonnet-batch-20260715",
+        "extracted_at": "2026-07-16 03:20:07"
+      },
+      "user_note": null,
+      "search_tags": [
+        {
+          "kind": "supply",
+          "tag": "ドロー(指定:フォロワー)"
+        },
+        {
+          "kind": "supply",
+          "tag": "リアニメイト(N)"
+        },
+        {
+          "kind": "supply",
+          "tag": "山札密度操作(フォロワー)"
+        }
+      ],
+      "local_text_sha256": "169c743567238407c45781722caf01002c0d7e53f6260ffd23779bc62f82862b"
+    },
+    {
+      "card_id": 10153120,
+      "name": "燃え盛る魔剣・オルトロス",
+      "class_name": "ナイトメア",
+      "cost": 2,
+      "type_category": "follower",
+      "is_token": 0,
+      "is_include_rotation": 0,
+      "skill_text": "【<color=Keyword>ファンファーレ</color>】自分の墓場を+2する。\n<hr>【<color=Keyword>守護</color>】\n<hr><ev>【<color=Keyword>進化時</color>】【<color=Keyword>ネクロマンス</color>_4】「相手の場のフォロワーからランダム1枚に2ダメージ。」を2回行う。</ev>",
+      "evo_json": "{\"card_resource_id\": 101531201, \"flavour_text\": \"冥界第二位の魔炎、あるいは、冥界きっての駄犬。\\n双頭の狗ゆえの二面性、それは彼女の強い魅力。\\n今日も今日とて冥界走り――（珍）騒動を引き起こす。\", \"skill_text\": \"【<color=Keyword>ファンファーレ</color>】自分の墓場を+2する。\\n<hr>【<color=Keyword>守護</color>】\\n<hr><ev>【<color=Keyword>進化時</color>】【<color=Keyword>ネクロマンス</color>_4】「相手の場のフォロワーからランダム1枚に2ダメージ。」を2回行う。</ev>\", \"card_image_hash\": \"4dc75faa0db643c3b67295bcdfe2d521\", \"card_banner_image_hash\": \"347a68837b49484590ae86d3d9d88b85\"}",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10153120,
+        "atoms_json": {
+          "card_id": 10153120,
+          "model": "claude-sonnet-5",
+          "atoms": [
+            {
+              "requires": [
+                "ファンファーレ"
+              ],
+              "effect": "墓場+(2)"
+            },
+            {
+              "requires": [],
+              "effect": "守護(自身)"
+            },
+            {
+              "requires": [
+                "進化時",
+                "ネクロマンス(4)"
+              ],
+              "effect": "ダメージ(相手フォロワーランダム, 2)×2回"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "墓場",
+              "owner": "自分",
+              "filter": null,
+              "delta": 2
+            }
+          ],
+          "supply_tags": [
+            "墓場+(2)",
+            "守護付与",
+            "ダメージ(相手フォロワー)"
+          ],
+          "require_tags": [
+            "進化権",
+            "ネクロマンス(4)"
+          ],
+          "headroom": {
+            "rank": "低",
+            "base": "2コス2/2守護+墓場2",
+            "max": "進化+墓場4で除去4点追加"
+          },
+          "notes": "墓場+2は純カウンタ増(カード移動なし)。ネクロマンスは消費なので進化時効果は墓場-4。（few-shot例1と同一カード）"
+        },
+        "model": "claude-sonnet-5",
+        "extracted_at": "2026-07-05 07:28:00"
+      },
+      "saved_effect_schema": {
+        "card_id": 10153120,
+        "schema_json": {
+          "card_id": 10153120,
+          "model": "sonnet-test",
+          "自身": {
+            "攻": 2,
+            "体": 2,
+            "特性": [
+              "守護"
+            ]
+          },
+          "効果": [
+            {
+              "種類": "資源",
+              "条件": [
+                "ファンファーレ"
+              ],
+              "資源種類": "墓場",
+              "量": 2
+            },
+            {
+              "種類": "処理",
+              "条件": [
+                "進化時",
+                "ネクロマンス4"
+              ],
+              "繰り返し": 2,
+              "対象": [
+                "相手フォロワー"
+              ],
+              "範囲": {
+                "型": "ランダム",
+                "数": 1
+              },
+              "効果": {
+                "ダメージ": 2
+              }
+            }
+          ]
+        },
+        "model": "sonnet-test",
+        "extracted_at": "2026-07-13 09:13:40"
+      },
+      "user_note": null,
+      "search_tags": [
+        {
+          "kind": "require",
+          "tag": "ネクロマンス(4)"
+        },
+        {
+          "kind": "require",
+          "tag": "進化権"
+        },
+        {
+          "kind": "supply",
+          "tag": "ダメージ(相手フォロワー)"
+        },
+        {
+          "kind": "supply",
+          "tag": "墓場+(2)"
+        },
+        {
+          "kind": "supply",
+          "tag": "守護保持"
+        }
+      ],
+      "local_text_sha256": "0877cb7a2e69e513c3c4b1cbdf20e37a5da9081fbea0a6a77f0cb0ec6b28037e"
+    },
+    {
+      "card_id": 10213310,
+      "name": "花園の導き",
+      "class_name": "エルフ",
+      "cost": 2,
+      "type_category": "spell",
+      "is_token": 0,
+      "is_include_rotation": 0,
+      "skill_text": "【<color=Keyword>融合</color>】エルフ・カード\n<hr>自分のデッキから1枚を引く。これに【<color=Keyword>融合</color>】していたなら、1枚ではなく2枚。",
+      "evo_json": "[]",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10213310,
+        "atoms_json": {
+          "card_id": 10213310,
+          "atoms": [
+            {
+              "requires": [
+                "融合(エルフ・カード)"
+              ],
+              "effect": "状態記録(このターン融合済み)"
+            },
+            {
+              "requires": [],
+              "effect": "ドロー(1)"
+            },
+            {
+              "requires": [
+                "状態条件(これに融合していた)"
+              ],
+              "effect": "ドロー(1)追加"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "手札",
+              "owner": "自分",
+              "filter": null,
+              "delta": 1,
+              "note": "融合していた場合は+2"
+            },
+            {
+              "zone": "山札",
+              "owner": "自分",
+              "filter": null,
+              "delta": -1,
+              "note": "融合していた場合は-2"
+            },
+            {
+              "zone": "墓場",
+              "owner": "自分",
+              "filter": null,
+              "delta": 1
+            }
+          ],
+          "supply_tags": [
+            "ドロー"
+          ],
+          "require_tags": [
+            "構築制約(エルフ・カード融合手段)"
+          ],
+          "headroom": {
+            "rank": "中",
+            "base": "2コススペル、1ドロー（融合なし時）",
+            "max": "融合達成で2ドローに倍増"
+          },
+          "notes": "『融合』の具体的な発生手段は本カード情報に含まれない。墓場+1はスペル自身のプレイ分。",
+          "model": "claude-sonnet-5"
+        },
+        "model": "claude-sonnet-5",
+        "extracted_at": "2026-07-05 07:28:12"
+      },
+      "saved_effect_schema": {
+        "card_id": 10213310,
+        "schema_json": {
+          "card_id": 10213310,
+          "model": "sonnet-test/hand-fix-20260715",
+          "自身": null,
+          "効果": [
+            {
+              "種類": "その他",
+              "条件": [],
+              "記述": "【融合】素材条件: エルフ・カード"
+            },
+            {
+              "種類": "リソース",
+              "条件": [],
+              "動作": "引く",
+              "何枚": 1,
+              "変化": {
+                "条件": [
+                  "融合"
+                ],
+                "何枚": 2
+              }
+            }
+          ]
+        },
+        "model": "sonnet-test/hand-fix-20260715",
+        "extracted_at": "2026-07-12 16:20:57"
+      },
+      "user_note": null,
+      "search_tags": [
+        {
+          "kind": "require",
+          "tag": "手札蓄積(エルフ・カード)"
+        },
+        {
+          "kind": "supply",
+          "tag": "ドロー"
+        }
+      ],
+      "local_text_sha256": "8f74a02254b90303de29641b2bb6f92ebaeb47d607966ab25d8ee730ebbf1a93"
+    },
+    {
+      "card_id": 10513110,
+      "name": "導きの船頭",
+      "class_name": "エルフ",
+      "cost": 5,
+      "type_category": "follower",
+      "is_token": 0,
+      "is_include_rotation": 1,
+      "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>フェアリー</color>』3枚を自分の場に出す。\n<hr><ev>【<color=Keyword>進化時</color>】【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。</ev>\n<sev>【<color=Keyword>超進化時</color>】自分の場の妖精・フォロワーすべては【<color=Keyword>必殺</color>】を持つ。</sev>",
+      "evo_json": "{\"card_resource_id\": 105131101, \"flavour_text\": \"正解不正解敵味方、何につくかはアンタが決めな！\\nまぁ気楽にいこう！運命真偽天地に生死、全部が遊戯さ！\\n――『虫風花の遊戯』、14・《吊るされた男》の導き\", \"skill_text\": \"【<color=Keyword>ファンファーレ</color>】『<color=Keyword>フェアリー</color>』3枚を自分の場に出す。\\n<hr><ev>【<color=Keyword>進化時</color>】【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。</ev>\\n<sev>【<color=Keyword>超進化時</color>】自分の場の妖精・フォロワーすべては【<color=Keyword>必殺</color>】を持つ。</sev>\", \"card_image_hash\": \"e744999b10ce467681d98c0e700c70fb\", \"card_banner_image_hash\": \"5ac48528d0bc4551b880f3c7482524f3\"}",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10513110,
+        "atoms_json": {
+          "card_id": 10513110,
+          "atoms": [
+            {
+              "requires": [
+                "ファンファーレ"
+              ],
+              "effect": "トークン召喚(フェアリー, 3)"
+            },
+            {
+              "requires": [
+                "進化権"
+              ],
+              "effect": "トークン召喚(フェアリー, 3)"
+            },
+            {
+              "requires": [
+                "超進化権"
+              ],
+              "effect": "必殺付与(自場の妖精・フォロワーすべて)"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "場",
+              "owner": "自分",
+              "filter": "フェアリー",
+              "delta": 3
+            }
+          ],
+          "supply_tags": [
+            "トークン召喚(フェアリー)",
+            "存在(フェアリー)",
+            "必殺付与"
+          ],
+          "require_tags": [
+            "進化権",
+            "超進化権"
+          ],
+          "headroom": {
+            "rank": "低",
+            "base": "5コス4/3+フェアリー3体",
+            "max": "進化でフェアリー6体、超進化で必殺付与"
+          },
+          "notes": "進化時はファンファーレと同じ能力＝フェアリーさらに3枚。超進化時は既に場にいる妖精フォロワー全てに必殺付与（新規供給ではなく強化）。",
+          "model": "claude-sonnet-5"
+        },
+        "model": "claude-sonnet-5",
+        "extracted_at": "2026-07-05 07:37:28"
+      },
+      "saved_effect_schema": {
+        "card_id": 10513110,
+        "schema_json": {
+          "card_id": 10513110,
+          "model": "sonnet-batch-20260715",
+          "自身": {
+            "攻": 4,
+            "体": 3,
+            "特性": []
+          },
+          "効果": [
+            {
+              "種類": "随伴",
+              "条件": [
+                "ファンファーレ"
+              ],
+              "何を": "フェアリー",
+              "数": 3
+            },
+            {
+              "種類": "随伴",
+              "条件": [
+                "進化時"
+              ],
+              "何を": "フェアリー",
+              "数": 3
+            },
+            {
+              "種類": "処理",
+              "条件": [
+                "超進化時"
+              ],
+              "対象": [
+                "自フォロワー"
+              ],
+              "範囲": {
+                "型": "全体"
+              },
+              "効果": {
+                "特性付与": [
+                  "必殺"
+                ]
+              }
+            },
+            {
+              "種類": "その他",
+              "条件": [
+                "超進化時"
+              ],
+              "記述": "対象は自分の場の妖精・フォロワーのみ(他の自フォロワーは対象外)"
+            }
+          ]
+        },
+        "model": "sonnet-batch-20260715",
+        "extracted_at": "2026-07-16 03:20:08"
+      },
+      "user_note": null,
+      "search_tags": [
+        {
+          "kind": "require",
+          "tag": "超進化権"
+        },
+        {
+          "kind": "require",
+          "tag": "進化権"
+        },
+        {
+          "kind": "supply",
+          "tag": "トークン召喚(フェアリー)"
+        },
+        {
+          "kind": "supply",
+          "tag": "存在(フェアリー)"
+        },
+        {
+          "kind": "supply",
+          "tag": "必殺付与"
+        }
+      ],
+      "local_text_sha256": "f5f958361b321ad915af47eafbd04092d8bbcdf7159ffa015653fdb6f57be49c"
+    },
+    {
+      "card_id": 10632310,
+      "name": "正常の侵食",
+      "class_name": "ウィッチ",
+      "cost": 1,
+      "type_category": "spell",
+      "is_token": 0,
+      "is_include_rotation": 1,
+      "skill_text": "自分の場の『<color=Keyword>天晶の魔手</color>』1枚を選ぶ。それを破壊。自分のデッキから2枚を引く。",
+      "evo_json": "[]",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10632310,
+        "atoms_json": {
+          "card_id": 10632310,
+          "model": "gpt-5.6-terra-20260826",
+          "atoms": [
+            {
+              "requires": [
+                "存在(自場:天晶の魔手)"
+              ],
+              "effect": "破壊(自場の『天晶の魔手』, 1)"
+            },
+            {
+              "requires": [
+                "存在(自場:天晶の魔手)"
+              ],
+              "effect": "ドロー(2)"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "場",
+              "owner": "自分",
+              "filter": "天晶の魔手",
+              "delta": -1
+            },
+            {
+              "zone": "墓場",
+              "owner": "自分",
+              "filter": null,
+              "delta": 2
+            },
+            {
+              "zone": "手札",
+              "owner": "自分",
+              "filter": null,
+              "delta": 1
+            },
+            {
+              "zone": "山札",
+              "owner": "自分",
+              "filter": null,
+              "delta": -2
+            }
+          ],
+          "supply_tags": [
+            "破壊(味方フォロワー)",
+            "味方破壊イベント",
+            "ドロー",
+            "墓場+(2)"
+          ],
+          "require_tags": [
+            "存在(自場:天晶の魔手)"
+          ],
+          "headroom": {
+            "rank": "低",
+            "base": "1コス2ドロー+破壊1",
+            "max": "同左（固定効果）"
+          },
+          "notes": "2026-08-26能力変更後。ドロー対象のクラス・カード種別指定はない。手札デルタはドロー+2とスペル自身のプレイ-1の合算。"
+        },
+        "model": "gpt-5.6-terra-20260826",
+        "extracted_at": "2026-08-26 06:17:34"
+      },
+      "saved_effect_schema": {
+        "card_id": 10632310,
+        "schema_json": {
+          "card_id": 10632310,
+          "model": "gpt-5.6-terra-20260826",
+          "自身": null,
+          "効果": [
+            {
+              "種類": "処理",
+              "条件": [],
+              "対象": [
+                "自フォロワー"
+              ],
+              "範囲": {
+                "型": "選択",
+                "数": 1
+              },
+              "効果": {
+                "除去": "破壊"
+              }
+            },
+            {
+              "種類": "その他",
+              "条件": [],
+              "記述": "破壊対象は自分の場の『天晶の魔手』限定"
+            },
+            {
+              "種類": "リソース",
+              "条件": [],
+              "動作": "引く",
+              "何枚": 2
+            }
+          ]
+        },
+        "model": "gpt-5.6-terra-20260826",
+        "extracted_at": "2026-08-26 06:17:34"
+      },
+      "user_note": {
+        "card_id": 10632310,
+        "note": "2026-08-26能力変更: 「ウィッチ・フォロワー2枚を引く」から「2枚を引く」へ変更。ウィッチ・フォロワーだけを引くデッキ純化用途は消失。 / 2026-08-26アンカー見直し: 能力変更でデッキ純化という肝心の効果を失ったためアンカーから除外する。 / 2026-09-06ユーザーの設計上の指摘: 旧サーチは必要札を引く役割に加え、山札に残るフォロワーを絞る役割で読む必要がある。壮美なる明越花OTKの当時の記録と構造が一致し、エミル等を手札へ確保しながら変身の外れ候補を山札から取り除ける。現在は通常2ドローへ変更済みで、この用途が残るとは扱わない。過去の発想を学ぶ教材。詳細docs/rechecks/2026-09-06-discovery-design.md。",
+        "updated_at": "2026-09-06T06:50:58.784368+00:00"
+      },
+      "search_tags": [
+        {
+          "kind": "require",
+          "tag": "存在(自場:天晶の魔手)"
+        },
+        {
+          "kind": "supply",
+          "tag": "ドロー"
+        },
+        {
+          "kind": "supply",
+          "tag": "味方破壊イベント"
+        },
+        {
+          "kind": "supply",
+          "tag": "墓場+(2)"
+        },
+        {
+          "kind": "supply",
+          "tag": "破壊(味方フォロワー)"
+        }
+      ],
+      "local_text_sha256": "9406e519f26ea98fef2927b3326579e74219659fed14d9ce023bde106eddc39c"
+    },
+    {
+      "card_id": 10751110,
+      "name": "ヴァンプキーボード・ルルミ",
+      "class_name": "ナイトメア",
+      "cost": 2,
+      "type_category": "follower",
+      "is_token": 0,
+      "is_include_rotation": 1,
+      "skill_text": "【<color=Keyword>突進</color>】\n【<color=Keyword>ラストワード</color>】『<color=Keyword>バット</color>』1枚を自分の手札に加える。",
+      "evo_json": "{\"card_resource_id\": 107511101, \"flavour_text\": \"「あ。放課後スタジオだっけ。やっべ、楽器忘れちった」\\n「はぁー！？しゃーねーな、アタシがダッシュすっか！」\\n「思い付き。マクみーに持ってきてもらえないかなん？」\\n「それ採用。あいつ出たり消えたりできるしイケっしょ」\", \"skill_text\": \"【<color=Keyword>突進</color>】\\n【<color=Keyword>ラストワード</color>】『<color=Keyword>バット</color>』1枚を自分の手札に加える。\", \"card_image_hash\": \"822fb87493524c12b592d77f6413f4a5\", \"card_banner_image_hash\": \"009afbf9861b435987a7e5cb997c82d8\"}",
+      "ref_effect_text": null,
+      "saved_atoms": {
+        "card_id": 10751110,
+        "atoms_json": {
+          "card_id": 10751110,
+          "model": "claude-sonnet-5",
+          "atoms": [
+            {
+              "requires": [],
+              "effect": "突進(自身)"
+            },
+            {
+              "requires": [
+                "ラストワード"
+              ],
+              "effect": "手札生成(バット, 1)"
+            }
+          ],
+          "deltas": [
+            {
+              "zone": "手札",
+              "owner": "自分",
+              "filter": "バット",
+              "delta": 1
+            }
+          ],
+          "supply_tags": [
+            "突進付与",
+            "手札生成(バット)",
+            "存在(バット)"
+          ],
+          "require_tags": [],
+          "headroom": {
+            "rank": "ゼロ",
+            "base": "2コス2/1突進+死亡時バット手札1",
+            "max": "同左（固定効果）"
+          },
+          "notes": "「手札に加える」は新規生成のため山札デルタなし。"
+        },
+        "model": "claude-sonnet-5",
+        "extracted_at": "2026-07-05 07:42:04"
+      },
+      "saved_effect_schema": {
+        "card_id": 10751110,
+        "schema_json": {
+          "card_id": 10751110,
+          "model": "sonnet-batch-20260715",
+          "自身": {
+            "攻": 2,
+            "体": 1,
+            "特性": [
+              "突進"
+            ]
+          },
+          "効果": [
+            {
+              "種類": "リソース",
+              "条件": [
+                "ラストワード"
+              ],
+              "動作": "生成",
+              "生成種別": "特定",
+              "生成対象": "バット",
+              "何枚": 1
+            }
+          ]
+        },
+        "model": "sonnet-batch-20260715",
+        "extracted_at": "2026-07-16 03:20:09"
+      },
+      "user_note": null,
+      "search_tags": [
+        {
+          "kind": "supply",
+          "tag": "存在(バット)"
+        },
+        {
+          "kind": "supply",
+          "tag": "手札生成(バット)"
+        },
+        {
+          "kind": "supply",
+          "tag": "突進保持"
+        }
+      ],
+      "local_text_sha256": "bf8931b9e115f76f5590e794e44c93566e1422402ffc011653b538d94b1e246c"
+    }
+  ],
+  "stored_keyword_definitions": [
+    {
+      "title": "ネクロマンス",
+      "text": "自分の墓場が指定された値以上なら、その数だけ消費して働く能力。",
+      "fetched_at": "2026-08-26 06:13:59"
+    },
+    {
+      "title": "ファンファーレ",
+      "text": "手札からプレイして場に出たときに働く能力。",
+      "fetched_at": "2026-08-26 06:13:59"
+    },
+    {
+      "title": "モード",
+      "text": "複数の能力から指定された数を選んで働かせる能力。",
+      "fetched_at": "2026-08-26 06:13:59"
+    },
+    {
+      "title": "ラストワード",
+      "text": "破壊されたときに働く能力。",
+      "fetched_at": "2026-08-26 06:13:59"
+    },
+    {
+      "title": "融合",
+      "text": "手札にあるとき、1ターンに1回、手札の指定されたカードを素材として融合する能力。",
+      "fetched_at": "2026-08-26 06:13:59"
+    }
+  ],
+  "scope": {
+    "goal": "副次的な状態変化から普段と異なる用途の問いを作る改善候補の読み取り調査",
+    "unchanged": [
+      "本体コード",
+      "本番DB",
+      "docs",
+      "他実験の入力・結果・評価条件"
+    ],
+    "card_spot_checks": 6,
+    "not_claimed": [
+      "デッキの強さ",
+      "新規性",
+      "実用的な案の獲得",
+      "新方式の優位",
+      "全904枚の抽出正確性",
+      "最新公式本文との一致"
+    ]
+  },
+  "read_ranges": {
+    "instructions": "AGENTS.mdと指定されたagent-lab rules全10ファイル（分割再読を含む）",
+    "docs/design.md": "1–1029。主な参照は§1.5、§3.2、§4.5、§5、§6、既出調査原則512–545、§8、§11.10",
+    "docs/extraction-prompt.md": "1–153",
+    "docs/rules.md": "1–117",
+    "source": "src/svdeck/*.pyのdeltas/atoms_json/schema_json消費箇所を検索。本文はatoms、db、explore、bench、strength、vector、vectorize、discovery、discovery_evidence、discovery_sources、discovery_read、fetchの下記参照範囲を確認。reverseは呼び出し位置とタグ経路のみ。",
+    "db": "全904行はキー・件数だけ集計。本文・保存差分・分解効果・別形式の保存効果・注記を照合した対象はJSON cardsの6枚だけ。関連カードの本文照合はしていない。",
+    "excluded": "他実験の内容・評価結果は未読。git statusで変更ファイル名だけ確認。"
+  },
+  "observations": [
+    {
+      "id": "O1",
+      "claim": "deltasの設計は存在するが、追ったPythonソースの実行経路にdeltasキーを読んで副次的な供給や問いを導く処理は見つからなかった。",
+      "refs": [
+        "docs/design.md:177-185",
+        "docs/extraction-prompt.md:30-34",
+        "src/svdeck/atoms.py:37-59",
+        "src/svdeck/explore.py:93-195",
+        "src/svdeck/discovery_evidence.py:163-178"
+      ],
+      "limit": "現存*.pyの検索と該当消費箇所の読み取りによる判断。削除済みコード・pyc・外部の非公開経路までの不存在証明ではない。"
+    },
+    {
+      "id": "O2",
+      "claim": "抽出CLIはLLM入力用の基本本文を書き出し、受け取ったJSON全体を保存し、供給/要求タグを別表へ写す。ゾーン差分の意味検証・発動条件との接続・差分の計算を行わない。dumpはnote、rules、進化別欄、参照先効果を同梱しない。",
+      "refs": [
+        "src/svdeck/atoms.py:18-34",
+        "src/svdeck/atoms.py:37-59"
+      ],
+      "limit": "skill_text自体に進化記述が含まれるカードはある。別の呼び出し側が追加資料を渡す可能性は未調査。"
+    },
+    {
+      "id": "O3",
+      "claim": "既存検索はatom_tagと充足関係表を使い、生成物のタグを1段伝播する。候補にcard_noteを添える。数量概算はatoms_json内の効果表現から生成枚数を最大値で抽出するが、deltas代数ではない。",
+      "refs": [
+        "src/svdeck/explore.py:93-120",
+        "src/svdeck/explore.py:162-220",
+        "src/svdeck/bench.py:415-477",
+        "src/svdeck/reverse.py:121-149"
+      ]
+    },
+    {
+      "id": "O4",
+      "claim": "discoveryには別用途/副作用を考える指示、固定DB、本文・注記・関連カード・公式用語、未解決の問い→再検索→改訂→別評価の入口がある。公開入力に保存deltasもcard_vschemaも載らない。",
+      "refs": [
+        "src/svdeck/discovery.py:30-46",
+        "src/svdeck/discovery.py:155-181",
+        "src/svdeck/discovery.py:248-283",
+        "src/svdeck/discovery_evidence.py:52-80",
+        "src/svdeck/discovery_evidence.py:140-178"
+      ],
+      "runtime": "build_context(mode=ro)をナイトメア/rotationで実行。cardsは212件、採用可能113件。10051310と10751110の返却キーにdeltas/atoms/schemaはなかった。--helpにも副次的変化の専用選択はない。"
+    },
+    {
+      "id": "O5",
+      "claim": "全1347差分のキーはzone/owner/filter/delta、77件だけnote。条件へのID、排他的選択の群、発動の時点、総数と部分集合の重なり、使用前後どちらの差分かを表す専用キーはない。delta値は整数1319/文字列28。",
+      "refs": [
+        "data/cards.db:card_atom（集計をstatisticsに保存）",
+        "docs/extraction-prompt.md:73-91"
+      ],
+      "limit": "notes等の自由文に一部の条件は残る。専用キーがないことは、本文から推論不能という意味ではない。"
+    },
+    {
+      "id": "O6",
+      "claim": "別形式のcard_vschemaには効果ごとの条件、引く/生成、置き換えの表現がある。6枚全てに保存行があり、花園の導きの置換は適切に別欄へ分かれる。ただし全体826/904枚、抽出元本文の識別値はなく、本文との照合が必要。",
+      "refs": [
+        "src/svdeck/vectorize.py:23-31",
+        "src/svdeck/vectorize.py:171-205",
+        "src/svdeck/vector.py:420-448",
+        "docs/design.md:978-1029"
+      ],
+      "limit": "この表も実行可能なゲーム状態遷移ではない。対象限定がその他欄に離れている例、コスト消費が条件名に留まる例がある。"
+    },
+    {
+      "id": "O7",
+      "claim": "card_atomにmodel/extracted_atはあるが抽出元本文・版の識別値はない。公式更新CLIは分析の再作成が必要なIDを報告するが、古い分析を保存したままにする。現在本文が新しいことだけでは保存分析が同版と証明できない。",
+      "refs": [
+        "src/svdeck/db.py:86-91",
+        "src/svdeck/fetch.py:242-267",
+        "src/svdeck/fetch.py:319-334",
+        "src/svdeck/fetch.py:350-357"
+      ]
+    },
+    {
+      "id": "O8",
+      "claim": "10051310には山札密度操作(フォロワー)タグが既にある。したがってこのカードの副次用途を例示できても、新しい検索能力や発見の証拠にはならない。10751110と10153120の保存JSONタグは古い付与表記、検索用atom_tagは保持に修正済みで一致していない。",
+      "refs": [
+        "data/cards.db:card_atom/atom_tag（選んだ6枚の保存値）",
+        "src/svdeck/explore.py:106-108"
+      ]
+    }
+  ],
+  "spot_checks": [
+    {
+      "card_id": 10051310,
+      "name": "カオティックカース",
+      "status": "確認済み（ローカル保存版）",
+      "hazards": [
+        "選択肢1のフォロワー指定ドローと選択肢2のリアニメイトは通常1つだけ。保存差分は選択肢1の手札+1/山札フォロワー-1を無条件の配列に置く。選択肢2に同じ差分を適用すると誤る。",
+        "対象のフォロワーが山札にあり正常に1枚引いた場合だけ、山札総数-1と山札フォロワー数-1を言える。引く個体を選ぶ指定ではない。残す特定個体の確定や望む純化は証明できない。",
+        "山札全体とフォロワー部分集合は同じ1枚。2枚減ったと足さない。保存notesの墓場フォロワー構成という表現は破壊履歴の正準と区別する。"
+      ],
+      "better_available_data": "card_vschemaは各効果にモード:1/2を選択という条件を持つ。",
+      "net_boundary": "保存手札+1は効果で引く分。スペル使用を含む同一行動全体の純増ではない。"
+    },
+    {
+      "card_id": 10153120,
+      "name": "燃え盛る魔剣・オルトロス",
+      "status": "確認済み（ローカル保存版、rotation対象外）",
+      "hazards": [
+        "墓場+2は手札からプレイしたとき。能力で単に場へ出す場合まで+2と扱わない。",
+        "進化時のネクロマンス4消費はnotes/requiresにあるが、保存deltasに-4がない。+2を得てさらに条件を満たす進化効果を使った同じ手順を、墓場+2のままと集計できない。",
+        "純カウンタ増加は破壊履歴を作らない。"
+      ],
+      "better_available_data": "card_vschemaは墓場+2にファンファーレ条件を持つ。ただし-4は資源差分ではなく進化効果の条件。"
+    },
+    {
+      "card_id": 10213310,
+      "name": "花園の導き",
+      "status": "確認済み（ローカル保存版、rotation対象外）",
+      "hazards": [
+        "1枚ではなく2枚は置換。保存deltasは基本+1/-1、noteに条件時+2/-2とある。1+2と足す読み方は誤る。",
+        "手札差分にはスペル自身の使用-1と融合素材-kがない。溢れ・他効果を除いた行動全体なら未融合の手札純増0、k枚融合してから使う場合は1-k。",
+        "保存atomsの状態記録(このターン融合済み)にあるこのターンは保存本文にない。今ターン限定と自動解釈しない。"
+      ],
+      "better_available_data": "card_vschemaは基本1枚と変化による2枚を保存。card_vschemaでも素材の実枚数・行動時点は手順側に必要。"
+    },
+    {
+      "card_id": 10513110,
+      "name": "導きの船頭",
+      "status": "確認済み（ローカル保存版）",
+      "hazards": [
+        "保存deltasは場のフェアリー+3が1行。本文にはファンファーレと進化時という別の発動時点がある。どちらに由来する+3か接続キーがない。",
+        "同時盤面上限5。本文の3+3や保存headroomのフェアリー6体を、盤面に6体残ると扱えない。空の場から本体+3体を出した直後なら空きは1枠。累計で6体を出すには途中の空き作り等が別途必要。",
+        "自動進化なら進化時能力が働くとは限らず、使用権・時点・空き枠の確認が必要。"
+      ],
+      "better_available_data": "card_vschemaは2つの召喚を各条件へ分離。生成物が存在することと今この状態で場に出せることは別。"
+    },
+    {
+      "card_id": 10632310,
+      "name": "正常の侵食",
+      "status": "確認済み（ローカル保存版、変更後本文）",
+      "hazards": [
+        "保存本文は無指定2ドロー。2026-08-26保存分析もfilter=nullで更新済み。旧ウィッチ・フォロワー指定ドローによる純化を現行用途へ転用しない。",
+        "手札+1はドロー+2とスペル使用-1の合計とnotesに明記。同じ手札+1でも花園/カオティックの値と集計の境界が異なる。",
+        "場-1/墓場+2は天晶の魔手を実際に破壊する手順の条件を必要とする。対象不在時のプレイやドロー可否はこの調査では公式Q&A未確認のため、成立/不成立いずれにも断定しない。"
+      ],
+      "better_available_data": "現在本文とcard_noteに能力変更と旧用途消失を明記。両方を入力に必須とする。"
+    },
+    {
+      "card_id": 10751110,
+      "name": "ヴァンプキーボード・ルルミ",
+      "status": "確認済み（ローカル保存版）",
+      "hazards": [
+        "バット手札+1は破壊されたときの能力。単にプレイした時点や次ターンまで生存する仮定へ移さない。",
+        "手札に加える新規生成であり、山札-1は起きない。バットの後続プレイ・破壊による盤面/墓場変化を先取りしない。",
+        "手札に空きがあることを別途確認。保存JSONの突進付与は検索表では突進保持に修正済み。"
+      ],
+      "better_available_data": "card_vschemaはラストワード条件と動作=生成・生成対象=バットを同じ効果に保存。"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "proposal": "既存discovery.packetへ、選んだ1〜数枚だけの保存分解効果を任意に添える小さな追加を試す価値はある。",
+      "reason": "現在本文から状態変化を毎回再発見する負担が減る可能性。card_vschemaの条件付き効果は素材として使える。",
+      "not_established": "現行DEVELOPにも副作用を考える指示があり、例の一つには既に密度操作タグがある。差分を添えることの新しい発見力・時間短縮は未測定。"
+    },
+    {
+      "id": "H2",
+      "proposal": "保存deltasを直接合算する自動成立判定は、この保存形式のままでは実装対象にしない。",
+      "reason": "発動時点・排他的選択・差分の計測開始点・資源消費・現在本文との対応が不足し、6枚だけで過大/過小計算を生む例がある。",
+      "needs_before_automation": [
+        "効果ごとの原文位置と発動要件を差分へ接続",
+        "選択肢の排他関係、追加と置換、反復の時点",
+        "引く/生成/移動/純カウンタ/破壊履歴の区別",
+        "プレイ前後など計測開始点の統一と手札・PP・進化権の支出",
+        "元の本文/参照先/用語定義の版と抽出の対応",
+        "対象/空き枠/個数/既存状態/処理順、未対応の明示"
+      ]
+    }
+  ],
+  "minimum_public_entry": {
+    "status": "提案のみ、未実装",
+    "shape": "既存の python -m svdeck.discovery packet SESSION に任意の --effects CARD_ID ... を追加する案。通常のpacketと進行中の比較入力は変えない。新しい選択を含む資料だけ別hashで追記保存する。",
+    "data_flow": [
+      "既存SESSIONの固定snapshot.dbとcontext（現在の本番DBを混ぜない）",
+      "選択カードの本文・進化・参照先・両側注記・現行検索タグ + 保存atoms/deltas/card_vschemaと抽出日・モデル・本文識別値を併記",
+      "AIが本文引用から1つの変化と条件を結び、普通の役割という仮定と異なる用途の問いを1件、または該当なしを返す",
+      "既存submitのhypothesis/steps/uncertainties/questionsへ置き、次packetの検索と別評価へ渡す"
+    ],
+    "extraction_trust": "保存差分は未検証の下書き。引用根拠は従来どおり固定資料の本文・注記・公式定義を用いる。保存差分や抽出日から成立/強さ/新規性を認定しない。抽出元本文の識別値がない既存行は対応未確認を表示。",
+    "necessary_prompt_fields": [
+      "通常の役割（本文からの仮定、既知用法の断定ではない）",
+      "変わる状態と変わらない状態",
+      "必要な選択/発動時点/資源/対象",
+      "その条件を除いた対照では何が変わるか",
+      "次に探す受け手の条件（カード名を無理に埋めない）",
+      "原文引用と未確認事項"
+    ],
+    "minimal_reason": "新しい探索器や全904枚の再抽出は先行させず、既存の保存版・引用検査・問いの再検索・別評価を使える。保存形式が欠けていてもAIが原文照合する用途に限定できる。",
+    "rejection_condition": "原文だけの現行入口と比べて条件誤りを増やす、既存タグの言い換えしか増えない、または有効な次の検索へ接続しないなら、この追加を採用しない。安全に問いを出せることだけでは有用性の合格にしない。"
+  },
+  "question_examples": [
+    {
+      "id": "E1",
+      "kind": "条件付きの問い",
+      "card_id": 10051310,
+      "ordinary_role_assumption": "フォロワーの補充（カード本文からの仮定）",
+      "input_state": {
+        "format": "rotation",
+        "class_name": "ナイトメア",
+        "chosen_mode": 1,
+        "successful_draw": true,
+        "deck_total_before": 20,
+        "deck_followers_before": 2,
+        "hand_has_room": true,
+        "no_other_triggered_changes": true
+      },
+      "local_text_consequence": {
+        "deck_total_after": 19,
+        "deck_followers_after": 1
+      },
+      "question": "フォロワーを手札に補充する役に加え、山札に残るフォロワーを減らす役として使うなら、その少なさを利点へ変える別の効果はあるか。特定の1種類を残す用途なら、どの個体を引くかをどう確定する必要があるか。",
+      "guards": [
+        "残す特定個体は未確定",
+        "山札全体-1とフォロワー-1は同じカードの二重表現",
+        "山札の中身の操作タグは既存なので、この例は新発見を示さない",
+        "採用相方・強さ・新規性は未判定"
+      ]
+    },
+    {
+      "id": "E2",
+      "kind": "E1から必要な選択条件を外した対照",
+      "card_id": 10051310,
+      "input_change": {
+        "chosen_mode": 2
+      },
+      "expected_difference": "E1の指定ドローが発動しないため、山札総数/フォロワー数を減らすという結論とその用途の問いを引き継がない。リアニメイト側の破壊履歴と空き枠を別に確認する。",
+      "failure_if": "保存deltasを条件無視で適用し、同じ山札純化の問いを有効と扱う。"
+    },
+    {
+      "id": "E3",
+      "kind": "生成と移動の違いからの問い",
+      "card_id": 10751110,
+      "ordinary_role_assumption": "突進による処理と破壊後の手札補充（カード本文からの仮定）",
+      "input_state": {
+        "format": "rotation",
+        "class_name": "ナイトメア",
+        "event": "このルルミが今破壊され、ラストワードが働く",
+        "hand_before_event": 6,
+        "no_other_triggered_changes": true
+      },
+      "local_text_consequence": {
+        "hand_after_event": 7,
+        "generated_card": "バット",
+        "deck_total_change": 0
+      },
+      "question": "破壊後に増える手札を、直接プレイ以外に手札を使う処理の素材へ回せば、山札に採用した札をその支払いに使わずに済むか。受け手が求めるカードの条件と、ここまでに必要な破壊手段は何か。",
+      "guards": [
+        "これは破壊イベント直前からの差分。ルルミのプレイ前からの純増ではない",
+        "未破壊の状態では手札増を先取りしない",
+        "生成したバットを場に出す/破壊する変化は未発生",
+        "受け手未探索。デッキとしての強さ・独自性は未判定"
+      ]
+    }
+  ],
+  "next_trial": {
+    "scope": "既存の固定条件比較には追加・採点変更をしない。終了後の別試行としてのみ提案。",
+    "input": "この調査のE1/E2/E3を開発用の明示ケースとして固定。E1/E2は同一DB版・同じ盤面/手札/山札条件でモード選択だけを変える。E3は破壊イベントから開始。本文・用語・注記・対象クラス/formatを両条件で同一にする。",
+    "comparison": "A=現行の本文中心packet、B=同じpacketに選択カードの保存効果を未検証表示で加える案。同じ担当モデル・時間上限・外部検索条件を固定し、順序の偏りを記録する。これはこの3例を教材にした開発確認で、未知評価と呼ばない。",
+    "expected_output": "各ケースで原文引用、条件付きの状態変化、普段と異なる用途の問い0〜1件、未確認点、実際に行う追加検索1件または探す必要なしの理由。E2ではE1の結論を否定する。発想の件数を増やすために無理な問いを出させない。",
+    "checks": [
+      "条件・排他・置換・生成/移動・計測開始点が原文と一致するか",
+      "E2で保存差分をそのまま適用しないか",
+      "正常の侵食の旧用途や古い保存タグを根拠に混ぜないか",
+      "問いがタグの言い換えや副作用の列挙で終わらず、次の検索で正否が変わる形か",
+      "検索を実行して候補なしでも記録し、本文条件まで確認できるか",
+      "読む量と所要時間と条件誤りをA/Bそれぞれ記録。説明項目の充足だけを改善と数えない"
+    ],
+    "what_this_cannot_decide": "この既知3ケースが良くても未知カードの発見力・デッキの試行価値・新規性・本採用は未判定。次の未知入力と既存の評価基準で別途確かめる。"
+  },
+  "external_verification": {
+    "status": "最新公式能力本文との一致は未確認",
+    "attempted_urls": [
+      "https://shadowverse-wb.com/web/CardList/card?card_id=10051310&lang=ja",
+      "https://shadowverse-wb.com/web/CardList/card?card_id=10632310&lang=ja",
+      "https://shadowverse-wb.com/web/CardList/card?card_id=10751110&lang=ja"
+    ],
+    "open_result": "web.openは3件ともURL is not safe to open (non-retryable error)。別手段でAPIを再試行せず。",
+    "search_queries": [
+      "site:shadowverse-wb.com \"カオティックカース\"",
+      "site:shadowverse-wb.com \"正常の侵食\"",
+      "site:shadowverse-wb.com \"ヴァンプキーボード・ルルミ\""
+    ],
+    "search_result": "公式カードパック紹介ページ等に到達したが、取得したテキストは名称中心で現在の能力本文を確認できなかった。外部検索結果をカード効果の根拠には使っていない。",
+    "found_pages": [
+      "https://shadowverse-wb.com/ja/cards/pack/anathemas-gambit/",
+      "https://shadowverse-wb.com/ja/cards/pack/apocalypse-pact/"
+    ],
+    "remaining": "6枚ともローカル保存本文の照合に留まる。公式再確認の代わりに古い文面を現行と断定していない。"
+  },
+  "runtime_checks": {
+    "read_only_context": "build_context(read_only(data/cards.db), ナイトメア, rotation)を実行。212枚中採用可能113枚。返却キーを確認。",
+    "read_only_search": "search_questionsでドロー(指定:フォロワー)を検索。直接タグ一致に10051310を含む。検索ヒットは条件の成立証明ではない。",
+    "public_cli": "python -B -m svdeck.discovery --help 正常終了。",
+    "no_model_execution": "AIを使う比較試行・新しいdiscovery sessionの開始・submit/reviewは実施していない。",
+    "db_sha256_after": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+    "db_hash_unchanged": true,
+    "source_hashes_changed_since_capture": []
+  },
+  "ended_utc": "2026-09-08 10:45:05 UTC",
+  "elapsed_seconds": 641.008538,
+  "artifact_verified_utc": "2026-09-08 10:45:42 UTC"
+}
