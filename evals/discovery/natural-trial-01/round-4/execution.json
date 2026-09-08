@@ -1,0 +1,66 @@
+{
+  "task": "既存例Aのバリア付きルリア残しへの限定比較 round4",
+  "finished_at": "2026-09-08T10:05:12.747519+00:00",
+  "input_packet_hash": "f3aed803295861e661dfab2a8ce5ca383e4efc07474e1bff5cf6e3ee3cc2c10f",
+  "read_review": "公開packetの /root/natural_trial_review_3。全8所見、次の一問、公式確認1件。",
+  "comparison_scope": "既存例Aの全23枚・順番・双方手札を固定。相手がミロクを能力破壊しゲテンオウを2回攻撃で処理してバリア付きルリアを残す分岐だけ。Bは指摘された既存手順の訂正。",
+  "confirmed_results": [
+    "元の世界・ミロク・マガチヨ・レイピア2枚の18点手順は、残るルリアと合わせ場6枚となる。",
+    "同じAの手札からダスト4→マガチヨ3→レイピア2なら、場4で全体処理し、旧ルリア1を含む14点を与え相手3。手札6、自分11、PP0、SEP0。",
+    "緋岸3→ミロク3（2回復）→マガチヨ3→レイピア2でも同じ14点・全体処理。追加取得は固定順10枚目のルリアで、手札上限9を超えない。",
+    "少数補充案のGet検索分岐も両手順を再現し、残る手札にはセタス2枚を持つ。",
+    "例Bのダスト低下量を10から6へ訂正。ダスト4→マガチヨ3だけで全処理でき、飛翔を保持して2PP・手札7が残る。"
+  ],
+  "decision": "原6枚配分を採用候補としてさらに進める作業を限定停止。補充の局面内利益は保持し、全用法や全T9手順を不可能とは断定しない。",
+  "unconfirmed": [
+    "この境界状態へ到達する完全なT1からの履歴と頻度。",
+    "原案と少数補充案の全手順の最適値、T9決着不能の証明、相手T9以降。",
+    "確定補充の機会増が、セタス等を失う負担を上回るか。",
+    "和気藹々2・飛翔2を含む全6枠の必要性、独自性。"
+  ],
+  "public_operations": [
+    {
+      "command": "attach",
+      "input": "round-4-sources.json",
+      "result": "round-4-attach-result.json",
+      "added": [
+        "5add9dd027ddf4adafba31bd0019c57eb3d1759a3a7b513dde072ed0a31c0734",
+        "62e20a87d467d77048c33ab3c59d12c8b844abd1afbb1455984aefcbed7346c8"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": "packet --revision 2 --stage review",
+      "result": "round-4-review-packet.json",
+      "packet_hash": "bbac39695441dfc5a95a29e3dc1bcca0c766521dd5c8a83b423695c6c8e8d8cd",
+      "source_count": 27,
+      "exit_code": 0
+    },
+    {
+      "command": "report",
+      "result": "round-4-report.json",
+      "revision_count": 2,
+      "exit_code": 0
+    }
+  ],
+  "new_revision_submitted": false,
+  "submissions_used_total": 2,
+  "submissions_remaining_unused": 1,
+  "self_review_registered": false,
+  "code_or_db_edited": false,
+  "private_material_access": false,
+  "operations_obstacles": [
+    "今回の公開CLI操作に拒否・エラー・中断なし。",
+    "指定評価の全文を表示上限内で読めた。全文JSONの参照位置に取り違えなし。",
+    "停止は新しいreviewを自分で登録せず、通常の追加資料として判断文をattachし、独立評価用packetに含めた。"
+  ],
+  "next": "round-4-review-packet.json を別担当へ渡して、この比較と限定停止を独立評価する。",
+  "artifacts": [
+    "round-4-comparison.json",
+    "round-4-decision.json",
+    "round-4-sources.json",
+    "round-4-attach-result.json",
+    "round-4-review-packet.json",
+    "round-4-report.json"
+  ]
+}
