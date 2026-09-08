@@ -1,0 +1,34 @@
+{
+  "change": "一覧の要点・結果・採否にホバー、クリック、キーボード、タップで開く全文表示を追加",
+  "source_commit": "6eabd7489f15e711d1ad014e9b0cfddff36238e8",
+  "static": "node --check app.js and git diff --check: PASS",
+  "test_scope": {
+    "normal": "結果・採否の全文表示と各入力手段の開閉",
+    "edge": "長文の末尾・画面幅390px・自動更新・一覧位置とフォーカスの保持",
+    "error": "HTML風の本文を文字として表示しコードとして実行しない"
+  },
+  "existing_tests": "tests/test_experiments.py: 19 passed",
+  "browser_tests": "9 behavioral checks: PASS, page errors: 0",
+  "independent_visual_review": "5/5 checks OK, PASS. Desktop, long-text end, decision, mobile screenshots and interaction record reviewed.",
+  "delivery": "PASS: existing server http://127.0.0.1:8765/ and the user's existing in-app browser tab",
+  "artifacts": [
+    "hover-result.png",
+    "hover-result-end.png",
+    "hover-decision.png",
+    "touch-decision.png",
+    "checks.json"
+  ],
+  "main_commit": "ba38d0d4c079313a05d16307ba5db0c69e3327bb",
+  "remote_main_verified": true,
+  "served_assets": "HTML/JS/CSS bytes equal committed main files",
+  "live_ui": {
+    "result_full_text_matches": true,
+    "decision_full_text_visible": true,
+    "url_unchanged": true,
+    "direct_click_scroll_before": 207.5,
+    "direct_click_scroll_after": 207.5,
+    "escape_closes": true,
+    "restored_initial_scroll": 0
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,268 @@
+{
+  "scope": "第3回の独立review 1件。指定の保存packetと公開Web・公開review/reportのみ。",
+  "local_read_commands": [
+    {
+      "chunk_id": "a51f26",
+      "operation": "cat /tmp/sv-idea-comparison-01/operator-readme.md",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "403626",
+      "operation": "cat AGENTS import先のvalues/communication/explain/parallel/design/coding/workflow/knowledge/ai-code-guide/model調整",
+      "exit_code": 0,
+      "issue": "出力上限で中間が省略。必要箇所を別読出し。"
+    },
+    {
+      "chunk_id": "3d6488",
+      "operation": "保存review-packetの構造・hash・件数を読取り、review-execution開始記録を作成",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "15f1b6",
+      "operation": "parallel/design/codingルールを再読",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "98c3b7",
+      "operation": "packetのinstruction/response_example/proposal/search/historyとsource索引を読取り",
+      "exit_code": 0,
+      "issue": "出力上限でproposal/historyの中間省略。個別読出しで回復。"
+    },
+    {
+      "chunk_id": "817f28",
+      "operation": "現行proposal全文を単独読出し",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "ee154f",
+      "operation": "docs/design.mdの行数と1〜180行を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "f1bfc9",
+      "operation": "docs/designの見出しrg、workflow全文とexplain後半を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "184e51",
+      "operation": "追加資料22件の本文・出典・限界を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "78b95c",
+      "operation": "対象カード全属性、ルール全文、用語37件、search3件を読む",
+      "exit_code": 0,
+      "issue": "カード中間の一部が出力上限で省略。本文・進化・参照効果・注記を選んだ再読で回復。"
+    },
+    {
+      "chunk_id": "39f19b",
+      "operation": "役割の15枚とトラッパー/優雅の17枚の本文・進化・参照先・注記・合法性を再読",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "41ca6c",
+      "operation": "docs/design.md 199〜283、427〜553行を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "8170f8",
+      "operation": "packet dataの正規化hashを再計算し一致確認。先祖proposal revision1全文を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "e1a8c7",
+      "operation": "全40枚資料6件全文、機械比較資料2件の差分/集計/来歴、known_decks4件を読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "737762",
+      "operation": "docs/design.md 284〜426行、マガチヨ本文/注記、packet principles見出しを読む",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "4faf7c",
+      "operation": "両40枚合計・1枚交換・合法性・唯一の7コスト以上・全30資料hashを保存packetだけで検算",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "614960",
+      "operation": "review-response.jsonを新規作成し20引用を元資料と照合",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "928b22",
+      "operation": "実際のWeb追加確認に合わせ調査記録2項を登録前に更新。packet hash/20引用を最終照合",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "5de1e7",
+      "operation": "公開review登録結果とreport構造だけを確認",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "ea1749",
+      "operation": "公開report revision2の自分のauthorだけを取り出して全回答フィールド一致確認",
+      "exit_code": 0
+    },
+    {
+      "chunk_id": "458d00",
+      "operation": "自分のreview_contextのhash・入力30資料・next_questions対応を検査しreview-registration-check.jsonへ保存",
+      "exit_code": 0
+    }
+  ],
+  "public_commands": [
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-idea-comparison-01/a/session",
+        "/tmp/sv-idea-comparison-01/a/rounds/round-3/review-response.json"
+      ],
+      "chunk_id": "0d0b1f",
+      "exit_code": 0,
+      "stdout_file": "/tmp/sv-idea-comparison-01/a/rounds/round-3/review-result.json",
+      "stderr_file": "/tmp/sv-idea-comparison-01/a/rounds/round-3/review-result-stderr.txt",
+      "stderr_bytes": 0,
+      "attempt": 1
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-idea-comparison-01/a/session"
+      ],
+      "chunk_id": "916cca",
+      "exit_code": 0,
+      "stdout_file": "/tmp/sv-idea-comparison-01/a/rounds/round-3/review-report.json",
+      "stderr_file": "/tmp/sv-idea-comparison-01/a/rounds/round-3/review-report-stderr.txt",
+      "stderr_bytes": 0,
+      "attempt": 1
+    }
+  ],
+  "web_calls": [
+    {
+      "call": 1,
+      "open": [
+        "https://note.com/rapid_stilt4269/n/nd900da87610b",
+        "https://note.com/ryunen_sv/n/n12559225f480",
+        "https://note.com/yuki_svwb/n/n71098fc3e434"
+      ],
+      "result": "3件取得。3件目は出力された前半〜282行を確認。"
+    },
+    {
+      "call": 2,
+      "search_queries": [
+        "\"スターライトゴッデス\" \"レイピア\" \"緋岸\"",
+        "\"ゴッデス\" \"レイピア複製\"",
+        "\"スターライトゴッデス\" \"コンボエルフ\"",
+        "site:shadowverse-wb.com \"コピー\" \"引き継がれます\""
+      ],
+      "open": [
+        {
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10502110",
+          "result": "抽出の動的本文欠落。後にCUAで確認。"
+        },
+        {
+          "url": "https://note.com/yuki_svwb/n/n71098fc3e434",
+          "line": 278,
+          "result": "Internal Error"
+        }
+      ]
+    },
+    {
+      "call": 3,
+      "open": [
+        {
+          "url": "https://note.com/yuki_svwb/n/n71098fc3e434",
+          "line": 278,
+          "reference": "turn241view2",
+          "result": "400 Timeout fetching。Webでの再試行1回目も失敗。"
+        },
+        {
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10263310",
+          "result": "抽出の動的本文欠落。"
+        },
+        {
+          "url": "https://gamewith.jp/shadowverse-wb/559139",
+          "result": "表示40枚と立ち回り本文を確認。保存版より更新表示が新しい。"
+        }
+      ]
+    },
+    {
+      "call": 4,
+      "open": [
+        "https://gamewith.jp/shadowverse-wb/537653"
+      ],
+      "result": "直接open成功。短い出力は本文前半まで。カード本文と採用欄はcall2の検索表示で確認。"
+    }
+  ],
+  "browser_calls": [
+    {
+      "call": 1,
+      "operations": [
+        "cua.getBrowser URL=公式10502110"
+      ],
+      "result": "背景のCodex In-app Browserを選択"
+    },
+    {
+      "call": 2,
+      "operations": [
+        "cua.createBrowserTab 公式10502110 visible=false"
+      ],
+      "result": "tab1作成。初期の動的本文読込前"
+    },
+    {
+      "call": 3,
+      "operations": [
+        "reviewTab.getAXState"
+      ],
+      "result": "スターライトゴッデス本文とTips入口を確認"
+    },
+    {
+      "call": 4,
+      "operations": [
+        "reviewTab.click 103 バトルTips",
+        "reviewTab.getAXState"
+      ],
+      "result": "公式用語全文の実表示。コピー・選ぶ・EP/SEP・コンボ・追加PP・上限を確認"
+    },
+    {
+      "call": 5,
+      "operations": [
+        "reviewTab.goto note.com/yuki_svwb/n/n71098fc3e434",
+        "reviewTab.getAXState"
+      ],
+      "result": "Webで欠けた後半を含む記事本文を実表示で確認。動画・画像40枚は未確認"
+    },
+    {
+      "call": 6,
+      "operations": [
+        "reviewTab.close"
+      ],
+      "result": "自分が作った背景タブを閉じた"
+    }
+  ],
+  "counts": {
+    "public_commands": 2,
+    "review_registration_attempts": 1,
+    "report_attempts": 1,
+    "public_command_failures": 0,
+    "web_tool_calls": 4,
+    "web_search_queries": 4,
+    "web_open_attempts": 9,
+    "web_distinct_open_urls": 7,
+    "web_error_results": 2,
+    "web_retry_attempts": 1,
+    "web_dynamic_body_missing_results": 2,
+    "browser_tool_calls": 6,
+    "browser_api_operations": 8,
+    "browser_errors": 0,
+    "truncated_local_reads": 3,
+    "formal_review_retries": 0
+  },
+  "failure_handling": "出力省略3件は対象部分を絞って再読。note後半のWeb再取得2失敗は背景ブラウザーで回復。公式2URLの動的本文欠落はゴッデスのTips実表示で補った。公開review/report失敗なし。登録前の回答草稿更新はWeb実施記録の補正1回で、評価ラベルを変えず実質評価を増やしていない。"
+}

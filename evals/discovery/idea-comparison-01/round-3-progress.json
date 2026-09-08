@@ -67,13 +67,26 @@
       "dispatch_window_end_utc": "2026-09-08T10:52:47+00:00",
       "delivery_tools_returned_success": true,
       "new_judgment_task_added": false
+    },
+    {
+      "type": "round-3-save-notice",
+      "recipients": [
+        "b"
+      ],
+      "scheduled_at": "2026-09-08T11:30:01+00:00",
+      "dispatch_window_start_utc": "2026-09-08T11:29:56+00:00",
+      "dispatch_window_end_utc": "2026-09-08T11:31:02+00:00",
+      "delivery_tools_returned_success": true,
+      "new_judgment_task_added": false,
+      "notice_received": true,
+      "timing_limitation": "通知の個別タイムスタンプは保持されず、前後の観測区間を保存。"
     }
   ],
   "limits": "二つのdispatchは同一時刻ではない。上の期間中に連続して起動し、担当側の実開始時刻も別途保存する。",
   "arm_stages": {
     "b": {
       "round": 3,
-      "stage": "generation_running",
+      "stage": "independent_review_running",
       "agent": "/root/idea_trial_generator_b",
       "input_packet_hash": "4c4c885bffd2d627a3af16f88660033b9beddeb5a02392c6498a513b383fd641",
       "dispatch_clock_utc": "2026-09-08T11:10:01+00:00",
@@ -84,11 +97,24 @@
       "actual_started_at": "2026-09-08T11:10:39+00:00",
       "previous_review": "conditional / develop / unconfirmed",
       "initial_protocol_unchanged": true,
-      "note": "実際の評価のみを返し、追加の期待ラベルは渡していない。配信時刻と実開始を区別する。"
+      "note": "実際の評価のみを返し、追加の期待ラベルは渡していない。配信時刻と実開始を区別する。",
+      "generation_research_finished_at": "2026-09-08T11:29:21.516320+00:00",
+      "generation_save_finished_at": "2026-09-08T11:33:27.868816+00:00",
+      "generation_end_evidence": "b/round-3/completion.json",
+      "formal_submissions_this_round": 0,
+      "total_formal_submissions": 2,
+      "sources": 29,
+      "generation_limit_stop": false,
+      "review_dispatch_start_utc": "2026-09-08T11:36:37+00:00",
+      "review_dispatch_end_observed_utc": "2026-09-08T11:38:28.304899+00:00",
+      "review_due_utc": "2026-09-08T11:56:37+00:00",
+      "review_actual_started_at": "2026-09-08T11:37:17+00:00",
+      "review_agent": "/root/idea_trial_review_b_3",
+      "review_packet_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89"
     },
     "a": {
       "round": 3,
-      "stage": "independent_review_running",
+      "stage": "round_completed",
       "agent": "/root/idea_trial_generator_a",
       "input_packet_hash": "3c08d52a18f75ebe13c9aaf8e6a800947e6531d4b87e7311a45eeded91438781",
       "dispatch_clock_utc": "2026-09-08T11:11:35+00:00",
@@ -101,8 +127,8 @@
       "initial_protocol_unchanged": true,
       "note": "実際の評価のみを返し、追加の期待ラベルは渡していない。配信時刻と実開始を区別する。",
       "generation_research_finished_at": "2026-09-08T11:21:00+00:00",
-      "generation_save_finished_at": "2026-09-08T11:25:27+00:00",
-      "generation_end_evidence": "a/round-3/save-end-observation.json",
+      "generation_save_finished_at": "2026-09-08T11:25:27.948996+00:00",
+      "generation_end_evidence": "a/round-3/timing.json",
       "formal_submissions_this_round": 0,
       "total_formal_submissions": 2,
       "sources": 30,
@@ -112,7 +138,15 @@
       "review_due_utc": "2026-09-08T11:46:17+00:00",
       "review_actual_started_at": "2026-09-08T11:26:55+00:00",
       "review_agent": "/root/idea_trial_review_a_3",
-      "review_packet_hash": "840cd5d3d3f49bf9d3b9b12df9c62d0b16f8dc56fb9a61cfbbfaffe9df7aa8af"
+      "review_packet_hash": "840cd5d3d3f49bf9d3b9b12df9c62d0b16f8dc56fb9a61cfbbfaffe9df7aa8af",
+      "timestamp_precision_correction": "先の秒単位終了報告を、保存済みtiming.jsonの実測精度に更新。旧観測はsave-end-observation.jsonに保持。",
+      "review_started_at": "2026-09-08T11:26:55+00:00",
+      "review_ended_at": "2026-09-08T11:39:55+00:00",
+      "final_labels": {
+        "procedure": "conditional",
+        "value": "drop",
+        "novelty": "unconfirmed"
+      }
     }
   },
   "completed_rounds": {
@@ -197,6 +231,42 @@
       "review_actual_started_at": null,
       "review_started_at": "2026-09-08 10:53:35 UTC",
       "review_ended_at": "2026-09-08 11:05:40 UTC"
+    },
+    "a-3": {
+      "round": 3,
+      "stage": "round_completed",
+      "agent": "/root/idea_trial_generator_a",
+      "input_packet_hash": "3c08d52a18f75ebe13c9aaf8e6a800947e6531d4b87e7311a45eeded91438781",
+      "dispatch_clock_utc": "2026-09-08T11:11:35+00:00",
+      "dispatch_end_observed_at": "2026-09-08T11:14:28.687794+00:00",
+      "notice_due_utc": "2026-09-08T11:31:35+00:00",
+      "new_research_cutoff_utc": "2026-09-08T11:36:35+00:00",
+      "save_grace_end_utc": "2026-09-08T11:41:35+00:00",
+      "actual_started_at": "2026-09-08T11:12:19.700994+00:00",
+      "previous_review": "conditional / develop / known",
+      "initial_protocol_unchanged": true,
+      "note": "実際の評価のみを返し、追加の期待ラベルは渡していない。配信時刻と実開始を区別する。",
+      "generation_research_finished_at": "2026-09-08T11:21:00+00:00",
+      "generation_save_finished_at": "2026-09-08T11:25:27.948996+00:00",
+      "generation_end_evidence": "a/round-3/timing.json",
+      "formal_submissions_this_round": 0,
+      "total_formal_submissions": 2,
+      "sources": 30,
+      "generation_limit_stop": false,
+      "review_dispatch_start_utc": "2026-09-08T11:26:17+00:00",
+      "review_dispatch_end_observed_utc": "2026-09-08T11:29:27.390585+00:00",
+      "review_due_utc": "2026-09-08T11:46:17+00:00",
+      "review_actual_started_at": "2026-09-08T11:26:55+00:00",
+      "review_agent": "/root/idea_trial_review_a_3",
+      "review_packet_hash": "840cd5d3d3f49bf9d3b9b12df9c62d0b16f8dc56fb9a61cfbbfaffe9df7aa8af",
+      "timestamp_precision_correction": "先の秒単位終了報告を、保存済みtiming.jsonの実測精度に更新。旧観測はsave-end-observation.jsonに保持。",
+      "review_started_at": "2026-09-08T11:26:55+00:00",
+      "review_ended_at": "2026-09-08T11:39:55+00:00",
+      "final_labels": {
+        "procedure": "conditional",
+        "value": "drop",
+        "novelty": "unconfirmed"
+      }
     }
   },
   "operator_failures": [
@@ -206,6 +276,15 @@
       "error": "KeyError: procedure; root assumed both reviewer execution logs put labels at top level",
       "resolution": "Read labels from the actual review response. Failed attempt wrote no archive or state file.",
       "reviewer_retry": false
+    },
+    {
+      "observed_at": "2026-09-08T11:43:32.415435+00:00",
+      "step": "round-3 review archive before any archive write",
+      "error": "KeyError: id; card records use card_id, root archive helper used id",
+      "classification": "root operator error; not reviewer retry",
+      "recovery": "Inspected actual card keys, corrected local archive helper, reran successfully",
+      "modified_trial_input_or_response": false
     }
-  ]
+  ],
+  "last_recorded_at": "2026-09-08T11:42:50.433556+00:00"
 }
