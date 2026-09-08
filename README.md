@@ -41,6 +41,8 @@ python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-next.
 ```
 
 回答は資料の `data.response_example` の形式に従い、`packet_hash` へ資料の `sha256` を入れます。
+全文JSONでは、カード・ルール・用語・既知デッキは `data.context` 内、案・検索・追加資料・回答例は
+`data` 直下です。例えばカードは `data.context.cards`、ルールは `data.context.rules` にあります。
 
 資料が長くて一度に読めない場合は、全文出力の代わりに概要と区分の一覧を出します。
 
@@ -56,6 +58,9 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH rules --offs
 各読出しの `total` は総数、`next_offset` は次に指定する位置です。0から始め、`next_offset` が `null` に
 なるまで同じ区分を読み進めてください。カードは枚数、長い文章やJSONの案は行数で区切ります。
 行単位の `content` は改行を保持しているため、順につなげると全文に戻せます。
+概要の各区分にある `full_packet_path` は、全文JSONでの元の位置を示します。例えば `keywords` の元は
+`data.context.ability_keywords` です。旧版に元の項目がない場合は `null` になります。
+`read` はその内容を分割用に整形して返し、メタデータ区分は示した位置のうち他区分に含まれない属性を返します。
 
 分割しても `sha256` は元の全文資料と同じです。回答の `packet_hash` にもこの値を使います。
 `read` は資料を作り直しません。途中で別評価が追加されても、指定した保存版だけを読みます。

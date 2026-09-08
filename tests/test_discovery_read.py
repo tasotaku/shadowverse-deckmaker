@@ -11,6 +11,7 @@ from typing import Any
 import pytest
 
 from svdeck.discovery import packet, review, start, submit
+from svdeck.discovery_evidence import digest
 from svdeck.discovery_read import packet_summary, read_packet
 from test_discovery import assessment, make_db, proposal
 
@@ -59,6 +60,17 @@ def test_cli_summary_keeps_original_packet_and_full_output(session: Path) -> Non
     assert counts["cards"] == len(full["data"]["context"]["cards"])
     assert counts["rules"] == len(full["data"]["context"]["rules"].splitlines())
     assert counts["proposal"] == counts["previous_reviews"] == 0
+    # AI_NOTE: 概要だけを頼りに全文を読む担当が、カードとルールの入れ子を推測せず辿れる。
+    resolved = {}
+    for part in summary["sections"]:
+        value = full
+        for key in part["full_packet_path"].split("."):
+            value = value[key]
+        resolved[part["section"]] = value
+    assert resolved["cards"] == full["data"]["context"]["cards"]
+    assert resolved["rules"] == full["data"]["context"]["rules"]
+    assert resolved["keywords"] == full["data"]["context"]["ability_keywords"]
+    assert resolved["response_example"] == summary["response_example"]
     actual = subprocess.run(
         [sys.executable, "-m", "svdeck.discovery", "read", str(session), summary["sha256"],
          "cards", "--offset", "1", "--limit", "2"], capture_output=True, text=True, check=True,
@@ -67,6 +79,22 @@ def test_cli_summary_keeps_original_packet_and_full_output(session: Path) -> Non
     assert page["sha256"] == full["sha256"]
     assert page["content"] == full["data"]["context"]["cards"][1:3]
     assert page["next_offset"] == 3
+
+
+def test_summary_does_not_claim_missing_paths_in_old_packets(session: Path) -> None:
+    # AI_NOTE: 追加資料・履歴を持たない旧版にも空の読出しを提供し、実在しないJSON位置は示さない。
+    old = packet(session, 0, "develop")["data"]
+    del old["history"], old["sources"]
+    key = digest(old)
+    path = session / "packets" / f"{key}.json"
+    path.write_text(json.dumps({"sha256": key, "data": old}), encoding="utf-8")
+    before = path.read_bytes()
+    summary = packet_summary(session, key)
+    parts = {p["section"]: p for p in summary["sections"]}
+    for section in ("history", "sources"):
+        assert parts[section]["full_packet_path"] is None
+        assert json.loads("".join(read_all(session, key, section, 1))) == []
+    assert summary["sha256"] == key and path.read_bytes() == before
 
 
 def test_all_sections_reassemble_the_saved_data(session: Path) -> None:

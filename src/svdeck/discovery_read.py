@@ -13,6 +13,7 @@ from svdeck.discovery_evidence import JSONDict, digest, read_object
 class Section(NamedTuple):
     unit: str
     content: list[Any]
+    full_packet_path: str | None
 
 
 def _load_packet(session: Path, packet_hash: str) -> JSONDict:
@@ -26,10 +27,10 @@ def _load_packet(session: Path, packet_hash: str) -> JSONDict:
     return data
 
 
-def _lines(value: object) -> Section:
+def _lines(value: object, path: str | None) -> Section:
     # AI_NOTE: 改行を保持して分割するため、ページを順に連結すると元の文章・JSONを復元できる。
     text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, indent=2)
-    return Section("lines", text.splitlines(keepends=True))
+    return Section("lines", text.splitlines(keepends=True), path)
 
 
 def _sections(data: JSONDict) -> dict[str, Section]:
@@ -38,24 +39,24 @@ def _sections(data: JSONDict) -> dict[str, Section]:
     context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
     packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history"}
     return {
-        "cards": Section("cards", context["cards"]),
-        "rules": _lines(context["rules"]),
+        "cards": Section("cards", context["cards"], "data.context.cards"),
+        "rules": _lines(context["rules"], "data.context.rules"),
         "keywords": Section("keywords", [{"keyword": key, "text": value}
-                                           for key, value in context["ability_keywords"].items()]),
-        "principles": _lines(context["principles"]),
-        "known_decks": Section("decks", context["known_decks"]),
-        "search": Section("questions", data["search"]),
-        "proposal": _lines(data["proposal"]) if data["proposal"] is not None else Section("lines", []),
-        "previous_reviews": Section("reviews", data["previous_reviews"]),
-        "history": _lines(data.get("history", [])),
+                                           for key, value in context["ability_keywords"].items()], "data.context.ability_keywords"),
+        "principles": _lines(context["principles"], "data.context.principles"),
+        "known_decks": Section("decks", context["known_decks"], "data.context.known_decks"),
+        "search": Section("questions", data["search"], "data.search"),
+        "proposal": _lines(data["proposal"], "data.proposal") if data["proposal"] is not None else Section("lines", [], "data.proposal"),
+        "previous_reviews": Section("reviews", data["previous_reviews"], "data.previous_reviews"),
+        "history": _lines(data.get("history", []), "data.history" if "history" in data else None),
         # AI_NOTE: 本文を改行保持の配列へ展開し、長い1資料を1項目・1JSON行へ詰め込まない。
         "sources": _lines([{**source, "content": source["content"].splitlines(keepends=True)}
-                           for source in data.get("sources", [])]),
-        "context_metadata": _lines({key: value for key, value in context.items() if key not in context_parts}),
-        "fulfillment_map": _lines(context["fulfillment_map"]),
-        "instruction": _lines(data["instruction"]),
-        "response_example": _lines(data["response_example"]),
-        "packet_metadata": _lines({key: value for key, value in data.items() if key not in packet_parts}),
+                           for source in data.get("sources", [])], "data.sources" if "sources" in data else None),
+        "context_metadata": _lines({key: value for key, value in context.items() if key not in context_parts}, "data.context"),
+        "fulfillment_map": _lines(context["fulfillment_map"], "data.context.fulfillment_map"),
+        "instruction": _lines(data["instruction"], "data.instruction"),
+        "response_example": _lines(data["response_example"], "data.response_example"),
+        "packet_metadata": _lines({key: value for key, value in data.items() if key not in packet_parts}, "data"),
     }
 
 
@@ -72,7 +73,8 @@ def packet_summary(session: Path, packet_hash: str) -> JSONDict:
         "instruction": data["instruction"],
         "response_example": data["response_example"],
         "source_usage": data.get("source_usage"),
-        "sections": [{"section": name, "unit": section.unit, "total": len(section.content)}
+        "sections": [{"section": name, "unit": section.unit, "total": len(section.content),
+                      "full_packet_path": section.full_packet_path}
                      for name, section in _sections(data).items()],
         "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。"
                    "各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。"
