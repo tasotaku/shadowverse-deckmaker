@@ -1,5 +1,5 @@
 {
-  "status": "independent_grading",
+  "status": "completed",
   "protocol_sha256": "e15ed66e854f643bfed25268f084647b86d11191c0849ed0175fbb77c6983a9a",
   "arms": {
     "a": {
@@ -33,6 +33,27 @@
     "dispatch_clock_utc": "2026-09-08T11:15:41+00:00",
     "deadline_utc": "2026-09-08T11:21:41+00:00",
     "saving_deadline_utc": "2026-09-08T11:23:41+00:00",
-    "actual_started_at": null
+    "actual_started_at": "2026-09-08T11:16:27+00:00",
+    "actual_evaluation_ended_at": "2026-09-08T11:21:48+00:00",
+    "saved_at": "2026-09-08T11:23:34.095413+00:00",
+    "assessment_target_overrun_seconds": 7
+  },
+  "decision": {
+    "decided_at": "2026-09-08T11:25:24.403921+00:00",
+    "status": "rejected",
+    "scope": "選択2枚の保存分析追加を、現行の探索工程へ取り込む今回の提案",
+    "reason": "今回試した、選択2枚の未検証の保存分析を追加して問いを作る方式は、本体への取り込みを見送る。原文だけでも同じ正確さで次の検索に達し、資料追加に見合う改善を示せなかったため。この小試行だけで、保存分析が他の状況でも役立たないとは判断しない。試作コードは比較記録として残し、この方式の追加検証は今は進めない。",
+    "basis": [
+      "evaluation.json",
+      "evaluation.md"
+    ],
+    "not_claimed": [
+      "保存分析の一般的な無価値",
+      "未知入力での発見力の比較",
+      "実戦の強さ",
+      "方式全体の優越"
+    ],
+    "prototype_commit": "7eb1d0c295eb67bb39555356c0924de13bd74e5b",
+    "main_integration": false
   }
 }

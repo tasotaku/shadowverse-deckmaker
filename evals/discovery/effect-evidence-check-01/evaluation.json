@@ -1,0 +1,429 @@
+{
+  "kind": "known-case-development-check",
+  "purpose": "未検証の保存分析を追加する入口の誤読と問いの発展を、小さな既知ケースで確認。未知発見力の評価ではない。",
+  "protocol_sha256": "e15ed66e854f643bfed25268f084647b86d11191c0849ed0175fbb77c6983a9a",
+  "fixed_assessment": [
+    "条件・状態変化の正確さを各ケースで判定",
+    "対照で誤った用途を出していないか",
+    "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+    "根拠・未確認の範囲を正確に残したか",
+    "時間・読む量・操作と失敗を併記"
+  ],
+  "oracles": {
+    "draw-selected": "正常な指定ドロー直後に山札19枚、フォロワー1枚。同じ1枚の減少を二重計上しない。特定個体を残せるとは未証明。",
+    "reanimate-selected": "ドロー側の減少を引き継がない。山札枚数・フォロワー枚数はこの効果では変わらない。",
+    "last-words-generated": "手札にバット1枚を生成、山札は減らない。得た札のプレイ・破壊を先取りしない。"
+  },
+  "scope": "許可された固定資料、回答、操作記録、走査根拠のみ。総合得点・勝者・本採用判定なし。",
+  "cases": [
+    {
+      "arm": "a",
+      "case_id": "draw-selected",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。山札20→19、フォロワー2→1、非フォロワー18→18。同じフォロワー1枚の減少を山札全体の減少と足していない。特定の1枚を残せたとは扱わない。",
+          "evidence_refs": [
+            "a/answer.json / cases[draw-selected].state_change",
+            "a/input-packet.json / data.context.cards[card_id=10051310].skill_text"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "選択はドロー側だけ。リアニメイトが同時に働いたという用途は出していない。",
+          "evidence_refs": [
+            "a/answer.json / cases[draw-selected].conditions"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "割合低下を、山札内・上の種別や残り枚数を参照する効果へ使えるかという別用途の問いにした。全212枚の4欄を「デッキ|山札」で1回走査し35枚を読んだ。問いを立てるだけで終わらず実検索へ進んだ。具体候補は0枚で、その用途があるとは確認できていない。",
+          "evidence_refs": [
+            "a/answer.json / cases[draw-selected].question/search",
+            "a/search-log.json / draw-selected"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "本文の選択と指定ドローが根拠。1/19は山札構成の割合で、次の札や強さの保証ではないと明記。文字検索に当たらない表現の見落とし、山札内訳・順序・手札の空きを未確認に残した。",
+          "evidence_refs": [
+            "a/answer.json / cases[draw-selected].uncertainties/search.limitations"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "走査212枚×1、該当35枚。保存走査根拠の4欄の文字数7,103。公開CLI読出し0回。ケース別時間は記録がなく切り分け不能。",
+          "evidence_refs": [
+            "a/execution.json",
+            "a/search-log.json / draw-selected"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "a",
+      "case_id": "reanimate-selected",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。リアニメイト自身の処理では山札20→20、フォロワー2→2。破壊履歴から場に出す定義に従い、山札から取り出していない。",
+          "evidence_refs": [
+            "a/answer.json / cases[reanimate-selected].state_change",
+            "a/input-packet.json / data.context.ability_keywords.リアニメイト"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "対照で誤用途なし。カード全体についている山札の割合操作のタグを、この選択の結果へ流用しないと明記。",
+          "evidence_refs": [
+            "a/answer.json / cases[reanimate-selected].state_change"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "問い・検索ともなし。今回は山札の変化に注目する対照で、その直接変化がないことを理由にしている。件数不足による失敗にはしない。",
+          "evidence_refs": [
+            "a/answer.json / cases[reanimate-selected].question/conditions"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "モードとリアニメイトの本文・公式定義に沿う。対象・破壊履歴・場の空き・他カードの誘発は未指定で、全誘発の解決後まで20枚/2枚を保証したとは扱わない。",
+          "evidence_refs": [
+            "a/answer.json / cases[reanimate-selected].uncertainties"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "追加の全カード走査0回。問いを作らない理由を説明する読解のみ。ケース別の時間・実読文字数は未記録。",
+          "evidence_refs": [
+            "a/execution.json"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "a",
+      "case_id": "last-words-generated",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。ルルミ破壊直前から手札にバット1枚を生成し手札＋1、山札の枚数とフォロワー数は変わらない。得たバットのプレイ・攻撃・破棄を先取りしない。",
+          "evidence_refs": [
+            "a/answer.json / cases[last-words-generated].state_change",
+            "a/input-packet.json / data.context.cards[card_id=10751110].skill_text"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "生成を山札ドローに置換せず、ドレインの回復も先取りしない。バットを捨てることを場での破壊・リアニメイトの対象履歴に接続しない。",
+          "evidence_refs": [
+            "a/answer.json / cases[last-words-generated].conditions/state_change/uncertainties"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "山札を減らさず得た手札を、手札枚数・種別・捨てる条件へ回す問い。全212枚の4欄を「手札」または「捨て」で1回走査し39枚に当たり、享楽の上位市民とスターライトゴッデスへ接続。前者は手札1枚の消費、後者は捨てる3枚の1枚を補ってコピーしたい札を残す用途で、本文の言い換えを超えた次の調査候補になっている。",
+          "evidence_refs": [
+            "a/answer.json / cases[last-words-generated].question/search",
+            "a/search-log.json / last-words-generated"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "バットと候補の本文・進化・注記を参照。上位市民の手札/3PP/場、ゴッデスの処理前6枚以上/左3枚/5PP/進化権等を残る条件として示す。ゴッデスの手札不足の注記も保持。1枚生成だけで候補効果が成立したとはしない。実戦上の損得は未確認。",
+          "evidence_refs": [
+            "a/answer.json / cases[last-words-generated].search.candidates",
+            "a/input-packet.json / data.context.cards[card_id=90051120].note"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "走査212枚×1、該当39枚。保存走査根拠の4欄の文字数9,724。公開CLI0回。候補2枚は局所資料で確認。ケース別時間は未記録。",
+          "evidence_refs": [
+            "a/execution.json",
+            "a/search-log.json / last-words-generated"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "b",
+      "case_id": "draw-selected",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。山札20→19、フォロワー2→1、非フォロワー18→18。同じフォロワー1枚の減少を山札全体の減少と足していない。特定の1枚を残せたとは扱わない。",
+          "evidence_refs": [
+            "b/answer.json / cases[draw-selected].state_change",
+            "b/input-packet.json / data.context.cards[card_id=10051310].skill_text"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "選択はドロー側だけ。リアニメイトが同時に働いたという用途は出していない。",
+          "evidence_refs": [
+            "b/answer.json / cases[draw-selected].conditions"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "2枚から1枚へ減ったことを、さらに0枚にした先の条件へ使えるかという別用途の問いにした。全212枚の4欄を「デッキ|山札」で1回走査し35枚を読んだ。単なる効果の言い換えを超えて実検索へ進んだが、0枚を要求する具体候補は0枚。残り1枚を取り除く手順も未成立と区別した。",
+          "evidence_refs": [
+            "b/answer.json / cases[draw-selected].question/search",
+            "b/search-evidence.json / draw-selected"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "本文とモード定義を優先。保存分析の増減行に選択条件の接続が不足し、抽出元本文の版も未確認と明記。1/19から特定札取得を断定せず、0枚条件と残り1枚の処理を未確認に残した。",
+          "evidence_refs": [
+            "b/answer.json / cases[draw-selected].uncertainties/search.limitations"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "走査212枚×1、該当35枚を18/17に分割読出し。保存走査根拠の該当欄の文字数5,912。このケースの公開CLI読出し0回。ケース別時間は記録なし。保存分析2枚の読解負担は共通費用として別記。",
+          "evidence_refs": [
+            "b/execution.json",
+            "b/search-evidence.json / draw-selected"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "b",
+      "case_id": "reanimate-selected",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。リアニメイト自身の処理では山札20→20、フォロワー2→2。破壊履歴から場に出す定義に従い、山札から取り出していない。",
+          "evidence_refs": [
+            "b/answer.json / cases[reanimate-selected].state_change",
+            "b/input-packet.json / data.context.ability_keywords.リアニメイト"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "対照で誤用途なし。保存分析の山札フォロワー−1・手札フォロワー＋1を、選ばなかったドロー側の変化として除外した。保存分析の「墓場のフォロワー」を破壊履歴参照へ読み替えた。",
+          "evidence_refs": [
+            "b/answer.json / cases[reanimate-selected].state_change"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "問い・検索ともなし。今回は山札の変化に注目する対照で、その直接変化がないことを理由にしている。件数不足による失敗にはしない。",
+          "evidence_refs": [
+            "b/answer.json / cases[reanimate-selected].question/conditions"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "モードとリアニメイトの本文・公式定義に沿う。対象・破壊履歴・場の空き・他カードの誘発は未指定で、全誘発の解決後まで20枚/2枚を保証したとは扱わない。",
+          "evidence_refs": [
+            "b/answer.json / cases[reanimate-selected].uncertainties"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "追加の全カード走査0回。問いを作らない理由を説明する読解のみ。ケース別の時間・実読文字数は未記録。",
+          "evidence_refs": [
+            "b/execution.json"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "b",
+      "case_id": "last-words-generated",
+      "assessment": [
+        {
+          "criterion": "条件・状態変化の正確さを各ケースで判定",
+          "finding": "固定正解に一致。ルルミ破壊直前から手札にバット1枚を生成し手札＋1、山札の枚数とフォロワー数は変わらない。得たバットのプレイ・攻撃・破棄を先取りしない。",
+          "evidence_refs": [
+            "b/answer.json / cases[last-words-generated].state_change",
+            "b/input-packet.json / data.context.cards[card_id=10751110].skill_text"
+          ]
+        },
+        {
+          "criterion": "対照で誤った用途を出していないか",
+          "finding": "生成を山札ドローに置換せず、ドレインの回復も先取りしない。保存分析の「突進付与」をルルミが他者へ突進を与える根拠に使わず、トークンをデッキに直接採用できるとも扱わない。",
+          "evidence_refs": [
+            "b/answer.json / cases[last-words-generated].conditions/state_change/uncertainties"
+          ]
+        },
+        {
+          "criterion": "問いが単なる効果/タグの言換えを超え、実際の次の検索につながったか",
+          "finding": "山札を減らさず得た手札を、手札を捨てる要求へ回す問い。全212枚の4欄を1回走査し33枚に当たり、享楽の上位市民とバベロンシティへ接続。前者は手札1枚の消費、後者はカウント延長の消費として使う用途で、本文の言い換えを超えた次の調査候補になっている。",
+          "evidence_refs": [
+            "b/answer.json / cases[last-words-generated].question/search",
+            "b/search-evidence.json / last-words-generated"
+          ]
+        },
+        {
+          "criterion": "根拠・未確認の範囲を正確に残したか",
+          "finding": "バットと候補の本文・進化・注記を参照し、候補の空注記も確認。上位市民の手札/3PP/場/自分のターン、バベロンシティの設置/1PP/未使用アクト等を未確認に残す。今この場で破棄やカウント延長、回復・ダメージが働いたとはしない。実戦上の損得は未確認。",
+          "evidence_refs": [
+            "b/answer.json / cases[last-words-generated].search.candidates",
+            "b/input-packet.json / data.context.cards[card_id=90051120].note"
+          ]
+        },
+        {
+          "criterion": "時間・読む量・操作と失敗を併記",
+          "finding": "走査212枚×1、該当33枚を17/16に分割読出し。保存走査根拠の該当欄の文字数7,644。候補2枚を公開CLIで全文再確認し1回成功・失敗0。ケース別時間は未記録。",
+          "evidence_refs": [
+            "b/execution.json",
+            "b/search-evidence.json / last-words-generated"
+          ]
+        }
+      ]
+    }
+  ],
+  "differences_and_unchanged": [
+    "両方式とも3ケースの直接の状態変化と対照の線引きは正確。ここで追加資料による正確さの改善は観測されなかった。",
+    "ドローの問いはAが割合・種別・残り枚数の参照、Bが将来のフォロワー0枚条件。どちらも同じ35枚へ実検索したが具体候補0枚で、この差を有用な進展の改善とは確認できない。",
+    "ルルミの問いは両方とも手札破棄へ進み、享楽の上位市民が共通。2枚目はAのスターライトゴッデス、Bのバベロンシティ。どちらも根拠と残る準備が具体的で、別の候補を選んだだけでは追加資料の有用性改善を示さない。",
+    "Bは保存分析の条件接続不足、墓場表現、突進付与のずれを明示的に本文と区別できた。この資料を誤読せず扱えた例にはなるが、Aも必要な正答と次の検索に達しており、追加が必要だった・探索を改善したとはいえない。",
+    "Bの入力ファイルは12,313バイト/9,439文字増、追加2資料のcontent本文は計6,970文字。Bの回答は840文字増。長さや引用数を改善とは数えない。走査2回は共通、Bのみ公開CLI1回。読む量と操作の純増減は記録不足で断定できない。"
+  ],
+  "usefulness_confirmed_extent": "未検証の保存分析が追加されても、この3例では誤った状態変化や用途を持ち込まずに読めた。本文中心資料との差として正確さや次の検索の有用性が改善したことは未確認。",
+  "burden": {
+    "a": {
+      "research_seconds": 309.915709,
+      "saving_seconds_reported": 0.005884,
+      "total_seconds": 309.921593,
+      "input_file_bytes": 644810,
+      "input_file_characters": 463048,
+      "answer_file_bytes": 16774,
+      "answer_file_characters": 10866,
+      "added_source_content_characters": 0,
+      "scans": 2,
+      "cards_scanned_per_scan": 212,
+      "matched_rows_per_scan": [
+        35,
+        39
+      ],
+      "persisted_scan_field_characters_per_scan": [
+        7103,
+        9724
+      ],
+      "public_cli_reads": 0,
+      "public_cli_failures": 0,
+      "started_utc": "2026-09-08T11:06:00Z",
+      "saved_utc": "2026-09-08T11:11:09.921593+00:00"
+    },
+    "b": {
+      "research_seconds": 322,
+      "saving_seconds_reported": 75,
+      "total_seconds": 397,
+      "input_file_bytes": 657123,
+      "input_file_characters": 472487,
+      "answer_file_bytes": 18780,
+      "answer_file_characters": 11706,
+      "added_source_content_characters": 6970,
+      "scans": 2,
+      "cards_scanned_per_scan": 212,
+      "matched_rows_per_scan": [
+        35,
+        33
+      ],
+      "persisted_scan_field_characters_per_scan": [
+        5912,
+        7644
+      ],
+      "public_cli_reads": 1,
+      "public_cli_failures": 0,
+      "started_utc": "2026-09-08 11:08:26 UTC",
+      "saved_utc": "2026-09-08 11:15:03 UTC"
+    }
+  },
+  "failures_and_deviations": {
+    "a": [
+      "最初の概観でdataの短い内容をhash照合より前に表示した。カード効果の詳読と検索はhash一致を確認後に行った。",
+      "1回のfunctions.exec内に資料概観と適用規則の一括表示を重ね、合計出力が省略された。以後は必要欄と検索結果ごとに分割した。",
+      "公式用語dictの初回ループはキー名だけを表示したため、次の読出しで対象定義値を読み直した。"
+    ],
+    "b": [
+      {
+        "operation": "適用ルール10ファイルの初回まとめ表示",
+        "issue": "出力が省略された。カード保存入力の一括表示ではない。",
+        "handling": "省略された可能性のあるファイルを個別・範囲別に再読出し。"
+      }
+    ],
+    "shared_limit": "操作記録は各担当の自己記録で、全文操作履歴から再集計したものではない。"
+  },
+  "checks": {
+    "protocol_sha256": "e15ed66e854f643bfed25268f084647b86d11191c0849ed0175fbb77c6983a9a",
+    "instruction_hash_matches_protocol": true,
+    "context_equal": true,
+    "data_identical_except_sources": true,
+    "packet_hashes_match": {
+      "a": true,
+      "b": true
+    },
+    "quote_checks": {
+      "a": {
+        "count": 14,
+        "empty_quotes": 0,
+        "mismatches": 0,
+        "nonempty_quotes": 14
+      },
+      "b": {
+        "count": 31,
+        "empty_quotes": 14,
+        "mismatches": 0,
+        "nonempty_quotes": 17
+      }
+    },
+    "scan_matches_reproduced": {
+      "a": [
+        {
+          "case": "draw-selected",
+          "matches": 35,
+          "same_order_and_ids": true
+        },
+        {
+          "case": "last-words-generated",
+          "matches": 39,
+          "same_order_and_ids": true
+        }
+      ],
+      "b": [
+        {
+          "case": "draw-selected",
+          "matches": 35,
+          "same_order_and_ids": true
+        },
+        {
+          "case": "last-words-generated",
+          "matches": 33,
+          "same_order_and_ids": true
+        }
+      ]
+    }
+  },
+  "limits": [
+    "採点の合計点や勝者は作らない",
+    "問いがないことだけを失敗にしない",
+    "3例は事前の監査で選んだ開発用ケース。未知評価ではない",
+    "良いデッキの種、全体の方式採用、実戦の強さの証明ではない",
+    "同じモデル設定で独立した新しい担当を用いるが担当差は除けない",
+    "各方式1担当・1回。開始時刻は146秒ずれ、担当差・時刻差・操作方針差を除けない。評価担当も方式と固定正解を知る非盲検。モデル設定の独立した検証はこの評価の許可資料だけではできない。",
+    "時間は担当の操作記録による。Aは調査終了と保存終了が約0.006秒差で、Bの調査/保存区分と完全に揃うとは確認できない。約12秒の調査差・約87秒の全所要差を追加資料だけの効果とは解釈しない。",
+    "入力ファイルや保存検索根拠の文字数は再計算した。これらはJSONの重複・整形を含み、実際に表示された全文、反復読出し、思考負担、トークン数を測っていない。全文カード走査と全カードの意味精読は別。",
+    "Aは保存資料内known_decksの先頭が概観に表示されたと自己申告、Bは未読と記録。Aは根拠に使用しなかったとするが、読んだ範囲は完全には揃わない。",
+    "元回答と操作記録の意味を評価した。文字列照合は引用と検索記録の整合確認に限り、意味評価の代用にはしていない。実ツール履歴そのものの独立監査は行っていない。",
+    "Bの引用欄31件のうち14件は元資料が空欄である確認。主張を支える内容のある引用件数に数えない。残る17件とAの14件は指定欄または明示された公式用語定義に一致するが、件数の多さ自体を改善としない。"
+  ],
+  "timing": {
+    "actual_start_utc": "2026-09-08 11:16:27 UTC",
+    "evaluation_end_utc": "2026-09-08 11:21:48 UTC",
+    "assessment_elapsed_seconds": 321,
+    "assessment_target_utc": "2026-09-08 11:21:41 UTC",
+    "target_overrun_seconds": 7,
+    "save_deadline_utc": "2026-09-08 11:23:41 UTC",
+    "note": "配信時計基準の評価目安を7秒超過。実開始からは5分21秒。以後は保存と形式確認のみ。",
+    "save_end_utc": "2026-09-08T11:23:34.095413+00:00",
+    "saving_elapsed_seconds": 106.095413
+  }
+}

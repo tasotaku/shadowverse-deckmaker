@@ -1,0 +1,81 @@
+{
+  "actual_start_utc": "2026-09-08 11:16:27 UTC",
+  "dispatch_clock_utc": "2026-09-08 11:15:41 UTC",
+  "assessment_target_utc": "2026-09-08 11:21:41 UTC",
+  "save_deadline_utc": "2026-09-08 11:23:41 UTC",
+  "protocol_sha256": "e15ed66e854f643bfed25268f084647b86d11191c0849ed0175fbb77c6983a9a",
+  "status": "complete",
+  "evaluation_end_utc": "2026-09-08 11:21:48 UTC",
+  "assessment_elapsed_seconds": 321,
+  "assessment_target_overrun_seconds": 7,
+  "allowed_read_files": [
+    "protocol.json",
+    "worker-instructions.txt",
+    "cases.json",
+    "a/input-packet.json",
+    "a/answer.json",
+    "a/execution.json",
+    "a/search-log.json",
+    "b/input-packet.json",
+    "b/answer.json",
+    "b/execution.json",
+    "b/search-evidence.json"
+  ],
+  "operations": {
+    "clock_reads_before_final_save": 5,
+    "web_calls": 0,
+    "source_code_reads": 0,
+    "database_reads": 0,
+    "worker_contacts": 0,
+    "child_agents": 0,
+    "original_input_or_answer_mutations": 0,
+    "semantic_assessment": "本文と条件・ケース・候補を人間可読の形で比較。引用一致だけで意味を判定せず。",
+    "exec_command_calls_including_final_save": 11
+  },
+  "evaluator_failures_and_deviations": [
+    {
+      "issue": "初回の資料一括表示で入力JSON全体が大量出力となり省略された。",
+      "handling": "回答を分けて再読し、資料は構造・追加2資料・対象カード・公式定義・検索該当欄を局所読出し。省略された全本文を精読したとはしない。"
+    },
+    {
+      "issue": "配信時計基準の評価目安を7秒超過。",
+      "handling": "11:21:48 UTCで評価終了。以後は保存と形式確認。"
+    }
+  ],
+  "phase_limitations": [
+    "生成担当の操作回数・時刻はexecution.jsonから取得し、実際の全ツール履歴は独立監査していない。",
+    "rootからの空欄引用の形式上の留意点は、評価終了後の記録明確化として反映。正式提出用検査をこの評価で呼び出していない。"
+  ],
+  "source_file_sha256": {
+    "protocol.json": "e15ed66e854f643bfed25268f084647b86d11191c0849ed0175fbb77c6983a9a",
+    "worker-instructions.txt": "8f7db32be14febfb426925d3a9da14dd4e626d94f50a8f328e7c3170f9e1c756",
+    "cases.json": "1fb06da134bfe98c778ad5d7fc2121d6c128bc5c09d62da197b0ed6d06944957",
+    "a/input-packet.json": "1948280b826e3ff711ed0104fc43dfc881d37b78ed4934e6d49da8db546daf1a",
+    "a/answer.json": "7d82c9451f9572349cd0738fbe605d442ac83c4bc1913e8f8620a4f20a6c154f",
+    "a/execution.json": "05d1ea234f8c6d5f926597af79cf33ea348e295e23fec5045444b7c96ff7a279",
+    "a/search-log.json": "8d5d5a1d84d7da4fb79f1d77d3a21f3d2a187eeda5ef3317e430aa2deea08c2d",
+    "b/input-packet.json": "0e55ce4af2a2ba1035daaa497d7456a6b22239b2f227de9ef4cd39e5e059220a",
+    "b/answer.json": "0e405e5db9d6b0f8929dbfa2b04bd1f427596cb14715c0e6ede4aef99d60656a",
+    "b/execution.json": "3b583d56bb269f1170e8797c741d2eae619c9e408a0993780585f688469f960a",
+    "b/search-evidence.json": "7933679b12ef8efb08dcc69caf7852889b92c9ddd3a781d2368a1baeea21e1b7"
+  },
+  "outputs": [
+    "evaluation.json",
+    "evaluation.md",
+    "evaluation-execution.json"
+  ],
+  "save_end_utc": "2026-09-08T11:23:34.095413+00:00",
+  "saving_elapsed_seconds": 106.095413,
+  "output_sha256": {
+    "evaluation.json": "86654811e3dfa615479fd1516142814c7d4ed5dd957786496bc1ee3df2627617",
+    "evaluation.md": "7a151a2d735866d4493b8729f230918093acb5301cde18f9f50952d7b8ef14a9"
+  },
+  "format_checks": {
+    "json_parse": true,
+    "six_case_arm_pairs": true,
+    "five_fixed_criteria_each": true,
+    "protocol_hash_unchanged": true,
+    "output_files_exist": true,
+    "saved_before_deadline": true
+  }
+}

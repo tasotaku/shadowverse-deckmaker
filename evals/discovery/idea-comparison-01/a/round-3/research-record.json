@@ -1,0 +1,78 @@
+{
+  "round": 3,
+  "input_packet_hash": "3c08d52a18f75ebe13c9aaf8e6a800947e6531d4b87e7311a45eeded91438781",
+  "input_revision": 2,
+  "actual_start_utc": "2026-09-08T11:12:19.700994+00:00",
+  "actual_research_end_utc": "2026-09-08T11:21:00Z",
+  "scheduled_research_stop_utc": "2026-09-08T11:36:35Z",
+  "web_queries": [
+    "\"kqzato\" \"ゴッデス\"",
+    "\"かざと\" \"バフエルフ\" ゴッデス",
+    "\"レイピア複製\" エルフ",
+    "\"ゴッデス\" \"レイピア\" バフエルフ",
+    "\"kqzato\" エルフ ダストデイズ",
+    "\"かざと\" \"ゴッデス\" エルフ",
+    "\"スターライトゴッデス\" バフエルフ 動画",
+    "\"スターライトゴッデス\" \"レイピア\" -FF14 -レイピア・オブ",
+    "\"kqzato\" \"レイピア\" シャドバ",
+    "\"kqzato\" \"バフエルフ\" シャドバ",
+    "\"かざと\" \"ダストデイズ\" エルフ",
+    "\"コンボエルフ\" \"緋岸橙酔\" \"手札\" \"ルリア\"",
+    "\"from:kqzato_spica\" \"エルフ\"",
+    "\"kqzato_spica\" \"ゴッデス\"",
+    "\"kqzato_spica\" \"レイピア\"",
+    "\"ゴッデス\" \"レイピア\" \"動画\" エルフ",
+    "\"ゴッデス\" \"緋岸\" エルフ",
+    "\"ゴッデス\" \"ダストデイズ\" エルフ"
+  ],
+  "web_run_calls": 7,
+  "web_search_calls": 5,
+  "web_query_count": 18,
+  "web_open_operation_count": 9,
+  "browser_search_queries": [
+    "from:kqzato_spica ゴッデス",
+    "from:kqzato_spica レイピア"
+  ],
+  "cua_calls": 13,
+  "cua_failures": [
+    {
+      "operation": "prior binding browser in createBrowserTab",
+      "result": "browser is not defined; no tab created"
+    },
+    {
+      "operation": "authorX3.getAXTree()",
+      "result": "getAXTree is not a function; no state read"
+    },
+    {
+      "operation": "getTab with numeric tab id",
+      "result": "Tab not found; retried with the displayed string id and succeeded"
+    }
+  ],
+  "limitations": [
+    "操作単位はWeb呼出し、検索クエリ、open対象URL指定、CUA呼出しを別々に数えた。重複URLのopenも操作に数える。",
+    "getStateのブラウザ一覧には別タブのメタデータも自動表示されたが、他担当タブを選択・本文読取・利用していない。",
+    "Webの一括出力1件で切り詰めがあり、対象note2記事の本文を次のopenで読み直した。",
+    "実対戦・動画再生は0。Web検索による無関係な一致は証拠採用していない。"
+  ],
+  "public_commands": {
+    "attach": 1,
+    "packet_review": 1,
+    "report": 1,
+    "submit": 0,
+    "compare": 0,
+    "read": 0,
+    "review": 0
+  },
+  "public_command_failures": 0,
+  "additional_source_hashes": [
+    "f923a74d8fda31ed37e74c560aed70d65ef67ae78f977ae02dd45f59cc84ba2c",
+    "f1b80b452b2aad813f9c8eb73dc4b3adfc6577530da3ff33fc854dea69539c83",
+    "357817a4b73639521c2a9a75da24b1aab16e0c7604a9ac68dd6121972748ed40",
+    "c00ba73158f23d3eb1593d1ed45db00bc27e84eef94d7b7bfe2d7cf50b50a0a8",
+    "05db8921edf32bab5679c784378ed2a76d2c99ae5dd3e29d1c9223a4ef6e1ba0",
+    "0899f5201d87df91a7728eba173e466834035b5dbabf5e9b0be6fd9bfe6e6f76"
+  ],
+  "local_shell_auxiliary_call_total": "総数は逐次計数しておらず未確認。公開CLI呼出し3件とWeb/UIの上記内訳を確定記録する。",
+  "current_formal_revision": 2,
+  "public_review_packet_hash": "840cd5d3d3f49bf9d3b9b12df9c62d0b16f8dc56fb9a61cfbbfaffe9df7aa8af"
+}
