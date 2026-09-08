@@ -1,0 +1,126 @@
+{
+  "actual_start_utc": "2026-09-08 10:53:35 UTC",
+  "requested_packet_hash": "82c5947d9b77535dc8fb47206d51860215c2e8dadec8c78769db7ccd2b1bcf07",
+  "actual_packet_hash": "82c5947d9b77535dc8fb47206d51860215c2e8dadec8c78769db7ccd2b1bcf07",
+  "packet_hash_matches": true,
+  "packet_file_sha256": "d17baae94da64445228c2b683f65fa39c54e12e39196c5cc1fdc006612809516",
+  "substantive_evaluations": 1,
+  "format_retries": 0,
+  "initial_read_output_truncated": true,
+  "actual_end_utc": "2026-09-08 11:05:40 UTC",
+  "elapsed_seconds": 725.0,
+  "elapsed_display": "12分05秒",
+  "requested_review_deadline_utc": "2026-09-08 11:12:57 UTC",
+  "completed_within_requested_window": true,
+  "end_measurement": "評価、登録、公開report照合を終えた後のUTC時計。最終集計ファイルの保存のみこの時計の後に実行。",
+  "review_registration_attempts": 1,
+  "format_retry_causes": [],
+  "procedure": "conditional",
+  "value": "develop",
+  "novelty": "unconfirmed",
+  "packet_canonical_hash_verified": true,
+  "packet_file_unchanged": true,
+  "quote_matches": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0
+  },
+  "report_registration": {
+    "count": 1,
+    "revision": 2,
+    "all_response_fields_match": true,
+    "review_hash": "b64ddb24c944bc13a0348957759acd834be23fb0e2dc3d30343ecaf1f091bb89",
+    "proposal_hash": "bd956d3569578894deaa453c4a949d027df924458d94a39eba623db145c560a8",
+    "review_context_input_source_count": 20,
+    "input_source_hashes_exactly_match": true
+  },
+  "read_scope": {
+    "cards_total": 212,
+    "cards_inspected": 22,
+    "other_cards_not_assessed": 190,
+    "core_and_supply_notes": true,
+    "used_generated_cards": [
+      90011110,
+      90011310
+    ],
+    "rules": "固定packetのrules全文、37キーワード。公式Tipsの関連定義も独立に確認。",
+    "proposal_revisions_read": [
+      1,
+      2
+    ],
+    "history_entries_read": 1,
+    "search_entries_read": 3,
+    "sources_total": 20,
+    "sources_read_scope": "20件を用途に応じて本文または全リスト/交換差分として確認。20件とも出典と限界を確認。40枚の前後sourceと比較表のID・枚数対応を別途assert。",
+    "known_decks_read": 4,
+    "operator_readme": "指定保存版を読んだ。",
+    "agent_rules": "指定AGENTS/import先10ファイルの関連本文を読み、出力省略箇所は必要範囲を再読。",
+    "design": "目的、1.5、5、6、既出方針、packet固定principlesの3.2/6.2を確認。非関連の数値化設計等は評価対象外。"
+  },
+  "web_counts": {
+    "tool_calls": 4,
+    "search_queries": 3,
+    "open_operations": 7,
+    "find_operations": 6,
+    "distinct_directly_opened_urls": 7,
+    "transport_errors": 0,
+    "relevant_body_shortfall_pages": 3,
+    "no_match_find_operations": 3
+  },
+  "browser_counts": {
+    "tool_calls": 5,
+    "navigation_or_new_tab": 2,
+    "click": 1,
+    "read_only_dom_evaluate": 1,
+    "explicit_AX_state_reads": 2,
+    "close": 1,
+    "failed": 0
+  },
+  "public_command_counts": {
+    "review": 1,
+    "report": 1,
+    "read": 0,
+    "total": 2,
+    "failed": 0
+  },
+  "verification_cases": {
+    "total": 5,
+    "conditionally_supported": 5,
+    "unresolved": 0,
+    "interpretation": "5ケースすべてで提案の局面計算を支持。勝利したケースが5件という意味ではない。B/C/Dの敗北も確認結果に含む。"
+  },
+  "failures_and_recovery": {
+    "public_command_failures": 0,
+    "browser_failures": 0,
+    "web_transport_failures": 0,
+    "body_shortfall_pages": 3,
+    "display_truncation_batches": 4,
+    "response_format_failures": 0,
+    "notes": "初期の資料一括出力と数回の出力合算が途中省略。必要カード、現提案、履歴、ルール、主要sources、40枚差分は小さい抽出で再読。原packetを再生成・置換せず同一hashを保持。公式外枠とnoteの段落欠落は表示経路で補ったが、公式ヘルプの本文は未確認のまま。"
+  },
+  "unverified": [
+    "実際の対戦・対戦動画の観察は0件。取得率、局面頻度、勝率、Tier、初見の有利さは未評価。",
+    "先攻T5からの到達例と後攻T8の防御比較を同一の完全な対戦として接続していない。",
+    "一手を稼いだ後の行動とヒエン減の費用を実戦例で対応させていない。",
+    "公式の最新カード本文はベアのみ表示確認。他の21枚は固定packet本文を根拠にした。",
+    "note画像の全40枚・全動画・全SNS投稿・全公開デッキは未確認。検索の不存在証明はしない。",
+    "Game8の表示表は保存40枚と照合したが、今回はデッキコピー先を再取得していない。"
+  ],
+  "independence": {
+    "prior_reviews_read_before_judgment": false,
+    "other_method_outputs_read": false,
+    "generator_consultation": false,
+    "subagent_spawn": false,
+    "src_or_evals_read": false,
+    "source_or_production_edits": false
+  },
+  "artifacts": {
+    "review-response.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-response.json",
+    "review-execution.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-execution.json",
+    "review-result.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-result.json",
+    "review-report.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-report.json",
+    "review-commands.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-commands.json",
+    "review-evidence-checks.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-evidence-checks.json",
+    "review-registration-check.json": "/tmp/sv-idea-comparison-01/b/rounds/round-2/review-registration-check.json"
+  }
+}

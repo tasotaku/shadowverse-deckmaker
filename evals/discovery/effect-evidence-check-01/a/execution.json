@@ -1,0 +1,64 @@
+{
+  "actual_start_utc": "2026-09-08T11:06:00Z",
+  "research_end_utc": "2026-09-08T11:11:09.915709+00:00",
+  "save_end_utc": "2026-09-08T11:11:09.921593+00:00",
+  "packet_hash_verification": {
+    "declared": "e4c6dd6705e6dfbfe20c543e70014091339992e4f12d3e49ef07594fd54bfea2",
+    "calculated": "e4c6dd6705e6dfbfe20c543e70014091339992e4f12d3e49ef07594fd54bfea2",
+    "match": true
+  },
+  "read_scope": {
+    "inputs": [
+      "/tmp/sv-effect-evidence-check-01/worker-instructions.txt",
+      "/tmp/sv-effect-evidence-check-01/cases.json",
+      "/tmp/sv-effect-evidence-check-01/a/input-packet.json"
+    ],
+    "applicable_rules": "提示されたAGENTS.mdと、そこから参照されるagent-lab/rulesの10ファイルを読出し。後者の一括表示が省略されたため完全に読めたとはしない。",
+    "packet_sections": "dataのキーと短い概観、contextのカード2件、バット、公式定義、検索該当35件と39件、最終候補2件。rules/principlesは先頭抜粋とprinciples見出し一覧。known_decksの保存内容の先頭も概観出力に含まれたが、候補成立や新規性の根拠に使用していない。",
+    "all_cards_scanned": 212,
+    "fields": [
+      "skill_text",
+      "evolution_text",
+      "ref_effect_text",
+      "note"
+    ],
+    "queries": 2,
+    "full_scan_passes": 2,
+    "supporting_files_created": [
+      "search-log.json",
+      "write-answer.py"
+    ]
+  },
+  "public_operations": {
+    "cli_read_count": 0,
+    "cli_failures": [],
+    "method": "許可された保存JSONの局所読出しと、同じJSONの全カード指定欄を読むPython文字走査。公開CLIを使う必要が生じなかった。",
+    "submit_count": 0,
+    "review_count": 0,
+    "web_count": 0,
+    "additional_agents": 0
+  },
+  "failures_and_deviations": [
+    "最初の概観でdataの短い内容をhash照合より前に表示した。カード効果の詳読と検索はhash一致を確認後に行った。",
+    "1回のfunctions.exec内に資料概観と適用規則の一括表示を重ね、合計出力が省略された。以後は必要欄と検索結果ごとに分割した。",
+    "公式用語dictの初回ループはキー名だけを表示したため、次の読出しで対象定義値を読み直した。"
+  ],
+  "unconfirmed": [
+    "手札・盤面・破壊履歴・山札の個別カードと順序など指定されていない状態",
+    "対戦での成立・有用性・強さ・新規性・勝率",
+    "指定文字を含まない本文の意味上の見落とし",
+    "適用規則の一括表示で省略された箇所"
+  ],
+  "format_checks": [
+    "JSON再読出し成功",
+    "ケースIDが指定3件と一致",
+    "引用が指定カードの指定欄の部分文字列であることを機械確認",
+    "問いなしはsearch=null",
+    "候補数は各0〜2枚"
+  ],
+  "semantic_self_score": null,
+  "outputs": [
+    "/tmp/sv-effect-evidence-check-01/a/answer.json",
+    "/tmp/sv-effect-evidence-check-01/a/execution.json"
+  ]
+}

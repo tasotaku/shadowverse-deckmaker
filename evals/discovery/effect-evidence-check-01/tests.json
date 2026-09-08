@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-09-08T11:11:34.893617+00:00",
+  "worktree": "/tmp/sv-effect-evidence-prototype",
+  "commit": "7eb1d0c295eb67bb39555356c0924de13bd74e5b",
+  "mypy": {
+    "command": "python -m mypy src/svdeck/discovery.py src/svdeck/discovery_effects.py",
+    "exit_code": 0,
+    "result": "Success: no issues found in 2 source files"
+  },
+  "pytest": {
+    "command": "PYTHONPATH=src python -m pytest -q tests/test_discovery_effects.py tests/test_discovery.py",
+    "passed": 32,
+    "failed": 0,
+    "elapsed_seconds": 2.07
+  },
+  "verdict": "PASS",
+  "limits": "実行ツールで観測した出力の記録。発想の有用性はこの検査の対象外。"
+}

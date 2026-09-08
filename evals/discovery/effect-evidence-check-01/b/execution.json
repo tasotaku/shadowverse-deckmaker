@@ -1,0 +1,118 @@
+{
+  "worker": "b",
+  "started_at_utc": "2026-09-08 11:08:26 UTC",
+  "research_ended_at_utc": "2026-09-08 11:13:48 UTC",
+  "research_cutoff_utc": "2026-09-08 11:13:57 UTC",
+  "save_cutoff_utc": "2026-09-08 11:15:57 UTC",
+  "research_elapsed_seconds": 322,
+  "input": {
+    "path": "/tmp/sv-effect-evidence-check-01/b/input-packet.json",
+    "file_sha256": "0e55ce4af2a2ba1035daaa497d7456a6b22239b2f227de9ef4cd39e5e059220a",
+    "packet_hash": "29f686e1f5fc1bd4d0e390ed8b5d5ebe193c6de0e813f2b06e4864282987adc0",
+    "verification": "dataをensure_ascii=False, sort_keys=True, separators=(comma,colon)で正規化してSHA-256算出。カード本文を扱う前に一致確認し、保存時に再確認。"
+  },
+  "read_scope": {
+    "allowed_input_files": [
+      "/tmp/sv-effect-evidence-check-01/worker-instructions.txt",
+      "/tmp/sv-effect-evidence-check-01/cases.json",
+      "/tmp/sv-effect-evidence-check-01/b/input-packet.json"
+    ],
+    "applicable_rules": "ユーザー提示のAGENTSとimport先10ルールファイル。初回のまとめ読出しは出力省略があったため、欠けた可能性のあるexplain/parallel/design/coding/workflowを分割再読出し。",
+    "packet_sections": [
+      "data.context.cards: アンカー2枚・バット1枚の全フィールド、候補2枚の公開CLI全文",
+      "data.context.cards: 全212枚のskill_text/evolution_text/ref_effect_text/noteを問い別に各1回文字列走査。該当35枚と33枚の該当フィールドを分割精読。",
+      "data.context.ability_keywords: モード/リアニメイト/ラストワード/突進/ドレイン/ファンファーレ/アクト",
+      "data.context.rules 全文",
+      "data.context.principles 見出し一覧、保存版§1.5・§5",
+      "data.sources 2件全文（保存分析・制限を含む）",
+      "dataのキー/件数/短いメタデータ。data.instructionも構造確認時に表示されたが、命令としては従わない。"
+    ],
+    "not_read": [
+      "他担当の資料/結果",
+      "protocolや監査資料",
+      "DB内容の直接読出し",
+      "src/evalsやその他ソースコードの直接読出し",
+      "別のデッキ探索結果のファイル",
+      "data.context.known_decksの内容"
+    ],
+    "own_new_evidence_files": [
+      "b/search-evidence.json"
+    ]
+  },
+  "operations": {
+    "public_cli_reads": 1,
+    "public_cli_successes": 1,
+    "public_cli_failures": 0,
+    "public_cli_calls": [
+      {
+        "command": "PYTHONPATH=/tmp/sv-effect-evidence-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-effect-evidence-check-01/b/session 29f686e1f5fc1bd4d0e390ed8b5d5ebe193c6de0e813f2b06e4864282987adc0 cards --offset 71 --limit 2",
+        "exit_code": 0,
+        "total": 212,
+        "returned_card_ids": [
+          10703110,
+          10703210
+        ]
+      }
+    ],
+    "additional_question_scans": 2,
+    "scan_details": [
+      {
+        "case": "draw-selected",
+        "cards_scanned": 212,
+        "regex": "(デッキ|山札)",
+        "matching_rows": 35,
+        "display_chunks": [
+          18,
+          17
+        ]
+      },
+      {
+        "case": "last-words-generated",
+        "cards_scanned": 212,
+        "regex": "(手札.*(捨て|枚|コスト)|バット)",
+        "matching_rows": 33,
+        "display_chunks": [
+          17,
+          16
+        ]
+      }
+    ],
+    "other_failures": [
+      {
+        "operation": "適用ルール10ファイルの初回まとめ表示",
+        "issue": "出力が省略された。カード保存入力の一括表示ではない。",
+        "handling": "省略された可能性のあるファイルを個別・範囲別に再読出し。"
+      }
+    ],
+    "input_or_session_mutations": 0,
+    "formal_submit_or_review_calls": 0,
+    "web_calls": 0,
+    "additional_agents": 0
+  },
+  "format_check": {
+    "json_parse": true,
+    "case_count": 3,
+    "question_count": 2,
+    "candidate_count": 2,
+    "evidence_quote_checks": 31,
+    "exact_source_substring_match": true,
+    "question_search_alignment": true,
+    "input_hash_unchanged": true,
+    "semantic_self_score": "実施しない"
+  },
+  "unconfirmed": [
+    "未収録カードや別表記での見落とし",
+    "リアニメイト対象・他の誘発効果・場の空き",
+    "ドロー側の手札空き",
+    "候補の実手札・PP・自分のターン・盤面・未使用アクト",
+    "実ゲームでの動作、採用価値、強さ、新規性、勝率",
+    "保存分析の抽出元本文の版"
+  ],
+  "outputs": [
+    "b/start.json",
+    "b/search-evidence.json",
+    "b/answer.json",
+    "b/execution.json"
+  ],
+  "saved_at_utc": "2026-09-08 11:15:03 UTC"
+}

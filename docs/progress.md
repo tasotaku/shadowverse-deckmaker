@@ -20,4 +20,4 @@
 
 次の改善候補として、カードを使った副作用から別の用途を考えるための保存データを点検しました。6枚の照合で、効果が働く条件の抜けや、手札の取得枚数と純増の混在が見つかりました。そのまま数値を合計する実装には進まず、本文と条件を照合する発想補助に使えるかを、小さく試す候補にしています。有用性は未検証です。
 
-詳しい根拠：[最初の試行の結果](../evals/discovery/natural-trial-01/README.md)／[本採用を保留した理由](../evals/discovery/natural-trial-01/method-decision.json)／[2つの進め方の比較](../evals/discovery/idea-comparison-01/README.md)／[178件のコード検査](../evals/discovery/natural-trial-01/review-source-context/tests.json)
+詳しい根拠：[最初の試行の結果](../evals/discovery/natural-trial-01/README.md)／[本採用を保留した理由](../evals/discovery/natural-trial-01/method-decision.json)／[2つの進め方の比較](../evals/discovery/idea-comparison-01/README.md)／[記録画面を含む197件の検査](../evals/journal/main-integration.json)

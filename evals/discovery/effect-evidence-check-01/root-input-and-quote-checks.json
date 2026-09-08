@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-09-08T11:21:53.519350+00:00",
+  "packet_data_differing_fields": [
+    "sources"
+  ],
+  "checks": {
+    "a": {
+      "nonempty_matching_quotes": 14,
+      "empty_field_records_not_counted_as_support": 0,
+      "unresolved_references": [],
+      "input_file_bytes": 644810
+    },
+    "b": {
+      "nonempty_matching_quotes": 17,
+      "empty_field_records_not_counted_as_support": 14,
+      "unresolved_references": [],
+      "input_file_bytes": 657123
+    }
+  },
+  "operator_checkpoint": {
+    "symptom": "Root補助検査を2回修正した。正式提出用の引用型と小試行のfield表現が異なる。",
+    "fixed_contract": "protocolの根拠確認と意味評価は変更しない。空欄一致を有効な根拠へ格上げしない。",
+    "changed_execution": "入力で明示されたカード欄と用語定義の参照先を区別し、空欄の記録・非空引用・不一致を別集計。",
+    "verification": "全参照を分類し、空欄を含む件数を支持引用数として報告しない。"
+  },
+  "operator_failures": [
+    {
+      "error": "ValueError on blank quote when reusing formal-proposal validator",
+      "worker_format_retry": false
+    },
+    {
+      "error": "KeyError for explicit global keyword path in the first custom checker",
+      "worker_format_retry": false
+    }
+  ],
+  "grader_intervention": {
+    "type": "reference-format observation",
+    "sent_after_preliminary_semantic_findings": true,
+    "note": "bに空の引用と明示的な用語定義パスがあること、正式提出用の型をそのまま適用しないことを通知。元回答・正解・評価項目は不変。"
+  },
+  "limits": "引用先と文字の対応のみを分類した。引用が主張を支えるかは独立評価の対象。"
+}
