@@ -41,6 +41,26 @@ python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-next.
 ```
 
 回答は資料の `data.response_example` の形式に従い、`packet_hash` へ資料の `sha256` を入れます。
+
+資料が長くて一度に読めない場合は、全文出力の代わりに概要と区分の一覧を出します。
+
+```bash
+python -m svdeck.discovery packet data/discovery/trial-01 --summary
+# 上で返されたsha256をPACKET_HASHに指定。カードは2枚ずつ、ルールは30行ずつ読む例です。
+python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH cards --offset 0 --limit 2
+python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH rules --offset 0 --limit 30
+```
+
+概要には保存先、指示、回答例、区分ごとの総数が入ります。`cards`、`rules`、`keywords`、`principles`、
+`known_decks`、`search`、`proposal`、`previous_reviews` などを、一覧から選んで読めます。
+各読出しの `total` は総数、`next_offset` は次に指定する位置です。0から始め、`next_offset` が `null` に
+なるまで同じ区分を読み進めてください。カードは枚数、長い文章やJSONの案は行数で区切ります。
+行単位の `content` は改行を保持しているため、順につなげると全文に戻せます。
+
+分割しても `sha256` は元の全文資料と同じです。回答の `packet_hash` にもこの値を使います。
+`read` は資料を作り直しません。途中で別評価が追加されても、指定した保存版だけを読みます。
+従来の `packet` による全文出力も使えます。
+
 途中の案では `plan` や `steps` を空にできます。未解決の条件は `questions` に残します。
 `roles` は、採用する札を `access: "deck"`、効果で得る札を `access: "effect"` として区別します。
 後者の `via` には、生成元の役割のカードIDを並べます。生成元も `roles` に記してください。
@@ -84,7 +104,7 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 ```bash
 python -m pip install pytest mypy
 python -m pytest -q tests --ignore=tests/temp
-python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/explore.py
+python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/explore.py
 ```
 
 `tests/temp/` は過去の使い捨て確認用で、配布・回帰テストの対象に含めません。

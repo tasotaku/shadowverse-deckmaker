@@ -21,6 +21,7 @@ from svdeck.discovery_evidence import (
     CLASSES, JSONDict, build_context, check_evidence, digest, read_object,
     read_only, search_questions, write_new,
 )
+from svdeck.discovery_read import packet_summary, read_packet
 
 DOCS = Path(__file__).resolve().parents[2] / "docs"
 
@@ -359,6 +360,13 @@ def main(argv: list[str] | None = None) -> int:
     get.add_argument("session", type=Path)
     get.add_argument("--revision", type=int)
     get.add_argument("--stage", choices=("develop", "review"), default="develop")
+    get.add_argument("--summary", action="store_true", help="全文の代わりに識別値・指示・回答例・読出し目録を表示")
+    read = sub.add_parser("read", help="指定した保存資料を区分ごとに分割して読む")
+    read.add_argument("session", type=Path)
+    read.add_argument("packet_hash")
+    read.add_argument("section")
+    read.add_argument("--offset", type=int, default=0)
+    read.add_argument("--limit", type=int, default=20)
     for command in ("submit", "review"):
         accept = sub.add_parser(command, help="AIの回答JSONを保存")
         accept.add_argument("session", type=Path)
@@ -371,6 +379,11 @@ def main(argv: list[str] | None = None) -> int:
             result = start(args.session, args.db, args.class_name, args.format, args.objective)
         elif args.command == "packet":
             result = packet(args.session, args.revision, args.stage)
+            # AI_NOTE: 資料生成は従来どおり。概要もreadも生成後に保存された同一版から出す。
+            if args.summary:
+                result = packet_summary(args.session, result["sha256"])
+        elif args.command == "read":
+            result = read_packet(args.session, args.packet_hash, args.section, args.offset, args.limit)
         elif args.command == "submit":
             result = submit(args.session, read_object(args.response))
         elif args.command == "review":
