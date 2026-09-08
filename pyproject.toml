@@ -8,6 +8,9 @@ dependencies = []
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+svdeck = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/experiment_catalog.json"]
+
 [tool.mypy]
 strict = true
 
