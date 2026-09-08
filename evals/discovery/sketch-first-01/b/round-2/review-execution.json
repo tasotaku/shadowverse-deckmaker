@@ -1,0 +1,231 @@
+{
+  "author": "/root/sketch_trial_review_b_2",
+  "session": "/tmp/sv-sketch-first-01/b/session",
+  "packet_path": "/tmp/sv-sketch-first-01/b/round-2/review-packet.json",
+  "packet_hash": "3a187360be5e03a07079c0ede9e89418beea69b87e6d902d1c2b8a6f17009b9d",
+  "revision": 1,
+  "dispatch_at": "2026-09-08T15:02:20.254992+00:00",
+  "started_at": "2026-09-08T15:02:51+00:00",
+  "verification_finished_at": "2026-09-08T15:12:25.355642+00:00",
+  "saved_at": "2026-09-08T18:27:23.266490+00:00",
+  "read_scope": {
+    "instructions": [
+      "/tmp/sv-sketch-first-01/reviewer-instructions.txt",
+      "AGENTS.md",
+      "共通AGENTSで参照されたrules/*.mdとmodels/gpt-5-6-terra.md（初回一括出力の切り詰め後、関連部分を分割再読）"
+    ],
+    "operator_readme": "全文236行",
+    "design": "docs/design.md 1～685行。評価に使う§1.5・§5・§6・既出判定節を全文読取。packet principlesの各節は読取済みdesignと同文であることを照合。§11は未使用。",
+    "packet": [
+      "instruction・response_example・proposal全文",
+      "history空配列・search全4件",
+      "追加資料16件。計算資料10は元2リスト・差分・集計・出典識別を照合。その他content全文。",
+      "自分の比較前後40枚と相手2構築の採用札・名前参照の生成物、本文・進化・参照効果・note",
+      "rules全文、進化時・超進化時・融合・スペルブースト時・必殺・守護・オーラの定義",
+      "known_decks6件の来歴と保存リスト。Tierは採用価値へ転用せず。",
+      "context_metadata全文（公開readにより固定hashを照合）"
+    ],
+    "cards_read": [
+      10031310,
+      10031320,
+      10131320,
+      10433310,
+      10502120,
+      10503210,
+      10531310,
+      10532120,
+      10534120,
+      10803310,
+      10832110,
+      10832310,
+      10833110,
+      10833310,
+      10834110,
+      10834120,
+      10901110,
+      10931110,
+      10931310,
+      10932110,
+      10932310,
+      10933110,
+      10933310,
+      10934110,
+      10934120,
+      90031110,
+      90031120,
+      90031310,
+      90034340,
+      90034350,
+      90061130
+    ],
+    "not_read": "他方式出力、src、evals、採点条件、以前の別評価。関連しないpacketカード181枚は本文の評価に未使用。design本文に載る一般的な過去試行要約は所定ドキュメントの読取範囲に含むが、参照先は開いていない。"
+  },
+  "web_searches": {
+    "queries": [
+      "\"軍配の偉丈夫\" \"フィーリン\"",
+      "\"スペルウィッチ\" \"軍配\" \"9月\"",
+      "\"軍配の偉丈夫\" \"アラ\" \"スペル\""
+    ],
+    "searched_at": "2026-09-08T15:05:35+00:00",
+    "finding": "同一のフィーリン入りスペルの軍配採用を確認できなかった。検索の不一致を新規性の証明にしない。旧作・掲示板・転載の検索結果は根拠に採用しない。",
+    "opened_source_count": 5,
+    "checks": [
+      {
+        "url": "https://note.com/a0923_sv/n/n8b2b7605ab26",
+        "query": "保存資料の既知用途を原記事の公開部分と照合",
+        "checked_at": "2026-09-08T15:04:54+00:00～2026-09-08T15:05:00+00:00（直前実時計とツール所要時間の範囲）",
+        "finding": "公開本文の高元コスト手札、軍配の通常進化、カルギデンスラ2枚を含む25、オリヴィエの進化権補充を確認。有料部分・画像全40枚・実績は未検証。"
+      },
+      {
+        "url": "https://note.com/shostp/n/n2250cfa9d2fa",
+        "query": "保存資料の普及と条件不発の説明を原記事と照合",
+        "checked_at": "2026-09-08T15:04:54+00:00～2026-09-08T15:05:00+00:00（同じ公開Web呼出し）",
+        "finding": "公開部分で既知の軍配魔手の広がりと、手札条件が足りない場合や先に引く選択の説明を確認。大会全チームの原リストと記事の確率計算は独立照合していない。"
+      },
+      {
+        "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+        "query": "初手・毎ターンのドロー・場と手札上限・通常進化と超進化の確認",
+        "checked_at": "2026-09-08T15:04:54+00:00～2026-09-08T15:05:35+00:00（開く・検索・本文展開の観測範囲）",
+        "finding": "初手4、毎ターン1、手札9、場5、EP/SEP各2、進化開始ターンと+2/+2、超進化開始ターンと+3/+3・自ターン耐性を公開本文で確認。引いたスペルのブースト処理順までは確定しない。"
+      },
+      {
+        "url": "https://beyond-dexel.com/deck-witch-20260830/",
+        "query": "追加資料の既存スペル構築におけるジンジャー・展開札温存・EP配分の説明を照合",
+        "checked_at": "2026-09-08T15:05:35+00:00～2026-09-08T15:07:56+00:00（直前・後続実時計間。厳密な本文読取秒は未記録）",
+        "finding": "公開本文のジンジャー前のEP使用と展開札温存の説明を確認。本人取材の編集記事であり、対面評価・実績・打点の細部を今回の証明へ転用しない。"
+      },
+      {
+        "url": "https://note.com/wise_fairy8256/n/nce93da703a4a",
+        "query": "追加資料の9弾魔手所感、侵食変更、5/5複数体の負担を照合",
+        "checked_at": "2026-09-08T15:05:35+00:00～2026-09-08T15:07:56+00:00（開く・本文展開の観測範囲）",
+        "finding": "公開部分のドロー重視、ティコ・アラへの役割配分、実験体5/5複数体を処理しながら引く難しさを確認。著者の暫定所感であり、スペルへの軍配採用を支持する実測とは扱わない。"
+      }
+    ]
+  },
+  "public_commands": [
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/b/session 3a187360be5e03a07079c0ede9e89418beea69b87e6d902d1c2b8a6f17009b9d metadata --offset 0 --limit 30",
+      "observed_at": "2026-09-08T15:07:56+00:00",
+      "exit_code": 2,
+      "failure": "未知の区分metadata。公開エラーの候補一覧からcontext_metadataへ訂正。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/b/session 3a187360be5e03a07079c0ede9e89418beea69b87e6d902d1c2b8a6f17009b9d context_metadata --offset 0 --limit 30",
+      "exit_code": 0,
+      "result": "22行全件・next_offset null・hash一致"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review --help",
+      "observed_at": "2026-09-08T15:09:03+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review /tmp/sv-sketch-first-01/b/session /tmp/sv-sketch-first-01/b/round-2/review-response.json",
+      "started_at": "2026-09-08T15:12:44.326353+00:00",
+      "finished_at": "2026-09-08T15:12:44.494729+00:00",
+      "exit_code": 0,
+      "stdout_path": "/tmp/sv-sketch-first-01/b/round-2/review-submit-output.json"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/b/session",
+      "started_at": "2026-09-08T17:01:25.978881+00:00",
+      "finished_at": "2026-09-08T17:01:26.389168+00:00",
+      "exit_code": 0,
+      "output_filter": "評価本文はauthor=/root/sketch_trial_review_b_2の一致分だけを抽出。その他評価は表示・保存しない。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/b/session",
+      "started_at": "2026-09-08T17:02:05.313593+00:00",
+      "finished_at": "2026-09-08T17:02:05.447341+00:00",
+      "exit_code": 0,
+      "output_filter": "前回取り出した自身の評価本文のcanonical hashに一致するreview_contextだけ抽出。reviews本文は走査から除外。"
+    }
+  ],
+  "substantive_review_count": 1,
+  "submission_attempts": 1,
+  "format_retries": 0,
+  "read_command_retries": 1,
+  "independence": "他担当への評価相談なし、子担当起動なし。資料中の停止判断を根拠と結論に分け、交換前のジンジャー経路を独立に検算した。公開reportは自身のauthor/review_hash一致分のみを抽出する。",
+  "unconfirmed": [
+    "カードの最新公式APIを全件再取得してはいない（評価は指定された保存版）。",
+    "初手・引く順序・対戦局面の頻度と実測勝率。",
+    "全行動・全乱数・双方の最善分岐。",
+    "微睡みを引いた直後のブースト順。ただし今回の比較の成立数値に影響しない。",
+    "フィーリン導入前後の歴史的40枚と当時能力による費用低下。",
+    "現行同一構成の普及状況、大会原リスト、非公開・有料部分・全動画。"
+  ],
+  "report_own_review_matches": 1,
+  "report_verification": {
+    "review_hash": "c79d3f4c5b0468242fdd37f1ae8e2edd435f312d2b5defa18d3aa054358d5995",
+    "all_response_fields_equal": true,
+    "revision_equal": true,
+    "packet_hash_equal": true,
+    "proposal_hash": "695e1bb5ce6aac2ba74900da6a9f61c7aa24b9a17bc2d4d64beaa9b7644b83f8",
+    "own_context_matches": [
+      {
+        "review_hash": "c79d3f4c5b0468242fdd37f1ae8e2edd435f312d2b5defa18d3aa054358d5995",
+        "input_packet_hash": "3a187360be5e03a07079c0ede9e89418beea69b87e6d902d1c2b8a6f17009b9d",
+        "input_source_hashes": [
+          "14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e",
+          "1503dad72801b461225c56d1daf2e8261facdc5984ebf37c46b3b71ed44cba1d",
+          "199b65f6cb09c2b45bbcc804e33d95c8adfecbc174ede3a8125b9daf5e05c0ec",
+          "25a6ca060d5d7b3764120834de861059c371a0e3c97160b33da42d0589a39db6",
+          "3542ac1d2eb73466370629d215e364ee15055440ac754fca4c412da04aca92d8",
+          "3f86400c00f3e2df6f231029992131dcf1e03542afb8f77408da694c00212f36",
+          "6fefea46d1115b5558fbb8d6d78f533b64efde4af553c216abea6f8af346e3fa",
+          "85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee",
+          "928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8",
+          "a3ae56688eb2a0607e0dffb4cc616a8911c9ae82a2e040260c67dc6312422af7",
+          "a81c74d6e040b0934af57c8ff7ce7429dbc556ad3b2e7b3115da54ad5b624ed5",
+          "b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0",
+          "c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce",
+          "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+          "fdd938d5a2fc82a8c1591f4b1ea4828d0d63a09197564c2e85a10006674bcdf2",
+          "fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec"
+        ],
+        "additional_source_hashes": [],
+        "next_questions": [
+          "再開するなら、軍配1枚と交換前のジンジャー1枚を同じ引く位置へ置き、先攻6ターンなどジンジャーがまだ出せない大型局面で、既存のティコ・アラ・フィーリン・超進化も含む処理との差を示せるか。",
+          "軍配が残すアラ・ティコ・追加PPにより次の決着準備が具体的に改善し、減らしたジンジャーと軍配不発の損を上回る、構築上の変化があるか。",
+          "フィーリン追加前と後の全40枚と当時の本文を揃えると、既知の高元コスト手札の使い方に対する準備札・保持負担の減少を示せるか。"
+        ]
+      }
+    ],
+    "context_match_count": 1,
+    "input_source_hashes_equal": true,
+    "input_packet_hash_equal": true,
+    "own_next_questions_equal": true
+  },
+  "timing_audit": {
+    "twenty_minute_target_met": false,
+    "observed_work_intervals": [
+      {
+        "start": "2026-09-08T15:02:51+00:00",
+        "end": "2026-09-08T15:12:44.494729+00:00",
+        "description": "資料読取、独立Web確認、検算、回答保存、公開review登録まで実時計を観測。全区間が連続稼働だったとは断定しない。"
+      },
+      {
+        "start": "2026-09-08T17:01:25.978881+00:00",
+        "end": "2026-09-08T17:02:05.447341+00:00",
+        "description": "公開reportから自身の評価だけを抽出し、本文・版・出典集合・残った問いを照合。新しい調査・判定変更はしていない。"
+      }
+    ],
+    "unobserved_interval": {
+      "start": "2026-09-08T15:12:44.494729+00:00",
+      "end": "2026-09-08T17:01:25.978881+00:00",
+      "elapsed_seconds": 6521.484152,
+      "cause": "この区間の実行・待機・中断の内訳は観測できず不明。作業時間へ一括算入しない。"
+    },
+    "review_registered_within_twenty_minutes": true,
+    "verification_finished_at_meaning": "カード・資料の実質評価の確認終了。公開reportの対応確認は17:02:05まで。",
+    "stop_instruction": "親から17:01:53 UTCの時点で枠超過による新規調査停止・保存確定を指示。保存済み判定は維持。",
+    "additional_unobserved_interval": {
+      "start": "2026-09-08T17:02:16+00:00",
+      "end": "2026-09-08T18:26:47.411148+00:00",
+      "cause": "時計確認から時刻監査保存までの時刻差。作業・待機の内訳は観測できず不明。"
+    },
+    "timing_note": "列挙したコマンドの開始・終了とclock応答時刻だけが観測済み。観測点間の長い空白を継続稼働・待機のいずれとも断定しない。保存処理の時刻差も同様。"
+  },
+  "wall_clock_seconds_since_dispatch": 12303.011498,
+  "prior_saved_at": "2026-09-08T18:26:47.411148+00:00"
+}

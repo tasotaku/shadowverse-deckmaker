@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-09-08T18:29:36.556951+00:00",
+  "symptom": "Root resumed after long unobserved gaps; A round-2 review dispatch delayed. A guessed reviewer instruction path and a guessed packet_hash field each failed once.",
+  "cause": "Clock gaps are observed, but their work/wait cause is unknown. Preparation failures came from assuming paths/schema rather than using known inventory.",
+  "fixed_contract": "Frozen protocol, input and 5 grading axes unchanged. No new assessment question, proposal or favorable regrading.",
+  "execution_change": "Use the existing shared reviewer instructions; inspect packet sha256/data fields once and use them in subsequent bookkeeping. Save exact observed clocks and distinguish dispatch delay from research. Read only selected journal fields to avoid repeated long evidence dumps.",
+  "next_measurement": "Subsequent dispatch and journal updates use known fields without guessed-path/schema retries.",
+  "criteria_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "frozen_files_checked": 18,
+  "changed_files": [],
+  "production_db_unchanged": true,
+  "a_generation_saved_at": "2026-09-08T15:10:00.788499+00:00",
+  "a_review_dispatch_at": "2026-09-08T18:27:07.100253+00:00",
+  "b_review_timing": {
+    "twenty_minute_target_met": false,
+    "observed_work_intervals": [
+      {
+        "start": "2026-09-08T15:02:51+00:00",
+        "end": "2026-09-08T15:12:44.494729+00:00",
+        "description": "資料読取、独立Web確認、検算、回答保存、公開review登録まで実時計を観測。全区間が連続稼働だったとは断定しない。"
+      },
+      {
+        "start": "2026-09-08T17:01:25.978881+00:00",
+        "end": "2026-09-08T17:02:05.447341+00:00",
+        "description": "公開reportから自身の評価だけを抽出し、本文・版・出典集合・残った問いを照合。新しい調査・判定変更はしていない。"
+      }
+    ],
+    "unobserved_interval": {
+      "start": "2026-09-08T15:12:44.494729+00:00",
+      "end": "2026-09-08T17:01:25.978881+00:00",
+      "elapsed_seconds": 6521.484152,
+      "cause": "この区間の実行・待機・中断の内訳は観測できず不明。作業時間へ一括算入しない。"
+    },
+    "review_registered_within_twenty_minutes": true,
+    "verification_finished_at_meaning": "カード・資料の実質評価の確認終了。公開reportの対応確認は17:02:05まで。",
+    "stop_instruction": "親から17:01:53 UTCの時点で枠超過による新規調査停止・保存確定を指示。保存済み判定は維持。",
+    "additional_unobserved_interval": {
+      "start": "2026-09-08T17:02:16+00:00",
+      "end": "2026-09-08T18:26:47.411148+00:00",
+      "cause": "時計確認から時刻監査保存までの時刻差。作業・待機の内訳は観測できず不明。"
+    },
+    "timing_note": "列挙したコマンドの開始・終了とclock応答時刻だけが観測済み。観測点間の長い空白を継続稼働・待機のいずれとも断定しない。保存処理の時刻差も同様。"
+  }
+}

@@ -1,0 +1,368 @@
+{
+  "objective": "主役を指定せず、既存の主な使い方と差があり、そこそこ戦える可能性のあるデッキの種を探す。カードの別用途、複数段の発展、序盤と後半の役割配分を検討し、既知の使い方を名前だけ変えて推薦しない。出力は核数枚と構築方針までとする。",
+  "captured_at": "2026-09-08T14:13:14.588966+00:00",
+  "format": "rotation",
+  "class_name": "ウィッチ",
+  "revisions": [
+    {
+      "revision": 1,
+      "parent_revision": 0,
+      "packet_hash": "902e865eba0ae061413cf9a539127966fe2073d89e860ae2d99fbaf7d214d025",
+      "title": "軽減済みの守り・補充・コピー役を回すスペルウィッチ",
+      "hypothesis": "ローテーションのウィッチ。0PPのフィーリン、0PPのサミー＆マリー、スターライトゴッデスを左3枚に残してまとめて複製し、次ターンも同じ3役を使える形を探る。過剰反応は初回の捨て札3枚を用意する役へ読み替える。以後はサミー＆マリーの2枚ドローと通常ドロー1枚を次の捨て札にでき、コピー役を引き直す必要も減る。軽減し直さずに必殺・守護・オーラを置き続けられる点が利益の仮説。初回の部品確保と守りながら軽減する過程、攻めへの接続が未解決のため、強さや推薦を確定しない。",
+      "change": "主役指定なしで全212枚の本文・進化・参照効果・注記を走査。軍配を高元コスト札に合わせる案、哲学者でリンクルを大量に引く案は公開された既存用法を確認し選ばなかった。本案では、既知のゴッデスによる単発の魔手札複製から対象を変更し、低コストの守り、毎回の捨て札を賄う補充、コピー役自身という3役の循環を調べる。コピー一般やゴッデス入りスペルウィッチそのものを新発見とはしない。",
+      "questions": [
+        {
+          "question": "序盤の必要な除去と補充を行いながら、7ターン目までにF/Sの軽減、ゴッデス2枚、適切な左3枚をどの程度揃えられるか。",
+          "tag": null,
+          "why": "指定状態だけ成立しても、普段揃わないなら3枠の交換利益がない。"
+        },
+        {
+          "question": "同じ初手・同じ相手盤面を使う比較で、ジンジャーを残す案よりコピーへの移行が防御と攻めの両方を改善する局面があるか。",
+          "tag": null,
+          "why": "0PPの守護を増やすだけで、序盤の負担・失ったスペルブースト・進化権を上回ったと判定しないため。"
+        },
+        {
+          "question": "捨て札にする通常ドローが決着札だった場合、どの時点で反復を打ち切り、何枚の進化権を攻めに残すべきか。",
+          "tag": null,
+          "why": "補充を次の捨て札だけへ使う循環は、勝ち筋を増やさず延命だけになるおそれがある。"
+        },
+        {
+          "question": "動画本編や画像構築を含め、このF/S/ゴッデスの3役反復が既に共有されているか。",
+          "tag": null,
+          "why": "Webの未ヒットを独自性の証明にせず、既存のゴッデス入りスペルとの実質差を確認するため。"
+        }
+      ],
+      "uncertainties": [
+        "この提出は未検証の種。ゲーム内対戦、勝率推計、Tier認定を行っていない。",
+        "開始状態の到達率と具体的な序盤の資源配分は未検証。F/Sを使わず手札に抱える間の防御損失が大きい可能性がある。",
+        "新規ドローを3枚捨ててよいという判断と毎ターンの場の空きは相手・引きに依存。全分岐で反復できるとは主張しない。",
+        "初回後に大事な札を残すと左3枚へ混ざってコピー対象を変える場合があり、手札の順序を保ったまま決着札を温存できるとは限らない。",
+        "3回の進化コピーでEP1/SEP2を使い切る指定計算。追加の進化権や別カードの超進化と二重計上していない。",
+        "フィーリンのオーラは選択されないだけで、全体破壊・ランダム除去・戦闘への耐性保証ではない。",
+        "公式ページとデータURLの最新再確認は失敗し、能力・合法性・コピー状態保持は固定packetの本文と注記に依拠する。",
+        "検索は公開Webの返答本文・抜粋まで。SNS・動画・画像・大会の網羅ではなく、既出でないと断定しない。"
+      ],
+      "reviews": [
+        {
+          "packet_hash": "f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd",
+          "author": "/root/sketch_trial_review_a_1",
+          "procedure": "conditional",
+          "value": "develop",
+          "novelty": "unconfirmed",
+          "findings": [
+            {
+              "axis": "procedure",
+              "reason": "指定開始状態ではPP・手札・進化権の計算が合う。初回は過剰反応1PPとゴッデス5PPで残り1PP、手札5→7→6→3→6→5→4→6。次回は通常ドロー後の7枚から古いゴッデスを使い、残る左3枚を再び複製できる。EP1とSEP2の計3回で軽減済みのフィーリンとサミー＆マリーを各4枚まで用意でき、無限反復ではない。進化時能力は超進化でも働く。両側の注記・生成先を確認した。ただし軽減済み2枚とゴッデス2枚を適切な順に揃える準備、毎回の生存・場の空き・捨て札3枚は未検証でありconditional。状態保持は固定注記に基づき、最新公式裁定と実機の追加順は未確認。4組目は手札へ残るだけで配置・攻撃成立の証明ではない。",
+              "evidence": [
+                {
+                  "card_id": 10502110,
+                  "field": "skill_text",
+                  "quote": "【進化時】自分の手札3枚を選ぶ。それを捨てる。自分の手札左から3枚のコピー1枚ずつを非公開で自分の手札に加える。"
+                },
+                {
+                  "card_id": 10502110,
+                  "field": "note",
+                  "quote": "状態ごとコピー(スペブ回数・融合カウント・バフ込み)+同名3枚制限の実質突破が本体。"
+                },
+                {
+                  "card_id": 10931310,
+                  "field": "skill_text",
+                  "quote": "『真理の召喚』3枚を自分の手札に加える。"
+                },
+                {
+                  "card_id": 10832110,
+                  "field": "skill_text",
+                  "quote": "【スペルブースト時】これのコストを-1する。\n\n【ファンファーレ】自分のデッキから2枚を引く。相手は自身のデッキから1枚を引く。"
+                },
+                {
+                  "keyword": "進化時",
+                  "quote": "EPを使って進化したときやSEPを使って超進化したときに働く能力。"
+                }
+              ]
+            },
+            {
+              "axis": "value",
+              "reason": "developに留める。軽減済みの必殺・守護・オーラを引き直しや再軽減なしに増やし、補充役と複製役も維持する利益は具体的で、初回捨て札を1PPの生成で賄う接続もある。しかし通常構築より試す理由が成立したとはまだ評価しない。比較はジンジャー3枚→ゴッデス3枚、前後40枚・フォロワー24/スペル16。失う働きは7PPの本体に加え、突進付き3/3守護2体以上と手札全体へのスペルブースト。循環には初回まで0PPサミーを温存する補充の遅れ、毎回5PPと進化権、相手への1ドロー、場の3枠が要る。指定手順では新規ドローを次回の捨て札へすべて充てるため、残りPPで除去を使うなら手札枚数の補填も必要。フィーリンはそのままでは出したターンの処理を担わず、オーラも全体除去や戦闘を防がない。決着札を保持しづらく、進化権3回と大量軽減を失うため、アラ・テトラ＆ラティカを残したことだけで攻めの保険は成立しない。具体的な序盤手順と同一相手盤面での比較なら判断が変わりうるので追加検討を認める。確定20点や実戦記録が無いことだけをdrop理由にしていない。",
+              "evidence": [
+                {
+                  "card_id": 10934120,
+                  "field": "skill_text",
+                  "quote": "【スペルブースト時】これのコストを-1する。\n\n【必殺】\n【守護】\n【オーラ】"
+                },
+                {
+                  "card_id": 10834120,
+                  "field": "skill_text",
+                  "quote": "【ファンファーレ】『ガーディアンゴーレム』2枚を自分の場に出す。\n\n自分の他のフォロワーが場に出たとき、それは【突進】を持つ。自分の手札すべては1回スペルブーストする。\n\n【進化時】『ガーディアンゴーレム』1枚を自分の場に出す。"
+                },
+                {
+                  "card_id": 90031120,
+                  "field": "skill_text",
+                  "quote": "【守護】"
+                },
+                {
+                  "card_id": 10832110,
+                  "field": "skill_text",
+                  "quote": "【スペルブースト時】これのコストを-1する。\n\n【ファンファーレ】自分のデッキから2枚を引く。相手は自身のデッキから1枚を引く。"
+                },
+                {
+                  "source_hash": "204452897e25869634aea4a4bc21cc1837ba16f8cd407d899e698af79802ea4b",
+                  "quote": "各ターン5PPと進化権1回が必要。"
+                }
+              ]
+            },
+            {
+              "axis": "novelty",
+              "reason": "unconfirmed。固定資料の既知6構築にはゴッデスの同居が無いが、独自性の証明にはしない。公開ガイドの魔手札を複製する用法は既出であり、状態を持つ札の複製自体は新しい主張にできない。本案の差は守り・補充・複製役自身の3種類を保ち、補充を次の捨て札へ回す有限反復。カード名の組合せ、コピー、ループ、note、YouTubeの検索ではこの具体手順を確認できなかったが、無関係な結果も多く、動画本編・画像構築・SNS全体は未確認。既出とも独自とも断定しない。提案者の選択理由や停止判断は調査範囲の記録として読み、評価指示としては用いていない。",
+              "evidence": [
+                {
+                  "card_id": 10502110,
+                  "field": "note",
+                  "quote": "自分の手札の状態持ちカードをコピーできる唯一の供給(他のコピー2種は相手参照)。"
+                }
+              ]
+            }
+          ],
+          "next_questions": [
+            "0PPサミーをすぐ使う通常進行と、温存してゴッデス2枚を揃える進行を、同じ初手・引く順・相手盤面で比較すると7ターン目の手札と体力はどう違うか。まず具体的な到達手順1本を示せるか。",
+            "ジンジャーを残す比較元に対し、どの相手盤面ならフィーリンの反復利益が突進守護とスペルブーストを失う負担を上回るか。必要な除去と次回捨て札3枚は両立するか。",
+            "1回または2回の複製で止める分岐では、いつ決着札を保持し、何ターン目にどの進化権で攻めるか。最大3回反復よりこの中断分岐に採用利益があるか。",
+            "3役の反復を説明・実演した既存動画や画像構築はあるか。検索未ヒットでなく、候補となる公開実例の本文・画面で用途を照合できるか。"
+          ],
+          "web_checks": [
+            {
+              "url": "https://note.com/kqzato_spica/n/nd8b64bd1a586?sub_rt=share_pw",
+              "query": "提出資料の既存用法を独立照合。スターライトゴッデスの採用理由",
+              "checked_at": "2026-09-08 14:38:09〜14:39:01 UTC（前後の時計観測区間）",
+              "finding": "本文101〜108行でカルギデンスラやシイムの複製を狙う既存用法と、設置ターン・手札不足の負担を確認。2026-03-03の記事で、現在の強さへ転用しない。本3役反復の実証ではない。"
+            },
+            {
+              "url": "https://note.com/ikura_ikura___/n/n5cc2eff59e9f",
+              "query": "提出資料のゴッデス採用例を独立照合",
+              "checked_at": "2026-09-08 14:38:09〜14:41:18 UTC（前後の時計観測区間）",
+              "finding": "0〜150行付近を閲覧し、28行にゴッデスへの交換候補の言及を確認。findは表示済みの単語にも一致なしを返したため不存在の証拠にしない。提案担当の記録にある詳しい複製対象の主張全体は再確認できていない。"
+            },
+            {
+              "url": "https://game8.jp/shadowverse-beyond/781945",
+              "query": "比較元全40枚とジンジャーの通常用途を照合",
+              "checked_at": "2026-09-08 14:38:09〜14:39:52 UTC（前後の時計観測区間）",
+              "finding": "95〜110行の14種類40枚は固定資料の比較元と一致。149〜154行にジンジャーと軽減札の展開・スペルブースト、テトラ＆ラティカへの接続を確認。本文には表示リストに無いカードも登場し、記事全体を現レシピの実戦記録とは扱わない。Tierを本案へ転用しない。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10502110",
+              "query": "\"スターライトゴッデス\" \"自分の手札\" site:shadowverse-wb.com、公式open",
+              "checked_at": "2026-09-08 14:38:09〜14:39:01 UTC（前後の時計観測区間）",
+              "finding": "検索結果の公式本文に捨てる3枚と左から3枚を複製する能力が表示された。直接openは68行の枠だけ。状態保持・追加順Q&Aは再確認できず、固定packet原文と注記を用いる。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10832110",
+              "query": "\"ハッピーフラワー\" \"サミー\" site:shadowverse-wb.com、公式open",
+              "checked_at": "2026-09-08 14:39:01〜14:39:52 UTC（前後の時計観測区間）",
+              "finding": "検索結果は英語URLだが日本語本文を表示し、軽減と自分2枚・相手1枚ドローは固定資料と一致。直接openは66行の枠のみで、現行適用版の厳密な再確認は未完了。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10934120",
+              "query": "\"破式の変貌\" \"フィーリン\" site:shadowverse-wb.com、公式open",
+              "checked_at": "2026-09-08 14:39:01〜14:39:52 UTC（前後の時計観測区間）",
+              "finding": "直接openは68行の枠だけ。能力本文・最新合法性の再確認はできなかった。固定packet本文を使う。"
+            },
+            {
+              "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10931310",
+              "query": "\"過剰反応\" site:shadowverse-wb.com、公式open",
+              "checked_at": "2026-09-08 14:39:01〜14:39:52 UTC（前後の時計観測区間）",
+              "finding": "直接openは68行の枠だけ。能力本文・最新合法性の再確認はできなかった。固定packet本文を使う。"
+            },
+            {
+              "url": "https://tsumanne.net/si/data/2026/08/31/10816697/",
+              "query": "提案資料のゴッデス入りスペル言及を照合。ゴッデス・サミー・フィーリンをfind、限定検索",
+              "checked_at": "2026-09-08 14:39:01〜14:41:18 UTC（前後の時計観測区間）",
+              "finding": "ページ冒頭と600行付近を閲覧したが、該当言及を自身では再確認できなかった。find不一致は別ページで偽の不一致があり不存在の証拠にしない。2131行の全精読と画像構築は未実施。"
+            }
+          ],
+          "revision": 1,
+          "proposal_hash": "6f97de181ffca4247340eea9b2c2ff34c6f9300f2b2c620598065c2822bcc204"
+        }
+      ],
+      "review_contexts": [
+        {
+          "review_hash": "ddb544dfd711bbf373d30c8569e1ed6eb83a9b9547ef3aef6d6336d6f6c93269",
+          "input_packet_hash": "f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd",
+          "input_source_hashes": [
+            "14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e",
+            "204452897e25869634aea4a4bc21cc1837ba16f8cd407d899e698af79802ea4b",
+            "85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee",
+            "928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8",
+            "99ec49530cfd43d723c161ac6ee046440554ebe1b83c994291f9efbe92bc4c50",
+            "be7483c4ea6521c0d0ad7942b3dd069d4343691dbda87f34aa8a808873752053",
+            "c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce",
+            "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+            "ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b",
+            "fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec"
+          ],
+          "additional_source_hashes": [
+            "81f345166982b94521842633aca404d0d6d14319cc516092cac0dcbc578a1027",
+            "deeed398db196153bef11c48876a0b436b29a8a7ed5c5f3d8ab368e20f28c49c"
+          ],
+          "next_questions": [
+            "0PPサミーをすぐ使う通常進行と、温存してゴッデス2枚を揃える進行を、同じ初手・引く順・相手盤面で比較すると7ターン目の手札と体力はどう違うか。まず具体的な到達手順1本を示せるか。",
+            "ジンジャーを残す比較元に対し、どの相手盤面ならフィーリンの反復利益が突進守護とスペルブーストを失う負担を上回るか。必要な除去と次回捨て札3枚は両立するか。",
+            "1回または2回の複製で止める分岐では、いつ決着札を保持し、何ターン目にどの進化権で攻めるか。最大3回反復よりこの中断分岐に採用利益があるか。",
+            "3役の反復を説明・実演した既存動画や画像構築はあるか。検索未ヒットでなく、候補となる公開実例の本文・画面で用途を照合できるか。"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_hash": "14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e",
+      "title": "魔手ウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/764034",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/764034\", \"heading\": \"サンプルデッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.e4Gg.e4Gg.e4Gg.eBpe.eBpe.eZV6.eZV6.eZV6.eZYE.eZYE.eZYE.eZns.eZns.eZns.ea1U.ea1U.ea1U.eaD-.eaD-.eaD-.eaE8.eaE8.eaE8.fDXk.fDXk.fDXk.cfTu.cfTu.cfTu.fKZk.fKpM.fKpM.fKpM.fKsU.fKsU.fKsU.fL2-\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "204452897e25869634aea4a4bc21cc1837ba16f8cd407d899e698af79802ea4b",
+      "title": "ゴッデス循環案の手札順と資源：指定状態の計算",
+      "kind": "生成担当の仮説・算術。対戦観察ではない",
+      "location": "/tmp/sv-sketch-first-01/a/round-1/resource-ledger.json",
+      "observed_at": "2026-09-08T14:28:48.617685+00:00",
+      "limitations": [
+        "開始状態の到達率は未測定。",
+        "各継続ターンの場の空きと生存・相手盤面への対処は独立条件。",
+        "2枚ドローの内容を捨ててよいか、相手への毎回1ドローの不利益は未検証。",
+        "T9以降の追加進化権を持つとは仮定しない。",
+        "最終コピー後に残る4枚目のF/Sを使うならさらに場の空き2枚が必要。",
+        "PPと手札の順序だけの指定状態計算。開始状態までの引き方・守り・勝率は未検証。",
+        "最大4枚目のフィーリン/サミーも使うなら、最後のコピー後にさらに場の空き2枚が必要。無限反復ではない。"
+      ]
+    },
+    {
+      "source_hash": "81f345166982b94521842633aca404d0d6d14319cc516092cac0dcbc578a1027",
+      "title": "第2回Web再確認の範囲・実画像観察・取得失敗",
+      "kind": "公開Webの閲覧範囲の要約",
+      "location": "/tmp/sv-sketch-first-01/a/round-2/web-checks.json",
+      "observed_at": "2026-09-08T15:07:25+00:00",
+      "limitations": [
+        "記載時刻の一部は前後の実時計で挟んだ区間であり、架空の秒単位訪問時刻ではない。",
+        "記事は2026年3月のもの。現在環境の優位性を証明しない。",
+        "検索不発を新規性の証明に使わない。"
+      ]
+    },
+    {
+      "source_hash": "85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee",
+      "title": "セフィーウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/573926",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/573926\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8",
+      "title": "実験体ウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/811845",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/811845\", \"heading\": \"サンプルデッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.cfTu.cfTu.cfTu.e4Gg.e4Gg.e4Gg.eB7k.eB7k.eB7k.fDXk.fDXk.fDXk.fKsU.fKsU.fKsU.fL2-.fikc.fikc.fikc.fink.fink.fink.fi-E.fi-E.fi-E.fj1M.fj1M.fj1M.fjDs.fjDs.fjDs.fjG-.fjG-.fjG-.fjTU.fjTU.fjTU\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "99ec49530cfd43d723c161ac6ee046440554ebe1b83c994291f9efbe92bc4c50",
+      "title": "初回の公開Web調査：既存用法とゴッデス循環案の確認範囲",
+      "kind": "公開Web検索・閲覧の観測要約",
+      "location": "/tmp/sv-sketch-first-01/a/round-1/web-checks.json",
+      "observed_at": "2026-09-08T14:28:48.617685+00:00",
+      "limitations": [
+        "URLごとの確認は本文中のchecksに記載。動画・SNS・画像内構築の網羅はない。",
+        "最新の公式本文・コピー裁定の再取得は失敗。固定packet本文とcard_noteを使用。",
+        "既出が見つからないことは新規性の証明ではない。"
+      ]
+    },
+    {
+      "source_hash": "be7483c4ea6521c0d0ad7942b3dd069d4343691dbda87f34aa8a808873752053",
+      "title": "全40枚の構築間での交換札と分布",
+      "kind": "機械計算",
+      "location": "before source_hash=d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb; after source_hash=ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b",
+      "observed_at": null,
+      "limitations": [
+        "元資料の実在・正しさ、勝率、交換の強さは判定しない。",
+        "名前・種類・コスト・採用上限と採用上の問題は探索開始時の保存DBによる。過去の能力・合法性を復元しない。",
+        "原資料の名前はrecorded_nameに保持し、nameは保存DBから取得した名前。",
+        "exchanged_countは入れた総枚数（抜いた総枚数と同じ）。種別の純増減type_net_changeとは別。"
+      ]
+    },
+    {
+      "source_hash": "c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce",
+      "title": "魔手ウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/546341",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/546341\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+      "title": "スペルウィッチ 全40枚 game8.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://game8.jp/shadowverse-beyond/781945",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://game8.jp/shadowverse-beyond/781945\", \"heading\": \"デッキレシピ\", \"heading_id\": \"hm_1\", \"selected_list\": \"copy_url\", \"copy_url\": \"https://shadowverse-wb.com/ja/deck/detail/?hash=1.3.cH3E.cH3E.cH3E.cfTu.cfTu.cfTu.eB7k.eB7k.eBKO.eBKO.eBKO.eBpe.eBpe.eBpe.fKZk.fKZk.fKZk.fKcs.fKcs.fKpM.fKpM.fKpM.fKsU.fKsU.fKsU.fL2-.fL2-.fL2-.fL38.fL38.fL38.fbPs.fbPs.fbPs.fink.fink.fink.fjTe.fjTe.fjTe\", \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": true, \"display_copy_difference\": {\"copy_only_or_extra\": [], \"display_only_or_extra\": []}}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    },
+    {
+      "source_hash": "deeed398db196153bef11c48876a0b436b29a8a7ed5c5f3d8ab368e20f28c49c",
+      "title": "第2回追加調査：3役3回コピー用法の停止理由と条件付き比較",
+      "kind": "考案担当の追加調査・手札計算・用法停止判断（独立評価ではない）",
+      "location": "/tmp/sv-sketch-first-01/a/round-2/followup-findings.md",
+      "observed_at": "2026-09-08T15:07:25+00:00",
+      "limitations": [
+        "対戦未実施、勝率未推計。手順は固定状態の条件付き算術。",
+        "T7までの盤面と体力の全経過は未検証。",
+        "追加過剰反応等で手札を補修できる条件も含むため、全用法の不成立を主張しない。",
+        "既出状況と現在のゲームでの状態保持・追加順の直接確認は未完了。"
+      ]
+    },
+    {
+      "source_hash": "ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b",
+      "title": "比較専用40枚：Game8スペルウィッチからジンジャー3枚をゴッデス3枚へ交換",
+      "kind": "生成担当の比較用構築仮説。完成デッキの推薦ではない",
+      "location": "/tmp/sv-sketch-first-01/a/round-1/comparison-after-list.json",
+      "observed_at": "2026-09-08T14:28:48.617685+00:00",
+      "limitations": [
+        "初期packetにあるGame8全40枚を基に、ジンジャー3枚をゴッデス3枚へ交換した比較材料。",
+        "核と構築方針を検査するための差分計算用。ゲーム内対戦、勝率推計、完成デッキ推薦は行っていない。"
+      ]
+    },
+    {
+      "source_hash": "fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec",
+      "title": "スペルウィッチ 全40枚 gamewith.jp",
+      "kind": "公開記事から取得した比較用構築リスト",
+      "location": "https://gamewith.jp/shadowverse-wb/527318",
+      "observed_at": "2026-09-08 12:19:27 UTC",
+      "limitations": [
+        "公開 meta コマンドが取得した表示表またはコピー対象。本文・採用評価の検証、独自性・勝率の証明ではありません。",
+        "取得来歴: {\"article_url\": \"https://gamewith.jp/shadowverse-wb/527318\", \"heading\": null, \"heading_id\": null, \"selected_list\": \"display_table\", \"copy_url\": null, \"display_total\": 40, \"selected_total\": 40, \"display_matches_copy\": null, \"display_copy_difference\": null}",
+        "カードの名前・種別・能力・合法性は固定したローカルカードDB時点です。"
+      ]
+    }
+  ],
+  "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+}

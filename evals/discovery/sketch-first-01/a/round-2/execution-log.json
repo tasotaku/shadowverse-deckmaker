@@ -1,0 +1,150 @@
+{
+  "dispatch_at": "2026-09-08T14:48:38.675973+00:00",
+  "work_started_at": "2026-09-08T14:48:58+00:00",
+  "input_hash": "e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163",
+  "commands": [
+    {
+      "at": "2026-09-08T14:49:23.306373+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 previous_reviews --offset 0 --limit 20",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/previous_reviews.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:49:23.380521+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 review_contexts --offset 0 --limit 20",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/review_contexts.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:49:23.454649+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 proposal --offset 0 --limit 1000",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/proposal.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:49:23.526334+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 history --offset 0 --limit 1000",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/history.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:49:23.597642+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 sources --offset 0 --limit 3000",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/sources.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T14:49:23.668813+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163 instruction --offset 0 --limit 100",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/instruction.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T15:09:02.136033+00:00",
+      "finished_at": "2026-09-08T15:09:02.300693+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery attach /tmp/sv-sketch-first-01/a/session /tmp/sv-sketch-first-01/a/round-2/sources-to-attach.json",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/attach-result.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T15:09:19.582286+00:00",
+      "finished_at": "2026-09-08T15:09:19.787691+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery packet /tmp/sv-sketch-first-01/a/session --summary",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/saved-packet-summary.json",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-08T15:09:19.788078+00:00",
+      "finished_at": "2026-09-08T15:09:19.892540+00:00",
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/a/session",
+      "exit_code": 0,
+      "output": "/tmp/sv-sketch-first-01/a/round-2/report.json",
+      "stderr": ""
+    }
+  ],
+  "research_finished_at": "2026-09-08T15:07:25+00:00",
+  "research_deadline": "2026-09-08T15:13:38.675973+00:00",
+  "saving_deadline": "2026-09-08T15:18:38.675973+00:00",
+  "research_end_reason": "調査で得た具体的な費用・比較例を踏まえ、3役3回反復を主目的にする用法を停止。新規調査を終了し、保存へ移行。",
+  "formal_submissions_this_round": 0,
+  "self_reviews_registered": 0,
+  "read_scope": {
+    "latest_public_packet": "e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163",
+    "sections_read": [
+      "instruction full",
+      "proposal full:195 lines",
+      "previous_reviews:1",
+      "review_contexts:1",
+      "history:empty",
+      "sources:10; metadata and prior observed contents"
+    ],
+    "selected_fixed_cards_read_again": [
+      10031310,
+      10131320,
+      10502110,
+      10832110,
+      10832310,
+      10833110,
+      10833310,
+      10834120,
+      10931110,
+      10934110,
+      10934120,
+      90031310,
+      90031120,
+      10834110
+    ],
+    "rules": "fixed rules text; official basic battle page additional evidence",
+    "inherited_reads": "round-1 common AGENTS imports, docs/design.md and fixed full card corpus remain available; not newly claimed as round-2 rereads",
+    "forbidden_access": "src/evals/protocol/other tracks/past natural trial outputs not accessed; production data/code/existing docs not edited"
+  },
+  "other_operations": [
+    {
+      "operation": "packet SESSION --summary at round start",
+      "at": null,
+      "result": "revision1 develop packet confirmed",
+      "timing_note": "precise invocation timestamp not independently saved; occurred before the six timestamped reads, after first clock 14:48:58"
+    },
+    {
+      "operation": "local read JSON selected cards and rules twice",
+      "at_interval": [
+        "2026-09-08T15:00:00+00:00",
+        "2026-09-08T15:03:16+00:00"
+      ],
+      "result": "fixed packet read only; one long display was truncated, relevant remaining fields reread; no implementation read"
+    },
+    {
+      "operation": "fixed hand arithmetic executed once",
+      "at_interval": [
+        "2026-09-08T15:06:03+00:00",
+        "2026-09-08T15:07:25+00:00"
+      ],
+      "result": "conditional T7 hand reached; max hand9; 17 named deck cards plus remaining23; hand-trace.json saved",
+      "limits": "not a game simulator, enemy targets/life/draw probability not simulated"
+    }
+  ],
+  "public_command_failures": [],
+  "saving_finished_at": "2026-09-08T15:10:00.788499+00:00",
+  "status": "stopped_specific_use",
+  "new_source_hashes": [
+    "deeed398db196153bef11c48876a0b436b29a8a7ed5c5f3d8ab368e20f28c49c",
+    "81f345166982b94521842633aca404d0d6d14319cc516092cac0dcbc578a1027"
+  ],
+  "saved_develop_packet_hash": "bce8f0ac70d69ff4f0377db21f4061f4d18b775e8de1bf4faf8c8757c67b1ce4",
+  "verified_state": {
+    "revision_count": 1,
+    "latest_revision": 1,
+    "review_count": 1,
+    "sources_count": 12
+  },
+  "comparison_command_this_round": "not rerun: paired40list unchanged; new comparison is explicitly supplied-state action arithmetic",
+  "twenty_minute_notice": "research already stopped at15:07:25, before dispatch+20min; autonomous saving begun"
+}

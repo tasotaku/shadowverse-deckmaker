@@ -1,0 +1,399 @@
+{
+  "kind": "fixed supplied-action hand arithmetic, not game simulator or actual match",
+  "input_ids": {
+    "10934120": 1,
+    "10832110": 1,
+    "10031310": 2,
+    "10832310": 2,
+    "10833110": 2,
+    "10833310": 2,
+    "10502110": 2,
+    "10931310": 1,
+    "10131320": 3,
+    "10834110": 1
+  },
+  "remaining_deck_count": 23,
+  "maximum_hand_count": 9,
+  "observed_result": "specified T7 hand reached conditionally",
+  "trace": [
+    {
+      "event": "opening",
+      "hand": [
+        "F",
+        "S",
+        "W1",
+        "D2"
+      ],
+      "count": 4
+    },
+    {
+      "event": "T1 natural",
+      "hand": [
+        "F",
+        "S",
+        "W1",
+        "D2",
+        "W2"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T1 Wisdom",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2"
+      ],
+      "count": 4
+    },
+    {
+      "event": "T1 Wisdom draw",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T2 natural",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico1",
+        "D1"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T2 Danga",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T3 natural",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico1",
+        "Tico2"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T3 Tico",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico2",
+        "M1",
+        "M2"
+      ],
+      "count": 7
+    },
+    {
+      "event": "T4 natural",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "Tico2",
+        "M1",
+        "M2",
+        "I1"
+      ],
+      "count": 8
+    },
+    {
+      "event": "T4 Tico then EP",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "M1",
+        "M2",
+        "I1",
+        "M3",
+        "M4"
+      ],
+      "count": 9
+    },
+    {
+      "event": "T4 zero Magic M1",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "M2",
+        "I1",
+        "M3",
+        "M4"
+      ],
+      "count": 8
+    },
+    {
+      "event": "T4 zero Magic M2",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "I1",
+        "M3",
+        "M4"
+      ],
+      "count": 7
+    },
+    {
+      "event": "T4 zero Magic M3",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "I1",
+        "M4"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T4 zero Magic M4",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "W2",
+        "I1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T4 Wisdom",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "I1"
+      ],
+      "count": 4
+    },
+    {
+      "event": "T4 Wisdom draw",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "I1",
+        "G1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T5 natural",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "I1",
+        "G1",
+        "G2"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T5 Iron X>=5",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "G1",
+        "G2"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T5 Iron X>=5 draw",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "G1",
+        "G2",
+        "O1",
+        "B1"
+      ],
+      "count": 7
+    },
+    {
+      "event": "T5 Blast",
+      "hand": [
+        "F",
+        "S",
+        "D2",
+        "G1",
+        "G2",
+        "O1"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T5 Danga",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "O1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T6 natural",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "O1",
+        "B2"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T6 Blast",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "O1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T7 natural",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "O1",
+        "B3"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T7 Blast",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "O1"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T7 Overreaction",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "G2",
+        "Truth1",
+        "Truth2",
+        "Truth3"
+      ],
+      "count": 7
+    },
+    {
+      "event": "T7 Goddess",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "Truth1",
+        "Truth2",
+        "Truth3"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T7 discard3",
+      "hand": [
+        "F",
+        "S",
+        "G1"
+      ],
+      "count": 3
+    },
+    {
+      "event": "T7 copy under supplied-order assumption",
+      "hand": [
+        "F",
+        "S",
+        "G1",
+        "Fc",
+        "Sc",
+        "Gc"
+      ],
+      "count": 6
+    },
+    {
+      "event": "T7 Fierin0",
+      "hand": [
+        "S",
+        "G1",
+        "Fc",
+        "Sc",
+        "Gc"
+      ],
+      "count": 5
+    },
+    {
+      "event": "T7 Sammy0",
+      "hand": [
+        "G1",
+        "Fc",
+        "Sc",
+        "Gc"
+      ],
+      "count": 4
+    },
+    {
+      "event": "T7 Sammy0 draw",
+      "hand": [
+        "G1",
+        "Fc",
+        "Sc",
+        "Gc",
+        "Tetra1",
+        "I2"
+      ],
+      "count": 6
+    }
+  ],
+  "limitations": [
+    "enemy target validity and life not simulated",
+    "copy state and append order assumed from supplied note and previous proposal",
+    "no draw probability or win rate"
+  ]
+}
