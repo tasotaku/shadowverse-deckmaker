@@ -22,6 +22,7 @@ from svdeck.discovery_evidence import (
     read_only, search_questions, write_new,
 )
 from svdeck.discovery_read import packet_summary, read_packet
+from svdeck.discovery_sources import load_sources, save_sources
 
 DOCS = Path(__file__).resolve().parents[2] / "docs"
 
@@ -177,6 +178,12 @@ def _example(stage: str, revision: int) -> JSONDict:
             "uncertainties": ["未確認の前提"]}
 
 
+def attach(session: Path, payload: JSONDict) -> JSONDict:
+    # AI_NOTE: 有効な探索へ資料だけを追記する。改訂や評価の作成・昇格は行わない。
+    _context(session)
+    return save_sources(session, payload)
+
+
 def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     # AI_NOTE: 改訂から不足を再検索し、全文と別評価を次の担当へ渡す。
     context = _context(session)
@@ -200,6 +207,9 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
             "instruction": REVIEW if stage == "review" else DEVELOP,
             "proposal": proposal, "previous_reviews": previous_reviews, "search": search,
+            "sources": load_sources(session),
+            "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。"
+                            "資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
             "response_example": _example(stage, number)}
     result = _envelope(data)
     path = session / "packets" / f"{result['sha256']}.json"
@@ -222,7 +232,7 @@ def _response_packet(session: Path, response: JSONDict, stage: str) -> JSONDict:
     return data
 
 
-def _validate_proposal(response: JSONDict, context: JSONDict) -> None:
+def _validate_proposal(response: JSONDict, context: JSONDict, sources: list[JSONDict]) -> None:
     # AI_NOTE: 途中案を許しつつ、存在しない札・違うクラス・偽引用は取り込まない。
     for field in ("title", "hypothesis", "change"):
         _text(response.get(field), field)
@@ -256,7 +266,7 @@ def _validate_proposal(response: JSONDict, context: JSONDict) -> None:
     for step in _objects(response.get("steps"), "steps"):
         for field in ("action", "resources", "result"):
             _text(step.get(field), field)
-        check_evidence(step.get("evidence"), cards, context["ability_keywords"])
+        check_evidence(step.get("evidence"), cards, context["ability_keywords"], sources)
     plan = response.get("plan")
     fields = {"early", "transition", "finish", "without_core", "allocation", "comparison"}
     if not isinstance(plan, dict) or set(plan) - fields or any(not isinstance(v, str) for v in plan.values()):
@@ -275,7 +285,7 @@ def submit(session: Path, response: JSONDict) -> JSONDict:
     parent = response.get("parent_revision")
     if type(parent) is not int or parent != data["revision"]:
         raise ValueError("parent_revisionが受け取った資料と一致しません")
-    _validate_proposal(response, data["context"])
+    _validate_proposal(response, data["context"], data.get("sources", []))
     _revision(session, parent)
     if data["proposal"] is not None:
         substantive = ("hypothesis", "roles", "steps", "plan", "questions", "uncertainties")
@@ -310,7 +320,7 @@ def review(session: Path, response: JSONDict) -> JSONDict:
         raise ValueError("procedure/value/noveltyの各判断に理由が必要です")
     for finding in findings:
         _text(finding.get("reason"), "reason")
-        check_evidence(finding.get("evidence"), cards, data["context"]["ability_keywords"])
+        check_evidence(finding.get("evidence"), cards, data["context"]["ability_keywords"], data.get("sources", []))
     _strings(response.get("next_questions"), "next_questions")
     checks = _objects(response.get("web_checks"), "web_checks")
     for check in checks:
@@ -338,11 +348,13 @@ def report(session: Path) -> JSONDict:
     for path in sorted(session.glob("revision-*.json")):
         proposal = _read_envelope(path)
         records.append({"revision": proposal["revision"], "parent_revision": proposal["parent_revision"],
+                        "packet_hash": proposal["packet_hash"],
                         "title": proposal["title"], "hypothesis": proposal["hypothesis"],
                         "change": proposal["change"], "questions": proposal["questions"],
                         "uncertainties": proposal["uncertainties"], "reviews": _reviews(session, proposal["revision"])})
     return {"objective": context["objective"], "captured_at": context["captured_at"],
             "format": context["format"], "class_name": context["class_name"], "revisions": records,
+            "sources": [{k: v for k, v in source.items() if k != "content"} for source in load_sources(session)],
             "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"}
 
 
@@ -356,6 +368,9 @@ def main(argv: list[str] | None = None) -> int:
     begin.add_argument("--class", dest="class_name", choices=CLASSES, required=True)
     begin.add_argument("--format", choices=("rotation", "unlimited"), default="rotation")
     begin.add_argument("--objective", required=True)
+    add = sub.add_parser("attach", help="比較資料・観察のJSONを固定して追記")
+    add.add_argument("session", type=Path)
+    add.add_argument("sources", type=Path)
     get = sub.add_parser("packet", help="AIへ渡す全文資料と次の問いを出力")
     get.add_argument("session", type=Path)
     get.add_argument("--revision", type=int)
@@ -377,6 +392,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "start":
             result = start(args.session, args.db, args.class_name, args.format, args.objective)
+        elif args.command == "attach":
+            result = attach(args.session, read_object(args.sources))
         elif args.command == "packet":
             result = packet(args.session, args.revision, args.stage)
             # AI_NOTE: 資料生成は従来どおり。概要もreadも生成後に保存された同一版から出す。

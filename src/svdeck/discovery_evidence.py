@@ -177,7 +177,8 @@ def search_questions(conn: sqlite3.Connection, context: JSONDict, questions: lis
     return result
 
 
-def check_evidence(items: object, cards: dict[int, JSONDict], keywords: dict[str, str] | None = None) -> None:
+def check_evidence(items: object, cards: dict[int, JSONDict], keywords: dict[str, str] | None = None,
+                   sources: list[JSONDict] | None = None) -> None:
     # AI_NOTE: 架空の出典や引用を拒む。引用が主張を支えるかは別評価で判断する。
     if not isinstance(items, list):
         raise ValueError("evidence は配列で指定してください")
@@ -185,6 +186,12 @@ def check_evidence(items: object, cards: dict[int, JSONDict], keywords: dict[str
         if not isinstance(ref, dict):
             raise ValueError("根拠は card_id / field / quote を持つオブジェクトです")
         cid, field, quote = ref.get("card_id"), ref.get("field"), ref.get("quote")
+        if "source_hash" in ref:
+            source = next((s for s in sources or [] if s["source_hash"] == ref["source_hash"]), None)
+            if (set(ref) != {"source_hash", "quote"} or source is None or not isinstance(quote, str)
+                    or not quote.strip() or quote not in source["content"]):
+                raise ValueError("資料の引用が固定packet内のcontentと一致しません")
+            continue
         if "keyword" in ref:
             title = ref["keyword"]
             if (not isinstance(title, str) or not keywords or title not in keywords or not isinstance(quote, str)

@@ -36,7 +36,7 @@ def _sections(data: JSONDict) -> dict[str, Section]:
     # AI_NOTE: よく読む資料を独立区分にし、残りの属性も残す。新しい属性が増えても読出しで失わない。
     context: JSONDict = data["context"]
     context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
-    packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews"}
+    packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources"}
     return {
         "cards": Section("cards", context["cards"]),
         "rules": _lines(context["rules"]),
@@ -47,6 +47,9 @@ def _sections(data: JSONDict) -> dict[str, Section]:
         "search": Section("questions", data["search"]),
         "proposal": _lines(data["proposal"]) if data["proposal"] is not None else Section("lines", []),
         "previous_reviews": Section("reviews", data["previous_reviews"]),
+        # AI_NOTE: 本文を改行保持の配列へ展開し、長い1資料を1項目・1JSON行へ詰め込まない。
+        "sources": _lines([{**source, "content": source["content"].splitlines(keepends=True)}
+                           for source in data.get("sources", [])]),
         "context_metadata": _lines({key: value for key, value in context.items() if key not in context_parts}),
         "fulfillment_map": _lines(context["fulfillment_map"]),
         "instruction": _lines(data["instruction"]),
@@ -67,6 +70,7 @@ def packet_summary(session: Path, packet_hash: str) -> JSONDict:
         "objective": data["context"]["objective"],
         "instruction": data["instruction"],
         "response_example": data["response_example"],
+        "source_usage": data.get("source_usage"),
         "sections": [{"section": name, "unit": section.unit, "total": len(section.content)}
                      for name, section in _sections(data).items()],
         "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。"

@@ -61,6 +61,43 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH rules --offs
 `read` は資料を作り直しません。途中で別評価が追加されても、指定した保存版だけを読みます。
 従来の `packet` による全文出力も使えます。
 
+比較に使う構築資料や、実際の対戦での観察は、開始後でも追記できます。
+例えば次のJSONを `/tmp/discovery-sources.json` に用意します。
+
+```json
+{
+  "sources": [{
+    "title": "比較に使う観察メモ",
+    "kind": "対戦観察の要約",
+    "location": "手元の対戦記録 2026-09-08",
+    "observed_at": "2026-09-08",
+    "content": "要約：準備中に序盤の盤面を取り返せなかった。\n対戦数は2試合。",
+    "limitations": ["少数の対戦の観察で、勝率の証明ではない"]
+  }]
+}
+```
+
+```bash
+python -m svdeck.discovery attach data/discovery/trial-01 /tmp/discovery-sources.json
+python -m svdeck.discovery packet data/discovery/trial-01 --summary
+python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --offset 0 --limit 20
+```
+
+6項目はすべて必要です。`kind` は資料の種類を自由に書き、`location` はURLや手元の記録の場所を示します。
+`observed_at` は観察時点が不明なら `null`、`limitations` は記載する限界がなければ空配列にできます。
+`content` は原文、または要約であると明示した文章を入れます。コマンドはURLを取得せず、出典や主張の真偽も判定しません。
+
+追加資料は全文とその識別値 `source_hash` を保存し、新しく作る資料の `data.sources` に入ります。
+同じ入力内容は重複して保存しません。引用は提出案・別評価の `evidence` に
+`{"source_hash": "資料の識別値", "quote": "contentから正確に抜いた文章"}` と書きます。
+引用が資料本文に存在するかを検査し、主張を支えるかどうかは別評価で判断します。
+`read sources` は行数で分割し、各資料の `content` を改行保持の文字列配列として表示します。
+ページを順につないだJSONを読み、`content` の配列を連結すると元の本文に戻ります。
+
+資料追加は改訂や評価を作りません。追加前の `packet_hash` はその時点の資料を保ち、追加後も読出し・回答に使えます。
+後から加えた資料を引用する場合は、新しい `packet_hash` を使います。
+`report` には資料の一覧と、各提出・評価が見た `packet_hash` が残ります。
+
 途中の案では `plan` や `steps` を空にできます。未解決の条件は `questions` に残します。
 `roles` は、採用する札を `access: "deck"`、効果で得る札を `access: "effect"` として区別します。
 後者の `via` には、生成元の役割のカードIDを並べます。生成元も `roles` に記してください。
@@ -104,7 +141,7 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 ```bash
 python -m pip install pytest mypy
 python -m pytest -q tests --ignore=tests/temp
-python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/explore.py
+python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/discovery_sources.py src/svdeck/explore.py
 ```
 
 `tests/temp/` は過去の使い捨て確認用で、配布・回帰テストの対象に含めません。
