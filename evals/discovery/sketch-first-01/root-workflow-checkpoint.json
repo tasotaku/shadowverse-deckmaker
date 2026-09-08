@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-08T14:21:39.106733+00:00",
+  "symptom": "以前の試行のファイルを推測したパスで2回開いてFileNotFoundError",
+  "cause": "圧縮済みや別名の保存先を一覧で確定せず使用",
+  "fixed_contract": "今回の入力・5評価基準・許可範囲は変更しない",
+  "means_change": "既存報告の取得は rg --files で確認したパスを使い、以後の収集は保存先を列挙して同じ処理で扱う",
+  "next_measure": "次の既存報告読取成功、推測パスの再試行0回",
+  "observed_result": "rgで確認したb/round-3/report.jsonとa/round-3/root-review-evidence-check.jsonの読取に成功",
+  "grading_hash_before": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "grading_hash_after": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583"
+}

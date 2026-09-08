@@ -1,0 +1,164 @@
+{
+  "task": "固定5基準と既存成功例の限定整合点検",
+  "timestamps": {
+    "started_at": "2026-09-08T14:20:28+00:00",
+    "verification_finished_at": "2026-09-08T14:24:00+00:00",
+    "saved_at": "2026-09-08T14:26:22.038825+00:00",
+    "time_source": "開始・確認終了はclock.curr_timeのUTC実測。保存終了はファイル書出し・再読確認後のdatetime.now(timezone.utc)実測。",
+    "elapsed_seconds_to_save": 354.038825
+  },
+  "grading_changed": false,
+  "current_ab_read": false,
+  "current_trial_graded": false,
+  "additional_agents_started": false,
+  "conclusion": "固定5基準に40枚完成・Tier証明・全状況優越の明文要求はない。既存の設計と正例検査は、意味の成立、採用価値、歴史再現の確度を分けている。ただしutilityの試行結果を個別案・過去成功・方式全体へ広げる誤読余地は残る。今回の読取だけで4成功例すべてへの実際の誤判定防止は確認できない。",
+  "findings": [
+    {
+      "id": 1,
+      "title": "40枚完成・Tier証明・全状況優越は要求されていない",
+      "sources": [
+        {
+          "path": "/tmp/sv-sketch-first-01/protocol.json",
+          "line": 22,
+          "pointer": "/fixed_grading/utility",
+          "quote": "採用負担に見合う可能性が根拠付きで残る。"
+        },
+        {
+          "path": "/tmp/sv-sketch-first-01/protocol.json",
+          "line": 23,
+          "pointer": "/fixed_grading/honesty",
+          "quote": "Tier・勝率・初見の勝率加点を捏造しない。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 15,
+          "quote": "40枚デッキは組まない"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 18,
+          "quote": "非対象: 対戦シミュレータ、勝率予測、デッキの完成。"
+        }
+      ],
+      "interpretation": "役割の損得と核が揃わない時の方針を具体化する要求はある。これは全40枚の完成、成立頻度の保証、全相手・全引きで勝つ証明とは書かれていない。こうした追加証明の不足だけで落とせば、原文より強い要求の持込みになる。逆に、役割・採用負担の根拠を不要にして合格させる読み方もできない。"
+    },
+    {
+      "id": 2,
+      "title": "3種類の結論は区別できるが、utilityの結果だけに縮めると混同する",
+      "sources": [
+        {
+          "path": "/tmp/sv-sketch-first-01/protocol.json",
+          "line": 20,
+          "pointer": "/fixed_grading/correctness",
+          "quote": "未確認は未確認とする。"
+        },
+        {
+          "path": "/tmp/sv-sketch-first-01/protocol.json",
+          "line": 22,
+          "pointer": "/fixed_grading/utility",
+          "quote": "この試行では有用な出力は得られなかった"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 121,
+          "quote": "能力変更前のカードは当時の本文が揃わなければ歴史再現未確認とする。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/known-candidate-review/expected.json",
+          "line": 73,
+          "quote": "入力不足等で評価不能なら未確認として理由を残し、PASSにしない。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/mazel-role-review/expected.json",
+          "line": 47,
+          "quote": "実戦の採用優先度がunknownでもこの検査自体は未達としない。"
+        }
+      ],
+      "distinctions": {
+        "有用性そのものの否定": "特定案の利益が誤り、負担に見合わない等を根拠に否定する結論。資料欠落だけではこの否定は導けない。否定の範囲を特定案・用法に限定する。",
+        "歴史的手順の正しさ未確認": "当時の本文・条件が不足し、当時の具体手順を再現できていない結論。ユーザーの過去評価そのものの否定ではない。",
+        "今回の資料だけでは採点不能": "採用判断等の材料が不足している結論。合格にはしないが、その機構や過去成功が無価値だったとは言えない。"
+      },
+      "interpretation": "固定utilityは全棄却・未完成保留のみの試行を未達とする。この試行に試せる出力が残らなかったという結果は維持できる。同時に、未達理由が資料不足なら対象案の価値は未確認のまま残せる。utility本文自体は個別案の未知と否定の記録方法までは定めておらず、結果ラベルだけを取り出す誤運用の余地がある。基準変更も今回a/bの採点も行っていない。"
+    },
+    {
+      "id": 3,
+      "title": "成功例の意味を残す原則はあるが、4例すべての実際の採点結果は確認できない",
+      "sources": [
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 624,
+          "quote": "条件付きサーチによる山札の中身の調整、0コスト化できる地味なフォロワーの再評価など、複数段の応用を対象にする。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 625,
+          "quote": "ミルティオはゴースト1枚の打点から、集め方・他の直接打点や疾走との合計へ発展させる必要がある"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 627,
+          "quote": "ビバティー・ササニドは、ユーザー評価では用意された使い方自体が強かった例。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+          "line": 629,
+          "quote": "マゼルベインを補充源として捉え、後半を渡せるため元の構築を序盤へ寄せる"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/mazel-role-review/expected.json",
+          "line": 6,
+          "quote": "条件付きの優先度判断と意味の成立を分離する。"
+        },
+        {
+          "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/mazel-role-review/evaluation.json",
+          "line": 192,
+          "quote": "打点0、未完成、40枚不足だけによる正例の一律棄却は観測されない。"
+        }
+      ],
+      "interpretation": "マゼル検査では意味を認めながら採用優先度を未確認にできた既存記録がある。このPASSは既知の説明を含む意味検査で、自然発見・歴史構築の再現・有用性の新規合格を証明していない。他3例は今回確認した範囲ではユーザー評価と探索教材としての記述が根拠であり、公式事実・当時の手順・実戦勝率を補完しない。既知事例を教材として認めることと、現在の新規候補として採用することを同じ採点にしない。"
+    }
+  ],
+  "read_scope": {
+    "instructions": [
+      "AGENTS.md",
+      "agent-lab/rules/values.md",
+      "agent-lab/rules/communication.md",
+      "agent-lab/rules/explain.md",
+      "agent-lab/rules/parallel.md",
+      "agent-lab/rules/design.md",
+      "agent-lab/rules/coding.md",
+      "agent-lab/rules/workflow.md",
+      "agent-lab/rules/knowledge.md",
+      "agent-lab/rules/ai-code-guide.md",
+      "agent-lab/rules/models/gpt-5-6-terra.md"
+    ],
+    "fixed_criteria": "/tmp/sv-sketch-first-01/protocol.json の fixed_grading のみ。jq抽出と18〜24行の限定表示。他条件は表示せず。",
+    "design": "docs/design.mdを最初に全文読出ししたが出力は省略された。結論に用いる範囲は行番号付きで再読した1〜125、199〜440、498〜553、615〜635。初回の未表示範囲を全読・確認済みとは扱わない。",
+    "historical_records": [
+      "evals/discovery/mazel-role-review/expected.json 全文",
+      "evals/discovery/mazel-role-review/evaluation.md 全文",
+      "evals/discovery/mazel-role-review/evaluation.json の限定検索結果と45〜60・188〜197行",
+      "evals/discovery/history-review/evaluation.md 全文相当を分割確認",
+      "evals/discovery/history-review/expected.json・protocol.md の語句検索結果",
+      "evals/discovery/known-candidate-review/expected.json の語句検索結果と67〜75行",
+      "evals/discovery/role-chain/expected.json の語句検索結果",
+      "evals/discovery/effect-evidence-check-01/cases.json 全文、evaluation.md の出力（途中省略あり。最終結論の根拠には使わない）"
+    ],
+    "search_only": "evals/discoveryのファイル名一覧と、*.md・*expected.json・*cases.json内のおくよばな/侵蝕/ミルティオ/ビバティ/ササニドのファイル名検索。sketch-first-01・idea-comparison-01の各ディレクトリとREADME.mdをこの検索から除外。該当なしはこの限定検索のみ。",
+    "accidental_exposure": {
+      "occurred": true,
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/README.md",
+      "line": 15,
+      "description": "過去評価索引の語句検索出力に、禁止対象idea-comparison-01の最終結果要約1行が含まれた。内容は本報告に再掲せず、判断・採点の根拠にしていない。親担当へ直ちに申告し、逸脱記録を残して限定点検を完了する指示を受けた。",
+      "boundary": "禁止ディレクトリ内の提案・別評価・最終結果ファイルは開いていない。今回sketch-first-01のa/b出力は未読。完全な非接触を達成したとは主張しない。"
+    }
+  },
+  "limitations": [
+    "基準文と保存記録の整合点検であり、基準の実行試験、成功率測定、現方式と他方式の優越判定ではない。",
+    "4例はユーザーの望む評価・教材としてのみ扱う。おくよばなの名称と正常なる侵蝕の対応は親の依頼に由来し、当時の公式本文確認は行っていない。",
+    "評価記録のPASSやユーザーのTier経験を今回の有用性PASSへ転用していない。",
+    "読取逸脱が1件あり、完全な盲検という主張はできない。",
+    "コード・文書・基準・DB・採点結果は変更せず、指定の/tmp成果物2件だけを作成した。"
+  ]
+}
