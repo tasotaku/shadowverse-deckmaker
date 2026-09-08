@@ -1,6 +1,6 @@
 {
   "archived_at": "2026-09-08T10:08:46.402117+00:00",
-  "phase": "追加比較4完了・独立評価4実行中",
+  "phase": "独立評価4完了・試行全体の固定5項目採点中",
   "files": {
     "input-packet.json.gz": {
       "source_name": "round-4-input-packet.json",
@@ -55,6 +55,48 @@
       "sha256": "170a3c1231480aa434e9e02c181e1e26c44f705199b34a126912fe714ca18458",
       "source_sha256": "170a3c1231480aa434e9e02c181e1e26c44f705199b34a126912fe714ca18458",
       "encoding": "identity"
+    },
+    "review-response.json": {
+      "source_name": "round-4-review-response.json",
+      "sha256": "9211beb5047137abf559ce53df4a63712633852617445bd1565bcb9ded07630f",
+      "source_sha256": "9211beb5047137abf559ce53df4a63712633852617445bd1565bcb9ded07630f",
+      "encoding": "identity"
+    },
+    "review-execution.json": {
+      "source_name": "round-4-review-execution.json",
+      "sha256": "1c1c9f3582fc908afb4b43c66baf200674842f870019ff2ca1c25789aa8f0967",
+      "source_sha256": "1c1c9f3582fc908afb4b43c66baf200674842f870019ff2ca1c25789aa8f0967",
+      "encoding": "identity"
+    },
+    "review-result.json": {
+      "source_name": "round-4-review-result.json",
+      "sha256": "0c70aaaf34bd439e666f6506c03a4dddd3dfcc6424994518fa6d92ffac12f267",
+      "source_sha256": "0c70aaaf34bd439e666f6506c03a4dddd3dfcc6424994518fa6d92ffac12f267",
+      "encoding": "identity"
+    },
+    "final-report.json": {
+      "source_name": "round-4-final-report.json",
+      "sha256": "1112e50fe62d0b5a614eb90bdb00930f574af143cbfbccabdd80d28e995c2144",
+      "source_sha256": "1112e50fe62d0b5a614eb90bdb00930f574af143cbfbccabdd80d28e995c2144",
+      "encoding": "identity"
+    },
+    "review-official-fetch.json.gz": {
+      "source_name": "round-4-review-official-fetch.json",
+      "sha256": "fe7ddfeea192880b890f038b2d6bd84d152150d33b40661f1460ca41feba5fc7",
+      "source_sha256": "e34c5c0cf32f6c855785af320eb25c895c112b113d6ee38e252f2baa65d6e3da",
+      "encoding": "gzip"
+    },
+    "review-command-log.json": {
+      "source_name": "round-4-review-command-log.json",
+      "sha256": "422d00a313a16c32121d2a224456d844373bf512ec404fa77ed0b3ab5e995008",
+      "source_sha256": "422d00a313a16c32121d2a224456d844373bf512ec404fa77ed0b3ab5e995008",
+      "encoding": "identity"
+    },
+    "root-evidence-check.json": {
+      "source_name": "round-4-root-evidence-check.json",
+      "sha256": "c3d308e3f87df2e5d2673eb2f96634c63ac9ec54b4ccb20cd932458ac275547f",
+      "source_sha256": "c3d308e3f87df2e5d2673eb2f96634c63ac9ec54b4ccb20cd932458ac275547f",
+      "encoding": "identity"
     }
   },
   "formal_submission_count_total": 2,
@@ -62,6 +104,13 @@
   "target_revision": 2,
   "review_packet_hash": "bbac39695441dfc5a95a29e3dc1bcca0c766521dd5c8a83b423695c6c8e8d8cd",
   "outcome": "原6枚配分の検討を限定停止。バリア付きルリアが残ると元18点手順は場上限を超える。同じ手札の14点全処理は成立するが少数補充案でも再現可能。全6枠の負担を正当化できる根拠は未取得。",
-  "not_a_verdict": "担当の停止判断であり、独立評価4と試行全体の5項目採点は未完了。手法の採否ではない。",
-  "timestamps": "開始時刻はこの段階の実行記録に未記録。終了時刻はexecution.jsonの実測値。archived_atは保存日時であり工程開始・終了ではない。"
+  "not_a_verdict": "原6枚配分の限定停止と仮説のdevelopを保存。固定5項目の最終採点前で、手法の採用・有用性の合格にはしない。",
+  "timestamps": "開始時刻はこの段階の実行記録に未記録。終了時刻はexecution.jsonの実測値。archived_atは保存日時であり工程開始・終了ではない。",
+  "updated_at": "2026-09-08T10:21:56.056085+00:00",
+  "actual_review": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "review_report_all_fields_match": true
 }
