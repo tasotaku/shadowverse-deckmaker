@@ -18,6 +18,7 @@ from typing import Any
 
 from svdeck.db import DB_PATH
 from svdeck.discovery_compare import compare_decks
+from svdeck.discovery_effects import save_effects
 from svdeck.discovery_evidence import (
     CLASSES, JSONDict, build_context, check_evidence, digest, read_object,
     read_only, search_questions, write_new,
@@ -222,6 +223,11 @@ def attach(session: Path, payload: JSONDict) -> JSONDict:
 def compare(session: Path, before_hash: str, after_hash: str) -> JSONDict:
     # AI_NOTE: 保存DBの整合を確認してから2件の全リストを比較する。
     return compare_decks(session, _context(session), before_hash, after_hash)
+
+
+def effects(session: Path, card_ids: list[int]) -> JSONDict:
+    # AI_NOTE: 本文と同じ固定DBを検査し、選択した札の分析だけを任意で追加する。
+    return save_effects(session, _context(session), card_ids)
 
 
 def _history(session: Path, proposal: JSONDict | None) -> list[JSONDict]:
@@ -443,6 +449,9 @@ def main(argv: list[str] | None = None) -> int:
     diff.add_argument("session", type=Path)
     diff.add_argument("before_source_hash")
     diff.add_argument("after_source_hash")
+    analysis = sub.add_parser("effects", help="選択札の本文と未検証の保存分析を資料へ追記")
+    analysis.add_argument("session", type=Path)
+    analysis.add_argument("card_ids", type=int, nargs="+")
     get = sub.add_parser("packet", help="AIへ渡す全文資料と次の問いを出力")
     get.add_argument("session", type=Path)
     get.add_argument("--revision", type=int)
@@ -468,6 +477,8 @@ def main(argv: list[str] | None = None) -> int:
             result = attach(args.session, read_object(args.sources))
         elif args.command == "compare":
             result = compare(args.session, args.before_source_hash, args.after_source_hash)
+        elif args.command == "effects":
+            result = effects(args.session, args.card_ids)
         elif args.command == "packet":
             result = packet(args.session, args.revision, args.stage)
             # AI_NOTE: 資料生成は従来どおり。概要もreadも生成後に保存された同一版から出す。
