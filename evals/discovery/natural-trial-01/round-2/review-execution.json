@@ -1,0 +1,52 @@
+{
+  "author": "/root/natural_trial_review_2",
+  "packet_hash": "c2f049a230f3d5db1dccf9cae2904b6ac25c3f5f2354c7e8ed2a9a9aec31a69b",
+  "response_path": "/tmp/sv-natural-system-trial/rounds/round-2-review-response.json",
+  "review_registration_attempts": 1,
+  "report_verification_attempts": 1,
+  "status": "registered_and_report_verified",
+  "read_scope": {
+    "packet_file": "/tmp/sv-natural-system-trial/rounds/round-2-review-packet.json",
+    "public_read": "read SESSION HASH proposal --offset 0 --limit 6",
+    "read_all_sources": 23,
+    "proposal_and_rules_and_principles": "all",
+    "reviewed_cards": 24,
+    "cards_scope": "提出案、基準40枚、比較用40枚、合成局面の使用札と生成札について本文・進化本文・参照本文・両側注記を確認。212枚全体の新規探索は実施しない。"
+  },
+  "independent_checks": {
+    "full_deck_differences": {
+      "cases": 3,
+      "matched": 3
+    },
+    "draw_probability_conditions": {
+      "cases": 9,
+      "matched": 9,
+      "maximum_absolute_error": 0.0
+    }
+  },
+  "obstacles": [
+    {
+      "action": "初期の共通ルール読出し",
+      "issue": "集約ツール出力が途中で切れた",
+      "resolution": "対象ルールを小分けに再読し、切れた説明ルールの後半も再読した。提出案・比較資料の読出しは切れていない。"
+    },
+    {
+      "action": "公式ヘルプと公式カード一覧の用語本文のopen",
+      "issue": "動的本文はWebツールのopen結果に含まれなかった",
+      "resolution": "公式検索結果の抜粋と、本文取得できた公式対戦説明で照合し、web_checksへ限界を明記した。"
+    }
+  ],
+  "packet_identifier_note": "ファイル全体のSHA256はf1a5b88dc5cd3ed1b2feaaf6d4daec71f97306618bfdc48a187ed8e76fbf90d6。回答に使う識別値はJSON内sha256のc2f049...であり、指定hashと公開readの応答が一致した。",
+  "forbidden_scope_accessed": false,
+  "proposal_or_sources_modified": false,
+  "derived_agents_created": false,
+  "review_registration_exit_code": 0,
+  "report_exit_code": 0,
+  "saved_report_path": "report.revisions[0].reviews[0]",
+  "saved_response_all_fields_match": true,
+  "registered_values": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  }
+}

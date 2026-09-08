@@ -1,0 +1,30 @@
+{
+  "stage": "追加調査・比較後の枝停止",
+  "public_operations": [
+    "read previous_reviews（1件完了）",
+    "read search（8件完了）",
+    "packet --revision 1",
+    "attach 比較用配列3件",
+    "compare 基準と3変形（追加資料3件）",
+    "attach 公式確認・局面比較・抽出算術・停止判断（4件）",
+    "packet --revision 1 --stage review",
+    "report"
+  ],
+  "public_packet_sha256": "c2f049a230f3d5db1dccf9cae2904b6ac25c3f5f2354c7e8ed2a9a9aec31a69b",
+  "source_count": 23,
+  "proposal_revision_count": 1,
+  "new_submit": false,
+  "self_review": false,
+  "result": "停止判断を通常の追加資料として保存し、その資料を含むreview packetで存在を読取確認した。別担当が原提案・新比較・停止判断を読める。",
+  "friction": [
+    "summaryのfull_packet_pathを利用し、今回data.contextとdataの階層を取り違えなかった。",
+    "8個の質問はタグ未指定で検索候補0件だった。0件を不可能の根拠とせず、本文と追加算術・公開compareで比較した。",
+    "公開compareは全40枚を要求するため、比較用の仮配列を3件作成した。人に40枚完成デッキを推薦する出力とは分けた。",
+    "枝停止は専用の状態変更としては登録していない。通常のsourceとして対象revision・停止理由・再開条件を保存した。reportの既存review判定が書き換わるわけではない。"
+  ],
+  "limits": [
+    "実戦0試合。合成局面と指定残枚数の算術。",
+    "9条件の取得率は計算済みだが勝率・全手順成立率ではない。",
+    "原6枚枝だけを停止。他の候補・全体システムの完了判定ではない。"
+  ]
+}
