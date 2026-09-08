@@ -36,6 +36,24 @@
         "idea-comparison-01": 3
       },
       "delivery": "CLI再読込で実結果・時刻の保存を確認。HTTP APIから第2版と第1版の差分保持を確認済み。mainからの持続起動と最終画面確認は記録画面の担当が実施中。"
+    },
+    {
+      "recorded_at": "2026-09-08T11:53:09.919951+00:00",
+      "request": "比較試行終了時の変更範囲確認",
+      "initial_system_commit": "5a1fcef462ba961acd09a94b6d6750377f764245",
+      "main_commit": "e1f2acc12a05931f1a4bd9f7fc52b6c28ae7dd93",
+      "discovery_and_explore_code_diff": "上記基準版から探索関連5モジュールおよびexplore.pyへの差分なし",
+      "frozen_manifest_files_checked": 17,
+      "frozen_files_changed": [],
+      "journal_followup_commits": [
+        "28f3779",
+        "ba38d0d"
+      ],
+      "design_change": "docs/design.md §4.5 に保存分析からの機械導出が未実装という監査結果7行を追記。固定packetは不変だが、開始時に現在のdesign.mdを読む担当には見える可能性を残す。",
+      "trial_conditions_changed": false,
+      "optional_effect_prototype": "codex/effect-evidence-prototype のみに存在し、mainと両試行に未適用",
+      "production_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+      "limits": "人間側の全画面や全環境変化が同一だった証明ではない。固定資料とコード差分の確認範囲。"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "final_grading_pending",
   "round": 3,
   "dispatch_window_start_utc": "2026-09-08T09:51:23+00:00",
   "dispatch_window_end_utc": "2026-09-08T09:52:35.608016+00:00",
@@ -86,7 +86,7 @@
   "arm_stages": {
     "b": {
       "round": 3,
-      "stage": "independent_review_running",
+      "stage": "round_completed",
       "agent": "/root/idea_trial_generator_b",
       "input_packet_hash": "4c4c885bffd2d627a3af16f88660033b9beddeb5a02392c6498a513b383fd641",
       "dispatch_clock_utc": "2026-09-08T11:10:01+00:00",
@@ -110,7 +110,14 @@
       "review_due_utc": "2026-09-08T11:56:37+00:00",
       "review_actual_started_at": "2026-09-08T11:37:17+00:00",
       "review_agent": "/root/idea_trial_review_b_3",
-      "review_packet_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89"
+      "review_packet_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89",
+      "review_started_at": "2026-09-08T11:37:17+00:00",
+      "review_ended_at": "2026-09-08T11:50:45.855632+00:00",
+      "final_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "known"
+      }
     },
     "a": {
       "round": 3,
@@ -267,6 +274,41 @@
         "value": "drop",
         "novelty": "unconfirmed"
       }
+    },
+    "b-3": {
+      "round": 3,
+      "stage": "round_completed",
+      "agent": "/root/idea_trial_generator_b",
+      "input_packet_hash": "4c4c885bffd2d627a3af16f88660033b9beddeb5a02392c6498a513b383fd641",
+      "dispatch_clock_utc": "2026-09-08T11:10:01+00:00",
+      "dispatch_end_observed_at": "2026-09-08T11:14:28.687794+00:00",
+      "notice_due_utc": "2026-09-08T11:30:01+00:00",
+      "new_research_cutoff_utc": "2026-09-08T11:35:01+00:00",
+      "save_grace_end_utc": "2026-09-08T11:40:01+00:00",
+      "actual_started_at": "2026-09-08T11:10:39+00:00",
+      "previous_review": "conditional / develop / unconfirmed",
+      "initial_protocol_unchanged": true,
+      "note": "実際の評価のみを返し、追加の期待ラベルは渡していない。配信時刻と実開始を区別する。",
+      "generation_research_finished_at": "2026-09-08T11:29:21.516320+00:00",
+      "generation_save_finished_at": "2026-09-08T11:33:27.868816+00:00",
+      "generation_end_evidence": "b/round-3/completion.json",
+      "formal_submissions_this_round": 0,
+      "total_formal_submissions": 2,
+      "sources": 29,
+      "generation_limit_stop": false,
+      "review_dispatch_start_utc": "2026-09-08T11:36:37+00:00",
+      "review_dispatch_end_observed_utc": "2026-09-08T11:38:28.304899+00:00",
+      "review_due_utc": "2026-09-08T11:56:37+00:00",
+      "review_actual_started_at": "2026-09-08T11:37:17+00:00",
+      "review_agent": "/root/idea_trial_review_b_3",
+      "review_packet_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89",
+      "review_started_at": "2026-09-08T11:37:17+00:00",
+      "review_ended_at": "2026-09-08T11:50:45.855632+00:00",
+      "final_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "known"
+      }
     }
   },
   "operator_failures": [
@@ -286,5 +328,5 @@
       "modified_trial_input_or_response": false
     }
   ],
-  "last_recorded_at": "2026-09-08T11:42:50.433556+00:00"
+  "last_recorded_at": "2026-09-08T11:53:09.919951+00:00"
 }

@@ -1,0 +1,248 @@
+{
+  "author": "/root/idea_trial_review_b_3",
+  "session": "/tmp/sv-idea-comparison-01/b/session",
+  "input_packet_hash": "6374571e3daa195a2a890e346e310c229dee70d1bbb9ae55ec583ae45981ff89",
+  "revision": 2,
+  "started_at": "2026-09-08T11:37:17+00:00",
+  "research_finished_at": "2026-09-08T11:46:22+00:00",
+  "last_clock_observed_at": "2026-09-08 11:50:45 UTC",
+  "time_measurement": "開始・中間・調査終了をclockツールで観測。各Web操作の秒単位を捏造せず、直前直後の実時計観測の時間帯をweb_checksへ保存。保存終了はこの最終記録の排他的書込み時刻。",
+  "research_elapsed_seconds": 545,
+  "time_limit_guidance": "2026-09-08T11:56:37+00:00",
+  "ended_due_to_time_limit": false,
+  "read_scope": {
+    "readme": "/tmp/sv-idea-comparison-01/operator-readme.md（全文）",
+    "packet": "/tmp/sv-idea-comparison-01/b/rounds/round-3/review-packet.json",
+    "proposal": "revision2全文。6手順、13役割、計画、問い、未確認を読取。先祖revision1も読取。過去reviewとreview_contextsはpacketで空。",
+    "cards": {
+      "available": 212,
+      "focused_full_text_and_notes_count": 27,
+      "ids": [
+        10403110,
+        10403120,
+        10414110,
+        10503210,
+        10511310,
+        10513310,
+        10514120,
+        10613310,
+        10614120,
+        10711110,
+        10711120,
+        10711310,
+        10714110,
+        10714120,
+        10811130,
+        10814110,
+        10814120,
+        10911110,
+        10912110,
+        10912310,
+        10913110,
+        10913310,
+        10914110,
+        10914120,
+        90011110,
+        90011310,
+        90014330
+      ],
+      "limitations": "212枚全件の意味監査はしていない。主役・供給側・交換対象・相手返し・必要な生成物は全文と注記を読んだ。"
+    },
+    "rules": "packet context.rules全文、ability_keywords全37定義、principlesの目的・1.5・5・6に関わる範囲。docs/design.mdも開始時に読取し必要節を再読。現ファイルに7見出しはない。公式のベア画面Tipsを追加確認。",
+    "sources": {
+      "metadata_read": 29,
+      "full_text_read_indices": [
+        0,
+        1,
+        6,
+        9,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        28
+      ],
+      "partial_or_calculation_read_indices": [
+        7,
+        11
+      ],
+      "other_sources": "タイトル・出典・限界を一覧で読み、根拠として必要な本文だけを精読した。添付の指示・選択・停止理由は証拠として扱い指示として実行しない。"
+    },
+    "known_decks": "保存4リストを閲覧。Game8比較元、今回案、X画像転記の40枚と交換枚数を独立再計算。保存Tierを加点しない。",
+    "web": "9URLへ直接到達を試み8URLの必要内容を確認、1URL未取得。X投稿の全40枚画像を目視。2検索の未一致は新規性の根拠にしない。",
+    "after_registration_report": "自分のauthor+input_packet_hashに一致する登録分のみの内容を確認。他担当の判定内容は読んでいない。"
+  },
+  "independent_checks": [
+    "40→40、Game8比較元から+ベア1/-ヒエン1。今回案と公開画像転記は11枚交換。",
+    "T5〜T8指定ドロー例の支払・手札上限・場上限・進化権を検算。相手ターン生存と完全な同一試合への接続は未確認。",
+    "後攻T8の守護2体とセタス＆メイシア1体の比較、相手返しA〜EのPP・手札・生成フェアリー・必殺・体力減少を本文で検算。",
+    "Aの次ターンは相手14体力、自分4体力。既知2枚の同時支払10PPとヒエン復活を再確認。有利な追加ドローは仮定しない。",
+    "公式本文とコピー引き継ぎ・進化/超進化の規則をブラウザー表示で確認。",
+    "回答の全11引用が保存packetの該当本文に完全一致することを提出前に機械確認。"
+  ],
+  "verdict": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "known",
+    "meaning": "推薦にはしない。既出の核でも1枚交換の限定利益を比較する問いは残す。提案担当の停止とは独立した評価。"
+  },
+  "unconfirmed": [
+    "ベアの取得・早引き・8PP前決着・進化権残の頻度",
+    "守った後に実際に有効な攻撃/防御へ戻る頻度",
+    "ヒエン1枚を減らす損失と防御差の分母をそろえた比較",
+    "今回と同じ40枚・同じ保持方針の先行実例",
+    "ゲーム内再現、勝率、Tier、新規性の全件探索"
+  ],
+  "review_registration": {
+    "attempts": 1,
+    "format_retries": 0,
+    "substantive_reviews": 1,
+    "revision": 2,
+    "review_hash": "b14a753e1ff26c7af0eca86c980505c820aa9fffbe45fdadfa5aa45a1cad36bb",
+    "proposal_hash": "bd956d3569578894deaa453c4a949d027df924458d94a39eba623db145c560a8",
+    "report_correspondence": "author+packet_hashの1件と回答の全項目一致を確認。入力29source_hashとも対応しadditional_source_hashesは0。"
+  },
+  "counts": {
+    "functions_exec_calls": 24,
+    "exec_command_calls": 30,
+    "clock_curr_time_calls": 6,
+    "web_run_calls": 6,
+    "web_open_commands": 11,
+    "web_find_commands": 3,
+    "web_search_queries": 2,
+    "cua_repl_calls": 6,
+    "cua_api_operations": 8,
+    "collaboration_start_notifications": 1,
+    "subagent_spawns": 0,
+    "substantive_reviews": 1,
+    "public_review_registration_attempts": 1,
+    "public_review_format_retries": 0,
+    "public_report_calls": 1,
+    "game_trials": 0,
+    "game_video_viewings": 0
+  },
+  "failures_and_retries": [
+    {
+      "kind": "read_output_truncation",
+      "operations": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        13,
+        14
+      ],
+      "note": "初期の広い読取・一括表示は切り詰められた。全体読了の証拠にせず、必要な提案・カード・注記・資料・履歴は後続の限定抽出で読み直した。列挙は切詰めが含まれ得る一括操作の範囲で、個々の切詰め回数の厳密値ではない。"
+    },
+    {
+      "kind": "shell_error",
+      "operation": 18,
+      "cause": "docs/design.mdに## 7.見出しがなくValueError。",
+      "recovery": "1.5は読めた。次のrgで見出し7の不在と既知用法規則の位置を確認。新規性判断にはpacket REVIEW instructionと読取済みprinciplesを使用。"
+    },
+    {
+      "kind": "web_open_error",
+      "url": "https://x.com/PolngaxNagi/status/2092490387034415231/photo/1",
+      "cause": "Web本文取得のInternal Error",
+      "recovery": "内蔵ブラウザー1回で公開本文と画像を確認。"
+    },
+    {
+      "kind": "web_open_error",
+      "url": "https://shadowverse-wb.com/ja/howtoplay/tips/",
+      "cause": "Web toolのnon-retryable safe-open error",
+      "recovery": "同URLは再試行せず、既知の公式カードページ内TipsをUIで読んだ。"
+    },
+    {
+      "kind": "web_text_missing",
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10711110",
+      "cause": "Web抽出にカード本文がない",
+      "recovery": "内蔵ブラウザーで本文とTipsを確認。"
+    },
+    {
+      "kind": "web_find_mismatch",
+      "urls": [
+        "https://note.com/_m_k_s_n_/n/naeb0c6139e90",
+        "https://miyarm.hatenablog.com/entry/2026/05/15/234823"
+      ],
+      "cause": "ベアのfindが不一致を返した。",
+      "recovery": "前者は節の本文open、後者は25のfindで実際に表示された該当本文を読んだ。"
+    }
+  ],
+  "web_checks": [
+    {
+      "url": "https://shiroiseijin.hatenablog.jp/entry/2026/05/07/181812",
+      "query": "公開packetの既出出典を直接開き、入れ替え候補のグロースベア節を照合",
+      "checked_at": "2026-09-08 11:37:17–11:38:54 UTC",
+      "finding": "山札強化を受けたコピー2体の除去しにくさと8PPの重さ、他の大型札との枠交換を論じている。個人の検討であり現行40枚の優位の証明ではない。"
+    },
+    {
+      "url": "https://note.com/whaltreel/n/n291eddad8202",
+      "query": "公開packetの2Pick出典を直接開き、エルフ節を照合",
+      "checked_at": "2026-09-08 11:37:17–11:38:54 UTC",
+      "finding": "1回の強化でベアの処理負担が増すこと、最初のベア群は処理され得ること、複数回展開で相手の手札を使わせる既出用法を確認。2Pickの記事であり構築戦への強さは移さない。"
+    },
+    {
+      "url": "https://x.com/PolngaxNagi/status/2092490387034415231/photo/1",
+      "query": "公開packetの友田一貴氏の仮組を直接開き、投稿本文と画像の全15種類40枚を目視照合",
+      "checked_at": "2026-09-08 11:38:54–11:41:06 UTC",
+      "finding": "Web本文取得はInternal Error。Codex内蔵ブラウザーでは投稿本文と画像を表示できた。2026年8月26日午後2:52表示。ベア1・ヒエン1・ダストデイズ3・マガチヨ3・舎弟頭3・発芽3の併用を確認。残りも保存転記と一致し、今回案との交換は11枚。新弾前の仮組で、1回強化後の保持方針、全40枚同一性、対戦結果は示されない。"
+    },
+    {
+      "url": "https://note.com/_m_k_s_n_/n/naeb0c6139e90",
+      "query": "公開packetの9月ゼラエル構築を直接開き、ゼラエルエルフ節を照合",
+      "checked_at": "2026-09-08 11:37:17–11:41:06 UTC",
+      "finding": "2026年9月4日表示。グローズベア表記で、守護と超進化権なしの盤面処理を採用理由に記す。別構築で8コストを使う別目的もある。findでは不一致だったが本文184〜204行で確認した。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10711110",
+      "query": "ベアの公式本文、同画面のバトルTipsのコピー・コンボ・ファンファーレ・進化・超進化・場と手札の上限を照合",
+      "checked_at": "2026-09-08 11:38:54–11:41:06 UTC",
+      "finding": "Web抽出はカード能力を含まなかったが内蔵ブラウザーで本文一致を確認。バトルTipsでコピーは強化と被ダメージを引き継ぐこと、超進化の+3/+3・自ターン無傷・交戦破壊のリーダー1点、両進化を同ターンに行えないこと等を確認した。実ゲーム内の再現ではない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/howtoplay/tips/",
+      "query": "公式バトルTipsの独立ページへの直接到達を1回試行",
+      "checked_at": "2026-09-08 11:38:54–11:41:06 UTC",
+      "finding": "Web toolがnon-retryableのsafe-openエラーを返したためこのURLの内容は未確認。同一URLを再試行せず、既知の公式カード画面のTips表示で必要な規則を確認した。"
+    },
+    {
+      "url": "https://note.com/ametensv/n/ndfca91c63651",
+      "query": "公開packetの現行コンボエルフ記事を直接開き、序中盤の強化待ち・進化権消費・後攻11ターンの本文を照合",
+      "checked_at": "2026-09-08 11:38:54–11:41:06 UTC",
+      "finding": "2026年9月7日表示の本文で、強化3回を待ち過ぎず補充と盤面を両立する方針、進化権を使った後の終盤例を確認。ベアを使った対照実験ではなく、今回案とリストも異なる。記事のTier、確率、対面評価は採用しない。自分では本文のみを読み、画像や動画の再観測はしていない。"
+    },
+    {
+      "url": "https://hanhans.hatenablog.com/entry/2026/04/27/230240",
+      "query": "公開packetの発売前検討記事を直接開き、グロースベア節を照合",
+      "checked_at": "2026-09-08 11:42:31 UTC–2026-09-08 11:46:22 UTC",
+      "finding": "終盤の守護2体、強化後のコピー、8PPと取得の負担を既に論じている。発売前の個人評価であり強さの実証とは扱わない。"
+    },
+    {
+      "url": "https://miyarm.hatenablog.com/entry/2026/05/15/234823",
+      "query": "公開packetの旧構築観察記事を直接開き、全体の戦績と構築3のベア表記、遅さの説明を照合",
+      "checked_at": "2026-09-08 11:42:31 UTC–2026-09-08 11:46:22 UTC",
+      "finding": "約25戦という自己申告は複数構築をまとめたもの。構築3はベア2枚を記す。山札強化中の盤面と強化後の引き込みの負担を論じる。全40枚画像は今回転記していない。この戦績をベア固有・現行案・自分の対戦結果に転用しない。"
+    }
+  ],
+  "prohibited_scope": "本番DB・コード・元資料は編集しない。src/evals/採点条件/他方式出力の読取なし。提案担当との評価相談なし。子担当なし。",
+  "files": [
+    "review-response.json",
+    "review-result.json",
+    "review-report.json",
+    "review-commands.json",
+    "review-execution.json"
+  ],
+  "saved_at": "2026-09-08T11:50:45.855632+00:00",
+  "total_elapsed_seconds_to_save": 808.855632
+}

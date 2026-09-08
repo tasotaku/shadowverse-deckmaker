@@ -1,0 +1,136 @@
+{
+  "audit_id": "sv-discovery-bottleneck-audit-01",
+  "started_at": "2026-09-08T11:42:08+00:00",
+  "finished_at": "2026-09-08T11:49:25.807022+00:00",
+  "elapsed_seconds": 437.807022,
+  "time_limit_seconds": 480,
+  "mode": "read_only_audit",
+  "recommendation_count": 1,
+  "recommendation": "初回着想と採用検査の資料を公開入口で二段に渡す小試作",
+  "adoption_status": "forward_test_candidate_only; utility evidence insufficient for adoption",
+  "observed_facts": [
+    {
+      "finding": "モデル呼出しはなく、着想生成は文章で外部AIへ要求",
+      "evidence": [
+        "src/svdeck/discovery.py:4",
+        "src/svdeck/discovery.py:30",
+        "src/svdeck/discovery.py:248"
+      ]
+    },
+    {
+      "finding": "a/b両担当が初回に506行の原則を読んだと記録",
+      "evidence": [
+        "evals/discovery/idea-comparison-01/a/round-1/operations.md:15",
+        "evals/discovery/idea-comparison-01/b/round-1/operation-record.json:22"
+      ]
+    },
+    {
+      "finding": "自然試行とa/b初回着想はいずれも山札強化を共通の土台にした",
+      "evidence": [
+        "evals/discovery/natural-trial-01/round-1/proposal.json:6",
+        "evals/discovery/idea-comparison-01/a/round-1/answer.json:6",
+        "evals/discovery/idea-comparison-01/b/round-1/idea-comparison.json:8"
+      ]
+    },
+    {
+      "finding": "aは未提出の複数案を検討し、bは調査から選択を変えた",
+      "evidence": [
+        "evals/discovery/idea-comparison-01/a/round-1/research.md:12",
+        "evals/discovery/idea-comparison-01/b/round-1/selection-update.json:8"
+      ]
+    },
+    {
+      "finding": "自然試行の有用性はFAILだが初手選択を原因と確定できない",
+      "evidence": [
+        "evals/discovery/natural-trial-01/final-evaluation/evaluation.md:8",
+        "evals/discovery/natural-trial-01/final-evaluation/evaluation.md:23"
+      ]
+    }
+  ],
+  "cause_hypothesis": "初回から長い棄却基準・事例・詳しい回答形式を同時提示することで、未解決の役割変化を発展させる前に既知の強い土台の説明可能な変更へ寄る可能性。因果は未確認。",
+  "alternative_explanations": [
+    "この入力では同じ強い土台を使うのが合理的",
+    "有望なカード集合が乏しい",
+    "担当の個体差"
+  ],
+  "fixed_contract": [
+    "目的と出力粒度はdocs/design.md:5-18のまま",
+    "全カード本文・生成先・両側の注記・合法性・ルールを保持",
+    "標準用途との差・失う役割・核不在・採用利益・既出調査・未確認の区別を維持",
+    "protocol.json:38-43の5項目の意味と閾値を維持",
+    "現在進行中の比較条件を変更しない"
+  ],
+  "execution_change": {
+    "initial_view": "目的、全採用可能カードと関連先、両側の注記、ルール・用語、既知構築と元資料",
+    "deferred_view": "長い設計原則全文と最終手順の回答例を短い着想の受領直後に同じ保存版から返す",
+    "automated": "資料分割、版の対応、受領後の全文返却、全文版に基づかない正式提出の拒否",
+    "still_ai": "意味解釈、着想生成、価値判断",
+    "scope": "提出前の資料順序のみ。生成数・評価数を増やす成果扱いはしない"
+  },
+  "next_measurement": {
+    "when": "現在の方式比較完了後の別試行",
+    "unit": "新しい入力1件の現行/二段表示の一組",
+    "controls": [
+      "同じカード・資料・目的",
+      "同じ総考案時間と最大ラウンド",
+      "同じ別評価条件",
+      "相互案を見ない"
+    ],
+    "primary": "独立判定された有用な最終種の数の差 >= 1",
+    "guardrails": [
+      "正しさと誠実さに悪化なし",
+      "過去成功例の経路を消さないことを採用前に確認"
+    ],
+    "secondary": [
+      "初案までの実時間",
+      "既存と異なる役割変化の中身"
+    ],
+    "not_success": [
+      "記録量",
+      "着想件数",
+      "別カード名",
+      "時間短縮だけ"
+    ]
+  },
+  "reject_if": [
+    "双方の有用案が0",
+    "有用案数の差が0",
+    "誤り・誠実さの悪化",
+    "全文を渡すと全部棄却",
+    "同じ未確認の詳述だけ",
+    "余計な工程が考案時間を消費",
+    "現行だけに有用案が残る"
+  ],
+  "success_regression_risk": {
+    "risk": "原則には途中でデッキ構成を変える成功経路や強い土台の小変更を残す知識もあり、遅延が想起を減らしうる",
+    "evidence": [
+      "docs/design.md:9",
+      "docs/design.md:258"
+    ],
+    "tested": false,
+    "rule": "既知土台や小変更を罰しない。過去成功例未確認なら本採用しない。"
+  },
+  "read_scope": {
+    "main": [
+      "docs/design.mdの§1,1.5,3.2,5,6,7の必要箇所",
+      "src/svdeck/discovery.pyの公開指示・資料・回答例・提案検査・CLI",
+      "natural-trial-01初回提案と最終評価",
+      "idea-comparison-01固定protocolとa/b初回考案記録"
+    ],
+    "support": [
+      "discovery_evidence.py:52-178",
+      "discovery_read.py:36-111"
+    ],
+    "limitations": "一括表示に途中切れ。必要箇所を補読したが全ファイル・全規則・§6全行の読了は主張しない。",
+    "not_read": [
+      "b第3回レビュー",
+      "a/bの初回以降の評価",
+      "過去成功例の全保存入力"
+    ]
+  },
+  "prohibited_actions_performed": [],
+  "artifacts": [
+    "/tmp/sv-discovery-bottleneck-audit-01/audit.md",
+    "/tmp/sv-discovery-bottleneck-audit-01/audit.json"
+  ]
+}
