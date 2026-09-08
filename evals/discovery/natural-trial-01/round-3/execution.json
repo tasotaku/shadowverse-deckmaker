@@ -1,0 +1,81 @@
+{
+  "task": "既存例2のT9接続の実利用・公開入口試行 round3",
+  "finished_at": "2026-09-08T09:42:44.138741+00:00",
+  "input_hash": "de9f5762b88186c292776b987871520b7dc34d48c08eef7fab50d1879e85597d",
+  "read_review": "/root/natural_trial_review_2 の8所見、次の問い1件、公式確認3件。公開入力packetにある実際の評価。",
+  "scope": "例2の終了盤面訂正と、残山札23枚を全て指定した引き順3組のT9接続。基準・原6枚・既存少数補充の分岐を区別。",
+  "new_work": [
+    "バリアを失ったルリアの残存を訂正し、T9に守護へ攻撃して場を空ける手順を追加。",
+    "不要札を世界へ固定し、全残山札、3回強化履歴、9枚/3枚の開始手札と追加ドローを指定。",
+    "同じ共通札順のAでは原案の18点決着、B/Cでは基準の8点決着と原案の全体処理・残手札を比較。",
+    "基準Aのミロク生成フェアリー4枚による世界の2枚ドローは0PPまで遅れること、別モードで守護3体を処理する選択も記録。",
+    "少数補充案でもGetを検索したA分岐は18点を再現し、原案の差は補充役への確定検索に限ると明記。"
+  ],
+  "decision": "停止理由を撤回して原案を限定改訂。採用推奨・勝率・独自性は確定しない。",
+  "public_operations": [
+    {
+      "command": "attach",
+      "input": "round-3-sources.json",
+      "result": "round-3-attach-result.json",
+      "added": [
+        "87640ab449d5ea1e2af53c95d05b7ba6a5e90985c52f2dbb8d20993b82e6c212",
+        "070e0eae6f35df3612540cdea7595a32cb5e1cc557dc11881088748788c2bb40"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": "packet --revision 1",
+      "result": "round-3-submit-packet.json",
+      "packet_hash": "f53d69924619701d652d03a962892e75a1122cc92d22439156e0d17aea4ca683",
+      "exit_code": 0
+    },
+    {
+      "command": "submit",
+      "input": "round-3-proposal.json",
+      "result": "round-3-submit-result.json",
+      "revision": 2,
+      "procedure": "未評価",
+      "value": "未評価",
+      "exit_code": 0
+    },
+    {
+      "command": "packet --revision 2 --stage review",
+      "result": "round-3-review-packet.json",
+      "packet_hash": "cd1ec12c183bd1e8c48dc0aaf87f9e4326eba9ce2b5db34006d2361506522295",
+      "source_count": 25,
+      "exit_code": 0
+    },
+    {
+      "command": "report",
+      "result": "round-3-report.json",
+      "exit_code": 0
+    }
+  ],
+  "additional_submissions_used": 1,
+  "operations_obstacles": [
+    "新しいCLI拒否・操作上の停止はなし。",
+    "大きな評価JSONを一度に表示した初回はツール表示が切れたため、新しい評価の所見・次の問い・Web確認を範囲を絞って読み直した。評価内容を未読のまま進めていない。",
+    "全文JSONの data.context / data の参照位置がREADMEと概要に記載されており、この回に参照位置の取り違えはなかった。"
+  ],
+  "limits": [
+    "3組は意図的に選んだ指定引き順で無作為標本ではない。",
+    "T1から局面への完全な到達履歴・頻度は未検証。",
+    "相手T9以降や全応手、原案B/Cの最適値は未検証。",
+    "ゲーム実測・勝率予測・新しい普及調査なし。"
+  ],
+  "code_or_db_edits": false,
+  "private_material_access": false,
+  "self_review_registered": false,
+  "wait_for_independent_review": true,
+  "artifacts": [
+    "round-3-comparison.json",
+    "round-3-decision.json",
+    "round-3-sources.json",
+    "round-3-attach-result.json",
+    "round-3-submit-packet.json",
+    "round-3-proposal.json",
+    "round-3-submit-result.json",
+    "round-3-review-packet.json",
+    "round-3-report.json"
+  ]
+}

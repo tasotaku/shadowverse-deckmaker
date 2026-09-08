@@ -1,0 +1,150 @@
+import json
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
+
+P = Path('/tmp/sv-natural-system-trial/rounds')
+packet = json.loads((P/'round-3-input-packet.json').read_text())
+cards = {c['card_id']: c for c in packet['data']['context']['cards']}
+def save(name, obj):
+    (P/name).write_text(json.dumps(obj, ensure_ascii=False, indent=2)+'\n')
+def rows(counts):
+    return [{'card_id': i, 'name': cards[i]['name'], 'count': n} for i,n in sorted(counts.items()) if n]
+def counts(name):
+    return Counter({r['card_id']:r['count'] for r in json.loads((P/name).read_text())})
+original = counts('round-2-original_six.json')
+one = counts('round-2-one_refill.json')
+base = one.copy(); base[10504110]-=1; base[10513310]+=1
+outside = Counter({10714110:1,10911110:3,10811130:2,10912110:3,10503210:2,10514120:2,10403120:2,10913110:1})
+assert sum(outside.values())==16
+held = Counter({10403120:1,10514120:1,10503210:1})
+rem = {}
+for name, deck, target in [('base',base,10814110),('original',original,10504110),('one_get',one,10504110),('one_setas',one,10814110)]:
+    assert sum(deck.values())==40 and all(deck[i]>=n for i,n in outside.items())
+    remain = deck-outside; assert sum(remain.values())==24
+    remain[target]-=1; remain=+remain
+    assert sum(remain.values())==23
+    rem[name]=remain
+
+# These are deliberately selected, paired draw orders, not random samples.
+# Every paired common slot is the same card; only five remaining replaced slots differ.
+slots=[]
+for i,n in sorted(rem['base'].items()):
+    for j in range(1,n+1): slots.append((f'{i}:{j}',i))
+mapping={'10814110:1':10504110,'10814110:2':10512120,'10913110:1':10512120,'10913110:2':10511310,'10513310:1':10511310}
+prefixes={
+ 'A_refill_finishes':['10503210:1','10514120:1','10914110:1','10712110:1','10712110:2','10913310:1','10814110:1','10714110:1','10513310:1'],
+ 'B_base_finishes':['10914110:1','10714110:1','10714110:2','10714120:1','10714120:2','10814110:1','10814110:2','10913110:1','10513310:1'],
+ 'C_small_draw_finishes':['10913110:2','10914110:1','10503210:1','10712110:1','10913310:1','10814110:1','10714120:1','10714110:1','10614120:1','10913110:1'],
+}
+slotdict=dict(slots)
+orders={}
+for label,prefix in prefixes.items():
+    assert len(set(prefix))==len(prefix)
+    order=prefix+[s for s,i in slots if s not in prefix]
+    b=[slotdict[s] for s in order]; a=[mapping.get(s,slotdict[s]) for s in order]
+    assert Counter(b)==rem['base'] and Counter(a)==rem['original']
+    # Same common slot order for the one-Get variant; replacing only Elegant.
+    os=[10504110 if s=='10513310:1' else slotdict[s] for s in order]
+    og=[10814110 if s=='10513310:1' else slotdict[s] for s in order]
+    assert Counter(os)==rem['one_setas'] and Counter(og)==rem['one_get']
+    orders[label]={k:[{'position':j+1,'card_id':i,'name':cards[i]['name']} for j,i in enumerate(v)] for k,v in [('base',b),('original',a),('one_get',og),('one_setas',os)]}
+
+comparison={
+ 'kind':'要約：既存比較例2だけをT9まで延長した、指定引き順3組の手計算。ゲーム実測・最適方策探索ではない。',
+ 'input_packet_hash':packet['sha256'],
+ 'read_review':{'author':'/root/natural_trial_review_2','input_packet_hash':'c2f049a230f3d5db1dccf9cae2904b6ac25c3f5f2354c7e8ed2a9a9aec31a69b','findings_read':'procedure/value/novelty 全8項目、next_questions 1件、web_checks 3件。既存例2の残存盤面と翌ターンの比較に限定。'},
+ 'provenance':{
+   'cards_rules_notes':f"公開packet {packet['sha256']} の data.context。保存時刻は {packet['data']['context']['captured_at']}。",
+   'base_list':'source_hash 3f5085652f7a6a84820c88f9127e0d93b3057d32041ce691d1268b18fe7ad622; GameWith https://gamewith.jp/shadowverse-wb/559139 の保存40枚。',
+   'full_list_comparisons':['f4e9afa968166ca058a1b258acd34f91a05873f8652bbf3bc710ac8c01ee2019','1496958afec5ef0d2eb2ff52857d885a3ebf8098ed20932da95e2138eb1b039d','4af7ea72153043b24ea2381e388b72aa0d12052416d623b836e39a8a23e07fb5'],
+   'previous_case':'bfcb12a466fc62ecf076967d06489210461f1c222a4a76368ec8f998f519ec8c の case_2。',
+   'web_this_round':'なし。新しい現環境・普及・能力変更を主張せず、保存本文と別評価の公式確認を使用。'
+ },
+ 'fixed_state':{
+   'time':'先攻T8通常ドロー後、ルリアを出す直前。自分12、相手18、PP8、EP0、SEP2。自分場は空。相手は未強化ストレイビーストマン2/2のみ。',
+   'hand':'未強化ルリア、未強化ミロク、大遊戯世界の3枚。「不要札」を世界と実名化した。世界は手札であり、場に既存世界はない。',
+   'deck_accounting':'両側40枚から同じ16枚が山札外、残り24枚。内3枚は上記手札、他13枚は使用済み等として山札外に固定。これからルリアが検索する1枚を除き、23枚が残る。山札外16枚の移動履歴をT1から再現した実測ではなく、枚数が矛盾しない指定境界状態である。',
+   'outside_deck_16':rows(outside),
+   'outside_hand_3':rows(held),
+   'other_outside_13':rows(outside-held),
+   'buff_history':'残り24枚の全フォロワーはT5/T6/T7終了時すべて山札内にいて、ダストデイズによる+1/+1を3回受けたと指定する。保持していたルリアとミロクは未強化。相手札は全て未強化。ダストデイズのクレストはT8開始に消え、追加効果を数えない。ササニドは双方とも山札内で未使用、追加信仰効果はない。',
+   'residual_after_search_23':{k:rows(v) for k,v in rem.items()},
+   'order_method':'A/B/Cは利益が正反対になる引き順を意図的に選んだ成立・反例であり、無作為標本ではない。同じ基準側23スロットを用い、原案は残るセタス2・舎弟頭2・優雅1の計5スロットだけを元案の差分札へ置換。残りの共通札順は両側同じ。T9通常ドローは原案が9番目、基準が1番目となる。全23枚の順番を下に保存。'
+ },
+ 't8_correction':{
+   'original':'ルリア8→7PP、ミロク3→4→6PP、SEPで5/5となり8PP、ゲテンオウ8で0PP。ルリア後手札3、ミロク後2、ゲテンオウを出して世界1を捨て、8枚引く。ミロクは敵2/2を攻撃破壊し1点、相手17。場はルリア1/1バリア・ミロク5/5超進化・ゲテンオウ11/11。EP0 SEP1。',
+   'base':'ルリア8→7PP、セタス7で0PP。セタスの能力で敵2/2を破壊し、他の自分のルリアは2/2バリアとなる。セタス7/9を超進化して10/12、疾走10点で相手8。手札はミロク・世界。EP0 SEP1。',
+   'opponent':'相手T8に、保持した未強化オルテニア8PPを超進化し10/10。新緑のフェアリー3体を出す。残り相手手札は慈顔の担い手と指定。相手に別の除去・疾走を足さない。',
+   'original_removal':'オルテニアの能力で11/11ゲテンオウを破壊。攻撃1で5/5ミロクを破壊し自分リーダーへ1点。攻撃2はルリアのバリアを消すだけで、ルリア1/1が残る。相手ターン中のオルテニア被ダメージは0。',
+   'base_removal':'能力でセタスを破壊。攻撃1でルリアのバリアを消し、攻撃2で2/2ルリアを破壊、1点。',
+   't9_start':'双方自分体力11、EP0 SEP1、PP9。相手はオルテニア10/10と自動進化した新緑フェアリー3/3守護3体。原案の相手体力17、自分場にルリア1/1（バリアなし）、手札は8+通常1=9、山札14。基準の相手体力8、自分場空、手札ミロク・世界+通常1=3、山札22。',
+   'clear_own_slot':'原案は最初にルリア1/1で守護3/3へ攻撃し、ルリアを失い、守護1体を3/2にする。PP・手札・コンボは変わらない。これで場0から始められる。生存打点を勝手にリーダーへ足したり、残る札を無条件に消したりしない。'
+ },
+ 'orders':orders,
+ 'paired_t9_cases':[
+   {
+    'id':'A_refill_finishes',
+    'original_hand':'世界、3回強化ミロク、マガチヨ、レイピア2枚、緋岸橙酔、ゲテンオウ、ダストデイズ、T9飛翔。緋岸はT8終了コンボ3で3PP。',
+    'original_line':'ルリアを守護へ攻撃して場を空ける→世界1→新たに引いたミロク3（FFで2PP回復）→マガチヨ3を超進化→レイピア2→レイピア2。PP9→8→5→7→4→2→0。コンボは各プレイで1,2,3,4,5。場は世界・ミロク・マガチヨ・レイピア2で5枚。手札9→8→7→6→5→4。SEP1→0。',
+    'original_result':'マガチヨの全体4点で守護3体を破壊し、オルテニアは10/6。8+5+5=18点が相手17へ通り、指定例ではT9に決着する。世界はマガチヨと2枚目レイピアで計2だけカウントが減り3で残るため追加ドローなし。残り手札4は緋岸・ゲテンオウ・ダスト・飛翔。',
+    'base_hand':'保持ミロク、保持世界、通常ドロー世界。',
+    'base_comparison':'この3枚からは疾走札を持たない。ミロクの2回の能力を両方フェアリー生成へ使えば、世界2枚とフェアリー4枚のプレイで最初の世界を割り、次のミロク・マガチヨを2枚引く手順もある。ただし世界2+ミロク3+フェアリー4=9PPでドロー時点0PP。ミロクを超進化させ、フェアリーを守護に当てて場を空ければ場5枚には収まるが、引いたマガチヨはこのターン使えない。PP回復を選ぶと生成数が足りず世界が割れない。別の対応としてミロクの両能力を総量3点の除去へ使い、守護2体へ各3点、超進化攻撃で残り守護1体を破壊すれば、3体の守護全てを処理して1点を得られる。原案だけが守護を処理できるという比較ではない。最大の超進化攻撃破壊1点だけでは相手8を削り切れない。世界の補充とミロクの除去を含めても、このターンの決着には届かない。',
+    'paired_inference':'この指定順では、確定で得た8枚が先行10点を放棄した差を取り返して決着へ変わる。基準側のT9決着は確認できず、カード生成と世界のドローを含む上記PP理由でも間に合わない。相手T9までの勝敗予測はしない。'
+   },
+   {
+    'id':'B_base_finishes',
+    'original_hand':'マガチヨ、ダストデイズ2、鹿王2、ゲテンオウ、和気藹々2、T9飛翔。',
+    'base_line':'通常ドローは3回強化マガチヨ。世界1→保持ミロク3で2PP回復→マガチヨ3を超進化。PP9→8→5→7→4。3プレイ、場3、手札3→2→1→0、SEP1→0。全体4点で守護3体を破壊、8点が相手8へ通りT9決着。世界はミロクとマガチヨの原コスト3一致でカウント4となり追加ドローなし。',
+    'original_line':'残存ルリアを守護へ攻撃→ダストデイズ4でオルテニアを選び-0/-10して破壊→飛翔2で残る守護へ総量3点を割り振りフェアリー1枚を得る→マガチヨ3を超進化。PP9→5→3→0。実際の3プレイにダストのコンボ+1が加わるためマガチヨ時コンボ4。手札9→8→8→7、場はダスト6/6とマガチヨ8/8の2枚、SEP1→0。',
+    'original_result':'マガチヨの全体4点で残り守護は消え、相手盤面を全て処理して8点、相手17→9。相手盤面0、自分体力11・場2・手札7（ダスト、鹿王2、ゲテンオウ、和気藹々2、生成フェアリー）。T9決着には至らないが、補充は次ターン用手札と全体処理へ変わった。基準がこのターンに決着する差を隠さない。',
+    'limits':'原案の全合法手順の最適性は証明していない。選んだ処理手順と残資源を確定したものであり、手札7枚を勝率や次の決着保証へ換算しない。'
+   },
+   {
+    'id':'C_small_draw_finishes',
+    'base_line':'通常ドロー舎弟頭。世界1→保持ミロク3で2PP回復→舎弟頭2を3プレイ目に出し、順番2,3のマガチヨ・世界を引く→マガチヨ3を超進化。PP9→8→5→7→5→2。手札3→2→1→0→2→1。場は世界・ミロク・舎弟頭・マガチヨの4枚。SEP1→0。守護3体を全体4点で処理し8点、相手8にT9決着。世界はカウント4で割れず、その追加ドローはない。山札22→20。',
+    'original_hand':'飛翔、マガチヨ、世界、レイピア、緋岸橙酔、ゲテンオウ、鹿王、ダストデイズ、T9ササニド。ササニドは使用しない。緋岸はT8に引いたため3PP。',
+    'original_line':'残存ルリアを守護へ攻撃→緋岸橙酔3でオルテニアを破壊し、順番10の和気藹々を1枚引く→世界1→マガチヨ3を超進化→レイピア2。PP9→6→5→2→0。緋岸は使って手札9→8、ドローで9に戻るため溢れない。続いて8→7→6。マガチヨは3プレイ目、場は世界・マガチヨ・レイピアの3枚、SEP1→0。山札14→13。',
+    'original_result':'守護3体を全体4点で破壊し、13点で相手17→4。相手盤面0、自分体力11、手札6（飛翔・ゲテンオウ・鹿王・ダスト・ササニド・和気藹々）。世界はどの後続札とも同じ元コストの別カードが場にないためカウント5。追加ドローは緋岸の1枚のみ。',
+    'paired_inference':'この順では基準の舎弟頭による2枚補充だけで決着に届く。原案は多く引いて全体処理と13点を得るが、この手順では基準の早い決着に及ばない。緋岸の追加1枚まで含めて比較し、札の取得率だけを効用とみなさない。'
+   }
+ ],
+ 'one_refill_comparison':{
+   'before_lyria':'添付の少数補充案は優雅1をゲテンオウ1へ交換する既存比較。指定山札外16枚は共通。ルリア直前24枚にセタス3・ゲテンオウ1が残り、検索対象4枚のうち補充役は1枚だけ。均等選出の仮定なら1/4だが、ゲーム実装での選出頻度は未観測。原案はゲテンオウ2だけなので残る限り補充役を引く。',
+   'A_when_get':'検索でゲテンオウを引く分岐では、Aの共通先頭5枚（世界・ミロク・マガチヨ・レイピア2）は全て同じ。T8補充、残存ルリアを捨てる攻撃、T9世界→ミロク→マガチヨ→レイピア2の18点が原案と同じPP・場5枚で成立する。セタスを残しても、同じ補充後の利益を得る分岐はある。',
+   'A_when_setas':'セタスを引く分岐ではT9の手札は基準Aと同じミロク・世界・世界で、先行打点8残しを当ターン中に詰め切る手順はない。',
+   'B_C':'セタスを引く分岐は基準B/Cと同じ先行10点と小分け補充で決着する。少数補充案の全分岐の優劣は計算していない。',
+   'conclusion':'原案の確定検索に固有なのは、この必要局面で補充分岐を確実に選べること。補充した後の18点や全体処理そのものは少数補充案でも成立し、6枠すべての必要性の証明にはならない。防御のみ案にゲテンオウはなく、同じ8枚補充はできない。'
+ },
+ 'revised_findings':[
+   '原6枚型の補充利益が残らないという停止理由は撤回する。例Aでは確定補充がT9決着へ、例B/Cでは相手盤面全処理と残手札へ変わる。',
+   'セタス全抜きは今も採用負担である。例B/Cでは基準が先行10点と1枚または2枚の取得でT9決着するため、原案の8枚補充が常に上回るとは言わない。',
+   '6枚配分を採用して人に試してもらう総合根拠は未確定。確定検索の局面内利益と、その局面へ到達する頻度、回復・除去枠の適量は別に残る。',
+   '新しい候補は増やさず、原案の運用仮説をT8の生存だけでなく、保持手札を捨てる代価とT9の攻撃・全体処理に分けて改訂する。'
+ ],
+ 'limitations':[
+   '意図的に選んだ3つの引き順で、頻度比較、標本調査、勝率予測、実対戦の観測はない。',
+   '山札外16枚の完全なT1からの使用・ドロー履歴は構成していない。境界状態の枚数整合と、そこからT9までの手順だけを比較した。',
+   '指定相手手札・オルテニアの指定除去順に限る。他の相手行動や、ルリア以外を残す除去順の全比較はしていない。',
+   '原案B/Cの手順は合法な全体処理・攻撃の例であり、全手順での最適値や必ず決着不能との判定ではない。',
+   '既出調査はround1の範囲のまま。現環境・独自性・試す価値を自己評価で確定しない。'
+ ]
+}
+save('round-3-comparison.json',comparison)
+decision={
+ 'actor':'/root/natural_trial_generator','action':'revise_existing_branch','input_packet_hash':packet['sha256'],
+ 'scope':'原6枚・ルリア確定補充枝。新しい別候補の探索なし。',
+ 'withdrawn':'round-2-decision.json に記した原6枚枝の停止。例2の手札差をT9へ追っていなかったため、利益が残らないという根拠を撤回する。',
+ 'new_evidence':'指定引き順Aでは原案が18点でT9決着し基準は世界の追加取得が0PPまで遅れる。B/Cでは基準が先に決着し原案にも全体処理と残手札の出力がある。少数補充案でもGet検索分岐はAを再現できる。',
+ 'decision':'原案の配分は仮置きのまま、T9の条件・相手盤面処理・残手札・小分け補充との優劣が反転する例を明記してrevision2を1件提出する。採用推奨、独自性認定、独立reviewは行わない。',
+ 'limits':comparison['limitations'],
+ 'remaining_questions':['指定状態へ到達する頻度と、確定補充が必要な頻度は未確認。','確定検索により増える補充機会が、基準B/Cの先行決着を失う負担を上回るかは未確定。','和気藹々2・飛翔2を含む6枠すべてが必要な証拠にはならない。'],
+ 'new_proposals_requested':1,'self_review_registered':False
+}
+save('round-3-decision.json',decision)
+now=datetime.now(timezone.utc).isoformat()
+sources=[]
+for filename,title in [('round-3-comparison.json','既存例2のT9延長：全残山札と指定引き順3組'),('round-3-decision.json','原6枚枝の停止撤回と限定改訂の判断')]:
+    sources.append({'title':title,'kind':'要約・指定状態からの手計算と判断（実対戦ではない）','location':str(P/filename),'observed_at':now,'content':(P/filename).read_text(),'limitations':comparison['limitations']})
+save('round-3-sources.json',{'sources':sources})
+print(json.dumps({'saved':['round-3-comparison.json','round-3-decision.json','round-3-sources.json'],'residual_counts':{k:sum(v.values()) for k,v in rem.items()},'paired_orders':{k:{v:len(w) for v,w in x.items()} for k,x in orders.items()}},ensure_ascii=False))
