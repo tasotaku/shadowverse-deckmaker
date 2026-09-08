@@ -98,6 +98,24 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --of
 後から加えた資料を引用する場合は、新しい `packet_hash` を使います。
 `report` には資料の一覧と、各提出・評価が見た `packet_hash` が残ります。
 
+比較前後の全40枚がある場合は、実際の交換札を計算できます。2件の資料を `attach` し、それぞれの
+`content` に `[{"card_id": 123, "count": 3, "name": "原資料の名前"}, ...]` のJSON配列を入れます。
+`name` は省略できます。省略記号は使わず、既知のカードIDと枚数で両側とも40枚すべてを記してください。
+
+```bash
+python -m svdeck.discovery compare data/discovery/trial-01 BEFORE_SOURCE_HASH AFTER_SOURCE_HASH
+```
+
+`before` / `after` に全札と種類別・コスト別の枚数、`delta.added` / `delta.removed` に実際の交換札が出ます。
+`delta.exchanged_count` は入れた総枚数（抜いた総枚数と同じ）で、`delta.type_net_change` は種類ごとの純増減です。
+例えばスペルの純増が8枚でも、同じ種類同士の交換があれば交換総数は8枚を超えます。
+元資料の名前は `recorded_name`、保存DBから取得した名前は `name` に分けて保持します。
+
+結果は元の2資料と保存DBの識別値を持つ追加資料として残り、返された `source_hash` で次の案・別評価から引用できます。
+同じ比較を繰り返しても資料は重複しません。欠けたリスト・総数の内訳だけ・重複ID・未知IDは拒否し、資料を作りません。
+現在の対象クラスやフォーマットで採用できない札も歴史比較から除外せず、各札の `eligibility_issues` に表示します。
+種類・コスト・採用上限は保存DBの時点の値です。過去の能力・合法性、元資料の実在、勝率や交換の強さは判定しません。
+
 途中の案では `plan` や `steps` を空にできます。未解決の条件は `questions` に残します。
 `roles` は、採用する札を `access: "deck"`、効果で得る札を `access: "effect"` として区別します。
 後者の `via` には、生成元の役割のカードIDを並べます。生成元も `roles` に記してください。
@@ -145,7 +163,7 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 ```bash
 python -m pip install pytest mypy
 python -m pytest -q tests --ignore=tests/temp
-python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/discovery_sources.py src/svdeck/explore.py
+python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/discovery_sources.py src/svdeck/discovery_compare.py src/svdeck/explore.py
 ```
 
 `tests/temp/` は過去の使い捨て確認用で、配布・回帰テストの対象に含めません。

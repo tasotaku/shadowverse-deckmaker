@@ -17,6 +17,7 @@ import sys
 from typing import Any
 
 from svdeck.db import DB_PATH
+from svdeck.discovery_compare import compare_decks
 from svdeck.discovery_evidence import (
     CLASSES, JSONDict, build_context, check_evidence, digest, read_object,
     read_only, search_questions, write_new,
@@ -182,6 +183,11 @@ def attach(session: Path, payload: JSONDict) -> JSONDict:
     # AI_NOTE: 有効な探索へ資料だけを追記する。改訂や評価の作成・昇格は行わない。
     _context(session)
     return save_sources(session, payload)
+
+
+def compare(session: Path, before_hash: str, after_hash: str) -> JSONDict:
+    # AI_NOTE: 保存DBの整合を確認してから2件の全リストを比較する。
+    return compare_decks(session, _context(session), before_hash, after_hash)
 
 
 def _history(session: Path, proposal: JSONDict | None) -> list[JSONDict]:
@@ -393,6 +399,10 @@ def main(argv: list[str] | None = None) -> int:
     add = sub.add_parser("attach", help="比較資料・観察のJSONを固定して追記")
     add.add_argument("session", type=Path)
     add.add_argument("sources", type=Path)
+    diff = sub.add_parser("compare", help="保存された全40枚の構築2件から交換札を集計")
+    diff.add_argument("session", type=Path)
+    diff.add_argument("before_source_hash")
+    diff.add_argument("after_source_hash")
     get = sub.add_parser("packet", help="AIへ渡す全文資料と次の問いを出力")
     get.add_argument("session", type=Path)
     get.add_argument("--revision", type=int)
@@ -416,6 +426,8 @@ def main(argv: list[str] | None = None) -> int:
             result = start(args.session, args.db, args.class_name, args.format, args.objective)
         elif args.command == "attach":
             result = attach(args.session, read_object(args.sources))
+        elif args.command == "compare":
+            result = compare(args.session, args.before_source_hash, args.after_source_hash)
         elif args.command == "packet":
             result = packet(args.session, args.revision, args.stage)
             # AI_NOTE: 資料生成は従来どおり。概要もreadも生成後に保存された同一版から出す。
