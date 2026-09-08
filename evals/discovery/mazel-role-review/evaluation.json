@@ -1,0 +1,201 @@
+{
+  "evaluated_at": "2026-09-08T08:16:22.371781+00:00",
+  "grader": "/root/system_eval_cases",
+  "verdict": "PASS",
+  "cases_passed": 2,
+  "cases_total": 2,
+  "scope": "既知のユーザーフィードバックと保存カード本文を含む、入力担当が意図的に作った2案の意味解釈検査。優先度ラベルの一致、自然発見、未知評価、歴史構築の完全再現ではない。",
+  "fixed_expected": {
+    "path": "/tmp/sv-mazel-role-eval/expected.json",
+    "sha256": "248c0208e6de76d6c45b9db28dd5be6ecea1800978b82256a037f4b9abcc8d6e",
+    "matches_pre_fixed_manifest": true,
+    "edited": false
+  },
+  "cases": {
+    "a": {
+      "verdict": "PASS",
+      "actual_labels": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "known"
+      },
+      "label_grading": "valueの特定ラベルを正解に固定せず、理由・資源・時間境界を採点。",
+      "checks": [
+        {
+          "id": "a.required.1",
+          "status": "PASS",
+          "reason": "前半の手札消費・攻撃・保持中のベイル軽減と、後半の置換先補充を構築の役割分担として認める。",
+          "response_pointer": "findings[0], findings[2]"
+        },
+        {
+          "id": "a.required.2",
+          "status": "PASS",
+          "reason": "切替前にベイルを使う役割は、置換後の元札の再取得を要しないと明記。引けないことを役割方針全体の反証にしていない。",
+          "response_pointer": "findings[1], findings[2]"
+        },
+        {
+          "id": "a.required.3",
+          "status": "PASS",
+          "reason": "保持中の4回離脱で8→4PP、4+4=8PP、通常進化権1。取得前の離脱への遡及、8回達成、最速・毎試合達成を主張しない。盤面2、手札3→2→1→2も一致。",
+          "response_pointer": "findings[0]"
+        },
+        {
+          "id": "a.required.4",
+          "status": "PASS",
+          "reason": "クレスト取得で山札を置換し、残りベイルは手札に残る。絶大の証明以外を捨てるのは終了時。",
+          "response_pointer": "findings[1]"
+        },
+        {
+          "id": "a.required.5",
+          "status": "PASS",
+          "reason": "直前2枚からベイル1枚を捨て、証明1+置換先6=7、純増5。上限9と未使用手札を失う負担を認識し、6枚を一律の純増にしない。終了時取得札を同ターン通常プレイに使わない。",
+          "response_pointer": "findings[1], findings[2]"
+        },
+        {
+          "id": "a.required.6",
+          "status": "PASS",
+          "reason": "初期40枚、早期保持・取得頻度、切替までの攻撃量、核なし時の手札切れ、失う枠は未確認として残す。developは配分検討の余地であり、現在の推薦・勝率保証にしていない。",
+          "response_pointer": "findings[2], findings[3], next_questions"
+        }
+      ],
+      "hard_errors_observed": [],
+      "evidence_audit": {
+        "all_quotes_exact_substrings_of_packet": true,
+        "quotes_checked": 14,
+        "packet_hash_matches_response": true,
+        "history_count": 0,
+        "previous_reviews_count": 0,
+        "relevant_set_non_token_rows": 77
+      },
+      "public_report": {
+        "status": "PASS",
+        "path": "/tmp/sv-mazel-role-eval/a/evaluation-public-report.json",
+        "public_command": "python -m svdeck.discovery report /tmp/sv-mazel-role-eval/a/session",
+        "revision_count": 1,
+        "review_count": 1,
+        "all_submitted_fields_equal": true,
+        "additional_storage_fields": [
+          "proposal_hash",
+          "revision"
+        ]
+      },
+      "files": {
+        "review-packet.json": "30c9a6b15ea4bef1132a1229145876db0cbdbe8e672d083a99c8a87dc5d39061",
+        "review-response.json": "e77d2a7166217e468ba3b969fc62bbb64a2c7ebdd9788116316aef281d5801a0",
+        "proposal.json": "860dbcd299917b8f4faa2dbda77d9eb9ad9655738912fa49a8cdcc3550442e35",
+        "session/context.json": "0de271b934a98112b2828b6744a00ae02a80120a168276edb90e51a2bdd74254",
+        "session/snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5"
+      }
+    },
+    "b": {
+      "verdict": "PASS",
+      "actual_labels": {
+        "procedure": "refuted",
+        "value": "drop",
+        "novelty": "unconfirmed"
+      },
+      "label_grading": "valueの特定ラベルを正解に固定せず、理由・資源・時間境界を採点。",
+      "checks": [
+        {
+          "id": "b.required.1",
+          "status": "PASS",
+          "reason": "山札を置換するクレスト本文と固定パックのkeywordを引用し、元山札の3枚目ベイルを通常6ドローで取得する主張を反証。",
+          "response_pointer": "findings[0]"
+        },
+        {
+          "id": "b.required.2",
+          "status": "PASS",
+          "reason": "保存版ベイルはcard_set_id10001、置換先定義は10003。保存された同パック77行にもベイルがない。元の採用3枚という条件は置換後の候補を保存しない。",
+          "response_pointer": "findings[0]"
+        },
+        {
+          "id": "b.required.3",
+          "status": "PASS",
+          "reason": "誤りを後半の新規取得に限定し、それ以前の手札推移は否定しない。マゼル処理後もベイルと証明の2枚があり、捨てるのは終了時と記述して、既手札と新規ドローを区別している。",
+          "response_pointer": "findings[0], findings[1]"
+        },
+        {
+          "id": "b.required.4",
+          "status": "PASS",
+          "reason": "残りベイルは終了時に捨て、証明+6枚=7、純増5とする。翌ターンへ当然保持しない。",
+          "response_pointer": "findings[1]"
+        },
+        {
+          "id": "b.required.5",
+          "status": "PASS",
+          "reason": "dropは後半のベイル取得を計上した提出案の範囲。前半ベイル/後半マゼルの役割分担自体は残し、カード全般や別方針まで禁止しない。",
+          "response_pointer": "findings[2]"
+        }
+      ],
+      "hard_errors_observed": [],
+      "evidence_audit": {
+        "all_quotes_exact_substrings_of_packet": true,
+        "quotes_checked": 12,
+        "packet_hash_matches_response": true,
+        "history_count": 0,
+        "previous_reviews_count": 0,
+        "relevant_set_non_token_rows": 77
+      },
+      "public_report": {
+        "status": "PASS",
+        "path": "/tmp/sv-mazel-role-eval/b/evaluation-public-report.json",
+        "public_command": "python -m svdeck.discovery report /tmp/sv-mazel-role-eval/b/session",
+        "revision_count": 1,
+        "review_count": 1,
+        "all_submitted_fields_equal": true,
+        "additional_storage_fields": [
+          "proposal_hash",
+          "revision"
+        ]
+      },
+      "files": {
+        "review-packet.json": "c79a01c4bb7b9157c514f01d26f8567f60e7876c095bb8433c4ae5520e351dce",
+        "review-response.json": "0116e2f4e0b24bfeff9364980b0e7c1219baefb83862f83a00021d666ba18dd1",
+        "proposal.json": "b780574bc4ce753ed109249bcafeb8676065908724f7634027afc03772f08b39",
+        "session/context.json": "b9cf1ee996c1ceeed4730b1c5b77de6124927ba6ffa29b13073c555374415c33",
+        "session/snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5"
+      }
+    }
+  },
+  "common_checks": [
+    {
+      "id": "common.1",
+      "status": "PASS",
+      "reason": "保存版のunlimited・エルフとして扱い、ベイルとニュートラルのマゼルを合法とする。証明は生成専用。rotation=falseを禁止としない。",
+      "response_pointer": "各findings[1]"
+    },
+    {
+      "id": "common.2",
+      "status": "PASS",
+      "reason": "マゼルnoteの2026-09-06補足を引用し、古い「任意カードコンボ不可」を全構築の否定へ広げない。相方ベイル・生成物のnoteが空であることも回答に明記し、保存資料と一致。",
+      "response_pointer": "各findings[1..3]"
+    },
+    {
+      "id": "common.3",
+      "status": "PASS",
+      "reason": "過去のTier経験を今回の成績として使っていない。aは不転用を明記し、bも実戦利益を未確認として留保する。",
+      "response_pointer": "a findings[3], b findings[2..3]"
+    },
+    {
+      "id": "common.4",
+      "status": "PASS",
+      "reason": "76枚定義と77行の不一致を保持し、除外1枚・抽選率・全構成を捏造していない。ベイル不在の確認とは区別。",
+      "response_pointer": "各findings[0..1]"
+    },
+    {
+      "id": "common.5",
+      "status": "PASS",
+      "reason": "a knownは既知noteが明記する役割分担の単位に限定。bは基礎用法の既知性と反証された固有取得主張を分ける。新発見・最新公式再確認の認定なし、web_checksは空。",
+      "response_pointer": "各findings[3]"
+    }
+  ],
+  "causal_interpretation": "aの役割配分は切替後の元札取得を必要としない。bだけがその取得を利益に追加しており、回答は山札置換の時点・供給集合を根拠にこの追加主張を反証した。打点0、未完成、40枚不足だけによる正例の一律棄却は観測されない。",
+  "limitations": [
+    "既知の説明と注記を入力に含む意味確認であり、自力で役割を発見した証拠ではない。自然な探索、未知の役割変更、実カード探索の発見力、方式比較は未確認。",
+    "正確な初期40枚、具体的交換枠、序盤攻撃量、取得頻度、ベイル保持中4回離脱の安定性、採用優先度、勝率・Tierは未確認。",
+    "76枚の用語定義と保存DBの同パック77行の不一致は未解決。除外される1枚、完全な置換先リスト、個別取得率を確定しない。",
+    "bの回答は置換後も残る既手札と終了時破棄を正しく分けるが、「置換後・終了前に既手札札を追加プレイする」行動そのものは明記も実施もない。この指定例は残PP0のため残ベイルを追加プレイできない。別資源条件でその行動を判断する能力まで検証済みとはしない。",
+    "ローカル保存版の照合のみ。最新公式情報の外部再確認や、過去の完全な能力・環境の復元は行っていない。"
+  ],
+  "modifications": "評価結果と公開reportの読出し控えのみ保存。コード、入力、expected、snapshot DBは変更しない。"
+}
