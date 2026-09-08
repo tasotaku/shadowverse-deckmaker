@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-09-08T10:43:02.584511+00:00",
+  "request": "ユーザーが別タスクで依頼した検証記録画面の本体統合",
+  "before_commit": "fc7e6d0d79ff9662ac7d948dadee313c450634fb",
+  "integrated_commit": "300f0dd19c6358a220c246a42d91fed6f8e329d5",
+  "source_commits": [
+    "6959ea9",
+    "0de0318"
+  ],
+  "changed_existing_src_files": [],
+  "added_src_files": [
+    "src/svdeck/data/experiment_catalog.json",
+    "src/svdeck/experiments.py",
+    "src/svdeck/journal_store.py",
+    "src/svdeck/journal_web/app.js",
+    "src/svdeck/journal_web/index.html",
+    "src/svdeck/journal_web/style.css"
+  ],
+  "paired_initial_inputs_still_identical": true,
+  "paired_initial_packet_sha256": "b7e8d2ffcbbb42d76f0bd5d835ec2ab6dec474b60f5c8465fc1391960beb144e",
+  "frozen_operator_readme_unchanged": true,
+  "game_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "existing_discovery_and_design_diff": "git diff fc7e6d0 -- discovery関連5モジュール/explore/docs/design.md は空",
+  "validation": {
+    "pytest_command": "/tmp/sv-system-venv/bin/python -m pytest -q tests --ignore=tests/temp",
+    "pytest_passed": 197,
+    "pytest_elapsed_seconds": 13.43,
+    "mypy_command": "/tmp/sv-system-venv/bin/python -m mypy src/svdeck/experiments.py src/svdeck/journal_store.py",
+    "mypy": "Success: no issues found in 2 source files"
+  },
+  "trial_control_note": "固定条件は途中の本体変更を障害修正に限っていたが、ユーザーが新たに依頼した独立の記録機能を比較中に統合した変更として記録する。既存の探索コード・評価条件・両方式の固定入力は変えていない。方式の改善効果へこの追加を加点しない。",
+  "live_record_updates": {
+    "natural-trial-01": 2,
+    "idea-comparison-01": 3
+  },
+  "delivery": "CLI再読込で実結果・時刻の保存を確認。HTTP APIから第2版と第1版の差分保持を確認済み。mainからの持続起動と最終画面確認は記録画面の担当が実施中。"
+}
