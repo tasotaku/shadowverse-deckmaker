@@ -18,17 +18,93 @@ async function api(path,options){const response=await fetch(path,options);const 
 function notify(message){document.querySelector('#notice').textContent=message;setTimeout(()=>document.querySelector('#notice').textContent='',5500);}
 async function load(){const data=await api('/api/experiments');items=data.items.sort((a,b)=>Number(['running','waiting'].includes(b.record.status))-Number(['running','waiting'].includes(a.record.status)));token=data.token;root=data.root;store=data.store;}
 function counts(){return {active:items.filter(x=>['running','waiting'].includes(x.record.status)).length,done:items.filter(x=>x.record.status==='completed').length,pending:items.filter(x=>x.record.decision.status==='unassessed').length};}
+const preview=document.querySelector('#summary-preview');
+let previewTrigger=null, previewPinned=false, previewTimer, restoringPreviewFocus=false;
+function summaryButton(text,label){
+  // AI_NOTE: 全文は表示中の行から読み、一覧の省略とキーボード操作を両立する。
+  return `<button type="button" class="summary-trigger" data-preview-label="${esc(label)}" aria-label="${esc(label)}の全文を表示" aria-haspopup="dialog" aria-controls="summary-preview" aria-expanded="false"><span class="summary">${esc(text)}</span><span class="summary-more" aria-hidden="true">全文</span></button>`;
+}
+function positionPreview(){
+  // AI_NOTE: 表の幅や行高を変えず、狭い画面でも小窓を画面内に収める。
+  if(preview.hidden||!previewTrigger)return;
+  const rect=previewTrigger.getBoundingClientRect(), margin=12, gap=8;
+  const width=preview.offsetWidth, viewportWidth=document.documentElement.clientWidth, viewportHeight=window.innerHeight;
+  let left, top, maxHeight=Math.min(560,viewportHeight-margin*2);
+  if(viewportWidth-rect.right-margin>=width+gap){left=rect.right+gap;top=rect.top;}
+  else if(rect.left-margin>=width+gap){left=rect.left-width-gap;top=rect.top;}
+  else{
+    left=Math.max(margin,Math.min(rect.left,viewportWidth-width-margin));
+    const below=viewportHeight-rect.bottom-gap-margin, above=rect.top-gap-margin;
+    maxHeight=Math.min(maxHeight,Math.max(above,below));
+    preview.style.maxHeight=`${maxHeight}px`;
+    top=below>=above?rect.bottom+gap:rect.top-gap-preview.offsetHeight;
+  }
+  preview.style.maxHeight=`${maxHeight}px`;
+  preview.style.left=`${Math.max(margin,left)}px`;
+  preview.style.top=`${Math.max(margin,Math.min(top,viewportHeight-preview.offsetHeight-margin))}px`;
+}
+function openPreview(trigger,pin=false){
+  // AI_NOTE: ホバーでは焦点を移さず、クリック・Enterなら固定して小窓内へ入る。
+  clearTimeout(previewTimer);
+  if(previewPinned&&previewTrigger!==trigger&&!pin)return;
+  const same=previewTrigger===trigger;
+  if(previewTrigger&&!same)previewTrigger.setAttribute('aria-expanded','false');
+  previewPinned=pin||(same&&previewPinned);
+  previewTrigger=trigger;
+  if(!same||preview.hidden){
+    document.querySelector('#preview-heading').textContent=trigger.dataset.previewLabel;
+    document.querySelector('#preview-trial').textContent=trigger.closest('tr').querySelector('.trial-title').textContent;
+    document.querySelector('#preview-text').textContent=trigger.querySelector('.summary').textContent;
+    document.querySelector('#preview-text').scrollTop=0;
+  }
+  preview.hidden=false;trigger.setAttribute('aria-expanded','true');positionPreview();
+  if(pin)document.querySelector('#preview-close').focus({preventScroll:true});
+}
+function closePreview(restoreFocus=false){
+  // AI_NOTE: 閉じた直後のフォーカス復帰で再表示しない。URLと一覧位置は変えない。
+  clearTimeout(previewTimer);
+  const trigger=previewTrigger;
+  if(trigger)trigger.setAttribute('aria-expanded','false');
+  preview.hidden=true;previewTrigger=null;previewPinned=false;
+  if(restoreFocus&&trigger?.isConnected){restoringPreviewFocus=true;trigger.focus({preventScroll:true});restoringPreviewFocus=false;}
+}
+function schedulePreviewClose(){
+  // AI_NOTE: 本文から小窓へ移動する隙間では消さず、読む間やキーボード操作中は保持する。
+  clearTimeout(previewTimer);
+  previewTimer=setTimeout(()=>{
+    if(previewPinned||preview.contains(document.activeElement)||previewTrigger===document.activeElement)return;
+    if(preview.matches(':hover')||previewTrigger?.matches(':hover'))return;
+    closePreview();
+  },220);
+}
+app.addEventListener('pointerover',e=>{const trigger=e.target.closest('.summary-trigger');if(trigger&&e.pointerType==='mouse'&&!trigger.contains(e.relatedTarget))openPreview(trigger);});
+app.addEventListener('pointerout',e=>{if(e.target.closest('.summary-trigger'))schedulePreviewClose();});
+app.addEventListener('focusin',e=>{const trigger=e.target.closest('.summary-trigger');if(trigger&&!restoringPreviewFocus)openPreview(trigger);});
+app.addEventListener('focusout',schedulePreviewClose);
+app.addEventListener('click',e=>{const trigger=e.target.closest('.summary-trigger');if(trigger)openPreview(trigger,true);});
+preview.addEventListener('pointerenter',()=>clearTimeout(previewTimer));
+preview.addEventListener('pointerleave',schedulePreviewClose);
+preview.addEventListener('focusout',schedulePreviewClose);
+document.querySelector('#preview-close').addEventListener('click',()=>closePreview(true));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!preview.hidden){e.preventDefault();closePreview(preview.contains(document.activeElement));}});
+document.addEventListener('pointerdown',e=>{if(!preview.hidden&&!preview.contains(e.target)&&!previewTrigger?.contains(e.target))closePreview();});
+window.addEventListener('resize',positionPreview);
+window.addEventListener('scroll',e=>{if(!preview.hidden&&!preview.contains(e.target))closePreview();},true);
+
 function renderRows(){
+  // AI_NOTE: 小窓で全文を読めるよう、要点・結果・採否の本文を同じ操作に揃える。
   const found=items.filter(x=>(filter==='all'||(filter==='active'?['running','waiting'].includes(x.record.status):filter==='past'?['completed','interrupted'].includes(x.record.status):x.record.category===filter))&&JSON.stringify(x.record).toLowerCase().includes(search.toLowerCase()));
   const body=document.querySelector('#trial-rows');if(!body)return;
-  body.innerHTML=found.map(x=>{const r=x.record;const stale=x.source_changes?.paths.length||x.source_changes?.error;return `<tr><td><div class="category">${labels[r.category]}</div><a class="trial-title" href="#experiment/${esc(r.id)}">${esc(r.title)}</a><div class="summary">${esc(r.summary)}</div>${stale?'<span class="badge deferred">原本に更新・確認事項あり</span>':''}</td><td>${badge(r.status)}<div class="current">${esc(current(r))}</div></td><td>${badge(r.result.outcome)}<div class="summary">${esc(r.result.summary)}</div></td><td>${badge(r.decision.status)}<div class="summary">${esc(r.decision.reason)}</div></td><td><span class="date">${date(x.saved_at).replace(' ','<br>')}</span><div class="muted">保存 · 第${x.revision}版</div></td></tr>`;}).join('')||'<tr><td colspan="5" class="empty">条件に一致する記録はありません。</td></tr>';
+  body.innerHTML=found.map(x=>{const r=x.record;const stale=x.source_changes?.paths.length||x.source_changes?.error;return `<tr><td><div class="category">${labels[r.category]}</div><a class="trial-title" href="#experiment/${esc(r.id)}">${esc(r.title)}</a>${summaryButton(r.summary,'試行・ねらい')}${stale?'<span class="badge deferred">原本に更新・確認事項あり</span>':''}</td><td>${badge(r.status)}<div class="current">${esc(current(r))}</div></td><td>${badge(r.result.outcome)}${summaryButton(r.result.summary,'試行で分かったこと')}</td><td>${badge(r.decision.status)}${summaryButton(r.decision.reason,'手法の採否')}</td><td><span class="date">${date(x.saved_at).replace(' ','<br>')}</span><div class="muted">保存 · 第${x.revision}版</div></td></tr>`;}).join('')||'<tr><td colspan="5" class="empty">条件に一致する記録はありません。</td></tr>';
   document.querySelector('#visible-count').textContent=`${found.length}件`;
   const c=counts();document.querySelectorAll('.stat b').forEach((el,i)=>{el.textContent=[items.length,c.active,c.done,c.pending][i];});
 }
 function renderList(){
+  // AI_NOTE: 絞り込みや手動更新で別の行を表示するときは小窓を閉じる。
+  closePreview();
   const c=counts();document.title='探索の記録 — Shadowverse Deckmaker';
   app.innerHTML=`<div class="title-row"><div><div class="eyebrow">RESEARCH JOURNAL</div><h1>何を試し、何が分かったか</h1><p class="muted">探索手法の進捗と、判断の根拠を積み重ねる。</p></div><button id="refresh">最新の記録を表示</button></div><div class="stats"><div class="stat"><b>${items.length}</b><span>記録した試行</span></div><div class="stat"><b>${c.active}</b><span>進行中・待機</span></div><div class="stat"><b>${c.done}</b><span>実施完了</span></div><div class="stat"><b>${c.pending}</b><span>手法の採否は未判定</span></div></div><div class="toolbar"><div class="filters">${[['all','すべて'],['active','進行中'],['past','過去の試行'],['method','探索手法'],['infrastructure','基盤検証']].map(([key,name])=>`<button data-filter="${key}" aria-pressed="${filter===key}">${name}</button>`).join('')}</div><label class="screen-reader" for="search">試行を検索</label><input id="search" class="search" placeholder="手法・結果・課題を検索" value="${esc(search)}"><span id="visible-count" class="muted"></span></div><div class="table-wrap"><table class="trial-table"><thead><tr><th>試行・ねらい</th><th>状態 / 現在工程</th><th>試行で分かったこと</th><th>手法の採否</th><th>最終更新 · 日本時間</th></tr></thead><tbody id="trial-rows"></tbody></table></div><p class="footer-note">表示は保存された進捗です。実行プロセスの稼働確認ではありません。30秒ごとに保存版を確認します。</p><details><summary>記録の保存先</summary><p class="muted">台帳: ${esc(store)}<br>原本の参照先: ${esc(root)}<br>ブラウザを閉じても記録と訂正履歴は残ります。</p></details>`;
-  renderRows();document.querySelector('#search').addEventListener('input',e=>{search=e.target.value;renderRows();});
+  renderRows();document.querySelector('#search').addEventListener('input',e=>{search=e.target.value;closePreview();renderRows();});
   document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;renderList();}));
   document.querySelector('#refresh').addEventListener('click',async()=>{await load();renderList();notify('保存済みの最新記録を表示しました');});
 }
@@ -60,7 +136,9 @@ function renderForm(){const r=editing.record;
   document.querySelectorAll('[data-remove-stage]').forEach(b=>b.addEventListener('click',()=>{keep();editing.record.stages.splice(Number(b.dataset.removeStage),1);const y=window.scrollY;renderForm();window.scrollTo(0,y);}));
   document.querySelector('#record-form').addEventListener('submit',async e=>{e.preventDefault();const button=document.querySelector('#save');button.disabled=true;document.querySelector('#form-error').textContent='';try{const r=readForm();const x=await api('/api/experiments',{method:'POST',headers:{'Content-Type':'application/json','X-Journal-Token':token},body:JSON.stringify({record:r,expected_revision:editing.revision,actor:e.target.elements.actor.value,reason:e.target.elements.reason.value})});editing=null;await load();location.hash=`experiment/${x.id}`;notify(`第${x.revision}版を保存しました`);}catch(err){document.querySelector('#form-error').textContent=err.message;button.disabled=false;}});
 }
-async function route(){clearInterval(refreshTimer);const [kind,id,rev]=location.hash.slice(1).split('/');try{if(kind==='edit'){editing=await api('/api/experiments/'+encodeURIComponent(id));editing.actor='';renderForm();}else if(kind==='new'){editing={revision:0,record:{id:'',title:'',category:'method',status:'planned',summary:'',method:'',procedure:'',inputs:'',criteria:'',result:{outcome:'unassessed',summary:'未判定',limitations:'未記録'},decision:{status:'unassessed',reason:'未判定'},started_at:null,ended_at:null,stages:[],evidence_paths:[]}};renderForm();}else{editing=null;await load();if(kind==='experiment')await renderDetail(id,rev);else{renderList();window.scrollTo(0,listScroll);}refreshTimer=setInterval(async()=>{try{await load();if(!location.hash){renderRows();}else if(location.hash.startsWith('#experiment/')){const latest=items.find(x=>x.id===id);const link=document.querySelector('#detail-refresh');if(latest&&link)link.textContent=`最新を表示（第${latest.revision}版）`;}}catch(err){notify('更新確認に失敗しました: '+err.message);}},30000);}}catch(err){app.innerHTML=`<div class="callout error"><h1>記録を表示できません</h1><p>${esc(err.message)}</p><a href="#">一覧に戻る</a></div>`;}}
+async function route(){
+  // AI_NOTE: 読んでいる小窓と焦点を自動更新で壊さず、画面遷移時には閉じる。
+  closePreview();clearInterval(refreshTimer);const [kind,id,rev]=location.hash.slice(1).split('/');try{if(kind==='edit'){editing=await api('/api/experiments/'+encodeURIComponent(id));editing.actor='';renderForm();}else if(kind==='new'){editing={revision:0,record:{id:'',title:'',category:'method',status:'planned',summary:'',method:'',procedure:'',inputs:'',criteria:'',result:{outcome:'unassessed',summary:'未判定',limitations:'未記録'},decision:{status:'unassessed',reason:'未判定'},started_at:null,ended_at:null,stages:[],evidence_paths:[]}};renderForm();}else{editing=null;await load();if(kind==='experiment')await renderDetail(id,rev);else{renderList();window.scrollTo(0,listScroll);}refreshTimer=setInterval(async()=>{try{await load();if(!location.hash){if(preview.hidden&&!document.activeElement?.closest('.summary-trigger'))renderRows();}else if(location.hash.startsWith('#experiment/')){const latest=items.find(x=>x.id===id);const link=document.querySelector('#detail-refresh');if(latest&&link)link.textContent=`最新を表示（第${latest.revision}版）`;}}catch(err){notify('更新確認に失敗しました: '+err.message);}},30000);}}catch(err){app.innerHTML=`<div class="callout error"><h1>記録を表示できません</h1><p>${esc(err.message)}</p><a href="#">一覧に戻る</a></div>`;}}
 window.addEventListener('hashchange',()=>{route();if(location.hash)window.scrollTo(0,0);});
 window.addEventListener('scroll',()=>{if(!location.hash)listScroll=window.scrollY;});
 window.addEventListener('beforeunload',e=>{if(editing){e.preventDefault();e.returnValue='';}});
