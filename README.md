@@ -101,7 +101,24 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --of
 
 資料追加は改訂や評価を作りません。追加前の `packet_hash` はその時点の資料を保ち、追加後も読出し・回答に使えます。
 後から加えた資料を引用する場合は、新しい `packet_hash` を使います。
-`report` には資料の一覧と、各提出・評価が見た `packet_hash` が残ります。
+`report` には資料の一覧と、各提出・評価へ渡した `packet_hash` が残ります。
+
+`report` の各改訂と、新しく作る改訂用の `packet` には `review_contexts` も入ります。
+評価を保存した内容の識別値 `review_hash` ごとに、入力版の `input_packet_hash`、その版に含まれていた
+`input_source_hashes`、現在の資料のうちその版に含まれない `additional_source_hashes`、その評価が残した
+`next_questions` を示します。資料の本文・表題は `source_hash` で `sources` と対応させられます。
+同じ入力版に対する異なる評価もすべて保持します。評価・対応情報の配列の並びは日時順や優先順位ではありません。
+
+```bash
+python -m svdeck.discovery packet data/discovery/trial-01 --summary
+python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH review_contexts --offset 0 --limit 20
+```
+
+ここでいう差分は評価の**入力版に含まれなかった資料**です。実際に読んだ証明や、評価を提出した後に追加された
+という時刻の証明ではありません。件数や新旧は評価の正しさを意味せず、資料追加だけで古い問いを解決済みにしません。
+古い `packet_hash` の読出しは当時の差分を保ちます。対応情報がない旧版では、この区分は空配列、概要の
+`full_packet_path` は `null` です。追加資料機能より前の評価入力は資料0件として扱います。
+別評価用の `packet --stage review` では過去の評価と対応情報は空配列です。
 
 比較前後の全40枚がある場合は、実際の交換札を計算できます。2件の資料を `attach` し、それぞれの
 `content` に `[{"card_id": 123, "count": 3, "name": "原資料の名前"}, ...]` のJSON配列を入れます。

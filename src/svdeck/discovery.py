@@ -122,6 +122,36 @@ def _reviews(session: Path, revision: int) -> list[JSONDict]:
     return values
 
 
+def _review_contexts(session: Path, reviews: list[JSONDict], sources: list[JSONDict], context_hash: str) -> list[JSONDict]:
+    # AI_NOTE: 評価の保存版を辿って資料差分を示す。新旧や資料件数から採否・問いの解決は決めない。
+    current = {source["source_hash"]: source for source in sources}
+    records = []
+    for prior in reviews:
+        key = prior.get("packet_hash")
+        if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key):
+            raise ValueError("評価のpacket_hashが不正です")
+        data = _read_envelope(session / "packets" / f"{key}.json")
+        if digest(data) != key:
+            raise ValueError("評価のpacket_hashと保存された資料の識別値が一致しません")
+        if (data.get("stage") != "review" or data.get("context_hash") != context_hash
+                or digest(data.get("context")) != context_hash
+                or type(data.get("revision")) is not int or data["revision"] != prior["revision"]
+                or digest(data.get("proposal")) != prior["proposal_hash"]):
+            raise ValueError("評価と入力資料の工程・改訂・固定資料が一致しません")
+        input_hashes = []
+        for source in _objects(data.get("sources", []), "評価資料のsources"):
+            source_hash = source.get("source_hash")
+            if (not isinstance(source_hash, str) or source_hash in input_hashes
+                    or current.get(source_hash) != source):
+                raise ValueError("評価の入力資料と保存された追加資料が一致しません")
+            input_hashes.append(source_hash)
+        records.append({"review_hash": digest(prior), "input_packet_hash": key,
+                        "input_source_hashes": input_hashes,
+                        "additional_source_hashes": [key for key in current if key not in input_hashes],
+                        "next_questions": _strings(prior.get("next_questions"), "評価のnext_questions")})
+    return records
+
+
 def start(session: Path, db: Path, class_name: str, format_name: str, objective: str, docs: Path = DOCS) -> JSONDict:
     # AI_NOTE: 本番DBを読み取り専用で複製し、本文と検索が同じ固定版を参照するようにする。
     _text(objective, "objective")
@@ -216,13 +246,15 @@ def _history(session: Path, proposal: JSONDict | None) -> list[JSONDict]:
 
 
 def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
-    # AI_NOTE: 改訂から不足を再検索し、全文と別評価を次の担当へ渡す。
+    # AI_NOTE: 改訂から不足を再検索し、全文と別評価、その評価へ渡した資料の版を次の担当へ渡す。
     context = _context(session)
     number = _latest(session) if revision is None else revision
     proposal = _revision(session, number)
     if stage not in ("develop", "review") or (stage == "review" and proposal is None):
         raise ValueError("reviewには既存の改訂番号が必要です")
     previous_reviews = _reviews(session, number) if stage == "develop" else []
+    sources = load_sources(session)
+    review_contexts = _review_contexts(session, previous_reviews, sources, digest(context))
     questions = list(proposal["questions"]) if proposal else []
     seen_questions = {q["question"] for q in questions}
     for prior in previous_reviews:
@@ -238,8 +270,9 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
             "instruction": REVIEW if stage == "review" else DEVELOP,
             "proposal": proposal, "previous_reviews": previous_reviews, "search": search,
+            "review_contexts": review_contexts,
             "history": _history(session, proposal),
-            "sources": load_sources(session),
+            "sources": sources,
             "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。"
                             "資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
             "response_example": _example(stage, number)}
@@ -374,19 +407,22 @@ def review(session: Path, response: JSONDict) -> JSONDict:
 
 
 def report(session: Path) -> JSONDict:
-    # AI_NOTE: 改訂ごとの評価と次の問いを並べ、未評価を合格に読み替えない。
+    # AI_NOTE: 各評価の入力版と現在の資料差分を並べ、資料追加だけで評価・未解決の問いを昇格させない。
     context = _context(session)
+    sources = load_sources(session)
     records = []
     for path in sorted(session.glob("revision-*.json")):
         proposal = _read_envelope(path)
+        reviews = _reviews(session, proposal["revision"])
         records.append({"revision": proposal["revision"], "parent_revision": proposal["parent_revision"],
                         "packet_hash": proposal["packet_hash"],
                         "title": proposal["title"], "hypothesis": proposal["hypothesis"],
                         "change": proposal["change"], "questions": proposal["questions"],
-                        "uncertainties": proposal["uncertainties"], "reviews": _reviews(session, proposal["revision"])})
+                        "uncertainties": proposal["uncertainties"], "reviews": reviews,
+                        "review_contexts": _review_contexts(session, reviews, sources, digest(context))})
     return {"objective": context["objective"], "captured_at": context["captured_at"],
             "format": context["format"], "class_name": context["class_name"], "revisions": records,
-            "sources": [{k: v for k, v in source.items() if k != "content"} for source in load_sources(session)],
+            "sources": [{k: v for k, v in source.items() if k != "content"} for source in sources],
             "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"}
 
 
