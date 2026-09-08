@@ -1,0 +1,158 @@
+{
+  "packet_hash": "f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd",
+  "kind": "別評価担当の指定状態の算術確認。対戦・到達確率の検証ではない。",
+  "checked_at": "2026-09-08T14:41:18.778060+00:00",
+  "events": [
+    {
+      "turn": 7,
+      "before_goddess": [
+        "F0",
+        "S0",
+        "G1",
+        "G2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "discarded": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "copy_targets": [
+        "F0",
+        "S0",
+        "G1"
+      ],
+      "after_copy": [
+        "F0",
+        "S0",
+        "G1",
+        "F0c7",
+        "S0c7",
+        "G1c7"
+      ],
+      "after_F_S_and_draw": [
+        "G1",
+        "F0c7",
+        "S0c7",
+        "G1c7",
+        "D1",
+        "D2"
+      ],
+      "remaining_pp": 1,
+      "ep": 0,
+      "sep": 2,
+      "board_condition": "T7空き3枠、T8/T9開始時既存2枚以下。相手ターンで満たされる証明はしていない。"
+    },
+    {
+      "turn": 8,
+      "before_goddess": [
+        "G1",
+        "F0c7",
+        "S0c7",
+        "G1c7",
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "discarded": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "copy_targets": [
+        "F0c7",
+        "S0c7",
+        "G1c7"
+      ],
+      "after_copy": [
+        "F0c7",
+        "S0c7",
+        "G1c7",
+        "F0c7c8",
+        "S0c7c8",
+        "G1c7c8"
+      ],
+      "after_F_S_and_draw": [
+        "G1c7",
+        "F0c7c8",
+        "S0c7c8",
+        "G1c7c8",
+        "D4",
+        "D5"
+      ],
+      "remaining_pp": 3,
+      "ep": 0,
+      "sep": 1,
+      "board_condition": "T7空き3枠、T8/T9開始時既存2枚以下。相手ターンで満たされる証明はしていない。"
+    },
+    {
+      "turn": 9,
+      "before_goddess": [
+        "G1c7",
+        "F0c7c8",
+        "S0c7c8",
+        "G1c7c8",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "discarded": [
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "copy_targets": [
+        "F0c7c8",
+        "S0c7c8",
+        "G1c7c8"
+      ],
+      "after_copy": [
+        "F0c7c8",
+        "S0c7c8",
+        "G1c7c8",
+        "F0c7c8c9",
+        "S0c7c8c9",
+        "G1c7c8c9"
+      ],
+      "after_F_S_and_draw": [
+        "G1c7c8",
+        "F0c7c8c9",
+        "S0c7c8c9",
+        "G1c7c8c9",
+        "D7",
+        "D8"
+      ],
+      "remaining_pp": 4,
+      "ep": 0,
+      "sep": 0,
+      "board_condition": "T7空き3枠、T8/T9開始時既存2枚以下。相手ターンで満たされる証明はしていない。"
+    }
+  ],
+  "comparison": {
+    "before_total": 40,
+    "after_total": 40,
+    "changes": [
+      {
+        "card_id": 10502110,
+        "name": "スターライトゴッデス",
+        "before": 0,
+        "after": 3
+      },
+      {
+        "card_id": 10834120,
+        "name": "災いの言霊・ジンジャー",
+        "before": 3,
+        "after": 0
+      }
+    ],
+    "illegal_after": []
+  },
+  "limits": [
+    "コピーの状態保持は固定packetのcard_noteに依拠",
+    "手札へコピーが元の順に追加される前提。実機の順序裁定は今回未確認",
+    "毎回の相手盤面・手札干渉・自分の生存は未検証",
+    "残りPPを追加行動へ使う場合は別途捨て札の残数を再計算する必要あり"
+  ]
+}

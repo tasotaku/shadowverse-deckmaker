@@ -1,0 +1,122 @@
+{
+  "author": "/root/sketch_trial_review_a_1",
+  "session": "/tmp/sv-sketch-first-01/a/session",
+  "packet_path": "/tmp/sv-sketch-first-01/a/round-1/review-packet.json",
+  "packet_hash": "f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd",
+  "revision": 1,
+  "dispatch_at": "2026-09-08T14:36:02.327678+00:00",
+  "started_at": "2026-09-08T14:36:26+00:00",
+  "started_at_precision": "初回指示読取と同じ最初のtool callの時計値。受信瞬間・文字読取開始秒そのものではない。",
+  "verification_finished_at": "2026-09-08T14:47:38.898174+00:00",
+  "response_saved_at": "2026-09-08T14:46:28.459875+00:00",
+  "saved_finished_at": "2026-09-08T14:47:38.911012+00:00",
+  "reading_scope": {
+    "operator_readme": "全文",
+    "review_instruction": "全文",
+    "proposal": "全項目、5手順、構築方針、4問、未確認事項",
+    "history": "空配列",
+    "search": "4問すべて。タグ未指定の一致なしを不存在の証拠にしない。",
+    "cards_read_ids": [
+      10031310,
+      10031320,
+      10131320,
+      10502110,
+      10531310,
+      10532120,
+      10534120,
+      10832110,
+      10832310,
+      10833110,
+      10833310,
+      10834110,
+      10834120,
+      10901110,
+      10931310,
+      10934120,
+      90031110,
+      90031120,
+      90031310,
+      90034340,
+      90034350,
+      90061130
+    ],
+    "card_text_scope": "22枚の本文・進化文・参照効果・注記を確認。直接採用の合法性は固定資料を使用。全212枚の走査は行っていない。",
+    "rules": "固定packet rules全文、キーワード8語",
+    "principles": "docs/design.mdの1〜558行中心。§1.5・§5・§6・§7とpacketの該当原則。初回全文出力で未表示の部分を読了扱いにしない。",
+    "common_rules": "AGENTS.mdとimport先10ファイル。初回出力切れ後、必要箇所を分割再読。",
+    "sources": "10件索引、204452資源計算・99ecWeb記録は全文。d6b3比較元・ec109比較後の40枚、be748比較計算の前後分布・交換札・限界。残る既存5構築資料の全精読なし。",
+    "known_decks": "6件の来歴・核カード同居を照合。Tierの再評価なし。"
+  },
+  "independence": {
+    "substantive_review_count": 1,
+    "prior_reviews_read": false,
+    "scoring_conditions_read": false,
+    "other_method_outputs_read": false,
+    "consulted_proposer": false,
+    "spawned_agents": false,
+    "source_or_db_modified": false
+  },
+  "read_failures": [
+    {
+      "operation": "初回cat全文・一括ルール読取",
+      "failure": "出力上限。必要部分を分割再読。全212枚読了とはしない。"
+    },
+    {
+      "operation": "jq ability_keywords[]をnameで絞る",
+      "exit_code": 5,
+      "failure": "Cannot index string with string name。objectと確認してwith_entriesへ訂正。"
+    }
+  ],
+  "local_draft_failures": [
+    {
+      "operation": "保存前の引用存在検査",
+      "exit_code": 1,
+      "failure": "99ec資料のlimitationsにある文をcontentの引用にしたためassertion失敗。該当引用を除いて保存。判断3項目は不変。公開reviewは未実行だった。"
+    }
+  ],
+  "public_commands": [
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review /tmp/sv-sketch-first-01/a/session /tmp/sv-sketch-first-01/a/round-1/review-response.json",
+      "started_at": "2026-09-08T14:46:43.831892+00:00",
+      "finished_at": "2026-09-08T14:46:43.965566+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-sketch-first-01/a/round-1/review-register.stdout.json",
+      "stderr": "/tmp/sv-sketch-first-01/a/round-1/review-register.stderr.txt"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/a/session",
+      "started_at": "2026-09-08T14:47:00.330073+00:00",
+      "finished_at": "2026-09-08T14:47:00.441818+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-sketch-first-01/a/round-1/review-report.json",
+      "stderr": "/tmp/sv-sketch-first-01/a/round-1/review-report.stderr.txt"
+    }
+  ],
+  "format_retries": 0,
+  "local_draft_retries": 1,
+  "remaining_unknowns": [
+    "初手からの到達・序盤防御・頻度",
+    "残りPPでの除去と次回捨て札の両立",
+    "相手盤面と勝ちへの接続",
+    "動画・画像・SNSを含む既出調査",
+    "最新公式合法性・状態保持・実機の追加順"
+  ],
+  "report_correspondence": {
+    "verified_at": "2026-09-08T14:47:38.898174+00:00",
+    "revision": 1,
+    "matching_reviews": 1,
+    "response_all_fields_equal": true,
+    "packet_hash": "f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd",
+    "review_hash": "ddb544dfd711bbf373d30c8569e1ed6eb83a9b9547ef3aef6d6336d6f6c93269",
+    "review_hash_recomputed": true,
+    "input_sources_count": 10,
+    "input_sources_equal_packet": true,
+    "additional_source_hashes": [],
+    "next_questions_equal": true,
+    "public_review_exit": 0,
+    "public_report_exit": 0
+  },
+  "assessment_finished_at": "2026-09-08T14:46:28.459875+00:00",
+  "elapsed_seconds_from_dispatch": 696.583334,
+  "public_review_attempts": 1
+}
