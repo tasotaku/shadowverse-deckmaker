@@ -56,10 +56,13 @@ DEADLINE_CUM_PP = _CUM_PP_BASE + 2  # 後攻エクストラPP楽観込み(36+2=3
 
 
 def cumulative_pp_for_turn(deadline_turn: int) -> int:
-    # AI_NOTE: explore.py Step8向けの公開ラッパ(挙動変更なし)。DEADLINE_CUM_PPはT8固定値だが、
-    # anchor_requireのdeadline_turnはアンカーごとに異なるため同じ式(T(T+1)/2+後攻エクストラ楽観+2)を
-    # 任意ターンで再利用する。cumulative_pp_for_turn(DEADLINE_TURN) == DEADLINE_CUM_PPで一致する。
-    return deadline_turn * (deadline_turn + 1) // 2 + 2
+    # AI_NOTE: 通常のPP増加と後攻の追加権だけの基準値。T5以前に2回目を使わず、最大PP10を守る。
+    # ランプ・回復・軽減を含む手順の上限や成立判定には使わない。T8の既存基準38とは一致する。
+    if deadline_turn < 1:
+        raise ValueError("期限ターンは1以上です")
+    growing_turns = min(deadline_turn, 10)
+    regular = growing_turns * (growing_turns + 1) // 2 + max(deadline_turn - 10, 0) * 10
+    return regular + 1 + int(deadline_turn >= 6)
 
 # AI_NOTE: 「ベース名(パラメータ)」形式のタグを分解する正規表現。パラメータの丸括弧は
 # 「墓場≥6」のように付かないタグもあるため、マッチしない場合はベース名=タグ全体・パラメータ無しとして扱う。

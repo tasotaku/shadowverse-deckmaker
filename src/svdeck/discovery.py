@@ -35,6 +35,8 @@ DEVELOP = """あなたはデッキの種を考案・改訂する担当です。�
 stepsには行動順、各時点のPP/手札/場/進化権/相手依存を書き、最高値を別々に足さないでください。
 未確認の効果・生存・引き込みはuncertaintiesに残します。着想段階では空欄や未解決を許します。
 生成物・進化・参照先・種族・公式キーワード定義と、主役・相方双方のnoteを読んでください。旧注記はその用途・時点の範囲で解釈します。
+rolesは採用札ならaccess="deck"、効果で得る札ならaccess="effect"とし、viaにその札を得る元の役割のcard_idを列挙します。
+生成先の役割も記せますが、viaの接続だけでは生成可能性を証明しません。実際の効果と順序をstepsで示します。
 引用は固定資料のskill_text/evolution_text/ref_effect_text/noteから正確に抜きます。
 公式定義はevidenceの{keyword: 定義名, quote: 正確な引用}で参照できます。
 タグ候補が0でも全文を読みます。既知デッキ同居なしは新規性の証明ではありません。
@@ -97,7 +99,10 @@ def _revision(session: Path, number: int) -> JSONDict | None:
         return None
     if number < 0:
         raise ValueError("改訂番号は0以上です")
-    return _read_envelope(session / f"revision-{number:04d}.json")
+    value = _read_envelope(session / f"revision-{number:04d}.json")
+    if value.get("revision") != number:
+        raise ValueError("改訂ファイルの番号と内容が一致しません")
+    return value
 
 
 def _latest(session: Path) -> int:
@@ -107,7 +112,11 @@ def _latest(session: Path) -> int:
 
 def _reviews(session: Path, revision: int) -> list[JSONDict]:
     # AI_NOTE: 指定改訂への評価だけを返す。親への合格を子へ継承しない。
-    return [_read_envelope(p) for p in sorted(session.glob(f"review-{revision:04d}-*.json"))]
+    values = [_read_envelope(p) for p in sorted(session.glob(f"review-{revision:04d}-*.json"))]
+    proposal = _revision(session, revision)
+    if any(v.get("revision") != revision or v.get("proposal_hash") != digest(proposal) for v in values):
+        raise ValueError("評価が現在保存されている改訂と一致しません")
+    return values
 
 
 def start(session: Path, db: Path, class_name: str, format_name: str, objective: str, docs: Path = DOCS) -> JSONDict:
@@ -158,7 +167,7 @@ def _example(stage: str, revision: int) -> JSONDict:
                 "next_questions": ["判断を変えうる次の問い"], "web_checks": []}
     return {**common, "parent_revision": revision, "title": "案の短い名前", "hypothesis": "どう勝ちや役割配分が変わるか",
             "change": "初回の着眼点、または前の案から変えたこと",
-            "roles": [{"card_id": 0, "role": "この案で担う役割"}],
+            "roles": [{"card_id": 0, "role": "この案で担う役割", "access": "deck"}],
             "steps": [{"action": "行動と前提", "resources": "前後のPP・手札・場・進化権", "result": "得るもの",
                        "evidence": [{"card_id": 0, "field": "skill_text", "quote": "本文の正確な引用"}]}],
             "plan": {"early": "序盤", "transition": "切替", "finish": "決着", "without_core": "核がない時",
@@ -181,7 +190,7 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
         conn.close()
     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
             "instruction": REVIEW if stage == "review" else DEVELOP,
-            "proposal": proposal, "previous_reviews": _reviews(session, number), "search": search,
+            "proposal": proposal, "previous_reviews": _reviews(session, number) if stage == "develop" else [], "search": search,
             "response_example": _example(stage, number)}
     result = _envelope(data)
     path = session / "packets" / f"{result['sha256']}.json"
@@ -196,6 +205,8 @@ def _response_packet(session: Path, response: JSONDict, stage: str) -> JSONDict:
     if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key):
         raise ValueError("packet_hashに受け取ったpacketのsha256を指定してください")
     data = _read_envelope(session / "packets" / f"{key}.json")
+    if digest(data) != key:
+        raise ValueError("packet_hashと保存された資料の識別値が一致しません")
     if data["context_hash"] != digest(_context(session)) or data["stage"] != stage:
         raise ValueError("回答の資料または工程が一致しません")
     _text(response.get("author"), "author")
@@ -207,13 +218,32 @@ def _validate_proposal(response: JSONDict, context: JSONDict) -> None:
     for field in ("title", "hypothesis", "change"):
         _text(response.get(field), field)
     cards = {c["card_id"]: c for c in context["cards"]}
-    seen = set()
+    seen: set[int] = set()
+    reachable: set[int] = set()
+    effect_roles: dict[int, set[int]] = {}
     for role in _objects(response.get("roles"), "roles"):
         cid = role.get("card_id")
-        if type(cid) is not int or cid not in cards or not cards[cid]["deck_eligible"] or cid in seen:
-            raise ValueError("rolesには採用可能なカードIDを重複なく指定してください。生成物はstepsの根拠に記します")
+        access = role.get("access", "deck")
+        if type(cid) is not int or cid not in cards or cid in seen or access not in ("deck", "effect"):
+            raise ValueError("rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです")
+        if access == "deck":
+            if not cards[cid]["deck_eligible"]:
+                raise ValueError("採用可能でない札です。効果で得る札はaccess=effectとviaで区別してください")
+            reachable.add(cid)
+        else:
+            via = role.get("via")
+            if not isinstance(via, list) or not via or any(type(v) is not int for v in via) or cid in via:
+                raise ValueError("効果で得る札のviaには、元の役割のcard_idを1件以上指定してください")
+            effect_roles[cid] = set(via)
         seen.add(cid)
         _text(role.get("role"), "role")
+    while True:
+        gained = {cid for cid, via in effect_roles.items() if via <= reachable} - reachable
+        if not gained:
+            break
+        reachable |= gained
+    if reachable != seen:
+        raise ValueError("viaが採用札からつながりません。元の役割の欠落または循環を確認してください")
     for step in _objects(response.get("steps"), "steps"):
         for field in ("action", "resources", "result"):
             _text(step.get(field), field)
@@ -253,6 +283,8 @@ def review(session: Path, response: JSONDict) -> JSONDict:
     # AI_NOTE: 根拠を伴う別評価を保存するが、欄の充足から強さ・発見を自動認定しない。
     data = _response_packet(session, response, "review")
     proposal = data["proposal"]
+    if digest(_revision(session, data["revision"])) != digest(proposal):
+        raise ValueError("評価対象の改訂が資料作成時から変わっています")
     if response["author"] == proposal["author"]:
         raise ValueError("別評価は提案担当と異なるセッションで行ってください")
     choices = {"procedure": ("supported", "conditional", "refuted", "unknown"),
@@ -263,6 +295,8 @@ def review(session: Path, response: JSONDict) -> JSONDict:
             raise ValueError(f"{axis} は {allowed} から選択してください")
     cards = {c["card_id"]: c for c in data["context"]["cards"]}
     findings = _objects(response.get("findings"), "findings")
+    if any(not isinstance(f.get("axis"), str) for f in findings):
+        raise ValueError("finding.axisはprocedure/value/noveltyの文字列です")
     if {f.get("axis") for f in findings} != set(choices):
         raise ValueError("procedure/value/noveltyの各判断に理由が必要です")
     for finding in findings:

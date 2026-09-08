@@ -228,3 +228,68 @@ def test_keyword_evidence_and_no_hit_question(session: Path) -> None:
     assert p['data']['search'][0]['tag_hits'] == []
     assert p['data']['search'][0]['question'] == '隠せるか'
     assert len(p['data']['context']['cards']) == 4
+
+
+def test_review_is_blind_to_other_assessments(session: Path) -> None:
+    submit(session, proposal(packet(session, 0, 'develop')))
+    first = packet(session, 1, 'review')
+    review(session, assessment(first))
+    second = packet(session, 1, 'review')
+    assert first['sha256'] == second['sha256']
+    assert second['data']['previous_reviews'] == []
+    assert packet(session, 1, 'develop')['data']['previous_reviews']
+
+
+def test_swapped_packet_file_cannot_redirect_review(session: Path) -> None:
+    submit(session, proposal(packet(session, 0, 'develop')))
+    first = packet(session, 1, 'review')
+    revised = proposal(packet(session, 1, 'develop'))
+    revised['hypothesis'] = '別の使い方'
+    submit(session, revised)
+    second = packet(session, 2, 'review')
+    path = session / 'packets' / f"{first['sha256']}.json"
+    path.write_text(json.dumps(second))
+    with pytest.raises(ValueError, match='packet_hash'):
+        review(session, assessment(first))
+    assert report(session)['revisions'][1]['reviews'] == []
+
+
+def test_collection_keyword_expands_other_class_cards_and_token_catalog(tmp_path: Path) -> None:
+    db = tmp_path / 'collections.db'
+    make_db(db)
+    conn = sqlite3.connect(db)
+    conn.execute("UPDATE card SET skill_text='デッキを【交換デッキ】にする。' WHERE card_id=1")
+    conn.execute("INSERT INTO ability_keyword VALUES ('交換デッキ','夜空の札束のカードでできたデッキ。','2026-09-08')")
+    conn.execute("INSERT INTO card_set VALUES (42,'夜空の札束')")
+    conn.execute("UPDATE card SET card_set_id=42 WHERE card_id=3")
+    conn.execute("INSERT INTO card(card_id,name,class_name,cost,is_token,is_include_rotation,deck_enabled_num,skill_text) "
+                 "VALUES (8,'集合名からは特定できない生成札','ドラゴン',0,1,1,0,'生成物の能力')")
+    conn.commit()
+    conn.close()
+    folder = tmp_path / 'collection-run'
+    start(folder, db, 'ウィッチ', 'rotation', '集合参照の資料検査')
+    context = packet(folder, 0, 'develop')['data']['context']
+    cards = {c['card_id']: c for c in context['cards']}
+    assert 3 in cards and not cards[3]['deck_eligible']
+    assert cards[1]['referenced_card_sets'] == [42]
+    assert 3 in cards[1]['related_card_ids']
+    assert 8 in cards and not cards[8]['deck_eligible']
+
+
+def test_generated_roles_can_follow_a_chain_without_becoming_deck_cards(session: Path) -> None:
+    data = proposal(packet(session, 0, 'develop'))
+    data['roles'] += [{'card_id': 5, 'role': '中継', 'access': 'effect', 'via': [1]},
+                      {'card_id': 6, 'role': '得られた札', 'access': 'effect', 'via': [5]}]
+    submit(session, data)
+    saved = packet(session, 1, 'review')['data']['proposal']
+    assert saved['roles'][2]['access'] == 'effect'
+    assert report(session)['revisions'][0]['reviews'] == []
+
+
+@pytest.mark.parametrize('routes', [([6], [5]), ([999], [5]), ([True], [5])])
+def test_generated_roles_reject_cycle_missing_origin_and_boolean_id(session: Path, routes: tuple[list[int], list[int]]) -> None:
+    data = proposal(packet(session, 0, 'develop'))
+    data['roles'] += [{'card_id': 5, 'role': '中継', 'access': 'effect', 'via': routes[0]},
+                      {'card_id': 6, 'role': '得られた札', 'access': 'effect', 'via': routes[1]}]
+    with pytest.raises(ValueError, match='via'):
+        submit(session, data)

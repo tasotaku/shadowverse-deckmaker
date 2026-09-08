@@ -42,6 +42,9 @@ python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-next.
 
 回答は資料の `data.response_example` の形式に従い、`packet_hash` へ資料の `sha256` を入れます。
 途中の案では `plan` や `steps` を空にできます。未解決の条件は `questions` に残します。
+`roles` は、採用する札を `access: "deck"`、効果で得る札を `access: "effect"` として区別します。
+後者の `via` には、生成元の役割のカードIDを並べます。生成元も `roles` に記してください。
+これで他クラスや生成専用カードの役割も表せますが、実際に生成できるかは本文と手順から別途検査します。
 `tag` は既存の要求タグまたは供給タグが分かる場合に指定し、分からなければ `null` にします。
 検索結果が0件でも、同じ資料の全文を使って考え続けられます。
 
@@ -62,6 +65,8 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 
 資料とDBは開始時点で固定します。開始後のDB更新はその探索へ混ざりません。
 新しいカードや注記でやり直す場合は別の保存先で開始してください。保存時刻は公式能力の適用日を意味しません。
+本文にカード名を列挙しない生成効果のため、資料には全生成専用カードと、用語定義が参照するパックの札も添えます。
+資料にある札をすべて生成できるわけではありません。生成される集合の内容は原文・定義で確認します。
 
 ## 既存の検索・データ入口
 
@@ -78,8 +83,10 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 
 ```bash
 python -m pip install pytest mypy
-python -m pytest -q tests
+python -m pytest -q tests --ignore=tests/temp
 python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/explore.py
 ```
+
+`tests/temp/` は過去の使い捨て確認用で、配布・回帰テストの対象に含めません。
 
 コードはMITライセンスです。カードデータの権利は各権利者に帰属します。

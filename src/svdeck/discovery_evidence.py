@@ -81,9 +81,10 @@ def _card_rows(conn: sqlite3.Connection, class_name: str, format_name: str) -> l
     return result
 
 
-def _related_cards(cards: list[JSONDict]) -> list[JSONDict]:
-    # AI_NOTE: 採用可能札から名前参照を再帰的に辿る。関連札は採用合法性と分けて保持する。
-    selected = {c["card_id"] for c in cards if c["deck_eligible"]}
+def _related_cards(cards: list[JSONDict], keywords: dict[str, str], sets: dict[int, str]) -> list[JSONDict]:
+    # AI_NOTE: 名前参照と用語定義のパック参照を辿り、集合名だけの生成を取りこぼさぬよう全トークンも添える。
+    # 資料への包含は生成可能性の証明ではない。採用合法性とは分けて保持する。
+    selected = {c["card_id"] for c in cards if c["deck_eligible"] or c["is_token"]}
     names: dict[str, list[int]] = {}
     for card in cards:
         names.setdefault(card["name"], []).append(card["card_id"])
@@ -92,8 +93,19 @@ def _related_cards(cards: list[JSONDict]) -> list[JSONDict]:
     while pending:
         card = by_id[pending.pop()]
         text = "\n".join(card[field] for field in TEXT_FIELDS[:3])
+        definitions: set[str] = set()
+        while True:
+            found = {title for title in keywords if title in text} - definitions
+            if not found:
+                break
+            definitions |= found
+            text += "\n" + "\n".join(keywords[title] for title in sorted(found))
+        referenced_sets = {sid for sid, name in sets.items() if name and name in text}
+        collection = {c["card_id"] for c in cards if c["card_set_id"] in referenced_sets}
         related = sorted({cid for name, ids in names.items() if name and name in text
-                          for cid in ids if cid != card["card_id"]})
+                          for cid in ids if cid != card["card_id"]} | (collection - {card["card_id"]}))
+        card["referenced_keywords"] = sorted(definitions)
+        card["referenced_card_sets"] = sorted(referenced_sets)
         card["related_card_ids"] = related
         for cid in related:
             if cid not in selected:
@@ -128,7 +140,9 @@ def build_context(conn: sqlite3.Connection, class_name: str, format_name: str,
     # AI_NOTE: 対象全文・ルール・関連する判定原則を一つの固定入力にまとめる。
     if class_name not in CLASSES or format_name not in ("rotation", "unlimited"):
         raise ValueError("対応するクラスとフォーマットを指定してください")
-    cards = _related_cards(_card_rows(conn, class_name, format_name))
+    keywords = dict(conn.execute("SELECT title,text FROM ability_keyword ORDER BY title"))
+    sets = dict(conn.execute("SELECT id,name FROM card_set ORDER BY id"))
+    cards = _related_cards(_card_rows(conn, class_name, format_name), keywords, sets)
     if not any(c["deck_eligible"] for c in cards):
         raise ValueError("採用可能なカードがありません")
     design = (docs / "design.md").read_text(encoding="utf-8")
@@ -138,8 +152,9 @@ def build_context(conn: sqlite3.Connection, class_name: str, format_name: str,
             "captured_at": captured_at, "freshness": "ローカルDBの保存版。取得時刻は能力の適用日や公式再確認日ではない。",
             "cards": cards, "known_decks": _known_decks(conn, cards, format_name),
             "rules": (docs / "rules.md").read_text(encoding="utf-8"), "principles": principles,
-            "ability_keywords": {title: text for title, text in conn.execute(
-                "SELECT title,text FROM ability_keyword ORDER BY title")},
+            "ability_keywords": keywords, "card_sets": sets,
+            "related_coverage": "名前参照、公式用語定義のパック参照、全生成専用カードを収録。"
+                                "資料にあることは、その手順で生成できる証明ではない。集合の内容は原文・定義で確認する。",
             "fulfillment_map": read_object(FULFILLMENT_MAP_PATH)}
 
 
