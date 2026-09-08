@@ -1,0 +1,114 @@
+{
+  "verdict": "PASS",
+  "scope": "初回の仮想因果検査1組。数値一条件変更への反応を検査。実カード発見力を証明しない。",
+  "evaluator": "/root/system_eval_cases",
+  "independence": "入力と正解の作成者が採点。探索担当とは別。今回の評価では公開packetと提案を先に確認し、2件のreviewを公開CLIへ保存した後に封印正解ファイルを再読して照合した。正解作成者のため内容を全く知らない盲検評価者ではない。",
+  "oracle_path": "/tmp/sv-discovery-heldout/oracle.json",
+  "oracle_sha256": "d1aa7eb456d1f2b4231e225c9601d6cbf1a96e8c016961ff74b05b3261628872",
+  "input_manifest": {
+    "purpose": "仮想因果検査。実カード発見力を証明しない。",
+    "class_name": "ウィッチ",
+    "format": "rotation",
+    "direct_copy_limit": 3,
+    "token_copy_limit": 0,
+    "input_card_count": 9,
+    "cases": [
+      {
+        "case_id": "case-a",
+        "files": {
+          "cards.db": {
+            "path": "/tmp/sv-discovery-heldout/case-a/cards.db",
+            "sha256": "821c42296a05965bc8d2da9e07d3a2103039295a3e75375ac085cc55a61582f3",
+            "bytes": 94208
+          },
+          "objective.txt": {
+            "path": "/tmp/sv-discovery-heldout/case-a/objective.txt",
+            "sha256": "36821ea511b4da28628c95858f6f58be3229041a2744f286dfd94ccc6a4bfd53",
+            "bytes": 2706
+          }
+        }
+      },
+      {
+        "case_id": "case-b",
+        "files": {
+          "cards.db": {
+            "path": "/tmp/sv-discovery-heldout/case-b/cards.db",
+            "sha256": "7717e89c34f44629e28dbded7eb3717aadf9ea68fa609af7c413cc6ee5f4422a",
+            "bytes": 94208
+          },
+          "objective.txt": {
+            "path": "/tmp/sv-discovery-heldout/case-b/objective.txt",
+            "sha256": "36821ea511b4da28628c95858f6f58be3229041a2744f286dfd94ccc6a4bfd53",
+            "bytes": 2706
+          }
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "a",
+      "revision": 1,
+      "causal_verdict": "PASS",
+      "objective_damage": 13,
+      "oracle_max_damage": 13,
+      "proposal_max_damage": 13,
+      "four_classification": {
+        "procedure": "指定された13点手順は成立",
+        "continuation": "固定課題の成功例として保持。初回で解決済みなので追加改訂不要",
+        "recommendation": "実戦推薦は評価対象外・未確認",
+        "discovery": "実カードの新発見は評価対象外。novelty=unconfirmed"
+      },
+      "public_review": {
+        "procedure": "supported",
+        "value": "unknown",
+        "novelty": "unconfirmed",
+        "revision": 1
+      },
+      "packet_sha256": "3e83764dd5dd0d48edadbbd4c08d0d89fd363f680301245e1731b72051963786",
+      "review_file": "/tmp/sv-discovery-public-trial/a-independent-review.json",
+      "public_report_file": "/tmp/sv-discovery-public-trial/a-public-report.json",
+      "questions_count": 0
+    },
+    {
+      "case": "b",
+      "revision": 1,
+      "causal_verdict": "PASS",
+      "objective_damage": 13,
+      "oracle_max_damage": 8,
+      "proposal_max_damage": 8,
+      "four_classification": {
+        "procedure": "提出された8点手順と上限説明は成立。目的の13点手順は不成立",
+        "continuation": "この固定集合で13点を狙う枝は終了。他用途は否定しない",
+        "recommendation": "13点目的の当該枝は見送り。実戦デッキ推薦は評価対象外",
+        "discovery": "実カードの新発見は評価対象外。novelty=unconfirmed"
+      },
+      "public_review": {
+        "procedure": "supported",
+        "value": "drop",
+        "novelty": "unconfirmed",
+        "revision": 1
+      },
+      "packet_sha256": "94987c99a4aa1aa3c77aadd10f570315cac536030bb29bca569f45862bb476b2",
+      "review_file": "/tmp/sv-discovery-public-trial/b-independent-review.json",
+      "public_report_file": "/tmp/sv-discovery-public-trial/b-public-report.json",
+      "questions_count": 0
+    }
+  ],
+  "observations": [
+    "正例は守護生成→手札へ戻す条件供給→不足1PPを軽減で補う因果を説明した。",
+    "軽減対象は正解の例示と異なるが、事前に許容した合法な別解で9PP・13点を再現した。",
+    "対照は生成物の元コストが12から9へ変わったことを読み、同じ13点結論を再生せず最大8点を示した。",
+    "両案はPP・手札・場・生成先・進化権を整合させ、通常打点を条件打点へ加算しなかった。",
+    "両案は同時所持や序盤の未検証を明示し、架空カードの実戦強度・新規性を主張しなかった。",
+    "両件のreview保存後にpublic reportから保存済み評価を確認した。"
+  ],
+  "unverified": [
+    "実カードで独自かつ試す価値のあるデッキを発見できるか",
+    "探索方法の従来法に対する優位",
+    "複数改訂や不足に応じた再検索が結果を改善するか（両方revision 1・questions 0）",
+    "実戦勝率・Tier・取得頻度・実戦推薦の妥当性",
+    "別の未知課題にも同じ結果が再現するか"
+  ],
+  "code_or_db_changed": false
+}

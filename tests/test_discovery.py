@@ -98,6 +98,8 @@ def test_partial_idea_round_trip_search_revision_review(session: Path) -> None:
     assert review(session, judged)['value'] == 'develop'
     next_packet = packet(session, 1, 'develop')
     assert next_packet['data']['previous_reviews'][0]['value'] == 'develop'
+    assert any(q['question'] == '継続して得るものは何か' and q['origin'] == 'review'
+               for q in next_packet['data']['search'])
     second = {**first, 'packet_hash': next_packet['sha256'], 'parent_revision': 1,
               'change': '生存条件を補助の採用で変える',
               'roles': first['roles'] + [{'card_id': 2, 'role': '継続のための保護'}]}

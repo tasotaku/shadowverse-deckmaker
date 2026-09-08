@@ -1,0 +1,104 @@
+{
+  "purpose": "仮想因果検査。実カード発見力を証明しない。",
+  "unseen_scope": "未公開の具体的な仮想入力。歴史事例とは別だが構造的知識を除去した証明ではない。",
+  "case-a": {
+    "lethal_exists": true,
+    "guaranteed_damage_max": 13,
+    "necessary_role_chain": [
+      "場へ出す守護供給を、高い元コストを持つ手札の取得源として使う",
+      "手札へ戻す供給が必要になる",
+      "召喚4+戻す2+条件打点4の10PPが9PPを越えるため軽減を足す",
+      "軽減札は1PP支出して2PP節約し、全体9PPで成立する"
+    ],
+    "one_valid_sequence": [
+      {
+        "card_id": 94070004,
+        "target": 94070002,
+        "paid": 1,
+        "pp_after": 8,
+        "hand_count_after": 7,
+        "board_count_after": 0,
+        "enemy_hp_after": 13
+      },
+      {
+        "card_id": 94070002,
+        "paid": 2,
+        "pp_after": 6,
+        "hand_count_after": 6,
+        "board_count_after": 1,
+        "enemy_hp_after": 13
+      },
+      {
+        "card_id": 94070003,
+        "target": 94070005,
+        "paid": 2,
+        "pp_after": 4,
+        "hand_count_after": 6,
+        "board_count_after": 0,
+        "enemy_hp_after": 13
+      },
+      {
+        "card_id": 94070001,
+        "paid": 4,
+        "pp_after": 0,
+        "hand_count_after": 5,
+        "board_count_after": 0,
+        "enemy_hp_after": 0
+      }
+    ],
+    "alternate_valid": "軽減対象を紙梯子または金環の対句にする等、合法な別順序も認める。必要4種類は変わらない。",
+    "ordinary_comparison": "条件を使わない金環4点+採寸4点は計8点。守護の場出しを普通に使うだけでは13へ届かない。",
+    "must_not_drop_reasons": [
+      "生成専用カードだから場から手札へ取得不可と扱う",
+      "12PPフォロワーは出せないため存在条件にも使えないと扱う",
+      "実戦未検証だけで固定手順を否定する"
+    ]
+  },
+  "case-b": {
+    "lethal_exists": false,
+    "guaranteed_damage_max": 8,
+    "single_change": {
+      "table": "card",
+      "card_id": 94070005,
+      "column": "cost",
+      "from": 12,
+      "to": 9
+    },
+    "original_route": "番兵を手札へ戻すところまでは成立するが元コスト12以上が満たされず、金環は4点になる。",
+    "max_witness": [
+      {
+        "card_id": 94070001,
+        "paid": 4,
+        "damage": 4
+      },
+      {
+        "card_id": 94070006,
+        "paid": 4,
+        "damage": 4
+      }
+    ],
+    "upper_bound": "唯一の相手リーダーへのダメージは各1枚の金環と採寸。それぞれ4点。他の能力にはダメージも疾走も追加取得もない。初期手札・生成物に元コスト12以上が存在しない。"
+  },
+  "pass_requirements": [
+    "case-aで固定状態の合法な13点手順を示す。成立と新規性/実戦強度を分ける。",
+    "case-bで同じ13点結論を再生せず、原手順の手札条件が破綻すると指摘する。",
+    "生成先、戻す操作の手札増減、軽減のコスト支出を正しく数える。",
+    "役割変更→必要な供給→PP不足の解消という因果を説明できる。初回で解けた場合に不要な反復を要求しない。",
+    "型検索を行う場合は全文の条件確認まで行い、ヒットしただけで成立扱いしない。",
+    "架空カードについてWeb既出や公式照合を捏造しない。"
+  ],
+  "failure_modes": [
+    "2枚の素の打点を加算せず単体だけを見てcase-aを落とす等の未探索",
+    "場の番兵を手札にあると扱う",
+    "減少2だけを数えて軽減札1PPの支払いを忘れる",
+    "case-bの元コストをcase-aの12として数える",
+    "13点と通常4点を合計17点にする",
+    "場へ出したターンに守護だけの番兵で相手リーダーを攻撃する",
+    "copy_limit3を根拠に初期手札へ同じスペルを追加する"
+  ],
+  "grading": {
+    "causal_fixed_case": "PASS iff both inputs satisfy the relevant requirements; otherwise FAIL or 未実行.",
+    "multi_revision_path": "改訂の実行有無は別記録。解けたのに架空の不足を作った場合は工程品質の問題。",
+    "real_card_discovery": "評価対象外"
+  }
+}

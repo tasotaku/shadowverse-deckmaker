@@ -183,14 +183,22 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
     proposal = _revision(session, number)
     if stage not in ("develop", "review") or (stage == "review" and proposal is None):
         raise ValueError("reviewには既存の改訂番号が必要です")
+    previous_reviews = _reviews(session, number) if stage == "develop" else []
+    questions = list(proposal["questions"]) if proposal else []
+    seen_questions = {q["question"] for q in questions}
+    for prior in previous_reviews:
+        for question in prior["next_questions"]:
+            if question not in seen_questions:
+                questions.append({"question": question, "tag": None, "why": "別評価で残った問い", "origin": "review"})
+                seen_questions.add(question)
     conn = read_only(session / "snapshot.db")
     try:
-        search = search_questions(conn, context, proposal["questions"] if proposal else [])
+        search = search_questions(conn, context, questions)
     finally:
         conn.close()
     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
             "instruction": REVIEW if stage == "review" else DEVELOP,
-            "proposal": proposal, "previous_reviews": _reviews(session, number) if stage == "develop" else [], "search": search,
+            "proposal": proposal, "previous_reviews": previous_reviews, "search": search,
             "response_example": _example(stage, number)}
     result = _envelope(data)
     path = session / "packets" / f"{result['sha256']}.json"
