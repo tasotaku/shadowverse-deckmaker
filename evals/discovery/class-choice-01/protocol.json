@@ -1,0 +1,227 @@
+{
+  "status": "fixed_before_natural_trial",
+  "recorded_at": "2026-09-09T02:16:43.329348+00:00",
+  "hypothesis": "A single frozen context can keep alternative class foundations visible until the proposal chooses a legal class. It may help a neutral-card role develop in a suitable foundation; this is not an established cause of prior failures.",
+  "current_constraint": "discovery start requires one class before context generation. Separate sessions and manual cross-class reading are already possible.",
+  "prototype": "/tmp/sv-class-choice-prototype",
+  "branch": "codex/discovery-class-choice-prototype",
+  "base_commit": "39a98e61373c8d8401d6a6f737b2aafb6f6cf7ae",
+  "source_db": "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+  "source_db_sha256": "47ca643684b02eda1763d24728b730865b6dd629f3d0ec9043a6762ef1afdbdd",
+  "counts": [
+    {
+      "class_name": "ウィッチ",
+      "rotation_eligible": 68,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "エルフ",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ドラゴン",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ナイトメア",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ニュートラル",
+      "rotation_eligible": 46,
+      "unlimited_eligible": 69
+    },
+    {
+      "class_name": "ネメシス",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ビショップ",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ロイヤル",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    }
+  ],
+  "known_example_limit": "Mazelbeinn 10304110 is not rotation-eligible in this snapshot. It motivates class choice but is not a rotation test case or a new discovery.",
+  "evaluation_to_fix": [
+    "same saved card data and reference lists accessible to both methods",
+    "baseline may read and switch freely among separate per-class sessions; do not artificially forbid its normal capabilities",
+    "variant may choose one actual deck class at submission; mixed-class deck cards remain invalid",
+    "same independent quality criteria and explicit elapsed-time deviations",
+    "separate workflow convenience from novel useful seeds; no adoption from code tests alone"
+  ],
+  "not_fixed_yet": [],
+  "proposed_format": "rotation",
+  "proposed_card_scope": {
+    "eligible_cards": 516,
+    "classes": 7,
+    "neutral_eligible": 46,
+    "historical_limit": "Mazelbeinn is excluded from this rotation trial; any separate mechanism check using it must specify unlimited and cannot claim historical gameplay reproduction."
+  },
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "proposed_arms": {
+    "a": "One prepared legacy-format session per class, sharing a single snapshot. The agent may inspect and switch among all seven sessions, including ordinary script-assisted reading; no artificial one-class lock. One candidate is eventually submitted in its matching class session.",
+    "b": "One all-class session from the same snapshot. The agent chooses the actual legal deck class with its proposal. Different classes cannot be mixed as deck cards."
+  },
+  "fairness_constraints": [
+    "Both may use all seven classes and the same source corpus. No extra card, note, rule, or reference is given only to b.",
+    "Use the same isolated code for both after proving the single-class default is compatible with main.",
+    "Model settings inherited identically; fresh generators and fresh per-round reviewers.",
+    "Review asks the same quality questions. All-class availability is not evidence of a good deck.",
+    "Do not infer speed from long unobserved clock gaps. Record elapsed time, actual command counts, failure/retry counts, sources and scope separately."
+  ],
+  "proposed_continue_signal": "A useful independently assessed final seed remains in b, with no correctness/honesty deterioration. Only an increase over a supports a discovery-improvement claim. Equal positive outputs are a tie for discovery; any separate convenience claim needs measured operations and does not establish the overall goal.",
+  "proposed_reject_if": [
+    "No useful final seed remains in b.",
+    "Invalid mixed-class assumptions contribute to the apparent gain.",
+    "The only gain is extra cards or sources inaccessible to the baseline.",
+    "Results consist only of extra reporting or unconfirmed reserve ideas."
+  ],
+  "implementation_observed_start": "2026-09-09T02:06:54+00:00",
+  "implementation_design_commit": "1143f6e",
+  "fixed_at": "2026-09-09T02:36:07.522068+00:00",
+  "prototype_commit": "0719dafd7b13ed008f214c962aaf37e8782452bb",
+  "input_check": {
+    "started_at": "2026-09-09T02:34:12.016392+00:00",
+    "completed_at": "2026-09-09T02:34:48.913870+00:00",
+    "prototype_commit": "0719dafd7b13ed008f214c962aaf37e8782452bb",
+    "source_db_sha256": "47ca643684b02eda1763d24728b730865b6dd629f3d0ec9043a6762ef1afdbdd",
+    "objective": "ニュートラルのカードの別用途や役割から出発し、それが活きるクラスと構築配分・勝ち方まで発展させて、独自でそこそこ戦えるデッキの種を考える。既知の標準用法との差、条件が揃わない時の勝ち方、採用負担に見合う可能性を根拠で説明する。特定カードやクラスを最初から指定しない。",
+    "sessions": {
+      "a-1": {
+        "class_name": "エルフ",
+        "session": "/tmp/sv-class-choice-01/a-1/session",
+        "context_hash": "7ca0d7c2388f8f26ef234ce15337ad7dc4855dc3bc86e2e5f5f3c50085ef80e0",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "c37a16861263b890a841867a0259716671c665dacf41d78c330bc638691515f0",
+        "packet": "/tmp/sv-class-choice-01/a-1/initial-packet.json",
+        "context_characters": 297747,
+        "source_count": 33
+      },
+      "a-2": {
+        "class_name": "ロイヤル",
+        "session": "/tmp/sv-class-choice-01/a-2/session",
+        "context_hash": "d228fe4661dd1dd9b5ac80fed8e80816a69e928e49fde02d42f7873e21faa30f",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "ddcdad70d2e1d0f98ed44fc7401a10f8dfae1f715e14e615e2c82df969853841",
+        "packet": "/tmp/sv-class-choice-01/a-2/initial-packet.json",
+        "context_characters": 301388,
+        "source_count": 33
+      },
+      "a-3": {
+        "class_name": "ウィッチ",
+        "session": "/tmp/sv-class-choice-01/a-3/session",
+        "context_hash": "5f948100cf308a9729f9924959b27b8d4c8eb5b75e00b3c6354f4197b480a6cb",
+        "eligible_cards": 114,
+        "related_cards": 98,
+        "initial_packet_hash": "69fbb4760846bab01eff46536e0ff4db7531b8e16387af1b46c57c328a779952",
+        "packet": "/tmp/sv-class-choice-01/a-3/initial-packet.json",
+        "context_characters": 306646,
+        "source_count": 33
+      },
+      "a-4": {
+        "class_name": "ドラゴン",
+        "session": "/tmp/sv-class-choice-01/a-4/session",
+        "context_hash": "fbec6819e72dd748bef57077e62ff23a3d20201d276f5b643cf642205b836c1f",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "7bc088ba03e1e669c53eee56f77b2a96ff0864fcc49e0509565bb0f05e3cccb7",
+        "packet": "/tmp/sv-class-choice-01/a-4/initial-packet.json",
+        "context_characters": 296425,
+        "source_count": 33
+      },
+      "a-5": {
+        "class_name": "ナイトメア",
+        "session": "/tmp/sv-class-choice-01/a-5/session",
+        "context_hash": "4f04f7078ed1e3bca1f4b313ce6d28920d20c8cea31ab3fa119079d29381b95b",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "83f1e519775dd95ecb0afb3b3aabedc3acb789d04f614eaa62cd1095882168f8",
+        "packet": "/tmp/sv-class-choice-01/a-5/initial-packet.json",
+        "context_characters": 308524,
+        "source_count": 33
+      },
+      "a-6": {
+        "class_name": "ビショップ",
+        "session": "/tmp/sv-class-choice-01/a-6/session",
+        "context_hash": "f76db5f32fcc3cb3db59bc59df479217a8518ce5e878ea76379dc0f0a21ab874",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "ac1186fe6388025dbea182500ae387f33930f805e9f6f3f459ddfbd91e43feb5",
+        "packet": "/tmp/sv-class-choice-01/a-6/initial-packet.json",
+        "context_characters": 303985,
+        "source_count": 33
+      },
+      "a-7": {
+        "class_name": "ネメシス",
+        "session": "/tmp/sv-class-choice-01/a-7/session",
+        "context_hash": "39bed6cb1e5b9307bfeee5207609f2ddc3a20dbf835eb5a1dd8ef1317b8d69ca",
+        "eligible_cards": 113,
+        "related_cards": 99,
+        "initial_packet_hash": "47eb6496099bdf843800429464fafe94ad5ad37ecd2f49b437a735d7d1ca7b3a",
+        "packet": "/tmp/sv-class-choice-01/a-7/initial-packet.json",
+        "context_characters": 304173,
+        "source_count": 33
+      },
+      "b": {
+        "class_name": "all",
+        "session": "/tmp/sv-class-choice-01/b/session",
+        "context_hash": "d5df872ea1da8f0617b3cdeaed3fb07c4ae7ba1f2f65fb36d629c1742c5df0ad",
+        "eligible_cards": 516,
+        "related_cards": 98,
+        "initial_packet_hash": "949c287ab28e8cc2be7bf295e3fe61f10f130cea19dabc00df915532e54dcfab",
+        "packet": "/tmp/sv-class-choice-01/b/initial-packet.json",
+        "context_characters": 923488,
+        "source_count": 33
+      }
+    },
+    "checks": {
+      "eligible_card_union": 516,
+      "all_context_card_count": 614,
+      "reference_union": 33,
+      "same_shared_metadata": true,
+      "same_source_corpus_each_session": 33,
+      "single_class_restriction_not_imposed": true
+    },
+    "limits": [
+      "This is input preparation, not natural exploration or useful output.",
+      "Per-class contexts differ in eligibility, class, scope and capture time; union equality is checked.",
+      "No historical gameplay or current web recheck is claimed."
+    ]
+  },
+  "maximum_rounds_per_arm": 3,
+  "initial_generation_minutes": 25,
+  "save_grace_minutes": 5,
+  "review_minutes": 20,
+  "stop_rules": [
+    "A review of test or drop ends the current branch.",
+    "A review of develop continues only actual unresolved questions, up to three rounds; sources-only investigation counts as a round.",
+    "No forced candidate when evidence does not support one. Time expiration remains incomplete, not a substantive rejection.",
+    "One substantive independent review per round. Root maps final evidence to the fixed five criteria and predeclared method decision, without seeking more favorable regrades."
+  ],
+  "historical_checks_before_any_adoption": [
+    "Mazel resource role and early allocation, with explicit unlimited or verified historical legality.",
+    "Multistage search/deck filtering plus zero-cost follower mechanism; historical text must be verified before claiming recreation.",
+    "Combined ghost/direct damage/storm total and resource limits.",
+    "Strong foundation with modest gain, preserving ordinary use as eligible; low ceiling and costly replication negative cases."
+  ],
+  "historical_check_status": "Required before adoption/goal completion; not yet executed for this prototype.",
+  "natural_trial_claim_limit": "One pair is exploratory. Useful b output is necessary, not sufficient for adoption. No winner, general superiority or success-rate claim from one pair."
+}

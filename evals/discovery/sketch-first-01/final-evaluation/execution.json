@@ -1,0 +1,637 @@
+{
+  "author": "/root/sketch_trial_final_grader",
+  "grading_attempt": 1,
+  "instruction_started_at": "2026-09-09T01:57:53.275390+00:00",
+  "started_at": "2026-09-09T01:58:26+00:00",
+  "start_precision": "最初の並列ツール呼出しで観測したUTC時計。指示受信からこの値までの純作業時間は測っていない。",
+  "verification_finished_at": "2026-09-09T02:20:46.000300+00:00",
+  "saved_finished_at": "2026-09-09T02:21:25.480079+00:00",
+  "time_limit_minutes": 20,
+  "read_window": "2026-09-09T01:58:26+00:00からverification_finished_at。各ファイルを開いた厳密な秒は別々に記録していない。",
+  "files_read": [
+    {
+      "path": "/tmp/sv-sketch-first-01/grader-instructions.txt",
+      "scope": "全文。今回の最終採点の境界と保存契約。",
+      "sha256": "366d96aa9f5f16f70935761147b430e772305f913c3545ea9483890bddfbe05e",
+      "bytes": 2854,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/protocol.json",
+      "scope": "全文。事前固定の5項目、時間、計数、比較条件。",
+      "sha256": "41ebb5647294578a9209f0662a6fd08dc5a059791521f253813fd305443be397",
+      "bytes": 9783,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/final-state.json",
+      "scope": "全文。終了時点・件数・保存先。",
+      "sha256": "11d38bba06abc536ecedd55d2dcd1fea90f7dd480686381a3f7b4c327f5d44cc",
+      "bytes": 1194,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/final-input-manifest.json",
+      "scope": "179ファイルの一覧・識別値。各ファイルの意味内容を全読したものではない。",
+      "sha256": "07eab57fce418e703bec164ea2c33380957158fd1fba8d019c6aa3d31cb379c0",
+      "bytes": 33936,
+      "matches_frozen_manifest": null
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/final-input-integrity.json",
+      "scope": "全文。rootの機械照合結果のみ。意味の採点として使用しない。",
+      "sha256": "014111489c6c19bde47822ffabd7ab6c1b6cdaa1b6d13cca1479c844500f2887",
+      "bytes": 2379,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/run-state.json",
+      "scope": "全文。各dispatch・保存終了・次工程開始の時刻と終了状態。",
+      "sha256": "ec284e7eecd8a24a0ab233c6b2c259daed7c86a6821e462521caa8c5d5ef1023",
+      "bytes": 2236,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/root-timestamp-clarification.json",
+      "scope": "全文。B草案のobserved_at説明という運営介入と実時計区間。",
+      "sha256": "9fb37252297118d2e775882ac3107bbd3167f948fac663f6411ae402128a487a",
+      "bytes": 967,
+      "matches_frozen_manifest": null
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/final-grading-dispatch.json",
+      "scope": "全文。今回1件目の指示時刻と20分目安。",
+      "sha256": "8619c07447469fafb9e3689759e8653c5bf22d2151d1425a1f5e2c89083c54de",
+      "bytes": 202,
+      "matches_frozen_manifest": null
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/generator-instructions-common.txt",
+      "scope": "全文。",
+      "sha256": "cd4a4fd248bf1737cafeea56bdc87d213309dd80775573a99ee7b7a35c5797fd",
+      "bytes": 3025,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/generator-instructions.txt",
+      "scope": "全文。",
+      "sha256": "74d8780c1efa4705e3b42bb841048b25d109ada77e91b90aa069d08cd492291c",
+      "bytes": 3352,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/generator-instructions.txt",
+      "scope": "全文。",
+      "sha256": "affbfb5b656aa62abdd85bd3b08dbe7d8e6d573ce7e6474757176e784497a0c4",
+      "bytes": 3769,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/generator-instructions.txt",
+      "scope": "全文。",
+      "sha256": "91b6d0d801660f4bcc5d44bc42f1c8caaaabfbf73cc0f8510bd45abf6c4b8077",
+      "bytes": 2130,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/generator-instructions.txt",
+      "scope": "全文。",
+      "sha256": "86a2581266950bcaaa44fa974d6418e9213164a3281f1f3a931f52c21b907921",
+      "bytes": 2130,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/reviewer-instructions.txt",
+      "scope": "全文。",
+      "sha256": "8c9d1251b8e5bc2fb9e60eefed825cac4d5ac71aaf00447f617d846ab1ebb267",
+      "bytes": 1747,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/operator-readme.md",
+      "scope": "全文。公開操作の説明。実装ファイルは開いていない。",
+      "sha256": "d13a3fe017e7de1baaf0eb1ee344e682b80b91e18d017a2a1129a8eb6dfa03ed",
+      "bytes": 18126,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/initial-packet.json",
+      "scope": "data.contextの固定rules全文、ability_keywords37件、principlesの目的・1.5・3.2・5・6・既出判断運用・8、指定32カードの本文/進化/参照効果/注記/合法性、既知構築6件のリスト・来歴。raw・全212カードの通読ではない。",
+      "sha256": "65927b5439832ce2c72c9029c7eb3ad37f3967f225c31248a45b495552486a7b",
+      "bytes": 637556,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/initial-packet.json",
+      "scope": "構造と初期dataのAとの機械比較。contextの本文評価は同一のA保存版で行う。",
+      "sha256": "808e4345ed272a162b7a7b3c2769bb5a19d956a51e55755cec5ced8671d0f95a",
+      "bytes": 635822,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/final-report.json",
+      "scope": "初回表示は一部省略。提案概要・最新評価の全findings/web_checks・全資料索引を読み、初回評価は独立responseで補完。評価2件の全文の機械一致を確認。",
+      "sha256": "2b9ab3fd7612c46278afef3b2293f07ad034ad570e787a13fce53e5ddd73615c",
+      "bytes": 46606,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/final-report.json",
+      "scope": "提案概要全項目・資料索引、2件の評価は各responseで読む。最終reportとの全responseキー値一致を機械確認。",
+      "sha256": "851379a55d9ad2fb146136db0df632510a8b0a7694137bd0c27e89b8fce0c541",
+      "bytes": 49171,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/answer.json",
+      "scope": "全文。初回表示で切れたstepsは後から全件再読。",
+      "sha256": "0ab02101f653edee00698105b5514d958a47d7754d462aeaf880e724dfef92b3",
+      "bytes": 15971,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/submission.json",
+      "scope": "全文。",
+      "sha256": "1bb35668e8fb880fa9331d6c3d702e832e859ac8bfc755daa75c4dc71bdf9570",
+      "bytes": 10348,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/sketch-answer.json",
+      "scope": "全文。",
+      "sha256": "a49e5a3a47d3bae139154271c34c3609bb6e8be70d316430df7e7f5bedd6762c",
+      "bytes": 1768,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/review-response.json",
+      "scope": "findings全件・next_questions・web_checks。出力省略箇所のfindingsは再読。",
+      "sha256": "a0e1d873e8f10ca4aaef934d0f855f1feeff7a2d545cd20103c9261f7cc97567",
+      "bytes": 11108,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/review-response.json",
+      "scope": "意味内容はfinal-reportに保存された同一回答を読んだ。ファイルを機械比較し全回答項目一致を確認。",
+      "sha256": "dd8b5c9ceacbb83a60b197799895e8b164e7ad501ec118056356c2b49c901316",
+      "bytes": 11715,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/review-response.json",
+      "scope": "全文。",
+      "sha256": "369d497f7ed620a22d93b5cfdb6339d0b2aaa887a4b68db2629c71e8a5419c89",
+      "bytes": 11778,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/review-response.json",
+      "scope": "全文。",
+      "sha256": "286f86b5fa9457cca12b7cc890995441dcc57fb7bfe7b57bf2d81dacc94fdbda",
+      "bytes": 10654,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/review-packet.json",
+      "scope": "構造、instruction、sources索引、81f345/99ec49のWeb記録本文。全source識別値と最終reportを照合。deeed3は添付本文と地元のメモの完全一致を機械確認してメモ全文を読む。",
+      "sha256": "17112b1a515d5f4b9851ebfaca65e45e21cbfee2ed815a66f821cdcc26c86e77",
+      "bytes": 706058,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/review-packet.json",
+      "scope": "構造、instruction、sources索引、1503da/25a6ca/3542ac/3f8640/6fefea/b42548/fdd938の本文と限界。a3ae56は添付本文とメモの完全一致を機械確認してメモ全文を読む。",
+      "sha256": "03b439c80d1d2ee88041aae80c5fc192e1bf0df4ed10a18cb86e1684063f1938",
+      "bytes": 699148,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/followup-findings.md",
+      "scope": "全文。到達、同条件比較、手札補修、1～2回での停止、既出調査、残る限界。",
+      "sha256": "8e8ab94f712401a061f3cd04aed50bd323ba6709fc448327f56e214b672749c0",
+      "bytes": 11987,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/same-state-investigation.md",
+      "scope": "全文。大型L、小型S、温存変更、到達例と残る問題。",
+      "sha256": "38206cb2600f4af2f515b3b3beb11486bb99530b191f3f31691ee823295dff31",
+      "bytes": 15838,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/resource-ledger.json",
+      "scope": "全文。指定T7～T9手札・PP・進化権・場枠。",
+      "sha256": "39ead563374b67f6f7f719da3d4d6c715aed3d03fd2e150c46c059c4a1352399",
+      "bytes": 4782,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/hand-trace.json",
+      "scope": "全文。指定初手・順序・手札最大9・T7接続。",
+      "sha256": "e94f30960133ab1f00d8033db09990bc880d51062ee7cf5376f0bec19ef86618",
+      "bytes": 5896,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/review-calculation.md",
+      "scope": "全文。ジンジャーへの戻し比較。3/3対5/2の誤った生存計算を検出。",
+      "sha256": "ecad6334b6e70b1a9b3824b813406b95ecdcddf9d7f9f9a2239a0613aa3a2a22",
+      "bytes": 2935,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/compare-result.json",
+      "scope": "元/交換後40枚、分布、delta、出典、限界。総数・種類を再集計。",
+      "sha256": "1389ed3e03b66cda6a4415cbc1e06baeba0f4fa76d6608834f98df3fc8b62393",
+      "bytes": 11945,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/compare-result.json",
+      "scope": "元/交換後40枚、分布、delta、出典、限界。総数・種類を再集計。",
+      "sha256": "56b3fd1f4e5ac3d55606e26dfbe72483bca22df0f6e2e67b07a6f43d14b3a34a",
+      "bytes": 12307,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/execution-log.json",
+      "scope": "全文。",
+      "sha256": "5a76dc7319e052f65c47cd5f1e06e1c6205dd2fbe200c18f4a7c5f15efb87811",
+      "bytes": 10134,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/execution-log.json",
+      "scope": "全文。",
+      "sha256": "1784ab93f59cc2741645155c00befd37ff60056cac659ffe35faa2ab9bd39765",
+      "bytes": 7229,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/execution-log.md",
+      "scope": "全文。",
+      "sha256": "7f935a54c3ec29fed066e0a2866eae694ba5363608c65ade3df4a92b71dbf1c8",
+      "bytes": 4309,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/execution-log.md",
+      "scope": "全文。",
+      "sha256": "507e1832b3a1b0e33993e0f6ba863001cce78c852f18c33bf9898b8e57c48ac7",
+      "bytes": 4148,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-1/review-execution.json",
+      "scope": "全文。",
+      "sha256": "71c9f27fcf72643a737bec37f0fa01b6662e0850e630e4fdf0fa843ca584cbbb",
+      "bytes": 5304,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/a/round-2/review-execution.json",
+      "scope": "全文。",
+      "sha256": "28a6f67ea5a599b3fc6f0f6d122c210955bb79f69a62ab34c360ced60daf2df6",
+      "bytes": 14793,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-1/review-execution.json",
+      "scope": "全文。",
+      "sha256": "a362d7f88544c572c0692a45484f52dac57c9a25a8e1ce235d7e381c0af3866f",
+      "bytes": 5734,
+      "matches_frozen_manifest": true
+    },
+    {
+      "path": "/tmp/sv-sketch-first-01/b/round-2/review-execution.json",
+      "scope": "全文。",
+      "sha256": "625785a55ec5cfdd81972e343c36af63ca899a40e67a6be444c14d8510103c85",
+      "bytes": 13956,
+      "matches_frozen_manifest": true
+    }
+  ],
+  "files_read_count": 43,
+  "input_manifest_file_count": 179,
+  "manifest_files_not_semantically_read": [
+    "/tmp/sv-sketch-first-01/a/round-1/attach-result.json",
+    "/tmp/sv-sketch-first-01/a/round-1/cards.json",
+    "/tmp/sv-sketch-first-01/a/round-1/comparison-after-list.json",
+    "/tmp/sv-sketch-first-01/a/round-1/context_metadata.json",
+    "/tmp/sv-sketch-first-01/a/round-1/final-summary.json",
+    "/tmp/sv-sketch-first-01/a/round-1/keywords.json",
+    "/tmp/sv-sketch-first-01/a/round-1/known_decks.json",
+    "/tmp/sv-sketch-first-01/a/round-1/packet-after-attach.json",
+    "/tmp/sv-sketch-first-01/a/round-1/principles.json",
+    "/tmp/sv-sketch-first-01/a/round-1/report.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-calculation.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-dispatch.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-evidence.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-packet.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-register.stderr.txt",
+    "/tmp/sv-sketch-first-01/a/round-1/review-register.stdout.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-report-verification.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-report.json",
+    "/tmp/sv-sketch-first-01/a/round-1/review-report.stderr.txt",
+    "/tmp/sv-sketch-first-01/a/round-1/review-web-checks.json",
+    "/tmp/sv-sketch-first-01/a/round-1/root-generation-report.json",
+    "/tmp/sv-sketch-first-01/a/round-1/root-review-report.json",
+    "/tmp/sv-sketch-first-01/a/round-1/rules.json",
+    "/tmp/sv-sketch-first-01/a/round-1/sources-to-attach.json",
+    "/tmp/sv-sketch-first-01/a/round-1/submission-packet.json",
+    "/tmp/sv-sketch-first-01/a/round-1/submit-result.json",
+    "/tmp/sv-sketch-first-01/a/round-1/web-checks.json",
+    "/tmp/sv-sketch-first-01/a/round-2/attach-result.json",
+    "/tmp/sv-sketch-first-01/a/round-2/dispatch.json",
+    "/tmp/sv-sketch-first-01/a/round-2/final-summary.json",
+    "/tmp/sv-sketch-first-01/a/round-2/history.json",
+    "/tmp/sv-sketch-first-01/a/round-2/input-packet.json",
+    "/tmp/sv-sketch-first-01/a/round-2/instruction.json",
+    "/tmp/sv-sketch-first-01/a/round-2/previous_reviews.json",
+    "/tmp/sv-sketch-first-01/a/round-2/proposal.json",
+    "/tmp/sv-sketch-first-01/a/round-2/report.json",
+    "/tmp/sv-sketch-first-01/a/round-2/review-dispatch.json",
+    "/tmp/sv-sketch-first-01/a/round-2/review-registration.json",
+    "/tmp/sv-sketch-first-01/a/round-2/review-report-check.json",
+    "/tmp/sv-sketch-first-01/a/round-2/review_contexts.json",
+    "/tmp/sv-sketch-first-01/a/round-2/root-generation-report.json",
+    "/tmp/sv-sketch-first-01/a/round-2/root-review-report.json",
+    "/tmp/sv-sketch-first-01/a/round-2/saved-packet-summary.json",
+    "/tmp/sv-sketch-first-01/a/round-2/sources-to-attach.json",
+    "/tmp/sv-sketch-first-01/a/round-2/sources.json",
+    "/tmp/sv-sketch-first-01/a/round-2/web-checks.json",
+    "/tmp/sv-sketch-first-01/a/session/context.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/336d10f47382d85fa4242de0fe642548e34852bc7e3a918d41b99cd48a2c489d.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/72f5c6c0643eb755446a6f973917b9fb0debfe0c0a5e42ed77e49850f69be25f.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/902e865eba0ae061413cf9a539127966fe2073d89e860ae2d99fbaf7d214d025.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/99a2b4be5765710a3e3c3f74ea818472031b887d9e72665863661f14c1961a07.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/bce8f0ac70d69ff4f0377db21f4061f4d18b775e8de1bf4faf8c8757c67b1ce4.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/e9fb1a4a67dc7d2dd4432050358cd7c8ba38f38a14cc36547e65de9dbc4b1163.json",
+    "/tmp/sv-sketch-first-01/a/session/packets/f1c76b357d9da294990d939b09a12781a2fbce31596cbfaed56116c3a92844fd.json",
+    "/tmp/sv-sketch-first-01/a/session/review-0001-d6863b07c15f3def.json",
+    "/tmp/sv-sketch-first-01/a/session/review-0001-ddb544dfd711bbf3.json",
+    "/tmp/sv-sketch-first-01/a/session/revision-0001.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/204452897e25869634aea4a4bc21cc1837ba16f8cd407d899e698af79802ea4b.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/81f345166982b94521842633aca404d0d6d14319cc516092cac0dcbc578a1027.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/99ec49530cfd43d723c161ac6ee046440554ebe1b83c994291f9efbe92bc4c50.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/be7483c4ea6521c0d0ad7942b3dd069d4343691dbda87f34aa8a808873752053.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/deeed398db196153bef11c48876a0b436b29a8a7ed5c5f3d8ab368e20f28c49c.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b.json",
+    "/tmp/sv-sketch-first-01/a/session/sources/fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec.json",
+    "/tmp/sv-sketch-first-01/b/round-1/analysis-attach-result.json",
+    "/tmp/sv-sketch-first-01/b/round-1/analysis-source.json",
+    "/tmp/sv-sketch-first-01/b/round-1/card-lookup.json",
+    "/tmp/sv-sketch-first-01/b/round-1/cards-reading.json",
+    "/tmp/sv-sketch-first-01/b/round-1/contrast-after-40.json",
+    "/tmp/sv-sketch-first-01/b/round-1/contrast-attach-result.json",
+    "/tmp/sv-sketch-first-01/b/round-1/contrast-source.json",
+    "/tmp/sv-sketch-first-01/b/round-1/deck-cost-check.json",
+    "/tmp/sv-sketch-first-01/b/round-1/develop-initial-packet.json",
+    "/tmp/sv-sketch-first-01/b/round-1/final-input-packet.json",
+    "/tmp/sv-sketch-first-01/b/round-1/report.json",
+    "/tmp/sv-sketch-first-01/b/round-1/research-attach-result.json",
+    "/tmp/sv-sketch-first-01/b/round-1/research-sources.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-dispatch.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-official-checks.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-packet.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-public-report.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-register-output.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-report-check.json",
+    "/tmp/sv-sketch-first-01/b/round-1/review-static-checks.json",
+    "/tmp/sv-sketch-first-01/b/round-1/root-generation-report.json",
+    "/tmp/sv-sketch-first-01/b/round-1/root-review-report.json",
+    "/tmp/sv-sketch-first-01/b/round-1/sketch-result.json",
+    "/tmp/sv-sketch-first-01/b/round-1/submit-result.json",
+    "/tmp/sv-sketch-first-01/b/round-2/additional-sources.json",
+    "/tmp/sv-sketch-first-01/b/round-2/attach-result.json",
+    "/tmp/sv-sketch-first-01/b/round-2/completion.json",
+    "/tmp/sv-sketch-first-01/b/round-2/dispatch.json",
+    "/tmp/sv-sketch-first-01/b/round-2/final-packet.json",
+    "/tmp/sv-sketch-first-01/b/round-2/input-packet.json",
+    "/tmp/sv-sketch-first-01/b/round-2/report.json",
+    "/tmp/sv-sketch-first-01/b/round-2/review-dispatch.json",
+    "/tmp/sv-sketch-first-01/b/round-2/review-report-match.json",
+    "/tmp/sv-sketch-first-01/b/round-2/review-submit-output.json",
+    "/tmp/sv-sketch-first-01/b/round-2/root-generation-report.json",
+    "/tmp/sv-sketch-first-01/b/round-2/root-review-report.json",
+    "/tmp/sv-sketch-first-01/b/round-2/selected-input.json",
+    "/tmp/sv-sketch-first-01/b/round-2/web-research.json",
+    "/tmp/sv-sketch-first-01/b/session/context.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/32e589f142c6783f3416d3095d25bc8a65cad4d6832511e0dc0750058c20f519.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/336d10f47382d85fa4242de0fe642548e34852bc7e3a918d41b99cd48a2c489d.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/3a187360be5e03a07079c0ede9e89418beea69b87e6d902d1c2b8a6f17009b9d.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/6ee8e10b7066c03ffac67dd1e9986e4e91022f6132c4c28a55ecc5f9b9e54d6a.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/76bb8bf71760c479600bf07527cdb63dd3da33a3b80e8a21a6febc6c38800361.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/7ca8b20fbd13e1a2a92512f3619da0a5f8bd4015abc467007827ca85212021d2.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/8624ce761402ecd9b5b69b21fa301d5d6af2efc20ae419073906ded3f22d0ce0.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/9995819bb8e289525f1a0c8127eebb8a8a7f7d8fe310e86be4fcd72f1a33a328.json",
+    "/tmp/sv-sketch-first-01/b/session/packets/e0d98ee51b5260a09cc4de376106964f6226a0c90e9bcc8d1fa38f03afd8ac8e.json",
+    "/tmp/sv-sketch-first-01/b/session/review-0001-0c25491bd7be35f1.json",
+    "/tmp/sv-sketch-first-01/b/session/review-0001-c79d3f4c5b046824.json",
+    "/tmp/sv-sketch-first-01/b/session/revision-0001.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/14ec1ef2e159f79f33d0027a91387d17824681c55e72f6a78dcc501cca855e2e.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/1503dad72801b461225c56d1daf2e8261facdc5984ebf37c46b3b71ed44cba1d.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/199b65f6cb09c2b45bbcc804e33d95c8adfecbc174ede3a8125b9daf5e05c0ec.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/25a6ca060d5d7b3764120834de861059c371a0e3c97160b33da42d0589a39db6.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/3542ac1d2eb73466370629d215e364ee15055440ac754fca4c412da04aca92d8.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/3f86400c00f3e2df6f231029992131dcf1e03542afb8f77408da694c00212f36.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/6fefea46d1115b5558fbb8d6d78f533b64efde4af553c216abea6f8af346e3fa.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/85d81d37a7f8adb6004004b1a62b898d8682f50b11b99a7b1d41a66a178f24ee.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/928f6900e9c149b906c2e05a46bf743135ee699d48166e7865395c1531dca8c8.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/a3ae56688eb2a0607e0dffb4cc616a8911c9ae82a2e040260c67dc6312422af7.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/a81c74d6e040b0934af57c8ff7ce7429dbc556ad3b2e7b3115da54ad5b624ed5.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/b4254881864f5e8f6e787b0d6330b79a9ce7e066c7d29bf647f0a966a7fb2cc0.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/c95c88b7c08dc445ae4f68fef1ea0249eef5fe58b7119b1b0356bab789d545ce.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/fdd938d5a2fc82a8c1591f4b1ea4828d0d63a09197564c2e85a10006674bcdf2.json",
+    "/tmp/sv-sketch-first-01/b/session/sources/fe43677e802eaf12512e6bcd7932a3a9e53d8cb25d1bd512c3d27a5bb82631ec.json",
+    "/tmp/sv-sketch-first-01/input-check.json",
+    "/tmp/sv-sketch-first-01/manifest.json"
+  ],
+  "read_fixed_card_ids": [
+    10031310,
+    10031320,
+    10131320,
+    10433310,
+    10502110,
+    10502120,
+    10503210,
+    10531310,
+    10532120,
+    10534120,
+    10803310,
+    10832110,
+    10832310,
+    10833110,
+    10833310,
+    10834110,
+    10834120,
+    10901110,
+    10931110,
+    10931310,
+    10932110,
+    10932310,
+    10933110,
+    10933310,
+    10934110,
+    10934120,
+    90031110,
+    90031120,
+    90031310,
+    90034340,
+    90034350,
+    90061130
+  ],
+  "common_startup_reads": {
+    "paths": [
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/values.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/communication.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/explain.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/parallel.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/design.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/coding.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/workflow.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/knowledge.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/ai-code-guide.md",
+      "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/models/gpt-5-6-terra.md"
+    ],
+    "scope": "指示に従い読取。一括表示に省略があったためparallel/design/codingを個別に再読。現在docs/design.mdも開始時取得は省略を含む。実質採点のルール・原則には固定packetの版を使用。",
+    "project_design_path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md"
+  },
+  "mechanical_checks": {
+    "used_files_match_frozen_manifest": true,
+    "extra_metadata_files_outside_manifest": [
+      "root-timestamp-clarification.json",
+      "final-grading-dispatch.json"
+    ],
+    "initial_data_differing_keys": [
+      "stage",
+      "instruction",
+      "response_example"
+    ],
+    "context_card_count": 212,
+    "deck_eligible_card_count": 114,
+    "final_reports": {
+      "a": {
+        "revisions": 1,
+        "reviews": 2,
+        "sources": 12,
+        "response_fields_match": true,
+        "final_source_set_match": true,
+        "attached_followup_matches_local_memo": true
+      },
+      "b": {
+        "revisions": 1,
+        "reviews": 2,
+        "sources": 16,
+        "response_fields_match": true,
+        "final_source_set_match": true,
+        "attached_followup_matches_local_memo": true
+      }
+    },
+    "comparisons": {
+      "a": {
+        "before": 40,
+        "after": 40,
+        "types_each": {
+          "follower": 24,
+          "spell": 16
+        },
+        "exchanged": 3
+      },
+      "b": {
+        "before": 40,
+        "after": 40,
+        "types_each": {
+          "follower": 24,
+          "spell": 16
+        },
+        "exchanged": 1
+      }
+    },
+    "meaning": "識別値・形式・件数の一致は有用性の証明ではない。"
+  },
+  "errors_and_recoveries": [
+    {
+      "kind": "read_helper",
+      "count": 1,
+      "error": "B round-2 execution-log.jsonを仮定してFileNotFoundError。実在するexecution-log.mdを読み直した。",
+      "substantive_effect": "なし。"
+    },
+    {
+      "kind": "read_helper",
+      "count": 1,
+      "error": "固定principlesに## 7.見出しを仮定してValueError。見出しを確認し、既出判断本文を語句の位置から再読した。",
+      "substantive_effect": "なし。"
+    },
+    {
+      "kind": "display_truncation",
+      "count": null,
+      "error": "複数の大きな一括表示が省略された。必要な本文・手順・原則は分割または項目抽出で再読。全179ファイル読了とはしない。",
+      "count_note": "総発生回数を独立に集計していない。全入力読了に置き換えない。"
+    }
+  ],
+  "format_repair_count": 0,
+  "substantive_regrading_count": 0,
+  "additional_review_registrations": 0,
+  "new_deck_searches": 0,
+  "external_web_calls": 0,
+  "subagents_spawned": 0,
+  "judgment_consultations": 0,
+  "source_or_code_changes": 0,
+  "writes_scope": "/tmp/sv-sketch-first-01/final-evaluation",
+  "unread_or_unverified": [
+    "179ファイルの全本文監査、全212カードの通読・全組合せ",
+    "外部サイトの再取得、動画・画像・対戦操作、到達頻度、勝率、両者の全最善分岐",
+    "過去の別試行結果、calibration、rootの途中採否まとめ・journal、srcや実装コード",
+    "root全操作・メッセージの完全な集計、長い時計間隔の内訳・原因",
+    "本番DBの独立再ハッシュ。rootのfinal-input-integrity記録を使用。"
+  ],
+  "outcome": "1組の5軸採点1件。条件は変更せず、未確認とB補助本文の誤りを残した。",
+  "saved_finished_at_precision": "評価JSON・Markdown・実行記録の初回保存と再読整合確認を終えた直後の実時計。この時刻を実行記録へ書き戻す処理のみ後続。",
+  "time_limit_met": false,
+  "instruction_to_save_elapsed_seconds": 1412.204689,
+  "active_work_seconds": null,
+  "time_limit_deviation": {
+    "target_minutes": 20,
+    "new_reading_and_research_stopped": true,
+    "root_stop_notice_at": "2026-09-09T02:20:14+00:00",
+    "notice_received": "最初の評価3ファイル保存のtool結果と同時に受信。その後は保存済みファイルの整合確認と時間記録のみ。",
+    "unobserved_clock_interval": {
+      "from": "2026-09-09T02:04:45+00:00",
+      "to": "2026-09-09T02:20:46.000300+00:00",
+      "elapsed_seconds": 961.0003,
+      "activity_note": "既存材料による判定の整理と長い保存用文面の作成を含むが、全区間の連続稼働・待機・停止の内訳を測定していない。原因を推測せず純作業時間へ換算しない。"
+    }
+  },
+  "output_validation": {
+    "five_axes_each_present": true,
+    "one_grading_only": true,
+    "json_parse_ok": true,
+    "evaluated_arm_count": 2,
+    "recorded_outcomes": {
+      "a": {
+        "workflow": "PARTIAL",
+        "correctness": "CONDITIONAL",
+        "development": "PASS",
+        "utility": "FAIL",
+        "honesty": "PASS"
+      },
+      "b": {
+        "workflow": "PARTIAL",
+        "correctness": "CONDITIONAL",
+        "development": "PASS",
+        "utility": "FAIL",
+        "honesty": "PASS"
+      }
+    },
+    "evaluation_json_sha256": "487f0708ce819eb4e6752bad0d684645e963669b8aabe9229d0d924e3f54d7bf",
+    "evaluation_md_sha256": "ea9a2db4ea02fc206ee9a15650350e3e6546713367bf158246b3e2ebf265de91"
+  }
+}

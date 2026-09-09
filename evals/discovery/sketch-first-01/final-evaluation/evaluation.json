@@ -1,0 +1,341 @@
+{
+  "trial": "sv-sketch-first-01",
+  "grading_attempt": 1,
+  "status": "completed_with_stated_limits",
+  "instruction_started_at": "2026-09-09T01:57:53.275390+00:00",
+  "started_at": "2026-09-09T01:58:26+00:00",
+  "verification_finished_at": "2026-09-09T02:20:46.000300+00:00",
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "context_hash": "a22cfc931c662c5168a54525637cc06379a16627c32686cfbf8d56f48900ae22",
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "arms": {
+    "a": {
+      "proposal_title": "軽減済みの守り・補充・コピー役を回すスペルウィッチ",
+      "final_revision": 1,
+      "workflow": {
+        "verdict": "PARTIAL",
+        "label": "公開工程は完了、時間条件は未達",
+        "evidence": [
+          "公開提出1件と別評価2件、追加資料を保持する最終reportまで存在し、対応する回答の全項目・入力版を照合できた。",
+          "本試行中の実装修正は実行記録上0件。rootの識別値確認は本番DB・固定入力の不変を報告する。コードや本番DBを本採点で再検査してはいない。"
+        ],
+        "limits": [
+          "第2回別評価の20分目安は達成されていない。純作業時間と待機・停止の内訳は不明。",
+          "全公開コマンドを本採点で再実行してはいない。参加担当の実行記録と保存出力の整合を評価した。"
+        ],
+        "specifics": [
+          "考案担当は両回とも25分の調査枠内に新規調査を終了。第2回は資料2件を追加して当該用法を停止、正式改訂は0件。",
+          "第2回別評価は指示から保存まで26960.636891秒。調査資料保存から評価指示まで11826.311754秒の間隔もある。後者を考案作業へ含めない。"
+        ]
+      },
+      "correctness": {
+        "verdict": "CONDITIONAL",
+        "label": "指定条件内で成立、実到達と反復操作は未確認",
+        "known_major_error_in_final_proposal": false,
+        "evidence": [
+          "固定版で直接採用札はウィッチ/ニュートラルのローテ合法札。生成先を直接採用枠へ混同していない。",
+          "初回手札5→7→6→3→6→5→4→6、支出6PP。続く2回は各5PP、EP1とSEP2を合計3回使う。毎回の場の空き3枠と捨てられる新規3枚が条件。",
+          "追加到達例のT4最大手札9、T7残り0PP、Fの強化15回以上は本文と整合。初回の供給済み状態だけの残り1PPとは区別される。",
+          "追加過剰反応→除去→ゴッデスは7PP、最大手札9で補修可能。除去を使うと必ず反復不能という主張にはしていない。"
+        ],
+        "limits": [
+          "コピーの状態保持は固定注記と別評価の公式閲覧記録が根拠。左右の追加順と実ゲームでの3回反復は本採点でも未操作。",
+          "T7到達頻度・生存・相手の後続・最善行動・1～2回コピーの純利益は未確認。",
+          "場に残るFを確定打点と数えず、4枚目を手札に用意することと4回の実配置を区別する。"
+        ],
+        "evidence_paths": [
+          "a/round-1/answer.json",
+          "a/round-1/resource-ledger.json",
+          "a/round-2/followup-findings.md",
+          "a/round-2/hand-trace.json",
+          "a/final-report.json"
+        ]
+      },
+      "development": {
+        "verdict": "PASS",
+        "label": "追加調査で疑問が具体化し、用法を根拠付きで停止",
+        "evidence": [
+          "SをT4に使う通常進行とT7まで保持する進行を同じ初手・順序で比較し、決着札等の取得が遅れる具体例を示した。",
+          "捨て札不足の補修が可能な条件、3回から1回へ打ち切る際の攻めを計算した。",
+          "ジンジャー3枚を失う即時処理と強化の負担に対し、2枚目以降の守護を反復する採用利益を示せず、3役3回反復を主目的にする枝を停止した。"
+        ],
+        "limits": [
+          "勝ちへの接続を改善した正式改訂は残らず、発展は適切な停止としての合格。全疑問解決や有用性の合格ではない。"
+        ],
+        "evidence_paths": [
+          "a/round-1/review-response.json",
+          "a/round-2/followup-findings.md",
+          "a/round-2/review-response.json"
+        ]
+      },
+      "utility": {
+        "verdict": "FAIL",
+        "label": "この試行の有用な出力は0件",
+        "test_worthy_seed_count": 0,
+        "evidence": [
+          "軽減済みFを再軽減なしで増やす利益は具体的だが、毎回5PP・進化権・場3枠・通常ドローとSの補充を費やし、相手にも1枚引かせる。",
+          "核なしでは通常のスペル基盤を使う方針はあるが、ジンジャー3枚を失い、コピーを反復しても手札の質や攻めは増えない。限定盤面での即時処理も比較元が担える。",
+          "既知の有力札の複製に対する3役反復の差は説明されるが、採用負担を上回る局面を最終資料で支持できず、停止対象外の単発コピーも有用な別案として完成していない。"
+        ],
+        "limits": [
+          "全対面の劣勢、ゴッデス一般の弱さを証明した判断ではない。20点不達や対戦未実施だけによる不合格ではない。"
+        ]
+      },
+      "honesty": {
+        "verdict": "PASS",
+        "label": "調査範囲・不成立条件・未確認を区別",
+        "evidence": [
+          "共起なし・検索未ヒットを新規性の証明にせず、既出状況は未確認として残す。",
+          "初回公式抽出失敗、後の公式用語確認、未視聴動画・未確認画像を区別。Tier・勝率・初見の加点は作られていない。",
+          "条件付きの手計算と対戦実測を区別し、長い時刻空白を連続作業と報告していない。"
+        ],
+        "limits": [
+          "最終採点では外部ページや画像を再取得しておらず、保存された観測要約と別評価記録の範囲での確認。"
+        ]
+      }
+    },
+    "b": {
+      "proposal_title": "実験体の複数展開へ軍配1枚を足すスペルウィッチ",
+      "final_revision": 1,
+      "workflow": {
+        "verdict": "PARTIAL",
+        "label": "公開工程は完了、時間条件は未達",
+        "evidence": [
+          "公開提出1件と別評価2件、追加資料を保持する最終reportまで存在し、対応する回答の全項目・入力版を照合できた。",
+          "本試行中の実装修正は実行記録上0件。rootの識別値確認は本番DB・固定入力の不変を報告する。コードや本番DBを本採点で再検査してはいない。"
+        ],
+        "limits": [
+          "第2回別評価の20分目安は達成されていない。純作業時間と待機・停止の内訳は不明。",
+          "全公開コマンドを本採点で再実行してはいない。参加担当の実行記録と保存出力の整合を評価した。"
+        ],
+        "specifics": [
+          "草案1件→通常資料→正式提出1件を保存。第2回は草案を追加せず資料2件で当該枝を停止。",
+          "B初回のobserved_atは資料の保存時刻であり草案生成時刻ではない。運営から説明を1件受け、実時計区間を分離した。",
+          "第2回別評価は公開review登録まで20分内だが、report対応確認と実行記録保存を含む完了は12303.011498秒後。",
+          "第2回別評価の公開readで未知区分metadataを指定した失敗1回を、公開エラーに示されたcontext_metadataへ直して継続。"
+        ]
+      },
+      "correctness": {
+        "verdict": "CONDITIONAL",
+        "label": "指定条件内で成立、別評価の補助本文に誤り1件",
+        "known_major_error_in_final_proposal": false,
+        "all_supporting_text_error_free": false,
+        "evidence": [
+          "軍配自身を手札の合計から除外し10+10+6=26。保存2構築とその生成物の上限7×3=21を超え、4PPとEP1で一掃する。続く知恵で総5PP、手札5→4、場1が整合。",
+          "大型L・小型Sの指定初手、引く順序、実験体6体目からの強化、PP・手札・場枠は確認した範囲で成立する。F前置き後は19<21で不発となる。",
+          "B別評価のジンジャー経路も、以下の残存数の訂正後に5体全処理は可能。"
+        ],
+        "supporting_error": {
+          "path": "b/round-2/review-calculation.md",
+          "location": "手順3および終了時盤面",
+          "observed": "3/3ゴーレムが5/2の実験体へ攻撃し、3/1で残ると記載。",
+          "correction": "相手の攻撃力は5のままなので2体目の3/3も死亡する。全処理後はジンジャー7/2・ゴーレム3/2・アラ4/3の3体であり、ゴーレム2体を含む4体ではない。Fを追加すれば4体。",
+          "impact": "通常側の残る守護を1体過大に記載。全処理できること、4回の手札強化、消費PP/EPは変わらない。正式提案の軍配手順の否定ではないが、別評価の補助本文を誤りなしとは扱わない。",
+          "original_artifact_changed": false
+        },
+        "limits": [
+          "両側の全最善分岐、必要時点の手札頻度、T7以降の決着は未確認。",
+          "微睡みを引いた直後の強化順は未確認だが、今回の回復条件5以上と保持札の数値には影響しない。",
+          "相手上限21は固定2構築と許可された生成物の範囲。全実験体や全対面へ一般化できない。"
+        ],
+        "evidence_paths": [
+          "b/round-1/submission.json",
+          "b/round-2/same-state-investigation.md",
+          "b/round-2/review-response.json",
+          "b/round-2/review-calculation.md"
+        ]
+      },
+      "development": {
+        "verdict": "PASS",
+        "label": "成立例・反対例を追加し、根拠付きで停止",
+        "evidence": [
+          "草案の対面無指定の一掃を、正式案では保存2構築・手札22以上・ジンジャーとの1枚交換へ具体化した。中心原理は既知と認めた。",
+          "第2回で大型Lと小型S、F前置きによる軍配不発と必要盤面縮小を同じ資源条件で具体化。初回の相手体力・軽減回数未指定を解消した。",
+          "既存札が軽くなる到達経路とEPの取り合いを示し、新しい役割へ進む根拠と採用の純利益を得られなかった範囲で停止した。"
+        ],
+        "limits": [
+          "交換前のジンジャーを同じ引く位置へ戻す比較は考案担当の追加資料では不足し、別評価が補った。その補助計算にも残存数の誤りがある。",
+          "正式案は1件のまま。追加資料を正式改訂や2件目の種へ数えない。"
+        ]
+      },
+      "utility": {
+        "verdict": "FAIL",
+        "label": "この試行の有用な出力は0件",
+        "test_worthy_seed_count": 0,
+        "evidence": [
+          "1枚交換で、大型Lを通常EP・4PPで確実に消し、アラ・ティコ・追加PPを温存できる小さな利益はある。",
+          "同じLでは後攻6ターンの追加PPを使えば交換前ジンジャーも全処理できる。補助本文の誤りを訂正しても、7PPの元札がまだ出せない局面という比較理由は立たない。",
+          "小型Sは既存ティコが1PP軽く2回多く強化する。Fを早く出すと軍配の合計は下がるが相手の大型数も減り、既存処理で足りる例がある。",
+          "核を引かない場合の通常勝ち筋は明記される一方、失ったジンジャー1枚の強化・守護・攻め準備に対する利益は未確定。高元コストの軽減札を手札条件へ使う中心用途は既知で、F追加による負担低下や新しい役割配分を示す比較はない。"
+        ],
+        "limits": [
+          "少数採用を全局面で否定しない。利益が小さいという理由だけで失格にせず、既知用途との差と交換負担を含めて判断した。実戦未実施だけを理由にしない。"
+        ]
+      },
+      "honesty": {
+        "verdict": "PASS",
+        "label": "既知の原理・調整の可能性・未確認を区別",
+        "evidence": [
+          "中心用途を既知と明記し、現行の同一40枚が検索されないことを新規性へ転用していない。",
+          "最大21を保存2構築へ限定。記事の実績・確率・Tierは本案へ移さず、引く順序を指定した例として公開した。",
+          "草案時刻と資料時刻を混同せず、長い別評価の時刻空白も未観測と報告した。"
+        ],
+        "limits": [
+          "補助計算の誤りは正確さの問題として残る。誤りが意図的だったとは判断しない。",
+          "保存されたWeb観測要約を確認した範囲であり、外部本文・動画・大会全件を最終採点で再照合していない。"
+        ]
+      }
+    }
+  },
+  "workload": {
+    "counting_scope": "草案は公開保存分。正式提出・検討回・別評価を別計数。参加担当の記録にある公開コマンドのみを数え、rootの準備・packet生成・追跡用reportと本採点の読取は含めない。",
+    "a": {
+      "sketch_count": 0,
+      "formal_proposals": 1,
+      "formal_revisions_after_initial": 0,
+      "consideration_rounds": 2,
+      "independent_reviews": 2,
+      "initial_sources": 6,
+      "final_sources": 12,
+      "new_sources": 6,
+      "public_commands_recorded": 30,
+      "public_successes": 30,
+      "public_failures": 0,
+      "public_command_breakdown": {
+        "generator_round_1": 14,
+        "generator_round_2": 10,
+        "reviewer_round_1": 2,
+        "reviewer_round_2": 4
+      },
+      "formal_submission_or_review_retries": 0,
+      "local_prepublication_repairs": [
+        "初回資料の仮名重複をattach前に修正1件。",
+        "初回別評価の引用存在検査でlimitationsを本文引用にした誤りを登録前に修正1件。"
+      ],
+      "elapsed_seconds": {
+        "generation_1_dispatch_to_save": 1189.561925,
+        "review_1_dispatch_to_save": 696.583334,
+        "generation_2_dispatch_to_save": 1282.112526,
+        "review_2_dispatch_to_save": 26960.636891,
+        "whole_arm_dispatch_to_final_save": 42056.014387
+      },
+      "unobserved_intervals_reference": "a/round-2/review-execution.json time_accounting。18:32:44→20:16:04、20:16:04→翌01:04:41、01:04:41→01:54:03など。原因不明。"
+    },
+    "b": {
+      "sketch_count": 1,
+      "formal_proposals": 1,
+      "formal_revisions_after_initial": 0,
+      "consideration_rounds": 2,
+      "independent_reviews": 2,
+      "initial_sources": 6,
+      "final_sources": 16,
+      "new_sources": 10,
+      "new_sources_excluding_sketch": 9,
+      "public_commands_recorded": 21,
+      "public_successes": 20,
+      "public_failures": 1,
+      "public_command_breakdown": {
+        "generator_round_1": 10,
+        "generator_round_2": 3,
+        "reviewer_round_1": 2,
+        "reviewer_round_2": 6
+      },
+      "formal_submission_or_review_retries": 0,
+      "public_read_retries": 1,
+      "sketch_write_time_observed_interval": [
+        "2026-09-08T14:18:25+00:00",
+        "2026-09-08T14:19:39+00:00"
+      ],
+      "sketch_exact_write_time": null,
+      "formal_submit_success_observed_by": "2026-09-08T14:29:09+00:00",
+      "formal_report_saved_by": "2026-09-08T14:29:27+00:00",
+      "elapsed_seconds": {
+        "generation_1_dispatch_to_save": 815.247546,
+        "review_1_dispatch_to_save": 570.218421,
+        "generation_2_dispatch_to_save": 1173.525737,
+        "review_2_dispatch_to_save": 12303.011498,
+        "whole_arm_dispatch_to_final_save": 15091.514036
+      },
+      "unobserved_intervals_reference": "b/round-2/review-execution.json timing_audit。15:12:44.494729→17:01:25.978881、17:02:16→18:26:47.411148など。原因不明。"
+    },
+    "initial_packet_field_chars": {
+      "a": {
+        "stage": 9,
+        "revision": 1,
+        "context_hash": 66,
+        "context": 305807,
+        "instruction": 940,
+        "proposal": 4,
+        "previous_reviews": 2,
+        "search": 2,
+        "review_contexts": 2,
+        "history": 2,
+        "sources": 12336,
+        "source_usage": 110,
+        "response_example": 635
+      },
+      "b": {
+        "stage": 8,
+        "revision": 1,
+        "context_hash": 66,
+        "context": 305807,
+        "instruction": 571,
+        "proposal": 4,
+        "previous_reviews": 2,
+        "search": 2,
+        "review_contexts": 2,
+        "history": 2,
+        "sources": 12336,
+        "source_usage": 110,
+        "response_example": 265
+      }
+    },
+    "noncomparable_cost_note": "sourceの分割粒度、公開readと直接JSON読取、担当差がある。資料件数・コマンド数・総経過時間を純作業量や方式の優劣へ変換しない。",
+    "observed_interventions": [
+      "B初回で草案observed_atの意味をrootが説明。新しいカード判断課題を追加していない。",
+      "B第2回別評価で17:01:53 UTCにrootが時間超過による新規調査停止と保存を指示した記録。"
+    ],
+    "intervention_limits": "運営の全メッセージ記録は本採点では未読。ここは指定ログで確認した範囲であり、介入がこの2件だけだったとの完全性の主張ではない。",
+    "code_changes_during_trial": "担当ログ上0件、rootの固定入力照合は不変。コード自体は今回読んでいない。"
+  },
+  "observed_comparison": {
+    "test_worthy_seeds": {
+      "a": 0,
+      "b": 0
+    },
+    "shared_result": "公開工程の保存は完了し、追加検討は根拠付きの停止に進んだ。有用な最終の種は得られなかった。",
+    "differences": [
+      "Aは3役の有限反復、Bは既知の手札条件の用途を1枚交換へ適用した。",
+      "Aは軍配を初回選択から外したと記録し、Bは同じ中心原理を草案へ保存してから対象を絞った。",
+      "Bは資料10件増（うち草案1）、Aは6件増。ただし件数自体は利益を表さない。",
+      "Bの別評価の補助本文に残存ゴーレム1体の過大計上が残る。"
+    ],
+    "unconfirmed_causal_hypotheses": [
+      "草案の早い保存が既知案へ留まらせた可能性は仮説にとどまる。担当差・選択差を分離できない1組で因果効果は判定できない。",
+      "長い時刻差の原因は不明。思考の長さ、ツール待機、停止などを推測しない。"
+    ],
+    "pre_fixed_signal": {
+      "prototype_continue_signal_met": false,
+      "observed_reject_conditions": [
+        "両方式の有用な種が0件",
+        "bの有用な種が増えない"
+      ],
+      "meaning": "この組は継続確認へ進むための事前信号を満たさなかった。本採用・全体目標達成・方式全般の優劣の判断ではない。"
+    },
+    "aggregate_score": null,
+    "winner": null,
+    "success_rate": null
+  },
+  "limits": [
+    "全179ファイルの意味内容の全面監査ではない。実際に使用した範囲はexecution.json。",
+    "外部Webの新規取得、対戦、新しい候補探索、実質レビューの再登録は行わない。",
+    "過去の別試行結果・calibration・rootの途中採否まとめ・コードは参照しない。固定原則内の一般例は指定資料として読み、リンク先へ進んでいない。",
+    "正式案の手順の条件付き成立と、すべての補助本文が誤りなしであることは別に扱う。"
+  ]
+}

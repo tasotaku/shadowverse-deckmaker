@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-09T02:34:07.707254+00:00",
+  "symptom": "Prior comparison preparation and finalization grew into many repeated packet copies and extra grading steps; unobserved clock gaps also invalidated elapsed-time controls.",
+  "root_cause_scope": "Repeated record handling is directly observed. Cause of clock gaps remains unknown and is not assigned to the method.",
+  "fixed_contract": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "criteria_before": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "criteria_after": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "change": "Keep exact runtime evidence once, write compact manifests plus final archive. Use the independent per-round quality review as the five-axis input and root method-decision mapping; avoid a separate third substantive regrading unless an actual unresolved correctness issue requires it.",
+  "next_measurement": [
+    "Preparation elapsed from final prototype to dispatch",
+    "Number of substantive reviews per round (one)",
+    "Distinct runtime artifacts and duplicate archive copies",
+    "Useful independently supported final seeds, unchanged criteria"
+  ],
+  "limits": "Convenience or faster bookkeeping alone cannot establish the deck-exploration goal."
+}

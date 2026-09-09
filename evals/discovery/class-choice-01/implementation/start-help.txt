@@ -1,0 +1,16 @@
+usage: discovery.py start [-h] [--db DB] --class
+                          {エルフ,ロイヤル,ウィッチ,ドラゴン,ナイトメア,ビショップ,ネメシス,all}
+                          [--format {rotation,unlimited}] --objective
+                          OBJECTIVE
+                          session
+
+positional arguments:
+  session
+
+options:
+  -h, --help            show this help message and exit
+  --db DB
+  --class {エルフ,ロイヤル,ウィッチ,ドラゴン,ナイトメア,ビショップ,ネメシス,all}
+                        一クラスへ絞る。allなら全クラスの資料を読み、案の提出時に一クラスを選ぶ
+  --format {rotation,unlimited}
+  --objective OBJECTIVE

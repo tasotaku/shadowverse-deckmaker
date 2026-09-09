@@ -1,0 +1,102 @@
+{
+  "status": "draft_not_fixed",
+  "recorded_at": "2026-09-09T02:16:43.329348+00:00",
+  "hypothesis": "A single frozen context can keep alternative class foundations visible until the proposal chooses a legal class. It may help a neutral-card role develop in a suitable foundation; this is not an established cause of prior failures.",
+  "current_constraint": "discovery start requires one class before context generation. Separate sessions and manual cross-class reading are already possible.",
+  "prototype": "/tmp/sv-class-choice-prototype",
+  "branch": "codex/discovery-class-choice-prototype",
+  "base_commit": "39a98e61373c8d8401d6a6f737b2aafb6f6cf7ae",
+  "source_db": "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+  "source_db_sha256": "47ca643684b02eda1763d24728b730865b6dd629f3d0ec9043a6762ef1afdbdd",
+  "counts": [
+    {
+      "class_name": "ウィッチ",
+      "rotation_eligible": 68,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "エルフ",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ドラゴン",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ナイトメア",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ニュートラル",
+      "rotation_eligible": 46,
+      "unlimited_eligible": 69
+    },
+    {
+      "class_name": "ネメシス",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ビショップ",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    },
+    {
+      "class_name": "ロイヤル",
+      "rotation_eligible": 67,
+      "unlimited_eligible": 106
+    }
+  ],
+  "known_example_limit": "Mazelbeinn 10304110 is not rotation-eligible in this snapshot. It motivates class choice but is not a rotation test case or a new discovery.",
+  "evaluation_to_fix": [
+    "same saved card data and reference lists accessible to both methods",
+    "baseline may read and switch freely among separate per-class sessions; do not artificially forbid its normal capabilities",
+    "variant may choose one actual deck class at submission; mixed-class deck cards remain invalid",
+    "same independent quality criteria and explicit elapsed-time deviations",
+    "separate workflow convenience from novel useful seeds; no adoption from code tests alone"
+  ],
+  "not_fixed_yet": [
+    "natural trial input corpus and time budget",
+    "public runtime compatibility checks",
+    "past-success and negative case list",
+    "comparison scheduling and exact arm instructions"
+  ],
+  "proposed_format": "rotation",
+  "proposed_card_scope": {
+    "eligible_cards": 516,
+    "classes": 7,
+    "neutral_eligible": 46,
+    "historical_limit": "Mazelbeinn is excluded from this rotation trial; any separate mechanism check using it must specify unlimited and cannot claim historical gameplay reproduction."
+  },
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "proposed_arms": {
+    "a": "One prepared legacy-format session per class, sharing a single snapshot. The agent may inspect and switch among all seven sessions, including ordinary script-assisted reading; no artificial one-class lock. One candidate is eventually submitted in its matching class session.",
+    "b": "One all-class session from the same snapshot. The agent chooses the actual legal deck class with its proposal. Different classes cannot be mixed as deck cards."
+  },
+  "fairness_constraints": [
+    "Both may use all seven classes and the same source corpus. No extra card, note, rule, or reference is given only to b.",
+    "Use the same isolated code for both after proving the single-class default is compatible with main.",
+    "Model settings inherited identically; fresh generators and fresh per-round reviewers.",
+    "Review asks the same quality questions. All-class availability is not evidence of a good deck.",
+    "Do not infer speed from long unobserved clock gaps. Record elapsed time, actual command counts, failure/retry counts, sources and scope separately."
+  ],
+  "proposed_continue_signal": "A useful independently assessed final seed remains in b, with no correctness/honesty deterioration. Only an increase over a supports a discovery-improvement claim. Equal positive outputs are a tie for discovery; any separate convenience claim needs measured operations and does not establish the overall goal.",
+  "proposed_reject_if": [
+    "No useful final seed remains in b.",
+    "Invalid mixed-class assumptions contribute to the apparent gain.",
+    "The only gain is extra cards or sources inaccessible to the baseline.",
+    "Results consist only of extra reporting or unconfirmed reserve ideas."
+  ],
+  "implementation_observed_start": "2026-09-09T02:06:54+00:00",
+  "implementation_design_commit": "1143f6e"
+}
