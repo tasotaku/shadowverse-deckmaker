@@ -219,6 +219,18 @@ def attach(session: Path, payload: JSONDict) -> JSONDict:
     return save_sources(session, payload)
 
 
+def attach_file(session: Path, content_file: Path, title: str, kind: str, location: str,
+                observed_at: str | None = None, limitations: list[str] | None = None) -> JSONDict:
+    # AI_NOTE: 報告を手でJSON文字列へ詰め直さず、そのまま既存の資料保存境界へ渡す。
+    raw = content_file.read_bytes()
+    result = attach(session, {"sources": [{
+        "title": title, "kind": kind, "location": location, "observed_at": observed_at,
+        "content": raw.decode("utf-8"), "limitations": [] if limitations is None else limitations,
+    }]})
+    return {**result, "input_file": {"path": str(content_file.resolve()),
+                                   "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw)}}
+
+
 def compare(session: Path, before_hash: str, after_hash: str) -> JSONDict:
     # AI_NOTE: 保存DBの整合を確認してから2件の全リストを比較する。
     return compare_decks(session, _context(session), before_hash, after_hash)
@@ -439,6 +451,14 @@ def main(argv: list[str] | None = None) -> int:
     add = sub.add_parser("attach", help="比較資料・観察のJSONを固定して追記")
     add.add_argument("session", type=Path)
     add.add_argument("sources", type=Path)
+    file_add = sub.add_parser("attach-file", help="UTF-8の報告ファイルを本文として追加資料へ保存")
+    file_add.add_argument("session", type=Path)
+    file_add.add_argument("content_file", type=Path)
+    file_add.add_argument("--title", required=True)
+    file_add.add_argument("--kind", required=True, help="資料の種類。原文か要約かも明記する")
+    file_add.add_argument("--location", required=True, help="実際の出典URLや記録の場所")
+    file_add.add_argument("--observed-at", help="実際の観察時点。不明なら省略してnullにする")
+    file_add.add_argument("--limitation", action="append", default=[], help="未確認や限界。複数回指定可能")
     diff = sub.add_parser("compare", help="保存された全40枚の構築2件から交換札を集計")
     diff.add_argument("session", type=Path)
     diff.add_argument("before_source_hash")
@@ -466,6 +486,9 @@ def main(argv: list[str] | None = None) -> int:
             result = start(args.session, args.db, args.class_name, args.format, args.objective)
         elif args.command == "attach":
             result = attach(args.session, read_object(args.sources))
+        elif args.command == "attach-file":
+            result = attach_file(args.session, args.content_file, args.title, args.kind,
+                                 args.location, args.observed_at, args.limitation)
         elif args.command == "compare":
             result = compare(args.session, args.before_source_hash, args.after_source_hash)
         elif args.command == "packet":
