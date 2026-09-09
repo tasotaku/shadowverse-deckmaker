@@ -1,0 +1,55 @@
+{
+  "id": "role-gap-01",
+  "frozen_at": "2026-09-09T15:24:24.394650+00:00",
+  "category": "method",
+  "hypothesis": "通常の勝ち方から任せ直す仕事を先に選び、その働きを担う別用途・副作用・多段接続を探すと、カードの接続から始める従来指示より試す理由のある種へ進めるか。原因は未立証。",
+  "base_commit": "a5efa59df3dc74c15da78f6535f83293fbcdf437",
+  "prototype_commit": "158a2bad251ea538765c713041564b4421dd25ec",
+  "input_scope": "過去の保存機能試行で使ったロイヤル初期資料を再利用する開発用の比較。旧案・追加資料・評価は渡さず、両方式で新しく考案する。未知カード・保留集合での評価とは呼ばない。",
+  "inputs": {
+    "a": {
+      "implementation": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "session": "/tmp/sv-role-gap-01/a/work/session",
+      "packet_hash": "74e560dd1f8d59dbcb14e0e9be049931e1e821373c766df84b0f4d2085458c07",
+      "context_hash": "c0aa7a60ebc49053b4a783760d1d0fa11cf563586b6f8443661e758ac2622cbb",
+      "initial_files": {
+        "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+        "context.json": "9a8d988c74abadaff862012e256596f2e045293ff1c218cc857dd78bdd070535",
+        "packets/74e560dd1f8d59dbcb14e0e9be049931e1e821373c766df84b0f4d2085458c07.json": "ee2de80fabb8247a6b87ecd2fa4fb035b3dff04ec9a2186fd0fc846a755ca2e6"
+      }
+    },
+    "b": {
+      "implementation": "/tmp/sv-role-gap-prototype",
+      "session": "/tmp/sv-role-gap-01/b/work/session",
+      "packet_hash": "a136061e9ac2bdb1228b008d88acf385b7732ceced90bf8ef75546ba15b89b38",
+      "context_hash": "c0aa7a60ebc49053b4a783760d1d0fa11cf563586b6f8443661e758ac2622cbb",
+      "initial_files": {
+        "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+        "context.json": "9a8d988c74abadaff862012e256596f2e045293ff1c218cc857dd78bdd070535",
+        "packets/a136061e9ac2bdb1228b008d88acf385b7732ceced90bf8ef75546ba15b89b38.json": "658ad9c5932ddc788353e06ae3f54640c0ae430222d156b4e820d3f0d3001d15"
+      }
+    }
+  },
+  "packet_difference": [
+    "instruction"
+  ],
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "generation_seconds": 900,
+  "review_seconds": 600,
+  "maximum_rounds_per_arm": 2,
+  "stop_rules": [
+    "初回の正式案を同じ基準の別担当で評価。test/dropなら終了。",
+    "developの場合は判断が変わる問いを追加調査または改訂し、最大2回目の新しい資料で別評価する。新しい根拠がなければ再採点しない。",
+    "期限停止を完了や案の反証にしない。担当差と時間条件の乱れを残す。",
+    "Bが有用な種0なら本採用を見送る。Aと同数なら発見力は同点。Bが増えて重大な退行がなければ限定的な支持材料とし、本採用前の別入力と歴史的正負例の確認を残す。",
+    "評価基準、入力、回数、予算を結果が出た後で合格寄りに変更しない。"
+  ],
+  "decision_basis": "案の説明量や記録件数ではなく、独立評価で示された試す理由と、成立性・負担・既出の根拠で判断。保存や機能検査の成功を有用性の代わりにしない。"
+}
