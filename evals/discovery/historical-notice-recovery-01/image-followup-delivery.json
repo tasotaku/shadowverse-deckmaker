@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-09-09T04:53:49.153209+00:00",
+  "live_api": "http://127.0.0.1:8765/api/experiments",
+  "record_revision": 2,
+  "backup": "data/backups/experiments-20260909T045349Z.sqlite3",
+  "record_count": 21,
+  "root_recording_correction": {
+    "failed_update_calls": 2,
+    "cause": "New stage omitted required budget_minutes field. First stderr was captured but not shown; second call read the error.",
+    "fix": "Added budget_minutes:null because no advance limit was recorded. One content correction, then update succeeded. No exploratory worker failure."
+  }
+}
