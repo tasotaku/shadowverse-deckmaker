@@ -1,0 +1,17 @@
+{
+  "reviewer": "article_source_output_check",
+  "result": "PASS",
+  "scope": "保存済み実CLI出力と元記事HTMLを照合。取得数、40枚、原文URL、保存内容、card_id差分を独立確認。",
+  "checks": {
+    "article_recipe_counts": "2記事→3構築、16/14/15種類、各40枚",
+    "variants": "Game8前hm_1/後hm_2を区別",
+    "display_difference": "後ろ寄せ表41枚/コピー40枚、ロードノエル四世3対2を保持",
+    "tier": "取得情報3件ともnull",
+    "source_preservation": "取得6資料と旧2資料、比較3資料の全項目が保存先と一致",
+    "exchanged_counts": "同じcard_idでGameWith5、Game8前0/後9を独立計算",
+    "dates": "記事更新日時と取得日時を分離、元HTMLと操作期間へ照合"
+  },
+  "first_read_limit": "初回readは532行中20行。この時点で全資料は保存ファイルとの照合で確認した。その後、公開readの残りは別工程で確認。",
+  "discovery_utility_assessed": false,
+  "additional_read": "PASS: 全532行の再結合・8資料全項目一致を同じ担当が独立確認。追加0.70秒を最初の4.07秒へ含めていない。"
+}

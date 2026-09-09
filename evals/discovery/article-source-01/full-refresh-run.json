@@ -1,0 +1,52 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-m",
+    "svdeck.meta",
+    "--db",
+    "/tmp/sv-baseline-refresh-01/cards.db"
+  ],
+  "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+  "stdin": null,
+  "output": "/private/tmp/sv-baseline-refresh-01/run",
+  "started_at": "2026-09-09T16:37:06.693802+00:00",
+  "deadline_at": "2026-09-09T16:42:06.693802+00:00",
+  "timeout_seconds": 300.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 78302,
+  "worker_pid": 78304,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-09T16:42:06.763386+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T16:37:06.694521+00:00",
+      "elapsed_seconds": 0.00037837494164705276
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T16:37:06.697472+00:00",
+      "elapsed_seconds": 0.0033622076734900475
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-09T16:42:06.700021+00:00",
+      "elapsed_seconds": 300.0009222077206
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-09T16:42:06.703367+00:00",
+      "elapsed_seconds": 300.00423270789906,
+      "signal": 15
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T16:42:06.763665+00:00",
+      "elapsed_seconds": 300.06453633261845
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 300.06427533272654,
+  "runner_returncode": 124
+}

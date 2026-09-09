@@ -1,0 +1,245 @@
+{
+  "id": "article-source-01",
+  "revision": 1,
+  "saved_at": "2026-09-09T17:03:09.827949+00:00",
+  "actor": "root",
+  "reason": "実記事の取得から保存・比較までを検証し、資料取得の補助入口として採用",
+  "record": {
+    "id": "article-source-01",
+    "title": "必要な参考記事を取得して比較へ渡す",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "2記事から3構築を取得し、40枚内訳と記事更新日時・表示不一致を保持して比較へ渡す補助入口を採用。",
+    "method": "全件更新を待たず、必要なGameWith・Game8記事を指定して取得。既存の解析と40枚検査を使い、DBを変更せず探索へ追加資料として渡す。",
+    "procedure": "保存資料の時点確認→全件更新をコピーで実行（期限停止）→対象記事の取得可否を点検→公開CLIを実装・86件検査→実記事2件を取得→資料保存・再読・新旧3組の比較→独立した出力確認。",
+    "inputs": "本体のカードDBと、GameWith連携ロイヤル1構築、Game8連携ロイヤル前寄せ・後ろ寄せ。比較元は7月30日に保存した2構築。",
+    "criteria": "必要な記事の各40枚を省略・推測せず取り込む。複数構築と記事更新日時・取得時刻・表示表との不一致を保持する。現在Tierを補完しない。全資料が公開の保存・読出し・比較を通り、カードDBと固定入力が変わらない。",
+    "result": {
+      "outcome": "pass",
+      "summary": "実際の2記事→3構築（各40枚）、取得6資料＋旧参考2資料の全項目一致。旧参考からの交換枚数はGameWith5・Game8前0/後9。後ろ寄せ表41枚/コピー40枚の差分も保持。関連86件・型検査・独立出力7項目が合格。",
+      "limitations": "資料機能の評価であり、試す価値のある独自案を生む有用性は未評価。全件更新は5分で未完了、本体の環境デッキ一覧は7月のまま。最初の12操作は約4.07秒、全資料の追加再読は別工程で約0.70秒。実装・機能検査・独立照合の開始終了UTCは未記録。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "必要な記事だけを取得でき、元の資料を保ったまま現在の構築と差分を比較できたため、資料取得の補助として採用。探索方法の発見力が改善したという採用判断ではない。"
+    },
+    "started_at": "2026-09-09T16:30:37.722773+00:00",
+    "ended_at": "2026-09-09T17:03:09.637291+00:00",
+    "stages": [
+      {
+        "id": "initial",
+        "title": "保存済みの参考構築の古さを確認",
+        "status": "completed",
+        "started_at": "2026-09-09T16:30:37.722773+00:00",
+        "ended_at": null,
+        "note": "69件すべて7月30日取得。確認終了の正確なUTCは未記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "full",
+        "title": "既存の全件更新をDBコピーで試す",
+        "status": "interrupted",
+        "started_at": "2026-09-09T16:37:06.693802+00:00",
+        "ended_at": "2026-09-09T16:42:06.763386+00:00",
+        "note": "5分期限停止。65ページ中29ページを処理。保存済み2表は全行一致を確認。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "target",
+        "title": "既存の解析処理で対象2記事を点検",
+        "status": "completed",
+        "started_at": "2026-09-09T16:44:32.528511+00:00",
+        "ended_at": "2026-09-09T16:44:35.297950+00:00",
+        "note": "3リスト取得。全件更新の完走とは区別する。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "implementation",
+        "title": "記事を指定する公開入口を実装し検査",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "開始終了UTCは未記録。関連86件が3.81秒で合格、型検査も合格。公開実利用の開始前に完了。",
+        "budget_minutes": null
+      },
+      {
+        "id": "retrieve-gamewith",
+        "title": "GameWithの現行記事を取得",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:56.398222+00:00",
+        "ended_at": "2026-09-09T16:50:57.770827+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "retrieve-game8",
+        "title": "Game8の現行記事を取得",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:57.771465+00:00",
+        "ended_at": "2026-09-09T16:50:59.151089+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "start",
+        "title": "新しい探索の固定資料を作成",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.166743+00:00",
+        "ended_at": "2026-09-09T16:50:59.328918+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "attach-old",
+        "title": "7月の参考構築2件を追加",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.370902+00:00",
+        "ended_at": "2026-09-09T16:50:59.465252+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "attach-gamewith",
+        "title": "GameWithの構築と取得情報を追加",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.483270+00:00",
+        "ended_at": "2026-09-09T16:50:59.599283+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "attach-game8",
+        "title": "Game8の2構築と取得情報を追加",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.608601+00:00",
+        "ended_at": "2026-09-09T16:50:59.721363+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "packet",
+        "title": "追加資料を含む入力を保存",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.732478+00:00",
+        "ended_at": "2026-09-09T16:50:59.883383+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "read",
+        "title": "入力資料の先頭20行を再読",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.894475+00:00",
+        "ended_at": "2026-09-09T16:50:59.968888+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "compare-0",
+        "title": "新旧の構築を比較（1件目）",
+        "status": "completed",
+        "started_at": "2026-09-09T16:50:59.983657+00:00",
+        "ended_at": "2026-09-09T16:51:00.064258+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "compare-1",
+        "title": "新旧の構築を比較（2件目）",
+        "status": "completed",
+        "started_at": "2026-09-09T16:51:00.076866+00:00",
+        "ended_at": "2026-09-09T16:51:00.167944+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "compare-2",
+        "title": "新旧の構築を比較（3件目）",
+        "status": "completed",
+        "started_at": "2026-09-09T16:51:00.181552+00:00",
+        "ended_at": "2026-09-09T16:51:00.274701+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "report",
+        "title": "保存状態の報告を取得",
+        "status": "completed",
+        "started_at": "2026-09-09T16:51:00.294074+00:00",
+        "ended_at": "2026-09-09T16:51:00.380494+00:00",
+        "note": "公開CLIで終了コード0。入力と出力は操作記録に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "full_read",
+        "title": "同じ入力の残り512行を再読し全項目を照合",
+        "status": "completed",
+        "started_at": "2026-09-09T16:59:26.547224+00:00",
+        "ended_at": "2026-09-09T16:59:27.249304+00:00",
+        "note": "先頭20行と合わせて全532行・8資料の全項目一致。最初の約4.07秒には含めない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "independent",
+        "title": "別担当が元記事と保存内容を照合",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "7項目合格。全532行の追加再読も別担当が照合。開始終了UTCは未記録。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/article-source-01/README.md",
+      "evals/discovery/article-source-01/test-verification.json",
+      "evals/discovery/article-source-01/operations.json",
+      "evals/discovery/article-source-01/verification.json",
+      "evals/discovery/article-source-01/read-completion.json",
+      "evals/discovery/article-source-01/independent-output-check.json",
+      "evals/discovery/article-source-01/full-refresh-run.json",
+      "evals/discovery/article-source-01/full-refresh-preservation.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/article-source-01/README.md",
+      "sha256": "e5e5e849fc0ac11eb3535711625d41cb6b964d799a9135f059f051a54a7f06ad",
+      "size": 4279
+    },
+    {
+      "path": "evals/discovery/article-source-01/full-refresh-preservation.json",
+      "sha256": "0571ab52922188e7d0225cabf6c65f565f9350ffacfc288533854248b22b4c66",
+      "size": 1130
+    },
+    {
+      "path": "evals/discovery/article-source-01/full-refresh-run.json",
+      "sha256": "a1c463da166092275c17730f9217b7679e1b85dfd76214ed51f8f2155f68ec18",
+      "size": 1643
+    },
+    {
+      "path": "evals/discovery/article-source-01/independent-output-check.json",
+      "sha256": "a62491214d8cb41dd58467013b97d501079c1c229374e9b4b6ba3e85a53e9601",
+      "size": 1181
+    },
+    {
+      "path": "evals/discovery/article-source-01/operations.json",
+      "sha256": "02555f29f99d5d257b255a99fb4d1889da22a3a719ed2681fa114539ead3380d",
+      "size": 7046
+    },
+    {
+      "path": "evals/discovery/article-source-01/read-completion.json",
+      "sha256": "885652b8808a36e6a9670c1da5d522a09364da19fe0c7bbd7220e16d1634dfd8",
+      "size": 816
+    },
+    {
+      "path": "evals/discovery/article-source-01/test-verification.json",
+      "sha256": "f7bda2e0a794529bf04f8290e3128c1554939e4c44a168fb1565c21948e51d05",
+      "size": 958
+    },
+    {
+      "path": "evals/discovery/article-source-01/verification.json",
+      "sha256": "e0bde66a79a3d7395376eb4535578da7eb5d8a17791926c20db0c73ac5114f42",
+      "size": 11478
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "scope": "期限停止後のコピーと本体の環境デッキ2表について、元から存在する全列・全行を比較。コピーに追加されたsource_json列は全件null。本体DBは不変。",
+  "collector_note": "初回のSELECT *比較は、既存connectがコピーだけにsource_json列を追加したため列数違いで失敗した。元の全列の値が一致することと追加列の値を別々に確認した。",
+  "tables": {
+    "meta_deck": {
+      "rows": 69,
+      "original_columns": [
+        "id",
+        "site",
+        "url",
+        "name",
+        "tier",
+        "format",
+        "updated_on",
+        "fetched_at"
+      ],
+      "same_all_original_rows": true,
+      "added_columns_nonnull_counts": {
+        "source_json": 0
+      }
+    },
+    "meta_deck_card": {
+      "rows": 1026,
+      "original_columns": [
+        "deck_id",
+        "card_name",
+        "count",
+        "card_id"
+      ],
+      "same_all_original_rows": true,
+      "added_columns_nonnull_counts": {}
+    }
+  },
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414"
+}

@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-09-09T17:05:08.971255+00:00",
+  "destination": "http://127.0.0.1:8765/api/experiments",
+  "total_records": 27,
+  "checks": [
+    {
+      "id": "role-gap-01",
+      "revision": 7,
+      "status": "completed",
+      "decision": "deferred",
+      "stage_count": 13,
+      "all_saved_fields_match": true,
+      "evidence_source_changes": {
+        "error": null,
+        "paths": []
+      }
+    },
+    {
+      "id": "article-source-01",
+      "revision": 1,
+      "status": "completed",
+      "decision": "adopted",
+      "stage_count": 18,
+      "all_saved_fields_match": true,
+      "evidence_source_changes": {
+        "error": null,
+        "paths": []
+      }
+    }
+  ],
+  "note": "初回の全オブジェクト比較はAPIだけが付けるsource_changes欄により失敗。保存された全フィールドの一致と追加欄のエラーなし・差分なしを別々に確認。"
+}

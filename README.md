@@ -228,6 +228,7 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 | `python -m svdeck.require recheck` | 新弾取得後、以前供給がなかった要求を再検索する。DB変更なし |
 | `python -m svdeck.profile decks` | 保存した環境デッキを一覧する。数値資料は強さ点数として使わない |
 | `python -m svdeck.meta --db data/cards.db` | 環境デッキを取得し、全件の整合確認後に保存済み一覧を置き換える |
+| `python -m svdeck.meta --article URL --format rotation --db data/cards.db` | 指定記事だけを読み、各40枚リストと取得情報を資料JSONとして出力する。DBは変更しない |
 
 Game8の記事は、主レシピ節の見出しごとにある**デッキコピー用リンクの対象リスト**を取得します。
 記事の表示表とコピー対象が違う場合は、枚数と札の差・コピー先をログに明示します。
@@ -239,6 +240,12 @@ Game8の記事は、主レシピ節の見出しごとにある**デッキコピ�
 取得・解析の失敗があれば処理を中止し、保存済みの一覧は置き換えません。ログは必要に応じてファイルへ保存してください。
 表示表とコピー対象がともに40枚でも内容が一致するとは限らず、コピー対象を取得したことは記事内の表記の一致や強さの証明ではありません。
 | `python -m svdeck.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
+
+必要な記事だけを探索資料へ渡す場合は、`meta --article URL --format rotation --db PATH > article.json` の出力を
+`python -m svdeck.discovery attach SESSION article.json` で取り込みます。GameWithとGame8の記事に対応します。
+複数の構築は別々の全40枚リストとして保存され、記事更新日時・コピー先・表示表との不一致は各構築の「取得情報」に残ります。
+`packet` の `sources` から種類が「公開記事の全40枚リスト」の識別値を選ぶと、既存の `compare` で比較できます。
+現在のTierや合法性はこの取得では判定せず、保存済みの一覧や既存の固定資料も変えません。
 
 設計は [docs/design.md](docs/design.md)、ゲームルールの索引は [docs/rules.md](docs/rules.md) を参照してください。
 

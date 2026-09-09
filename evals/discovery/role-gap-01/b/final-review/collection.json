@@ -1,0 +1,40 @@
+{
+  "collected_at": "2026-09-09T16:49:39.255174+00:00",
+  "worker_status": "completed",
+  "runner_returncode": 0,
+  "started_at": "2026-09-09T16:39:33.088587+00:00",
+  "ended_at": "2026-09-09T16:48:54.663356+00:00",
+  "utc_elapsed_seconds": 561.574769,
+  "monotonic_elapsed_seconds": 561.5648267916404,
+  "original_files_unchanged": 8,
+  "public_operations": 21,
+  "public_failures": [
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-role-gap-01/b/final-review/work/session",
+        "review.json"
+      ],
+      "stderr": "探索入力エラー: 資料内のカードIDと本文・進化・参照先・注記を参照してください\n",
+      "ended_at": "2026-09-09T16:47:01.898085+00:00"
+    }
+  ],
+  "formal_review_count": 1,
+  "verdict": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "all_supplied_fields_match": true,
+  "review_hash": "c186e372d55b196e71cb40892e1a47fcda06858cae7af1b351dcde7fa6c8da9d",
+  "next_questions": [
+    "二種を維持したまま燃え落ちる縁等の防御と純増ドローを何枚ずつ置けば、参考16/22と同じ先後・初手・敵盤面でT4〜6の体力、EP、手札、連携を維持できるか。完成40枚の有無だけでなく実際の交換枠を比較したい。",
+    "Zを0/1/2/3枚とした場合、どの非対象枠を交換するか。3/3二体でのEP節約と4/4二体でのG取得率低下を、実際の残存対象・盤面分布で重み付けするとどちらが有利か。",
+    "メイド未取得、G未取得、M未取得、EP切れ、対象2枚未満を含め、T8到達と連携20到達がどのくらい両立するか。対戦で先に試すには、この配分の見通しが変わる必要がある。",
+    "現行公式本文・合法性を再取得できるか。現行二種＋生成スペル案の公開リストと普及を、個人記事・大会・攻略情報に分けて確認できるか。"
+  ],
+  "scope": "正式保存された最後の評価のみを保持。未提出の評価をrootが代理提出せず、既存の案や過去の評価を書き換えない。"
+}

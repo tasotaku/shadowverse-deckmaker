@@ -1,0 +1,17 @@
+{
+  "scope": "記事取得の正常系、資料への無変更保存、複数構築、記事更新時刻欠落、40枚不足・0構築・照合不能・後続不正時の部分出力抑止、引数不備、未作成DB・未対応URL。既存の取得・解析・保存・比較も含む。",
+  "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:tests /tmp/sv-system-venv/bin/python -m pytest -q tests/test_meta.py tests/test_meta_integrity.py tests/test_discovery_compare.py tests/test_discovery_sources.py tests/temp/test_meta_article_temp.py",
+  "session_id": 35965,
+  "exit_code": 0,
+  "passed": 86,
+  "existing_tests": 78,
+  "temporary_tests": 8,
+  "duration_seconds": 3.81,
+  "typing": {
+    "command": "mypy --strict src/svdeck/meta.py",
+    "session_id": 80093,
+    "exit_code": 0,
+    "result": "Success: no issues found in 1 source file"
+  },
+  "limits": "資料取得機能の検査。未知の種を生む有用性は検査していない。"
+}

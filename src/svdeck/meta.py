@@ -9,6 +9,7 @@
 
 import argparse
 from collections import Counter
+from datetime import datetime, timezone
 import html
 import json
 from pathlib import Path
@@ -329,15 +330,58 @@ def run(db: Path = DB_PATH) -> None:
         conn.close()
 
 
+def article_sources(db: Path, url: str, deck_format: str) -> dict[str, Any]:
+    # AI_NOTE: 必要な記事だけを読み、リストと取得根拠を既存の資料形式へ出す。保存DBは変更しない。
+    parsed = urlparse(url)
+    sites = {"gamewith.jp": "gamewith", "game8.jp": "game8"}
+    if parsed.scheme != "https" or parsed.hostname not in sites:
+        raise ValueError("記事URLはGameWithまたはGame8のHTTPS URLを指定してください")
+    link = DeckLink(sites[parsed.hostname], url, "指定記事", "", deck_format)
+    conn = sqlite3.connect(db.resolve().as_uri() + "?mode=ro", uri=True)
+    try:
+        details = collect_deck_details(link)
+        if not details:
+            raise ValueError("記事のデッキリストが0件です")
+        observed = datetime.now(timezone.utc).isoformat()
+        sources = []
+        for detail in details:
+            cards = _recipe_cards(conn, detail, url, deck_format)
+            if any(cid is None for _, _, cid in cards):
+                raise ValueError("保存DBと照合できないカードがあります。IDを推測せず取得を中止します")
+            location = url.split("#", 1)[0] + (f"#{detail.anchor}" if detail.anchor else "")
+            title = detail.variant or "記事の構築"
+            limits = ["指定したフォーマットの資料。カード本文・合法性・現在のTier・勝率はこの取得では確認しない。",
+                      "記事の表示表とコピー先の相違、記事更新日時は同じ出典の取得情報を参照。"]
+            entries = [{"card_id": cid, "count": count, "name": name} for name, count, cid in cards]
+            provenance = {**_recipe_source(link, detail, cards), "format": deck_format,
+                          "article_updated_on": detail.updated_on, "current_tier": None}
+            sources.extend([
+                {"title": title, "kind": "公開記事の全40枚リスト", "location": location,
+                 "observed_at": observed, "content": json.dumps(entries, ensure_ascii=False, indent=2), "limitations": limits},
+                {"title": title + "の取得情報", "kind": "記事から取得した出典情報", "location": location,
+                 "observed_at": observed, "content": json.dumps(provenance, ensure_ascii=False, indent=2), "limitations": limits},
+            ])
+        return {"sources": sources}
+    finally:
+        conn.close()
+
+
 def main(argv: list[str] | None = None) -> int:
-    # AI_NOTE: ヘルプや不正な引数は、DB接続・Web取得より前に処理する。
+    # AI_NOTE: 記事の読取出力と一覧更新を引数で分け、形式指定の誤りでは取得前に止める。
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db", type=Path, default=DB_PATH, help="取得結果を保存するカードDB")
+    parser.add_argument("--article", help="指定記事だけを読み、discovery attach用の資料JSONを標準出力へ返す。DBは変更しない")
+    parser.add_argument("--format", choices=("rotation", "unlimited"), help="記事取得時の対象フォーマット")
     args = parser.parse_args(argv)
+    if bool(args.article) != bool(args.format):
+        parser.error("--articleと--formatは一緒に指定してください")
     try:
-        run(args.db)
+        if args.article:
+            print(json.dumps(article_sources(args.db, args.article, args.format), ensure_ascii=False, indent=2))
+        else:
+            run(args.db)
     except (OSError, ValueError, sqlite3.Error) as exc:
-        print(f"[meta] 取得中止: {exc}。既存ミラーを置き換えていません", file=sys.stderr)
+        print(f"[meta] 取得中止: {exc}。保存済みの環境デッキ一覧は変更していません", file=sys.stderr)
         return 2
     return 0
 

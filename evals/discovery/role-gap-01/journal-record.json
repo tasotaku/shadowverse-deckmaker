@@ -1,30 +1,30 @@
 {
   "id": "role-gap-01",
-  "revision": 6,
-  "saved_at": "2026-09-09T16:41:18.940052+00:00",
+  "revision": 7,
+  "saved_at": "2026-09-09T16:53:23.728305+00:00",
   "actor": "root",
-  "reason": "追加検討の期限停止と時計不一致を記録。途中計算を停止後に保存し、最後の独立評価を開始",
+  "reason": "最終独立評価を保存。試行推薦0対0と時間条件の乱れを踏まえ本採用保留として終了",
   "record": {
     "id": "role-gap-01",
     "title": "任せ直す仕事からデッキの種を探す",
     "category": "method",
-    "status": "running",
-    "summary": "追加検討は両方式とも期限停止。途中の計算3ファイルを別工程で原文保存し、元の案と合わせて最後の独立評価中。",
+    "status": "completed",
+    "summary": "最後の独立評価まで両方式とも追加検討止まり。試行推薦は0件ずつで、役割から探す指示変更の本採用は保留。",
     "method": "通常の勝ち方から任せ直す仕事を先に選び、その働きを担う別用途・副作用・多段接続を探すと、カードの接続から始める従来指示より試す理由のある種へ進めるか。原因は未立証。",
     "procedure": "同じロイヤル初期資料を2つにコピー。初回の考案指示だけ変え、各15分で考案・保存。別担当が各10分で評価し、追加検討なら根拠を補う改訂を最大1回行う。",
     "inputs": "過去の保存機能試行で使ったロイヤル初期資料を再利用する開発用の比較。旧案・追加資料・評価は渡さず、両方式で新しく考案する。未知カード・保留集合での評価とは呼ばない。",
     "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。\n最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。\n追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。\n最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。\n共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "初回の試行推薦は両方式とも0件。サーチ集中の利益は認められたが、外す札の補充・防御・打点を埋める根拠が不足。独立評価は従来版8分41秒、試作版9分29秒で完了。",
-      "limitations": "初期資料は開発で使用済みの1組。追加検討の時計が食い違い、公平な所要時間・完走率の比較はできない。原文保存と仮想例の正答は発見力の証明ではない。"
+      "outcome": "mixed",
+      "summary": "引き先の確率と除去できる条件は具体化したが、失う補充・防御・先行打点を埋める根拠が不足。元の第1版案2件へ、初回と追加資料後の正式評価を各1件ずつ保存した。最終の試行推薦は従来版0件・試作版0件。",
+      "limitations": "開発で使用済みの初期資料1組。第2回考案はUTC22分20秒/経過時計6分55秒と食い違い、時間条件の揃った比較ではない。途中計算は停止後にrootが保存。仮想正負例2/2合格を実カードの発見成果へ数えない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "実利用結果が出るまで採用しない。"
+      "status": "deferred",
+      "reason": "Bの有用な種が0件で、探索方向の指示変更による優位を示せないため本採用保留。時間条件の乱れがあり、有害・無効な方法と一般化しない。"
     },
     "started_at": "2026-09-09T15:24:23.998520+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-09T16:53:23.650765+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -110,10 +110,10 @@
       {
         "id": "final_review_a",
         "title": "従来版の新しい計算を含めて最後の独立評価",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T16:39:33.088586+00:00",
-        "ended_at": null,
-        "note": "旧案第1版と実際の追加計算だけを渡す。前の評価は除外し、評価基準は同じ。",
+        "ended_at": "2026-09-09T16:49:33.167275+00:00",
+        "note": "正式評価1件を保存し全項目一致。条件付き成立・追加検討・既出未確認。担当は保存・照合後に10分期限停止。",
         "budget_minutes": 10
       },
       {
@@ -128,11 +128,20 @@
       {
         "id": "final_review_b",
         "title": "役割から探す版の新しい計算を含めて最後の独立評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-09T16:39:33.088587+00:00",
-        "ended_at": null,
-        "note": "旧案第1版と実際の追加計算だけを渡す。前の評価は除外し、評価基準は同じ。",
+        "ended_at": "2026-09-09T16:48:54.663356+00:00",
+        "note": "正式評価1件を保存し全項目一致。条件付き成立・追加検討・既出未確認。9分22秒で終了。引用欄の入力エラー1回を修正して提出。",
         "budget_minutes": 10
+      },
+      {
+        "id": "decision",
+        "title": "結果と本採用保留の理由を確定",
+        "status": "completed",
+        "started_at": "2026-09-09T16:53:23.368110+00:00",
+        "ended_at": "2026-09-09T16:53:23.650765+00:00",
+        "note": "固定条件を原文と照合し、試行推薦0対0と時間条件の乱れから本採用保留。方法全般の無効とは断定しない。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
@@ -147,7 +156,10 @@
       "evals/discovery/role-gap-01/a/round2-intake.json",
       "evals/discovery/role-gap-01/b/round2/collection.json",
       "evals/discovery/role-gap-01/b/round2-intake.json",
-      "evals/discovery/role-gap-01/final-review-inputs.json"
+      "evals/discovery/role-gap-01/final-review-inputs.json",
+      "evals/discovery/role-gap-01/a/final-review/collection.json",
+      "evals/discovery/role-gap-01/b/final-review/collection.json",
+      "evals/discovery/role-gap-01/evaluation.json"
     ]
   },
   "evidence": [
@@ -155,6 +167,11 @@
       "path": "evals/discovery/role-gap-01/a/collection.json",
       "sha256": "90a43b9022d5ea1c93a34f09b4670fed6b258b14bffa33b1f6a05fefc4f3c1be",
       "size": 1080
+    },
+    {
+      "path": "evals/discovery/role-gap-01/a/final-review/collection.json",
+      "sha256": "b441a0179f110c27b9531431f33fa05213633839054c7f89ecd9e0c5f32a0844",
+      "size": 2038
     },
     {
       "path": "evals/discovery/role-gap-01/a/review/collection.json",
@@ -177,6 +194,11 @@
       "size": 656
     },
     {
+      "path": "evals/discovery/role-gap-01/b/final-review/collection.json",
+      "sha256": "e54efd122102d7ad9d275dc82fca860a3de583626535427dc5181b536f6beffa",
+      "size": 2216
+    },
+    {
       "path": "evals/discovery/role-gap-01/b/review/collection.json",
       "sha256": "65644a7c0e35c3802a8a30137945ed6f8f142e6bf8881d59b423d1d24b493d70",
       "size": 2092
@@ -190,6 +212,11 @@
       "path": "evals/discovery/role-gap-01/b/round2-intake.json",
       "sha256": "28f70f38bdf2c2b1d790abeacc12d9dccc937dfd4d26192ee8ba50129693fcb8",
       "size": 2137
+    },
+    {
+      "path": "evals/discovery/role-gap-01/evaluation.json",
+      "sha256": "04e1e4b643ebb96a1303269fd04e543566258d4517719c16ab92e0f91ecfe9ad",
+      "size": 2128
     },
     {
       "path": "evals/discovery/role-gap-01/final-review-inputs.json",

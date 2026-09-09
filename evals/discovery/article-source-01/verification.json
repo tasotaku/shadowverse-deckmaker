@@ -1,0 +1,350 @@
+{
+  "checked_at": "2026-09-09T16:51:00.392675+00:00",
+  "session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+  "article_count": 2,
+  "recipe_count": 3,
+  "attached_initial_sources": 8,
+  "comparison_count": 3,
+  "comparisons": [
+    {
+      "location": "https://game8.jp/shadowverse-beyond/781940#hm_2",
+      "source_hash": "cf4af4b5537044c2448d6eb9f3100975da1f7047f2761ece82866aaea68e3875",
+      "before_hash": "7ea6dba8c733e3c153bf2df3284b3a562ca3215cb31365bab8812373962fa373",
+      "comparison_hash": "fa0945f6efa812159607f6184c98fd2dac16da4691985fedfc30fc5d951f1f5e",
+      "exchanged_count": 9,
+      "added": [
+        {
+          "card_id": 10403120,
+          "name": "空の命運を握る少女・ルリア",
+          "count": 1
+        },
+        {
+          "card_id": 10424120,
+          "name": "十天衆の頭目・シエテ",
+          "count": 3
+        },
+        {
+          "card_id": 10624110,
+          "name": "凄烈の剣王・ロードノエル四世",
+          "count": 2
+        },
+        {
+          "card_id": 10624120,
+          "name": "旧き天剣・イドメタ",
+          "count": 1
+        },
+        {
+          "card_id": 10924120,
+          "name": "武皇の変貌・ベルテゾール",
+          "count": 2
+        }
+      ],
+      "removed": [
+        {
+          "card_id": 10021110,
+          "name": "刹那のクイックブレイダー",
+          "count": 3
+        },
+        {
+          "card_id": 10522310,
+          "name": "優しき援軍",
+          "count": 3
+        },
+        {
+          "card_id": 10722120,
+          "name": "斬奏の衛生兵",
+          "count": 1
+        },
+        {
+          "card_id": 10821110,
+          "name": "武力と治安・ナハト・ナハト＆ヴィンセント",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "location": "https://game8.jp/shadowverse-beyond/781940#hm_1",
+      "source_hash": "0714a1970394963cb794586a7d5395a1dcb4207284881b9d150c4ee034c3020e",
+      "before_hash": "7ea6dba8c733e3c153bf2df3284b3a562ca3215cb31365bab8812373962fa373",
+      "comparison_hash": "4a3cc15122431882bc4f84fafde417dfb4ec0dea2ac2a84060e88f5c9e161396",
+      "exchanged_count": 0,
+      "added": [],
+      "removed": []
+    },
+    {
+      "location": "https://gamewith.jp/shadowverse-wb/559138",
+      "source_hash": "7269116e10c6be41aedcd8c45b0baa117539a2a5163d0927fe1790d7952a9a78",
+      "before_hash": "aa468277dd95a8cec48ef9c718abe1c2157d3184686ea4ec19e556d5c8f60edf",
+      "comparison_hash": "31082312fc34f3d73fd59c7ffe0f3c698f0d9ce900fe0a21986bf79876e605ab",
+      "exchanged_count": 5,
+      "added": [
+        {
+          "card_id": 10021110,
+          "name": "刹那のクイックブレイダー",
+          "count": 1
+        },
+        {
+          "card_id": 10021130,
+          "name": "ケンタウロスの騎士",
+          "count": 1
+        },
+        {
+          "card_id": 10822310,
+          "name": "リライブリライフ",
+          "count": 1
+        },
+        {
+          "card_id": 10921310,
+          "name": "ファランクス",
+          "count": 2
+        }
+      ],
+      "removed": [
+        {
+          "card_id": 10424120,
+          "name": "十天衆の頭目・シエテ",
+          "count": 3
+        },
+        {
+          "card_id": 10722110,
+          "name": "聴略の諜報兵",
+          "count": 1
+        },
+        {
+          "card_id": 10821110,
+          "name": "武力と治安・ナハト・ナハト＆ヴィンセント",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "all_source_fields_preserved": true,
+  "fixed_context_and_snapshot_unchanged": true,
+  "main_db_sha256_unchanged": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "proposal_count": 0,
+  "scope": "公開CLIによる取得・保存・読出し・比較の実利用。案の考案・独立評価・発見力の評価は実施していない。",
+  "operations": [
+    {
+      "name": "retrieve-gamewith",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.meta",
+        "--article",
+        "https://gamewith.jp/shadowverse-wb/559138",
+        "--format",
+        "rotation",
+        "--db",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db"
+      ],
+      "started_at": "2026-09-09T16:50:56.398222+00:00",
+      "ended_at": "2026-09-09T16:50:57.770827+00:00",
+      "monotonic_seconds": 1.3724704161286354,
+      "exit_code": 0,
+      "output": "retrieve-gamewith.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "retrieve-game8",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.meta",
+        "--article",
+        "https://game8.jp/shadowverse-beyond/781940",
+        "--format",
+        "rotation",
+        "--db",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db"
+      ],
+      "started_at": "2026-09-09T16:50:57.771465+00:00",
+      "ended_at": "2026-09-09T16:50:59.151089+00:00",
+      "monotonic_seconds": 1.3796422081068158,
+      "exit_code": 0,
+      "output": "retrieve-game8.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "start",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "start",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "--db",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+        "--class",
+        "ロイヤル",
+        "--format",
+        "rotation",
+        "--objective",
+        "更新された参考構築を原文保持し、保存済みの構築との差を確認する。発見力の評価とは区別する。"
+      ],
+      "started_at": "2026-09-09T16:50:59.166743+00:00",
+      "ended_at": "2026-09-09T16:50:59.328918+00:00",
+      "monotonic_seconds": 0.1621890407986939,
+      "exit_code": 0,
+      "output": "start.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "attach-old",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "/tmp/sv-article-source-01/old-sources.json"
+      ],
+      "started_at": "2026-09-09T16:50:59.370902+00:00",
+      "ended_at": "2026-09-09T16:50:59.465252+00:00",
+      "monotonic_seconds": 0.09436470828950405,
+      "exit_code": 0,
+      "output": "attach-old.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "attach-gamewith",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "/tmp/sv-article-source-01/retrieve-gamewith.stdout.json"
+      ],
+      "started_at": "2026-09-09T16:50:59.483270+00:00",
+      "ended_at": "2026-09-09T16:50:59.599283+00:00",
+      "monotonic_seconds": 0.11602787533774972,
+      "exit_code": 0,
+      "output": "attach-gamewith.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "attach-game8",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "/tmp/sv-article-source-01/retrieve-game8.stdout.json"
+      ],
+      "started_at": "2026-09-09T16:50:59.608601+00:00",
+      "ended_at": "2026-09-09T16:50:59.721363+00:00",
+      "monotonic_seconds": 0.11278612492606044,
+      "exit_code": 0,
+      "output": "attach-game8.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "packet",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "--summary"
+      ],
+      "started_at": "2026-09-09T16:50:59.732478+00:00",
+      "ended_at": "2026-09-09T16:50:59.883383+00:00",
+      "monotonic_seconds": 0.15092266723513603,
+      "exit_code": 0,
+      "output": "packet.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "read",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "cce3195ce2fb46faa6ee0127b2e7c712cd3563c8fa2bdb6e72d4068928267efe",
+        "sources",
+        "--limit",
+        "20"
+      ],
+      "started_at": "2026-09-09T16:50:59.894475+00:00",
+      "ended_at": "2026-09-09T16:50:59.968888+00:00",
+      "monotonic_seconds": 0.07442870829254389,
+      "exit_code": 0,
+      "output": "read.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "compare-0",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "compare",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "7ea6dba8c733e3c153bf2df3284b3a562ca3215cb31365bab8812373962fa373",
+        "cf4af4b5537044c2448d6eb9f3100975da1f7047f2761ece82866aaea68e3875"
+      ],
+      "started_at": "2026-09-09T16:50:59.983657+00:00",
+      "ended_at": "2026-09-09T16:51:00.064258+00:00",
+      "monotonic_seconds": 0.08061558287590742,
+      "exit_code": 0,
+      "output": "compare-0.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "compare-1",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "compare",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "7ea6dba8c733e3c153bf2df3284b3a562ca3215cb31365bab8812373962fa373",
+        "0714a1970394963cb794586a7d5395a1dcb4207284881b9d150c4ee034c3020e"
+      ],
+      "started_at": "2026-09-09T16:51:00.076866+00:00",
+      "ended_at": "2026-09-09T16:51:00.167944+00:00",
+      "monotonic_seconds": 0.09108833270147443,
+      "exit_code": 0,
+      "output": "compare-1.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "compare-2",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "compare",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01",
+        "aa468277dd95a8cec48ef9c718abe1c2157d3184686ea4ec19e556d5c8f60edf",
+        "7269116e10c6be41aedcd8c45b0baa117539a2a5163d0927fe1790d7952a9a78"
+      ],
+      "started_at": "2026-09-09T16:51:00.181552+00:00",
+      "ended_at": "2026-09-09T16:51:00.274701+00:00",
+      "monotonic_seconds": 0.09316291566938162,
+      "exit_code": 0,
+      "output": "compare-2.stdout.json",
+      "stderr": ""
+    },
+    {
+      "name": "report",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-source-01"
+      ],
+      "started_at": "2026-09-09T16:51:00.294074+00:00",
+      "ended_at": "2026-09-09T16:51:00.380494+00:00",
+      "monotonic_seconds": 0.08643220923841,
+      "exit_code": 0,
+      "output": "report.stdout.json",
+      "stderr": ""
+    }
+  ]
+}
