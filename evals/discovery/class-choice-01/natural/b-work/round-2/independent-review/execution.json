@@ -1,0 +1,75 @@
+{
+  "started_at_utc": "2026-09-09T03:54:12Z",
+  "substantive_review_finished_at_utc": "2026-09-09T04:01:25Z",
+  "confirmation_finished_at_utc": "2026-09-09T04:04:27.644181+00:00",
+  "saved_at_utc": "2026-09-09T04:07:05.656149+00:00",
+  "deadline_utc": "2026-09-09T04:14:12Z",
+  "target_revision": 1,
+  "review_packet_hash": "a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a",
+  "public_operations": [
+    {
+      "command": "read SESSION HASH response_example --offset 0 --limit 40",
+      "success": true,
+      "timing": "個別時刻未採取。開始から03:55:55 UTCの実時計確認までに実行。"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-class-choice-01/b/session",
+        "/tmp/sv-class-choice-01/b-work/round-2/independent-review/review.json"
+      ],
+      "started_at_utc": "2026-09-09T04:02:03.679322+00:00",
+      "finished_at_utc": "2026-09-09T04:02:03.829103+00:00",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/b/session"
+      ],
+      "started_at_utc": "2026-09-09T04:02:37.982834+00:00",
+      "finished_at_utc": "2026-09-09T04:02:38.181072+00:00",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/b/session"
+      ],
+      "started_at_utc": "2026-09-09T04:04:27.465349+00:00",
+      "finished_at_utc": "2026-09-09T04:04:27.644181+00:00",
+      "exit_code": 0
+    }
+  ],
+  "public_success_count": 4,
+  "public_failure_count": 0,
+  "public_review_operations": 1,
+  "public_review_format_corrections": 0,
+  "substantive_rescoring_count": 0,
+  "public_retry_count": 0,
+  "local_read_errors": [
+    {
+      "count": 1,
+      "error": "ability_keywordsを配列と仮定した補助読取でTypeError。辞書だと確認し、関連5用語と残りの提案部分を再表示した。公開操作の失敗や再採点ではない。"
+    }
+  ],
+  "local_metadata_corrections": 1,
+  "local_metadata_correction_note": "検索時刻範囲の終端を、保存時に実際に得た04:01:25 UTCへ置換。評価内容変更なし。",
+  "formal_review_hash": "4bc258d8ad33cdf3d293d5fe31d78c1fe3167638066623670bb890a713a49bfd",
+  "formal_review_file": "/tmp/sv-class-choice-01/b/session/review-0001-4bc258d8ad33cdf3.json",
+  "report_verified": true,
+  "restriction_observance": "書込は自分の出力ディレクトリと公開review1件のみ。実装・DB・snapshot・元資料・既存記録・git・外部サービスを変更しない。追加担当も起動しない。",
+  "elapsed_seconds": 773.656149,
+  "within_20_minutes": true
+}

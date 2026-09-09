@@ -1,0 +1,138 @@
+{
+  "packet_path": "/tmp/sv-class-choice-01/b/session/packets/a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a.json",
+  "packet_hash": "a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a",
+  "fixed_packet_recreated": false,
+  "instructions_read": [
+    "/tmp/sv-class-choice-01/b-round-2-review-instructions.txt",
+    "/tmp/sv-class-choice-01/reviewer-instructions.txt",
+    "/tmp/sv-class-choice-01/operator-readme.md",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md"
+  ],
+  "imported_rules_read": [
+    "values.md",
+    "communication.md",
+    "explain.md",
+    "parallel.md",
+    "design.md",
+    "coding.md",
+    "workflow.md",
+    "knowledge.md",
+    "ai-code-guide.md",
+    "models/gpt-5-6-terra.md"
+  ],
+  "rules_root": "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/",
+  "project_design": {
+    "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+    "full_text_line_ranges_read": [
+      "1-53",
+      "199-423",
+      "487-553"
+    ],
+    "heading_search": "全体の見出しとnovelty/過去/試行等の一致行を確認。本文の全1036行を読了したとはしない。",
+    "reservation": "§5/6/既出判定の一般原則を適用した。埋め込まれた過去別試行の事例・結論・期待評価を今回の採点根拠には使わず、別試行記録へ進んでいない。"
+  },
+  "packet_sections": {
+    "proposal": "全項目を分割して読了。途中の出力省略箇所はrolesとsteps[0:2]等を再表示して補った。",
+    "instruction": "全文",
+    "response_example": "全文。公開readでも35行すべてを取得。",
+    "rules": "全117行",
+    "keywords": [
+      "アクセラレート",
+      "カウントダウン",
+      "ファンファーレ",
+      "突進",
+      "進化時"
+    ],
+    "cards": {
+      "read_count": 21,
+      "total": 614,
+      "card_ids": [
+        10072210,
+        10474120,
+        10502110,
+        10573310,
+        10574120,
+        10671110,
+        10672110,
+        10672310,
+        10673110,
+        10674110,
+        10674120,
+        10771310,
+        10874120,
+        10972120,
+        10974120,
+        90071110,
+        90071120,
+        90071130,
+        90074140,
+        90074150,
+        90074320
+      ],
+      "fields": "全採用15種と参照生成物6種の本文・進化後本文・関連効果・両側注記・コスト・クラス・合法性。raw全項目/抽出タグ/他593枚の本文は読了していない。"
+    },
+    "known_decks": {
+      "read_count": 5,
+      "total": 33,
+      "ids": [
+        4,
+        15,
+        19,
+        26,
+        31
+      ],
+      "fields": "ネメシス5構築のリスト・来歴・合法性。Tier値は出力から除外。"
+    },
+    "sources": {
+      "titles_indexed": 44,
+      "full_read_hashes": [
+        "0fdecef9c31fa413eed0f1b3523f6e96c02661edcfd0b02f00d870bb8fcd14b2",
+        "19a510c3861a895ac5a2e04ccf885befb76c3d3a85b7f2513474aa10807bae9f",
+        "48b97094eba37f681d8e83c3b3d648024a8ede1e7475767f319a35745b36b2e5",
+        "4e8d01e1549a529ddd62ec3fa1c8b1e110d5183dba92e875fd445901e9652f87",
+        "88f010284162ecbdf35c31519eb6a63f3d34cfce75379f0db2962c4d1eb7e1f5",
+        "8aaea0ee97f98a29830fa91065325e4a29639f69fbe5e1ed45868fe8959e493a",
+        "8dc90b248885df2cadf3d6cbacd41418a527cdd698b7608e08cd5496c5bc3b9b",
+        "933100a37722595f1c8ab43fda9ecb0390a49f5ee7b099c281d5d52d2aabf55e",
+        "d25729130ef92c3cfe4e932f008283e64bdf03f62d19293352aa9f3670ce6d3f",
+        "f3c48d7ed3699e6a7e9bb97e9a974d144065b862334d6bdc801086ef80722950"
+      ],
+      "partial_read_hashes": [
+        "8dcebe816f704b5bd399decd6a809f97a119df0b19a57a6864e43210c29f0e73"
+      ],
+      "partial_scope": "比較資料はdeltaと参照元を確認。両方の40枚を別に全文読み、独立に1枚交換と合法性を計算。残る33資料の本文は読了していない。"
+    },
+    "search": "全5問。すべて検索候補0件だが、充足不能とは扱わない。",
+    "history": "空配列を確認",
+    "previous_reviews": "空配列を確認。過去評価本文は読まない。",
+    "review_contexts": "指定review packetでは空配列。登録後reportでは自分のreview_hashに一致する1件のみ抽出。",
+    "fulfillment_map": "未読。今回の指定手順評価では本文を使用。",
+    "context_metadata": "全文"
+  },
+  "round_2_support_read": [
+    "research.md",
+    "execution.json",
+    "hand-ledger.json",
+    "early-ledger.json",
+    "report-verification.json",
+    "root-review-packet-summary.json"
+  ],
+  "support_material_equality": "research.md/hand-ledger.json/early-ledger.jsonは指定packet中の追加資料本文とバイト単位で一致。4件目の追加資料（Web照合）もpacketから全文を読んだ。",
+  "web_scope": {
+    "pages_opened": 3,
+    "official_card_api_gets": 4,
+    "search_queries": 2,
+    "source_research_queries_read": 10,
+    "unread": "動画本編・字幕、全投稿・他言語、公式コピー状態仕様の別媒体。検索結果は出力範囲のみで個別本文へ進まない。"
+  },
+  "explicit_exclusions": [
+    "他方式a",
+    "旧自然試行の記録",
+    "src/evals",
+    "過去評価本文/判定",
+    "親会話",
+    "考案担当への採点相談",
+    "追加agent/子実行",
+    "本番DB/snapshot/元資料/既存記録の編集"
+  ]
+}

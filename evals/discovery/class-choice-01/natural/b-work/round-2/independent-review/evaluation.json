@@ -1,0 +1,82 @@
+{
+  "task": "class-choice-01 b round-2 independent review",
+  "author": "/root/class_choice_b2_review",
+  "target_revision": 1,
+  "input_packet_hash": "a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a",
+  "verdict": {
+    "procedure": "conditional",
+    "value": "drop",
+    "novelty": "unconfirmed"
+  },
+  "criteria": [
+    {
+      "point": 1,
+      "subject": "公開工程と資料保持",
+      "judgment": "tested_path_pass",
+      "evidence": "指定版の公開read、公開review1件、公開report2回を成功。reportで提出内容全項目・入力版・44資料・クラス・revisionを照合。元案1件は維持され、新しい正式改訂はない。追加4資料のうち3件は補助記録との完全一致を独立確認。",
+      "unknown": "他セッション・他クラス・全入力の操作成功や発見力は未評価。正式本文を更新しない停止のため、追加資料の修正を元本文に適用済みとはしない。"
+    },
+    {
+      "point": 2,
+      "subject": "手順の正しさと到達準備",
+      "judgment": "conditional",
+      "evidence": "採用15種はネメシス/ニュートラルのローテ合法。生成物6種を別扱い。初手から7ターンまで2経路、8〜10ターンの3経路を本文と照合し、手札最大9・場最大5・PP・進化権の範囲で成立する。元の8PP行動全部とシアター2PPは8ターン目に同居せず、条件付き判定は追加資料の修正手順へ適用する。",
+      "unknown": "軽減状態コピーは固定注記に依存。指定取得順の頻度、相手の全プレイ、実際の生存、必要な攻撃先、妨害やダメージ軽減は未確認。"
+    },
+    {
+      "point": 3,
+      "subject": "追加調査による発展と停止",
+      "judgment": "substantive_progress_stop_supported",
+      "evidence": "人形を用意する経路と通常ドローを保つ判断を具体化した。初手からの取得と防御、進化権競合を2経路で可視化。初回コピーだけで得る玩具2枚と再コピーの増分を区別し、公式4枚の本文取得と個別Q&A未取得も分離した。資料追加だけの見かけの前進ではない。",
+      "resolved_within_given_conditions": [
+        "8〜10ターンの人形接続",
+        "8ターン通常ドローの保持"
+      ],
+      "partially_resolved": [
+        "初手から指定状態への到達（存在例のみ）",
+        "自己反復の利益と通常用途比較",
+        "既出状況とコピーの個別公式仕様"
+      ],
+      "stop": "今の比較では試す理由を強める局面を特定できず、資料保存で止めるのが妥当。未確認を理由に無期限継続しない。"
+    },
+    {
+      "point": 4,
+      "subject": "採用負担に見合う試す価値",
+      "judgment": "drop_current_proposal_archive_materials",
+      "evidence": "10ターン目決着例の8ターン再コピーは補充を増やさず、大きな本体と余分な深淵に対し追加PP・進化権・誠心を失う。初回7PP/捨て3枚/深淵用途とベルゼバブ1枠減を払うが、普通の補充・除去を超えて必要な仕事へ変わる局面はない。既存39枚の道を残す軽さは認めるが、序盤配分を改善した証拠や核が揃わない場合の上積みはない。",
+      "limitation": "全経路無価値の反証ではなく、現在の保存案への推薦・自動継続を見送る判断。40枚完成、Tier、勝率、全引きでの優越は要求しない。初回コピーによる手札入替と長期戦での追加補充には条件付きの利益が残る。",
+      "reopen_condition": "再開するなら、9〜10ターン目にベルゼバブ未所持・玩具残り1枚・2PPゴッデスと進化権を持つ具体的な局面で、普通の補充や除去では資源が尽きるが再コピーなら追加補充を実際に使い、防御から決着まで進める例を示せるか。初回7PPと捨て札、ベルゼバブ1枠減の負担を含む同条件比較が判断を変える条件であり、単なるQ&A取得や未確認の存在を理由に直ちに継続しない。"
+    },
+    {
+      "point": 5,
+      "subject": "既出状況と過大評価の防止",
+      "judgment": "unconfirmed_no_unearned_bonus",
+      "evidence": "標準の決着と必要札複製は公開用途として確認。ハイランダーでのゴッデスとヨグゼンタ同居は特定の反復の普及とは別。今回の2検索も同用法の普及を確認できず、検索不発は新規性の証拠にならない。",
+      "unknown": "特定反復の一般への普及、動画・全投稿・他言語。Tier・勝率・初見の強さを加点していない。"
+    }
+  ],
+  "formal_review": {
+    "target_revision": 1,
+    "saved_file": "/tmp/sv-class-choice-01/b/session/review-0001-4bc258d8ad33cdf3.json",
+    "review_hash": "4bc258d8ad33cdf3d293d5fe31d78c1fe3167638066623670bb890a713a49bfd",
+    "number_note": "公開review応答はrevision 1を返す。別の通し評価番号は返さないため、正式識別は保存名とreview_hashを使う。",
+    "report_path": ".revisions[0].reviews[0]"
+  },
+  "report_checks": {
+    "own_review_registered_once": true,
+    "review_matches_every_submitted_field": true,
+    "record_matches_report_review": true,
+    "revision_preserved": true,
+    "class_preserved": true,
+    "input_packet_preserved": true,
+    "input_sources_preserved": true,
+    "next_questions_preserved": true,
+    "proposal_unchanged": true,
+    "all_packet_sources_in_report": true,
+    "only_original_revision": true
+  },
+  "reading_scope_file": "reading-scope.json",
+  "scope_reservation": "正式案1は古いまま。今回の条件付き成立評価の対象はその案と追加4資料の保存版1件で、旧案本文を修正したという評価ではない。",
+  "public_review_count_by_this_reviewer": 1,
+  "substantive_rescoring_count": 0
+}
