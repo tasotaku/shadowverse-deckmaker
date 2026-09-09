@@ -1,0 +1,60 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-fresh-reference-01/generation/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-fresh-reference-01/generation/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-fresh-reference-01/generation/work",
+  "stdin": "/private/tmp/sv-fresh-reference-01/generation/work/prompt.md",
+  "output": "/private/tmp/sv-fresh-reference-01/generation/run",
+  "started_at": "2026-09-09T17:14:35.409252+00:00",
+  "deadline_at": "2026-09-09T17:29:35.409252+00:00",
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 8913,
+  "worker_pid": 8914,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-09T17:43:29.346729+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T17:14:35.410081+00:00",
+      "elapsed_seconds": 0.000551166944205761
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T17:14:35.413314+00:00",
+      "elapsed_seconds": 0.003829333931207657
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-09T17:43:29.227858+00:00",
+      "elapsed_seconds": 783.8480746666901
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-09T17:43:29.289992+00:00",
+      "elapsed_seconds": 783.9100019996986,
+      "signal": 15
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T17:43:29.346744+00:00",
+      "elapsed_seconds": 783.9667344167829
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 783.9667263748124,
+  "runner_returncode": 124
+}

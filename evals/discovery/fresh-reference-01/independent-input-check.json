@@ -1,0 +1,36 @@
+{
+  "reviewer": "fresh_reference_input_audit",
+  "collected_at": "2026-09-09T17:21:16.234388+00:00",
+  "phase_started_at": null,
+  "phase_ended_at": null,
+  "timing_limit": "担当の開始・終了UTCは未計測。collected_atはrootが結果を保存した時刻。",
+  "checks": [
+    {
+      "check": "対象網羅",
+      "result": "PASS",
+      "evidence": "保存Tier HTMLのドラゴン4リンクとDBの旧3リンクの和集合5記事が全件取得対象。"
+    },
+    {
+      "check": "保存JSONの40枚と出典",
+      "result": "PASS",
+      "evidence": "5構築を再集計し全40枚。Game8フェイスは表示37枚とコピー40枚の差（寸裂の盗人3枚）も保持。記事更新日9月9日と取得9月10日02:08を区別。",
+      "limit": "元記事HTMLは保存されていないため抽出・更新日の原文照合は未確認。"
+    },
+    {
+      "check": "旧参考と今回の取得版を区別",
+      "result": "PASS",
+      "evidence": "context.known_decksに7月版3件、sourcesに今回取得5件。ディスカードの内訳は旧版と同一。現在Tier確認は4記事のみ。"
+    },
+    {
+      "check": "過去の正式案と独立評価の混入",
+      "result": "PASS",
+      "evidence": "初期proposalはnull、previous_reviews・search・review_contexts・historyは空。既存注記17件はDBと一致。原則や注記に含まれるユーザーの評価例は元の入力の一部。"
+    },
+    {
+      "check": "保全",
+      "result": "PASS",
+      "evidence": "本体DB・初期14ファイル・packet・内容hash・退避tarの内部14ファイルが一致。"
+    }
+  ],
+  "summary": "保存資料の整合に不一致なし。元記事HTMLからの独立照合は未確認。案の強さ・独自性・有用性は評価していない。"
+}

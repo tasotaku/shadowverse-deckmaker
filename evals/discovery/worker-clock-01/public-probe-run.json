@@ -1,0 +1,49 @@
+{
+  "status": "completed",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-m",
+    "svdeck.discovery",
+    "report",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-reference-01"
+  ],
+  "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+  "stdin": null,
+  "output": "/private/tmp/sv-worker-clock-01/public-probe",
+  "started_at": "2026-09-09T21:24:05.118555+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2246254.254287833,
+  "timeout_seconds": 10.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 47669,
+  "worker_pid": 47670,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-09T21:24:05.344057+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T21:24:05.119345+00:00",
+      "elapsed_seconds": 0.0003977082669734955
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T21:24:05.122345+00:00",
+      "elapsed_seconds": 0.003427457995712757
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-09T21:24:05.342580+00:00",
+      "elapsed_seconds": 0.22365662502124906,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T21:24:05.344068+00:00",
+      "elapsed_seconds": 0.2251224173232913
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 0.22511587524786592,
+  "runner_returncode": 0
+}

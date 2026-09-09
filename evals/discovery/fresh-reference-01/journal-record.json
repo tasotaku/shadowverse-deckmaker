@@ -1,30 +1,30 @@
 {
   "id": "fresh-reference-01",
-  "revision": 1,
-  "saved_at": "2026-09-09T17:17:12.365576+00:00",
+  "revision": 3,
+  "saved_at": "2026-09-09T21:23:27.098291+00:00",
   "actor": "root",
-  "reason": "新しく取得した参考5構築を使い、公開入口で考案と独立評価を開始",
+  "reason": "未実施の独立評価を段階として明記し、報告本文の補足を記録へ反映",
   "record": {
     "id": "fresh-reference-01",
     "title": "現在の参考構築を渡して考案と評価を試す",
     "category": "method",
-    "status": "running",
-    "summary": "ドラゴンの参考5記事・各40枚を入力に加え、現行の考案・独立評価で試す理由のある独自案が残るか確認中。",
+    "status": "interrupted",
+    "summary": "参考5記事の取得、構築差分比較と調査報告保存まで進んだが、期限停止で正式案0件。独立評価へ進めず採用保留。",
     "method": "主役を限定しない現行の探索手順へ、今回取得した参考構築と取得範囲を渡す。別用途・多段接続・役割配分を考案し、通常の構築に対する利益と採用負担を独立評価する。",
     "procedure": "基準と対象を固定→現在Tier表と保存済み記事の和集合を選ぶ→5記事取得・入力保存→15分の考案→10分の独立評価→必要なら実際の追加根拠を1回取得して最終評価。3回目の考案は行わない。",
     "inputs": "ドラゴン・ローテーションの対象113枚と関連99枚。現在Tier表4記事と7月保存3記事の和集合5記事から5構築を今回取得。カードDBは開発で使用済み。",
     "criteria": "手順の実行可能性、効果・資源の正確さ、追加工程での実質的発展、試す理由のある種の有用性、既出調査と性能主張の誠実さの5基準。資料件数や検査合格だけで有用性の合格にしない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "対象5記事すべてから各40枚の構築を5件取得。初期資料14ファイルの一致と退避を確認。考案を開始したところで、正式案と試行推薦の結果は未確定。",
-      "limitations": "対照群のない1枝の試行。参考取得版は新しいが未知カードではない。ディスカード記事の現在Tier、全公式能力の最新性、実戦成績と独自性は未確認。"
+      "outcome": "mixed",
+      "summary": "5記事5構築の取得と入力保全を確認。公開呼出し34回（ヘルプ含む）、失敗0回。初期11資料に比較と調査報告を追加し13資料を保持。正式案0件、案の独立評価は未実施。",
+      "limitations": "考案のUTC時刻差28分53.94秒、経過時計13分03.97秒。予定期限の検知は13分53.82秒遅延。時計差の原因は未確定。未提出の着想の強さ・独自性は未評価。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "考案と独立評価が終わっていない。資料取得の成功とは分けて判断する。"
+      "status": "deferred",
+      "reason": "正式案を提出できず、試す価値の独立評価へ到達していないため。資料取得成功だけでは方法を採用しない。時計の不整合を案の反証にも使わない。"
     },
     "started_at": "2026-09-09T17:08:40.509996+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-09T17:43:29.346729+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -38,19 +38,19 @@
       {
         "id": "generate",
         "title": "通常の構築と役割を比較しながら案を考案する",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T17:14:35.409252+00:00",
-        "ended_at": null,
-        "note": "実行ハンドル83613を起動。期限は2026-09-10 02:29:35 日本時間。追加資料と正式提案の保存まで含む。",
+        "ended_at": "2026-09-09T17:43:29.346729+00:00",
+        "note": "期限停止を元のハンドル83613で確認。正式案0件。UTC28分53.94秒と経過時計13分03.97秒を区別。",
         "budget_minutes": 15
       },
       {
         "id": "review",
-        "title": "別担当が手順・採用負担・試す価値を評価する",
-        "status": "planned",
+        "title": "案の独立評価（未実施）",
+        "status": "interrupted",
         "started_at": null,
         "ended_at": null,
-        "note": "過去評価を渡さず同じ基準で評価。まだ開始していない。",
+        "note": "正式案が無いため開始せず、この試行では終了。",
         "budget_minutes": 10
       }
     ],
@@ -62,19 +62,49 @@
       "evals/discovery/fresh-reference-01/preparation-operations.json",
       "evals/discovery/fresh-reference-01/preparation-run.json",
       "evals/discovery/fresh-reference-01/generation-start.json",
-      "evals/discovery/fresh-reference-01/initial-preservation.json"
+      "evals/discovery/fresh-reference-01/initial-preservation.json",
+      "evals/discovery/fresh-reference-01/generation/run.json",
+      "evals/discovery/fresh-reference-01/generation/collection.json",
+      "evals/discovery/fresh-reference-01/generation/research-report.md",
+      "evals/discovery/fresh-reference-01/generation/report.json",
+      "evals/discovery/fresh-reference-01/independent-input-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/fresh-reference-01/README.md",
-      "sha256": "476d91b147c68ff559e65c05cbd09b1e180e08c3bc847095f84807ec9162b945",
-      "size": 3942
+      "sha256": "67d8f090930f44bbb7670473b847695f71a91741aa3ad8cb6e6afa42fc3b266f",
+      "size": 6571
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/generation/collection.json",
+      "sha256": "b4f049eb57d536524306438e30a69a0f7ce7cd731802e85b3bab84da7e021755",
+      "size": 688
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/generation/report.json",
+      "sha256": "021ff938599fdd0cd83cd24c6db4caf76100baa7a35b84d817c868e9f997ec9e",
+      "size": 8921
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/generation/research-report.md",
+      "sha256": "f5f1bdd490ab737fc6d9e617db81c19f3c8359767c63152f430f065e050ec82d",
+      "size": 15240
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/generation/run.json",
+      "sha256": "f5f02503c31f11d34118f08da5404027bdac7966908b4926cf2f5ad4c1d91a16",
+      "size": 1926
     },
     {
       "path": "evals/discovery/fresh-reference-01/generation-start.json",
       "sha256": "38a442439e5717691eca9c18a72ba1f5310953c5bceb582b1ca419fb0103e5c2",
       "size": 1381
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/independent-input-check.json",
+      "sha256": "b26efdd118fd0377f8124164224ec62f09d6973c9971b9c46aff3bd43f2f5318",
+      "size": 1820
     },
     {
       "path": "evals/discovery/fresh-reference-01/initial-preservation.json",

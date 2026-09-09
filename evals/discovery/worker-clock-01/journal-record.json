@@ -1,0 +1,98 @@
+{
+  "id": "worker-clock-01",
+  "revision": 1,
+  "saved_at": "2026-09-09T21:23:27.001569+00:00",
+  "actor": "root",
+  "reason": "経過時計の制限を追加し、実AIで中断調査の提出処理を検証開始",
+  "record": {
+    "id": "worker-clock-01",
+    "title": "経過時計の時間制限で途中の調査を続ける",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "経過時計だけで作業時間を制限する選択肢を実装。26件の検査に合格し、中断した調査の続きで実AIを確認中。",
+    "method": "UTCと経過時計の早い方で停止する既定設定に加え、経過時計だけを制限にする選択肢を追加。両方の時刻と停止条件を記録し、担当も同じ時計を参照する。",
+    "procedure": "時計の前進を模擬して既定と新設定を比較→実期限停止・部分出力保持・既存終了処理など26件の検査→元調査13資料のコピーと照合→実AIで提出・保存確認→正式案があれば別担当で有用性評価。",
+    "inputs": "中断したfresh-reference-01のドラゴン調査13資料と固定カード入力。過去の正式提案は0件、独立評価も無い。新規の未知入力ではない。",
+    "criteria": "既定設定の挙動を保持し、選択した時計を子と監視役で共有する。経過時間の上限で停止し途中資料を残す。実AIの公開操作で確認し、旧試行を成功へ書き換えない。案の価値は元の5基準で独立判定。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "既存20件＋追加6件の検査と型検査は合格。時刻だけの前進では新設定で処理完了、経過期限では停止できた。実AIの提出・独立評価は未完了。",
+      "limitations": "経過時計はCPU使用時間ではなく、OSにより休止の扱いも異なる。時計差の原因は未確定。機能検査の合格をデッキの種の有用性とみなさない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "実AIで公開操作と保存までの確認が進行中。既定の時間管理は変更していない。"
+    },
+    "started_at": "2026-09-09T21:17:33.894750+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "tests",
+        "title": "時計の選択・期限停止・既存処理を検査",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "開始終了UTCは未記録。関連26件が6.64秒で合格、型検査も合格。",
+        "budget_minutes": null
+      },
+      {
+        "id": "prepare",
+        "title": "中断資料をコピーし元の入力と照合",
+        "status": "completed",
+        "started_at": "2026-09-09T21:21:27.622166+00:00",
+        "ended_at": "2026-09-09T21:21:28.016269+00:00",
+        "note": "13資料と初期ファイルは一致。旧試行のファイルは変更しない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "live",
+        "title": "経過時計を使う実AIが提案をまとめる",
+        "status": "running",
+        "started_at": "2026-09-09T21:21:38.311520+00:00",
+        "ended_at": null,
+        "note": "実行ハンドル64566。上限は経過時計600秒で、固定UTC期限は設定していない。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/worker-clock-01/README.md",
+      "evals/discovery/worker-clock-01/protocol.json",
+      "evals/discovery/worker-clock-01/test-plan.json",
+      "evals/discovery/worker-clock-01/test-verification.json",
+      "evals/discovery/worker-clock-01/preparation.json",
+      "evals/discovery/worker-clock-01/run-start.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/worker-clock-01/README.md",
+      "sha256": "548da5ae8a768db380051b1d8cd3301e58647aea7d8ebfc3211e1e7fb2fb0645",
+      "size": 3196
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/preparation.json",
+      "sha256": "ce273faae3768021fa6f61654512edbd07ac879aee794ca39bfb2a63295459eb",
+      "size": 449
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/protocol.json",
+      "sha256": "996f2309f0a948f61ee638952446e2c38605683efb6014f9089c6af662dc3e87",
+      "size": 2800
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/run-start.json",
+      "sha256": "ce1c61e855508a514095031828634745bd1c3ca8e1273af1cfca2ff609bca170",
+      "size": 1442
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/test-plan.json",
+      "sha256": "a0c804f210045aaf2868cd4dc2b05a42044dc2a0b8b6ddf7bf27f37d42f1db98",
+      "size": 873
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/test-verification.json",
+      "sha256": "b9ce1302868f4e3e1d38ca67658e5a45ead92e02d56d6656b28bb35403f9c29c",
+      "size": 522
+    }
+  ]
+}

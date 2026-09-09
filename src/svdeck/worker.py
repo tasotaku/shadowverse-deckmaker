@@ -13,6 +13,7 @@ import subprocess
 import sys
 import time
 from types import FrameType
+from typing import Literal
 
 
 def save_record(path: Path, record: dict[str, object]) -> None:
@@ -39,7 +40,8 @@ def signal_group(process: subprocess.Popen[bytes], sig: int) -> bool:
 
 
 def run(command: list[str], output: Path, timeout: float, grace: float,
-        cwd: Path | None = None, stdin: Path | None = None) -> tuple[int, dict[str, object]]:
+        cwd: Path | None = None, stdin: Path | None = None,
+        clock: Literal['deadline', 'elapsed'] = 'deadline') -> tuple[int, dict[str, object]]:
     # AI_NOTE: 判定の中身に触れず、実行の期限・終了確認と既存出力の保持だけを担当する。
     if os.name != 'posix':
         raise ValueError('この入口のプロセス群制御はPOSIX専用です')
@@ -49,6 +51,8 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
         raise ValueError('timeoutは有限の正の秒数が必要です')
     if not math.isfinite(grace) or grace < 0:
         raise ValueError('graceは有限の0以上の秒数が必要です')
+    if clock not in ('deadline', 'elapsed'):
+        raise ValueError('clockはdeadlineまたはelapsedが必要です')
     started = datetime.now(timezone.utc)
     deadline = started + timedelta(seconds=timeout)
     clock_start = time.monotonic()
@@ -58,11 +62,14 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
     record: dict[str, object] = {
         'status': 'starting', 'command': command, 'cwd': str((cwd or Path.cwd()).resolve()),
         'stdin': str(stdin.resolve()) if stdin else None, 'output': str(output),
-        'started_at': started.isoformat(), 'deadline_at': deadline.isoformat(),
+        'started_at': started.isoformat(),
+        'deadline_at': deadline.isoformat() if clock == 'deadline' else None,
+        'budget_clock': clock, 'deadline_monotonic': clock_start + timeout,
         'timeout_seconds': timeout, 'termination_grace_seconds': grace,
         'supervisor_pid': os.getpid(), 'worker_pid': None, 'worker_returncode': None,
         'ended_at': None, 'events': events,
-        'limits': 'Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. '
+        'limits': 'Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. '
+                  'Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. '
                   'Only descendants remaining in the original process group are controlled. '
                   'Partial output is not a completed proposal or review.'}
     record_path = output / 'run.json'
@@ -89,10 +96,15 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
             source = stack.enter_context(stdin.open('rb')) if stdin else subprocess.DEVNULL
             stdout = stack.enter_context((output / 'stdout.log').open('xb'))
             stderr = stack.enter_context((output / 'stderr.log').open('xb'))
+            # AI_NOTE: 担当も同じ時計で残り時間を確認できるようにし、親から古いUTC期限を継承しない。
+            environment = {**os.environ, 'SVDECK_RUN_DIR': str(output),
+                           'SVDECK_BUDGET_CLOCK': clock,
+                           'SVDECK_DEADLINE_MONOTONIC': str(clock_start + timeout)}
+            environment.pop('SVDECK_DEADLINE_UTC', None)
+            if clock == 'deadline':
+                environment['SVDECK_DEADLINE_UTC'] = deadline.isoformat()
             process = subprocess.Popen(command, cwd=cwd, stdin=source, stdout=stdout, stderr=stderr,
-                                       start_new_session=True,
-                                       env={**os.environ, 'SVDECK_RUN_DIR': str(output),
-                                            'SVDECK_DEADLINE_UTC': deadline.isoformat()})
+                                       start_new_session=True, env=environment)
             record.update(status='running', worker_pid=process.pid)
             mark('launched')
             while True:
@@ -101,10 +113,12 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
                     exit_code = 128 + interrupted
                     mark('interruption_observed', signal=interrupted)
                     break
-                if time.monotonic() - clock_start >= timeout or datetime.now(timezone.utc) >= deadline:
+                elapsed_expired = time.monotonic() - clock_start >= timeout
+                utc_expired = clock == 'deadline' and datetime.now(timezone.utc) >= deadline
+                if elapsed_expired or utc_expired:
                     record['status'] = 'timed_out'
                     exit_code = 124
-                    mark('deadline_observed')
+                    mark('deadline_observed', elapsed_expired=elapsed_expired, utc_expired=utc_expired)
                     break
                 code = process.poll()
                 if code is not None:
@@ -166,11 +180,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--grace', type=float, default=2, help='終了要求から強制終了までの猶予秒数')
     parser.add_argument('--cwd', type=Path)
     parser.add_argument('--stdin', type=Path, help='担当へ渡す入力ファイル')
+    parser.add_argument('--clock', choices=('deadline', 'elapsed'), default='deadline',
+                        help='deadline: UTCと経過時計の早い期限 / elapsed: 経過時計だけで制限')
     parser.add_argument('command', nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
     command = args.command[1:] if args.command[:1] == ['--'] else args.command
     try:
-        code, record = run(command, args.output, args.timeout, args.grace, args.cwd, args.stdin)
+        code, record = run(command, args.output, args.timeout, args.grace, args.cwd, args.stdin, args.clock)
     except (OSError, ValueError, OverflowError) as exc:
         print(f'実行入力エラー: {exc}', file=sys.stderr)
         return 2
