@@ -1,0 +1,417 @@
+{
+  "started_at_utc": "2026-09-09T02:37:43Z",
+  "code": "0719dafd7b13ed008f214c962aaf37e8782452bb",
+  "db": "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+  "scope": "既知入力の意味検査。未知発見・歴史再現・自然比較ではない。入力対応と評価回答を同じ担当が実施。",
+  "operations": [
+    {
+      "case": "a",
+      "operation": "start",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "start",
+        "/tmp/sv-class-choice-known-roles/a/session",
+        "--db",
+        "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+        "--class",
+        "all",
+        "--format",
+        "unlimited",
+        "--objective",
+        "既知マゼル役割分担例を全クラス入口から扱い、条件付き手順と構築の意味、不足を保存資料だけで点検する"
+      ],
+      "started_at_utc": "2026-09-09T02:38:48.189933+00:00",
+      "ended_at_utc": "2026-09-09T02:38:48.460183+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/start.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/start.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "attach",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/tmp/sv-class-choice-known-roles/a/session",
+        "/tmp/sv-class-choice-known-roles/a/original-source-input.json"
+      ],
+      "started_at_utc": "2026-09-09T02:38:48.460616+00:00",
+      "ended_at_utc": "2026-09-09T02:38:48.567902+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/attach.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/attach.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "packet",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-known-roles/a/session"
+      ],
+      "started_at_utc": "2026-09-09T02:38:48.577070+00:00",
+      "ended_at_utc": "2026-09-09T02:38:48.745921+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/packet.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/packet.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "submit",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "submit",
+        "/tmp/sv-class-choice-known-roles/a/session",
+        "/tmp/sv-class-choice-known-roles/a/proposal.json"
+      ],
+      "started_at_utc": "2026-09-09T02:38:48.773809+00:00",
+      "ended_at_utc": "2026-09-09T02:38:48.919404+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/submit.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/submit.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "review-packet",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-known-roles/a/session",
+        "--stage",
+        "review"
+      ],
+      "started_at_utc": "2026-09-09T02:38:48.923208+00:00",
+      "ended_at_utc": "2026-09-09T02:38:49.105997+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/review-packet.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/review-packet.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "start",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "start",
+        "/tmp/sv-class-choice-known-roles/b/session",
+        "--db",
+        "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+        "--class",
+        "all",
+        "--format",
+        "unlimited",
+        "--objective",
+        "既知マゼル役割分担例を全クラス入口から扱い、条件付き手順と構築の意味、不足を保存資料だけで点検する"
+      ],
+      "started_at_utc": "2026-09-09T02:38:49.118218+00:00",
+      "ended_at_utc": "2026-09-09T02:38:49.372329+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/start.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/start.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "attach",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/tmp/sv-class-choice-known-roles/b/session",
+        "/tmp/sv-class-choice-known-roles/b/original-source-input.json"
+      ],
+      "started_at_utc": "2026-09-09T02:38:49.381395+00:00",
+      "ended_at_utc": "2026-09-09T02:38:49.481769+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/attach.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/attach.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "packet",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-known-roles/b/session"
+      ],
+      "started_at_utc": "2026-09-09T02:38:49.491227+00:00",
+      "ended_at_utc": "2026-09-09T02:38:49.655482+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/packet.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/packet.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "submit",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "submit",
+        "/tmp/sv-class-choice-known-roles/b/session",
+        "/tmp/sv-class-choice-known-roles/b/proposal.json"
+      ],
+      "started_at_utc": "2026-09-09T02:38:49.683118+00:00",
+      "ended_at_utc": "2026-09-09T02:38:49.827283+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/submit.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/submit.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "review-packet",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-known-roles/b/session",
+        "--stage",
+        "review"
+      ],
+      "started_at_utc": "2026-09-09T02:38:49.837196+00:00",
+      "ended_at_utc": "2026-09-09T02:38:50.010702+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/review-packet.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/review-packet.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "review",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-class-choice-known-roles/a/session",
+        "/tmp/sv-class-choice-known-roles/a/review.json"
+      ],
+      "started_at_utc": "2026-09-09T02:41:29.899759+00:00",
+      "ended_at_utc": "2026-09-09T02:41:30.079897+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/review.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/review.stderr.txt"
+    },
+    {
+      "case": "a",
+      "operation": "report",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-known-roles/a/session"
+      ],
+      "started_at_utc": "2026-09-09T02:41:30.079956+00:00",
+      "ended_at_utc": "2026-09-09T02:41:30.231805+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/a/report.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/a/report.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "review",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-class-choice-known-roles/b/session",
+        "/tmp/sv-class-choice-known-roles/b/review.json"
+      ],
+      "started_at_utc": "2026-09-09T02:41:30.231853+00:00",
+      "ended_at_utc": "2026-09-09T02:41:30.387674+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/review.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/review.stderr.txt"
+    },
+    {
+      "case": "b",
+      "operation": "report",
+      "command": [
+        "env",
+        "PYTHONPATH=/tmp/sv-class-choice-prototype/src",
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-known-roles/b/session"
+      ],
+      "started_at_utc": "2026-09-09T02:41:30.387703+00:00",
+      "ended_at_utc": "2026-09-09T02:41:30.533958+00:00",
+      "exit_code": 0,
+      "stdout": "/tmp/sv-class-choice-known-roles/b/report.stdout.json",
+      "stderr": "/tmp/sv-class-choice-known-roles/b/report.stderr.txt"
+    }
+  ],
+  "failures": [],
+  "modifications": [
+    {
+      "case": "a",
+      "field": "packet_hash",
+      "old": "3cf67ec63677086f8038b0cc750871a275d20b2d9a9a7ce3ff97ac3aa87a4e95",
+      "new": "52d9ca364733e67f747ff0fbb3de0190cffcae3343b7ca6a0d18488bb1986e02"
+    },
+    {
+      "case": "a",
+      "field": "class_name",
+      "old": null,
+      "new": "エルフ"
+    },
+    {
+      "case": "b",
+      "field": "packet_hash",
+      "old": "a1e37e014f5dc10a2bbb542aefa077a1c81fdb505457e19fd371a44541158441",
+      "new": "9ecd4f56a8714e96caa879764a4ba6d06a8e18105d1ab981217f79d2e451c0b7"
+    },
+    {
+      "case": "b",
+      "field": "class_name",
+      "old": null,
+      "new": "エルフ"
+    }
+  ],
+  "investigation_finished_at_utc": "2026-09-09T02:41:14.863001+00:00",
+  "review_labels": {
+    "a": {
+      "procedure": "conditional",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    },
+    "b": {
+      "procedure": "refuted",
+      "value": "drop",
+      "novelty": "unconfirmed"
+    }
+  },
+  "validation": [
+    {
+      "case": "a",
+      "only_packet_hash_and_class_name_changed": true,
+      "source_input_bytes_unchanged": true,
+      "original_proposal_bytes_unchanged": true,
+      "revision_count": 1,
+      "reported_revision_class_name": "エルフ",
+      "review_count": 1,
+      "review_context_count": 1,
+      "report_revision_keys": [
+        "revision",
+        "parent_revision",
+        "packet_hash",
+        "title",
+        "hypothesis",
+        "change",
+        "questions",
+        "uncertainties",
+        "reviews",
+        "review_contexts",
+        "class_name"
+      ]
+    },
+    {
+      "case": "b",
+      "only_packet_hash_and_class_name_changed": true,
+      "source_input_bytes_unchanged": true,
+      "original_proposal_bytes_unchanged": true,
+      "revision_count": 1,
+      "reported_revision_class_name": "エルフ",
+      "review_count": 1,
+      "review_context_count": 1,
+      "report_revision_keys": [
+        "revision",
+        "parent_revision",
+        "packet_hash",
+        "title",
+        "hypothesis",
+        "change",
+        "questions",
+        "uncertainties",
+        "reviews",
+        "review_contexts",
+        "class_name"
+      ]
+    }
+  ],
+  "failure_count": 0,
+  "correction_count": 1,
+  "retry_count": 0,
+  "proposal_metadata_adaptation_count": 4,
+  "source_hash_adaptation_count": 0,
+  "source_hash_note": "既存proposalにはsource_hash引用なし。source-inputは無改変で両試行へ公開attachし、同一hash 308904f6a772803f4b98dc7cf17e607e48fd0512fcc8718cfc2309e09f46316c を得た。",
+  "read_scope": [
+    "共通AGENTS import先ルール",
+    "試作READMEの公開操作",
+    "試作docs/design.mdの1.5・5・6・7および入口説明",
+    "既知a/bのproposal.jsonとsource-input.jsonのみ",
+    "新規公開packet・review packet・report"
+  ],
+  "not_read": [
+    "以前のreview",
+    "expected",
+    "evaluation",
+    "既知試行README",
+    "採点",
+    "現在の自然比較a/b"
+  ],
+  "unconfirmed": [
+    "未知発見能力と方式比較",
+    "歴史デッキの全40枚・当時の能力と環境・勝率",
+    "最新公式能力への外部照合",
+    "初期条件の到達頻度と最速ターン",
+    "マゼルを引けない場合の手札切れと切替後の生存率",
+    "置換先76枚の確定・個別取得確率",
+    "入力対応と評価の完全分離"
+  ],
+  "unperformed_due_to_time": [],
+  "artifacts_saved_at_utc": "2026-09-09T02:43:18.016898+00:00",
+  "duration_seconds": {
+    "start_to_investigation_finished": 211.863001,
+    "investigation_finished_to_saved": 123.153897,
+    "total": 335.016898
+  },
+  "public_operation_count": 14,
+  "input_correction_count": 0,
+  "artifact_correction_count": 1,
+  "artifact_corrections": [
+    "summary.mdの公開操作回数を16から実測14へ訂正。入力・評価・操作結果の変更なし。"
+  ]
+}

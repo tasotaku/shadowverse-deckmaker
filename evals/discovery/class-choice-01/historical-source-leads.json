@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-09-09T02:48:44.823344+00:00",
+  "purpose": "過去の成功例を当時の能力で再現するための資料候補。現在の自然比較へは渡していない。",
+  "status": "browser_followup_completed",
+  "primary_indexed_sources": [
+    {
+      "card_id": 10554110,
+      "name": "充つ《恋人と節制》・ミルティオ＆ルーゼン",
+      "url": "https://shadowverse-wb.com/ja/news/detail/?id=01KRGDW9XV9B8A5SKREBTMKZWD",
+      "announced_change": "2026-05-28にコスト6から7",
+      "verification": "検索インデックスの公式本文では変更を確認。openの本文抽出はニュース外枠だけで、画像と変更前全文は未確認。"
+    },
+    {
+      "card_id": 10654120,
+      "name": "旧き天眼・ビバティー",
+      "url": "https://shadowverse-wb.com/ja/news/detail/?id=01KR2RPBYTG315224M1QX4SDQK",
+      "announced_change": "2026-05-12にコスト3から4",
+      "verification": "検索インデックスの公式本文では変更を確認。openの本文抽出はニュース外枠だけ。"
+    },
+    {
+      "card_id": 10533310,
+      "name": "壮美なる明越花",
+      "url": "https://shadowverse-wb.com/ja/news/detail/?id=01KJEEGGM6JWS3G0NNKMJ4DQNE",
+      "announced_change": "2026-02-27にコスト5から7",
+      "verification": "公式別言語URLの検索インデックスに日本語変更記載。日本語URLのopenは外枠だけ。"
+    }
+  ],
+  "secondary_leads": [
+    {
+      "url": "https://shadowverse-magazine.com/svwb/ability-change/",
+      "observed": "正常の侵食の対象を限定したドローから通常ドローへの変更日を8月27日とする。ササニドの相手盤面ダメージ削除は3月30日とする。",
+      "limit": "公式の変更前本文・適用時刻の原資料確認へ使う手掛かり。これだけで歴史DBを作成しない。"
+    }
+  ],
+  "unresolved": [
+    "正常の侵食は告知8/26・適用8/27と公式本文で区別できた。固定中の自然比較資料は変更せず、後続の時点別入力では分離する。",
+    "コスト変更の告知だけでは、その時点の全カード本文・フォーマット・対戦環境を復元できない。",
+    "成功例の実用性を、変更された事実だけから認定しない。"
+  ],
+  "errors": [
+    "公式3ページのopenで本文部分が抽出されなかった。",
+    "読み取りSQLの初回にcard.idを仮定したが実列はcard_id。schemaを確認して再読した。"
+  ],
+  "writes": "資料候補のみ。本番DB・注記・固定試行入力を変更していない。",
+  "browser_followup": {
+    "checked_at": "2026-09-09T02:48:44.823344+00:00",
+    "scope": "5件の既知の公式告知URL。背景の確認用タブを使用し、全タブを閉じた。",
+    "total": 5,
+    "body_confirmed": 1,
+    "publication_ended_or_missing": 4,
+    "confirmed": {
+      "card_id": 10632310,
+      "url": "https://shadowverse-wb.com/ja/news/detail/?id=01KZTAVFK1TJ26R18RC171MRJK",
+      "notice_date": "2026-08-26",
+      "effective_date": "2026-08-27",
+      "old_draw_filter": "ウィッチ・フォロワー",
+      "new_draw_filter": null,
+      "draw_count": 2,
+      "unchanged_setup": "自分の場の天晶の魔手1枚を選んで破壊",
+      "observed_text_scope": "ブラウザmain領域に変更前後の本文・告知日・実施日が表示。検索インデックスだけの確認から更新。"
+    },
+    "unavailable_card_ids": [
+      10533310,
+      10614120,
+      10654120,
+      10554110
+    ],
+    "unavailable_message": "アクセスされたお知らせは存在しないか、掲載が終了しております。",
+    "unavailable_result_url": "https://shadowverse-wb.com/ja/error/?code=3000",
+    "limit": "現在の掲載終了表示は、検索に保存されていた過去告知内容が誤りである証明ではない。4件の現時点での一次本文確認は未達。"
+  },
+  "prior_knowledge": "3件の公式リンクと変更点は既存の2026-09-06証拠メモにある。再検索自体を新知見と数えない。今回の差分は正常の侵食の直接本文確認と、他4件の現存状態確認。"
+}
