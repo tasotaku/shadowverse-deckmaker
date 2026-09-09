@@ -1,0 +1,102 @@
+{
+  "preparation": "T2に二枚看板のモード2を2PPで使用し、森の神秘とフェアリーを得て保持する。T4の他4札は引けている仮定。準備時点の手札は二枚看板を含め8枚以下なら溢れない。T3の行動・実際の引き順は特定しない。",
+  "trace": [
+    {
+      "action": "後攻T4開始。手札はフェアリー、森の神秘、ミロク、舎弟頭、バディング、大輪。場0。追加PP不使用。",
+      "pp": 4,
+      "hand": 6,
+      "field": 0,
+      "ep": 2,
+      "sep": 2,
+      "combo": 0,
+      "evolutions_this_turn": 0,
+      "offering_cost": 5
+    },
+    {
+      "action": "フェアリー",
+      "pp": 3,
+      "hand": 5,
+      "field": 1,
+      "ep": 2,
+      "sep": 2,
+      "combo": 1,
+      "evolutions_this_turn": 0,
+      "offering_cost": 5
+    },
+    {
+      "action": "ミロクをプレイ、能力解決前",
+      "pp": 0,
+      "hand": 4,
+      "field": 2,
+      "ep": 2,
+      "sep": 2,
+      "combo": 2,
+      "evolutions_this_turn": 0,
+      "offering_cost": 5
+    },
+    {
+      "action": "ミロクFFはPP2回復を選ぶ",
+      "pp": 2,
+      "hand": 4,
+      "field": 2,
+      "ep": 2,
+      "sep": 2,
+      "combo": 2,
+      "evolutions_this_turn": 0,
+      "offering_cost": 5
+    },
+    {
+      "action": "ミロクをEP進化、PP2回復を選ぶ",
+      "pp": 4,
+      "hand": 4,
+      "field": 2,
+      "ep": 1,
+      "sep": 2,
+      "combo": 2,
+      "evolutions_this_turn": 1,
+      "offering_cost": 4
+    },
+    {
+      "action": "森の神秘。回復1は最大体力で頭打ち",
+      "pp": 4,
+      "hand": 3,
+      "field": 2,
+      "ep": 1,
+      "sep": 2,
+      "combo": 3,
+      "evolutions_this_turn": 1,
+      "offering_cost": 4
+    },
+    {
+      "action": "舎弟頭をプレイし2ドロー",
+      "pp": 2,
+      "hand": 4,
+      "field": 3,
+      "ep": 1,
+      "sep": 2,
+      "combo": 4,
+      "evolutions_this_turn": 1,
+      "offering_cost": 4
+    },
+    {
+      "action": "バディングが同名1体を出し、2体とも自動進化",
+      "pp": 0,
+      "hand": 3,
+      "field": 5,
+      "ep": 1,
+      "sep": 2,
+      "combo": 5,
+      "evolutions_this_turn": 3,
+      "offering_cost": 2
+    }
+  ],
+  "result": "T4末は0PP・手札3・場5・EP1・SEP2。3進化、大輪は5から2。舎弟頭の2ドロー内容は何でもよい。相手の盤面・生存は条件に含めない。攻撃の利益は当て先次第。",
+  "limitations": [
+    "実ゲーム実行ではなく指定状態の算術。",
+    "T4に大輪は使えない。次ターンに2PP払う必要がある。",
+    "バディングの生成個体はコピーではない。ダストデイズの山札強化を継承しない。",
+    "場が既にある場合は必要空き枠を作る必要があり、この証明は場0からのみ。",
+    "ミロクのEPを使うため同ターンにダストデイズへEPを使えない。",
+    "到達頻度、強さ、最善手を証明しない。"
+  ]
+}

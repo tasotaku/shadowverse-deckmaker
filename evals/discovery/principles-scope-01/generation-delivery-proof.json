@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-09-09T05:09:17.076838+00:00",
+  "backup": "data/backups/experiments-20260909T050917Z.sqlite3",
+  "live_api": "http://127.0.0.1:8765/api/experiments",
+  "record_count": 21,
+  "record_revision": 4,
+  "fixed_files_unchanged": 28,
+  "running_generation_handle": 23211,
+  "running_review_agents": [
+    "/root/scope_elf_a_review",
+    "/root/scope_elf_b_review"
+  ],
+  "completed_generation_handles": [
+    56342,
+    76356,
+    42280
+  ],
+  "method_utility": "unassessed",
+  "recording_test_coverage": {
+    "normal": "8 concurrent actual public reads preserve exact stdout, distinct command identity and start/end per operation.",
+    "edge": "Missing command rejected before creating a record; two simultaneous outputs never share a file.",
+    "errors": "Public command failure preserves actual stderr and exit code; launch failure is distinguished with exit_code:null.",
+    "existing": "No existing test exercises this experiment-only recorder. Underlying public reads were compared with direct CLI output.",
+    "new": "tests/temp/test_scope_recording_temp.py: 4 passed in 1.29 seconds; temporary tests not added to Git.",
+    "static": "mypy --strict: PASS for one source file.",
+    "real_use": "3 concurrent public reports from completed real generation sessions, all retained separately."
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "worker": "elf/a",
+  "scope": "初回考案・調査・提出。別評価はrootの別担当。",
+  "clock_file": "/tmp/sv-principles-scope-01/elf/a/work/round-1/clock.json",
+  "initial_clock_preserved": {
+    "started_at": "2026-09-09T04:29:38.113936+00:00",
+    "research_deadline": "2026-09-09T04:54:38.113936+00:00",
+    "save_deadline": "2026-09-09T04:59:38.113936+00:00",
+    "source": "datetime.now(timezone.utc) at first worker action"
+  },
+  "phase_times": {
+    "research_started_at": "2026-09-09T04:29:38.113936+00:00",
+    "research_finished_at": "2026-09-09T04:54:09.947008+00:00",
+    "save_started_at": null,
+    "save_finished_at": "2026-09-09T04:57:43.203975+00:00",
+    "proposal_selection_at": null,
+    "web_research_started_at": null,
+    "web_research_finished_at": null,
+    "independent_review_started_at": null,
+    "independent_review_finished_at": null
+  },
+  "phase_time_note": "研究終了は公開--clockの実測。保存開始を別時計で取得していないためnull。未記録の工程時刻は推測しない。最終保存時刻は全保存物を読み戻し整合後にdatetime.now(timezone.utc)で取得する。",
+  "public_operations": {
+    "discovery_commands": 16,
+    "by_subcommand": {
+      "packet": 2,
+      "read": 10,
+      "attach": 1,
+      "compare": 1,
+      "submit": 1,
+      "report": 1
+    },
+    "clock_calls": 7,
+    "begin_calls": 1,
+    "wrapper_calls_total": 24,
+    "nonzero_exit_codes": 0,
+    "retained_numbered_records": 14,
+    "read_repetitions_to_repair_logging": 3,
+    "logging_integrity_incidents": 1,
+    "incident": "4件のreadを同時に開始したためラッパー採番が衝突し、2件分の番号記録が失われ、operation-004のmetadataとstdoutが不一致になった。自分のevents.jsonlから完了出力を別ファイルへ保持し、必要3範囲を公開readで順次読み直した。既存記録はそのまま保持。コードは直していない。失われた元操作の開始終了時刻はnull。",
+    "index_file": "/tmp/sv-principles-scope-01/elf/a/work/round-1/public-operation-index.json"
+  },
+  "submission": {
+    "formal_proposal_submitted": true,
+    "count": 1,
+    "revision": 1,
+    "submission_file": "/tmp/sv-principles-scope-01/elf/a/work/round-1/answer.json",
+    "report_file": "/tmp/sv-principles-scope-01/elf/a/work/round-1/report.json",
+    "packet_hash": "e8cfe2794f0125e403a8931c75af9bcd2b76ec858b1a60e87b70c1f39e5584f1",
+    "proposal_revisions_after_initial": 0,
+    "independent_review_performed": false,
+    "report_readback_verified": true
+  },
+  "additional_materials": {
+    "submitted_count": 1,
+    "revision": 1,
+    "packet_hash": "e8cfe2794f0125e403a8931c75af9bcd2b76ec858b1a60e87b70c1f39e5584f1",
+    "source_count": 40,
+    "attached_source_count": 6,
+    "comparison_source_count": 1,
+    "new_source_hashes": [
+      "0563346af4ae23411b15c0c3196f1fe5fa0b1797febd1caf674908dd9588f8a4",
+      "2857a6647cb786d80b96e3bb61d15e60a41488578bf84eb48ac644ebe7d490cd",
+      "6381b0b4a0673cf1c30d158693dbceccee48a232b55732d1eda3ec24ef0fc503",
+      "dad689e422fceb1497b91ea96ced5e4912b752aceecf4dde2696feeba92b553f",
+      "e13e3a066074280b79473b0a96b3ef08495cf3fbf4db86deed78ce89184ebca2",
+      "ebaf6b8413fb7da7e41a311068445a1d985df84d4fc46ef67d6b7bde3f630c9b",
+      "eea2f1ca9144bed15ed9c38c122297f64e1912adf055485808c4b67733b10afe"
+    ],
+    "all_attached_contents_equal_packet": true,
+    "all_new_hashes_present_in_report": true,
+    "before_total": 40,
+    "after_total": 40,
+    "delta": {
+      "10914120": -2,
+      "10612310": 2,
+      "10513310": -1,
+      "10403110": -1,
+      "10512110": 2
+    },
+    "independent_review_performed": false
+  },
+  "read_scope": {
+    "operator_readme": "common/operator-readme.md 全227行。",
+    "design": "common/design.md 全1036行を範囲読取。初回の出力省略箇所は分割して再読。過去別試行の成績混入を認識し、採否・期待答案には使わず、リンク先評価は読まなかった。",
+    "rules": "common/rules.md 全117行、および公開read rules offset0 limit120 (total117)。",
+    "keywords": "公開read keywords offset0 limit40 (total37) 全定義。",
+    "cards": "公開readでcards offset44/50/62各1、114から2を全文確認。JSON補助でトークン、核・供給・交換札・他候補の本文、note、生成先を選択読取。採用可能113札の一覧出力は一部省略されたため全本文確認とはしない。総212行の全件本文精査は未実施。タグ6語は212行に対し機械検索後、採用可能で絞込。",
+    "known_decks": "4件をJSON補助で概観。比較元Game8コンボ構築は公開known_decks offset3 limit1とsource7の全40枚を確認。部分的なWeb構築画像を40枚へ補完していない。",
+    "sources": "初期33件は一覧と選択したエルフ構築資料を確認。全33件の全文読了は主張しない。追加6件の全文と公開compareの結果、最終packet/reportの保持内容を照合。",
+    "web": "web-search-log.jsonに6検索バッチ・19検索語、表示範囲と実際の本文確認を保持。記事の原構築画像は未読。公式カードページ3件は本文を取得できず、API3件はsafe to openエラー。今回現行公式本文再確認は未達。各Web操作の秒はnull。",
+    "prohibited_materials": "他方式の入力・案・結果、親会話、既存evals採点、protocol/監査結果、リンク先過去評価は読んでいない。自分のevents.jsonlは自分の出力の記録復元と操作数照合だけに使用。"
+  },
+  "development": "初回調査中に既知用法を確認し問いを第9弾基盤での負担再検討へ変更。初回提出後の改訂・別評価工程は未実施。",
+  "limits": [
+    "指定手札での資源会計のみ。実対戦・到達頻度・勝率・有用性の独立判定は未実施。",
+    "書込はwork/round-1と公開操作による自己sessionのみ。モデル・設定・コード・DB・固定入力は変更していない。",
+    "操作ログ保存に衝突があり、コード無変更で必要範囲を再取得したが、初回の欠損時刻は復元不能。"
+  ],
+  "readback_verified_files": [
+    "clock.json",
+    "answer.json",
+    "before-40.json",
+    "after-40.json",
+    "before-source.json",
+    "sources-to-attach-v2.json",
+    "resource-trace.json",
+    "tag-search.json",
+    "web-search-log.json",
+    "public-operation-index.json",
+    "save-checks.json",
+    "execution.json",
+    "report.json",
+    "research.md"
+  ],
+  "saved_within_deadline": true,
+  "research_within_deadline": true
+}

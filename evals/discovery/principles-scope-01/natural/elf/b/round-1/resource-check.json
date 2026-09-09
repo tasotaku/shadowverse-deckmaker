@@ -1,0 +1,162 @@
+{
+  "scope": "Arithmetic of an explicitly supplied state, not gameplay simulation or occurrence probability. Copy preservation uses fixed note. Two selectable destructible targets; no replacement Ward, damage reduction or hand disruption; three deck draws remain; no extra friendly field.",
+  "trace": [
+    {
+      "stage": "copy start (illustrative T8, after normal draw)",
+      "pp": 8,
+      "hand": 7,
+      "field": 0,
+      "ep": 1,
+      "sep_used_in_line": 0
+    },
+    {
+      "stage": "play Goddess",
+      "pp": 3,
+      "hand": 6,
+      "field": 1,
+      "ep": 1
+    },
+    {
+      "stage": "manual evolution; discard three other cards",
+      "pp": 3,
+      "hand": 3,
+      "field": 1,
+      "ep": 0
+    },
+    {
+      "stage": "copy Orange 0 + Rapier 5/5 twice",
+      "pp": 3,
+      "hand": 6,
+      "field": 1,
+      "ep": 0
+    },
+    {
+      "stage": "following turn after draw; friendly field at most one",
+      "pp": 9,
+      "hand": 7,
+      "field": 1,
+      "combo": 0,
+      "damage": 0
+    },
+    {
+      "stage": "Orange 1: destroy one legal Ward target, draw one",
+      "pp": 9,
+      "hand": 7,
+      "field": 1,
+      "combo": 1,
+      "damage": 0
+    },
+    {
+      "stage": "Orange 2: destroy one legal Ward target, draw one",
+      "pp": 9,
+      "hand": 7,
+      "field": 1,
+      "combo": 2,
+      "damage": 0
+    },
+    {
+      "stage": "Rapier 1: play and attack opposing leader",
+      "pp": 7,
+      "hand": 6,
+      "field": 2,
+      "combo": 3,
+      "damage": 5
+    },
+    {
+      "stage": "Rapier 2: play and attack opposing leader",
+      "pp": 5,
+      "hand": 5,
+      "field": 3,
+      "combo": 4,
+      "damage": 10
+    },
+    {
+      "stage": "Rapier 3: play and attack opposing leader",
+      "pp": 3,
+      "hand": 4,
+      "field": 4,
+      "combo": 5,
+      "damage": 15
+    },
+    {
+      "stage": "Rapier 4: play and attack opposing leader",
+      "pp": 1,
+      "hand": 3,
+      "field": 5,
+      "combo": 6,
+      "damage": 20
+    }
+  ],
+  "sensitivity": [
+    {
+      "attack_each": 3,
+      "orange_cost_each": 0,
+      "total_pp": 8,
+      "damage_four_rapiers": 12
+    },
+    {
+      "attack_each": 3,
+      "orange_cost_each": 1,
+      "total_pp": 10,
+      "damage_four_rapiers": 12
+    },
+    {
+      "attack_each": 3,
+      "orange_cost_each": 2,
+      "total_pp": 12,
+      "damage_four_rapiers": 12
+    },
+    {
+      "attack_each": 4,
+      "orange_cost_each": 0,
+      "total_pp": 8,
+      "damage_four_rapiers": 16
+    },
+    {
+      "attack_each": 4,
+      "orange_cost_each": 1,
+      "total_pp": 10,
+      "damage_four_rapiers": 16
+    },
+    {
+      "attack_each": 4,
+      "orange_cost_each": 2,
+      "total_pp": 12,
+      "damage_four_rapiers": 16
+    },
+    {
+      "attack_each": 5,
+      "orange_cost_each": 0,
+      "total_pp": 8,
+      "damage_four_rapiers": 20
+    },
+    {
+      "attack_each": 5,
+      "orange_cost_each": 1,
+      "total_pp": 10,
+      "damage_four_rapiers": 20
+    },
+    {
+      "attack_each": 5,
+      "orange_cost_each": 2,
+      "total_pp": 12,
+      "damage_four_rapiers": 20
+    }
+  ],
+  "baseline_selected_hand_comparison": {
+    "two_attack5_rapiers_plus_attack7_setas": {
+      "pp": 11,
+      "damage": 19,
+      "note": "Play Setas before the two Rapier attacks: its +1/+1 makes them 6 attack each. Requires combo starters and 11 PP; one selected-hand comparison, not the baseline maximum."
+    },
+    "three_attack5_rapiers_plus_attack8_super_evolved_magachiyo": {
+      "pp_before_combo_starters": 9,
+      "damage": 23,
+      "sep": 1,
+      "note": "Baseline can exceed proposed output if third Rapier, Magachiyo and SEP are available."
+    }
+  },
+  "corrections": [
+    "Before submission, corrected baseline 17 to 19 by including Setas buffs before attacks. The proposed 20 damage trace is unchanged."
+  ]
+}

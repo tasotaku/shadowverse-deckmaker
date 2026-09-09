@@ -1,0 +1,101 @@
+{
+  "clock_file": "/tmp/sv-principles-scope-01/elf/b/work/round-1/clock.json",
+  "started_at": "2026-09-09T04:29:39.316527+00:00",
+  "research_deadline": "2026-09-09T04:54:39.316527+00:00",
+  "save_deadline": "2026-09-09T04:59:39.316527+00:00",
+  "research_finished_at": "2026-09-09T04:49:53.489838+00:00",
+  "research_end_clock_file": "/tmp/sv-principles-scope-01/elf/b/work/round-1/research-end-clock.json",
+  "save_finished_at": "2026-09-09T04:59:22.771590+00:00",
+  "unrecorded_phase_times": {
+    "ideation_started_at": null,
+    "web_research_started_at": null,
+    "saving_started_at": null
+  },
+  "public_operations": {
+    "total": 14,
+    "by_command": {
+      "packet": 2,
+      "read": 9,
+      "attach": 1,
+      "submit": 1,
+      "report": 1
+    },
+    "failed": 0,
+    "retries": 0,
+    "begin_control_calls": 1,
+    "clock_control_calls": 6
+  },
+  "local_corrections": [
+    {
+      "kind": "tool_error",
+      "detail": "apply_patchで同一ファイルの削除と追加が拒否された。Updateで修正。公開操作の失敗ではない。"
+    },
+    {
+      "kind": "arithmetic",
+      "detail": "提出前に通常構築のセタス強化を反映し比較17点を19点へ訂正。正式改訂なし。"
+    }
+  ],
+  "submission": {
+    "submitted": true,
+    "count": 1,
+    "revision": 1,
+    "parent_revision": 0,
+    "packet_hash": "cb880398fd50b73e1c1e61c2285288c215637bc61d380bc822416e9f8ca54235",
+    "title": "橙酔も複製する四連レイピア：コンボエルフの1枠拡張",
+    "evaluation": "未実施",
+    "formal_development_after_submission": "未実施"
+  },
+  "attachments": {
+    "added_count": 5,
+    "total_count": 38,
+    "source_hashes": [
+      "4fdf04c3261776aed79e0df095aafc77c70ec883f45e75b60ce3ba4a129c471f",
+      "81e757554042958833e24dc4f8ab43d686309faa0d90931e82f3b64438b983b1",
+      "2d739f2af82d37410e7d9417a4639369b8627212315a8cb8c30b303c2f1a9a3d",
+      "d2c630473ef3858b8df0a2ebdc101b3cad9c6acef95475b3f15c7f25b18b7fc7",
+      "c3f61931bad245924922be51e0346407abdb01535d1299ac012cbb218086286f"
+    ],
+    "contents_match": true,
+    "initial_33_retained": true
+  },
+  "report_verification": {
+    "file": "/tmp/sv-principles-scope-01/elf/b/work/round-1/report.json",
+    "revision_count": 1,
+    "reviews": 0,
+    "verified": true
+  },
+  "read_scope": {
+    "saved_operator_lines": "1-227",
+    "saved_design_lines": "1-1036; 大出力の欠落を分割再読",
+    "saved_rules_lines": "1-117",
+    "principles": "0-505; 表示欠落は設計同文で補完",
+    "scope_guide": "0-91",
+    "cards_fetched": "0-211",
+    "cards_inspected": "採用可能113件、ニュートラル/エルフトークン119-132。他クラス生成専用133-211の全件精査なし。",
+    "keywords": "37件全件",
+    "known_decks": "4件全件",
+    "initial_sources": "33件全本文は未精査。source15の40枚は保持・確認。",
+    "fresh_sources": "38件取得、追加5件の全文一致を照合"
+  },
+  "limits": [
+    "実戦と独立評価は未実施",
+    "到達率・生存・採用価値は未確認",
+    "最新公式Q&Aのコピー状態再確認は取得不成功",
+    "先行例の全40枚未取得",
+    "設計中の過去試行成績の混入を記録し採否へ不使用。リンク先は未読"
+  ],
+  "web": {
+    "calls": 7,
+    "search_queries": 15,
+    "open_targets": 8,
+    "api_open_failures": 1,
+    "detail_file": "/tmp/sv-principles-scope-01/elf/b/work/round-1/web-checks.json"
+  },
+  "code_changes": false,
+  "agents_used": false,
+  "self_review_used": false,
+  "research_seconds": 1214.173311,
+  "total_seconds": 1783.455063,
+  "within_research_deadline": true,
+  "within_save_deadline": true
+}
