@@ -124,6 +124,21 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --of
 `observed_at` は観察時点が不明なら `null`、`limitations` は記載する限界がなければ空配列にできます。
 `content` は原文、または要約であると明示した文章を入れます。コマンドはURLを取得せず、出典や主張の真偽も判定しません。
 
+既に調査報告をUTF-8のJSONやMarkdownファイルに保存している場合は、本文を手でJSON文字列へ詰め直さずに取り込めます。
+
+```bash
+python -m svdeck.discovery attach-file data/discovery/trial-01 /tmp/research-report.json \
+  --title '条件と未確認事項の調査' --kind '調査の要約' \
+  --location '実際の出典URLや元の記録の場所' \
+  --observed-at '2026-09-09T10:00:00+09:00' \
+  --limitation '実機では未確認' --limitation '調べた公開資料の範囲に限る'
+```
+
+表題・種類・出典は必須です。観察時点が不明なら `--observed-at` を省略すると `null` になり、
+`--limitation` は複数指定できます。ファイルの本文をそのまま1件の追加資料として保存し、JSONの項目を解釈して採点することはありません。
+結果の `input_file` に実際に読んだファイルの場所・SHA-256・バイト数を返します。本文が空、UTF-8以外、出典などが不正な場合は保存しません。
+保存済みの入力・案・評価は変わらず、新しい `packet` からその本文を読めます。
+
 追加資料は全文とその識別値 `source_hash` を保存し、新しく作る資料の `data.sources` に入ります。
 同じ入力内容は重複して保存しません。引用は提出案・別評価の `evidence` に
 `{"source_hash": "資料の識別値", "quote": "contentから正確に抜いた文章"}` と書きます。
