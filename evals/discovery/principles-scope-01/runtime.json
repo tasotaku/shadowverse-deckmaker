@@ -5,7 +5,8 @@
   "configuration_source": "Selected fields read from current user config before dispatch; no model override. Both same bundled CLI and --search flag.",
   "live_handles": {
     "elf/a": 56342,
-    "elf/b": 76356
+    "elf/b": 76356,
+    "nightmare/a": 42280
   },
   "clock_files": {
     "a": {
@@ -21,7 +22,14 @@
       "source": "datetime.now(timezone.utc) at first worker action"
     }
   },
-  "nightmare": "not started; inputs fixed in advance",
-  "history_worker": "/root/historical_notice_recovery; independent read-only recovery, not a candidate evaluator",
-  "limits": "Raw CLI event streams remain private. A process handle and observed command execution establish running state, not completion or usefulness."
+  "nightmare": "a started; b waiting for a free worker slot, original inputs already frozen",
+  "history_worker": "completed; historical-notice-recovery-01 stores partial official retrieval",
+  "limits": "Raw CLI event streams remain private. A process handle and observed command execution establish running state, not completion or usefulness.",
+  "nightmare_a_clock": {
+    "started_at": "2026-09-09T04:34:51.279995+00:00",
+    "research_deadline": "2026-09-09T04:59:51.279995+00:00",
+    "save_deadline": "2026-09-09T05:04:51.279995+00:00",
+    "source": "datetime.now(timezone.utc) at first worker action"
+  },
+  "updated_at": "2026-09-09T04:36:57.618791+00:00"
 }

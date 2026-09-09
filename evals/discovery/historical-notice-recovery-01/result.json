@@ -1,0 +1,150 @@
+{
+  "task": "Recover official before/after evidence for exactly two historical balance notices",
+  "scope": "Read-only research. No deck search, scoring, implementation, DB/repository/git changes, posting, authentication or access-control bypass.",
+  "started_at_utc": "2026-09-09 04:26:53 UTC",
+  "research_closed_at_utc": "2026-09-09T04:32:23.757118+00:00",
+  "result_saved_at_utc": "2026-09-09T04:33:31.583816+00:00",
+  "counts": {
+    "total": 2,
+    "historical_cost_change_confirmed_in_official_site_index": 2,
+    "historical_full_card_text_confirmed": 0,
+    "partial": 2
+  },
+  "route": {
+    "official_list": "https://shadowverse-wb.com/ja/news/",
+    "observed_list_script": "https://shadowverse-wb.com/assets/js/chunks/index.87pfOp78EotV1llkT3iR.js",
+    "list_endpoint_observed_in_script": "https://shadowverse-wb.com/web/Information/index",
+    "official_detail_script_source_page": "https://shadowverse-wb.com/ja/news/detail/?id=01KRN1RDX670ZHPSPJEPHA6Y5P",
+    "observed_detail_script": "https://shadowverse-wb.com/assets/js/chunks/index.CyxzI2A49viW8tHDKySX.js",
+    "detail_endpoint_observed_in_script": "https://shadowverse-wb.com/web/Information/detail",
+    "request_header_source": "https://shadowverse-wb.com/assets/js/chunks/api.B1JhMUPqcmHSDUhzXdVe.js",
+    "language_and_api_origin_source": "https://shadowverse-wb.com/assets/js/chunks/general.BSb_jU1kOaSJXxZPKhla.js",
+    "actual_list_scope": "Read all-news page 1 and returned max_page_num=13, page 13, and update-category page 1. Did not enumerate every historical list page.",
+    "successful_route": "Official-domain web search found indexed Japanese notice prose at the same IDs under /cht/news/detail/. Direct article opens did not retain that prose.",
+    "unsuccessful_followup_scope": "Observed public detail API with ja then cht; direct cht article opens; official-domain targeted textual/image queries; linked official X account targeted queries. A Steam-specific search yielded unrelated results and was discarded."
+  },
+  "items": [
+    {
+      "card_id": 10533310,
+      "card_name": "壮美なる明越花",
+      "notice_id": "01KJEEGGM6JWS3G0NNKMJ4DQNE",
+      "effective_date": "2026-02-27",
+      "status": "partial: historical cost-change prose recovered from official-site search index; full historical card ability text not recovered",
+      "verified_historical_change": {
+        "before": {
+          "cost": 5
+        },
+        "after": {
+          "cost": 7
+        },
+        "minimal_official_quote": "・壮美なる明越花\nコスト5 → コスト7",
+        "source_url": "https://shadowverse-wb.com/cht/news/detail/?id=01KJEEGGM6JWS3G0NNKMJ4DQNE",
+        "source_title": "2/27メンテナンス時のカード能力の変更について",
+        "published_date": "2026/02/27",
+        "retrieval_method": "web search_query result; direct open returned an empty article shell",
+        "body_language_observed": "Japanese content under official cht URL; not translated by researcher",
+        "evidence_recorded_at_utc": "2026-09-09T04:30:34.122720+00:00",
+        "timestamp_note": "Actual evidence-save time. Exact original search request and completion times were not separately recorded and have not been reconstructed.",
+        "search_result_crawl_report": "3 months ago"
+      },
+      "official_live_retrieval": {
+        "api_url": "https://shadowverse-wb.com/web/Information/detail?id=01KJEEGGM6JWS3G0NNKMJ4DQNE",
+        "requested_at_utc": "2026-09-09T04:28:47.900194+00:00",
+        "completed_at_utc": "2026-09-09T04:28:48.060833+00:00",
+        "http_status": 200,
+        "result_code": 3000,
+        "article_body_received": false,
+        "cht_header_same_result": true,
+        "cht_html_direct_open": "No article body in returned extraction",
+        "failure_reason": "Official API result_code 3000. Cause, retention policy and access state are unknown."
+      },
+      "historical_complete_card_text": {
+        "before": null,
+        "after": null,
+        "status": "unrecovered",
+        "notice_image_url": null,
+        "current_text_was_not_backdated": true
+      },
+      "current_card_reference": {
+        "source_url": "https://shadowverse-wb.com/web/CardList/card?card_id=10533310",
+        "requested_at_utc": "2026-09-09T04:29:40.166397+00:00",
+        "completed_at_utc": "2026-09-09T04:29:40.267083+00:00",
+        "name": "壮美なる明越花",
+        "cost": 7,
+        "data_file": "/tmp/sv-historical-notice-recovery/current-card-observations.json",
+        "use_limit": "Current official card text and related ability only; not evidence that all same wording existed on the historical dates."
+      },
+      "unknowns": [
+        "The complete printed ability text on both sides of this historical adjustment, including the notice images.",
+        "Whether any other wording changed before or after the specific notice.",
+        "The complete card pool and actual deck used at the historical time."
+      ]
+    },
+    {
+      "card_id": 10554110,
+      "card_name": "充つ《恋人と節制》・ミルティオ＆ルーゼン",
+      "notice_id": "01KRGDW9XV9B8A5SKREBTMKZWD",
+      "effective_date": "2026-05-28",
+      "status": "partial: historical cost-change prose recovered from official-site search index; full historical card ability text not recovered",
+      "verified_historical_change": {
+        "before": {
+          "cost": 6
+        },
+        "after": {
+          "cost": 7
+        },
+        "minimal_official_quote": "・充つ《恋人と節制》・ミルティオ&ルーゼン\nコスト6 → コスト7",
+        "source_url": "https://shadowverse-wb.com/cht/news/detail/?id=01KRGDW9XV9B8A5SKREBTMKZWD",
+        "source_title": "5/28メンテナンス時のカード能力と2Pickの変更について",
+        "published_date": "2026/05/28",
+        "retrieval_method": "web search_query result",
+        "body_language_observed": "Japanese content under official cht URL; not translated by researcher",
+        "evidence_recorded_at_utc": "2026-09-09T04:30:34.122720+00:00",
+        "timestamp_note": "Actual evidence-save time. Exact original search request and completion times were not separately recorded and have not been reconstructed.",
+        "search_result_crawl_report": "last week"
+      },
+      "official_live_retrieval": {
+        "api_url": "https://shadowverse-wb.com/web/Information/detail?id=01KRGDW9XV9B8A5SKREBTMKZWD",
+        "requested_at_utc": "2026-09-09T04:28:47.900563+00:00",
+        "completed_at_utc": "2026-09-09T04:28:48.061092+00:00",
+        "http_status": 200,
+        "result_code": 3000,
+        "article_body_received": false,
+        "cht_header_same_result": true,
+        "cht_html_direct_open": "No article body in returned extraction",
+        "failure_reason": "Official API result_code 3000. Cause, retention policy and access state are unknown."
+      },
+      "historical_complete_card_text": {
+        "before": null,
+        "after": null,
+        "status": "unrecovered",
+        "notice_image_url": null,
+        "current_text_was_not_backdated": true
+      },
+      "current_card_reference": {
+        "source_url": "https://shadowverse-wb.com/web/CardList/card?card_id=10554110",
+        "requested_at_utc": "2026-09-09T04:29:40.166726+00:00",
+        "completed_at_utc": "2026-09-09T04:29:40.267190+00:00",
+        "name": "充つ《恋人と節制》・ミルティオ＆ルーゼン",
+        "cost": 7,
+        "data_file": "/tmp/sv-historical-notice-recovery/current-card-observations.json",
+        "use_limit": "Current official card text and related ability only; not evidence that all same wording existed on the historical dates."
+      },
+      "unknowns": [
+        "The complete printed ability text on both sides of this historical adjustment, including the notice images.",
+        "Whether any other wording changed before or after the specific notice.",
+        "The complete card pool and actual deck used at the historical time."
+      ]
+    }
+  ],
+  "limits": [
+    "Indexed official website prose is distinguished from a successful live article fetch.",
+    "Only the two stated cost changes and dates are supported historically. Current effect wording was not substituted for old effect wording.",
+    "No claim to restore the historical full card database, historical deck, or strength of a deck."
+  ],
+  "files": {
+    "execution": "/tmp/sv-historical-notice-recovery/execution.json",
+    "search_evidence": "/tmp/sv-historical-notice-recovery/official-search-observations.json",
+    "current_card_reference": "/tmp/sv-historical-notice-recovery/current-card-observations.json"
+  }
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "source_url": "https://shadowverse-wb.com/assets/js/chunks/api.B1JhMUPqcmHSDUhzXdVe.js",
+    "observed_at_utc": "2026-09-09T04:27:58.256848+00:00",
+    "imports": [
+      "./general.BSb_jU1kOaSJXxZPKhla.js",
+      ","
+    ],
+    "relevant_fragments": [
+      "th.password?unescape(encodeURIComponent(e.auth.password)):\"\";o.set(\"Authorization\",\"Basic \"+btoa(y+\":\"+d))}const l=Ce(e.baseURL,e.url);c.open(e.method.toUpperCase(),Te(l,e.params,e.paramsSerializer),!0),c.timeout=e.timeout;function p(){if(!c)return;const y=S.from(\"getAllResponseHeaders\"in c&&c.getAllRespon",
+      "eturn r(void 0,l)}function u(c,l,p){if(p in t)return r(c,l);if(p in e)return r(void 0,c)}const f={url:o,method:o,data:o,baseURL:i,transformRequest:i,transformResponse:i,paramsSerializer:i,timeout:i,timeoutMessage:i,withCredentials:i,adapter:i,responseType:i,xsrfCookieName:i,xsrfHeaderName:i,onUploadProgres",
+      " Promise.reject(d)}for(p=0,w=c.length;p<w;)l=l.then(c[p++],c[p++]);return l}getUri(t){t=C(this.defaults,t);const n=Ce(t.baseURL,t.url);return Te(n,t.params,t.paramsSerializer)}};a.forEach([\"delete\",\"get\",\"head\",\"options\"],function(t){N.prototype[t]=function(n,r){return this.request(C(r||{},{method:t,url:n,",
+      "inObject(t)||t instanceof this.constructor?i(t,n):a.isString(t)&&(t=t.trim())&&!_t(t)?i(Ft(t),n):t!=null&&o(n,t,r),this}get(t,n){if(t=L(t),t){const r=a.findKey(this,t);if(r){const s=this[r];if(!n)return s;if(n===!0)return Lt(s);if(a.isFunction(n))return n.call(this,s,r);if(a.isRegExp(n))return n.exec(s)",
+      "return n()}return location.href=\"/\",!1}function yn(e){let{url:t,params:n,callbackFunction:r,errorFunction:s}=e;return E.get(t,{params:n,headers:{Lang:fe()}}).then(o=>(Be(o.data.data_headers),r(o))).catch(s||_e)}function En(e){return ee(this,null,function*(){let{url:t,params:n,callbackFunction:r,errorFun"
+    ]
+  },
+  {
+    "source_url": "https://shadowverse-wb.com/assets/js/chunks/base.B5lBnj3X7XdbNvl7d62s.js",
+    "observed_at_utc": "2026-09-09T04:27:58.256921+00:00",
+    "imports": [
+      "./lower_page_loading.D4F1NNAmpFLLOjQt35hB.js",
+      "./get_time.BvhpMUVEPsDRVN7t6yqR.js",
+      "./renderer.XUXn8oKu3NoXzUxuqlru.js",
+      "./es.symbol.description.z4WZhV0vYo1J7Apz1ZLf.js",
+      "./redirect.DdYb4yrJf_EPh4Tjv2fI.js"
+    ],
+    "relevant_fragments": []
+  },
+  {
+    "source_url": "https://shadowverse-wb.com/assets/js/chunks/index.87pfOp78EotV1llkT3iR.js",
+    "observed_at_utc": "2026-09-09T04:27:58.256967+00:00",
+    "imports": [
+      "./lower_page_loading.D4F1NNAmpFLLOjQt35hB.js",
+      "./general.BSb_jU1kOaSJXxZPKhla.js",
+      "./api.B1JhMUPqcmHSDUhzXdVe.js",
+      "./es.symbol.description.z4WZhV0vYo1J7Apz1ZLf.js",
+      "./redirect.DdYb4yrJf_EPh4Tjv2fI.js",
+      "./pager.A5Gt1Qd4uRYrPI-q4_mA.js",
+      "./tab.Dckh_t0C2Du-mg9SadA-.js",
+      "./util.ClvxsQ5y631NYxJWVrX_.js",
+      "./base.B5lBnj3X7XdbNvl7d62s.js"
+    ],
+    "relevant_fragments": [
+      "port{N as T}from\"./base.B5lBnj3X7XdbNvl7d62s.js\";const N={categories:{0:\"すべて\",1:\"お知らせ\",2:\"アップデート\",3:\"不具合\",4:\"イベント\"}},p={news:N};class c extends T{constructor(){super(\"#template-news-list\",\"#js-news-list\"),n(this,\"category\",void 0),n(this,\"categoryTotalCnt\",void 0),n(this,\"page\",void 0),n(this,\"pageTotal",
+      "{categories:{0:\"すべて\",1:\"お知らせ\",2:\"アップデート\",3:\"不具合\",4:\"イベント\"}},p={news:N};class c extends T{constructor(){super(\"#template-news-list\",\"#js-news-list\"),n(this,\"category\",void 0),n(this,\"categoryTotalCnt\",void 0),n(this,\"page\",void 0),n(this,\"pageTotalCnt\",null),n(this,\"pager\",void 0),n(this,\"tab\",void 0);co",
+      "すべて\",1:\"お知らせ\",2:\"アップデート\",3:\"不具合\",4:\"イベント\"}},p={news:N};class c extends T{constructor(){super(\"#template-news-list\",\"#js-news-list\"),n(this,\"category\",void 0),n(this,\"categoryTotalCnt\",void 0),n(this,\"page\",void 0),n(this,\"pageTotalCnt\",null),n(this,\"pager\",void 0),n(this,\"tab\",void 0);const t=u();this.c",
+      "this.category=this.safeParseInt(t.category,0),this.page=this.safeParseInt(t.page,1),this.categoryTotalCnt=Object.keys(p.news.categories).length,this.initComponents()}initComponents(){this.pager=new b({currentPage:this.safeParseInt(this.page,1),displayCount:c.ITEMS_PER_PAGE,templateId:\"template-pager\",pa",
+      "ypeof this.category==\"number\"&&this.category>0&&this.category<this.categoryTotalCnt){t.category=this.category;const e=p.news.categories[this.category];e&&(t.filters=\"type_name[contains]\".concat(e))}return t}fetchNewsAndTriggerRender(t){return o(this,null,function*(){const e=y(\"/web/Information/index\");y",
+      "n:this.handleApiError.bind(this)})})}handleEmptyResponse(t){this.renderer.destroy();const e=document.querySelector(\"#js-news-list\"),a=document.querySelector(\"#js-news-empty\"),s=(r,g)=>r==null?void 0:r.classList.toggle(\"js-show-elements\",g);s(e,t),s(a,!t)}handleApiResponse(t){const e=t,a=e.data.data.info",
+      "eEmptyResponse(t){this.renderer.destroy();const e=document.querySelector(\"#js-news-list\"),a=document.querySelector(\"#js-news-empty\"),s=(r,g)=>r==null?void 0:r.classList.toggle(\"js-show-elements\",g);s(e,t),s(a,!t)}handleApiResponse(t){const e=t,a=e.data.data.information_list;this.pageTotalCnt=e.data.data",
+      "updatePagerState()}renderNewsList(t){this.renderer.render(t,{map:C(),callback:()=>{var e;(e=document.querySelector(\"#js-news-list\"))===null||e===void 0||e.classList.add(\"js-show-elements\")}})}updatePagerState(){const t=this.safeParseInt(this.page,1);this.pager.currentPage=t>0&&t<=this.pageTotalCnt?t:1,t",
+      "his.handleTabChange.bind(this)})}init(){return o(this,null,function*(){try{this.tab.init(),yield this.updatePageAndFetchNews()}catch(t){throw console.error(\"初期化処理に失敗しました:\",t),t}})}handleTabChange(t){return o(this,null,function*(){try{const e=this.safeParseInt(t,0);if(this.category===e)return;this.catego",
+      "try{const e=this.safeParseInt(t,0);if(this.category===e)return;this.category=e,this.page=1,yield this.updatePageAndFetchNews()}catch(e){console.error(\"タブ切り替え処理に失敗しました:\",e)}})}updatePageAndFetchNews(){return o(this,arguments,function*(){let t=arguments.length>0&&arguments[0]!==void 0?arguments[0]:!1;this",
+      "ory=e,this.page=1,yield this.updatePageAndFetchNews()}catch(e){console.error(\"タブ切り替え処理に失敗しました:\",e)}})}updatePageAndFetchNews(){return o(this,arguments,function*(){let t=arguments.length>0&&arguments[0]!==void 0?arguments[0]:!1;this.updateUrl();try{const e=this.buildApiParams();yield this.fetchNewsAndTri",
+      "ents.length>0&&arguments[0]!==void 0?arguments[0]:!1;this.updateUrl();try{const e=this.buildApiParams();yield this.fetchNewsAndTriggerRender(e),t&&window.scrollTo({top:0,behavior:\"smooth\"}),m.removeLoadingClassStatic()}catch(e){console.error(\"ニュースリストの取得に失敗しました:\",e)}})}updateUrl(){this.validatePageParams",
+      "ory=this.category;const e=p.news.categories[this.category];e&&(t.filters=\"type_name[contains]\".concat(e))}return t}fetchNewsAndTriggerRender(t){return o(this,null,function*(){const e=y(\"/web/Information/index\");yield f({url:w()?\"/assets/debug/info_list.json\":e,params:t,callbackFunction:a=>{P(a)&&(this.h",
+      "nst e=t,a=e.data.data.information_list;this.pageTotalCnt=e.data.data.max_page_num||1,this.renderer.destroy(),this.renderNewsList(a),this.updatePagerState()}renderNewsList(t){this.renderer.render(t,{map:C(),callback:()=>{var e;(e=document.querySelector(\"#js-news-list\"))===null||e===void 0||e.classList.ad",
+      "s.pageTotalCnt=e.data.data.max_page_num||1,this.renderer.destroy(),this.renderNewsList(a),this.updatePagerState()}renderNewsList(t){this.renderer.render(t,{map:C(),callback:()=>{var e;(e=document.querySelector(\"#js-news-list\"))===null||e===void 0||e.classList.add(\"js-show-elements\")}})}updatePagerState(",
+      "ventDefault();const a=e.target.dataset.pageId;a&&Promise.resolve().then(()=>{this.page=Number(a),this.updatePageAndFetchNews(!0)}).catch(s=>{console.error(\"ページャークリック時の処理に失敗しました:\",s)})})})}}n(c,\"ITEMS_PER_PAGE\",10);document.addEventListener(\"DOMContentLoaded\",()=>{new c().init().catch(t=>{console.error(\"",
+      "arguments.length>0&&arguments[0]!==void 0?arguments[0]:!1;this.updateUrl();try{const e=this.buildApiParams();yield this.fetchNewsAndTriggerRender(e),t&&window.scrollTo({top:0,behavior:\"smooth\"}),m.removeLoadingClassStatic()}catch(e){console.error(\"ニュースリストの取得に失敗しました:\",e)}})}updateUrl(){this.validatePagePa",
+      "category=this.category;const e=p.news.categories[this.category];e&&(t.filters=\"type_name[contains]\".concat(e))}return t}fetchNewsAndTriggerRender(t){return o(this,null,function*(){const e=y(\"/web/Information/index\");yield f({url:w()?\"/assets/debug/info_list.json\":e,params:t,callbackFunction:a=>{P(a)&&(th"
+    ]
+  }
+]

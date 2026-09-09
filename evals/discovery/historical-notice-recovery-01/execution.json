@@ -1,0 +1,66 @@
+{
+  "started_at_utc": "2026-09-09 04:26:53 UTC",
+  "events": [
+    {
+      "at_utc": "2026-09-09 04:26:53 UTC",
+      "phase": "start",
+      "description": "Read-only recovery of two official historical balance notices"
+    },
+    {
+      "at_utc": "2026-09-09T04:27:41.209273+00:00",
+      "phase": "discover_official_distribution",
+      "description": "Official news list renders no articles in web extraction; inspect its observed script sources."
+    },
+    {
+      "at_utc": "2026-09-09T04:27:58.261204+00:00",
+      "phase": "official_news_code_read",
+      "description": "Read only observed news page scripts; saved relevant endpoint fragments."
+    },
+    {
+      "at_utc": "2026-09-09T04:28:31.064919+00:00",
+      "phase": "official_detail_endpoint_discovery",
+      "description": "Read detail script linked by official maintenance notice and general URL/language helper."
+    },
+    {
+      "at_utc": "2026-09-09T04:28:48.068058+00:00",
+      "phase": "official_api_requests_complete",
+      "description": "Requested two notice detail IDs and first news page using endpoint and Lang header observed in public official code."
+    },
+    {
+      "at_utc": "2026-09-09T04:29:13.860859+00:00",
+      "phase": "historical_list_and_search",
+      "description": "Both requested detail IDs return result_code 3000. Read oldest declared list page, official update category and previously indexed related maintenance notice to test historical reach."
+    },
+    {
+      "at_utc": "2026-09-09T04:29:40.281725+00:00",
+      "phase": "official_search_alternate_locale_found",
+      "description": "Official search yielded Japanese balance-change text at cht notice URL for 2026-02-27; current card endpoints queried only for identification, not accepted as past text."
+    },
+    {
+      "at_utc": "2026-09-09T04:30:34.122720+00:00",
+      "phase": "official_search_excerpts_saved",
+      "description": "Saved two minimal original-site indexed cost-change excerpts. Exact original search-call times were not recorded; this timestamp is the actual evidence-save time."
+    },
+    {
+      "at_utc": "2026-09-09T04:31:09.196448+00:00",
+      "phase": "alternate_official_language_checked",
+      "description": "The indexed official cht locale was checked via the documented public Lang header; no authentication or bypass attempted. Official image search returned no results."
+    },
+    {
+      "at_utc": "2026-09-09T04:32:23.757118+00:00",
+      "phase": "research_closed",
+      "description": "Both indexed official cost-change excerpts recovered. Public detail API failed in ja and cht, indexed image URLs and historical complete ability text not recovered. Official-domain image and official-account targeted searches yielded no additional evidence; unrelated search results discarded."
+    },
+    {
+      "at_utc": "2026-09-09T04:33:31.599390+00:00",
+      "phase": "results_saved",
+      "description": "Saved result.json and short result.md. Two partial results: historical cost change confirmed, complete historical card text unrecovered."
+    },
+    {
+      "at_utc": "2026-09-09T04:33:50.332385+00:00",
+      "phase": "saved_artifacts_verified",
+      "description": "Read saved result.json and result.md; checked exactly two requested IDs, 5-to-7 and 6-to-7 values, null historical full text, and explicit result_code 3000 limitations."
+    }
+  ],
+  "completed_at_utc": "2026-09-09T04:33:50.332385+00:00"
+}
