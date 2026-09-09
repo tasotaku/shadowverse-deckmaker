@@ -1,0 +1,99 @@
+{
+  "checked_at_range_utc": [
+    "2026-09-09T03:34:00Z",
+    "2026-09-09T03:39:54Z"
+  ],
+  "time_note": "検索とweb.openの個別秒は採取せず、この範囲内で実施。公式API4件だけ個別時刻あり。",
+  "search_queries": [
+    "\"スターライトゴッデス\" \"コピー\" \"コスト\" site:shadowverse-wb.com",
+    "\"スターライトゴッデス\" \"ヨグゼンタ\" \"玩具\"",
+    "\"スターライトゴッデス\" \"2コスト\" ネメシス",
+    "site:shadowverse-wb.com \"スターライトゴッデス\"",
+    "\"ゴッデス\" \"ヨグゼンタ\" コピー",
+    "\"ゴッデス\" \"玩具\" ネメシス デッキ 動画",
+    "site:shadowverse-wb.com 手札 最初 4枚 ドロー 後攻",
+    "site:shadowverse-wb.com 手札 最初 3枚 バトル 先攻 後攻",
+    "\"スターライトゴッデス\" \"ヨグゼンタ\" site:youtube.com",
+    "\"スターライトゴッデス\" \"低劣の玩具\" ネメシス"
+  ],
+  "search_count": 10,
+  "novelty_query_count": 6,
+  "official_rules_or_card_query_count": 4,
+  "url_checks": [
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10502110",
+      "finding": "web.openは外枠68行、検索スニペットでは本文を確認。urllibでHTMLを取得し、そのページが使う公開配信先とLangヘッダを確認した。個別仕様はこの外枠からは確認できない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+      "finding": "本文L164-174で初手4枚とターン開始1ドロー。L103-119で追加PP・9枚手札・5枠。L185-197で進化開始時期と効果。紙上取得順の補足に使った。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/help/?tab=tab0",
+      "finding": "検索結果にEP/SEP2個、後攻の追加PPはT6に使用済みなら再使用可能という本文。直接openは外枠56行のみ。追加PPの判断本体は固定rulesにも同じ制約がある。"
+    },
+    {
+      "url": "https://note.com/udonkaree_2/n/n27684e02338b",
+      "finding": "2026-03-13公開の2Pick当事者メモ。ネメシス節L23-31にはヨグゼンタ・ゴッデスでカミシラや決着札を増やす考え方。自己2PP化＋玩具維持の具体手順ではない。2Pickでの本人評価をローテや今回の種の強さへ転用しない。"
+    },
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/575049",
+      "finding": "2026-09-08 18:54更新表示。L296-424の14種40枚が固定比較前リストと一致し、L479-538の標準の補充・処理・ベルゼバブ・シアター人形準備を照合。コピー先40枚の再取得、対戦の性能、全記事網羅はしていない。"
+    }
+  ],
+  "official_api_checks": [
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10502110",
+      "checked_at": "2026-09-09T03:35:42.765420+00:00",
+      "finding": "Lang: jaで公開GET成功。ゴッデス5PPと進化時本文が固定版と一致、questions=[]。軽減状態保持の個別Q&Aは取得できない。"
+    },
+    {
+      "checked_at": "2026-09-09T03:36:03.512663+00:00",
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=90074320",
+      "success": true,
+      "card": {
+        "card_id": 90074320,
+        "name": "天斧の深淵",
+        "cost": 0,
+        "skill_text": "自分の場の元のコスト5以上のフォロワー1枚を選ぶ。それと同名のカード1枚を非公開で自分の手札に加える。それのコストを-3する。",
+        "questions": []
+      }
+    },
+    {
+      "checked_at": "2026-09-09T03:36:03.605375+00:00",
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10671110",
+      "success": true,
+      "card": {
+        "card_id": 10671110,
+        "name": "低劣の玩具",
+        "cost": 6,
+        "skill_text": "【<color=Keyword>ファンファーレ</color>】自分のデッキから3枚を引く。\n<hr>【<color=Keyword>守護</color>】",
+        "questions": []
+      }
+    },
+    {
+      "checked_at": "2026-09-09T03:36:03.690760+00:00",
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10072210",
+      "success": true,
+      "card": {
+        "card_id": 10072210,
+        "name": "ドールズシアター",
+        "cost": 2,
+        "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>操り人形</color>』1枚を自分の手札に加える。\n<hr>【<color=Keyword>カウントダウン</color>_2】\n自分のターン終了時、『<color=Keyword>操り人形</color>』1枚を自分の手札に加える。",
+        "questions": []
+      }
+    }
+  ],
+  "assets_inspected": [
+    "https://shadowverse-wb.com/assets/js/chunks/api.B1JhMUPqcmHSDUhzXdVe.js",
+    "https://shadowverse-wb.com/assets/js/chunks/card.oV9SMLe5WP2qcO89CnPg.js",
+    "https://shadowverse-wb.com/assets/js/chunks/common.DVqJI0p0l-NEMBDu6Teg.js",
+    "https://shadowverse-wb.com/assets/js/chunks/general.BSb_jU1kOaSJXxZPKhla.js"
+  ],
+  "limits": [
+    "検索結果にはカード一覧・2Pick採用数・別ゲームの玩具等も返ったが、新規性の根拠にしない。",
+    "動画本編や字幕の取得・視聴なし。全投稿・全言語未網羅。",
+    "公式本文は現在取得できたが、固定資料を更新していない。適用日・全カード能力更新を調べたとはしない。",
+    "個別Q&Aが空だった4枚だけを確認した結果であり、あらゆる公式媒体にコピー説明が存在しないという意味ではない。"
+  ]
+}

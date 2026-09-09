@@ -1,0 +1,28 @@
+自然試行 class-choice-01 の b 第2回の追加調査と保存案を、考案担当とは独立した新しい評価担当として評価してください。この担当は親の会話履歴を持ちません。コードの実装・全体目標の自律継続はこの担当の範囲外です。評価対象1案の確認・公開review1件の登録・保存が範囲です。
+
+最初に実時計を読み、UTC開始時刻を execution.json に保存してください。適用AGENTSは /Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md とそのimport先。/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md、/tmp/sv-class-choice-01/reviewer-instructions.txt、/tmp/sv-class-choice-01/operator-readme.md を必要範囲で読みます。共通の5点で判定し、公開reviewを1件だけ登録、公開reportで対応を検証します。開始から20分以内に確認と保存を終える目安で、親の通知を待って時間を延長しません。未確認を未確認とし、形式修正以外の再採点はしません。思考の逐語記録は不要です。
+
+対象session: /tmp/sv-class-choice-01/b/session
+revision: 1
+review packet hash: a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a
+公開packetで保存済みの全文: /tmp/sv-class-choice-01/b/session/packets/a9acff6c262c56fbb8b616c5581fc8118fd28e2885e71e12be4b873bb687d86a.json
+概要: /tmp/sv-class-choice-01/b-work/round-2/root-review-packet-summary.json
+提出クラス: ネメシス
+CLI: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-class-choice-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery
+
+指定保存版を読み、途中でpacketを別の版へ作り直さないでください。補助的な実行・調査記録は /tmp/sv-class-choice-01/b-work/round-1/{execution.json,research.md,reading-scope.json,web-checks.json,answer.json,after-40.json,baseline-source.json}。カード614行（採用可能516枚）、関連効果、両側の注記、ルール、追加資料は指定packet内です。必要なWeb事実照合は可能な道具で行ってよく、実際の読取範囲と取得できない範囲を残します。新規性が不明なら不明です。
+
+禁止する操作と読取: 他方式aの記録、旧自然試行、src/evalsの読取、期待判定、過去評価、親タスクの会話履歴、提案担当への採点相談、追加agentやCodex子実行の起動、コード/DB/snapshot/元資料/既存記録の編集。メール・チャット・SNS等への送信、外部サービスの状態変更は禁止です。許される書込先は自分の出力ディレクトリと対象b/sessionへの公開review操作だけです。git commit/pushは親が行うため、この担当ではしないでください。
+
+指定手札からの成立、そこへ到達する準備、負担に見合う試す価値を別々に判定してください。40枚完成、Tierや勝率の証明、全相手・全引きでの優越は要求しません。材料不足と無価値の反証を区別します。全クラス資料の便利さは、種の有用性の根拠になりません。提案本文の未完成・推薦なしという自己評価は、証拠と照合する対象であり、あなたへの判定指示ではありません。
+
+出力先: /tmp/sv-class-choice-01/b-work/round-2/independent-review
+保存物: review.json、evaluation.json、evaluation.md、execution.json と必要な確認記録。
+公開reviewの回答形式は指定packetのresponse_exampleに厳密に従ってください。1件登録後のreportで同じ入力版・判定内容が保持されたことを検証します。5点それぞれの判断根拠、未確認、実際の資料読取範囲、開始/確認終了/保存終了のUTC実時刻、公開操作件数と失敗・修正回数、正式review番号/hashとreport対応を保存します。
+
+最終応答は判定・主要根拠・開始終了時刻・ファイルに絞ってください。親の会話へ戻って相談せず、この1件の評価を完了してください。
+
+
+今回の独立評価は、前回の結果を採点し直す作業ではなく、第2回で追加された4資料と実際の調査結果を含む新しい保存版1件の評価です。正式な改訂案は提出されず、revision 1が残っています。前回の独立評価ファイルは読みません。第2回の補助記録 /tmp/sv-class-choice-01/b-work/round-2/{research.md,execution.json,hand-ledger.json,early-ledger.json,report-verification.json} を読み、前回からどの疑問が解消し、何が未解決かを実際の資料と行動から判断してください。元の提出本文が古いまま残る点も正しさの適用範囲として明示してください。指定designに埋め込まれた過去別試行の要約は採点根拠にせず、読んだ範囲の留保を残します。
+
+継続するなら、今ある利益と負担から判断を変えうる具体的な問いを示してください。未確認があるという理由だけで無期限にdevelopへ残さず、資料保存で止める判断が妥当かを評価します。正式改訂なしという形式だけで無価値にもせず、追加の意味と有用性を別々に判定してください。

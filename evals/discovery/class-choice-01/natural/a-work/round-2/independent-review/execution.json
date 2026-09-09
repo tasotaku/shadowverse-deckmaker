@@ -1,0 +1,304 @@
+{
+  "started_at_utc": "2026-09-09T03:41:13Z",
+  "save_deadline_at_utc": "2026-09-09T04:01:13Z",
+  "time_limit_minutes": 20,
+  "status": "complete_standalone_review",
+  "public_operations": [
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/a-2/session"
+      ],
+      "started_at_utc": "2026-09-09T03:42:44.124562+00:00",
+      "ended_at_utc": "2026-09-09T03:42:44.239949+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-report.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-2/session",
+        "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+        "cards",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:42:44.240845+00:00",
+      "ended_at_utc": "2026-09-09T03:42:44.331731+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-cards.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-2/session",
+        "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+        "rules",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:42:44.343940+00:00",
+      "ended_at_utc": "2026-09-09T03:42:44.422506+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-rules.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-2/session",
+        "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+        "keywords",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:42:44.428696+00:00",
+      "ended_at_utc": "2026-09-09T03:42:44.512793+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-keywords.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-2/session",
+        "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:42:44.517285+00:00",
+      "ended_at_utc": "2026-09-09T03:42:44.594042+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-sources.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-4/session",
+        "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:45:07.047230+00:00",
+      "ended_at_utc": "2026-09-09T03:45:07.148853+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-prior-sources.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/a-2/session",
+        "ddcdad70d2e1d0f98ed44fc7401a10f8dfae1f715e14e615e2c82df969853841",
+        "cards",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at_utc": "2026-09-09T03:46:29.670948+00:00",
+      "ended_at_utc": "2026-09-09T03:46:29.807184+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-initial-cards.json",
+      "stderr": ""
+    }
+  ],
+  "failures": [],
+  "correction_count": 0,
+  "verification_ended_at_utc": "2026-09-09T03:47:51Z",
+  "save_ended_at_utc": "2026-09-09T03:52:18.063013+00:00",
+  "elapsed_seconds": 665.063013,
+  "within_deadline": true,
+  "evaluation_count": 1,
+  "rescore_count": 0,
+  "public_operation_counts": {
+    "read": 6,
+    "report": 1,
+    "total": 7,
+    "success": 7,
+    "failure": 0,
+    "attach": 0,
+    "compare": 0,
+    "packet": 0,
+    "submit": 0,
+    "review": 0
+  },
+  "web_operations": {
+    "calls": 3,
+    "open": 1,
+    "search_queries": 5
+  },
+  "local_read_issues": [
+    "存在しない /tmp/sv-class-choice-prototype/AGENTS.md を2回含めて読み、catがexit 1。ユーザー提示ルールと実プロジェクトAGENTSを確認して回復。",
+    "長い結合出力に表示切断が発生したため、適用節・カード・公開資料を短く再表示し、比較資料はJSON構造の独立計算と完全一致照合で補完した。"
+  ],
+  "correction_definition": "評価の再採点・結論修正は0回。読取の回復操作は上記に別記し、元資料の軽微なT9表記は修正していない。",
+  "read_scope": {
+    "instructions": [
+      "/tmp/sv-class-choice-01/a-round-2-review-instructions.txt",
+      "ユーザー提示のAGENTS目次とimport先10ファイル",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md",
+      "/tmp/sv-class-choice-01/operator-readme.md"
+    ],
+    "design": "/tmp/sv-class-choice-prototype/docs/design.md。分割読取。初回に表示が切れた箇所は主要適用節1.5/5/6/7などを再表示。",
+    "input_files": [
+      "/tmp/sv-class-choice-01/a-work/round-2/research.md",
+      "/tmp/sv-class-choice-01/a-work/round-2/research.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/hand-comparison.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/comparison-list.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/execution.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/source-verification.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/sources-to-attach.json"
+    ],
+    "prior_files": [
+      "/tmp/sv-class-choice-01/a-work/round-1/research.md",
+      "/tmp/sv-class-choice-01/a-work/round-1/research.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/execution.json（時刻・状態を選択読取）"
+    ],
+    "public_final": {
+      "packet_hash": "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+      "cards_retrieved": 212,
+      "cards_semantically_checked": 29,
+      "card_ids": [
+        10021110,
+        10021130,
+        10022120,
+        10424110,
+        10502110,
+        10523310,
+        10623310,
+        10624120,
+        10721110,
+        10721120,
+        10722110,
+        10722120,
+        10722310,
+        10723110,
+        10724110,
+        10724120,
+        10821110,
+        10822310,
+        10824110,
+        10824120,
+        10921310,
+        10922310,
+        90021110,
+        90021120,
+        90021130,
+        90021350,
+        90022110,
+        90024320,
+        90024330
+      ],
+      "fields": "本文、進化文、効果参照、相方も含む注記、合法性・クラス・数値・生成先。raw全字段・タグ・全requirementsの精査ではない。",
+      "rules_lines_read": 117,
+      "keywords_read": 37,
+      "sources_retrieved": 38,
+      "sources_semantically_checked": "今回4件、機械比較1件、比較元の全40枚1件。他32件の全内容は再精査していない。"
+    },
+    "public_prior": {
+      "packet_hash": "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+      "sources_retrieved": 43,
+      "sources_lines": 3271,
+      "semantic_scope": "初回7クラス横断調査の範囲と未提出判断（85eee0...）を重点読取。前回の他用途はresearch.md/json内の調査説明で確認し、全43資料の再評価はしていない。"
+    },
+    "initial_packet_check": "初期ddcdad70...と最終bb88b878...の公開cards全212件が完全一致。手札資料内の初期hashと今回のカード本文の対応を確認。",
+    "exclusions": [
+      "親会話履歴",
+      "前回の独立評価ファイル",
+      "方式bの結果ファイル",
+      "個別の他試行・過去評価ファイル",
+      "src/evals/protocol",
+      "実装コード",
+      "本番DB・snapshot直接読取"
+    ],
+    "incidental_context": "必読指定のdesign.md §10に過去の別試行・過去判断の要約が埋め込まれていたため読取結果に含まれた。この埋込部分は今回の判定根拠から除外した。個別の他試行や過去評価ファイルを開いていない。完全に過去情報なしの入力とは言い切らない。親へこの留保のみ通知し、採点相談はしていない。"
+  },
+  "web_checks": [
+    {
+      "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+      "operation": "open",
+      "query": "初期4枚、通常ドロー1枚、手札9、場5、進化+2/+2、後攻T4進化/T6超進化、追加PP+1",
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "公式本文の対戦画面・バトルの流れで照合した。",
+      "time_precision": "03:43:38〜03:47:51 UTCの間に実行し、確認終了時刻で記録。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/help?tab=tab0",
+      "operation": "search_result",
+      "query": "site:shadowverse-wb.com/ja/help エクストラPP 6ターン、および site:shadowverse-wb.com/ja/help \"エクストラPP\" \"6\"",
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "公式検索表示は6ターン目開始時に使用済みなら再使用可能と説明。検索表示による照合で、ヘルプ本文の直接取得は行っていない。",
+      "time_precision": "03:43:38〜03:47:51 UTCの間。"
+    },
+    {
+      "url": null,
+      "operation": "search_queries",
+      "queries": [
+        "\"スターライトゴッデス\" \"ラスティ\"",
+        "\"スターライトゴッデス\" \"燃え落ちる縁\"",
+        "\"スターライトゴッデス\" \"ラスティ\" \"燃え落ちる縁\""
+      ],
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "取得結果でこの3枚の実際の構築・手順を独立確認できなかった。カード一覧の同居は先例と認定しない。検索結果不存在や新規性の証明ではない。",
+      "limitations": "一部の結合出力が切れた。実際に表示できた結果だけを確認範囲とし、網羅的な既出判定には使わない。"
+    }
+  ],
+  "agent_contacts": [
+    {
+      "target": "/root",
+      "purpose": "開始・期限と指定design内の過去試行要約が含まれた留保のみ通知。採点相談なし。"
+    }
+  ],
+  "source_modifications": false,
+  "input_file_hashes": {
+    "research.md": "ea01bbe8333942d58ff6f1c9c5133d72eda01bc6bd5a0077a635f5dae298bbb8",
+    "research.json": "54867557c14adaa273eb0b5af79ab7601c7c175a65542189ecfa1f4e9e1156ca",
+    "hand-comparison.json": "029064734246102e0823eae7da8b469c85caba4eb2cc6b5057f8f1337f07c733",
+    "comparison-list.json": "e4f07ae79496d631781f45bf50943a52815b9d6f684a4f0497031b1a95eef3c8",
+    "execution.json": "cbaff79dbe031e1ad50f363f1ddaa3c19c7280c850187216614664a18fb47c2a",
+    "source-verification.json": "622110139a1b708499c89268c279cb6a355cb818fb5f85bfa41ea6707a7935ae",
+    "sources-to-attach.json": "b2c17ab15997d297d047444ce87d6268e938b3c5bbeeece0ad41727a729b8dc9"
+  },
+  "output_file_hashes": {
+    "evaluation.md": "215fb190d6997f6db56cd2c7d1eb76191feae68b38a5dd3467320c08872430e1",
+    "evaluation.json": "359962407b96012d3d71108f54a801e462800ca832b85fa7e437dcaeec11a919",
+    "verification.json": "22947e61ae3d22d70152cb7072a2bbc674ebbda11326fea29f45084f5014f538"
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "evaluation_type": "standalone",
+  "evaluation_count": 1,
+  "trial": "class-choice-01",
+  "method": "a",
+  "round": 2,
+  "author": "/root/class_choice_a2_review",
+  "input_packet_hash": "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+  "prior_material_packet_hash": "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+  "formal_proposal_present": false,
+  "public_review_registered": false,
+  "overall_verdict": "停止を支持。実質的な発展はあるが、試す理由のある種としての有用性は未達。",
+  "criteria": [
+    {
+      "id": 1,
+      "name": "公開工程",
+      "verdict": "PASS_FOR_OBSERVED_SCOPE",
+      "judgment": "資料読出し・追加資料保持・比較は確認できた。正式提案・改訂・公開reviewは未実施であり、通過扱いにしない。資料だけの第2回検討として1回に数える。",
+      "evidence": [
+        "public-report.json: revisions=[]、sources=38",
+        "verification.json: 入力4資料の必須6項目が公開保存本文と全件完全一致、比較1件を確認",
+        "public-prior-sources.json: 前回の追加資料を含む43件が保持されている",
+        "a-work/round-2/execution.json: 公開操作12件＝packet 2/read 7/attach 1/compare 1/report 1、submit 0/review 0"
+      ],
+      "limitations": [
+        "探索の開始から推薦までの全工程を今回通過したという判定ではない。",
+        "調査担当の全閲覧行動は保存操作記録を越えて証明していない。"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "正しさ",
+      "verdict": "PASS_CONDITIONAL_WITH_MINOR_ISSUE",
+      "judgment": "指定手札のT1〜T8、複製の対象と状態、PP、進化資源、指定3守護への局所手順に重大な誤りは見つからない。初手からの到達頻度・相手の行動・生存は未確認。T9の枚数表示は通常ドローを除いた部分台帳として読む必要がある。",
+      "evidence": [
+        "公開cards 10502110: 捨てた後の左3枚をコピー。注記は状態ごとのコピーと十分な手札の必要性を明示",
+        "公開cards 10022120: 超進化で山札から引いた同名だけへ疾走。10922310: コスト3の場合だけ1PPの同名を生成",
+        "検算: T1〜T7消費PP=[1,2,3,4,5,5,8]、通常進化2回・超進化1回、最大手札9枚",
+        "T7はゴッデスを出す前8枚→出して7枚→捨てて4枚→コピーで7枚→ラスティを使い6枚",
+        "T8は1PP除去2枚＋3PP疾走2枚＝8PP。T7/T8/T9の疾走基礎値3+6+3=12で、勝利確定値ではない",
+        "元/仮リスト各40枚、採用上限・クラス・固定ローテーション合法性の問題0件"
+      ],
+      "limitations": [
+        "場の空き、T4/T6の有効な対象、手札妨害がないこと、T7以降まで生きることは条件であり実測済みではない。",
+        "T9のhand_count=2は未指定の通常ドローを数えない値。通常ドローが手札に加わればラスティ使用後は3枚である。本文に省略を明記しているため、T7成立や追加6点を崩す重大誤りにはしない。",
+        "現在の全カード能力の再取得や実戦の到達頻度は検査していない。"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "発展",
+      "verdict": "PASS",
+      "judgment": "前回の問いの再掲ではなく、PP不足の一般化を訂正し、入手順・捨てる実名3枚・第三のコピー先・比較枝・9枚交換を具体化した。少なくともPPと手札の疑問を解消した実質的な前進がある。",
+      "evidence": [
+        "前回公開資料85eee0ca3210a085fa2a599400ccb01d4499d47d64adfaa617fcea41b767e1b7: 7PPで5+3を払えず、第三対象・捨て札・手札順が未解決",
+        "今回のhand-comparison.json: 後半追加PPをT7へ保存し、1PPの燃え落ちる縁を第三対象にする時系列",
+        "第三対象の軽減工兵・金貨にも負担を記し、縁を選んだ比較を残す",
+        "compareの実交換9とフォロワー純減3を分離"
+      ],
+      "limitations": [
+        "この前進は採用価値の認定や探索法全体の成功を意味しない。"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "有用性",
+      "verdict": "NOT_MET",
+      "judgment": "試す理由のある種として残すだけの根拠は今回まだ不足する。得るものと負担は具体化したが、どの既存の負け方を改善するためにその負担を払うかが選ばれていない。",
+      "evidence": [
+        "増える疾走2枚は確かな後半の攻撃資源で、追加6点と1PP除去1枚には使い道がある。一方、追加疾走だけでも使用に6PPと後続ターンを要する",
+        "同じT6の守りを行う複製なし枝は、T7に疾走6点と1PP除去を使え、通常進化1回・後半追加PP・捨て札3枚を残せる",
+        "指定3守護への複製なし枝も、衛生兵の補充を保ちながら処理できる。コピーだけが守護突破を可能にする例にはなっていない",
+        "9枚交換ではイドメタ3枚による序盤と強化、セザール・分班長の守り、ギルダリア・バニー・マーズ・ケンタウロスの攻めを減らす。7〜8PP札は8→5だが2PP札も7→4",
+        "ゴッデス欠損時のラスティ2枚早出しは説明できる一方、ラスティ欠損時のゴッデス、同名を早く引いた場合、減った役割を残り札でどう補うかは具体化不足"
+      ],
+      "limitations": [
+        "正式案がない形式、未完成40枚、対戦・Tier・勝率未測定、すべての対面で勝つ証明の不足を不合格理由にしていない。",
+        "追加6点と除去が無価値と証明されたわけではない。手札をそろえる頻度だけを測っても、採る理由の空白は埋まらない。"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "誠実さ",
+      "verdict": "PASS",
+      "judgment": "検索の範囲と限界、指定した引き順、固定能力時点を分離し、検索不一致を未知の証明にしていない。Tier・勝率・初見による加点の捏造は見つからない。",
+      "evidence": [
+        "既出検索資料d6cb4759a7f6ead533bcfbbdb674a0844a4197e24d1697a8dc1f33f734429496: 日本語の組み合わせと4ドメインの範囲、本文抜粋と動画表題の限界を明記",
+        "hand-comparison.json冒頭: 対戦実測や対戦シミュレーションではないと明記",
+        "research.md: 不可能・無価値・全候補不存在の判定ではないと明示",
+        "独立確認の日本語検索でも同じ3枚の実際の構築を確認できず。ただし結果一覧・カード一覧の一致は組み合わせの先例とは数えない"
+      ],
+      "limitations": [
+        "調査担当のすべてのWeb操作を再現したわけではない。全言語・全動画・非公開構築の探索ではない。"
+      ]
+    }
+  ],
+  "useful_seed_established": false,
+  "substantive_progress": true,
+  "continuation": {
+    "stop_supported": true,
+    "stop_scope": "この枝を現時点で推薦・自動継続せず、資料を保持して止める判断。方式全体や全候補を停止する根拠ではない。",
+    "reason": "追加6点と1PP除去の利益はあるが、通常の早い疾走使用と捨て札の防御・補充を上回る役割が選べていない。指定3守護の例も複製に固有の解決ではなく、9枚交換で失う攻めと守りを補う説明がない。",
+    "bounded_question_could_change_decision": true,
+    "next_question": "保存構築や具体的な対戦観察で確認できる負け方を1つ選び、後攻T7〜T9に追加ラスティ2枚と1PPの縁があることで、元の連携ロイヤルの同じ採用枠や複製しない手順では届かない決着・守護処理へ届くか。そこで捨てる補充・守護が不要になる理由と、ラスティを引けない場合のゴッデスの使途も示せるか。",
+    "why_decision_relevant": "肯定できれば、現在の上積みが単なる総量でなく具体的な負け方を変える役割になり、採用負担を払う理由が生まれる。否定または状況を選べないなら現在の停止を維持する。",
+    "priority": "新しい具体的な材料がある場合だけ限定再開。手札の頻度測定、検索拡張、40枚の微調整だけを先に続ける必要はない。",
+    "does_not_require": [
+      "全40枚の完成",
+      "Tier・勝率の証明",
+      "全対面・全引きでの優越",
+      "この仮の9枚交換が唯一の配分である証明"
+    ]
+  },
+  "evidence_quotes": [
+    {
+      "source_hash": "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67",
+      "quote": "同じT6の除去を維持しながら、T7の疾走打点は6対3。",
+      "supports": [
+        2,
+        4
+      ]
+    },
+    {
+      "source_hash": "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67",
+      "quote": "Gの5PP、通常進化権、後半追加PP、捨てる3枚を支払わない。",
+      "supports": [
+        4
+      ]
+    },
+    {
+      "source_hash": "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67",
+      "quote": "1PP状態の縁を増やし、T8に2枚の疾走と5ダメージ除去2枚を8PPで併用。",
+      "supports": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "source_hash": "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67",
+      "quote": "引き順は構成した条件例であり、この頻度を測ったものではない。",
+      "supports": [
+        2,
+        5
+      ]
+    },
+    {
+      "source_hash": "73d14e28010ca79625d280f38f4c4eee0e3ea06c6488b2657b8d816770a8543d",
+      "quote": "\"exchanged_count\": 9",
+      "supports": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "source_hash": "d6cb4759a7f6ead533bcfbbdb674a0844a4197e24d1697a8dc1f33f734429496",
+      "quote": "検索0件や同名一覧を未知性の証明にしない。",
+      "supports": [
+        5
+      ]
+    }
+  ],
+  "verification": {
+    "initial_final_cards_identical": true,
+    "source_count": 38,
+    "sources_verified_exact": [
+      {
+        "title": "第2回：ラスティ複製の実名手札と複製しない3枝の比較",
+        "matches": [
+          "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67"
+        ]
+      },
+      {
+        "title": "第2回：公式の初期手札・進化・追加PPの確認",
+        "matches": [
+          "d28573d04fce8481f37adbed89f5b8b845379e5402fb52bfae20a1e33ea72838"
+        ]
+      },
+      {
+        "title": "第2回：ラスティ複製の既出検索の範囲",
+        "matches": [
+          "d6cb4759a7f6ead533bcfbbdb674a0844a4197e24d1697a8dc1f33f734429496"
+        ]
+      },
+      {
+        "title": "第2回：9枚の役割交換を検算する仮の全40枚（採用推奨ではない）",
+        "matches": [
+          "82c65868cdc21fda62dc6498ceea5e64e48b325a4596d4d8dff34f3d4e8a9016"
+        ]
+      }
+    ],
+    "before_total": 40,
+    "after_total": 40,
+    "added": {
+      "10022120": 3,
+      "10502110": 2,
+      "10922310": 2,
+      "10721110": 1,
+      "10623310": 1
+    },
+    "removed": {
+      "10624120": 3,
+      "10724110": 1,
+      "10723110": 1,
+      "10824110": 1,
+      "10724120": 1,
+      "10021130": 1,
+      "10824120": 1
+    },
+    "exchanged_count": 9,
+    "before_type": {
+      "follower": 34,
+      "spell": 6
+    },
+    "after_type": {
+      "follower": 31,
+      "spell": 9
+    },
+    "before_cost": {
+      "1": 6,
+      "2": 7,
+      "3": 3,
+      "4": 7,
+      "5": 9,
+      "7": 4,
+      "8": 4
+    },
+    "after_cost": {
+      "1": 7,
+      "2": 4,
+      "3": 9,
+      "4": 6,
+      "5": 9,
+      "7": 3,
+      "8": 2
+    },
+    "eligibility_issues": [],
+    "compare_before_matches": true,
+    "compare_after_matches": true,
+    "comparison_list_matches": true,
+    "ledger_record_internal_errors": [],
+    "ledger_pp_totals": {
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 5,
+      "7": 8,
+      "8": 8,
+      "9": 3
+    },
+    "ledger_ep": 2,
+    "ledger_sep": 1,
+    "ledger_max_hand": 9,
+    "ledger_scope_note": "T9通常ドローは明示的に省略されている。T9 hand_count=2は実際の全手札枚数ではなく未指定ドロー1枚を除いた数。"
+  },
+  "read_scope": {
+    "instructions": [
+      "/tmp/sv-class-choice-01/a-round-2-review-instructions.txt",
+      "ユーザー提示のAGENTS目次とimport先10ファイル",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md",
+      "/tmp/sv-class-choice-01/operator-readme.md"
+    ],
+    "design": "/tmp/sv-class-choice-prototype/docs/design.md。分割読取。初回に表示が切れた箇所は主要適用節1.5/5/6/7などを再表示。",
+    "input_files": [
+      "/tmp/sv-class-choice-01/a-work/round-2/research.md",
+      "/tmp/sv-class-choice-01/a-work/round-2/research.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/hand-comparison.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/comparison-list.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/execution.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/source-verification.json",
+      "/tmp/sv-class-choice-01/a-work/round-2/sources-to-attach.json"
+    ],
+    "prior_files": [
+      "/tmp/sv-class-choice-01/a-work/round-1/research.md",
+      "/tmp/sv-class-choice-01/a-work/round-1/research.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/execution.json（時刻・状態を選択読取）"
+    ],
+    "public_final": {
+      "packet_hash": "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+      "cards_retrieved": 212,
+      "cards_semantically_checked": 29,
+      "card_ids": [
+        10021110,
+        10021130,
+        10022120,
+        10424110,
+        10502110,
+        10523310,
+        10623310,
+        10624120,
+        10721110,
+        10721120,
+        10722110,
+        10722120,
+        10722310,
+        10723110,
+        10724110,
+        10724120,
+        10821110,
+        10822310,
+        10824110,
+        10824120,
+        10921310,
+        10922310,
+        90021110,
+        90021120,
+        90021130,
+        90021350,
+        90022110,
+        90024320,
+        90024330
+      ],
+      "fields": "本文、進化文、効果参照、相方も含む注記、合法性・クラス・数値・生成先。raw全字段・タグ・全requirementsの精査ではない。",
+      "rules_lines_read": 117,
+      "keywords_read": 37,
+      "sources_retrieved": 38,
+      "sources_semantically_checked": "今回4件、機械比較1件、比較元の全40枚1件。他32件の全内容は再精査していない。"
+    },
+    "public_prior": {
+      "packet_hash": "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+      "sources_retrieved": 43,
+      "sources_lines": 3271,
+      "semantic_scope": "初回7クラス横断調査の範囲と未提出判断（85eee0...）を重点読取。前回の他用途はresearch.md/json内の調査説明で確認し、全43資料の再評価はしていない。"
+    },
+    "initial_packet_check": "初期ddcdad70...と最終bb88b878...の公開cards全212件が完全一致。手札資料内の初期hashと今回のカード本文の対応を確認。",
+    "exclusions": [
+      "親会話履歴",
+      "前回の独立評価ファイル",
+      "方式bの結果ファイル",
+      "個別の他試行・過去評価ファイル",
+      "src/evals/protocol",
+      "実装コード",
+      "本番DB・snapshot直接読取"
+    ],
+    "incidental_context": "必読指定のdesign.md §10に過去の別試行・過去判断の要約が埋め込まれていたため読取結果に含まれた。この埋込部分は今回の判定根拠から除外した。個別の他試行や過去評価ファイルを開いていない。完全に過去情報なしの入力とは言い切らない。親へこの留保のみ通知し、採点相談はしていない。"
+  },
+  "web_checks": [
+    {
+      "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+      "operation": "open",
+      "query": "初期4枚、通常ドロー1枚、手札9、場5、進化+2/+2、後攻T4進化/T6超進化、追加PP+1",
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "公式本文の対戦画面・バトルの流れで照合した。",
+      "time_precision": "03:43:38〜03:47:51 UTCの間に実行し、確認終了時刻で記録。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/help?tab=tab0",
+      "operation": "search_result",
+      "query": "site:shadowverse-wb.com/ja/help エクストラPP 6ターン、および site:shadowverse-wb.com/ja/help \"エクストラPP\" \"6\"",
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "公式検索表示は6ターン目開始時に使用済みなら再使用可能と説明。検索表示による照合で、ヘルプ本文の直接取得は行っていない。",
+      "time_precision": "03:43:38〜03:47:51 UTCの間。"
+    },
+    {
+      "url": null,
+      "operation": "search_queries",
+      "queries": [
+        "\"スターライトゴッデス\" \"ラスティ\"",
+        "\"スターライトゴッデス\" \"燃え落ちる縁\"",
+        "\"スターライトゴッデス\" \"ラスティ\" \"燃え落ちる縁\""
+      ],
+      "checked_at": "2026-09-09T03:47:51Z",
+      "finding": "取得結果でこの3枚の実際の構築・手順を独立確認できなかった。カード一覧の同居は先例と認定しない。検索結果不存在や新規性の証明ではない。",
+      "limitations": "一部の結合出力が切れた。実際に表示できた結果だけを確認範囲とし、網羅的な既出判定には使わない。"
+    }
+  ],
+  "started_at_utc": "2026-09-09T03:41:13Z",
+  "verification_ended_at_utc": "2026-09-09T03:47:51Z",
+  "save_deadline_at_utc": "2026-09-09T04:01:13Z",
+  "rescore_count": 0,
+  "save_ended_at_utc": "2026-09-09T03:52:18.063013+00:00",
+  "elapsed_seconds": 665.063013
+}

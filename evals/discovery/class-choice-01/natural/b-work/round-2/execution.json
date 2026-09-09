@@ -1,0 +1,207 @@
+{
+  "task": "class-choice-01 b round-2",
+  "started_at": "2026-09-09T03:31:36Z",
+  "research_deadline": "2026-09-09T03:56:36Z",
+  "save_deadline": "2026-09-09T04:01:36Z",
+  "status": "completed_materials_only",
+  "session": "/tmp/sv-class-choice-01/b/session",
+  "parent_revision": 1,
+  "implementation_changed": false,
+  "operations": [
+    {
+      "command": "packet SESSION --revision 1 --summary",
+      "success": true,
+      "exit_code": 0,
+      "output": "packet-before-summary.json",
+      "packet_hash": "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+      "time_note": "開始後03:32:47Zより前。個別時刻未採取"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+        "history",
+        "--offset",
+        "0",
+        "--limit",
+        "20"
+      ],
+      "started_at": "2026-09-09T03:36:26.290901+00:00",
+      "finished_at": "2026-09-09T03:36:26.491214+00:00",
+      "exit_code": 0,
+      "success": true,
+      "output": "public-read-history.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+        "rules",
+        "--offset",
+        "0",
+        "--limit",
+        "150"
+      ],
+      "started_at": "2026-09-09T03:36:26.491301+00:00",
+      "finished_at": "2026-09-09T03:36:26.582974+00:00",
+      "exit_code": 0,
+      "success": true,
+      "output": "public-read-rules.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+        "cards",
+        "--offset",
+        "55",
+        "--limit",
+        "1"
+      ],
+      "started_at": "2026-09-09T03:36:26.583036+00:00",
+      "finished_at": "2026-09-09T03:36:26.670603+00:00",
+      "exit_code": 0,
+      "success": true,
+      "output": "public-read-cards.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+        "review_contexts",
+        "--offset",
+        "0",
+        "--limit",
+        "5"
+      ],
+      "started_at": "2026-09-09T03:36:26.670656+00:00",
+      "finished_at": "2026-09-09T03:36:26.756192+00:00",
+      "exit_code": 0,
+      "success": true,
+      "output": "public-read-review_contexts.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/tmp/sv-class-choice-01/b/session",
+        "/tmp/sv-class-choice-01/b-work/round-2/sources.json"
+      ],
+      "started_at": "2026-09-09T03:50:28.717103+00:00",
+      "finished_at": "2026-09-09T03:50:28.882866+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "public-attach-result.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-01/b/session",
+        "--revision",
+        "1",
+        "--summary"
+      ],
+      "started_at": "2026-09-09T03:50:52.023848+00:00",
+      "finished_at": "2026-09-09T03:50:52.290500+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "packet-after-summary.json"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/b/session"
+      ],
+      "started_at": "2026-09-09T03:50:52.290642+00:00",
+      "finished_at": "2026-09-09T03:50:52.417418+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "report.json"
+    }
+  ],
+  "research_finished_at": "2026-09-09T03:50:28.705127+00:00",
+  "formal_revision_submitted": null,
+  "self_review_registered": false,
+  "local_corrections": [
+    {
+      "count": 1,
+      "change": "Web10検索の内訳を既出7/公式3から、実際の既出6/公式4へ訂正。公開attach前。"
+    }
+  ],
+  "local_read_errors": [
+    {
+      "operation": "cat round-1/research.json",
+      "result": "ファイル不存在。既存research.mdと公開proposal/historyで補完。"
+    }
+  ],
+  "saved_at": "2026-09-09T03:51:56.618475+00:00",
+  "initial_packet_hash": "806bb46f1ea3481857008ffda82c96772d89a118c348fe36506e9909be307879",
+  "final_packet_hash": "2d03e0eab5e16063a50a9e52ce82bee07f05bfddeced9ac01032337382b921d2",
+  "context_hash": "d5df872ea1da8f0617b3cdeaed3fb07c4ae7ba1f2f65fb36d629c1742c5df0ad",
+  "source_hashes_added": [
+    "88f010284162ecbdf35c31519eb6a63f3d34cfce75379f0db2962c4d1eb7e1f5",
+    "933100a37722595f1c8ab43fda9ecb0390a49f5ee7b099c281d5d52d2aabf55e",
+    "f3c48d7ed3699e6a7e9bb97e9a974d144065b862334d6bdc801086ef80722950",
+    "48b97094eba37f681d8e83c3b3d648024a8ede1e7475767f319a35745b36b2e5"
+  ],
+  "source_count_before": 40,
+  "source_count_after": 44,
+  "public_success_count": 8,
+  "public_failure_count": 0,
+  "public_format_correction_count": 0,
+  "public_retry_count": 0,
+  "local_substantive_correction_count": 1,
+  "public_submit_count": 0,
+  "public_review_count": 0,
+  "public_compare_count": 0,
+  "report_verified": true,
+  "time_limit_caused_stop": false,
+  "stop_reason": "人形接続と通常ドロー保持の修正は確認できた。自己反復を主軸にする使用負担に見合う具体的利益は今回特定できず、資料だけを保存して停止。全経路不成立の反証ではない。",
+  "remaining_questions": [
+    "自己反復による3回目以降の補充が、普通の処理・補充より必要になる具体的な対面と決着への接続",
+    "序盤の防御と指定手札・進化権・安全を同時に満たす実際の到達性",
+    "自己2PP化＋玩具維持の普及状況と軽減状態コピーの個別公式仕様"
+  ],
+  "restrictions_observed": {
+    "implementation_edits": false,
+    "db_snapshot_original_material_edits": false,
+    "other_trial_or_protocol_reads": false,
+    "new_PP_prototype": false,
+    "subagents_or_codex_child_started": false,
+    "external_messages_or_posts": false,
+    "git_commit_or_push": false
+  },
+  "output_dir": "/tmp/sv-class-choice-01/b-work/round-2",
+  "reading_scope_file": "reading-scope.json",
+  "research_result_file": "research.json",
+  "public_deliverable_verification_file": "report-verification.json",
+  "research_elapsed_seconds": 1132.705127,
+  "save_elapsed_seconds": 87.913348,
+  "total_elapsed_seconds": 1220.618475,
+  "within_research_deadline": true,
+  "within_save_deadline": true
+}
