@@ -1,0 +1,105 @@
+{
+  "id": "worker-settle-01",
+  "revision": 2,
+  "saved_at": "2026-09-09T14:27:48.682209+00:00",
+  "actor": "root",
+  "reason": "実行管理の修正をコミットして反映し、ローカルとリモートの識別値一致を確認",
+  "record": {
+    "id": "worker-settle-01",
+    "title": "停止直後の確認に出る権限エラーへ対応する",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "終了直後の権限エラーを短時間だけ再確認する修正を反映。実AIの修正前後と20件の検査で確認。",
+    "method": "停止した処理群の消滅がすぐ観測できない場合に、権限エラーを最大0.2秒だけ再確認する。拒否が続けば終了未確認のまま残す。",
+    "procedure": "1. 一問調査2件のエラーと後の群の不在を確認。2. 単純な子処理12個では4回とも非再現。3. 短時間再確認と、拒否が続く場合の上限を検査。4. 同じ指示・10秒制限で実AIの修正前後を確認。",
+    "inputs": "一問調査2件の終了記録、Pythonの複数子処理、同一指示の実AI各1回。モデル・推論の上書きなし。",
+    "criteria": "権限エラーだけを根拠に停止成功にしない。実際に群の不在を確認し、拒否が続く場合は有限時間で終了未確認にする。過去試行の失敗した終了記録を変更しない。",
+    "result": {
+      "outcome": "pass",
+      "summary": "20件の検査と型検査に合格。実AIは修正前10.015秒・終了未確認125、修正後10.064秒・期限停止124。後に両群の不在も確認。",
+      "limitations": "各1回の短い実AI停止。OS内部の原因は未確定。探索の有用性やAI調査の期限内完了の証明ではない。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "実AIで再現した終了確認の不具合に対し、拒否継続を成功扱いせず短時間再確認で消滅を確認できた。実行管理の修正として採用し、探索の有用性とは区別する。"
+    },
+    "started_at": "2026-09-09T13:59:28.493372+00:00",
+    "ended_at": "2026-09-09T14:27:48.585335+00:00",
+    "stages": [
+      {
+        "id": "repair",
+        "title": "症状確認・修正・機能と実AIの検査",
+        "status": "completed",
+        "started_at": "2026-09-09T13:59:28.493372+00:00",
+        "ended_at": "2026-09-09T14:23:17.013985+00:00",
+        "note": "20件合格。実AIで修正前125・修正後124。",
+        "budget_minutes": null
+      },
+      {
+        "id": "before-ai",
+        "title": "実AIの停止確認：修正前",
+        "status": "completed",
+        "started_at": "2026-09-09T14:00:50.729018+00:00",
+        "ended_at": "2026-09-09T14:01:00.744413+00:00",
+        "note": "終了コード125。開始したAI作業は完了しておらず、ここでは停止確認工程の完了を示す。",
+        "budget_minutes": 0.16666666666666666
+      },
+      {
+        "id": "after-ai",
+        "title": "実AIの停止確認：修正後",
+        "status": "completed",
+        "started_at": "2026-09-09T14:00:51.909685+00:00",
+        "ended_at": "2026-09-09T14:01:01.973745+00:00",
+        "note": "終了コード124。開始したAI作業は完了しておらず、ここでは停止確認工程の完了を示す。",
+        "budget_minutes": 0.16666666666666666
+      },
+      {
+        "id": "delivery",
+        "title": "修正の反映と保存の確認",
+        "status": "completed",
+        "started_at": "2026-09-09T14:23:17.013985+00:00",
+        "ended_at": "2026-09-09T14:27:48.585335+00:00",
+        "note": "コミット71ee0341338982218229e55294dee5d2777c99a6をorigin/mainへ反映し、同じ識別値を確認。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/worker-settle-01/README.md",
+      "evals/discovery/worker-settle-01/verification.json",
+      "evals/discovery/worker-settle-01/before-ai/run.json",
+      "evals/discovery/worker-settle-01/after-ai/run.json",
+      "evals/discovery/worker-settle-01/post-stop-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/worker-settle-01/README.md",
+      "sha256": "766f374a0d84ce2d7f288e6f58ebfee0bc5db40d6b29e930520b4fb997c0ae63",
+      "size": 2185
+    },
+    {
+      "path": "evals/discovery/worker-settle-01/after-ai/run.json",
+      "sha256": "2b381a6713573752e6aa204a2481970cb9107d03390921db8b0f19feb366b939",
+      "size": 1912
+    },
+    {
+      "path": "evals/discovery/worker-settle-01/before-ai/run.json",
+      "sha256": "cb25ae7ed7da0e548980a8798d1f20d9331f9f9372d2c73258ef741db84fa7c0",
+      "size": 2040
+    },
+    {
+      "path": "evals/discovery/worker-settle-01/post-stop-check.json",
+      "sha256": "9fc2c57d565e3a425f520ce9645c362c60aacbf13589c69a3115921e5511c0be",
+      "size": 238
+    },
+    {
+      "path": "evals/discovery/worker-settle-01/verification.json",
+      "sha256": "bb5e5d96603df7d6cf962650fbced95c09985f6bcb97ba66634163e51b6c24c0",
+      "size": 1819
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
+}

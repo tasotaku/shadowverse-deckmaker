@@ -1,0 +1,73 @@
+{
+  "question": "先行する複製エルフの元手順にこの第三対象用法が含まれるか。また実機でバフと永続軽減のコピー保持を確認できるか。",
+  "research_focus": {
+    "review_hash": "421ceca38633ed61c8318c4cd45db938f8b29afbd2356a269c9a6ef5637cf945",
+    "input_packet_hash": "fdab612e727b8906ed2766cdc6de434a5d35825a90ca33db7d5ba74d7c55235b",
+    "question_index": 2,
+    "question": "先行する複製エルフの元手順にこの第三対象用法が含まれるか。また実機でバフと永続軽減のコピー保持を確認できるか。"
+  },
+  "input_packet_hash": "96a367394491f9609a16a28d9bc10681708677caa27bf5a23d203671625f13cf",
+  "answer": "部分的に前進。先行記事の公開は5月8日、更新メタデータは7月24日で、緋岸橙酔を収録する第9弾の8月27日提供開始より前だった。この時系列を前提とすれば、当時の先行例に緋岸橙酔そのものを用いた手順が含まれていたとは考えられない。ただし原リスト・元手順は取得できず、別の札を第三対象にして除去・ドロー・開始プレイを兼用していたかは未確認。実機でのバフ・永続軽減のコピー保持は今回確認できなかった。",
+  "new_evidence": [
+    {
+      "source": "https://note.com/ryunen_sv/n/n12559225f480 ; https://www.4gamer.net/games/760/G076035/20260827043/index_2.html ; https://gamewith.jp/shadowverse-wb/573817 ; https://shadowverse-wb.com/web/CardList/card?card_id=10913310&lang=ja",
+      "source_file": "sources-batch2.json",
+      "content": "先行記事は公開5月8日・更新7月24日、第9弾は8月27日提供開始。橙酔は第9弾収録。",
+      "increment_over_original": "原資料は第9弾という説明までだった。今回、更新日も含む時系列を取得し、当時の実カード一致と役割の一致を分離できた。",
+      "strength": "日付メタデータと収録情報を組み合わせた条件付き推論"
+    },
+    {
+      "source": "https://ameblo.jp/kaityo-yt/entry-12952527254.html",
+      "source_file": "sources.json",
+      "content": "別カードの0コストベイルをゴッデスで複製する公開記述を本文で確認。",
+      "increment_over_original": "固定note以外の類似用法の記述を追加。ただし対象2種を確認した増分ではない。",
+      "strength": "個人記事の補助的記述"
+    },
+    {
+      "source": "https://shadowverse-wb.com/web/CardList/card?card_id=10502110&lang=ja ; https://shadowverse-wb.com/web/CardList/card?card_id=10714110&lang=ja ; https://shadowverse-wb.com/web/CardList/card?card_id=10712110&lang=ja ; https://shadowverse-wb.com/web/CardList/card?card_id=10913310&lang=ja",
+      "source_file": "api-retry-observations.json",
+      "content": "核4枚の公式API再取得に成功し関係本文を照合。全4枚のquestionsは空配列。",
+      "increment_over_original": "確認時刻を更新。状態保持の結論を進める新しい公式説明は得られなかった。",
+      "strength": "公式本文の再確認、実機保持は未確認"
+    }
+  ],
+  "unresolved": [
+    "先行者の第三複製対象と、その札が構築・決着手順で担った役割。レイピア2枚を4枚へ増やす具体的な枚数構成も元手順では未確認。",
+    "第9弾リリース以降に緋岸橙酔を同時複製する同型手順が公開されたか。検索不発から新規性や未普及は確定できない。",
+    "現在のゲームクライアントで、ダストデイズ由来のバフと緋岸橙酔の軽減値がコピー直後・翌ターン・使用時に保持されるか。"
+  ],
+  "next_action": [
+    {
+      "action": "先行例の原投稿または当時のリスト付き動画を得て照合する",
+      "details": "公開ハンドルkqzato_spicaを導線として確認。X本文は403、noteプロフィールは記事本文が抽出されず、TwStalkerも取得エラーだった。次は元画像・投稿日・第三対象・使用順が分かる資料が必要。本人への連絡は今回していない。",
+      "decision_rule": "第三対象が除去・ドロー・開始プレイを既に兼ねていれば、差分を新カードへの置換に限定する。カードの同居だけなら同用途とは判定しない。"
+    },
+    {
+      "action": "操作可能な実機で対象2種の状態保持だけを録画する",
+      "details": "バージョンと日時を記録し、ダストデイズで山札強化してから引いたレイピア2枚と、自身の効果で0PPまで下げた橙酔1枚を用意。ゴッデスと捨て札3枚を含む7枚から手動進化で他3枚を捨てる。ターン終了前に元とコピー各個体の攻撃・体力・コストを撮影し、翌ターンにも確認する。コピー直後の記録により、後から発動した軽減をコピー保持と取り違えない。最後にコピー個体を使い実支払PPと攻撃力を確認する。",
+      "decision_rule": "同じ数値がコピー直後・翌ターン・使用時に確認できた範囲だけ保持確認済みにする。手札未達・録画欠落は未確認。到達頻度や勝率はこの確認で評価しない。"
+    }
+  ],
+  "source_files": [
+    "sources.json",
+    "sources-batch2.json",
+    "sources-conclusion.json",
+    "web-checks.json",
+    "article-date-observation.json",
+    "api-retry-observations.json",
+    "device-check.json"
+  ],
+  "limitations": [
+    "元リスト・元手順・対象操作の対戦映像は未取得。",
+    "接続済みCUA一覧にゲーム実機がなく、実機・対戦の観察は0件。カードAPIは実機の代わりにしない。",
+    "別カードの0コスト複製を述べる個人ブログは補助的な公開記述であり、緋岸橙酔のコピー保持を証明しない。",
+    "日付照合は現在の公開メタデータとメーカー発表に基づき、過去版アーカイブではない。",
+    "検索結果は限定された公開検索の範囲であり、全投稿・全動画・非公開資料を網羅しない。",
+    "既存案・既存評価は変更せず、デッキの強さ・新規性を再採点していない。"
+  ],
+  "completed_at": "2026-09-09T13:56:26.417591+00:00",
+  "status": "partial_answer_research_complete",
+  "proposal_changed": false,
+  "review_changed": false,
+  "game_observations": 0
+}

@@ -1,0 +1,159 @@
+diff --git a/docs/design.md b/docs/design.md
+index b08bd1a..4939edc 100644
+--- a/docs/design.md
++++ b/docs/design.md
+@@ -139,6 +139,15 @@ LLMを使うのは①④⑤と②の想起補助（LLM走査・§6.1）のみ。
+ 各工程を別の実行として起動し、後から保存を行った場合も実際の別工程として時刻を残す。
+ 記録ファイルの存在だけで実行中・完了を判断せず、監視プロセスの終了結果と合わせて確認する。
+ 
++### 3.4 残った問いだけを調べる工程（2026-09-09・隔離試作）
++
++`packet --stage research --review-hash HASH --question-index N` は、指定改訂の指定評価から一つの問いを選び、
++資料を追加する担当へ渡す。案の作り直しと資料の調査を区別するための任意の入口であり、本採用は未判定。
++保存評価の識別値と0始まりの問い位置を明示し、最新・古い・多数決などから採否や問いを自動選択しない。
++元の案・原則・本文・注記・資料を保ち、その評価の入力資料と現在の差分も参照できる。
++出力は既存attachと同じ資料形式。調査結果は未確認と出典を含む資料として保存し、採否や新規性を自動変更しない。
++新資料が加わった後の評価は新しい入力として行い、以前の判定を上書きしない。既存develop/reviewの出力は変更しない。
++
+ ## 4. オントロジー（型の骨格）
+ 
+ ### 4.1 基本型
+diff --git a/src/svdeck/discovery.py b/src/svdeck/discovery.py
+index 7b83751..442dca9 100644
+--- a/src/svdeck/discovery.py
++++ b/src/svdeck/discovery.py
+@@ -61,6 +61,17 @@ noveltyはknown/unconfirmed/differentiatedから選びます。ローカルに
+ response_exampleと同じ形式のJSONを一つ返してください。評価値や理由を提案担当へ先に相談しないでください。"""
+ 
+ 
++RESEARCH = """あなたは既存案に残った問いを調べる担当です。research_focusで指定された一つの問いに答える資料を集めてください。
++案の作り直しや同じ入力の再採点は行いません。問いに関係する本文・両側の注記・既存資料と、その資料で分かっていない範囲を読みます。
++追加資料だけで分かること、実戦や実機の確認が必要なことを分けます。調べられない部分を推測で埋めません。
++先行例との比較では、カード名の一致だけでなく使い方・条件・構築で担う役割を照合し、共通部分と異なる部分を出典とともに残します。
++検索不発や部分リストを、未発見・未使用の証明にしません。検索範囲、実際に確認できた本文、取得できなかった範囲を明記します。
++追加の資料はsourcesへ出典・確認日時・内容・限界を記録します。調査の結論も一つの資料にし、選んだ問いとresearch_focusの識別値を記します。
++以前の問いを言い換えるだけの資料や、実施していない観察を作りません。新資料が得られなかった場合も、その調査範囲と未確認を記録できます。
++response_exampleと同じ形式で返してください。attachで保持した後、必要な新しい入力で改訂や独立評価へ戻します。
++元の案・評価・DB・固定資料は変更しません。過去評価の結論は今回の期待答案ではありません。"""
++
++
+ def _text(value: object, label: str) -> str:
+     # AI_NOTE: 空の識別子や根拠を入力境界で拒む。
+     if not isinstance(value, str) or not value.strip():
+@@ -191,6 +202,11 @@ def _context(session: Path) -> JSONDict:
+ 
+ def _example(stage: str, revision: int) -> JSONDict:
+     # AI_NOTE: 外部AIへ渡す入出力規約を実際の入口と共に生成する。
++    if stage == "research":
++        return {"sources": [{"title": "指定した問いについて確認したこと", "kind": "問いへの調査結果",
++                             "location": "research_focusの識別値と実際の出典", "observed_at": None,
++                             "content": "実際に分かったことと、判断が変わる根拠。未確認を区別する",
++                             "limitations": ["確認できなかった範囲"]}]}
+     common: JSONDict = {"packet_hash": "このpacketのhash", "author": "実際の担当セッション名"}
+     if stage == "review":
+         return {**common, "procedure": "unknown", "value": "develop", "novelty": "unconfirmed",
+@@ -245,20 +261,35 @@ def _history(session: Path, proposal: JSONDict | None) -> list[JSONDict]:
+     return list(reversed(records))
+ 
+ 
+-def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
++def packet(session: Path, revision: int | None, stage: str,
++           review_hash: str | None = None, question_index: int | None = None) -> JSONDict:
+     # AI_NOTE: 改訂から不足を再検索し、全文と別評価、その評価へ渡した資料の版を次の担当へ渡す。
+     context = _context(session)
+     number = _latest(session) if revision is None else revision
+     proposal = _revision(session, number)
+-    if stage not in ("develop", "review") or (stage == "review" and proposal is None):
+-        raise ValueError("reviewには既存の改訂番号が必要です")
+-    previous_reviews = _reviews(session, number) if stage == "develop" else []
++    if stage not in ("develop", "review", "research") or (stage != "develop" and proposal is None):
++        raise ValueError("review/researchには既存の改訂番号が必要です")
++    if stage != "research" and (review_hash is not None or question_index is not None):
++        raise ValueError("評価と問いの指定はresearch工程だけで使えます")
++    previous_reviews = _reviews(session, number) if stage != "review" else []
++    focus = None
++    if stage == "research":
++        # AI_NOTE: 順番や件数から評価を自動選択せず、指定評価の問いをそのまま次の担当へ渡す。
++        selected = [prior for prior in previous_reviews if digest(prior) == review_hash]
++        if len(selected) != 1 or type(question_index) is not int:
++            raise ValueError("researchには対象改訂のreview_hashとquestion-indexが必要です")
++        questions_to_select = selected[0]["next_questions"]
++        if not 0 <= question_index < len(questions_to_select):
++            raise ValueError("question-indexが評価のnext_questionsの範囲外です")
++        previous_reviews = selected
++        focus = {"review_hash": review_hash, "input_packet_hash": selected[0]["packet_hash"],
++                 "question_index": question_index, "question": questions_to_select[question_index]}
+     sources = load_sources(session)
+     review_contexts = _review_contexts(session, previous_reviews, sources, digest(context))
+-    questions = list(proposal["questions"]) if proposal else []
++    questions = list(proposal["questions"]) if proposal and focus is None else []
+     seen_questions = {q["question"] for q in questions}
+     for prior in previous_reviews:
+-        for question in prior["next_questions"]:
++        for question in ([focus["question"]] if focus else prior["next_questions"]):
+             if question not in seen_questions:
+                 questions.append({"question": question, "tag": None, "why": "別評価で残った問い", "origin": "review"})
+                 seen_questions.add(question)
+@@ -268,7 +299,7 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
+     finally:
+         conn.close()
+     data = {"stage": stage, "revision": number, "context_hash": digest(context), "context": context,
+-            "instruction": REVIEW if stage == "review" else DEVELOP,
++            "instruction": {"review": REVIEW, "research": RESEARCH, "develop": DEVELOP}[stage],
+             "proposal": proposal, "previous_reviews": previous_reviews, "search": search,
+             "review_contexts": review_contexts,
+             "history": _history(session, proposal),
+@@ -276,6 +307,8 @@ def packet(session: Path, revision: int | None, stage: str) -> JSONDict:
+             "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。"
+                             "資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
+             "response_example": _example(stage, number)}
++    if focus is not None:
++        data["research_focus"] = focus
+     result = _envelope(data)
+     path = session / "packets" / f"{result['sha256']}.json"
+     if not path.exists():
+@@ -446,7 +479,9 @@ def main(argv: list[str] | None = None) -> int:
+     get = sub.add_parser("packet", help="AIへ渡す全文資料と次の問いを出力")
+     get.add_argument("session", type=Path)
+     get.add_argument("--revision", type=int)
+-    get.add_argument("--stage", choices=("develop", "review"), default="develop")
++    get.add_argument("--stage", choices=("develop", "review", "research"), default="develop")
++    get.add_argument("--review-hash", help="researchで使用する保存評価の識別値")
++    get.add_argument("--question-index", type=int, help="researchで調べるnext_questionsの位置。0から数える")
+     get.add_argument("--summary", action="store_true", help="全文の代わりに識別値・指示・回答例・読出し目録を表示")
+     read = sub.add_parser("read", help="指定した保存資料を区分ごとに分割して読む")
+     read.add_argument("session", type=Path)
+@@ -469,7 +504,7 @@ def main(argv: list[str] | None = None) -> int:
+         elif args.command == "compare":
+             result = compare(args.session, args.before_source_hash, args.after_source_hash)
+         elif args.command == "packet":
+-            result = packet(args.session, args.revision, args.stage)
++            result = packet(args.session, args.revision, args.stage, args.review_hash, args.question_index)
+             # AI_NOTE: 資料生成は従来どおり。概要もreadも生成後に保存された同一版から出す。
+             if args.summary:
+                 result = packet_summary(args.session, result["sha256"])
+diff --git a/src/svdeck/discovery_read.py b/src/svdeck/discovery_read.py
+index 140b816..5940a78 100644
+--- a/src/svdeck/discovery_read.py
++++ b/src/svdeck/discovery_read.py
+@@ -38,8 +38,8 @@ def _sections(data: JSONDict) -> dict[str, Section]:
+     context: JSONDict = data["context"]
+     context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
+     packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history",
+-                    "review_contexts"}
+-    return {
++                    "review_contexts", "research_focus"}
++    sections = {
+         "cards": Section("cards", context["cards"], "data.context.cards"),
+         "rules": _lines(context["rules"], "data.context.rules"),
+         "keywords": Section("keywords", [{"keyword": key, "text": value}
+@@ -61,6 +61,9 @@ def _sections(data: JSONDict) -> dict[str, Section]:
+         "response_example": _lines(data["response_example"], "data.response_example"),
+         "packet_metadata": _lines({key: value for key, value in data.items() if key not in packet_parts}, "data"),
+     }
++    if "research_focus" in data:
++        sections["research_focus"] = _lines(data["research_focus"], "data.research_focus")
++    return sections
+ 
+ 
+ def packet_summary(session: Path, packet_hash: str) -> JSONDict:

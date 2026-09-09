@@ -1,0 +1,129 @@
+{
+  "sha256": "96a367394491f9609a16a28d9bc10681708677caa27bf5a23d203671625f13cf",
+  "packet_path": "/private/tmp/sv-focused-inquiry-01/b/work/session/packets/96a367394491f9609a16a28d9bc10681708677caa27bf5a23d203671625f13cf.json",
+  "stage": "research",
+  "revision": 1,
+  "context_hash": "496cf75d1b3af442cd4a14557a2d4968b70323654071d8121c750fe7b2754974",
+  "objective": "このクラスで独自でそこそこ戦えるデッキの種を考える。カードの別用途、効果の副作用、複数段の接続、序盤と後半の役割分担、強い基盤と採用配分を資料から検討し、目的に合う一案を発展させる。特定の主役カードや機構は指定しない。既知の標準用法との差、核が揃わない時の勝ち方、採用負担に見合う可能性を根拠で説明する。",
+  "instruction": "あなたは既存案に残った問いを調べる担当です。research_focusで指定された一つの問いに答える資料を集めてください。\n案の作り直しや同じ入力の再採点は行いません。問いに関係する本文・両側の注記・既存資料と、その資料で分かっていない範囲を読みます。\n追加資料だけで分かること、実戦や実機の確認が必要なことを分けます。調べられない部分を推測で埋めません。\n先行例との比較では、カード名の一致だけでなく使い方・条件・構築で担う役割を照合し、共通部分と異なる部分を出典とともに残します。\n検索不発や部分リストを、未発見・未使用の証明にしません。検索範囲、実際に確認できた本文、取得できなかった範囲を明記します。\n追加の資料はsourcesへ出典・確認日時・内容・限界を記録します。調査の結論も一つの資料にし、選んだ問いとresearch_focusの識別値を記します。\n以前の問いを言い換えるだけの資料や、実施していない観察を作りません。新資料が得られなかった場合も、その調査範囲と未確認を記録できます。\nresponse_exampleと同じ形式で返してください。attachで保持した後、必要な新しい入力で改訂や独立評価へ戻します。\n元の案・評価・DB・固定資料は変更しません。過去評価の結論は今回の期待答案ではありません。",
+  "response_example": {
+    "sources": [
+      {
+        "title": "指定した問いについて確認したこと",
+        "kind": "問いへの調査結果",
+        "location": "research_focusの識別値と実際の出典",
+        "observed_at": null,
+        "content": "実際に分かったことと、判断が変わる根拠。未確認を区別する",
+        "limitations": [
+          "確認できなかった範囲"
+        ]
+      }
+    ]
+  },
+  "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
+  "sections": [
+    {
+      "section": "cards",
+      "unit": "cards",
+      "total": 212,
+      "full_packet_path": "data.context.cards"
+    },
+    {
+      "section": "rules",
+      "unit": "lines",
+      "total": 117,
+      "full_packet_path": "data.context.rules"
+    },
+    {
+      "section": "keywords",
+      "unit": "keywords",
+      "total": 37,
+      "full_packet_path": "data.context.ability_keywords"
+    },
+    {
+      "section": "principles",
+      "unit": "lines",
+      "total": 506,
+      "full_packet_path": "data.context.principles"
+    },
+    {
+      "section": "known_decks",
+      "unit": "decks",
+      "total": 4,
+      "full_packet_path": "data.context.known_decks"
+    },
+    {
+      "section": "search",
+      "unit": "questions",
+      "total": 1,
+      "full_packet_path": "data.search"
+    },
+    {
+      "section": "proposal",
+      "unit": "lines",
+      "total": 241,
+      "full_packet_path": "data.proposal"
+    },
+    {
+      "section": "previous_reviews",
+      "unit": "reviews",
+      "total": 1,
+      "full_packet_path": "data.previous_reviews"
+    },
+    {
+      "section": "review_contexts",
+      "unit": "reviews",
+      "total": 1,
+      "full_packet_path": "data.review_contexts"
+    },
+    {
+      "section": "history",
+      "unit": "lines",
+      "total": 1,
+      "full_packet_path": "data.history"
+    },
+    {
+      "section": "sources",
+      "unit": "lines",
+      "total": 3182,
+      "full_packet_path": "data.sources"
+    },
+    {
+      "section": "context_metadata",
+      "unit": "lines",
+      "total": 24,
+      "full_packet_path": "data.context"
+    },
+    {
+      "section": "fulfillment_map",
+      "unit": "lines",
+      "total": 234,
+      "full_packet_path": "data.context.fulfillment_map"
+    },
+    {
+      "section": "instruction",
+      "unit": "lines",
+      "total": 9,
+      "full_packet_path": "data.instruction"
+    },
+    {
+      "section": "response_example",
+      "unit": "lines",
+      "total": 14,
+      "full_packet_path": "data.response_example"
+    },
+    {
+      "section": "packet_metadata",
+      "unit": "lines",
+      "total": 6,
+      "full_packet_path": "data"
+    },
+    {
+      "section": "research_focus",
+      "unit": "lines",
+      "total": 6,
+      "full_packet_path": "data.research_focus"
+    }
+  ],
+  "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。offsetは0始まりです。回答のpacket_hashには上のsha256を使います。"
+}

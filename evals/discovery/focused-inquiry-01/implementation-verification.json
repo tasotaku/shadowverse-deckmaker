@@ -1,0 +1,52 @@
+{
+  "prototype_commit": "b54678c68681ba4f2b03bedb997ca544c268f85b",
+  "result": "PASS",
+  "existing": {
+    "passed": 81,
+    "seconds": 9.26,
+    "terminal_session": 33043
+  },
+  "new": {
+    "passed": 13,
+    "seconds": 0.87,
+    "terminal_session": 69216,
+    "temporary_test_path": "/tmp/sv-focused-inquiry-prototype/tests/temp/test_focused_inquiry_temp.py",
+    "sha256": "19f09d460a30b787f0427e5a66cfb1b61c930dcb64ad551ca63f426ad8a34f09"
+  },
+  "mypy": "strict PASS, 2 modules",
+  "diff_check": "PASS",
+  "limitation": "機能と保存契約の確認。方式の有用性はまだ未検証。",
+  "behavior_coverage": {
+    "normal": [
+      "保存された評価と一つの問いを明示指定してresearch資料を生成",
+      "選んだ評価とその入力文脈・一つの検索質問を保持",
+      "read/summaryから指定した問いを表示",
+      "既存attachで資料保存し、元の評価・入力版を変更しない"
+    ],
+    "boundaries": [
+      "未指定・不正・存在しない評価hash",
+      "問いの未指定・負数・範囲外・bool",
+      "他の工程へのfocus引数を拒否"
+    ],
+    "compatibility": [
+      "従来のdevelop/reviewの既定出力を保持",
+      "research資料でsubmit/reviewする工程混同を拒否",
+      "独立評価の入力へ過去採点やfocusを混入しない",
+      "保存済みresearch資料の指示は定数変更後も元の版を維持"
+    ]
+  },
+  "timing_note": "実装と機能検査はこの比較の準備前に実施済み。経過秒数とterminal確認は残るが、工程全体の信頼できる開始・終了の対がこの記録にないため推定しない。",
+  "reproduction": {
+    "worktree": "/tmp/sv-focused-inquiry-prototype",
+    "existing_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /tmp/sv-system-venv/bin/python -m pytest -q tests/test_discovery.py tests/test_discovery_read.py tests/test_discovery_sources.py tests/test_discovery_review_contexts.py",
+    "temporary_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:tests /tmp/sv-system-venv/bin/python -m pytest -q tests/temp/test_focused_inquiry_temp.py",
+    "temporary_test_policy": "新規検査は適用したtest skillの配置規約に従いtests/tempへ作成し、Gitへは保存しない。"
+  },
+  "patch_applicability": {
+    "checked_at": "2026-09-09T13:53:39.437765+00:00",
+    "base_commit": "59ead15eaaa9ada96a56cf08af798594021573f3",
+    "command": "git apply --check evals/discovery/focused-inquiry-01/prototype.patch",
+    "exit_code": 0,
+    "applied": false
+  }
+}

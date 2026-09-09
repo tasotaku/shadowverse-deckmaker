@@ -1,0 +1,81 @@
+{
+  "id": "focused-inquiry-01",
+  "frozen_at": "2026-09-09T13:46:18.218228+00:00",
+  "preparation_started_at": "2026-09-09T13:43:41+00:00",
+  "hypothesis": "残った一つの問いを資料収集の工程へ渡すと、既存案を作り直す入口より判断に使える追加根拠を得やすい。未実証。",
+  "scope": "既知の開発用事例1組。閉じたprinciples-scope-01を再開・再採点しない。新しいカード入力での発見力はこの試行では検証しない。",
+  "prototype_commit": "b54678c68681ba4f2b03bedb997ca544c268f85b",
+  "base_commit": "59ead15eaaa9ada96a56cf08af798594021573f3",
+  "source_session": "/tmp/sv-principles-scope-01/elf/b/session",
+  "review_hash": "421ceca38633ed61c8318c4cd45db938f8b29afbd2356a269c9a6ef5637cf945",
+  "revision": 1,
+  "question_index": 2,
+  "question": "先行する複製エルフの元手順にこの第三対象用法が含まれるか。また実機でバフと永続軽減のコピー保持を確認できるか。",
+  "arms": {
+    "a": {
+      "stage": "develop",
+      "work": "/tmp/sv-focused-inquiry-01/a/work",
+      "session": "/tmp/sv-focused-inquiry-01/a/work/session",
+      "packet_hash": "bdaef35661cfc36a840a21f285a802d77a1405314f1222683c91767d05320fa6",
+      "prompt_sha256": "cc4f773cc809c2c204b55996cdb59258f7c1a0c54f97b560ef9a129dd7d28fdc",
+      "packet_command": [
+        "/tmp/sv-system-venv/bin/python",
+        "/tmp/sv-focused-inquiry-01/a/work/public.py",
+        "packet",
+        "/tmp/sv-focused-inquiry-01/a/work/session",
+        "--revision",
+        "1",
+        "--stage",
+        "develop",
+        "--summary"
+      ]
+    },
+    "b": {
+      "stage": "research",
+      "work": "/tmp/sv-focused-inquiry-01/b/work",
+      "session": "/tmp/sv-focused-inquiry-01/b/work/session",
+      "packet_hash": "96a367394491f9609a16a28d9bc10681708677caa27bf5a23d203671625f13cf",
+      "prompt_sha256": "8210671fa17885e02398345caa3b00a3f0951eb445122eb1668233d9184579a0",
+      "packet_command": [
+        "/tmp/sv-system-venv/bin/python",
+        "/tmp/sv-focused-inquiry-01/b/work/public.py",
+        "packet",
+        "/tmp/sv-focused-inquiry-01/b/work/session",
+        "--revision",
+        "1",
+        "--stage",
+        "research",
+        "--summary",
+        "--review-hash",
+        "421ceca38633ed61c8318c4cd45db938f8b29afbd2356a269c9a6ef5637cf945",
+        "--question-index",
+        "2"
+      ]
+    }
+  },
+  "actual_packet_differences": [
+    "instruction",
+    "research_focus",
+    "response_example",
+    "search",
+    "stage"
+  ],
+  "controlled": "同じ固定DB・カード・注記・原則全文・過去案・資料・評価・問い・CLI・600秒/猶予2秒。プロンプトは方式別パスと資料識別値以外同一。モデル/推論設定の上書きなし。同じホストの利用者設定。",
+  "treatment": "従来developの資料/指示/回答例と、一問指定researchの資料/指示/回答例/検索対象。両側にattachと問いへ答える共通目的を許す。Aに不要な案改訂を強制しない。",
+  "criteria": [
+    "公開入口から同じ保存資料を読み、追加資料を出典・確認日時・内容・限界とともに保存できたか。入力案・評価・DBが変わっていないか。",
+    "元資料では不明だった問いの部分に、実際の新しい根拠が得られたか。先行例の役割や条件の照合、または判断を変える具体的な取得不能理由を区別する。以前の不明の言い換えは進歩と数えない。",
+    "資料で分かる範囲と実機/実戦の未実施を区別し、部分的な情報や検索不発から未知・強さ・一般的普及を断定しないか。",
+    "同じ新根拠または判断に到達する作業時間・公開操作・保存のやり直しを観測する。終了時刻は監督の終了とtoolのterminalを両方確認。",
+    "一件の有利な結果だけで全面採用しない。同等/両方未前進ならこの試行は方式優位を支持しない。改善があれば別入力で再確認する。"
+  ],
+  "stop_rule": "各600秒で停止。60秒前から収集を打ち切り保存。時間切れや未提出を合格へ繰り上げない。同じ入力の再評価や二回目の追試で本試行結果を埋めない。",
+  "collection": "既存ファイルのハッシュ照合、追加sources/result/report/web-checks/公開操作/監督run.jsonを回収。Codex生イベントや内部の思考はGitへ保存しない。終了後に独立な資料照合担当で両側を同じ基準で確認。",
+  "decision_before_run": "unassessed",
+  "limitations": [
+    "一つの既知の残課題を選択した開発用比較。探索の自然発見や全カードの網羅性を示さない。",
+    "過去試行で保存された原則の適用先説明は両側に同一の入力として含まれる。今回の本体への採用を意味しない。",
+    "各1回でAIのばらつきを制御できない。実機操作環境は提供していない。",
+    "壁時計時間は待機を含む。PC休止と別プロセス群への離脱は監督の保証外。"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "focused-inquiry-01",
+  "revision": 5,
+  "saved_at": "2026-09-09T14:25:52.512579+00:00",
+  "actor": "root",
+  "reason": "独立照合の未完了と時計差を保持し、部分資料を回収して採用保留として比較を閉じる",
+  "record": {
+    "id": "focused-inquiry-01",
+    "title": "残った一つの問いを調べる工程を比較する",
+    "category": "method",
+    "status": "completed",
+    "summary": "比較を終了し、本採用は保留。従来版6件・一問指定版3件の追加資料を保持。結論資料の保存失敗と独立照合の未完了を記録。",
+    "method": "残った一つの問いを資料収集の工程へ渡すと、既存案を作り直す入口より判断に使える追加根拠を得やすい。未実証。",
+    "procedure": "1. 閉じたエルフ案の資料を別々に複製。2. 同じ問いを従来版と試作へ渡して各10分で調査。3. 新しい根拠、残った不明、手間を同じ基準で照合。元試行の案・評価は変更しない。",
+    "inputs": "先行する複製エルフの元手順にこの第三対象用法が含まれるか。また実機でバフと永続軽減のコピー保持を確認できるか。 元の資料38件と固定カード・原則・提案・評価を両方式で揃える。",
+    "criteria": "公開入口から同じ保存資料を読み、追加資料を出典・確認日時・内容・限界とともに保存できたか。入力案・評価・DBが変わっていないか。\n元資料では不明だった問いの部分に、実際の新しい根拠が得られたか。先行例の役割や条件の照合、または判断を変える具体的な取得不能理由を区別する。以前の不明の言い換えは進歩と数えない。\n資料で分かる範囲と実機/実戦の未実施を区別し、部分的な情報や検索不発から未知・強さ・一般的普及を断定しないか。\n同じ新根拠または判断に到達する作業時間・公開操作・保存のやり直しを観測する。終了時刻は監督の終了とtoolのterminalを両方確認。\n一件の有利な結果だけで全面採用しない。同等/両方未前進ならこの試行は方式優位を支持しない。改善があれば別入力で再確認する。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "元手順と実機保持は未確認。追加資料は得たが、新しい工程による優位は示せず。独立照合は完走していない。",
+      "limitations": "一つの既知の開発用事例。両側の期限終了と試作側の保存失敗。別評価の時計差と期限観測遅延の原因は未確認。案の強さ・独自性の再採点や新しい自然入力での発見確認は未実施。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "一問指定版で先行例の元手順や実機保持は解けず、結論資料の保存も失敗した。従来版でも追加資料を保存でき、双方の部分報告には重なる補助資料がある。独立照合が未完了で、指示の追加による有用性や手間削減を確定できない。"
+    },
+    "started_at": "2026-09-09T13:43:41+00:00",
+    "ended_at": "2026-09-09T14:25:52.168859+00:00",
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "一問指定の試作実装と機能検査",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "比較準備より前に実施。新規13件・既存81件合格。工程全体の開始終了の対が残っていないため日時は不明とする。",
+        "budget_minutes": null
+      },
+      {
+        "id": "preparation",
+        "title": "同じ入力・問い・判断条件を固定",
+        "status": "completed",
+        "started_at": "2026-09-09T13:43:41+00:00",
+        "ended_at": "2026-09-09T13:46:18.218228+00:00",
+        "note": "2つの資料の差は指示・工程・回答例・検索対象・指定した問いだけであることを確認。",
+        "budget_minutes": null
+      },
+      {
+        "id": "a",
+        "title": "従来の入口で残課題を調べる",
+        "status": "interrupted",
+        "started_at": "2026-09-09T13:46:36.105275+00:00",
+        "ended_at": "2026-09-09T13:56:36.134190+00:00",
+        "note": "10分で停止要求。主プロセスはSIGTERMで終了。終了確認で権限エラーになり監督の終了コード125。後の照合では残ったプロセス群なし。部分資料を回収し、正常完了には繰り上げない。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b",
+        "title": "一問指定の入口で残課題を調べる",
+        "status": "interrupted",
+        "started_at": "2026-09-09T13:46:37.267069+00:00",
+        "ended_at": "2026-09-09T13:56:37.304876+00:00",
+        "note": "10分で停止要求。主プロセスはSIGTERMで終了。終了確認で権限エラーになり監督の終了コード125。後の照合では残ったプロセス群なし。部分資料を回収し、正常完了には繰り上げない。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "assessment",
+        "title": "追加根拠と手間を照合し採否を判断",
+        "status": "interrupted",
+        "started_at": "2026-09-09T13:58:42.386734+00:00",
+        "ended_at": "2026-09-09T14:17:09.741669+00:00",
+        "note": "独立照合は未完了。UTCの開始終了差1107.35秒、経過時計248.12秒。期限観測が507.27秒遅れた。原因は未確認。整合確認と一部出典確認までの途中記録を保持。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "closure",
+        "title": "途中資料の回収と採否の記録",
+        "status": "completed",
+        "started_at": "2026-09-09T14:24:35+00:00",
+        "ended_at": "2026-09-09T14:25:52.168859+00:00",
+        "note": "未完了を成功に繰り上げず採用保留。追加根拠の件数と失敗内容を保存し、元案・元評価の不変更を確認。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/focused-inquiry-01/protocol.json",
+      "evals/discovery/focused-inquiry-01/implementation-verification.json",
+      "evals/discovery/focused-inquiry-01/prototype.patch",
+      "evals/discovery/focused-inquiry-01/README.md",
+      "evals/discovery/focused-inquiry-01/collection.json",
+      "evals/discovery/focused-inquiry-01/assessment/collection.json",
+      "evals/discovery/focused-inquiry-01/assessment/verification-record.json",
+      "evals/discovery/focused-inquiry-01/decision.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/focused-inquiry-01/README.md",
+      "sha256": "b12dd5f22ece2022e9c735123bc79492cc80f60bd73617c25cd683928684d4c3",
+      "size": 2652
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/assessment/collection.json",
+      "sha256": "5ac2dbaeefda3070b574d242eaa5d88f9152a3e3bcd02b0193d4bc1b301e724a",
+      "size": 778
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/assessment/verification-record.json",
+      "sha256": "1e1ff7599f3718a58048131d766675065cf82fd599a07bd5f041b8cf8c26029b",
+      "size": 56600
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/collection.json",
+      "sha256": "64cc709f003d3d5ee410575d25dcb0b21d7482ff286f8a2389be923baacb33a4",
+      "size": 2798
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/decision.json",
+      "sha256": "835a7e24aa0ed3c41ed8f327435da6e4277ea4c0c8f627d77e328f83b1bfdf58",
+      "size": 2075
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/implementation-verification.json",
+      "sha256": "1fd6dbdcf23819aa9759625d3b708b62f4a9febf3e6230957ccacf7087755fdc",
+      "size": 2586
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/protocol.json",
+      "sha256": "fce41c6b109cda4fd2cebd30e261ec44fe6ab118643161658e46a209820c8d3e",
+      "size": 5181
+    },
+    {
+      "path": "evals/discovery/focused-inquiry-01/prototype.patch",
+      "sha256": "9a71a06dc9f26b27d36f1eed895d18f19daf66a7cfd7368d9c984d07b3a4ee44",
+      "size": 11757
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": [
+      "evals/discovery/focused-inquiry-01/README.md"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-09-09T14:28:47.327858+00:00",
+  "json_validation": "PASS except explicitly preserved empty failed attach stdout",
+  "intentionally_empty": [
+    "b/attach-conclusion.json"
+  ],
+  "journal_entries": 24,
+  "visible_records": {
+    "focused-inquiry-01": {
+      "revision": 5,
+      "status": "completed",
+      "decision": "deferred"
+    },
+    "worker-settle-01": {
+      "revision": 2,
+      "status": "completed",
+      "decision": "adopted"
+    }
+  },
+  "private_streams_archived": false,
+  "whitespace_check": {
+    "initial": "git diff --cached --check flags 9 lines in the archived prototype.patch",
+    "reason": "Unified diff uses a single leading space for an empty context line. Removing it would rewrite the frozen patch; these are patch syntax, not trailing spaces in source code.",
+    "scope": "Check all staged files except the immutable prototype.patch; separately parse that patch with git apply --numstat. The patch had already passed git apply --check on its recorded base before workers started."
+  }
+}

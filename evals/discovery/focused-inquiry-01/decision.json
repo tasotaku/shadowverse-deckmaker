@@ -1,0 +1,38 @@
+{
+  "decided_at": "2026-09-09T14:25:52.168859+00:00",
+  "decision": "deferred",
+  "outcome": "mixed",
+  "actor": "root",
+  "independent_assessment_complete": false,
+  "method_advantage": "not established",
+  "reason": "一問指定版で先行例の元手順や実機保持は解けず、結論資料の保存も失敗した。従来版でも追加資料を保存でき、双方の部分報告には重なる補助資料がある。独立照合が未完了で、指示の追加による有用性や手間削減を確定できない。",
+  "observations": {
+    "a": {
+      "saved_new_sources": 6,
+      "public_operations": 85,
+      "public_failures": 0,
+      "result": "途中保存のまま。後続のsources-additionalは別に保存。",
+      "terminal": 125
+    },
+    "b": {
+      "saved_new_sources": 3,
+      "public_operations": 88,
+      "public_failures": 1,
+      "result": "報告あり。ただし結論をcontentへオブジェクトで渡し、文字列の保存契約に合わずattach失敗。未保存の結論を正式資料へ繰り上げない。",
+      "terminal": 125
+    }
+  },
+  "source_progress_boundary": "類似用法の言及や時系列の追加照合を部分資料として保持。元の第三対象と役割、対象カードの実機保持は未確認。原案のprocedure/value/noveltyを再採点しない。",
+  "next_system_work": [
+    "新しい工程を増やす前に、調査結果を既存の保存形式で確実に残せるかを別の入力で確認する。",
+    "一つの問いに対して必要だった読出しの範囲と、実機など現環境で実施できない部分を扱う工程を見直す。85/88回という回数だけで原因を断定しない。",
+    "時間の観測にはUTCの開始終了差と経過時計を併記し、差のある工程を速度比較から除外する。"
+  ],
+  "not_done": [
+    "独立照合の完走",
+    "実機/実戦確認",
+    "新しいカード入力からの有用な種の発見",
+    "試作の本体への採用"
+  ],
+  "original_trial_unchanged": true
+}
