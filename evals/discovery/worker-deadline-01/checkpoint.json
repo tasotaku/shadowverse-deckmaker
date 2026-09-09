@@ -1,0 +1,156 @@
+{
+  "started_at_utc": "2026-09-09T13:21:23.712610+00:00",
+  "deadline_utc": "2026-09-09T13:22:39.305798+00:00",
+  "session": "/tmp/sv-principles-scope-01/elf/a/session",
+  "packet_hash": "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+  "operations": [
+    {
+      "resource": "context_metadata",
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+        "context_metadata",
+        "--offset",
+        "0",
+        "--limit",
+        "50"
+      ],
+      "before_utc": "2026-09-09T13:21:23.713722+00:00",
+      "status": "completed",
+      "executed": true,
+      "after_utc": "2026-09-09T13:21:23.790928+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"sha256\": \"f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876\",\n  \"section\": \"context_metadata\",\n  \"unit\": \"lines\",\n  \"offset\": 0,\n  \"limit\": 50,\n  \"total\": 22,\n  \"next_offset\": null,\n  \"content\": [\n    \"{\\n\",\n    \"  \\\"version\\\": 1,\\n\",\n    \"  \\\"objective\\\": \\\"このクラスで独自でそこそこ戦えるデッキの種を考える。カードの別用途、効果の副作用、複数段の接続、序盤と後半の役割分担、強い基盤と採用配分を資料から検討し、目的に合う一案を発展させる。特定の主役カードや機構は指定しない。既知の標準用法との差、核が揃わない時の勝ち方、採用負担に見合う可能性を根拠で説明する。\\\",\\n\",\n    \"  \\\"class_name\\\": \\\"エルフ\\\",\\n\",\n    \"  \\\"format\\\": \\\"rotation\\\",\\n\",\n    \"  \\\"captured_at\\\": \\\"2026-09-09T04:28:49.063908+00:00\\\",\\n\",\n    \"  \\\"freshness\\\": \\\"ローカルDBの保存版。取得時刻は能力の適用日や公式再確認日ではない。\\\",\\n\",\n    \"  \\\"card_sets\\\": {\\n\",\n    \"    \\\"10000\\\": \\\"ベーシック\\\",\\n\",\n    \"    \\\"10001\\\": \\\"伝説の幕開け\\\",\\n\",\n    \"    \\\"10002\\\": \\\"インフィニティ・エボルヴ\\\",\\n\",\n    \"    \\\"10003\\\": \\\"絶傑の継承者\\\",\\n\",\n    \"    \\\"10004\\\": \\\"蒼空の六竜\\\",\\n\",\n    \"    \\\"10005\\\": \\\"花酔遊戯\\\",\\n\",\n    \"    \\\"10006\\\": \\\"アポカリプス・パクト\\\",\\n\",\n    \"    \\\"10007\\\": \\\"神殺し・アナテマ\\\",\\n\",\n    \"    \\\"10008\\\": \\\"クロニクル・オブ・デスティニー\\\",\\n\",\n    \"    \\\"10009\\\": \\\"アズヴォルト・レヴナント\\\"\\n\",\n    \"  },\\n\",\n    \"  \\\"related_coverage\\\": \\\"名前参照、公式用語定義のパック参照、全生成専用カードを収録。資料にあることは、その手順で生成できる証明ではない。集合の内容は原文・定義で確認する。\\\",\\n\",\n    \"  \\\"snapshot_sha256\\\": \\\"a697828a7327b14eab1f429863a7bcd2ec4cc0d85752bce2b158aad00a09a0cd\\\"\\n\",\n    \"}\"\n  ]\n}\n",
+      "stderr": "",
+      "json_output": {
+        "sha256": "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+        "section": "context_metadata",
+        "unit": "lines",
+        "offset": 0,
+        "limit": 50,
+        "total": 22,
+        "next_offset": null,
+        "content": [
+          "{\n",
+          "  \"version\": 1,\n",
+          "  \"objective\": \"このクラスで独自でそこそこ戦えるデッキの種を考える。カードの別用途、効果の副作用、複数段の接続、序盤と後半の役割分担、強い基盤と採用配分を資料から検討し、目的に合う一案を発展させる。特定の主役カードや機構は指定しない。既知の標準用法との差、核が揃わない時の勝ち方、採用負担に見合う可能性を根拠で説明する。\",\n",
+          "  \"class_name\": \"エルフ\",\n",
+          "  \"format\": \"rotation\",\n",
+          "  \"captured_at\": \"2026-09-09T04:28:49.063908+00:00\",\n",
+          "  \"freshness\": \"ローカルDBの保存版。取得時刻は能力の適用日や公式再確認日ではない。\",\n",
+          "  \"card_sets\": {\n",
+          "    \"10000\": \"ベーシック\",\n",
+          "    \"10001\": \"伝説の幕開け\",\n",
+          "    \"10002\": \"インフィニティ・エボルヴ\",\n",
+          "    \"10003\": \"絶傑の継承者\",\n",
+          "    \"10004\": \"蒼空の六竜\",\n",
+          "    \"10005\": \"花酔遊戯\",\n",
+          "    \"10006\": \"アポカリプス・パクト\",\n",
+          "    \"10007\": \"神殺し・アナテマ\",\n",
+          "    \"10008\": \"クロニクル・オブ・デスティニー\",\n",
+          "    \"10009\": \"アズヴォルト・レヴナント\"\n",
+          "  },\n",
+          "  \"related_coverage\": \"名前参照、公式用語定義のパック参照、全生成専用カードを収録。資料にあることは、その手順で生成できる証明ではない。集合の内容は原文・定義で確認する。\",\n",
+          "  \"snapshot_sha256\": \"a697828a7327b14eab1f429863a7bcd2ec4cc0d85752bce2b158aad00a09a0cd\"\n",
+          "}"
+        ]
+      }
+    },
+    {
+      "resource": "cards",
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+        "cards",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "before_utc": "2026-09-09T13:21:23.792411+00:00",
+      "status": "completed",
+      "executed": true,
+      "after_utc": "2026-09-09T13:21:23.867699+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"sha256\": \"f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876\",\n  \"section\": \"cards\",\n  \"unit\": \"cards\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 212,\n  \"next_offset\": 1,\n  \"content\": [\n    {\n      \"card_id\": 10001110,\n      \"name\": \"不屈のファイター\",\n      \"class_name\": \"ニュートラル\",\n      \"cost\": 2,\n      \"atk\": 2,\n      \"life\": 2,\n      \"type\": \"follower\",\n      \"is_token\": false,\n      \"rotation\": true,\n      \"copy_limit\": 3,\n      \"card_set_id\": 10000,\n      \"deck_eligible\": true,\n      \"tribes\": [\n        \"-\"\n      ],\n      \"skill_text\": \"【エンハンス_4】これは+3/+3する。\",\n      \"evolution_text\": \"【エンハンス_4】これは+3/+3する。\",\n      \"ref_effect_text\": \"\",\n      \"note\": \"\",\n      \"note_updated_at\": null,\n      \"raw\": {\n        \"skill_text\": \"【<color=Keyword>エンハンス</color>_4】これは+3/+3する。\",\n        \"evo\": {\n          \"card_resource_id\": 100011101,\n          \"flavour_text\": \"争いのない世界こそ、俺の切り開きたかった未来だ。\\n頼るのは自分だけ。敵も憎しみも、全て俺が引き受ける。\",\n          \"skill_text\": \"【<color=Keyword>エンハンス</color>_4】これは+3/+3する。\",\n          \"card_image_hash\": \"8f1ab12418fc4d0aa41f96eff6211593\",\n          \"card_banner_image_hash\": \"8417135a9a8f4b3ab9ec136c937b4e80\"\n        },\n        \"ref_effect_text\": null\n      },\n      \"source_url\": \"https://shadowverse-wb.com/web/CardList/card?card_id=10001110&lang=ja\",\n      \"tags\": [\n        {\n          \"kind\": \"require\",\n          \"tag\": \"エンハンス(4)\"\n        },\n        {\n          \"kind\": \"supply\",\n          \"tag\": \"バフ(体力)\"\n        },\n        {\n          \"kind\": \"supply\",\n          \"tag\": \"バフ(攻撃)\"\n        }\n      ],\n      \"requirements\": [],\n      \"referenced_keywords\": [\n        \"エンハンス\"\n      ],\n      \"referenced_card_sets\": [],\n      \"related_card_ids\": []\n    }\n  ]\n}\n",
+      "stderr": "",
+      "json_output": {
+        "sha256": "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+        "section": "cards",
+        "unit": "cards",
+        "offset": 0,
+        "limit": 1,
+        "total": 212,
+        "next_offset": 1,
+        "content": [
+          {
+            "card_id": 10001110,
+            "name": "不屈のファイター",
+            "class_name": "ニュートラル",
+            "cost": 2,
+            "atk": 2,
+            "life": 2,
+            "type": "follower",
+            "is_token": false,
+            "rotation": true,
+            "copy_limit": 3,
+            "card_set_id": 10000,
+            "deck_eligible": true,
+            "tribes": [
+              "-"
+            ],
+            "skill_text": "【エンハンス_4】これは+3/+3する。",
+            "evolution_text": "【エンハンス_4】これは+3/+3する。",
+            "ref_effect_text": "",
+            "note": "",
+            "note_updated_at": null,
+            "raw": {
+              "skill_text": "【<color=Keyword>エンハンス</color>_4】これは+3/+3する。",
+              "evo": {
+                "card_resource_id": 100011101,
+                "flavour_text": "争いのない世界こそ、俺の切り開きたかった未来だ。\n頼るのは自分だけ。敵も憎しみも、全て俺が引き受ける。",
+                "skill_text": "【<color=Keyword>エンハンス</color>_4】これは+3/+3する。",
+                "card_image_hash": "8f1ab12418fc4d0aa41f96eff6211593",
+                "card_banner_image_hash": "8417135a9a8f4b3ab9ec136c937b4e80"
+              },
+              "ref_effect_text": null
+            },
+            "source_url": "https://shadowverse-wb.com/web/CardList/card?card_id=10001110&lang=ja",
+            "tags": [
+              {
+                "kind": "require",
+                "tag": "エンハンス(4)"
+              },
+              {
+                "kind": "supply",
+                "tag": "バフ(体力)"
+              },
+              {
+                "kind": "supply",
+                "tag": "バフ(攻撃)"
+              }
+            ],
+            "requirements": [],
+            "referenced_keywords": [
+              "エンハンス"
+            ],
+            "referenced_card_sets": [],
+            "related_card_ids": []
+          }
+        ]
+      }
+    }
+  ],
+  "status": "completed",
+  "checkpoint_saved_at_utc": "2026-09-09T13:21:23.868819+00:00",
+  "finished_at_utc": "2026-09-09T13:21:23.868809+00:00",
+  "operation_count": 2
+}

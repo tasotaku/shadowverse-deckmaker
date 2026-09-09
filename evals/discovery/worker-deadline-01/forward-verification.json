@@ -1,0 +1,72 @@
+{
+  "verified_at": "2026-09-09T13:24:21.913115+00:00",
+  "terminal_evidence": {
+    "ai-run": "write_stdin session 77287 exit_code 0",
+    "read-timeout": "write_stdin session 4535 exit_code 124"
+  },
+  "ai_elapsed_seconds": 51.9050584170036,
+  "forced_timeout_elapsed_seconds": 2.011299000121653,
+  "public_operations": 2,
+  "direct_read_matches": [
+    {
+      "section": "context_metadata",
+      "started_at": "2026-09-09T13:24:21.671071+00:00",
+      "ended_at": "2026-09-09T13:24:21.767247+00:00",
+      "exact_output_match": true
+    },
+    {
+      "section": "cards",
+      "started_at": "2026-09-09T13:24:21.767274+00:00",
+      "ended_at": "2026-09-09T13:24:21.874331+00:00",
+      "exact_output_match": true
+    }
+  ],
+  "fixed_session_files_unchanged": 47,
+  "new_session_files": 0,
+  "worker_pids_not_running": true,
+  "timed_out_read_retained": true,
+  "late_write_absent": true,
+  "artifacts": [
+    {
+      "path": "evals/discovery/worker-deadline-01/ai-run/run.json",
+      "sha256": "2023c01da42b302c5a5ce2f33fe971f5dc8b013b6f4509c48b7a45005319abaa"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-timeout/run.json",
+      "sha256": "42b4c434d060b7029591ed17c04948fb836cbc96de802e535ee0a8ecf8693b2e"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-timeout/read.json",
+      "sha256": "215257878ce75dfd9af347dea1cf5d2d68d58fce254ec0f6b987aa7d6166b10b"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-timeout/read-operation.json",
+      "sha256": "c152023280972ddf18a3d4aaf1991e3e6a185c2bfe8381274eebf1c24ccd407d"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-timeout/stdout.log",
+      "sha256": "369fe0f52c7fff8f0a7125e78c859e8a197e047041ad111d9d06b77ce263e0ba"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-timeout/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/instructions.txt",
+      "sha256": "3247b9109fb25e7724180b93e1952b0b69c75193e92d3e9578fd8dab5f182237"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/checkpoint.json",
+      "sha256": "e0aa537522b104d7219e42ddb3aaeeeb4155e95470ae8737bec7a10499180bc7"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/final-message.md",
+      "sha256": "d75e2a813722ddab637990b0e6db4bb9f07fb44dbf698e21321ec1074bc42448"
+    },
+    {
+      "path": "evals/discovery/worker-deadline-01/read-and-stall.py",
+      "sha256": "8532e61a5e2e647fa4d50e2b26e562efe89e4521e74bb324febfc5cddfebe532"
+    }
+  ],
+  "scope": "supervised read-only AI execution and injected-stall public read; no novel deck search or substantive regrade"
+}

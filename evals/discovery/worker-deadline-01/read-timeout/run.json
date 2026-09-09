@@ -1,0 +1,49 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "/tmp/sv-worker-deadline-forward/read-and-stall.py"
+  ],
+  "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+  "stdin": null,
+  "output": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/worker-deadline-01/read-timeout",
+  "started_at": "2026-09-09T13:21:08.754390+00:00",
+  "deadline_at": "2026-09-09T13:21:10.754390+00:00",
+  "timeout_seconds": 2.0,
+  "termination_grace_seconds": 0.2,
+  "supervisor_pid": 48850,
+  "worker_pid": 48851,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-09T13:21:10.765846+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T13:21:08.755108+00:00",
+      "elapsed_seconds": 0.0005517499521374702
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T13:21:08.757288+00:00",
+      "elapsed_seconds": 0.0027642077766358852
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-09T13:21:10.760538+00:00",
+      "elapsed_seconds": 2.0060188327915967
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-09T13:21:10.763665+00:00",
+      "elapsed_seconds": 2.0091277076862752,
+      "signal": 15
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T13:21:10.765867+00:00",
+      "elapsed_seconds": 2.0113107496872544
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 2.011299000121653,
+  "runner_returncode": 124
+}

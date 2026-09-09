@@ -1,0 +1,54 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-worker-deadline-forward",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-worker-deadline-forward/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-worker-deadline-forward",
+  "stdin": "/private/tmp/sv-worker-deadline-forward/instructions.txt",
+  "output": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/worker-deadline-01/ai-run",
+  "started_at": "2026-09-09T13:20:39.305798+00:00",
+  "deadline_at": "2026-09-09T13:22:39.305798+00:00",
+  "timeout_seconds": 120.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 48307,
+  "worker_pid": 48308,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-09T13:21:31.211012+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T13:20:39.306573+00:00",
+      "elapsed_seconds": 0.0006329170428216457
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T13:20:39.309311+00:00",
+      "elapsed_seconds": 0.003416291903704405
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-09T13:21:31.207915+00:00",
+      "elapsed_seconds": 51.9019845421426,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T13:21:31.211036+00:00",
+      "elapsed_seconds": 51.90507029183209
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 51.9050584170036,
+  "runner_returncode": 0
+}

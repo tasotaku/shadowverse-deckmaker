@@ -1,0 +1,11 @@
+目的は時間制限付き実行の確認です。デッキの考案・採点・再評価は行いません。開始と各操作前後はdatetime.now(timezone.utc)から記録します。期限は環境変数SVDECK_DEADLINE_UTCです。追加の担当や探索は起動しません。
+次の公開CLIを使って2つの資料だけ読み、結果をcheckpoint.jsonへ保存してください。各操作後にその時点までの結果を保存し、最後だけにまとめないでください。
+Python: /tmp/sv-system-venv/bin/python
+モジュール: svdeck.discovery
+環境: PYTHONPATH=/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src、PYTHONDONTWRITEBYTECODE=1
+session: /tmp/sv-principles-scope-01/elf/a/session
+packet hash: f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876
+1. read SESSION HASH context_metadata --offset 0 --limit 50
+2. read SESSION HASH cards --offset 0 --limit 1
+subprocessへ引数列で実行して、終了コードと実際のJSON出力を保存します。本文の意味の評価は不要です。最終応答は操作件数とcheckpoint.jsonの保存先だけ。
+探索session、コード、DB、gitは編集禁止。作業ディレクトリ内への記録だけ許可。過去の評価や他タスクの記録、外部Webは不要です。

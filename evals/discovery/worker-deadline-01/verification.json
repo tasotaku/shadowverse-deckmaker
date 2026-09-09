@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-09-09T13:19:18.577457+00:00",
+  "pytest": "18 passed in 4.45s",
+  "mypy": "Success: no issues found in 1 source file",
+  "test_file": "tests/temp/test_worker_deadline_temp.py (temporary, not committed)",
+  "coverage": [
+    "normal completion, stdin, output and saved partial",
+    "worker nonzero exit",
+    "deadline and graceful save without upgrading timeout",
+    "ignored TERM and child-process termination, unrelated process untouched",
+    "parent exit with remaining child",
+    "supervisor interruption",
+    "six invalid time inputs",
+    "existing output retained",
+    "launch failure without fabricated worker exit",
+    "literal argv without shell expansion",
+    "termination refusal recorded as unconfirmed",
+    "forward and backward wall-clock shift"
+  ],
+  "initial_result": "14 passed, 2 failed: clock-shift tests exposed EPERM during post-TERM group cleanup; focused retry failed and separate 8-process reproduction observed EPERM with terminated unreaped parent.",
+  "fix": "Poll/reap parent before signalling; once recheck after EPERM; final cleanup failure records termination_unconfirmed instead of abandoning final record.",
+  "forward_test": "PASS: actual AI read 2 resources in 51.91 seconds; injected-stall public read stopped in 2.01 seconds with output retained",
+  "existing_regression": "42 passed in 3.48s (test_discovery.py and test_discovery_read.py)",
+  "verdict": "PASS",
+  "verified_at": "2026-09-09T13:26:39.838895+00:00"
+}
