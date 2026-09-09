@@ -20,4 +20,3 @@
 対戦、マリガン後の再現性、連携20到達ターン、被打点、SEP温存率、回復への耐性は未観測。[公式の基本ルール](https://shadowverse-wb.com/ja/system/cardbattle/battle/)は確認できたが、個別カードの公式ページは本文を直接取得できず、検索索引による部分照合にとどまる。現在の公式全文・適用日は確認完了としていない。Web記録の時刻は該当ツールバッチ直後の実時計で、個別URLの厳密な取得完了秒ではない。
 
 正式提出後のreportで、packet_hash・author・3判定・findings（引用を含む）・next_questions・web_checksの全項目がreview.jsonと一致した。入力追加資料2件の識別値と対応も一致し、追加差分は0件。照合結果は session/review-verification.json、保存reportは session/review-report.json に残した。保存成功を提案価値の証明にはしていない。
-

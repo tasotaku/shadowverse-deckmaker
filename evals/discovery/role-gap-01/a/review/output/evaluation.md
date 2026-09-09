@@ -15,4 +15,3 @@
 現行公式の全カード本文・適用日、対戦結果、完成40枚の引き込みと連携速度は未確認。[公式基本ルール](https://shadowverse-wb.com/ja/system/cardbattle/battle/)は閲覧したが、個別カードの直接取得はサイト枠のみ／エラーで、検索抜粋による補助確認と区別した。追加資料2件と独立Web照合10件の用途・限界は `evidence-use.json`、URL・検索語・実時計は `review.json` に保存した。
 
 正式提出後、reportのpacket_hash、author、3判定、findings全9件と全evidence、next_questions全4件、web_checks全10件を提出JSONと完全一致で照合した。入力資料の識別値2件も一致し、差分資料は0件。保存成功は案の有用性の証明ではない。照合時刻：2026-09-09 15:48:53 UTC。詳細は `report-verification.json`。
-
