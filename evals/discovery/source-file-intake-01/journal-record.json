@@ -1,0 +1,173 @@
+{
+  "id": "source-file-intake-01",
+  "revision": 5,
+  "saved_at": "2026-09-09T15:20:15.877534+00:00",
+  "actor": "root",
+  "reason": "独立評価1件の完了と本体への一致保存を確認。保存機能の採用と案の追加検討を分けて試行を終了",
+  "record": {
+    "id": "source-file-intake-01",
+    "title": "調査結果ファイルをそのまま次の探索へ渡す",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "調査報告3件の保存・再読・独立評価への受け渡しを確認し、保存の補助入口を採用。得られた案は追加検討止まり。",
+    "method": "報告ファイルの本文をそのまま取り込めば、構造化した結果を文章欄へ詰め直す誤りを避け、次の探索・評価へ内容を欠かさず渡せる。探索方法の優位とは別の実行上の仮説。",
+    "procedure": "1. 過去の保存失敗をコピーで再現。2. ファイル本文を取り込む入口を実装し、保持と拒否を検査。3. 新しいロイヤル探索で資料を読み、報告保存・再読・提出を実行。4. 提出案があれば独立評価へ渡す。",
+    "inputs": "この保存入口では初めて扱う新しい探索目的。カード集合全体が未知であったという主張はしない。 ロイヤルの通常の構築基盤で担う役割や配分を読み替え、既存の標準手順と違う利益を持つデッキの種を一つ考える。特定の主役や型へ限定せず、核を引かない時の勝ち方と失う役割も示す。資料で分かる成立性と、未確認の実戦価値・既出を区別する。",
+    "criteria": "報告ファイルを手で再構成せず、本文・出典・時点・限界を一つの資料として保存し、入力ファイルのhashと読出し内容が一致する。\n旧入力・固定DB・既存案・評価を変えない。同じ報告の重複取り込みを増やさず、変更は別の資料として追記する。\nその資料を新しいpacketから読み、案または明確な未成立理由を次へ渡せる。未確認を実証済みにしない。\n提出案があれば独立した担当が新しいreview入力だけを読み、成立性・役割配分・負担・既出を理由付きで評価する。提出がなければ未完として残し、同じ入力の再採点で穴を埋めない。\n保存入口の採用は内容一致・実際の保存完走で判断する。新しい種の有用性は別の独立評価として記録し、保存成功をその証明にしない。",
+    "result": {
+      "outcome": "pass",
+      "summary": "保存機能は89件の検査と実利用に合格。3資料と案1件が別担当へ渡り、正式評価1件を本体にも保存した。案は条件付き成立・追加検討・既出未確認で、試行推薦には至らなかった。",
+      "limitations": "合格は保存・受け渡しの範囲。考案全体は15分で期限停止し、評価の初回提出は空引用で不受理。修正後に正式評価できた。独自性・実戦の強さ・探索法の優位を示す結果ではない。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "報告を手で再構成せず、実AIが3資料を保存・再読できた。本体のdata配下でも本文識別値と重複抑制を確認したため、保存の補助入口として採用。案の有用性や探索法の優位は別の判定とする。"
+    },
+    "started_at": "2026-09-09T14:31:40+00:00",
+    "ended_at": "2026-09-09T15:20:15.675226+00:00",
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "保存入口の実装と機能検査",
+        "status": "completed",
+        "started_at": "2026-09-09T14:31:40+00:00",
+        "ended_at": "2026-09-09T14:36:51+00:00",
+        "note": "既存81件・新規8件と型検査に合格。",
+        "budget_minutes": null
+      },
+      {
+        "id": "reproduction",
+        "title": "過去の型不正を別コピーで再現し本文保持を確認",
+        "status": "completed",
+        "started_at": "2026-09-09T14:39:31.289326+00:00",
+        "ended_at": "2026-09-09T14:39:31.658390+00:00",
+        "note": "元試行を変更せず、旧入口2・新入口0、本文一致を確認。",
+        "budget_minutes": null
+      },
+      {
+        "id": "preparation",
+        "title": "新しい入力と判断条件を固定",
+        "status": "completed",
+        "started_at": "2026-09-09T14:39:31.658390+00:00",
+        "ended_at": "2026-09-09T14:39:31.953588+00:00",
+        "note": "ロイヤルの新しい探索目的で固定。新しい探索法の優位を比べる試行とは区別。",
+        "budget_minutes": null
+      },
+      {
+        "id": "generation",
+        "title": "新しいロイヤル探索で報告保存・再読・提出",
+        "status": "interrupted",
+        "started_at": "2026-09-09T14:39:55.522360+00:00",
+        "ended_at": "2026-09-09T14:54:55.576934+00:00",
+        "note": "担当全体は15分で期限停止。停止前に3資料を取り込み・再読し、正式な案1件を提出した。受付は評価合格とは区別する。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "review",
+        "title": "受け渡された案を独立評価",
+        "status": "completed",
+        "started_at": "2026-09-09T14:56:50.969883+00:00",
+        "ended_at": "2026-09-09T15:06:13.828298+00:00",
+        "note": "独立評価は9分23秒で完了。3資料を使用し、条件付き成立・追加検討・既出未確認。初回は空引用2件で不受理、修正後の提出・読戻しに成功。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "delivery",
+        "title": "保存入口を本体へ反映し同じ資料で確認",
+        "status": "completed",
+        "started_at": "2026-09-09T15:00:51.377893+00:00",
+        "ended_at": "2026-09-09T15:03:12.713035+00:00",
+        "note": "ユーザーの本体data配下で3件の再取り込みを実行。重複追加なし、本文の識別値一致。mainとorigin/mainの04b15a607e3912693593a4d23374d2359aa13d39を確認。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review_import",
+        "title": "正式評価を原本と本体へ保存して照合",
+        "status": "completed",
+        "started_at": "2026-09-09T15:11:12.875280+00:00",
+        "ended_at": "2026-09-09T15:11:13.408117+00:00",
+        "note": "独立評価1件を2つの保存先へ同期。全項目一致・各保存先の評価1件を公開入口で確認。2件の評価とは数えない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "closeout",
+        "title": "報告と工程記録を整理して採否を確定",
+        "status": "completed",
+        "started_at": "2026-09-09T15:16:16+00:00",
+        "ended_at": "2026-09-09T15:20:15.675226+00:00",
+        "note": "既存の独立評価を再採点せず、保存機能の採用と案の追加検討を分けて記録。時刻・失敗・未確認を保持。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/source-file-intake-01/protocol.json",
+      "evals/discovery/source-file-intake-01/implementation-verification.json",
+      "evals/discovery/source-file-intake-01/reproduction.json",
+      "evals/discovery/source-file-intake-01/generation-collection.json",
+      "evals/discovery/source-file-intake-01/destination-check.json",
+      "evals/discovery/source-file-intake-01/README.md",
+      "evals/discovery/source-file-intake-01/review/collection.json",
+      "evals/discovery/source-file-intake-01/review/evaluation.md",
+      "evals/discovery/source-file-intake-01/review/evidence-use.json",
+      "evals/discovery/source-file-intake-01/review-import.json",
+      "evals/discovery/source-file-intake-01/delivery-proof.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/source-file-intake-01/README.md",
+      "sha256": "91daf9e832c7709539d28f0ebf96a6ca925007969b263523faff6a002cd1a513",
+      "size": 5765
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/delivery-proof.json",
+      "sha256": "2fe09be40c221a9aff1385d0dd02d93d9570e64494c1e7a2df359a7192284083",
+      "size": 425
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/destination-check.json",
+      "sha256": "7fd5c4bf8fd83b7426e675ddf4f11bfbfe1b5934952df8def8b49380bec3a842",
+      "size": 5878
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/generation-collection.json",
+      "sha256": "1af8e755f66cd6f9b22b4df4870f9a6b74dd7ec9884a732d7983cdf7cde68d19",
+      "size": 3307
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/implementation-verification.json",
+      "sha256": "661cfef0300511d7c6b3226c4a94a2f05d81a0cb95cf3d1046f8bc269f8e6b21",
+      "size": 1240
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/protocol.json",
+      "sha256": "c11b593e42a820b313c42326c5d99867874c7977362e56a2336141a4aa915cce",
+      "size": 2211
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/reproduction.json",
+      "sha256": "044df17cec1da87505157df679d30630b6938faf0955e0695b7ec9dea487a367",
+      "size": 1021
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/review/collection.json",
+      "sha256": "03ecb0eb4c1142810cd8f9af87360a2f55f5e9bee56796848c7e9f8967b9fcb2",
+      "size": 898
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/review/evaluation.md",
+      "sha256": "2895e512fe24e3c0c3db26ab22c2fc58842650ba1c05d2003b41c35f144fb6b0",
+      "size": 2717
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/review/evidence-use.json",
+      "sha256": "55c31a4d284392bf0b41296dfc96a437c4d0d22be276d1d137137fec55d893a9",
+      "size": 7900
+    },
+    {
+      "path": "evals/discovery/source-file-intake-01/review-import.json",
+      "sha256": "ef04df41778c424e916e1dd292652083cd64c32fbad83f364d4423cf6bd673c7",
+      "size": 1511
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-09-09T14:39:31.259544+00:00",
+  "base_commit": "26117136f426498e4f86ac845f42859603cb835f",
+  "prototype_commit": "b0b9c5be04d86f25c751377db2fc2b0e9b473a6d",
+  "started_at": "2026-09-09T14:31:40+00:00",
+  "ended_at": "2026-09-09T14:36:51+00:00",
+  "tests": {
+    "passed": 89,
+    "existing": 81,
+    "new": 8,
+    "seconds": 10.71,
+    "terminal_session": 84976,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:tests /tmp/sv-system-venv/bin/python -m pytest -q tests/temp/test_attach_file_temp.py tests/test_discovery.py tests/test_discovery_read.py tests/test_discovery_sources.py tests/test_discovery_review_contexts.py"
+  },
+  "mypy": "strict PASS, discovery.py",
+  "temporary_tests": "tests/temp/test_attach_file_temp.py; test skillに従ってGitへ保存しない",
+  "coverage": [
+    "UTF-8/JSON/CRLFの本文を変えず新入力へ渡す",
+    "元ファイル・旧packet・案・評価の不変更",
+    "重複抑制と変更後の追記",
+    "空/非UTF8/不在/不正メタデータ/既存資料破損の拒否",
+    "公開CLIで出典・観察時点・複数の限界を保持"
+  ],
+  "claim_boundary": "保存入口の機能検査。探索方法の優位や種の強さは未検証。"
+}
