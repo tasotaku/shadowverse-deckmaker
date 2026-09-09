@@ -1,0 +1,143 @@
+[
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "start",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "--db",
+      "/tmp/sv-principles-scope-implementation/synthetic.db",
+      "--class",
+      "ウィッチ",
+      "--objective",
+      "合成資料の保存互換性を検査"
+    ],
+    "started_at_utc": "2026-09-09T04:13:03.148382+00:00",
+    "ended_at_utc": "2026-09-09T04:13:03.649795+00:00",
+    "returncode": 0,
+    "output_file": "baseline-start.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "--revision",
+      "0"
+    ],
+    "started_at_utc": "2026-09-09T04:13:03.650166+00:00",
+    "ended_at_utc": "2026-09-09T04:13:03.738870+00:00",
+    "returncode": 0,
+    "output_file": "baseline-develop.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "--revision",
+      "0",
+      "--summary"
+    ],
+    "started_at_utc": "2026-09-09T04:13:03.750810+00:00",
+    "ended_at_utc": "2026-09-09T04:13:03.833315+00:00",
+    "returncode": 0,
+    "output_file": "baseline-summary.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "read",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "3b2c12f4cb2cb51f00e7117e91f22a59f44ce58a64b52a6b199cf891ea2fc072",
+      "principles",
+      "--limit",
+      "2000"
+    ],
+    "started_at_utc": "2026-09-09T04:13:03.845012+00:00",
+    "ended_at_utc": "2026-09-09T04:13:03.916492+00:00",
+    "returncode": 0,
+    "output_file": "baseline-principles-read.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "submit",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "/tmp/sv-principles-scope-implementation/baseline-proposal.json"
+    ],
+    "started_at_utc": "2026-09-09T04:13:03.926844+00:00",
+    "ended_at_utc": "2026-09-09T04:13:04.008239+00:00",
+    "returncode": 0,
+    "output_file": "baseline-submit.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "--revision",
+      "1",
+      "--stage",
+      "review"
+    ],
+    "started_at_utc": "2026-09-09T04:13:04.019814+00:00",
+    "ended_at_utc": "2026-09-09T04:13:04.098283+00:00",
+    "returncode": 0,
+    "output_file": "baseline-review-packet.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "review",
+      "/tmp/sv-principles-scope-implementation/legacy-before",
+      "/tmp/sv-principles-scope-implementation/baseline-review.json"
+    ],
+    "started_at_utc": "2026-09-09T04:13:04.108267+00:00",
+    "ended_at_utc": "2026-09-09T04:13:04.195923+00:00",
+    "returncode": 0,
+    "output_file": "baseline-review-result.json",
+    "stderr": ""
+  },
+  {
+    "phase": "baseline",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "report",
+      "/tmp/sv-principles-scope-implementation/legacy-before"
+    ],
+    "started_at_utc": "2026-09-09T04:13:04.204287+00:00",
+    "ended_at_utc": "2026-09-09T04:13:04.279993+00:00",
+    "returncode": 0,
+    "output_file": "baseline-report.json",
+    "stderr": ""
+  }
+]

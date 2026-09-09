@@ -1,0 +1,119 @@
+{
+  "status": "fixed_before_natural_trial",
+  "prepared_at": "2026-09-09T04:14:37.819162+00:00",
+  "hypothesis": "旧選抜の基準を全ての発想へ広げず、適用先を明示すると、役割分担や複数段の発展を試す価値のある種へ進めやすくなるか。混在の実害・因果は未立証。",
+  "prototype": "/tmp/sv-principles-scope-prototype",
+  "base_commit": "a7dba5b979a9ba787f2e269b2665c91f05aa0efe",
+  "cases": [
+    {
+      "id": "elf",
+      "class_name": "エルフ"
+    },
+    {
+      "id": "nightmare",
+      "class_name": "ナイトメア"
+    }
+  ],
+  "objective": "このクラスで独自でそこそこ戦えるデッキの種を考える。カードの別用途、効果の副作用、複数段の接続、序盤と後半の役割分担、強い基盤と採用配分を資料から検討し、目的に合う一案を発展させる。特定の主役カードや機構は指定しない。既知の標準用法との差、核が揃わない時の勝ち方、採用負担に見合う可能性を根拠で説明する。",
+  "format": "rotation",
+  "source_db": "/tmp/sv-sketch-first-01/cards-reference-refresh.db",
+  "source_db_sha256": "47ca643684b02eda1763d24728b730865b6dd629f3d0ec9043a6762ef1afdbdd",
+  "reference_source": "/tmp/sv-class-choice-01/reference-sources.json",
+  "arms": {
+    "a": "同一試作コードのlegacy指定。既存原則全文と従来の考案・評価指示。",
+    "b": "scoped指定。同じ原則全文を保持し、適用範囲とその参照指示だけ追加。"
+  },
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "maximum_rounds_per_arm_per_case": 2,
+  "generation_minutes": 25,
+  "save_grace_minutes": 5,
+  "review_minutes": 20,
+  "stop_rules": [
+    "初回案→実際の不足の検索・追加資料または改訂→別評価。初回でtest/dropならその枝は終了し改訂を強制しない。",
+    "developなら判断を変える実際の問いだけを追加調査し、最大第2回の新入力で別評価する。資料のみの追記も1回に数える。",
+    "同一入力の実質的再採点はしない。新しい資料が増えた場合だけ新しい評価入力を作る。",
+    "第2回までに有用な種が残らなければ0件。時間切れや技術停止は未完了として別記し、案そのものの反証としない。",
+    "2入力とも開始前に固定し、一方の結果から他方の目的・基準を変えない。根拠が薄い案を強制提出しない。"
+  ],
+  "fairness": [
+    "カード・注記・公式キーワード・ルール・参考構築・原則全文が一致。変えるのはガイドと参照指示のみ。",
+    "両方式同じモデル・推論設定・実行経路を用いる。担当は初見で、他方式・過去試行の評価と親会話を読まない。",
+    "別評価は方式の良し悪しを知らされず、同じ基準で当該案の試す価値を判断する。ガイド文面の有無自体は隠せないので完全な方式遮断は主張しない。",
+    "原則内の既存事例・過去の成績は元のまま双方へ渡る。その保持自体と影響は明記。",
+    "公開操作ログは開始・終了を実時計で採る。工程開始も最初のdatetime.now出力とファイルへ即時保存し、後から時計値を補わない。"
+  ],
+  "observations": [
+    "試す理由のある種の件数（独立評価）",
+    "主役限定や旧選抜基準だけで役割を棄却した証拠の有無",
+    "実際の追加検索が変えた条件・配分・採否",
+    "所要時間・公開操作・失敗・修正回数",
+    "通常構築の役割損失、核なし、手順と既出の根拠"
+  ],
+  "method_decision": [
+    "Bが2入力とも有用な種0なら今回の本採用を見送る。",
+    "BがAより増え、正しさ・誠実さの重大な悪化がなければ改善を支持する限定的な材料。小標本なので一般的因果や成功率は断定しない。",
+    "BとAが同数なら発見力は同点。明示した誤適用の解消や負担減少を別に測定し、発見力改善と混同しない。",
+    "機能検査、資料短縮、弱い案の棄却数だけで本採用しない。",
+    "本採用の前には役割分担、複数段の変換・絞り込み、合算打点と資源、強い基盤と小さな利益、および弱い反復の負例の必要確認を残す。本文の歴史的保存が足りなければ歴史再現は未確認。"
+  ],
+  "new_input_limits": "エルフ・ナイトメアのカード自体は過去の全クラス試行にも含まれる。今回は主役非指定のクラス別目的による新しい探索入力であり、未知カードの保留集合や独立した発見率測定ではない。",
+  "input_differences": {
+    "elf": [
+      "captured_at",
+      "principles_scope_guide",
+      "principles_scope_version"
+    ],
+    "nightmare": [
+      "captured_at",
+      "principles_scope_guide",
+      "principles_scope_version"
+    ]
+  },
+  "fixed_at": "2026-09-09T04:28:50.715512+00:00",
+  "prototype_commit": "cd3fd078918ec74f28cfa84678b871e52a610cb9",
+  "input_sessions": {
+    "elf/a": {
+      "session": "/tmp/sv-principles-scope-01/elf/a/session",
+      "packet_hash": "f76f9722d050a36dbb3d6178ed3b8418e74a81ca6df34f69582e460baddbc876",
+      "packet": "/tmp/sv-principles-scope-01/elf/a/initial-packet.json",
+      "context_hash": "d9dd52094c0bb08446673512bbda8e62acb44395ddd5096fa20a64c93c14ba73",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "source_count": 33
+    },
+    "elf/b": {
+      "session": "/tmp/sv-principles-scope-01/elf/b/session",
+      "packet_hash": "4a799d3de4b85c464e1fb2b18606192f596faed0a35610388bc465dc2d38940f",
+      "packet": "/tmp/sv-principles-scope-01/elf/b/initial-packet.json",
+      "context_hash": "496cf75d1b3af442cd4a14557a2d4968b70323654071d8121c750fe7b2754974",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "source_count": 33
+    },
+    "nightmare/a": {
+      "session": "/tmp/sv-principles-scope-01/nightmare/a/session",
+      "packet_hash": "2aecf5aa869d4375c761ca84faa1d85a0fea6cc273a81745dfc068018222cfb7",
+      "packet": "/tmp/sv-principles-scope-01/nightmare/a/initial-packet.json",
+      "context_hash": "142f93dd2e41a482df4e415134b7c9eec2f4d07b7b4b72a5fe72f91ffc32c6b1",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "source_count": 33
+    },
+    "nightmare/b": {
+      "session": "/tmp/sv-principles-scope-01/nightmare/b/session",
+      "packet_hash": "b4aa3402bcc668935f2e71e3a72396b286d7e7c6e1b91a76501a8a5c82d529aa",
+      "packet": "/tmp/sv-principles-scope-01/nightmare/b/initial-packet.json",
+      "context_hash": "a6848289a8cbdbb8518e4f06778ea60826d2b114ba9fdf82bf50655d74c39af9",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "source_count": 33
+    }
+  }
+}

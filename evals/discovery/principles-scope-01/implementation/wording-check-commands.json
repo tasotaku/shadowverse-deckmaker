@@ -1,0 +1,46 @@
+[
+  {
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "mypy",
+      "--strict",
+      "--follow-imports=silent",
+      "src/svdeck/discovery.py",
+      "src/svdeck/discovery_principles.py",
+      "src/svdeck/discovery_read.py"
+    ],
+    "started_at_utc": "2026-09-09T04:25:08.049834+00:00",
+    "ended_at_utc": "2026-09-09T04:25:08.227604+00:00",
+    "returncode": 0,
+    "log": "mypy-after-wording.log"
+  },
+  {
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/temp/test_discovery_principles_scope_temp.py",
+      "-k",
+      "scoped_adds_only or guide_is_reachable or saved_scope",
+      "--basetemp",
+      "/tmp/sv-principles-scope-implementation/wording-test-temp"
+    ],
+    "started_at_utc": "2026-09-09T04:25:08.227659+00:00",
+    "ended_at_utc": "2026-09-09T04:25:08.834649+00:00",
+    "returncode": 0,
+    "log": "pytest-wording-retention.log"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "started_at_utc": "2026-09-09T04:25:08.834709+00:00",
+    "ended_at_utc": "2026-09-09T04:25:08.852270+00:00",
+    "returncode": 0,
+    "log": "diff-check.log"
+  }
+]

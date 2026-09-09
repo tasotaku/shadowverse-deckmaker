@@ -1,0 +1,94 @@
+{
+  "started_at_utc": "2026-09-09T04:08:48Z",
+  "worktree": "/tmp/sv-principles-scope-prototype",
+  "branch": "codex/discovery-principles-scope",
+  "base": "a7dba5b979a9ba787f2e269b2665c91f05aa0efe",
+  "scope": "implementation only; synthetic fixtures; no real-card generation or scoring",
+  "status": "complete",
+  "phase_times": [
+    {
+      "phase": "design",
+      "started_at_utc": "2026-09-09T04:08:48Z",
+      "ended_at_utc": "2026-09-09T04:13:04Z"
+    },
+    {
+      "phase": "implementation",
+      "started_at_utc": "2026-09-09T04:13:04Z",
+      "first_patch_completed_at_utc": "2026-09-09T04:16:08.773752+00:00",
+      "ended_at_utc": "2026-09-09T04:19:43.667836+00:00"
+    },
+    {
+      "phase": "verification_and_wording_revision",
+      "started_at_utc": "2026-09-09T04:19:43.667836+00:00",
+      "ended_at_utc": "2026-09-09T04:25:59Z"
+    },
+    {
+      "phase": "save_report",
+      "started_at_utc": "2026-09-09T04:25:59Z",
+      "ended_at_utc": "2026-09-09T04:28:27.660181+00:00"
+    }
+  ],
+  "notes": [
+    "AGENTS.md is absent in this worktree; supplied AGENTS/import instructions applied",
+    "No subagents, main merge, upstream or push"
+  ],
+  "commit": "cd3fd078918ec74f28cfa84678b871e52a610cb9",
+  "design_commit": "67a67805b60b7ed3327711b9abc2c0219756e860",
+  "commits_checked_at_utc": "2026-09-09T04:25:59Z",
+  "wording_revision_count": 1,
+  "test_results": {
+    "existing": 110,
+    "new": 15,
+    "passed_total_initial": 125,
+    "wording_retention_passed_after_revision": 4,
+    "failures": 0,
+    "mypy_initial_modules": 6,
+    "mypy_after_wording_modules": 3,
+    "legacy_public_outputs_identical": 5,
+    "legacy_session_files_unchanged": 6,
+    "rules_mapped": 27,
+    "rules_total": 27
+  },
+  "command_records": [
+    "baseline-commands.json",
+    "legacy-compatibility.json",
+    "check-commands.json",
+    "wording-check-commands.json"
+  ],
+  "new_test_location": "tests/temp/test_discovery_principles_scope_temp.py",
+  "archived_test_location": "/tmp/sv-principles-scope-implementation/test_discovery_principles_scope_temp.py",
+  "changed_files": [
+    {
+      "path": "/tmp/sv-principles-scope-prototype/README.md",
+      "sha256": "31b241e4e4ce4749518f3a420f13f97d3be8732db3b2c95870c214306701ec1c"
+    },
+    {
+      "path": "/tmp/sv-principles-scope-prototype/docs/discovery-principles-scope.md",
+      "sha256": "b260a0462eec2a83ff5fe9a83f9550e85de70763713fd905975c82ebe6534611"
+    },
+    {
+      "path": "/tmp/sv-principles-scope-prototype/src/svdeck/discovery.py",
+      "sha256": "d33b0c3931bda1a38c859a52e2f2e5eccdd45f0b8a02e7b4505663410c6abb82"
+    },
+    {
+      "path": "/tmp/sv-principles-scope-prototype/src/svdeck/discovery_principles.py",
+      "sha256": "958e262294f45fc3f2847377e7facb4c26a655f3c352d3bcc61896e1eea2950e"
+    },
+    {
+      "path": "/tmp/sv-principles-scope-prototype/src/svdeck/discovery_read.py",
+      "sha256": "e125c1e4fdff01dc3329a4d2e29d3709d6fddfd992f5cb5798f87eed9b2d2808"
+    }
+  ],
+  "upstream": null,
+  "tracked_worktree_clean": true,
+  "limits": [
+    "Synthetic fixture implementation verification only",
+    "No real-card discovery or scoring",
+    "Causal harm or discovery improvement unproven",
+    "No main merge or push",
+    "Additional tests archived outside tracked code per test skill"
+  ],
+  "completed_at_utc": "2026-09-09T04:28:27.660181+00:00",
+  "elapsed_seconds": 1179.66,
+  "verdict": "PASS: implementation and saved-input compatibility only"
+}

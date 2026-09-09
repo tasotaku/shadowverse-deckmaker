@@ -1,0 +1,44 @@
+[
+  {
+    "name": "mypy-strict",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "mypy",
+      "--strict",
+      "--follow-imports=silent",
+      "src/svdeck/discovery.py",
+      "src/svdeck/discovery_principles.py",
+      "src/svdeck/discovery_evidence.py",
+      "src/svdeck/discovery_read.py",
+      "src/svdeck/discovery_sources.py",
+      "src/svdeck/discovery_compare.py"
+    ],
+    "started_at_utc": "2026-09-09T04:19:43.667836+00:00",
+    "ended_at_utc": "2026-09-09T04:19:43.909017+00:00",
+    "returncode": 0,
+    "log": "mypy-strict.log"
+  },
+  {
+    "name": "pytest-discovery",
+    "command": [
+      "/private/tmp/sv-system-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_discovery.py",
+      "tests/test_discovery_read.py",
+      "tests/test_discovery_history.py",
+      "tests/test_discovery_sources.py",
+      "tests/test_discovery_compare.py",
+      "tests/test_discovery_review_contexts.py",
+      "tests/temp/test_discovery_principles_scope_temp.py",
+      "--basetemp",
+      "/tmp/sv-principles-scope-implementation/pytest-temp"
+    ],
+    "started_at_utc": "2026-09-09T04:19:43.909426+00:00",
+    "ended_at_utc": "2026-09-09T04:20:00.357743+00:00",
+    "returncode": 0,
+    "log": "pytest-discovery.log"
+  }
+]

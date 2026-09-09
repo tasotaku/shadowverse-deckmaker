@@ -1,0 +1,91 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/private/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-principles-scope-implementation/legacy-before",
+        "--revision",
+        "0"
+      ],
+      "started_at_utc": "2026-09-09T04:20:23.368567+00:00",
+      "ended_at_utc": "2026-09-09T04:20:23.448058+00:00",
+      "returncode": 0,
+      "stdout_bytes_identical_to_baseline": true,
+      "baseline": "baseline-develop.json"
+    },
+    {
+      "command": [
+        "/private/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-principles-scope-implementation/legacy-before",
+        "--revision",
+        "0",
+        "--summary"
+      ],
+      "started_at_utc": "2026-09-09T04:20:23.448092+00:00",
+      "ended_at_utc": "2026-09-09T04:20:23.535104+00:00",
+      "returncode": 0,
+      "stdout_bytes_identical_to_baseline": true,
+      "baseline": "baseline-summary.json"
+    },
+    {
+      "command": [
+        "/private/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-implementation/legacy-before",
+        "3b2c12f4cb2cb51f00e7117e91f22a59f44ce58a64b52a6b199cf891ea2fc072",
+        "principles",
+        "--limit",
+        "2000"
+      ],
+      "started_at_utc": "2026-09-09T04:20:23.535130+00:00",
+      "ended_at_utc": "2026-09-09T04:20:23.619399+00:00",
+      "returncode": 0,
+      "stdout_bytes_identical_to_baseline": true,
+      "baseline": "baseline-principles-read.json"
+    },
+    {
+      "command": [
+        "/private/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-principles-scope-implementation/legacy-before",
+        "--revision",
+        "1",
+        "--stage",
+        "review"
+      ],
+      "started_at_utc": "2026-09-09T04:20:23.619422+00:00",
+      "ended_at_utc": "2026-09-09T04:20:23.703975+00:00",
+      "returncode": 0,
+      "stdout_bytes_identical_to_baseline": true,
+      "baseline": "baseline-review-packet.json"
+    },
+    {
+      "command": [
+        "/private/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-principles-scope-implementation/legacy-before"
+      ],
+      "started_at_utc": "2026-09-09T04:20:23.703996+00:00",
+      "ended_at_utc": "2026-09-09T04:20:23.786568+00:00",
+      "returncode": 0,
+      "stdout_bytes_identical_to_baseline": true,
+      "baseline": "baseline-report.json"
+    }
+  ],
+  "success_count": 5,
+  "legacy_stdout_identical": true,
+  "legacy_session_files_unchanged": true,
+  "checked_at_utc": "2026-09-09T04:20:23.796266+00:00"
+}
