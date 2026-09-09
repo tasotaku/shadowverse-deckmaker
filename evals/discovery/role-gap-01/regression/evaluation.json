@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-09-09T15:39:24.821156+00:00",
+  "grader": "root; 考案担当とは別。固定正解を知る照合であり、盲検の新規評価ではない。",
+  "expected_sha256": "d1aa7eb456d1f2b4231e225c9601d6cbf1a96e8c016961ff74b05b3261628872",
+  "cases": {
+    "a": {
+      "formal_proposal_count": 1,
+      "supplied_fields_unchanged": true,
+      "initial_files_unchanged": 3
+    },
+    "b": {
+      "formal_proposal_count": 1,
+      "supplied_fields_unchanged": true,
+      "initial_files_unchanged": 3
+    }
+  },
+  "semantic_checks": {
+    "a": "生成は場、回収で手札条件へ移す。紙梯子の軽減1+4+0+4=9PP、手札8→7→6→6→5、13点。通常8点との差5点。供給の再プレイや当ターン攻撃を仮定せず、初回で解けたため不要な改訂なし。",
+    "b": "生成先の元コスト9では12以上の条件が開かない。全9枚の打点源は各1枚の2スペル各4点で上限8。回収枝は9PP4点として停止。9PP8点+守護の別配分は1+2+4+2=9PP、手札残4で整合。回復・防御用途まで否定しない。"
+  },
+  "verdict": "PASS 2/2 fixed semantic cases",
+  "public_operations": 39,
+  "public_failures": [],
+  "utc_elapsed_seconds": 332.717473,
+  "monotonic_elapsed_seconds": 332.7142596663907,
+  "limitations": [
+    "既知の仮想入力2件。実カードの有用性・新規性や、方式の優位を証明しない。",
+    "同じ担当が2件を解いており、2つの独立した未知評価とは数えない。",
+    "出力uncertaintiesには提出照合予定の文が残る。実際の提出・照合は後の結論と操作記録で確認し、保存済み提案本文を書き換えない。"
+  ]
+}

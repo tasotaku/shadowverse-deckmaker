@@ -1,0 +1,29 @@
+{
+  "frozen_at": "2026-09-09T15:31:40.793075+00:00",
+  "purpose": "探索の起点を変える試作が、役割読み替え・多段接続の既知正例を取りこぼさず、一条件変更の負例を区別するかを確認する。自然な実カードの有用性には数えない。",
+  "implementation": "158a2bad251ea538765c713041564b4421dd25ec",
+  "expected_source": "evals/discovery/role-chain/expected.json",
+  "expected_sha256": "d1aa7eb456d1f2b4231e225c9601d6cbf1a96e8c016961ff74b05b3261628872",
+  "inputs": {
+    "a": {
+      "session": "/tmp/sv-role-gap-01/regression/work/case-a",
+      "packet_hash": "d6f0241aa1063afae260f078aa897ada90a5cdfa0f0d65f76ecb4ab8e523b683",
+      "initial_files": {
+        "snapshot.db": "d380b6e5cf9766a54ecd82a5f38f9fe0773426a7e938361856e170f9e4ce2c1a",
+        "context.json": "3299364223ea6c482c7f70150b52e48e2165589353aa2901e31823296c7baac2",
+        "packets/d6f0241aa1063afae260f078aa897ada90a5cdfa0f0d65f76ecb4ab8e523b683.json": "83a3adf706ed782d751f17e3a9a78440de952b95f7800daaa585949c406ae2e2"
+      }
+    },
+    "b": {
+      "session": "/tmp/sv-role-gap-01/regression/work/case-b",
+      "packet_hash": "47c88e53e21e76eb015a54a1c0d86a1e0b5e02424717222e7e25520a3e45b5d7",
+      "initial_files": {
+        "snapshot.db": "c8a48e8ceed92a3642c4a8333d97144c2b352f3f8dd4e9931c1bc9d1e641ee28",
+        "context.json": "3bc94902cc9bb8a84bf108f2bb92acd708838c443a540018e27826abd02beb57",
+        "packets/47c88e53e21e76eb015a54a1c0d86a1e0b5e02424717222e7e25520a3e45b5d7.json": "ac51c7c673dd2ebb284bdc788c0779fa320f000d7284c90477c2704a94020253"
+      }
+    }
+  },
+  "time_limit_seconds": 360,
+  "scope": "開発用の既知仮想入力2件。旧回答や正解は担当へ渡さない。同じ担当が2件を独立した保存先で解く。盲検の方式比較や歴史的再現は主張しない。"
+}

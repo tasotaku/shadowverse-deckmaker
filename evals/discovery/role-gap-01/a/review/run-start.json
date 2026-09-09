@@ -1,0 +1,42 @@
+{
+  "status": "running",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-role-gap-01/a/review/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-role-gap-01/a/review/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-role-gap-01/a/review/work",
+  "stdin": "/private/tmp/sv-role-gap-01/a/review/work/prompt.md",
+  "output": "/private/tmp/sv-role-gap-01/a/review/run",
+  "started_at": "2026-09-09T15:40:40.753539+00:00",
+  "deadline_at": "2026-09-09T15:50:40.753539+00:00",
+  "timeout_seconds": 600.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 52626,
+  "worker_pid": 52629,
+  "worker_returncode": null,
+  "ended_at": null,
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T15:40:40.754402+00:00",
+      "elapsed_seconds": 0.000455459114164114
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T15:40:40.757338+00:00",
+      "elapsed_seconds": 0.0034315423108637333
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review."
+}

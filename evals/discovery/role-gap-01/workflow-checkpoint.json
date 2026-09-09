@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T15:25:32.199065+00:00",
+  "updated_at": "2026-09-09T15:41:30.098546+00:00",
   "symptom": "保存・評価への受け渡しはできたが、通常手順との差を採用する理由が不足。",
   "cause_hypothesis": "接続するカードを選んでから価値を説明する方向が、必要な仕事からの探索を弱めている可能性。因果未立証。",
   "fixed_contract": {
@@ -12,7 +12,7 @@
   "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
   "change": "工程や回答項目を増やさず、初回の探索方向の指示だけを置換。",
   "measure_next": "同じ初期資料からの試行推薦件数、根拠の正しさと独自性の留保、追加調査で解けた問題、実時間と失敗回数。",
-  "status": "generation_running",
+  "status": "independent_reviews_running",
   "workers": {
     "a": {
       "session_id": 55168,
@@ -20,7 +20,9 @@
       "deadline_at": "2026-09-09T15:39:49.827542+00:00",
       "worker_pid": 39180,
       "supervisor_pid": 39178,
-      "status": "running"
+      "status": "completed",
+      "exit_code": 0,
+      "ended_at": "2026-09-09T15:39:43.499026+00:00"
     },
     "b": {
       "session_id": 74344,
@@ -28,7 +30,30 @@
       "deadline_at": "2026-09-09T15:39:49.834933+00:00",
       "worker_pid": 39181,
       "supervisor_pid": 39179,
-      "status": "running"
+      "status": "timed_out",
+      "exit_code": 124,
+      "ended_at": "2026-09-09T15:39:49.913628+00:00"
+    },
+    "regression": {
+      "session_id": 27075,
+      "started_at": "2026-09-09T15:32:05.534799+00:00",
+      "deadline_at": "2026-09-09T15:38:05.534799+00:00",
+      "status": "completed",
+      "exit_code": 0,
+      "ended_at": "2026-09-09T15:37:38.252272+00:00"
+    },
+    "review_a": {
+      "session_id": 92396,
+      "status": "running",
+      "started_at": "2026-09-09T15:40:40.753539+00:00",
+      "deadline_at": "2026-09-09T15:50:40.753539+00:00"
+    },
+    "review_b": {
+      "session_id": 66361,
+      "status": "running",
+      "started_at": "2026-09-09T15:40:40.753541+00:00",
+      "deadline_at": "2026-09-09T15:50:40.753541+00:00"
     }
-  }
+  },
+  "collection_helper": "/tmp/collect-role-gap-generation.py"
 }

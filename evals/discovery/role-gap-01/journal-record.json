@@ -1,22 +1,22 @@
 {
   "id": "role-gap-01",
-  "revision": 2,
-  "saved_at": "2026-09-09T15:25:32.351312+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-09T15:41:30.266572+00:00",
   "actor": "root",
-  "reason": "両担当の実起動と15分期限を記録。初回考案を実行中",
+  "reason": "両方式の正式提出と実終了時刻を確認し独立評価を開始。仮想正負例2/2の確認は別記",
   "record": {
     "id": "role-gap-01",
     "title": "任せ直す仕事からデッキの種を探す",
     "category": "method",
     "status": "running",
-    "summary": "従来版と役割から探す版を各15分で実行中。初期資料と評価基準は同じ。試す理由のある種が増えるかを確認する。",
+    "summary": "両方式とも案1件を提出し、同じ基準で独立評価中。仮想の正負例2件は正しく処理できたが、実カードの案の価値は未判定。",
     "method": "通常の勝ち方から任せ直す仕事を先に選び、その働きを担う別用途・副作用・多段接続を探すと、カードの接続から始める従来指示より試す理由のある種へ進めるか。原因は未立証。",
     "procedure": "同じロイヤル初期資料を2つにコピー。初回の考案指示だけ変え、各15分で考案・保存。別担当が各10分で評価し、追加検討なら根拠を補う改訂を最大1回行う。",
     "inputs": "過去の保存機能試行で使ったロイヤル初期資料を再利用する開発用の比較。旧案・追加資料・評価は渡さず、両方式で新しく考案する。未知カード・保留集合での評価とは呼ばない。",
     "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。\n最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。\n追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。\n最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。\n共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "初回指示だけ異なり、カード・注記・原則・回答形式・評価基準が一致することを確認。関連81件と型検査に合格。実利用評価はこれから。",
+      "summary": "初回考案は従来版14分54秒で完了、試作版15分で期限停止。両方とも正式案1件。仮想の正負例2/2を満たした。実カードの有用性・方式優位は独立評価前。",
       "limitations": "機能合格は発見力の証明ではない。開発で使用済みの資料1組による比較。"
     },
     "decision": {
@@ -38,28 +38,68 @@
       {
         "id": "generation_a",
         "title": "従来版で初回案を考案",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-09T15:24:49.827542+00:00",
-        "ended_at": null,
-        "note": "同じ経路・同じモデル設定・900秒上限で実行する。",
+        "ended_at": "2026-09-09T15:39:43.499026+00:00",
+        "note": "正式案1件を提出。公開コマンド32回、失敗1回。入力エラー1回の後に修正提出し、期限内に終了。",
         "budget_minutes": 15
       },
       {
         "id": "generation_b",
         "title": "役割から探す版で初回案を考案",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T15:24:49.834933+00:00",
-        "ended_at": null,
-        "note": "同じ経路・同じモデル設定・900秒上限で実行する。",
+        "ended_at": "2026-09-09T15:39:49.913628+00:00",
+        "note": "正式案1件を提出。公開コマンド29回、失敗0回。担当全体は15分期限停止。提出済みの案を別評価へ渡す。",
         "budget_minutes": 15
+      },
+      {
+        "id": "regression",
+        "title": "仮想の正負例で多段接続の見落としを検査",
+        "status": "completed",
+        "started_at": "2026-09-09T15:32:05.534799+00:00",
+        "ended_at": "2026-09-09T15:37:38.252272+00:00",
+        "note": "5分33秒で正式提出2件。固定した仮想正負例2/2を満たし、生成→回収→軽減の接続と条件変更を区別。実カードの発見成果や方式優位とは別。",
+        "budget_minutes": 6
+      },
+      {
+        "id": "review_a",
+        "title": "従来版の案を独立評価",
+        "status": "running",
+        "started_at": "2026-09-09T15:40:40.753539+00:00",
+        "ended_at": null,
+        "note": "同一の評価指示・回答形式を使用。相手方式の案や評価は渡さない。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "review_b",
+        "title": "役割から探す版の案を独立評価",
+        "status": "running",
+        "started_at": "2026-09-09T15:40:40.753541+00:00",
+        "ended_at": null,
+        "note": "同一の評価指示・回答形式を使用。相手方式の案や評価は渡さない。",
+        "budget_minutes": 10
       }
     ],
     "evidence_paths": [
       "evals/discovery/role-gap-01/protocol.json",
-      "evals/discovery/role-gap-01/implementation-verification.json"
+      "evals/discovery/role-gap-01/implementation-verification.json",
+      "evals/discovery/role-gap-01/regression/evaluation.json",
+      "evals/discovery/role-gap-01/a/collection.json",
+      "evals/discovery/role-gap-01/b/collection.json"
     ]
   },
   "evidence": [
+    {
+      "path": "evals/discovery/role-gap-01/a/collection.json",
+      "sha256": "90a43b9022d5ea1c93a34f09b4670fed6b258b14bffa33b1f6a05fefc4f3c1be",
+      "size": 1080
+    },
+    {
+      "path": "evals/discovery/role-gap-01/b/collection.json",
+      "sha256": "5fc94b8807ceb57010a23c51343eb57fb98dc2860e7bab696d837cc6390c3879",
+      "size": 656
+    },
     {
       "path": "evals/discovery/role-gap-01/implementation-verification.json",
       "sha256": "71cf29c1f9a12811c41d575b718d98f1c78ce4aa4b83dcd274f48113ae4d1611",
@@ -69,6 +109,11 @@
       "path": "evals/discovery/role-gap-01/protocol.json",
       "sha256": "537d68b145aff39e5c14008620277e22e6705aec94db20b1cae6b4837ada3d73",
       "size": 4767
+    },
+    {
+      "path": "evals/discovery/role-gap-01/regression/evaluation.json",
+      "sha256": "ef444c9b481423d31f3e4b03e073232de3f31acb9ce9dc7b193b2e9ce6ba53e1",
+      "size": 1722
     }
   ]
 }
