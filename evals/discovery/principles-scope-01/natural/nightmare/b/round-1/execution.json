@@ -1,0 +1,72 @@
+{
+  "clock_file": "/private/tmp/sv-principles-scope-01/nightmare/b/work/round-1/clock.json",
+  "started_at": "2026-09-09T04:58:47.023752+00:00",
+  "research_end_at": "2026-09-09T06:40:24.398327+00:00",
+  "save_end_at": "2026-09-09T06:45:35.549952+00:00",
+  "research_deadline": "2026-09-09T05:23:47.023752+00:00",
+  "save_deadline": "2026-09-09T05:28:47.023752+00:00",
+  "time_condition_met": false,
+  "deadline_overrun_detected_at": "2026-09-09T06:40:24.398327+00:00",
+  "timing_limitations": [
+    "時計確認間の工程時刻は未記録。超過原因を推測しない。"
+  ],
+  "stage_times": {
+    "candidate_selected_at": null,
+    "proposal_submitted_at": null,
+    "revision_started_at": null,
+    "external_review_at": null
+  },
+  "public_operations": 12,
+  "public_failures": 0,
+  "public_corrections": 0,
+  "submitted": false,
+  "submission_count": 0,
+  "latest_revision": 0,
+  "attached_sources": 6,
+  "read_scope_file": "/private/tmp/sv-principles-scope-01/nightmare/b/work/round-1/read-scope.json",
+  "auxiliary_failures": [
+    "公式カードAPIのWeb取得4件が安全判定エラー。HTML入口には効果本文が表示されず。",
+    "補助urllibの公式API接続はDNS/URLError。公開CLI失敗とは別。",
+    "採用札再読の補助JSON検索でclassキーを指定し結果0。class_nameへ訂正して再読。",
+    "長いツール出力が切れたため範囲を分割して再読。",
+    "最終補助照合1回目でreportにもcontentがあると仮定してAssertionError。reportは資料メタデータのみと確認し、公開packetを追加取得して全文保持を照合した。"
+  ],
+  "local_failure_count": null,
+  "notes": [
+    "public reviewは未実行。",
+    "begin/clockは公開discovery操作件数と分ける。",
+    "保存完了時刻はファイル読戻しとreport照合後にdatetime.now(timezone.utc)で取得する。"
+  ],
+  "operation_breakdown": {
+    "packet": 2,
+    "read": 6,
+    "attach": 2,
+    "report": 2,
+    "submit": 0,
+    "compare": 0,
+    "review": 0
+  },
+  "total_retained_sources": 39,
+  "attached_source_hashes": [
+    "0d31da6cd3b0b0eb158a1a30baa0bb01495b32375efe159c8d2577348c8a951c",
+    "38bfff4ac0770e2fbcf26a77be43c64731eead0f4a9dfd3d4b9fb324aad1ac3a",
+    "aa299f458ea13267c4faf3793adcba83a594ec5ba3918567fed231a665a77fe9",
+    "c39644a085c2321f19e4317db78a0ee598786edcdb6671e7eb4365116128e780",
+    "cbcc3bfcf78efb79855c6311fb072025a8be4b719e2bd443bf23517b7e6b9429",
+    "cf05f8e61c025a91e220718266bc828e4ee056a872f7a759a558e0fb7fc8ee5e"
+  ],
+  "report_readback_file": "/private/tmp/sv-principles-scope-01/nightmare/b/work/round-1/report-final.json",
+  "full_source_readback_file": "/private/tmp/sv-principles-scope-01/nightmare/b/work/round-1/packet-after-attach.json",
+  "readback_checks": {
+    "original_33_sources_unchanged": true,
+    "six_added_source_contents_match": true,
+    "report_source_hashes_match_full_packet": true,
+    "revisions_empty": true,
+    "all_json_parse": true,
+    "research_matches_attached_content": true,
+    "initial_clock_unchanged": true
+  },
+  "research_elapsed_seconds": 6097.374575,
+  "total_elapsed_seconds": 6408.5262,
+  "save_elapsed_seconds": 311.151625
+}

@@ -3,9 +3,7 @@
   "model": "gpt-6-astra",
   "reasoning_effort": "xhigh",
   "configuration_source": "Selected fields read from current user config before dispatch; no model override. Both same bundled CLI and --search flag.",
-  "live_handles": {
-    "nightmare/b": 23211
-  },
+  "live_handles": {},
   "clock_files": {
     "a": {
       "started_at": "2026-09-09T04:29:38.113936+00:00",
@@ -20,7 +18,7 @@
       "source": "datetime.now(timezone.utc) at first worker action"
     }
   },
-  "nightmare": "b running; a generation completed and awaiting independent review",
+  "nightmare": "a formal review and b supplementary stop review completed; both review timing conditions failed; b no proposal",
   "history_worker": "completed; historical-notice-recovery-01 stores partial official retrieval",
   "limits": "Raw CLI event streams remain private. A process handle and observed command execution establish running state, not completion or usefulness.",
   "nightmare_a_clock": {
@@ -29,11 +27,12 @@
     "save_deadline": "2026-09-09T05:04:51.279995+00:00",
     "source": "datetime.now(timezone.utc) at first worker action"
   },
-  "updated_at": "2026-09-09T05:06:47.782440+00:00",
+  "updated_at": "2026-09-09T13:06:31.187040+00:00",
   "completed_handles": {
     "elf/a": 56342,
     "elf/b": 76356,
-    "nightmare/a": 42280
+    "nightmare/a": 42280,
+    "nightmare/b": 23211
   },
   "nightmare_b_clock": {
     "started_at": "2026-09-09T04:58:47.023752+00:00",
@@ -41,8 +40,11 @@
     "save_deadline": "2026-09-09T05:28:47.023752+00:00",
     "source": "datetime.now(timezone.utc) at first worker action"
   },
-  "live_reviews": {
+  "live_reviews": {},
+  "completed_reviews": {
     "elf/a": "/root/scope_elf_a_review",
-    "elf/b": "/root/scope_elf_b_review"
+    "elf/b": "/root/scope_elf_b_review",
+    "nightmare/a": "/root/scope_nightmare_a_review",
+    "nightmare/b": "/root/scope_nightmare_b_stop_review"
   }
 }

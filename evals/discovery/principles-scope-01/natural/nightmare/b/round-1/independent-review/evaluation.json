@@ -1,0 +1,181 @@
+{
+  "evaluation_type": "no_formal_proposal_auxiliary_stop_review",
+  "session": "/tmp/sv-principles-scope-01/nightmare/b/session",
+  "packet_hash": "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+  "packet_file_sha256": "f5acdc8d2a6fb6cde5adc0da47924802dcd3aefe720abcac482a4320f4f81b78",
+  "packet_identity_note": "指定値はdataをensure_ascii=False・sort_keys=True・separators=(comma,colon)で整形した内容のsha256と一致。ファイル全体のバイト列のsha256とは別であり、食違いではない。",
+  "overall_verdict": "未提出・成果なし。選択した枝の見送り理由には根拠があるが、工程完遂もクラス全体での種の不存在も証明しない。",
+  "formal_submission_count": 0,
+  "formal_review_performed": false,
+  "formal_review_id": null,
+  "formal_review_hash": null,
+  "formal_review_reason": "正式案がないため公開reviewを登録せず、案や評価を自作しない。",
+  "criteria": [
+    {
+      "criterion": 1,
+      "name": "公開操作と工程の実行範囲",
+      "verdict": "一部実行・時間条件不適合",
+      "finding": "公開reportは正式提出0件、公開read proposalも空。対象の集計結果は指定root-generation-reportと一致。資料は39件保持され、考案側は6件追加と記録している。読出しと資料保持は確認できたが、提出、提出後の追加検討、改訂、正式な別評価、案と評価の対応保持をこの試行で通過した事実はない。",
+      "evidence": [
+        "public-01-report.json",
+        "public-07-proposal.json",
+        "public-09-sources.json",
+        "../execution.json",
+        "../collection-generation.json"
+      ],
+      "unknowns": [
+        "考案側の公開操作12件・失敗0件はexecution.jsonの申告であり、個々の操作の生ログは指定読取範囲では独立検証していない。",
+        "対象session作成自体の時刻や処理の実行は今回の評価対象外。",
+        "この評価のcards/sources読出しとWeb照合は独立評価の期限後に実行された。"
+      ]
+    },
+    {
+      "criterion": 2,
+      "name": "手順・対象・資源の正確さ",
+      "verdict": "正式手順なし・選択的照合では重大な矛盾を確認せず",
+      "finding": "26枚の補助カード資料は公開readの同じカードと一致。ベルの復活は破壊履歴、場の空き、元コスト2の対象限定を必要とし、クレストでベル1体が破壊された場合の1枚補充と、将来の破壊に依存する残りを分けている。徒姫はナイトメア限定なのでベルを山札から出したり+2/+2したりはしない。スージーで事前強化済みのバットを、徒姫の超進化より前に出す読みなら、7PP、場4枠、過去のEP1と当該SEP1で6/3・突進・ドレインとなる。ただし攻撃先、実際に与えるダメージ、回復余地に依存し確定6回復ではない。回復によるガロダート軽減条件の不成立も記録している。",
+      "evidence": [
+        "public-05-rules.json",
+        "public-06-keywords.json",
+        "public-08-cards.json",
+        "../card-evidence.json",
+        "../research.md"
+      ],
+      "unknowns": [
+        "正式な最終手順がないため合法性PASSを与えない。",
+        "序盤からの到達、引込み、手札全体、進化権の競合、具体的な相手盤面、核なしの実戦は未確認。",
+        "ハンサの9PP・12点という総量は元記事の該当本文を独立に確認できていない。",
+        "人形相手への有効性、公式API障害の再現、現行公式能力の再取得は未確認。",
+        "生成専用カード全体や採用可能113枚の組合せを精査したわけではない。"
+      ]
+    },
+    {
+      "criterion": 3,
+      "name": "追加工程と停止判断",
+      "verdict": "初回内の照合による見送りは確認・正式な追加工程は未実施",
+      "finding": "スージーの手札強化先は実際の公開記事に記述があり、新しい用途という主張を取り下げたことには根拠がある。ベルの補充を即時3枚とせず、失うラズ・中尉の役割も比較して停止している。これらは初回探索内の判断変更であり、提出後の不足を再検索して改訂した実績とは数えない。終了そのものは無根拠な推薦をしない判断として妥当だが、期限を守った停止ではない。",
+      "evidence": [
+        "../research.md",
+        "../additional-sources.json",
+        "web-01-source-recheck.json",
+        "web-02-source-recheck.json",
+        "public-07-proposal.json"
+      ],
+      "unknowns": [
+        "どの疑問を何時に設定・解消したかを示す考案側の逐次時計記録が不足。",
+        "未完成の仮説を提出できる入口であるにもかかわらず未提出となった具体的な選択経緯は、保存された見送り理由より先までは判断しない。"
+      ]
+    },
+    {
+      "criterion": 4,
+      "name": "試す理由のある種の有無",
+      "verdict": "成果なし・全探索可能性の反証ではない",
+      "finding": "独自性と採用負担に見合う利益を示した正式な種は残っていない。ベル＋イステンは補充先を変える狙いは読めるが、6枠から失う序盤の処理・展開と7PP以降の条件付き補充の交換を支持する根拠が不足。スージーへの2枠変更は失うネハン・ビバティーの役割を列挙しているものの、既知の強化用途に対して今回の配分を試す理由が十分示されていない。複製は5PP・進化権・捨てる札と残す左3枚の準備に対する利益が未具体化。よってこの保存結果を有用な発見として推薦しない。",
+      "evidence": [
+        "../research.md",
+        "../baseline-nightmare-1.json",
+        "../card-evidence.json",
+        "../additional-sources.json"
+      ],
+      "unknowns": [
+        "全40枚の変更後リストや公開compareは未作成だが、その欠如だけを棄却理由にはしていない。",
+        "勝率・Tier・全相手への優越の証明は要求していない。",
+        "採用可能113枚の読取申告は全組合せを尽くした証拠ではない。ベルの用途全体や小さな配分変更の可能性が無価値と反証されたわけではない。"
+      ],
+      "continuation_decision": "この回は未提出で終了。採点を改善する再探索、新案作成、無期限の継続は行わない。"
+    },
+    {
+      "criterion": 5,
+      "name": "既出・未知・強さの断定範囲",
+      "verdict": "概ね適切・元記事の照合範囲を限定",
+      "finding": "検索不発や共起0から未知・不可能を断定していない。元記事はスージーでバット／ゴースト／ガロダートを強化する用途を明記し、同じ構築に徒姫もあるため、この一般的な使い分けを新発見としない判断は支持できる。ただし同じ記事が徒姫バット6回復の全手順や今回の2枠交換まで証明するわけではない。渇仰の悪魔の補充採用、ラズ・中尉の役割、徒姫＋バットの利用は使用者記事にもある。ベル・イステンの検索断片は元投稿未確認で、用途全体の標準化証明にはしていない。",
+      "evidence": [
+        "../additional-source-index.json",
+        "../additional-sources.json",
+        "web-01-source-recheck.json",
+        "web-02-source-recheck.json"
+      ],
+      "unknowns": [
+        "ハンサの該当箇所は今回のWeb表示で独立確認できていない。",
+        "普及度、Tier、勝率、初見の勝率加点は確認せず作成していない。",
+        "Webの記事は作者による説明の存在を確かめたもの。固定カード本文の代わりにゲーム効果の正準資料とは扱わない。"
+      ]
+    }
+  ],
+  "generation_timing": {
+    "started_at": "2026-09-09T04:58:47.023752+00:00",
+    "research_end_at": "2026-09-09T06:40:24.398327+00:00",
+    "save_end_at": "2026-09-09T06:45:35.549952+00:00",
+    "research_elapsed_seconds": 6097.374575,
+    "total_elapsed_seconds": 6408.5262,
+    "research_deadline_overrun_seconds": 4597.374575,
+    "save_deadline_overrun_seconds": 4608.5262,
+    "time_condition_met": false,
+    "limits": "考案側の指定clock.json/execution.jsonの実時計記録による。未記録の作業時刻、実働時間、超過原因は推測しない。"
+  },
+  "independent_review_timing": {
+    "started_at": "2026-09-09T06:48:24.194518+00:00",
+    "deadline_at": "2026-09-09T07:08:24.194518+00:00",
+    "overrun_detected_at": "2026-09-09T11:40:17.941832+00:00",
+    "verification_end_at": "2026-09-09T13:02:29.820851+00:00",
+    "save_started_at": "2026-09-09T13:02:29.820851+00:00",
+    "time_condition_met": false,
+    "limits": "初回に即時保存した期限を超過。途中の長い実時計経過の原因は不明。期限後の資料確認を期限内成果として扱わない。public reportは06:49:16開始・07:04:41終了と記録され、ツール表示の短いWall timeでは置き換えない。",
+    "save_end_at": "2026-09-09T13:04:51.278687+00:00",
+    "elapsed_seconds": 22587.084169
+  },
+  "public_operation_summary": {
+    "count": 9,
+    "failures": 0,
+    "corrections": 0,
+    "report": 1,
+    "read": 8,
+    "review": 0,
+    "submit": 0,
+    "after_deadline_count": 2
+  },
+  "actual_read_scope": [
+    "reviewer-instructions.txtとcommon/operator-readme.md全文。",
+    "固定packetのinstruction・response_example・proposal・context属性。",
+    "公開read: context_metadata全23行、principles_scope_guide全92行、rules全117行、proposal空を確認。",
+    "公開principles全506行を取得したが、実際の本文精読は先頭1–203行。残りは見出しのみ。common/design.mdは見出し確認。適用範囲ガイドを精読し、未読の原則細目の適用を補完したと主張しない。",
+    "公開keywords全37件を取得し、リアニメイト、ファンファーレ、進化時、超進化時、クレスト、ラストワード、疾走、突進、ドレインを精読。",
+    "公開cards全212枚を取得。card-evidence.jsonの26枚と全属性一致を機械照合し、その26枚の本文・進化・参照効果・双方note・基本値を精読。全212枚精読ではない。",
+    "research.md、execution.json、clock.json、read-scope.json、additional-sources.json、additional-source-index.json全文。",
+    "baseline-nightmare-1〜4.jsonの構築全リストと出典・時点。掲載Tierは表示に混入したが採点根拠にしない。",
+    "root-generation-reportは初回出力に切れがあり、後に今回の公開reportとのJSON全体一致を確認。collection-generation.json全文。参照先のterminal/protocol/監査は未読。",
+    "公開sources全3221行を取得。6件の追加資料本文は指定補助資料から精読。他の既知構築は主に表題・所在で、39件すべての本文比較ではない。",
+    "元記事3URLを開いた。スージー用途と使用者記事の関係箇所を精読。ハンサ記事は該当本文の取得確認が足りない。"
+  ],
+  "contamination": "保存原則・カード注記に過去試行や評価の言及が混在していた。その存在は記録し、過去の点数・採否を今回の期待答案に使わない。リンク先の過去評価は未読。",
+  "web_checks": [
+    {
+      "file": "web-01-source-recheck.json",
+      "started_at": {
+        "current_time": "2026-09-09 10:09:22 UTC"
+      },
+      "ended_at": {
+        "current_time": "2026-09-09 10:09:24 UTC"
+      },
+      "limits": "既出主張の指定URL再照合のみ。新しい案を探索しない。初回確認で該当本文が出なかったため2回目は同じ記事内のfind/open。findは一致なしを返し、note本文はopenで確認。"
+    },
+    {
+      "file": "web-02-source-recheck.json",
+      "started_at": {
+        "current_time": "2026-09-09 11:40:03 UTC"
+      },
+      "ended_at": {
+        "current_time": "2026-09-09 11:40:05 UTC"
+      },
+      "limits": "既出主張の指定URL再照合のみ。新しい案を探索しない。初回確認で該当本文が出なかったため2回目は同じ記事内のfind/open。findは一致なしを返し、note本文はopenで確認。"
+    }
+  ],
+  "failures_and_limits": [
+    "独立評価自体が20分を超過した。途中で期限確認を入れず、期限後にも照合したことは実行上の不備。",
+    "長い表示を数回切らした。カード26枚は必要項目に絞って再読したが、未読principlesの残りとハンサ記事は追加調査を止め未確認に残した。",
+    "考案側のWeb全クエリ・全呼出し時刻、補助処理失敗総数は不明。",
+    "正式review未実施。別評価の提出とreport対応の経路はこの入力では未検証。"
+  ],
+  "prohibitions_compliance": "他方式の資料・親会話・evals採点・protocol・監査結果・過去評価のリンク先は読まず、追加agentも起動していない。考案担当への相談、新案、再探索、外部投稿、git操作、DB・コード・元資料・既存記録の変更は行わない。共通public.pyを使わず、公開CLIを直接実行して独自ログを保存した。",
+  "saved_at": "2026-09-09T13:04:51.265002+00:00"
+}

@@ -1,0 +1,103 @@
+{
+  "verified_at": "2026-09-09T05:07:34.062090+00:00",
+  "trace": [
+    {
+      "step": "copy_start",
+      "hand": 7,
+      "pp": 8,
+      "field": 0,
+      "ep": 1
+    },
+    {
+      "step": "play_goddess",
+      "hand": 6,
+      "pp": 3,
+      "field": 1,
+      "ep": 1
+    },
+    {
+      "step": "evolve_discard3",
+      "hand": 3,
+      "pp": 3,
+      "field": 1,
+      "ep": 0
+    },
+    {
+      "step": "copy3",
+      "hand": 6,
+      "pp": 3,
+      "field": 1,
+      "ep": 0
+    },
+    {
+      "step": "following_turn_draw",
+      "hand": 7,
+      "pp": 9,
+      "field": 1,
+      "combo": 0
+    },
+    {
+      "step": "orange1",
+      "hand": 7,
+      "pp": 9,
+      "field": 1,
+      "combo": 1
+    },
+    {
+      "step": "orange2",
+      "hand": 7,
+      "pp": 9,
+      "field": 1,
+      "combo": 2
+    },
+    {
+      "step": "rapier1",
+      "hand": 6,
+      "pp": 7,
+      "field": 2,
+      "combo": 3,
+      "damage": 5
+    },
+    {
+      "step": "rapier2",
+      "hand": 5,
+      "pp": 5,
+      "field": 3,
+      "combo": 4,
+      "damage": 10
+    },
+    {
+      "step": "rapier3",
+      "hand": 4,
+      "pp": 3,
+      "field": 4,
+      "combo": 5,
+      "damage": 15
+    },
+    {
+      "step": "rapier4",
+      "hand": 3,
+      "pp": 1,
+      "field": 5,
+      "combo": 6,
+      "damage": 20
+    }
+  ],
+  "status": "指定状態のみ成立",
+  "requirements": [
+    "レイピア2枚は山札中で3回強化後に引く",
+    "橙酔をコンボ3終了4回まで手札で保持し、状態コピーを固定注記通り適用",
+    "準備時に7枚、EP1、自場0、生存。翌ターン自場1以下、山札3枚以上",
+    "相手に選択・破壊可能な対象2体、破壊で新たな守護なし、他の攻撃妨害・打点軽減なし"
+  ],
+  "sensitivity": {
+    "attack4": 16,
+    "orange_cost1_total_pp": 10,
+    "orange_cost2_total_pp": 12
+  },
+  "baseline_comparison": "5攻撃レイピア2枚＋5攻撃から超進化したマガチヨは7PP+開始札、SEP1で18点。通常構築の準備ターン不要という利益は大きい。追加枝はSEP不要と追加の大型守護処理が意味を持つ局面に限定。セタス比較は11PPを必要とするため同じ9PPターンの合法な代案ではなく、優劣の主根拠にしない。",
+  "limitations": [
+    "デッキの引き方と生存の再現・頻度・勝率は測っていない",
+    "状態コピーは最新Q&A未取得、固定カード注記に依拠"
+  ]
+}

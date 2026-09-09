@@ -1,0 +1,68 @@
+{
+  "started_at": "2026-09-09T05:14:06.029942+00:00",
+  "deadline_at": "2026-09-09T05:34:06.029942+00:00",
+  "research_ended_at": "2026-09-09T06:39:38.143743+00:00",
+  "research_seconds": 5132.113801,
+  "research_within_deadline": false,
+  "clock_observation": "First Web interval 05:16:02–05:16:04 UTC; next observed Web interval 06:39:22–06:39:24 UTC. Elapsed time is actual observed time; cause of interval not established. Stop further research and save existing assessment.",
+  "public_operations": [
+    {
+      "operation": "read-cards-109",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/a/session",
+        "be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22",
+        "cards",
+        "--offset",
+        "109",
+        "--limit",
+        "10"
+      ],
+      "started_at": "2026-09-09T05:15:14.694701+00:00",
+      "ended_at": "2026-09-09T05:15:15.550465+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "review",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-principles-scope-01/nightmare/a/session",
+        "/tmp/sv-principles-scope-01/nightmare/a/work/round-1/independent-review/review.json"
+      ],
+      "started_at": "2026-09-09T06:41:49.802735+00:00",
+      "ended_at": "2026-09-09T06:41:50.338707+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "report",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-principles-scope-01/nightmare/a/session"
+      ],
+      "started_at": "2026-09-09T06:42:09.327061+00:00",
+      "ended_at": "2026-09-09T06:42:09.605061+00:00",
+      "exit_code": 0
+    }
+  ],
+  "public_operation_count": 3,
+  "public_failures": 0,
+  "formal_review_count": 1,
+  "formal_review_hash": "b85209b78db4d928118fc00021c7d3b51327813f908f06eef503748de800afa9",
+  "formal_review_retries": 0,
+  "formal_review_payload_verified": true,
+  "saved_artifacts_read_back": true,
+  "save_ended_at": "2026-09-09T06:45:11.472891+00:00",
+  "save_seconds": 333.329148,
+  "total_seconds": 5465.442949,
+  "within_deadline": false,
+  "timestamp_source": "datetime.now(timezone.utc); start saved on first tool call; save end obtained after artifact read-back and consistency assertions"
+}

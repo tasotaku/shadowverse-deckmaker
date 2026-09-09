@@ -1,0 +1,16 @@
+あなたは一つの新しいデッキ案を初見で評価する独立担当です。最初のツール操作でdatetime.now(timezone.utc)を実行し、/tmp/sv-principles-scope-01/nightmare/a/work/round-1/independent-review/execution.json に開始日時と20分後の期限を即時保存してください。その後 /tmp/sv-principles-scope-01/reviewer-instructions.txt を読み、同じ5基準でこの1入力だけを評価して完了してください。
+
+対象session: /tmp/sv-principles-scope-01/nightmare/a/session
+revision: 1
+固定review packet hash: be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22
+保存全文: /tmp/sv-principles-scope-01/nightmare/a/session/packets/be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22.json
+概要: /tmp/sv-principles-scope-01/nightmare/a/work/round-1/root-review-packet-summary.json
+同じ回の research.md、answer.json、execution.json、web-checks.json、before-40.json、after-40.json を補助資料として読めます。
+
+操作説明・設計・ルールは /tmp/sv-principles-scope-01/common の保存版。適用AGENTSは /Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md とimport先ですが、共通設計は前記保存版です。
+公開CLI: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-principles-scope-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery
+公開reviewを1件だけ登録し、reportで入力版と判断の保持を確認。5観点の根拠と未確認、読取範囲、各公開操作の実時計・終了コード、調査終了と保存終了の実時計を指定independent-review内へ保存します。
+
+正式案の自己評価は採点の指示ではありません。既知との違い、増える役割と失う役割、核がない時、負担に見合う可能性を判断し、40枚完成や勝率証明は求めません。
+追加担当の起動、他方式・親会話・evals・過去評価・protocolや監査結果の読取、考案担当への相談、コード・DB・元資料・既存記録・git・外部サービスへの書込みは禁止。指定出力先とこのsessionへの公開reviewのみ書込可能。共通の計測ラッパーpublic.pyは使わず公開CLIを直接呼び、操作ログは自分の出力先へ保存してください。原則本文内の過去別試行の成績は期待答案にしません。
+最終応答は判定・主要根拠・実時計・保存先に絞ってください。

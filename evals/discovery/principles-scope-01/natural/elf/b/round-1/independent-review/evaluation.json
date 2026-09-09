@@ -1,0 +1,180 @@
+{
+  "input_packet_hash": "fdab612e727b8906ed2766cdc6de434a5d35825a90ca33db7d5ba74d7c55235b",
+  "revision": 1,
+  "author": "/root/scope_elf_b_review",
+  "procedure": "conditional",
+  "value": "test",
+  "novelty": "unconfirmed",
+  "decision_ja": "指定状態では成立。1枠の比較試行を推薦。独自性は未確認。",
+  "criteria": [
+    {
+      "id": 1,
+      "criterion": "公開操作と資料保持",
+      "status": "公開read/review/reportと資料保持を確認",
+      "evidence": [
+        "公開readで固定hashの原則・適用範囲・案・カード・ルール・用語・時点を取得。原案answer.jsonはpacket proposalと完全一致。",
+        "当該回execution.jsonはpacket2/read9/attach1/submit1/report1、失敗0と記録。初版1件と追加資料5件を固定版本文で確認。これは当方による考案・提出操作の再実行ではない。",
+        "当方の正式reviewを1件のみ登録。reportで入力hash、改訂1、判定3値、根拠、次の問い、入力資料38件のhash対応を照合。本文38件は公開read sourcesで元入力と一致。登録前後の公開read proposalも完全一致。"
+      ],
+      "unconfirmed": [
+        "正式改訂は初回なので未実施。過去操作の個別時計は今回の許可補助資料では全件再照合していない。"
+      ]
+    },
+    {
+      "id": 2,
+      "criterion": "手順の合法性と資源",
+      "status": "conditional",
+      "evidence": [
+        "固定本文と両側の注記を追う限り、指定状態の四連20点は成立する。準備時の7枚→ゴッデス使用6→3枚捨て3→3枚複製6、翌ターン通常ドロー7、0PP橙酔2回で手札7・コンボ2、レイピア4回で8PP・手札3・場最大5・コンボ6・20点。EPはダストデイズ1と複製1で合計2、決着時のSEPは不要。山札中の3回強化、橙酔を保持した4回の軽減、進化権温存と準備ターン生存は別の到達条件。選択・破壊可能な相手2体、追加守護や打点妨害なしも必要。核4枚の現在公式APIは本文とローテ可を確認できたが、状態保持Q&Aは空欄なので固定注記に依拠し実機確認済みとはしない。",
+        "独立計算はresource-check.json。比較元の11PPセタス線は同じ9PPターンの代案としない。"
+      ],
+      "unconfirmed": [
+        "実機での状態コピー再確認",
+        "指定状態への自然な到達・準備中の生存・対象2体の出現頻度"
+      ]
+    },
+    {
+      "id": 3,
+      "criterion": "追加工程が実際に疑問を解消したか",
+      "status": "初回につき正式追加工程は未実施",
+      "evidence": [
+        "正式提出はrevision1、parent0のみ。初回考案内では先行例を見つけてレイピア複製自体の新規性主張を撤回し、橙酔へ焦点を移した。資料にその変更根拠を保持。",
+        "途中の17→19の比較打点訂正を発見価値の前進とは数えない。停止した初期枝は記録として読んだが、この案以外の正式評価は行わない。"
+      ],
+      "unconfirmed": [
+        "正式提出後の再検索・改訂・新評価による改善は観測なし"
+      ]
+    },
+    {
+      "id": 4,
+      "criterion": "試す理由のある種が残るか",
+      "status": "test",
+      "evidence": [
+        "1枠の比較試行を推薦する。理由は、元構築の山札強化・軽減・補充という準備を共用し、2枚のレイピアを4枚へ増やす際に、第三対象の橙酔も増やして大型守護2体の処理と開始2プレイを兼ねられる具体的な追加利益があること。決着時のSEPや3枚目のレイピアを用意できない局面に別の勝ち方を作る。失うセタス1枚の即時破壊・疾走・守護・全体強化、および起動時の5PP・EP1・捨て札3枚は大きく、単に1枠だから軽いとはしない。通常のレイピア2枚＋超進化マガチヨなら同じ強化量で7PPと開始札から18点があるため、準備不要の通常線が優先される局面は多いと考えられる。追加線の利益は大型守護処理やSEP不足などに限定して測るべきである。ゴッデスを引けない時もレイピア3・マガチヨ3・セタス2の攻めを残し、橙酔も通常の除去として働く。ダストデイズ不在では出力低下が残る。到達頻度は不明だが、既存の基盤を保つ小さな配分変更として、利益と損失を実際に比べる理由は残る。強さや安定性の証明ではない。"
+      ],
+      "unconfirmed": [
+        "採用1枠の損失に見合う到達機会と実際の勝ちへの寄与",
+        "通常構築を上回る成績・完成構築・Tierは未検証かつ要求しない"
+      ]
+    },
+    {
+      "id": 5,
+      "criterion": "既出と強さを捏造していないか",
+      "status": "unconfirmedを維持する扱いは妥当",
+      "evidence": [
+        "山札強化から疾走する用途は標準構築であり、ゴッデスによるレイピア複製も先行記事の本文で再確認した。今回の着眼は新弾の軽減済み橙酔を第三対象にする用途へ限定される。先行リストと手順が未取得で、この用途が既に共有済みかは分からない。検索4クエリの不発やローカル同居件数から未知・未普及を主張しない。独自性の確定ではなくunconfirmedとする。",
+        "基準構築の記事Tier、先行例の到達ランク、保存設計内の過去別試行の結果を今回案へ加点していない。"
+      ],
+      "unconfirmed": [
+        "先行リストとの差の確定",
+        "全投稿・動画・大会構築の網羅"
+      ]
+    }
+  ],
+  "read_scope": {
+    "rules_and_instructions": [
+      "reviewer-instructions.txt 全文",
+      "repository AGENTS.md と指定import10ファイル（大出力で切れた関連範囲は再読）",
+      "common/operator-readme.md 1〜200行（開発用後半は対象外）",
+      "common/design.md 1〜130行、同文を含む固定packet principles 0〜505行",
+      "固定packet principles_scope_guide 0〜91行、rules 117行全文、keywords 37件全文、context_metadata全文",
+      "root-review-packet-summary.json 全文と固定packet instruction/response_example"
+    ],
+    "proposal": "固定packet proposal全241行。answer.jsonの全キー一致を機械照合。",
+    "cards_inspected": [
+      10502110,
+      10514120,
+      10712110,
+      10714110,
+      10714120,
+      10814110,
+      10912110,
+      10913110,
+      10913310,
+      10914110,
+      90011110,
+      90011310,
+      10403120,
+      10503210,
+      10513310,
+      10614120,
+      10811130,
+      10911110
+    ],
+    "cards_fields": "本文、進化本文、参照効果、note、採用可能性、コスト、能力値、生成経路。その他カードの全件精査は未実施。",
+    "sources_fully_used": [
+      "82e99a39d9f2e4fc0ff8c0cbc33b9f5ab727e47dc2728881bc829b348d5e0335",
+      "4fdf04c3261776aed79e0df095aafc77c70ec883f45e75b60ce3ba4a129c471f",
+      "81e757554042958833e24dc4f8ab43d686309faa0d90931e82f3b64438b983b1",
+      "2d739f2af82d37410e7d9417a4639369b8627212315a8cb8c30b303c2f1a9a3d",
+      "c3f61931bad245924922be51e0346407abdb01535d1299ac012cbb218086286f"
+    ],
+    "source_read_context_only": [
+      "d2c630473ef3858b8df0a2ebdc101b3cad9c6acef95475b3f15c7f25b18b7fc7"
+    ],
+    "auxiliary_files": [
+      "research.md",
+      "answer.json",
+      "resource-check.json",
+      "web-checks.json",
+      "execution.json",
+      "baseline-source.json",
+      "baseline-gamewith-40.json"
+    ],
+    "limits": [
+      "初回の固定packet全文catは出力上限で切れたため全件精読とは扱わない。必要な原則・案・カード・資料を分割し再読した。",
+      "固定packetの追加資料には他クラスの基準構築も含まれ一部が表示されたが、この案の判断根拠には使わず追加読取しなかった。",
+      "原則本文に過去試行の成績・監査件数の混在あり。存在のみ記録し期待答案・採点根拠に不使用。",
+      "親会話・他方式・evals・過去評価・protocol・監査へのリンク先は未読。追加担当・考案担当への相談なし。"
+    ],
+    "sources_preservation_check": "判定登録後、固定hashのsources全3182行を公開readで取得し、38件の本文を機械照合。意味を精査した範囲は上記6件のまま。"
+  },
+  "questions": [
+    "比較試行で、軽減済み橙酔の追加1枚と四連レイピアが通常線では越えられない守護やSEP不足を解決した局面と、セタスなら間に合ったのにゴッデスが使えなかった局面のどちらが実際に生じるか。",
+    "強化後レイピア2枚・橙酔・捨て札3枚を保持し、EPを残した5PPの準備を行える機会はあるか。橙酔を途中の防御に使う必要、早引きレイピア、EP不足のどれが主な不成立理由か。",
+    "先行する複製エルフの元手順にこの第三対象用法が含まれるか。また実機でバフと永続軽減のコピー保持を確認できるか。"
+  ],
+  "report_verification": {
+    "verified_at": "2026-09-09T05:12:01.492870+00:00",
+    "revision": 1,
+    "formal_review_count": 1,
+    "review_hash": "421ceca38633ed61c8318c4cd45db938f8b29afbd2356a269c9a6ef5637cf945",
+    "input_packet_hash": "fdab612e727b8906ed2766cdc6de434a5d35825a90ca33db7d5ba74d7c55235b",
+    "proposal_hash": "26065746d9eaa3a1b310a636d8f250cceb269a8751c36be8e28a5e5bef8c573a",
+    "review_content_matches": true,
+    "pre_post_public_proposal_read_identical": true,
+    "input_source_count": 38,
+    "source_contents_preserved_via_public_read": true,
+    "report_source_metadata_matches": true,
+    "additional_source_hashes": [],
+    "next_questions_preserved": true,
+    "verdict_preserved": {
+      "procedure": "conditional",
+      "value": "test",
+      "novelty": "unconfirmed"
+    }
+  },
+  "artifacts": {
+    "review": "review.json",
+    "web": "web-checks.json",
+    "arithmetic": "resource-check.json",
+    "execution": "execution.json"
+  },
+  "execution": {
+    "started_at": "2026-09-09T05:01:04.785343+00:00",
+    "deadline_at": "2026-09-09T05:21:04.785343+00:00",
+    "research_finished_at": "2026-09-09T05:07:34.083436+00:00",
+    "verification_finished_at": "2026-09-09T05:12:01.492870+00:00",
+    "save_finished_at": "2026-09-09T05:13:30.740061+00:00",
+    "total_seconds": 745.954718,
+    "research_seconds": 389.298093,
+    "within_deadline": true,
+    "public_operations_summary": {
+      "total": 13,
+      "read": 11,
+      "review": 1,
+      "report": 1,
+      "failed": 0
+    }
+  }
+}

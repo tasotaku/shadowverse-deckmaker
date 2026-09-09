@@ -1,0 +1,179 @@
+{
+  "reviewer": "/root/scope_elf_a_review",
+  "session": "/tmp/sv-principles-scope-01/elf/a/session",
+  "revision": 1,
+  "packet_hash": "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+  "title": "コンボ5を補充へ変えるバディング・献上型コンボエルフ",
+  "judgment": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "criteria": [
+    {
+      "id": 1,
+      "criterion": "公開工程の実行と保持",
+      "verdict": "completed_for_initial_round_with_origin_logging_limits",
+      "evidence": [
+        "固定案201行、核カード、公式用語37件、対象条件を公開readで取得。独立担当のread4件・review1件・report1件は全件終了コード0。",
+        "reportに改訂1の元提出版、指定評価入力版、今回評価1件、入力追加資料40件の識別値が対応して残る。固定packetのファイルハッシュは不変で本文保持を確認。",
+        "考案担当のexecutionはsubmit1件・attach1件・compare1件・report1件等の計16操作を記録。保存案と追加7資料、比較元全40枚は実際に読み直して内容を確認。"
+      ],
+      "unconfirmed": [
+        "考案担当は4件並行readの採番衝突1件と、一部元時計nullを報告。独立に欠損時計を復元していない。",
+        "初回提出後の改訂工程は未実施。公開操作成功は実戦性能の証明ではない。"
+      ]
+    },
+    {
+      "id": 2,
+      "criterion": "手順の合法性と資源",
+      "verdict": "conditional",
+      "evidence": [
+        "固定資料のローテーション・エルフで、指定した後攻T4のPP4・手札6・場0からの手順は成立する。フェアリー1、ミロク3の登場時とEP進化時に各2PP回復、森の神秘0、舎弟頭2で2ドロー、バディング2の順で、終端はPP0・手札3・場5・EP1・SEP2・コンボ5。生成体の登場時能力を再発動させず、ミロクのEP進化1回とバディング2体の自動進化が手札内の献上を5から2へ下げる。献上はT4には使えず、次ターンの2PP補充となる。準備の二枚看板はT2に2PPを払い供給モードを選ぶ必要があり、T4に必要4札を引き場を空けている頻度は未確認。盤面生存や相手への確定打点は含めない。公式APIの今回再取得は2件とも失敗し、現行適用内容を独立に確認できていないため、保存本文と指定状態に限る条件付き判定とする。",
+        "resource-check.jsonで保存カードのコストから独立に再計算。PP0・手札3・場5・EP1・SEP2・3進化・献上2PP。前後40枚と交換4枚、交換後17種の採用可否と枚数上限を照合。"
+      ],
+      "unconfirmed": [
+        "指定手札への引き順・頻度、場0を作る負担、実ゲーム実行、相手への成果。",
+        "現行公式本文のAPI2件が取得失敗。保存版内の合法性と現行の適用日は区別。"
+      ]
+    },
+    {
+      "id": 3,
+      "criterion": "追加工程での解消・変更・停止",
+      "verdict": "not_performed_initial_round",
+      "evidence": [
+        "初回提出後の改訂は0件。追加工程を成功扱いしない。",
+        "初回調査内では、既知用法と供給負担を確認して新機構の主張から第9弾基盤での4枠交換へ問いを変えている。source 0563346の要約は独立Web確認の本文と整合。"
+      ],
+      "unconfirmed": [
+        "正式な別評価を受けた改訂の質・改善量は、この入力からは測れない。"
+      ]
+    },
+    {
+      "id": 4,
+      "criterion": "試す理由のある種か",
+      "verdict": "test",
+      "evidence": [
+        "試す理由は残る。元のコンボ用の二枚看板・舎弟頭・ミロクを各3枚維持したまま、4枠で即時2体進化と後続の安い補充を加えられ、従来記事が挙げた専用の燐光の岩やミロクのフェアリー生成への依存をこの指定手順では減らしている。献上は軽減済みなら次ターンにコンボを組み直さず2PPで2枚引けるため、3PPの優雅や4PPのグランとは使えるタイミングが異なる。一方、補充手段は元々舎弟頭もあり無条件の純増ではない。ヒエン2枚の復活による継続展開、優雅の大量補充、グランの除去とフォロワー補充の選択を失う。献上の早期保持と追加進化、バディングのコンボ5、場の空き、ミロクへ使うEPが負担で、献上の後引き5PP・通常進化2回だけなら3PP、バディング単体2/2という弱さがある。核が揃わない時も二枚看板の除去、舎弟頭の補充、ダスト3・鹿王3・マガチヨ3・セタス3を保つので勝ち方全体を作り直す必要はない。盤面を毎回残せるとは見込まない。この小さいが具体的な利益と支払いの比較は、手札記録を伴う限定的な試行へ進むには足りる。標準構築より強いこと、2+2配分の最適性、独自性を証明したとの判断ではない。"
+      ],
+      "unconfirmed": [
+        "献上の安さが失う継続展開・柔軟除去・大量補充を回収する頻度。ダスト優先で新しい線が使われない頻度。",
+        "実対戦・手札記録、2+2配分の最適性。40枚完成や全相手への優位、Tier・勝率の証明は要求していない。"
+      ],
+      "decision_changing_questions": [
+        "比較元40枚を固定し、ダストが無いT4〜T6の手札で、バディングを出して献上が2PP以下になり翌行動へつながった場面はあるか。同じ交換枠がヒエン・優雅・グランなら得られた展開や補充と、献上が3〜5PPで滞留した場面を対にして記録する。成功場面がなく滞留と失う役割ばかりならこの2+2配分を止める。",
+        "ダスト進化や二枚看板の除去モードを優先すると新しい線を選べないことが、どの手札で採用利益を消すか。利益がバディング単体に寄るなら献上を含む4枠案を維持する理由があるかを判断する。",
+        "試行前に核・供給札と生成物の現行公式本文をゲーム内で照合できるか。今回のAPI再取得だけでは確認できなかった。"
+      ]
+    },
+    {
+      "id": 5,
+      "criterion": "既出・未確認・成績の区別",
+      "verdict": "unconfirmed_no_false_novelty_claim",
+      "evidence": [
+        "バディングを進化回数に、大輪への献上を進化後の安い補充に使う用途は、今回独立に開いた進化エルフ記事の両節に既に載っている。今回の差は第9弾のコンボ構築にある供給札で成立負担を下げ、4枠の役割配分を変えた点に限定する。Game8の現在の表示40枚も保存比較元と一致し、この2札の採用は表示されないが、一構築での不採用や3検索語の不発は世の中で未知という証明にならない。同じ4枠変更が普及していないとまで確認しておらずunconfirmedとする。原記事の成績やTier、初見での勝率加点は提案へ転用しない。",
+        "独立検索3検索語。note該当2節、Game8表示40枚と立ち回りを確認。公式API2件は取得失敗。各Web呼出し前後の実時計と取得結果はweb-operations.json。"
+      ],
+      "unconfirmed": [
+        "SNS・動画・大会・全投稿の全件調査はしていない。",
+        "新しい4枠変更の同型が普及していないとまでは確認していない。"
+      ]
+    }
+  ],
+  "read_scope": {
+    "instructions": [
+      "reviewer-instructions.txt 全文",
+      "プロジェクトAGENTS.md 全文",
+      "指定import先10ファイル。初回の長い出力は省略があったため、関係箇所を小分けに再読。"
+    ],
+    "common_design": "common/design.md 1〜53行、199〜553行。目的、フォーマット、主役基準、マッチング、既出原則。全1036行の通読ではない。",
+    "operator_readme": "common/operator-readme.md 全227行。",
+    "rules": "common/rules.md 全117行。",
+    "packet": "指定固定レビュー資料だけ。概要・instruction・response_example・proposal全201行・context_metadata全22行。過去評価区分が0件であることを概要で確認。",
+    "cards": {
+      "card_ids": [
+        10403110,
+        10512110,
+        10513310,
+        10514120,
+        10612310,
+        10714110,
+        10714120,
+        10814110,
+        10912310,
+        10913110,
+        10914110,
+        10914120,
+        90011110,
+        90011310
+      ],
+      "fields": "本文・進化後本文・追加効果・コスト/攻撃/体力・採用可否・注記・生成先を選択読取。全17種の採用可否と上限は機械照合。212枚全本文の通読は未実施。",
+      "public_read": "cards offset44 limit1。後続を全件読んだとはしない。"
+    },
+    "keywords": "公開read offset0 limit40。保存して全37定義を読んだ。",
+    "sources": {
+      "count": 8,
+      "extent": "追加7資料と比較元全40枚。7件はcontent全文、構築比較1件は前後の全札・枚数/種類/コスト分布・差分・限界・識別値を選択して確認。40資料全本文の通読ではない。",
+      "full_content_hashes": [
+        "0563346af4ae23411b15c0c3196f1fe5fa0b1797febd1caf674908dd9588f8a4",
+        "2857a6647cb786d80b96e3bb61d15e60a41488578bf84eb48ac644ebe7d490cd",
+        "5d4a26ee41592651e748cae6e738e2910b5941b8fb3d54f0f158c53e7039ff06",
+        "6381b0b4a0673cf1c30d158693dbceccee48a232b55732d1eda3ec24ef0fc503",
+        "dad689e422fceb1497b91ea96ced5e4912b752aceecf4dde2696feeba92b553f",
+        "ebaf6b8413fb7da7e41a311068445a1d985df84d4fc46ef67d6b7bde3f630c9b",
+        "eea2f1ca9144bed15ed9c38c122297f64e1912adf055485808c4b67733b10afe"
+      ],
+      "structured_comparison_hash": "e13e3a066074280b79473b0a96b3ef08495cf3fbf4db86deed78ce89184ebca2"
+    },
+    "supplementary_files": [
+      "round-1/research.md 全文",
+      "round-1/resource-trace.json 全文",
+      "round-1/web-search-log.json 全文",
+      "round-1/execution.json 全文",
+      "round-1/save-checks.json 全文",
+      "round-1/answer.json 全キーを固定proposalと照合。案本文は公開proposalで読了。"
+    ],
+    "web": "web-operations.jsonとreview.json.web_checksに範囲・実時計・失敗を記録。検索表示の周辺情報は採点根拠にしない。",
+    "not_read": "他方式の入力/案/結果、親会話、evals、今回protocol/監査結果、リンク先過去評価、実装コード、DB、他session。"
+  },
+  "historical_evaluation_contamination": {
+    "present": true,
+    "where": [
+      "保存designの歴史例・過去試行成績",
+      "ミロク、二枚看板、ヒエンのcard_note内の過去判定・ユーザー評"
+    ],
+    "handling": "カードの事実と効果の注意は参照し、過去の採否・成績は期待答案・採点根拠にしない。過去評価へのリンクを開かず、本文・今回の比較・独立Web確認で判断。"
+  },
+  "review_retention": {
+    "checked_at": "2026-09-09T05:13:13.257001+00:00",
+    "one_revision": true,
+    "revision": 1,
+    "one_review": true,
+    "review_content_equal": true,
+    "proposal_input_packet_hash": "e8cfe2794f0125e403a8931c75af9bcd2b76ec858b1a60e87b70c1f39e5584f1",
+    "review_input_packet_hash": "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+    "input_packet_hash_matches": true,
+    "review_hash": "7ce48659be6e694166854df6d60a390ecdb1799e599aa752cfe5acbdc3d8160c",
+    "proposal_hash": "975e3f077ef47215d8a961f0220a9a76b3b56c7f2d64cef57a489e995497814f",
+    "input_sources_equal": true,
+    "input_sources_count": 40,
+    "source_metadata_equal": true,
+    "source_body_retention": "reportは本文を返さない。固定packetに40件の本文が残り、独立検算時に記録したファイルハッシュから変化がないことを確認。",
+    "additional_source_hashes": [],
+    "next_questions_equal": true,
+    "original_answer_equal": true,
+    "packet_file_unchanged": true,
+    "all_public_exit_codes_zero": true
+  },
+  "timing_record": "execution.json",
+  "operation_record": "public-operations.jsonl",
+  "web_operation_record": "web-operations.json",
+  "formal_review_submissions": 1,
+  "substantive_regrades": 0,
+  "format_retries": 0,
+  "public_operation_failures": 0,
+  "local_save_check_failures": 1,
+  "local_save_check_corrections": 1,
+  "game_runs": 0,
+  "extra_agents": 0
+}

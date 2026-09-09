@@ -1,0 +1,223 @@
+{
+  "proposal_title": "マーシャ1枚をコラプションへ替えるガロダート・アグロ",
+  "input_packet_hash": "be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22",
+  "revision": 1,
+  "verdict": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "criteria": [
+    {
+      "criterion": 1,
+      "label": "公開操作と保持",
+      "judgment": "操作成立、時間条件は不適合",
+      "evidence": [
+        "考案担当の記録ではpacket/read/attach/compare/submit/reportの12操作が終了コード0。正式案1件、追加6件と比較資料1件を固定入力が保持。",
+        "独立担当は公開read・review・reportを直接実行し、いずれも終了コード0。reportのrevision1に固定入力へのreview1件と入力資料40件、次の問いが保持された。"
+      ],
+      "unconfirmed": [
+        "後続の実質的な改訂工程は未実施。",
+        "独立評価の20分期限は超過。実時計の大きな進みの原因は未確定。考案担当も保存工程の5分配分を超過した旨を自分のexecutionに記録している。"
+      ]
+    },
+    {
+      "criterion": 2,
+      "label": "手順と準備",
+      "judgment": "conditional",
+      "evidence": [
+        "固定本文・用語・ルール上、後攻T5の自分12/相手16、必要3枚、妨害なしという指定開始状態からは成立する。自分体力はT5終了10→副総長超進化後6→T6終了4→T7ガロダート疾走後2、相手は16→14→10→8→0。ガロダートはT5/T6終了の2回で8→6PP。T5/T6/T7のPP、手札上限、場、後攻T6のSEPを満たす。コラプションは全継続なら自分4回8点・相手3回6点。到達率と同時誘発境界は未確認で、指定例は事前に12以下なので後者を使わない。T7攻撃が止まると自傷死し、守護モードで盤面を処理できても継続自傷の安全は保証しない。現行能力の独立Web再取得はできず、固定DB時点の判定。",
+        "交換後40枚の枚数・同クラス・固定rotation・採用上限を独立再計算した。生成バットは直接採用せずリリム2種のラストワードから得る。ドレインは出すだけの回復としていない。中尉の2/1再出現は1回限り。ガロダートと供給側を含む16種類の本文・注記を読んだ。"
+      ],
+      "unconfirmed": [
+        "実戦と開始状態への到達頻度、相手の妨害・回復・守護・バリアの頻度。",
+        "体力13〜14を同じ終了時に初めて12以下へ落とす際の判定順。これは指定例の成立に使用していない。",
+        "公式ページの再取得ではカード本文を確認できず、現在サーバーの適用能力は独立未確認。"
+      ]
+    },
+    {
+      "criterion": 3,
+      "label": "追加工程",
+      "judgment": "初回のため未実施",
+      "evidence": [
+        "parent_revision0からrevision1への最初の提出。提出後の改訂と再評価は行っていない。",
+        "初回調査では一般用途の既出、自己8/相手6の時系列、重複引きの負担を材料に1枚へ絞った記録がある。これは初回中の考察であり、追加工程の効果を証明しない。"
+      ],
+      "unconfirmed": [
+        "次の問いに対する変更や停止を実施した実例はまだない。"
+      ]
+    },
+    {
+      "criterion": 4,
+      "label": "試す価値",
+      "judgment": "test",
+      "evidence": [
+        "完成品の推薦ではなく、1枚の交換比較を実際に試す理由はある。マーシャ1枚だけを同じ5PPの札へ替え、序盤枠と別の決着手段を維持しながら、進化を使わない全体-2/-2と後続ターンのPPを使わない打点を得る。例えば複数の体力2の相手を処理したい場面や、バリアで通常ダメージが止まる場面ではマーシャ単独の1点と実際の差がある。自分の場が空なら自盤面弱体化の損もない。一方、最大8自傷、5/4本体とその進化攻撃、即時1～2点を失い、残虐の炸裂3枚が相手へ当たらなくなる危険は重い。既に12以下なら軽減を増やす相乗効果はなく、提示例は原型でも同T7に勝てるため速度改善として評価しない。コラプションを引かなくても既存の軽い攻撃、スージー強化、アンサージュ、ガロダート、副総長の勝ち方が残る。追加の専用札を増やさず交換1枚の利益と損を比較できるためtestとする。現在の対面で得になる頻度・勝率・新発見は未証明。",
+        "利益は新しい強さの証明ではなく、同じ5PPの1枠で進化不要の弱体化と持続打点を増やす選択肢。複数の体力2などの例は効果差を示す条件付き局面であり、現在多発すると主張しない。",
+        "元の構築にも副総長・ライブ・鉄鎖・スージー等の処理があるため、単なる処理枚数増では推薦しない。1枚で処理方法と以後の打点支払いを変える利益を採用理由とする。"
+      ],
+      "unconfirmed": [
+        "実際に得になる局面の頻度、マーシャ本体の損、自傷死、残虐の炸裂の不稼働が上回るかは未測定。",
+        "新しいガロダート軽減の実益は指定例では示されていない。"
+      ]
+    },
+    {
+      "criterion": 5,
+      "label": "既出と過剰主張",
+      "judgment": "unconfirmed",
+      "evidence": [
+        "コラプションを攻撃基盤の盤面処理・遅延打点として1枚採用する使い方は作者の公開記事で既出と独立確認した。ガロダートの体力条件に副作用を使う今回の配分は、その既知用途を別の攻撃基盤へ移す小さな変更であり、未発見とする根拠には足りない。今回の検索返却は全体除去一覧だけで、同一構築を特定できなかったことと独自性の証明を区別する。共起0・検索不発・初見の有利さ・Tier・勝率を加点しない。",
+        "作者本人の公開記事を独立に開き、一般的な1枚採用と役割を確認した。今回の2枚名検索の返却はカード一覧で、同一構築の使用証拠として扱わなかった。"
+      ],
+      "unconfirmed": [
+        "ガロダートとコラプションをこの役割配分で使う既出構築の有無。動画・全投稿・大会全件は未調査。"
+      ]
+    }
+  ],
+  "read_ranges": {
+    "reviewer_dispatch": "全文",
+    "reviewer_instructions": "全文",
+    "common/operator-readme.md": "全文が表示された範囲。操作説明を使用。",
+    "common/rules.md": "全文117行を再読",
+    "common/design.md": [
+      "見出し一覧",
+      "1–53",
+      "199–375（途中表示切れは330–375を再読）",
+      "427–459",
+      "520–553"
+    ],
+    "fixed_packet": {
+      "path": "/tmp/sv-principles-scope-01/nightmare/a/session/packets/be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22.json",
+      "instruction": "全文",
+      "response_example": "全文",
+      "proposal": "全フィールド全文",
+      "history": "空配列を確認",
+      "cards_detailed_ids": [
+        10051130,
+        10052110,
+        10452130,
+        10453310,
+        10552310,
+        10753310,
+        10851110,
+        10851120,
+        10852120,
+        10853110,
+        10951110,
+        10951120,
+        10952310,
+        10953110,
+        10954120,
+        90051120
+      ],
+      "public_cards_slice": {
+        "offset": 109,
+        "limit": 10,
+        "total": 212,
+        "next_offset": 119,
+        "note": "カード10件の生出力を保存。表示切れの本文は対象16種類のフィールド抽出で読み直した。"
+      },
+      "card_fields": "cost/atk/life/class/type/rotation/deck_eligible/copy_limit/skill_text/evolution_text/ref_effect_text/note/related_card_ids/source_url",
+      "keywords": "全37定義を表示して読んだ。カウントダウン、クレスト、疾走、ドレイン、進化/超進化等を判断に使用。",
+      "sources": "全40件の識別値・表題一覧。アグロ原型と今回交換後の全内容。公式照合2件と既出記事の内容は当該回web-checksの対応する記録も読んだ。比較資料は保持と交換結果を確認。他クラスの資料本文は一括表示の一部が偶発表示されたのみで判断に使用していない。"
+    },
+    "auxiliary_files": {
+      "research.md": "全文",
+      "execution.json": "全文",
+      "web-checks.json": "全文",
+      "answer.json": "固定proposalとの全フィールド等価性を機械照合",
+      "before-40.json": "全40枚を固定本文との採用条件・交換差の機械照合に使用",
+      "after-40.json": "全40枚を同様に照合"
+    },
+    "new_web": "web-observations.jsonに実際のURL・検索語・時刻・取得限界",
+    "report": "自分のrevision1、review1件、対応情報、資料40件の識別値を照合"
+  },
+  "formal_review": {
+    "revision": 1,
+    "review_count": 1,
+    "input_packet_hash": "be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22",
+    "review_hash": "b85209b78db4d928118fc00021c7d3b51327813f908f06eef503748de800afa9",
+    "proposal_hash": "b6e05c0a54b6dc0d9cbd1e67a6ea8df4382d3ad204ce14fb449bd997856fc7b4",
+    "submitted_answer_matches_packet": true,
+    "review_payload_retained": true,
+    "source_hashes_retained": 40,
+    "review_questions_retained": true,
+    "before_count": 40,
+    "after_count": 40,
+    "delta": {
+      "10453310": 1,
+      "10852120": -1
+    },
+    "fixed_snapshot_deck_eligibility": true,
+    "all_checks_observed_at": "2026-09-09T06:45:11.433463+00:00"
+  },
+  "public_operations": [
+    {
+      "operation": "read-cards-109",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/a/session",
+        "be3a0dca7afc23318ebdb0303ad2f641f37df4ec2961c96c1288d1e4f0e9ad22",
+        "cards",
+        "--offset",
+        "109",
+        "--limit",
+        "10"
+      ],
+      "started_at": "2026-09-09T05:15:14.694701+00:00",
+      "ended_at": "2026-09-09T05:15:15.550465+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "review",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-principles-scope-01/nightmare/a/session",
+        "/tmp/sv-principles-scope-01/nightmare/a/work/round-1/independent-review/review.json"
+      ],
+      "started_at": "2026-09-09T06:41:49.802735+00:00",
+      "ended_at": "2026-09-09T06:41:50.338707+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "report",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-principles-scope-01/nightmare/a/session"
+      ],
+      "started_at": "2026-09-09T06:42:09.327061+00:00",
+      "ended_at": "2026-09-09T06:42:09.605061+00:00",
+      "exit_code": 0
+    }
+  ],
+  "failures": {
+    "public": 0,
+    "formal_retry": 0,
+    "substantive_re_evaluation": 0,
+    "auxiliary": 0,
+    "output_truncation": "初期の一括表示で発生。根拠として使用する提出案・16種類のカード本文と注記・ルール・設計該当部・補助記録は小分けに再読。対象212枚全部の精読は主張しない。",
+    "web": "公式open2件で本文未取得。公式検索も独立本文再確認に至らず。",
+    "timing": "20分の評価期限を超過した。実時計05:16:04から次のWeb操作06:39:22までの間隔の理由は不明。気付いた時点で追加調査を止めた。"
+  },
+  "independence": {
+    "other_methods_read": false,
+    "parent_conversation_read": false,
+    "past_reviews_read": false,
+    "protocol_or_audit_read": false,
+    "proposer_consulted": false,
+    "additional_agents_or_workers": 0,
+    "past_trial_results_present_in_design": true,
+    "past_results_used_as_expected_answer": false,
+    "forbidden_writes": false
+  },
+  "execution_file": "/tmp/sv-principles-scope-01/nightmare/a/work/round-1/independent-review/execution.json"
+}

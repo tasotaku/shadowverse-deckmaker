@@ -1,0 +1,235 @@
+{
+  "started_at": "2026-09-09T05:00:06.837361+00:00",
+  "deadline": "2026-09-09T05:20:06.837361+00:00",
+  "time_limit_minutes": 20,
+  "research_finished_at": "2026-09-09T05:07:14.103193+00:00",
+  "save_started_at": "2026-09-09T05:07:14.103518+00:00",
+  "reviewer": "/root/scope_elf_a_review",
+  "review_hash": "7ce48659be6e694166854df6d60a390ecdb1799e599aa752cfe5acbdc3d8160c",
+  "review_input_packet_hash": "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+  "public_operations": [
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+        "proposal",
+        "--offset",
+        "0",
+        "--limit",
+        "250"
+      ],
+      "started_at": "2026-09-09T05:01:03.091902+00:00",
+      "ended_at": "2026-09-09T05:01:03.193238+00:00",
+      "exit_code": 0,
+      "stdout": "01-read-proposal.json",
+      "stderr": "01-read-proposal.stderr.txt"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+        "cards",
+        "--offset",
+        "44",
+        "--limit",
+        "1"
+      ],
+      "started_at": "2026-09-09T05:03:58.002124+00:00",
+      "ended_at": "2026-09-09T05:03:58.117396+00:00",
+      "exit_code": 0,
+      "stdout": "02-read-cards.json",
+      "stderr": "02-read-cards.stderr.txt"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+        "keywords",
+        "--offset",
+        "0",
+        "--limit",
+        "40"
+      ],
+      "started_at": "2026-09-09T05:03:58.125137+00:00",
+      "ended_at": "2026-09-09T05:03:58.201414+00:00",
+      "exit_code": 0,
+      "stdout": "03-read-keywords.json",
+      "stderr": "03-read-keywords.stderr.txt"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "def51baedd1f008c6e56b7fbdc0ebef99de8751236e3d43521d3d482ab6ad5b6",
+        "context_metadata",
+        "--offset",
+        "0",
+        "--limit",
+        "50"
+      ],
+      "started_at": "2026-09-09T05:03:58.208049+00:00",
+      "ended_at": "2026-09-09T05:03:58.281115+00:00",
+      "exit_code": 0,
+      "stdout": "04-read-context_metadata.json",
+      "stderr": "04-read-context_metadata.stderr.txt"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-principles-scope-01/elf/a/session",
+        "/tmp/sv-principles-scope-01/elf/a/work/round-1/independent-review/review.json"
+      ],
+      "started_at": "2026-09-09T05:07:35.816341+00:00",
+      "ended_at": "2026-09-09T05:07:35.955033+00:00",
+      "exit_code": 0,
+      "stdout": "05-review-result.json",
+      "stderr": "05-review-result.stderr.txt"
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-principles-scope-01/elf/a/session"
+      ],
+      "started_at": "2026-09-09T05:07:52.341652+00:00",
+      "ended_at": "2026-09-09T05:07:52.459745+00:00",
+      "exit_code": 0,
+      "stdout": "06-report.json",
+      "stderr": "06-report.stderr.txt"
+    }
+  ],
+  "public_operation_count": 6,
+  "public_operation_failures": 0,
+  "format_retries": 0,
+  "substantive_regrades": 0,
+  "formal_review_submissions": 1,
+  "web_tool_calls": 3,
+  "web_official_failed_reads": 2,
+  "local_save_check_failures": 1,
+  "local_save_check_corrections": 1,
+  "original_worker_log_issue": "考案担当executionに並行read採番衝突1件・一部時計null。独立担当は共通public.pyを使わず公開CLIを直接呼び各回を逐次保存。",
+  "readback_files": [
+    "evaluation.json",
+    "evaluation.md",
+    "execution.json",
+    "review.json",
+    "resource-check.json",
+    "save-checks.json",
+    "save-incidents.json",
+    "public-operations.jsonl",
+    "web-operations.json",
+    "01-read-proposal.json",
+    "02-read-cards.json",
+    "03-read-keywords.json",
+    "04-read-context_metadata.json",
+    "05-review-result.json",
+    "06-report.json"
+  ],
+  "public_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/tmp/sv-principles-scope-prototype/src"
+  },
+  "save_finished_at": "2026-09-09T05:13:52.186242+00:00",
+  "readback_completed_at": "2026-09-09T05:13:52.186242+00:00",
+  "research_seconds": 427.265832,
+  "save_seconds": 398.082724,
+  "total_seconds": 825.348881,
+  "within_deadline": true,
+  "readback_manifest_before_final_clock_write": [
+    {
+      "file": "evaluation.json",
+      "bytes": 12808,
+      "sha256": "e613ff9ffed5557076dd82e32a6601a30ee2321d6459cee5b1ef87d06f9034db"
+    },
+    {
+      "file": "evaluation.md",
+      "bytes": 3617,
+      "sha256": "aae95b66e0c092bda8f20b51f019dd3158d5574bccebc6a47e510db31eb5016b"
+    },
+    {
+      "file": "execution.json",
+      "bytes": 4616,
+      "sha256": "81549b0dafae4fc0b299baec8ee64fb999813ef99e69a9cde20dd12bf2ab25c6"
+    },
+    {
+      "file": "review.json",
+      "bytes": 10170,
+      "sha256": "04f9ef70d4aebfb28ea409dd3b3f504ae3cd6e711c356ffa667985e788082654"
+    },
+    {
+      "file": "resource-check.json",
+      "bytes": 3921,
+      "sha256": "740714bf5c98d76208670b47c30f97f33da3fa5e9229c0afd56f66e18ba7d3b5"
+    },
+    {
+      "file": "save-checks.json",
+      "bytes": 1018,
+      "sha256": "97e32fe06edc83c027224bb01fde890a505cd63b6adcf3e56f732a266a4a716c"
+    },
+    {
+      "file": "save-incidents.json",
+      "bytes": 528,
+      "sha256": "386140736467e3a9f344c320cdca8826267bedcf1be738596eebcfecf947d29f"
+    },
+    {
+      "file": "public-operations.jsonl",
+      "bytes": 2445,
+      "sha256": "59f5924c5aee6c12acc214d6e27fbc0d611f0ab6e03fcc4628b9237be70ef13e"
+    },
+    {
+      "file": "web-operations.json",
+      "bytes": 70459,
+      "sha256": "d58a21411f5308b2f694b6c3efa34e6ec32570008e1c3c6d306c9f75989da6b2"
+    },
+    {
+      "file": "01-read-proposal.json",
+      "bytes": 15983,
+      "sha256": "da1c7ba12c83e4df95274fbd39f53f09cefc440d1610ed205a8ca4f4aa65d47e"
+    },
+    {
+      "file": "02-read-cards.json",
+      "bytes": 2690,
+      "sha256": "9443e738ad497a7bae7e620451eb30a89c33cbf12f9a0617aa04ec8a93beccb6"
+    },
+    {
+      "file": "03-read-keywords.json",
+      "bytes": 6758,
+      "sha256": "cf2a45b51592150a4e2b572ddb1df314c9bae9fc5ed8e51e50e896cf2d37e65f"
+    },
+    {
+      "file": "04-read-context_metadata.json",
+      "bytes": 1981,
+      "sha256": "aefa276d2f7d6e767cd4ca948663e784fd8c3e7e2276517423f710a0972ad9ef"
+    },
+    {
+      "file": "05-review-result.json",
+      "bytes": 202,
+      "sha256": "da79cd4781cda963d5d8ef7dbdea412a6e67f92fc49f37813cc4ae65bc2ba7b9"
+    },
+    {
+      "file": "06-report.json",
+      "bytes": 61476,
+      "sha256": "2e484811a2125f87a26c3fd1c65ebcbc247c8cc42abf1606bb017138eece7fc7"
+    }
+  ]
+}

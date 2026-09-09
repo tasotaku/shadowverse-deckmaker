@@ -1,0 +1,37 @@
+{
+  "calls": [
+    {
+      "started_at": "2026-09-09 05:16:02 UTC",
+      "ended_at": "2026-09-09 05:16:04 UTC",
+      "operation": "open",
+      "urls": [
+        "https://note.com/motoyqsiki/n/n8a0d49c72742",
+        "https://shadowverse-wb.com/chs/deck/cardslist/card/?card_id=10453310",
+        "https://shadowverse-wb.com/ko/deck/cardslist/card/?card_id=10954120"
+      ],
+      "findings": [
+        "作者記事の公開本文189–197行でコラプション1枚の採用、盤面処理・追加打点・自盤面を減らす用途を確認した。過去環境の用途の実例であり現在のガロダート入り案の勝率ではない。",
+        "公式chs/koページは短いサイト枠のみが返り、今回のopenではカード本文を再確認できなかった。"
+      ]
+    },
+    {
+      "started_at": "2026-09-09 06:39:22 UTC",
+      "ended_at": "2026-09-09 06:39:24 UTC",
+      "operation": "search",
+      "queries": [
+        "site:shadowverse-wb.com \"card_id=10453310\" \"倒数\"",
+        "site:shadowverse-wb.com \"card_id=10954120\" \"12\"",
+        "\"ガロダート\" \"コラプション\""
+      ],
+      "returned_urls": [
+        "https://game8.jp/shadowverse-beyond/702908",
+        "https://onjshadowverse-worlds-beyond.game-info.wiki/d/AoE"
+      ],
+      "finding": "返却範囲は全体除去のカード一覧2件。組み合わせを使う構築実例は特定できなかった。公式本文の独立再確認にも使わず、全文カード根拠は固定packetに限定する。検索不発を未知の証明にしない。"
+    }
+  ],
+  "limitations": [
+    "動画・全投稿・大会全件を検索していない。固定DB能力の現行適用日は独立確認できなかった。",
+    "1回目終了から2回目開始まで実時計で83分18秒。理由は未確定。2回目の結果を得て時計差を認識し、以後追加調査を停止した。"
+  ]
+}

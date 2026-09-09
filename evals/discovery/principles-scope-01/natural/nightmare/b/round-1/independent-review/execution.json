@@ -1,0 +1,281 @@
+{
+  "started_at": "2026-09-09T06:48:24.194518+00:00",
+  "deadline_at": "2026-09-09T07:08:24.194518+00:00",
+  "status": "complete_with_deadline_failure",
+  "events": [
+    {
+      "kind": "review_started",
+      "at": "2026-09-09T06:48:24.194518+00:00"
+    },
+    {
+      "kind": "preparation_read_end",
+      "at": "2026-09-09T06:48:58.090071+00:00",
+      "read": [
+        "reviewer-instructions.txt",
+        "common/operator-readme.md",
+        "research.md",
+        "packet-after-attach.json top metadata, initial cards only; initial output truncated"
+      ]
+    },
+    {
+      "kind": "public_verification_start",
+      "at": "2026-09-09T06:49:16.573540+00:00"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "report",
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-principles-scope-01/nightmare/b/session"
+      ],
+      "started_at": "2026-09-09T06:49:16.574205+00:00",
+      "ended_at": "2026-09-09T07:04:41.904034+00:00",
+      "exit_code": 0,
+      "stdout": "public-01-report.json",
+      "stderr": "public-01-report.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "context_metadata",
+      "offset": 0,
+      "limit": 100,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "context_metadata",
+        "--offset",
+        "0",
+        "--limit",
+        "100"
+      ],
+      "started_at": "2026-09-09T07:05:56.914817+00:00",
+      "ended_at": "2026-09-09T07:05:57.753409+00:00",
+      "exit_code": 0,
+      "stdout": "public-02-context_metadata.json",
+      "stderr": "public-02-context_metadata.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "principles_scope_guide",
+      "offset": 0,
+      "limit": 100,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "principles_scope_guide",
+        "--offset",
+        "0",
+        "--limit",
+        "100"
+      ],
+      "started_at": "2026-09-09T07:05:57.770240+00:00",
+      "ended_at": "2026-09-09T07:05:57.853598+00:00",
+      "exit_code": 0,
+      "stdout": "public-03-principles_scope_guide.json",
+      "stderr": "public-03-principles_scope_guide.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "principles",
+      "offset": 0,
+      "limit": 520,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "principles",
+        "--offset",
+        "0",
+        "--limit",
+        "520"
+      ],
+      "started_at": "2026-09-09T07:05:57.969965+00:00",
+      "ended_at": "2026-09-09T07:05:58.053710+00:00",
+      "exit_code": 0,
+      "stdout": "public-04-principles.json",
+      "stderr": "public-04-principles.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "rules",
+      "offset": 0,
+      "limit": 120,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "rules",
+        "--offset",
+        "0",
+        "--limit",
+        "120"
+      ],
+      "started_at": "2026-09-09T07:05:58.055802+00:00",
+      "ended_at": "2026-09-09T07:05:58.121486+00:00",
+      "exit_code": 0,
+      "stdout": "public-05-rules.json",
+      "stderr": "public-05-rules.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "keywords",
+      "offset": 0,
+      "limit": 40,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "keywords",
+        "--offset",
+        "0",
+        "--limit",
+        "40"
+      ],
+      "started_at": "2026-09-09T07:05:58.123081+00:00",
+      "ended_at": "2026-09-09T07:05:58.208702+00:00",
+      "exit_code": 0,
+      "stdout": "public-06-keywords.json",
+      "stderr": "public-06-keywords.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "proposal",
+      "offset": 0,
+      "limit": 20,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "proposal",
+        "--offset",
+        "0",
+        "--limit",
+        "20"
+      ],
+      "started_at": "2026-09-09T07:05:58.210014+00:00",
+      "ended_at": "2026-09-09T07:05:58.276360+00:00",
+      "exit_code": 0,
+      "stdout": "public-07-proposal.json",
+      "stderr": "public-07-proposal.stderr.txt"
+    },
+    {
+      "kind": "card_and_source_crosscheck_start",
+      "at": "2026-09-09T07:06:22.319126+00:00"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "cards",
+      "offset": 0,
+      "limit": 500,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "cards",
+        "--offset",
+        "0",
+        "--limit",
+        "500"
+      ],
+      "started_at": "2026-09-09T11:39:50.610507+00:00",
+      "ended_at": "2026-09-09T11:39:51.601235+00:00",
+      "exit_code": 0,
+      "stdout": "public-08-cards.json",
+      "stderr": "public-08-cards.stderr.txt"
+    },
+    {
+      "kind": "public_operation",
+      "operation": "read",
+      "section": "sources",
+      "offset": 0,
+      "limit": 5000,
+      "argv": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-principles-scope-01/nightmare/b/session",
+        "85b82872414e8852f118e3290c98659ce1a371e80782cbb4105376ce2e93fd6c",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "5000"
+      ],
+      "started_at": "2026-09-09T11:39:51.619348+00:00",
+      "ended_at": "2026-09-09T11:39:51.703207+00:00",
+      "exit_code": 0,
+      "stdout": "public-09-sources.json",
+      "stderr": "public-09-sources.stderr.txt"
+    },
+    {
+      "kind": "deadline_check",
+      "at": "2026-09-09T11:40:17.941832+00:00",
+      "within_deadline": false,
+      "note": "Web確認用clockツールの表示時刻とローカルdatetimeの差を検出したため、期限判定は開始と同じdatetime時計に統一する。"
+    },
+    {
+      "kind": "verification_end_and_save_start",
+      "at": "2026-09-09T13:02:29.820851+00:00",
+      "note": "期限超過後の追加調査は停止。以下は既読資料に基づく保存のみ。"
+    },
+    {
+      "kind": "readback_and_save_end",
+      "at": "2026-09-09T13:04:51.278687+00:00",
+      "files": [
+        "evaluation.json",
+        "evaluation.md"
+      ],
+      "checks": [
+        "5 criteria preserved",
+        "formal review false",
+        "both files readable"
+      ]
+    }
+  ],
+  "verification_end_at": "2026-09-09T13:02:29.820851+00:00",
+  "save_started_at": "2026-09-09T13:02:29.820851+00:00",
+  "time_condition_met": false,
+  "additional_investigation_stopped_at": "2026-09-09T11:40:17.941832+00:00",
+  "save_end_at": "2026-09-09T13:04:51.278687+00:00",
+  "elapsed_seconds": 22587.084169,
+  "deadline_overrun_seconds": 21387.084169,
+  "public_operation_count": 9,
+  "public_failures": 0,
+  "public_corrections": 0,
+  "formal_review_performed": false,
+  "timing_limitation": "各公開CLI操作の開始終了はdatetime.now(timezone.utc)で即時記録。ローカル読取の細かい時刻と、工程間の空白原因は記録がないため補完しない。"
+}

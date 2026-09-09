@@ -1,0 +1,60 @@
+{
+  "started_at": "2026-09-09T05:03:36.201010+00:00",
+  "checks": [
+    {
+      "url": "https://note.com/ryunen_sv/n/n12559225f480",
+      "query": "kqzato節とレイピア複製の先行言及",
+      "checked_at": "2026-09-09T05:07:34.062090+00:00",
+      "finding": "2026年5月8日公開表示。143行のゴッデスを使うレイピア複製エルフへの言及をopen本文で確認。findは誤って不一致を返したため本文で補った。原リストと具体手順は載らず、第三複製枠の差は未確認。"
+    },
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/559139",
+      "query": "保存40枚の枚数と山札強化・疾走の標準用途を照合",
+      "checked_at": "2026-09-09T05:07:34.062090+00:00",
+      "finding": "更新表示は2026年9月8日18:54。本文331〜430行の15種計40枚を保存版と照合。ダストデイズ3、レイピア3、橙酔2、セタス3。476〜525行は山札強化から疾走へつなぐ標準用途。記事のTierは今回案へ転用しない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10502110",
+      "query": "スターライトゴッデスの本文・コピー状態Q&A",
+      "checked_at": "2026-09-09T05:07:34.062090+00:00",
+      "finding": "openはページ枠のみ。公式限定検索結果には進化時に3枚捨てて左3枚を複製する本文が返った。コピー状態のQ&Aは得られなかった。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10502110&lang=ja",
+      "query": "GET card_id=10502110&lang=ja",
+      "checked_at": "2026-09-09T05:05:59.317724+00:00",
+      "finding": "HTTP200。5PP、5/5、ローテ採用可、進化時コピー本文を確認。questionsは空配列で、バフ・軽減の状態保持を直接説明するQ&Aは確認できなかった。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10714110&lang=ja",
+      "query": "GET card_id=10714110&lang=ja",
+      "checked_at": "2026-09-09T05:06:17.067625+00:00",
+      "finding": "HTTP200。操嵩のアナテマ・ダストデイズのコスト・本文・ローテ採用可を固定版と照合。Q&Aは空配列。実機試行ではない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10712110&lang=ja",
+      "query": "GET card_id=10712110&lang=ja",
+      "checked_at": "2026-09-09T05:06:17.161604+00:00",
+      "finding": "HTTP200。緑風のレイピア使いのコスト・本文・ローテ採用可を固定版と照合。Q&Aは空配列。実機試行ではない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10913310&lang=ja",
+      "query": "GET card_id=10913310&lang=ja",
+      "checked_at": "2026-09-09T05:06:17.319388+00:00",
+      "finding": "HTTP200。緋岸橙酔のコスト・本文・ローテ採用可を固定版と照合。Q&Aは空配列。実機試行ではない。"
+    }
+  ],
+  "observations_reviewed_at": "2026-09-09T05:07:34.062090+00:00",
+  "tool_calls": 3,
+  "search_queries": [
+    "site:shadowverse-wb.com \"スターライトゴッデス\" \"コピー\" \"コスト\"",
+    "\"緋岸橙酔\" \"ゴッデス\"",
+    "\"スターライトゴッデス\" コピー コスト 状態 [domains:shadowverse-wb.com]",
+    "\"緋岸橙酔\" \"スターライトゴッデス\" エルフ"
+  ],
+  "limitations": [
+    "検索は4クエリの返却結果のみ。無関係な検索結果は根拠に使用せず、リンクも開いていない。",
+    "各web.runの開始/終了実時計は個別には記録しておらず、全体開始とこの観察照合の実時計を保存。API4件は個別の実時計あり。",
+    "新規性不発を未知の証明にしない。先行リスト・全動画・全投稿は未確認。"
+  ]
+}

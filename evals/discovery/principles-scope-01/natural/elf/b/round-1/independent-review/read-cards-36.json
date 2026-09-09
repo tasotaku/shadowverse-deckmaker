@@ -1,0 +1,82 @@
+{
+  "sha256": "fdab612e727b8906ed2766cdc6de434a5d35825a90ca33db7d5ba74d7c55235b",
+  "section": "cards",
+  "unit": "cards",
+  "offset": 36,
+  "limit": 1,
+  "total": 212,
+  "next_offset": 37,
+  "content": [
+    {
+      "card_id": 10502110,
+      "name": "スターライトゴッデス",
+      "class_name": "ニュートラル",
+      "cost": 5,
+      "atk": 5,
+      "life": 5,
+      "type": "follower",
+      "is_token": false,
+      "rotation": true,
+      "copy_limit": 3,
+      "card_set_id": 10005,
+      "deck_eligible": true,
+      "tribes": [
+        "-"
+      ],
+      "skill_text": "【進化時】自分の手札3枚を選ぶ。それを捨てる。自分の手札左から3枚のコピー1枚ずつを非公開で自分の手札に加える。",
+      "evolution_text": "【進化時】自分の手札3枚を選ぶ。それを捨てる。自分の手札左から3枚のコピー1枚ずつを非公開で自分の手札に加える。",
+      "ref_effect_text": "",
+      "note": "アンカー(2026-07-05レビュー): 状態ごとコピー(スペブ回数・融合カウント・バフ込み)+同名3枚制限の実質突破が本体。手札6枚以上が実質要求 / 4周目確認(2026-07-06): 自分の手札の状態持ちカードをコピーできる唯一の供給(他のコピー2種は相手参照)。シンセライズ線はYouTube既出。OD(スペブ済18コス)コピー線はOD自身の手札全戻しでコピーがデッキに還る=引き直し運頼みで§5-4により不算入 / ユーザー評価(2026-07-30): 進化時コピーには捨てる手札3枚と、コピー後に残す左3枚が必要で、十分な手札補充なしでは増殖装置として機能しにくい。",
+      "note_updated_at": "2026-07-06",
+      "raw": {
+        "skill_text": "<ev>【<color=Keyword>進化時</color>】自分の手札3枚を選ぶ。それを捨てる。自分の手札左から3枚のコピー1枚ずつを非公開で自分の手札に加える。</ev>",
+        "evo": {
+          "card_resource_id": 105021101,
+          "flavour_text": "「真の運命は未だ《未完》。求むなら我が提示を紐解け」\n――《世界》・ゼルガネイア",
+          "skill_text": "<ev>【<color=Keyword>進化時</color>】自分の手札3枚を選ぶ。それを捨てる。自分の手札左から3枚のコピー1枚ずつを非公開で自分の手札に加える。</ev>",
+          "card_image_hash": "24823e7d66e04bf1acaa5e94278005cd",
+          "card_banner_image_hash": "953c1cb566ee44a5a642a0e540e2b434"
+        },
+        "ref_effect_text": null
+      },
+      "source_url": "https://shadowverse-wb.com/web/CardList/card?card_id=10502110&lang=ja",
+      "tags": [
+        {
+          "kind": "require",
+          "tag": "手札蓄積(コピー対象カード)"
+        },
+        {
+          "kind": "require",
+          "tag": "進化権"
+        },
+        {
+          "kind": "supply",
+          "tag": "手札生成(◯◯)"
+        }
+      ],
+      "requirements": [
+        {
+          "type": "presence",
+          "requirement": "コピーする価値のある状態持ちカードの新顔",
+          "tag": null,
+          "deadline": null,
+          "status": "active",
+          "note": "既知の的は全て閉塞(4周目2026-07-06): シンセライズ(融合4種→8点/T)は先駆者YouTube既出かつ財宝新カードは第3弾で打ち止め(底上げ新カードが出たら再浮上=ユーザー確定条件)。OD(スペブ済18コス)は自身の手札全戻しでコピーがデッキに還る運頼み=§5-4不算入。新弾の融合/スペブ/カウンタ状態持ちが出たら再検索 / 2026-08-27新弾10009再調査: ガロダートVSゼットは手札で蓄積したコスト低下をスターライトゴッデスでコピー可能。3枚を6枚へ増やせるため同名4回以上の反復候補。体力12以下と自傷管理を要検証。"
+        },
+        {
+          "type": "accumulate",
+          "requirement": "捨てる3枚を墓場・捨て反応の燃料に変換できる受け皿",
+          "tag": null,
+          "deadline": null,
+          "status": "active",
+          "note": "既存activeの『コピーする価値のある状態持ちカードの新顔』とは別軸。進化時に手札3枚を捨てる(墓場+3・rules.md捨て)副作用が固定で付く。墓場カウンタ/手札を捨てたとき反応する受け皿があればコピー本命と別方向の天井が開く。ニュートラルのため受け皿は同居クラス依存(墓場を使うのはナイトメア/ネクロ系)で成立範囲は狭い=過剰気味の下書きとして提示。req_tagは『捨てに反応する能力の存在』語彙が無いためnull。"
+        }
+      ],
+      "referenced_keywords": [
+        "進化時"
+      ],
+      "referenced_card_sets": [],
+      "related_card_ids": []
+    }
+  ]
+}

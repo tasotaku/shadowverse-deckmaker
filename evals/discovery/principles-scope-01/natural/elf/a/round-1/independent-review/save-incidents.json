@@ -1,0 +1,10 @@
+[
+  {
+    "recorded_at": "2026-09-09T05:11:00.367008+00:00",
+    "operation": "local save-check construction",
+    "error": "KeyError: 'content'",
+    "cause": "report.sourcesの各項目が本文を持つと誤って仮定した。",
+    "impact": "評価の再登録や再採点はなし。保存照合用の補助スクリプトが書込前に停止。",
+    "correction": "reportではsource_hash等の一覧と対応を検査し、本文保持は固定packet内の本文・ファイルハッシュと照合する。"
+  }
+]
