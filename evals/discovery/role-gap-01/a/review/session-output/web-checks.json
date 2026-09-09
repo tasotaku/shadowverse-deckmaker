@@ -1,0 +1,36 @@
+{
+  "author": "sv-role-gap-01/a/root",
+  "clock": "clock.curr_timeによるUTC実時計。各時刻はツール呼出し直前または直後の観測値。公開日ではない。",
+  "search_batches": [
+    {
+      "observed_at": "2026-09-09T15:28:28Z",
+      "queries": ["シャドバ ビヨンド \"メイドの作法\" \"マーズ\" 確定", "シャドバ ビヨンド \"ロイヤル\" \"スペル軸\" メイド", "\"栄耀なる麗金花\" \"戦慄の海賊旗\""],
+      "urls_used": ["https://gamewith.jp/shadowverse-wb/559138", "https://note.com/_m_k_s_n_/n/naeb0c6139e90", "https://note.com/motoyqsiki/n/nf5fb40f65b00", "https://note.com/lilie_lily/n/n93fb320d2e3f"],
+      "finding": "連携の現行掲載例は34フォロワー・6スペル。作法＋ゼラエルの個人案、旗＋麗金花の採否を論じる個人記事が検索結果に出た。旗と金貨を結ぶだけの案は具体的な先行言及がある。",
+      "limitation": "検索結果の抜粋を読んだ段階。個人記事の戦績主張は検証していない。全結果を採用根拠として評価していない。今回の二種限定配分の不存在は示さない。"
+    },
+    {
+      "observed_at": "2026-09-09T15:30:08Z",
+      "queries": ["\"メイドの作法\" \"ギルダリア\" \"マーズ\"", "\"メイドの作法\" \"フォロワー\" \"絞\" ビヨンド", "\"ロイヤル\" \"メイドの作法\" \"確定サーチ\""],
+      "urls_used": ["https://www.nicozon.net/watch/sm45169128", "https://hanhans.hatenablog.com/entry/2025/12/02/194747", "https://note.com/tennomikasa/n/n5fa810ac61b8"],
+      "finding": "検索抜粋に2025-07-09公開の動画説明があり、ムササビ／エルネスタへの作法のサーチ限定を説明していた。一般的な二種限定発想は先行例あり。ラキルによるスペル限定サーチの別記事も結果に含まれる。",
+      "limitation": "動画内の40枚や対戦は未確認。タイトルの打点・最速ターンは検証していない。今回のカード2種の普及度は不明。"
+    },
+    {
+      "observed_at": "2026-09-09T15:31:02Z",
+      "queries": ["site:shadowverse-wb.com 超進化 \"+3\"", "\"ギルダリア\" \"マーズ\" \"メイド\" スペル ロイヤル", "\"sm45169128\""],
+      "urls_used": ["https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10071310", "https://shadowverse-wb.com/ja/system/cardbattle/battle/"],
+      "finding": "公式カードページの検索抜粋に進化+2/+2、超進化+3/+3、EP進化とSEP超進化の同一ターン併用不可を確認。今回の具体配分に対する決定的な既出確認は得られなかった。",
+      "limitation": "カードページ本文の後続openでは動的内容が取得できず、抜粋確認と区別した。検索不発を新規性に換算しない。"
+    }
+  ],
+  "page_checks": [
+    {"url":"https://gamewith.jp/shadowverse-wb/559138","observed_at":"2026-09-09T15:30:08Z","followup_observed_at":"2026-09-09T15:30:47Z","query":null,"finding":"本文とカードリストを閲覧。衛生兵・分班長で連携を進め、ギルダリアやマーズで詰める説明がある。","limitation":"検索結果の更新日は9月8日、open本文は9月9日19:24表示。本文に海賊ロイヤル解説や不一致の画像ラベルも混在。現在のTier・勝率・完全な説明整合性は認定しない。"},
+    {"url":"https://note.com/_m_k_s_n_/n/naeb0c6139e90","observed_at":"2026-09-09T15:30:08Z","followup_observed_at":"2026-09-09T15:30:47Z","query":null,"finding":"連携ロイヤルにゼラエルと作法を加え、引いたゼラエルを戻すという別用途の先行言及を確認。","limitation":"個人案。記事の強さ・生存主張は採用しない。一般への普及を示す資料ではない。"},
+    {"url":"https://www.nicozon.net/watch/sm45169128","observed_at":"2026-09-09T15:30:47Z","query":"\"ロイヤル\" \"メイドの作法\" \"確定サーチ\"","finding":"openはInternal Error。検索結果の説明文だけで二種限定の先行言及を確認。","limitation":"動画本編・映像・デッキ全リストは取得不能。"},
+    {"url":"https://www.nicovideo.jp/watch/sm45169128","observed_at":"2026-09-09T15:31:02Z","query":"\"sm45169128\"","finding":"元動画URLもopenがInternal Error。","limitation":"視聴できていない。タイトルの実証は行っていない。"},
+    {"url":"https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10071310","observed_at":"2026-09-09T15:31:34Z","query":"site:shadowverse-wb.com 超進化 \"+3\"","finding":"openではサイトの枠だけで、検索抜粋にあるTips本文は取得されなかった。","limitation":"当該カード本文や最新適用時点の確認ではない。"},
+    {"url":"https://shadowverse-wb.com/ja/system/cardbattle/battle/","observed_at":"2026-09-09T15:31:51Z","query":null,"finding":"公式の基本ルール本文を閲覧。場5枚・手札9枚、進化+2/+2、先攻7／後攻6の超進化と自ターン耐性を確認。超進化の数値は検索抜粋の+3/+3とも整合。","limitation":"本文の超進化数値は『3/+3』という表示。個別カードの発火順・実戦の生存はこのページから証明しない。"}
+  ],
+  "scope_limitations": ["実対戦・実機検証・独立評価なし", "検索結果に出た個人案を一般流行と同一視しない", "全文引用はせず自分の言葉で要約", "検索不発・同居0による独自性認定なし"]
+}
