@@ -1,0 +1,125 @@
+{
+  "task": "終了済み試行と現行公開操作の独立読取点検",
+  "started_at_observed_utc": "2026-09-08T21:29:57Z",
+  "ended_at_observed_utc": "2026-09-09T01:54:34.236492+00:00",
+  "timing_limit": "8分の依頼。時計の途中観測が21:29:57→23:19:28→01:52:07へ進んだため、8分以内とは報告しない。時計差と能動作業時間を分離できず、能動8分を満たしたとの主張もしない。",
+  "code_revision": "53f73dcda8a578c8ccee8564c6c6643eb38c333d",
+  "branch": "main",
+  "scope": {
+    "read": [
+      "適用AGENTSとimport先（長文出力の一部省略あり）",
+      "docs/design.mdの目的・1.5・3.2・5・6・既出調査規律を中心",
+      "natural-trial-01の初期目的・初期packetのinstruction・README・round-2/4の停止・round-3別評価",
+      "idea-comparison-01のa/b初期指示・README・最終評価の要点・a2別評価・a3/b3停止",
+      "src/svdeck/discovery.py / discovery_evidence.py / discovery_compare.py / explore.py とREADME公開操作"
+    ],
+    "not_read": [
+      "sketch-first-01",
+      "/tmp/sv-sketch-first-*",
+      "他担当の会話",
+      "カードDB本体",
+      "全評価ファイル全行・全カード全文"
+    ],
+    "mutations": [
+      "指定された/tmp報告2ファイルのみ"
+    ],
+    "new_trials": 0,
+    "code_edits": 0,
+    "db_edits": 0,
+    "child_agents": 0
+  },
+  "observations": [
+    {
+      "id": "O1",
+      "finding": "初回資料は既に別用途・副作用・複数段・配分の検討、行動順と各時点のPP等の記載を要求していた。bだけは最大3着想の短い比較を追加していた。",
+      "evidence": [
+        "evals/discovery/natural-trial-01/initial-packet.json.gz:data.instruction",
+        "evals/discovery/idea-comparison-01/a/generator-instructions.txt",
+        "evals/discovery/idea-comparison-01/b/generator-instructions.txt"
+      ]
+    },
+    {
+      "id": "O2",
+      "finding": "自然試行は小さい配分への比較、指定局面・引き順、次ターン比較を追加したが、原6枠に固有の利益を支持できず限定停止。相手の除去先変更で旧18点手順が場5枠を超える点も後から判明。",
+      "evidence": [
+        "evals/discovery/natural-trial-01/README.md:9",
+        "evals/discovery/natural-trial-01/round-2/decision.json:7",
+        "evals/discovery/natural-trial-01/round-4/decision.json:8"
+      ]
+    },
+    {
+      "id": "O3",
+      "finding": "aの第2回は通常案に未使用の後半追加PPが残るのに、2PP差という断面を比較利益に使用。別評価が実際に使える差1PPへ訂正し、第3回はそれを認めて停止した。",
+      "evidence": [
+        "evals/discovery/idea-comparison-01/a/round-2/review-response.json:69",
+        "evals/discovery/idea-comparison-01/a/round-2/review-response.json:87",
+        "evals/discovery/idea-comparison-01/a/round-3/answer.json:9"
+      ]
+    },
+    {
+      "id": "O4",
+      "finding": "bは1回強化へ条件を減らし同じ全手札で防御を比較したが、守った次ターンの既知手札から反撃に戻れず、ヒエン1枚を失う損を上回る根拠も不足。停止と別評価developの不一致が残る。",
+      "evidence": [
+        "evals/discovery/idea-comparison-01/README.md:9",
+        "evals/discovery/idea-comparison-01/b/round-3/decision.json:10"
+      ]
+    },
+    {
+      "id": "O5",
+      "finding": "現在のsteps.resourcesは文章で、取り込み検査は非空文字列と引用照合。公開compareは全40枚の交換札・種類・コストの集計。手順の資源引継ぎを計算する公開操作は読んだ範囲にない。",
+      "evidence": [
+        "src/svdeck/discovery.py:329",
+        "src/svdeck/discovery.py:429",
+        "src/svdeck/discovery_compare.py:66",
+        "README.md:135"
+      ]
+    },
+    {
+      "id": "O6",
+      "finding": "exploreの算術は自然増と候補3枚までの数量概算で、使用時点とPPの二重使用を未検査と明記。質問からのタグ再検索、全文読出し、資料追加、分岐・改訂は既存機能。",
+      "evidence": [
+        "src/svdeck/explore.py:257",
+        "src/svdeck/discovery_evidence.py:163",
+        "src/svdeck/discovery.py:248",
+        "docs/design.md:376"
+      ]
+    }
+  ],
+  "hypothesis": "二案のPPと未使用追加PPを各手順から自動で引き継ぎ、同じ終了時点で並べると、記述された消費・回復が正しい範囲でO3の過大比較を早く減らせる可能性がある。計算機能の不在が両試行の有用性FAILの原因だとは断定できない。",
+  "candidate": {
+    "count": 1,
+    "title": "二案のPPと未使用追加PPを、行動列から計算して比較する公開操作",
+    "classification": {
+      "feasibility_errors": "狙う。ただし効果解釈ではなく入力された資源操作の会計と比較時点の整合に限定。",
+      "discovery": "直接増やす根拠なし。効果未検証。",
+      "effort": "個別の手計算・使い捨て計算を再利用可能にする可能性。入力の構造化負担も増えるため削減未検証。"
+    },
+    "executable_behavior": "共通の開始ターン・PP・追加PP使用権、二案それぞれの支出・回復・ターン更新・追加PP使用をJSONで受け、逐次残量と使用権を計算する。終点では現在PPと未使用追加PPを別列で返し、両側の使用可能条件が同じ場合だけ利用可能PP差を計算する。条件不明は未確認。自己申告した残量との食い違い、負残量、追加PP再使用を位置付きで返す。",
+    "minimal_implementation": [
+      "新しい小モジュール1個とdiscoveryの公開サブコマンド1個。対象はPPと追加PPだけ。",
+      "既存固定資料への引用・識別値を入力に保持し、既存attachの資料保存経路を再利用。旧packet/reviewは変更しない。",
+      "READMEに入力1例。支出・回復・追加PP温存/使用・日をまたがないターン更新・条件不明・負残量の小さな回帰検査。"
+    ],
+    "not_in_scope": [
+      "カード本文から支出/回復を自動推測すること",
+      "戦闘・バリア・場残り・手札・相手最適行動の再現",
+      "強さ・既出・推薦の自動判定",
+      "この段階でO2の場残りの誤りも解消できるとの主張"
+    ],
+    "existing_capabilities_distinction": "現在でも人またはAIは文章を読み、個別計算コードを作ってattachできる。新規部分は、その計算を保存資料と結ぶ反復利用可能な公開動作にすることだけ。比較を促す説明追加、複数着想の列挙、既存保存分析の表示とは異なる。"
+  },
+  "next_single_falsifiable_comparison": {
+    "input": "a/round-2の訂正前の対応例と、同じ資料の未使用追加PP記述を固定する。訂正後の回答は正解確認側だけが保持する。新しいデッキ探索を行わない。",
+    "comparison": "1回の対照で、現行公開操作を用いた回答と、新操作を用いた回答を、同じ原資料・同じ上限時間で比べる。元資料から行動列へ写した作業時間・解釈不能箇所も記録し、転記を無償扱いしない。",
+    "observable": "通常側の未使用追加PPを保持し、現在PP差2と利用可能PP差1を区別できるか。正しい支出列は不成立としないか。判定までの総時間。",
+    "refutes": "新操作を使っても通常側の追加PPを落とす、現行回答も同精度で短時間、解釈に同量の別評価が必要で総時間が増す、または正解を知った手転記を入れないと成功しないなら優先採用しない。",
+    "limit": "開発に使った1既知事例なので発見力・成功率の未知評価ではない。通っても強い独自種が出る証拠にはしない。"
+  },
+  "do_not_adopt_if": [
+    "次の目的が発見数を直接増やすことに限定され、成立性の補助に時間を割かない場合。",
+    "PP操作の本文解釈を解くために一般的な対戦再現へ広がる場合。",
+    "構造化した説明の保存だけで計算・差分が実行されない場合。",
+    "新規入力で費用に見合う誤り減少を確認できない場合。"
+  ],
+  "conclusion": "候補1件は成立性と比較計算の補助。発見改善の有力候補だとは評価しない。採用効果は未検証。"
+}

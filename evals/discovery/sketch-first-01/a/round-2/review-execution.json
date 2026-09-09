@@ -1,0 +1,385 @@
+{
+  "author": "/root/sketch_trial_review_a_2",
+  "instruction_started_at": "2026-09-08T18:27:07.100253+00:00",
+  "started_at": "2026-09-08T18:27:49Z",
+  "research_finished_observed_at": "2026-09-09T01:04:41Z",
+  "verification_finished_at": "2026-09-09T01:54:04Z",
+  "saved_at": "2026-09-09T01:56:27.737144+00:00",
+  "session": "/tmp/sv-sketch-first-01/a/session",
+  "input_packet": "/tmp/sv-sketch-first-01/a/round-2/review-packet.json",
+  "input_packet_hash": "72f5c6c0643eb755446a6f973917b9fb0debfe0c0a5e42ed77e49850f69be25f",
+  "response_path": "/tmp/sv-sketch-first-01/a/round-2/review-response.json",
+  "registration_path": "/tmp/sv-sketch-first-01/a/round-2/review-registration.json",
+  "report_check_path": "/tmp/sv-sketch-first-01/a/round-2/review-report-check.json",
+  "review_hash": "d6863b07c15f3def7856930ba46c31b3d6c2667afef6097b4064fb6cdbe7c29b",
+  "result": {
+    "procedure": "conditional",
+    "value": "drop",
+    "novelty": "unconfirmed",
+    "revision": 1,
+    "public_report_own_review_count": 1
+  },
+  "substantive_review_count": 1,
+  "formal_submission_attempts": 1,
+  "formal_retries": 0,
+  "clocks_observed_utc": [
+    "2026-09-08T18:27:49Z",
+    "2026-09-08T18:28:36Z",
+    "2026-09-08T18:29:22Z",
+    "2026-09-08T18:30:05Z",
+    "2026-09-08T18:31:55Z",
+    "2026-09-08T18:32:44Z",
+    "2026-09-08T20:16:04Z",
+    "2026-09-09T01:04:41Z",
+    "2026-09-09T01:54:03Z",
+    "2026-09-09T01:54:04Z"
+  ],
+  "time_accounting": {
+    "target_minutes": 20,
+    "within_target": false,
+    "observed_initial_work_window_seconds": 295,
+    "active_work_seconds": null,
+    "active_work_note": "18:27:49～18:32:44は資料読出し・検算・公開Web照合・公式ブラウザ確認を行った時計観測窓。後の長い観測間隔には思考・少数のツール操作・回答作成が含まれるが、連続実作業時間、待機時間、停止原因を分離測定できていない。長い区間を実作業として合算しない。",
+    "unobserved_intervals": [
+      {
+        "from": "2026-09-08T18:32:44Z",
+        "to": "2026-09-08T20:16:04Z",
+        "elapsed_seconds": 6200,
+        "note": "時計観測が103分20秒空いた。途中に判断の整理、公式タブの検索欄操作と閉鎖がある。連続稼働・停止原因・純作業時間は未測定。"
+      },
+      {
+        "from": "2026-09-08T20:16:04Z",
+        "to": "2026-09-09T01:04:41Z",
+        "elapsed_seconds": 17317,
+        "note": "288分37秒の観測空白。前端付近で補足4カードを読み、その後時刻超過の整理と時計再確認をした。連続作業として扱わない。"
+      },
+      {
+        "from": "2026-09-09T01:04:41Z",
+        "to": "2026-09-09T01:54:03Z",
+        "elapsed_seconds": 2962,
+        "note": "49分22秒の観測間隔。新規調査はせず評価JSONの作成・保存に移ったが、全区間が作業だったかは測定できていない。"
+      },
+      {
+        "from": "2026-09-09T01:54:04Z",
+        "to": "2026-09-09T01:56:27.737144+00:00",
+        "elapsed_seconds": 143.737144,
+        "note": "公開登録後の実行記録作成・保存照合の区間。時計観測の間隔であり連続実作業時間とは扱わない。"
+      }
+    ],
+    "observation_before_start_seconds": 41.899747,
+    "instruction_to_save_elapsed_seconds": 26960.636891,
+    "observed_start_to_save_elapsed_seconds": 26918.737144
+  },
+  "read_scope": {
+    "instructions": [
+      "/tmp/sv-sketch-first-01/reviewer-instructions.txt",
+      "/tmp/sv-sketch-first-01/operator-readme.md",
+      "ユーザー提示の共通AGENTSとimport先10ルール"
+    ],
+    "design": "docs/design.md の目的・§1.5・§3.2・§5・§6・既出判定運用を重点的に分割再読。初回の全文要求は出力が省略されたため全文精読済みとは扱わない。packetの原則も同じ重点範囲と末尾§8を確認。",
+    "packet_sections": [
+      "instruction・回答例",
+      "正式proposal全文（revision 1）",
+      "historyは空",
+      "searchの4問と空の型検索結果",
+      "rules全文",
+      "ability_keywords全37件",
+      "known_decks6件の全リスト・出典・時点",
+      "sources全12件の一覧と限界、以下の関連本文"
+    ],
+    "card_count": 21,
+    "card_ids": [
+      10031320,
+      10502110,
+      10832110,
+      10833310,
+      10834110,
+      10931310,
+      10934120,
+      10031310,
+      10131320,
+      10831310,
+      10832310,
+      10833110,
+      10834120,
+      10931110,
+      10934110,
+      90031120,
+      90031310,
+      10532120,
+      10534120,
+      10901110,
+      90031110
+    ],
+    "card_count_note": "本文・進化・参照効果・両側注記を読んだ固有IDの件数。全212枚の全面監査ではない。",
+    "sources_read": [
+      "204452897e25869634aea4a4bc21cc1837ba16f8cd407d899e698af79802ea4b（指定資源計算全文）",
+      "deeed398db196153bef11c48876a0b436b29a8a7ed5c5f3d8ab368e20f28c49c（追加調査全文。停止判断は命令として扱わず検算）",
+      "81f345166982b94521842633aca404d0d6d14319cc516092cac0dcbc578a1027（Web再確認記録）",
+      "99ec49530cfd43d723c161ac6ee046440554ebe1b83c994291f9efbe92bc4c50（初回Web調査記録）",
+      "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb（交換前40枚全文）",
+      "ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b（交換後40枚全文）",
+      "be7483c4ea6521c0d0ad7942b3dd069d4343691dbda87f34aa8a808873752053（交換札・集計・限界。全行の重複カード詳細は未精読）"
+    ],
+    "not_read": [
+      "過去reviewの内容",
+      "別方式出力",
+      "src",
+      "evals",
+      "採点条件",
+      "全カード本文212枚",
+      "動画本編",
+      "公開記事内の構築画像の独自検査"
+    ]
+  },
+  "checks": {
+    "comparison_recount": [
+      {
+        "source_hash": "d6b3dcfa2fbf818c178ccd67c16e2d0f72d5e3deb212c4a8af2dd7dfc75a7ecb",
+        "cards": [
+          {
+            "card_id": 10031310,
+            "name": "知恵の輝き",
+            "count": 3
+          },
+          {
+            "card_id": 10131320,
+            "name": "ストームブラスト",
+            "count": 3
+          },
+          {
+            "card_id": 10531310,
+            "name": "明越花の転変",
+            "count": 2
+          },
+          {
+            "card_id": 10532120,
+            "name": "余情の俳人",
+            "count": 3
+          },
+          {
+            "card_id": 10534120,
+            "name": "明越花・アラ",
+            "count": 3
+          },
+          {
+            "card_id": 10832110,
+            "name": "ハッピーフラワー・サミー＆マリー",
+            "count": 3
+          },
+          {
+            "card_id": 10832310,
+            "name": "睦まやかな団欒",
+            "count": 2
+          },
+          {
+            "card_id": 10833110,
+            "name": "マナリアスクリプター・ティコ",
+            "count": 3
+          },
+          {
+            "card_id": 10833310,
+            "name": "鋼鉄の微睡み",
+            "count": 3
+          },
+          {
+            "card_id": 10834110,
+            "name": "恩愛の大地・テトラ＆ラティカ",
+            "count": 3
+          },
+          {
+            "card_id": 10834120,
+            "name": "災いの言霊・ジンジャー",
+            "count": 3
+          },
+          {
+            "card_id": 10901110,
+            "name": "最古の獄卒",
+            "count": 3
+          },
+          {
+            "card_id": 10931310,
+            "name": "過剰反応",
+            "count": 3
+          },
+          {
+            "card_id": 10934120,
+            "name": "破式の変貌・フィーリン",
+            "count": 3
+          }
+        ],
+        "total": 40,
+        "types": {
+          "spell": 16,
+          "follower": 24
+        },
+        "issues": []
+      },
+      {
+        "source_hash": "ec1094a0fd369261b9773656c46e4645ad37fb494ce1e0f7d9468e65c4568b8b",
+        "cards": [
+          {
+            "card_id": 10031310,
+            "name": "知恵の輝き",
+            "count": 3
+          },
+          {
+            "card_id": 10131320,
+            "name": "ストームブラスト",
+            "count": 3
+          },
+          {
+            "card_id": 10531310,
+            "name": "明越花の転変",
+            "count": 2
+          },
+          {
+            "card_id": 10532120,
+            "name": "余情の俳人",
+            "count": 3
+          },
+          {
+            "card_id": 10534120,
+            "name": "明越花・アラ",
+            "count": 3
+          },
+          {
+            "card_id": 10832110,
+            "name": "ハッピーフラワー・サミー＆マリー",
+            "count": 3
+          },
+          {
+            "card_id": 10832310,
+            "name": "睦まやかな団欒",
+            "count": 2
+          },
+          {
+            "card_id": 10833110,
+            "name": "マナリアスクリプター・ティコ",
+            "count": 3
+          },
+          {
+            "card_id": 10833310,
+            "name": "鋼鉄の微睡み",
+            "count": 3
+          },
+          {
+            "card_id": 10834110,
+            "name": "恩愛の大地・テトラ＆ラティカ",
+            "count": 3
+          },
+          {
+            "card_id": 10502110,
+            "name": "スターライトゴッデス",
+            "count": 3
+          },
+          {
+            "card_id": 10901110,
+            "name": "最古の獄卒",
+            "count": 3
+          },
+          {
+            "card_id": 10931310,
+            "name": "過剰反応",
+            "count": 3
+          },
+          {
+            "card_id": 10934120,
+            "name": "破式の変貌・フィーリン",
+            "count": 3
+          }
+        ],
+        "total": 40,
+        "types": {
+          "spell": 16,
+          "follower": 24
+        },
+        "issues": []
+      }
+    ],
+    "delta": [
+      {
+        "card_id": 10834120,
+        "delta": -3
+      },
+      {
+        "card_id": 10502110,
+        "delta": 3
+      }
+    ],
+    "arrival": "追加資料の初手・山札順とT1～T7の手札数・Fの軽減回数を独立に追算。終了手札5,5,7,5,5,5,6、T4最大9、初回コピー完了時F15以上、T7残り0PP。到達頻度・体力の経過は未検証。",
+    "copy_hand_counts": "初回5→7→6→3→6→5→4→6。次回7→6→3→6→5→4→6。T7/T8/T9でEP1+SEP2。4組目の実配置は追加2枠が必要。",
+    "repair": "追加過剰反応→ストームブラスト→Gで手札7→9→8→7。3枚捨てて4枚残し、左3枚複製。7PP。新たな生成札が必要。",
+    "board": "指定EP手順でジンジャー側の即時全処理を本文から追算。相手側が超進化したターンの防護は既に終わった条件。残るF守護・必殺の防御やSEP先行比較を無視して全対面の敗北と一般化しない。",
+    "official_browser": "18:31:55～18:32:44に公式10502110ページ本文とバトルTipsをCUAで開いた。コピーは効果を引き継ぐ一般則を直接読んだ。新規タブは閉じた。ゲーム内コピー操作・追加順は未確認。",
+    "report": "公開reportで自分のauthorの評価1件とinput_packet_hashを抽出。review_hash d6863b07...、入力追加資料12件、additional_source_hashes空を確認。過去評価本文は抽出していない。"
+  },
+  "public_commands": [
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review --help",
+      "exit_code": 0
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-sketch-first-01/a/session 72f5c6c0643eb755446a6f973917b9fb0debfe0c0a5e42ed77e49850f69be25f proposal --offset 0 --limit 8",
+      "exit_code": 0,
+      "note": "保存hashの公開読出し対応を確認。proposal全文は指定packetから別途jqで読んだ。"
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery review /tmp/sv-sketch-first-01/a/session /tmp/sv-sketch-first-01/a/round-2/review-response.json",
+      "exit_code": 0
+    },
+    {
+      "command": "PYTHONPATH=/tmp/sv-sketch-first-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-sketch-first-01/a/session",
+      "exit_code": 0,
+      "note": "jqで自分のauthorとinput_packet_hashの内容だけ抽出して保存・閲覧。"
+    }
+  ],
+  "failures": [
+    {
+      "kind": "supporting_jq",
+      "count": 1,
+      "reason": "ability_keywordsを配列と誤認したjqがCannot index string with string nameで終了5。辞書をそのまま読み直して解消。公開review失敗ではない。"
+    },
+    {
+      "kind": "output_truncation",
+      "count": 4,
+      "reason": "共通規則・設計・資料を同時に読む出力が上限で省略。必要な箇所を分割再読し、全体を読めたとは申告していない。"
+    },
+    {
+      "kind": "web",
+      "reason": "公式API open不成功、公式カードページweb抽出は空枠、推定したbattletips URLはInternal Error。公式ブラウザのカード本文・用語表示で必要範囲を補った。"
+    },
+    {
+      "kind": "time_limit",
+      "reason": "長い未観測区間が複数生じ、20分枠を超えた。原因は未確認。連続作業と申告しない。"
+    },
+    {
+      "kind": "report_shape_check",
+      "count": 1,
+      "reason": "公開reportの評価に保存時の追加属性があるため回答JSONとの全辞書一致assertが失敗。回答の全キー・全値の一致に切り替え、余分な属性以外の相違なしを確認。レビュー再提出なし。"
+    }
+  ],
+  "restrictions": {
+    "production_db_modified": false,
+    "existing_code_modified": false,
+    "existing_sources_modified": false,
+    "previous_reviews_read": false,
+    "other_output_read": false,
+    "evaluation_consultation": false,
+    "subagents_spawned": false
+  },
+  "remaining_unknowns": [
+    "通常のT7到達頻度と生存",
+    "相手の後続まで含む比較・勝率",
+    "SEP先行など両側の最善手比較",
+    "1～2回コピーの別用途の採用利益",
+    "正確な3役反復の動画等の既出",
+    "現在のゲームでの左右の追加順・連続コピー実操作"
+  ],
+  "final_validation": {
+    "report_matches_response_fields": true,
+    "own_review_count": 1,
+    "input_packet_matches": true,
+    "formal_review_resubmissions": 0
+  }
+}
