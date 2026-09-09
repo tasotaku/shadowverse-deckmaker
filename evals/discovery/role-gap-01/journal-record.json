@@ -1,15 +1,15 @@
 {
   "id": "role-gap-01",
-  "revision": 5,
-  "saved_at": "2026-09-09T15:53:36.294878+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-09T16:41:18.940052+00:00",
   "actor": "root",
-  "reason": "初回独立評価は両方式とも追加検討。正式評価の同一保存を確認し、予定した最後の追加検討を開始",
+  "reason": "追加検討の期限停止と時計不一致を記録。途中計算を停止後に保存し、最後の独立評価を開始",
   "record": {
     "id": "role-gap-01",
     "title": "任せ直す仕事からデッキの種を探す",
     "category": "method",
     "status": "running",
-    "summary": "初回は両方式とも条件付き成立・追加検討・既出未確認。通常基盤の役割損失を埋める比較を、予定した最後の追加検討へ進める。",
+    "summary": "追加検討は両方式とも期限停止。途中の計算3ファイルを別工程で原文保存し、元の案と合わせて最後の独立評価中。",
     "method": "通常の勝ち方から任せ直す仕事を先に選び、その働きを担う別用途・副作用・多段接続を探すと、カードの接続から始める従来指示より試す理由のある種へ進めるか。原因は未立証。",
     "procedure": "同じロイヤル初期資料を2つにコピー。初回の考案指示だけ変え、各15分で考案・保存。別担当が各10分で評価し、追加検討なら根拠を補う改訂を最大1回行う。",
     "inputs": "過去の保存機能試行で使ったロイヤル初期資料を再利用する開発用の比較。旧案・追加資料・評価は渡さず、両方式で新しく考案する。未知カード・保留集合での評価とは呼ばない。",
@@ -17,7 +17,7 @@
     "result": {
       "outcome": "unassessed",
       "summary": "初回の試行推薦は両方式とも0件。サーチ集中の利益は認められたが、外す札の補充・防御・打点を埋める根拠が不足。独立評価は従来版8分41秒、試作版9分29秒で完了。",
-      "limitations": "機能合格は発見力の証明ではない。開発で使用済みの資料1組による比較。"
+      "limitations": "初期資料は開発で使用済みの1組。追加検討の時計が食い違い、公平な所要時間・完走率の比較はできない。原文保存と仮想例の正答は発見力の証明ではない。"
     },
     "decision": {
       "status": "unassessed",
@@ -83,20 +83,56 @@
       {
         "id": "round2_a",
         "title": "従来版で残る負担を追加検討",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T15:52:44.753286+00:00",
-        "ended_at": null,
-        "note": "開始前に決めた最後の追加検討。新しい根拠または実質的な改訂がなければ同じ入力を再採点しない。",
+        "ended_at": "2026-09-09T16:15:05.204085+00:00",
+        "note": "期限停止。正式な追加資料・改訂は未提出。UTC開始終了差22分20秒、経過時計6分55秒。期限検出が7分20秒遅れ、原因は未確認。実作業時間や方法の遅さとは断定しない。",
         "budget_minutes": 15
       },
       {
         "id": "round2_b",
         "title": "役割から探す版で残る負担を追加検討",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T15:52:44.751713+00:00",
-        "ended_at": null,
-        "note": "開始前に決めた最後の追加検討。新しい根拠または実質的な改訂がなければ同じ入力を再採点しない。",
+        "ended_at": "2026-09-09T16:15:05.203887+00:00",
+        "note": "期限停止。正式な追加資料・改訂は未提出。UTC開始終了差22分20秒、経過時計6分55秒。期限検出が7分20秒遅れ、原因は未確認。実作業時間や方法の遅さとは断定しない。",
         "budget_minutes": 15
+      },
+      {
+        "id": "intake_a",
+        "title": "従来版の途中計算を停止後に原文保存",
+        "status": "completed",
+        "started_at": "2026-09-09T16:39:17.352374+00:00",
+        "ended_at": "2026-09-09T16:39:17.469479+00:00",
+        "note": "計算1ファイルを別コピーへ原文保存。担当の正式な改訂や期限内完了とは数えない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "final_review_a",
+        "title": "従来版の新しい計算を含めて最後の独立評価",
+        "status": "running",
+        "started_at": "2026-09-09T16:39:33.088586+00:00",
+        "ended_at": null,
+        "note": "旧案第1版と実際の追加計算だけを渡す。前の評価は除外し、評価基準は同じ。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "intake_b",
+        "title": "役割から探す版の途中計算を停止後に原文保存",
+        "status": "completed",
+        "started_at": "2026-09-09T16:39:17.680021+00:00",
+        "ended_at": "2026-09-09T16:39:17.857703+00:00",
+        "note": "計算2ファイルを別コピーへ原文保存。担当の正式な改訂や期限内完了とは数えない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "final_review_b",
+        "title": "役割から探す版の新しい計算を含めて最後の独立評価",
+        "status": "running",
+        "started_at": "2026-09-09T16:39:33.088587+00:00",
+        "ended_at": null,
+        "note": "旧案第1版と実際の追加計算だけを渡す。前の評価は除外し、評価基準は同じ。",
+        "budget_minutes": 10
       }
     ],
     "evidence_paths": [
@@ -106,7 +142,12 @@
       "evals/discovery/role-gap-01/a/collection.json",
       "evals/discovery/role-gap-01/b/collection.json",
       "evals/discovery/role-gap-01/a/review/collection.json",
-      "evals/discovery/role-gap-01/b/review/collection.json"
+      "evals/discovery/role-gap-01/b/review/collection.json",
+      "evals/discovery/role-gap-01/a/round2/collection.json",
+      "evals/discovery/role-gap-01/a/round2-intake.json",
+      "evals/discovery/role-gap-01/b/round2/collection.json",
+      "evals/discovery/role-gap-01/b/round2-intake.json",
+      "evals/discovery/role-gap-01/final-review-inputs.json"
     ]
   },
   "evidence": [
@@ -121,6 +162,16 @@
       "size": 1679
     },
     {
+      "path": "evals/discovery/role-gap-01/a/round2/collection.json",
+      "sha256": "9ba2e8d59a09c633f5198de4b918f1f9df3c9e465a541716ad5fbf60f9409325",
+      "size": 706
+    },
+    {
+      "path": "evals/discovery/role-gap-01/a/round2-intake.json",
+      "sha256": "bc6d3efcf142150a9ae9f2999e87a26e9f48c6f78b2028039d22b370c9f95f0d",
+      "size": 1198
+    },
+    {
       "path": "evals/discovery/role-gap-01/b/collection.json",
       "sha256": "5fc94b8807ceb57010a23c51343eb57fb98dc2860e7bab696d837cc6390c3879",
       "size": 656
@@ -129,6 +180,21 @@
       "path": "evals/discovery/role-gap-01/b/review/collection.json",
       "sha256": "65644a7c0e35c3802a8a30137945ed6f8f142e6bf8881d59b423d1d24b493d70",
       "size": 2092
+    },
+    {
+      "path": "evals/discovery/role-gap-01/b/round2/collection.json",
+      "sha256": "ff85752b71a7f9ff0eca3226c8ce44b66ea223af7f8ec40d92ec0eb88fc8ec0b",
+      "size": 706
+    },
+    {
+      "path": "evals/discovery/role-gap-01/b/round2-intake.json",
+      "sha256": "28f70f38bdf2c2b1d790abeacc12d9dccc937dfd4d26192ee8ba50129693fcb8",
+      "size": 2137
+    },
+    {
+      "path": "evals/discovery/role-gap-01/final-review-inputs.json",
+      "sha256": "e252daeda520e16d9eb3c7c49d9d0ae840d3182cd8f88bbd31d81bdfa21014d5",
+      "size": 1501
     },
     {
       "path": "evals/discovery/role-gap-01/implementation-verification.json",

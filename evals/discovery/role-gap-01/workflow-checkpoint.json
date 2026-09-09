@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T15:53:36.125158+00:00",
+  "updated_at": "2026-09-09T16:41:18.862394+00:00",
   "symptom": "保存・評価への受け渡しはできたが、通常手順との差を採用する理由が不足。",
   "cause_hypothesis": "接続するカードを選んでから価値を説明する方向が、必要な仕事からの探索を弱めている可能性。因果未立証。",
   "fixed_contract": {
@@ -12,7 +12,7 @@
   "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
   "change": "工程や回答項目を増やさず、初回の探索方向の指示だけを置換。",
   "measure_next": "同じ初期資料からの試行推薦件数、根拠の正しさと独自性の留保、追加調査で解けた問題、実時間と失敗回数。",
-  "status": "round2_running",
+  "status": "final_review_running",
   "workers": {
     "a": {
       "session_id": 55168,
@@ -60,17 +60,41 @@
     },
     "round2_a": {
       "session_id": 24323,
-      "status": "running",
+      "status": "timed_out",
       "started_at": "2026-09-09T15:52:44.753286+00:00",
-      "deadline_at": "2026-09-09T16:07:44.753286+00:00"
+      "deadline_at": "2026-09-09T16:07:44.753286+00:00",
+      "exit_code": 124,
+      "ended_at": "2026-09-09T16:15:05.204085+00:00"
     },
     "round2_b": {
       "session_id": 1155,
-      "status": "running",
+      "status": "timed_out",
       "started_at": "2026-09-09T15:52:44.751713+00:00",
-      "deadline_at": "2026-09-09T16:07:44.751713+00:00"
+      "deadline_at": "2026-09-09T16:07:44.751713+00:00",
+      "exit_code": 124,
+      "ended_at": "2026-09-09T16:15:05.203887+00:00"
+    },
+    "final_review_a": {
+      "session_id": 14739,
+      "status": "running",
+      "started_at": "2026-09-09T16:39:33.088586+00:00",
+      "deadline_at": "2026-09-09T16:49:33.088586+00:00"
+    },
+    "final_review_b": {
+      "session_id": 15444,
+      "status": "running",
+      "started_at": "2026-09-09T16:39:33.088587+00:00",
+      "deadline_at": "2026-09-09T16:49:33.088587+00:00"
     }
   },
-  "collection_helper": "/tmp/collect-role-gap-review.py",
-  "next": "両方の追加検討を同じhandleで終端まで確認する。新資料・実質改訂がある場合だけ、その新入力を同じ基準で最後の独立評価へ渡す。"
+  "collection_helper": "/tmp/collect-role-gap-final-review.py",
+  "next": "14739/15444を同じhandleで終端確認し最後の評価を回収。第3回の考案はしない。",
+  "previous_goal_turn": "no_progress_toward_system: 別タスクへの移動依頼を処理。今回は停止済み工程を実ハンドルで確認し、新しい計算を原文保存して最終評価を開始。",
+  "storage_checkpoint": {
+    "symptom": "途中出力の重複コピーが約4万行へ増加。",
+    "cause": "汎用回収処理が再読JSONと既存報告を展開したまま保存。",
+    "change": "この回収分の原文を圧縮保存し、識別値と対応表を残す。判断資料・全原文・公開操作は保持。",
+    "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+    "measure": "展開した重複行数と原文バイト一致"
+  }
 }

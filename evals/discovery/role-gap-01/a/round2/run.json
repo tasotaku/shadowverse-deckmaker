@@ -1,0 +1,60 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-role-gap-01/a/round2/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-role-gap-01/a/round2/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-role-gap-01/a/round2/work",
+  "stdin": "/private/tmp/sv-role-gap-01/a/round2/work/prompt.md",
+  "output": "/private/tmp/sv-role-gap-01/a/round2/run",
+  "started_at": "2026-09-09T15:52:44.753286+00:00",
+  "deadline_at": "2026-09-09T16:07:44.753286+00:00",
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 62549,
+  "worker_pid": 62568,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-09T16:15:05.204085+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T15:52:44.753744+00:00",
+      "elapsed_seconds": 0.0003248332068324089
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T15:52:44.756936+00:00",
+      "elapsed_seconds": 0.0035804579965770245
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-09T16:15:05.110550+00:00",
+      "elapsed_seconds": 415.36420662514865
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-09T16:15:05.183767+00:00",
+      "elapsed_seconds": 415.4374360833317,
+      "signal": 15
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T16:15:05.204114+00:00",
+      "elapsed_seconds": 415.457771750167
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 415.4577530003153,
+  "runner_returncode": 124
+}
