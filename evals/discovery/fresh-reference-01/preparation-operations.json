@@ -1,0 +1,295 @@
+[
+  {
+    "kind": "tier_selection",
+    "site": "gamewith",
+    "url": "https://gamewith.jp/shadowverse-wb/497197",
+    "started_at": "2026-09-09T17:08:40.596352+00:00",
+    "ended_at": "2026-09-09T17:08:40.935277+00:00",
+    "all_link_count": 19,
+    "selected": [
+      {
+        "site": "gamewith",
+        "url": "https://gamewith.jp/shadowverse-wb/503022",
+        "name": "ランプドラゴン",
+        "tier": "1",
+        "format": "rotation"
+      },
+      {
+        "site": "gamewith",
+        "url": "https://gamewith.jp/shadowverse-wb/503021",
+        "name": "フェイスドラゴン",
+        "tier": "3",
+        "format": "rotation"
+      }
+    ],
+    "scope": "既存の解析関数で候補記事のURLを選ぶ準備。考案・評価は未実施。"
+  },
+  {
+    "kind": "tier_selection",
+    "site": "game8",
+    "url": "https://game8.jp/shadowverse-beyond/694512",
+    "started_at": "2026-09-09T17:08:41.970229+00:00",
+    "ended_at": "2026-09-09T17:08:42.198591+00:00",
+    "all_link_count": 13,
+    "selected": [
+      {
+        "site": "game8",
+        "url": "https://game8.jp/shadowverse-beyond/698541",
+        "name": "ランプドラゴン",
+        "tier": "1",
+        "format": "rotation"
+      },
+      {
+        "site": "game8",
+        "url": "https://game8.jp/shadowverse-beyond/698337",
+        "name": "フェイスドラゴン",
+        "tier": "2",
+        "format": "rotation"
+      }
+    ],
+    "scope": "既存の解析関数で候補記事のURLを選ぶ準備。考案・評価は未実施。"
+  },
+  {
+    "kind": "start",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "start",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "--db",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+      "--class",
+      "ドラゴン",
+      "--format",
+      "rotation",
+      "--objective",
+      "独自で、環境デッキともそこそこ戦える可能性のあるデッキの種を考える。カードの別用途、多段接続、強い基盤の役割配分を扱い、試す理由を示す。"
+    ],
+    "started_at": "2026-09-09T17:08:43.247199+00:00",
+    "ended_at": "2026-09-09T17:08:43.451687+00:00",
+    "monotonic_seconds": 0.20529533410444856,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/start.json"
+  },
+  {
+    "kind": "article-0",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.meta",
+      "--article",
+      "https://gamewith.jp/shadowverse-wb/503022",
+      "--format",
+      "rotation",
+      "--db",
+      "/tmp/sv-fresh-reference-01/generation/work/session/snapshot.db"
+    ],
+    "started_at": "2026-09-09T17:08:43.467128+00:00",
+    "ended_at": "2026-09-09T17:08:44.809326+00:00",
+    "monotonic_seconds": 1.3434350420720875,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/article-0.json"
+  },
+  {
+    "kind": "attach-0",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/article-0.json"
+    ],
+    "started_at": "2026-09-09T17:08:44.827117+00:00",
+    "ended_at": "2026-09-09T17:08:44.939499+00:00",
+    "monotonic_seconds": 0.11335525009781122,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-0.json"
+  },
+  {
+    "kind": "article-1",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.meta",
+      "--article",
+      "https://game8.jp/shadowverse-beyond/698541",
+      "--format",
+      "rotation",
+      "--db",
+      "/tmp/sv-fresh-reference-01/generation/work/session/snapshot.db"
+    ],
+    "started_at": "2026-09-09T17:08:44.954372+00:00",
+    "ended_at": "2026-09-09T17:08:46.663812+00:00",
+    "monotonic_seconds": 1.71067262487486,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/article-1.json"
+  },
+  {
+    "kind": "attach-1",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/article-1.json"
+    ],
+    "started_at": "2026-09-09T17:08:46.684441+00:00",
+    "ended_at": "2026-09-09T17:08:46.822419+00:00",
+    "monotonic_seconds": 0.1389582920819521,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-1.json"
+  },
+  {
+    "kind": "article-2",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.meta",
+      "--article",
+      "https://game8.jp/shadowverse-beyond/764112",
+      "--format",
+      "rotation",
+      "--db",
+      "/tmp/sv-fresh-reference-01/generation/work/session/snapshot.db"
+    ],
+    "started_at": "2026-09-09T17:08:46.835854+00:00",
+    "ended_at": "2026-09-09T17:08:48.737881+00:00",
+    "monotonic_seconds": 1.9037606245838106,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/article-2.json"
+  },
+  {
+    "kind": "attach-2",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/article-2.json"
+    ],
+    "started_at": "2026-09-09T17:08:48.760053+00:00",
+    "ended_at": "2026-09-09T17:08:48.891478+00:00",
+    "monotonic_seconds": 0.13229804206639528,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-2.json"
+  },
+  {
+    "kind": "article-3",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.meta",
+      "--article",
+      "https://gamewith.jp/shadowverse-wb/503021",
+      "--format",
+      "rotation",
+      "--db",
+      "/tmp/sv-fresh-reference-01/generation/work/session/snapshot.db"
+    ],
+    "started_at": "2026-09-09T17:08:48.905219+00:00",
+    "ended_at": "2026-09-09T17:08:50.286875+00:00",
+    "monotonic_seconds": 1.383253333158791,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/article-3.json"
+  },
+  {
+    "kind": "attach-3",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/article-3.json"
+    ],
+    "started_at": "2026-09-09T17:08:50.307423+00:00",
+    "ended_at": "2026-09-09T17:08:50.436600+00:00",
+    "monotonic_seconds": 0.13016629172489047,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-3.json"
+  },
+  {
+    "kind": "article-4",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.meta",
+      "--article",
+      "https://game8.jp/shadowverse-beyond/698337",
+      "--format",
+      "rotation",
+      "--db",
+      "/tmp/sv-fresh-reference-01/generation/work/session/snapshot.db"
+    ],
+    "started_at": "2026-09-09T17:08:50.449768+00:00",
+    "ended_at": "2026-09-09T17:08:51.787916+00:00",
+    "monotonic_seconds": 1.3395167086273432,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/article-4.json"
+  },
+  {
+    "kind": "attach-4",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/article-4.json"
+    ],
+    "started_at": "2026-09-09T17:08:51.810566+00:00",
+    "ended_at": "2026-09-09T17:08:51.941200+00:00",
+    "monotonic_seconds": 0.1315334588289261,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-4.json"
+  },
+  {
+    "kind": "attach-index",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "/tmp/sv-fresh-reference-01/source-index.json"
+    ],
+    "started_at": "2026-09-09T17:08:51.954923+00:00",
+    "ended_at": "2026-09-09T17:08:52.065296+00:00",
+    "monotonic_seconds": 0.11120370822027326,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/attach-index.json"
+  },
+  {
+    "kind": "packet",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-fresh-reference-01/generation/work/session",
+      "--summary"
+    ],
+    "started_at": "2026-09-09T17:08:52.076838+00:00",
+    "ended_at": "2026-09-09T17:08:52.194203+00:00",
+    "monotonic_seconds": 0.11841520806774497,
+    "exit_code": 0,
+    "stderr": "",
+    "output": "/tmp/sv-fresh-reference-01/packet.json"
+  }
+]

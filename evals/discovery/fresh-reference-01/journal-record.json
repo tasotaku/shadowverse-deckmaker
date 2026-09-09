@@ -1,0 +1,110 @@
+{
+  "id": "fresh-reference-01",
+  "revision": 1,
+  "saved_at": "2026-09-09T17:17:12.365576+00:00",
+  "actor": "root",
+  "reason": "新しく取得した参考5構築を使い、公開入口で考案と独立評価を開始",
+  "record": {
+    "id": "fresh-reference-01",
+    "title": "現在の参考構築を渡して考案と評価を試す",
+    "category": "method",
+    "status": "running",
+    "summary": "ドラゴンの参考5記事・各40枚を入力に加え、現行の考案・独立評価で試す理由のある独自案が残るか確認中。",
+    "method": "主役を限定しない現行の探索手順へ、今回取得した参考構築と取得範囲を渡す。別用途・多段接続・役割配分を考案し、通常の構築に対する利益と採用負担を独立評価する。",
+    "procedure": "基準と対象を固定→現在Tier表と保存済み記事の和集合を選ぶ→5記事取得・入力保存→15分の考案→10分の独立評価→必要なら実際の追加根拠を1回取得して最終評価。3回目の考案は行わない。",
+    "inputs": "ドラゴン・ローテーションの対象113枚と関連99枚。現在Tier表4記事と7月保存3記事の和集合5記事から5構築を今回取得。カードDBは開発で使用済み。",
+    "criteria": "手順の実行可能性、効果・資源の正確さ、追加工程での実質的発展、試す理由のある種の有用性、既出調査と性能主張の誠実さの5基準。資料件数や検査合格だけで有用性の合格にしない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "対象5記事すべてから各40枚の構築を5件取得。初期資料14ファイルの一致と退避を確認。考案を開始したところで、正式案と試行推薦の結果は未確定。",
+      "limitations": "対照群のない1枝の試行。参考取得版は新しいが未知カードではない。ディスカード記事の現在Tier、全公式能力の最新性、実戦成績と独自性は未確認。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "考案と独立評価が終わっていない。資料取得の成功とは分けて判断する。"
+    },
+    "started_at": "2026-09-09T17:08:40.509996+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prepare",
+        "title": "参考記事の選定・取得と固定入力の保存",
+        "status": "completed",
+        "started_at": "2026-09-09T17:08:40.509996+00:00",
+        "ended_at": "2026-09-09T17:08:52.273251+00:00",
+        "note": "現在Tier表4記事と7月保存3記事の和集合5記事を全件取得。5構築は各40枚。個別操作日時は証拠の操作記録へ保存。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "generate",
+        "title": "通常の構築と役割を比較しながら案を考案する",
+        "status": "running",
+        "started_at": "2026-09-09T17:14:35.409252+00:00",
+        "ended_at": null,
+        "note": "実行ハンドル83613を起動。期限は2026-09-10 02:29:35 日本時間。追加資料と正式提案の保存まで含む。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "review",
+        "title": "別担当が手順・採用負担・試す価値を評価する",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "過去評価を渡さず同じ基準で評価。まだ開始していない。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/fresh-reference-01/README.md",
+      "evals/discovery/fresh-reference-01/protocol.json",
+      "evals/discovery/fresh-reference-01/reference-selection.json",
+      "evals/discovery/fresh-reference-01/input-verification.json",
+      "evals/discovery/fresh-reference-01/preparation-operations.json",
+      "evals/discovery/fresh-reference-01/preparation-run.json",
+      "evals/discovery/fresh-reference-01/generation-start.json",
+      "evals/discovery/fresh-reference-01/initial-preservation.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/fresh-reference-01/README.md",
+      "sha256": "476d91b147c68ff559e65c05cbd09b1e180e08c3bc847095f84807ec9162b945",
+      "size": 3942
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/generation-start.json",
+      "sha256": "38a442439e5717691eca9c18a72ba1f5310953c5bceb582b1ca419fb0103e5c2",
+      "size": 1381
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/initial-preservation.json",
+      "sha256": "8e0ace08484e9ceddcd3c4b920cc695573a7a2d82b9c9509432d681bf37d8d71",
+      "size": 412
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/input-verification.json",
+      "sha256": "c10f028e9389150cd5e8afe4592edb06847610e5b908106abcc1f0b4063dda68",
+      "size": 5374
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/preparation-operations.json",
+      "sha256": "398999cfc58d615c6aa3ad3c9d41637cc844473b448b353ff4176f1d5bfe58f9",
+      "size": 8780
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/preparation-run.json",
+      "sha256": "4b95a541f892384c821ed0691cf9d2f7a7ceb55687f93f28f76f5554c3fe5078",
+      "size": 1464
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/protocol.json",
+      "sha256": "886cdb3b9e411483f92950c87733630f386ad105d5bcbeb00dab2b0e9888600a",
+      "size": 3209
+    },
+    {
+      "path": "evals/discovery/fresh-reference-01/reference-selection.json",
+      "sha256": "5570e26c126c58db3612694c942814caf6ed945c5f709f176c4e16f7bd78a943",
+      "size": 2535
+    }
+  ]
+}
