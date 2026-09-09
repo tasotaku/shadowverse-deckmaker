@@ -1,0 +1,170 @@
+{
+  "author": "/root/class_choice_a2",
+  "trial": "class-choice-01",
+  "method": "a",
+  "round": 2,
+  "objective": "ニュートラルの別用途から適するクラスと配分・勝ち方まで発展させる。今回は前回に残ったラスティ複製の実手札・役割交換を調べる。",
+  "decision": "not_submitted_materials_only",
+  "reason": "手札・第三対象・役割交換は具体化できたが、遅くなる攻めと失う補充・守りに見合う勝ち方を選び切れなかった。PP訂正や全40枚の差だけでは採用価値を認定しない。完成40枚・勝率を提出必須条件にした判断ではない。",
+  "no_value_proof": false,
+  "exhaustive_search_claim": false,
+  "time_limit_forced_stop": false,
+  "research_ended_at_utc": "2026-09-09T03:29:07Z",
+  "evidence_storage_session": "/tmp/sv-class-choice-01/a-2/session",
+  "selected_proposal_session": null,
+  "formal_proposal_revision": null,
+  "session_revision": 0,
+  "initial_packet_hash": "ddcdad70d2e1d0f98ed44fc7401a10f8dfae1f715e14e615e2c82df969853841",
+  "prior_material_packet_hash": "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+  "final_packet_hash": "bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e",
+  "resolved_since_previous": [
+    "後攻T7の追加PPで5+3を払える条件を採用。",
+    "初期4枚からT7までの実名手札、捨てる3枚、コピー対象の左右順、最大9枚、進化権2と超進化権1を明記。",
+    "1PPの燃え落ちる縁を第三のコピー先として具体化し、T8の6+1+1PPの使用と、T7の全PP使用による除去不能を分けた。",
+    "複製しない3つの比較枝と、失う補充・守護・展開を記録。",
+    "仮の9枚交換を公開compareで記録。交換数9とフォロワー純減3を区別。"
+  ],
+  "unresolved": [
+    "指定した手札・引き順と同名2枚の山札残存の頻度。",
+    "T7までの生存、手札妨害、盤面の空き。",
+    "T4・T7の進化権とT6以降の追加PPを他用途から温存できる状況。",
+    "元の疾走2枚の早期使用・補充・守護を手放してでも、追加の疾走6点と1PP除去1枚が必要になる相手・局面。",
+    "ゴッデスまたはラスティを引かない時の勝ち方を、減った9枚の役割込みで補えるか。",
+    "通常ドローでラスティ2枚目を早く引いた場合の代替。メイドの作法で山札へ戻すことはできるが、直後のロイヤル2枚ドローで再び引かない保証はない。",
+    "既出状況・普及度・勝率。検索一致なしから未知とは認定しない。"
+  ],
+  "read_scope": {
+    "instructions": [
+      "/tmp/sv-class-choice-01/a-round-2-instructions.txt",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md",
+      "ユーザー指定のagent-lab/rulesの10 import先",
+      "/tmp/sv-class-choice-01/operator-readme.md"
+    ],
+    "design": "/tmp/sv-class-choice-prototype/docs/design.md 1–590行（目的・フォーマット・公開入口・主役基準・マッチング・既出運用まで）。全体の精読ではない。",
+    "prior_inputs": [
+      "/tmp/sv-class-choice-01/a-session-index.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/research.md",
+      "/tmp/sv-class-choice-01/a-work/round-1/research.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/execution.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/sources-to-attach.json"
+    ],
+    "allowed_prior_independent_review": [
+      "/tmp/sv-class-choice-01/a-work/round-1/independent-review/evaluation.json",
+      "/tmp/sv-class-choice-01/a-work/round-1/independent-review/evaluation.md",
+      "/tmp/sv-class-choice-01/a-work/round-1/independent-review/execution.json"
+    ],
+    "prior_review_limitation": "同方式・同じ第1回の評価だけ。execution.jsonは構造と時刻・公開操作・読取範囲を選択確認。全ログ本文の精読ではない。",
+    "packets": "第2回のカード調査はa-2初期packetを重点読取。他6クラスの初期packetは今回は開き直していない。全516枚の再調査ではない。",
+    "card_scope": "a-2の採用可能113枚の名称・ID・コスト一覧、本文・参照先・注記の分割表示。中段20〜87は再表示。先頭と末尾は長い表示の取得できた範囲を読み、全113枚のraw・全進化文・タグ・要求を精査したとはしない。実手順と比較に使った札は保存本文と注記へ照合。",
+    "focused_card_ids": [
+      10502110,
+      10022120,
+      10922310,
+      10721110,
+      10623310,
+      10722120,
+      10721120,
+      10722110,
+      10021110,
+      10722310,
+      10921310,
+      90021120,
+      90021110,
+      90021350,
+      10523310,
+      10724120,
+      10624120,
+      10723110,
+      10724110,
+      10824110,
+      10824120,
+      10021130
+    ],
+    "rules": "a-2のrules全117行とability_keywords全項目を表示。公式対戦ページで初手・通常ドロー・PP・進化・場・手札上限を確認。",
+    "known_decks": "a-2の資料中のロイヤル5件の全40枚と、known_decksの連携ロイヤル1件を表示。うちGameWith連携ロイヤルを9枚交換の比較元に使用。他28保存構築はこの回で再精査しない。",
+    "previous_additional_sources": "a-4公開readで43資料全3271行を取得し、前回追加10件を元入力6項目で一致照合。意味的読取は指定された前回10資料。",
+    "web": "日本語組み合わせ検索と主要サイト限定検索。公式対戦説明は本文読取。公式ヘルプと個人記事・動画集計記事は取得できた検索表示の範囲を区別。全動画・全言語・全画像を調べていない。",
+    "exclusions": [
+      "方式b",
+      "他の自然試行",
+      "src/evals/protocol",
+      "期待判定・採点結果",
+      "本番DB・snapshot直接読取",
+      "実装コード",
+      "今回以外の担当の評価",
+      "追加agent・Codex子実行",
+      "外部への投稿・送信"
+    ]
+  },
+  "public_operations": {
+    "counts": {
+      "packet": 2,
+      "read": 7,
+      "attach": 1,
+      "compare": 1,
+      "report": 1
+    },
+    "success": 12,
+    "failure": 0,
+    "submit": 0,
+    "review": 0,
+    "log": "public-command-log.json"
+  },
+  "additional_source_hashes": [
+    "6f7849e483d203082df9e22a7301fe75cb03812b6f861ec54f33eecb385faa67",
+    "d28573d04fce8481f37adbed89f5b8b845379e5402fb52bfae20a1e33ea72838",
+    "d6cb4759a7f6ead533bcfbbdb674a0844a4197e24d1697a8dc1f33f734429496",
+    "82c65868cdc21fda62dc6498ceea5e64e48b325a4596d4d8dff34f3d4e8a9016",
+    "73d14e28010ca79625d280f38f4c4eee0e3ea06c6488b2657b8d816770a8543d"
+  ],
+  "comparison": {
+    "before_total": 40,
+    "after_total": 40,
+    "exchanged_count": 9,
+    "type_net_change": {
+      "follower": -3,
+      "spell": 3
+    },
+    "eligibility_issues": 0,
+    "source_hash": "73d14e28010ca79625d280f38f4c4eee0e3ea06c6488b2657b8d816770a8543d",
+    "interpretation": "9枚交換の事実と合法性のみ。勝ち方・強さ・最適性は未確認。"
+  },
+  "web_checks": [
+    {
+      "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+      "query": "初期4枚、通常1ドロー、進化と追加PP、手札・盤面上限",
+      "checked_at": "2026-09-09T03:25:20Z",
+      "finding": "公式本文を確認。各操作時刻は03:15:56–03:25:20 UTCの範囲。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/help?tab=tab0",
+      "query": "初手4枚・6ターン目に追加PPを再使用可能",
+      "checked_at": "2026-09-09T03:25:20Z",
+      "finding": "検索結果の公式本文表示で確認。直接open/findは動的本文を返さず、完全な直接取得とはしない。"
+    },
+    {
+      "url": "https://note.com/calm_borage641/n/n03354de6b519",
+      "query": "スターライトゴッデス ロイヤル コピー",
+      "checked_at": "2026-09-09T03:19:36Z",
+      "finding": "検索表示に守護クレストで手札の役割を交換する著者説明。ラスティの同じ用途ではなく、現行の強さ未確認。"
+    },
+    {
+      "url": "https://yutura.net/channel/22441/trend/8lSaJAvgVnc/",
+      "query": "スターライトゴッデス ロイヤル コピー",
+      "checked_at": "2026-09-09T03:19:36Z",
+      "finding": "動画集計サイトのシンセライズ複製表題。動画本体・構築・成績は未確認。"
+    }
+  ],
+  "corrections": {
+    "substantive_research_changes": 1,
+    "substantive_change_note": "前回のT7 PP不足の一般化を訂正し、手札・第三対象・比較枝を追加。正式改訂の変更回数ではない。",
+    "public_command_failures": 0,
+    "public_command_retries_after_failure": 0,
+    "local_verification_corrections": 1,
+    "local_verification_note": "readのcontent行配列を連結してから前回資料と比較するよう修正。",
+    "read_offset_corrections": 1,
+    "read_offset_note": "採用可能札だけの一覧offsetを全cardsのoffsetと混同し2枚を取り違えた。全cardsのIDからoffsetを得てゴッデスと縁を再read。誤った読取は削除せず記録。",
+    "formal_revision_changes": 0
+  },
+  "modifications": "自分のround-2出力先への書込と同方式a-2/sessionへの公開attach/compare/packet/reportのみ。実装・本番DB・既存記録の直接編集なし。"
+}

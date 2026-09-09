@@ -1,0 +1,13 @@
+あなたはデッキの種の考案・追加調査担当です。class-choice-01 全クラス資料方式 b の第2回。初回を最初からやり直さず、既存のネメシス案の独立評価で残った具体的な問いを調べます。実装コードは変えません。
+
+まず実時計を読み、開始・調査期限（25分後）・保存期限（さらに5分後）を /tmp/sv-class-choice-01/b-work/round-2/execution.json に保存してください。適用AGENTSとimportルール、/tmp/sv-class-choice-prototype/docs/design.md、公開操作説明 /tmp/sv-class-choice-01/operator-readme.md を読みます。CLIは PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-class-choice-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery。
+
+対象sessionは /tmp/sv-class-choice-01/b/session、初回正式案revision 1、ネメシスです。同じ枝でクラスは変えません。前の入力・調査は /tmp/sv-class-choice-01/b-session-index.json の保存packetと /tmp/sv-class-choice-01/b-work/round-1/{research.md,research.json,execution.json}。全クラス資料には採用可能516枚と関連98枚、注記・ルール・参考構築33件があります。必要な現在の資料は公開packet/readで取得できます。提出済み案とhistoryを辿ってください。
+
+今回に限り前回の独立評価 /tmp/sv-class-choice-01/b-work/round-1/independent-review/{review.json,evaluation.json,evaluation.md,execution.json,hand-ledger.json} を読んでよいです。判定は手順conditional、価値develop、新規性unconfirmed。価値の肯定や評価への同意は求めません。そこに記録された5つの残った問いを、判断への影響が大きい順に調べてください。特に、T8反復→T9ベルゼバブ→T10決着への接続は、手札に必要な人形2枚を用意する工程が欠けます。また、T8の補充は再コピーせず既存の3PP玩具だけでも得られます。この接続と使用負担の問題について、通常手順へ戻る判断も含めて、何を変え何を得て何を失うかを具体的に比較してください。前の記載どおりの不足を全経路の不可能へ一般化せず、追加PPや行動変更が関係するなら固定ルールと実際の先後・手札・進化権を確認します。単なる算数訂正や1枠交換だけで有用な種へ昇格させません。
+
+公開 packet/read/history/attach/compare/submit/report と保存packetの通常の絞り込みを使えます。実際にWebを調べた場合は範囲・出典・時点・未確認を資料へ保存します。元の資料を変えず、新しい根拠をattachした後のpacket hashで親revision 1の改訂案を最大1件提出できます。必要なら資料だけ保存して停止できます。完成40枚・Tier・勝率の証明や全相手全引きの優越は必要条件ではありません。自分ではreviewを登録しません。
+
+25分の調査＋5分の保存以内。十分な結果や停止根拠が得られれば早く終えて構いません。時間切れは未完了とし、反証扱いにしません。出力先 /tmp/sv-class-choice-01/b-work/round-2 に回答・調査記録・execution.json。実時計、読取範囲、公開操作の成功失敗、修正回数、sessionとpacket hash、前回から解消したこと、正式改訂番号または未提出、残る問いを記録します。思考の逐語記録は不要です。
+
+禁止: 他方式a・他の自然試行・新しいPP試作・src/evals/protocol/期待採点の読取、本番DB/snapshot/元資料/実装コード/既存記録の編集、他担当への採点相談、追加agentやCodex子実行の起動、外部への送信・投稿、git commit/push。書込は自分の出力先と同じb/sessionへの公開操作に限り、前回ファイルを上書きしません。

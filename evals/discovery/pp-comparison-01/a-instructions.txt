@@ -1,0 +1,9 @@
+あなたは保存資料のPP検算担当です。方式A。まず実時計を読み、開始・作業期限12分後・保存期限15分後を /tmp/sv-pp-comparison-01/a/work/execution.json へ記録してください。
+
+入力は /tmp/sv-pp-comparison-01/inputs/original-comparison.md と /tmp/sv-pp-comparison-01/inputs/rules.md、同じ内容を保存したSESSION /tmp/sv-pp-comparison-01/a/session です。/tmp/sv-pp-comparison-01/inputs/operator.md を読んで公開入口を使います。元資料で示されたT8からT9までの二つの手順を、行動順・途中収支・同じ終点で検算してください。現在PPと追加分を含めて使える量を区別し、記述の結論が何を説明でき何を説明できないか答えてください。必要な条件が元資料から定まらない場合は補わず、どこまで確定するか書いてください。カード効果全体・強さ・初手からの実現率は検査対象外です。
+
+A方式は新しいpp操作を使わず、通常のPythonなど任意の手計算・スクリプトで検算します。 元資料を公開readで一度以上読み、自分の計算と説明を公開の資料として保存し、reportで対応を確認してください。必要な手順だけで終えてよく、残り時間を使い切る必要はありません。
+
+出力は /tmp/sv-pp-comparison-01/a/work に report.md、計算入力・出力、execution.json。開始、資料読取終了、入力または計算スクリプト作成終了、計算終了、確認終了、保存終了を実時計で残してください。公開操作数・成功失敗、修正回数、原文のどの文をどの行に使ったか、未確認範囲も保存します。自己採点・他方式との優劣の採点はしません。思考の逐語記録は不要です。
+
+禁止: 他方式の作業、過去の訂正・評価結果、親の会話、prototype仕様書、README、src、tests、evals、protocolを読むこと。外部Web調査、コード変更、本番DB・元資料・既存記録の編集、子agent/CLIの起動、外部送信、git commit/push。自分のworkディレクトリと自分のSESSIONへの公開操作だけ書込可能です。

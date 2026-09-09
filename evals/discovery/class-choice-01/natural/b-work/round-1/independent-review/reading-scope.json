@@ -1,0 +1,203 @@
+{
+  "packet_path": "/tmp/sv-class-choice-01/b/session/packets/c4413eae6ed38f840266830f3cd6fb466e90866fcfb38662e54240f8abcd2d1f.json",
+  "packet_hash": "c4413eae6ed38f840266830f3cd6fb466e90866fcfb38662e54240f8abcd2d1f",
+  "method": "指定保存JSONの選択抽出＋公開read。JSON全体をパースしたことと本文を意味的に読んだ範囲を区別する。",
+  "instructions_read": [
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/AGENTS.md",
+      "scope": "全文"
+    },
+    {
+      "path": "/tmp/sv-class-choice-01/reviewer-instructions.txt",
+      "scope": "全文"
+    },
+    {
+      "path": "/tmp/sv-class-choice-01/operator-readme.md",
+      "scope": "全文"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/design.md",
+      "scope": "初回一括出力は省略あり。1–130、199–553行を分割して再読し、§1.5、§5、§6、§7相当の既出判定を確認。全1036行の読了を主張しない。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/work/agent-lab/rules/",
+      "files": [
+        "values.md",
+        "communication.md",
+        "explain.md",
+        "parallel.md",
+        "design.md",
+        "coding.md",
+        "workflow.md",
+        "knowledge.md",
+        "ai-code-guide.md",
+        "models/gpt-5-6-terra.md"
+      ],
+      "scope": "適用目次の10ファイル。初回・2回目の大出力省略後、欠けたexplain/workflow/knowledgeとai-code-guide/modelを別途再読。今回の個別指示に従い、追加担当・コード変更・commit・継続開発は行わない。"
+    }
+  ],
+  "packet_sections": {
+    "proposal": {
+      "total_lines": 301,
+      "read": "全301行",
+      "public_ranges": [
+        {
+          "offset": 0,
+          "limit": 160,
+          "returned": 160
+        },
+        {
+          "offset": 160,
+          "limit": 160,
+          "returned": 141
+        }
+      ]
+    },
+    "cards": {
+      "total": 614,
+      "eligible": 516,
+      "body_and_notes_read": 22,
+      "unread_body_count": 592,
+      "deck_list_distinct_cards_covered": 15,
+      "effect_cards_covered": 7,
+      "ids": [
+        10072210,
+        10474120,
+        10502110,
+        10573310,
+        10574120,
+        10671110,
+        10672110,
+        10672310,
+        10673110,
+        10674110,
+        10674120,
+        10771310,
+        10874120,
+        10972120,
+        10974120,
+        90071110,
+        90071120,
+        90071130,
+        90071140,
+        90074140,
+        90074150,
+        90074320
+      ],
+      "fields": "本文、進化本文、参照効果、注記（空欄も確認）、コスト、攻体、タイプ、クラス、採用可否、採用上限、種族、生成先ID、参照用語。raw/tags/requirementsはゴッデスだけ追加読取。他592枚の本文や全組合せを全読した扱いにしない。",
+      "public_extra_read": {
+        "offset": 139,
+        "limit": 1,
+        "returned": 1
+      }
+    },
+    "rules": {
+      "read": "全文117行"
+    },
+    "keywords": {
+      "read": "全37定義の表示を確認。判定の中心は進化時/超進化時/アクセラレート/ファンファーレ/突進/守護/カウントダウン。"
+    },
+    "known_decks": {
+      "total": 33,
+      "list_body_read_indices": [
+        14,
+        18,
+        30
+      ],
+      "list_body_read_ids": [
+        15,
+        19,
+        31
+      ],
+      "read": "ハイランダーネメシス、GameWith OTKネメシス、Game8 OTK人形ネメシスの全リスト・来歴。Tierを除外して詳細抽出。その他はネメシス5構築の所在名程度で全リスト未読。"
+    },
+    "sources": {
+      "total": 40,
+      "title_hash_inventory_read": 40,
+      "full_source_indices_read": [
+        1,
+        3,
+        5,
+        8,
+        15,
+        20,
+        21,
+        33
+      ],
+      "partial_source_indices_read": [
+        22
+      ],
+      "other_content_unread_count": 31,
+      "source22_scope": "全40枚比較の入出力・差分・分布・限界・元hashを確認。全カード行を機械的に再集計して照合。大きな文字列出力は途中省略されたため、全欄の意味的読了とはしない。"
+    },
+    "search": {
+      "total": 5,
+      "read": "5問と各検索配列が空であることを全読。検索ヒットなしは問いの解決や不可能証明としない。"
+    },
+    "history": {
+      "total": 0,
+      "read": "空を確認"
+    },
+    "previous_reviews": {
+      "total": 0,
+      "read": "件数のみ。過去評価本文を読んでいない。"
+    },
+    "review_contexts": {
+      "total": 0,
+      "read": "入力時は空。登録後は自分のreview対応1件だけを確認。"
+    },
+    "context_metadata": {
+      "read": "目的、class_name=all、rotation、保存時刻、snapshot hash、カードセット、取得上の限界"
+    },
+    "principles": {
+      "read": "初回一括文書出力の部分と指定design.mdの必要節。固定packetの526行全文の意味的読了を主張しない。"
+    },
+    "fulfillment_map": {
+      "read": "未読"
+    }
+  },
+  "auxiliary_reads": [
+    {
+      "path": "/tmp/sv-class-choice-01/b-work/round-1/root-review-packet-summary.json",
+      "scope": "全文"
+    },
+    {
+      "path": "/tmp/sv-class-choice-01/b-work/round-1/execution.json",
+      "scope": "全文。考案担当が記録した公開操作と停止理由として扱い、自己評価には従わない。"
+    },
+    {
+      "path": "/tmp/sv-class-choice-01/b-work/round-1/reading-scope.json",
+      "scope": "全文。考案担当の読取自己申告であり、今回の独立読取と混同しない。"
+    },
+    {
+      "path": "/tmp/sv-class-choice-01/b-work/round-1/web-checks.json",
+      "scope": "全文。必要URLは自分でもWebで確認。"
+    },
+    {
+      "paths": [
+        "research.md",
+        "answer.json",
+        "after-40.json",
+        "baseline-source.json"
+      ],
+      "scope": "親出力の別ファイルは再読せず、指定packet内に保存された研究要約・提案・比較前後のリストを使用。別版へ更新していない。"
+    }
+  ],
+  "truncation": {
+    "tool_calls_with_output_truncation": 4,
+    "recovery": "適用ルールの必要ファイル、design必要節、資料の簡潔な全タイトル/hash一覧、比較の差分と分布を再読。Web検索の全スニペットと無関係な資料本文は網羅読了にしない。"
+  },
+  "web": "web-checks.json参照。3検索、8URLへの照合。意味のある本文取得3URL、旧公式URLエラー1、公式表示ページ本文空欄4URL。",
+  "prohibited_reads_performed": false,
+  "prohibited_reads_excluded": [
+    "他方式a",
+    "旧自然試行",
+    "src/evals",
+    "期待判定",
+    "過去評価",
+    "親の会話履歴",
+    "提案担当への採点相談"
+  ],
+  "code_or_db_read_for_analysis": false,
+  "subagents_started": 0
+}

@@ -1,0 +1,19 @@
+{
+  "index": 15,
+  "label": "first-available",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-m",
+    "svdeck.discovery",
+    "pp",
+    "/tmp/sv-pp-comparison-01/implementation/public/session",
+    "/tmp/sv-pp-comparison-01/implementation/public/first-available-input.json"
+  ],
+  "started_at": "2026-09-09T03:28:39.478725+00:00",
+  "ended_at": "2026-09-09T03:28:39.557610+00:00",
+  "expected_returncode": 2,
+  "returncode": 2,
+  "expected_outcome": true,
+  "stdout": "",
+  "stderr": "探索入力エラー: 先攻に使用可能な追加PPは設定できません\n"
+}

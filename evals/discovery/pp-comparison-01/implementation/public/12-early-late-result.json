@@ -1,0 +1,339 @@
+{
+  "calculation": "pp_comparison_v1",
+  "input": {
+    "source_hashes": [
+      "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+    ],
+    "plans": [
+      {
+        "name": "人工案",
+        "side": "second",
+        "start": {
+          "turn": 5,
+          "pp": 5,
+          "extra_pp": "available"
+        },
+        "actions": [
+          {
+            "kind": "use_extra"
+          },
+          {
+            "kind": "pay",
+            "amount": 6
+          },
+          {
+            "kind": "next_turn",
+            "turn": 6,
+            "pp": 6
+          },
+          {
+            "kind": "use_extra"
+          },
+          {
+            "kind": "pay",
+            "amount": 7
+          }
+        ]
+      },
+      {
+        "name": "比較相手",
+        "side": "second",
+        "start": {
+          "turn": 6,
+          "pp": 6,
+          "extra_pp": "available"
+        },
+        "actions": []
+      }
+    ]
+  },
+  "input_hash": "7c663a51720b621b338997d0d88e7473b5eebcdf05f10a96aa33c0b77190388f",
+  "context_hash": "eb71dec69714425b50c49ed1edd6b82c1fd8336df20e861ad42b44d2ad5b04cd",
+  "snapshot_sha256": "52c05a891bb1f0de2a20644be2240d9e54a8582df943dd36bac3908f7138be5d",
+  "source_hashes": [
+    "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+  ],
+  "source_count": 1,
+  "source_hashes_declared": true,
+  "plans": [
+    {
+      "name": "人工案",
+      "side": "second",
+      "status": "completed",
+      "rows": [
+        {
+          "step": 1,
+          "action": {
+            "kind": "use_extra"
+          },
+          "before": {
+            "turn": 5,
+            "pp": 5,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              6,
+              6
+            ],
+            "available_pp": 6
+          },
+          "after": {
+            "turn": 5,
+            "pp": 6,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              6,
+              6
+            ],
+            "available_pp": 6
+          },
+          "status": "completed",
+          "issue": null
+        },
+        {
+          "step": 2,
+          "action": {
+            "kind": "pay",
+            "amount": 6
+          },
+          "before": {
+            "turn": 5,
+            "pp": 6,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              6,
+              6
+            ],
+            "available_pp": 6
+          },
+          "after": {
+            "turn": 5,
+            "pp": 0,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              0,
+              0
+            ],
+            "available_pp": 0
+          },
+          "status": "completed",
+          "issue": null
+        },
+        {
+          "step": 3,
+          "action": {
+            "kind": "next_turn",
+            "turn": 6,
+            "pp": 6
+          },
+          "before": {
+            "turn": 5,
+            "pp": 0,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              0,
+              0
+            ],
+            "available_pp": 0
+          },
+          "after": {
+            "turn": 6,
+            "pp": 6,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "status": "completed",
+          "issue": null
+        },
+        {
+          "step": 4,
+          "action": {
+            "kind": "use_extra"
+          },
+          "before": {
+            "turn": 6,
+            "pp": 6,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": {
+            "turn": 6,
+            "pp": 7,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "status": "completed",
+          "issue": null
+        },
+        {
+          "step": 5,
+          "action": {
+            "kind": "pay",
+            "amount": 7
+          },
+          "before": {
+            "turn": 6,
+            "pp": 7,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": {
+            "turn": 6,
+            "pp": 0,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              0,
+              0
+            ],
+            "available_pp": 0
+          },
+          "status": "completed",
+          "issue": null
+        }
+      ],
+      "issue": null,
+      "last_state": {
+        "turn": 6,
+        "pp": 0,
+        "extra_pp": "used",
+        "unused_extra_range": [
+          0,
+          0
+        ],
+        "available_pp_range": [
+          0,
+          0
+        ],
+        "available_pp": 0
+      },
+      "end": {
+        "turn": 6,
+        "pp": 0,
+        "extra_pp": "used",
+        "unused_extra_range": [
+          0,
+          0
+        ],
+        "available_pp_range": [
+          0,
+          0
+        ],
+        "available_pp": 0
+      },
+      "skipped_actions": 0
+    },
+    {
+      "name": "比較相手",
+      "side": "second",
+      "status": "completed",
+      "rows": [],
+      "issue": null,
+      "last_state": {
+        "turn": 6,
+        "pp": 6,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          7,
+          7
+        ],
+        "available_pp": 7
+      },
+      "end": {
+        "turn": 6,
+        "pp": 6,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          7,
+          7
+        ],
+        "available_pp": 7
+      },
+      "skipped_actions": 0
+    }
+  ],
+  "difference": {
+    "status": "computed",
+    "direction": "plans[0] - plans[1]",
+    "current_pp": -6,
+    "available_pp": -7,
+    "available_pp_range": [
+      -7,
+      -7
+    ],
+    "reason": null,
+    "turn": 6
+  },
+  "limitations": [
+    "宣言された開始状態と行動順のPP算術だけを計算する。手札・盤面・進化権・効果条件・強さは判定しない。",
+    "gainは上限処理と発動条件を外部で確認した後の実際の増加量。宣言の真実性やカード効果、回復上限は検証しない。",
+    "現在PPはPP最大値ではない。next_turnの開始PPも入力値であり、自然増・回復・持越しを推測しない。",
+    "未使用の追加PPを含む値は、use_extraを実行した結果ではない。不明な追加PPは範囲として示す。",
+    "途中で問題が起きた手順に終点はない。PP不足は宣言手順についてだけの結果で、全カードでの不可能や無価値を意味しない。",
+    "参照資料の識別値と保存内容の一致は確認するが、入力が資料の意味に合うことや開始状態の正しさは検証しない。"
+  ],
+  "source_hash": "cdefaee983ad5bf730a3d3b16ea227d900896314a4b63ef1e79440c1fa9869a5",
+  "saved_new": true
+}

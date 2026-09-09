@@ -1,0 +1,57 @@
+[
+  {
+    "label": "mypy",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "mypy",
+      "--follow-imports=silent",
+      "src/svdeck/discovery.py",
+      "src/svdeck/discovery_evidence.py",
+      "src/svdeck/discovery_read.py",
+      "src/svdeck/discovery_sources.py",
+      "src/svdeck/discovery_compare.py",
+      "src/svdeck/discovery_resources.py",
+      "src/svdeck/explore.py"
+    ],
+    "started_at": "2026-09-09T03:27:19.302983+00:00",
+    "ended_at": "2026-09-09T03:27:19.618413+00:00",
+    "returncode": 0,
+    "stdout": "Success: no issues found in 7 source files\n",
+    "stderr": ""
+  },
+  {
+    "label": "related-tests",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "pytest",
+      "tests/test_discovery.py",
+      "tests/test_discovery_compare.py",
+      "tests/test_discovery_history.py",
+      "tests/test_discovery_read.py",
+      "tests/test_discovery_resources.py",
+      "tests/test_discovery_review_contexts.py",
+      "tests/test_discovery_sources.py",
+      "-q"
+    ],
+    "started_at": "2026-09-09T03:27:19.618829+00:00",
+    "ended_at": "2026-09-09T03:27:33.838224+00:00",
+    "returncode": 0,
+    "stdout": "........................................................................ [ 36%]\n........................................................................ [ 72%]\n......................................................                   [100%]\n198 passed in 14.04s\n",
+    "stderr": ""
+  },
+  {
+    "label": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "started_at": "2026-09-09T03:27:33.838731+00:00",
+    "ended_at": "2026-09-09T03:27:33.855517+00:00",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

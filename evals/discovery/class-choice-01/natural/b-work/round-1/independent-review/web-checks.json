@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10502110&lang=ja",
+      "query": "固定packetのゴッデス公式URL・本文とコピー仕様の照合",
+      "checked_at": "2026-09-09T03:12:56Z",
+      "finding": "web.openがnon-retryable errorを返し、本文は取得できなかった。固定資料を置き換えていない。"
+    },
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/575049",
+      "query": "OTKネメシスの元40枚と標準の役割分担",
+      "checked_at": "2026-09-09T03:12:56Z",
+      "finding": "本文L296–538の表示リストと立ち回りを確認。保存前リストの14種40枚と一致し、玩具・ヨグゼンタ、兵器・イマリ・アイズエデン、ベルゼバブ・ナイフの役割を確認。コピー先リストと実戦性能は独立検証していない。"
+    },
+    {
+      "url": "https://note.com/calm_borage641/n/n03354de6b519",
+      "query": "既知のゴッデス手札入替・状態コピー用法の原文照合",
+      "checked_at": "2026-09-09T03:14:01Z",
+      "finding": "本文L31–125を確認。守護クレストのビショップで、対面に合わせた入替、奥義状態のコピー、手札7枚の扱いを記述。packet資料21の表題はドラゴンだが本文はビショップ。今回の自己2PP化と玩具反復の既出証拠にはならない。強さの証言は提案へ転用しない。"
+    },
+    {
+      "url": "https://note.com/took3116/n/n463e32944a0a",
+      "query": "軽減されたカードをゴッデスで複製する既知例と手札順の制約",
+      "checked_at": "2026-09-09T03:14:01Z",
+      "finding": "本文L53–249、特にL211–212を確認。2PPドラーク＆アルザードの複製と右端から左へ寄せる難しさが記述される。ゴッデス自身を2PPで反復する同一用途までは確認できない。別デッキの戦績は採点へ転用しない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10502110",
+      "query": "site:shadowverse-wb.com \"スターライトゴッデス\" コピー／検索結果から公式カードページを開く",
+      "checked_at": "2026-09-09T03:15:50Z",
+      "finding": "検索スニペットでは進化時本文が固定資料と一致。一方、直接openの全68行はカード本文・個別Q&Aの空欄とページ外枠のみ。軽減状態を保持する個別仕様と最新適用状況の公式照合は未完了。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=90074320",
+      "query": "天斧の深淵の生成・コスト軽減の公式本文照合",
+      "checked_at": "2026-09-09T03:15:50Z",
+      "finding": "openは成功したが、全68行にカード本文・個別Q&Aが出ず外枠のみ。固定資料の同名生成と-3を根拠にし、最新公式本文を確認したとはしない。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10072210",
+      "query": "ドールズシアターの手札への人形生成と必要PP",
+      "checked_at": "2026-09-09T03:15:50Z",
+      "finding": "openは成功したが、全68行にカード本文・個別Q&Aが出ず外枠のみ。生成経路の判定は固定packet本文による。"
+    },
+    {
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10671110",
+      "query": "低劣の玩具の通常プレイとアクセラレートの差",
+      "checked_at": "2026-09-09T03:15:50Z",
+      "finding": "openは成功したが、全68行にカード本文・個別Q&Aが出ず外枠のみ。3枚補充・場への生成の差は固定packetと用語定義で判定した。"
+    }
+  ],
+  "search_queries": [
+    "\"スターライトゴッデス\" \"低劣の玩具\"",
+    "\"スターライトゴッデス\" \"天斧の深淵\"",
+    "site:shadowverse-wb.com \"スターライトゴッデス\" コピー"
+  ],
+  "search_query_count": 3,
+  "tool_call_count": 4,
+  "limitations": [
+    "検索結果は一部出力省略があり、全結果の意味的読了・網羅検索は主張しない。",
+    "検索結果の一覧・統計ページは既出/未出の決定証拠として使用していない。",
+    "カードの能力判定の基準は指定の保存packet。Web事実照合でpacketを作り直していない。"
+  ]
+}

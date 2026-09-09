@@ -1,0 +1,120 @@
+{
+  "started_at_utc": "2026-09-09T03:10:56Z",
+  "status": "completed",
+  "scope": "class-choice-01 b revision 1 independent review",
+  "packet_hash": "c4413eae6ed38f840266830f3cd6fb466e90866fcfb38662e54240f8abcd2d1f",
+  "public_review_registrations": 1,
+  "start_clock_raw": "2026-09-09 03:10:56 UTC",
+  "verification_finished_at_utc": "2026-09-09T03:20:15Z",
+  "saved_at_utc": "2026-09-09T03:25:55Z",
+  "reviewer_scope": "対象b revision 1の独立評価1件、公開登録、report照合、指定出力保存",
+  "session": "/tmp/sv-class-choice-01/b/session",
+  "public_read_count": 3,
+  "public_report_count": 1,
+  "public_operation_count": 5,
+  "public_success_count": 5,
+  "public_failure_count": 0,
+  "public_format_correction_count": 0,
+  "public_retry_count": 0,
+  "substantive_rescoring_count": 0,
+  "packet_regeneration_count": 0,
+  "public_commands": [
+    {
+      "operation": "read",
+      "section": "proposal",
+      "offset": 0,
+      "limit": 160,
+      "returned": 160,
+      "exit_code": 0,
+      "timestamp_note": "実時刻の個別採取なし。開始後、読取範囲に記録した順で実行。"
+    },
+    {
+      "operation": "read",
+      "section": "proposal",
+      "offset": 160,
+      "limit": 160,
+      "returned": 141,
+      "exit_code": 0,
+      "timestamp_note": "実時刻の個別採取なし。"
+    },
+    {
+      "operation": "read",
+      "section": "cards",
+      "offset": 139,
+      "limit": 1,
+      "returned": 1,
+      "exit_code": 0,
+      "timestamp_note": "実時刻の個別採取なし。"
+    },
+    {
+      "operation": "review",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "/tmp/sv-class-choice-01/b/session",
+        "/tmp/sv-class-choice-01/b-work/round-1/independent-review/review.json"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/tmp/sv-class-choice-prototype/src"
+      },
+      "started_at_utc": "2026-09-09T03:19:13.768279+00:00",
+      "finished_at_utc": "2026-09-09T03:19:13.916944+00:00",
+      "exit_code": 0,
+      "stdout_file": "public-review-result.json",
+      "stderr_file": "public-review-stderr.txt"
+    },
+    {
+      "operation": "report",
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/b/session"
+      ],
+      "started_at_utc": "2026-09-09T03:19:27.916537+00:00",
+      "finished_at_utc": "2026-09-09T03:19:28.068981+00:00",
+      "exit_code": 0,
+      "stdout_file": "report.json",
+      "stderr_file": "public-report-stderr.txt"
+    }
+  ],
+  "public_cli_environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "/tmp/sv-class-choice-prototype/src",
+    "python": "/tmp/sv-system-venv/bin/python",
+    "module": "svdeck.discovery"
+  },
+  "formal_review_hash": "90d59c84e155f04e210b809a5953c517bea7261cd112f680ca96bfa93e5261ab",
+  "formal_review_number": null,
+  "formal_review_number_note": "公開APIに独立の数値review番号なし。revision 1の唯一の1件目。",
+  "report_verification_file": "report-verification.json",
+  "report_verified": true,
+  "review_count_observed_in_report": 1,
+  "web_search_query_count": 3,
+  "web_distinct_url_count": 8,
+  "web_open_error_count": 1,
+  "web_urls_with_missing_card_body_count": 4,
+  "web_urls_with_substantive_body_count": 3,
+  "tool_output_truncation_events": 4,
+  "local_command_failures": 0,
+  "format_changes_to_public_review_after_first_write": 0,
+  "permission_rejections": 0,
+  "subagents_started": 0,
+  "consulted_proposer": false,
+  "parent_history_read": false,
+  "prohibited_reads_performed": false,
+  "source_data_edited": false,
+  "git_commit_push_performed": false,
+  "external_state_changes": false,
+  "allowed_writes": "独立評価出力ディレクトリと、対象b/sessionへの公開review操作のみ",
+  "stopped_reason": "対象1案の別評価、公開review1件、同一入力・内容を保持したreport照合を完了。未確認範囲を保存して終了。",
+  "deadline_utc": "2026-09-09T03:30:56Z",
+  "verification_elapsed_seconds": 559,
+  "save_elapsed_seconds": 899,
+  "within_twenty_minutes": true,
+  "save_clock_raw": "2026-09-09 03:25:55 UTC"
+}

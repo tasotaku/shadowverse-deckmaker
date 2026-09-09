@@ -1,0 +1,49 @@
+{
+  "recorded_at": "2026-09-09T03:09:13.222590+00:00",
+  "symptom": "Fresh collaboration reviewer spawn failed 3 times with agent thread limit reached; completed producer interrupt does not remove its retained thread. A reviewer remains live.",
+  "root_cause": "Only the returned thread-count limit is established; allocation internals are unknown.",
+  "fixed_contract": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "criteria_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "change": "Use one ephemeral Codex CLI reviewer with no parent history and the same configured model/effort. Keep one substantive independent review, same frozen packet, same public review/report operations and 20 minute limit. Do not alter the method or adopt it from a runtime recovery.",
+  "measured_config": {
+    "model": "gpt-6-astra",
+    "model_reasoning_effort": "xhigh"
+  },
+  "parent_context_evidence": {
+    "timestamp": "2026-09-09T03:05:00.389Z",
+    "model": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "concurrency_at_dispatch": "Root and a independent reviewer are live; producers are complete. Adding one reviewer gives 3 active agents, within the 4 concurrency slots.",
+  "next_measure": "Actual launch/completion time, public review count and correctness/evidence identity. Record tool availability or sandbox restrictions if observed.",
+  "instruction_sha256": "9e0aeb3efd06c7176b7b8f0f0c49cb66637dada70d33f72dbe4abdb869365cad",
+  "status": "completed",
+  "limits": "Execution interface changes from collaboration tool to ephemeral CLI. Any material restriction is a trial limitation, not hidden as equivalent.",
+  "original_cli_failure": {
+    "process_session_id": 39051,
+    "exit_code": 1,
+    "substantive_review_started": false,
+    "error": "The gpt-6-astra model requires a newer version of Codex."
+  },
+  "recovery": {
+    "executable": "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "version": "0.153.4",
+    "process_session_id": 59741,
+    "reviewer_started_at_utc": "2026-09-09T03:10:56Z",
+    "same_model_and_effort": true,
+    "parent_history_inherited": false,
+    "global_install_changed": false
+  },
+  "last_verified_live": "2026-09-09T03:18:20Z",
+  "process_exit_code": 0,
+  "terminal_observed_at": "2026-09-09T03:32:32.413599+00:00",
+  "public_review_count": 1,
+  "public_review_hash": "90d59c84e155f04e210b809a5953c517bea7261cd112f680ca96bfa93e5261ab",
+  "saved_at": "2026-09-09T03:25:55Z"
+}

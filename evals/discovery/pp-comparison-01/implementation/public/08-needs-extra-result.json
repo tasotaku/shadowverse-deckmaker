@@ -1,0 +1,159 @@
+{
+  "calculation": "pp_comparison_v1",
+  "input": {
+    "source_hashes": [
+      "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+    ],
+    "plans": [
+      {
+        "name": "人工案",
+        "side": "second",
+        "start": {
+          "turn": 6,
+          "pp": 6,
+          "extra_pp": "available"
+        },
+        "actions": [
+          {
+            "kind": "pay",
+            "amount": 7
+          },
+          {
+            "kind": "gain",
+            "amount": 2
+          }
+        ]
+      },
+      {
+        "name": "比較相手",
+        "side": "second",
+        "start": {
+          "turn": 6,
+          "pp": 6,
+          "extra_pp": "available"
+        },
+        "actions": []
+      }
+    ]
+  },
+  "input_hash": "c659a8bc7758a41eb92ca741ab30b51ba9e5ab75c340df8ad5a2754d433139cf",
+  "context_hash": "eb71dec69714425b50c49ed1edd6b82c1fd8336df20e861ad42b44d2ad5b04cd",
+  "snapshot_sha256": "52c05a891bb1f0de2a20644be2240d9e54a8582df943dd36bac3908f7138be5d",
+  "source_hashes": [
+    "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+  ],
+  "source_count": 1,
+  "source_hashes_declared": true,
+  "plans": [
+    {
+      "name": "人工案",
+      "side": "second",
+      "status": "needs_extra",
+      "rows": [
+        {
+          "step": 1,
+          "action": {
+            "kind": "pay",
+            "amount": 7
+          },
+          "before": {
+            "turn": 6,
+            "pp": 6,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": null,
+          "status": "needs_extra",
+          "issue": {
+            "code": "needs_extra",
+            "message": "この支払いの前に追加PPを使う操作（use_extra）が必要です",
+            "shortage": 1
+          }
+        }
+      ],
+      "issue": {
+        "code": "needs_extra",
+        "message": "この支払いの前に追加PPを使う操作（use_extra）が必要です",
+        "shortage": 1
+      },
+      "last_state": {
+        "turn": 6,
+        "pp": 6,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          7,
+          7
+        ],
+        "available_pp": 7
+      },
+      "end": null,
+      "skipped_actions": 1
+    },
+    {
+      "name": "比較相手",
+      "side": "second",
+      "status": "completed",
+      "rows": [],
+      "issue": null,
+      "last_state": {
+        "turn": 6,
+        "pp": 6,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          7,
+          7
+        ],
+        "available_pp": 7
+      },
+      "end": {
+        "turn": 6,
+        "pp": 6,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          7,
+          7
+        ],
+        "available_pp": 7
+      },
+      "skipped_actions": 0
+    }
+  ],
+  "difference": {
+    "status": "not_comparable",
+    "direction": "plans[0] - plans[1]",
+    "current_pp": null,
+    "available_pp": null,
+    "available_pp_range": null,
+    "reason": "両案が最後まで計算できていないため、終点同士の差は出しません"
+  },
+  "limitations": [
+    "宣言された開始状態と行動順のPP算術だけを計算する。手札・盤面・進化権・効果条件・強さは判定しない。",
+    "gainは上限処理と発動条件を外部で確認した後の実際の増加量。宣言の真実性やカード効果、回復上限は検証しない。",
+    "現在PPはPP最大値ではない。next_turnの開始PPも入力値であり、自然増・回復・持越しを推測しない。",
+    "未使用の追加PPを含む値は、use_extraを実行した結果ではない。不明な追加PPは範囲として示す。",
+    "途中で問題が起きた手順に終点はない。PP不足は宣言手順についてだけの結果で、全カードでの不可能や無価値を意味しない。",
+    "参照資料の識別値と保存内容の一致は確認するが、入力が資料の意味に合うことや開始状態の正しさは検証しない。"
+  ],
+  "source_hash": "79404a41d79c9e765e07bff9011a993cd1945fcc3e3c6770bbaf038cd661445e",
+  "saved_new": true
+}

@@ -1,0 +1,21 @@
+{
+  "label": "mypy",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-m",
+    "mypy",
+    "--follow-imports=silent",
+    "src/svdeck/discovery.py",
+    "src/svdeck/discovery_evidence.py",
+    "src/svdeck/discovery_read.py",
+    "src/svdeck/discovery_sources.py",
+    "src/svdeck/discovery_compare.py",
+    "src/svdeck/discovery_resources.py",
+    "src/svdeck/explore.py"
+  ],
+  "started_at": "2026-09-09T03:27:19.302983+00:00",
+  "ended_at": "2026-09-09T03:27:19.618413+00:00",
+  "returncode": 0,
+  "stdout": "Success: no issues found in 7 source files\n",
+  "stderr": ""
+}

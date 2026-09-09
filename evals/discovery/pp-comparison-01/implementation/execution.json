@@ -1,0 +1,136 @@
+{
+  "task": "Optional PP comparison prototype implementation",
+  "branch": "codex/discovery-pp-comparison",
+  "worktree": "/tmp/sv-pp-comparison-prototype",
+  "base": "2a12e0b",
+  "design_commit": "0e823cc",
+  "times": {
+    "started_at": "2026-09-09T03:17:57+00:00",
+    "implementation_ended_at": "2026-09-09T03:26:47+00:00",
+    "inspection_ended_at": "2026-09-09T03:28:59+00:00",
+    "saved_at": "2026-09-09T03:30:50.266791+00:00"
+  },
+  "commits": [
+    "968b2443e3fe59f38e797c4eee76cab3dfb33cd2",
+    "8d70ef0b1c1b8a7d9a65e25468d93c1aa1b8e830"
+  ],
+  "head": "8d70ef0b1c1b8a7d9a65e25468d93c1aa1b8e830",
+  "clean_worktree": true,
+  "merge": false,
+  "push": false,
+  "additional_agents": 0,
+  "production_database_access": false,
+  "natural_trial_modified": false,
+  "natural_trial_new_results_read": false,
+  "implementation_files": [
+    {
+      "path": "/tmp/sv-pp-comparison-prototype/src/svdeck/discovery_resources.py",
+      "sha256": "04fc0dc3c3ebf67152c5560d685d673650ecd4fee1473dccecffa29c4ec8fada"
+    },
+    {
+      "path": "/tmp/sv-pp-comparison-prototype/src/svdeck/discovery.py",
+      "sha256": "c4925a6191aa7d0897eb91b3ffcfbc4375338f93ea7e4c862e07d3e20f59bd1e"
+    },
+    {
+      "path": "/tmp/sv-pp-comparison-prototype/tests/test_discovery_resources.py",
+      "sha256": "97038107b9fcf6a7f8050df6529767449a4b88a7f044b5ddfa37f50f98a94b37"
+    },
+    {
+      "path": "/tmp/sv-pp-comparison-prototype/README.md",
+      "sha256": "27eef286735205c332be5127e81be6ad295cd4fb008d32b466c0b295269c8f7d"
+    }
+  ],
+  "verification": {
+    "verdict": "PASS",
+    "mypy": {
+      "files": 7,
+      "errors": 0
+    },
+    "related_pytest": {
+      "passed": 198,
+      "failed": 0,
+      "new": 88,
+      "existing": 110
+    },
+    "public": {
+      "session": "/tmp/sv-pp-comparison-01/implementation/public/session",
+      "database": "/tmp/sv-pp-comparison-01/implementation/public/synthetic.db",
+      "artificial_database": true,
+      "database_unchanged": true,
+      "public_operations": 19,
+      "expected_successes": 15,
+      "expected_rejections": 4,
+      "unexpected_failures": 0,
+      "source_count": 7,
+      "comparison_source_hash": "6a9b80eefb824d68796b72b21909132400fd04272a38b89443d8d6b1f72543cd",
+      "input_hash": "b24f06bb17f002629926bac5bd147e32a4dee197ea9b0b35816268dc773b6d2a",
+      "context_hash": "eb71dec69714425b50c49ed1edd6b82c1fd8336df20e861ad42b44d2ad5b04cd",
+      "final_packet_hash": "ab46ec66de683b2a3e2237cd070ef6d962ccf4bfb00d6cc49926a0699048d273",
+      "current_difference": 2,
+      "available_difference": 1,
+      "finished_at": "2026-09-09T03:28:39.915736+00:00"
+    },
+    "ai_note_missing": [],
+    "diff_check": "PASS"
+  },
+  "attempts": [
+    {
+      "kind": "initial mypy",
+      "result": "PASS",
+      "files": 2,
+      "precise_run_timestamp": "not recorded"
+    },
+    {
+      "kind": "initial added tests",
+      "result": "PASS",
+      "passed": 88,
+      "elapsed_test_seconds": 3.84
+    },
+    {
+      "kind": "added identity assertion",
+      "result": "FAIL",
+      "failed": 1,
+      "deselected": 87,
+      "cause": "JSON object field order changed serialized source content despite equal input_hash"
+    },
+    {
+      "kind": "after serialization fix",
+      "result": "PASS",
+      "passed": 88,
+      "elapsed_test_seconds": 3.04
+    },
+    {
+      "kind": "final related suite",
+      "result": "PASS",
+      "passed": 198,
+      "elapsed_test_seconds": 14.04
+    }
+  ],
+  "failures": {
+    "unexpected_test_failures": 1,
+    "unexpected_public_failures": 0,
+    "expected_public_rejections": 4,
+    "code_correction_rounds": 1,
+    "description": "sort_keys=True in saved JSON makes semantic input identity stable"
+  },
+  "unknown": [
+    "Input semantic truth and card effects",
+    "PP recovery cap and activation conditions",
+    "Hands, board, evolution rights and strength",
+    "Natural trial discovery benefit and input effort",
+    "Adoption or merge into main implementation"
+  ],
+  "evidence_files": [
+    "test-plan.md",
+    "checks.json",
+    "mypy.json",
+    "related-tests.json",
+    "diff-check.json",
+    "identity-failure.txt",
+    "public/operations.json",
+    "public/summary.json",
+    "public/session",
+    "change.patch",
+    "verification.md"
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "calculation": "pp_comparison_v1",
+  "input": {
+    "plans": [
+      {
+        "actions": [
+          {
+            "kind": "use_extra"
+          },
+          {
+            "amount": 5,
+            "kind": "pay"
+          }
+        ],
+        "name": "追加使用",
+        "side": "second",
+        "start": {
+          "extra_pp": "available",
+          "pp": 6,
+          "turn": 6
+        }
+      },
+      {
+        "actions": [
+          {
+            "amount": 6,
+            "kind": "pay"
+          }
+        ],
+        "name": "温存",
+        "side": "second",
+        "start": {
+          "extra_pp": "available",
+          "pp": 6,
+          "turn": 6
+        }
+      }
+    ],
+    "source_hashes": [
+      "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+    ]
+  },
+  "input_hash": "b24f06bb17f002629926bac5bd147e32a4dee197ea9b0b35816268dc773b6d2a",
+  "context_hash": "eb71dec69714425b50c49ed1edd6b82c1fd8336df20e861ad42b44d2ad5b04cd",
+  "snapshot_sha256": "52c05a891bb1f0de2a20644be2240d9e54a8582df943dd36bac3908f7138be5d",
+  "source_hashes": [
+    "52cd936086e53cf3cfd22ca5f6ccd7b3ef6c1dcb958740d90b9ff7cb01525c6d"
+  ],
+  "source_count": 1,
+  "source_hashes_declared": true,
+  "plans": [
+    {
+      "name": "追加使用",
+      "side": "second",
+      "status": "completed",
+      "rows": [
+        {
+          "step": 1,
+          "action": {
+            "kind": "use_extra"
+          },
+          "before": {
+            "turn": 6,
+            "pp": 6,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": {
+            "turn": 6,
+            "pp": 7,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "status": "completed",
+          "issue": null
+        },
+        {
+          "step": 2,
+          "action": {
+            "amount": 5,
+            "kind": "pay"
+          },
+          "before": {
+            "turn": 6,
+            "pp": 7,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": {
+            "turn": 6,
+            "pp": 2,
+            "extra_pp": "used",
+            "unused_extra_range": [
+              0,
+              0
+            ],
+            "available_pp_range": [
+              2,
+              2
+            ],
+            "available_pp": 2
+          },
+          "status": "completed",
+          "issue": null
+        }
+      ],
+      "issue": null,
+      "last_state": {
+        "turn": 6,
+        "pp": 2,
+        "extra_pp": "used",
+        "unused_extra_range": [
+          0,
+          0
+        ],
+        "available_pp_range": [
+          2,
+          2
+        ],
+        "available_pp": 2
+      },
+      "end": {
+        "turn": 6,
+        "pp": 2,
+        "extra_pp": "used",
+        "unused_extra_range": [
+          0,
+          0
+        ],
+        "available_pp_range": [
+          2,
+          2
+        ],
+        "available_pp": 2
+      },
+      "skipped_actions": 0
+    },
+    {
+      "name": "温存",
+      "side": "second",
+      "status": "completed",
+      "rows": [
+        {
+          "step": 1,
+          "action": {
+            "amount": 6,
+            "kind": "pay"
+          },
+          "before": {
+            "turn": 6,
+            "pp": 6,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              7,
+              7
+            ],
+            "available_pp": 7
+          },
+          "after": {
+            "turn": 6,
+            "pp": 0,
+            "extra_pp": "available",
+            "unused_extra_range": [
+              1,
+              1
+            ],
+            "available_pp_range": [
+              1,
+              1
+            ],
+            "available_pp": 1
+          },
+          "status": "completed",
+          "issue": null
+        }
+      ],
+      "issue": null,
+      "last_state": {
+        "turn": 6,
+        "pp": 0,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          1,
+          1
+        ],
+        "available_pp": 1
+      },
+      "end": {
+        "turn": 6,
+        "pp": 0,
+        "extra_pp": "available",
+        "unused_extra_range": [
+          1,
+          1
+        ],
+        "available_pp_range": [
+          1,
+          1
+        ],
+        "available_pp": 1
+      },
+      "skipped_actions": 0
+    }
+  ],
+  "difference": {
+    "status": "computed",
+    "direction": "plans[0] - plans[1]",
+    "current_pp": 2,
+    "available_pp": 1,
+    "available_pp_range": [
+      1,
+      1
+    ],
+    "reason": null,
+    "turn": 6
+  },
+  "limitations": [
+    "宣言された開始状態と行動順のPP算術だけを計算する。手札・盤面・進化権・効果条件・強さは判定しない。",
+    "gainは上限処理と発動条件を外部で確認した後の実際の増加量。宣言の真実性やカード効果、回復上限は検証しない。",
+    "現在PPはPP最大値ではない。next_turnの開始PPも入力値であり、自然増・回復・持越しを推測しない。",
+    "未使用の追加PPを含む値は、use_extraを実行した結果ではない。不明な追加PPは範囲として示す。",
+    "途中で問題が起きた手順に終点はない。PP不足は宣言手順についてだけの結果で、全カードでの不可能や無価値を意味しない。",
+    "参照資料の識別値と保存内容の一致は確認するが、入力が資料の意味に合うことや開始状態の正しさは検証しない。"
+  ],
+  "source_hash": "6a9b80eefb824d68796b72b21909132400fd04272a38b89443d8d6b1f72543cd",
+  "saved_new": false
+}

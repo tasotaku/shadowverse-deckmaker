@@ -1,0 +1,33 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_input_and_sources_are_preserved_and_repeated_result_is_stable ______
+
+session = PosixPath('/private/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/pytest-of-miyauchitsubasa/pytest-630/test_input_and_sources_are_pre0/pp-session')
+
+    def test_input_and_sources_are_preserved_and_repeated_result_is_stable(session: Path) -> None:
+        # AI_NOTE: 入力と元資料の意味を自動認定せず、同一内容を照合できる証拠だけ残す。
+        source = {"title": "人工の開始状態", "kind": "申告", "location": "検査", "observed_at": None,
+                  "content": "後攻T6に現在6PP、追加分未使用", "limitations": ["人工データ"]}
+        key = attach(session, {"sources": [source]})["added"][0]
+        payload = {**pair(plan([{"kind": "pay", "amount": 1, "label": "1PP支払う"}])), "source_hashes": [key]}
+        original = copy.deepcopy(payload)
+        result = pp(session, payload)
+        assert payload == original and result["source_count"] == 1
+        saved = next(row for row in load_sources(session) if row["source_hash"] == result["source_hash"])
+        data = json.loads(saved["content"])
+        assert data["input"] == original and data["input_hash"] == digest(original)
+        assert data["source_hashes"] == [key]
+        assert data["context_hash"] == json.loads((session / "context.json").read_text())["sha256"]
+        repeated = pp(session, payload)
+        assert repeated["source_hash"] == result["source_hash"] and repeated["saved_new"] is False
+        reordered = pp(session, json.loads(json.dumps(payload, sort_keys=True)))
+>       assert reordered["source_hash"] == result["source_hash"] and reordered["saved_new"] is False
+E       AssertionError: assert ('5720827473d8...6bee50a250f22' == '50fd7c423597...355654f995544'
+E         
+E         - 50fd7c423597474391c12369005c591c4ad4f4237da25e40990355654f995544
+E         + 5720827473d849c9f5bde393781ed4c4e6388aae37fab560ea26bee50a250f22)
+
+tests/temp/test_discovery_resources_temp.py:218: AssertionError
+=========================== short test summary info ============================
+FAILED tests/temp/test_discovery_resources_temp.py::test_input_and_sources_are_preserved_and_repeated_result_is_stable
+1 failed, 87 deselected in 0.45s

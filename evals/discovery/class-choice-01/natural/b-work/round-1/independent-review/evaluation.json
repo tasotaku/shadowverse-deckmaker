@@ -1,0 +1,139 @@
+{
+  "trial": "class-choice-01",
+  "variant": "b",
+  "revision": 1,
+  "session": "/tmp/sv-class-choice-01/b/session",
+  "review_packet_hash": "c4413eae6ed38f840266830f3cd6fb466e90866fcfb38662e54240f8abcd2d1f",
+  "review_author": "/root (class-choice-01/b/round-1/independent-review)",
+  "judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "five_point_evaluation": [
+    {
+      "id": 1,
+      "criterion": "公開工程の実行・資料保持",
+      "verdict": "確認した公開工程は成立",
+      "reason": "今回の公開read 3件、review 1件、report 1件が成功。提出revision=1は固定packetと公開reportに保持され、入力packet、提案hash、review hash、引用を含む全提出フィールド、入力資料40件、残った問いが一致。前段のattach/compare/submit等は考案担当の保存実行記録と保持された成果を確認したもので、独立再実行はしていない。必要な改訂は初回のため未実施であり、改訂の有効性やシステム全体の発見力を合格扱いにしない。",
+      "evidence_files": [
+        "packet-checks.json",
+        "public-review-operation.json",
+        "public-report-operation.json",
+        "report-verification.json"
+      ],
+      "unconfirmed": [
+        "初期読出し全体の実測再現",
+        "改訂工程",
+        "一般的な発見力"
+      ]
+    },
+    {
+      "id": 2,
+      "criterion": "手順・資源・対象・時間",
+      "verdict": "conditional",
+      "reason": "固定版のネメシス＋ニュートラルで採用は合法。T4の玩具アクセラレート2→ヨグゼンタ2→深淵0は同ターンに3PP玩具を生成でき、場出し時の3ドローはない。T7指定7枚から5+2+0PPで2PPゴッデスを作り、EP進化で[玩具3,誠心1,ゴッデス2]を複製する収支、T8の2+3+1PP・最大手札8・新規盤面2枚は整合する。状態保持は固定注記を根拠とし、最新公式Q&Aは取得できていない。T8に同じ3種類だけを残すなら、それ以外の通常ドロー（ナイフ・ベルゼバブ・3枚目ヨグゼンタ等）は捨てる必要がある。準備状態への到達頻度・防御・EP温存は未確認。別途指定した手札でのナイフ20点は4+8+8で整合し、相討ち先が必要。一方、plan.finishのT8反復＋3枚目ヨグゼンタ→T9ベルゼバブ→T10決着への接続は、その記載どおりのPPと手札では人形2枚の取得が欠ける。T7後の6枚に人形もシアターもなく、T8は8PP使用、T9は9PP使用でシアター2PPを払えない。0PP人形は山札から引けず、ナイフの人形は手札ではなく場へ出る。これは単なるドロー頻度の未確認より具体的な接続不足であり、そのまま一連のT10成立例とは扱わない。補充の中核を不成立とはしない。",
+      "evidence_files": [
+        "review.json",
+        "hand-ledger.json",
+        "read-evidence.json"
+      ],
+      "unconfirmed": [
+        "T4からT7への実際の守りと手札順",
+        "同時に条件が揃う頻度",
+        "状態コピーの最新公式Q&A",
+        "実戦での盤面・進化権配分"
+      ],
+      "specific_gap": "記載のT8反復＋ヨグゼンタ、T9ベルゼバブを守ると人形2枚の取得工程が欠け、記載のT10決着へは接続できていない。中核の手順を一律にrefutedにはしない。"
+    },
+    {
+      "id": 3,
+      "criterion": "追加調査・改訂による疑問解消と停止",
+      "verdict": "初回のため追加工程は未実施",
+      "reason": "parent_revision=0、revision=1、history=[]。比較資料とWeb照合の追加は初回考案内の仕事として確認。5つの未解決問は検索配列が空で、再調査・改訂による解消の実績はない。『未完成で停止』は結論として受け取らず、中核の成立と人形接続不足を独立確認した。今回1件の評価を登録・検証した時点で範囲どおり停止する。",
+      "evidence_files": [
+        "read-evidence.json",
+        "reading-scope.json"
+      ],
+      "unconfirmed": [
+        "後続の調査が疑問を解消するか",
+        "改訂を続ける工程の有効性"
+      ]
+    },
+    {
+      "id": 4,
+      "criterion": "負担に見合う試す価値",
+      "verdict": "develop",
+      "reason": "develop。安くした自分自身を維持し、玩具の補充を次の入替へつなぐ仮説には、5PPゴッデス＋3PP玩具の8PPを準備後5PPにする具体的な利益がある。1枠交換で序盤の採用札と既存の決着経路の大部分を残せるため、無価値の反証には至らない。ただし1枠でも使用負担は軽くない。初回7PP、玩具用と自己軽減用のヨグゼンタ各1枚、複数の手動進化、左3枚と捨て札が必要で、別に決着用深淵も必要。ベルゼバブ3→2で決着札への接続を弱める。指定例のT8コピー直後はT7終了時と同じ6枚で、通常ドローを失って本体を置く形となり、反復しなくても既存の3PP玩具を使ってそのターンの3枚補充は得られる。T9をベルゼバブに使う予定なら、自己再生産の追加回数がいつ利益になるかは示せていない。既存の兵器・イマリ・アイズエデンへ同じPP/進化/深淵を使う守りと比較し、決着用人形を確保したまま追加補充が必要になる局面が具体化すれば判断が変わる。採用札をほぼ維持した事実や説明欄の充足だけでtestへ上げず、40枚完成・Tier・勝率の未証明だけでdropにもしない。提案の『未完成・推薦なし』という自己評価からではなく、この利益と未解消の競合から判断した。",
+      "evidence_files": [
+        "review.json",
+        "hand-ledger.json",
+        "packet-checks.json"
+      ],
+      "unconfirmed": [
+        "自己反復が標準の補充・処理より有利になる具体的局面",
+        "人形保持と手動進化を含む準備負担",
+        "ベルゼバブ1枚減の実際の損失"
+      ],
+      "distinction": "利益のある機構と、試すことを勧められる比較根拠は別。材料不足を無価値の反証にせず、全クラス資料の便利さ・40枚完成・Tier・勝率・全相手/全引き優越を判定基準に追加しない。"
+    },
+    {
+      "id": 5,
+      "criterion": "既出状況と加点の抑制",
+      "verdict": "unconfirmed",
+      "reason": "unconfirmed。玩具＋ヨグゼンタとベルゼバブ＋ナイフは元構築で既知。ゴッデスによる対面別の入替・状態付きカード複製にも公開例があり、固定ハイランダーネメシスにはゴッデスとヨグゼンタが同居する。別用途として評価する対象は2PPゴッデス自身と3PP玩具の維持に限る。カード名組合せ2検索と公式照合1検索、記載URLの本文を確認したが、この自己反復用途の普及状況は決着しない。検索結果に説明が見当たらないこと、共起数、初見、元構築のTierや別デッキの戦績を新規性・強さの加点にしていない。全動画・全投稿・他言語の網羅調査はしていない。",
+      "evidence_files": [
+        "web-checks.json",
+        "review.json",
+        "reading-scope.json"
+      ],
+      "unconfirmed": [
+        "具体的自己反復用法の普及状況",
+        "動画内手順",
+        "全投稿・全言語の網羅調査"
+      ],
+      "source_correction": "packet資料21の表題『ドラゴン』は原ページの守護クレストビショップと不一致。原文の用途を根拠とし、表題のクラス分類を引き継がない。"
+    }
+  ],
+  "scope_limit": "対象1案の独立評価・公開review1件・report照合・保存のみ。全体目標の自律継続や実装は範囲外。",
+  "independence": {
+    "fresh_session_without_parent_history": true,
+    "consulted_proposer": false,
+    "additional_agents": 0,
+    "substantive_rescoring_after_registration": 0
+  },
+  "times": {
+    "started_at_utc": "2026-09-09T03:10:56Z",
+    "verification_finished_at_utc": "2026-09-09T03:20:15Z",
+    "saved_at_utc": "2026-09-09T03:25:55Z"
+  },
+  "public_operations": {
+    "read": 3,
+    "review": 1,
+    "report": 1,
+    "total": 5,
+    "failures": 0,
+    "format_corrections": 0,
+    "retries": 0,
+    "packet_regenerations": 0
+  },
+  "formal_review": {
+    "number": null,
+    "number_note": "公開APIに独立の数値review番号なし。revision 1の唯一の1件目。",
+    "hash": "90d59c84e155f04e210b809a5953c517bea7261cd112f680ca96bfa93e5261ab",
+    "proposal_hash": "8983b81f5f4b76206b77e6518819cec97951b854ac6cb1daeef90589a644fabb",
+    "report_path": "report.json",
+    "report_review_path": "revisions[0].reviews[0]",
+    "report_context_path": "revisions[0].review_contexts[0]",
+    "matching_input_and_content_verified": true,
+    "verification_file": "report-verification.json"
+  },
+  "reading_scope_file": "reading-scope.json",
+  "web_checks_file": "web-checks.json",
+  "evidence_files": [
+    "read-evidence.json",
+    "hand-ledger.json",
+    "packet-checks.json",
+    "preflight.json"
+  ]
+}

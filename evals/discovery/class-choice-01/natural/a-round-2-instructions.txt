@@ -1,0 +1,15 @@
+あなたはデッキの種を考案・追加調査する担当です。class-choice-01 の従来方式a、第2回です。初回を最初からやり直さず、独立評価で残った具体的な問いを調べます。実装コードは変えません。
+
+まず実時計を読み、開始・調査期限（25分後）・保存期限（さらに5分後）を /tmp/sv-class-choice-01/a-work/round-2/execution.json に保存してください。適用AGENTSとimportルール、/tmp/sv-class-choice-prototype/docs/design.md、公開操作説明 /tmp/sv-class-choice-01/operator-readme.md を読みます。CLIは PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-class-choice-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery。
+
+前の入力・調査は /tmp/sv-class-choice-01/a-session-index.json が指す7件の保存packetと、/tmp/sv-class-choice-01/a-work/round-1/{research.md,research.json,execution.json,sources-to-attach.json}。全7クラスの516枚・注記・ルール・保存参考構築33件を自由に読み比べられます。初回追加資料10件は a-4/session の公開packet 296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904 に保存されています。a-4は資料保存用で、ドラゴンを正式選択したわけではありません。全7sessionにまだ正式提案はありません。
+
+今回読む別評価は /tmp/sv-class-choice-01/a-work/round-1/independent-review/{evaluation.json,evaluation.md,execution.json}。この同じ方式の前回評価に限り読んでよいです。独立評価は推薦保留を支持する一方、後攻T7の追加PPを残せばゴッデス5＋ラスティ3を払えると指摘しています。そこからの問いは「後攻T7に後半の追加PPを使うラスティ複製で、捨てる3枚と第三のコピー先を含む実際の手札を用意したとき、複製なしでラスティ2枚を早く使う場合より、どの役割を失って何を得られるか」です。評価への同意や肯定結論は要求しません。算数訂正だけで有用な種へ昇格させず、今回の資料で何が解消するか・何を変えるか・どこで止めるかを証拠に基づいて決めます。
+
+同じ大目的は、ニュートラルの別用途から、適するクラスと配分・勝ち方まで発展させることです。考案の採用札は選択クラス＋ニュートラルで合法にし、生成物はその経路を示します。カード本文だけでなく相方の注記、必要手札、進化権と追加PPの前の使い道、相手依存を読みます。完成40枚や勝率は必要条件ではなく、比較材料を作る場合も、差分から利益を自動認定しません。
+
+公開 packet/read/attach/compare/submit/report と保存packetの通常の絞り込みを使えます。実際のWeb確認は範囲・出典・時点・未確認とともにattachへ保存。初回が未提出なので、案を提出するなら合うクラスのsessionの親改訂0から初の正式提案にします。先に根拠資料をattachし、その後の公開packetのhashを使います。資料のみ追加して止めることも可能です。今回の正式案は最大1件。自分でreview登録せず、次の独立評価へ渡します。
+
+25分の調査＋5分の保存以内。十分な結果や停止根拠が得られれば早く終えて構いません。時間切れは未完了とし、反証扱いにしません。出力先 /tmp/sv-class-choice-01/a-work/round-2 に回答・調査記録・execution.json。実時計、読取範囲、公開操作の成功失敗、修正回数、利用したsessionとpacket hash、前回から解消したこと、正式改訂番号または未提出、残る問いを記録します。思考の逐語記録は不要です。
+
+禁止: 他方式b・他の自然試行・src/evals/protocol/採点結果の読取、本番DB/snapshot/元資料/実装コード/既存記録の編集、他担当への採点相談、追加agentやCodex子実行の起動、外部への送信・投稿、git commit/push。書込は自分の出力先と、同じa方式sessionへの公開操作に限ります。前回ファイルを上書きしません。
