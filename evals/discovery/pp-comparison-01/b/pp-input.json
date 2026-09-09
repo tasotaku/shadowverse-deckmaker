@@ -1,0 +1,131 @@
+{
+  "source_hashes": [
+    "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+    "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76"
+  ],
+  "plans": [
+    {
+      "name": "ゴッデス側・原文T8→T9",
+      "side": "second",
+      "start": {
+        "turn": 8,
+        "pp": 8,
+        "extra_pp": "available"
+      },
+      "actions": [
+        {
+          "kind": "use_extra",
+          "label": "G1 原文T8エクストラPPを使用"
+        },
+        {
+          "kind": "pay",
+          "amount": 5,
+          "label": "G2 原文5+0+2+2の第1支払"
+        },
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "G3 原文5+0+2+2の第2支払"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "G4 原文5+0+2+2の第3支払"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "G5 原文5+0+2+2の第4支払"
+        },
+        {
+          "kind": "next_turn",
+          "turn": 9,
+          "pp": 9,
+          "label": "G6 原文T9支払4と残り5が含意する開始PP9"
+        },
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "G7 T9神秘0"
+        },
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "G8 T9コピー緋岸0"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "G9 T9レイピア1枚目2"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "G10 T9レイピア2枚目2"
+        }
+      ]
+    },
+    {
+      "name": "ルリア側・原文T8→T9",
+      "side": "second",
+      "start": {
+        "turn": 8,
+        "pp": 8,
+        "extra_pp": "available"
+      },
+      "actions": [
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "L1 T8緋岸A0"
+        },
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "L2 T8神秘0"
+        },
+        {
+          "kind": "pay",
+          "amount": 8,
+          "label": "L3 T8ルリアのエンハンス8"
+        },
+        {
+          "kind": "gain",
+          "amount": 7,
+          "label": "L4 原文の実増加0→7を転記・効果全文未検証"
+        },
+        {
+          "kind": "pay",
+          "amount": 7,
+          "label": "L5 T8セタス＆メイシア7"
+        },
+        {
+          "kind": "next_turn",
+          "turn": 9,
+          "pp": 9,
+          "label": "L6 原文T9支払6と残り3が含意する開始PP9"
+        },
+        {
+          "kind": "pay",
+          "amount": 0,
+          "label": "L7 T9神秘0"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "L8 T9緋岸B2"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "L9 T9レイピア1枚目2"
+        },
+        {
+          "kind": "pay",
+          "amount": 2,
+          "label": "L10 T9レイピア2枚目2"
+        }
+      ]
+    }
+  ]
+}

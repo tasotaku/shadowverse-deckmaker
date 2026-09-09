@@ -1,0 +1,10 @@
+探索システムの入力方針を、次の実装判断に必要な範囲だけ独立点検してください。実装は変更しません。まず実時計を取り、開始から12分以内に確認と保存を終えます。
+
+リポジトリ /Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker のAGENTS/importルール、docs/design.md、src/svdeck/discovery_evidence.pyのprinciples構成、src/svdeck/discovery.pyの開発・評価指示を読みます。固定入力 /tmp/sv-class-choice-01/b/session/context.json のprinciplesも照合します。
+問いは『主役を限定せず、別用途・複数段の接続・強い基盤と配分を考える入口にも、旧アンカーの選抜・反復の優先順位や過去の別試行の結果が混在し、適用範囲が曖昧になっていないか』です。混在の存在と、それが実際の悪い出力の原因だという推測を区別してください。
+
+資料としてdocs/rechecks/2026-09-06-discovery-design-evidence.md、evals/discovery/mazel-role-reviewの既知の役割分担・誤取得の2例は読めます。進行中のclass-choiceやPP試行の考案・評価結果は読まないでください。
+
+出力先 /tmp/sv-instruction-scope-audit-01 に audit.md、audit.json、execution.json。引用とファイル位置、ルールごとの適用範囲、問題や矛盾の確度、反証する小さな実利用検査、必要なら最小の実装変更案を示します。重要なユーザー評価原則、合法性、双方の注記、既出、負担の基準を弱める案は出さず、個別の正解を通常指示へ埋め込みません。単なる資料短縮や仮想ケースへの正答は発見力の合格にしません。
+
+実装・本番DB・固定入力・既存記録を編集しません。書込は自分の出力先だけ。Webは必要な一次確認だけ。新しいagent/CLI起動、外部送信、git commit/pushは禁止。考案や評価担当への相談もしません。思考の逐語記録は不要。最終報告に開始・確認終了・保存終了の実時計を残します。

@@ -1,0 +1,89 @@
+{
+  "method": "A",
+  "started_at": "2026-09-09T03:34:38Z",
+  "work_deadline": "2026-09-09T03:46:38Z",
+  "save_deadline": "2026-09-09T03:49:38Z",
+  "milestones": {
+    "start": "2026-09-09T03:34:38Z",
+    "source_read_complete": "2026-09-09T03:35:06Z",
+    "input_or_script_complete": "2026-09-09T03:37:27.337531Z",
+    "calculation_complete": "2026-09-09T03:37:32.101618Z",
+    "confirmation_complete": "2026-09-09T03:39:24.955754Z",
+    "save_complete": "2026-09-09T03:40:43.803317Z",
+    "public_save_correspondence_confirmed": "2026-09-09T03:40:43.803317Z"
+  },
+  "public_operations": [
+    {
+      "ordinal": 1,
+      "operation": "packet",
+      "arguments": "SESSION --summary",
+      "success": true,
+      "exit_code": 0,
+      "packet_hash": "3fa583f23bb113c46c615f5fd464781a9dee9e7d47f6a5b306e4d3a9a2198013"
+    },
+    {
+      "ordinal": 2,
+      "operation": "read",
+      "arguments": "SESSION 3fa583f23bb113c46c615f5fd464781a9dee9e7d47f6a5b306e4d3a9a2198013 sources --offset 0 --limit 152",
+      "success": true,
+      "exit_code": 0,
+      "next_offset": null
+    },
+    {
+      "ordinal": 3,
+      "operation": "attach",
+      "arguments": "SESSION /tmp/sv-pp-comparison-01/a/work/attach-input.json",
+      "success": true,
+      "exit_code": 0,
+      "completed_at": "2026-09-09T03:39:50Z",
+      "result_file": "public-attach-result.json"
+    },
+    {
+      "ordinal": 4,
+      "operation": "report",
+      "arguments": "SESSION",
+      "success": true,
+      "exit_code": 0,
+      "completed_at": "2026-09-09T03:40:07Z",
+      "result_file": "public-report.txt",
+      "matched_added_sources": 4
+    }
+  ],
+  "revision_count": 0,
+  "source_hashes": {
+    "rules": "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+    "comparison": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76"
+  },
+  "public_operation_counts": {
+    "total": 4,
+    "success": 4,
+    "failure": 0
+  },
+  "revision_definition": "入力値・計算処理・結論を作成後に直した回数。今回0。資料の初回生成・公開保存は修正に含めない。",
+  "new_pp_operation_used": false,
+  "finished_within_work_deadline": true,
+  "finished_within_save_deadline": true,
+  "elapsed_seconds": {
+    "source_read": 28.0,
+    "input_and_script": 141.338,
+    "calculation": 4.764,
+    "confirmation_and_explanation": 112.854,
+    "public_save_and_confirmation": 78.848,
+    "total": 365.803
+  },
+  "artifacts": [
+    "report.md",
+    "calc-input.json",
+    "calc-output.json",
+    "calculation-table.md",
+    "calculate.py",
+    "prepare.py",
+    "write_report.py",
+    "verification.json",
+    "attach-input.json",
+    "public-attach-result.json",
+    "public-report.txt",
+    "save-verification.json",
+    "execution.json"
+  ]
+}

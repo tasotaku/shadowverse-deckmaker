@@ -1,0 +1,47 @@
+[
+  {
+    "n": 1,
+    "operation": "packet",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-pp-comparison-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery packet /tmp/sv-pp-comparison-01/b/session --summary",
+    "success": true,
+    "exit_code": 0,
+    "wall_time_seconds": 4.043440459,
+    "output_file": "packet-summary.json"
+  },
+  {
+    "n": 2,
+    "operation": "read sources",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-pp-comparison-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-pp-comparison-01/b/session a2c2595d09daf6505cd4e69f56d297f6f9390e6010ce5335d40842fa0d6a5250 sources --offset 0 --limit 180",
+    "success": true,
+    "exit_code": 0,
+    "wall_time_seconds": 4.83886225,
+    "output_file": "public-read.json"
+  },
+  {
+    "n": 3,
+    "operation": "pp",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-pp-comparison-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery pp /tmp/sv-pp-comparison-01/b/session /tmp/sv-pp-comparison-01/b/work/pp-input.json",
+    "success": true,
+    "exit_code": 0,
+    "wall_time_seconds": 0.090712333,
+    "output_file": "pp-output.json"
+  },
+  {
+    "n": 4,
+    "operation": "attach",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-pp-comparison-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery attach /tmp/sv-pp-comparison-01/b/session /tmp/sv-pp-comparison-01/b/work/attach-input.json",
+    "success": true,
+    "exit_code": 0,
+    "wall_time_seconds": 0.004709333,
+    "output_file": "attach-output.json"
+  },
+  {
+    "n": 5,
+    "operation": "report",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-pp-comparison-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery report /tmp/sv-pp-comparison-01/b/session",
+    "success": true,
+    "exit_code": 0,
+    "wall_time_seconds": 0.000003417,
+    "output_file": "public-report.json"
+  }
+]

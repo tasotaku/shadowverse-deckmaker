@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-09-09T03:51:43.852590+00:00",
+  "destination": "http://127.0.0.1:8765/api/experiments",
+  "record_count": 19,
+  "records": {
+    "pp-comparison-01": {
+      "revision": 4,
+      "status": "completed",
+      "decision": "rejected"
+    },
+    "class-choice-01": {
+      "revision": 9,
+      "status": "running",
+      "decision": "unassessed"
+    },
+    "instruction-scope-audit-01": {
+      "revision": 1,
+      "status": "running",
+      "decision": "unassessed"
+    }
+  },
+  "backup": "data/backups/experiments-20260909T035143Z.sqlite3",
+  "backup_sha256": "9b8bc82e00b3627c3da7aeb3fcb40bb48d007cc196df762a54b9f125ca2dfcc3",
+  "verification_retries": 1,
+  "retry_reason": "Root initially read status at the response top level; inspected the actual wrapper and used record.status. No application mutation resulted from the failed assertion.",
+  "limits": "Delivery of result and progress fields. Live work is confirmed separately by actual handles."
+}

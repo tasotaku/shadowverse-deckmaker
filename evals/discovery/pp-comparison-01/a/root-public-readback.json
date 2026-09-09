@@ -1,0 +1,51 @@
+{
+  "packet_hash": "2d5d3945e583af5a7edf6a219eaa148b351049e295747eacfcf6ef9a2d6e4b43",
+  "source_count": 6,
+  "source_hashes": [
+    "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+    "2724125be95ed514e6d6463a4faaf378c0301d1aafda254793361e43c99db19a",
+    "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+    "79a65c65386d3225791d9d0b37760db817f2d650b6db5a2e1a04f3660d8b38de",
+    "c1c46d3fec313ebfe2826ee161f31e7db36fa5fe7cceae4806959925a34c26ad",
+    "c6c04ce1d5cb1dca509ec65da2d36b4010f10be91e76931243daf8998e154509"
+  ],
+  "checks": [
+    "report.md exact saved content"
+  ],
+  "commands": [
+    {
+      "args": [
+        "packet",
+        "/tmp/sv-pp-comparison-01/a/session",
+        "--summary"
+      ],
+      "started_at": "2026-09-09T03:45:54.286578+00:00",
+      "ended_at": "2026-09-09T03:45:54.414654+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "read",
+        "/tmp/sv-pp-comparison-01/a/session",
+        "2d5d3945e583af5a7edf6a219eaa148b351049e295747eacfcf6ef9a2d6e4b43",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at": "2026-09-09T03:45:54.414764+00:00",
+      "ended_at": "2026-09-09T03:45:54.491369+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "report",
+        "/tmp/sv-pp-comparison-01/a/session"
+      ],
+      "started_at": "2026-09-09T03:45:54.491830+00:00",
+      "ended_at": "2026-09-09T03:45:54.569662+00:00",
+      "exit_code": 0
+    }
+  ]
+}

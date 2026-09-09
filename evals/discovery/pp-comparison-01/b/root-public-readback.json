@@ -1,0 +1,50 @@
+{
+  "packet_hash": "f830b90e33a3eef0436e38883da662ad0e85182c2a4a5ae3d715948b34202298",
+  "source_count": 4,
+  "source_hashes": [
+    "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+    "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+    "3e0aa2f85e6becd3a66c8d1fa6e0b1340334008949d7b1be0f1eb87a36b414ce",
+    "f8979e3978995724d306aca64e1f18c4701a6e6ee239e76e2177a42a916e4bab"
+  ],
+  "checks": [
+    "PP output exact saved content",
+    "report.md exact saved content"
+  ],
+  "commands": [
+    {
+      "args": [
+        "packet",
+        "/tmp/sv-pp-comparison-01/b/session",
+        "--summary"
+      ],
+      "started_at": "2026-09-09T03:45:54.632818+00:00",
+      "ended_at": "2026-09-09T03:45:54.746282+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "read",
+        "/tmp/sv-pp-comparison-01/b/session",
+        "f830b90e33a3eef0436e38883da662ad0e85182c2a4a5ae3d715948b34202298",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "10000"
+      ],
+      "started_at": "2026-09-09T03:45:54.746396+00:00",
+      "ended_at": "2026-09-09T03:45:54.818642+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "report",
+        "/tmp/sv-pp-comparison-01/b/session"
+      ],
+      "started_at": "2026-09-09T03:45:54.819174+00:00",
+      "ended_at": "2026-09-09T03:45:54.892576+00:00",
+      "exit_code": 0
+    }
+  ]
+}

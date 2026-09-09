@@ -1,0 +1,287 @@
+[
+  {
+    "row": "G0/L0",
+    "path": "plans[*].start",
+    "source": "original-comparison.md",
+    "line": 4,
+    "quote": "EP1・SEP1、後半エクストラPPが残り",
+    "use": "extra_pp=available。rules.mdの後攻限定と併せてside=second。",
+    "actual_source_line": 4
+  },
+  {
+    "row": "G0",
+    "path": "plans[0].start.pp",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "T8エクストラPPを使用して9PP。",
+    "use": "追加+1使用前の現在PPは9-1=8。",
+    "actual_source_line": 5
+  },
+  {
+    "row": "L0",
+    "path": "plans[1].start.pp",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7",
+    "use": "0PPの2行動前も現在PP8。",
+    "actual_source_line": 6
+  },
+  {
+    "row": "G1",
+    "path": "plans[0].actions[0]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "T8エクストラPPを使用して9PP。",
+    "use": "use_extra",
+    "actual_source_line": 5,
+    "input_json_line": 18,
+    "output_row_path": "plans[0].rows[0]"
+  },
+  {
+    "row": "G2",
+    "path": "plans[0].actions[1]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "5+0+2+2PP",
+    "use": "原文の第1項を順にpay 5。カード名を補わない。",
+    "actual_source_line": 5,
+    "input_json_line": 23,
+    "output_row_path": "plans[0].rows[1]"
+  },
+  {
+    "row": "G3",
+    "path": "plans[0].actions[2]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "5+0+2+2PP",
+    "use": "原文の第2項を順にpay 0。カード名を補わない。",
+    "actual_source_line": 5,
+    "input_json_line": 28,
+    "output_row_path": "plans[0].rows[2]"
+  },
+  {
+    "row": "G4",
+    "path": "plans[0].actions[3]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "5+0+2+2PP",
+    "use": "原文の第3項を順にpay 2。カード名を補わない。",
+    "actual_source_line": 5,
+    "input_json_line": 33,
+    "output_row_path": "plans[0].rows[3]"
+  },
+  {
+    "row": "G5",
+    "path": "plans[0].actions[4]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "5+0+2+2PP",
+    "use": "原文の第4項を順にpay 2。カード名を補わない。",
+    "actual_source_line": 5,
+    "input_json_line": 38,
+    "output_row_path": "plans[0].rows[4]"
+  },
+  {
+    "row": "G6",
+    "path": "plans[0].actions[5]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。",
+    "additional_quote": "T9残り5PP。",
+    "use": "next_turn T9 pp=9。記載支払4+記載残量5から逆算。T9一般則の証明ではない。",
+    "actual_source_line": 5,
+    "input_json_line": 44,
+    "output_row_path": "plans[0].rows[5]"
+  },
+  {
+    "row": "G7",
+    "path": "plans[0].actions[6]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "T9神秘0",
+    "use": "pay 0",
+    "actual_source_line": 5,
+    "input_json_line": 49,
+    "output_row_path": "plans[0].rows[6]"
+  },
+  {
+    "row": "G8",
+    "path": "plans[0].actions[7]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "コピー緋岸0",
+    "use": "pay 0",
+    "actual_source_line": 5,
+    "input_json_line": 54,
+    "output_row_path": "plans[0].rows[7]"
+  },
+  {
+    "row": "G9",
+    "path": "plans[0].actions[8]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "レイピア2+2",
+    "use": "前の2をpay 2",
+    "actual_source_line": 5,
+    "input_json_line": 59,
+    "output_row_path": "plans[0].rows[8]"
+  },
+  {
+    "row": "G10",
+    "path": "plans[0].actions[9]",
+    "source": "original-comparison.md",
+    "line": 5,
+    "quote": "レイピア2+2",
+    "use": "後の2をpay 2",
+    "actual_source_line": 5,
+    "input_json_line": 64,
+    "output_row_path": "plans[0].rows[9]"
+  },
+  {
+    "row": "L1",
+    "path": "plans[1].actions[0]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "T8緋岸A0と神秘0を使い",
+    "use": "pay 0。緋岸Aが先。",
+    "actual_source_line": 6,
+    "input_json_line": 80,
+    "output_row_path": "plans[1].rows[0]"
+  },
+  {
+    "row": "L2",
+    "path": "plans[1].actions[1]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "T8緋岸A0と神秘0を使い",
+    "use": "pay 0。神秘が後。",
+    "actual_source_line": 6,
+    "input_json_line": 85,
+    "output_row_path": "plans[1].rows[1]"
+  },
+  {
+    "row": "L3",
+    "path": "plans[1].actions[2]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "ルリアのエンハンス8で残りPP8→0→7",
+    "use": "先にpay 8。差引1PPとしてまとめない。",
+    "actual_source_line": 6,
+    "input_json_line": 90,
+    "output_row_path": "plans[1].rows[2]"
+  },
+  {
+    "row": "L4",
+    "path": "plans[1].actions[3]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "ルリアのエンハンス8で残りPP8→0→7",
+    "use": "支払後にgain 7。記載された実増加0→7だけを条件として転記。印刷回復量・効果条件・上限処理の正しさは未確認。",
+    "actual_source_line": 6,
+    "input_json_line": 95,
+    "output_row_path": "plans[1].rows[3]"
+  },
+  {
+    "row": "L5",
+    "path": "plans[1].actions[4]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。",
+    "use": "pay 7",
+    "actual_source_line": 6,
+    "input_json_line": 100,
+    "output_row_path": "plans[1].rows[4]"
+  },
+  {
+    "row": "L6",
+    "path": "plans[1].actions[5]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。",
+    "additional_quote": "PP残り3",
+    "use": "next_turn T9 pp=9。記載支払6+記載残量3から逆算。",
+    "actual_source_line": 6,
+    "input_json_line": 106,
+    "output_row_path": "plans[1].rows[5]"
+  },
+  {
+    "row": "L7",
+    "path": "plans[1].actions[6]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "T9自然ドロー7枚から神秘0",
+    "use": "pay 0",
+    "actual_source_line": 6,
+    "input_json_line": 111,
+    "output_row_path": "plans[1].rows[6]"
+  },
+  {
+    "row": "L8",
+    "path": "plans[1].actions[7]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "2コストまで下がった緋岸B",
+    "use": "pay 2",
+    "actual_source_line": 6,
+    "input_json_line": 116,
+    "output_row_path": "plans[1].rows[7]"
+  },
+  {
+    "row": "L9",
+    "path": "plans[1].actions[8]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "レイピア2+2PPを出す。",
+    "use": "前の2をpay 2",
+    "actual_source_line": 6,
+    "input_json_line": 121,
+    "output_row_path": "plans[1].rows[8]"
+  },
+  {
+    "row": "L10",
+    "path": "plans[1].actions[9]",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "レイピア2+2PPを出す。",
+    "use": "後の2をpay 2",
+    "actual_source_line": 6,
+    "input_json_line": 126,
+    "output_row_path": "plans[1].rows[9]"
+  },
+  {
+    "row": "L1–L10",
+    "path": "plans[1].actions",
+    "source": "original-comparison.md",
+    "line": 6,
+    "quote": "後半エクストラPPは使わずに残る。",
+    "use": "use_extra行を追加しない。T9終点もavailable。",
+    "actual_source_line": 6
+  },
+  {
+    "row": "G1/G6/L6/終点",
+    "path": "plans[*].side / extra_pp / difference",
+    "source": "rules.md",
+    "line": 23,
+    "quote": "- **エクストラPP**: 後攻のみ。そのターンだけPP+1。T1〜5で1回・T6以降で1回・使うタイミングは任意（確定）",
+    "use": "後攻、後半1回、追加量1。使用済み分はT9に足さず、未使用権は残す。",
+    "actual_source_line": 23
+  },
+  {
+    "row": "解釈の限界",
+    "path": "limitations",
+    "source": "rules.md",
+    "line": 24,
+    "quote": "- **PP最大値の上限は10**（2026-07-07ユーザー確定）。効果による「PP最大値+1」（ゾーイ等）も上限10を",
+    "use": "一般の上限は10だが、この盤面の実際の最大値・回復条件は未確定。current ppと最大値を同一視しない。",
+    "actual_source_line": 24
+  },
+  {
+    "row": "結論照合",
+    "path": "difference.current_pp / difference.available_pp",
+    "source": "original-comparison.md",
+    "line": 7,
+    "quote": "ゴッデス側にはT9の残りPP2多い余地がある。",
+    "use": "現在PPの差2は整合。未使用追加分込みの差は1であり、総余力2差の説明にはならない。",
+    "actual_source_line": 7
+  }
+]

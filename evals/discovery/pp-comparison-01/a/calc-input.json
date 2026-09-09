@@ -1,0 +1,350 @@
+{
+  "method": "A / 通常のPythonによる数値と記号の計算。公開pp操作は不使用",
+  "source_hashes": {
+    "comparison": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+    "rules": "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5"
+  },
+  "definitions": {
+    "current_pp": "現在のPP。未使用の追加分は含まない。",
+    "available_pp": "現在PPに、この時点で未使用の後半追加分1PPを足した量。追加分を実行済みとは扱わない。",
+    "extra_remaining": "未使用1、使用済み0。各自分ターンで復活させない。"
+  },
+  "common_start": {
+    "turn": 8,
+    "current_pp": 8,
+    "extra_remaining": 1,
+    "side": "second",
+    "references": [
+      {
+        "source": "comparison",
+        "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+        "line": 5,
+        "quote": "ゴッデス側: T8エクストラPPを使用して9PP。"
+      },
+      {
+        "source": "comparison",
+        "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+        "line": 6,
+        "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+      },
+      {
+        "source": "comparison",
+        "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+        "line": 4,
+        "quote": "EP1・SEP1、後半エクストラPPが残り、T6鹿王のクレストからT8終了時にも神秘を得られる。"
+      },
+      {
+        "source": "rules",
+        "source_hash": "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+        "line": 23,
+        "quote": "- **エクストラPP**: 後攻のみ。そのターンだけPP+1。T1〜5で1回・T6以降で1回・使うタイミングは任意（確定）"
+      }
+    ],
+    "derivation": "ルリア側8→0→7の先頭に8が明記。ゴッデス側は追加1で9から使用直前8を逆算。後攻は追加PPを使用できるルールから帰結。"
+  },
+  "plans": [
+    {
+      "name": "ゴッデス",
+      "t8": [
+        {
+          "row": "G1",
+          "label": "後半の追加PPを使う",
+          "delta": 1,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "ゴッデス側: T8エクストラPPを使用して9PP。"
+            }
+          ],
+          "extra_after": 0
+        },
+        {
+          "row": "G2",
+          "label": "原文5+0+2+2の第1支払い",
+          "delta": -5,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "5+0+2+2PP、EPをゴッデスへ使い、顔10点。"
+            }
+          ]
+        },
+        {
+          "row": "G3",
+          "label": "原文5+0+2+2の第2支払い",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "5+0+2+2PP、EPをゴッデスへ使い、顔10点。"
+            }
+          ]
+        },
+        {
+          "row": "G4",
+          "label": "原文5+0+2+2の第3支払い",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "5+0+2+2PP、EPをゴッデスへ使い、顔10点。"
+            }
+          ]
+        },
+        {
+          "row": "G5",
+          "label": "原文5+0+2+2の第4支払い",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "5+0+2+2PP、EPをゴッデスへ使い、顔10点。"
+            }
+          ]
+        }
+      ],
+      "t9_start": {
+        "symbol": "g",
+        "numeric_case": 9,
+        "status": "原文の残り5と支払い合計4が整合する開始値。開始9そのものの独立した記載はない。",
+        "references": [
+          {
+            "source": "comparison",
+            "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+            "line": 5,
+            "quote": "T9残り5PP。"
+          },
+          {
+            "source": "comparison",
+            "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+            "line": 5,
+            "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。"
+          }
+        ]
+      },
+      "t9": [
+        {
+          "row": "G7",
+          "label": "神秘0",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。"
+            }
+          ]
+        },
+        {
+          "row": "G8",
+          "label": "コピー緋岸0",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。"
+            }
+          ]
+        },
+        {
+          "row": "G9",
+          "label": "レイピア1枚目2",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。"
+            }
+          ]
+        },
+        {
+          "row": "G10",
+          "label": "レイピア2枚目2",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 5,
+              "quote": "T9神秘0、コピー緋岸0、レイピア2+2で顔10点、残るSEPをレイピアへ使えば13点。"
+            }
+          ]
+        }
+      ],
+      "extra_at_t9": 0
+    },
+    {
+      "name": "ルリア",
+      "t8": [
+        {
+          "row": "L1",
+          "label": "緋岸A0",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+            }
+          ]
+        },
+        {
+          "row": "L2",
+          "label": "神秘0",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+            }
+          ]
+        },
+        {
+          "row": "L3",
+          "label": "ルリアのエンハンス8",
+          "delta": -8,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+            }
+          ]
+        },
+        {
+          "row": "L4",
+          "label": "原文0→7の実際の増加として扱う",
+          "delta": 7,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+            }
+          ]
+        },
+        {
+          "row": "L5",
+          "label": "セタス＆メイシア7",
+          "delta": -7,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "元のルリア側の一例: T8緋岸A0と神秘0を使い、ルリアのエンハンス8で残りPP8→0→7、唯一の7コスト以上であるセタス＆メイシアを引き、7PPでプレイ。"
+            }
+          ]
+        }
+      ],
+      "t9_start": {
+        "symbol": "l",
+        "numeric_case": 9,
+        "status": "原文の残り3と支払い合計6が整合する開始値。開始9そのものの独立した記載はない。",
+        "references": [
+          {
+            "source": "comparison",
+            "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+            "line": 6,
+            "quote": "EPを一方へ使えば5+7=12点、PP残り3、手札7→6→6→4。"
+          },
+          {
+            "source": "comparison",
+            "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+            "line": 6,
+            "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。"
+          }
+        ]
+      },
+      "t9": [
+        {
+          "row": "L7",
+          "label": "神秘0",
+          "delta": 0,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。"
+            }
+          ]
+        },
+        {
+          "row": "L8",
+          "label": "緋岸B2",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。"
+            }
+          ]
+        },
+        {
+          "row": "L9",
+          "label": "レイピア1枚目2",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。"
+            }
+          ]
+        },
+        {
+          "row": "L10",
+          "label": "レイピア2枚目2",
+          "delta": -2,
+          "references": [
+            {
+              "source": "comparison",
+              "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+              "line": 6,
+              "quote": "T9自然ドロー7枚から神秘0、2コストまで下がった緋岸Bで破壊＋1ドロー、レイピア2+2PPを出す。"
+            }
+          ]
+        }
+      ],
+      "extra_at_t9": 1,
+      "extra_reference": {
+        "source": "comparison",
+        "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+        "line": 6,
+        "quote": "後半エクストラPPは使わずに残る。"
+      }
+    }
+  ],
+  "endpoint": "T9の記載された神秘・緋岸・レイピア2枚のプレイを済ませた直後。これ以降の追加PP使用や追加カードプレイは計算行に加えない。",
+  "limitations": [
+    "全カードの本文・追加効果・PP回復の上限や条件は未確認。原文0→7を実際の増加7として検算する。",
+    "T9開始PPを一般的なターン数から自動設定しない。記号での結果と原文残り値に対応する9の条件付き結果を併記する。",
+    "手札・盤面・進化権・打点・カード評価・初手からの到達率・実戦頻度は検算対象外。",
+    "T8の5+0+2+2の各支払いに対するカード名の完全な対応は元資料に明記されないため、第1〜4支払いとして保持する。",
+    "記載されたPP以外に増減がないという原文の列を検算し、カード効果全体による完全な合法性は証明しない。"
+  ]
+}

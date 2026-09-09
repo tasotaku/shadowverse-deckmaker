@@ -1,0 +1,58 @@
+{
+  "objective": "保存された二案のPP推移と同じ終点を検算する。カードの探索は行わない。",
+  "captured_at": "2026-09-09T03:33:08.451339+00:00",
+  "format": "rotation",
+  "class_name": "エルフ",
+  "revisions": [],
+  "sources": [
+    {
+      "source_hash": "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+      "title": "検証開始時のゲームルール",
+      "kind": "固定ルール",
+      "location": "docs/rules.md の保存版",
+      "observed_at": null,
+      "limitations": [
+        "この固定資料の範囲で照合する。最新環境への一般化はしない。"
+      ]
+    },
+    {
+      "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+      "title": "過去に保存した二案の比較本文",
+      "kind": "考案担当による比較資料",
+      "location": "過去の保存資料 original-comparison.md",
+      "observed_at": null,
+      "limitations": [
+        "初手からの実測・対戦結果ではない。記載された状態と行動を検算するための元資料。"
+      ]
+    },
+    {
+      "source_hash": "3e0aa2f85e6becd3a66c8d1fa6e0b1340334008949d7b1be0f1eb87a36b414ce",
+      "title": "PP比較: ゴッデス側・原文T8→T9 / ルリア側・原文T8→T9",
+      "kind": "機械計算",
+      "location": "discovery pp; input_hash=7d1ec890e78adc6ea928d7ef31bf371519229487fa8ab66f896b72497575b72d; context_hash=41d02ae1bb8992f33d6ad310188da62b3787d8eff130fafbc119b939e4e1a1bf",
+      "observed_at": null,
+      "limitations": [
+        "宣言された開始状態と行動順のPP算術だけを計算する。手札・盤面・進化権・効果条件・強さは判定しない。",
+        "gainは上限処理と発動条件を外部で確認した後の実際の増加量。宣言の真実性やカード効果、回復上限は検証しない。",
+        "現在PPはPP最大値ではない。next_turnの開始PPも入力値であり、自然増・回復・持越しを推測しない。",
+        "未使用の追加PPを含む値は、use_extraを実行した結果ではない。不明な追加PPは範囲として示す。",
+        "途中で問題が起きた手順に終点はない。PP不足は宣言手順についてだけの結果で、全カードでの不可能や無価値を意味しない。",
+        "参照資料の識別値と保存内容の一致は確認するが、入力が資料の意味に合うことや開始状態の正しさは検証しない。"
+      ]
+    },
+    {
+      "source_hash": "f8979e3978995724d306aca64e1f18c4701a6e6ee239e76e2177a42a916e4bab",
+      "title": "方式B：T8→T9のPP検算と原文照合",
+      "kind": "検算",
+      "location": "/tmp/sv-pp-comparison-01/b/work/report.md",
+      "observed_at": "2026-09-09 03:40:57 UTC",
+      "limitations": [
+        "T9開始9PPは記載支払と残量から逆算した内部整合条件。",
+        "gain 7は原文の実増加0→7の転記。カード効果・回復条件・上限処理は独立未確認。",
+        "カード効果全体・強さ・最適性・初手実現率は対象外。",
+        "子agentによる独立検査および実際の読者の確認は未実施。"
+      ]
+    }
+  ],
+  "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+}

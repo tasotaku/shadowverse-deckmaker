@@ -1,0 +1,74 @@
+{
+  "objective": "保存された二案のPP推移と同じ終点を検算する。カードの探索は行わない。",
+  "captured_at": "2026-09-09T03:33:08.094131+00:00",
+  "format": "rotation",
+  "class_name": "エルフ",
+  "revisions": [],
+  "sources": [
+    {
+      "source_hash": "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+      "title": "検証開始時のゲームルール",
+      "kind": "固定ルール",
+      "location": "docs/rules.md の保存版",
+      "observed_at": null,
+      "limitations": [
+        "この固定資料の範囲で照合する。最新環境への一般化はしない。"
+      ]
+    },
+    {
+      "source_hash": "2724125be95ed514e6d6463a4faaf378c0301d1aafda254793361e43c99db19a",
+      "title": "方式A：通常計算の入力と根拠対応",
+      "kind": "検算",
+      "location": "/tmp/sv-pp-comparison-01/a/work/calc-input.json",
+      "observed_at": null,
+      "limitations": [
+        "指定された元比較文と固定ルールだけのPP収支検算。カード効果全体・強さ・実現率は未確認。",
+        "T9開始9PPは原文の残り値に整合する条件付き数値例。開始値を独立には確認していない。"
+      ]
+    },
+    {
+      "source_hash": "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76",
+      "title": "過去に保存した二案の比較本文",
+      "kind": "考案担当による比較資料",
+      "location": "過去の保存資料 original-comparison.md",
+      "observed_at": null,
+      "limitations": [
+        "初手からの実測・対戦結果ではない。記載された状態と行動を検算するための元資料。"
+      ]
+    },
+    {
+      "source_hash": "79a65c65386d3225791d9d0b37760db817f2d650b6db5a2e1a04f3660d8b38de",
+      "title": "方式A：通常計算の行別出力",
+      "kind": "検算",
+      "location": "/tmp/sv-pp-comparison-01/a/work/calc-output.json",
+      "observed_at": null,
+      "limitations": [
+        "指定された元比較文と固定ルールだけのPP収支検算。カード効果全体・強さ・実現率は未確認。",
+        "T9開始9PPは原文の残り値に整合する条件付き数値例。開始値を独立には確認していない。"
+      ]
+    },
+    {
+      "source_hash": "c1c46d3fec313ebfe2826ee161f31e7db36fa5fe7cceae4806959925a34c26ad",
+      "title": "方式A：二案のPP検算・説明と原文対応",
+      "kind": "検算",
+      "location": "/tmp/sv-pp-comparison-01/a/work/report.md",
+      "observed_at": null,
+      "limitations": [
+        "指定された元比較文と固定ルールだけのPP収支検算。カード効果全体・強さ・実現率は未確認。",
+        "T9開始9PPは原文の残り値に整合する条件付き数値例。開始値を独立には確認していない。"
+      ]
+    },
+    {
+      "source_hash": "c6c04ce1d5cb1dca509ec65da2d36b4010f10be91e76931243daf8998e154509",
+      "title": "方式A：計算スクリプト",
+      "kind": "検算",
+      "location": "/tmp/sv-pp-comparison-01/a/work/calculate.py",
+      "observed_at": null,
+      "limitations": [
+        "指定された元比較文と固定ルールだけのPP収支検算。カード効果全体・強さ・実現率は未確認。",
+        "T9開始9PPは原文の残り値に整合する条件付き数値例。開始値を独立には確認していない。"
+      ]
+    }
+  ],
+  "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+}

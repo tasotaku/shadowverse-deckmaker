@@ -1,0 +1,20 @@
+あなたは独立した評価担当です。class-choice-01 従来方式aの第2回調査が、疑問を解消したか、停止が適切か、試す理由のある種へ進んだかを1回だけ評価します。考案担当・親の判断への同意は不要です。
+
+最初に実時計を読み、開始と20分後の保存期限を /tmp/sv-class-choice-01/a-work/round-2/independent-review/execution.json に記録します。調査・評価・保存の全経過を20分以内にし、十分な結果があれば早く終わって構いません。適用AGENTSとimportルール、/tmp/sv-class-choice-prototype/docs/design.md、/tmp/sv-class-choice-01/operator-readme.mdを読みます。
+
+入力は /tmp/sv-class-choice-01/a-work/round-2/{research.md,research.json,hand-comparison.json,comparison-list.json,execution.json,source-verification.json,sources-to-attach.json} と対象 /tmp/sv-class-choice-01/a-2/session の保存packet bb88b878d4308b70930b9196e3e3588a897636104065fa5c5535eb7fe8dadb9e です。この保存版のカード・効果参照・相方も含む注記・ルール・用語・追加資料を公開readで必要範囲読みます。前回からの発展を確かめるため、/tmp/sv-class-choice-01/a-work/round-1/{research.md,research.json,execution.json} と前回の追加資料が入った /tmp/sv-class-choice-01/a-4/session のpacket 296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904 も読んでよいです。前回の独立評価ファイルは読みません。
+
+CLIは PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/tmp/sv-class-choice-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery。公開reportで正式提案がないこと、資料追加と入力版を確かめてください。正式案がないので、この回も架空の提案やpublic reviewは作りません。standalone評価を指定出力先へ1件保存します。
+
+固定する5基準:
+1. 公開工程：資料読出し、追加資料の保持、比較・改訂・評価のうち実際に行った範囲を保存結果で確認する。未実施を通過としない。
+2. 正しさ：今回の最終資料について合法性、効果の対象と時間、PP、手札、場、進化権、相手依存に重大な誤りがないか。指定手札の整合と初手から到達する条件・頻度を分け、不明は不明。
+3. 発展：前回の疑問が少なくとも1つ解消、手順や配分が証拠で変化、または適切な停止に至る。言い換え・問いの再掲は改善ではない。
+4. 有用性：試す理由のある種が残るか。既知の標準用法との差、元構築で失う役割と得る役割、核が揃わない時の勝ち方が具体的で、採用負担に見合う可能性が根拠付きで残るか。手順成立だけで合格にしない。完成40枚、Tier・勝率、全対面全引きの優越の証明は要求しない。
+5. 誠実さ：検索ヒットなし・共起0を未知の証明としない。検索範囲を残し、Tier・勝率・初見の加点を捏造しない。
+
+停止が支持されるか、限定した疑問を追加調査すれば判断が変わりうるかを分けて書いてください。少数の具体的な未確認があるだけで無期限developにせず、いまある利益と負担に対してその疑問が本当に意思決定を変えるかを説明します。一方、提案なしという形式だけで無価値としません。資料保存だけの場合も1回の検討として数えます。
+
+保存先 /tmp/sv-class-choice-01/a-work/round-2/independent-review に evaluation.md、evaluation.json、execution.json。5基準の判定・根拠・引用、読取範囲、未確認、継続の要否と具体的な次の問い、開始・確認終了・保存終了の実時計、公開操作数・失敗・修正回数を記録。思考の逐語記録は不要です。必要な最新のWeb照合は自分で行って範囲と出典を記録できます。固定資料を変更しません。
+
+禁止: 親履歴、他方式b・他の試行・過去の評価結果・期待判定・src/evals/protocolの読取、考案担当への採点相談、追加agent/CLI起動、本番DB・snapshot・元資料・既存記録・コードの編集、公開review登録、外部送信・投稿、git commit/push。書込は上記独立評価出力先だけ。再採点して都合のよい結果を選びません。

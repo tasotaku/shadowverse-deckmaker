@@ -1,0 +1,96 @@
+{
+  "method": "B",
+  "started_at": "2026-09-09T03:35:01.000Z",
+  "work_deadline": "2026-09-09T03:47:01.000Z",
+  "save_deadline": "2026-09-09T03:50:01.000Z",
+  "milestones": {
+    "start": "2026-09-09T03:35:01.000Z",
+    "source_read_complete": "2026-09-09T03:36:48.000Z",
+    "input_creation_complete": "2026-09-09T03:36:56.000Z",
+    "calculation_complete": "2026-09-09T03:37:06.000Z",
+    "verification_complete": "2026-09-09T03:41:01.000Z",
+    "save_complete": "2026-09-09T03:43:45.000Z"
+  },
+  "public_operations": [
+    {
+      "n": 1,
+      "operation": "packet",
+      "success": true,
+      "exit_code": 0
+    },
+    {
+      "n": 2,
+      "operation": "read sources",
+      "success": true,
+      "exit_code": 0
+    },
+    {
+      "n": 3,
+      "operation": "pp",
+      "success": true,
+      "exit_code": 0
+    },
+    {
+      "n": 4,
+      "operation": "attach",
+      "success": true,
+      "exit_code": 0
+    },
+    {
+      "n": 5,
+      "operation": "report",
+      "success": true,
+      "exit_code": 0
+    }
+  ],
+  "correction_count": 1,
+  "public_operation_counts": {
+    "total": 5,
+    "success": 5,
+    "failure": 0
+  },
+  "correction_definition": "入力・計算・説明の修正0、保存終了メタデータの訂正1。通常の工程時刻追記は数えない。",
+  "plan_count": 2,
+  "calculated_rows": 20,
+  "row_issues": 0,
+  "within_work_deadline": true,
+  "within_save_deadline": true,
+  "elapsed_seconds": 524,
+  "source_hashes": [
+    "0ee2133f3364cb871e43d5e00635e41b928b0f494216dd4825553579b6a46cf5",
+    "2b2103ec19f514cb1072ff5a14ace6919162d8401f334614048140daebc09e76"
+  ],
+  "calculation_source_hash": "3e0aa2f85e6becd3a66c8d1fa6e0b1340334008949d7b1be0f1eb87a36b414ce",
+  "explanation_source_hash": "f8979e3978995724d306aca64e1f18c4701a6e6ee239e76e2177a42a916e4bab",
+  "unconfirmed": [
+    "カード効果全体・発動条件・回復上限処理",
+    "T9開始状態を生む経緯の独立実証",
+    "手札・盤面・進化権・実際に使える追加カード",
+    "強さ・最適性・初手からの実現率・勝率や頻度",
+    "別agentの初見検査および実際の読者の確認",
+    "公開保存本文の再read（reportによるhash対応確認まで実施）"
+  ],
+  "clock_source": "clock__curr_time（UTC実時計）",
+  "save_complete_note": "全成果物の書込・読戻しと公開report照合後の実時計。execution.jsonの最終時刻追記のみ直後に実施。",
+  "correction_breakdown": {
+    "input": 0,
+    "calculation": 0,
+    "explanation": 0,
+    "execution_metadata": 1
+  },
+  "local_save_failures": [
+    {
+      "count": 1,
+      "reason": "ログ保存用JavaScriptが64000-byteの自動レビュー長さ上限で未実行となった。",
+      "resolution": "ログを小さく分割して保存・読戻しを完了。",
+      "metadata_correction": "先の保存終了時刻03:42:20 UTCは未完了状態で記録されたため撤回し、保存・読戻し後の実時計へ訂正。"
+    }
+  ],
+  "phase_durations_seconds": {
+    "start_to_source_read": 107,
+    "source_read_to_input": 8,
+    "input_to_calculation": 10,
+    "calculation_to_verification": 235,
+    "verification_to_save": 164
+  }
+}
