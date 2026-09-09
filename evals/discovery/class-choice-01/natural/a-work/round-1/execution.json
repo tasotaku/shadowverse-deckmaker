@@ -1,0 +1,234 @@
+{
+  "started_at_utc": "2026-09-09T02:36:33Z",
+  "research_deadline_utc": "2026-09-09T03:01:33Z",
+  "save_deadline_utc": "2026-09-09T03:06:33Z",
+  "status": "complete_without_submission",
+  "research_ended_at_utc": "2026-09-09T02:52:47Z",
+  "sessions_read": {
+    "a-1": {
+      "class_name": "エルフ",
+      "session": "/tmp/sv-class-choice-01/a-1/session",
+      "context_hash": "7ca0d7c2388f8f26ef234ce15337ad7dc4855dc3bc86e2e5f5f3c50085ef80e0",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "c37a16861263b890a841867a0259716671c665dacf41d78c330bc638691515f0",
+      "packet": "/tmp/sv-class-choice-01/a-1/initial-packet.json",
+      "context_characters": 297747,
+      "source_count": 33
+    },
+    "a-2": {
+      "class_name": "ロイヤル",
+      "session": "/tmp/sv-class-choice-01/a-2/session",
+      "context_hash": "d228fe4661dd1dd9b5ac80fed8e80816a69e928e49fde02d42f7873e21faa30f",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "ddcdad70d2e1d0f98ed44fc7401a10f8dfae1f715e14e615e2c82df969853841",
+      "packet": "/tmp/sv-class-choice-01/a-2/initial-packet.json",
+      "context_characters": 301388,
+      "source_count": 33
+    },
+    "a-3": {
+      "class_name": "ウィッチ",
+      "session": "/tmp/sv-class-choice-01/a-3/session",
+      "context_hash": "5f948100cf308a9729f9924959b27b8d4c8eb5b75e00b3c6354f4197b480a6cb",
+      "eligible_cards": 114,
+      "related_cards": 98,
+      "initial_packet_hash": "69fbb4760846bab01eff46536e0ff4db7531b8e16387af1b46c57c328a779952",
+      "packet": "/tmp/sv-class-choice-01/a-3/initial-packet.json",
+      "context_characters": 306646,
+      "source_count": 33
+    },
+    "a-4": {
+      "class_name": "ドラゴン",
+      "session": "/tmp/sv-class-choice-01/a-4/session",
+      "context_hash": "fbec6819e72dd748bef57077e62ff23a3d20201d276f5b643cf642205b836c1f",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "7bc088ba03e1e669c53eee56f77b2a96ff0864fcc49e0509565bb0f05e3cccb7",
+      "packet": "/tmp/sv-class-choice-01/a-4/initial-packet.json",
+      "context_characters": 296425,
+      "source_count": 33
+    },
+    "a-5": {
+      "class_name": "ナイトメア",
+      "session": "/tmp/sv-class-choice-01/a-5/session",
+      "context_hash": "4f04f7078ed1e3bca1f4b313ce6d28920d20c8cea31ab3fa119079d29381b95b",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "83f1e519775dd95ecb0afb3b3aabedc3acb789d04f614eaa62cd1095882168f8",
+      "packet": "/tmp/sv-class-choice-01/a-5/initial-packet.json",
+      "context_characters": 308524,
+      "source_count": 33
+    },
+    "a-6": {
+      "class_name": "ビショップ",
+      "session": "/tmp/sv-class-choice-01/a-6/session",
+      "context_hash": "f76db5f32fcc3cb3db59bc59df479217a8518ce5e878ea76379dc0f0a21ab874",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "ac1186fe6388025dbea182500ae387f33930f805e9f6f3f459ddfbd91e43feb5",
+      "packet": "/tmp/sv-class-choice-01/a-6/initial-packet.json",
+      "context_characters": 303985,
+      "source_count": 33
+    },
+    "a-7": {
+      "class_name": "ネメシス",
+      "session": "/tmp/sv-class-choice-01/a-7/session",
+      "context_hash": "39bed6cb1e5b9307bfeee5207609f2ddc3a20dbf835eb5a1dd8ef1317b8d69ca",
+      "eligible_cards": 113,
+      "related_cards": 99,
+      "initial_packet_hash": "47eb6496099bdf843800429464fafe94ad5ad37ecd2f49b437a735d7d1ca7b3a",
+      "packet": "/tmp/sv-class-choice-01/a-7/initial-packet.json",
+      "context_characters": 304173,
+      "source_count": 33
+    }
+  },
+  "read_scope": {
+    "sources": "指定の初期packet7件のみ。実装、採点基準、他担当結果、過去自然試行結果を読んでいない。",
+    "eligible_cards": {
+      "unique_card_id_count": 516,
+      "neutral_card_count": 46,
+      "fields_read_across_all": [
+        "card_id",
+        "name",
+        "class_name",
+        "cost",
+        "atk",
+        "life",
+        "type",
+        "skill_text",
+        "ref_effect_text",
+        "note"
+      ],
+      "saved_union": "eligible-cards.json",
+      "limitation": "全カードのraw・全進化文・タグ・requirementsを全件精査したという主張ではない。表示が切れたニュートラル中段とナイトメア中段は再表示して読んだ。"
+    },
+    "related_cards": "金貨、深淵、操り人形、アーティファクトなど候補の関連札を選択的に確認。関連カード99件全体の読了とは扱わない。",
+    "rules": "公開packetのrules本文117行と、指定docs/design.mdのフォーマット・評価・マッチング・既出判定の節を参照。",
+    "known_decks": "同じ保存参考構築33件の名称、クラス、ニュートラル採用を横断照合。ドラゴンのフェイス寄せ2リストを40枚の参照として読んだ。全33件の全手順・合法性・優劣の監査はしていない。",
+    "practical_tests": "対戦、勝率測定、手札シミュレーション、完成40枚の交換比較は実施していない。"
+  },
+  "formal_submission": {
+    "status": "not_submitted",
+    "revision": null,
+    "session": null,
+    "reason": "具体的な着想はあったが、既知との差と採用負担に見合う勝ち方を同時に説明できる案まで到達しなかった。候補不存在や方式失敗の証明ではない。"
+  },
+  "evidence_storage_session": "/tmp/sv-class-choice-01/a-4/session",
+  "remaining_unknowns": [
+    "全40枚の具体的な交換差、動画内容との違い、設置後の盤面負担と勝ち筋の実測。",
+    "手札順と6枚以上の残量を再現可能に作る手順、既存の反復より勝ちへ近づく配分、超進化の競合。",
+    "他にコピーする1枚と捨てる3枚の実際の入手、初期手札で同名を引いた場合、準備2ターンと2回の進化系資源に見合う強さ。検索に直接一致する構築が見つからないことだけでは独自性を肯定しない。",
+    "偶数の山札を作る負担に見合う現在合法な勝ち方。",
+    "同じ採用と異なる役割変更。",
+    "今回の新しい構築として何が変わるか。",
+    "既存用途を越える配分上の具体的利益。",
+    "既出確認、相手の動きを含む速度、準備負担を満たす構築。"
+  ],
+  "record_files": [
+    "research.json",
+    "research.md",
+    "sources-to-attach.json",
+    "eligible-cards.json",
+    "public-command-log.json",
+    "attach-result.json",
+    "after-attach-summary.json",
+    "session-report.json",
+    "execution.json"
+  ],
+  "public_commands": {
+    "success_count": 4,
+    "failure_count": 0,
+    "log": "public-command-log.json",
+    "commands": [
+      {
+        "argv": [
+          "/tmp/sv-system-venv/bin/python",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/sv-class-choice-01/a-4/session",
+          "--summary"
+        ],
+        "started_at_utc": null,
+        "time_note": "先行実行。正確な時刻は未保存",
+        "exit_code": 0,
+        "stdout_file": "dragon-summary.json",
+        "purpose": "公開資料の概要と回答形式を確認"
+      },
+      {
+        "argv": [
+          "/tmp/sv-system-venv/bin/python",
+          "-m",
+          "svdeck.discovery",
+          "attach",
+          "/tmp/sv-class-choice-01/a-4/session",
+          "/tmp/sv-class-choice-01/a-work/round-1/sources-to-attach.json"
+        ],
+        "started_at_utc": "2026-09-09T02:56:03.563706+00:00",
+        "ended_at_utc": "2026-09-09T02:56:03.759508+00:00",
+        "exit_code": 0,
+        "stdout_file": "attach-result.json",
+        "stderr_file": null
+      },
+      {
+        "argv": [
+          "/tmp/sv-system-venv/bin/python",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/sv-class-choice-01/a-4/session",
+          "--summary"
+        ],
+        "started_at_utc": "2026-09-09T02:56:03.759922+00:00",
+        "ended_at_utc": "2026-09-09T02:56:03.950320+00:00",
+        "exit_code": 0,
+        "stdout_file": "after-attach-summary.json",
+        "stderr_file": null
+      },
+      {
+        "argv": [
+          "/tmp/sv-system-venv/bin/python",
+          "-m",
+          "svdeck.discovery",
+          "report",
+          "/tmp/sv-class-choice-01/a-4/session"
+        ],
+        "started_at_utc": "2026-09-09T02:56:03.960622+00:00",
+        "ended_at_utc": "2026-09-09T02:56:04.044339+00:00",
+        "exit_code": 0,
+        "stdout_file": "session-report.json",
+        "stderr_file": null
+      }
+    ],
+    "submit_count": 0,
+    "compare_count": 0,
+    "review_count": 0
+  },
+  "after_attach_packet_hash": "296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904",
+  "verification": {
+    "attached_source_hashes": [
+      "a1da0c88f2337ca49193da6b41269bebd2e2f7886126fc830634449f13dd6fcc",
+      "0f564344031df053ac9fb755f759c2efebeca9c711fc05183bec81ddfd5bcde7",
+      "e5ebb81d33a0cd6cb17ab29fc0af9eb3de0ce9318bb52e9f344dee9b380ca978",
+      "03b160fa47b83b5e7d9168f2bff54609c9fcb27003e6449b3282fb56bcab63cb",
+      "bc39433d999bc3549b08757a62ca5a5c995ad979c68fe1e3dbfd76fa86c94cc0",
+      "0169ee821f4a380d3392915c9367279c14360bd07f4798c0981e0432c7ff2640",
+      "049805c0806b89d1a5e3e9138f29468070ee4a0e052223673c326c4ecd8dcb6c",
+      "44c68f97c5809f70ab930ca37bbb1d35e619884f08e06929e965412d5905ddec",
+      "6b8317ab7f51196a6a8ff4ba23fc57d4d8f373a2b21c0172ab105a949e9b22fe",
+      "85eee0ca3210a085fa2a599400ccb01d4499d47d64adfaa617fcea41b767e1b7"
+    ],
+    "all_added_sources_present_in_saved_packet": true,
+    "saved_packet_path": "/private/tmp/sv-class-choice-01/a-4/session/packets/296db6731be732fb23d55e1ec13b625e0fd05cb7dadda550bc9e97e127a7a904.json",
+    "proposal_in_saved_packet": null,
+    "formal_revision_count": 0,
+    "report_file": "session-report.json"
+  },
+  "save_ended_at_utc": "2026-09-09T02:56:42Z",
+  "elapsed_seconds": {
+    "research": 974.0,
+    "saving": 235,
+    "total": 1209
+  }
+}

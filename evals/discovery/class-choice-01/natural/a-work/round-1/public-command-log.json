@@ -1,0 +1,61 @@
+[
+  {
+    "argv": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-class-choice-01/a-4/session",
+      "--summary"
+    ],
+    "started_at_utc": null,
+    "time_note": "先行実行。正確な時刻は未保存",
+    "exit_code": 0,
+    "stdout_file": "dragon-summary.json",
+    "purpose": "公開資料の概要と回答形式を確認"
+  },
+  {
+    "argv": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "attach",
+      "/tmp/sv-class-choice-01/a-4/session",
+      "/tmp/sv-class-choice-01/a-work/round-1/sources-to-attach.json"
+    ],
+    "started_at_utc": "2026-09-09T02:56:03.563706+00:00",
+    "ended_at_utc": "2026-09-09T02:56:03.759508+00:00",
+    "exit_code": 0,
+    "stdout_file": "attach-result.json",
+    "stderr_file": null
+  },
+  {
+    "argv": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "packet",
+      "/tmp/sv-class-choice-01/a-4/session",
+      "--summary"
+    ],
+    "started_at_utc": "2026-09-09T02:56:03.759922+00:00",
+    "ended_at_utc": "2026-09-09T02:56:03.950320+00:00",
+    "exit_code": 0,
+    "stdout_file": "after-attach-summary.json",
+    "stderr_file": null
+  },
+  {
+    "argv": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "report",
+      "/tmp/sv-class-choice-01/a-4/session"
+    ],
+    "started_at_utc": "2026-09-09T02:56:03.960622+00:00",
+    "ended_at_utc": "2026-09-09T02:56:04.044339+00:00",
+    "exit_code": 0,
+    "stdout_file": "session-report.json",
+    "stderr_file": null
+  }
+]

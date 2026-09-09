@@ -1,0 +1,221 @@
+{
+  "start_utc": "2026-09-09T02:36:47Z",
+  "research_deadline_utc": "2026-09-09T03:01:47Z",
+  "save_deadline_utc": "2026-09-09T03:06:47Z",
+  "session": "/tmp/sv-class-choice-01/b/session",
+  "initial_packet_hash": "949c287ab28e8cc2be7bf295e3fe61f10f130cea19dabc00df915532e54dcfab",
+  "reads": [],
+  "public_commands": [
+    {
+      "command": "packet SESSION --summary",
+      "success": true
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "attach",
+        "/tmp/sv-class-choice-01/b/session",
+        "/tmp/sv-class-choice-01/b-work/round-1/sources.json"
+      ],
+      "started_utc": "2026-09-09T02:51:21.347478+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-02-attach.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "compare",
+        "/tmp/sv-class-choice-01/b/session",
+        "8aaea0ee97f98a29830fa91065325e4a29639f69fbe5e1ed45868fe8959e493a",
+        "19a510c3861a895ac5a2e04ccf885befb76c3d3a85b7f2513474aa10807bae9f"
+      ],
+      "started_utc": "2026-09-09T02:51:35.141388+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-03-compare.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "packet",
+        "/tmp/sv-class-choice-01/b/session",
+        "--summary"
+      ],
+      "started_utc": "2026-09-09T02:51:35.379214+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-04-packet.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "5d69b32f6a31aceb618c61db11f61eb1e7bb519290aa9e9685938a0e77578b63",
+        "cards",
+        "--offset",
+        "139",
+        "--limit",
+        "1"
+      ],
+      "started_utc": "2026-09-09T02:55:17.354059+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-05-read.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "5d69b32f6a31aceb618c61db11f61eb1e7bb519290aa9e9685938a0e77578b63",
+        "cards",
+        "--offset",
+        "280",
+        "--limit",
+        "1"
+      ],
+      "started_utc": "2026-09-09T02:55:17.505916+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-06-read.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "read",
+        "/tmp/sv-class-choice-01/b/session",
+        "5d69b32f6a31aceb618c61db11f61eb1e7bb519290aa9e9685938a0e77578b63",
+        "cards",
+        "--offset",
+        "613",
+        "--limit",
+        "1"
+      ],
+      "started_utc": "2026-09-09T02:55:17.630915+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-07-read.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "submit",
+        "/tmp/sv-class-choice-01/b/session",
+        "/tmp/sv-class-choice-01/b-work/round-1/answer.json"
+      ],
+      "started_utc": "2026-09-09T02:56:01.304445+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-08-submit.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "report",
+        "/tmp/sv-class-choice-01/b/session"
+      ],
+      "started_utc": "2026-09-09T02:56:45.522935+00:00",
+      "success": true,
+      "exit_code": 0,
+      "output": "/tmp/sv-class-choice-01/b-work/round-1/public-09-report.json",
+      "stderr": ""
+    }
+  ],
+  "research_end_utc": "2026-09-09T02:56:01Z",
+  "research_elapsed_seconds": 1154,
+  "selected_class": "ネメシス",
+  "selected_session": "/tmp/sv-class-choice-01/b/session",
+  "formal_revision": 1,
+  "submitted_packet_hash": "5d69b32f6a31aceb618c61db11f61eb1e7bb519290aa9e9685938a0e77578b63",
+  "context_hash": "d5df872ea1da8f0617b3cdeaed3fb07c4ae7ba1f2f65fb36d629c1742c5df0ad",
+  "reading_scope_file": "/tmp/sv-class-choice-01/b-work/round-1/reading-scope.json",
+  "self_review_registered": false,
+  "stop_reason": "初回の考案・調査・比較・1件の未完成案の正式提出まで完了。実戦価値と手札成立頻度を未評価として独立評価へ渡す。",
+  "local_errors": [
+    {
+      "operation": "固定packet ability_keywordsの絞り込み",
+      "error": "辞書をリストと誤認したAttributeError",
+      "resolution": "辞書キーで再読して必要6定義を取得"
+    }
+  ],
+  "remaining_uncertainties": [
+    "未完成の種として提出。試す価値・新発見・勝率は未確定。",
+    "初回の7PP準備ターンは複数の相手フォロワーを処理し切れない恐れがある。手札条件と安全な局面が同時に来る頻度は不明。",
+    "T4とT7の指定手札の間を、実際のドロー順・相手行動に沿って通した対戦記録はない。",
+    "ゴッデスのコピーには手札6枚以上と左3枚への配置が要る。山札から引く札が増えすぎると9枚上限や配置が崩れる。",
+    "ゴッデスに進化権を使うため、エース・イマリ等の既存の強い進化を減らす。効果による進化では代用不可。",
+    "玩具3の反復は山札を速く減らし、決着前の山札切れも未検証。",
+    "生成物の状態コピーは固定カード注記に基づく。公式カードURLのWeb本文を今回取得できず、現在の個別Q&Aや能力変更は独立照合できていない。",
+    "全33構築についてニュートラル採用を検索したが、全投稿や動画を網羅していない。ハイランダーネメシスにもゴッデスとヨグゼンタが同居しており、同居なしを新しさの根拠にはできない。",
+    "既存ナイフ・リオナ・ベルゼバブ案の不評注記は確認した。今回は潜伏も前ターンの本体生存も使わないが、それだけで採用価値があるとは結論しない。"
+  ],
+  "public_success_count": 9,
+  "public_failure_count": 0,
+  "public_read_ranges": [
+    {
+      "section": "cards",
+      "offset": 139,
+      "limit": 1
+    },
+    {
+      "section": "cards",
+      "offset": 280,
+      "limit": 1
+    },
+    {
+      "section": "cards",
+      "offset": 613,
+      "limit": 1
+    }
+  ],
+  "web_search_queries": [
+    "スターライトゴッデス ドラゴン デッキ",
+    "ルリア エンハンスロイヤル",
+    "ゴッズレポーター まりっぺ",
+    "スターライトゴッデス ヨグゼンタ",
+    "スターライトゴッデス ヴォーラライ",
+    "軍配の偉丈夫 スペルウィッチ",
+    "スターライトゴッデス 低劣の玩具",
+    "スターライトゴッデス 天斧の深淵",
+    "スターライトゴッデス ナイフストリンガー"
+  ],
+  "web_search_query_count": 9,
+  "web_record_file": "/tmp/sv-class-choice-01/b-work/round-1/web-checks.json",
+  "source_files": [
+    "sources.json",
+    "research.md",
+    "reading-scope.json",
+    "after-40.json",
+    "baseline-source.json",
+    "report.json",
+    "answer.json"
+  ],
+  "save_end_utc": "2026-09-09T02:57:03.158088+00:00",
+  "written_scope": "自分のsessionへの公開attach/compare/submit/packetと指定outputのみ。本番DB・snapshot・元資料・実装コード・既存試行記録を編集していない。",
+  "review_status": "未評価"
+}

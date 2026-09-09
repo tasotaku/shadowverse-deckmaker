@@ -1,0 +1,76 @@
+{
+  "packet_path": "/tmp/sv-class-choice-01/b/initial-packet.json",
+  "packet_hash": "949c287ab28e8cc2be7bf295e3fe61f10f130cea19dabc00df915532e54dcfab",
+  "cards": {
+    "eligible_counts": {
+      "ウィッチ": 68,
+      "エルフ": 67,
+      "ドラゴン": 67,
+      "ナイトメア": 67,
+      "ニュートラル": 46,
+      "ネメシス": 67,
+      "ビショップ": 67,
+      "ロイヤル": 67
+    },
+    "primary_fields": [
+      "card_id",
+      "name",
+      "class_name",
+      "cost",
+      "type",
+      "atk",
+      "life",
+      "skill_text",
+      "ref_effect_text",
+      "note"
+    ],
+    "read_method": "保存済み公開packetのJSONをクラスごとに抽出して読み、注記を含む全文を確認。非該当クラスや全rawは省略。",
+    "truncation_recovery": "ドラゴン/ナイトメア同時表示で途中省略した1064～1075帯は別コマンドで補読した。最初のAGENTS/designまとめ読みの省略は、重要章と各ruleファイルを分割して読み直した。",
+    "detailed_roles_card_ids": [
+      10502110,
+      10674120,
+      90074320,
+      10671110,
+      10573310,
+      90074140,
+      10972120,
+      10474120,
+      10072210,
+      90071110,
+      90071120,
+      10673110,
+      10574120,
+      10874120,
+      10672310,
+      10974120
+    ],
+    "related_not_exhaustive": true
+  },
+  "known_decks": {
+    "count": 33,
+    "all_names_and_neutral_presence_checked": true,
+    "full_lists_used_ids": [
+      1,
+      3,
+      15,
+      16,
+      19,
+      25,
+      30,
+      31
+    ],
+    "all_33_full_lists_read": false
+  },
+  "rules": "固定packetのrules全文117行を読取",
+  "design": "作業場所docs/design.mdの1～210、215～475、480～555。§1.5、§5、§6、§7相当の原則を確認。後半の実装設計は初回の一括出力以外は再読しておらず全1056行読了とはしない。",
+  "keywords": [
+    "進化時",
+    "アクセラレート",
+    "ファンファーレ",
+    "守護",
+    "突進",
+    "超進化時"
+  ],
+  "other_trials_read": false,
+  "implementation_source_read": false
+}
