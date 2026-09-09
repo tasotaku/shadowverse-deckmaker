@@ -7,7 +7,7 @@
   "journal_entries": 24,
   "visible_records": {
     "focused-inquiry-01": {
-      "revision": 5,
+      "revision": 6,
       "status": "completed",
       "decision": "deferred"
     },
@@ -22,5 +22,10 @@
     "initial": "git diff --cached --check flags 9 lines in the archived prototype.patch",
     "reason": "Unified diff uses a single leading space for an empty context line. Removing it would rewrite the frozen patch; these are patch syntax, not trailing spaces in source code.",
     "scope": "Check all staged files except the immutable prototype.patch; separately parse that patch with git apply --numstat. The patch had already passed git apply --check on its recorded base before workers started."
+  },
+  "final_visibility_checked_at": "2026-09-09T14:30:43.155229+00:00",
+  "final_source_changes": {
+    "error": null,
+    "paths": []
   }
 }

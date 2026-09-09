@@ -1,9 +1,9 @@
 {
   "id": "focused-inquiry-01",
-  "revision": 5,
-  "saved_at": "2026-09-09T14:25:52.512579+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-09T14:30:42.796197+00:00",
   "actor": "root",
-  "reason": "独立照合の未完了と時計差を保持し、部分資料を回収して採用保留として比較を閉じる",
+  "reason": "確定した報告本文へ証拠の版を合わせ、固定DBを含む元入力の永続バックアップを記録",
   "record": {
     "id": "focused-inquiry-01",
     "title": "残った一つの問いを調べる工程を比較する",
@@ -89,14 +89,15 @@
       "evals/discovery/focused-inquiry-01/collection.json",
       "evals/discovery/focused-inquiry-01/assessment/collection.json",
       "evals/discovery/focused-inquiry-01/assessment/verification-record.json",
-      "evals/discovery/focused-inquiry-01/decision.json"
+      "evals/discovery/focused-inquiry-01/decision.json",
+      "evals/discovery/focused-inquiry-01/input-backup.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/focused-inquiry-01/README.md",
-      "sha256": "b12dd5f22ece2022e9c735123bc79492cc80f60bd73617c25cd683928684d4c3",
-      "size": 2652
+      "sha256": "1b56008e5b153338297de2f445e12b0dcc225a0e176f3a6e0fcdbe8e4fe43856",
+      "size": 5148
     },
     {
       "path": "evals/discovery/focused-inquiry-01/assessment/collection.json",
@@ -124,6 +125,11 @@
       "size": 2586
     },
     {
+      "path": "evals/discovery/focused-inquiry-01/input-backup.json",
+      "sha256": "154c33b7b8031c16bf2c5cc682bda9896b8fe54abae512d59e52392f929a9dce",
+      "size": 669
+    },
+    {
       "path": "evals/discovery/focused-inquiry-01/protocol.json",
       "sha256": "fce41c6b109cda4fd2cebd30e261ec44fe6ab118643161658e46a209820c8d3e",
       "size": 5181
@@ -136,8 +142,6 @@
   ],
   "source_changes": {
     "error": null,
-    "paths": [
-      "evals/discovery/focused-inquiry-01/README.md"
-    ]
+    "paths": []
   }
 }
