@@ -1,0 +1,1 @@
+ローカルの保存資料を公開入口から一度読み、metadata.jsonに保存してください。外部検索や別担当の起動は不要です。実行するコマンドは PYTHONPATH=/tmp/sv-focused-inquiry-prototype/src /tmp/sv-system-venv/bin/python -m svdeck.discovery read /tmp/sv-focused-inquiry-01/a/work/session bdaef35661cfc36a840a21f285a802d77a1405314f1222683c91767d05320fa6 packet_metadata --offset 0 --limit 20 です。元の入力を変更せず、この作業先だけに保存してください。出力を確認して短く報告してください。

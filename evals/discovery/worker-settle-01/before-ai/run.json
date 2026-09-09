@@ -1,0 +1,62 @@
+{
+  "status": "termination_unconfirmed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-worker-settle-01/before-ai/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-worker-settle-01/before-ai/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-worker-settle-01/before-ai/work",
+  "stdin": "/private/tmp/sv-worker-settle-01/before-ai/work/prompt.md",
+  "output": "/private/tmp/sv-worker-settle-01/before-ai/run",
+  "started_at": "2026-09-09T14:00:50.729018+00:00",
+  "deadline_at": "2026-09-09T14:01:00.729018+00:00",
+  "timeout_seconds": 10.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 82060,
+  "worker_pid": 82061,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-09T14:01:00.744413+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-09T14:00:50.729765+00:00",
+      "elapsed_seconds": 0.00036795902997255325
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-09T14:00:50.736866+00:00",
+      "elapsed_seconds": 0.007491250056773424
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-09T14:01:00.737592+00:00",
+      "elapsed_seconds": 10.008415374904871
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-09T14:01:00.739211+00:00",
+      "elapsed_seconds": 10.009989750105888,
+      "signal": 15
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-09T14:01:00.744429+00:00",
+      "elapsed_seconds": 10.015202375128865
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Host suspension can delay observation. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "error": "[Errno 1] Operation not permitted",
+  "termination_error": "[Errno 1] Operation not permitted",
+  "elapsed_seconds": 10.015192749910057,
+  "runner_returncode": 125
+}

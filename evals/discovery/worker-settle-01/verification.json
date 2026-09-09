@@ -1,0 +1,36 @@
+{
+  "verified_at": "2026-09-09T14:01:59.050287+00:00",
+  "trigger": "実調査2件でSIGTERM後の即時group probeがEPERM。後続確認ではどちらもESRCH。",
+  "mechanism_hypothesis": "親の回収だけでは終了したプロセス群の消滅観測がまだ安定しない短い期間がある。OS内部の原因は確定していない。",
+  "before_minimal_python": "12個の子を持つPythonで4回とも正常に期限停止し、再現せず。",
+  "fix": "PermissionErrorだけ最大5回、間に50ms待ち再確認する。上限0.2秒。ESRCHが返った場合だけ消滅とする。拒否が継続すれば元のエラーを再送出し終了未確認へ残す。",
+  "new_tests": [
+    "群のprobeが3回拒否された後、実際にESRCHとなる遅れを含む期限停止",
+    "拒否が続く時に有限の回数/時間で例外を返す"
+  ],
+  "pytest": {
+    "passed": 20,
+    "seconds": 5.38,
+    "terminal_session": 47789,
+    "temporary_file": "tests/temp/test_worker_deadline_temp.py",
+    "sha256": "30ada5b3051797f9a745fdf95035acbf0ef880855762da5b10f94614705d48b0"
+  },
+  "mypy": "strict PASS, src/svdeck/worker.py",
+  "actual_before": {
+    "terminal_session": 28059,
+    "terminal_exit_code": 125,
+    "status": "termination_unconfirmed",
+    "elapsed_seconds": 10.015192749910057
+  },
+  "actual_after": {
+    "terminal_session": 43659,
+    "terminal_exit_code": 124,
+    "status": "timed_out",
+    "elapsed_seconds": 10.064048915635794
+  },
+  "limitations": [
+    "短い実AI処理各1回。長い停止遅延や永続的な権限拒否を成功として隠す修正ではない。",
+    "探索案の良さ・問いの解決・AI作業の期限内完了を示す検査ではない。",
+    "比較調査focused-inquiry-01の終了コードは書き換えない。"
+  ]
+}

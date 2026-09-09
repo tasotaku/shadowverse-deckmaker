@@ -23,20 +23,19 @@ def save_record(path: Path, record: dict[str, object]) -> None:
 
 
 def signal_group(process: subprocess.Popen[bytes], sig: int) -> bool:
-    # AI_NOTE: 終了直後で未回収の親だけが残る群はEPERMになり得るため、回収して一度だけ再確認する。
-    process.poll()
-    try:
-        os.killpg(process.pid, sig)
-        return True
-    except ProcessLookupError:
-        return False
-    except PermissionError:
+    # AI_NOTE: 終了直後の群は親の回収後も一時的にEPERMになり得るため、短い上限内で再確認する。
+    for attempt in range(5):
         process.poll()
         try:
             os.killpg(process.pid, sig)
             return True
         except ProcessLookupError:
             return False
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.05)
+    raise AssertionError("signal retry loop did not return")
 
 
 def run(command: list[str], output: Path, timeout: float, grace: float,
