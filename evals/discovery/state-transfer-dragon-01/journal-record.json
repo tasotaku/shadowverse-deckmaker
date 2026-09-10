@@ -1,9 +1,9 @@
 {
   "id": "state-transfer-dragon-01",
-  "revision": 11,
-  "saved_at": "2026-09-10T15:49:14.355000+00:00",
+  "revision": 13,
+  "saved_at": "2026-09-10T15:57:14.088669+00:00",
   "actor": "codex",
-  "reason": "追加改訂の開始時刻・上限と起動時の保存照合を報告へ反映",
+  "reason": "初回の両時計、正式回答の保持、別評価入力と抑止解除の照合を追加",
   "record": {
     "id": "state-transfer-dragon-01",
     "title": "同じ状態での比較をドラゴンの新しい考案へ使う",
@@ -72,6 +72,15 @@
         "budget_minutes": 15
       },
       {
+        "id": "protocol-audit",
+        "title": "分岐と初回判定が固定条件に沿うか別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-10T15:48:26+00:00",
+        "ended_at": "2026-09-10T15:50:53+00:00",
+        "note": "読み取り専用で整合性PASS。方法の有用性は未判定。改訂と並行した2分27秒で合算しない。",
+        "budget_minutes": 5
+      },
+      {
         "id": "report",
         "title": "結果・採否・工程時間を記録",
         "status": "planned",
@@ -104,7 +113,9 @@
       "evals/discovery/state-transfer-dragon-01/initial/develop/proposal.json",
       "evals/discovery/state-transfer-dragon-01/initial/review/review.json",
       "evals/discovery/state-transfer-dragon-01/initial/session.tar.gz",
-      "evals/discovery/state-transfer-dragon-01/revision-launch-check.json"
+      "evals/discovery/state-transfer-dragon-01/revision-launch-check.json",
+      "evals/discovery/state-transfer-dragon-01/protocol-audit.json",
+      "evals/discovery/state-transfer-dragon-01/initial/timing-verification.json"
     ]
   },
   "evidence": [
@@ -169,6 +180,11 @@
       "size": 1512128
     },
     {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/timing-verification.json",
+      "sha256": "8fbc1f2543b97a24daca0f98b789cc18d2b58bc80fdcbff1301f69fb5ce5efa9",
+      "size": 2668
+    },
+    {
       "path": "evals/discovery/state-transfer-dragon-01/initial/verification.json",
       "sha256": "cf5024c82b8091a78ade610fa559d20ee10b339c35ad1cf90605908c011cd4d8",
       "size": 1068
@@ -197,6 +213,11 @@
       "path": "evals/discovery/state-transfer-dragon-01/preparation-correction.json",
       "sha256": "6e41ed11b7bcb4160b3a07ef3798daaa1a5745824c97e652891e4171f3fe6a74",
       "size": 735
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/protocol-audit.json",
+      "sha256": "f339068993db7ed0e44bd9db701a7904c3e7ac6af40d8f57781f0a80e7a733d7",
+      "size": 10862
     },
     {
       "path": "evals/discovery/state-transfer-dragon-01/protocol.json",

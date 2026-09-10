@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10 15:48:26 UTC",
+  "ended_at_utc": "2026-09-10 15:50:53 UTC",
+  "scope": "指定6ファイルの公開保存だけで、分岐と判定の固定条件への整合性を点検。新しいデッキ案・カードの答え・Web探索・ソース編集・追加検証実行・稼働中改訂への入力・私的stdout/JSONL閲覧は行わない。",
+  "verdict": "PASS",
+  "verdict_meaning": "監査した公開記録間の分岐・初回判定は固定条件と整合する。初回案の試用価値や方法の採用をPASSと認定した意味ではない。",
+  "method_adoption_verdict": "判断留保",
+  "points": [
+    {
+      "id": 1,
+      "verdict": "PASS",
+      "topic": "追加改訂1回への分岐",
+      "conclusion": "初回は正式考案・別評価ともcompleted、value=developであり、既存札との役割重複と準備手札・EPの負担という、採用判断を変えうる具体的な問いが残っている。branch-decisionの4問は正式reviewのnext_questionsと完全一致し、親による新しいカード答案の追加ではない。回数上限1、改訂1800秒・最終評価900秒、固定基準hashもprotocolと一致する。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/branch_rule",
+            "/maximum_additional_revisions",
+            "/revision_seconds",
+            "/final_review_seconds",
+            "/fixed_grading_semantic_hash"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/branch-decision.json",
+          "pointers": [
+            "/initial_run_id",
+            "/initial_judgment",
+            "/questions_from_saved_review",
+            "/maximum_additional_revisions",
+            "/generation_seconds",
+            "/review_seconds",
+            "/no_root_card_answer"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/result.json",
+          "pointers": [
+            "/run_id",
+            "/status",
+            "/judgment",
+            "/formal_revisions",
+            "/formal_reviews",
+            "/stages"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+          "pointers": [
+            "/next_questions"
+          ]
+        }
+      ],
+      "time_order": "protocol開始15:17:50 → 初回開始15:22:26 → 初回完了15:46:56 → 分岐記録15:47:46 UTCという公開記録の順序。初回考案1107.813秒<1800秒、別評価361.080秒<900秒。"
+    },
+    {
+      "id": 2,
+      "verdict": "PASS",
+      "topic": "supportedとdevelopの併存",
+      "conclusion": "supportedは指定開始状態での手順・会計に限られる。value=developは、通常側との差にEP1と終点手札の損失があり、通常構築内の他の既存経路との役割重複と、核不成立時に失う除去・補充を埋める理由がまだ不足するため。非致死、実戦未検証、40枚未完成だけを理由にした保留ではなく、固定utilityの『採用負担に見合う可能性』の判定と整合する。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/fixed_grading/correctness",
+            "/fixed_grading/utility"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+          "pointers": [
+            "/procedure",
+            "/value",
+            "/findings/0",
+            "/findings/1",
+            "/findings/2",
+            "/findings/3"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/develop/proposal.json",
+          "pointers": [
+            "/plan/allocation",
+            "/plan/without_core",
+            "/plan/comparison",
+            "/uncertainties"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "verdict": "判断留保",
+      "topic": "局所比較と構築上の利益を分ける",
+      "conclusion": "提示との差3点を通常構築全体への優位へ広げない。正式reviewが示す別の開始手札での既存経路は役割重複の論点であり、最初の固定比較へ後から都合よく札を足した結果とは区別する。追加改訂では比較内の開始条件・観察終点と、準備・EP・補充を失う費用が維持され、残る利益が使い方や配分の判断に反映されたかを見る。未確認の到達頻度や後続の生存・勝利を利益へ足さない一方、新しい勝率証明義務を作らない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/treatment_instruction",
+            "/diagnostics",
+            "/fixed_grading/utility"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+          "pointers": [
+            "/findings/1",
+            "/findings/2",
+            "/findings/3"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/develop/proposal.json",
+          "pointers": [
+            "/plan/comparison",
+            "/uncertainties/0",
+            "/uncertainties/2",
+            "/uncertainties/3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "verdict": "判断留保",
+      "topic": "改訂の進展と有用な種・方法採用を別判定する",
+      "conclusion": "正式提出や比較表の追加だけではdevelopment合格にしない。具体的な問いの解消、根拠による手順・方針の変更、または適切な枝の終了を確認する。適切に止めれば進展の基準を満たし得るが、最終結果が保留・全棄却だけならutilityは得られておらず、固定adoptionにより比較指示は採用しない。逆に試す理由のある種が残っても、主比較の重大な既知誤りと判断への反映を別に確認する。追加改訂は1回で止め、結果に応じて予算・基準を緩めない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/fixed_grading/development",
+            "/fixed_grading/utility",
+            "/adoption",
+            "/branch_rule",
+            "/maximum_additional_revisions",
+            "/limits"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/branch-decision.json",
+          "pointers": [
+            "/maximum_additional_revisions",
+            "/fixed_grading_semantic_hash"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "verdict": "判断留保",
+      "topic": "別入力1件で確認できる範囲と記録上の限界",
+      "conclusion": "今回は候補方法だけの新しいドラゴン入力1件で、同時対照はない。既存DB・注記・設計原則は既知で、開発に未使用のカードによる完全な未知入力の証明ではない。diagnosticsの『両条件』という文言から、このドラゴン試行にも同時対照があると報告しない。新規性はunconfirmedのまま、限定検索・共起なしを未発見の証明にしない。最終的に運用採用条件を満たしても、一般的優越・勝率・Tierやシステム全体の完成を認定しない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/input_scope",
+            "/diagnostics/2",
+            "/limits",
+            "/fixed_grading/honesty"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+          "pointers": [
+            "/novelty",
+            "/findings/4",
+            "/web_checks"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/initial/verification.json",
+          "pointers": [
+            "/limits",
+            "/privacy"
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_file_checks": {
+    "branch_run_id_matches_initial": true,
+    "branch_initial_judgment_matches_result_verification_and_review": true,
+    "branch_questions_exactly_equal_saved_review_next_questions": true,
+    "fixed_grading_hash_matches_between_protocol_and_branch": true,
+    "revision_count_and_budgets_match": true,
+    "recorded_initial_revisions": 1,
+    "recorded_initial_reviews": 1,
+    "recorded_initial_develop_elapsed_seconds": 1107.8130227909423,
+    "recorded_initial_review_elapsed_seconds": 361.0801361668855
+  },
+  "limits_of_audit": "本監査は指定された公開保存間の整合性確認であり、初回verification.jsonが記録するDB・runtime・元入力の不変を実ファイルへさかのぼって再検査したものではない。追加改訂の出力は未閲覧・未判定で、新しいゲームルールの裁定も行っていない。",
+  "source_sha256": {
+    "protocol.json": "b5d14adfb462a30c7dc5c3a3f1d7d9a170df04937659a80d4677bf1c9a347c14",
+    "branch-decision.json": "a363888ce1b666bb1a1c28c00112095843d95868dfec7c8a9be47afe913d86f4",
+    "initial/result.json": "5b4c4679ce3bb43334d1d227433bd5838254cf57b91330c4acc847107b81565c",
+    "initial/verification.json": "cf5024c82b8091a78ade610fa559d20ee10b339c35ad1cf90605908c011cd4d8",
+    "initial/develop/proposal.json": "4584bcbc3de16e3f1c40c7b7c27a7b1001ce4dbe996f5b73d8c5d9c0e9576534",
+    "initial/review/review.json": "48f7801da2c6c907afa0490cf1c4a127bc0d892f2a56cbc4885b155b4b7d2e6c"
+  },
+  "output_path": "/tmp/state-transfer-dragon-01-protocol-audit.json",
+  "elapsed_seconds": 147
+}
