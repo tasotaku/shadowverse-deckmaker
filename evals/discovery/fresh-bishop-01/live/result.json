@@ -1,0 +1,223 @@
+{
+  "status": "completed",
+  "run_id": "9aa61ee55aa7490295683fd495fc21c8",
+  "started_at": "2026-09-10T11:19:28.778462+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-bishop-01-initial",
+  "output": "/private/tmp/sv-fresh-bishop-01/run",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:9aa61ee55aa7490295683fd495fc21c8:develop",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-fresh-bishop-01/run/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-fresh-bishop-01/run/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-fresh-bishop-01/run/develop",
+        "stdin": "/private/tmp/sv-fresh-bishop-01/run/develop/prompt.md",
+        "output": "/private/tmp/sv-fresh-bishop-01/run/develop-run",
+        "started_at": "2026-09-10T11:19:29.097564+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2280809.684161291,
+        "timeout_seconds": 1800.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 19535,
+        "worker_pid": 19539,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T11:30:57.529362+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T11:19:29.097787+00:00",
+            "elapsed_seconds": 0.0002171248197555542
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T11:19:29.098166+00:00",
+            "elapsed_seconds": 0.0005978341214358807
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T11:19:29.108475+00:00",
+            "elapsed_seconds": 0.010976999998092651
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T11:30:57.525127+00:00",
+            "elapsed_seconds": 688.4248110838234,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T11:30:57.529393+00:00",
+            "elapsed_seconds": 688.4289229172282
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T11:30:57.542834+00:00",
+            "elapsed_seconds": 688.4423661669716
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fresh-bishop-01",
+          "stage_id": "live-develop",
+          "status": "completed",
+          "begin_revision": 3,
+          "claimed_stage": {
+            "id": "live-develop",
+            "title": "考案担当が種を提出",
+            "status": "running",
+            "started_at": "2026-09-10T11:19:29.097564+00:00",
+            "ended_at": null,
+            "note": "通常の指示で1回実施。開始・終了は実行側が自動保存。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-bishop-01/run/develop-run",
+            "budget_minutes": 30
+          },
+          "end_revision": 5,
+          "synced_at": "2026-09-10T11:30:57.542814+00:00"
+        },
+        "elapsed_seconds": 688.4289127918892,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:9aa61ee55aa7490295683fd495fc21c8:review",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-fresh-bishop-01/run/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-fresh-bishop-01/run/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-fresh-bishop-01/run/review",
+        "stdin": "/private/tmp/sv-fresh-bishop-01/run/review/prompt.md",
+        "output": "/private/tmp/sv-fresh-bishop-01/run/review-run",
+        "started_at": "2026-09-10T11:30:57.866618+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2280598.450313958,
+        "timeout_seconds": 900.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 19535,
+        "worker_pid": 31751,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T11:35:01.295670+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T11:30:57.866845+00:00",
+            "elapsed_seconds": 0.00021995790302753448
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T11:30:57.867275+00:00",
+            "elapsed_seconds": 0.0006517502479255199
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T11:30:57.872957+00:00",
+            "elapsed_seconds": 0.006370957940816879
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T11:35:01.290408+00:00",
+            "elapsed_seconds": 243.42288529220968,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T11:35:01.295698+00:00",
+            "elapsed_seconds": 243.42808408290148
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T11:35:01.322446+00:00",
+            "elapsed_seconds": 243.45484049990773
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fresh-bishop-01",
+          "stage_id": "live-review",
+          "status": "completed",
+          "begin_revision": 6,
+          "claimed_stage": {
+            "id": "live-review",
+            "title": "別担当が手順と採用価値を評価",
+            "status": "running",
+            "started_at": "2026-09-10T11:30:57.866618+00:00",
+            "ended_at": null,
+            "note": "通常の指示で1回実施。開始・終了は実行側が自動保存。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-bishop-01/run/review-run",
+            "budget_minutes": 15
+          },
+          "end_revision": 8,
+          "synced_at": "2026-09-10T11:35:01.322426+00:00"
+        },
+        "elapsed_seconds": 243.42807375034317,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 0,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "a184573aa894b2ec91ecc473143db398b147ccfb0474e3808da79a5f09c9fa4a",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/086e4c5ee99d99b09ab9c2224b0a78b7da1c6b3fdc712fc30e11b7a1ea08982a.json": "76d3aad31b66758c6b2647a598f55f9c789e74d180cb60b1c32ec303360993cc",
+    "sources/0e1800424be63206f79107322ab162bd647d8668e5ef6382ef378e7b096c1719.json": "90baa5892daca5c9a5c01cc3d3bf9d563b6088025cb12d96ff1f468e97b2edc3",
+    "sources/121095413d250c7941ef2e4be23cf409e42a104b7b1d2a01ad0b314f6b64d5f5.json": "0c5b4b73ddc9ff6f9d3b6e454a4806f8f273113f44da81047366d2d30524630b",
+    "sources/2489aa9334ecfdf139f2a8f4dc4d1518ef2a7335feb60aef577bcdf0fa20e7ed.json": "fcc9df4b65a67ef6d329bdc0b20b639294af7c20907a01ce6886bd95dfb2ca0c",
+    "sources/2f3137c20126c5797abb857e95a625173b6bb0dee40652c015a9bb64c475f8e3.json": "9c79e1192ec30ed0c5cedee322c8da8dfa9332a0a03d7bf0509cad686eee80b1",
+    "sources/3a2b948c1cb804981ee0accac56ac4cabf75d178bcc68dfb40339645d8966292.json": "bcdff7111a9261b021b9168312600286c70dddce963b18e3a6d42c5f42a28f5b",
+    "sources/593c5debbbd8961073ee1297f348ee0fcd7c22aea3663fef16471198ba2a5a8b.json": "1cc32fc7d6d269a031810b5456779318b11260784d645377e44e29608051359c",
+    "sources/63a808b58db76e18732efedc1bd5e19984f8c2c8e3de6663ba9ab08711a427d2.json": "5085e27322ebb15d490adc567f92d7a4ad669bf54d080b5a6c1f47d243155ff0",
+    "sources/942bdf8e5343ef9b83bb898688debd1efdd68be8609dc05cd9910a2f77618ee0.json": "44276deaca6e6df6416e488caa7c274f4bef5c59d27a541a0bf53348ff589ac1",
+    "sources/b479f913fa7ae89856559d5ac30f83285cf44a84234dd60764047d484a93e61b.json": "90ccbdaa77d890041220b267c6be0f57b607f946503095c32659d81a89a31d6e",
+    "sources/b82cd9bb81aac5ad18b7e803829dad1f40fb549ea27232483b54267e169f9a21.json": "d2b23a549692fa64049144d8dc2eb4aff094b39a30e7411c7196cdfae1e34c07",
+    "sources/be75ad74ba4d225002b9271f7fe5643007f217a94ccde82490cad9adef76f7b6.json": "f9f1281bc002d97f7519fdfa3771bc577c27958c6757ae4cff6b0e4c4eca2287",
+    "sources/c95acc641137beb6d0ae71692a191a12b3ff948344530e33a6baa773101b159f.json": "eff027b21960db9079b04fca8ef5beaf9582b773bdaccb7af65099c51ad1804f",
+    "sources/e9a0c7179a8263fe212d858439b5259464768ff5f30f9d0342168042d27fafa5.json": "9fc4cb15ea3ca69b4996aaadb358b505169aeb2e529f40899fef2dd0b751ec9a",
+    "sources/f116780e8b1f8275152a0a5c714118d60495c3b6d6ff67d3975d53c80f4f4073.json": "299d5c433d8067268ad7ed0c50314d61cd19d3e2a577a57cece848a2a740a816"
+  },
+  "judgment": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-fresh-bishop-01/run/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-10T11:35:01.594547+00:00"
+}
