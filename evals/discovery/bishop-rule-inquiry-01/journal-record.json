@@ -1,0 +1,83 @@
+{
+  "id": "bishop-rule-inquiry-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T11:49:25.874565+00:00",
+  "actor": "codex",
+  "reason": "基本ルールの問いを通常調査と別照合へ渡す実利用検証を開始",
+  "record": {
+    "id": "bishop-rule-inquiry-01",
+    "title": "評価に残った進化・回復の基本ルールを調べる",
+    "category": "method",
+    "status": "running",
+    "summary": "ビショップ評価の残る一問を、通常の調査→別照合へ渡す。旧案・評価を保持して根拠を補えるかを試す。",
+    "method": "保存評価の問いを明示し、調査資料の保存・再読から別担当の出典照合までを既存入口で実行。",
+    "procedure": "条件固定→調査15分以内→別照合10分以内→根拠と未確認・元入力保持を回収→結果と採否。各担当1回。",
+    "inputs": "固定資料で未確認の進化後スタッツ・効果進化直後の攻撃可否・最大体力時の誘発を確認すると、早期守護の実際の処理能力や成立範囲はどれだけ変わるか。",
+    "criteria": "固定した旧案・評価・資料と本体カードDB・実行コードを保持し、通常の調査から別照合まで各1回で完了する。失敗・未起動はそのまま記録する。 / 調査報告と照合報告を公開入口へ正式保存し、本文一致・新版からの全文再読・実際のreportを確認する。ヘルプ表示や資料件数だけで合格にしない。 / 進化後の数値、効果進化直後の攻撃、最大体力時の回復誘発について、公式に確認できる根拠と適用条件・未確認を分ける。推論は本文の直接確認と区別する。 / 別担当が出典と調査結論を照合し、元の問いに新しく答えられた範囲と残った範囲を特定する。調査の完了を案の強さ・独自性の再認定に使わない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "対象の問いと基準を固定。調査の起動へ進む。",
+      "limitations": "基本ルールの調査であり、実戦の優位・独自性・方法全体の完成は評価しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "調査と別照合の実際の完了・内容を見て判断する。"
+    },
+    "started_at": "2026-09-10T11:49:25.749936+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "対象の問い・上限と判定基準を固定",
+        "status": "completed",
+        "started_at": "2026-09-10T11:49:25.749936+00:00",
+        "ended_at": "2026-09-10T11:49:25.774303+00:00",
+        "note": "保存済み評価と問いを照合して指定。親の解答は入力へ加えない。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "live-inquiry",
+        "title": "基本ルールの問いを調査して保存",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "根拠・解釈・未確認を保存し、本文を再読する。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "live-inspect",
+        "title": "別担当が出典と結論を照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "調査とは別の担当。未確認の扱いと元の問いへの回答範囲を確認。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "report",
+        "title": "結果・採否・工程時間を記録",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "実行の成功と調査の有用性を別判定する。",
+        "budget_minutes": 5
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/bishop-rule-inquiry-01/README.md",
+      "evals/discovery/bishop-rule-inquiry-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/bishop-rule-inquiry-01/README.md",
+      "sha256": "a3ad9e8f1691f5dfa3920c8d676172fa94ccc53dfefedc2e310003a7f28c5766",
+      "size": 1591
+    },
+    {
+      "path": "evals/discovery/bishop-rule-inquiry-01/protocol.json",
+      "sha256": "8fa8ece3ffa3549861e31702af7a1ae2e00b6b47edc141b9d455255712f53dee",
+      "size": 5309
+    }
+  ]
+}
