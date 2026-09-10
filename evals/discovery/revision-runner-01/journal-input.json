@@ -1,0 +1,57 @@
+{
+  "id": "revision-runner-01",
+  "title": "評価後の改訂と再評価を一度の実行でつなぐ",
+  "category": "infrastructure",
+  "status": "running",
+  "summary": "実行入口の検査90件と型検査が合格。保存済みの案を20分で改訂し、正常に提出できた場合だけ別評価15分へ自動で渡す。",
+  "method": "既存の資料・正式提出・別評価・時間監視を、1回のコマンドで順につなぐ。正常終了だけでなく提出の有無と入力不変を検査して次工程へ渡す。",
+  "procedure": "入出力の固定 → 実装・失敗条件の検査 → 実際の保存案を改訂 → 独立評価 → 元資料不変と結果の確認。",
+  "inputs": "experience-guided-01のB正式案・正式評価の保存版。既知入力を使う実行工程の検査。",
+  "criteria": "元保存物不変、旧採否を次の評価へ渡さない、正式な改訂と別評価を1件ずつ保存しreportまで到達、失敗や未提出では次へ進まない。探索の有用性は既存5基準で別判定。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "未実行。",
+    "limitations": "実行管理の改善であり、それだけで発見力の向上やシステム完成を認定しない。"
+  },
+  "decision": {
+    "status": "deferred",
+    "reason": "実装と実利用が未完了。"
+  },
+  "started_at": "2026-09-10T08:55:44.576780+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "入出力の固定と実装・検査",
+      "status": "completed",
+      "started_at": "2026-09-10T08:55:44.576780+00:00",
+      "ended_at": "2026-09-10T09:10:36.677855+00:00",
+      "note": "新規21件・既存69件の計90件、型検査、別担当の再現点検に合格。実AIはこれから開始。",
+      "budget_minutes": null
+    },
+    {
+      "id": "live-develop",
+      "title": "保存案を評価から改訂",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "新規担当が通常の考案指示で1回改訂。",
+      "budget_minutes": 20
+    },
+    {
+      "id": "live-review",
+      "title": "改訂案を新規担当が評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "旧採否を除いた資料から通常の独立評価。",
+      "budget_minutes": 15
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/revision-runner-01/README.md",
+    "evals/discovery/revision-runner-01/protocol.json",
+    "evals/discovery/revision-runner-01/verification.json",
+    "evals/discovery/revision-runner-01/independent-code-audit.json"
+  ]
+}

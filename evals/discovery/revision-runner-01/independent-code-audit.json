@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-09-10T09:02:15+00:00",
+  "ended_at": "2026-09-10T09:07:52+00:00",
+  "verdict": "PASS after three fixes",
+  "actor": "royal_input_audit",
+  "observed": [
+    "改訂後に旧packetを除くと親履歴が読めず停止。修正後公開12コマンドで正常完走。",
+    "考案中の親評価追加でcompletedを再現。修正後は評価集合の変更で停止。",
+    "親をnullへ変えたpacketで題名だけ改訂のcompletedを再現。修正後固定項目不一致で停止。"
+  ],
+  "limits": "読み取りと一時領域のテスト。workerは差替え、公開CLI・正式保存・回収は実物。実AIではない。"
+}

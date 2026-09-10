@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-09-10T09:10:36.677855+00:00",
+  "status": "PASS for implementation; live AI pending",
+  "mypy": "strict PASS, one module",
+  "tests": {
+    "new": 21,
+    "existing": 69,
+    "total": 90,
+    "passed": 90,
+    "seconds": 12.66,
+    "path": "tests/temp/test_discovery_run_temp.py (temporary, not committed)"
+  },
+  "test_plan": {
+    "normal": [
+      "既存評価から改訂、独立評価、reportまで接続し元探索不変",
+      "追加資料の保存と再packetが通る",
+      "公開入口の実プロセスを凍結実装で実行"
+    ],
+    "edge": [
+      "初回と改訂、既存出力先、制限値0/負/NaN/無限",
+      "資料の種類、親改訂・工程の識別値"
+    ],
+    "error": [
+      "未提出・時間切れ・余分な正式案",
+      "固定入力と実装の変更",
+      "考案中の評価追加",
+      "親をnullへ差し替えた資料による見かけの改訂",
+      "不正な評価値を直接ファイルへ保存",
+      "作業先外のファイル・別工程のpacket・未許可操作"
+    ]
+  },
+  "failures_fixed": [
+    "最初の型検査2件: 明示exportされない再輸出参照を元モジュールimportへ修正。",
+    "初回3テスト失敗: 旧packet除外で親履歴が読めなかった。評価資料は親で生成後に完成packetだけを渡す。",
+    "別点検で余分な親評価追加、差替えpacketによる形式だけの改訂を再現。集合不変と固定内容照合で拒否。"
+  ],
+  "code_sha256": "ad91538b3861964bc26dbf89ca4468c038053b59e1811e37a5324b2e153a7c36",
+  "core_discovery_unchanged_from_previous_runtime": true,
+  "limits": "合成テストとプロセス実行の確認。実AIの完走・案の価値は未検査。"
+}
