@@ -1,0 +1,21 @@
+{
+  "observed_on": "2026-09-10",
+  "scope": "開発担当による台帳登録の入力修正。改訂担当の失敗には混ぜない。",
+  "failed_create_calls": 2,
+  "failed_help_calls": 1,
+  "causes": [
+    "未判定の正式値をunknown/pendingと誤記した",
+    "予定工程のnoteを空欄にした",
+    "templateに未対応の位置引数を渡した"
+  ],
+  "resolution": "公開templateと保存検査に合わせてunassessed/planned、未着手の説明を設定。最終create成功後、実行開始を第2版として保存。",
+  "criteria_or_worker_input_changed": false,
+  "workflow_checkpoint": {
+    "symptom": "台帳の登録で入力修正が2回必要だった",
+    "cause": "公開templateの正式値と空欄制約を確認する前に記録を組み立てた",
+    "fixed_contract": "全5評価基準と入力・時間上限を維持",
+    "changed_means": "公開templateと既存の保存検査を使い、今後は正式値と未着手の説明を設定してから保存",
+    "next_measure": "次の台帳更新で登録失敗0回を確認する",
+    "observed": "create成功後の開始時刻更新は1回で成功"
+  }
+}

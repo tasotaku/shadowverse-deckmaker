@@ -1,0 +1,85 @@
+{
+  "checked_at": "2026-09-10T05:01:45.202770+00:00",
+  "processes": {
+    "a": {
+      "status": "running",
+      "supervisor_pid": 88437,
+      "worker_pid": 88440,
+      "processes_live": true,
+      "public_calls": 86,
+      "failed_calls": [],
+      "new_formal_proposals": 0,
+      "new_sources": 0,
+      "last_public_operations": [
+        {
+          "started_at": "2026-09-10T04:59:37.995503+00:00",
+          "ended_at": "2026-09-10T04:59:38.060350+00:00",
+          "command": [
+            "/tmp/sv-system-venv/bin/python",
+            "-m",
+            "svdeck.discovery",
+            "submit",
+            "--help"
+          ],
+          "exit_code": 0
+        },
+        {
+          "started_at": "2026-09-10T04:59:38.172493+00:00",
+          "ended_at": "2026-09-10T04:59:38.236940+00:00",
+          "command": [
+            "/tmp/sv-system-venv/bin/python",
+            "-m",
+            "svdeck.discovery",
+            "report",
+            "--help"
+          ],
+          "exit_code": 0
+        }
+      ]
+    },
+    "b": {
+      "status": "running",
+      "supervisor_pid": 88438,
+      "worker_pid": 88439,
+      "processes_live": true,
+      "public_calls": 26,
+      "failed_calls": [],
+      "new_formal_proposals": 0,
+      "new_sources": 0,
+      "last_public_operations": [
+        {
+          "started_at": "2026-09-10T05:01:09.335086+00:00",
+          "ended_at": "2026-09-10T05:01:09.572029+00:00",
+          "command": [
+            "/tmp/sv-system-venv/bin/python",
+            "-m",
+            "svdeck.discovery",
+            "read",
+            "session",
+            "be5a14cf3e3c1b3e4afc191b190d23e2381e1feba786ed75469fc0675c1e7bb1",
+            "history",
+            "--limit",
+            "20"
+          ],
+          "exit_code": 0
+        },
+        {
+          "started_at": "2026-09-10T05:01:09.690675+00:00",
+          "ended_at": "2026-09-10T05:01:09.774628+00:00",
+          "command": [
+            "/tmp/sv-system-venv/bin/python",
+            "-m",
+            "svdeck.discovery",
+            "read",
+            "session",
+            "be5a14cf3e3c1b3e4afc191b190d23e2381e1feba786ed75469fc0675c1e7bb1",
+            "fulfillment_map",
+            "--limit",
+            "1000"
+          ],
+          "exit_code": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "started_at": "2026-09-10T04:52:26.393146+00:00",
+  "ended_at": "2026-09-10T04:52:30.099779+00:00",
+  "checks": [
+    {
+      "case": "initial",
+      "arguments": [
+        "--revision",
+        "0"
+      ],
+      "differing_data_fields": [],
+      "a_hash": "eafb9861046e049682476a3d4f7718176249212c936de8b66ffaa6e527e31ed9",
+      "b_hash": "eafb9861046e049682476a3d4f7718176249212c936de8b66ffaa6e527e31ed9",
+      "a_previous_reviews": 0,
+      "b_previous_reviews": 0,
+      "response_schema_equal": true,
+      "original_files_unchanged": 20
+    },
+    {
+      "case": "revision",
+      "arguments": [
+        "--revision",
+        "1"
+      ],
+      "differing_data_fields": [
+        "instruction"
+      ],
+      "a_hash": "e3bd091acbbb2d72fbb58428a74e7bb4f992e36c9777007e9666ad0ae39758f3",
+      "b_hash": "be5a14cf3e3c1b3e4afc191b190d23e2381e1feba786ed75469fc0675c1e7bb1",
+      "a_previous_reviews": 1,
+      "b_previous_reviews": 1,
+      "response_schema_equal": true,
+      "original_files_unchanged": 20
+    },
+    {
+      "case": "review",
+      "arguments": [
+        "--revision",
+        "1",
+        "--stage",
+        "review"
+      ],
+      "differing_data_fields": [],
+      "a_hash": "7d92a57be127a9e44d641bc05959cf565d0be6c9d0584ca661be41f84a56f11a",
+      "b_hash": "7d92a57be127a9e44d641bc05959cf565d0be6c9d0584ca661be41f84a56f11a",
+      "a_previous_reviews": 0,
+      "b_previous_reviews": 0,
+      "response_schema_equal": true,
+      "original_files_unchanged": 20
+    },
+    {
+      "case": "finish",
+      "arguments": [
+        "--revision",
+        "1",
+        "--finish-from-source",
+        "bc5f593c74bfd9719bdd4dd23317eb0349b34c6094c1f3309d2ab53fe3e6a98d"
+      ],
+      "differing_data_fields": [],
+      "a_hash": "434eadebca1ebe316b28b8f83d6e6b5c91fd238e5dbfc0b1bd1ee1c439528edd",
+      "b_hash": "434eadebca1ebe316b28b8f83d6e6b5c91fd238e5dbfc0b1bd1ee1c439528edd",
+      "a_previous_reviews": 1,
+      "b_previous_reviews": 1,
+      "response_schema_equal": true,
+      "original_files_unchanged": 20
+    }
+  ],
+  "source_unchanged": true,
+  "verdict": "PASS"
+}
