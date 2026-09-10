@@ -1,30 +1,30 @@
 {
   "id": "evidence-revision-01",
-  "revision": 2,
-  "saved_at": "2026-09-10T13:02:16.027371+00:00",
+  "revision": 10,
+  "saved_at": "2026-09-10T13:25:19.503086+00:00",
   "actor": "codex",
-  "reason": "時計説明と関連検査を完了し改訂と別評価の実行へ進む",
+  "reason": "本文初見検査と進捗画面を確認し、採用保留で試行・報告を終了",
   "record": {
     "id": "evidence-revision-01",
     "title": "保存した根拠から案を改訂する",
     "category": "method",
-    "status": "running",
-    "summary": "時計説明の補足と確認が完了。保存した調査4資料を通常改訂と別評価へ渡す。",
+    "status": "completed",
+    "summary": "正式改訂1件・別評価1件、試行推薦0件。組み合わせは変わったが通常構築の即時処理を比較で落とし、改善は未認定。",
     "method": "根拠を追加した既知案→通常改訂1回→旧評価を渡さない別評価1回→元案からの変化と試用価値を点検。",
     "procedure": "条件固定と時計説明の補足→関連確認→改訂（実行時計15分以内）→別評価（同10分以内）→結果・採否と両時計の記録。",
     "inputs": "Bishopの既知案・既知評価に公式ルール調査4資料を追加した保存版。未知入力でも方式比較でもない。初回value=testで終了した元試行を延長・再採点せず、追加根拠を得た後の別試行。",
     "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。 / 最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。 / 追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。 / 最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。 / 共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "準備完了。正式な改訂・評価はこれから。",
+      "outcome": "mixed",
+      "summary": "正式改訂1件・別評価1件、試行推薦0件。組み合わせは変わったが通常構築の即時処理を比較で落とし、改善は未認定。",
       "limitations": "追加根拠を得た後の既知入力1件。実戦優位・独自性・因果比較や全体完成の認定ではない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "根拠が実際の変更と有用性へつながるかを確認して判断する。"
+      "status": "deferred",
+      "reason": "資料からの実際の改訂と比較問題の検出は確認。回復・守護に払う負担が未解決で、方法全体の採用は保留。前案の上位版として扱わない。"
     },
     "started_at": "2026-09-10T13:00:22.805597+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T13:25:19.390851+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -38,47 +38,101 @@
       {
         "id": "live-develop",
         "title": "保存した根拠で案を改訂",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "通常改訂。使い方・手順・配分と比較が具体的に変わるかを観察。",
+        "status": "completed",
+        "started_at": "2026-09-10T13:02:16.479342+00:00",
+        "ended_at": "2026-09-10T13:13:28.027188+00:00",
+        "note": "通常改訂。使い方・手順・配分と比較が具体的に変わるかを観察。\n起動処理を開始。実行記録: /private/tmp/sv-evidence-revision-01/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "live-review",
         "title": "別担当が改訂案を評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "旧評価ファイルを渡さず、今回の固定資料と改訂案を評価。",
+        "status": "completed",
+        "started_at": "2026-09-10T13:13:28.393745+00:00",
+        "ended_at": "2026-09-10T13:21:14.189624+00:00",
+        "note": "旧評価ファイルを渡さず、今回の固定資料と改訂案を評価。\n起動処理を開始。実行記録: /private/tmp/sv-evidence-revision-01/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "report",
         "title": "元案との差・結果・採否・時間を記録",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "資料や説明の増加と試す理由を分ける。開始終了の時刻差と実行時計を併記。",
+        "status": "completed",
+        "started_at": "2026-09-10T13:19:54.902703+00:00",
+        "ended_at": "2026-09-10T13:25:19.390851+00:00",
+        "note": "案と別評価・公開48操作を回収し、元資料とDBの保持を確認。試行推薦0の採否を保存。本文の初見検査PASS、進捗画面で第9版の結果・全4工程・根拠11件を確認。",
         "budget_minutes": 8
       }
     ],
     "evidence_paths": [
       "evals/discovery/evidence-revision-01/README.md",
       "evals/discovery/evidence-revision-01/protocol.json",
-      "evals/discovery/evidence-revision-01/verification.json"
+      "evals/discovery/evidence-revision-01/verification.json",
+      "evals/discovery/evidence-revision-01/running-observation.json",
+      "evals/discovery/evidence-revision-01/continuation-design-audit.json",
+      "evals/discovery/evidence-revision-01/live/result.json",
+      "evals/discovery/evidence-revision-01/live/verification.json",
+      "evals/discovery/evidence-revision-01/live/develop/proposal.json",
+      "evals/discovery/evidence-revision-01/live/review/review.json",
+      "evals/discovery/evidence-revision-01/result.json",
+      "evals/discovery/evidence-revision-01/timings.json",
+      "evals/discovery/evidence-revision-01/reader-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/evidence-revision-01/README.md",
-      "sha256": "693fd3154ec28acbcd1945bc89bf1845a3ad46060e0ccd88e6a9d15f1d1c418a",
-      "size": 1072
+      "sha256": "164104dc2564f5a91194f4953d29006f4572a987769750056275ed84784b36b3",
+      "size": 7874
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/continuation-design-audit.json",
+      "sha256": "8e490d885ccd9c2d51faf771164bdc4a998aca249817c5dfb558878fdee042d9",
+      "size": 1261
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/live/develop/proposal.json",
+      "sha256": "12e2df62ee14baa7a90cfe8c344d9c3bfc31546f6dfb2b563802a175dc6472a4",
+      "size": 27936
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/live/result.json",
+      "sha256": "04fda264fc0fd816938ce99272af3eae7c1898de8d523179c6c19db77f182830",
+      "size": 12083
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/live/review/review.json",
+      "sha256": "ba2da50d1acee9724910025e522ca309d6885514ec602dc2093b8ee18f0f3419",
+      "size": 10250
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/live/verification.json",
+      "sha256": "0b5fa1a1920af8bd554aeffa7911f236436afed873892fd7bb24b569016dad98",
+      "size": 810
     },
     {
       "path": "evals/discovery/evidence-revision-01/protocol.json",
       "sha256": "bc16fd54d0118a7d8b5ec2e66b1a5aa304c7654192a4c6b680cdda5e1b6dbe90",
       "size": 6935
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/reader-check.json",
+      "sha256": "7aba0aab33b4e68d3c649184521c5f0ec4921fdfe938d91dbca3da5ca1e11bc2",
+      "size": 603
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/result.json",
+      "sha256": "8522139c413752537fc3807dce059aaac1829ec298b1d01114ffe0caf0b462ad",
+      "size": 2407
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/running-observation.json",
+      "sha256": "772be9be918102b3d84ebbcb2657cd2adeb73b46aca989caf37522197f3636a5",
+      "size": 1734
+    },
+    {
+      "path": "evals/discovery/evidence-revision-01/timings.json",
+      "sha256": "2c1ded0290be201757f3237f562b09a14f3fc742bf90cd0a6afeededb15daad4",
+      "size": 1411
     },
     {
       "path": "evals/discovery/evidence-revision-01/verification.json",

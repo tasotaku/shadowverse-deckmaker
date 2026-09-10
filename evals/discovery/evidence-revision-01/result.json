@@ -1,0 +1,49 @@
+{
+  "status": "completed",
+  "outcome": "mixed",
+  "decision": "deferred",
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "criteria": {
+    "workflow": {
+      "verdict": "pass",
+      "reason": "正式改訂1件と別評価1件、公開48操作失敗0件。実行途中のコード変更なし。"
+    },
+    "correctness": {
+      "verdict": "partial",
+      "reason": "指定した提案手順は条件内で整合。三叉槍の即時6点を比較へ反映しておらず、比較説明は要訂正。全面合格としない。"
+    },
+    "development": {
+      "verdict": "pass",
+      "reason": "進化一般則を使い、3枚接続から2枚・T2からT3・交換2枠から4枠へ変更。説明の言い換えだけではない。"
+    },
+    "utility": {
+      "verdict": "fail",
+      "reason": "別評価value=develop。回復と交戦後の守護に追加手札1枚と補充・信仰損失を払う局面が具体化せず、試行推薦0。"
+    },
+    "honesty": {
+      "verdict": "pass",
+      "reason": "独自性、最大体力時の誘発、到達頻度、実戦優位は未確認。保存記事を現在のTierや勝率へ流用していない。"
+    }
+  },
+  "new_formal_revisions": 1,
+  "new_formal_reviews": 1,
+  "new_sources": 0,
+  "preserved_sources": 19,
+  "trial_recommendations": 0,
+  "before_judgment": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "after_judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "proposal_file_sha256": "12e2df62ee14baa7a90cfe8c344d9c3bfc31546f6dfb2b563802a175dc6472a4",
+  "review_file_sha256": "ba2da50d1acee9724910025e522ca309d6885514ec602dc2093b8ee18f0f3419",
+  "review_packet_hash": "238a46492d0faef416d552730a11c4e98de683ed4fef77ce2705d9f89d0db03c",
+  "decision_reason": "保存根拠を実際の改訂へ渡し比較問題を別評価で検出できたが、改善した案や試行推薦は得られなかった。前案の上位版や方法全体の採用としない。",
+  "limits": "既知案1件の追加根拠後の追試。因果比較でも未知入力でもない。前試行の採点・元資料・DBは維持。",
+  "next": "同じ開始状態から通常構築の手順を具体化する比較工程を最小候補として点検する。自動接続案は未実装。"
+}
