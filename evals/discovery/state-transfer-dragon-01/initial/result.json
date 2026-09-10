@@ -1,0 +1,218 @@
+{
+  "status": "completed",
+  "run_id": "fb3c85b173bb42beaaa948003c47d7b5",
+  "started_at": "2026-09-10T15:22:26.776407+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/state-transfer-dragon-01-input",
+  "output": "/private/tmp/sv-state-transfer-dragon-01/initial",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:fb3c85b173bb42beaaa948003c47d7b5:develop",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-state-transfer-dragon-01/initial/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-state-transfer-dragon-01/initial/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-state-transfer-dragon-01/initial/develop",
+        "stdin": "/private/tmp/sv-state-transfer-dragon-01/initial/develop/prompt.md",
+        "output": "/private/tmp/sv-state-transfer-dragon-01/initial/develop-run",
+        "started_at": "2026-09-10T15:22:26.957760+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2290541.58099475,
+        "timeout_seconds": 1800.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 98582,
+        "worker_pid": 98585,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T15:40:54.680530+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T15:22:26.958019+00:00",
+            "elapsed_seconds": 0.00025358330458402634
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T15:22:26.958391+00:00",
+            "elapsed_seconds": 0.0006266660057008266
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T15:22:26.968792+00:00",
+            "elapsed_seconds": 0.011055083014070988
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T15:40:54.676748+00:00",
+            "elapsed_seconds": 1107.8093941658735,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T15:40:54.680553+00:00",
+            "elapsed_seconds": 1107.8130318331532
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T15:40:54.716949+00:00",
+            "elapsed_seconds": 1107.8494302909821
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "state-transfer-dragon-01",
+          "stage_id": "initial-develop",
+          "status": "completed",
+          "begin_revision": 3,
+          "claimed_stage": {
+            "id": "initial-develop",
+            "title": "比較指示を使って新しい案を考案",
+            "status": "running",
+            "started_at": "2026-09-10T15:22:26.957760+00:00",
+            "ended_at": null,
+            "note": "考案30分、1回。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/initial/develop-run",
+            "budget_minutes": 30
+          },
+          "end_revision": 5,
+          "synced_at": "2026-09-10T15:40:54.716926+00:00"
+        },
+        "elapsed_seconds": 1107.8130227909423,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:fb3c85b173bb42beaaa948003c47d7b5:review",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-state-transfer-dragon-01/initial/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-state-transfer-dragon-01/initial/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-state-transfer-dragon-01/initial/review",
+        "stdin": "/private/tmp/sv-state-transfer-dragon-01/initial/review/prompt.md",
+        "output": "/private/tmp/sv-state-transfer-dragon-01/initial/review-run",
+        "started_at": "2026-09-10T15:40:55.242841+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2290749.956323666,
+        "timeout_seconds": 900.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 98582,
+        "worker_pid": 18914,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T15:46:56.320568+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T15:40:55.243031+00:00",
+            "elapsed_seconds": 0.0001838337630033493
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T15:40:55.243345+00:00",
+            "elapsed_seconds": 0.0004993341863155365
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T15:40:55.251517+00:00",
+            "elapsed_seconds": 0.008706625085324049
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T15:46:56.318942+00:00",
+            "elapsed_seconds": 361.07856158399954,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T15:46:56.320578+00:00",
+            "elapsed_seconds": 361.0801394591108
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T15:46:56.341230+00:00",
+            "elapsed_seconds": 361.1007934170775
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "state-transfer-dragon-01",
+          "stage_id": "initial-review",
+          "status": "completed",
+          "begin_revision": 6,
+          "claimed_stage": {
+            "id": "initial-review",
+            "title": "別担当が比較の正しさと試用理由を評価",
+            "status": "running",
+            "started_at": "2026-09-10T15:40:55.242841+00:00",
+            "ended_at": null,
+            "note": "別評価15分、1回。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/initial/review-run",
+            "budget_minutes": 15
+          },
+          "end_revision": 8,
+          "synced_at": "2026-09-10T15:46:56.341218+00:00"
+        },
+        "elapsed_seconds": 361.0801361668855,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "review_only": false,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 0,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "0f9123e7925bb61987eec34f7348327b4dc453e00733a4c423ca49a4c95a7b30",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/0ba0d6778143e0f87cf969bd7fcd1021797a3514a5300510ced545af872b9a94.json": "2da2a2e286e17fc783faaba999049a171a1c8ee8f5874f601e816725b0c641fe",
+    "sources/70a721e47cd32dc230c09faf83736c0a269003b8d15e28bfc6417b0a64d1071b.json": "fcb04dd31ef0ab5fd108d86ea37b772fcc1a5d4d5fb0cec72aa3b831eeab49a1",
+    "sources/9d9cd514e3d6699f7c31fef42818153c0ef996b8df74ecd6f11b7ef946645273.json": "0df5e2ef9e7f74c9f60311117d05eae717312045a42a3aeb66b440980504d09d",
+    "sources/b3a0974bfa5b29fad7fd5a74f33880c694d3aacfc67eee5bfa77f46e0605282c.json": "3dedf8d363db66904a761507fed6419888dd72e74f96c31ad4c2e742a4eae5a2",
+    "sources/c6b0907e750330fcf9cb6d42aeeac929e68d87ffa96f22db88655e2bd414120b.json": "f5e2c3f7d25cb28b1b3702ae48263d4bd71e46efaa66c7aa25c478a8e626e055",
+    "sources/c6b3ec72acabb88982d7ffa0773f3fdb7e7ca020043b0f6d67aa941208fed9cf.json": "dcc62630a5e5f5b436183f845fae646fa9980fc5c6e6223101b0389f35837114",
+    "sources/cac413f8fd8e94c4217895b08ca3dfc7cd736579a361c23447949ae944e47c9f.json": "cf83ff1ef70e468ee59c27820e5b5713e545230dd7cd9bc55a867795a8709323",
+    "sources/f8fc977e6449a3f6f8b62898307842009583b114801bb9fdc90e869d239deaeb.json": "0357894706ed4dfff942ce56170b312cfd1c27f0d6cbb1acadc1e3bdc0d10e72",
+    "sources/fc43b9b6b29ae6cd79716c546c3a28350a8e2efb8d2aa6263ab85f6603761adf.json": "be3d8deff531bd2bb5d1a2b91ada7776b89b5e74b4c254182fcc349d7587a47e"
+  },
+  "judgment": {
+    "procedure": "supported",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-state-transfer-dragon-01/initial/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-10T15:46:56.682304+00:00"
+}

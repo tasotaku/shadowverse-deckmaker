@@ -1,22 +1,22 @@
 {
   "id": "state-transfer-dragon-01",
-  "revision": 4,
-  "saved_at": "2026-09-10T15:27:56.314354+00:00",
+  "revision": 11,
+  "saved_at": "2026-09-10T15:49:14.355000+00:00",
   "actor": "codex",
-  "reason": "起動照合と現在の工程・上限を報告本文へ反映",
+  "reason": "追加改訂の開始時刻・上限と起動時の保存照合を報告へ反映",
   "record": {
     "id": "state-transfer-dragon-01",
     "title": "同じ状態での比較をドラゴンの新しい考案へ使う",
     "category": "method",
     "status": "running",
-    "summary": "3記事9資料を固定。比較指示だけが変わることを確認し、ドラゴンの初回考案へ進む。",
+    "summary": "初回は18分28秒の考案・6分01秒の別評価で試用保留。9月11日00:47:53に追加改訂1回を開始。",
     "method": "比較指示を加えた考案→通常側と同じ状態で比較→独立評価。必要な具体的問いがある場合だけ改訂1回。",
     "procedure": "参考3記事を取得・固定→現行指示の隔離版へ比較手順だけ追記→初回考案・別評価→事前条件に沿って終了または追加改訂・別評価1回→結果と採否を保存。",
     "inputs": "ドラゴン・ローテーションの新しい探索記録。固定DB・既存注記・学んだ設計原則は既知。具体的な過去案と評価を注入しない。開発に一切使っていない未知カードの検査ではない。 参考3記事の全40枚と説明を取得。",
     "criteria": "主な比較に重大な既知の誤りがなく、通常側でも得られる分を分けた比較が使い方・採用配分・主張の限定へ実際に反映され、試す理由のある種が残れば、既知ビショップの観測と合わせて比較指示を運用へ採用する。記録欄が埋まっただけ、比較が誤る、保留だけの場合は採用しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "準備完了。考案と別評価を各1回実行する。",
+      "summary": "初回は正式1案・別評価1件、supported/develop/unconfirmed。考案18分28秒・評価6分01秒。改訂による有用性を確認する。",
       "limitations": "候補方法だけの新しい入力1件であり、同時対照や一般的な優越・勝率・Tierの証明ではない。元の失敗を変更せず、採用条件・予算を結果に合わせて緩めない。"
     },
     "decision": {
@@ -38,19 +38,37 @@
       {
         "id": "initial-develop",
         "title": "比較指示を使って新しい案を考案",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T15:22:26.957760+00:00",
-        "ended_at": null,
-        "note": "考案30分、1回。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/initial/develop-run",
+        "ended_at": "2026-09-10T15:40:54.680530+00:00",
+        "note": "考案30分、1回。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/initial/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 30
       },
       {
         "id": "initial-review",
         "title": "別担当が比較の正しさと試用理由を評価",
+        "status": "completed",
+        "started_at": "2026-09-10T15:40:55.242841+00:00",
+        "ended_at": "2026-09-10T15:46:56.320568+00:00",
+        "note": "別評価15分、1回。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/initial/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "revision-develop",
+        "title": "残った問いを用いて改訂を1回実施",
+        "status": "running",
+        "started_at": "2026-09-10T15:47:53.650484+00:00",
+        "ended_at": null,
+        "note": "保存済み初回評価から通常の改訂入口へ。30分、追加改訂はこの1回のみ。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/revision/develop-run",
+        "budget_minutes": 30
+      },
+      {
+        "id": "revision-review",
+        "title": "改訂後の固有の利益と採用負担を別評価",
         "status": "planned",
         "started_at": null,
         "ended_at": null,
-        "note": "別評価15分、1回。",
+        "note": "別評価15分、1回。最終が保留のみなら方式の本採用はしない。",
         "budget_minutes": 15
       },
       {
@@ -78,14 +96,22 @@
       "evals/discovery/state-transfer-dragon-01/articles/1.json",
       "evals/discovery/state-transfer-dragon-01/articles/2.json",
       "evals/discovery/state-transfer-dragon-01/articles/3.json",
-      "evals/discovery/state-transfer-dragon-01/launch-check.json"
+      "evals/discovery/state-transfer-dragon-01/launch-check.json",
+      "evals/discovery/state-transfer-dragon-01/branch-decision.json",
+      "evals/discovery/state-transfer-dragon-01/initial/result.json",
+      "evals/discovery/state-transfer-dragon-01/initial/report.json",
+      "evals/discovery/state-transfer-dragon-01/initial/verification.json",
+      "evals/discovery/state-transfer-dragon-01/initial/develop/proposal.json",
+      "evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+      "evals/discovery/state-transfer-dragon-01/initial/session.tar.gz",
+      "evals/discovery/state-transfer-dragon-01/revision-launch-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/state-transfer-dragon-01/README.md",
-      "sha256": "bb5f7a7f4ec6f14b25627c424ebc815fc4d8aa2a8dc61bb53a0045731dae11d4",
-      "size": 1797
+      "sha256": "38ba24b25bf252d65d76f17387e5b02a20a69140a82938adc1a07db7ad7fef87",
+      "size": 2513
     },
     {
       "path": "evals/discovery/state-transfer-dragon-01/article-fetch.json",
@@ -108,9 +134,44 @@
       "size": 13168
     },
     {
+      "path": "evals/discovery/state-transfer-dragon-01/branch-decision.json",
+      "sha256": "a363888ce1b666bb1a1c28c00112095843d95868dfec7c8a9be47afe913d86f4",
+      "size": 4824
+    },
+    {
       "path": "evals/discovery/state-transfer-dragon-01/frozen-input.json",
       "sha256": "39d21d60f354f7062a99ea3e3d8545a9bbc0105089cba4101d507389e1096cf9",
       "size": 5553
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/develop/proposal.json",
+      "sha256": "4584bcbc3de16e3f1c40c7b7c27a7b1001ce4dbe996f5b73d8c5d9c0e9576534",
+      "size": 18871
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/report.json",
+      "sha256": "77cf8f5c13db87f14c681fb2b2ff7ed56a853dfe3546d1726434a45af3d170a8",
+      "size": 24568
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/result.json",
+      "sha256": "5b4c4679ce3bb43334d1d227433bd5838254cf57b91330c4acc847107b81565c",
+      "size": 9807
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/review/review.json",
+      "sha256": "48f7801da2c6c907afa0490cf1c4a127bc0d892f2a56cbc4885b155b4b7d2e6c",
+      "size": 9634
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/session.tar.gz",
+      "sha256": "4b8643ed6e4d992677dfd7dc007dea6f533d383725178fe2daa89fad1e9dd034",
+      "size": 1512128
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/initial/verification.json",
+      "sha256": "cf5024c82b8091a78ade610fa559d20ee10b339c35ad1cf90605908c011cd4d8",
+      "size": 1068
     },
     {
       "path": "evals/discovery/state-transfer-dragon-01/input-session.tar.gz",
@@ -141,6 +202,11 @@
       "path": "evals/discovery/state-transfer-dragon-01/protocol.json",
       "sha256": "b5d14adfb462a30c7dc5c3a3f1d7d9a170df04937659a80d4677bf1c9a347c14",
       "size": 5681
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/revision-launch-check.json",
+      "sha256": "fe6d25e938655d36df31211ae5d72f5f326803d995440d3d1baf4e2723877933",
+      "size": 611
     },
     {
       "path": "evals/discovery/state-transfer-dragon-01/runtime-manifest.json",
