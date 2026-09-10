@@ -1,0 +1,85 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-experience-recall-01/use/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-experience-recall-01/use/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-experience-recall-01/use/work",
+  "stdin": "/private/tmp/sv-experience-recall-01/use/work/prompt.md",
+  "output": "/private/tmp/sv-experience-recall-01/use/run",
+  "started_at": "2026-09-10T07:36:50.291813+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2266010.918609416,
+  "timeout_seconds": 360.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 78330,
+  "worker_pid": 78331,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T07:42:06.218104+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T07:36:50.292521+00:00",
+      "elapsed_seconds": 0.0004076668992638588
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T07:36:50.293096+00:00",
+      "elapsed_seconds": 0.0009847497567534447
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T07:36:50.301092+00:00",
+      "elapsed_seconds": 0.009067041799426079
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T07:42:06.203819+00:00",
+      "elapsed_seconds": 315.90983437467366,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T07:42:06.218172+00:00",
+      "elapsed_seconds": 315.9240349167958
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T07:42:06.232000+00:00",
+      "elapsed_seconds": 315.9378640418872
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "experience-recall-01",
+    "stage_id": "use",
+    "status": "completed",
+    "begin_revision": 6,
+    "claimed_stage": {
+      "id": "use",
+      "title": "新規担当が保存経験を検索・再読",
+      "status": "running",
+      "started_at": "2026-09-10T07:36:50.291813+00:00",
+      "ended_at": null,
+      "note": "公開入口だけで3課題を実行。開始終了は実行監視が記録する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-recall-01/use/run",
+      "budget_minutes": 6
+    },
+    "end_revision": 7,
+    "synced_at": "2026-09-10T07:42:06.231985+00:00"
+  },
+  "elapsed_seconds": 315.92402220889926,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

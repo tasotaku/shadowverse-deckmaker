@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-09-10T07:49:08.211934+00:00",
+  "decision": "adopted",
+  "adopted_scope": "別探索の正式案・評価をカードと使い方で探して再読する補助。新しい種を生む探索方法の完成認定ではない。",
+  "reason": "固定3課題すべてで、元案・評価・残る条件を対応付きで復元できた。複製と改訂を混同せず、一致なしを未知の証明にしなかった。本体CLIの全返却内容も試作と一致。",
+  "independent_check": {
+    "reviewer": "/root/novelty_boundary_audit",
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "tasks": [
+      {
+        "id": "history",
+        "verdict": "PASS",
+        "reason": "ラスティ型conditional/develop/unconfirmedと旗型2版conditional/test/unconfirmedを元評価どおり復元。増分利益、失う役割、成立条件、個別裁定・独自性の未確認を保持。"
+      },
+      {
+        "id": "intersection",
+        "verdict": "PASS",
+        "reason": "1系列・2改訂・2保存先・4保存物・正式評価1件を区別。未評価の初版へ評価を流用せず、ラスティ型を除外。"
+      },
+      {
+        "id": "missing",
+        "verdict": "PASS",
+        "reason": "16探索での一致0・省略0・complete=trueを、文字列条件での不一致に限定。未知・不可能・独自性へ一般化しない。"
+      }
+    ],
+    "common": "recallを実際に使用。ラスティ案全222行をreadしnext_offset=null確認。関連カード本文も再読。案・評価・入力版の識別値が元記録と対応し、実戦結果へ昇格していない。元ファイル不変は親の316ファイル照合を根拠としている。"
+  },
+  "operation_count_scope": {
+    "recorded_subprocess_calls": 21,
+    "recorded_failures": 0,
+    "reported_unlogged_wrapper_rejections": 3,
+    "limit": "3回は担当の最終回答による自己申告で、時刻付き記録がない。全操作の失敗0とは主張しない。工程の全体時間には含まれる。"
+  },
+  "performance": {
+    "elapsed_seconds": 315.92402220889926,
+    "public_stdout_bytes_including_repeats": 1254442,
+    "limit": "速度比較の対照はない。返却量は観測値だが、所要時間の原因を返却量だけに帰属しない。"
+  },
+  "limits": [
+    "3課題は既知の保存経験による検査。未知の自然探索ではない。",
+    "文字列と正式役割による検索で、意味検索・網羅的な先行例調査ではない。",
+    "表示は全文中心で返却量が多い。必要なカード・用途へ絞る使い方を想定する。",
+    "正式記録がすべて失われた探索は発見・復元できない。"
+  ]
+}
