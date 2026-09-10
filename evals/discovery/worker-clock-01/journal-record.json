@@ -1,30 +1,30 @@
 {
   "id": "worker-clock-01",
-  "revision": 1,
-  "saved_at": "2026-09-09T21:23:27.001569+00:00",
+  "revision": 2,
+  "saved_at": "2026-09-10T01:48:29.953787+00:00",
   "actor": "root",
-  "reason": "経過時計の制限を追加し、実AIで中断調査の提出処理を検証開始",
+  "reason": "実AIの経過600秒停止と正式案0件を回収。時間管理の動作と提出未達を分けて記録",
   "record": {
     "id": "worker-clock-01",
     "title": "経過時計の時間制限で途中の調査を続ける",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "経過時計だけで作業時間を制限する選択肢を実装。26件の検査に合格し、中断した調査の続きで実AIを確認中。",
+    "status": "completed",
+    "summary": "経過時計600秒で実AIを停止し、14資料を保持。正式案0件で、提出まで進める問題は解消せず本採用保留。",
     "method": "UTCと経過時計の早い方で停止する既定設定に加え、経過時計だけを制限にする選択肢を追加。両方の時刻と停止条件を記録し、担当も同じ時計を参照する。",
     "procedure": "時計の前進を模擬して既定と新設定を比較→実期限停止・部分出力保持・既存終了処理など26件の検査→元調査13資料のコピーと照合→実AIで提出・保存確認→正式案があれば別担当で有用性評価。",
     "inputs": "中断したfresh-reference-01のドラゴン調査13資料と固定カード入力。過去の正式提案は0件、独立評価も無い。新規の未知入力ではない。",
     "criteria": "既定設定の挙動を保持し、選択した時計を子と監視役で共有する。経過時間の上限で停止し途中資料を残す。実AIの公開操作で確認し、旧試行を成功へ書き換えない。案の価値は元の5基準で独立判定。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "既存20件＋追加6件の検査と型検査は合格。時刻だけの前進では新設定で処理完了、経過期限では停止できた。実AIの提出・独立評価は未完了。",
-      "limitations": "経過時計はCPU使用時間ではなく、OSにより休止の扱いも異なる。時計差の原因は未確定。機能検査の合格をデッキの種の有用性とみなさない。"
+      "outcome": "mixed",
+      "summary": "関連26件と型検査合格。実AIは経過600.001秒で期限を検出し、終了まで600.069秒。公開呼出し46回、失敗0回、資料13→14件、正式案0件。独立評価は未実施。",
+      "limitations": "UTC時刻差は1時間02分10.39秒で、時計差の原因は未確定。時間管理の動作は確認したが、提出・照合までの検証条件は未達。有用な種が得られたとは数えない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "実AIで公開操作と保存までの確認が進行中。既定の時間管理は変更していない。"
+      "status": "deferred",
+      "reason": "経過時計による停止と途中資料保持は確認できたが、正式な提案の提出・照合まで進める検証は未達。時計の変更だけで提出の問題が解消したとは言えない。"
     },
     "started_at": "2026-09-09T21:17:33.894750+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-09T22:23:48.697794+00:00",
     "stages": [
       {
         "id": "tests",
@@ -47,10 +47,19 @@
       {
         "id": "live",
         "title": "経過時計を使う実AIが提案をまとめる",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-09T21:21:38.311520+00:00",
+        "ended_at": "2026-09-09T22:23:48.697794+00:00",
+        "note": "経過600.001秒で期限検出、終了600.069秒。正式案0件。UTC差1時間02分10.39秒を実作業時間へ読み替えない。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "review",
+        "title": "案の独立評価（未実施）",
+        "status": "interrupted",
+        "started_at": null,
         "ended_at": null,
-        "note": "実行ハンドル64566。上限は経過時計600秒で、固定UTC期限は設定していない。",
+        "note": "正式案が無いため未実施で終了。",
         "budget_minutes": 10
       }
     ],
@@ -60,14 +69,39 @@
       "evals/discovery/worker-clock-01/test-plan.json",
       "evals/discovery/worker-clock-01/test-verification.json",
       "evals/discovery/worker-clock-01/preparation.json",
-      "evals/discovery/worker-clock-01/run-start.json"
+      "evals/discovery/worker-clock-01/run-start.json",
+      "evals/discovery/worker-clock-01/completion/run.json",
+      "evals/discovery/worker-clock-01/completion/collection.json",
+      "evals/discovery/worker-clock-01/completion/report.json",
+      "evals/discovery/worker-clock-01/independent-output-check.json",
+      "evals/discovery/worker-clock-01/public-probe-verification.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/worker-clock-01/README.md",
-      "sha256": "548da5ae8a768db380051b1d8cd3301e58647aea7d8ebfc3211e1e7fb2fb0645",
-      "size": 3196
+      "sha256": "d67377f6b419043b584ce725e7d6583baeccafbfca00e77c4d9fe39b62e4b8a2",
+      "size": 4028
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/completion/collection.json",
+      "sha256": "f58936455cdd5620aef9227bda856a7273c5cecf9a1497703b6a80b8af7e22ed",
+      "size": 685
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/completion/report.json",
+      "sha256": "295b10d190a9a8a0b1442a679f73bdb485209eaf87940299353d9c3733b97ba5",
+      "size": 9449
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/completion/run.json",
+      "sha256": "97b25ac4bc459138adf9e36834286cc16a85827c86993acd345043c4c1538748",
+      "size": 2046
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/independent-output-check.json",
+      "sha256": "dbb1c6b6ce4db5c90e05a922028ef6b44571f59bdc6564a9474043e39a283cb8",
+      "size": 574
     },
     {
       "path": "evals/discovery/worker-clock-01/preparation.json",
@@ -78,6 +112,11 @@
       "path": "evals/discovery/worker-clock-01/protocol.json",
       "sha256": "996f2309f0a948f61ee638952446e2c38605683efb6014f9089c6af662dc3e87",
       "size": 2800
+    },
+    {
+      "path": "evals/discovery/worker-clock-01/public-probe-verification.json",
+      "sha256": "8f1eb8aabc0da1300b6652edda4a9d7a6a1f9b91c73563e8044aed3fa68fec99",
+      "size": 331
     },
     {
       "path": "evals/discovery/worker-clock-01/run-start.json",
