@@ -1,17 +1,17 @@
 {
   "id": "experience-guided-01",
-  "revision": 22,
-  "saved_at": "2026-09-10T08:49:20.543477+00:00",
+  "revision": 23,
+  "saved_at": "2026-09-10T08:51:59.881144+00:00",
   "actor": "codex",
-  "reason": "比較結果・採否と正式評価の根拠を保存",
+  "reason": "初見確認を反映し全工程の実時刻と比較の終了を保存",
   "record": {
     "id": "experience-guided-01",
     "title": "保存した経験を参照すると次の考案が良くなるか",
     "category": "method",
-    "status": "running",
-    "summary": "比較は両方式とも試行推薦0件で本採用保留。結果の報告と記録画面を最終確認中。",
+    "status": "completed",
+    "summary": "両方式とも正式案・独立評価各1件、試行推薦0件。経験参照を初回考案へ加える手順の本採用は保留。システム開発は継続。",
     "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
-    "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
+    "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価と過去案照合を並行実施 → 採否と時間を保存。",
     "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
     "criteria": "従来の5基準を維持。試す理由が残ることに加え、経験参照による実質改善・既存案の重複・余分な手間を別に確認する。",
     "result": {
@@ -24,7 +24,7 @@
       "reason": "事前に定めた、経験参照側だけが有用な新しい種又は負担を解消した案へ到達する条件を満たさない。両者とも試行推薦0件。検索機能自体の採用とは分ける。"
     },
     "started_at": "2026-09-10T07:57:54.798189+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T08:51:59.764604+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -110,10 +110,37 @@
       {
         "id": "publication",
         "title": "結果を報告へまとめて記録画面で確認",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T08:45:20.630353+00:00",
-        "ended_at": null,
-        "note": "両方式とも正式1案・独立評価1件、試行推薦0件。採否理由と工程時間を報告へまとめ、保存内容と記録画面を確認する。",
+        "ended_at": "2026-09-10T08:51:59.764604+00:00",
+        "note": "本文だけの別点検で検索の意味と並行手順を明確化。既存記録画面で採否・結果・工程日時を確認。正式2案・評価2件・推薦0件で追加手順は保留。",
+        "budget_minutes": null
+      },
+      {
+        "id": "evidence-audit",
+        "title": "評価の重要な4点を別担当が照合",
+        "status": "completed",
+        "started_at": "2026-09-10T08:43:21+00:00",
+        "ended_at": "2026-09-10T08:45:22+00:00",
+        "note": "実時計で記録。詳細は final-evidence-audit.json",
+        "budget_minutes": null
+      },
+      {
+        "id": "next-step-audit",
+        "title": "次に改善する工程を点検",
+        "status": "completed",
+        "started_at": "2026-09-10T08:43:43+00:00",
+        "ended_at": "2026-09-10T08:48:28+00:00",
+        "note": "実時計で記録。詳細は next-step-audit.json",
+        "budget_minutes": null
+      },
+      {
+        "id": "reader-check",
+        "title": "報告本文の初見確認",
+        "status": "completed",
+        "started_at": "2026-09-10T08:49:01+00:00",
+        "ended_at": "2026-09-10T08:49:20+00:00",
+        "note": "実時計で記録。詳細は reader-check.json",
         "budget_minutes": null
       }
     ],
@@ -141,14 +168,17 @@
       "evals/discovery/experience-guided-01/a/review/verification.json",
       "evals/discovery/experience-guided-01/b/review/evaluation.md",
       "evals/discovery/experience-guided-01/b/review/review.json",
-      "evals/discovery/experience-guided-01/b/review/verification.json"
+      "evals/discovery/experience-guided-01/b/review/verification.json",
+      "evals/discovery/experience-guided-01/reader-check.json",
+      "evals/discovery/experience-guided-01/next-step-audit.json",
+      "evals/discovery/experience-guided-01/timings.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/experience-guided-01/README.md",
-      "sha256": "eadf00a88e5886f6542ad48a4053d519c0b0a40424555f5891e59db43a2bf992",
-      "size": 9256
+      "sha256": "43ae179380f9bd6b6bf29d0fc93a7e2823f17f2e10cdb8898c53a76e0730c02c",
+      "size": 9816
     },
     {
       "path": "evals/discovery/experience-guided-01/a/generation/conclusion.md",
@@ -246,6 +276,11 @@
       "size": 396
     },
     {
+      "path": "evals/discovery/experience-guided-01/next-step-audit.json",
+      "sha256": "0e102587a5ddbdcd01860e6a1341d85c53ce64a32faa00b366b94ab1625d7dc9",
+      "size": 811
+    },
+    {
       "path": "evals/discovery/experience-guided-01/preflight-checks.json",
       "sha256": "8dd648f9b44cbe929d0bd62e0e958a9e88f532ce6f9aa928a041ea32a8498fda",
       "size": 3694
@@ -256,9 +291,19 @@
       "size": 4804
     },
     {
+      "path": "evals/discovery/experience-guided-01/reader-check.json",
+      "sha256": "05cece951c4910ae790e8d8446325bdcc2fafa99dbc4fdfdba5f4fa660ae1972",
+      "size": 581
+    },
+    {
       "path": "evals/discovery/experience-guided-01/result.json",
       "sha256": "24d49db7fac1e7a461b935099ec27a978ba5446dc637b3f408bb62f3fc648e3e",
       "size": 5631
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/timings.json",
+      "sha256": "9e48a1ec75d50a240c78c498d266688f35ae221f28505b44d77f7d0259845b09",
+      "size": 3757
     },
     {
       "path": "evals/discovery/experience-guided-01/workflow-checkpoint.json",
