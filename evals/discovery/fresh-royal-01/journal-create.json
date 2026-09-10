@@ -1,0 +1,74 @@
+{
+  "id": "fresh-royal-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T06:13:16.506145+00:00",
+  "actor": "codex",
+  "reason": "新しいロイヤル入力の基準と予定工程を実行前に登録",
+  "record": {
+    "id": "fresh-royal-01",
+    "title": "新しいロイヤル入力で現在の探索工程を試す",
+    "category": "method",
+    "status": "running",
+    "summary": "参考3記事とカード資料を準備中。正式案・独立評価はまだない。",
+    "method": "現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。",
+    "procedure": "資料を固定→考案30分→独立評価15分→必要なら改訂30分と再評価15分→結果と採否を記録。各実行は1回。",
+    "inputs": "ローテーション・ロイヤルの新規セッション。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。",
+    "criteria": "手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "資料準備中。",
+      "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "考案と独立評価の結果が出るまで採否は未判定。"
+    },
+    "started_at": "2026-09-10T06:13:16.316239+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "資料と判定条件を固定",
+        "status": "running",
+        "started_at": "2026-09-10T06:13:16.316239+00:00",
+        "ended_at": null,
+        "note": "参考3記事の取得と新規セッション作成を行う。",
+        "budget_minutes": null
+      },
+      {
+        "id": "generation",
+        "title": "初回の種を考案・提出",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "現行の通常指示を使い、一つの種を公開入口から提出する。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "review",
+        "title": "別担当が成立と試す価値を評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式案が提出された場合に開始する。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/fresh-royal-01/README.md",
+      "evals/discovery/fresh-royal-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/fresh-royal-01/README.md",
+      "sha256": "0c63185226119ae5a65c96ecd8ad11a6e52dcb8ce1699d184f39a4796023b926",
+      "size": 764
+    },
+    {
+      "path": "evals/discovery/fresh-royal-01/protocol.json",
+      "sha256": "f9b74905b9da22419e150e068136e760a02337d40078720ec3c63ecef8127517",
+      "size": 3783
+    }
+  ]
+}

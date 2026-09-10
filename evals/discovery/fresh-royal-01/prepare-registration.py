@@ -1,0 +1,19 @@
+import json, hashlib, subprocess, os
+from pathlib import Path
+from datetime import datetime, timezone
+root=Path('/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker')
+out=root/'evals/discovery/fresh-royal-01'; base=Path('/tmp/sv-fresh-royal-01')
+out.mkdir(); base.mkdir()
+now=datetime.now(timezone.utc).isoformat()
+def save(path,value): path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+prior=json.loads((root/'evals/discovery/article-rationale-01/protocol.json').read_text())
+grade=prior['fixed_grading']; digest=hashlib.sha256(json.dumps(grade,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+assert digest==prior['fixed_grading_semantic_hash']
+protocol={'id':'fresh-royal-01','criteria_frozen_at':now,'purpose':'既知のビショップ保留案の改訂から対象を変え、現在の探索工程で新しいロイヤル入力から試す理由のある種まで届くかを確認する。','implementation_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'method':'現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。','reference_urls':['https://gamewith.jp/shadowverse-wb/527767','https://gamewith.jp/shadowverse-wb/573927','https://gamewith.jp/shadowverse-wb/559138'],'source_policy':'初期参考3記事を公開の単一記事取得で取得し全結果を保持する。取得失敗は記録し、結果を見て比較元を差し替えない。実カード本文と既存注記は初期DBの保存版。具体的な成功案や他試行の提案・評価は注入しない。','input_scope':'ローテーション・ロイヤルの新規セッション。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。','fixed_grading':grade,'fixed_grading_semantic_hash':digest,'generation_seconds':1800,'review_seconds':900,'revision_seconds':1800,'final_review_seconds':900,'maximum_attempts_per_stage':1,'maximum_revisions':1,'budget_clock':'elapsed','branch_rule':'初回の正式案があれば独立評価。value=developかつ判断を変えうる未解決の問いが明示される場合のみ1回改訂と独立再評価。testなら追加改訂を強制しない。dropや未提出や実行失敗ならその枝を終了し途中成果を保全する。','adoption':'最終的に試行推薦の根拠がある種が残るかを判定。手順完了・資料数・形式充足だけでは採用しない。1入力の成功で一般優位や全体完成を認定しない。','failure_policy':'結果に合わせて予算・採点を緩めず、未完成を代理提出しない。実行失敗を案の反証にしない。','main_db_sha256':hashlib.sha256((root/'data/cards.db').read_bytes()).hexdigest()}
+save(out/'protocol.json',protocol)
+(out/'README.md').write_text('# 新しいロイヤル入力で、現在の探索工程を試す\n\n参考記事と保存済みカード資料を準備中。まだ提案・評価の結果は出ていません。\n\n通常の考案を最大30分、別担当の評価を最大15分で行います。追加検討という評価で具体的な問いが残る場合だけ、改訂を30分、再評価を15分まで一度ずつ行います。工程の開始・終了は実行側から自動記録します。\n\n判定は、手順の完了、ゲーム上の正しさ、改訂の実質的な進展、試す理由、未確認事項の扱いの5点です。種への到達と、システム全体の完成は分けます。既存DBと注記を使うため、知識を遮断した試験ではありません。\n')
+record={'id':'fresh-royal-01','title':'新しいロイヤル入力で現在の探索工程を試す','category':'method','status':'running','summary':'参考3記事とカード資料を準備中。正式案・独立評価はまだない。','method':protocol['method'],'procedure':'資料を固定→考案30分→独立評価15分→必要なら改訂30分と再評価15分→結果と採否を記録。各実行は1回。','inputs':protocol['input_scope'],'criteria':'手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。','result':{'outcome':'unassessed','summary':'資料準備中。','limitations':'1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。'},'decision':{'status':'deferred','reason':'考案と独立評価の結果が出るまで採否は未判定。'},'started_at':now,'ended_at':None,'stages':[{'id':'preparation','title':'資料と判定条件を固定','status':'running','started_at':now,'ended_at':None,'note':'参考3記事の取得と新規セッション作成を行う。','budget_minutes':None},{'id':'generation','title':'初回の種を考案・提出','status':'planned','started_at':None,'ended_at':None,'note':'現行の通常指示を使い、一つの種を公開入口から提出する。','budget_minutes':30},{'id':'review','title':'別担当が成立と試す価値を評価','status':'planned','started_at':None,'ended_at':None,'note':'正式案が提出された場合に開始する。','budget_minutes':15}],'evidence_paths':['evals/discovery/fresh-royal-01/README.md','evals/discovery/fresh-royal-01/protocol.json']}
+save(out/'journal-input.json',record)
+env={**os.environ,'PYTHONPATH':str(root/'src')}
+r=subprocess.run(['/tmp/sv-system-venv/bin/python','-m','svdeck.experiments','--root',str(root),'create',str(out/'journal-input.json'),'--actor','codex','--reason','新しいロイヤル入力の基準と予定工程を実行前に登録'],env=env,text=True,capture_output=True)
+(out/'journal-create.json').write_text(r.stdout); print(r.stdout or r.stderr); r.check_returncode()
