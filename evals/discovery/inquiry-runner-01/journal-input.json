@@ -2,23 +2,23 @@
   "id": "inquiry-runner-01",
   "title": "残った問いの調査と別担当への引渡しをつなぐ",
   "category": "method",
-  "status": "running",
-  "summary": "19時27分45秒から実際の調査を開始。評価の4番目の問いを固定し、元案を改訂せず資料を集めている。調査15分・別照合10分、各1回。",
+  "status": "completed",
+  "summary": "調査8分08秒・追加4資料を正式保存したが、ヘルプのJSON解析で引渡し失敗。別照合0回、採用保留。保存済み資料からの再開を別試行で検証する。",
   "method": "採用済みの資料保存・固定ファイル照合・実行期限・操作記録を再利用し、終了条件を調査報告と照合報告にする。旧採点や案の本文は変更しない。",
   "procedure": "条件固定→実装・関連検査→調査15分→別照合10分→元入力・本文・結果の回収→採否記録。",
   "inputs": "fresh-nightmare-01の正式案1件と評価1件の保存版。評価の4番目の問いを明示指定。旧失敗事例からの再採点ではない。",
   "criteria": "正式案・旧評価・入力保全、公開保存と再読、別担当への受渡し、根拠と結論の対応、未確認の明示。資料件数で成功を判定しない。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "実装・関連139検査・型検査・別点検は完了。実際の調査を実行中で、別担当への引渡しと資料内容の評価はまだ完了していない。",
-    "limitations": "一問の実利用で一般的な発見力や独自性を認定しない。"
+    "outcome": "fail",
+    "summary": "正式調査報告1件を含む追加4資料。公開20操作は正常だが引渡し検査が失敗し別照合0回。",
+    "limitations": "公開解説の同用途情報が得られたという報告は保存したが、独立照合未実施。採用率・強さ・独自性は未認定。"
   },
   "decision": {
     "status": "deferred",
-    "reason": "実装の検査は完了。採用の判断には、実際の調査報告保存と別担当の照合までの確認が残る。"
+    "reason": "調査資料は正式保存されたが、ヘルプ応答のJSON解析で引渡しが停止し別担当の照合を完了できなかった。"
   },
   "started_at": "2026-09-10T10:17:52.459570+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T10:43:24.997196+00:00",
   "stages": [
     {
       "id": "implementation",
@@ -32,20 +32,29 @@
     {
       "id": "live-inquiry",
       "title": "評価の問いを調査して資料を保存",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T10:27:45.403513+00:00",
-      "ended_at": null,
-      "note": "公開添付、資料新版からの本文再読、report確認まで行う。未提出の代理補完なし。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-runner-01/run/inquiry-run",
+      "ended_at": "2026-09-10T10:35:53.231692+00:00",
+      "note": "公開添付、資料新版からの本文再読、report確認まで行う。未提出の代理補完なし。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-runner-01/run/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 15
     },
     {
       "id": "live-inspect",
       "title": "別担当が調査報告と根拠を照合",
-      "status": "planned",
+      "status": "interrupted",
       "started_at": null,
       "ended_at": null,
-      "note": "公開添付、資料新版からの本文再読、report確認まで行う。未提出の代理補完なし。",
+      "note": "前工程の引渡し検査で停止したため未起動。開始・終了時刻は存在しない。未提出の補完はしない。",
       "budget_minutes": 10
+    },
+    {
+      "id": "failure-report",
+      "title": "回収・原因照合・失敗報告",
+      "status": "completed",
+      "started_at": "2026-09-10T10:37:10.598233+00:00",
+      "ended_at": "2026-09-10T10:43:24.997196+00:00",
+      "note": "資料と原入力を保持。ヘルプをJSON解析する実行側の不具合を確認し、修正・再開は別試行へ分けた。修正検証と並行。",
+      "budget_minutes": null
     }
   ],
   "evidence_paths": [
@@ -54,6 +63,10 @@
     "evals/discovery/inquiry-runner-01/coverage.json",
     "evals/discovery/inquiry-runner-01/verification.json",
     "evals/discovery/inquiry-runner-01/implementation.json",
-    "evals/discovery/inquiry-runner-01/boundary-audit.json"
+    "evals/discovery/inquiry-runner-01/boundary-audit.json",
+    "evals/discovery/inquiry-runner-01/result.json",
+    "evals/discovery/inquiry-runner-01/live/result.json",
+    "evals/discovery/inquiry-runner-01/live/verification.json",
+    "evals/discovery/inquiry-runner-01/live/inquiry/answer.md"
   ]
 }

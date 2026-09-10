@@ -67,7 +67,7 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
     covered: dict[str, set[int]] = {}
     for op in operations:
         args = op['args']
-        if op['exit_code'] != 0 or not args:
+        if op['exit_code'] != 0 or not args or '--help' in args or '-h' in args:
             continue
         if args[0] == 'attach-file':
             value = json.loads(op['stdout'])
@@ -107,7 +107,8 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
 
 def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int,
         research_seconds: float, inspect_seconds: float, journal_root: Path | None = None,
-        experiment_id: str | None = None, stage_prefix: str = 'live') -> dict[str, Any]:
+        experiment_id: str | None = None, stage_prefix: str = 'live',
+        inspect_source: str | None = None) -> dict[str, Any]:
     # AI_NOTE: 調査と照合を資料提出としてつなぎ、元案・旧評価は最終出力まで保持する。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if output.is_relative_to(source) or source.is_relative_to(output):
@@ -118,6 +119,8 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')
     original = manifest(source)
     prior = discovery.report(source)
+    if inspect_source is not None and not any(s['source_hash'] == inspect_source and s['kind'] == 'inquiry-result' for s in load_sources(source)):
+        raise ValueError('照合だけを行う場合は保存済みの調査報告の識別値が必要です')
     selected = [r for r in discovery._reviews(source, revision) if digest(r) == review_hash]
     if len(selected) != 1 or type(question_index) is not int or not 0 <= question_index < len(selected[0]['next_questions']):
         raise ValueError('対象改訂の評価識別値と範囲内の問い位置が必要です')
@@ -128,6 +131,7 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,
+                              'inspect_source': inspect_source,
                               'limits': '資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。'}
     try:
         runtime = output / 'runtime'
@@ -138,13 +142,16 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
         baseline = discovery.packet(base, revision, 'review')['data']
         input_before = manifest(base)
         previous = base
-        for stage, seconds in (('inquiry', research_seconds), ('inspect', inspect_seconds)):
+        # AI_NOTE: 保存済み資料からの照合は明示指定時だけ行い、調査を重複実行しない。
+        stages = [('inspect', inspect_seconds)] if inspect_source is not None else [('inquiry', research_seconds), ('inspect', inspect_seconds)]
+        for stage, seconds in stages:
             work = output / stage
             copy_session(previous, work / 'session', for_review=True)
             location = f"inquiry:{result['run_id']}:{stage}"
             kind = 'inquiry-result' if stage == 'inquiry' else 'inquiry-inspection'
             data = {**baseline, 'stage': stage, 'instruction': RESEARCH if stage == 'inquiry' else INSPECT,
-                    'inquiry_focus': focus, 'sources': load_sources(work / 'session'), 'search': [],
+                    'inquiry_focus': focus, 'inspect_source': inspect_source,
+                    'sources': load_sources(work / 'session'), 'search': [],
                     'response_example': {'file': 'answer.md', 'kind': kind, 'location': location,
                                          'content': '問い・結論・実際の調査範囲/検索語・出典/確認時刻・取得本文と解釈・一致/相違・未確認'}}
             envelope = discovery._envelope(data)
@@ -157,6 +164,7 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
             prompt = f'''{data['instruction']}
 
 今回の問い: {focus['question']}
+今回照合する保存済み報告の識別値: {inspect_source or 'この実行の調査工程が保存した報告'}。
 参照元: 改訂{revision} / 評価{review_hash} / 問い位置{question_index}（0始まり）。
 今回は{stage}を1回だけ、待ち時間込みの経過{seconds:g}秒まで行います。担当ID: {config['author']}。
 作業先外、親会話、実装、別探索、私的な実行ログは読みません。入力は直接開かず公開入口で読んでください。
@@ -243,10 +251,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--journal-root', type=Path)
     parser.add_argument('--experiment-id')
     parser.add_argument('--stage-prefix', default='live')
+    parser.add_argument('--inspect-source', help='保存済みinquiry-result資料を指定し、調査を再実行せず照合だけを行う')
     args = parser.parse_args(argv)
     try:
         result = run(args.session, args.output, args.codex, args.revision, args.review_hash, args.question_index,
-                     args.research_seconds, args.inspect_seconds, args.journal_root, args.experiment_id, args.stage_prefix)
+                     args.research_seconds, args.inspect_seconds, args.journal_root, args.experiment_id, args.stage_prefix,
+                     args.inspect_source)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         parser.error(str(exc))
     print(json.dumps({k: v for k, v in result.items() if k not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))

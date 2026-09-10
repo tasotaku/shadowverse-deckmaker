@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "check": "mypy",
+      "started_at": "2026-09-10T10:41:46.613015+00:00",
+      "ended_at": "2026-09-10T10:41:46.929971+00:00",
+      "elapsed_seconds": 0.3171965843066573,
+      "returncode": 0,
+      "command": [
+        "-m",
+        "mypy",
+        "src/svdeck/discovery_inquiry.py",
+        "src/svdeck/discovery_run.py"
+      ]
+    },
+    {
+      "check": "pytest",
+      "started_at": "2026-09-10T10:41:46.930412+00:00",
+      "ended_at": "2026-09-10T10:42:09.996162+00:00",
+      "elapsed_seconds": 23.066252625081688,
+      "returncode": 0,
+      "command": [
+        "-m",
+        "pytest",
+        "tests/temp/test_discovery_inquiry_temp.py",
+        "tests/temp/test_discovery_run_temp.py",
+        "tests/test_discovery.py",
+        "tests/test_discovery_sources.py",
+        "tests/test_discovery_read.py",
+        "tests/test_discovery_review_contexts.py",
+        "tests/test_discovery_history.py",
+        "-q"
+      ]
+    }
+  ],
+  "coverage": "従来139検査に加え、全ヘルプを通常データへ数えない正常系、保存済み報告のinspectのみ、未知hash/異なるkindの拒否。合成回答であり実AIの内容評価ではない。"
+}

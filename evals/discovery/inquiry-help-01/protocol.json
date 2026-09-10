@@ -1,0 +1,16 @@
+{
+  "id": "inquiry-help-01",
+  "started_at": "2026-09-10T10:41:13.562638+00:00",
+  "purpose": "ヘルプを通常JSONとして解析する不具合を直し、保存済み調査の公開操作を再検査して、未起動だった別担当照合へ進める。調査は再実行しない。",
+  "failed_run": "evals/discovery/inquiry-runner-01/live/result.json",
+  "original_source": "data/discovery/fresh-nightmare-01-initial-result",
+  "research_source_hash": "29672970762dbe0881b9d2bf211905b59b3b0cb260aa4f11d91d41737930d2f3",
+  "review_hash": "409d28a3e1d59d7d4e5187ef993626e3c8ab8658877442acb255c03bf3228c6c",
+  "revision": 1,
+  "question_index": 3,
+  "inspect_seconds": 600,
+  "attempts": 1,
+  "criteria": "通常の資料提出・原文一致・新版再読・report本文照合は必須のまま。ヘルプは証拠に数えず解析もしない。元案・旧評価・元資料保持、改訂0・正式評価0。別担当の根拠照合完了と、問いの解決を別判定する。",
+  "failure_policy": "元の引渡し失敗を保持。親が報告を代筆せず、保存済み本文をそのまま複製する。既存調査と新しい照合の開始終了を分ける。",
+  "timing_limit": "コード修正着手の正確な時刻は未計測。前試行回収10:37:10 UTC以後で、本試行登録より前。登録後の検査と再開は実測する。"
+}
