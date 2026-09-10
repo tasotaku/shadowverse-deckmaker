@@ -1,0 +1,86 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/sv-fresh-nightmare-01/initial-run/review",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/sv-fresh-nightmare-01/initial-run/review/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-fresh-nightmare-01/initial-run/review",
+  "stdin": "/private/tmp/sv-fresh-nightmare-01/initial-run/review/prompt.md",
+  "output": "/private/tmp/sv-fresh-nightmare-01/initial-run/review-run",
+  "started_at": "2026-09-10T09:58:05.840219+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2275026.4477255,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 24112,
+  "worker_pid": 32688,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T10:02:32.705431+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T09:58:05.840491+00:00",
+      "elapsed_seconds": 0.0002669999375939369
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T09:58:05.840879+00:00",
+      "elapsed_seconds": 0.0006554159335792065
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T09:58:05.847212+00:00",
+      "elapsed_seconds": 0.007024915888905525
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T10:02:32.698649+00:00",
+      "elapsed_seconds": 266.85802487516776,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T10:02:32.705466+00:00",
+      "elapsed_seconds": 266.8643927080557
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T10:02:32.727201+00:00",
+      "elapsed_seconds": 266.8861152501777
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fresh-nightmare-01",
+    "stage_id": "initial-review",
+    "status": "completed",
+    "begin_revision": 6,
+    "claimed_stage": {
+      "id": "initial-review",
+      "title": "別担当が成立と試す価値を評価",
+      "status": "running",
+      "started_at": "2026-09-10T09:58:05.840219+00:00",
+      "ended_at": null,
+      "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/review-run",
+      "budget_minutes": 15
+    },
+    "end_revision": 8,
+    "synced_at": "2026-09-10T10:02:32.727167+00:00"
+  },
+  "elapsed_seconds": 266.8643682911061,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

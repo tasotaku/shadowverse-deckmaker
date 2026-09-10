@@ -1,0 +1,23 @@
+{
+  "started_at": "2026-09-10T10:04:42+00:00",
+  "ended_at": "2026-09-10T10:06:00+00:00",
+  "scope": "別担当による既存調査工程の読み取り専用点検。コード変更・実AI・Web調査・案採点なし。",
+  "finding": "attach-fileの本文保持とworkerの期限管理は採用済み。discovery_runは改訂を必須とするため資料だけの調査に接続が必要。focused-inquiry-01の一問指定packetは未採用で、そのまま取り込まない。",
+  "prior_failures": [
+    "結論をオブジェクトで渡す保存失敗はattach-fileで再現と修正を確認済み。",
+    "従来6・試作3の資料追加でも元手順・役割・実機保持は未確認。",
+    "独立照合が未提出。UTC1107.35秒と経過248.12秒の差、期限観測507.27秒遅延の原因は未確定。",
+    "終了後プロセス確認の権限エラーはworker-settleで別途修正確認。時計差や調査不足まで解消した扱いにはしない。"
+  ],
+  "next": "保存済み案と評価の問いを固定し、資料追加だけを終了条件にした一回の調査実行を設ける。範囲・実検索語・観察時刻・URL・元本文と要約の区別・一致/相違・取得不能を保持。旧案・旧評価を保持し、資料保存と問いの解決を別判定。最初の実利用で別担当への引渡しまで確認。",
+  "evidence_paths": [
+    "evals/discovery/source-file-intake-01/reproduction.json",
+    "evals/discovery/source-file-intake-01/README.md",
+    "evals/discovery/focused-inquiry-01/decision.json",
+    "evals/discovery/focused-inquiry-01/assessment/collection.json",
+    "evals/discovery/worker-settle-01/README.md",
+    "src/svdeck/discovery_run.py",
+    "src/svdeck/discovery.py",
+    "src/svdeck/discovery_evidence.py"
+  ]
+}

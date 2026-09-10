@@ -1,0 +1,217 @@
+{
+  "status": "completed",
+  "run_id": "239ce8c817a546a39c41246200866bb8",
+  "started_at": "2026-09-10T09:50:07.806335+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-nightmare-01-initial",
+  "output": "/private/tmp/sv-fresh-nightmare-01/initial-run",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:239ce8c817a546a39c41246200866bb8:develop",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-fresh-nightmare-01/initial-run/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-fresh-nightmare-01/initial-run/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-fresh-nightmare-01/initial-run/develop",
+        "stdin": "/private/tmp/sv-fresh-nightmare-01/initial-run/develop/prompt.md",
+        "output": "/private/tmp/sv-fresh-nightmare-01/initial-run/develop-run",
+        "started_at": "2026-09-10T09:50:08.093845+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2275448.702911291,
+        "timeout_seconds": 1800.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 24112,
+        "worker_pid": 24118,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T09:58:05.502716+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T09:50:08.094038+00:00",
+            "elapsed_seconds": 0.0001877499744296074
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T09:50:08.094373+00:00",
+            "elapsed_seconds": 0.0005250843241810799
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T09:50:08.100086+00:00",
+            "elapsed_seconds": 0.006264292169362307
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T09:58:05.494141+00:00",
+            "elapsed_seconds": 477.39889920921996,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T09:58:05.502749+00:00",
+            "elapsed_seconds": 477.40734104206786
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T09:58:05.529861+00:00",
+            "elapsed_seconds": 477.4344551670365
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fresh-nightmare-01",
+          "stage_id": "initial-develop",
+          "status": "completed",
+          "begin_revision": 3,
+          "claimed_stage": {
+            "id": "initial-develop",
+            "title": "初回の種を考案・提出",
+            "status": "running",
+            "started_at": "2026-09-10T09:50:08.093845+00:00",
+            "ended_at": null,
+            "note": "現行の通常指示を使い、一つの種を公開入口から提出する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/develop-run",
+            "budget_minutes": 30
+          },
+          "end_revision": 5,
+          "synced_at": "2026-09-10T09:58:05.529825+00:00"
+        },
+        "elapsed_seconds": 477.40732875000685,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:239ce8c817a546a39c41246200866bb8:review",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-fresh-nightmare-01/initial-run/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-fresh-nightmare-01/initial-run/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-fresh-nightmare-01/initial-run/review",
+        "stdin": "/private/tmp/sv-fresh-nightmare-01/initial-run/review/prompt.md",
+        "output": "/private/tmp/sv-fresh-nightmare-01/initial-run/review-run",
+        "started_at": "2026-09-10T09:58:05.840219+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2275026.4477255,
+        "timeout_seconds": 900.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 24112,
+        "worker_pid": 32688,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-10T10:02:32.705431+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-10T09:58:05.840491+00:00",
+            "elapsed_seconds": 0.0002669999375939369
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-10T09:58:05.840879+00:00",
+            "elapsed_seconds": 0.0006554159335792065
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-10T09:58:05.847212+00:00",
+            "elapsed_seconds": 0.007024915888905525
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-10T10:02:32.698649+00:00",
+            "elapsed_seconds": 266.85802487516776,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-10T10:02:32.705466+00:00",
+            "elapsed_seconds": 266.8643927080557
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-10T10:02:32.727201+00:00",
+            "elapsed_seconds": 266.8861152501777
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fresh-nightmare-01",
+          "stage_id": "initial-review",
+          "status": "completed",
+          "begin_revision": 6,
+          "claimed_stage": {
+            "id": "initial-review",
+            "title": "別担当が成立と試す価値を評価",
+            "status": "running",
+            "started_at": "2026-09-10T09:58:05.840219+00:00",
+            "ended_at": null,
+            "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/review-run",
+            "budget_minutes": 15
+          },
+          "end_revision": 8,
+          "synced_at": "2026-09-10T10:02:32.727167+00:00"
+        },
+        "elapsed_seconds": 266.8643682911061,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 0,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "dae641bc35393f4ca607a741ae445e23e727a9fada26680758ea45f13a923e48",
+    "packets/59e3eee3eda3c89de30dc0e8de3bc87296e163fd8a69e45ca8d55e4d93f2d7b3.json": "22b0961d3671cd41f03dffc094d7c9c60b7b4509fe9118e7caba6d90e52228ec",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/3d68e77f5bd81230b5cc420a2cf11e45ee007d37d656318862e968e70945dede.json": "eaee4dfbc6ea95fda47f8f43dae7b627e85f0f13ea04cbf253d18b22cf9a9e07",
+    "sources/48b022114dd3bb72f61141ece8989f7afea8e0877c6062923e702dc5c3fd0603.json": "8f3563678364eae9a4cb5c2569a5a0c8f1322a159d65622aa2b10d4b33139f33",
+    "sources/4f58d9785118477b5c1ba0fdf8c14ffbfe9e019d1c56d779c3f9b09532b01d60.json": "c98c1c38ca4ac191cf44e35e3c65b4043e14cc06d009bcbe40749bcd3562c497",
+    "sources/6f4679294485111fdaaed73da736c2799feba9e8da3b58e79b376951f4c39727.json": "77d2d2c413d00487f185b7406aa230196062dd3e5562365c9dc7d6b23d4bd417",
+    "sources/793b76ca9d598e762fe9149c6b10f127ccb427a46cacaa56e5f36d203cee48dc.json": "9e847093a87fc60c8e13a020b358e34033eae901811c16447b362c1091ead578",
+    "sources/9387e58a24b4503036b5096f2c5c2cbe73c041f1d1c8cc8b7856e7cfe628a4d4.json": "9cd8d48819e75f100db98d1406ec3fb64224cd7aab456d2adfe4da88f097096a",
+    "sources/c3e4fe69cf52abe831155961a4f8c277d69d5e51dbcfe2363230f4d1c2e0cfc0.json": "28295ab350467f3f044f3ccd2747963903f7c280be3729c1342b8ddba738eeab",
+    "sources/e5667f1a65dee56d68cec27cf9bd7805c3751bce942baad5058d1dc55258997b.json": "a0eb4cd8cfe6afeae48c0cb62969e21e678db7d5601a5f7e3f35ae44c73dcb1f"
+  },
+  "judgment": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-fresh-nightmare-01/initial-run/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-10T10:02:33.147020+00:00"
+}

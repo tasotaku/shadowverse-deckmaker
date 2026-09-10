@@ -1,30 +1,30 @@
 {
   "id": "fresh-nightmare-01",
-  "revision": 4,
-  "saved_at": "2026-09-10T09:54:57.837620+00:00",
+  "revision": 9,
+  "saved_at": "2026-09-10T10:14:21.880621+00:00",
   "actor": "codex",
-  "reason": "採用済み実行補助で初回考案を開始し待ち時間も記録",
+  "reason": "正式試行を完了し、試行推薦の条件と方法全体の採用保留・工程時間を保存",
   "record": {
     "id": "fresh-nightmare-01",
     "title": "新しいナイトメア入力で現在の探索工程を試す",
     "category": "method",
-    "status": "running",
-    "summary": "識別修正の実AI確認を終え、18時50分08秒に初回考案を開始。参考4構築・8資料を固定。正式案と別評価はまだ未確認。",
+    "status": "completed",
+    "summary": "正式案1件・別評価1件を12分25秒で完走。1枠で墓場を使わず再展開する種は条件付きで試行推薦。独自性は未確認、方法全体の採用は保留。",
     "method": "担当識別修正の実AI確認が通った後に探索を開始する。discovery_runで担当を接続し、現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。",
     "procedure": "資料を固定→考案30分→独立評価15分→必要なら改訂30分と再評価15分→結果と採否を記録。各実行は1回。",
     "inputs": "ローテーション・ナイトメアの新規セッション。同じクラスは既に試行済みであり未使用クラスではない。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。",
     "criteria": "手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "入力準備済み、正式案・評価は未実施。",
-      "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。"
+      "outcome": "mixed",
+      "summary": "conditional / test / unconfirmed。指定状態の手順は整合し、1枠の比較理由が残った。後攻の後半エクストラPPの比較を訂正。",
+      "limitations": "新しい入力1件で、優位・勝率・Tier・一般的発見力は未認定。普及、通常履歴での耐久、必要局面の頻度が未確認。追加改訂は事前条件どおり未実施。"
     },
     "decision": {
       "status": "deferred",
-      "reason": "考案と独立評価の結果が出るまで採否は未判定。"
+      "reason": "この入力では1枠の変更を比較して試す理由が残った。1入力では一般的な発見力の改善を認定できず、ユーザーが望む独自性も未確認のため、方法全体の本採用は保留。"
     },
     "started_at": "2026-09-10T09:44:15.889139+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T10:14:21.749289+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -47,20 +47,47 @@
       {
         "id": "initial-develop",
         "title": "初回の種を考案・提出",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T09:50:08.093845+00:00",
-        "ended_at": null,
-        "note": "現行の通常指示を使い、一つの種を公開入口から提出する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/develop-run",
+        "ended_at": "2026-09-10T09:58:05.502716+00:00",
+        "note": "現行の通常指示を使い、一つの種を公開入口から提出する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 30
       },
       {
         "id": "initial-review",
         "title": "別担当が成立と試す価値を評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "正式案が提出された場合に開始する。",
+        "status": "completed",
+        "started_at": "2026-09-10T09:58:05.840219+00:00",
+        "ended_at": "2026-09-10T10:02:32.705431+00:00",
+        "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-nightmare-01/initial-run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
+      },
+      {
+        "id": "result-check",
+        "title": "初回案の保存と評価結果を点検",
+        "status": "completed",
+        "started_at": "2026-09-10T10:00:30.591675+00:00",
+        "ended_at": "2026-09-10T10:14:21.749289+00:00",
+        "note": "正式案1件・別評価1件と元本文一致を照合、原入力11ファイル・カードDB・実行コードを保持。結果と条件、残る4問を保存し初見資料確認を完了。",
+        "budget_minutes": null
+      },
+      {
+        "id": "prior-proposal-check",
+        "title": "過去のナイトメア1案を点検",
+        "status": "completed",
+        "started_at": "2026-09-10T09:57:29+00:00",
+        "ended_at": "2026-09-10T09:58:33+00:00",
+        "note": "保存範囲の1案とは核と役割が異なる。普及全体の独自性証明ではない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "reader-check",
+        "title": "会話を知らない別担当が報告を確認",
+        "status": "completed",
+        "started_at": "2026-09-10T10:12:53+00:00",
+        "ended_at": "2026-09-10T10:13:07+00:00",
+        "note": "READMEのみを読み、目的・案・条件・採否・手順・時間・次の作業に重要な説明不足なし。14秒。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
@@ -68,19 +95,53 @@
       "evals/discovery/fresh-nightmare-01/protocol.json",
       "evals/discovery/fresh-nightmare-01/preparation.json",
       "evals/discovery/fresh-nightmare-01/preparation-operations.json",
-      "evals/discovery/fresh-nightmare-01/input-summary.json"
+      "evals/discovery/fresh-nightmare-01/input-summary.json",
+      "evals/discovery/fresh-nightmare-01/result.json",
+      "evals/discovery/fresh-nightmare-01/timings.json",
+      "evals/discovery/fresh-nightmare-01/reader-check.json",
+      "evals/discovery/fresh-nightmare-01/initial/result.json",
+      "evals/discovery/fresh-nightmare-01/initial/report.json",
+      "evals/discovery/fresh-nightmare-01/initial/verification.json",
+      "evals/discovery/fresh-nightmare-01/initial/identity-check.json",
+      "evals/discovery/fresh-nightmare-01/prior-proposal-audit.json",
+      "evals/discovery/fresh-nightmare-01/next-step-audit.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/fresh-nightmare-01/README.md",
-      "sha256": "c9082b143c086a6ef09359fe364344480cf7ee16ebff6eb8ad3f972e84079435",
-      "size": 2505
+      "sha256": "19d467f14978de261e4674c72c549a06383e7eec582346d3ce06c07b2778b8af",
+      "size": 8442
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/initial/identity-check.json",
+      "sha256": "3f0d81d472cd10956ba975fa9c46aaa826873a418f4b4a0d906528c2ffeec140",
+      "size": 1066
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/initial/report.json",
+      "sha256": "cb6359ea25ce94580603c7742bd85c28c8e6120601f04cdbc730b21e9d96ac3c",
+      "size": 21333
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/initial/result.json",
+      "sha256": "b397af5b71273afebe60058caece9976ee61e0847dc8cad19a1bb23601a82737",
+      "size": 9795
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/initial/verification.json",
+      "sha256": "4a30d0bddca7b350ff2534a81d2e24b98a2c34c7e69ca8773ca6aea3e12c20b2",
+      "size": 2115
     },
     {
       "path": "evals/discovery/fresh-nightmare-01/input-summary.json",
       "sha256": "9342b9a8a946dd7d1c3f5e9e54be92ee1c31cdcd9d8ecdb4c3e0bd103e85e2c0",
       "size": 7088
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/next-step-audit.json",
+      "sha256": "eb74ed034bcb76104898a0ce219a662756fd18943f214b9791021ef29c996d75",
+      "size": 1820
     },
     {
       "path": "evals/discovery/fresh-nightmare-01/preparation-operations.json",
@@ -93,9 +154,29 @@
       "size": 2955
     },
     {
+      "path": "evals/discovery/fresh-nightmare-01/prior-proposal-audit.json",
+      "sha256": "70edea001a24dad0cac902a8ab008f83e5d35fc595386b329e79bd95e40eb234",
+      "size": 1974
+    },
+    {
       "path": "evals/discovery/fresh-nightmare-01/protocol.json",
       "sha256": "bf79908ca6c7f045e7c6d3e3cd83f8c0c402474ff081362d11737b1c6505ad75",
       "size": 4233
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/reader-check.json",
+      "sha256": "9ac3abac6f98bcd122335e973890cf785c8fdac2686e9192273e3ef19c31200f",
+      "size": 410
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/result.json",
+      "sha256": "c2da9ed34dd92f58ee2dc2980bd9c9afcc7668212124dc582f459ed480295998",
+      "size": 2224
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/timings.json",
+      "sha256": "00837060b84c03a89a742906b4cb68b85f5c0b2e0c22c001d931afa00229ab53",
+      "size": 3644
     }
   ]
 }
