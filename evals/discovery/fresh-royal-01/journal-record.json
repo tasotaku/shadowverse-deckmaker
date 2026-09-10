@@ -1,9 +1,9 @@
 {
   "id": "fresh-royal-01",
-  "revision": 4,
-  "saved_at": "2026-09-10T06:16:31.054088+00:00",
+  "revision": 5,
+  "saved_at": "2026-09-10T06:20:39.245198+00:00",
   "actor": "codex",
-  "reason": "開始の自動反映を確認し一覧の説明を考案中へ更新",
+  "reason": "独立入力点検を保存し、初期知識の限界と実施済み範囲を明記",
   "record": {
     "id": "fresh-royal-01",
     "title": "新しいロイヤル入力で現在の探索工程を試す",
@@ -11,13 +11,13 @@
     "status": "running",
     "summary": "参考3構築・取得情報6資料を固定し、初回案を考案中。開始時刻は自動記録済み。",
     "method": "現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。",
-    "procedure": "資料を固定→考案30分→独立評価15分→必要なら改訂30分と再評価15分→結果と採否を記録。各実行は1回。",
+    "procedure": "公開入口で参考3記事と新規入力の保存・照合まで実施済み。現在は初回考案中。以降は正式案の独立評価、必要条件を満たす場合だけ1回の改訂と再評価を予定。",
     "inputs": "ローテーション・ロイヤルの新規セッション。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。",
     "criteria": "手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。",
     "result": {
       "outcome": "unassessed",
       "summary": "考案中。正式提出と独立評価は未完了。",
-      "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。"
+      "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。 過去の正式提案・評価本文は初期入力にないが、設計原則に過去試行の集計結果は含む。"
     },
     "decision": {
       "status": "deferred",
@@ -59,14 +59,15 @@
       "evals/discovery/fresh-royal-01/protocol.json",
       "evals/discovery/fresh-royal-01/preparation.json",
       "evals/discovery/fresh-royal-01/generation/input-summary.json",
-      "evals/discovery/fresh-royal-01/generation/prompt.md"
+      "evals/discovery/fresh-royal-01/generation/prompt.md",
+      "evals/discovery/fresh-royal-01/input-audit.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/fresh-royal-01/README.md",
-      "sha256": "a7864792a1d2740b35d91095157b11f2d5359e29b23c28c71af83e6b95d08b0e",
-      "size": 1023
+      "sha256": "ddbfc986880ebfb9be23482c7ba9e157432e9f07a0864b92a243eed8d706ca34",
+      "size": 1347
     },
     {
       "path": "evals/discovery/fresh-royal-01/generation/input-summary.json",
@@ -77,6 +78,11 @@
       "path": "evals/discovery/fresh-royal-01/generation/prompt.md",
       "sha256": "e0cf4eecd0ec4698b921156e9ed72ac5731a0856ce0351e48fa4fac895a2243b",
       "size": 2470
+    },
+    {
+      "path": "evals/discovery/fresh-royal-01/input-audit.json",
+      "sha256": "62f01b79dd16def13ff4b353d0caf5a521d061fab69e654edd643c0ec9233478",
+      "size": 905
     },
     {
       "path": "evals/discovery/fresh-royal-01/preparation.json",
