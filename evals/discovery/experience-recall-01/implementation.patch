@@ -1,0 +1,153 @@
+diff --git a/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py b/tmp/sv-experience-recall-prototype/src/svdeck/discovery.py
+index 45f0b7e..2b0450b 100644
+--- a/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py
++++ b/tmp/sv-experience-recall-prototype/src/svdeck/discovery.py
+@@ -457,6 +457,125 @@ def report(session: Path) -> JSONDict:
+             "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"}
+ 
+ 
++def recall(library: Path, card_ids: list[int], query: str | None = None,
++           class_name: str | None = None, format_name: str | None = None, limit: int = 5) -> JSONDict:
++    # AI_NOTE: 過去の正式案を出典と条件付きで探す。複製や旧評価を新しい採否・多数決へ変換しない。
++    terms = query.strip().casefold().split() if query else []
++    if not card_ids and not terms:
++        raise ValueError("--card-id または空でない --query が必要です")
++    if any(type(cid) is not int or cid <= 0 for cid in card_ids):
++        raise ValueError("カードIDは正の整数です")
++    if type(limit) is not int or not 1 <= limit <= 50:
++        raise ValueError("件数は1〜50です")
++    if class_name is not None and class_name not in CLASSES:
++        raise ValueError("対応するクラスを指定してください")
++    if format_name is not None and format_name not in ("rotation", "unlimited"):
++        raise ValueError("対応するフォーマットを指定してください")
++    if not library.is_dir():
++        raise ValueError("過去の探索を保存したディレクトリがありません")
++    folders = sorted({p.parent for pattern in ("context.json", "snapshot.db", "revision-*.json", "review-*.json")
++                      for p in library.rglob(pattern) if p.is_file()})
++    grouped: dict[str, JSONDict] = {}
++    errors = []
++    valid_sessions = 0
++    for session in folders:
++        try:
++            saved = report(session)
++            context = _read_envelope(session / "context.json")
++            context_hash = digest(context)
++            sources = {s["source_hash"]: s for s in load_sources(session)}
++            numbers = {r["revision"] for r in saved["revisions"]}
++            for path in session.glob("review-*.json"):
++                prior_review = _read_envelope(path)
++                number = prior_review.get("revision")
++                if (type(number) is not int or number not in numbers
++                        or not path.name.startswith(f"review-{number:04d}-")):
++                    raise ValueError("元案が欠落した評価、またはファイル名と改訂番号の不一致があります")
++            for path in session.glob("revision-*.json"):
++                number = _read_envelope(path).get("revision")
++                if type(number) is not int or path.name != f"revision-{number:04d}.json":
++                    raise ValueError("元案のファイル名と改訂番号が一致しません")
++            pending = []
++            for record in saved["revisions"]:
++                proposal = _revision(session, record["revision"])
++                if proposal is None or proposal.get("context_hash") != context_hash:
++                    raise ValueError("元案と固定資料が一致しません")
++                key = proposal.get("packet_hash")
++                if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key):
++                    raise ValueError("元案のpacket_hashが不正です")
++                prior = _read_envelope(session / "packets" / f"{key}.json")
++                if (digest(prior) != key or prior.get("stage") != "develop"
++                        or prior.get("context_hash") != context_hash or digest(prior.get("context")) != context_hash
++                        or prior.get("revision") != proposal.get("parent_revision")
++                        or prior.get("proposal") != _revision(session, proposal["parent_revision"])):
++                    raise ValueError("元案と考案時の入力版・親案が一致しません")
++                _history(session, proposal)
++                if any(sources.get(s.get("source_hash")) != s
++                       for s in _objects(prior.get("sources", []), "元案の資料")):
++                    raise ValueError("元案の入力資料と保存された追加資料が一致しません")
++                _validate_proposal(proposal, context, prior.get("sources", []))
++                for prior_review in record["reviews"]:
++                    for finding in _objects(prior_review.get("findings"), "評価理由"):
++                        _text(finding.get("reason"), "評価理由")
++                pending.append((proposal, record))
++        except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
++            # AI_NOTE: 一部だけ読めた探索を有効扱いせず、失敗名を残して他の保存先の照合を続ける。
++            errors.append({"session": str(session.resolve()), "error": str(exc)})
++            continue
++        valid_sessions += 1
++        for proposal, record in pending:
++            key = digest(proposal)
++            if key not in grouped:
++                ids = {role["card_id"] for role in proposal["roles"]}
++                grouped[key] = {
++                    "proposal_hash": key, "proposal": proposal,
++                    "context": {"context_hash": context_hash, **{name: context[name] for name in
++                                ("objective", "captured_at", "format", "class_name")}},
++                    "cards": [{"card_id": c["card_id"], "name": c["name"], "read_offset": i}
++                              for i, c in enumerate(context["cards"]) if c["card_id"] in ids],
++                    "origins": [], "reviews": [],
++                }
++            item = grouped[key]
++            item["origins"].append({"session": str(session.resolve()),
++                                    "proposal_path": str((session / f"revision-{proposal['revision']:04d}.json").resolve()),
++                                    "sources": saved["sources"], "review_contexts": record["review_contexts"]})
++            for prior_review in record["reviews"]:
++                review_hash = digest(prior_review)
++                prior_item = next((r for r in item["reviews"] if r["review_hash"] == review_hash), None)
++                if prior_item is None:
++                    prior_item = {"review_hash": review_hash, "review": prior_review, "sessions": []}
++                    item["reviews"].append(prior_item)
++                prior_item["sessions"].append(str(session.resolve()))
++    matches = []
++    for item in grouped.values():
++        proposal, context = item["proposal"], item["context"]
++        if class_name is not None and context["class_name"] != class_name:
++            continue
++        if format_name is not None and context["format"] != format_name:
++            continue
++        if not set(card_ids) <= {role["card_id"] for role in proposal["roles"]}:
++            continue
++        text = "\n".join([
++            proposal["title"], proposal["hypothesis"], proposal["change"], *proposal["uncertainties"],
++            *proposal["plan"].values(), *[role["role"] for role in proposal["roles"]],
++            *[c["name"] for c in item["cards"]],
++            *[value for q in proposal["questions"] for value in (q["question"], q["why"])],
++            *[finding["reason"] for r in item["reviews"] for finding in r["review"]["findings"]],
++            *[question for r in item["reviews"] for question in r["review"]["next_questions"]],
++        ]).casefold()
++        if all(term in text for term in terms):
++            matches.append(item)
++    return {"library": str(library.resolve()), "card_ids": card_ids, "query_terms": terms,
++            "class_name": class_name, "format": format_name, "limit": limit,
++            "searched_sessions": len(folders), "valid_sessions": valid_sessions,
++            "complete": not errors, "errors": errors, "total_matches": len(matches),
++            "omitted_matches": max(0, len(matches) - limit), "matches": matches[:limit],
++            "limitations": "保存版の役割と文字列による一致で、意味検索ではありません。旧評価は当時の入力に対する判断です。"
++                           "一致なしは未知・不可能の証明ではなく、部分結果では未読の保存先があります。"
++                           "過去の採否を新しい案へ適用しません。考案の参考用で、新しい独立評価へ旧判定を自動添付しません。"
++                           "原資料は各評価のpacket_hashと元のsessionを指定してreadで再読できます。"}
++
++
+ def main(argv: list[str] | None = None) -> int:
+     # AI_NOTE: 保存済み調査から提出をまとめる選択肢も、通常と同じ公開入口で扱う。
+     parser = argparse.ArgumentParser(description=__doc__)
+@@ -500,6 +619,13 @@ def main(argv: list[str] | None = None) -> int:
+         accept.add_argument("response", type=Path)
+     show = sub.add_parser("report", help="改訂と評価を確認")
+     show.add_argument("session", type=Path)
++    memory = sub.add_parser("recall", help="別探索の正式案と評価をカード・使い方から探す（読み取り専用）")
++    memory.add_argument("library", type=Path)
++    memory.add_argument("--card-id", type=int, action="append", default=[])
++    memory.add_argument("--query", help="案・役割・計画・未確認・評価理由を検索。空白区切りは全語一致")
++    memory.add_argument("--class", dest="class_name", choices=CLASSES)
++    memory.add_argument("--format", choices=("rotation", "unlimited"))
++    memory.add_argument("--limit", type=int, default=5, help="表示する案数。1〜50、複製はまとめる")
+     args = parser.parse_args(argv)
+     try:
+         if args.command == "start":
+@@ -522,6 +648,8 @@ def main(argv: list[str] | None = None) -> int:
+             result = submit(args.session, read_object(args.response))
+         elif args.command == "review":
+             result = review(args.session, read_object(args.response))
++        elif args.command == "recall":
++            result = recall(args.library, args.card_id, args.query, args.class_name, args.format, args.limit)
+         else:
+             result = report(args.session)
+     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:

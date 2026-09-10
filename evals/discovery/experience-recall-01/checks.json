@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-10T07:36:28.509644+00:00",
+  "prototype": "/tmp/sv-experience-recall-prototype/src/svdeck/discovery.py",
+  "static": {
+    "command": "mypy --strict --follow-imports=silent /tmp/sv-experience-recall-prototype/src/svdeck/discovery.py",
+    "result": "Success: no issues found in 1 source file",
+    "exit_code": 0
+  },
+  "tests": {
+    "command": "pytest -q tests/temp/test_experience_recall_temp.py tests/test_discovery.py tests/test_discovery_read.py tests/test_discovery_sources.py",
+    "result": "86 passed in 6.02s",
+    "new": 20,
+    "existing": 66,
+    "exit_code": 0
+  },
+  "initial_failure": "初回は83合格・1失敗。新しいテストがreadの最初の20行だけで末尾の未確認事項を期待していた。next_offsetの末尾まで読むテストへ修正。探索機能の不具合ではない。",
+  "independent_findings": {
+    "reviewer": "/root/novelty_boundary_audit",
+    "reproduced": [
+      "context欠落が列挙から消える",
+      "元案欠落の評価を走査せずcomplete=true"
+    ],
+    "reproduction_result": "2 failed, 18 deselected in 0.28s",
+    "fix": "正式保存物のいずれかがある保存先を列挙し、全評価の元案・ファイル名と改訂番号を確認。再実行で2件を含め全86件合格。別担当も修正箇所で経路が閉じることを読取確認。"
+  },
+  "test_file": {
+    "path": "tests/temp/test_experience_recall_temp.py",
+    "sha256": "827e07f7f11323c31ff2421001054a51e89033f891e831cb423c70859c44a003",
+    "scope": "スキル規定に従い一時テストはコミット対象外。"
+  }
+}

@@ -1,0 +1,22 @@
+#!/tmp/sv-system-venv/bin/python
+import sys,subprocess,json,uuid,time
+from pathlib import Path
+from datetime import datetime,timezone
+library=Path('/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery').resolve()
+work=Path(__file__).resolve().parent
+args=sys.argv[1:]
+if not args: raise SystemExit('sv recall --card-id ID / --query 語；sv read SESSION PACKET_HASH SECTION --offset N --limit N；sv report SESSION')
+if args[0]=='recall': args=[args[0],str(library),*args[1:]]
+elif args[0] in ('read','report'):
+    if len(args)<2 or not Path(args[1]).resolve().is_relative_to(library): raise SystemExit('公開保存先の内部を指定してください')
+elif args not in (['--help'],): raise SystemExit('recall/read/report/--helpだけを使用できます')
+command=[sys.executable,'-m','svdeck.discovery',*args]
+import os
+env={**os.environ,'PYTHONPATH':'/tmp/sv-experience-recall-prototype/src','PYTHONDONTWRITEBYTECODE':'1'}
+start=datetime.now(timezone.utc).isoformat();clock=time.monotonic()
+completed=subprocess.run(command,capture_output=True,env=env)
+operations=work/'operations';operations.mkdir(exist_ok=True);token=uuid.uuid4().hex
+output=operations/f'{token}.stdout';output.write_bytes(completed.stdout)
+(operations/f'{token}.stderr').write_bytes(completed.stderr)
+(operations/f'{token}.json').write_text(json.dumps({'command':command,'started_at':start,'ended_at':datetime.now(timezone.utc).isoformat(),'elapsed_seconds':time.monotonic()-clock,'exit_code':completed.returncode,'stdout':str(output)},ensure_ascii=False,indent=2)+'\n')
+sys.stdout.buffer.write(completed.stdout);sys.stderr.buffer.write(completed.stderr);raise SystemExit(completed.returncode)

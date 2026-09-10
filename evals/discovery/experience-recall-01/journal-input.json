@@ -3,7 +3,7 @@
   "title": "過去の探索経験をカードと使い方から再利用する",
   "category": "method",
   "status": "running",
-  "summary": "保存経験の再利用を点検し、読み取り専用検索の最小設計中。",
+  "summary": "検索の新規20件＋既存66件と型検査に合格。実記録3課題の入力・採点条件を固定し、新規担当の利用検証を開始する。",
   "method": "保存した経験をカードと用途に結び付け、元案・評価・条件・出典の対応と未確認を保って次の考案から読めるようにする。古い採否を新しい案へ自動適用しない。",
   "procedure": "既存入口の不足確認と最小設計 → 隔離された入力で実装・機能検査 → 実際の保存記録を新規担当が検索して再読 → 知識の再利用ができた範囲と未確認を報告",
   "inputs": "既存の正式探索保存物と、その案・評価・証拠の対応。私的な実行ログは対象外。",
@@ -23,15 +23,57 @@
     {
       "id": "design",
       "title": "再利用の不足確認と最小設計",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T07:22:11.928091+00:00",
-      "ended_at": null,
+      "ended_at": "2026-09-10T07:25:57.039850+00:00",
       "note": "先行の読み取り点検の結果を受け取った後、この機能の設計開始から記録。先行点検の開始時刻は記録できていない。",
       "budget_minutes": null
+    },
+    {
+      "id": "implementation",
+      "title": "検索の実装と静的確認",
+      "status": "completed",
+      "started_at": "2026-09-10T07:25:57.039850+00:00",
+      "ended_at": "2026-09-10T07:31:43.266194+00:00",
+      "note": "最小設計を固定し、原文の対応確認と読み取り専用検索を実装する。",
+      "budget_minutes": null
+    },
+    {
+      "id": "tests",
+      "title": "検索の機能検査と静的確認",
+      "status": "completed",
+      "started_at": "2026-09-10T07:31:43.266194+00:00",
+      "ended_at": "2026-09-10T07:36:28.214848+00:00",
+      "note": "正常・境界・失敗の新規検査と既存の公開保存・読出し検査を実行する。",
+      "budget_minutes": null
+    },
+    {
+      "id": "prepare_use",
+      "title": "実記録を使う検証の入力・採点条件を固定",
+      "status": "completed",
+      "started_at": "2026-09-10T07:36:28.214848+00:00",
+      "ended_at": "2026-09-10T07:36:29.166052+00:00",
+      "note": "新しい利用担当へ渡す課題と読み取り専用の公開操作を準備。採点対象は実行前に固定する。",
+      "budget_minutes": null
+    },
+    {
+      "id": "use",
+      "title": "新規担当が保存経験を検索・再読",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "公開入口だけで3課題を実行。開始終了は実行監視が記録する。",
+      "budget_minutes": 6
     }
   ],
   "evidence_paths": [
     "evals/discovery/experience-recall-01/README.md",
-    "evals/discovery/experience-recall-01/protocol.json"
+    "evals/discovery/experience-recall-01/protocol.json",
+    "evals/discovery/experience-recall-01/design.md",
+    "evals/discovery/experience-recall-01/checks.json",
+    "evals/discovery/experience-recall-01/use-protocol.json",
+    "evals/discovery/experience-recall-01/use-expected.json",
+    "evals/discovery/experience-recall-01/use-README.md",
+    "evals/discovery/experience-recall-01/use-prompt.md"
   ]
 }
