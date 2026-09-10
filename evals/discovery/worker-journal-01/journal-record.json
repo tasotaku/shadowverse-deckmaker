@@ -1,0 +1,173 @@
+{
+  "id": "worker-journal-01",
+  "revision": 11,
+  "saved_at": "2026-09-10T06:06:05.562271+00:00",
+  "actor": "codex",
+  "reason": "本文の初見確認で求められた実装・検査工程の時刻を補足",
+  "record": {
+    "id": "worker-journal-01",
+    "title": "担当の開始と終了を進捗記録へ自動反映する",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "新20件＋既存45件と型検査合格。実AI36.6秒の正常終了、意図的失敗、1秒の期限停止を本体台帳へ自動反映。実行管理用として採用。",
+    "method": "既存の実行監視へ任意の台帳指定を追加。未着手工程を確保してから起動し、停止後に同じ工程だけを閉じる。別工程の更新は合わせ、同じ工程への訂正は上書きしない。",
+    "procedure": "開始・停止後の台帳接続を実装。同時開始順・不明時刻・保存確定後の応答失敗を修正し65件と型検査合格。実AIが公開コマンドで1枚を読み、開始中と終了後をAPIで確認。並行した検査用失敗と期限停止も保存し、3件の開始終了・状態が実行記録と一致。",
+    "inputs": "svdeck.worker と既存実験台帳。各実行は登録済み未着手工程を指定。探索指示・採点・カードDBは変更しない。",
+    "criteria": "担当起動前に開始が保存され、正常・失敗・時間切れ・起動失敗を自動保存できる。他工程・結果・採否を保ち、同じ工程の二重起動と訂正上書きを拒否。終了反映失敗は記録し担当を再実行せず再反映できる。",
+    "result": {
+      "outcome": "pass",
+      "summary": "3件すべて予定した終了状態が、手動更新前の稼働中台帳に保存された。実AIは36.573秒で公開読出し1回。失敗7と時間切れ124は中断。終了から記録まで0.008〜0.023秒。",
+      "limitations": "開始・停止後の境界を保存する接続。提案の有用性や採否は別評価。監視自体の強制終了・PC停止・台帳障害中の自動完了は保証しない。詳細本文は最新版を表示する操作が必要。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "実際の担当と異常終了の両方で、終了後に手動更新を待たず工程を閉じることを確認。65件・型検査・独立差分確認も合格。次の時間付き探索・評価の起動で利用する。"
+    },
+    "started_at": "2026-09-10T05:48:15+00:00",
+    "ended_at": "2026-09-10T06:03:32.195930+00:00",
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "開始・終了の接続を実装",
+        "status": "completed",
+        "started_at": "2026-09-10T05:48:15+00:00",
+        "ended_at": "2026-09-10T05:54:34.097574+00:00",
+        "note": "任意の台帳接続と停止後だけの再反映を実装。型検査の絞込みエラー1件を修正し合格。既存の監視・台帳45件合格。",
+        "budget_minutes": null
+      },
+      {
+        "id": "checks",
+        "title": "障害・競合・従来動作を検査",
+        "status": "completed",
+        "started_at": "2026-09-10T05:54:34.097574+00:00",
+        "ended_at": "2026-09-10T06:00:53.990851+00:00",
+        "note": "新20件＋既存45件＝65件と型検査が合格。同時開始、全体開始不明、確定後応答失敗を修正し独立再読でも解消確認。",
+        "budget_minutes": null
+      },
+      {
+        "id": "live_worker",
+        "title": "実際の担当で台帳反映を確認",
+        "status": "completed",
+        "started_at": "2026-09-10T06:00:54.415125+00:00",
+        "ended_at": "2026-09-10T06:01:30.988268+00:00",
+        "note": "公開資料を読む担当の開始と終了を確認する。探索成果の判定ではない。\n起動処理を開始。実行記録: /private/tmp/sv-worker-journal-live-01/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "live_failure",
+        "title": "失敗した担当の中断を確認",
+        "status": "interrupted",
+        "started_at": "2026-09-10T06:01:37.785564+00:00",
+        "ended_at": "2026-09-10T06:01:37.901280+00:00",
+        "note": "検査用に非0で終わる担当。\n起動処理を開始。実行記録: /private/tmp/sv-worker-journal-live-01/failure\n担当の停止処理を終了。実行状態: failed、担当終了番号: 7。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "live_timeout",
+        "title": "時間切れした担当の中断を確認",
+        "status": "interrupted",
+        "started_at": "2026-09-10T06:01:37.785595+00:00",
+        "ended_at": "2026-09-10T06:01:38.798110+00:00",
+        "note": "検査用に待機する担当。\n起動処理を開始。実行記録: /private/tmp/sv-worker-journal-live-01/timeout\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "report",
+        "title": "反映結果と採否を記録",
+        "status": "completed",
+        "started_at": "2026-09-10T06:03:32.158550+00:00",
+        "ended_at": "2026-09-10T06:03:32.195925+00:00",
+        "note": "公開読出し、3件の終了状態・時刻と稼働中台帳の一致を確認。結果・採否を監視側が変更しないことも照合。時刻はこの回収・保存スクリプト区間で、読者確認と公開反映は含まない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/worker-journal-01/README.md",
+      "evals/discovery/worker-journal-01/test-plan.json",
+      "evals/discovery/worker-journal-01/test-verification.json",
+      "evals/discovery/worker-journal-01/live-preparation.json",
+      "evals/discovery/worker-journal-01/live-start-observation.json",
+      "evals/discovery/worker-journal-01/live-verification.json",
+      "evals/discovery/worker-journal-01/live/live_failure-run.json",
+      "evals/discovery/worker-journal-01/live/live_failure-stdout.txt",
+      "evals/discovery/worker-journal-01/live/live_timeout-run.json",
+      "evals/discovery/worker-journal-01/live/live_timeout-stdout.txt",
+      "evals/discovery/worker-journal-01/live/live_worker-run.json",
+      "evals/discovery/worker-journal-01/live/observation.json",
+      "evals/discovery/worker-journal-01/live/public-operations.json",
+      "evals/discovery/worker-journal-01/reader-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/worker-journal-01/README.md",
+      "sha256": "abcebb26ff5396cfd85ce632aeed49718c8fcf7f2f518f06f7b61f4041688a5d",
+      "size": 4534
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/live_failure-run.json",
+      "sha256": "1fead1a287a6cf6bd1297c9361e34fda5a1f17e5d3e7c85ecd4bb3f3351b24bc",
+      "size": 2630
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/live_failure-stdout.txt",
+      "sha256": "0f1fcdc2382e33d879d9599701d948f391e53aeba24826b9d229233ab82d4937",
+      "size": 20
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/live_timeout-run.json",
+      "sha256": "a2d94799d22e6196a2a3fea98623cfd632eec1d7dc02aacb68b074aed7c98db0",
+      "size": 2845
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/live_timeout-stdout.txt",
+      "sha256": "ff5d1f36f464c1775d34d11476f9679f67d779cfe40bf65ef3883d611404b284",
+      "size": 23
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/live_worker-run.json",
+      "sha256": "561e6f80a4dae29f588f0d9162c8cd0f426ab043281604daec0547de2589d4d2",
+      "size": 2925
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/observation.json",
+      "sha256": "63be1a177a26784cabacc7c9d09c1fe538154d42a1668d59a94c1442bc8389b2",
+      "size": 528
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live/public-operations.json",
+      "sha256": "a118e5cdfc0344d860cda74f6c74d3b340a2167f123f5426120f72560b1e3aee",
+      "size": 2804
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live-preparation.json",
+      "sha256": "4e17ab1f1ae81674d91e1a8f6c50933c681f949b7951e583230b2bc469ccdb65",
+      "size": 1331
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live-start-observation.json",
+      "sha256": "a62db341426db8253113ac53f1f0d02377a6d7fd4645486ec16c2067c627e314",
+      "size": 558
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/live-verification.json",
+      "sha256": "ca7e4136bf2fdf1032fc56a0482d4e9dbb85f3bc831958b89c7bf9d7ac6d2a01",
+      "size": 1511
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/reader-check.json",
+      "sha256": "4c8dcdc7fb0af32ce37e8bf735f95a6b538fbf649e174a1d7f63354e35cb4c53",
+      "size": 404
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/test-plan.json",
+      "sha256": "07bf13fcb5fba8f66914a6870b824b4437a22e21e3aed6df2cd2eb1c5ffa6c03",
+      "size": 1154
+    },
+    {
+      "path": "evals/discovery/worker-journal-01/test-verification.json",
+      "sha256": "a04a19a708bb518d77a88566e93a26bd0fddfe61dafe9ef6c63cbfdda368bbb8",
+      "size": 1356
+    }
+  ]
+}

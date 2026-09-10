@@ -1,0 +1,23 @@
+{
+  "ended_at": "2026-09-10T06:00:53.990851+00:00",
+  "verdict": "PASS",
+  "static": "mypy strict: 2 source files passed",
+  "tests": {
+    "new": 20,
+    "existing": 45,
+    "total": 65,
+    "elapsed_seconds": 10.24,
+    "command": "PYTHONPATH=src python -m pytest -q tests/temp/test_worker_journal_temp.py tests/temp/test_worker_deadline_temp.py tests/temp/test_worker_clock_temp.py tests/test_experiments.py"
+  },
+  "new_tests_sha256": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43",
+  "corrections": [
+    "同時開始の保存順が逆だと工程時刻が全体より早くなり拒否。実測の最小開始へ合わせ修正。",
+    "全体開始が不明な開始済み試行ではNoneを維持。",
+    "開始/終了の保存確定後の応答失敗も回帰注入し、開始確保内容を保持して再反映可能にした。",
+    "0.2秒の期限停止で子が起動後にまだ出力せず、部分出力のテスト期待だけが失敗。期限停止と台帳反映は0.212秒で成功。出力保持も観測できるようこのfixtureを1秒へ延長し、期待項目は維持。探索試行の時間や判定は変えていない。"
+  ],
+  "independent_review": {
+    "agent": "/root/worker_journal_design",
+    "verdict": "2点の指摘を修正後、再読で解消確認。追加指摘なし。"
+  }
+}

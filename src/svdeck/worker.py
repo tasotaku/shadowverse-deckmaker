@@ -15,6 +15,12 @@ import time
 from types import FrameType
 from typing import Literal
 
+from svdeck.worker_journal import JOURNAL_ERRORS, RunJournal
+
+
+class JournalStartExpired(RuntimeError):
+    """The optional start write exhausted the budget before the child was launched."""
+
 
 def save_record(path: Path, record: dict[str, object]) -> None:
     # AI_NOTE: 読取り側へ途中のJSONを見せず、前の状態か次の状態を一度に渡す。
@@ -41,7 +47,8 @@ def signal_group(process: subprocess.Popen[bytes], sig: int) -> bool:
 
 def run(command: list[str], output: Path, timeout: float, grace: float,
         cwd: Path | None = None, stdin: Path | None = None,
-        clock: Literal['deadline', 'elapsed'] = 'deadline') -> tuple[int, dict[str, object]]:
+        clock: Literal['deadline', 'elapsed'] = 'deadline',
+        journal: RunJournal | None = None) -> tuple[int, dict[str, object]]:
     # AI_NOTE: 判定の中身に触れず、実行の期限・終了確認と既存出力の保持だけを担当する。
     if os.name != 'posix':
         raise ValueError('この入口のプロセス群制御はPOSIX専用です')
@@ -92,6 +99,19 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
     exit_code = 125
     try:
         mark('started')
+        if journal is not None:
+            record['journal_sync'] = {**journal.identity(), 'status': 'starting'}
+            mark('journal_starting')
+            try:
+                record['journal_sync'] = journal.begin(record)
+            except JOURNAL_ERRORS as exc:
+                link = record['journal_sync']
+                assert isinstance(link, dict)
+                record.update(status='journal_start_failed', ended_at=datetime.now(timezone.utc).isoformat(),
+                              elapsed_seconds=time.monotonic() - clock_start, runner_returncode=125,
+                              journal_sync={**link, 'status': 'start_failed', 'error': str(exc)})
+                mark('journal_start_failed', error=str(exc))
+                return 125, record
         with ExitStack() as stack:
             source = stack.enter_context(stdin.open('rb')) if stdin else subprocess.DEVNULL
             stdout = stack.enter_context((output / 'stdout.log').open('xb'))
@@ -103,6 +123,9 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
             environment.pop('SVDECK_DEADLINE_UTC', None)
             if clock == 'deadline':
                 environment['SVDECK_DEADLINE_UTC'] = deadline.isoformat()
+            if journal is not None and (interrupted is not None or time.monotonic() - clock_start >= timeout
+                                       or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline)):
+                raise JournalStartExpired('開始記録中に実行期限または停止要求へ到達したため担当は未起動')
             process = subprocess.Popen(command, cwd=cwd, stdin=source, stdout=stdout, stderr=stderr,
                                        start_new_session=True, env=environment)
             record.update(status='running', worker_pid=process.pid)
@@ -147,6 +170,9 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
                 record['status'] = 'termination_unconfirmed'
                 exit_code = 125
             record['worker_returncode'] = process.returncode
+    except JournalStartExpired as exc:
+        record.update(status='interrupted' if interrupted is not None else 'timed_out', error=str(exc))
+        exit_code = 128 + interrupted if interrupted is not None else 124
     except OSError as exc:
         record.update(status='launch_failed' if process is None else 'supervisor_failed', error=str(exc))
         exit_code = 127 if process is None else 125
@@ -169,6 +195,19 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
     record.update(ended_at=datetime.now(timezone.utc).isoformat(),
                   elapsed_seconds=time.monotonic() - clock_start, runner_returncode=exit_code)
     mark('supervisor_finished')
+    if journal is not None:
+        record['execution_returncode'] = exit_code
+        try:
+            record['journal_sync'] = journal.finish(record)
+            mark('journal_finished')
+        except JOURNAL_ERRORS as exc:
+            link = record['journal_sync']
+            assert isinstance(link, dict)
+            record['journal_sync'] = {**link, 'status': 'finish_failed', 'error': str(exc)}
+            if exit_code == 0:
+                exit_code = 125
+            record['runner_returncode'] = exit_code
+            mark('journal_finish_failed', error=str(exc))
     return exit_code, record
 
 
@@ -182,15 +221,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--stdin', type=Path, help='担当へ渡す入力ファイル')
     parser.add_argument('--clock', choices=('deadline', 'elapsed'), default='deadline',
                         help='deadline: UTCと経過時計の早い期限 / elapsed: 経過時計だけで制限')
+    parser.add_argument('--journal-root', type=Path, help='工程を反映する本体リポジトリ')
+    parser.add_argument('--experiment-id', help='登録済み試行のID（台帳接続時は必須）')
+    parser.add_argument('--stage-id', help='登録済み未着手工程のID（実行ごとに新しいID）')
     parser.add_argument('command', nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
     command = args.command[1:] if args.command[:1] == ['--'] else args.command
     try:
-        code, record = run(command, args.output, args.timeout, args.grace, args.cwd, args.stdin, args.clock)
+        target = (args.journal_root, args.experiment_id, args.stage_id)
+        if any(v is not None for v in target) and not all(target):
+            raise ValueError('台帳接続は --journal-root / --experiment-id / --stage-id の3つを指定してください')
+        journal = RunJournal(*target) if all(target) else None
+        code, record = run(command, args.output, args.timeout, args.grace, args.cwd, args.stdin, args.clock, journal)
     except (OSError, ValueError, OverflowError) as exc:
         print(f'実行入力エラー: {exc}', file=sys.stderr)
         return 2
     print(json.dumps(record, ensure_ascii=False, indent=2))
+    sync = record.get('journal_sync')
+    if isinstance(sync, dict) and sync.get('error'):
+        print('台帳反映に失敗しました。run.jsonを確認し、停止済みなら svdeck.worker_journal で再反映できます。', file=sys.stderr)
     return code
 
 

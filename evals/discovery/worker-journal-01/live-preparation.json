@@ -1,0 +1,9 @@
+{
+  "prepared_at": "2026-09-10T06:00:53.990851+00:00",
+  "work": "/tmp/sv-worker-journal-live-01/work",
+  "packet_hash": "12841ef8efa176eec7a849db95af4272bdc48d4bf538682e2110442c9f179762",
+  "purpose": "実AIによる公開資料読出しと台帳境界の接続検査。既知入力を使い、発見力を採点しない。",
+  "prompt": "進捗記録の接続を確認する実行担当です。作業はこのディレクトリだけで行います。デッキ案の考案や評価、追加Web調査は不要です。次の公開読出しを1回実行し、取得した1枚についてカード名・ID・コストと能力の短い要約を observation.json に保存してください。読んでいない能力は補いません。カードを強い・新しいと判定する仕事ではありません。内部の思考過程は記録せず、使用した公開コマンドと結果だけを残します。最後は簡潔に読出しと保存結果を報告してください。\n\n/tmp/sv-system-venv/bin/python public.py read session 12841ef8efa176eec7a849db95af4272bdc48d4bf538682e2110442c9f179762 cards --offset 0 --limit 1\n",
+  "worker_source_sha256": "08f73bba57c27c1226e68efb4ba27f7f8ad0d16bcd6b9bd9ffe2cd624df81dfb",
+  "journal_source_sha256": "0b2a6b2566cb2b99eebb153c9be51f70fb013796f7317029c03aa62f2bbb89a4"
+}

@@ -1,0 +1,76 @@
+{
+  "status": "failed",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-c",
+    "import sys; print(\"intentional failure\", flush=True); sys.exit(7)"
+  ],
+  "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+  "stdin": null,
+  "output": "/private/tmp/sv-worker-journal-live-01/failure",
+  "started_at": "2026-09-10T06:01:37.785564+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2259943.4368475,
+  "timeout_seconds": 5.0,
+  "termination_grace_seconds": 0.1,
+  "supervisor_pid": 66859,
+  "worker_pid": 66862,
+  "worker_returncode": 7,
+  "ended_at": "2026-09-10T06:01:37.901280+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T06:01:37.786225+00:00",
+      "elapsed_seconds": 0.00037562474608421326
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T06:01:37.786743+00:00",
+      "elapsed_seconds": 0.0008934158831834793
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T06:01:37.794279+00:00",
+      "elapsed_seconds": 0.008458374999463558
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T06:01:37.900060+00:00",
+      "elapsed_seconds": 0.11422266578301787,
+      "returncode": 7
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T06:01:37.901289+00:00",
+      "elapsed_seconds": 0.11543754115700722
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T06:01:37.909274+00:00",
+      "elapsed_seconds": 0.1234224159270525
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "worker-journal-01",
+    "stage_id": "live_failure",
+    "status": "completed",
+    "begin_revision": 7,
+    "claimed_stage": {
+      "id": "live_failure",
+      "title": "失敗した担当の中断を確認",
+      "status": "running",
+      "started_at": "2026-09-10T06:01:37.785564+00:00",
+      "ended_at": null,
+      "note": "検査用に非0で終わる担当。\n起動処理を開始。実行記録: /private/tmp/sv-worker-journal-live-01/failure",
+      "budget_minutes": 1
+    },
+    "end_revision": 8,
+    "synced_at": "2026-09-10T06:01:37.909265+00:00"
+  },
+  "elapsed_seconds": 0.11543270805850625,
+  "runner_returncode": 7,
+  "execution_returncode": 7
+}

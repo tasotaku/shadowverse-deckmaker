@@ -1,0 +1,25 @@
+[
+  {
+    "started_at": "2026-09-10T06:01:11.020491+00:00",
+    "ended_at": "2026-09-10T06:01:11.135928+00:00",
+    "command": [
+      "/tmp/sv-system-venv/bin/python",
+      "-m",
+      "svdeck.discovery",
+      "read",
+      "session",
+      "12841ef8efa176eec7a849db95af4272bdc48d4bf538682e2110442c9f179762",
+      "cards",
+      "--offset",
+      "0",
+      "--limit",
+      "1"
+    ],
+    "cwd": "/private/tmp/sv-worker-journal-live-01/work",
+    "exit_code": 0,
+    "output": "/private/tmp/sv-worker-journal-live-01/work/operations/operation-domvs4jv.stdout.txt",
+    "stderr": "",
+    "state": "completed",
+    "stdout": "{\n  \"sha256\": \"12841ef8efa176eec7a849db95af4272bdc48d4bf538682e2110442c9f179762\",\n  \"section\": \"cards\",\n  \"unit\": \"cards\",\n  \"offset\": 0,\n  \"limit\": 1,\n  \"total\": 212,\n  \"next_offset\": 1,\n  \"content\": [\n    {\n      \"card_id\": 10001110,\n      \"name\": \"不屈のファイター\",\n      \"class_name\": \"ニュートラル\",\n      \"cost\": 2,\n      \"atk\": 2,\n      \"life\": 2,\n      \"type\": \"follower\",\n      \"is_token\": false,\n      \"rotation\": true,\n      \"copy_limit\": 3,\n      \"card_set_id\": 10000,\n      \"deck_eligible\": true,\n      \"tribes\": [\n        \"-\"\n      ],\n      \"skill_text\": \"【エンハンス_4】これは+3/+3する。\",\n      \"evolution_text\": \"【エンハンス_4】これは+3/+3する。\",\n      \"ref_effect_text\": \"\",\n      \"note\": \"\",\n      \"note_updated_at\": null,\n      \"raw\": {\n        \"skill_text\": \"【<color=Keyword>エンハンス</color>_4】これは+3/+3する。\",\n        \"evo\": {\n          \"card_resource_id\": 100011101,\n          \"flavour_text\": \"争いのない世界こそ、俺の切り開きたかった未来だ。\\n頼るのは自分だけ。敵も憎しみも、全て俺が引き受ける。\",\n          \"skill_text\": \"【<color=Keyword>エンハンス</color>_4】これは+3/+3する。\",\n          \"card_image_hash\": \"8f1ab12418fc4d0aa41f96eff6211593\",\n          \"card_banner_image_hash\": \"8417135a9a8f4b3ab9ec136c937b4e80\"\n        },\n        \"ref_effect_text\": null\n      },\n      \"source_url\": \"https://shadowverse-wb.com/web/CardList/card?card_id=10001110&lang=ja\",\n      \"tags\": [\n        {\n          \"kind\": \"require\",\n          \"tag\": \"エンハンス(4)\"\n        },\n        {\n          \"kind\": \"supply\",\n          \"tag\": \"バフ(体力)\"\n        },\n        {\n          \"kind\": \"supply\",\n          \"tag\": \"バフ(攻撃)\"\n        }\n      ],\n      \"requirements\": [],\n      \"referenced_keywords\": [\n        \"エンハンス\"\n      ],\n      \"referenced_card_sets\": [],\n      \"related_card_ids\": []\n    }\n  ]\n}\n"
+  }
+]
