@@ -1,30 +1,30 @@
 {
   "id": "proposal-finish-01",
-  "revision": 3,
-  "saved_at": "2026-09-10T02:18:30.281987+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-10T03:41:28.303155+00:00",
   "actor": "root",
-  "reason": "正式提出1件を回収・照合し、独立評価を開始",
+  "reason": "独立評価完了。試行推薦0件で本採用保留とし、手順・採否・工程の開始終了を確定",
   "record": {
     "id": "proposal-finish-01",
     "title": "保存済みの調査を別の担当が提案へまとめる",
     "category": "method",
-    "status": "running",
-    "summary": "約13分56秒で正式案1件を保存。最初の下書きは約1分40秒。入力検査の失敗1回を担当が修正し、独立評価へ進行。",
+    "status": "completed",
+    "summary": "正式案1件・独立評価1件まで完了。試行推薦0件で本採用保留。提案化13分56秒、独立評価12分58秒。",
     "method": "公開packetで保存済みの調査を指定し、提案をまとめる専用の指示を選ぶ。対象報告を直接読み、下書き保存後に必要な本文・注記・不足を確認する。通常の探索・提出検査・独立評価の基準は維持。",
     "procedure": "入力をコピーし19ファイルの一致を確認→機能検査118件と型検査→実AIの提案化→正式案があれば独立評価→結果・採否を記録。作業下書きと正式提出、試す価値を分ける。",
     "inputs": "worker-clock-01の固定ドラゴン/ローテーションと14資料。正式案0件の中断済み調査からの引き継ぎであり、未知の入力での再発見ではない。",
     "criteria": "公開工程、正しさ、発展、有用性、誠実さの5基準を維持。下書き保存や提出件数だけで有用性を認定しない。実行時刻・経過秒・公開操作を保存する。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "公開操作28回、入力検査の失敗1回。正式案1件・追加資料1件を保持。提出ファイルの全項目が保存版と一致し、元の20ファイルも一致。独立評価は実行中で有用性は未判断。",
-      "limitations": "上限を30分へ変更しており、前試行との速度比較・原因の単独確定はできない。実装着手のUTCは未記録。検査11.93秒をAIの実利用時間とは数えない。"
+      "outcome": "mixed",
+      "summary": "提出の入力修正1回を経て公開工程を完了。手順は条件付きで整合するが、追加補充が基準構築の不足を解消する根拠は未完成。評価は追加検討・独自性未確認、試行推薦0件。引用記事の不採用理由が元要約に十分残らなかった点も確認。",
+      "limitations": "既知の調査の引き継ぎであり未知入力の発見ではない。前試行の上限10分から提案化30分へ変更し、速度や因果の比較はできない。実装・機能検査の正確な開始終了UTCは未記録。実ゲーム・勝率・Tier・独自性未確認。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "正式提出と独立評価の実利用結果を待つ。"
+      "status": "deferred",
+      "reason": "調査を正式案と独立評価へつなぐ動作は確認したが、試す理由のある種を得られず、探索方法としての有用性は未立証。任意の入口は残し、今回の不足を次の改善へ戻す。"
     },
     "started_at": "2026-09-10T02:02:26.952154+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T03:41:27.936433+00:00",
     "stages": [
       {
         "id": "checks",
@@ -56,11 +56,20 @@
       {
         "id": "review",
         "title": "正式案の独立評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T02:17:19.825990+00:00",
-        "ended_at": null,
-        "note": "経過時計900秒。提案担当とは別に、15資料と正式案を同じ評価指示で読む。過去の正式評価は含まない。",
+        "ended_at": "2026-09-10T02:30:17.664302+00:00",
+        "note": "経過777.837秒、上限900秒。公開17操作・失敗0。独立評価1件は条件付き整合・追加検討・独自性未確認で試行推薦0件。",
         "budget_minutes": 15
+      },
+      {
+        "id": "report",
+        "title": "結果照合・採否と時間の報告整理",
+        "status": "completed",
+        "started_at": "2026-09-10T02:35:18.321103+00:00",
+        "ended_at": "2026-09-10T03:41:27.936433+00:00",
+        "note": "提出値と公開報告を照合し、保存26ファイルの内容一致・主DB不変を確認。報告の初見確認でカード条件と言い回しを補足。日時差は資料確認等を含む工程時間で、AI稼働時間ではない。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
@@ -79,14 +88,23 @@
       "evals/discovery/proposal-finish-01/completion/proposal.json",
       "evals/discovery/proposal-finish-01/completion/conclusion.md",
       "evals/discovery/proposal-finish-01/completion/root-submission-check.json",
-      "evals/discovery/proposal-finish-01/review/run-start.json"
+      "evals/discovery/proposal-finish-01/review/run-start.json",
+      "evals/discovery/proposal-finish-01/final-evaluation.json",
+      "evals/discovery/proposal-finish-01/final-preservation.json",
+      "evals/discovery/proposal-finish-01/review/run.json",
+      "evals/discovery/proposal-finish-01/review/review.json",
+      "evals/discovery/proposal-finish-01/review/evaluation.md",
+      "evals/discovery/proposal-finish-01/review/collection.json",
+      "evals/discovery/proposal-finish-01/review/submission-verification.json",
+      "evals/discovery/proposal-finish-01/independent-reader-check.json",
+      "evals/discovery/proposal-finish-01/report-preparation.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/proposal-finish-01/README.md",
-      "sha256": "00fb25840a1cf203a12aea9168d38283d85a22fba5ef4df0259a4abeae42d51d",
-      "size": 2962
+      "sha256": "b5072827082b612cbb691edba7b513ad916c4c43c3ef02bb9ac8af8c6a02ed76",
+      "size": 7531
     },
     {
       "path": "evals/discovery/proposal-finish-01/completion/collection.json",
@@ -124,9 +142,24 @@
       "size": 454
     },
     {
+      "path": "evals/discovery/proposal-finish-01/final-evaluation.json",
+      "sha256": "eed367f5d61104451558c984db944bd8f87cd6a0805cbac7cd3ece35c9ef40ce",
+      "size": 2986
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/final-preservation.json",
+      "sha256": "6bbb2c154cd3cdd3b6df9e3947293bdf57a2e0f96c959e56f206b80f9da12ed3",
+      "size": 753
+    },
+    {
       "path": "evals/discovery/proposal-finish-01/independent-output-check.json",
       "sha256": "29b5fa71ef382e32077736d9bdcb5d54d1f245a4e6bbf3f11740959f64352ab2",
       "size": 615
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/independent-reader-check.json",
+      "sha256": "f4f67672ab7f5f77275036812749872384e9babea5769830bcd217323feb59e6",
+      "size": 999
     },
     {
       "path": "evals/discovery/proposal-finish-01/preparation.json",
@@ -144,9 +177,39 @@
       "size": 3634
     },
     {
+      "path": "evals/discovery/proposal-finish-01/report-preparation.json",
+      "sha256": "32a5b77bac9c00207828fa3abf866edfe75f3456ea6b313f3ddda0f414dfe690",
+      "size": 1064
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/review/collection.json",
+      "sha256": "3ea896ed1ba80b458f026a47a928df6cdab1bdb42579e1918055e266fca272fd",
+      "size": 1024
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/review/evaluation.md",
+      "sha256": "02c06daa8c8ad881e23daa0aa51074bb552367646b19375d7d4ec36b5921f5d2",
+      "size": 7371
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/review/review.json",
+      "sha256": "175d16f9ed148a9c71a102558e32fed3e6252e96dfe8a677c3575f07dca2bede",
+      "size": 15465
+    },
+    {
       "path": "evals/discovery/proposal-finish-01/review/run-start.json",
       "sha256": "03cea130d146241cc0edd69f6412ac03a55e8ae53ad5264d03acd0d77774a6bc",
       "size": 1492
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/review/run.json",
+      "sha256": "18f442d9305093e6644f38991835a2422f9d995ba0aa74a09ae89089e490ecca",
+      "size": 1895
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/review/submission-verification.json",
+      "sha256": "32d1f9d221a79bef2f09a4aabbc658f7e717ef8145369dd63574bcc3353179a3",
+      "size": 644
     },
     {
       "path": "evals/discovery/proposal-finish-01/run-start.json",

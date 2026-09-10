@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T02:18:30.308675+00:00",
+  "updated_at": "2026-09-10T02:44:01.801381+00:00",
   "previous_goal_turn": "別タスクの既存状態案内のみ。探索の本題に対してno progress。",
   "symptom": "調査を保存していても2回連続でproposal.json未作成。46公開操作に失敗は無く、保存検査拒否ではない。",
   "cause": "未提出の根本原因は未確定。保存前に調査を続ける工程が一因という仮説。",
@@ -10,8 +10,8 @@
     "正式なsubmit/reportと独立評価まで進めたか",
     "元の5基準において試す理由のある種が残るか。未解決を何件埋めたかだけで成功にしない"
   ],
-  "status": "review_running",
-  "live_handle": 58962,
+  "status": "completed_deferred",
+  "live_handle": null,
   "run": "/tmp/sv-proposal-finish-01/review/run/run.json",
   "started_at": "2026-09-10T02:02:40.076159+00:00",
   "completion": {
@@ -28,5 +28,13 @@
     "duplicate_files_replaced": 17,
     "duplicate_bytes_removed": 321590,
     "result": "参照先全件の存在と展開後の内容一致を確認。案の価値をこの整理から判定しない。"
-  }
+  },
+  "review": {
+    "handle": 58962,
+    "exit_code": 0,
+    "elapsed_seconds": 777.8370706671849,
+    "formal_reviews": 1,
+    "recommended_seeds": 0
+  },
+  "conclusion": "提出工程完了は確認。有用な種は0件で本採用保留。条件の変更と価値を分けて次の改善へ戻す。"
 }

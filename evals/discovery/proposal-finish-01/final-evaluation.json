@@ -1,0 +1,52 @@
+{
+  "evaluated_at": "2026-09-10T02:44:01.792824+00:00",
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "criteria_unchanged": true,
+  "method_decision": "deferred",
+  "outcome": "mixed",
+  "formal_proposals": 1,
+  "formal_reviews": 1,
+  "recommended_seeds": 0,
+  "independent_review": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "criteria": {
+    "workflow": {
+      "result": "completed_after_one_input_correction",
+      "reason": "公開提出で重複役割を1回修正。コードの手直しなしで提出・別評価・report完了。"
+    },
+    "correctness": {
+      "result": "conditional",
+      "reason": "指定状態の計算は整合。相手条件・盗人破壊回収・世界残存・実ゲームと現行全文の直接確認に留保。"
+    },
+    "development": {
+      "result": "partial",
+      "reason": "エンハンスに依存しない主手順へ根拠付きで変更し、基準側との比較も具体化。ただし追加条件と除去打点減少へ交換した部分があり、採用の必要性は解決していない。手順変更を有用性の合格には転用しない。"
+    },
+    "utility": {
+      "result": "fail",
+      "reason": "指定例では基準側でも同じ盗人→キミカ→捨て札が可能。純増1枚を必要な攻撃の改善へ結びつける根拠が不足。独立評価は追加検討で、試行推薦0件。"
+    },
+    "honesty": {
+      "result": "scoped_with_report_omission",
+      "reason": "勝率・Tier・新発見を断定せず未確認と検索範囲を保持。既に参照した本人記事の不採用理由を要約が十分拾っていなかった点を追加評価で記録。"
+    }
+  },
+  "source_omission": {
+    "url": "https://note.com/coolyu338867/n/n06ea17479a38",
+    "title": "第9弾フェイスドラゴン考察",
+    "scope": "著者本人の早期決着構築の見解。別構築の余地を認めており、一般的な不採用や全構築への反証ではない。",
+    "finding": "既存回収と早い決着を根拠とする世界の不採用説明がある。元の研究報告は同記事を参照したがこの論点を十分残していなかった。",
+    "source_report": "evals/discovery/fresh-reference-01/generation/research-report.md",
+    "verified_by": "別評価担当とrootのページ読出し"
+  },
+  "limits": [
+    "既知の調査を引き継いだ実利用で、未知入力の新発見ではない。",
+    "前試行の10分から提案化の上限を30分へ変更。速度や改善原因の単独証明ではない。",
+    "実装と機能検査の正確な開始終了UTCは未記録。",
+    "完成デッキ・実戦勝率・Tier・独自性の確定は行っていない。"
+  ],
+  "next": "同じDragon枝の再実行を続けず、今回の不足と既存の試行推薦案を材料として次の実装対象を絞る。"
+}
