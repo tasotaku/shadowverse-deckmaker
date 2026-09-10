@@ -1,0 +1,42 @@
+{
+  "id": "novelty-boundary-audit-01",
+  "started_at": "2026-09-10T07:02:57.358436+00:00",
+  "scope": "試行推薦5案で独自性未確認が残る理由を点検。保存された根拠不足、比較対象の不一致、判定指示の曖昧さ、観測を超えた要求を区別する。",
+  "cases": [
+    {
+      "id": "elf-a",
+      "path": "evals/discovery/principles-scope-01/natural/elf/a/round-1/independent-review/review.json",
+      "sha256": "04f9ef70d4aebfb28ea409dd3b3f504ae3cd6e711c356ffa667985e788082654"
+    },
+    {
+      "id": "elf-b",
+      "path": "evals/discovery/principles-scope-01/natural/elf/b/round-1/independent-review/review.json",
+      "sha256": "d51f1bdc7a041f45460e700968f759dc6f91e2a48e758d70ed5f6286199ae4a1"
+    },
+    {
+      "id": "bishop-a",
+      "path": "evals/discovery/burden-review-recovery-01/a/review/review.json",
+      "sha256": "098cee445058444bce406d16a7ca6f3fc6b51d345e96e1cfef549cb36beb370b"
+    },
+    {
+      "id": "bishop-b",
+      "path": "evals/discovery/burden-review-recovery-01/b/review/review.json",
+      "sha256": "556f2b4b96b34579a6ae05c30dca015bafdcd5ece9700ff52bbdb2b73a9b3045"
+    },
+    {
+      "id": "royal",
+      "path": "evals/discovery/fresh-royal-01/review/review.json",
+      "sha256": "f9712be36588f50ac5f508e80a6950a7e443276f4a0a6f177f06d26cd2322b6d"
+    }
+  ],
+  "fixed_contract": "一般に広まった使い方との差を重視。単一先例を普及と同一視せず、検索不発を未知の証明にしない。既知カードを別用途で使う種も対象。過去の5基準・採点は変更しない。",
+  "non_goals": "新しいデッキ案の探索、元の種の再採点、追加Webによる各案の再調査、differentiatedへの強制昇格、コード変更は行わない。",
+  "questions": [
+    "記録された未確認の理由は何か",
+    "対象の使い方の差と普及度の不明を別々に扱えているか",
+    "REVIEWの3ラベルの説明だけで区別できるか",
+    "観測した範囲を超えた不可能な証明を要求していないか",
+    "修正すべき問題か、正しく残った不確実性か。断定できない場合は何が不足か"
+  ],
+  "audit_time_scope": "別点検を依頼する準備から結果を回収するまで。個々の推論時間と同一ではない。"
+}

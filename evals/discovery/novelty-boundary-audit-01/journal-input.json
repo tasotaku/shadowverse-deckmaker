@@ -1,0 +1,40 @@
+{
+  "id": "novelty-boundary-audit-01",
+  "title": "試行推薦5案で独自性の確認が残る理由を点検",
+  "category": "method",
+  "status": "completed",
+  "summary": "5件の点検完了。未確認表示で試行推薦が止まった事実はなし。先例と普及の説明に曖昧さがあり、別試行で明確化を検査する。",
+  "method": "保存された独立評価を、既知の使い方との差・先例の有無・普及度・調査範囲に分けて読み、現行の判定指示と照合する。",
+  "procedure": "5案と現行基準を固定→別担当の読み取り専用点検と実装側の境界確認→根拠を照合し必要な改善だけを判断。",
+  "inputs": "試行推薦のエルフ2案、復旧後のビショップ2案、新しいロイヤル1案。時間条件が不適合だったナイトメア案は含めない。",
+  "criteria": "一般に広まった使い方との差を重視。単一先例を普及と同一視せず、検索不発を未知の証明にしない。既知カードを別用途で使う種も対象。過去の5基準・採点は変更しない。",
+  "result": {
+    "outcome": "mixed",
+    "summary": "未確認表示による推薦阻害は観測されず。既存の保留を覆す根拠はない。判定指示は3値の意味と先例・普及を直接結び付けておらず、説明の明確化を別試行で検査する価値がある。",
+    "limitations": "5件は試行推薦済みの保存記録から選んだ開発用事例。指示の曖昧さが過去の判断を誤らせた因果は確認していない。"
+  },
+  "decision": {
+    "status": "deferred",
+    "reason": "明確化は未実施・未検査。元の5判定は維持し、固定した対照例での検査後に変更の必要性を判断する。"
+  },
+  "started_at": "2026-09-10T07:02:57.358436+00:00",
+  "ended_at": "2026-09-10T07:11:18.284363+00:00",
+  "stages": [
+    {
+      "id": "audit",
+      "title": "保存評価と判定の境界を点検",
+      "status": "completed",
+      "started_at": "2026-09-10T07:02:57.358436+00:00",
+      "ended_at": "2026-09-10T07:11:18.284363+00:00",
+      "note": "点検依頼の準備から結果回収までを記録。個々の推論時間とは区別する。",
+      "budget_minutes": null
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/novelty-boundary-audit-01/README.md",
+    "evals/discovery/novelty-boundary-audit-01/protocol.json",
+    "evals/discovery/novelty-boundary-audit-01/cases.json",
+    "evals/discovery/novelty-boundary-audit-01/findings.json",
+    "evals/discovery/novelty-boundary-audit-01/boundary-observation.json"
+  ]
+}

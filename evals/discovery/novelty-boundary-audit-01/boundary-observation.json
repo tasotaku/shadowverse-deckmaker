@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-09-10T07:04:31.564763+00:00",
+  "source": "src/svdeck/discovery.py",
+  "source_sha256": "cc4e552179e87412150c0823de24936b9720adbd49826e8f0e730f67673ea6eb",
+  "observations": [
+    {
+      "lines": "60-73",
+      "fact": "REVIEWはknown/unconfirmed/differentiatedの3語を提示。ローカル同居なしだけならunconfirmed、differentiatedではWeb照合記録を要求。各ラベルの適用条件と普及度との関係を明確な定義としては記載していない。"
+    },
+    {
+      "lines": "397-425",
+      "fact": "保存境界は3値、各軸の理由、証拠引用、web_checksの必須文字列を検査。differentiatedの場合のみ非空のweb_checksを要求し、検索範囲の十分性や未知の証明は自動判定しない。"
+    },
+    {
+      "lines": "427-432",
+      "fact": "value=testの条件は手順がsupported/conditional、stepsの存在、計画6項目の文字列。novelty=unconfirmedを理由に試行推薦を拒まない。"
+    }
+  ],
+  "fixed_case_observation": "選んだ5案は全件value=testかつnovelty=unconfirmed。この表示だけで今回の案が自動棄却されたという事実はない。",
+  "limit": "指示の不足が5案の判断を不適切にしたという因果は未確認。記録された根拠不足と別点検の結果を合わせて判断する。"
+}

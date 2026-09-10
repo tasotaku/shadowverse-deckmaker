@@ -1,0 +1,104 @@
+{
+  "id": "novelty-boundary-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T07:13:51.259702+00:00",
+  "actor": "codex",
+  "reason": "先例と普及の説明の比較を固定。仮想事例で上乗せを確認する",
+  "record": {
+    "id": "novelty-boundary-01",
+    "title": "先例・普及・資料不足を区別する説明の比較",
+    "category": "method",
+    "status": "running",
+    "summary": "同じ仮想6事例で現行指示と説明明確化を比較する。入力と採否条件を固定し、実行待ち。",
+    "method": "REVIEWの独自性の説明だけを明確化すると、先例・普及・比較不足を区別する境界判断が改善するか。",
+    "procedure": "同じ仮想6事例と現行の原則全文→現行REVIEW／独自性段落だけを置換したREVIEWを別の新規実行へ渡す→固定した判定条件で全12回答を照合する。",
+    "inputs": "仮想6事例、現行の原則全文、現行／独自性段落だけを置換した指示。期待判定は担当へ渡さない。",
+    "criteria": "bが全件の条件を満たし、aで観測された境界の誤りを少なくとも1件解消し、他の件に後退がない場合のみ実用での前向き確認へ進める。同点なら上乗せ未確認で本採用保留。入力6件は以後開発用とする。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "実行待ち。",
+      "limitations": "仮想資料を渡す短い判定検査。実際のWeb調査、カード確認、正式review保存、自然な探索の検査ではない。既存原則全文を両者に渡すので現行版でも解ける可能性がある。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "結果が出るまでは本体へ変更しない。"
+    },
+    "started_at": "2026-09-10T07:13:51.122375+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prepare",
+        "title": "入力・判定・採否条件の固定",
+        "status": "completed",
+        "started_at": "2026-09-10T07:13:51.122375+00:00",
+        "ended_at": "2026-09-10T07:13:51.162965+00:00",
+        "note": "この工程は入力ファイル作成処理の開始から終了まで。先行の点検は別記録。",
+        "budget_minutes": null
+      },
+      {
+        "id": "a",
+        "title": "現行指示で判断",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+        "budget_minutes": 6
+      },
+      {
+        "id": "b",
+        "title": "説明明確化で判断",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+        "budget_minutes": 6
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/novelty-boundary-01/README.md",
+      "evals/discovery/novelty-boundary-01/protocol.json",
+      "evals/discovery/novelty-boundary-01/cases.json",
+      "evals/discovery/novelty-boundary-01/expected.json",
+      "evals/discovery/novelty-boundary-01/principles.txt",
+      "evals/discovery/novelty-boundary-01/review-a.txt",
+      "evals/discovery/novelty-boundary-01/review-b.txt"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/novelty-boundary-01/README.md",
+      "sha256": "549c1e1016ac31d3ee51cc2eca23c51c3c27a49e0b7d7c0ba890f98b1e4c49ea",
+      "size": 363
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/cases.json",
+      "sha256": "e2ec60f31a75cc3ee9c67f087ff625dfcac82f32644c782ade09612c0ab75a96",
+      "size": 5498
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/expected.json",
+      "sha256": "7122688ca4298dda156ef64c70a7d9da78c4050e4b7f4a9382928423a6247b3d",
+      "size": 1036
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/principles.txt",
+      "sha256": "ef806febd3ff363a2ec701327e6bc25453ba137add6795a97bf0323f4c4a9b7a",
+      "size": 60188
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/protocol.json",
+      "sha256": "32cf686de6cf5e7ed8646864e17a06c6e1e4d4337226d50cb34ee93b26617896",
+      "size": 2791
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/review-a.txt",
+      "sha256": "4f08e7a190687d7c4f590ff5375f6ddd170a696976d9d17e165c8c5731b737ed",
+      "size": 1827
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/review-b.txt",
+      "sha256": "41b2e30339ed8a6e97e71c714f04aa0f892c36534a295979ede339b22f3f6b9c",
+      "size": 2554
+    }
+  ]
+}
