@@ -1,0 +1,8 @@
+{
+  "observed_at": "2026-09-10T13:28:58.674864+00:00",
+  "command": "PYTHONPATH=/tmp/sv-state-comparison-01/b/implementation:tests python -m pytest -q tests/test_discovery.py tests/test_discovery_review_contexts.py tests/temp/test_discovery_run_temp.py",
+  "result": "3 failed, 59 errors in 3.52s",
+  "cause": "隔離コードの既定docsパス /tmp/sv-state-comparison-01/b/docs/design.md が不存在。新規入力を作るテストの前提準備漏れ。",
+  "correction": "両側のテスト環境へ同じdocsをコピー。試行が読む保存済み入力や指示、期限・採点は不変。",
+  "first_runtime_comparison_launched": false
+}

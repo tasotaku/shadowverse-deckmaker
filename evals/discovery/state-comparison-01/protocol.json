@@ -1,0 +1,82 @@
+{
+  "id": "state-comparison-01",
+  "started_at": "2026-09-10T13:28:11.541912+00:00",
+  "frozen_at": "2026-09-10T13:28:11.844427+00:00",
+  "base_commit": "002d51ab5d4028c9130fbf152f3f21d5f32e6cb5",
+  "purpose": "通常構築の同じ開始状態・終点での手順比較を改訂前に行う短い指示が、比較の見落としと採用判断を改善するか。",
+  "source": "data/discovery/bishop-rule-inquiry-01-result",
+  "source_manifest": {
+    "context.json": "a184573aa894b2ec91ecc473143db398b147ccfb0474e3808da79a5f09c9fa4a",
+    "packets/1807479b06c873e5a5bfcd13a4c67c52eaefed8f0bf844ecdc54ec12199b1e91.json": "9705b3c5309a6207c93a476e961eaf70c0f50df208951a03a6c84a86c1a16a29",
+    "packets/4cdd558c914e01a3d01a234ca4aa00dc80b4866a283fc75841f3a674e14877ed.json": "d5ebc22e10231c89971adad8a3c3d4095390c8cea478b7fe0e07d2ca7b48700d",
+    "packets/b2f51f564b93c05ff6fdc7c8adbcaffc26d0e170e8464bc9e5ac68fbef8194b4.json": "b1391b06f93b76b8208b578311a1dee61aff36422b0b55bf87878fd7f6417861",
+    "packets/fcac0e6f2b55eeac3c9f15130cdd1dbad7170eec083ccc9b652708fbdbbb1cb6.json": "ac7149ade154fdb943a102eaaf8977b23a58b5f02224282da86fa83d48d80f1f",
+    "review-0001-fbcb1f03e687f3e8.json": "bf59742f950d50222a33e7c426b4119f793eee6b89ba450ee195bc275e5b8c74",
+    "revision-0001.json": "00b83a62a231b58f0c2218e81a92a3b66efec9f5bdc2226c1d6ad21d9606ab4b",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/086e4c5ee99d99b09ab9c2224b0a78b7da1c6b3fdc712fc30e11b7a1ea08982a.json": "76d3aad31b66758c6b2647a598f55f9c789e74d180cb60b1c32ec303360993cc",
+    "sources/0e1800424be63206f79107322ab162bd647d8668e5ef6382ef378e7b096c1719.json": "90baa5892daca5c9a5c01cc3d3bf9d563b6088025cb12d96ff1f468e97b2edc3",
+    "sources/121095413d250c7941ef2e4be23cf409e42a104b7b1d2a01ad0b314f6b64d5f5.json": "0c5b4b73ddc9ff6f9d3b6e454a4806f8f273113f44da81047366d2d30524630b",
+    "sources/2489aa9334ecfdf139f2a8f4dc4d1518ef2a7335feb60aef577bcdf0fa20e7ed.json": "fcc9df4b65a67ef6d329bdc0b20b639294af7c20907a01ce6886bd95dfb2ca0c",
+    "sources/2f3137c20126c5797abb857e95a625173b6bb0dee40652c015a9bb64c475f8e3.json": "9c79e1192ec30ed0c5cedee322c8da8dfa9332a0a03d7bf0509cad686eee80b1",
+    "sources/35a15a9268ffc09e3e05a223ca243a912cc7c9796c3f5f29a6b23d642ad0082b.json": "fade301b6a6c6adf160d3937c79559290c15e42f57f0368a6bd92b3777119f63",
+    "sources/3a2b948c1cb804981ee0accac56ac4cabf75d178bcc68dfb40339645d8966292.json": "bcdff7111a9261b021b9168312600286c70dddce963b18e3a6d42c5f42a28f5b",
+    "sources/593c5debbbd8961073ee1297f348ee0fcd7c22aea3663fef16471198ba2a5a8b.json": "1cc32fc7d6d269a031810b5456779318b11260784d645377e44e29608051359c",
+    "sources/63a808b58db76e18732efedc1bd5e19984f8c2c8e3de6663ba9ab08711a427d2.json": "5085e27322ebb15d490adc567f92d7a4ad669bf54d080b5a6c1f47d243155ff0",
+    "sources/691d53b4e174db6e8bf4479376017ddcf9b43c2c472301443b8427183ff78de6.json": "a2b73e5434ac582a083f6741867a0c822c85aaf2ba019a81c9c25d840b4442ce",
+    "sources/942bdf8e5343ef9b83bb898688debd1efdd68be8609dc05cd9910a2f77618ee0.json": "44276deaca6e6df6416e488caa7c274f4bef5c59d27a541a0bf53348ff589ac1",
+    "sources/b479f913fa7ae89856559d5ac30f83285cf44a84234dd60764047d484a93e61b.json": "90ccbdaa77d890041220b267c6be0f57b607f946503095c32659d81a89a31d6e",
+    "sources/b82cd9bb81aac5ad18b7e803829dad1f40fb549ea27232483b54267e169f9a21.json": "d2b23a549692fa64049144d8dc2eb4aff094b39a30e7411c7196cdfae1e34c07",
+    "sources/bd5f96a847325a497c03634c058eee522296ff2d05ffb47eb92e20575eb601a9.json": "ea674a1d358a49763ffb2bc2e8c871e67b9d272e9dafe3cdc8f04af92427b36f",
+    "sources/be75ad74ba4d225002b9271f7fe5643007f217a94ccde82490cad9adef76f7b6.json": "f9f1281bc002d97f7519fdfa3771bc577c27958c6757ae4cff6b0e4c4eca2287",
+    "sources/c95acc641137beb6d0ae71692a191a12b3ff948344530e33a6baa773101b159f.json": "eff027b21960db9079b04fca8ef5beaf9582b773bdaccb7af65099c51ad1804f",
+    "sources/e0d2a98d7e7d32be010f00af02f3718edcbd74a3af72144f214775010cd66818.json": "7888d46bfe7be02d12c89d109f997d114e439053fd39482d3abfb96a8784387a",
+    "sources/e9a0c7179a8263fe212d858439b5259464768ff5f30f9d0342168042d27fafa5.json": "9fc4cb15ea3ca69b4996aaadb358b505169aeb2e529f40899fef2dd0b751ec9a",
+    "sources/f116780e8b1f8275152a0a5c714118d60495c3b6d6ff67d3975d53c80f4f4073.json": "299d5c433d8067268ad7ed0c50314d61cd19d3e2a577a57cece848a2a740a816"
+  },
+  "source_archive": "evals/discovery/bishop-rule-inquiry-01/live/session.tar.gz",
+  "input_scope": "最新の失敗改訂より前の固定入力。元案とその旧評価、公式ルール調査4資料を含む既知入力1組。最新改訂・最新評価・原因点検は担当へ渡さない。",
+  "common_instruction": "\n今回の主な比較元は、元案が参照する保存済みの全40枚構築（source_hash: b82cd9bb81aac5ad18b7e803829dad1f40fb549ea27232483b54267e169f9a21）です。元案の配分と、この通常構築の配分を区別してください。\n",
+  "treatment_instruction": "正式改訂を決める前に、主な利益を判断する開始状態と観察終点を1つ固定してください。指定された参考構築で取れる行動を能力全文から組み立て、案の手順と同じ終点まで比べます。共通札・手札枚数の条件を揃え、交換札の対応と追加で必要な札を明記し、片側だけに都合のよい札やPPを補わないでください。各行動の条件と発動時点、PP、手札、両者の盤面、リーダー体力、進化権、残る継続効果・失う役割を確認します。不明な相手行動や引き込みは利益に足しません。通常側でも得られる分を分け、残る利益を使い方か採用配分の判断へ返し、根拠を既存の比較欄と追加資料へ残してください。\n",
+  "arms": {
+    "a": "現行指示＋両側共通の比較元指定",
+    "b": "同じ指示＋開始状態と終点を揃え通常側の手順を先に具体化する追記"
+  },
+  "comparison_control": "両実装の差はDEVELOPの追記のみ。カード・注記・履歴・19資料・公開コマンド・評価指示・実行上限・回答形式は同じ。両側に同じ比較元指定を足すため、Aも無指定の過去実行そのものの再現ではない。",
+  "develop_seconds": 900,
+  "review_seconds": 600,
+  "budget_clock": "elapsed",
+  "attempts_per_stage": 1,
+  "maximum_revisions_per_arm": 1,
+  "comparison_included_in_develop_budget": true,
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "diagnostics": [
+    "通常側の重要な行動・使用時点を落とさず、同じ開始条件から主張した利益を比較できたか。",
+    "比較により採用配分・使い方・主張する利益の範囲が根拠付きで実際に変わったか。",
+    "正式提出までの時間、未提出、比較に残った重要な誤り、別評価の有用性を両条件で記録する。比較表の存在や記録件数だけを進展としない。"
+  ],
+  "adoption": {
+    "added_only_progress": "追加側だけが比較を用いた実質的な負担解消または試す理由のある種へ進んだ場合に、次の新しい入力で検証する候補へ残す。負担解消のみで有用性未達なら、その区別を保つ。",
+    "control_only_progress": "現行側だけが進展した場合、この小試行では追加手順の上乗せを認めず採用保留。",
+    "same_outcome": "両側が同程度なら、追加手順の上乗せは未立証。両側とも有用性未達なら有用な出力なしを維持する。",
+    "limits": "1組の担当差・案の選択差を除去できないため、一般優位・新しい入力の発見力・システム完成は認定しない。"
+  },
+  "falsification": [
+    "追加側でも通常側の重要な即時行動を落とすなら、短い比較指示で欠落を防げるという仮説を支持しない。",
+    "正しい比較ができても、実際の疑問解消・配分や使い方の変化・適切な停止につながらず文章量だけ増えるなら、狙う工程改善を示せていない。",
+    "同じ予算で追加側が未提出になり、現行側が有用な提出に進むなら、今回の小変更を有効とは判断しない。",
+    "正確な通常比較でも利益が不足する場合は、比較の修正と種の有用性未達を両立して記録し、推薦へ繰り上げない。"
+  ],
+  "stop": "各工程1回で停止し、期限・失敗・未提出を代理補完しない。結果を見て入力、予算、5基準、比較対象を変更しない。",
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "limits": "各条件1回なので担当差と指示差を分離できない。比較の正確化のみを試用価値に数えず、全体完成や一般優位を認定しない。モデル・推論設定は明示せず既定を使用。",
+  "preparation_budget_minutes": 8,
+  "report_budget_minutes": 10
+}

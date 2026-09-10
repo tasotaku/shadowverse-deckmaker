@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "checked_at": "2026-09-10T13:30:09.632455+00:00",
+  "scope": "隔離したDEVELOPへの短い文字列追記。公開形式・別評価指示・停止処理は変更なし。",
+  "testable_behaviors": {
+    "normal": [
+      "実際の保存入力から両側の資料を作り、指示以外は一致",
+      "正式改訂と別評価の保存を既存入口で完了"
+    ],
+    "boundary": [
+      "旧評価とその元資料の版対応を保持",
+      "今回の評価へ旧考案資料を渡さない"
+    ],
+    "error": [
+      "改変資料・入力破損・未提出・担当識別違いは進めない"
+    ]
+  },
+  "existing_tests": {
+    "files": [
+      "tests/test_discovery.py",
+      "tests/test_discovery_review_contexts.py",
+      "tests/temp/test_discovery_run_temp.py"
+    ],
+    "passed": 62,
+    "seconds": 12.44
+  },
+  "static": "追加側discovery.py strict mypy PASS、両側コンパイルPASS",
+  "actual_input": "公開packetを両側で実生成し、差はinstructionだけ。19資料・旧評価1件、別評価指示ハッシュは同一。",
+  "new_tests": "低影響の指示文を写したテストは作らず、既存機能検査と実入力の全項目照合を使用。",
+  "initial_setup_failure": "隔離先のdocs準備漏れで3失敗59エラー。両側へ同じdocsを置いて再検査。実AIは未開始で、条件・入力・指示を変更せず。",
+  "limits": "実AIで指示が役立つかはこれから。テスト合格を有用性合格としない。"
+}

@@ -1,0 +1,137 @@
+{
+  "id": "state-comparison-01",
+  "revision": 5,
+  "saved_at": "2026-09-10T13:31:12.499258+00:00",
+  "actor": "codex",
+  "reason": "両側の実際の起動と準備済み資料との完全一致を確認",
+  "record": {
+    "id": "state-comparison-01",
+    "title": "通常構築を同じ開始状態から比較して改訂する",
+    "category": "method",
+    "status": "running",
+    "summary": "現行側・比較指示追加側の改訂を実行中。各15分の中で考案・比較・正式提出まで行う。",
+    "method": "両側に同じ通常構築を指定し、片側だけ同じ開始状態・終点での比較手順を加える。各側を別担当が改訂し、同じ指示で別評価する。",
+    "procedure": "条件固定→隔離した指示差分と入力一致の検査→現行側/追加側を各15分で改訂→各10分で別評価→5基準と時刻・採否を比較。",
+    "inputs": "最新の失敗改訂より前の固定入力。元案とその旧評価、公式ルール調査4資料を含む既知入力1組。最新改訂・最新評価・原因点検は担当へ渡さない。",
+    "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。 / 最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。 / 追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。 / 最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。 / 共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "実入力は指示以外一致。比較の実効性は未評価。",
+      "limitations": "各条件1回なので担当差と指示差を分離できない。比較の正確化のみを試用価値に数えず、全体完成や一般優位を認定しない。モデル・推論設定は明示せず既定を使用。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "結果と比較不足の解消、試す理由の有無から判定する。"
+    },
+    "started_at": "2026-09-10T13:28:11.541912+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "条件固定・隔離した指示と入力を確認",
+        "status": "completed",
+        "started_at": "2026-09-10T13:28:11.541912+00:00",
+        "ended_at": "2026-09-10T13:30:09.632455+00:00",
+        "note": "62検査と型検査を通過。実入力の差は指示のみ、19資料と別評価指示は同一。隔離先docsの準備漏れを直し、実AI開始前に再確認。",
+        "budget_minutes": 8
+      },
+      {
+        "id": "a-develop",
+        "title": "現行側：改訂",
+        "status": "running",
+        "started_at": "2026-09-10T13:30:29.100771+00:00",
+        "ended_at": null,
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/a/run/develop-run",
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-review",
+        "title": "現行側：別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-develop",
+        "title": "追加側：改訂",
+        "status": "running",
+        "started_at": "2026-09-10T13:30:30.278241+00:00",
+        "ended_at": null,
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/b/run/develop-run",
+        "budget_minutes": 15
+      },
+      {
+        "id": "b-review",
+        "title": "追加側：別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "report",
+        "title": "両側の結果・採否・時間を比較して記録",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "比較の正確さと試す理由を分け、失敗や未提出も保持。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/state-comparison-01/README.md",
+      "evals/discovery/state-comparison-01/protocol.json",
+      "evals/discovery/state-comparison-01/a-instruction.diff",
+      "evals/discovery/state-comparison-01/b-instruction.diff",
+      "evals/discovery/state-comparison-01/input-verification.json",
+      "evals/discovery/state-comparison-01/verification.json",
+      "evals/discovery/state-comparison-01/test-setup-failure.json",
+      "evals/discovery/state-comparison-01/running-observation.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/state-comparison-01/README.md",
+      "sha256": "dcfeced82b68f1f8a620218f3a575d6ffb5b91a505bbce58ba038893348c9e09",
+      "size": 1433
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/a-instruction.diff",
+      "sha256": "6e03665c59a9bdda00b196b931bac721ebcd7c0a84243453f75650e34b653859",
+      "size": 1077
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/b-instruction.diff",
+      "sha256": "5f1d4f7538558bf525b51fdc444ab7dd129e1d385ea26515b533266511de423a",
+      "size": 1894
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/input-verification.json",
+      "sha256": "6ab0a062c3b8eaf34443897b8a387e9042cbaafb6321835730c7c9876fb0b7a3",
+      "size": 826
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/protocol.json",
+      "sha256": "3e607c1c408bc41019aa8cb3d173a73a93ac48a2b91301f55b25fbb697c40eeb",
+      "size": 10455
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/running-observation.json",
+      "sha256": "080fb8d49a77b7533e977207e0da6317bfe656a270edac2bd80bd39d6fb6290d",
+      "size": 640
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/test-setup-failure.json",
+      "sha256": "51d7121a1b93e06c04a2cd28318851712f1c2c00d1a18fc64861ca72ea4a37e3",
+      "size": 654
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/verification.json",
+      "sha256": "9512fd8ee005c2c9703c98f2b7797d5ec0f23d8ba9f6db6248ee454543fb5caa",
+      "size": 1542
+    }
+  ]
+}
