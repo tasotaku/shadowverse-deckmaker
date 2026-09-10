@@ -1,0 +1,30 @@
+{
+  "saved_at": "2026-09-10T14:55:42.469305+00:00",
+  "code_verification": "PASS: 80機能検査・strict mypy・独立コード点検",
+  "live_execution": "FAIL: review_failed/timed_out、正式評価0件、追加改訂0件",
+  "adoption": "deferred",
+  "reason": "正式案の保持と評価担当への引渡しは確認。実AIによる正式評価完了は未達のため再開補助の本採用も保留。比較案の価値は未評価。",
+  "workflow_checkpoint": {
+    "symptom": "時計差と未提出が再発し、保存再開でも別評価が完了しなかった。",
+    "cause": "実行中のPC自動スリープと後続スリープ計2368秒を確認。時計差2360.796秒の主因と考えられる。未提出・通信断の全因果は未確定。",
+    "fixed_contract": "元失敗・案・資料を保持。正式提出と既存5基準で判断し、未提出を不採用理由や成功に変えない。",
+    "change": "担当実行中だけOS標準caffeinate -iで自動スリープを抑止する。実行中の要求と終了後の解除を確認し、保存案の別評価を別試行で1回行う。",
+    "next_measure": "同じ案・資料・評価指示・経過600秒で、時計差と正式評価完了を測る。"
+  },
+  "grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "grading": {
+    "workflow": "FAIL：評価担当の公開読出しまでは成功、正式評価なし",
+    "correctness": "UNASSESSED：新しい正式評価がない",
+    "development": "UNASSESSED：この試行は既存案の評価だけ",
+    "utility": "UNASSESSED：今回評価できた種は0件。案の弱さを示すものではない",
+    "honesty": "PASS：期限停止、時計差、未確認原因と未評価を保持"
+  },
+  "timing": {
+    "started_at": "2026-09-10T14:02:51.488620+00:00",
+    "ended_at": "2026-09-10T14:52:12.346543+00:00",
+    "wall_seconds": 2960.857923,
+    "elapsed_seconds": 600.0624530422501,
+    "difference_seconds": 2360.79546995775
+  },
+  "old_failure_preserved": true
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10 14:02:07 UTC",
+  "ended_at_utc": "2026-09-10 14:04:47 UTC",
+  "review_type": "今回のgit差分に対する独立した読み取りレビュー",
+  "reviewed_file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+  "reviewed_version": {
+    "file_sha256": "4758b22550fa5b81b6b6a1637308d391ad4eb58c405e2ca6a097a51540b8265b",
+    "diff_sha256": "b4f9c24c5ffd3b7d70591b38891a73362667ee8ebbe7665e679df1f003b6607c",
+    "head": "e31d7d4a881cd6d8038255251f4bb1323b495e8f",
+    "lines": 368,
+    "committed_revision": "12de840834308a303fbdc9630ad9963841c0a304",
+    "committed_file_matches_reviewed_file": true
+  },
+  "scope": [
+    "review_onlyの対象検査",
+    "準備用複製の不変確認",
+    "旧評価の隔離",
+    "既存履歴への新しい評価1件の集約",
+    "失敗時の未完了保持"
+  ],
+  "verdict": "指定範囲では実害のある欠陥を見つけなかった",
+  "findings": [],
+  "checks": [
+    {
+      "area": "対象版と再考案の防止",
+      "observation": "review_onlyは正のrevisionの明示と考案予算の省略を要求する。指定版が保存済み最新改訂と一致することを確認し、一時複製で正式再保存が一致してからreview工程だけを組む。通常実行は従来のdevelop→reviewを維持する。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+        "lines": [
+          174,
+          188,
+          198,
+          204,
+          220,
+          231,
+          350,
+          360
+        ]
+      }
+    },
+    {
+      "area": "準備用複製と元保存の不変",
+      "observation": "元保存と出力の内包・同一関係を拒否し、出力は新規作成する。正式データをprepareへ複製し、評価資料を生成した後のprepare全体を固定する。担当終了後は元保存とruntimeを完全一致、担当用の初期ファイルを保持、prepareを完全一致で確認してから成功処理へ進む。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+        "lines": [
+          31,
+          47,
+          195,
+          208,
+          213,
+          239,
+          266,
+          275,
+          281
+        ]
+      }
+    },
+    {
+      "area": "旧評価の隔離と担当・対象の対応",
+      "observation": "履歴を持つ準備用複製で評価資料を先に作り、その後for_review=Trueで旧reviewと旧packetを除いた担当用複製へ今回のpacketだけを追加する。公開設定はreview・対象版・packet・新しい担当IDに固定され、保存後も担当ID、packet、提案hash、考案担当と異なるIDを検査する。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+        "lines": [
+          50,
+          65,
+          233,
+          244,
+          307,
+          317
+        ]
+      },
+      "limit": "評価資料生成と公開入口は既存の処理を再利用しており、この差分で評価規則の変更はない。"
+    },
+    {
+      "area": "既存履歴への評価1件の追加",
+      "observation": "担当用保存では正式評価が1件、最新改訂への評価が1件、旧改訂への評価が0件、改訂数が元と同数であることを確認する。集約にはprepareを使うため元の評価履歴を保持し、今回の評価と対応packetだけを追記する。結果は追加改訂0件・追加評価1件と数える。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+        "lines": [
+          302,
+          320,
+          321,
+          335
+        ]
+      }
+    },
+    {
+      "area": "失敗時の未完了保持",
+      "observation": "終了コード非0または実行未完了はreview_failedで停止し、未提出はreview_missing、検証・集約例外はfailedになる。完了への更新は対応検査・正式再保存検査・集約report保存の後だけで、元試行のresultを書き換える処理はない。正式評価だけが残った期限停止もcompletedへ昇格しない。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+        "lines": [
+          275,
+          282,
+          304,
+          308,
+          319,
+          340,
+          364
+        ]
+      }
+    }
+  ],
+  "verification_limits": {
+    "new_tests_run": false,
+    "new_ai_trials_run": false,
+    "code_edited": false,
+    "private_execution_logs_read": false,
+    "parent_reported_checks": "関連80検査PASS・strict mypy PASSと親から通知された。本レビューでは再実行せず、独立した実行結果とは数えていない。",
+    "assessment_limit": "今回の差分と既存の隣接処理を読むレビュー。進行中の実AI別評価の結果や、案の有用性を判定したものではない。"
+  },
+  "output_path": "/tmp/review-resume-code-audit.json",
+  "elapsed_seconds": 160
+}

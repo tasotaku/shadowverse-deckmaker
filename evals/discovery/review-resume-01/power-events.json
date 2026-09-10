@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-09-10T14:58:02.423379+00:00",
+  "command": "pmset -g log, review-time Sleep/DarkWake/Wake entries only",
+  "events": [
+    "2026-09-10 23:07:05 +0900 Sleep               \tEntering Sleep state due to 'Idle Sleep':TCPKeepAlive=active Using AC (Charge:100%) 903 secs",
+    "2026-09-10 23:22:08 +0900 DarkWake            \tDarkWake from Deep Idle [CDNPB] : due to NUB.SPMI0.SW3 nub-spmi0.0x02 nub-spmi-a0.0x0B rtc/SleepService Using AC (Charge:100%) 45 secs",
+    "2026-09-10 23:22:53 +0900 Sleep               \tEntering Sleep state due to 'Sleep Service Back to Sleep':TCPKeepAlive=active Using AC (Charge:100%) 915 secs",
+    "2026-09-10 23:38:08 +0900 DarkWake            \tDarkWake from Deep Idle [CDNPB] : due to NUB.SPMI0.SW3 nub-spmi0.0x02 nub-spmi-a0.0x0B rtc/Maintenance Using AC (Charge:100%) 45 secs",
+    "2026-09-10 23:38:53 +0900 Sleep               \tEntering Sleep state due to 'Maintenance Sleep':TCPKeepAlive=active Using AC (Charge:100%) 550 secs",
+    "2026-09-10 23:48:03 +0900 Wake                \tWake from Deep Idle [CDNVA] : due to MTP.DOCK.CHANNELS.AP0.IRQ nub-spmi-a0.0x0B RTP.multi-touch/HID Activity Using AC (Charge:100%)"
+  ],
+  "sleep_seconds_reported": [
+    903,
+    915,
+    550
+  ],
+  "sum_sleep_seconds": 2368,
+  "inference": "評価中に実際のIdle Sleepと後続スリープがあり、合計39分28秒は時計差39分20秒に近い。時計差の主因と考えられるが、約7秒の差と未提出への全因果は未確定。",
+  "scope": "実行期間内だけの電源状態。アプリ履歴・私的思考は含まない。"
+}

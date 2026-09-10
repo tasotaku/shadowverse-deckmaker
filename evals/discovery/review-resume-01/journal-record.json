@@ -1,30 +1,30 @@
 {
   "id": "review-resume-01",
-  "revision": 5,
-  "saved_at": "2026-09-10T14:04:12.919386+00:00",
+  "revision": 10,
+  "saved_at": "2026-09-10T14:59:21.644249+00:00",
   "actor": "codex",
-  "reason": "起動資料と旧評価隔離を照合、実装差分を保存",
+  "reason": "評価0件・採用保留を確定、PCスリープと全工程時間を保存",
   "record": {
     "id": "review-resume-01",
     "title": "保存済み正式案の別評価を再開する",
     "category": "method",
-    "status": "running",
-    "summary": "保存済み案の別評価入口は80検査に通過。実AIで別評価だけ1回を開始する。",
+    "status": "completed",
+    "summary": "評価だけの再開を実装・80検査は合格。実AIは正式評価0件で停止、本採用保留。実行中のPCスリープを確認。",
     "method": "最新の正式改訂を指定→入力と保存形式を再検査→評価資料を準備→旧評価を除く複製で別評価1回→改訂0・評価1を回収。",
     "procedure": "実装→正常・境界・失敗検査→実AIで保存済み案の別評価10分→既存案・元失敗の不変と結果・採否・時間の記録。",
     "inputs": "state-comparison-01追加側の正式改訂2、元案と旧評価、22資料の固定保存。新規考案や元の比較の再採点は行わない。",
     "criteria": "再改訂・元資料変更なしに正式な別評価1件まで完了すること。未提出や破損を成功へ進めないこと。案の有用性は既存5基準で別に判定。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "機能検査PASS。案の有用性は実AIの別評価待ち。",
-      "limitations": "再開後の追加工程。元試行の時間・採点へ合算しない。保存再開の成功を発見力としない。"
+      "outcome": "fail",
+      "summary": "改訂0件・正式評価0件。元案と22資料は保持。担当の公開読出し16件は成功したが評価完了は未達。",
+      "limitations": "評価の時刻差49分20秒・監視10分。同期間にスリープ計39分28秒を確認。時計差の主因と考えられるが未提出の全因果は未確定。元比較は評価未完。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "機能検査と実AIの別評価まで確認して判断する。"
+      "status": "deferred",
+      "reason": "正式保存の再検査と引渡しまで確認。実AIの正式評価完了が未達のため本採用保留。案の有用性は未評価。"
     },
     "started_at": "2026-09-10T13:54:25.405030+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T14:59:21.530881+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -47,19 +47,19 @@
       {
         "id": "live-review",
         "title": "保存済み案を別担当が評価",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-10T14:02:51.488620+00:00",
-        "ended_at": null,
-        "note": "新規改訂0件、別評価1件を上限10分で実行。\n起動処理を開始。実行記録: /private/tmp/sv-review-resume-01-run/review-run",
+        "ended_at": "2026-09-10T14:52:12.346543+00:00",
+        "note": "新規改訂0件、別評価1件を上限10分で実行。\n起動処理を開始。実行記録: /private/tmp/sv-review-resume-01-run/review-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "report",
         "title": "再開結果・採否・工程時間を保存",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "入口の動作と案の有用性を別判定。",
+        "status": "completed",
+        "started_at": "2026-09-10T14:05:59.268010+00:00",
+        "ended_at": "2026-09-10T14:59:21.530881+00:00",
+        "note": "公開16操作・正式評価0件・元保存不変を回収。時刻差と実スリープを照合。報告の初見確認11秒PASS。目安8分超過を保持。",
         "budget_minutes": 8
       }
     ],
@@ -72,14 +72,40 @@
       "evals/discovery/review-resume-01/runtime.tar.gz",
       "evals/discovery/review-resume-01/runtime-manifest.json",
       "evals/discovery/review-resume-01/implementation.diff",
-      "evals/discovery/review-resume-01/launch-check.json"
+      "evals/discovery/review-resume-01/launch-check.json",
+      "evals/discovery/review-resume-01/code-audit.json",
+      "evals/discovery/review-resume-01/clock-observation.json",
+      "evals/discovery/review-resume-01/result.json",
+      "evals/discovery/review-resume-01/execution-diagnostic.json",
+      "evals/discovery/review-resume-01/live/result.json",
+      "evals/discovery/review-resume-01/live/verification.json",
+      "evals/discovery/review-resume-01/live/review/run.json",
+      "evals/discovery/review-resume-01/live/review/session.tar.gz",
+      "evals/discovery/review-resume-01/live/review/public-operations.json.gz",
+      "evals/discovery/review-resume-01/power-events.json",
+      "evals/discovery/review-resume-01/timings.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/review-resume-01/README.md",
-      "sha256": "ecafade516bcf267147e22d443c5cb523eeea973a5198683f647de783602e37d",
-      "size": 1144
+      "sha256": "b2cb5d0ce11641943de6ed51d817474c5bfea31cf1c2c2ca07685ecea8156d1d",
+      "size": 4939
+    },
+    {
+      "path": "evals/discovery/review-resume-01/clock-observation.json",
+      "sha256": "dedf1fdc2c9ed0667d99c0ad6325c6ec189f0fda2e3bd0f855635074b15bb1fc",
+      "size": 835
+    },
+    {
+      "path": "evals/discovery/review-resume-01/code-audit.json",
+      "sha256": "3a638ddd2c61695c4482d01351cc181b8ac0e692a9ad4f7c2ccf6b8ddd742052",
+      "size": 5275
+    },
+    {
+      "path": "evals/discovery/review-resume-01/execution-diagnostic.json",
+      "sha256": "f0c992a7a0367d22d13d029db5e30fe29f6aeb118ea383c39276918a8c27a97c",
+      "size": 807
     },
     {
       "path": "evals/discovery/review-resume-01/implementation.diff",
@@ -97,6 +123,36 @@
       "size": 794
     },
     {
+      "path": "evals/discovery/review-resume-01/live/result.json",
+      "sha256": "68c115c23c29fc94372266070ca0e1c49f0ea2eea4bc02e789c62e709e2545a6",
+      "size": 9360
+    },
+    {
+      "path": "evals/discovery/review-resume-01/live/review/public-operations.json.gz",
+      "sha256": "bca7cad63407ac8c872c244a7bdf3fd50558cc25763ac52a8a35dd9ee7d49541",
+      "size": 291710
+    },
+    {
+      "path": "evals/discovery/review-resume-01/live/review/run.json",
+      "sha256": "df3c5b94f8d16e6310163311537f26895b7efef38a4c4f9ae8b63d8f6f90ead7",
+      "size": 3120
+    },
+    {
+      "path": "evals/discovery/review-resume-01/live/review/session.tar.gz",
+      "sha256": "697811c21d56995ce2ab3dcc529f9b3884f7746135cbe0b706e7a319bb975652",
+      "size": 1333683
+    },
+    {
+      "path": "evals/discovery/review-resume-01/live/verification.json",
+      "sha256": "b2775d2b2adfd213c89a8d5d2323a9306afc1d27c49752e6c91fd62e036d9a5b",
+      "size": 893
+    },
+    {
+      "path": "evals/discovery/review-resume-01/power-events.json",
+      "sha256": "682e30e5fe0b1527a975d16a0a7dc64374eb1ebc9800fb0eb9aa2f564746671a",
+      "size": 1605
+    },
+    {
       "path": "evals/discovery/review-resume-01/preflight.json",
       "sha256": "ede1bf6f278cfbe8fc4264a82daf70f62bbb2386006931466225d928427ed4b8",
       "size": 1606
@@ -112,6 +168,11 @@
       "size": 14665
     },
     {
+      "path": "evals/discovery/review-resume-01/result.json",
+      "sha256": "4eec6d0da126087b3ffdb1f5123c845860c9944340e82c6380efec037d5522ef",
+      "size": 2079
+    },
+    {
       "path": "evals/discovery/review-resume-01/runtime-manifest.json",
       "sha256": "31ddf6b12f5c55653a57c248bc4479b7a369c1009f8c32a9de3af03e7c2dabae",
       "size": 3557
@@ -120,6 +181,11 @@
       "path": "evals/discovery/review-resume-01/runtime.tar.gz",
       "sha256": "432df5147a718aafce62f3dd491f64c986d0d71bd79d0c6654cb585bf5164520",
       "size": 186334
+    },
+    {
+      "path": "evals/discovery/review-resume-01/timings.json",
+      "sha256": "7ee6bae78474e10240d19327a1f5cdac05a0ce56c1d2a70f5e158cc5150aadf9",
+      "size": 2465
     }
   ]
 }

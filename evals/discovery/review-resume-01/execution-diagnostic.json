@@ -1,0 +1,9 @@
+{
+  "observed_at": "2026-09-10T14:55:42.468803+00:00",
+  "diagnostic_lines": [
+    "2026-09-10T14:51:28.134947Z  WARN codex_core::responses_retry: stream disconnected - retrying sampling request (1/5 in 200ms)... turn_id=01a08ba0-e38e-7403-b07e-b2e44f1133ed retries=1 max_retries=5 sampling_error=stream disconnected before completion: idle timeout waiting for websocket"
+  ],
+  "meaning": "14:51:28 UTCに応答ストリームの切断と再試行を示す警告が1件ある。時計差の原因や未提出の唯一の原因を特定したものではない。",
+  "unrelated_startup_diagnostic": "Figma接続の認証要求2件もあるが、その後に今回の公開読出しが16件成功しており、今回の評価未提出の原因とは確認できない。",
+  "private_stdout_read": false
+}

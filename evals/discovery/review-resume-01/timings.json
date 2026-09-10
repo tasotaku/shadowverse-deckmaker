@@ -1,0 +1,55 @@
+{
+  "started_at": "2026-09-10T13:54:25.405030+00:00",
+  "ended_at": "2026-09-10T14:59:21.530881+00:00",
+  "wall_seconds": 3896.125851,
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "保存済み案の別評価だけを起動する入口を実装",
+      "status": "completed",
+      "started_at": "2026-09-10T13:54:25.405030+00:00",
+      "ended_at": "2026-09-10T14:01:45.580117+00:00",
+      "note": "入口を実装。初回の機能検査・型検査もこの工程中に実行。検査結果の確認へ進む。",
+      "budget_minutes": 12,
+      "wall_seconds": 440.175087
+    },
+    {
+      "id": "verification",
+      "title": "正常・境界・失敗と入力保持を確認",
+      "status": "completed",
+      "started_at": "2026-09-10T14:01:45.580117+00:00",
+      "ended_at": "2026-09-10T14:02:50.812516+00:00",
+      "note": "80検査18.96秒・型検査PASS。公開CLIの模擬実行を含む。凍結入力と正式案の識別値を照合。",
+      "budget_minutes": 8,
+      "wall_seconds": 65.232399
+    },
+    {
+      "id": "live-review",
+      "title": "保存済み案を別担当が評価",
+      "status": "interrupted",
+      "started_at": "2026-09-10T14:02:51.488620+00:00",
+      "ended_at": "2026-09-10T14:52:12.346543+00:00",
+      "note": "新規改訂0件、別評価1件を上限10分で実行。\n起動処理を開始。実行記録: /private/tmp/sv-review-resume-01-run/review-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 10,
+      "wall_seconds": 2960.857923
+    },
+    {
+      "id": "report",
+      "title": "再開結果・採否・工程時間を保存",
+      "status": "completed",
+      "started_at": "2026-09-10T14:05:59.268010+00:00",
+      "ended_at": "2026-09-10T14:59:21.530881+00:00",
+      "note": "公開16操作・正式評価0件・元保存不変を回収。時刻差と実スリープを照合。報告の初見確認11秒PASS。目安8分超過を保持。",
+      "budget_minutes": 8,
+      "wall_seconds": 3202.262871
+    }
+  ],
+  "review_clock_seconds": 600.0624530422501,
+  "reader": {
+    "started_at": "2026-09-10T14:58:20+00:00",
+    "ended_at": "2026-09-10T14:58:31+00:00",
+    "seconds": 11,
+    "verdict": "PASS"
+  },
+  "limits": "並行工程は合算しない。時刻差にPCスリープを含む。実作業時間の推定ではない。"
+}
