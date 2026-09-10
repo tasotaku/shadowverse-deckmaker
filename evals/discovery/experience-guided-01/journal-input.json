@@ -3,7 +3,7 @@
   "title": "保存した経験を参照すると次の考案が良くなるか",
   "category": "method",
   "status": "running",
-  "summary": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
+  "summary": "経験参照側も正式1案、固定入力・元DB・過去記録は不変。旧採否が別評価へ混入していないことを確認。両案の独立評価を実行中。",
   "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
   "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
   "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
@@ -59,10 +59,10 @@
     {
       "id": "review-b",
       "title": "B案を別担当が評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-10T08:28:03.230392+00:00",
       "ended_at": null,
-      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
+      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/review/run",
       "budget_minutes": 15
     },
     {
@@ -72,6 +72,15 @@
       "started_at": "2026-09-10T08:24:15.521497+00:00",
       "ended_at": "2026-09-10T08:25:15.419267+00:00",
       "note": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
+      "budget_minutes": null
+    },
+    {
+      "id": "collect-b",
+      "title": "経験参照側の結果回収と評価への引き渡し",
+      "status": "completed",
+      "started_at": "2026-09-10T08:26:44.829730+00:00",
+      "ended_at": "2026-09-10T08:28:04.416458+00:00",
+      "note": "経験参照側も正式1案、固定入力・元DB・過去記録は不変。旧採否が別評価へ混入していないことを確認。両案の独立評価を実行中。",
       "budget_minutes": null
     }
   ],
@@ -84,6 +93,11 @@
     "evals/discovery/experience-guided-01/a/generation/conclusion.md",
     "evals/discovery/experience-guided-01/a/generation/research-report.md",
     "evals/discovery/experience-guided-01/a/generation/verification.json",
-    "evals/discovery/experience-guided-01/a/review-input/isolation-check.json"
+    "evals/discovery/experience-guided-01/a/review-input/isolation-check.json",
+    "evals/discovery/experience-guided-01/b/generation/conclusion.md",
+    "evals/discovery/experience-guided-01/b/generation/research-report.md",
+    "evals/discovery/experience-guided-01/b/generation/experience-use.json",
+    "evals/discovery/experience-guided-01/b/generation/verification.json",
+    "evals/discovery/experience-guided-01/b/review-input/isolation-check.json"
   ]
 }
