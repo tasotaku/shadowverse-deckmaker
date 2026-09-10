@@ -1,0 +1,86 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-experience-guided-01/a/review/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-experience-guided-01/a/review/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-experience-guided-01/a/review/work",
+  "stdin": "/private/tmp/sv-experience-guided-01/a/review/work/prompt.md",
+  "output": "/private/tmp/sv-experience-guided-01/a/review/run",
+  "started_at": "2026-09-10T08:25:14.303145+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2269454.928873291,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 31303,
+  "worker_pid": 31304,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T08:35:58.279357+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T08:25:14.303791+00:00",
+      "elapsed_seconds": 0.00048245908692479134
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T08:25:14.304372+00:00",
+      "elapsed_seconds": 0.0010632923804223537
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T08:25:14.312686+00:00",
+      "elapsed_seconds": 0.009423375129699707
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T08:35:58.277707+00:00",
+      "elapsed_seconds": 643.9725850843824,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T08:35:58.279371+00:00",
+      "elapsed_seconds": 643.974192542024
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T08:35:58.286567+00:00",
+      "elapsed_seconds": 643.9813884594478
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "experience-guided-01",
+    "stage_id": "review-a",
+    "status": "completed",
+    "begin_revision": 8,
+    "claimed_stage": {
+      "id": "review-a",
+      "title": "A案を別担当が評価",
+      "status": "running",
+      "started_at": "2026-09-10T08:25:14.303145+00:00",
+      "ended_at": null,
+      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/review/run",
+      "budget_minutes": 15
+    },
+    "end_revision": 17,
+    "synced_at": "2026-09-10T08:35:58.286558+00:00"
+  },
+  "elapsed_seconds": 643.9741865000688,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

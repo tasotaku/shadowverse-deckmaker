@@ -1,27 +1,27 @@
 {
   "id": "experience-guided-01",
-  "revision": 15,
-  "saved_at": "2026-09-10T08:28:04.867532+00:00",
+  "revision": 22,
+  "saved_at": "2026-09-10T08:49:20.543477+00:00",
   "actor": "codex",
-  "reason": "経験参照側の提出・参照記録・評価への分離を保存",
+  "reason": "比較結果・採否と正式評価の根拠を保存",
   "record": {
     "id": "experience-guided-01",
     "title": "保存した経験を参照すると次の考案が良くなるか",
     "category": "method",
     "status": "running",
-    "summary": "経験参照側も正式1案、固定入力・元DB・過去記録は不変。旧採否が別評価へ混入していないことを確認。両案の独立評価を実行中。",
+    "summary": "比較は両方式とも試行推薦0件で本採用保留。結果の報告と記録画面を最終確認中。",
     "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
     "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
     "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
     "criteria": "従来の5基準を維持。試す理由が残ることに加え、経験参照による実質改善・既存案の重複・余分な手間を別に確認する。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "条件準備中。",
-      "limitations": "既知入力の開発用比較で、未知入力での一般優位は認定しない。"
+      "outcome": "mixed",
+      "summary": "両方式で正式案・独立評価を各1件保存。ともに条件付き成立・追加検討・独自性未確認。Aは道中の枚数に要訂正。Bは経験を参照したが有用な出力の改善へ至らず。",
+      "limitations": "既知入力1組、追加改訂は未実施。経験の取得と考えを変えた因果は別。過去案照合の開始時刻は未記録。実戦・Tier・一般優位は未確認。"
     },
     "decision": {
       "status": "deferred",
-      "reason": "比較実行前。"
+      "reason": "事前に定めた、経験参照側だけが有用な新しい種又は負担を解消した案へ到達する条件を満たさない。両者とも試行推薦0件。検索機能自体の採用とは分ける。"
     },
     "started_at": "2026-09-10T07:57:54.798189+00:00",
     "ended_at": null,
@@ -56,19 +56,19 @@
       {
         "id": "review-a",
         "title": "A案を別担当が評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T08:25:14.303145+00:00",
-        "ended_at": null,
-        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/review/run",
+        "ended_at": "2026-09-10T08:35:58.279357+00:00",
+        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/review/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "review-b",
         "title": "B案を別担当が評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T08:28:03.230392+00:00",
-        "ended_at": null,
-        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/review/run",
+        "ended_at": "2026-09-10T08:36:51.761850+00:00",
+        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/review/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
@@ -88,6 +88,33 @@
         "ended_at": "2026-09-10T08:28:04.416458+00:00",
         "note": "経験参照側も正式1案、固定入力・元DB・過去記録は不変。旧採否が別評価へ混入していないことを確認。両案の独立評価を実行中。",
         "budget_minutes": null
+      },
+      {
+        "id": "history-check",
+        "title": "過去案との差と経験の参照記録を別点検",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": "2026-09-10T08:33:16+00:00",
+        "note": "18保存物・10改訂を照合。両案は表現だけの再提出ではないが、中心機構は共通。Bは検索成功7・失敗1。個別の開始時刻は記録し忘れたため未記録。結果を保存した時刻で補わない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "result-check",
+        "title": "独立評価を回収して固定条件と照合",
+        "status": "completed",
+        "started_at": "2026-09-10T08:37:06.640217+00:00",
+        "ended_at": "2026-09-10T08:48:46.344411+00:00",
+        "note": "正式2案・評価2件を回収し、原文一致と固定入力不変を確認。両方とも追加検討で推薦0件。4つの重要な指摘も別担当が照合し、評価の訂正は不要。経験参照手順の本採用は保留。",
+        "budget_minutes": null
+      },
+      {
+        "id": "publication",
+        "title": "結果を報告へまとめて記録画面で確認",
+        "status": "running",
+        "started_at": "2026-09-10T08:45:20.630353+00:00",
+        "ended_at": null,
+        "note": "両方式とも正式1案・独立評価1件、試行推薦0件。採否理由と工程時間を報告へまとめ、保存内容と記録画面を確認する。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
@@ -104,14 +131,24 @@
       "evals/discovery/experience-guided-01/b/generation/research-report.md",
       "evals/discovery/experience-guided-01/b/generation/experience-use.json",
       "evals/discovery/experience-guided-01/b/generation/verification.json",
-      "evals/discovery/experience-guided-01/b/review-input/isolation-check.json"
+      "evals/discovery/experience-guided-01/b/review-input/isolation-check.json",
+      "evals/discovery/experience-guided-01/independent-comparison.json",
+      "evals/discovery/experience-guided-01/generation-measurements.json",
+      "evals/discovery/experience-guided-01/result.json",
+      "evals/discovery/experience-guided-01/final-evidence-audit.json",
+      "evals/discovery/experience-guided-01/a/review/evaluation.md",
+      "evals/discovery/experience-guided-01/a/review/review.json",
+      "evals/discovery/experience-guided-01/a/review/verification.json",
+      "evals/discovery/experience-guided-01/b/review/evaluation.md",
+      "evals/discovery/experience-guided-01/b/review/review.json",
+      "evals/discovery/experience-guided-01/b/review/verification.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/experience-guided-01/README.md",
-      "sha256": "e6e6b41a9b02b02390bb18f3fccff7d8be6b5a452f6bd72367a14eab30231218",
-      "size": 3491
+      "sha256": "eadf00a88e5886f6542ad48a4053d519c0b0a40424555f5891e59db43a2bf992",
+      "size": 9256
     },
     {
       "path": "evals/discovery/experience-guided-01/a/generation/conclusion.md",
@@ -127,6 +164,21 @@
       "path": "evals/discovery/experience-guided-01/a/generation/verification.json",
       "sha256": "beab66e359b348749208adf5621757123154d4a9203941a4b519ad67dde4515a",
       "size": 906
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/review/evaluation.md",
+      "sha256": "665c1da278af804b2143f9a3c97b0d192bb5e469218ff80b50bbc195589e17ca",
+      "size": 12565
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/review/review.json",
+      "sha256": "eb2290859a644a27f452dbdf678eb02dfa5f4bff3fbf5637852f3cbc8ce4c766",
+      "size": 16545
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/review/verification.json",
+      "sha256": "6dc0b9d2852101c9ebc1d60387e68bb3d37d8c2f012375b71d133a66bdc077a1",
+      "size": 900
     },
     {
       "path": "evals/discovery/experience-guided-01/a/review-input/isolation-check.json",
@@ -154,9 +206,39 @@
       "size": 906
     },
     {
+      "path": "evals/discovery/experience-guided-01/b/review/evaluation.md",
+      "sha256": "c8ed142dacd61ed9a19c2e4415d4be340d54f6825e564cbe165f1c1262778298",
+      "size": 9562
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/b/review/review.json",
+      "sha256": "7c7246e69c2ca36e507ff9d4cabf692f08c9b83d5ce98dc855514c0261f8a041",
+      "size": 17373
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/b/review/verification.json",
+      "sha256": "9d3908ae4a9321f378e8d562cc3ebddfbc5d826f63358f3be756694f277934f6",
+      "size": 900
+    },
+    {
       "path": "evals/discovery/experience-guided-01/b/review-input/isolation-check.json",
       "sha256": "e960d8be34072cf7efca1d28467e560880492f5a9cea3c3921864489b6ddc573",
       "size": 581
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/final-evidence-audit.json",
+      "sha256": "ad07ae77e7173bd29ea5703712fc12346061d2513a0bf492bed726ae29217791",
+      "size": 761
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/generation-measurements.json",
+      "sha256": "78e67ab8df8fd3170951d0080713a85aaecd64ad9b31901fad1a3aac532d72ed",
+      "size": 4192
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/independent-comparison.json",
+      "sha256": "337eee49b65c8edd8184e0f0ed9f837428d2f94ff7584904be14dee0f0704a57",
+      "size": 7283
     },
     {
       "path": "evals/discovery/experience-guided-01/input-verification.json",
@@ -172,6 +254,11 @@
       "path": "evals/discovery/experience-guided-01/protocol.json",
       "sha256": "2ae1f97c9858391e977d9c74602d813478d786451ff1b8a3ef693fbb67415d31",
       "size": 4804
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/result.json",
+      "sha256": "24d49db7fac1e7a461b935099ec27a978ba5446dc637b3f408bb62f3fc648e3e",
+      "size": 5631
     },
     {
       "path": "evals/discovery/experience-guided-01/workflow-checkpoint.json",

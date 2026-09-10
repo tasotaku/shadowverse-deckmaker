@@ -1,0 +1,132 @@
+{
+  "checked_at": "2026-09-10T08:48:02.231344+00:00",
+  "status": "completed",
+  "outcome": "mixed",
+  "decision": {
+    "status": "deferred",
+    "reason": "両方式とも正式案・独立評価各1件、試行推薦0件。経験参照側だけの有用な新しい種又は実質改善へ至る事前条件を満たさない。検索機能の採用と別。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "arms": {
+    "a": {
+      "formal_proposals": 1,
+      "formal_reviews": 1,
+      "test_recommendations": 0,
+      "judgment": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "review_input_hash": "797cfc07e12545f195121e6d361aae7f56502c254b1b63453aa145a78459cf98",
+      "review_author": "01a08a6b-c7a3-7ff3-8065-ca6ddcf9e1d0",
+      "formal_review_all_fields_match": true,
+      "generation": {
+        "started_at": "2026-09-10T08:04:58.489248+00:00",
+        "ended_at": "2026-09-10T08:23:26.426157+00:00",
+        "elapsed_seconds": 1107.9468237077817,
+        "status": "completed",
+        "operation_count": 145,
+        "operation_failures": 0,
+        "incomplete_operations": 0,
+        "public_stdout_bytes": 745522
+      },
+      "review": {
+        "started_at": "2026-09-10T08:25:14.303145+00:00",
+        "ended_at": "2026-09-10T08:35:58.279357+00:00",
+        "elapsed_seconds": 643.9741865000688,
+        "status": "completed",
+        "operation_count": 71,
+        "operation_failures": 0,
+        "incomplete_operations": 0,
+        "public_stdout_bytes": 737698
+      }
+    },
+    "b": {
+      "formal_proposals": 1,
+      "formal_reviews": 1,
+      "test_recommendations": 0,
+      "judgment": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "review_input_hash": "8364eba305312ddf58b24ce139d510f7ad056da3c0bcd78c7eb427617d5fc489",
+      "review_author": "01a08a6e-5b7e-7403-ab44-13dd9f92d370",
+      "formal_review_all_fields_match": true,
+      "generation": {
+        "started_at": "2026-09-10T08:04:58.489249+00:00",
+        "ended_at": "2026-09-10T08:25:59.572810+00:00",
+        "elapsed_seconds": 1261.0930647919886,
+        "status": "completed",
+        "operation_count": 68,
+        "operation_failures": 1,
+        "incomplete_operations": 0,
+        "public_stdout_bytes": 1174313
+      },
+      "review": {
+        "started_at": "2026-09-10T08:28:03.230392+00:00",
+        "ended_at": "2026-09-10T08:36:51.761850+00:00",
+        "elapsed_seconds": 528.5297106667422,
+        "status": "completed",
+        "operation_count": 55,
+        "operation_failures": 0,
+        "incomplete_operations": 0,
+        "public_stdout_bytes": 736865
+      }
+    }
+  },
+  "grades": {
+    "workflow": {
+      "a": "PASS",
+      "b": "PASS with corrected CLI error",
+      "scope": "公開読出し・資料保存・提出・独立評価・reportまでコード変更なしで完了。B検索引数間違い1件は失敗として記録。"
+    },
+    "correctness": {
+      "a": "FAIL for stated reachability; conditional local steps",
+      "b": "CONDITIONAL with two corrections",
+      "scope": "AのT7手札8/山札26と提出7/27は不一致。Bは指定手順成立だがSEP補充という説明と既3枚のノマを増やす比較案は訂正が必要。未確認の個別裁定は未確認。"
+    },
+    "development": {
+      "a": "NOT_PERFORMED",
+      "b": "NOT_PERFORMED",
+      "scope": "初回考案比較のため評価後の改訂は両方0回。"
+    },
+    "utility": {
+      "a": "FAIL",
+      "b": "FAIL",
+      "scope": "両方develop、試行推薦0。反証や質問の保存を有用な種と数えない。"
+    },
+    "honesty": {
+      "a": "PASS",
+      "b": "PASS",
+      "scope": "保存・検索範囲と条件を限定。独自性未確認、Tier・勝率加点なし。"
+    }
+  },
+  "experience_effect": {
+    "new_mechanisms": 1,
+    "reworded_replays": 0,
+    "past_unique_revisions_compared": 10,
+    "past_objects": 18,
+    "b_unique_query_conditions": 6,
+    "b_successful_recalls": 7,
+    "b_failed_recalls": 1,
+    "b_retrieved_unique_proposals": 5,
+    "b_retrieved_unique_reviews": 5,
+    "causal_uplift": "unconfirmed",
+    "generation_difference_b_minus_a_seconds": 153.14624108420685
+  },
+  "limits": [
+    "既知入力1組、担当差と調査量を分離していない。一般優位・速度の因果・実戦の強さは未確認。",
+    "過去照合担当の開始時刻は未記録。全体準備前の思案開始時刻も未記録。",
+    "Aの16対14は正式評価にもある。Bのサガ代替8点は同じ独立担当のevaluation.md補足にのみあり、正式findingsへ含まれない。補足を正式判定項目として偽装しない。",
+    "Bの過去経験の取得範囲は公開操作で観測、読んだ箇所や案への因果は本人申告を含む。",
+    "実行中の私的思考ログは収集していない。凍結入力の不変と公開操作の検証は、未観測の全行動の証明ではない。"
+  ],
+  "preparation_incidents": [
+    "ディレクトリ作成漏れでpacket出力が1回失敗。補って同じ固定入力へ復旧。"
+  ],
+  "parent_check_incidents": [
+    "reportトップ階層にreviewsがあると誤認した読取集計1回がKeyError。実際のrevisions内を読み直し、正式保存・入力に変更なし。",
+    "報告ファイルの置換パッチ1回が同一パスのdelete/add重複で拒否。ファイル変更前に拒否され、通常書込で保存。"
+  ]
+}
