@@ -34,12 +34,12 @@ def _lines(value: object, path: str | None) -> Section:
 
 
 def _sections(data: JSONDict) -> dict[str, Section]:
-    # AI_NOTE: よく読む資料を独立区分にし、残りの属性も残す。新しい属性が増えても読出しで失わない。
+    # AI_NOTE: 引き継ぎ対象を直接読める区分も加え、全文と出典を同じ保存版から返す。
     context: JSONDict = data["context"]
     context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
     packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history",
                     "review_contexts"}
-    return {
+    sections = {
         "cards": Section("cards", context["cards"], "data.context.cards"),
         "rules": _lines(context["rules"], "data.context.rules"),
         "keywords": Section("keywords", [{"keyword": key, "text": value}
@@ -61,12 +61,21 @@ def _sections(data: JSONDict) -> dict[str, Section]:
         "response_example": _lines(data["response_example"], "data.response_example"),
         "packet_metadata": _lines({key: value for key, value in data.items() if key not in packet_parts}, "data"),
     }
+    if "finish_from_source" in data:
+        matches = [(i, source) for i, source in enumerate(data.get("sources", []))
+                   if source["source_hash"] == data["finish_from_source"]]
+        if len(matches) != 1:
+            raise ValueError("提案へまとめる対象資料が保存版に一意に存在しません")
+        index, source = matches[0]
+        sections["finish_source"] = _lines(
+            {**source, "content": source["content"].splitlines(keepends=True)}, f"data.sources[{index}]")
+    return sections
 
 
 def packet_summary(session: Path, packet_hash: str) -> JSONDict:
-    # AI_NOTE: 概要に新しいhashを振らず、回答にも読出しにも同じ全文資料の識別値を使わせる。
+    # AI_NOTE: 概要にも引き継ぎ対象を載せ、通常の出力は変えず同じ全文資料を参照させる。
     data = _load_packet(session, packet_hash)
-    return {
+    result = {
         "sha256": packet_hash,
         "packet_path": str((session / "packets" / f"{packet_hash}.json").resolve()),
         "stage": data["stage"],
@@ -83,6 +92,9 @@ def packet_summary(session: Path, packet_hash: str) -> JSONDict:
                    "各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。"
                    "offsetは0始まりです。回答のpacket_hashには上のsha256を使います。",
     }
+    if "finish_from_source" in data:
+        result["finish_from_source"] = data["finish_from_source"]
+    return result
 
 
 def read_packet(session: Path, packet_hash: str, section: str, offset: int = 0, limit: int = 20) -> JSONDict:

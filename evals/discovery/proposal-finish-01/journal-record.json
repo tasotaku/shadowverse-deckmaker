@@ -1,0 +1,107 @@
+{
+  "id": "proposal-finish-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T02:03:53.552784+00:00",
+  "actor": "root",
+  "reason": "調査済み資料を指定して提出へまとめる公開の選択肢を実装し、実AIの検証を開始",
+  "record": {
+    "id": "proposal-finish-01",
+    "title": "保存済みの調査を別の担当が提案へまとめる",
+    "category": "method",
+    "status": "running",
+    "summary": "14資料を引き継ぎ、対象報告から先に下書きを保存して提出へ進めるか検証中。",
+    "method": "公開packetで保存済みの調査を指定し、提案をまとめる専用の指示を選ぶ。対象報告を直接読み、下書き保存後に必要な本文・注記・不足を確認する。通常の探索・提出検査・独立評価の基準は維持。",
+    "procedure": "入力をコピーし19ファイルの一致を確認→機能検査118件と型検査→実AIの提案化→正式案があれば独立評価→結果・採否を記録。作業下書きと正式提出、試す価値を分ける。",
+    "inputs": "worker-clock-01の固定ドラゴン/ローテーションと14資料。正式案0件の中断済み調査からの引き継ぎであり、未知の入力での再発見ではない。",
+    "criteria": "公開工程、正しさ、発展、有用性、誠実さの5基準を維持。下書き保存や提出件数だけで有用性を認定しない。実行時刻・経過秒・公開操作を保存する。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "機能検査118件と型検査に合格。実AIの提案化を開始。",
+      "limitations": "上限を30分へ変更しており、前試行との速度比較・原因の単独確定はできない。実装着手のUTCは未記録。検査11.93秒をAIの実利用時間とは数えない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "正式提出と独立評価の実利用結果を待つ。"
+    },
+    "started_at": "2026-09-10T02:02:26.952154+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "checks",
+        "title": "公開入口の実装と機能検査",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": null,
+        "note": "118件・11.93秒と型検査合格。実装・検査の正確な開始終了UTCは未記録。検査計画の保存時刻と終了観測時刻は別に保持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "preparation",
+        "title": "既存調査のコピーと入力照合",
+        "status": "completed",
+        "started_at": "2026-09-10T02:02:26.952154+00:00",
+        "ended_at": "2026-09-10T02:02:27.246475+00:00",
+        "note": "元の19ファイル不変、14資料、専用の入力版を1つ生成。",
+        "budget_minutes": null
+      },
+      {
+        "id": "completion",
+        "title": "実AIが下書き・確認・提出を行う",
+        "status": "running",
+        "started_at": "2026-09-10T02:02:40.076159+00:00",
+        "ended_at": null,
+        "note": "経過時計1800秒。UTC期限ではない。元の5基準を維持。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "review",
+        "title": "正式案の独立評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式案が出た場合だけ実施。最大15分、別担当。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/proposal-finish-01/README.md",
+      "evals/discovery/proposal-finish-01/protocol.json",
+      "evals/discovery/proposal-finish-01/preparation.json",
+      "evals/discovery/proposal-finish-01/test-plan.json",
+      "evals/discovery/proposal-finish-01/test-verification.json",
+      "evals/discovery/proposal-finish-01/run-start.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/proposal-finish-01/README.md",
+      "sha256": "d97ea8b4ffee5cd28c2dc4c171811c1c1ba9951fd9a5cbbd8b19990b0acff2cc",
+      "size": 1887
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/preparation.json",
+      "sha256": "f906c816348a81be6695c137ad11156ac8cbabf9c4f33e3a473e289bf2a932b8",
+      "size": 1076
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/protocol.json",
+      "sha256": "f32ff7ab78a954d23f7ccfb5e405c3e27cadd33bc8cb538e85a9cfea3a346b1b",
+      "size": 3634
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/run-start.json",
+      "sha256": "cdf97f151c6676753cf369c5f02b34a7ade6b55afb063e9f5533dc172c74cfa2",
+      "size": 1459
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/test-plan.json",
+      "sha256": "b3d9ec502e08ef89d72765b5b27571dfa73cf6e30b8f6a3a0ce04dea9e39d426",
+      "size": 1018
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/test-verification.json",
+      "sha256": "b993e38d4fa3b23579a16eb6c54101661547012de0342c327f63a4e134f44a44",
+      "size": 464
+    }
+  ]
+}
