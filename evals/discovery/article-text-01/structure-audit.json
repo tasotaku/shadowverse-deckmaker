@@ -1,0 +1,25 @@
+{
+  "structure": {
+    "started_at": "2026-09-10T11:03:12+00:00",
+    "ended_at": "2026-09-10T11:04:50+00:00",
+    "url": "https://game8.jp/shadowverse-beyond/698337",
+    "fetch_started_at": "2026-09-10T11:03:39.687836+00:00",
+    "fetch_ended_at": "2026-09-10T11:03:40.220418+00:00",
+    "html_sha256": "eaafbd4fbd93d8f47dad93812b23111a6b2c9991ae49914b6c9cec1831e6da0b",
+    "finding": "Game8本文はarchive-style-wrapper。fixtureは本文省略。template内効果表と本文の評価理由を区別する必要。"
+  },
+  "audit": {
+    "started_at": "2026-09-10T11:08:25+00:00",
+    "ended_at": "2026-09-10T11:09:10+00:00",
+    "verdict": "PASS",
+    "method": "コード差分と両実HTML・抽出文を別担当が読み取りで照合。テスト再実行なし。",
+    "findings": [
+      "GameWith候補8行は候補・右セルカード群・理由を同じ行で保持。",
+      "変わりし流れの「終盤も」は元記事も同じで、抽出で切れた文ではない。",
+      "Game8 templateの隠れた効果表を除外し外側行は保持。",
+      "関連記事・コメント・広告は混入なし。空の動的評価見出しは残る。",
+      "unavailable/partialと未読範囲を明示。通常40枚経路を維持。"
+    ],
+    "limits": "公開入口での新規取得・保存・別担当の実利用はこの照合の対象外。"
+  }
+}

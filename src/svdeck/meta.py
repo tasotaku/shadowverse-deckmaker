@@ -23,6 +23,7 @@ from typing import NamedTuple
 from typing import Any
 
 from svdeck.db import DB_PATH, connect
+from svdeck.article_text import article_text
 
 USER_AGENT = "Mozilla/5.0"
 REQUEST_INTERVAL_SEC = 1.0
@@ -330,7 +331,7 @@ def run(db: Path = DB_PATH) -> None:
         conn.close()
 
 
-def article_sources(db: Path, url: str, deck_format: str) -> dict[str, Any]:
+def article_sources(db: Path, url: str, deck_format: str, with_text: bool = False) -> dict[str, Any]:
     # AI_NOTE: 必要な記事だけを読み、リストと取得根拠を既存の資料形式へ出す。保存DBは変更しない。
     parsed = urlparse(url)
     sites = {"gamewith.jp": "gamewith", "game8.jp": "game8"}
@@ -339,7 +340,14 @@ def article_sources(db: Path, url: str, deck_format: str) -> dict[str, Any]:
     link = DeckLink(sites[parsed.hostname], url, "指定記事", "", deck_format)
     conn = sqlite3.connect(db.resolve().as_uri() + "?mode=ro", uri=True)
     try:
-        details = collect_deck_details(link)
+        explanation = None
+        if with_text:
+            time.sleep(REQUEST_INTERVAL_SEC)
+            html_text = _get_html(url)
+            details = [parse_gamewith_deck(html_text)] if link.site == "gamewith" else parse_game8_decks(html_text)
+            explanation = article_text(html_text, link.site)
+        else:
+            details = collect_deck_details(link)
         if not details:
             raise ValueError("記事のデッキリストが0件です")
         observed = datetime.now(timezone.utc).isoformat()
@@ -361,6 +369,10 @@ def article_sources(db: Path, url: str, deck_format: str) -> dict[str, Any]:
                 {"title": title + "の取得情報", "kind": "記事から取得した出典情報", "location": location,
                  "observed_at": observed, "content": json.dumps(provenance, ensure_ascii=False, indent=2), "limitations": limits},
             ])
+        if explanation is not None:
+            sources.append({"title": "記事の説明本文", "kind": "公開記事の説明", "location": url.split("#", 1)[0],
+                            "observed_at": observed, "content": json.dumps(explanation, ensure_ascii=False, indent=2),
+                            "limitations": [explanation["scope"], "記事内の記述は出典の主張であり、公式能力・実戦の強さ・普及をこの取得で認定しない。"]})
         return {"sources": sources}
     finally:
         conn.close()
@@ -372,12 +384,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--db", type=Path, default=DB_PATH, help="取得結果を保存するカードDB")
     parser.add_argument("--article", help="指定記事だけを読み、discovery attach用の資料JSONを標準出力へ返す。DBは変更しない")
     parser.add_argument("--format", choices=("rotation", "unlimited"), help="記事取得時の対象フォーマット")
+    parser.add_argument("--with-article-text", action="store_true", help="同じ取得から記事の説明も資料として追加する（任意）")
     args = parser.parse_args(argv)
     if bool(args.article) != bool(args.format):
         parser.error("--articleと--formatは一緒に指定してください")
+    if args.with_article_text and not args.article:
+        parser.error("--with-article-textには--articleと--formatが必要です")
     try:
         if args.article:
-            print(json.dumps(article_sources(args.db, args.article, args.format), ensure_ascii=False, indent=2))
+            print(json.dumps(article_sources(args.db, args.article, args.format, args.with_article_text), ensure_ascii=False, indent=2))
         else:
             run(args.db)
     except (OSError, ValueError, sqlite3.Error) as exc:

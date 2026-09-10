@@ -1,0 +1,31 @@
+{
+  "verdict": "PASS",
+  "started_at": "2026-09-10T11:10:43+00:00",
+  "ended_at": "2026-09-10T11:11:22+00:00",
+  "elapsed_seconds": 39,
+  "input": "保存版5f8a029f786b12e6508a2bb5b16ba09ff0dd5d2b34949ab2a524c8c8e6f598ccのsources区分だけ。履歴・コード・旧評価・Webを読まず、公開CLI3回で全285行を読出し。",
+  "commands": [
+    "discovery read data/discovery/article-text-01 5f8a029f786b12e6508a2bb5b16ba09ff0dd5d2b34949ab2a524c8c8e6f598cc sources --offset 0 --limit 100",
+    "discovery read data/discovery/article-text-01 5f8a029f786b12e6508a2bb5b16ba09ff0dd5d2b34949ab2a524c8c8e6f598cc sources --offset 100 --limit 100",
+    "discovery read data/discovery/article-text-01 5f8a029f786b12e6508a2bb5b16ba09ff0dd5d2b34949ab2a524c8c8e6f598cc sources --offset 200 --limit 100"
+  ],
+  "findings": [
+    {
+      "source_hash": "289c9d1d9d9fbb58bf9b68af905a397bb0c42336255a43f013b8bc694276d8ea",
+      "finding": "入れ替え候補に混迷の監獄アズヴォルト、イステンデッドで破壊可能、不意に強い盤面を押し付けるという理由が同じ行で明示。正式能力の条件まではこの短文で確認不能。"
+    },
+    {
+      "source_hash": "d7b1ae9b42f11c246a876ef00b703c3211f0726f107c7cba67322dd6acec9880",
+      "finding": "メイン40枚にアズヴォルトはない。候補欄の掲載と採用を区別。"
+    },
+    {
+      "source_hash": "75ffdd217fd774be649f08fff01d6b44070b82da855fea4a63fe8e6d72e2b319",
+      "finding": "疾走で攻め早期決着する全体方針と記事が述べる有利不利を復元。個別カードの採用/枚数理由は本文にない。"
+    },
+    {
+      "source_hash": "5bbfb1b2e4208e33f1237bd616dfa941ce1d75ec7d8ebade0910196aec602fb9",
+      "finding": "コピー対象40枚と表示37枚の差は寸裂の盗人3枚。原因や著者の最終意図は不明。"
+    }
+  ],
+  "limits": "2記事とも取得時点・出典・リスト・説明・画像などの未読範囲を区別。本文の主張だけで実戦の強さ・普及率・独自性は確定しない。カード名を事前に指定せず、用途を表す問いから本文内の例を回答した確認。新規の種を考案した検査ではない。"
+}

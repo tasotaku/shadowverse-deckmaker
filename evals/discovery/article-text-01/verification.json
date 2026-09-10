@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-09-10T11:09:32.541093+00:00",
+  "tests": "51 passed in 1.61s",
+  "command": "PYTHONPATH=src:tests python -m pytest -q tests/test_meta.py tests/test_meta_integrity.py tests/temp/test_meta_article_temp.py tests/temp/test_article_text_temp.py",
+  "static": "mypy strict 2 source files PASS",
+  "coverage": {
+    "normal": "既存40枚と1回取得、同時点の3資料、添付と保存版保持、本文見出し/表行の対応",
+    "edge": "画像カード名欠落partial、元fixtureは本文不足、template内表の除外",
+    "error": "本文無し/空/閉じない/重複はunavailable、オプション不足はIO前に拒否"
+  },
+  "timing_limits": "最初の機械検査開始終了の時計時刻は未計測。pytest自身の経過1.61秒を保存。実装工程内で実施。"
+}

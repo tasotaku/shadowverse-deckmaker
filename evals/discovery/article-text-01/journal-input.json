@@ -1,0 +1,73 @@
+{
+  "id": "article-text-01",
+  "title": "記事の採用理由と入れ替え候補を入力に残す",
+  "category": "method",
+  "status": "completed",
+  "summary": "51検査・型検査、2記事6資料の保存と再読一致、別担当の用途復元39秒を完了。記事説明の入力補助として採用。",
+  "method": "指定URL→1回の取得→既存40枚解析+本文抽出→既存資料形式→attach/packet/read",
+  "procedure": "構造確認と実装→機械検査と実取得→別担当が保存資料を利用→結果と採否を記録。",
+  "inputs": "GameWithのミッドレンジナイトメアとGame8の既存解析対象。過去の入力・評価は変えず、新しい取得として記録。",
+  "criteria": "1回のHTML取得から40枚リストと記事の説明を同じ時点で保存する。 / 見出し・表の行・カード名と理由を対応させ、ナビやコメント欄を混ぜない。 / 説明が抽出不能なら成功を装わず欠落理由を返す。画像や動画の中身は未確認とする。 / 既存リスト取得・DB読み取り専用・旧入力を維持する。 / 公開入口→添付→保存版の分割読出しで説明を復元し、別担当が本文から用途と限界を読める。 / 既知の見落としの修正として評価し、新しい種の発見力・普及率・旧案の採点に転用しない。",
+  "result": {
+    "outcome": "pass",
+    "summary": "51機械検査と原文照合、公開取得2記事・6資料の保存/再読、別担当の利用39秒を完了。",
+    "limitations": "1サイト1例の実取得と境界検査。画像内だけの効果・動画・動的描画の全文保証なし。既知入力の再利用。"
+  },
+  "decision": {
+    "status": "adopted",
+    "reason": "以前は捨てていた記事説明を同じ取得時点の資料へ保存でき、別担当も公開読出しから候補の用途とメイン40枚の違いを復元できた。取得補助の採用であり新しい種の発見力は未評価。"
+  },
+  "started_at": "2026-09-10T11:02:36.920029+00:00",
+  "ended_at": "2026-09-10T11:15:58.516207+00:00",
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "構造確認と実装",
+      "status": "completed",
+      "started_at": "2026-09-10T11:02:36.920029+00:00",
+      "ended_at": "2026-09-10T11:09:32.541093+00:00",
+      "note": "本文領域と表行・画像名を保持する任意の入口を実装。51機械検査と2ファイルの型検査PASS。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "live-input",
+      "title": "公開入口で2記事を取得し保存版を読む",
+      "status": "completed",
+      "started_at": "2026-09-10T11:09:32.541093+00:00",
+      "ended_at": "2026-09-10T11:12:30.222387+00:00",
+      "note": "2記事→6資料の正式保存・285行の分割読出しと全項目一致を確認。親の初回照合は表示行配列を文字列に復元せず失敗し、正しく連結して一致。再取得0。",
+      "budget_minutes": 5
+    },
+    {
+      "id": "reader",
+      "title": "別担当が保存資料の用途を読む",
+      "status": "completed",
+      "started_at": "2026-09-10T11:10:43+00:00",
+      "ended_at": "2026-09-10T11:11:22+00:00",
+      "note": "39秒で全285行を読み、候補欄の用途・メイン40枚との区別・別記事の方針・未確認範囲を復元。",
+      "budget_minutes": 3
+    },
+    {
+      "id": "report",
+      "title": "結果と採否を記録",
+      "status": "completed",
+      "started_at": "2026-09-10T11:13:25.778287+00:00",
+      "ended_at": "2026-09-10T11:15:58.516207+00:00",
+      "note": "採用理由・失敗・適用限界を記録。初見の報告確認7秒PASS。",
+      "budget_minutes": 5
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/article-text-01/README.md",
+    "evals/discovery/article-text-01/protocol.json",
+    "evals/discovery/article-text-01/verification.json",
+    "evals/discovery/article-text-01/structure-audit.json",
+    "evals/discovery/article-text-01/roundtrip.json",
+    "evals/discovery/article-text-01/public-events.json",
+    "evals/discovery/article-text-01/reader-check.json",
+    "evals/discovery/article-text-01/gamewith.json",
+    "evals/discovery/article-text-01/game8.json",
+    "evals/discovery/article-text-01/db-check.json",
+    "evals/discovery/article-text-01/report-reader.json"
+  ]
+}

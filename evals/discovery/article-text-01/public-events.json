@@ -1,0 +1,91 @@
+[
+  {
+    "step": "gamewith",
+    "args": [
+      "meta",
+      "--article",
+      "https://gamewith.jp/shadowverse-wb/503027",
+      "--format",
+      "rotation",
+      "--with-article-text"
+    ],
+    "started_at": "2026-09-10T11:09:32.812692+00:00",
+    "ended_at": "2026-09-10T11:09:34.192955+00:00",
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "step": "game8",
+    "args": [
+      "meta",
+      "--article",
+      "https://game8.jp/shadowverse-beyond/698337",
+      "--format",
+      "rotation",
+      "--with-article-text"
+    ],
+    "started_at": "2026-09-10T11:09:34.194076+00:00",
+    "ended_at": "2026-09-10T11:09:36.088423+00:00",
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "step": "start",
+    "args": [
+      "discovery",
+      "start",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-text-01",
+      "--class",
+      "ナイトメア",
+      "--format",
+      "rotation",
+      "--objective",
+      "記事説明を正式資料へ保存して読み返す検証。複数クラスの参考記事を含むがデッキ案や採否は提出しない。"
+    ],
+    "started_at": "2026-09-10T11:09:36.100371+00:00",
+    "ended_at": "2026-09-10T11:09:36.300711+00:00",
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "step": "attach-gamewith",
+    "args": [
+      "discovery",
+      "attach",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-text-01",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/article-text-01/gamewith.json"
+    ],
+    "started_at": "2026-09-10T11:09:36.313626+00:00",
+    "ended_at": "2026-09-10T11:09:36.424878+00:00",
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "step": "attach-game8",
+    "args": [
+      "discovery",
+      "attach",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-text-01",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/article-text-01/game8.json"
+    ],
+    "started_at": "2026-09-10T11:09:36.438471+00:00",
+    "ended_at": "2026-09-10T11:09:36.544762+00:00",
+    "returncode": 0,
+    "stderr": ""
+  },
+  {
+    "step": "packet-summary",
+    "args": [
+      "discovery",
+      "packet",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-text-01",
+      "--stage",
+      "develop",
+      "--summary"
+    ],
+    "started_at": "2026-09-10T11:09:36.555166+00:00",
+    "ended_at": "2026-09-10T11:09:36.691288+00:00",
+    "returncode": 0,
+    "stderr": ""
+  }
+]
