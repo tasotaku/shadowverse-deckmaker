@@ -1,0 +1,57 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-article-rationale-01/b/review/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-article-rationale-01/b/review/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-article-rationale-01/b/review/work",
+  "stdin": "/private/tmp/sv-article-rationale-01/b/review/work/prompt.md",
+  "output": "/private/tmp/sv-article-rationale-01/b/review/run",
+  "started_at": "2026-09-10T04:22:29.411713+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2254890.109564291,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 53957,
+  "worker_pid": 53958,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T04:34:24.310313+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T04:22:29.412498+00:00",
+      "elapsed_seconds": 0.0003797500394284725
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T04:22:29.415097+00:00",
+      "elapsed_seconds": 0.0030235000886023045
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T04:34:24.303561+00:00",
+      "elapsed_seconds": 714.8780304589309,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T04:34:24.310354+00:00",
+      "elapsed_seconds": 714.884524084162
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "elapsed_seconds": 714.8845067499205,
+  "runner_returncode": 0
+}

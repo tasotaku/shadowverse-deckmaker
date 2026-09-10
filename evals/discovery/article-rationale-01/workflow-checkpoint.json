@@ -1,51 +1,32 @@
 {
-  "recorded_at": "2026-09-10T03:54:12.595751+00:00",
-  "previous_goal_turn": "progress: 正式評価を照合して試行を閉じ、記事の採否理由が保存前に欠けていたことを特定した。",
-  "symptom": "記事の不採用理由が調査報告に入らず、後の評価で再取得が必要になった。",
-  "cause": "保存やreadによる欠落ではない。当時の取得範囲・未読・要約漏れの区別は不明。",
-  "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
-  "change": "新しい保存工程を作らず、既存の考案指示へ採否理由と条件の引継ぎを追加。",
-  "measure": "記録件数でなく、実際の案の比較判断・有用な種・処理負担。",
-  "status": "independent_reviews_running",
-  "runs": {
+  "status": "completed",
+  "updated_at": "2026-09-10T04:40:06.362499+00:00",
+  "generation": {
     "a": {
       "handle": 55642,
-      "started_at": "2026-09-10T03:56:22.583841+00:00",
-      "run": "/tmp/sv-article-rationale-01/a/run/run.json",
-      "supervisor_pid": 30614,
-      "worker_pid": 30636,
-      "processes_confirmed_alive_at": "2026-09-10T03:57:26.877282+00:00"
+      "exit_code": 0
     },
     "b": {
       "handle": 20474,
-      "started_at": "2026-09-10T03:56:22.583761+00:00",
-      "run": "/tmp/sv-article-rationale-01/b/run/run.json",
-      "supervisor_pid": 30615,
-      "worker_pid": 30637,
-      "processes_confirmed_alive_at": "2026-09-10T03:57:26.886928+00:00"
-    }
-  },
-  "updated_at": "2026-09-10T04:23:42.168422+00:00",
-  "generation": {
-    "a": {
-      "session_id": 55642,
-      "exit_code": 0,
-      "formal_proposals": 1
-    },
-    "b": {
-      "session_id": 20474,
-      "exit_code": 0,
-      "formal_proposals": 1
+      "exit_code": 0
     }
   },
   "reviews": {
     "a": {
-      "session_id": 3338,
-      "run": "/tmp/sv-article-rationale-01/a/review/run/run.json"
+      "handle": 3338,
+      "exit_code": 0
     },
     "b": {
-      "session_id": 4393,
-      "run": "/tmp/sv-article-rationale-01/b/review/run/run.json"
+      "handle": 4393,
+      "exit_code": 0
     }
-  }
+  },
+  "formal_proposals": 2,
+  "formal_reviews": 2,
+  "recommended_seeds": 0,
+  "method_decision": "deferred",
+  "trial_closed": true,
+  "system_goal_complete": false,
+  "next": "現在の採用負担を実際の調査・配分変更へ返す工程を別試行として検証する。今回の条件を延長・再採点しない。",
+  "preservation": "最終の13ファイル・20ファイルをdata/discoveryの各保存先とfinal-a/b.tar.gzで照合済み。古い拡張子.jsonの台帳バックアップはSQLiteバイナリなのでテキストとして読まない。"
 }

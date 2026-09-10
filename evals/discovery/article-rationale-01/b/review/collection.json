@@ -1,0 +1,51 @@
+{
+  "collection_started_at": "2026-09-10T04:34:58.829796+00:00",
+  "collection_ended_at": "2026-09-10T04:34:59.478372+00:00",
+  "arm": "b",
+  "worker_status": "completed",
+  "exit_code": 0,
+  "started_at": "2026-09-10T04:22:29.411713+00:00",
+  "ended_at": "2026-09-10T04:34:24.310313+00:00",
+  "elapsed_seconds": 714.8845067499205,
+  "utc_elapsed_seconds": 714.8986,
+  "initial_files_unchanged": 19,
+  "public_calls": 20,
+  "failed_calls": [
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "review",
+        "session",
+        "review.json"
+      ],
+      "exit_code": 2
+    }
+  ],
+  "formal_reviews": 1,
+  "submitted_fields_equal_saved_and_report": [
+    "packet_hash",
+    "author",
+    "procedure",
+    "value",
+    "novelty",
+    "findings",
+    "next_questions",
+    "web_checks"
+  ],
+  "decisions": [
+    {
+      "procedure": "supported",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    }
+  ],
+  "durable_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/article-rationale-01-b",
+  "archive": {
+    "path": "data/discovery-archives/article-rationale-01/final-b.tar.gz",
+    "sha256": "10eade8efa005a29a329241b00fc92f042aa69a318a99b88bb4ea587e30fa2f1",
+    "verified_files": 20
+  },
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414"
+}

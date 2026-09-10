@@ -2,23 +2,23 @@
   "id": "article-rationale-01",
   "title": "参考記事の採否理由と条件を引き継ぐ",
   "category": "method",
-  "status": "running",
-  "summary": "両方式が各1案を正式提出し、独立評価中。従来版は約20分、変更版は約26分。記事の理由が比較判断に使われたかも点検する。",
+  "status": "completed",
+  "summary": "記事理由を引き継ぐ指示は本採用保留。両方式が各1案・独立評価1件まで完了したが、採用負担に見合う試す価値を認めた案は0件ずつ。",
   "method": "参考記事の採否理由と適用条件を引き継ぐ指示を追加すると、単なる記録増ではなく、元構築との比較が変わり試す理由のある種へ進めるか。",
   "procedure": "指示の試作→機能検査→同一入力照合→従来版と変更版で各30分の考案・提出→正式案があれば別担当が各15分で評価→採否と時間を記録。各方式で考案・評価は1回ずつ。",
   "inputs": "同じDBから新規作成したビショップの保存入力。今回取得した9月の進化ビショップ40枚と取得情報、9月の説明と6月の個人インタビューの限定要約。過去の提案・評価は追加していない。全カードが開発者に未知の検査ではない。",
   "criteria": "公開工程・正しさ・発展・有用性・誠実さの5基準を維持。採否理由の適用と誤った一般化を点検し、追加保存件数を加点しない。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "正式案は1件ずつ。従来版は公開操作28回・入力修正1回、変更版は72回・失敗0回。初期資料は不変で提出内容と保存内容が一致。試す理由のある案かは独立評価中。",
-    "limitations": "両入力の全項目はinstruction以外一致。参考記事の初期限定要約はrootが作成して両方式へ同じものを渡すため、Web取得能力やゼロからの要約能力を比較した試験ではない。"
+    "outcome": "mixed",
+    "summary": "従来版は条件付き成立、変更版は指定手順成立。双方とも価値は追加検討・既出未確定で試行推薦0件。記事の理由は両方で比較に使えたが、変更版の有用性の改善は示せなかった。全4実行は期限内終了。",
+    "limitations": "1クラスで初回各1案を比較。初期要約は開発担当が共通に用意した。提出後の改訂・実戦成績・方法の一般優位・歴史的成功例の再現は未検証。変更版にはカード本文からの判断を記事の理由とまとめた表現が1か所ある。"
   },
   "decision": {
-    "status": "unassessed",
-    "reason": "実AIの考案・独立評価の結果を待つ。有用な種0件では本採用しない。"
+    "status": "deferred",
+    "reason": "変更版も試行推薦0件で、固定した採用条件を満たさない。従来版でも理由を比較へ使えており、4行の試作は本体へ取り込まない。方式一般が無効という結論ではない。次は残った採用負担を実際の調査・配分変更へ返す工程を別試行で検証する。"
   },
   "started_at": "2026-09-10T03:50:27.968605+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T04:40:06.362499+00:00",
   "stages": [
     {
       "id": "implementation",
@@ -26,7 +26,7 @@
       "status": "completed",
       "started_at": "2026-09-10T03:50:27.968605+00:00",
       "ended_at": "2026-09-10T03:50:27.981501+00:00",
-      "note": "共通の考案指示へ4行追加。本体は未変更。",
+      "note": "共通の考案指示へ4行追加。本体へ未反映。時刻はファイル編集処理のみで、考え方の検討・作業コピー準備の開始は未記録。",
       "budget_minutes": null
     },
     {
@@ -68,20 +68,29 @@
     {
       "id": "review_a",
       "title": "従来版の案を独立評価",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T04:19:38.970415+00:00",
-      "ended_at": null,
-      "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
+      "ended_at": "2026-09-10T04:31:39.818127+00:00",
+      "note": "12分01秒で正式評価1件。指定条件付き成立・追加検討・既出未確定。公開操作42回、失敗0回。試行推薦0件。",
       "budget_minutes": 15
     },
     {
       "id": "review_b",
       "title": "変更版の案を独立評価",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T04:22:29.411713+00:00",
-      "ended_at": null,
-      "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
+      "ended_at": "2026-09-10T04:34:24.310313+00:00",
+      "note": "11分55秒で正式評価1件。指定手順成立・追加検討・既出未確定。公開操作20回、担当名の入力修正1回。試行推薦0件。",
       "budget_minutes": 15
+    },
+    {
+      "id": "report",
+      "title": "比較結果・採否を整理し初見の読者確認",
+      "status": "completed",
+      "started_at": "2026-09-10T04:34:46.787691+00:00",
+      "ended_at": "2026-09-10T04:40:06.362499+00:00",
+      "note": "両案とも試行推薦0件で本採用保留。提出後の改訂は未実施。初見確認で判定用語を補足。",
+      "budget_minutes": null
     }
   ],
   "evidence_paths": [
@@ -105,6 +114,20 @@
     "evals/discovery/article-rationale-01/b/generation/proposal.json",
     "evals/discovery/article-rationale-01/b/generation/report.json",
     "evals/discovery/article-rationale-01/b/generation/public-operations.json.gz",
-    "evals/discovery/article-rationale-01/b/review/run-start.json"
+    "evals/discovery/article-rationale-01/b/review/run-start.json",
+    "evals/discovery/article-rationale-01/reason-use-diagnostic.json",
+    "evals/discovery/article-rationale-01/review-observation.json",
+    "evals/discovery/article-rationale-01/a/review/collection.json",
+    "evals/discovery/article-rationale-01/a/review/evaluation.md",
+    "evals/discovery/article-rationale-01/a/review/review.json",
+    "evals/discovery/article-rationale-01/a/review/report-verification.json",
+    "evals/discovery/article-rationale-01/opening-hand-rule-check.json",
+    "evals/discovery/article-rationale-01/b/review/collection.json",
+    "evals/discovery/article-rationale-01/b/review/evaluation.md",
+    "evals/discovery/article-rationale-01/b/review/review.json",
+    "evals/discovery/article-rationale-01/b/review/verification.json",
+    "evals/discovery/article-rationale-01/evaluation.json",
+    "evals/discovery/article-rationale-01/reader-check.json",
+    "evals/discovery/article-rationale-01/report-preparation.json"
   ]
 }
