@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-09-10T03:46:10.127690+00:00",
+  "scope": "完了済み試行の失敗原因を絞る追加の読み取り専用点検。新たな探索試験や再採点ではない。",
+  "agent": "source_reason_audit",
+  "conclusion": "記事から調査報告を作るまでの間に、不採用理由が正式資料へ入らなかった。保存・引き渡し時の欠落ではない。",
+  "observations": {
+    "research_report_equals_formal_source": true,
+    "report_content_sha256": "f5f1bdd490ab737fc6d9e617db81c19f3c8359767c63152f430f065e050ec82d",
+    "source_hash": "55333618626a081102de24a9bce5b640d16c0f79e43066eda8b1c6894e157a35",
+    "public_reads_equal_formal_source": "生成側と評価側の公開readを連結し一致を別担当が確認",
+    "checked_generation_sources": 13,
+    "checked_review_sources": 15,
+    "original_article_body_saved_in_checked_sources": false
+  },
+  "unknown": "当時、不採用段落が取得できなかった／返却されたが未読／読んだが要約から落ちた、の区別は保存証拠からできない。private実行streamと内部reasoningは読んでいない。",
+  "implementation_boundary": {
+    "meta --article": "GameWith/Game8の40枚と取得情報。note記事は対象外であり、今回の直接原因とはいえない。",
+    "attach-file/save_sources": "指定本文をそのまま保存。意味の要約はしない。",
+    "packet/read": "保存本文をそのまま継承し、改行を保って分割読出し。"
+  },
+  "next_candidate": {
+    "change": "参考記事が対象札の採否を論じる場合、対象札・採否・短い根拠抜粋・構築条件・今回の案との一致と相違を、既存attach-fileで引き継ぐ指示を限定試作する。",
+    "not_implemented": true,
+    "reuse": "新しい保存形式や記事全文収集機能を増やさない。原文が取れなければ未確認とする。",
+    "desired_effect": "同じ不足を仮定する前に、記事の理由が今回の構築にも当てはまるか、どの条件を変えるかを判断できる。",
+    "guard": "個人の不採用を全構築への棄却理由にしない。保存の成功と提案比較への有用性を分ける。",
+    "prior_trials": "focused-inquiry-01は次の問い、role-gap-01は考案の出発点の変更。本候補は参照済み記事から引き継ぐ内容の変更である。ただし指示変更という共通点があり、効果は未立証。",
+    "next_validation": "採否と適用条件を含む同じ固定資料で、現行版と限定変更版の公開入口・保存・再読・提案比較への利用を測る。既知例の開発検査と新しい入力での有用性は分ける。"
+  },
+  "decision": "限定試作候補、本採用は未判断。既存試行の採点は変更しない。"
+}
