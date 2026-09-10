@@ -1,0 +1,71 @@
+{
+  "started_at": "2026-09-10T09:30:05.014828+00:00",
+  "ended_at": "2026-09-10T09:53:58.697767+00:00",
+  "total_seconds": 1433.682939,
+  "stages": [
+    {
+      "id": "identity-fix",
+      "title": "担当名の重複を再現・修正・検査",
+      "status": "completed",
+      "started_at": "2026-09-10T09:30:05.014828+00:00",
+      "ended_at": "2026-09-10T09:34:52.129718+00:00",
+      "note": "同名と名乗り欠落を処理し、元回答保持、自己評価と割当外提出を拒否。93件・型検査・別点検5ケース合格。",
+      "budget_minutes": null
+    },
+    {
+      "id": "live-develop",
+      "title": "通常の指示で改訂",
+      "status": "completed",
+      "started_at": "2026-09-10T09:35:35.266894+00:00",
+      "ended_at": "2026-09-10T09:43:57.315693+00:00",
+      "note": "元のB正式案と正式評価から新規担当が1回改訂。\n起動処理を開始。実行記録: /private/tmp/sv-worker-identity-01/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 20
+    },
+    {
+      "id": "live-review",
+      "title": "改訂案を別担当が評価",
+      "status": "completed",
+      "started_at": "2026-09-10T09:43:57.980325+00:00",
+      "ended_at": "2026-09-10T09:47:49.963481+00:00",
+      "note": "旧採否を除く固定資料で1回評価。\n起動処理を開始。実行記録: /private/tmp/sv-worker-identity-01/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n正式評価1件を別途照合済み。旧ファイルは除外したがproposal.changeに旧value=developが残る。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "result-check",
+      "title": "正式提出と識別・結果の点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:45:53.399685+00:00",
+      "ended_at": "2026-09-10T09:53:58.697767+00:00",
+      "note": "正式保存1/1と元本文保持を確認し、実行補助の採用・案の試行推薦0を報告へ保存。旧判定名の文章への転記を明記。",
+      "budget_minutes": null
+    },
+    {
+      "id": "code-audit",
+      "title": "別担当によるコード点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:32:01+00:00",
+      "ended_at": "2026-09-10T09:33:37+00:00",
+      "note": "修正・検査と並行、5ケース合格。",
+      "budget_minutes": null
+    },
+    {
+      "id": "handoff-audit",
+      "title": "別担当による実行結果点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:48:04+00:00",
+      "ended_at": "2026-09-10T09:50:57+00:00",
+      "note": "元入力・本文保持、担当分離と文章経由の旧判断を確認。",
+      "budget_minutes": null
+    },
+    {
+      "id": "reader-check",
+      "title": "報告の初見読者点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:52:15+00:00",
+      "ended_at": "2026-09-10T09:52:35+00:00",
+      "note": "採用範囲は明確。初回テスト結果と受付の説明を修正。",
+      "budget_minutes": null
+    }
+  ],
+  "limits": "記録開始から報告保存まで。全体へ並行工程を合算しない。"
+}

@@ -1,0 +1,16 @@
+{
+  "actor": "royal_input_audit",
+  "started_at": "2026-09-10T09:48:04+00:00",
+  "ended_at": "2026-09-10T09:50:57+00:00",
+  "status": "PASS for input/submission preservation and separate execution; not fully blinded",
+  "checks": {
+    "raw_response_vs_formal": "両工程author以外全項目一致。今回は申告名も割当IDに一致。",
+    "original_files": "元20ファイルの変更・欠落・追加0。開発側でも保持。",
+    "formal_records": "新規改訂1件・新規評価1件が最終回収先とバイト一致。",
+    "worker_ids": "develop/reviewで異なる割当ID、PID8130/17166",
+    "physical_exclusion": "評価先に旧reviewなし、固定packet1、previous_reviews/review_contexts空。",
+    "text_disclosure": "新proposal.changeに直前評価のvalue=developがあり、評価packetへそのまま到達。",
+    "sources": "新sourceには旧採否なし。旧案との比較と資料hashを保持。"
+  },
+  "scope": "正式資料と公開操作の確認。内容の採点、私的ログ読取、編集、再実行なし。"
+}

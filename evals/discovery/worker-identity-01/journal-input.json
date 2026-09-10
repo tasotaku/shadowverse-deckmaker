@@ -2,23 +2,23 @@
   "id": "worker-identity-01",
   "title": "別々に起動した担当を実行側の識別値で区別する",
   "category": "infrastructure",
-  "status": "running",
-  "summary": "担当識別を修正し、93件・型検査・別担当の5ケースに合格。同じ元入力による実AIの改訂・評価を開始する。",
+  "status": "completed",
+  "summary": "修正後は改訂1件・別評価1件・全体報告まで約12分15秒で完了し、実行補助として採用。案は追加検討、試行推薦0。旧判断名の文章への転記という限界を保持。",
   "method": "各工程の起動時に実行側が一意な担当IDを割り当てる。公開提出でauthorをそのIDに結び、元の提出本文と申告名を公開操作記録へ残す。内容・判断を変えない。正式記録のauthorも起動時のIDと照合。",
   "procedure": "同名による拒否を再現 → 実行側の担当IDを提出へ接続 → 関連検査 → 同じ元入力で改訂と独立評価 → 採否を記録。",
   "inputs": "data/discovery/experience-guided-01-b-review",
   "criteria": "実行管理としての正常・失敗境界を検査し、実AIによる正式改訂と別評価、reportへの回収が確認できた場合のみ実行補助として採用を検討。試用推薦や発見力は別。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "修正中。",
-    "limitations": "既知入力。元試行を成功へ変更せず、復旧を別記録。"
+    "outcome": "mixed",
+    "summary": "担当識別の修正は93検査・別点検5ケースと実AIの完走を確認。案は条件付き成立・追加検討・独自性未確認で、通常構築の対照に比べた負担が残る。",
+    "limitations": "実行補助としての採用。別担当の評価だが改訂理由に旧value=developが含まれ、過去判断を完全に伏せた検査ではない。案の価値向上・方式全体の完成を認定しない。"
   },
   "decision": {
-    "status": "deferred",
-    "reason": "検査と実利用が未完了。"
+    "status": "adopted",
+    "reason": "担当名重複を修正し、正式改訂・別評価・reportまで1回の入口で自動完走、元入力・本文保持を確認したため実行補助として採用。考案方法の有用性は別。"
   },
   "started_at": "2026-09-10T09:30:05.014828+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T09:53:58.697767+00:00",
   "stages": [
     {
       "id": "identity-fix",
@@ -32,26 +32,71 @@
     {
       "id": "live-develop",
       "title": "通常の指示で改訂",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "元のB正式案と正式評価から新規担当が1回改訂。",
+      "status": "completed",
+      "started_at": "2026-09-10T09:35:35.266894+00:00",
+      "ended_at": "2026-09-10T09:43:57.315693+00:00",
+      "note": "元のB正式案と正式評価から新規担当が1回改訂。\n起動処理を開始。実行記録: /private/tmp/sv-worker-identity-01/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 20
     },
     {
       "id": "live-review",
       "title": "改訂案を別担当が評価",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "旧採否を除く固定資料で1回評価。",
+      "status": "completed",
+      "started_at": "2026-09-10T09:43:57.980325+00:00",
+      "ended_at": "2026-09-10T09:47:49.963481+00:00",
+      "note": "旧採否を除く固定資料で1回評価。\n起動処理を開始。実行記録: /private/tmp/sv-worker-identity-01/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n正式評価1件を別途照合済み。旧ファイルは除外したがproposal.changeに旧value=developが残る。",
       "budget_minutes": 15
+    },
+    {
+      "id": "result-check",
+      "title": "正式提出と識別・結果の点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:45:53.399685+00:00",
+      "ended_at": "2026-09-10T09:53:58.697767+00:00",
+      "note": "正式保存1/1と元本文保持を確認し、実行補助の採用・案の試行推薦0を報告へ保存。旧判定名の文章への転記を明記。",
+      "budget_minutes": null
+    },
+    {
+      "id": "code-audit",
+      "title": "別担当によるコード点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:32:01+00:00",
+      "ended_at": "2026-09-10T09:33:37+00:00",
+      "note": "修正・検査と並行、5ケース合格。",
+      "budget_minutes": null
+    },
+    {
+      "id": "handoff-audit",
+      "title": "別担当による実行結果点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:48:04+00:00",
+      "ended_at": "2026-09-10T09:50:57+00:00",
+      "note": "元入力・本文保持、担当分離と文章経由の旧判断を確認。",
+      "budget_minutes": null
+    },
+    {
+      "id": "reader-check",
+      "title": "報告の初見読者点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:52:15+00:00",
+      "ended_at": "2026-09-10T09:52:35+00:00",
+      "note": "採用範囲は明確。初回テスト結果と受付の説明を修正。",
+      "budget_minutes": null
     }
   ],
   "evidence_paths": [
     "evals/discovery/worker-identity-01/README.md",
     "evals/discovery/worker-identity-01/protocol.json",
     "evals/discovery/worker-identity-01/verification.json",
-    "evals/discovery/worker-identity-01/independent-code-audit.json"
+    "evals/discovery/worker-identity-01/independent-code-audit.json",
+    "evals/discovery/worker-identity-01/review-isolation-note.json",
+    "evals/discovery/worker-identity-01/result.json",
+    "evals/discovery/worker-identity-01/live/result.json",
+    "evals/discovery/worker-identity-01/live/verification.json",
+    "evals/discovery/worker-identity-01/live/identity-check.json",
+    "evals/discovery/worker-identity-01/live/handoff-audit.json",
+    "evals/discovery/worker-identity-01/live/review/review.json",
+    "evals/discovery/worker-identity-01/reader-check.json",
+    "evals/discovery/worker-identity-01/next-input-audit.json"
   ]
 }

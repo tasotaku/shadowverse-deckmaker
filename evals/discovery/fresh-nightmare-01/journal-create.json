@@ -1,0 +1,74 @@
+{
+  "id": "fresh-nightmare-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T09:44:16.019316+00:00",
+  "actor": "codex",
+  "reason": "新しいナイトメア入力の基準と予定工程を実行前に登録",
+  "record": {
+    "id": "fresh-nightmare-01",
+    "title": "新しいナイトメア入力で現在の探索工程を試す",
+    "category": "method",
+    "status": "running",
+    "summary": "参考4記事とカード資料を準備中。正式案・独立評価はまだない。",
+    "method": "担当識別修正の実AI確認が通った後に探索を開始する。discovery_runで担当を接続し、現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。",
+    "procedure": "資料を固定→考案30分→独立評価15分→必要なら改訂30分と再評価15分→結果と採否を記録。各実行は1回。",
+    "inputs": "ローテーション・ナイトメアの新規セッション。同じクラスは既に試行済みであり未使用クラスではない。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。",
+    "criteria": "手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "資料準備中。",
+      "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "考案と独立評価の結果が出るまで採否は未判定。"
+    },
+    "started_at": "2026-09-10T09:44:15.889139+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "資料と判定条件を固定",
+        "status": "running",
+        "started_at": "2026-09-10T09:44:15.889139+00:00",
+        "ended_at": null,
+        "note": "参考4記事の取得と新規セッション作成を行う。",
+        "budget_minutes": null
+      },
+      {
+        "id": "generation",
+        "title": "初回の種を考案・提出",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "現行の通常指示を使い、一つの種を公開入口から提出する。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "review",
+        "title": "別担当が成立と試す価値を評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式案が提出された場合に開始する。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/fresh-nightmare-01/README.md",
+      "evals/discovery/fresh-nightmare-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/fresh-nightmare-01/README.md",
+      "sha256": "48982f391ee93acd813193ad1051346de55574ea1f17c49bb900e6d482ba1294",
+      "size": 767
+    },
+    {
+      "path": "evals/discovery/fresh-nightmare-01/protocol.json",
+      "sha256": "bf79908ca6c7f045e7c6d3e3cd83f8c0c402474ff081362d11737b1c6505ad75",
+      "size": 4233
+    }
+  ]
+}
