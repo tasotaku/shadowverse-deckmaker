@@ -3,14 +3,14 @@
   "title": "保存済みの調査を別の担当が提案へまとめる",
   "category": "method",
   "status": "running",
-  "summary": "開始から約1分40秒で作業用下書きを保存。必要な確認を進行中。正式提出と独立評価は未完了。",
+  "summary": "約13分56秒で正式案1件を保存。最初の下書きは約1分40秒。入力検査の失敗1回を担当が修正し、独立評価へ進行。",
   "method": "公開packetで保存済みの調査を指定し、提案をまとめる専用の指示を選ぶ。対象報告を直接読み、下書き保存後に必要な本文・注記・不足を確認する。通常の探索・提出検査・独立評価の基準は維持。",
   "procedure": "入力をコピーし19ファイルの一致を確認→機能検査118件と型検査→実AIの提案化→正式案があれば独立評価→結果・採否を記録。作業下書きと正式提出、試す価値を分ける。",
   "inputs": "worker-clock-01の固定ドラゴン/ローテーションと14資料。正式案0件の中断済み調査からの引き継ぎであり、未知の入力での再発見ではない。",
   "criteria": "公開工程、正しさ、発展、有用性、誠実さの5基準を維持。下書き保存や提出件数だけで有用性を認定しない。実行時刻・経過秒・公開操作を保存する。",
   "result": {
     "outcome": "unassessed",
-    "summary": "機能検査118件と型検査合格。公開報告の全文・出典は別担当も照合。実AIは11:04:20に作業下書きを保存し、元の20ファイルは保存時点で未変更。案は未評価。",
+    "summary": "公開操作28回、入力検査の失敗1回。正式案1件・追加資料1件を保持。提出ファイルの全項目が保存版と一致し、元の20ファイルも一致。独立評価は実行中で有用性は未判断。",
     "limitations": "上限を30分へ変更しており、前試行との速度比較・原因の単独確定はできない。実装着手のUTCは未記録。検査11.93秒をAIの実利用時間とは数えない。"
   },
   "decision": {
@@ -41,19 +41,19 @@
     {
       "id": "completion",
       "title": "実AIが下書き・確認・提出を行う",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T02:02:40.076159+00:00",
-      "ended_at": null,
-      "note": "11:04:20に下書き保存（経過100.202秒）。残る本文・注記・採用負担の確認と正式提出へ進行中。",
+      "ended_at": "2026-09-10T02:16:36.450368+00:00",
+      "note": "経過836.373秒。下書き100.202秒、役割指定の入力拒否1回を修正し正式案1件。reportと全文読戻しを照合。",
       "budget_minutes": 30
     },
     {
       "id": "review",
       "title": "正式案の独立評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-10T02:17:19.825990+00:00",
       "ended_at": null,
-      "note": "正式案が出た場合だけ実施。最大15分、別担当。",
+      "note": "経過時計900秒。提案担当とは別に、15資料と正式案を同じ評価指示で読む。過去の正式評価は含まない。",
       "budget_minutes": 15
     }
   ],
@@ -67,6 +67,12 @@
     "evals/discovery/proposal-finish-01/proposal-first.json",
     "evals/discovery/proposal-finish-01/draft-time.json",
     "evals/discovery/proposal-finish-01/draft-verification.json",
-    "evals/discovery/proposal-finish-01/independent-output-check.json"
+    "evals/discovery/proposal-finish-01/independent-output-check.json",
+    "evals/discovery/proposal-finish-01/completion/run.json",
+    "evals/discovery/proposal-finish-01/completion/collection.json",
+    "evals/discovery/proposal-finish-01/completion/proposal.json",
+    "evals/discovery/proposal-finish-01/completion/conclusion.md",
+    "evals/discovery/proposal-finish-01/completion/root-submission-check.json",
+    "evals/discovery/proposal-finish-01/review/run-start.json"
   ]
 }

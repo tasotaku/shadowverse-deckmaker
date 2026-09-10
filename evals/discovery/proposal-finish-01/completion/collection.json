@@ -1,0 +1,32 @@
+{
+  "collected_at": "2026-09-10T02:16:47.721946+00:00",
+  "worker_status": "completed",
+  "runner_returncode": 0,
+  "started_at": "2026-09-10T02:02:40.076159+00:00",
+  "ended_at": "2026-09-10T02:16:36.450368+00:00",
+  "utc_elapsed_seconds": 836.374209,
+  "monotonic_elapsed_seconds": 836.3725202921778,
+  "initial_files_unchanged": 20,
+  "public_calls_including_help": 28,
+  "public_failures": [
+    {
+      "command": [
+        "/tmp/sv-system-venv/bin/python",
+        "-m",
+        "svdeck.discovery",
+        "submit",
+        "session",
+        "proposal.json"
+      ],
+      "stderr": "探索入力エラー: rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+    }
+  ],
+  "formal_proposals": 1,
+  "source_count": 15,
+  "scope": "担当の正式提出と資料を回収。rootの回収後reportは担当の呼出し数に含めない。",
+  "durable_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/proposal-finish-01",
+  "review_work": "/tmp/sv-proposal-finish-01/review/work",
+  "review_packet_hash": "7e433a7b2f431eb29bf6e1b39d444db42fc6a9e3ea774ac34c78f9101ab5becc",
+  "review_instructions_unchanged": true,
+  "prior_formal_reviews_excluded": true
+}

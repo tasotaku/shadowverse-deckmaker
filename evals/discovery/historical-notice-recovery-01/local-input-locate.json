@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-09-10T02:12:02.658943+00:00",
+  "agent": "historical_input_locate",
+  "result": "限定したローカル保存物に、明越花・ミルティオのナーフ前全文は見つからず。",
+  "checked": [
+    "data/snapshots/2026-07-03/cards_raw.json",
+    "data/cards.db.bak-20260705",
+    "7月6日バックアップ・現行DB・data/discovery内の保存DB6件"
+  ],
+  "findings": [
+    "7月3日生JSONの明越花・ミルティオはどちらも変更後のコスト7",
+    "7月5日DBのsnapshot表には2026-07-03T15:53:11.603977+09:00・826枚。card_changeは初回追加のみ",
+    "正常の侵食の旧本文は生JSON・7月5日・7月6日DBに残る。ビバティーとササニドは変更後"
+  ],
+  "limitations": "原本JSON単体に取得日時・出典URLなし。圧縮記録・tar・全保存DB・全評価資料全文・リポジトリ外は未確認。ネット取得・変更なし。発見力の検証ではない。"
+}

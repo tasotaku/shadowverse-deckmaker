@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T02:03:53.404954+00:00",
+  "updated_at": "2026-09-10T02:18:30.308675+00:00",
   "previous_goal_turn": "別タスクの既存状態案内のみ。探索の本題に対してno progress。",
   "symptom": "調査を保存していても2回連続でproposal.json未作成。46公開操作に失敗は無く、保存検査拒否ではない。",
   "cause": "未提出の根本原因は未確定。保存前に調査を続ける工程が一因という仮説。",
@@ -10,8 +10,23 @@
     "正式なsubmit/reportと独立評価まで進めたか",
     "元の5基準において試す理由のある種が残るか。未解決を何件埋めたかだけで成功にしない"
   ],
-  "status": "running",
-  "live_handle": 19156,
-  "run": "/tmp/sv-proposal-finish-01/run/run.json",
-  "started_at": "2026-09-10T02:02:40.076159+00:00"
+  "status": "review_running",
+  "live_handle": 58962,
+  "run": "/tmp/sv-proposal-finish-01/review/run/run.json",
+  "started_at": "2026-09-10T02:02:40.076159+00:00",
+  "completion": {
+    "handle": 19156,
+    "exit_code": 0,
+    "formal_proposals": 1,
+    "elapsed_seconds": 836.3725202921778
+  },
+  "archival_checkpoint": {
+    "observed_at": "2026-09-10T02:22:28.018767+00:00",
+    "symptom": "試行ファイルが初期数の2倍以上となり、旧資料と旧入力版のコピーが増分の多くを占めた。",
+    "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+    "change": "旧保存物と展開後の内容が完全一致するファイルだけ、パスと識別値の参照へ置換。元の保存物・実行入力・新資料・提案は変更しない。",
+    "duplicate_files_replaced": 17,
+    "duplicate_bytes_removed": 321590,
+    "result": "参照先全件の存在と展開後の内容一致を確認。案の価値をこの整理から判定しない。"
+  }
 }
