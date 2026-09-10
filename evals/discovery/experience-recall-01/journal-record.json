@@ -1,30 +1,30 @@
 {
   "id": "experience-recall-01",
-  "revision": 9,
-  "saved_at": "2026-09-10T07:46:00.946222+00:00",
+  "revision": 11,
+  "saved_at": "2026-09-10T07:56:57.218860+00:00",
   "actor": "codex",
-  "reason": "検索補助を本体へ反映し実物を照合へ移行",
+  "reason": "検索補助の採用と本体反映・全工程の終了を記録",
   "record": {
     "id": "experience-recall-01",
     "title": "過去の探索経験をカードと使い方から再利用する",
     "category": "method",
-    "status": "running",
-    "summary": "検索補助を本体へ反映し実物を照合を進行中。採用は未判定。",
+    "status": "completed",
+    "summary": "保存経験の実利用3課題すべて合格。原資料と未確認を保って再利用する検索補助を本体へ採用。発見力の比較は次の試行。",
     "method": "保存した経験をカードと用途に結び付け、元案・評価・条件・出典の対応と未確認を保って次の考案から読めるようにする。古い採否を新しい案へ自動適用しない。",
     "procedure": "既存入口の不足確認と最小設計 → 隔離された入力で実装・機能検査 → 実際の保存記録を新規担当が検索して再読 → 知識の再利用ができた範囲と未確認を報告",
     "inputs": "既存の正式探索保存物と、その案・評価・証拠の対応。私的な実行ログは対象外。",
     "criteria": "正式案と評価の対応・範囲・不確実性を保って実データの必要記録を検索・再読でき、重複や壊れた記録を誤って別の結果にしないこと。補助機能の採用と探索方法の有用性は別に判定する。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "最小設計中。",
-      "limitations": "資料の検索・再利用補助と、自然な探索の有用性は区別する。"
+      "outcome": "pass",
+      "summary": "新規担当の実利用3課題＝合格3・不合格0。機能86件と型検査合格。本体CLIの全返却内容は試作と一致。",
+      "limitations": "検索補助の採用。自然探索の発見力・実戦優位は未検証。文字列検索・大きい返却量・記録不足の限界は本文に記載。"
     },
     "decision": {
-      "status": "deferred",
-      "reason": "実装と実際の保存記録での検証前。"
+      "status": "adopted",
+      "reason": "正式案と評価・未確認・原資料対応を保ち、カードと使い方から再利用できたため。探索方法全体の完成認定ではない。"
     },
     "started_at": "2026-09-10T07:22:11.928091+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T07:56:57.119848+00:00",
     "stages": [
       {
         "id": "design",
@@ -55,11 +55,11 @@
       },
       {
         "id": "prepare_use",
-        "title": "実記録を使う検証の入力・採点条件を固定",
+        "title": "実利用の入力・採点条件をファイルへ保存",
         "status": "completed",
         "started_at": "2026-09-10T07:36:28.214848+00:00",
         "ended_at": "2026-09-10T07:36:29.166052+00:00",
-        "note": "新しい利用担当へ渡す課題と読み取り専用の公開操作を準備。採点対象は実行前に固定する。",
+        "note": "記録した区間は入力ファイルの保存作業。その前の課題設計と準備スクリプト作成の開始は未記録。採点条件は利用担当の開始前に固定した。",
         "budget_minutes": null
       },
       {
@@ -83,10 +83,10 @@
       {
         "id": "delivery",
         "title": "検索補助を本体へ反映し実物を照合",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T07:46:00.876761+00:00",
-        "ended_at": null,
-        "note": "固定3課題はすべて合格。検索補助として採用し、本体CLI・README・設計・記録画面・追跡先を確認する。",
+        "ended_at": "2026-09-10T07:56:57.119848+00:00",
+        "note": "固定3課題はすべて合格。検索補助として採用し、本体CLI・README・設計・記録画面・追跡先を確認する。 本体CLI、実際の追跡先733217af95fec53c2fa77d5e0eb52f310bb27b0a、既存画面の第10版で採用・結果・条件・時間を確認。台帳更新時のoutcome指定誤り1回は保存前に拒否され、passへ訂正して保存した。",
         "budget_minutes": null
       }
     ],
@@ -98,14 +98,20 @@
       "evals/discovery/experience-recall-01/use-protocol.json",
       "evals/discovery/experience-recall-01/use-expected.json",
       "evals/discovery/experience-recall-01/use-README.md",
-      "evals/discovery/experience-recall-01/use-prompt.md"
+      "evals/discovery/experience-recall-01/use-prompt.md",
+      "evals/discovery/experience-recall-01/result.json",
+      "evals/discovery/experience-recall-01/use/result.json",
+      "evals/discovery/experience-recall-01/use/verification.json",
+      "evals/discovery/experience-recall-01/live-cli-check.json",
+      "evals/discovery/experience-recall-01/core-compatibility.json",
+      "evals/discovery/experience-recall-01/core-criteria-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/experience-recall-01/README.md",
-      "sha256": "338148f275869bbc28e278ac9f95851f0ab5217caadecb0a6576cb3e95418724",
-      "size": 407
+      "sha256": "0537f5965c96a3f6845d2270370c48e813cfe2d11d7cd657e63479bdea928394",
+      "size": 6778
     },
     {
       "path": "evals/discovery/experience-recall-01/checks.json",
@@ -113,14 +119,44 @@
       "size": 1626
     },
     {
+      "path": "evals/discovery/experience-recall-01/core-compatibility.json",
+      "sha256": "2fa3c668a830e58e89c7b63aaa58cd9240fdc5b75e4bdabff01b49dfce187eab",
+      "size": 350
+    },
+    {
+      "path": "evals/discovery/experience-recall-01/core-criteria-check.json",
+      "sha256": "cfe96ceb194a2ce1558cfebdb84b5657ae0ba41428e8c03b23395b562e799fa7",
+      "size": 1708
+    },
+    {
       "path": "evals/discovery/experience-recall-01/design.md",
       "sha256": "d2fc1f81e5b723b8e07930deb95bce0358e3e5d212305e7aa235c4982f888c97",
       "size": 3131
     },
     {
+      "path": "evals/discovery/experience-recall-01/live-cli-check.json",
+      "sha256": "cf7911267f1f37a3f9c38f9de5f47c6ae6e7a3336867fd61fb76e7f3fe94ba39",
+      "size": 517
+    },
+    {
       "path": "evals/discovery/experience-recall-01/protocol.json",
       "sha256": "2c94d91121474e5f8b40d784f5d0f67c2e729d3ec8d0aa444f72749154ddc7d7",
       "size": 2324
+    },
+    {
+      "path": "evals/discovery/experience-recall-01/result.json",
+      "sha256": "f7a407d620ea86e0c2bae4140cc771434358a9c5487bc1a9b313a5fd40d6697b",
+      "size": 2753
+    },
+    {
+      "path": "evals/discovery/experience-recall-01/use/result.json",
+      "sha256": "6afe4872329c6e67fcb012f9e25ba9e28c3e7281cd9c1a9e903faf11fee7dbc2",
+      "size": 15569
+    },
+    {
+      "path": "evals/discovery/experience-recall-01/use/verification.json",
+      "sha256": "c566622c088312a7e39e6e986ec7dcb351d806a0338a7ab8e4e5f33b9eff0f29",
+      "size": 881
     },
     {
       "path": "evals/discovery/experience-recall-01/use-README.md",
