@@ -1,0 +1,62 @@
+{
+  "started_at": "2026-09-10T08:55:44.576780+00:00",
+  "ended_at": "2026-09-10T09:34:03.852367+00:00",
+  "total_seconds": 2299.275587,
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "入出力の固定と実装・検査",
+      "status": "completed",
+      "started_at": "2026-09-10T08:55:44.576780+00:00",
+      "ended_at": "2026-09-10T09:10:36.677855+00:00",
+      "note": "新規21件・既存69件の計90件、型検査、別担当の再現点検に合格。実AIはこれから開始。",
+      "budget_minutes": null
+    },
+    {
+      "id": "live-develop",
+      "title": "保存案を評価から改訂",
+      "status": "completed",
+      "started_at": "2026-09-10T09:10:46.163666+00:00",
+      "ended_at": "2026-09-10T09:19:57.704841+00:00",
+      "note": "新規担当が通常の考案指示で1回改訂。\n起動処理を開始。実行記録: /private/tmp/sv-revision-runner-01/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 20
+    },
+    {
+      "id": "live-review",
+      "title": "改訂案を新規担当が評価",
+      "status": "completed",
+      "started_at": "2026-09-10T09:19:58.309015+00:00",
+      "ended_at": "2026-09-10T09:25:41.519280+00:00",
+      "note": "旧採否を除いた資料から通常の独立評価。\n起動処理を開始。実行記録: /private/tmp/sv-revision-runner-01/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "result-check",
+      "title": "正式提出・入力保持・結果の点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:25:40.589276+00:00",
+      "ended_at": "2026-09-10T09:34:03.852367+00:00",
+      "note": "元入力保持・旧採否除外を確認。未提出の原因、正式評価0、採用保留を報告へ保存。評価中に点検を始めたため工程が一部重なる。",
+      "budget_minutes": null
+    },
+    {
+      "id": "handoff-audit",
+      "title": "別担当による受け渡し点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:26:13+00:00",
+      "ended_at": "2026-09-10T09:27:51+00:00",
+      "note": "親の結果点検・報告作業と並行。",
+      "budget_minutes": null
+    },
+    {
+      "id": "reader-check",
+      "title": "報告の初見読者点検",
+      "status": "completed",
+      "started_at": "2026-09-10T09:29:16+00:00",
+      "ended_at": "2026-09-10T09:29:26+00:00",
+      "note": "親の結果点検・報告作業と並行。",
+      "budget_minutes": null
+    }
+  ],
+  "limit": "記録開始から報告保存まで。並行工程の合計を全体時間としない。"
+}

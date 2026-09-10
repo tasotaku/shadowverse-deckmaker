@@ -1,0 +1,16 @@
+{
+  "actor": "royal_input_audit",
+  "started_at": "2026-09-10T09:32:01+00:00",
+  "ended_at": "2026-09-10T09:33:37+00:00",
+  "status": "PASS",
+  "cases": 5,
+  "checks": [
+    "同じ/rootから異なる割当IDで正式改訂・評価を保存してcompleted",
+    "元回答ファイル不変、author以外全項目一致、公開operationに元回答保存",
+    "同一割当IDの自己評価と不正判断値はexit2",
+    "割当外IDの改訂直接保存はfailed",
+    "割当外IDの評価直接保存はfailed"
+  ],
+  "source_unchanged": true,
+  "limits": "workerだけテスト用に差替え、公開入口は別プロセス。実AIは未検証。ソース編集なし。"
+}

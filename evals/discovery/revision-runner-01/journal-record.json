@@ -1,30 +1,30 @@
 {
   "id": "revision-runner-01",
-  "revision": 4,
-  "saved_at": "2026-09-10T09:18:41.241365+00:00",
+  "revision": 9,
+  "saved_at": "2026-09-10T09:34:04.043215+00:00",
   "actor": "codex",
-  "reason": "実行開始の自動記録と検査・方法の説明を反映",
+  "reason": "正式評価未提出・採用保留と工程終了を保存",
   "record": {
     "id": "revision-runner-01",
     "title": "評価後の改訂と再評価を一度の実行でつなぐ",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "実行入口90件と型検査が合格。18時10分46秒に実AIの改訂を開始し、指摘を踏まえた採用配分の比較資料を保存中。正式改訂と独立評価の完了は未確認。",
+    "status": "completed",
+    "summary": "正式改訂1件、正式評価0件。別々の担当が同名を返して保存が拒否され、採用は保留。担当識別の修正は別の試行で開始。",
     "method": "既存の資料・正式提出・別評価・時間監視を、1回のコマンドで順につなぐ。正常終了だけでなく提出の有無と入力不変を検査して次工程へ渡す。",
     "procedure": "入出力の固定 → 実装・失敗条件の検査 → 実際の保存案を改訂 → 独立評価 → 元資料不変と結果の確認。",
     "inputs": "experience-guided-01のB正式案・正式評価の保存版。既知入力を使う実行工程の検査。",
     "criteria": "元保存物不変、旧採否を次の評価へ渡さない、正式な改訂と別評価を1件ずつ保存しreportまで到達、失敗や未提出では次へ進まない。探索の有用性は既存5基準で別判定。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未実行。",
-      "limitations": "実行管理の改善であり、それだけで発見力の向上やシステム完成を認定しない。"
+      "outcome": "fail",
+      "summary": "改訂9分12秒、評価5分43秒。約0.6秒で自動引き渡しできたが、担当名重複で評価保存が失敗しreview_missingで終了。",
+      "limitations": "未登録のtest回答は正式推薦や有用性合格へ数えない。試行は再実行せず保持。実行管理の失敗と案の弱さを区別。"
     },
     "decision": {
       "status": "deferred",
-      "reason": "実装と実利用が未完了。"
+      "reason": "正式改訂と別評価・全体報告まで完走する事前条件を満たさない。担当識別の修正をworker-identity-01で別検証する。"
     },
     "started_at": "2026-09-10T08:55:44.576780+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T09:34:03.852367+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -38,34 +38,67 @@
       {
         "id": "live-develop",
         "title": "保存案を評価から改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T09:10:46.163666+00:00",
-        "ended_at": null,
-        "note": "新規担当が通常の考案指示で1回改訂。\n起動処理を開始。実行記録: /private/tmp/sv-revision-runner-01/run/develop-run",
+        "ended_at": "2026-09-10T09:19:57.704841+00:00",
+        "note": "新規担当が通常の考案指示で1回改訂。\n起動処理を開始。実行記録: /private/tmp/sv-revision-runner-01/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 20
       },
       {
         "id": "live-review",
         "title": "改訂案を新規担当が評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "旧採否を除いた資料から通常の独立評価。",
+        "status": "completed",
+        "started_at": "2026-09-10T09:19:58.309015+00:00",
+        "ended_at": "2026-09-10T09:25:41.519280+00:00",
+        "note": "旧採否を除いた資料から通常の独立評価。\n起動処理を開始。実行記録: /private/tmp/sv-revision-runner-01/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
+      },
+      {
+        "id": "result-check",
+        "title": "正式提出・入力保持・結果の点検",
+        "status": "completed",
+        "started_at": "2026-09-10T09:25:40.589276+00:00",
+        "ended_at": "2026-09-10T09:34:03.852367+00:00",
+        "note": "元入力保持・旧採否除外を確認。未提出の原因、正式評価0、採用保留を報告へ保存。評価中に点検を始めたため工程が一部重なる。",
+        "budget_minutes": null
+      },
+      {
+        "id": "handoff-audit",
+        "title": "別担当による受け渡し点検",
+        "status": "completed",
+        "started_at": "2026-09-10T09:26:13+00:00",
+        "ended_at": "2026-09-10T09:27:51+00:00",
+        "note": "親の結果点検・報告作業と並行。",
+        "budget_minutes": null
+      },
+      {
+        "id": "reader-check",
+        "title": "報告の初見読者点検",
+        "status": "completed",
+        "started_at": "2026-09-10T09:29:16+00:00",
+        "ended_at": "2026-09-10T09:29:26+00:00",
+        "note": "親の結果点検・報告作業と並行。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
       "evals/discovery/revision-runner-01/README.md",
       "evals/discovery/revision-runner-01/protocol.json",
       "evals/discovery/revision-runner-01/verification.json",
-      "evals/discovery/revision-runner-01/independent-code-audit.json"
+      "evals/discovery/revision-runner-01/independent-code-audit.json",
+      "evals/discovery/revision-runner-01/result.json",
+      "evals/discovery/revision-runner-01/live/result.json",
+      "evals/discovery/revision-runner-01/live/verification.json",
+      "evals/discovery/revision-runner-01/live/handoff-audit.json",
+      "evals/discovery/revision-runner-01/reader-check.json",
+      "evals/discovery/revision-runner-01/live/review/final-message.md"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/revision-runner-01/README.md",
-      "sha256": "4879dd9986e722f617eca5672cc9424ff10662fa4727215120fdba587d15559c",
-      "size": 4813
+      "sha256": "812564fef562b46261c369f0eac53834a0cb506486b1816e4ad64a6ed2730e41",
+      "size": 5384
     },
     {
       "path": "evals/discovery/revision-runner-01/independent-code-audit.json",
@@ -73,9 +106,39 @@
       "size": 671
     },
     {
+      "path": "evals/discovery/revision-runner-01/live/handoff-audit.json",
+      "sha256": "caeae19a536ad4bc736d3b648bee09bd59b358029da0c18b475dc91b3718681a",
+      "size": 632
+    },
+    {
+      "path": "evals/discovery/revision-runner-01/live/result.json",
+      "sha256": "ff33f4f370d0556cd1ee98067377952e43f15f8b850e39dc066a6149240ddf34",
+      "size": 10578
+    },
+    {
+      "path": "evals/discovery/revision-runner-01/live/review/final-message.md",
+      "sha256": "e326ad217119b7fac02f74d8688ff8d3ac140cf3677d7e1339b16a44ae9fd6c2",
+      "size": 7502
+    },
+    {
+      "path": "evals/discovery/revision-runner-01/live/verification.json",
+      "sha256": "7a7aa75b7f4a67d7b8ef23150a1839d2674b954a1e1aba590412a553dcc6052d",
+      "size": 1801
+    },
+    {
       "path": "evals/discovery/revision-runner-01/protocol.json",
       "sha256": "2238a82c65d246f73a01a932e9e2dfb695f7c8812a7283bf02587c0838490c5b",
       "size": 3092
+    },
+    {
+      "path": "evals/discovery/revision-runner-01/reader-check.json",
+      "sha256": "e732e7aef1f3ffcfd1e8b377e9d3f1833358dc2f2981205005698396cf9b8dd8",
+      "size": 656
+    },
+    {
+      "path": "evals/discovery/revision-runner-01/result.json",
+      "sha256": "f10ccab48e30944ae6351d7d6cc2b223c3f312c0b754e89277268006cacaaef8",
+      "size": 1444
     },
     {
       "path": "evals/discovery/revision-runner-01/verification.json",

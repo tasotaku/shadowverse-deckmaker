@@ -1,0 +1,51 @@
+{
+  "collected_at": "2026-09-10T09:26:37.966329+00:00",
+  "status": "review_missing",
+  "original_session_unchanged": true,
+  "stages": {
+    "develop": {
+      "operation_count": 39,
+      "failures": [],
+      "public_stdout_bytes": 807866,
+      "first_submission": {
+        "args": [
+          "submit",
+          "proposal.json"
+        ],
+        "started_at": "2026-09-10T09:18:40.276211+00:00",
+        "ended_at": "2026-09-10T09:18:40.357004+00:00"
+      },
+      "started_at": "2026-09-10T09:10:46.163666+00:00",
+      "ended_at": "2026-09-10T09:19:57.704841+00:00",
+      "elapsed_seconds": 551.5395705420524,
+      "status": "completed",
+      "worker_returncode": 0
+    },
+    "review": {
+      "operation_count": 24,
+      "failures": [
+        {
+          "args": [
+            "review",
+            "review.json"
+          ],
+          "started_at": "2026-09-10T09:23:46.340220+00:00",
+          "ended_at": "2026-09-10T09:23:46.398083+00:00",
+          "stderr": "探索入力エラー: 別評価は提案担当と異なるセッションで行ってください\n",
+          "exit_code": 2
+        }
+      ],
+      "public_stdout_bytes": 1699635,
+      "first_submission": null,
+      "started_at": "2026-09-10T09:19:58.309015+00:00",
+      "ended_at": "2026-09-10T09:25:41.519280+00:00",
+      "elapsed_seconds": 343.20930741680786,
+      "status": "completed",
+      "worker_returncode": 0
+    }
+  },
+  "interstage_utc_seconds": 0.604174,
+  "limits": "公開操作と正式保存・担当の最終回答だけを回収。私的なstdoutストリームは参照・複製しない。考案・評価の正常終了は案の有用性と別。",
+  "source_code_same_as_live_runtime": true,
+  "main_card_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414"
+}

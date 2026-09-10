@@ -117,7 +117,13 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                     if not content.is_relative_to(work.resolve()):
                         raise ValueError('作業先の外のファイルは読み込めません')
                     if command in {'submit', 'review'}:
+                        if len(rest) != 1:
+                            raise ValueError('提出には回答ファイル1件だけを指定してください')
                         response = read_object(content)
+                        # AI_NOTE: 名乗りの一致で別プロセスを誤拒否せず、元回答と割当担当を両方残す。
+                        operation['submission'] = {'input': str(content.relative_to(work.resolve())),
+                                                   'response': response, 'assigned_author': config['author']}
+                        response = {**response, 'author': config['author']}
                         data = discovery._response_packet(session, response, stage)
                         if data['revision'] != revision:
                             raise ValueError('固定した改訂への回答ではありません')
@@ -126,7 +132,11 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                             raise ValueError('評価は今回の固定資料だけを使います')
                         check_packet(session, data, fixed)
                     rest[0] = str(content)
-                if command == 'packet' and stage == 'review' and not help_only:
+                if command in {'submit', 'review'} and not help_only:
+                    value = discovery.submit(session, response) if command == 'submit' else discovery.review(session, response)
+                    print(json.dumps({**value, 'author': config['author']}, ensure_ascii=False, indent=2))
+                    code = 0
+                elif command == 'packet' and stage == 'review' and not help_only:
                     key = config['packet_hash']
                     value = packet_summary(session, key) if args[1:] == ['--summary'] else read_object(session / 'packets' / (key + '.json'))
                     print(json.dumps(value, ensure_ascii=False, indent=2))
@@ -178,7 +188,7 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')
     original = manifest(source)
     output.mkdir(parents=True, exist_ok=False)
-    result: dict[str, Any] = {'status': 'preparing', 'started_at': datetime.now(timezone.utc).isoformat(),
+    result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
                               'source': str(source), 'output': str(output), 'stages': [],
                               'limits': '実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。'}
     try:
@@ -192,6 +202,7 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
         expected = max((p['revision'] for p in prior['revisions']), default=0) + 1
         result.update(parent_revision=parent, expected_revision=expected, original_manifest=original)
         for stage, limit, target in (('develop', develop_seconds, parent), ('review', review_seconds, expected)):
+            author = f"worker:{result['run_id']}:{stage}"
             if stage == 'review':
                 work = output / 'review'
                 envelope = discovery.packet(output / 'develop/session', target, stage)
@@ -201,13 +212,14 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
                 envelope = discovery.packet(work / 'session', target, stage)
             summary = packet_summary(work / 'session', envelope['sha256'])
             write_new(work / 'input-summary.json', summary)
-            write_new(work / 'public-config.json', {'stage': stage, 'revision': target, 'packet_hash': envelope['sha256']})
+            write_new(work / 'public-config.json', {'stage': stage, 'revision': target, 'packet_hash': envelope['sha256'], 'author': author})
             (work / 'public.py').write_text('import sys\nsys.dont_write_bytecode = True\nfrom pathlib import Path\nsys.path.insert(0, ' + repr(str(runtime)) + ')\nfrom svdeck.discovery_run import public_main\nraise SystemExit(public_main(Path(__file__).resolve().parent))\n')
             instruction = envelope['data']['instruction']
             reading = 'カード本文、注記、生成先、資料、履歴' + ('、直前評価' if stage == 'develop' else '')
             prompt = f'''{instruction}
 
 実行条件: {stage} 工程を今回1回だけ行います。制限は経過 {limit:g} 秒です。待ち時間も含みます。
+この工程の担当IDは {author} です。公開提出はauthorだけをこのIDへ結び、元の申告名と回答本文を公開操作記録に保持します。名乗りを推測する必要はありません。判断・手順・根拠は変更しません。
 {reading}は公開入口から読みます。作業先の外・親会話・実装・別探索・過去の私的実行ログを読まないでください。
 input-summary.jsonには今回の資料識別値と回答形式があります。入力の実体は直接開かず、次の公開コマンドで必要な範囲を読んでください。
 {sys.executable} public.py --help
@@ -227,7 +239,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
                        '--skip-git-repo-check', '--cd', str(work), '--json', '--output-last-message', str(work / 'final-message.md'), '-']
             code, execution = worker.run(command, output / (stage + '-run'), limit, 2, work,
                                          work / 'prompt.md', 'elapsed', journal)
-            result['stages'].append({'stage': stage, 'returncode': code, 'run': execution})
+            result['stages'].append({'stage': stage, 'author': author, 'returncode': code, 'run': execution})
             check_unchanged(source, original, exact=True)
             check_unchanged(runtime, runtime_before, exact=True)
             check_unchanged(work, fixed)
@@ -248,6 +260,8 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
                     raise ValueError('今回の親に対応する正式改訂1件だけが必要です')
                 current = discovery._revision(work / 'session', expected)
                 assert current is not None
+                if current['author'] != author:
+                    raise ValueError('正式改訂の担当IDが起動時の割当と一致しません')
                 discovery._validate_proposal(current, envelope['data']['context'], load_sources(work / 'session'))
                 referenced = discovery._response_packet(work / 'session', current, 'develop')
                 check_packet(work / 'session', referenced, envelope['data'])
@@ -259,6 +273,8 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
                 if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + 1:
                     raise ValueError('今回の改訂への正式な別評価1件だけが必要です')
                 stored = reviews[0]
+                if stored['author'] != author:
+                    raise ValueError('正式評価の担当IDが起動時の割当と一致しません')
                 discovery._response_packet(work / 'session', stored, 'review')
                 if stored['packet_hash'] != envelope['sha256']:
                     raise ValueError('別評価が今回の固定資料を参照していません')

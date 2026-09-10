@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-09-10T09:34:52.129718+00:00",
+  "status": "PASS for implementation; real AI pending",
+  "tests": {
+    "total": 93,
+    "runner": 24,
+    "existing": 69,
+    "passed": 93,
+    "seconds": 13.25,
+    "temporary_path": "tests/temp/test_discovery_run_temp.py; not committed"
+  },
+  "mypy": "strict PASS",
+  "test_plan": {
+    "normal": [
+      "同じ/rootの名乗りでも別割当IDとして改訂・別評価を保存",
+      "元回答ファイル・操作記録・author以外の正式保存内容の一致",
+      "生成したpublic.pyを実プロセスで起動し凍結実装から実行"
+    ],
+    "edge": [
+      "申告authorなしでも実行側のIDで保存",
+      "追加資料後の再packet、初回・改訂の既存動作保持"
+    ],
+    "error": [
+      "同一割当IDの自己評価を拒否",
+      "割当外IDで直接保存した正式記録を拒否",
+      "工程違い・不正な判定・入力書換え・未提出・時間切れを継続拒否"
+    ]
+  },
+  "initial_test_result": "90pass/3fail。新テストがreportのauthorを直接読もうとしてKeyError。正式revisionを読むようテストだけ訂正。",
+  "code_sha256": "30b154acb9d9c366c52a9bf56ab100a7dccfc98fdf740e3897d11b8c1f1dced8",
+  "core_discovery_unchanged": true,
+  "limits": "合成応答と実プロセスによる動作検査。実AIと案の価値はこれから。"
+}
