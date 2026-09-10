@@ -1,0 +1,74 @@
+{
+  "verdict": "PASS",
+  "checked_at": "2026-09-10T13:02:15.722887+00:00",
+  "scope": "両実行入口に残り秒の読出し方法を加えた説明変更。期限・停止処理・カード指示・5基準は不変。",
+  "coverage": {
+    "normal": "既存55件で改訂→評価、調査→照合、正式保存・原文一致・元入力保持を確認。生成された4工程の起動文から実コマンドを抽出して実行。",
+    "edge": "残り正数と期限後の負数を各4工程で確認。過去のUTC期限を環境へ入れても経過時計の残りを返す。",
+    "error": "既存検査で無効な上限・不正な問い、未提出・入力改変・ヘルプだけの偽完了を拒否。"
+  },
+  "pytest": {
+    "files": [
+      "tests/temp/test_discovery_run_temp.py",
+      "tests/temp/test_discovery_inquiry_temp.py"
+    ],
+    "passed": 55,
+    "elapsed_seconds": 18.58
+  },
+  "mypy": "2ファイルでエラーなし。",
+  "actual_clock_commands": {
+    "started_at": "2026-09-10T13:02:15.509308+00:00",
+    "ended_at": "2026-09-10T13:02:15.722912+00:00",
+    "checks": [
+      {
+        "stage": "inquiry",
+        "remaining_input_seconds": 3,
+        "observed_seconds": 2.979138916824013,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "inquiry",
+        "remaining_input_seconds": -0.1,
+        "observed_seconds": -0.11981491604819894,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "inspect",
+        "remaining_input_seconds": 3,
+        "observed_seconds": 2.9657364580780268,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "inspect",
+        "remaining_input_seconds": -0.1,
+        "observed_seconds": -0.13661329122260213,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "develop",
+        "remaining_input_seconds": 3,
+        "observed_seconds": 2.9807960418984294,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "develop",
+        "remaining_input_seconds": -0.1,
+        "observed_seconds": -0.1182880001142621,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "review",
+        "remaining_input_seconds": 3,
+        "observed_seconds": 2.9818148748017848,
+        "past_utc_ignored": true
+      },
+      {
+        "stage": "review",
+        "remaining_input_seconds": -0.1,
+        "observed_seconds": -0.11848025023937225,
+        "past_utc_ignored": true
+      }
+    ]
+  },
+  "limits": "コマンドの動作確認であり、担当が今後必ずこの時計を使うことや休止・通信の原因解決の証明ではない。新規の鏡写しテストは追加せず、既存検査と実コマンドを使用。"
+}

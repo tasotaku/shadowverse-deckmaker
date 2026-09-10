@@ -228,9 +228,12 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
             (work / 'public.py').write_text('import sys\nsys.dont_write_bytecode = True\nfrom pathlib import Path\nsys.path.insert(0, ' + repr(str(runtime)) + ')\nfrom svdeck.discovery_run import public_main\nraise SystemExit(public_main(Path(__file__).resolve().parent))\n')
             instruction = envelope['data']['instruction']
             reading = 'カード本文、注記、生成先、資料、履歴' + ('、直前評価' if stage == 'develop' else '')
+            # AI_NOTE: 担当も監視側と同じ時計を参照できるようにし、UTC時刻差を別の期限にしない。
             prompt = f'''{instruction}
 
 実行条件: {stage} 工程を今回1回だけ行います。制限は経過 {limit:g} 秒です。待ち時間も含みます。
+上限は監視側の経過時計で判定します。残り秒は次で確認できます: {sys.executable} -c "import os,time; print(float(os.environ['SVDECK_DEADLINE_MONOTONIC']) - time.monotonic())"
+UTCの開始・終了も記録しますが、その時刻差だけで期限切れと判定しません。PC休止等の扱いはOSに依存し、時計差があれば両方の値と未確認の原因を報告します。終了前に提出・保存を済ませてください。
 この工程の担当IDは {author} です。公開提出はauthorだけをこのIDへ結び、元の申告名と回答本文を公開操作記録に保持します。名乗りを推測する必要はありません。判断・手順・根拠は変更しません。
 {reading}は公開入口から読みます。作業先の外・親会話・実装・別探索・過去の私的実行ログを読まないでください。
 input-summary.jsonには今回の資料識別値と回答形式があります。入力の実体は直接開かず、次の公開コマンドで必要な範囲を読んでください。

@@ -161,12 +161,15 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
             write_new(work / 'public-config.json', config)
             write_new(work / 'input-summary.json', packet_summary(work / 'session', envelope['sha256']))
             (work / 'public.py').write_text('import sys\nsys.dont_write_bytecode = True\nfrom pathlib import Path\nsys.path.insert(0, ' + repr(str(runtime)) + ')\nfrom svdeck.discovery_run import public_main\nraise SystemExit(public_main(Path(__file__).resolve().parent))\n')
+            # AI_NOTE: 調査担当にも監視側と同じ残り時間の確認方法を示し、UTC差との混同を避ける。
             prompt = f'''{data['instruction']}
 
 今回の問い: {focus['question']}
 今回照合する保存済み報告の識別値: {inspect_source or 'この実行の調査工程が保存した報告'}。
 参照元: 改訂{revision} / 評価{review_hash} / 問い位置{question_index}（0始まり）。
 今回は{stage}を1回だけ、待ち時間込みの経過{seconds:g}秒まで行います。担当ID: {config['author']}。
+上限は監視側の経過時計で判定します。残り秒は次で確認できます: {sys.executable} -c "import os,time; print(float(os.environ['SVDECK_DEADLINE_MONOTONIC']) - time.monotonic())"
+UTCの開始・終了も記録しますが、その時刻差だけで期限切れと判定しません。PC休止等の扱いはOSに依存し、時計差があれば両方の値と未確認の原因を報告します。終了前に提出・保存を済ませてください。
 作業先外、親会話、実装、別探索、私的な実行ログは読みません。入力は直接開かず公開入口で読んでください。
 {sys.executable} public.py packet --summary
 {sys.executable} public.py read {envelope['sha256']} SECTION --offset 0 --limit 20
