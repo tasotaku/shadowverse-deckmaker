@@ -1,0 +1,49 @@
+{
+  "status": "completed_with_failure",
+  "outcome": "mixed",
+  "decision": "deferred",
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "a": {
+    "new_formal_revisions": 1,
+    "new_formal_reviews": 1,
+    "new_sources": 0,
+    "judgment": {
+      "procedure": "supported",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    },
+    "criteria": {
+      "workflow": "pass",
+      "correctness": "指定した手順はsupported。通常側の三叉槍即アクトを比較に含めておらず、比較説明は不足。",
+      "development": "pass：起動を2枚3PPへ変え、全体処理を復元。",
+      "utility": "fail：追加回復・守護に手札・信仰・既存回復を払う局面が未確立。",
+      "honesty": "pass：普及・成立頻度・実戦優位は未確認。"
+    }
+  },
+  "b": {
+    "new_formal_revisions": 1,
+    "new_formal_reviews": 0,
+    "new_sources": 3,
+    "judgment": null,
+    "criteria": {
+      "workflow": "fail：正式submit/report後も担当が終了せず900秒停止。評価は起動しない。",
+      "correctness": "unassessed：別評価未実施。",
+      "development": "観察あり：通常側の複数手順と比較し、約束増設を見送り、構成員1・暗黒次元3へ変更。比較の正確さは独立未検証。",
+      "utility": "unassessed：試行推薦は未取得。",
+      "honesty": "未確認と明示する記述あり。ただし別評価未実施。"
+    }
+  },
+  "recommendation_count": 0,
+  "meaning_of_zero": "現行側はdevelop、追加側は評価未実施。追加側を弱いと判定した0ではない。",
+  "decision_reason": "追加側は具体的配分を変えたが同じ予算で別評価まで完了できず、有用性の上乗せは未実証。採用保留。",
+  "next": "元の失敗を保持し、保存済み正式案の別評価だけを新しい実行として再開する入口を実装・検証する。",
+  "public_operations": {
+    "a_develop": 35,
+    "a_review": 21,
+    "b_develop": 28,
+    "total": 84,
+    "errors": 0,
+    "help": 7
+  },
+  "limits": "各側1回の既知入力。担当差と指示差は分離できない。追加側の未評価を独自性や実戦の反証としない。"
+}

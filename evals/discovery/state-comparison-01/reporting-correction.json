@@ -1,0 +1,12 @@
+{
+  "corrected_at": "2026-09-10T13:36:08.741784+00:00",
+  "incorrect_interim_claim": "追加側から正式な改訂1件・比較記録が出たとcommentaryで伝えた。",
+  "observed_fact": "submit --help, attach --help, attach-file --help の成功表示だけ。正式revision-0002はなく、両側とも新規改訂0件だった。",
+  "cause": "親の集計がコマンド名と終了番号だけを見て、ヘルプを除外せず提出確認に使った。実行側の既存提出検査は誤って進行していない。",
+  "correction": "同じ会話で直ちに訂正。以後の途中観測は既存reportが返す正式revision番号>1を数え、ヘルプも別に集計する。",
+  "journal_outcome_changed": false,
+  "formal_submission_count_at_correction": {
+    "a": 0,
+    "b": 0
+  }
+}

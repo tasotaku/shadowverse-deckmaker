@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "purpose": "過去の条件付き試用推薦を最大3試行に限って確認し、進行中の1組比較後に親が別入力を選ぶための準備材料を作る。方法の採用判断・過去評価の再採点は行わない。",
+  "started_at_utc": "2026-09-10 13:33:33 UTC",
+  "scope": {
+    "trial_count": 3,
+    "proposal_count": 4,
+    "note": "burden-review-recovery-01のa/bは同じ既存試行の2案。最終提案は元のburden-revision-01の公開保存を参照した。",
+    "sources": {
+      "royalReadme": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/README.md",
+      "royalProposal": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/generation/result/revision-0002.json",
+      "royalReview": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/review/review.json",
+      "bishopReadme": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/README.md",
+      "bishopProposal": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/live/develop/proposal.json",
+      "bishopReview": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/live/review/review.json",
+      "burdenReadme": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/README.md",
+      "burdenAProposal": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-revision-01/a/generation/revision-0002.json",
+      "burdenAReview": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/a/review/review.json",
+      "burdenBProposal": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-revision-01/b/generation/revision-0002.json",
+      "burdenBReview": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/b/review/review.json"
+    },
+    "current_state_comparison_outputs_or_instructions_read": false,
+    "new_experiment_or_card_search": false,
+    "web_used": false,
+    "code_or_database_edited": false,
+    "past_evaluations_changed": false,
+    "audience": "親の次入力選定用。このファイルを現在の比較担当・評価担当へ渡さない。"
+  },
+  "conclusion": "3試行とも、提出完了や追加調査の余地だけで試用価値を認めた記録ではない。増える役割と失う役割を挙げた条件付き推薦である。ただしロイヤル、初回ビショップ、負担軽減aには同じ局面から通常構築を動かす比較が今後の問いとして残る。負担軽減bは通常の打点からの増分と、三叉槍の処理・回復を失う費用まで具体化しており、同じ比較不足が全推薦に共通するとまでは言えない。",
+  "trials": [
+    {
+      "trial": "fresh-royal-01",
+      "recorded_final_evaluation": {
+        "procedure": "conditional",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "reason_to_try": "重い専用札をリッター1枚にとどめ、モルドレッド2枚は序盤の通常運用にも使い、既存クイックブレーダーも受け皿になる。旗やバルバロスが足りない局面に、前ターンの攻撃役生存を要しない補助決着を追加する。リッターの増分5点と旗の既存4点を区別していた。",
+      "burden_counted": "金貨供給・補充、マーズの守護処理、ベルテゾールの後半一枚決着を薄める。8PP主線は残PP0で、残した除去を同時には使えず、SEPも既存札と競合する。",
+      "specificity_and_limit": "利益の使いどころと代償は具体的。ただし通常案で栄耀・マーズ・ベルテゾールを選んだ場合の同じ開始状態での結果までは提示せず、増減の比較を次の問いに残した。今回と同種の比較余地はあるが、今回と同一の即時効果の見落としを確認したわけではない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/README.md",
+          "lines": [
+            9,
+            11,
+            13,
+            17,
+            23
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/generation/result/revision-0002.json",
+          "pointer": "/data/plan"
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-royal-01/review/review.json",
+          "pointers": [
+            "/value",
+            "/findings/1",
+            "/next_questions/1",
+            "/next_questions/3"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "fresh-bishop-01",
+      "recorded_final_evaluation": {
+        "procedure": "conditional",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "reason_to_try": "7コストと4コストの札を各1枚減らし2コスト守護2枚を入れる。既存の回復・補充札を利用するため、専用回復部品や別の決着札を増やさず、序盤の攻撃を守護で受ける用途を得る。",
+      "burden_counted": "2PP・場1枠の追加、T2のエクストラPP消費によるT3暗黒次元の遅れ、後半の消滅・全体処理・回復の減少、アミュレット枚数低下を認めた。T2では通常案もEPを使えないため、EP1節約とは数えなかった。",
+      "specificity_and_limit": "採用の少なさと役割の交換は明確。一方、早い守護で防ぐ損失が、通常案のT3暗黒次元や後半札の利益を上回る具体的な局面は未確定。T2に使う案とT3に温存する案のT4終了時の体力・盤面・手札比較が、正式評価の次の問いに残った。後で判明した事実を使ってこの過去評価を書き換えない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/README.md",
+          "lines": [
+            23,
+            27,
+            31,
+            34,
+            46,
+            50
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/live/develop/proposal.json",
+          "pointer": "/plan"
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fresh-bishop-01/live/review/review.json",
+          "pointers": [
+            "/value",
+            "/findings/2",
+            "/findings/3",
+            "/next_questions/1"
+          ]
+        }
+      ]
+    },
+    {
+      "trial": "burden-review-recovery-01",
+      "recorded_final_evaluation": {
+        "a": {
+          "procedure": "conditional",
+          "value": "test",
+          "novelty": "unconfirmed"
+        },
+        "b": {
+          "procedure": "conditional",
+          "value": "test",
+          "novelty": "unconfirmed"
+        }
+      },
+      "a": {
+        "reason_to_try": "予約を5PPから2PPに減らしてT5リテュエルの処理と進化を取り戻し、全体破壊の翌ターンに自然生成した攻撃役へ、7PPで追加6点を相手リーダーに向ける経路を得た。単なるPP計算訂正ではなく、守りに使う実際の手番を回復した。",
+        "burden_counted": "追加5枠で回復・守護、SEP補充、初回クレスト、別の決着、軽減除去を減らす。早引き、場占有、T4ソフィーナとの競合、T7姉妹の延期、専用札だけ引く負担が残る。ユラティオと宝石の復帰は通常構築と同水準への復帰で、通常構築を上回る守りとは数えない。",
+        "comparison_limit": "追加6点と改訂前からの行動回復は具体的だが、通常のT7姉妹進行より早い決着を作るかは次の問いに残る。最終提案のT4手順には三叉槍と結晶の即時4+2点を記載しており、今回と同じ即時効果の欠落が全案にあるという解釈への反証になる。"
+      },
+      "b": {
+        "reason_to_try": "専用の7PP強化札を外し3枠の予約へ縮小。既存のリテュエル＋トルーの8点を12点、指定守護越し6点を10点へ伸ばす増分4点を分離し、そのターンの決着範囲を残体力9～12／7～10へ広げる理由を明示した。",
+        "burden_counted": "予約の準備、場占有、3枠で失う役割に加え、通常案ならT7に温存できる三叉槍を場の確保に使うため、T8の2点処理とトルーの回復を失うことを比較した。倒し切れない場合にこの費用が重いことも明記した。",
+        "comparison_limit": "通常案の同じ終盤出力と具体的な機会費用まで比較した例であり、単なる候補側の総打点提示ではない。ただし準備から同じ開始状態で通常の全行動を尽くした完全比較の証明ではなく、早引き、守り優先時の見送り、場の空きと利益が生じる頻度は未確定。これらを新しい勝率証明義務には置き換えない。"
+      },
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/README.md",
+          "lines": [
+            3,
+            7,
+            11,
+            12,
+            14,
+            20,
+            34
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-revision-01/a/generation/revision-0002.json",
+          "pointers": [
+            "/data/steps",
+            "/data/plan"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/a/review/review.json",
+          "pointers": [
+            "/value",
+            "/findings/2",
+            "/findings/3",
+            "/next_questions/1"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-revision-01/b/generation/revision-0002.json",
+          "pointer": "/data/plan"
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/burden-review-recovery-01/b/review/review.json",
+          "pointers": [
+            "/value",
+            "/findings/3",
+            "/findings/4",
+            "/next_questions/1"
+          ]
+        }
+      ]
+    }
+  ],
+  "after_current_pair": {
+    "status": "現在の担当出力・指示・結果は見ていないため、今回の合否や実際に継続できるかは未判定。",
+    "authority": "今回の1組は既に固定した基準・継続条件で判定する。以下はその結果を親が説明し、次入力を選ぶための観点であり、新しい合否条件ではない。",
+    "what_to_establish": [
+      "通常側の即時効果・進行と候補側の増分・失う役割が分けられ、それが提案の配分、手順、または不採用判断にどう作用したかを特定する。",
+      "比較を追加した側と通常の指示の側の差を確定する。記述が長い、両側が同程度、旧案より準備PPが小さいという事実だけを方法の効果に読み替えない。",
+      "有用な種を出せたことと、利益の不足を正しく認めdevelop/dropに止めたことを分ける。後者は誤った推薦を減らす工程の改善になり得るが、有用な種を出した実績には数えない。"
+    ],
+    "next_input_condition": "固定した継続条件を満たしたら、今回に対する作用を上の区別で記録し、方法を暫定のまま別入力へ進める。満たさない場合は、別入力へ移ったことを今回の未達の解消扱いにしない。この監査だけで続行・採用を確定しない。",
+    "input_selection_preparation": "次の実入力は、今回のビショップと異なるクラスまたは異なる役割の入替で、通常構築とその採用理由が読めるものを親が選ぶ。通常札と新しい札が同じ資源・手番を使うため、通常側の手順比較が意味を持つ入力がよい。ロイヤル型の補助決着は性質の異なる候補だが、既存fresh-royal-01を再利用して未見入力と呼ばず、ここでは具体的なカード・デッキを新しく選ばない。",
+    "preserve": [
+      "既存5基準と過去評価を維持する。勝率証明、Tier1、シミュレータ、40枚完成を新しい条件にしない。",
+      "比較と別評価の役割を維持し、前の正解、今回の担当出力、この監査を次の答案誘導に使わない。",
+      "1組で方法の一般的効果を認定しない。今回の入力に作用したかを確定してから、別入力で再現するかを調べる。"
+    ]
+  },
+  "clarity_check": "既存の独立担当が結論文だけを読み、追加の観点を『新たな合否条件ではない』と明記する修正を反映した。担当は資料・実行中比較を読んでいない。",
+  "ended_at_utc": "2026-09-10 13:40:35 UTC",
+  "elapsed_seconds": 422,
+  "output_path": "/tmp/state-comparison-next-input-audit.json"
+}

@@ -1,30 +1,30 @@
 {
   "id": "state-comparison-01",
-  "revision": 5,
-  "saved_at": "2026-09-10T13:31:12.499258+00:00",
+  "revision": 13,
+  "saved_at": "2026-09-10T13:52:50.453487+00:00",
   "actor": "codex",
-  "reason": "両側の実際の起動と準備済み資料との完全一致を確認",
+  "reason": "実施手順にも追加側の別評価未実施を明記",
   "record": {
     "id": "state-comparison-01",
     "title": "通常構築を同じ開始状態から比較して改訂する",
     "category": "method",
-    "status": "running",
-    "summary": "現行側・比較指示追加側の改訂を実行中。各15分の中で考案・比較・正式提出まで行う。",
+    "status": "completed",
+    "summary": "現行側は正式改訂1件・別評価1件で試行推薦0。追加側は正式改訂1件と比較3資料を保存後に15分停止し、別評価は未実施。",
     "method": "両側に同じ通常構築を指定し、片側だけ同じ開始状態・終点での比較手順を加える。各側を別担当が改訂し、同じ指示で別評価する。",
-    "procedure": "条件固定→隔離した指示差分と入力一致の検査→現行側/追加側を各15分で改訂→各10分で別評価→5基準と時刻・採否を比較。",
+    "procedure": "条件固定→隔離した指示差分と入力一致の検査→現行側/追加側の改訂を各15分の上限で実行→現行側のみ別評価（追加側は改訂担当の期限停止で未着手）→結果と時刻・採否を記録。",
     "inputs": "最新の失敗改訂より前の固定入力。元案とその旧評価、公式ルール調査4資料を含む既知入力1組。最新改訂・最新評価・原因点検は担当へ渡さない。",
     "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。 / 最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。 / 追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。 / 最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。 / 共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "実入力は指示以外一致。比較の実効性は未評価。",
+      "outcome": "mixed",
+      "summary": "現行側は正式改訂1件・別評価1件で試行推薦0。追加側は正式改訂1件と比較3資料を保存後に15分停止し、別評価は未実施。",
       "limitations": "各条件1回なので担当差と指示差を分離できない。比較の正確化のみを試用価値に数えず、全体完成や一般優位を認定しない。モデル・推論設定は明示せず既定を使用。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "結果と比較不足の解消、試す理由の有無から判定する。"
+      "status": "deferred",
+      "reason": "追加側は配分を変えたが別評価まで完了できず、有用性の比較は未完。方法の本採用は保留。"
     },
     "started_at": "2026-09-10T13:28:11.541912+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T13:51:48.604947+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -38,46 +38,46 @@
       {
         "id": "a-develop",
         "title": "現行側：改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T13:30:29.100771+00:00",
-        "ended_at": null,
-        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/a/run/develop-run",
+        "ended_at": "2026-09-10T13:39:48.010703+00:00",
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/a/run/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "a-review",
         "title": "現行側：別評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "改訂と別評価は各1回。別評価の指示は両側同一。",
+        "status": "completed",
+        "started_at": "2026-09-10T13:39:48.597208+00:00",
+        "ended_at": "2026-09-10T13:45:45.230457+00:00",
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/a/run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-develop",
         "title": "追加側：改訂",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-10T13:30:30.278241+00:00",
-        "ended_at": null,
-        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/b/run/develop-run",
+        "ended_at": "2026-09-10T13:45:30.317596+00:00",
+        "note": "改訂と別評価は各1回。別評価の指示は両側同一。\n起動処理を開始。実行記録: /private/tmp/sv-state-comparison-01/b/run/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "b-review",
         "title": "追加側：別評価",
-        "status": "planned",
+        "status": "interrupted",
         "started_at": null,
         "ended_at": null,
-        "note": "改訂と別評価は各1回。別評価の指示は両側同一。",
+        "note": "追加側の改訂担当が15分で期限停止したため、別評価は起動していない。正式改訂は保存済みだが未評価。",
         "budget_minutes": 10
       },
       {
         "id": "report",
         "title": "両側の結果・採否・時間を比較して記録",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "比較の正確さと試す理由を分け、失敗や未提出も保持。",
+        "status": "completed",
+        "started_at": "2026-09-10T13:47:33.652491+00:00",
+        "ended_at": "2026-09-10T13:51:48.604947+00:00",
+        "note": "2案・1評価・追加3資料・公開84操作を回収。追加側は提出後の期限停止で未評価。元資料とDB不変、本文初見検査13秒PASS。採用保留で終了。",
         "budget_minutes": 10
       }
     ],
@@ -89,19 +89,73 @@
       "evals/discovery/state-comparison-01/input-verification.json",
       "evals/discovery/state-comparison-01/verification.json",
       "evals/discovery/state-comparison-01/test-setup-failure.json",
-      "evals/discovery/state-comparison-01/running-observation.json"
+      "evals/discovery/state-comparison-01/running-observation.json",
+      "evals/discovery/state-comparison-01/reporting-correction.json",
+      "evals/discovery/state-comparison-01/interim-formal-check.json",
+      "evals/discovery/state-comparison-01/prior-positive-audit.json",
+      "evals/discovery/state-comparison-01/a/live/result.json",
+      "evals/discovery/state-comparison-01/a/live/verification.json",
+      "evals/discovery/state-comparison-01/a/live/develop/proposal.json",
+      "evals/discovery/state-comparison-01/a/live/review/review.json",
+      "evals/discovery/state-comparison-01/b/live/result.json",
+      "evals/discovery/state-comparison-01/b/live/verification.json",
+      "evals/discovery/state-comparison-01/b/live/develop/proposal.json",
+      "evals/discovery/state-comparison-01/b/live/partial-report.json",
+      "evals/discovery/state-comparison-01/result.json",
+      "evals/discovery/state-comparison-01/timings.json",
+      "evals/discovery/state-comparison-01/reader-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/state-comparison-01/README.md",
-      "sha256": "dcfeced82b68f1f8a620218f3a575d6ffb5b91a505bbce58ba038893348c9e09",
-      "size": 1433
+      "sha256": "a48d58d582ced3eff436e7d7a782af1366db3791846a714adb9ce29b160692fe",
+      "size": 7253
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/a/live/develop/proposal.json",
+      "sha256": "7353fc142ef0ebd9e778e6ad2758f2423bd2eb66e36d5592d3e87816a32512c0",
+      "size": 25061
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/a/live/result.json",
+      "sha256": "7efb24b34fca3ae7f5c3c846b10cb19e219e8dc7ed1096a1871c0ab233e056bb",
+      "size": 12018
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/a/live/review/review.json",
+      "sha256": "9de08899006186f388b63cfc04a69f18754f37b7355610c686093f7ec87dfa05",
+      "size": 14881
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/a/live/verification.json",
+      "sha256": "260235d2e5a0e07220a78269b8998138844c1892c8b042cb65bbcd33a164a83e",
+      "size": 1008
     },
     {
       "path": "evals/discovery/state-comparison-01/a-instruction.diff",
       "sha256": "6e03665c59a9bdda00b196b931bac721ebcd7c0a84243453f75650e34b653859",
       "size": 1077
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/b/live/develop/proposal.json",
+      "sha256": "749253ee351058f043bb4b3833bd1b1af6f0f081a72308917d8ade9be32a452f",
+      "size": 27487
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/b/live/partial-report.json",
+      "sha256": "f3e3d9b6ffb12933134d0090840791a9b936fffe481356883506b56ff51c38cb",
+      "size": 39377
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/b/live/result.json",
+      "sha256": "d75dde8c34c4e88bfedc195852ef72fad63e8be9666223312987f00ff1ec0363",
+      "size": 8518
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/b/live/verification.json",
+      "sha256": "4603cbcbdf7fe3dbe073ef96c08e6b1eaf360fedf1ae62102dd1c0541ad73185",
+      "size": 721
     },
     {
       "path": "evals/discovery/state-comparison-01/b-instruction.diff",
@@ -114,9 +168,34 @@
       "size": 826
     },
     {
+      "path": "evals/discovery/state-comparison-01/interim-formal-check.json",
+      "sha256": "de59b70d285de88dd92e37a3baf30bc8719a5375411b0e9ae1c7180daabdfb2b",
+      "size": 637
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/prior-positive-audit.json",
+      "sha256": "54daa6ff6b898c72d04f41e03cbc316b5506c85555e63953e7a1af93a8517ab7",
+      "size": 13685
+    },
+    {
       "path": "evals/discovery/state-comparison-01/protocol.json",
       "sha256": "3e607c1c408bc41019aa8cb3d173a73a93ac48a2b91301f55b25fbb697c40eeb",
       "size": 10455
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/reader-check.json",
+      "sha256": "d88aba310bae13f49908ed1a0c79b6dbe98e9d72904703095d38de5a9932dee3",
+      "size": 477
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/reporting-correction.json",
+      "sha256": "ccf3d8a084b01da8059efc102e2930f90605e52eeda851e3a53ceeccbdeb721f",
+      "size": 812
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/result.json",
+      "sha256": "e2aeebc20c620c57bde9dd8112897ac382ca4c9dbe9c26722d766f363aac53c1",
+      "size": 2291
     },
     {
       "path": "evals/discovery/state-comparison-01/running-observation.json",
@@ -127,6 +206,11 @@
       "path": "evals/discovery/state-comparison-01/test-setup-failure.json",
       "sha256": "51d7121a1b93e06c04a2cd28318851712f1c2c00d1a18fc64861ca72ea4a37e3",
       "size": 654
+    },
+    {
+      "path": "evals/discovery/state-comparison-01/timings.json",
+      "sha256": "a49e26973b8bc1b65d3b334ab96cddb44c504837e8d3d1887bc01b80905bf03a",
+      "size": 2099
     },
     {
       "path": "evals/discovery/state-comparison-01/verification.json",
