@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-10T15:02:20.315041+00:00",
+  "status": "test-observer-error",
+  "case": "normal",
+  "error": "no observed assertion",
+  "cause": "検査スクリプトがpid(番号)の表記を探したが、実際のpmsetはpid 番号(caffeinate)。実際の抑止要求を読めなかった。",
+  "evidence": "別の短い実行でpid 76532(caffeinate)のPreventUserIdleSystemSleepを観測。元の正常実行は3.127秒で終了。",
+  "fix": "観測用正規表現を実出力に合わせ、別の一時保存先で3ケースを再確認。OS設定や本体コードの不具合とはしない。",
+  "first_run_record": "/tmp/sv-awake-review-01-check/normal/run.json"
+}

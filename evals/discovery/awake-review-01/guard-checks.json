@@ -1,0 +1,116 @@
+{
+  "started_at": "2026-09-10T15:02:20.356909+00:00",
+  "ended_at": "2026-09-10T15:02:28.085698+00:00",
+  "verdict": "PASS",
+  "cases": [
+    {
+      "name": "normal",
+      "started_at": "2026-09-10T15:02:20.371851+00:00",
+      "ended_at": "2026-09-10T15:02:23.606079+00:00",
+      "command": [
+        "/usr/bin/caffeinate",
+        "-i",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-B",
+        "-m",
+        "svdeck.worker",
+        "--output",
+        "/tmp/sv-awake-review-01-check-v2/normal",
+        "--timeout",
+        "10",
+        "--grace",
+        "0.2",
+        "--clock",
+        "elapsed",
+        "--",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-c",
+        "import time,sys;time.sleep(3);sys.exit(0)"
+      ],
+      "wrapper_pid": 77082,
+      "wrapper_returncode": 0,
+      "worker_status": "completed",
+      "worker_returncode": 0,
+      "runner_returncode": 0,
+      "observed_own_assertions": {
+        "77084": "pid 77084(caffeinate): [0x0022e7af00018fcf] 00:00:00 PreventUserIdleSystemSleep named: \"caffeinate command-line tool\""
+      },
+      "own_assertions_released": true,
+      "stderr": "",
+      "run_record": "/tmp/sv-awake-review-01-check-v2/normal/run.json"
+    },
+    {
+      "name": "failure",
+      "started_at": "2026-09-10T15:02:23.625327+00:00",
+      "ended_at": "2026-09-10T15:02:26.904604+00:00",
+      "command": [
+        "/usr/bin/caffeinate",
+        "-i",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-B",
+        "-m",
+        "svdeck.worker",
+        "--output",
+        "/tmp/sv-awake-review-01-check-v2/failure",
+        "--timeout",
+        "10",
+        "--grace",
+        "0.2",
+        "--clock",
+        "elapsed",
+        "--",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-c",
+        "import time,sys;time.sleep(3);sys.exit(3)"
+      ],
+      "wrapper_pid": 77226,
+      "wrapper_returncode": 3,
+      "worker_status": "failed",
+      "worker_returncode": 3,
+      "runner_returncode": 3,
+      "observed_own_assertions": {
+        "77228": "pid 77228(caffeinate): [0x0022e7b200018fd0] 00:00:00 PreventUserIdleSystemSleep named: \"caffeinate command-line tool\""
+      },
+      "own_assertions_released": true,
+      "stderr": "",
+      "run_record": "/tmp/sv-awake-review-01-check-v2/failure/run.json"
+    },
+    {
+      "name": "timeout",
+      "started_at": "2026-09-10T15:02:26.919765+00:00",
+      "ended_at": "2026-09-10T15:02:28.085662+00:00",
+      "command": [
+        "/usr/bin/caffeinate",
+        "-i",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-B",
+        "-m",
+        "svdeck.worker",
+        "--output",
+        "/tmp/sv-awake-review-01-check-v2/timeout",
+        "--timeout",
+        "1",
+        "--grace",
+        "0.2",
+        "--clock",
+        "elapsed",
+        "--",
+        "/private/tmp/sv-system-venv/bin/python",
+        "-c",
+        "import time,sys;time.sleep(5);sys.exit(0)"
+      ],
+      "wrapper_pid": 77254,
+      "wrapper_returncode": 124,
+      "worker_status": "timed_out",
+      "worker_returncode": -15,
+      "runner_returncode": 124,
+      "observed_own_assertions": {
+        "77256": "pid 77256(caffeinate): [0x0022e7b500018fd2] 00:00:00 PreventUserIdleSystemSleep named: \"caffeinate command-line tool\""
+      },
+      "own_assertions_released": true,
+      "stderr": "",
+      "run_record": "/tmp/sv-awake-review-01-check-v2/timeout/run.json"
+    }
+  ],
+  "limits": "短い実行でOSへの抑止要求と終了後の解除を観測。長時間や実AIの完了は次の試行で確認。恒久電源設定・画面点灯は変更しない。"
+}

@@ -1,22 +1,22 @@
 {
   "id": "awake-review-01",
-  "revision": 1,
-  "saved_at": "2026-09-10T15:00:17.871780+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-10T15:04:43.457710+00:00",
   "actor": "codex",
-  "reason": "PCスリープを確認し、実行中だけ抑止する最小変更の検証を開始",
+  "reason": "実AI担当に対応するOS抑止と同一入力を確認",
   "record": {
     "id": "awake-review-01",
     "title": "実行中の自動スリープを抑えて別評価する",
     "category": "method",
     "status": "running",
-    "summary": "実AI評価中のPCスリープを確認。実行中だけ抑止する運用を検証する。",
+    "summary": "実AIで別評価を実行中。担当実行中のスリープ抑止と、前回と同じ資料・実装を確認。",
     "method": "OS標準caffeinate -iで探索コマンドを実行し、実行中の抑止要求と終了後の解除を確認。",
     "procedure": "短い正常・失敗・期限停止で確認→同じ保存案を実AIが別評価1回→時計差・正式評価・入力保持と解除を記録。",
     "inputs": "review-resume-01と同じ最新改訂2・22資料・固定DBと同じ実装。元の失敗は別記録として保持。",
     "criteria": "同じ案・評価指示・経過600秒で正式評価まで完了するか。機能の動作と案の有用性を分け、未提出を強さの判定にしない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "抑止と解除の確認中。",
+      "summary": "短い3ケースPASS。実AIの評価は実行中。",
       "limitations": "自動スリープの抑止のみ。画面点灯・恒久設定は変更しない。手動スリープ・蓋閉じ・電源断・通信断・時計の完全一致は保証しない。旧試行の失敗・時間・評価件数は変更しない。"
     },
     "decision": {
@@ -29,19 +29,19 @@
       {
         "id": "verification",
         "title": "実行中の抑止と終了後の解除を確認",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T15:00:17.762425+00:00",
-        "ended_at": null,
-        "note": "OS標準コマンドの説明と実挙動を確認。",
+        "ended_at": "2026-09-10T15:03:03.069075+00:00",
+        "note": "正常・失敗・期限停止3ケースで実行中のOS抑止要求と終了後解除を確認。初回の観測用正規表現の誤りは訂正履歴へ保存。",
         "budget_minutes": 5
       },
       {
         "id": "live-review",
         "title": "自動スリープを抑えて保存案を別評価",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-10T15:03:03.806270+00:00",
         "ended_at": null,
-        "note": "改訂0・評価1を目標に経過600秒、1回。",
+        "note": "改訂0・評価1を目標に経過600秒、1回。\n起動処理を開始。実行記録: /private/tmp/sv-awake-review-01-run/review-run",
         "budget_minutes": 10
       },
       {
@@ -56,7 +56,10 @@
     ],
     "evidence_paths": [
       "evals/discovery/awake-review-01/README.md",
-      "evals/discovery/awake-review-01/protocol.json"
+      "evals/discovery/awake-review-01/protocol.json",
+      "evals/discovery/awake-review-01/guard-checks.json",
+      "evals/discovery/awake-review-01/check-observer-correction.json",
+      "evals/discovery/awake-review-01/launch-check.json"
     ]
   },
   "evidence": [
@@ -64,6 +67,21 @@
       "path": "evals/discovery/awake-review-01/README.md",
       "sha256": "2381c16ee7b4d295f8e6eb185073859b0b5c46003f2ea59ac01f343c97ca4d76",
       "size": 424
+    },
+    {
+      "path": "evals/discovery/awake-review-01/check-observer-correction.json",
+      "sha256": "32dcec7e1652fc697755e4a1896b62e931b9d938c3569ec1a91a4d1e35df633f",
+      "size": 690
+    },
+    {
+      "path": "evals/discovery/awake-review-01/guard-checks.json",
+      "sha256": "11bb40b7c745288893c869df4da2a271b161bee8637721ccd1d1ec88aac8e4d5",
+      "size": 3639
+    },
+    {
+      "path": "evals/discovery/awake-review-01/launch-check.json",
+      "sha256": "3689c7146f2952d05c9c4f264ceb7739a2500a6ba4abd6ad53885d0c4e69c3f6",
+      "size": 658
     },
     {
       "path": "evals/discovery/awake-review-01/protocol.json",
