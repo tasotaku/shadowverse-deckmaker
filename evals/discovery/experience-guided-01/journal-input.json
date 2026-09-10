@@ -1,0 +1,76 @@
+{
+  "id": "experience-guided-01",
+  "title": "保存した経験を参照すると次の考案が良くなるか",
+  "category": "method",
+  "status": "running",
+  "summary": "入力の別点検と公開入口10件の確認が完了。参照あり・なしの考案を開始する。結果は未判定。",
+  "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
+  "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
+  "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
+  "criteria": "従来の5基準を維持。試す理由が残ることに加え、経験参照による実質改善・既存案の重複・余分な手間を別に確認する。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "条件準備中。",
+    "limitations": "既知入力の開発用比較で、未知入力での一般優位は認定しない。"
+  },
+  "decision": {
+    "status": "deferred",
+    "reason": "比較実行前。"
+  },
+  "started_at": "2026-09-10T07:57:54.798189+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "preparation",
+      "title": "入力・比較方法・判定条件を固定",
+      "status": "completed",
+      "started_at": "2026-09-10T07:57:54.798189+00:00",
+      "ended_at": "2026-09-10T08:04:34.901249+00:00",
+      "note": "初期資料を再構成し、読み取り専用の過去記録と比較条件を固定する。これ以前の比較案の相談開始時刻は未記録。",
+      "budget_minutes": null
+    },
+    {
+      "id": "generation-a",
+      "title": "従来の考案",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。",
+      "budget_minutes": 30
+    },
+    {
+      "id": "generation-b",
+      "title": "過去経験を利用する考案",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。",
+      "budget_minutes": 30
+    },
+    {
+      "id": "review-a",
+      "title": "A案を別担当が評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "review-b",
+      "title": "B案を別担当が評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
+      "budget_minutes": 15
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/experience-guided-01/README.md",
+    "evals/discovery/experience-guided-01/protocol.json",
+    "evals/discovery/experience-guided-01/input-verification.json",
+    "evals/discovery/experience-guided-01/preflight-checks.json",
+    "evals/discovery/experience-guided-01/workflow-checkpoint.json"
+  ]
+}

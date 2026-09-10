@@ -1,0 +1,139 @@
+{
+  "started_at": "2026-09-10T08:01:42.558824+00:00",
+  "ended_at": "2026-09-10T08:01:45.661677+00:00",
+  "total": 10,
+  "passed": 10,
+  "failed": 0,
+  "checks": [
+    {
+      "arm": "a",
+      "args": [
+        "--help"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 1293,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "a",
+      "args": [
+        "report",
+        "/tmp/sv-experience-guided-01/preflight-a/session"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 7406,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "a",
+      "args": [
+        "read",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-reference-01",
+        "--section",
+        "cards"
+      ],
+      "exit_code": 2,
+      "expected": 2,
+      "stdout_bytes": 0,
+      "stderr": "自分のsession、または許可された過去記録への読出しだけを使ってください\n",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "a",
+      "args": [
+        "recall",
+        "--query",
+        "再利用検査用未登録用途987654321"
+      ],
+      "exit_code": 2,
+      "expected": 2,
+      "stdout_bytes": 0,
+      "stderr": "この担当では別探索の経験検索は使用しません\n",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "--help"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 1293,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "report",
+        "/tmp/sv-experience-guided-01/preflight-b/session"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 7406,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "read",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-reference-01",
+        "--section",
+        "cards"
+      ],
+      "exit_code": 2,
+      "expected": 2,
+      "stdout_bytes": 0,
+      "stderr": "自分のsession、または許可された過去記録への読出しだけを使ってください\n",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "recall",
+        "--query",
+        "再利用検査用未登録用途987654321"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 867,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "report",
+        "/tmp/sv-experience-guided-01/library/source-file-intake-01"
+      ],
+      "exit_code": 0,
+      "expected": 0,
+      "stdout_bytes": 31631,
+      "stderr": "",
+      "verdict": "PASS"
+    },
+    {
+      "arm": "b",
+      "args": [
+        "packet",
+        "/tmp/sv-experience-guided-01/library/source-file-intake-01",
+        "--summary"
+      ],
+      "exit_code": 2,
+      "expected": 2,
+      "stdout_bytes": 0,
+      "stderr": "自分のsession、または許可された過去記録への読出しだけを使ってください\n",
+      "verdict": "PASS"
+    }
+  ],
+  "entry_rejections_recorded": true,
+  "library_runtime_and_participant_inputs_unchanged": true,
+  "main_db_unchanged": true,
+  "scope": "比較用の公開操作案内と入口制限。考案や有用性は未検査。参加者の操作記録とは別のpreflightディレクトリで実行。",
+  "preparation_correction": "初期保存先を復元する使い捨て準備スクリプトでpacketsディレクトリを作り忘れ、packetが1回失敗。ディレクトリを補い、同じ元資料から再取得して完了。探索コードは変更していない。"
+}
