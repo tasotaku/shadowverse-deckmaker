@@ -6,7 +6,7 @@
   "fixed_contract_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
   "change": "新しい保存工程を作らず、既存の考案指示へ採否理由と条件の引継ぎを追加。",
   "measure": "記録件数でなく、実際の案の比較判断・有用な種・処理負担。",
-  "status": "generation_running",
+  "status": "independent_reviews_running",
   "runs": {
     "a": {
       "handle": 55642,
@@ -25,5 +25,27 @@
       "processes_confirmed_alive_at": "2026-09-10T03:57:26.886928+00:00"
     }
   },
-  "updated_at": "2026-09-10T03:57:27.044912+00:00"
+  "updated_at": "2026-09-10T04:23:42.168422+00:00",
+  "generation": {
+    "a": {
+      "session_id": 55642,
+      "exit_code": 0,
+      "formal_proposals": 1
+    },
+    "b": {
+      "session_id": 20474,
+      "exit_code": 0,
+      "formal_proposals": 1
+    }
+  },
+  "reviews": {
+    "a": {
+      "session_id": 3338,
+      "run": "/tmp/sv-article-rationale-01/a/review/run/run.json"
+    },
+    "b": {
+      "session_id": 4393,
+      "run": "/tmp/sv-article-rationale-01/b/review/run/run.json"
+    }
+  }
 }

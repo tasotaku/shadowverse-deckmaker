@@ -3,14 +3,14 @@
   "title": "参考記事の採否理由と条件を引き継ぐ",
   "category": "method",
   "status": "running",
-  "summary": "同じビショップ資料で両方式の考案を開始。差は採否理由を引き継ぐ4行。118件と型検査・公開出力確認に合格し、実利用結果は未判断。",
+  "summary": "両方式が各1案を正式提出し、独立評価中。従来版は約20分、変更版は約26分。記事の理由が比較判断に使われたかも点検する。",
   "method": "参考記事の採否理由と適用条件を引き継ぐ指示を追加すると、単なる記録増ではなく、元構築との比較が変わり試す理由のある種へ進めるか。",
   "procedure": "指示の試作→機能検査→同一入力照合→従来版と変更版で各30分の考案・提出→正式案があれば別担当が各15分で評価→採否と時間を記録。各方式で考案・評価は1回ずつ。",
   "inputs": "同じDBから新規作成したビショップの保存入力。今回取得した9月の進化ビショップ40枚と取得情報、9月の説明と6月の個人インタビューの限定要約。過去の提案・評価は追加していない。全カードが開発者に未知の検査ではない。",
   "criteria": "公開工程・正しさ・発展・有用性・誠実さの5基準を維持。採否理由の適用と誤った一般化を点検し、追加保存件数を加点しない。",
   "result": {
     "outcome": "unassessed",
-    "summary": "両入力のinstruction以外の全項目が一致。元のDBは不変。機能検査118件と型検査合格。実利用結果は未評価。",
+    "summary": "正式案は1件ずつ。従来版は公開操作28回・入力修正1回、変更版は72回・失敗0回。初期資料は不変で提出内容と保存内容が一致。試す理由のある案かは独立評価中。",
     "limitations": "両入力の全項目はinstruction以外一致。参考記事の初期限定要約はrootが作成して両方式へ同じものを渡すため、Web取得能力やゼロからの要約能力を比較した試験ではない。"
   },
   "decision": {
@@ -50,37 +50,37 @@
     {
       "id": "generation_a",
       "title": "従来版で考案・提出",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T03:56:22.583841+00:00",
-      "ended_at": null,
-      "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+      "ended_at": "2026-09-10T04:16:17.391367+00:00",
+      "note": "正式案1件、経過1194.784秒。公開操作28回、入力不備1回を担当内で修正。初期7ファイルは不変。",
       "budget_minutes": 30
     },
     {
       "id": "generation_b",
       "title": "採否理由を引き継ぐ版で考案・提出",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T03:56:22.583761+00:00",
-      "ended_at": null,
-      "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+      "ended_at": "2026-09-10T04:22:06.353760+00:00",
+      "note": "正式案1件、経過1543.740秒。公開操作72回、入力失敗0回。初期7ファイルは不変。",
       "budget_minutes": 30
     },
     {
       "id": "review_a",
       "title": "従来版の案を独立評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-10T04:19:38.970415+00:00",
       "ended_at": null,
-      "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+      "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
       "budget_minutes": 15
     },
     {
       "id": "review_b",
       "title": "変更版の案を独立評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-10T04:22:29.411713+00:00",
       "ended_at": null,
-      "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+      "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
       "budget_minutes": 15
     }
   ],
@@ -95,6 +95,16 @@
     "evals/discovery/article-rationale-01/article-notes.json",
     "evals/discovery/article-rationale-01/independent-output-check.json",
     "evals/discovery/article-rationale-01/a/run-start.json",
-    "evals/discovery/article-rationale-01/b/run-start.json"
+    "evals/discovery/article-rationale-01/b/run-start.json",
+    "evals/discovery/article-rationale-01/a/generation/collection.json",
+    "evals/discovery/article-rationale-01/a/generation/proposal.json",
+    "evals/discovery/article-rationale-01/a/generation/report.json",
+    "evals/discovery/article-rationale-01/a/generation/public-operations.json.gz",
+    "evals/discovery/article-rationale-01/a/review/run-start.json",
+    "evals/discovery/article-rationale-01/b/generation/collection.json",
+    "evals/discovery/article-rationale-01/b/generation/proposal.json",
+    "evals/discovery/article-rationale-01/b/generation/report.json",
+    "evals/discovery/article-rationale-01/b/generation/public-operations.json.gz",
+    "evals/discovery/article-rationale-01/b/review/run-start.json"
   ]
 }

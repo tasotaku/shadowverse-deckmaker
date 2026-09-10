@@ -1,22 +1,22 @@
 {
   "id": "article-rationale-01",
-  "revision": 2,
-  "saved_at": "2026-09-10T03:57:26.989283+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-10T04:23:42.119745+00:00",
   "actor": "root",
-  "reason": "従来版と限定変更版の考案担当を同じ経過時計1800秒で起動し、実プロセスの生存を確認",
+  "reason": "変更版も元の実行ハンドルで終了確認し、正式案を保存して独立評価を開始",
   "record": {
     "id": "article-rationale-01",
     "title": "参考記事の採否理由と条件を引き継ぐ",
     "category": "method",
     "status": "running",
-    "summary": "同じビショップ資料で両方式の考案を開始。差は採否理由を引き継ぐ4行。118件と型検査・公開出力確認に合格し、実利用結果は未判断。",
+    "summary": "両方式が各1案を正式提出し、独立評価中。従来版は約20分、変更版は約26分。記事の理由が比較判断に使われたかも点検する。",
     "method": "参考記事の採否理由と適用条件を引き継ぐ指示を追加すると、単なる記録増ではなく、元構築との比較が変わり試す理由のある種へ進めるか。",
     "procedure": "指示の試作→機能検査→同一入力照合→従来版と変更版で各30分の考案・提出→正式案があれば別担当が各15分で評価→採否と時間を記録。各方式で考案・評価は1回ずつ。",
     "inputs": "同じDBから新規作成したビショップの保存入力。今回取得した9月の進化ビショップ40枚と取得情報、9月の説明と6月の個人インタビューの限定要約。過去の提案・評価は追加していない。全カードが開発者に未知の検査ではない。",
     "criteria": "公開工程・正しさ・発展・有用性・誠実さの5基準を維持。採否理由の適用と誤った一般化を点検し、追加保存件数を加点しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "両入力のinstruction以外の全項目が一致。元のDBは不変。機能検査118件と型検査合格。実利用結果は未評価。",
+      "summary": "正式案は1件ずつ。従来版は公開操作28回・入力修正1回、変更版は72回・失敗0回。初期資料は不変で提出内容と保存内容が一致。試す理由のある案かは独立評価中。",
       "limitations": "両入力の全項目はinstruction以外一致。参考記事の初期限定要約はrootが作成して両方式へ同じものを渡すため、Web取得能力やゼロからの要約能力を比較した試験ではない。"
     },
     "decision": {
@@ -56,37 +56,37 @@
       {
         "id": "generation_a",
         "title": "従来版で考案・提出",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T03:56:22.583841+00:00",
-        "ended_at": null,
-        "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+        "ended_at": "2026-09-10T04:16:17.391367+00:00",
+        "note": "正式案1件、経過1194.784秒。公開操作28回、入力不備1回を担当内で修正。初期7ファイルは不変。",
         "budget_minutes": 30
       },
       {
         "id": "generation_b",
         "title": "採否理由を引き継ぐ版で考案・提出",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T03:56:22.583761+00:00",
-        "ended_at": null,
-        "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+        "ended_at": "2026-09-10T04:22:06.353760+00:00",
+        "note": "正式案1件、経過1543.740秒。公開操作72回、入力失敗0回。初期7ファイルは不変。",
         "budget_minutes": 30
       },
       {
         "id": "review_a",
         "title": "従来版の案を独立評価",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-10T04:19:38.970415+00:00",
         "ended_at": null,
-        "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+        "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
         "budget_minutes": 15
       },
       {
         "id": "review_b",
         "title": "変更版の案を独立評価",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-10T04:22:29.411713+00:00",
         "ended_at": null,
-        "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+        "note": "独立した担当が同じ評価指示で評価中。上限900秒。",
         "budget_minutes": 15
       }
     ],
@@ -101,14 +101,49 @@
       "evals/discovery/article-rationale-01/article-notes.json",
       "evals/discovery/article-rationale-01/independent-output-check.json",
       "evals/discovery/article-rationale-01/a/run-start.json",
-      "evals/discovery/article-rationale-01/b/run-start.json"
+      "evals/discovery/article-rationale-01/b/run-start.json",
+      "evals/discovery/article-rationale-01/a/generation/collection.json",
+      "evals/discovery/article-rationale-01/a/generation/proposal.json",
+      "evals/discovery/article-rationale-01/a/generation/report.json",
+      "evals/discovery/article-rationale-01/a/generation/public-operations.json.gz",
+      "evals/discovery/article-rationale-01/a/review/run-start.json",
+      "evals/discovery/article-rationale-01/b/generation/collection.json",
+      "evals/discovery/article-rationale-01/b/generation/proposal.json",
+      "evals/discovery/article-rationale-01/b/generation/report.json",
+      "evals/discovery/article-rationale-01/b/generation/public-operations.json.gz",
+      "evals/discovery/article-rationale-01/b/review/run-start.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/article-rationale-01/README.md",
-      "sha256": "2e5ff11f5d2e3d69fde1e3bf7b1def985c0ae2396e0aa4f7502a64089f31c675",
-      "size": 2478
+      "sha256": "d6e9339ef915aec50ebe34e0cc490c27d487a0e7f75ae18bda32161ac20fe3c5",
+      "size": 2590
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/generation/collection.json",
+      "sha256": "41f8e1d6ddb86b4c0f7ac6d73730497f4a400bc2e8b074438c7e1538b8dad741",
+      "size": 973
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/generation/proposal.json",
+      "sha256": "ed06953f6335f6c1ab01450d58245f36a9e5c63ace0e761f00743d30488a70ae",
+      "size": 28763
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/generation/public-operations.json.gz",
+      "sha256": "39c62dd465e2f622a380c68758fcea61f9cfe614dd8af06ca56e2f6355d8871a",
+      "size": 146085
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/generation/report.json",
+      "sha256": "2d82040ead4c121c8297922964e32c17c98f254bf0b8293cde18e3dce082f562",
+      "size": 8915
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/review/run-start.json",
+      "sha256": "4c1703354413017f9f0ed573df9e39a99fc7d93720ae5bf31a188977a63dfdd6",
+      "size": 1512
     },
     {
       "path": "evals/discovery/article-rationale-01/a/run-start.json",
@@ -119,6 +154,31 @@
       "path": "evals/discovery/article-rationale-01/article-notes.json",
       "sha256": "102f5e4ed1d809d8fb63ec3ee3405feef13076484971cfefdb5ac51c3c73d5e3",
       "size": 2996
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/generation/collection.json",
+      "sha256": "8b7208fc613ee08b3e773f76694de34e79646b53cd3a463c4a4dc20309b1a402",
+      "size": 1196
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/generation/proposal.json",
+      "sha256": "4541bcfdf411a0b3771cb4a47bc54388d809797eb64a935d96c6028e23f56084",
+      "size": 20273
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/generation/public-operations.json.gz",
+      "sha256": "e904d2db2ed7421442467c2fed0e2ee576a8f87292bb59ddefb5ce2b078cca65",
+      "size": 157793
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/generation/report.json",
+      "sha256": "f22b884fddc939b5500d7d5b2c3031664a9a6fb1f2b5abd71967b887de7e064b",
+      "size": 11340
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/review/run-start.json",
+      "sha256": "637c6e77728e08d152dc2a6b78262d51d3c6414217e16fd74d60bdee49689b50",
+      "size": 1512
     },
     {
       "path": "evals/discovery/article-rationale-01/b/run-start.json",
