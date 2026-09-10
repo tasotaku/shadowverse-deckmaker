@@ -1,10 +1,18 @@
 {
-  "checked_at": "2026-09-10T05:31:21.054914+00:00",
+  "checked_at": "2026-09-10T05:42:18.649555+00:00",
   "handles": {
-    "a": 59761,
-    "b": 14422
+    "a": {
+      "session_id": 59761,
+      "exit_code": 0,
+      "collected": true
+    },
+    "b": {
+      "session_id": 14422,
+      "exit_code": 0,
+      "collected": true
+    }
   },
   "collector": "/tmp/collect-burden-recovery-review.py",
-  "next": "Poll original handles; after actual terminal confirmation collect once per arm. Never count inherited review as new.",
+  "next": "両評価は終了・回収済み。再実行や再回収しない。正式比較comparison.jsonと台帳結果を使用。",
   "collector_sha256": "d3a5d636b313ae1339c996f18982959d1ead094f4e40f10b961b30783a1d59f3"
 }

@@ -1,0 +1,92 @@
+{
+  "evaluated_at": "2026-09-10T05:42:18.638874+00:00",
+  "scope": "元試行の改訂と、同一入力の復旧後の独立評価を組み合わせた限定的評価。元試行の未完状態は変更しない。",
+  "criteria_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "arms": {
+    "a": {
+      "formal_decision": {
+        "procedure": "conditional",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "workflow": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "改訂の保存後、利用上限からの復旧を分離して、公開コマンドで独立評価・結果照合まで完了。担当の探索コードに修正なし。元試行の中断と回収スクリプトの修正は別記。"
+      },
+      "correctness": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "指定状態で中心手順は条件付き成立。Aは算術訂正不要。Bはリリウム破壊時の追加1ドローと、守護分岐に不要な選択不能制限の小訂正を併記。いずれも成立頻度は未確認。"
+      },
+      "development": {
+        "verdict": "PASS",
+        "reason": "配分・準備時点・行動を実際に変更。元の改訂試行の独立した変更診断でも言い換えのみではないと確認。"
+      },
+      "utility": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "独立評価で限定的な試行推薦。通常構築との差、失う役割、中心カードを引かない場合を踏まえる。強さや独自性を認定する判定ではない。"
+      },
+      "honesty": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "検索不発や同居0を独自性へ加点せず、先行例と取得範囲を記録。Aは自然同期そのものの既知性、Bは石像入り進化構築の先行紹介を補足。案の独自性説明にはこの限定を伴わせる。"
+      },
+      "formal_review_path": "evals/discovery/burden-review-recovery-01/a/review/review-0002-f1e931778ffbcbcd.json",
+      "collection_path": "evals/discovery/burden-review-recovery-01/a/review/collection.json"
+    },
+    "b": {
+      "formal_decision": {
+        "procedure": "conditional",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "workflow": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "改訂の保存後、利用上限からの復旧を分離して、公開コマンドで独立評価・結果照合まで完了。担当の探索コードに修正なし。元試行の中断と回収スクリプトの修正は別記。"
+      },
+      "correctness": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "指定状態で中心手順は条件付き成立。Aは算術訂正不要。Bはリリウム破壊時の追加1ドローと、守護分岐に不要な選択不能制限の小訂正を併記。いずれも成立頻度は未確認。"
+      },
+      "development": {
+        "verdict": "PASS",
+        "reason": "配分・準備時点・行動を実際に変更。元の改訂試行の独立した変更診断でも言い換えのみではないと確認。"
+      },
+      "utility": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "独立評価で限定的な試行推薦。通常構築との差、失う役割、中心カードを引かない場合を踏まえる。強さや独自性を認定する判定ではない。"
+      },
+      "honesty": {
+        "verdict": "PASS_WITH_LIMITS",
+        "reason": "検索不発や同居0を独自性へ加点せず、先行例と取得範囲を記録。Aは自然同期そのものの既知性、Bは石像入り進化構築の先行紹介を補足。案の独自性説明にはこの限定を伴わせる。"
+      },
+      "formal_review_path": "evals/discovery/burden-review-recovery-01/b/review/review-0002-accf7e9cad9b92c0.json",
+      "collection_path": "evals/discovery/burden-review-recovery-01/b/review/collection.json"
+    }
+  },
+  "comparison": {
+    "new_revisions": {
+      "a": 1,
+      "b": 1
+    },
+    "new_recovery_reviews": {
+      "a": 1,
+      "b": 1
+    },
+    "test_recommendations": {
+      "a": 1,
+      "b": 1
+    },
+    "verdict": "試行推薦は同数。改訂で両方とも有用な種へ進んだが、指示変更の上乗せは未立証。",
+    "timing": "改訂はA800.170秒/B1139.519秒、復旧後の独立評価はA676.854秒/B815.774秒。担当差を含む1組で速度一般化なし。元の途中終了評価を隠さず別記。"
+  },
+  "decision": {
+    "status": "deferred",
+    "reason": "試行推薦1対1で同点。従来版にも実際の行動回復があり、変更版を本体へ追加する改善根拠が不足。試作は隔離したまま保持。両方の案と正式評価は成果として保存する。"
+  },
+  "limits": [
+    "既知のビショップ案1件を再利用。未知入力の発見力・方法の一般優位は未確認。",
+    "両案とも独自性未確認、勝率・Tier・実現頻度・初見効果の証明なし。",
+    "元の評価は利用上限で各1回失敗。別担当の再評価結果を元の時間条件内の成果として扱わない。",
+    "カード現行公式の再取得失敗と記事の取得限界は各評価に保持。"
+  ],
+  "next_system_work": "実行担当の終了と台帳工程の終了を連動させる。今回、中断後も手動更新まで作業中の表示が残ったため、次の入力の検証で実行と報告のずれを減らす。探索指示と採点は変更しない。"
+}

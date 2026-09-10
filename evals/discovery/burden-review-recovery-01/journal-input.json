@@ -3,22 +3,22 @@
   "criteria": "公開コマンドで工程を完了できるか、手順に重大な誤りがないか、実際の疑問が解消するか、通常の用法との差・失う役割・核を引かない場合を踏まえて試す価値があるか、未確認を正直に示すか。資料数や改訂件数では加点しない。40枚完成・20点確定・勝率証明は要求しない。",
   "id": "burden-review-recovery-01",
   "title": "途中終了した改訂案の独立評価を再開",
-  "status": "running",
-  "summary": "利用可能復帰後、元の評価と同じ入力から2案を別担当が評価中。考案は再実行せず、有用性と採否は未判断。",
+  "status": "completed",
+  "summary": "両案とも条件付き成立・限定的な試行推薦・独自性未確認。推薦1対1で指示変更の上乗せは示せず本採用保留。元の中断は別記録として保持。",
   "method": "従来版と負担解消優先版の最終案を、同じ基準と元と同じ入力で新しい別担当が評価する。",
-  "procedure": "停止前の評価入力を全ファイル照合して固定。各1回、上限15分の評価を実施中。終了後に正式提出と結果表示を照合し、元の改訂と組み合わせた有用性・採否・時間を記録する。",
+  "procedure": "停止前の全入力を照合して固定し、新しい別担当が各1回・上限15分で評価。両方の正式提出と公開レポート全項目の一致を確認。元の改訂内容と固定5基準で比較し、採否・小訂正・時間を記録。",
   "inputs": "burden-revision-01の評価開始時と同一内容。従来版28ファイル、変更版29ファイル。元の未提出評価や途中判断は含めない。各案の本文、カード資料、調査資料を保持。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "評価中。新しい正式評価と有用性は未確認。",
-    "limitations": "元試行は評価未完で保持。既知入力1件の再利用。元試行の上限内成功、未知発見力、方法の一般優位は認定しない。"
+    "outcome": "mixed",
+    "summary": "復旧後の正式評価は各1件、試行推薦は各1件。両方に実際の改善があり有用な種へ進んだが、変更指示の上乗せは未立証。",
+    "limitations": "両案とも独自性・実戦の強さ・成立頻度は未確認。既知入力1件。元試行は評価未完のままで、復旧後の評価を元の実行条件内の成功へ数えない。"
   },
   "decision": {
-    "status": "unassessed",
-    "reason": "独立評価の正式結果を回収してから判断する。試作は本体へ未反映。"
+    "status": "deferred",
+    "reason": "試行推薦1対1で同点。従来版にも実際の行動回復があり、変更版を本体へ追加する改善根拠が不足。試作は隔離したまま保持。両方の案と正式評価は成果として保存する。"
   },
   "started_at": "2026-09-10T05:25:05.857327+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T05:42:55.962710+00:00",
   "stages": [
     {
       "id": "preparation",
@@ -32,28 +32,28 @@
     {
       "id": "review_a",
       "title": "従来版の案を別担当が評価",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T05:25:23.198211+00:00",
-      "ended_at": null,
-      "note": "同じ入力で新しい担当が評価中。上限15分・1回。",
+      "ended_at": "2026-09-10T05:36:40.059052+00:00",
+      "note": "条件付き成立・限定的な試行推薦・独自性未確認。正式評価1件、公開操作17回・失敗0回。正式評価と公開レポートの全項目一致。経過676.854秒。",
       "budget_minutes": 15
     },
     {
       "id": "review_b",
       "title": "変更版の案を別担当が評価",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T05:25:23.198212+00:00",
-      "ended_at": null,
-      "note": "同じ入力で新しい担当が評価中。上限15分・1回。",
+      "ended_at": "2026-09-10T05:38:58.980397+00:00",
+      "note": "条件付き成立・限定的な試行推薦・独自性未確認。正式評価1件、公開操作18回・失敗0回。正式評価と公開レポートの全項目一致。経過815.774秒。",
       "budget_minutes": 15
     },
     {
       "id": "report",
       "title": "正式評価を回収し採否を記録",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "未着手",
+      "status": "completed",
+      "started_at": "2026-09-10T05:37:51.627459+00:00",
+      "ended_at": "2026-09-10T05:42:18.642878+00:00",
+      "note": "正式評価の回収から比較・採否の記録まで。並行担当の経過時間は別工程。指示変更は採用保留、両案の成果を保存。読者確認や後続の補正時間はこの終了時刻には含まない。",
       "budget_minutes": null
     }
   ],
@@ -70,6 +70,22 @@
     "evals/discovery/burden-review-recovery-01/b/review/initial-files.json",
     "evals/discovery/burden-review-recovery-01/b/review/input-summary.json",
     "evals/discovery/burden-review-recovery-01/b/review/prompt.md",
-    "evals/discovery/burden-review-recovery-01/reader-check.json"
+    "evals/discovery/burden-review-recovery-01/reader-check.json",
+    "evals/discovery/burden-review-recovery-01/a/review/collection.json",
+    "evals/discovery/burden-review-recovery-01/a/review/report.json",
+    "evals/discovery/burden-review-recovery-01/a/review/public-operations.json.gz",
+    "evals/discovery/burden-review-recovery-01/a/review/evaluation.md",
+    "evals/discovery/burden-review-recovery-01/a/review/report-verification.json",
+    "evals/discovery/burden-review-recovery-01/a/review/review-0002-f1e931778ffbcbcd.json",
+    "evals/discovery/burden-review-recovery-01/b/review/collection.json",
+    "evals/discovery/burden-review-recovery-01/b/review/report.json",
+    "evals/discovery/burden-review-recovery-01/b/review/public-operations.json.gz",
+    "evals/discovery/burden-review-recovery-01/b/review/evaluation.md",
+    "evals/discovery/burden-review-recovery-01/b/review/report-verification.json",
+    "evals/discovery/burden-review-recovery-01/b/review/report-current-review.json",
+    "evals/discovery/burden-review-recovery-01/b/review/review-0002-accf7e9cad9b92c0.json",
+    "evals/discovery/burden-review-recovery-01/comparison.json",
+    "evals/discovery/burden-review-recovery-01/final-reader-check.json",
+    "evals/discovery/burden-review-recovery-01/registration-correction.json"
   ]
 }
