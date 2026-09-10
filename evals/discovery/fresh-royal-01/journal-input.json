@@ -2,23 +2,23 @@
   "id": "fresh-royal-01",
   "title": "新しいロイヤル入力で現在の探索工程を試す",
   "category": "method",
-  "status": "running",
-  "summary": "初回28分38秒で1案提出。記録は保存訂正込み2版。現在、独立評価中。",
+  "status": "completed",
+  "summary": "1案が独立評価でも比較試用の推薦に到達。考案28分38秒・評価8分59秒。独自性と実戦の優位は未確認で本採用保留。",
   "method": "現行の通常考案指示、資料読出し・追加保存、正式提出、独立評価。追加検討かつ具体的に残る問いがある場合だけ通常改訂1回と新しい独立評価。保留中の指示変更は使わない。",
-  "procedure": "参考3構築を固定→初回考案28分38秒で1案提出→保存照合で枚数と名称を訂正→全項目を公開読出しで照合→別担当の15分評価を開始。",
+  "procedure": "参考3構築を固定→初回28分38秒で1案を提出→保存照合で枚数と名称を訂正→公開読出しで全項目を照合→別担当が8分59秒で条件付き成立・比較試用推薦・独自性未確認を提出。試行推薦のため追加改訂は行わず結果を記録。",
   "inputs": "ローテーション・ロイヤルの新規セッション。カードDBと既存注記・設計原則は既知情報であり、全知識を遮断した未知検査ではない。",
   "criteria": "手順完了、効果・PP・手札・場・進化権と相手依存の正しさ、実質的発展、採用負担に見合う試す理由、未確認の明示。従来と同じ5基準。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "正式案1件・2版、追加資料1件。公開操作40回の失敗0、全提出項目の保存一致を確認。有用性は未判定。",
-    "limitations": "1入力の観測。到達頻度・実戦勝率・全体完成は認定しない。 過去の正式提案・評価本文は初期入力にないが、設計原則に過去試行の集計結果は含む。"
+    "outcome": "mixed",
+    "summary": "指定条件は整合、試行推薦1件。独自性・実機・実戦上の優位は未確認。初回内の保存訂正込みで正式2版。",
+    "limitations": "1入力の限定結果。付与後進化の個別裁定、必要札・進化権・生存の頻度、普及度、交換による勝敗増減は未確認。既存の設計原則に過去試行の集計を含む。"
   },
   "decision": {
     "status": "deferred",
-    "reason": "考案と独立評価の結果が出るまで採否は未判定。"
+    "reason": "現在の工程が新しい入力から試行推薦に届いた点は肯定的。ただし独自性・実戦の優位が未確認で、この1入力から方式全体の本採用や完成は認定しない。追加改訂を強制せず、次のシステム改善の材料として残す。"
   },
   "started_at": "2026-09-10T06:13:16.316239+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T06:58:06.486047+00:00",
   "stages": [
     {
       "id": "preparation",
@@ -41,10 +41,10 @@
     {
       "id": "review",
       "title": "別担当が成立と試す価値を評価",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T06:44:05.066156+00:00",
-      "ended_at": null,
-      "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-royal-01/review/run",
+      "ended_at": "2026-09-10T06:53:03.734594+00:00",
+      "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-royal-01/review/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 15
     },
     {
@@ -54,6 +54,15 @@
       "started_at": "2026-09-10T06:43:36.521549+00:00",
       "ended_at": "2026-09-10T06:47:46.543518+00:00",
       "note": "回収・独立評価入力の作成・公開reportと全提出項目の再読照合。1仮説・2版を区別し、開始終了の自動反映を確認。独立評価と一部並行。",
+      "budget_minutes": null
+    },
+    {
+      "id": "result_record",
+      "title": "結果回収と報告・採否を保存",
+      "status": "completed",
+      "started_at": "2026-09-10T06:53:13.935874+00:00",
+      "ended_at": "2026-09-10T06:58:06.486039+00:00",
+      "note": "独立評価の全項目・Web照合・保存アーカイブを確認。5基準、日時、採否と限界を保存し、初見確認の指摘を修正。画面の最終表示確認と配信確認は、この記録保存後に別の確認記録へ残す。",
       "budget_minutes": null
     }
   ],
@@ -69,6 +78,12 @@
     "evals/discovery/fresh-royal-01/generation/result/proposal.json",
     "evals/discovery/fresh-royal-01/generation/result/research-report.md",
     "evals/discovery/fresh-royal-01/generation-verification.json",
-    "evals/discovery/fresh-royal-01/review/input-summary.json"
+    "evals/discovery/fresh-royal-01/review/input-summary.json",
+    "evals/discovery/fresh-royal-01/review/collection.json",
+    "evals/discovery/fresh-royal-01/review/evaluation.md",
+    "evals/discovery/fresh-royal-01/review/review.json",
+    "evals/discovery/fresh-royal-01/generation-timing.json",
+    "evals/discovery/fresh-royal-01/result.json",
+    "evals/discovery/fresh-royal-01/reader-check.json"
   ]
 }

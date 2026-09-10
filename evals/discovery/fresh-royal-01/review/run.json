@@ -1,0 +1,86 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-fresh-royal-01/review/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-fresh-royal-01/review/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-fresh-royal-01/review/work",
+  "stdin": "/private/tmp/sv-fresh-royal-01/review/work/prompt.md",
+  "output": "/private/tmp/sv-fresh-royal-01/review/run",
+  "started_at": "2026-09-10T06:44:05.066156+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2263385.712561625,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 20073,
+  "worker_pid": 20105,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T06:53:03.734594+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T06:44:05.067835+00:00",
+      "elapsed_seconds": 0.0006809160113334656
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T06:44:05.068586+00:00",
+      "elapsed_seconds": 0.0014332500286400318
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T06:44:05.084528+00:00",
+      "elapsed_seconds": 0.017411707900464535
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T06:53:03.729981+00:00",
+      "elapsed_seconds": 538.660921999719,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T06:53:03.734641+00:00",
+      "elapsed_seconds": 538.6654244158417
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T06:53:03.756850+00:00",
+      "elapsed_seconds": 538.6876339158043
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fresh-royal-01",
+    "stage_id": "review",
+    "status": "completed",
+    "begin_revision": 8,
+    "claimed_stage": {
+      "id": "review",
+      "title": "別担当が成立と試す価値を評価",
+      "status": "running",
+      "started_at": "2026-09-10T06:44:05.066156+00:00",
+      "ended_at": null,
+      "note": "正式案が提出された場合に開始する。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-royal-01/review/run",
+      "budget_minutes": 15
+    },
+    "end_revision": 10,
+    "synced_at": "2026-09-10T06:53:03.756835+00:00"
+  },
+  "elapsed_seconds": 538.6654112497345,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}
