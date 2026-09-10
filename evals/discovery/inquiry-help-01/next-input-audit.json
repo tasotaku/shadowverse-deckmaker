@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-09-10T10:45:56+00:00",
+  "ended_at": "2026-09-10T10:46:55+00:00",
+  "scope": "別担当による読み取り専用点検。Web・実AI・カード再採点・編集なし。",
+  "finding": "meta --articleは各40枚リストと取得情報のみ。取得HTMLは解析後保持せず、本文/入れ替え理由の自動取得機能はない。attach-fileと分割readは採用済みだが取得はしない。article-rationale-01は指示4行の比較で、親が限定要約を供給した未採用案。",
+  "next": "同じHTML取得から見出し・本文・表の対応を保つ追加資料を出す。カード名と理由を切り離さず、抽出不能を明示し既存readで必要範囲を読む。初期資料に本文資料または不能記録があるか照合する。",
+  "limits": "今回の同用途掲載という調査報告は別照合中。点検は自動取得の欠落というコード上の事実だけ。",
+  "evidence_paths": [
+    "src/svdeck/meta.py",
+    "src/svdeck/discovery.py",
+    "src/svdeck/discovery_read.py",
+    "evals/discovery/article-source-01/README.md",
+    "evals/discovery/article-rationale-01/protocol.json",
+    "evals/discovery/article-rationale-01/evaluation.json",
+    "evals/discovery/fresh-nightmare-01/preparation.json"
+  ]
+}

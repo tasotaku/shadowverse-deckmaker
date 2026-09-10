@@ -1,30 +1,30 @@
 {
   "id": "inquiry-help-01",
-  "revision": 2,
-  "saved_at": "2026-09-10T10:44:52.505655+00:00",
+  "revision": 7,
+  "saved_at": "2026-09-10T10:56:19.491050+00:00",
   "actor": "codex",
-  "reason": "修正と既存資料の検査を完了し、照合だけの実AI起動を準備",
+  "reason": "別照合と結果記録を完了し、ヘルプ修正と既存資料からの照合入口を限定採用",
   "record": {
     "id": "inquiry-help-01",
     "title": "ヘルプを正しく扱い保存済み調査から照合を再開",
     "category": "method",
-    "status": "running",
-    "summary": "修正は143検査・型検査・別点検を通過。既存20操作の再検査で添付・再読・reportを確認。再調査せず、保存済み4資料から照合のみを起動する。",
+    "status": "completed",
+    "summary": "修正143検査、既存20操作の不変再検査、実AIの別照合5分27秒と2資料追加を完了。保存済み資料からの照合入口を採用。独自性や広範な普及は未認定。",
     "method": "全ヘルプを通常データ解析から除外し、実添付・再読・reportは従来どおり必須。指定した保存済み報告を別の実行の照合へ渡す。",
     "procedure": "修正検査→保存済み操作の再検査と資料複製→別担当照合10分1回→結果と採否を記録。",
     "inputs": "inquiry-runner-01が正式保存した追加4資料。元の案・評価・入力も保持。今回の調査再実行は0回。",
     "criteria": "通常の資料提出・原文一致・新版再読・report本文照合は必須のまま。ヘルプは証拠に数えず解析もしない。元案・旧評価・元資料保持、改訂0・正式評価0。別担当の根拠照合完了と、問いの解決を別判定する。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "修正検査と既存資料の再検査は完了。別担当の実AI照合はこれから。",
-      "limitations": "保存成功・独立照合・問いの解決・方法全体の有用性を分ける。"
+      "outcome": "mixed",
+      "summary": "同機構とミッドレンジの入れ替え候補への掲載を別担当が出典から確認し、調査記録を再利用できた。改訂0・新しい正式評価0。",
+      "limitations": "新しい調査から自動照合まで一括の修正後実AIは未確認。広範な採用率・元案の限定交換の普及・独自性は未認定。修正着手時刻は未計測。"
     },
     "decision": {
-      "status": "deferred",
-      "reason": "修正の検査と別担当の実AI照合が未完了。"
+      "status": "adopted",
+      "reason": "ヘルプの扱いの修正と保存済み調査からの別照合を実行補助として採用。143検査・旧記録不変の再検査、実AI照合・正式保存・再読・reportまで確認。方法全体の完成へ広げない。"
     },
     "started_at": "2026-09-10T10:41:13.562638+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T10:56:19.281732+00:00",
     "stages": [
       {
         "id": "verification",
@@ -38,11 +38,29 @@
       {
         "id": "live-inspect",
         "title": "保存済み調査を別担当が照合",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "調査を繰り返さず、保存した根拠と結論を照合する。",
+        "status": "completed",
+        "started_at": "2026-09-10T10:45:21.344248+00:00",
+        "ended_at": "2026-09-10T10:50:48.372054+00:00",
+        "note": "調査を繰り返さず、保存した根拠と結論を照合する。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-help-01/run/inspect-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
+      },
+      {
+        "id": "report",
+        "title": "回収・解釈・結果の報告",
+        "status": "completed",
+        "started_at": "2026-09-10T10:52:07.998963+00:00",
+        "ended_at": "2026-09-10T10:56:19.281732+00:00",
+        "note": "出典の独立照合と未確認範囲、限定的な採用、旧失敗保持、次の入力改善を保存。初見資料確認PASS。",
+        "budget_minutes": null
+      },
+      {
+        "id": "reader-check",
+        "title": "別担当が報告を初見で確認",
+        "status": "completed",
+        "started_at": "2026-09-10T10:54:50+00:00",
+        "ended_at": "2026-09-10T10:54:59+00:00",
+        "note": "READMEのみで修正・再調査0・採用範囲・情報と限界・工程時間・次の改善を理解できる。9秒、編集なし。",
+        "budget_minutes": 2
       }
     ],
     "evidence_paths": [
@@ -51,19 +69,46 @@
       "evals/discovery/inquiry-help-01/workflow-checkpoint.json",
       "evals/discovery/inquiry-help-01/verification.json",
       "evals/discovery/inquiry-help-01/boundary-audit.json",
-      "evals/discovery/inquiry-help-01/preparation.json"
+      "evals/discovery/inquiry-help-01/preparation.json",
+      "evals/discovery/inquiry-help-01/result.json",
+      "evals/discovery/inquiry-help-01/live/result.json",
+      "evals/discovery/inquiry-help-01/live/verification.json",
+      "evals/discovery/inquiry-help-01/live/inspect/answer.md",
+      "evals/discovery/inquiry-help-01/next-input-audit.json",
+      "evals/discovery/inquiry-help-01/timings.json",
+      "evals/discovery/inquiry-help-01/reader-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-help-01/README.md",
-      "sha256": "492654dbb76a6ced887c69e4e1182391c22fdc9ddc5a298dc334d1f602a85999",
-      "size": 1171
+      "sha256": "8735beb4c0e797b7c2b82b0f8def95b719a6c3e8dbd3b0239c49264510933c03",
+      "size": 6543
     },
     {
       "path": "evals/discovery/inquiry-help-01/boundary-audit.json",
       "sha256": "537d684b143ae11fd14f69b4580fe0b4c4416c15fc6e0936f50eb60dd1d7cc1c",
       "size": 598
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/live/inspect/answer.md",
+      "sha256": "69d420e557a6a9444828575c3738d3f06c1705c861d400ed0b5caccd809fc82a",
+      "size": 8589
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/live/result.json",
+      "sha256": "5a0be35cf6ebd7f4db994eddd7acbe1fa4a132aa4e7b5523cea52d360edcbc64",
+      "size": 7798
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/live/verification.json",
+      "sha256": "7974fc0d482b3c29d4bf41d12d2a1fc16e8073817f9098807b959aae2e323992",
+      "size": 1080
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/next-input-audit.json",
+      "sha256": "974036f645c86942e74cf50f567009d6b87fda99b7c523aa2eef6b8b44bb86a4",
+      "size": 1308
     },
     {
       "path": "evals/discovery/inquiry-help-01/preparation.json",
@@ -74,6 +119,21 @@
       "path": "evals/discovery/inquiry-help-01/protocol.json",
       "sha256": "2eabe1124b0181e48754303684cadbfc3595b21fb35935d2bbb3f1d698cd6cbc",
       "size": 1381
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/reader-check.json",
+      "sha256": "a6cf7243b2c3d1a85d3b7f6f2d13c3d035ca37fb588dce40dfd697dc1556be21",
+      "size": 436
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/result.json",
+      "sha256": "466d5b4287033ed45f34072c736c25b01957ae2c5d1d71a4a761461116b26808",
+      "size": 1812
+    },
+    {
+      "path": "evals/discovery/inquiry-help-01/timings.json",
+      "sha256": "8c985843972387e4a41978af0582186f43b7771000f6e6cb4357fb2383868977",
+      "size": 2199
     },
     {
       "path": "evals/discovery/inquiry-help-01/verification.json",
