@@ -1,0 +1,56 @@
+{
+  "id": "experience-recall-01",
+  "revision": 1,
+  "saved_at": "2026-09-10T07:22:12.047802+00:00",
+  "actor": "codex",
+  "reason": "保存した経験を別探索で再利用する入口の設計を開始",
+  "record": {
+    "id": "experience-recall-01",
+    "title": "過去の探索経験をカードと使い方から再利用する",
+    "category": "method",
+    "status": "running",
+    "summary": "保存経験の再利用を点検し、読み取り専用検索の最小設計中。",
+    "method": "保存した経験をカードと用途に結び付け、元案・評価・条件・出典の対応と未確認を保って次の考案から読めるようにする。古い採否を新しい案へ自動適用しない。",
+    "procedure": "既存入口の不足確認と最小設計 → 隔離された入力で実装・機能検査 → 実際の保存記録を新規担当が検索して再読 → 知識の再利用ができた範囲と未確認を報告",
+    "inputs": "既存の正式探索保存物と、その案・評価・証拠の対応。私的な実行ログは対象外。",
+    "criteria": "正式案と評価の対応・範囲・不確実性を保って実データの必要記録を検索・再読でき、重複や壊れた記録を誤って別の結果にしないこと。補助機能の採用と探索方法の有用性は別に判定する。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "最小設計中。",
+      "limitations": "資料の検索・再利用補助と、自然な探索の有用性は区別する。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "実装と実際の保存記録での検証前。"
+    },
+    "started_at": "2026-09-10T07:22:11.928091+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "design",
+        "title": "再利用の不足確認と最小設計",
+        "status": "running",
+        "started_at": "2026-09-10T07:22:11.928091+00:00",
+        "ended_at": null,
+        "note": "先行の読み取り点検の結果を受け取った後、この機能の設計開始から記録。先行点検の開始時刻は記録できていない。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/experience-recall-01/README.md",
+      "evals/discovery/experience-recall-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/experience-recall-01/README.md",
+      "sha256": "338148f275869bbc28e278ac9f95851f0ab5217caadecb0a6576cb3e95418724",
+      "size": 407
+    },
+    {
+      "path": "evals/discovery/experience-recall-01/protocol.json",
+      "sha256": "2c94d91121474e5f8b40d784f5d0f67c2e729d3ec8d0aa444f72749154ddc7d7",
+      "size": 2324
+    }
+  ]
+}

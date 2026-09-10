@@ -2,23 +2,23 @@
   "id": "novelty-boundary-01",
   "title": "先例・普及・資料不足を区別する説明の比較",
   "category": "method",
-  "status": "running",
-  "summary": "同じ仮想6事例で現行指示と説明明確化を比較する。入力と採否条件を固定し、実行待ち。",
+  "status": "completed",
+  "summary": "両者とも6件の固定条件に合格し、判定も一致。説明追加の上乗せは未確認で本採用保留。本体の指示は変更しない。",
   "method": "REVIEWの独自性の説明だけを明確化すると、先例・普及・比較不足を区別する境界判断が改善するか。",
   "procedure": "同じ仮想6事例と現行の原則全文→現行REVIEW／独自性段落だけを置換したREVIEWを別の新規実行へ渡す→固定した判定条件で全12回答を照合する。",
   "inputs": "仮想6事例、現行の原則全文、現行／独自性段落だけを置換した指示。期待判定は担当へ渡さない。",
   "criteria": "bが全件の条件を満たし、aで観測された境界の誤りを少なくとも1件解消し、他の件に後退がない場合のみ実用での前向き確認へ進める。同点なら上乗せ未確認で本採用保留。入力6件は以後開発用とする。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "実行待ち。",
-    "limitations": "仮想資料を渡す短い判定検査。実際のWeb調査、カード確認、正式review保存、自然な探索の検査ではない。既存原則全文を両者に渡すので現行版でも解ける可能性がある。"
+    "outcome": "mixed",
+    "summary": "現行6/6、説明明確化6/6。全12回答の理由も固定条件に整合。現行97.107秒、説明明確化116.289秒。説明追加による改善は観測されず。",
+    "limitations": "仮想の観測を与える短い判定検査。実Web調査・正式review保存・自然な発見力は未検査。共通原則にも表現の曖昧さが残る。事前入力設計の開始時刻は未記録。"
   },
   "decision": {
     "status": "deferred",
-    "reason": "結果が出るまでは本体へ変更しない。"
+    "reason": "事前の採用条件は、現行で観測された誤りを解消し後退がないこと。同点のため満たさない。本体へ取り込まない。"
   },
   "started_at": "2026-09-10T07:13:51.122375+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-10T07:19:56.439086+00:00",
   "stages": [
     {
       "id": "prepare",
@@ -26,26 +26,35 @@
       "status": "completed",
       "started_at": "2026-09-10T07:13:51.122375+00:00",
       "ended_at": "2026-09-10T07:13:51.162965+00:00",
-      "note": "この工程は入力ファイル作成処理の開始から終了まで。先行の点検は別記録。",
+      "note": "この工程は入力ファイル作成処理の開始から終了まで。先行の点検は別記録。 事前の入力設計・準備スクリプト執筆はこの計時より前で、正確な開始時刻を記録していない。0.041秒を準備全体の所要時間とは扱わない。",
       "budget_minutes": null
     },
     {
       "id": "a",
       "title": "現行指示で判断",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+      "status": "completed",
+      "started_at": "2026-09-10T07:14:07.422850+00:00",
+      "ended_at": "2026-09-10T07:15:44.531084+00:00",
+      "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-boundary-01/a/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 6
     },
     {
       "id": "b",
       "title": "説明明確化で判断",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+      "status": "completed",
+      "started_at": "2026-09-10T07:14:07.422851+00:00",
+      "ended_at": "2026-09-10T07:16:03.712917+00:00",
+      "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-boundary-01/b/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 6
+    },
+    {
+      "id": "collect",
+      "title": "全回答の回収・固定条件との照合・報告",
+      "status": "completed",
+      "started_at": "2026-09-10T07:16:47.164727+00:00",
+      "ended_at": "2026-09-10T07:19:56.439086+00:00",
+      "note": "監視済みの実行結果を回収し、入力と固定判定を照合する。",
+      "budget_minutes": null
     }
   ],
   "evidence_paths": [
@@ -55,6 +64,14 @@
     "evals/discovery/novelty-boundary-01/expected.json",
     "evals/discovery/novelty-boundary-01/principles.txt",
     "evals/discovery/novelty-boundary-01/review-a.txt",
-    "evals/discovery/novelty-boundary-01/review-b.txt"
+    "evals/discovery/novelty-boundary-01/review-b.txt",
+    "evals/discovery/novelty-boundary-01/collection.json",
+    "evals/discovery/novelty-boundary-01/independent-check.json",
+    "evals/discovery/novelty-boundary-01/a/result.json",
+    "evals/discovery/novelty-boundary-01/b/result.json",
+    "evals/discovery/novelty-boundary-01/a/run.json",
+    "evals/discovery/novelty-boundary-01/b/run.json",
+    "evals/discovery/novelty-boundary-01/a/verification.json",
+    "evals/discovery/novelty-boundary-01/b/verification.json"
   ]
 }

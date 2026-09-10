@@ -1,30 +1,30 @@
 {
   "id": "novelty-boundary-01",
-  "revision": 1,
-  "saved_at": "2026-09-10T07:13:51.259702+00:00",
+  "revision": 7,
+  "saved_at": "2026-09-10T07:19:56.615606+00:00",
   "actor": "codex",
-  "reason": "先例と普及の説明の比較を固定。仮想事例で上乗せを確認する",
+  "reason": "全12回答を照合。両者6件合格で上乗せ未確認、本採用保留",
   "record": {
     "id": "novelty-boundary-01",
     "title": "先例・普及・資料不足を区別する説明の比較",
     "category": "method",
-    "status": "running",
-    "summary": "同じ仮想6事例で現行指示と説明明確化を比較する。入力と採否条件を固定し、実行待ち。",
+    "status": "completed",
+    "summary": "両者とも6件の固定条件に合格し、判定も一致。説明追加の上乗せは未確認で本採用保留。本体の指示は変更しない。",
     "method": "REVIEWの独自性の説明だけを明確化すると、先例・普及・比較不足を区別する境界判断が改善するか。",
     "procedure": "同じ仮想6事例と現行の原則全文→現行REVIEW／独自性段落だけを置換したREVIEWを別の新規実行へ渡す→固定した判定条件で全12回答を照合する。",
     "inputs": "仮想6事例、現行の原則全文、現行／独自性段落だけを置換した指示。期待判定は担当へ渡さない。",
     "criteria": "bが全件の条件を満たし、aで観測された境界の誤りを少なくとも1件解消し、他の件に後退がない場合のみ実用での前向き確認へ進める。同点なら上乗せ未確認で本採用保留。入力6件は以後開発用とする。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "実行待ち。",
-      "limitations": "仮想資料を渡す短い判定検査。実際のWeb調査、カード確認、正式review保存、自然な探索の検査ではない。既存原則全文を両者に渡すので現行版でも解ける可能性がある。"
+      "outcome": "mixed",
+      "summary": "現行6/6、説明明確化6/6。全12回答の理由も固定条件に整合。現行97.107秒、説明明確化116.289秒。説明追加による改善は観測されず。",
+      "limitations": "仮想の観測を与える短い判定検査。実Web調査・正式review保存・自然な発見力は未検査。共通原則にも表現の曖昧さが残る。事前入力設計の開始時刻は未記録。"
     },
     "decision": {
       "status": "deferred",
-      "reason": "結果が出るまでは本体へ変更しない。"
+      "reason": "事前の採用条件は、現行で観測された誤りを解消し後退がないこと。同点のため満たさない。本体へ取り込まない。"
     },
     "started_at": "2026-09-10T07:13:51.122375+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T07:19:56.439086+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -32,26 +32,35 @@
         "status": "completed",
         "started_at": "2026-09-10T07:13:51.122375+00:00",
         "ended_at": "2026-09-10T07:13:51.162965+00:00",
-        "note": "この工程は入力ファイル作成処理の開始から終了まで。先行の点検は別記録。",
+        "note": "この工程は入力ファイル作成処理の開始から終了まで。先行の点検は別記録。 事前の入力設計・準備スクリプト執筆はこの計時より前で、正確な開始時刻を記録していない。0.041秒を準備全体の所要時間とは扱わない。",
         "budget_minutes": null
       },
       {
         "id": "a",
         "title": "現行指示で判断",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+        "status": "completed",
+        "started_at": "2026-09-10T07:14:07.422850+00:00",
+        "ended_at": "2026-09-10T07:15:44.531084+00:00",
+        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-boundary-01/a/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 6
       },
       {
         "id": "b",
         "title": "説明明確化で判断",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。",
+        "status": "completed",
+        "started_at": "2026-09-10T07:14:07.422851+00:00",
+        "ended_at": "2026-09-10T07:16:03.712917+00:00",
+        "note": "別の新規実行で6事例を判断。開始終了は実行監視から記録する。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-boundary-01/b/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 6
+      },
+      {
+        "id": "collect",
+        "title": "全回答の回収・固定条件との照合・報告",
+        "status": "completed",
+        "started_at": "2026-09-10T07:16:47.164727+00:00",
+        "ended_at": "2026-09-10T07:19:56.439086+00:00",
+        "note": "監視済みの実行結果を回収し、入力と固定判定を照合する。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
@@ -61,14 +70,52 @@
       "evals/discovery/novelty-boundary-01/expected.json",
       "evals/discovery/novelty-boundary-01/principles.txt",
       "evals/discovery/novelty-boundary-01/review-a.txt",
-      "evals/discovery/novelty-boundary-01/review-b.txt"
+      "evals/discovery/novelty-boundary-01/review-b.txt",
+      "evals/discovery/novelty-boundary-01/collection.json",
+      "evals/discovery/novelty-boundary-01/independent-check.json",
+      "evals/discovery/novelty-boundary-01/a/result.json",
+      "evals/discovery/novelty-boundary-01/b/result.json",
+      "evals/discovery/novelty-boundary-01/a/run.json",
+      "evals/discovery/novelty-boundary-01/b/run.json",
+      "evals/discovery/novelty-boundary-01/a/verification.json",
+      "evals/discovery/novelty-boundary-01/b/verification.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/novelty-boundary-01/README.md",
-      "sha256": "549c1e1016ac31d3ee51cc2eca23c51c3c27a49e0b7d7c0ba890f98b1e4c49ea",
-      "size": 363
+      "sha256": "bb70c8b716b7a6c1a2651c7dc0353aa8981c6f94f52d8955894ffecfbf79f79f",
+      "size": 4254
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/a/result.json",
+      "sha256": "a06ab8fc072ec52dd4aba38a25674dc5d93cbf7c9943ebe5d4406ec0674c75d9",
+      "size": 3757
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/a/run.json",
+      "sha256": "2aa914e495e99f22ef8ea2cba6cce5f4f9211f4800795e9c939cbfbef9368973",
+      "size": 2868
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/a/verification.json",
+      "sha256": "51d21bb4ac56532487c0317f5374302dfb6210b9c1bac0e5dbd7bbfefd870a93",
+      "size": 555
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/b/result.json",
+      "sha256": "231053b8e718a394a69b66de799f0589ad1276f23672796e94aece4418be3008",
+      "size": 4563
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/b/run.json",
+      "sha256": "2003bbe21001a6ed99d23248263dddd83d3f71b2bbdf3944ee5fd240614b8968",
+      "size": 2876
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/b/verification.json",
+      "sha256": "8f30745238d4523a5c951f0507a89d4ff54ebf848d8a8ad058408886ea097f48",
+      "size": 557
     },
     {
       "path": "evals/discovery/novelty-boundary-01/cases.json",
@@ -76,9 +123,19 @@
       "size": 5498
     },
     {
+      "path": "evals/discovery/novelty-boundary-01/collection.json",
+      "sha256": "78955d0dce86ce03af75c801f61e691473dd920c983c7aabe6ffe01b110544e8",
+      "size": 1465
+    },
+    {
       "path": "evals/discovery/novelty-boundary-01/expected.json",
       "sha256": "7122688ca4298dda156ef64c70a7d9da78c4050e4b7f4a9382928423a6247b3d",
       "size": 1036
+    },
+    {
+      "path": "evals/discovery/novelty-boundary-01/independent-check.json",
+      "sha256": "980dee78f9737901efe84e2bcc6b0cd5a0a8854e87665c50cf11d50c73cd91f5",
+      "size": 2137
     },
     {
       "path": "evals/discovery/novelty-boundary-01/principles.txt",
