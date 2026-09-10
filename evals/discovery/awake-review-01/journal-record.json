@@ -1,30 +1,30 @@
 {
   "id": "awake-review-01",
-  "revision": 4,
-  "saved_at": "2026-09-10T15:04:43.457710+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-10T15:14:41.364289+00:00",
   "actor": "codex",
-  "reason": "実AI担当に対応するOS抑止と同一入力を確認",
+  "reason": "正式評価と時計・解除を確認、採否と全工程時間を確定",
   "record": {
     "id": "awake-review-01",
     "title": "実行中の自動スリープを抑えて別評価する",
     "category": "method",
-    "status": "running",
-    "summary": "実AIで別評価を実行中。担当実行中のスリープ抑止と、前回と同じ資料・実装を確認。",
+    "status": "completed",
+    "summary": "自動スリープを抑えて7分3秒で正式評価1件まで完了。再開・抑止を実行補助として採用。",
     "method": "OS標準caffeinate -iで探索コマンドを実行し、実行中の抑止要求と終了後の解除を確認。",
     "procedure": "短い正常・失敗・期限停止で確認→同じ保存案を実AIが別評価1回→時計差・正式評価・入力保持と解除を記録。",
     "inputs": "review-resume-01と同じ最新改訂2・22資料・固定DBと同じ実装。元の失敗は別記録として保持。",
     "criteria": "同じ案・評価指示・経過600秒で正式評価まで完了するか。機能の動作と案の有用性を分け、未提出を強さの判定にしない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "短い3ケースPASS。実AIの評価は実行中。",
-      "limitations": "自動スリープの抑止のみ。画面点灯・恒久設定は変更しない。手動スリープ・蓋閉じ・電源断・通信断・時計の完全一致は保証しない。旧試行の失敗・時間・評価件数は変更しない。"
+      "outcome": "pass",
+      "summary": "改訂0・正式評価1、別出力への回収まで完了。評価は条件付きで比較試用の理由あり・独自性未確認。",
+      "limitations": "時計差は約0.007秒、終了後に抑止解除を確認。1回の結果で一般的な発見力や実戦の強さを認定しない。元失敗は保持。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "実AIの正式評価完了と実行後の解除を確認して判断。"
+      "status": "adopted",
+      "reason": "同じ案・資料・実装で正式評価と回収まで完了し、元資料不変・終了後解除を確認。評価再開と実行中の自動スリープ抑止を補助として採用。比較指示自体は別入力で検証する候補。"
     },
     "started_at": "2026-09-10T15:00:17.762425+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T15:14:41.254759+00:00",
     "stages": [
       {
         "id": "verification",
@@ -38,19 +38,19 @@
       {
         "id": "live-review",
         "title": "自動スリープを抑えて保存案を別評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T15:03:03.806270+00:00",
-        "ended_at": null,
-        "note": "改訂0・評価1を目標に経過600秒、1回。\n起動処理を開始。実行記録: /private/tmp/sv-awake-review-01-run/review-run",
+        "ended_at": "2026-09-10T15:10:06.641592+00:00",
+        "note": "改訂0・評価1を目標に経過600秒、1回。\n起動処理を開始。実行記録: /private/tmp/sv-awake-review-01-run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "report",
         "title": "結果・時計差・解除・採否を記録",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "旧試行と新しい結果の境界を保持。",
+        "status": "completed",
+        "started_at": "2026-09-10T15:07:55.221014+00:00",
+        "ended_at": "2026-09-10T15:14:41.254759+00:00",
+        "note": "正式評価1件・元保存不変・時計差約0.007秒・抑止解除を確認。初見確認7秒PASS。実行補助採用、比較指示は別入力へ。",
         "budget_minutes": 6
       }
     ],
@@ -59,14 +59,26 @@
       "evals/discovery/awake-review-01/protocol.json",
       "evals/discovery/awake-review-01/guard-checks.json",
       "evals/discovery/awake-review-01/check-observer-correction.json",
-      "evals/discovery/awake-review-01/launch-check.json"
+      "evals/discovery/awake-review-01/launch-check.json",
+      "evals/discovery/awake-review-01/formal-review-check.json",
+      "evals/discovery/awake-review-01/guard-result.json",
+      "evals/discovery/awake-review-01/live/result.json",
+      "evals/discovery/awake-review-01/live/verification.json",
+      "evals/discovery/awake-review-01/live/report.json",
+      "evals/discovery/awake-review-01/live/session.tar.gz",
+      "evals/discovery/awake-review-01/live/review/run.json",
+      "evals/discovery/awake-review-01/live/review/review.json",
+      "evals/discovery/awake-review-01/live/review/public-operations.json.gz",
+      "evals/discovery/awake-review-01/result.json",
+      "evals/discovery/awake-review-01/formal-completion-audit.json",
+      "evals/discovery/awake-review-01/timings.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/awake-review-01/README.md",
-      "sha256": "2381c16ee7b4d295f8e6eb185073859b0b5c46003f2ea59ac01f343c97ca4d76",
-      "size": 424
+      "sha256": "7f6fc323a9f2d1eeb293963525bcae1aacd0525bc05dea63cab662365706130d",
+      "size": 5163
     },
     {
       "path": "evals/discovery/awake-review-01/check-observer-correction.json",
@@ -74,9 +86,24 @@
       "size": 690
     },
     {
+      "path": "evals/discovery/awake-review-01/formal-completion-audit.json",
+      "sha256": "19e8d958193228363e254ad06157e9e2dc71d37f40e0615079883861a57d00ed",
+      "size": 6756
+    },
+    {
+      "path": "evals/discovery/awake-review-01/formal-review-check.json",
+      "sha256": "ecc0e7d3658fac2a0473fabc48b16c312250c3a995e91844689d29732abf4c6a",
+      "size": 635
+    },
+    {
       "path": "evals/discovery/awake-review-01/guard-checks.json",
       "sha256": "11bb40b7c745288893c869df4da2a271b161bee8637721ccd1d1ec88aac8e4d5",
       "size": 3639
+    },
+    {
+      "path": "evals/discovery/awake-review-01/guard-result.json",
+      "sha256": "0aba7d650f784c19777d38211b3ecbe084302600af434e1d6757890ef8739c68",
+      "size": 802
     },
     {
       "path": "evals/discovery/awake-review-01/launch-check.json",
@@ -84,9 +111,54 @@
       "size": 658
     },
     {
+      "path": "evals/discovery/awake-review-01/live/report.json",
+      "sha256": "50385bf13a68432fb82f873a43cc613c72713dee81543f41d9d47bc6a9613168",
+      "size": 57398
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/result.json",
+      "sha256": "9cc028ee4efff9fb6dcb52b63c0d6b2d2401223f4a2ed2033533f46f972dd369",
+      "size": 9266
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/review/public-operations.json.gz",
+      "sha256": "01e51f01d8b82de80894d432ef419acb634b13f81e4fa4c06d32ea1ae0f5dce3",
+      "size": 188591
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/review/review.json",
+      "sha256": "be3ae371a4e06f2b50ac3015aeffc292ecf8b88bd32141afbca66f67c3c36017",
+      "size": 13356
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/review/run.json",
+      "sha256": "7716edd785fead4a2c6b60bdf9cff40e4ae8119dabf6c0fa5e0aba4dbf37bf46",
+      "size": 2919
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/session.tar.gz",
+      "sha256": "44d6bd198b0a2ef3bef64441ad33e5708b25de2b0e357e145138cc5d2ac15254",
+      "size": 2076723
+    },
+    {
+      "path": "evals/discovery/awake-review-01/live/verification.json",
+      "sha256": "edf640c6902643b8c13852343f69f602f30a3e1ee365be1f67b69d3e01164736",
+      "size": 966
+    },
+    {
       "path": "evals/discovery/awake-review-01/protocol.json",
       "sha256": "1aa01f95a6f7c0ba5d5a94924f7f2ef9b1dcfdcabf68a1c17cda3960e04ced0c",
       "size": 8064
+    },
+    {
+      "path": "evals/discovery/awake-review-01/result.json",
+      "sha256": "65405d3311e7ff4ae9d252b64f27176981db33e9dbf14fa29fc0667a96f00c8b",
+      "size": 1589
+    },
+    {
+      "path": "evals/discovery/awake-review-01/timings.json",
+      "sha256": "812ece5e8bbae4fc055a30449392743365d1a186e8003ab3afd95dad80616a61",
+      "size": 1982
     }
   ]
 }

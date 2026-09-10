@@ -1,0 +1,44 @@
+{
+  "started_at": "2026-09-10T15:00:17.762425+00:00",
+  "ended_at": "2026-09-10T15:14:41.254759+00:00",
+  "wall_seconds": 863.492334,
+  "stages": [
+    {
+      "id": "verification",
+      "title": "実行中の抑止と終了後の解除を確認",
+      "status": "completed",
+      "started_at": "2026-09-10T15:00:17.762425+00:00",
+      "ended_at": "2026-09-10T15:03:03.069075+00:00",
+      "note": "正常・失敗・期限停止3ケースで実行中のOS抑止要求と終了後解除を確認。初回の観測用正規表現の誤りは訂正履歴へ保存。",
+      "budget_minutes": 5,
+      "wall_seconds": 165.30665
+    },
+    {
+      "id": "live-review",
+      "title": "自動スリープを抑えて保存案を別評価",
+      "status": "completed",
+      "started_at": "2026-09-10T15:03:03.806270+00:00",
+      "ended_at": "2026-09-10T15:10:06.641592+00:00",
+      "note": "改訂0・評価1を目標に経過600秒、1回。\n起動処理を開始。実行記録: /private/tmp/sv-awake-review-01-run/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 10,
+      "wall_seconds": 422.835322
+    },
+    {
+      "id": "report",
+      "title": "結果・時計差・解除・採否を記録",
+      "status": "completed",
+      "started_at": "2026-09-10T15:07:55.221014+00:00",
+      "ended_at": "2026-09-10T15:14:41.254759+00:00",
+      "note": "正式評価1件・元保存不変・時計差約0.007秒・抑止解除を確認。初見確認7秒PASS。実行補助採用、比較指示は別入力へ。",
+      "budget_minutes": 6,
+      "wall_seconds": 406.033745
+    }
+  ],
+  "reader": {
+    "started_at": "2026-09-10T15:13:29+00:00",
+    "ended_at": "2026-09-10T15:13:36+00:00",
+    "seconds": 7,
+    "verdict": "PASS"
+  },
+  "limits": "並行工程は合算しない。時刻差と監視時計はguard-result.jsonへ別記。"
+}

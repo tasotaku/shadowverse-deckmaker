@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10 15:10:43 UTC",
+  "ended_at_utc": "2026-09-10 15:12:37 UTC",
+  "scope": "src/svdeck/discovery_run.py、worker.pyとawake-review-01の公開operationsによる読取点検。コード編集・新規実験・稼働中試行の変更や停止・私的ログ閲覧は行わない。",
+  "decision": {
+    "verdict": "成果の検査を維持したまま、監視側が正式完了を確認して終了させる方式は最小変更の候補になり得る。ただし自然終了と異なる明示的な終了状態が必要で、現行のcompletedへ単に読み替える変更ではない。",
+    "adoption": "今回は実装・採用しない。親の更新ではawake-review-01は15:10:06～07 UTCに自然終了し、engine completed・正式評価1件まで完了した。今回を失敗と扱わない。次は別クラス入力で比較方法の有用性を確認するという親の方針を維持する。",
+    "observation_limit": "自然終了の更新は親からの報告。本点検はその実行ログを追加で読んで再検証していない。公開report成功から自然終了まで約2分42秒の差はあるが、その原因は断定しない。"
+  },
+  "public_evidence": {
+    "review_operation": "/tmp/sv-awake-review-01-run/review/operations/c4d2bed2a9f44c12a68c5391c21dc652.json",
+    "review_success_at": "2026-09-10T15:07:18.112129+00:00",
+    "review_operation_sha256": "bd1ace22746be8d569fe50466914174a54ab21f19ea155da2cf079a8f78b856a",
+    "report_operation": "/tmp/sv-awake-review-01-run/review/operations/422e9f883a6347259588c80964a823d1.json",
+    "report_success_at": "2026-09-10T15:07:24.900622+00:00",
+    "report_operation_sha256": "5207b1e553f833855b8183933295ff5eda51b743266c8929ab3805c623a009b5",
+    "report_summary": "改訂1への評価0件、改訂2への評価1件。reviewと、その後のreportがそれぞれexit_code=0。最終返信の有無は公開operationsからは判定しない。"
+  },
+  "minimal_candidate": {
+    "shape": "discovery_runの既存の工程後検証を共通化し、workerへ任意の完了確認を渡す。公開reportをきっかけに、監視側が同じ成果検査を通した場合だけ既存の終了要求・猶予・強制終了・終了確認を使う。私的stdoutや最終返信の文面を判定条件にしない。",
+    "completion_conditions": [
+      "今回の担当・工程・対象版に対応する正式submit/reviewが1件だけ成功し、その保存後に公開reportが成功していること。単なるreport成功や古い成功記録では足りない。操作記録は完全なJSONだけを読み、保存された提案・評価と監視側が再生成したreportの対応を確認する。",
+      "現行と同じ正式保存再検査、提案・packet・担当IDの対応、別評価の独立性、元資料・実行用コード・固定入力・準備コピーの不変検査をすべて通すこと。必要な情報が最終返信だけに残る設計にはせず、正式案・評価の不足を最終返信不要という理由で許容しない。",
+      "期限と外部停止要求の優先順位を維持する。新方式の完了確認は期限内に観測・検査を終えて確定し、検査後かつ終了要求の直前にも期限・停止要求・子の終了状態を再確認する。既存のtimeoutや失敗を後から成功へ昇格させない。",
+      "終了要求だけで成功とせず、制御対象プロセス群への停止処理と終了確認を完了すること。停止後に成果と固定入力を再検査し、完了確認時の内容から変わっていないことを確認してから次工程・集約へ進む。",
+      "自然終了、正式完了確認による監視側終了、期限停止、外部中断、失敗、終了未確認を別状態として保存する。正式完了の観測時刻・証拠hash、終了要求時刻、終了確認時刻、実際の子終了コードを残す。台帳も同じ区別を扱い、反映失敗を隠さない。"
+    ],
+    "races_and_failure_rules": [
+      "公開操作記録の書込み途中は未完了候補として読み直す。reportだけを見て担当が次の操作へ進む前提を置かず、終了処理後の正式ファイル一覧と内容を再検査する。後続の正式提出、追加資料、固定入力変更があれば成果を回収できても完了扱いにしない。",
+      "完了確認中に自然終了した場合は再pollして自然終了の実コードを記録する。監視側の終了要求より前に非0終了・期限超過・外部中断を観測した場合は、その失敗や中断を保持する。自分の終了要求による負の子終了コードだけを、明示した監視側終了状態に結び付ける。",
+      "停止未確認、検証失敗、成果の不一致、記録や集約の失敗は未完了。公開成果は保存するが、次工程へ進めない。既存の保存済み案から別試行として回復する手段を維持する。"
+    ],
+    "contract_limit": "変えるのは担当プロセスの終了条件であり、正式案・評価の必須内容、1件制約、結果判定、5基準、案の品質は変えない。これを今の試行へ遡って適用しない。"
+  },
+  "code_evidence": [
+    {
+      "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+      "lines": [
+        125,
+        144,
+        163,
+        170
+      ],
+      "reason": "正式保存後に公開操作の終了時刻・exit_code・出力を保存する。reportの操作記録を候補検出に使えるが、操作成功だけで全体完了を保証しない。"
+    },
+    {
+      "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+      "lines": [
+        272,
+        280,
+        283,
+        319,
+        334,
+        340
+      ],
+      "reason": "現行はworkerの自然終了成功の後に、固定入力と正式保存の検査、集約を行う。検査を省略せず共有する必要がある。"
+    },
+    {
+      "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py",
+      "lines": [
+        133,
+        152,
+        155,
+        192,
+        195,
+        210
+      ],
+      "reason": "現在の監視条件は中断・期限・プロセス終了。終了要求と強制終了、終了未確認、実終了コード、台帳反映の仕組みは既存。正式完了確認は独立の停止理由として追加する必要がある。"
+    }
+  ],
+  "output_path": "/tmp/formal-completion-audit.json",
+  "elapsed_seconds": 114
+}
