@@ -1,22 +1,22 @@
 {
   "id": "proposal-finish-01",
-  "revision": 1,
-  "saved_at": "2026-09-10T02:03:53.552784+00:00",
+  "revision": 2,
+  "saved_at": "2026-09-10T02:07:03.464160+00:00",
   "actor": "root",
-  "reason": "調査済み資料を指定して提出へまとめる公開の選択肢を実装し、実AIの検証を開始",
+  "reason": "作業用初稿の保存時刻・内容を照合。正式提出0件と区別して進捗を更新",
   "record": {
     "id": "proposal-finish-01",
     "title": "保存済みの調査を別の担当が提案へまとめる",
     "category": "method",
     "status": "running",
-    "summary": "14資料を引き継ぎ、対象報告から先に下書きを保存して提出へ進めるか検証中。",
+    "summary": "開始から約1分40秒で作業用下書きを保存。必要な確認を進行中。正式提出と独立評価は未完了。",
     "method": "公開packetで保存済みの調査を指定し、提案をまとめる専用の指示を選ぶ。対象報告を直接読み、下書き保存後に必要な本文・注記・不足を確認する。通常の探索・提出検査・独立評価の基準は維持。",
     "procedure": "入力をコピーし19ファイルの一致を確認→機能検査118件と型検査→実AIの提案化→正式案があれば独立評価→結果・採否を記録。作業下書きと正式提出、試す価値を分ける。",
     "inputs": "worker-clock-01の固定ドラゴン/ローテーションと14資料。正式案0件の中断済み調査からの引き継ぎであり、未知の入力での再発見ではない。",
     "criteria": "公開工程、正しさ、発展、有用性、誠実さの5基準を維持。下書き保存や提出件数だけで有用性を認定しない。実行時刻・経過秒・公開操作を保存する。",
     "result": {
       "outcome": "unassessed",
-      "summary": "機能検査118件と型検査に合格。実AIの提案化を開始。",
+      "summary": "機能検査118件と型検査合格。公開報告の全文・出典は別担当も照合。実AIは11:04:20に作業下書きを保存し、元の20ファイルは保存時点で未変更。案は未評価。",
       "limitations": "上限を30分へ変更しており、前試行との速度比較・原因の単独確定はできない。実装着手のUTCは未記録。検査11.93秒をAIの実利用時間とは数えない。"
     },
     "decision": {
@@ -50,7 +50,7 @@
         "status": "running",
         "started_at": "2026-09-10T02:02:40.076159+00:00",
         "ended_at": null,
-        "note": "経過時計1800秒。UTC期限ではない。元の5基準を維持。",
+        "note": "11:04:20に下書き保存（経過100.202秒）。残る本文・注記・採用負担の確認と正式提出へ進行中。",
         "budget_minutes": 30
       },
       {
@@ -69,19 +69,43 @@
       "evals/discovery/proposal-finish-01/preparation.json",
       "evals/discovery/proposal-finish-01/test-plan.json",
       "evals/discovery/proposal-finish-01/test-verification.json",
-      "evals/discovery/proposal-finish-01/run-start.json"
+      "evals/discovery/proposal-finish-01/run-start.json",
+      "evals/discovery/proposal-finish-01/proposal-first.json",
+      "evals/discovery/proposal-finish-01/draft-time.json",
+      "evals/discovery/proposal-finish-01/draft-verification.json",
+      "evals/discovery/proposal-finish-01/independent-output-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/proposal-finish-01/README.md",
-      "sha256": "d97ea8b4ffee5cd28c2dc4c171811c1c1ba9951fd9a5cbbd8b19990b0acff2cc",
-      "size": 1887
+      "sha256": "74c78fea9a433420e98e3201bf6cb1e8e57735436b5c51280b081be0fb9b2f0f",
+      "size": 2163
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/draft-time.json",
+      "sha256": "78803c99db97ef4b773dcc7c06086d13ef23e0462a3f677e2e25b55969ebaec8",
+      "size": 354
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/draft-verification.json",
+      "sha256": "32e45fd192124c66db0f4a43ea8aac28eca328d4dc4761f30fcbecfc14b20268",
+      "size": 454
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/independent-output-check.json",
+      "sha256": "29b5fa71ef382e32077736d9bdcb5d54d1f245a4e6bbf3f11740959f64352ab2",
+      "size": 615
     },
     {
       "path": "evals/discovery/proposal-finish-01/preparation.json",
       "sha256": "f906c816348a81be6695c137ad11156ac8cbabf9c4f33e3a473e289bf2a932b8",
       "size": 1076
+    },
+    {
+      "path": "evals/discovery/proposal-finish-01/proposal-first.json",
+      "sha256": "0c0e2477dcd5f74b2a59ab38012fcb833ada07978f610f49aabf528c39bd24bd",
+      "size": 2292
     },
     {
       "path": "evals/discovery/proposal-finish-01/protocol.json",
