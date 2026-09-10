@@ -1,0 +1,110 @@
+{
+  "id": "fresh-bishop-01",
+  "revision": 3,
+  "saved_at": "2026-09-10T11:19:29.100575+00:00",
+  "actor": "担当の実行監視",
+  "reason": "担当の起動処理を開始。結果・採否は変更しない",
+  "record": {
+    "id": "fresh-bishop-01",
+    "title": "記事の説明も渡してビショップの探索を試す",
+    "category": "method",
+    "status": "running",
+    "summary": "参考5記事の内訳と説明を取得し、通常の考案・別評価で種へ進めるかを検証する。",
+    "method": "採用済みの単一記事取得+説明保持→通常の考案・別評価→固定した条件に当たる場合だけ通常改訂1回。保留中の指示変更は使わない。",
+    "procedure": "参考5記事→考案→独立評価。value=developで具体的な問いが残る場合だけ改訂と再評価を各1回。",
+    "inputs": "ローテーション・ビショップの新しい探索。過去にビショップを含む予備調査は存在するため完全な未知クラスではない。既知のDB・注記・原則を使い、他試行の成功案や採否を注入しない。",
+    "criteria": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。 / 最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。 / 追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。 / 最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。 / 共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "参考5記事すべて成功、説明5件を含む15資料を準備済み。考案と別評価はまだ完了していない。",
+      "limitations": "既知DBを使った1入力。説明なしとの比較、実戦勝率、方法全体の優位は未確認。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "試す根拠のある種が残るかを実際の出力で判定する。"
+    },
+    "started_at": "2026-09-10T11:18:20.269564+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "参考5記事の内訳と説明を準備",
+        "status": "completed",
+        "started_at": "2026-09-10T11:18:20.269564+00:00",
+        "ended_at": "2026-09-10T11:18:29.301219+00:00",
+        "note": "対象5記事すべて取得成功、説明5件を含む計15資料を保存。カードDBは不変。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "live-develop",
+        "title": "考案担当が種を提出",
+        "status": "running",
+        "started_at": "2026-09-10T11:19:29.097564+00:00",
+        "ended_at": null,
+        "note": "通常の指示で1回実施。開始・終了は実行側が自動保存。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-bishop-01/run/develop-run",
+        "budget_minutes": 30
+      },
+      {
+        "id": "live-review",
+        "title": "別担当が手順と採用価値を評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "通常の指示で1回実施。開始・終了は実行側が自動保存。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/fresh-bishop-01/README.md",
+      "evals/discovery/fresh-bishop-01/protocol.json",
+      "evals/discovery/fresh-bishop-01/fetch-events.json",
+      "evals/discovery/fresh-bishop-01/prepared.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/fresh-bishop-01/README.md",
+      "sha256": "9811666c0cc4b90066baac6e4fd4a576c151e3d5f6693b846a51b0265504ea14",
+      "size": 478
+    },
+    {
+      "path": "evals/discovery/fresh-bishop-01/fetch-events.json",
+      "sha256": "8b5ae188ba8c47cb90e9040b83c5c69c46e413af04c40d1115f066a62bb78d73",
+      "size": 1440
+    },
+    {
+      "path": "evals/discovery/fresh-bishop-01/prepared.json",
+      "sha256": "2b004fe4c1504e40498b4fbb342661e06f5435471033d00cae07e58f6504a42f",
+      "size": 248
+    },
+    {
+      "path": "evals/discovery/fresh-bishop-01/protocol.json",
+      "sha256": "d53bd2292d4b3f526752cb4d0d59834a3b3d537e1ac5ef592abce1fad8d362ed",
+      "size": 4559
+    }
+  ],
+  "history": [
+    {
+      "revision": 3,
+      "saved_at": "2026-09-10T11:19:29.100575+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-10T11:19:28.580197+00:00",
+      "actor": "codex",
+      "reason": "参考5記事の内訳と説明15資料を保存し考案へ進む"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-10T11:18:20.433402+00:00",
+      "actor": "codex",
+      "reason": "記事説明を含む新しいビショップ入力の検証を開始"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
+}
