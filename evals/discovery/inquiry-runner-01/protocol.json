@@ -1,0 +1,21 @@
+{
+  "id": "inquiry-runner-01",
+  "frozen_at": "2026-09-10T10:17:52.459570+00:00",
+  "purpose": "保存評価の問いを指定して調査し、案を改訂せず根拠と結論を保存して別担当の照合までつなぐ実行補助を検証する。",
+  "source_session": "data/discovery/fresh-nightmare-01-initial-result",
+  "revision": 1,
+  "review_hash": "409d28a3e1d59d7d4e5187ef993626e3c8ab8658877442acb255c03bf3228c6c",
+  "question_index": 3,
+  "research_seconds": 900,
+  "inspect_seconds": 600,
+  "attempts_per_stage": 1,
+  "clock": "elapsed",
+  "criteria": {
+    "preservation": "元案・評価・固定資料・カードDB・コードを保持し、改訂0件・正式評価0件で資料だけ追加する。",
+    "workflow": "公開入口で調査報告を添付、資料を再取得し本文を再読、別プロセスへ渡し、その照合報告も保存しreportで回収する。",
+    "content": "検索語・範囲・URL・観察時刻・取得本文と解釈の区別・一致と相違・取得不能を残し、問いに対して新しく分かったことと未確認を分ける。",
+    "independence": "別担当が保存資料と出典の対応と問いへの回答を点検する。旧採点を期待答案とせず、保存成功と問いの解決を別判定する。",
+    "adoption": "実行補助の採用には関連検査と実AIの受渡し完了が必要。資料数や一問指定指示だけを発見力向上・独自性確定・方法全体の採用にしない。"
+  },
+  "failure_policy": "未提出・期限停止を記録し親が代理で結論を提出しない。前のfocused-inquiry-01の失敗はそのまま保持。"
+}

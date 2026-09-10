@@ -92,11 +92,14 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
             if not args or args in (['--help'], ['help']):
                 print('Use: public.py packet [--summary] | read HASH SECTION [--offset N --limit N] | report')
                 print('For develop: submit FILE | attach FILE | attach-file FILE OPTIONS | compare BEFORE AFTER')
-                print('For review: review FILE. Session and stage are fixed. Read inputs only through this entry.')
+                print('For review: review FILE. For inquiry/inspect: attach FILE | attach-file FILE OPTIONS.')
+                print('Session and stage are fixed. Read inputs only through this entry.')
                 code = 0
             else:
                 command, rest = args[0], args[1:]
-                allowed = {'packet', 'read', 'report'} | ({'submit', 'attach', 'attach-file', 'compare'} if stage == 'develop' else {'review'})
+                stage_commands = {'develop': {'submit', 'attach', 'attach-file', 'compare'}, 'review': {'review'},
+                                  'inquiry': {'attach', 'attach-file'}, 'inspect': {'attach', 'attach-file'}}
+                allowed = {'packet', 'read', 'report'} | stage_commands[stage]
                 if command not in allowed:
                     raise ValueError('この工程では許可されていない操作です')
                 help_only = rest == ['--help']
@@ -110,6 +113,8 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                     data = discovery._read_envelope(session / 'packets' / (rest[0] + '.json'))
                     if data['stage'] != stage or data['revision'] != revision:
                         raise ValueError('別の工程・改訂のpacketは読めません')
+                    if stage in {'inquiry', 'inspect'}:
+                        check_packet(session, data, discovery._read_envelope(session / 'packets' / (config['packet_hash'] + '.json')))
                 if command in {'submit', 'review', 'attach', 'attach-file'} and not help_only:
                     if not rest:
                         raise ValueError('自分の作業先の入力ファイルが必要です')
@@ -135,6 +140,13 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                 if command in {'submit', 'review'} and not help_only:
                     value = discovery.submit(session, response) if command == 'submit' else discovery.review(session, response)
                     print(json.dumps({**value, 'author': config['author']}, ensure_ascii=False, indent=2))
+                    code = 0
+                elif command == 'packet' and stage in {'inquiry', 'inspect'} and not help_only:
+                    # AI_NOTE: 調査では案の再提出を要求せず、固定した問いへ追加資料だけを反映する。
+                    from svdeck.discovery_inquiry import refresh_packet
+                    envelope = refresh_packet(session, config['packet_hash'])
+                    value = packet_summary(session, envelope['sha256']) if args[1:] == ['--summary'] else envelope
+                    print(json.dumps(value, ensure_ascii=False, indent=2))
                     code = 0
                 elif command == 'packet' and stage == 'review' and not help_only:
                     key = config['packet_hash']
