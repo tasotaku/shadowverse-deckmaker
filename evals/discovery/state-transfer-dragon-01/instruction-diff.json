@@ -1,0 +1,4 @@
+{
+  "diff": "--- src/svdeck/discovery.py\t2026-09-10 16:46:01\n+++ /tmp/sv-state-transfer-dragon-01/implementation/svdeck/discovery.py\t2026-09-11 00:21:43\n@@ -657,7 +657,11 @@\n         return 2\n     print(json.dumps(result, ensure_ascii=False, indent=2))\n     return 0\n+\n+\n \n+# Isolated trial: compare ordinary actions from the same starting state.\n+DEVELOP += '正式改訂を決める前に、主な利益を判断する開始状態と観察終点を1つ固定してください。指定された参考構築で取れる行動を能力全文から組み立て、案の手順と同じ終点まで比べます。共通札・手札枚数の条件を揃え、交換札の対応と追加で必要な札を明記し、片側だけに都合のよい札やPPを補わないでください。各行動の条件と発動時点、PP、手札、両者の盤面、リーダー体力、進化権、残る継続効果・失う役割を確認します。不明な相手行動や引き込みは利益に足しません。通常側でも得られる分を分け、残る利益を使い方か採用配分の判断へ返し、根拠を既存の比較欄と追加資料へ残してください。\\n'\n \n if __name__ == \"__main__\":\n     sys.exit(main())\n",
+  "only_ast_change": "DEVELOPへの比較指示の追加1件"
+}

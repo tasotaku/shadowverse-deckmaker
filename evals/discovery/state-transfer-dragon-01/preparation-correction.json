@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-09-10T15:21:43.320584+00:00",
+  "failure": "準備時の公開CLI packetに比較指示が反映されず事前照合を停止。実AIは未起動。",
+  "cause": "DEVELOP追記を__main__の終了処理より後に置いたため、import経由では有効だがpython -m discoveryでは到達しなかった。",
+  "fix": "同じ追記を__main__より前へ移動。主リポジトリの指示・機能は変更しない。",
+  "tests_before_fix": {
+    "passed": 80,
+    "seconds": 17.78,
+    "scope": "import経由の既存処理は同じ追記を読み込み通過。失敗した公開CLIの反映はこれとは別の確認。"
+  },
+  "original_artifacts": "*.before-cli-correctionとして保持。"
+}

@@ -1,0 +1,155 @@
+{
+  "id": "state-transfer-dragon-01",
+  "revision": 2,
+  "saved_at": "2026-09-10T15:22:26.575721+00:00",
+  "actor": "codex",
+  "reason": "3記事9資料と比較指示の入力差を固定、考案を開始",
+  "record": {
+    "id": "state-transfer-dragon-01",
+    "title": "同じ状態での比較をドラゴンの新しい考案へ使う",
+    "category": "method",
+    "status": "running",
+    "summary": "3記事9資料を固定。比較指示だけが変わることを確認し、ドラゴンの初回考案へ進む。",
+    "method": "比較指示を加えた考案→通常側と同じ状態で比較→独立評価。必要な具体的問いがある場合だけ改訂1回。",
+    "procedure": "参考3記事を取得・固定→現行指示の隔離版へ比較手順だけ追記→初回考案・別評価→事前条件に沿って終了または追加改訂・別評価1回→結果と採否を保存。",
+    "inputs": "ドラゴン・ローテーションの新しい探索記録。固定DB・既存注記・学んだ設計原則は既知。具体的な過去案と評価を注入しない。開発に一切使っていない未知カードの検査ではない。 参考3記事の全40枚と説明を取得。",
+    "criteria": "主な比較に重大な既知の誤りがなく、通常側でも得られる分を分けた比較が使い方・採用配分・主張の限定へ実際に反映され、試す理由のある種が残れば、既知ビショップの観測と合わせて比較指示を運用へ採用する。記録欄が埋まっただけ、比較が誤る、保留だけの場合は採用しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "準備完了。考案と別評価を各1回実行する。",
+      "limitations": "候補方法だけの新しい入力1件であり、同時対照や一般的な優越・勝率・Tierの証明ではない。元の失敗を変更せず、採用条件・予算を結果に合わせて緩めない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "同じ状況の比較が正確で、採用判断と試用価値へつながるかを確認する。"
+    },
+    "started_at": "2026-09-10T15:17:50.838785+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "3記事の取得と固定入力・指示を準備",
+        "status": "completed",
+        "started_at": "2026-09-10T15:17:50.838785+00:00",
+        "ended_at": "2026-09-10T15:22:26.453538+00:00",
+        "note": "3記事すべて成功・9資料を保存。80検査と型検査、指示以外の資料一致を確認。試作CLIの追記位置の誤りを起動前に訂正し記録。",
+        "budget_minutes": 8
+      },
+      {
+        "id": "initial-develop",
+        "title": "比較指示を使って新しい案を考案",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "考案30分、1回。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "initial-review",
+        "title": "別担当が比較の正しさと試用理由を評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "別評価15分、1回。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "report",
+        "title": "結果・採否・工程時間を記録",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "条件を満たす場合だけ追加改訂の工程を登録。",
+        "budget_minutes": 8
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/state-transfer-dragon-01/README.md",
+      "evals/discovery/state-transfer-dragon-01/protocol.json",
+      "evals/discovery/state-transfer-dragon-01/article-fetch.json",
+      "evals/discovery/state-transfer-dragon-01/source-intake.json",
+      "evals/discovery/state-transfer-dragon-01/frozen-input.json",
+      "evals/discovery/state-transfer-dragon-01/packet-check.json",
+      "evals/discovery/state-transfer-dragon-01/preparation-correction.json",
+      "evals/discovery/state-transfer-dragon-01/instruction-diff.json",
+      "evals/discovery/state-transfer-dragon-01/runtime-manifest.json",
+      "evals/discovery/state-transfer-dragon-01/runtime.tar.gz",
+      "evals/discovery/state-transfer-dragon-01/input-session.tar.gz",
+      "evals/discovery/state-transfer-dragon-01/articles/1.json",
+      "evals/discovery/state-transfer-dragon-01/articles/2.json",
+      "evals/discovery/state-transfer-dragon-01/articles/3.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/README.md",
+      "sha256": "c80c2e2d68a126fad43fa238b38901adda54faf59501e11b7ce7f4fab7ac26ad",
+      "size": 674
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/article-fetch.json",
+      "sha256": "027f4108aa032a1784963b0f6aaea50e74e19951c7606f0cc2598d1c7c904d34",
+      "size": 1870
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/articles/1.json",
+      "sha256": "bce3d4871506e78e859ca853f2d143ecaaebbcaadd34da7c34cca471bbcc4e3a",
+      "size": 13873
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/articles/2.json",
+      "sha256": "c9ba73d5a975f95bbac26f26a769b98383db457e3a13673059380d1be8bea205",
+      "size": 11175
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/articles/3.json",
+      "sha256": "e1eb0bde7e417722ef899d353c34e8fac4286c0559673e36f4a19b2263043a43",
+      "size": 13168
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/frozen-input.json",
+      "sha256": "39d21d60f354f7062a99ea3e3d8545a9bbc0105089cba4101d507389e1096cf9",
+      "size": 5553
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/input-session.tar.gz",
+      "sha256": "6b2bb0e4fb99c2039aabf553f9001183bab363e965386ac0e0e0e6c38b07b9f6",
+      "size": 1155411
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/instruction-diff.json",
+      "sha256": "b85418d6fccb00b4e189b0adb16b6224dd6c925d1e4c4817261b39e55993e395",
+      "size": 1317
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/packet-check.json",
+      "sha256": "4cbea74e40f8a752b125e3d5f096c7aac55c6f4260a76e2db7a7d2066c344d71",
+      "size": 763
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/preparation-correction.json",
+      "sha256": "6e41ed11b7bcb4160b3a07ef3798daaa1a5745824c97e652891e4171f3fe6a74",
+      "size": 735
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/protocol.json",
+      "sha256": "b5d14adfb462a30c7dc5c3a3f1d7d9a170df04937659a80d4677bf1c9a347c14",
+      "size": 5681
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/runtime-manifest.json",
+      "sha256": "82d55e1b37a20b1feb1373f74f78eb79480dd9d78fe4d47e5fba63f68913b9be",
+      "size": 3557
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/runtime.tar.gz",
+      "sha256": "be684d0b6483f8b6f593a2b23345666a81f9feabd6f5e2237e3ae7674a415eeb",
+      "size": 187032
+    },
+    {
+      "path": "evals/discovery/state-transfer-dragon-01/source-intake.json",
+      "sha256": "4264d28eb6ba6fc9608b576d13a023a2b079f46b6943e421ab38aa47a143359a",
+      "size": 1245
+    }
+  ]
+}
