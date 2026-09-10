@@ -1,0 +1,44 @@
+{
+  "status": "running",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/tmp/sv-article-rationale-01/a/work",
+    "--json",
+    "--output-last-message",
+    "/tmp/sv-article-rationale-01/a/work/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-article-rationale-01/a/work",
+  "stdin": "/private/tmp/sv-article-rationale-01/a/work/prompt.md",
+  "output": "/private/tmp/sv-article-rationale-01/a/run",
+  "started_at": "2026-09-10T03:56:22.583841+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2254223.311960416,
+  "timeout_seconds": 1800.0,
+  "termination_grace_seconds": 2.0,
+  "supervisor_pid": 30614,
+  "worker_pid": 30636,
+  "worker_returncode": null,
+  "ended_at": null,
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T03:56:22.584909+00:00",
+      "elapsed_seconds": 0.0005523338913917542
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T03:56:22.588309+00:00",
+      "elapsed_seconds": 0.003994625061750412
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review."
+}

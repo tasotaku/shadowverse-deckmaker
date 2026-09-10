@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-09-10T03:57:26.865487+00:00",
+  "agent": "article_packet_check",
+  "verdict": "PASS",
+  "scope": [
+    "prototype.patch",
+    "a/input-summary.json",
+    "b/input-summary.json",
+    "protocol.json",
+    "article-notes.json"
+  ],
+  "findings": [
+    "追加4行がBの公開出力にそのまま出ている。既存17行は維持。",
+    "目的・応答例・資料の識別値は一致。",
+    "原文未取得と二次要約の区別、個人不採用の一般化禁止が出力に残る。",
+    "保存件数・形式と有用性を区別し、Bの有用な種0では採用しない条件が残る。"
+  ],
+  "limits": "実際の探索結果・原文正確性・公開コマンドの実行・旧採点不変性はこの読み取り担当の確認範囲外。"
+}

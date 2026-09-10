@@ -1,0 +1,17 @@
+{
+  "saved_at": "2026-09-10T03:50:28.024366+00:00",
+  "happy": [
+    "従来と変更版の公開packetでinstruction以外の全項目が一致",
+    "既存のstart/read/attach/submit/review/report往復"
+  ],
+  "edge": [
+    "途中案・空区分・古い保存版の全文が維持される",
+    "レビュー指示と回答形式は従来と完全一致"
+  ],
+  "error": [
+    "不正引用・不正な入力版・違法カード等を既存どおり拒否"
+  ],
+  "covered_by": "tests/test_discovery*.py と既存tests/temp/test_discovery_finish_temp.py。指示変更の意味は実AI比較で検査する。",
+  "new_mechanical_tests": false,
+  "reason": "文字列の追加そのものをなぞるテストは作らず、既存往復・境界と実際の入力一致を検査。"
+}

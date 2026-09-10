@@ -1,0 +1,164 @@
+{
+  "id": "article-rationale-01",
+  "revision": 2,
+  "saved_at": "2026-09-10T03:57:26.989283+00:00",
+  "actor": "root",
+  "reason": "従来版と限定変更版の考案担当を同じ経過時計1800秒で起動し、実プロセスの生存を確認",
+  "record": {
+    "id": "article-rationale-01",
+    "title": "参考記事の採否理由と条件を引き継ぐ",
+    "category": "method",
+    "status": "running",
+    "summary": "同じビショップ資料で両方式の考案を開始。差は採否理由を引き継ぐ4行。118件と型検査・公開出力確認に合格し、実利用結果は未判断。",
+    "method": "参考記事の採否理由と適用条件を引き継ぐ指示を追加すると、単なる記録増ではなく、元構築との比較が変わり試す理由のある種へ進めるか。",
+    "procedure": "指示の試作→機能検査→同一入力照合→従来版と変更版で各30分の考案・提出→正式案があれば別担当が各15分で評価→採否と時間を記録。各方式で考案・評価は1回ずつ。",
+    "inputs": "同じDBから新規作成したビショップの保存入力。今回取得した9月の進化ビショップ40枚と取得情報、9月の説明と6月の個人インタビューの限定要約。過去の提案・評価は追加していない。全カードが開発者に未知の検査ではない。",
+    "criteria": "公開工程・正しさ・発展・有用性・誠実さの5基準を維持。採否理由の適用と誤った一般化を点検し、追加保存件数を加点しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "両入力のinstruction以外の全項目が一致。元のDBは不変。機能検査118件と型検査合格。実利用結果は未評価。",
+      "limitations": "両入力の全項目はinstruction以外一致。参考記事の初期限定要約はrootが作成して両方式へ同じものを渡すため、Web取得能力やゼロからの要約能力を比較した試験ではない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "実AIの考案・独立評価の結果を待つ。有用な種0件では本採用しない。"
+    },
+    "started_at": "2026-09-10T03:50:27.968605+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "考案指示を隔離した実装で試作",
+        "status": "completed",
+        "started_at": "2026-09-10T03:50:27.968605+00:00",
+        "ended_at": "2026-09-10T03:50:27.981501+00:00",
+        "note": "共通の考案指示へ4行追加。本体は未変更。",
+        "budget_minutes": null
+      },
+      {
+        "id": "checks",
+        "title": "型・機能と入出力の検査",
+        "status": "completed",
+        "started_at": "2026-09-10T03:51:07.079825+00:00",
+        "ended_at": "2026-09-10T03:51:22.468011+00:00",
+        "note": "型検査合格、118件合格（pytest12.35秒）。機能検査は有用性の証明ではない。",
+        "budget_minutes": null
+      },
+      {
+        "id": "preparation",
+        "title": "ビショップの同一入力を作成・照合",
+        "status": "completed",
+        "started_at": "2026-09-10T03:54:11.581475+00:00",
+        "ended_at": "2026-09-10T03:54:12.595475+00:00",
+        "note": "本文・原則・4資料等が一致し、差は考案指示だけ。",
+        "budget_minutes": null
+      },
+      {
+        "id": "generation_a",
+        "title": "従来版で考案・提出",
+        "status": "running",
+        "started_at": "2026-09-10T03:56:22.583841+00:00",
+        "ended_at": null,
+        "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "generation_b",
+        "title": "採否理由を引き継ぐ版で考案・提出",
+        "status": "running",
+        "started_at": "2026-09-10T03:56:22.583761+00:00",
+        "ended_at": null,
+        "note": "経過時計1800秒。考案・Web確認・資料保持・正式提出を実行中。",
+        "budget_minutes": 30
+      },
+      {
+        "id": "review_a",
+        "title": "従来版の案を独立評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "review_b",
+        "title": "変更版の案を独立評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式案がある場合だけ別担当が同じREVIEWで評価。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/article-rationale-01/README.md",
+      "evals/discovery/article-rationale-01/protocol.json",
+      "evals/discovery/article-rationale-01/prototype.patch",
+      "evals/discovery/article-rationale-01/implementation-time.json",
+      "evals/discovery/article-rationale-01/test-plan.json",
+      "evals/discovery/article-rationale-01/test-verification.json",
+      "evals/discovery/article-rationale-01/preparation.json",
+      "evals/discovery/article-rationale-01/article-notes.json",
+      "evals/discovery/article-rationale-01/independent-output-check.json",
+      "evals/discovery/article-rationale-01/a/run-start.json",
+      "evals/discovery/article-rationale-01/b/run-start.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/article-rationale-01/README.md",
+      "sha256": "2e5ff11f5d2e3d69fde1e3bf7b1def985c0ae2396e0aa4f7502a64089f31c675",
+      "size": 2478
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/a/run-start.json",
+      "sha256": "0452bace6f4287eae1086000dd54845eb4281b614a53b13ad2e7fd8bcdd60d45",
+      "size": 1477
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/article-notes.json",
+      "sha256": "102f5e4ed1d809d8fb63ec3ee3405feef13076484971cfefdb5ac51c3c73d5e3",
+      "size": 2996
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/b/run-start.json",
+      "sha256": "1c268384f761b47d06b9ca6ea545a81dbd52a40c8c2e76d256e46c24c9916a84",
+      "size": 1478
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/implementation-time.json",
+      "sha256": "cf0be618c0593db0ba15ee6f045f4042e452d9f384082d1047039ebcb34c7814",
+      "size": 385
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/independent-output-check.json",
+      "sha256": "d33bc39eff59fa653ac06bb622a15fd4e777502626c54812b89c1d106937d282",
+      "size": 793
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/preparation.json",
+      "sha256": "aa264ffabe070d0815206adce76215fdbb448c6c5a57b8e0eb11c86832389df8",
+      "size": 1329
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/protocol.json",
+      "sha256": "998069d7e9e3ad5956378fc88159caee74c767802113a5584f88c429afe8836a",
+      "size": 5253
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/prototype.patch",
+      "sha256": "2777bfc47963032605fd565fdf3f452c620ff934acd6a9000580e9d71700a18e",
+      "size": 2681
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/test-plan.json",
+      "sha256": "3d96c249d5eddb77429027da8568d2b1461339d032bb12474934ce18215ddb62",
+      "size": 793
+    },
+    {
+      "path": "evals/discovery/article-rationale-01/test-verification.json",
+      "sha256": "f6a79d30c8b37ac05ca41d3503cd083de45f915a129522b3713452f74e24870a",
+      "size": 1517
+    }
+  ]
+}

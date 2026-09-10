@@ -1,0 +1,55 @@
+{
+  "id": "article-rationale-01",
+  "frozen_at": "2026-09-10T03:54:12.575653+00:00",
+  "hypothesis": "参考記事の採否理由と適用条件を引き継ぐ指示を追加すると、単なる記録増ではなく、元構築との比較が変わり試す理由のある種へ進めるか。",
+  "implementation": "隔離したdiscovery.DEVELOP_RULESへ4行追加。入出力形式・保存機能・評価基準は維持。本体へ未反映。",
+  "base_commit": "853bcdff6b5a0f7d4113f75d9df544b3d261cffd",
+  "inputs": {
+    "a": {
+      "implementation": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "session": "/tmp/sv-article-rationale-01/a/work/session",
+      "packet_hash": "769e0834883d5ef9fe9b7ffe596ec26192693cc63d7cfa15530be274d3d177ca",
+      "context_hash": "58ebce3bcf1c54f803cc9527acf3d8e478422dc471b45d9b30b8f7699aa39b2d",
+      "initial_files": 7,
+      "source_count": 4
+    },
+    "b": {
+      "implementation": "/tmp/sv-article-rationale-prototype",
+      "session": "/tmp/sv-article-rationale-01/b/work/session",
+      "packet_hash": "879ba68043335faae6be8a939110b3ef21979e4caa7df4e31b6045ed6913cb1d",
+      "context_hash": "58ebce3bcf1c54f803cc9527acf3d8e478422dc471b45d9b30b8f7699aa39b2d",
+      "initial_files": 7,
+      "source_count": 4
+    }
+  },
+  "input_scope": "同じDBから新規作成したビショップの保存入力。今回取得した9月の進化ビショップ40枚と取得情報、9月の説明と6月の個人インタビューの限定要約。過去の提案・評価は追加していない。全カードが開発者に未知の検査ではない。",
+  "comparison_control": "両入力の全項目はinstruction以外一致。参考記事の初期限定要約はrootが作成して両方式へ同じものを渡すため、Web取得能力やゼロからの要約能力を比較した試験ではない。",
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "diagnostics": [
+    "記事の採否理由と対象の構築・対面・時期が、案の判断に使われたか。本文参照で十分に使えた従来版も同等に数え、追加保存件数で加点しない。",
+    "理由が今回の構築にも当てはまるか、条件を変えたため当たらないかを区別したか。古い個人記事の不採用を全体の却下条件にしない。",
+    "未確認原文を引用済みとしない。資料に載らない札の不採用理由を推測しない。",
+    "公開工程の失敗回数・開始終了日時・経過秒・正式案と独立評価・試行推薦の数。"
+  ],
+  "generation_seconds": 1800,
+  "review_seconds": 900,
+  "maximum_generation_attempts_per_arm": 1,
+  "maximum_review_attempts_per_arm": 1,
+  "budget_clock": "elapsed",
+  "stop": "正式案が出た場合だけ、別担当が同じREVIEWで一度評価する。未提出なら代理提出せず終了。入力失敗の修正は各実行内に記録し、条件・予算・採点を結果に合わせて変えない。",
+  "adoption": "Bが有用な種0なら本採用しない。同数の場合は発見力同点。Bだけに有用な種が出ても1入力の限定的証拠とし、歴史的成功例と別入力の確認なしに全体完成や一般優位としない。正しい採否理由の保存だけで有用性を認定しない。",
+  "source_limits": "記事時点やフォーマットを明示し、現在のTier・実戦勝率・全カードの現行公式本文の直接確認を補完しない。",
+  "initial_archive": {
+    "path": "data/discovery-archives/article-rationale-01/initial-session.tar.gz",
+    "sha256": "a28193f1f224958dd9241965861f23a4616c731a78b642ac75a56e99d0117cc6",
+    "verified_files": 6
+  },
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414"
+}
