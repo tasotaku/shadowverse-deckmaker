@@ -1,15 +1,15 @@
 {
   "id": "experience-guided-01",
-  "revision": 5,
-  "saved_at": "2026-09-10T08:07:05.345768+00:00",
+  "revision": 11,
+  "saved_at": "2026-09-10T08:26:17.276894+00:00",
   "actor": "codex",
-  "reason": "自動記録された両考案の開始時刻と進捗概要を反映",
+  "reason": "従来側の正式案・全入力照合・評価開始の証拠を保存",
   "record": {
     "id": "experience-guided-01",
     "title": "保存した経験を参照すると次の考案が良くなるか",
     "category": "method",
     "status": "running",
-    "summary": "両方式の考案を日本時間17:04:58に開始。各30分で独立に提出し、その後別担当が評価する。結果は未判定。",
+    "summary": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
     "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
     "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
     "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
@@ -38,28 +38,28 @@
       {
         "id": "generation-a",
         "title": "従来の考案",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T08:04:58.489248+00:00",
-        "ended_at": null,
-        "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/generation/run",
+        "ended_at": "2026-09-10T08:23:26.426157+00:00",
+        "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/generation/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 30
       },
       {
         "id": "generation-b",
         "title": "過去経験を利用する考案",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T08:04:58.489249+00:00",
-        "ended_at": null,
-        "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/generation/run",
+        "ended_at": "2026-09-10T08:25:59.572810+00:00",
+        "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/generation/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 30
       },
       {
         "id": "review-a",
         "title": "A案を別担当が評価",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-10T08:25:14.303145+00:00",
         "ended_at": null,
-        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
+        "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/review/run",
         "budget_minutes": 15
       },
       {
@@ -70,6 +70,15 @@
         "ended_at": null,
         "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
         "budget_minutes": 15
+      },
+      {
+        "id": "collect-a",
+        "title": "従来側の結果回収と評価への引き渡し",
+        "status": "completed",
+        "started_at": "2026-09-10T08:24:15.521497+00:00",
+        "ended_at": "2026-09-10T08:25:15.419267+00:00",
+        "note": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
@@ -77,14 +86,38 @@
       "evals/discovery/experience-guided-01/protocol.json",
       "evals/discovery/experience-guided-01/input-verification.json",
       "evals/discovery/experience-guided-01/preflight-checks.json",
-      "evals/discovery/experience-guided-01/workflow-checkpoint.json"
+      "evals/discovery/experience-guided-01/workflow-checkpoint.json",
+      "evals/discovery/experience-guided-01/a/generation/conclusion.md",
+      "evals/discovery/experience-guided-01/a/generation/research-report.md",
+      "evals/discovery/experience-guided-01/a/generation/verification.json",
+      "evals/discovery/experience-guided-01/a/review-input/isolation-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/experience-guided-01/README.md",
-      "sha256": "0f0a2606342c9edd77b1d1264f0e82ec12ece494c9c9bb143a6b53b227b571f7",
-      "size": 3084
+      "sha256": "b1aa90c013039756f9d125e30683f3a13c922e3ab8fa20239d6eb58105b959d0",
+      "size": 3315
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/generation/conclusion.md",
+      "sha256": "ba29abb3d58b7f2f2c2dd4a8462b07e4013719134e8b794aefeee25f07378618",
+      "size": 2638
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/generation/research-report.md",
+      "sha256": "2bfe844a55ddcf9b7ab20f93c593438d2146e55b9e0542e9610dfc2518d2351c",
+      "size": 3427
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/generation/verification.json",
+      "sha256": "beab66e359b348749208adf5621757123154d4a9203941a4b519ad67dde4515a",
+      "size": 906
+    },
+    {
+      "path": "evals/discovery/experience-guided-01/a/review-input/isolation-check.json",
+      "sha256": "fa1159f906883941fe36b5ad0d8075ab392ad36bbb4854cfdfaba9c19194fd69",
+      "size": 650
     },
     {
       "path": "evals/discovery/experience-guided-01/input-verification.json",

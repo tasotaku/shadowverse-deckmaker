@@ -3,7 +3,7 @@
   "title": "保存した経験を参照すると次の考案が良くなるか",
   "category": "method",
   "status": "running",
-  "summary": "両方式の考案を日本時間17:04:58に開始。各30分で独立に提出し、その後別担当が評価する。結果は未判定。",
+  "summary": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
   "method": "同一のカード・参考資料から、従来の考案と保存経験を検索できる考案を独立に行い、別担当が評価する。旧案の再提出を改善と数えない。",
   "procedure": "入力と条件の固定 → 2方式の考案 → 各案の独立評価 → 過去案との差を照合 → 採否と時間を記録。",
   "inputs": "保存済みのドラゴン初期入力を再利用する開発用の比較。具体的な主役や正解は指定しない。",
@@ -32,28 +32,28 @@
     {
       "id": "generation-a",
       "title": "従来の考案",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T08:04:58.489248+00:00",
-      "ended_at": null,
-      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/generation/run",
+      "ended_at": "2026-09-10T08:23:26.426157+00:00",
+      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/generation/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 30
     },
     {
       "id": "generation-b",
       "title": "過去経験を利用する考案",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-10T08:04:58.489249+00:00",
-      "ended_at": null,
-      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/generation/run",
+      "ended_at": "2026-09-10T08:25:59.572810+00:00",
+      "note": "同じ初期入力から一つの種を考案・提出する。開始終了は実行監視が自動保存する。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/b/generation/run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 30
     },
     {
       "id": "review-a",
       "title": "A案を別担当が評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-10T08:25:14.303145+00:00",
       "ended_at": null,
-      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
+      "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。\n起動処理を開始。実行記録: /private/tmp/sv-experience-guided-01/a/review/run",
       "budget_minutes": 15
     },
     {
@@ -64,6 +64,15 @@
       "ended_at": null,
       "note": "正式案が提出された場合のみ開始。別の方式と過去の採否を渡さず現行の評価指示を使う。",
       "budget_minutes": 15
+    },
+    {
+      "id": "collect-a",
+      "title": "従来側の結果回収と評価への引き渡し",
+      "status": "completed",
+      "started_at": "2026-09-10T08:24:15.521497+00:00",
+      "ended_at": "2026-09-10T08:25:15.419267+00:00",
+      "note": "従来側は正式1案、入力・元DB・保存経験は不変。追加3資料に旧採否がないことを確認し別評価を開始。経験参照側は考案中。",
+      "budget_minutes": null
     }
   ],
   "evidence_paths": [
@@ -71,6 +80,10 @@
     "evals/discovery/experience-guided-01/protocol.json",
     "evals/discovery/experience-guided-01/input-verification.json",
     "evals/discovery/experience-guided-01/preflight-checks.json",
-    "evals/discovery/experience-guided-01/workflow-checkpoint.json"
+    "evals/discovery/experience-guided-01/workflow-checkpoint.json",
+    "evals/discovery/experience-guided-01/a/generation/conclusion.md",
+    "evals/discovery/experience-guided-01/a/generation/research-report.md",
+    "evals/discovery/experience-guided-01/a/generation/verification.json",
+    "evals/discovery/experience-guided-01/a/review-input/isolation-check.json"
   ]
 }
