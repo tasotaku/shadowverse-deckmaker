@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10 13:46:44 UTC",
+  "scope": {
+    "purpose": "Bの正式保存を改訂し直さず別試行の独立評価へ渡せるか、公開保存と既存入口から確認する。",
+    "code_edited": false,
+    "new_ai_experiment_run": false,
+    "original_records_edited": false,
+    "private_stdout_jsonl_reasoning_logs_read": false,
+    "stderr_read": false,
+    "temporary_checks": "正式保存の再検査と評価資料作成を、一時複製だけで実行した。終了時に一時複製は削除。Bの元保存物は変更していない。"
+  },
+  "decision": {
+    "formally_saved_proposal_reusable": true,
+    "existing_discovery_run_can_review_only": false,
+    "existing_stage_commands_can_review_without_new_proposal": true,
+    "recommendation": "正式保存済みの改訂2を固定し、別試行として評価工程だけを実行できる。工程ごとの公開コマンドは既にあるが、凍結複製・担当隔離・時間制限・不変検査・集約をまとめる評価だけの実行入口は現行discovery_runにない。追加するなら既存部品の接続に限定する。",
+    "not_claimed": "これは案の有用性・強さ・独自性の合格判定ではない。Bの元試行はdevelop_failed、別評価0件のまま保持する。"
+  },
+  "observed_original_trial": {
+    "result_file": "/tmp/sv-state-comparison-01/b/run/result.json",
+    "run_file": "/tmp/sv-state-comparison-01/b/run/develop-run/run.json",
+    "status": "develop_failed",
+    "worker_status": "timed_out",
+    "returncode": 124,
+    "worker_returncode": -15,
+    "started_at_utc": "2026-09-10T13:30:30.278241+00:00",
+    "ended_at_utc": "2026-09-10T13:45:30.317596+00:00",
+    "elapsed_seconds": 900.0725925839506,
+    "formal_submit_started_at_utc": "2026-09-10T13:42:46.253910+00:00",
+    "formal_submit_ended_at_utc": "2026-09-10T13:42:46.338675+00:00",
+    "formal_submit_exit_code": 0,
+    "public_report_ended_at_utc": "2026-09-10T13:42:46.551604+00:00",
+    "public_report_exit_code": 0,
+    "new_formal_proposals": 1,
+    "new_formal_reviews": 0,
+    "cause_limit": "公開実行記録から確認できるのは、提出とreport成功後もプロセスが終了せず、900秒の期限で停止したこと。提出後に終了しなかった原因は未確定。最終返信生成、通信エラー、思考継続などと推測して断定しない。"
+  },
+  "integrity_checks": {
+    "original_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/bishop-rule-inquiry-01-result",
+    "saved_session": "/tmp/sv-state-comparison-01/b/run/develop/session",
+    "original_manifest_files": 27,
+    "original_session_exact_manifest_match": true,
+    "all_original_files_preserved_in_saved_session": true,
+    "original_source_count": 19,
+    "additional_source_count": 3,
+    "saved_source_count": 22,
+    "parent_revision": 1,
+    "target_revision": 2,
+    "parent_proposal_digest": "ae56c85b86e02bdf829ffe5cdb93a55732e410f8ff2a6fe16dc038d7056c3d3e",
+    "target_proposal_digest": "c62cbc261189c50a5a01c14b9a3a4d6140b6c60869e354ae9762fd2f2fa3c297",
+    "context_hash": "da80859a1ae60e06f52fdc458633179604d35a4bba334a515910cf09c2f167e3",
+    "initial_develop_packet_hash": "f47a860b1537031276f12c25e7f8b2d62babe08d161792d6c2ce4373eb7fe77a",
+    "submitted_develop_packet_hash": "a2e61700aa4d8e2a88c5d4426d1512f451d3ab6f043c19caef76384ecf707830",
+    "intent_proposal_equals_public_submit_response": true,
+    "saved_proposal_equals_intent_except_added_revision_and_context_hash": true,
+    "assigned_author": "worker:2702be255de64a3983b4f743b3dbd550:develop",
+    "proposal_author_matches_assigned_author": true,
+    "public_report_equals_report_confirmed_and_current_session_report": true,
+    "parent_existing_reviews": 1,
+    "target_existing_reviews": 0,
+    "formal_validation": {
+      "proposal_schema_and_evidence": true,
+      "response_packet_matches_proposal_and_context": true,
+      "fixed_packet_fields_and_original_sources_retained": true,
+      "added_sources_match_saved_contents": true,
+      "formal_resubmission_in_temporary_copy_byte_identical": true
+    },
+    "additional_sources": [
+      {
+        "source_hash": "0d6925be7eb4d0d3a6199d11cc29688d1c56b1b1ed1a0bd29938343fa7d0e5b1",
+        "title": "T6同一終点比較と1枠改訂の根拠",
+        "origin_operation": "aa9f25f20fdb47e383ad3f0e51eec018.json",
+        "operation": "attach-file",
+        "kind": "固定資料に基づく条件付き会計・考案担当の比較記録"
+      },
+      {
+        "source_hash": "eceeadf737a72ace3a009c10890d8924706a993de45461e8ad5f998be0692c37",
+        "title": "1枠改訂の配分照合用40枚・完成推奨ではない",
+        "origin_operation": "18432b61a66d4a4f83dadd9556c178ed.json",
+        "operation": "attach-file",
+        "kind": "配分比較用カードリスト"
+      },
+      {
+        "source_hash": "8c845b29be467364b1e881da517b028014a0ccc855067441dc74c3153a62f32c",
+        "title": "全40枚の構築間での交換札と分布",
+        "origin_operation": "8a227d6ac73b49ee9dde28acb40be29a.json",
+        "operation": "compare",
+        "kind": "機械計算"
+      }
+    ],
+    "code_integrity": {
+      "runtime_path": "/tmp/sv-state-comparison-01/b/run/runtime/svdeck",
+      "runtime_file_count": 40,
+      "discovery_run_sha256": "c1af93d5d9d1261cd12cd017d36ea84bf6229690d2c4b42c8b86f4a85de4ed90",
+      "discovery_run_runtime_equals_current_src_at_audit": true,
+      "runtime_discovery_py_sha256": "c0cdc5b96da8c5e5a6b40ee25e74c1a75c4caf13878171194b68a1f16c8c20d6",
+      "current_discovery_py_sha256": "f985d5abbd105bd9a7faca8f2f2d663a67031b49459e022a5732f1f851afcbab",
+      "runtime_vs_current_src_difference": "discovery.pyの今回の隔離試験用コメントとDEVELOPへの比較指示追記1箇所だけ。関数実装と別評価指示は同一。他39ファイルは同一。",
+      "runtime_unchanged_during_trial_evidence": "凍結したdiscovery_run.py 258–262行は元session、runtime、初期作業ファイルの不変確認を実行してからdevelop_failedへ進む。今回のresultはそのdevelop_failedであり、変更検出時のfailedではない。さらに元sessionと継承保存物は本監査でハッシュを照合した。",
+      "limits": "実行開始時のruntime_before全ハッシュはresultに永続化されていないため、runtimeの実行中不変はこの制御分岐と公開resultを根拠とする。現行src全文との完全一致とは言わない。",
+      "review_instruction_sha256": "4f08e7a190687d7c4f590ff5375f6ddd170a696976d9d17e165c8c5731b737ed",
+      "review_instruction_equals_current_src": true
+    }
+  },
+  "entry_point_findings": {
+    "public_commands_verified_from_help": [
+      "PYTHONPATH=src python -B -m svdeck.discovery packet SESSION --stage review --revision 2",
+      "PYTHONPATH=src python -B -m svdeck.discovery review SESSION RESPONSE",
+      "PYTHONPATH=src python -B -m svdeck.worker --output OUTPUT --timeout SECONDS --cwd WORK --stdin PROMPT --clock elapsed COMMAND"
+    ],
+    "current_run_limitation": "discovery_run.runは必ずdevelop→reviewを実行し、--revisionは考案の親版指定である。Bの保存sessionを渡しても改訂3を作る工程から始まるため、案を再生成しない再開には使えない。",
+    "existing_develop_public_py_limitation": "Bのdevelop/public.pyはstage=developに固定され、公開reviewを許可しない。設定を変更して元の担当用作業場所を流用しない。",
+    "minimal_design": {
+      "mode": "親の実装予定 --review-only --revision N を確認した。Nは保存済み最新の正式改訂と一致する場合だけ許可し、通常実行の親版指定と区別する。考案予算は指定しない。古い版の評価は既存の工程ごとの公開CLIの範囲に残す。",
+      "inputs": [
+        "Bの凍結develop/sessionと対象改訂2、期待する正式提案hash。",
+        "既存先を上書きしない新しい出力ディレクトリ、実行プログラム、有限で正のreview秒数。",
+        "元失敗試行resultの参照と、新しい実行ID・必要なら別の台帳工程ID。"
+      ],
+      "steps": [
+        "元sessionとコードの内容識別値を記録し、対象改訂の正式保存・親版・packetと3追加資料の対応を検査する。元のFAIL記録を変更しない。",
+        "元sessionの正式保存データを準備用へ全複製し、そこで改訂2のreview packetを作る。元のB sessionへ新packetを書かない。",
+        "準備用から評価担当用へfor_review=Trueで複製する。context・snapshot DB・sources・revision履歴を保持し、旧reviewと旧packetを除く。生成したreview packet1件だけを追加する。",
+        "改訂2を作った担当とは別IDの評価担当を1回だけ起動する。既存public_mainのstage=reviewを用い、read/packet/report/reviewのみを許可する。既存の評価指示と5基準を保持する。",
+        "終了成功、入力不変、対象packet・提案hash・別担当への対応、正式評価がちょうど1件であること、正式保存の再検査を確認する。",
+        "準備用の正式履歴へ今回の評価だけを追加した新しい保存sessionとreport/resultを作る。新しい改訂0件・新しい評価1件と数え、元Bの失敗を成功へ上書きしない。"
+      ],
+      "stop_conditions": [
+        "元資料・親版・保存案・対応packetの不一致、既存出力先、対象Nが最新正式改訂と不一致であれば担当起動前に停止。",
+        "期限超過、終了失敗、未提出、複数提出、別版への評価、入力変更、自己評価なら新しい試行も未完了として停止。",
+        "停止時に案の作り直し、追加調査、評価の自動やり直しへ進めない。評価工程の完了と試用価値の判定を分ける。"
+      ],
+      "reuse": "copy_session、discovery.packet、public_main、worker.run、check_unchanged、verify_submission、既存report集約を再利用する。新しい評価規則・提案形式・カード固有の正解は追加しない。"
+    }
+  },
+  "temporary_preparation_check": {
+    "direct_for_review_copy_then_packet": "不可。先に旧packetを除いたコピーでpacketを作ると、_historyが親版の元packetを読みFileNotFoundErrorとなった。",
+    "two_stage_copy": "全正式データの準備用複製でpacket生成→for_review複製→新review packet1件追加、の順で成功。",
+    "generated_packet_hash": "e13eb65ea9fb89f01a6437e9dc7a526be822d4ef510e6fc35e82e5880c31cc7e",
+    "proposal_hash": "c62cbc261189c50a5a01c14b9a3a4d6140b6c60869e354ae9762fd2f2fa3c297",
+    "previous_reviews": 0,
+    "review_contexts": 0,
+    "old_review_files": 0,
+    "packet_files": 1,
+    "source_count": 22,
+    "B_session_unchanged_after_checks": true,
+    "not_an_evaluation": "評価担当は起動しておらず、正式reviewは作成していない。"
+  },
+  "evidence": [
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/result.json",
+      "pointers": [
+        "/status",
+        "/parent_revision",
+        "/expected_revision",
+        "/original_manifest",
+        "/stages",
+        "/failure"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop-run/run.json",
+      "pointers": [
+        "/status",
+        "/timeout_seconds",
+        "/elapsed_seconds",
+        "/runner_returncode",
+        "/ended_at"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop/operations/ae08d69fb4c64f309fa85f5f44b166f1.json",
+      "pointers": [
+        "/submission",
+        "/ended_at",
+        "/exit_code"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop/operations/f8982d38b62c4c64b4324cc5d7304051.json",
+      "pointers": [
+        "/ended_at",
+        "/exit_code",
+        "/stdout"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop/proposal.json",
+      "pointers": [
+        "/packet_hash",
+        "/parent_revision",
+        "/author"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop/session/revision-0002.json",
+      "pointers": [
+        "/sha256",
+        "/data"
+      ]
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/develop/report-confirmed.json",
+      "pointer": "/revisions"
+    },
+    {
+      "file": "/tmp/sv-state-comparison-01/b/run/runtime/svdeck/discovery_run.py",
+      "lines": [
+        30,
+        41,
+        49,
+        68,
+        81,
+        173,
+        190,
+        216,
+        258,
+        262,
+        264,
+        300,
+        302,
+        325
+      ]
+    },
+    {
+      "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+      "note": "読取り時点では上記凍結runtimeと同一。親がこの後実装するため、根拠行は凍結runtimeを優先する。"
+    }
+  ],
+  "artifact_hashes": {
+    "result.json": "d75dde8c34c4e88bfedc195852ef72fad63e8be9666223312987f00ff1ec0363",
+    "develop-run/run.json": "2210a3cc7cc174d0fe70aefe312837daaae59c9b85270ee5b24844ae16bd2fd2",
+    "develop/proposal.json": "749253ee351058f043bb4b3833bd1b1af6f0f081a72308917d8ade9be32a452f",
+    "develop/session/context.json": "a184573aa894b2ec91ecc473143db398b147ccfb0474e3808da79a5f09c9fa4a",
+    "develop/session/snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "develop/session/revision-0001.json": "00b83a62a231b58f0c2218e81a92a3b66efec9f5bdc2226c1d6ad21d9606ab4b",
+    "develop/session/revision-0002.json": "91d54eb1fde969b710f3c557df7d165fed9a64691ac448a51a8e1844b191e1d8",
+    "develop/report-confirmed.json": "f3e3d9b6ffb12933134d0090840791a9b936fffe481356883506b56ff51c38cb"
+  },
+  "clarity_check": "既存の独立担当が設計文だけを確認。『全正式コピー』『低水準』を平易にし、『完了』を評価工程の完了と明記した。",
+  "parent_design_check": {
+    "received": true,
+    "verdict": "提案された最小範囲に問題なし",
+    "note": "最新改訂だけを許すことで、既存verify_submission(...,'develop',N)による再保存一致検査をそのまま使える。対象案の新規評価1件と、集約に保持する親の既存評価を混同しない。"
+  },
+  "ended_at_utc": "2026-09-10 13:55:08 UTC",
+  "elapsed_seconds": 504,
+  "output_path": "/tmp/state-comparison-recovery-audit.json"
+}

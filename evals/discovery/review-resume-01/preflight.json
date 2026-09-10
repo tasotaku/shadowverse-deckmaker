@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-09-10T14:02:50.444954+00:00",
+  "verdict": "PASS",
+  "behavior_checks": {
+    "normal": "別評価だけの起動・元案と旧評価保持・追加改訂0評価1・通常の改訂→別評価",
+    "boundary": "最新以外・未指定・0負数版・考案予算との不正併用・通常実行の予算不足",
+    "failure": "入力破損・未提出・不正評価・担当違い・期限停止・準備元変更・公開禁止操作"
+  },
+  "pytest": {
+    "command": "PYTHONPATH=src:tests:tests/temp /tmp/sv-system-venv/bin/python -m pytest -q tests/test_discovery.py tests/test_discovery_review_contexts.py tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py",
+    "passed": 80,
+    "seconds": 18.96
+  },
+  "typing": {
+    "command": "PYTHONPATH=src /tmp/sv-system-venv/bin/python -m mypy --strict src/svdeck/discovery_run.py",
+    "result": "Success: no issues found in 1 source file"
+  },
+  "actual_cli": "新規模擬プロセスで公開CLIの--review-only --revision 2を実行し正式評価・既存案不変・旧評価隔離を検査。上記80件の内数。実AIの有用性判定ではない。",
+  "source_manifest_matches_protocol": true,
+  "formal_proposal_hash_matches_protocol": true,
+  "temporary_test_sha256": "53e534afff73e2a93e2e53f11f68dc0057fff72f548fe8d702de1452406dda3e",
+  "main_code_sha256": "4758b22550fa5b81b6b6a1637308d391ad4eb58c405e2ca6a097a51540b8265b",
+  "limits": "追加テストはtests/tempの使い捨て規約に従いコミットしない。最初の機能検査は実装工程中に実行。"
+}

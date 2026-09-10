@@ -1,0 +1,71 @@
+{
+  "id": "review-resume-01",
+  "title": "保存済み正式案の別評価を再開する",
+  "category": "method",
+  "status": "running",
+  "summary": "保存済み案の別評価入口は80検査に通過。実AIで別評価だけ1回を開始する。",
+  "method": "最新の正式改訂を指定→入力と保存形式を再検査→評価資料を準備→旧評価を除く複製で別評価1回→改訂0・評価1を回収。",
+  "procedure": "実装→正常・境界・失敗検査→実AIで保存済み案の別評価10分→既存案・元失敗の不変と結果・採否・時間の記録。",
+  "inputs": "state-comparison-01追加側の正式改訂2、元案と旧評価、22資料の固定保存。新規考案や元の比較の再採点は行わない。",
+  "criteria": "再改訂・元資料変更なしに正式な別評価1件まで完了すること。未提出や破損を成功へ進めないこと。案の有用性は既存5基準で別に判定。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "機能検査PASS。案の有用性は実AIの別評価待ち。",
+    "limitations": "再開後の追加工程。元試行の時間・採点へ合算しない。保存再開の成功を発見力としない。"
+  },
+  "decision": {
+    "status": "unassessed",
+    "reason": "機能検査と実AIの別評価まで確認して判断する。"
+  },
+  "started_at": "2026-09-10T13:54:25.405030+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "保存済み案の別評価だけを起動する入口を実装",
+      "status": "completed",
+      "started_at": "2026-09-10T13:54:25.405030+00:00",
+      "ended_at": "2026-09-10T14:01:45.580117+00:00",
+      "note": "入口を実装。初回の機能検査・型検査もこの工程中に実行。検査結果の確認へ進む。",
+      "budget_minutes": 12
+    },
+    {
+      "id": "verification",
+      "title": "正常・境界・失敗と入力保持を確認",
+      "status": "completed",
+      "started_at": "2026-09-10T14:01:45.580117+00:00",
+      "ended_at": "2026-09-10T14:02:50.812516+00:00",
+      "note": "80検査18.96秒・型検査PASS。公開CLIの模擬実行を含む。凍結入力と正式案の識別値を照合。",
+      "budget_minutes": 8
+    },
+    {
+      "id": "live-review",
+      "title": "保存済み案を別担当が評価",
+      "status": "running",
+      "started_at": "2026-09-10T14:02:51.488620+00:00",
+      "ended_at": null,
+      "note": "新規改訂0件、別評価1件を上限10分で実行。\n起動処理を開始。実行記録: /private/tmp/sv-review-resume-01-run/review-run",
+      "budget_minutes": 10
+    },
+    {
+      "id": "report",
+      "title": "再開結果・採否・工程時間を保存",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "入口の動作と案の有用性を別判定。",
+      "budget_minutes": 8
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/review-resume-01/README.md",
+    "evals/discovery/review-resume-01/protocol.json",
+    "evals/discovery/review-resume-01/recovery-audit.json",
+    "evals/discovery/review-resume-01/preflight.json",
+    "evals/discovery/review-resume-01/input-session.tar.gz",
+    "evals/discovery/review-resume-01/runtime.tar.gz",
+    "evals/discovery/review-resume-01/runtime-manifest.json",
+    "evals/discovery/review-resume-01/implementation.diff",
+    "evals/discovery/review-resume-01/launch-check.json"
+  ]
+}

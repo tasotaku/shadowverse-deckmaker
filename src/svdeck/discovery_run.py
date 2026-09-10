@@ -1,6 +1,7 @@
 """Run one proposal/revision and an independent review through the existing public commands.
 
 python -m svdeck.discovery_run SESSION OUTPUT --codex PATH --develop-seconds 1200 --review-seconds 900
+python -m svdeck.discovery_run SESSION OUTPUT --codex PATH --review-only --revision N --review-seconds 600
 The source session is read-only. OUTPUT/session retains the resulting formal records.
 """
 from __future__ import annotations
@@ -187,39 +188,55 @@ def verify_submission(session: Path, stage: str, revision: int) -> None:
         if (copy / paths[0].name).read_bytes() != paths[0].read_bytes():
             raise ValueError('正式入口で再保存した内容が一致しません')
 
-def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_seconds: float,
+def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, review_seconds: float,
         revision: int | None = None, journal_root: Path | None = None,
-        experiment_id: str | None = None, stage_prefix: str = 'live') -> dict[str, Any]:
-    # AI_NOTE: 既存の判断基準を保ち、正式な出力と入力保全が確認できた時だけ次担当へ進める。
+        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False) -> dict[str, Any]:
+    # AI_NOTE: 別評価のみなら最新の保存案を再検査し、再考案せず旧評価を隔離して渡す。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if output.is_relative_to(source) or source.is_relative_to(output):
         raise ValueError('元探索と出力先は互いの内側へ置けません')
-    if not codex.is_file() or any(not math.isfinite(n) or n <= 0 for n in (develop_seconds, review_seconds)):
+    if review_only and (develop_seconds is not None or revision is None or revision <= 0):
+        raise ValueError('review-onlyには最新の正のrevisionを指定し、develop-secondsは省いてください')
+    if not review_only and develop_seconds is None:
+        raise ValueError('通常実行にはdevelop-secondsが必要です')
+    limits = [review_seconds] if develop_seconds is None else [develop_seconds, review_seconds]
+    if not codex.is_file() or any(not math.isfinite(n) or n <= 0 for n in limits):
         raise ValueError('実行ファイルと有限の正の制限秒数が必要です')
     if bool(journal_root) != bool(experiment_id):
         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')
     original = manifest(source)
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
-                              'source': str(source), 'output': str(output), 'stages': [],
+                              'source': str(source), 'output': str(output), 'stages': [], 'review_only': review_only,
                               'limits': '実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。'}
     try:
         runtime = output / 'runtime'
         shutil.copytree(Path(__file__).resolve().parent, runtime / 'svdeck', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         runtime_before = manifest(runtime)
-        work = output / 'develop'
+        work = output / ('prepare' if review_only else 'develop')
         copy_session(source, work / 'session')
+        prepared = work / 'session'
         prior = discovery.report(work / 'session')
-        parent = max((p['revision'] for p in prior['revisions']), default=0) if revision is None else revision
-        expected = max((p['revision'] for p in prior['revisions']), default=0) + 1
+        latest = max((p['revision'] for p in prior['revisions']), default=0)
+        parent = latest if revision is None else revision
+        expected = latest if review_only else latest + 1
         result.update(parent_revision=parent, expected_revision=expected, original_manifest=original)
-        for stage, limit, target in (('develop', develop_seconds, parent), ('review', review_seconds, expected)):
+        if review_only:
+            if revision != latest:
+                raise ValueError('review-onlyのrevisionは最新の保存済み正式改訂を指定してください')
+            verify_submission(prepared, 'develop', expected)
+        stages = [('review', review_seconds, expected)]
+        if not review_only:
+            assert develop_seconds is not None
+            stages.insert(0, ('develop', develop_seconds, parent))
+        for stage, limit, target in stages:
             author = f"worker:{result['run_id']}:{stage}"
             if stage == 'review':
                 work = output / 'review'
-                envelope = discovery.packet(output / 'develop/session', target, stage)
-                copy_session(output / 'develop/session', work / 'session', for_review=True)
+                envelope = discovery.packet(prepared, target, stage)
+                copy_session(prepared, work / 'session', for_review=True)
                 write_new(work / 'session/packets' / (envelope['sha256'] + '.json'), envelope)
+                prepared_before = manifest(prepared)
             else:
                 envelope = discovery.packet(work / 'session', target, stage)
             summary = packet_summary(work / 'session', envelope['sha256'])
@@ -258,6 +275,8 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
             check_unchanged(source, original, exact=True)
             check_unchanged(runtime, runtime_before, exact=True)
             check_unchanged(work, fixed)
+            if stage == 'review':
+                check_unchanged(prepared, prepared_before, exact=True)
             if code != 0 or execution['status'] != 'completed':
                 result.update(status=stage + '_failed', failure='担当の実行が完了していないため次へ進みません')
                 break
@@ -285,7 +304,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
                 if not reviews and not list((work / 'session').glob('review-*.json')):
                     result.update(status='review_missing', failure='担当は終了しましたが正式な別評価がありません')
                     break
-                if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + 1:
+                if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + (0 if review_only else 1):
                     raise ValueError('今回の改訂への正式な別評価1件だけが必要です')
                 stored = reviews[0]
                 if stored['author'] != author:
@@ -301,7 +320,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
             write_new(output / (stage + '-report.json'), report)
         if result['status'] == 'review':
             destination = output / 'session'
-            copy_session(output / 'develop/session', destination)
+            copy_session(prepared, destination)
             for path in (output / 'review/session').glob('review-*.json'):
                 write_new(destination / path.name, read_object(path))
             review_packet = output / 'review/session/packets' / (stored['packet_hash'] + '.json')
@@ -313,7 +332,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
                 write_new(final_packet, read_object(review_packet))
             write_new(output / 'report.json', discovery.report(destination))
             result.update(status='completed', session=str(destination), source_unchanged=True,
-                          formal_revisions=1, formal_reviews=1)
+                          formal_revisions=0 if review_only else 1, formal_reviews=1)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         result.update(status='failed', failure=str(exc))
     finally:
@@ -323,21 +342,22 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
 
 
 def main(argv: list[str] | None = None) -> int:
-    # AI_NOTE: 入力不足は起動前に拒み、処理途中の失敗は保存先付きで返す。
+    # AI_NOTE: 評価再開では考案予算を要求せず、対象の明示と通常実行との指定違いを検査する。
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('session', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--codex', type=Path, required=True)
-    parser.add_argument('--develop-seconds', type=float, required=True)
+    parser.add_argument('--develop-seconds', type=float)
     parser.add_argument('--review-seconds', type=float, required=True)
     parser.add_argument('--revision', type=int)
+    parser.add_argument('--review-only', action='store_true', help='最新の保存済み正式改訂を再考案せず別評価する。revision必須、develop-secondsは指定不可。')
     parser.add_argument('--journal-root', type=Path)
     parser.add_argument('--experiment-id')
     parser.add_argument('--stage-prefix', default='live')
     args = parser.parse_args(argv)
     try:
         result = run(args.session, args.output, args.codex, args.develop_seconds, args.review_seconds,
-                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix)
+                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         parser.error(str(exc))
     print(json.dumps({key: value for key, value in result.items() if key not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))

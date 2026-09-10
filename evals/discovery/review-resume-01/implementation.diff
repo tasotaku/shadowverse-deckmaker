@@ -1,0 +1,77 @@
+diff --git a/src/svdeck/discovery_run.py b/src/svdeck/discovery_run.py
+index e431983..8fa48f3 100644
+--- a/src/svdeck/discovery_run.py
++++ b/src/svdeck/discovery_run.py
+@@ -3,0 +4 @@ python -m svdeck.discovery_run SESSION OUTPUT --codex PATH --develop-seconds 120
++python -m svdeck.discovery_run SESSION OUTPUT --codex PATH --review-only --revision N --review-seconds 600
+@@ -190 +191 @@ def verify_submission(session: Path, stage: str, revision: int) -> None:
+-def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_seconds: float,
++def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, review_seconds: float,
+@@ -192,2 +193,2 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-        experiment_id: str | None = None, stage_prefix: str = 'live') -> dict[str, Any]:
+-    # AI_NOTE: 既存の判断基準を保ち、正式な出力と入力保全が確認できた時だけ次担当へ進める。
++        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False) -> dict[str, Any]:
++    # AI_NOTE: 別評価のみなら最新の保存案を再検査し、再考案せず旧評価を隔離して渡す。
+@@ -197 +198,6 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-    if not codex.is_file() or any(not math.isfinite(n) or n <= 0 for n in (develop_seconds, review_seconds)):
++    if review_only and (develop_seconds is not None or revision is None or revision <= 0):
++        raise ValueError('review-onlyには最新の正のrevisionを指定し、develop-secondsは省いてください')
++    if not review_only and develop_seconds is None:
++        raise ValueError('通常実行にはdevelop-secondsが必要です')
++    limits = [review_seconds] if develop_seconds is None else [develop_seconds, review_seconds]
++    if not codex.is_file() or any(not math.isfinite(n) or n <= 0 for n in limits):
+@@ -204 +210 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-                              'source': str(source), 'output': str(output), 'stages': [],
++                              'source': str(source), 'output': str(output), 'stages': [], 'review_only': review_only,
+@@ -210 +216 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-        work = output / 'develop'
++        work = output / ('prepare' if review_only else 'develop')
+@@ -211,0 +218 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
++        prepared = work / 'session'
+@@ -213,2 +220,3 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-        parent = max((p['revision'] for p in prior['revisions']), default=0) if revision is None else revision
+-        expected = max((p['revision'] for p in prior['revisions']), default=0) + 1
++        latest = max((p['revision'] for p in prior['revisions']), default=0)
++        parent = latest if revision is None else revision
++        expected = latest if review_only else latest + 1
+@@ -216 +224,9 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-        for stage, limit, target in (('develop', develop_seconds, parent), ('review', review_seconds, expected)):
++        if review_only:
++            if revision != latest:
++                raise ValueError('review-onlyのrevisionは最新の保存済み正式改訂を指定してください')
++            verify_submission(prepared, 'develop', expected)
++        stages = [('review', review_seconds, expected)]
++        if not review_only:
++            assert develop_seconds is not None
++            stages.insert(0, ('develop', develop_seconds, parent))
++        for stage, limit, target in stages:
+@@ -220,2 +236,2 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
+-                envelope = discovery.packet(output / 'develop/session', target, stage)
+-                copy_session(output / 'develop/session', work / 'session', for_review=True)
++                envelope = discovery.packet(prepared, target, stage)
++                copy_session(prepared, work / 'session', for_review=True)
+@@ -222,0 +239 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float, review_
++                prepared_before = manifest(prepared)
+@@ -260,0 +278,2 @@ input-summary.jsonには今回の資料識別値と回答形式があります
++            if stage == 'review':
++                check_unchanged(prepared, prepared_before, exact=True)
+@@ -288 +307 @@ input-summary.jsonには今回の資料識別値と回答形式があります
+-                if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + 1:
++                if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + (0 if review_only else 1):
+@@ -304 +323 @@ input-summary.jsonには今回の資料識別値と回答形式があります
+-            copy_session(output / 'develop/session', destination)
++            copy_session(prepared, destination)
+@@ -316 +335 @@ input-summary.jsonには今回の資料識別値と回答形式があります
+-                          formal_revisions=1, formal_reviews=1)
++                          formal_revisions=0 if review_only else 1, formal_reviews=1)
+@@ -326 +345 @@ def main(argv: list[str] | None = None) -> int:
+-    # AI_NOTE: 入力不足は起動前に拒み、処理途中の失敗は保存先付きで返す。
++    # AI_NOTE: 評価再開では考案予算を要求せず、対象の明示と通常実行との指定違いを検査する。
+@@ -331 +350 @@ def main(argv: list[str] | None = None) -> int:
+-    parser.add_argument('--develop-seconds', type=float, required=True)
++    parser.add_argument('--develop-seconds', type=float)
+@@ -333,0 +353 @@ def main(argv: list[str] | None = None) -> int:
++    parser.add_argument('--review-only', action='store_true', help='最新の保存済み正式改訂を再考案せず別評価する。revision必須、develop-secondsは指定不可。')
+@@ -340 +360 @@ def main(argv: list[str] | None = None) -> int:
+-                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix)
++                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only)
