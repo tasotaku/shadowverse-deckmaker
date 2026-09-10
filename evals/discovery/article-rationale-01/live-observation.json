@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-09-10T04:08:48.368506+00:00",
+  "runs": [
+    {
+      "arm": "a",
+      "terminal_handle": 55642,
+      "status": "running",
+      "process_alive": true,
+      "remaining_elapsed_seconds": 1054.231591375079,
+      "formal_proposals": 0,
+      "source_count": 5,
+      "run_path": "/tmp/sv-article-rationale-01/a/run/run.json"
+    },
+    {
+      "arm": "b",
+      "terminal_handle": 20474,
+      "status": "running",
+      "process_alive": true,
+      "remaining_elapsed_seconds": 1054.2305280417204,
+      "formal_proposals": 0,
+      "source_count": 4,
+      "run_path": "/tmp/sv-article-rationale-01/b/run/run.json"
+    }
+  ],
+  "continuation": "同じhandleで確認し、終了が確認できた方だけ /tmp/collect-article-generation.py ARM HANDLE EXIT_CODE で回収する。未提出なら代理作成せず終了。正式案があれば用意されたreview/workを同じworker・経過900秒で起動する。",
+  "limits": "途中の資料件数や未提出状態を方法の優劣や有用性と判定しない。"
+}
