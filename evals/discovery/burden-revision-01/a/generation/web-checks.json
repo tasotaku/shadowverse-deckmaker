@@ -1,0 +1,80 @@
+{
+  "author": "01a089ac-aad9-7932-a100-4f1577f82351",
+  "budget_clock": "elapsed",
+  "quotation_policy": "本工程の公開Web原文引用は0語。各findingは担当者の要約。",
+  "checks": [
+    {
+      "checked_at": "2026-09-10T04:59:25Z",
+      "url": null,
+      "query": [
+        "\"ブレードエンジェル\" \"有翼の石像\"",
+        "\"有翼の石像\" \"ミラクルアルミラージ\" \"ユラティオ\""
+      ],
+      "finding": "同時検索。GameWith/Game8の現行表示アミュレット記事、個人記事、無関係ページが返った。石像・アルミラージ・ユラティオの既知同居を示す表示を得た。",
+      "limitation": "結果をquery単独へ割り当てない。今回の自然同期＋ブレード＋進化基盤の普及度は判定できない。"
+    },
+    {
+      "checked_at": "2026-09-10T04:59:36Z",
+      "url": "https://gamewith.jp/shadowverse-wb/565666",
+      "query": "直接open後、入替候補・採用理由・表示リストを確認",
+      "finding": "本文取得。表示更新9月10日10:15。保存済みの基準40枚と対応。進化・クレスト・回復連動除去・SEP補充が通常の計画。",
+      "limitation": "表示にギルネリーゼの旧説明とクレスト名の混同が残る。勝率、全段落の現行性は未確認。"
+    },
+    {
+      "checked_at": "2026-09-10T04:59:25Z",
+      "url": "https://shadowverse-wb.com/web/CardList/card?card_id=10062210&lang=ja",
+      "query": "有翼の石像の公式カードURLを直接open",
+      "finding": "Internal Error。カード本文を取得できなかった。",
+      "limitation": "カード固有効果・適格性は固定packetに依拠。公式現行再確認とはしない。"
+    },
+    {
+      "checked_at": "2026-09-10T05:00:02Z",
+      "url": "https://gamewith.jp/shadowverse-wb/546339",
+      "query": "直接open後、入替候補と終盤の説明を確認",
+      "finding": "本文取得。石像を天書の深淵で破壊して攻撃する説明と、アルミラージを追加疾走の候補とする説明を確認。",
+      "limitation": "今回の同期手順の採用例ではない。掲載構築の成績を転用しない。"
+    },
+    {
+      "checked_at": "2026-09-10T05:01:01Z",
+      "url": "https://game8.jp/shadowverse-beyond/698347",
+      "query": "直接open後、リストと石像を使う決着の説明を確認",
+      "finding": "本文取得。表示更新9月9日11:22。石像・アルミラージ・ユラティオの同居と、手札の石像を終盤の決着へ回す説明がある。",
+      "limitation": "本文の三叉槍のAOE表現は固定カード本文と整合しないため使わない。記事の打点計算を本案の出力として転記しない。"
+    },
+    {
+      "checked_at": "2026-09-10T04:59:36Z",
+      "url": "https://note.com/toradora12/n/nea68711579aa",
+      "query": "検索に出た個人記事を直接open",
+      "finding": "Internal Errorで失敗。",
+      "limitation": "この時点では検索表示のみ。"
+    },
+    {
+      "checked_at": "2026-09-10T05:00:02Z",
+      "url": "https://note.com/toradora12/n/nea68711579aa?sub_rt=share_b",
+      "query": "同じ公開記事のURLパラメータを変えてopen",
+      "finding": "Internal Errorで失敗。",
+      "limitation": "直接取得の代替にはならなかった。"
+    },
+    {
+      "checked_at": "2026-09-10T05:00:31Z",
+      "url": "https://note.com/toradora12/n/nea68711579aa",
+      "query": "site:note.com/toradora12/n/nea68711579aa \"有翼の石像\" \"カウントダウン4\"",
+      "finding": "search応答に見出しから結びまでの長文本文が返った。石像の早置きを避ける理由、リテュエルとユラティオの採否理由を閲読。表示掲載9月8日07:48。",
+      "limitation": "直接openは再試行も失敗（05:01:01Z）。検索基盤から得た本文でありlive HTML再取得ではない。本人の体感・AI翻訳・弾名の時点不整合あり。大会実績、画像40枚、対面頻度を確認したとはしない。"
+    },
+    {
+      "checked_at": "2026-09-10T05:00:31Z",
+      "url": null,
+      "query": "\"ブレードエンジェル\" \"進化ビショップ\" \"石像\"",
+      "finding": "同時検索で旧疾走ビショップ記事と既知の新弾打点解説等が返った。今回の配分全体の説明は確認できなかった。",
+      "limitation": "未発見の証明ではない。個別の返却結果を一つのqueryのみに帰属させない。"
+    },
+    {
+      "checked_at": "2026-09-10T05:01:01Z",
+      "url": "https://note.com/atomic_g/n/n55e2b8dd67ea",
+      "query": "検索結果から直接openし石像・鳥像・ジャンヌの説明を確認",
+      "finding": "本文取得。表示掲載2025年8月9日。石像の待ち時間を難点とし、鳥像から出る疾走を強化する用法を説明。",
+      "limitation": "旧弾の個人記事。現在のカード能力・合法性・相性へ転用しない。疾走生成＋バフそのものが新案でないことの参考。"
+    }
+  ]
+}

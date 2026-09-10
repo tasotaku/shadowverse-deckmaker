@@ -1,30 +1,30 @@
 {
   "id": "burden-revision-01",
-  "revision": 3,
-  "saved_at": "2026-09-10T05:03:36.728467+00:00",
-  "actor": "探索システム開発担当",
-  "reason": "初見確認で方法差と判断基準を明確化し、進行中の報告と根拠原文を保存",
+  "revision": 7,
+  "saved_at": "2026-09-10T05:33:37.637266+00:00",
+  "actor": "codex",
+  "reason": "終了後に残った予定表現と評価時間の丸め表示を訂正",
   "record": {
     "id": "burden-revision-01",
     "title": "保留案の負担を減らす改訂工程を試す",
     "category": "method",
-    "status": "running",
-    "summary": "従来版と変更版が、同じ保留案と実際の別評価から改訂を実施中。9月10日13:56:29（日本時間）に両方式を開始。結果と採否は未判定。",
+    "status": "interrupted",
+    "summary": "両方式の改訂案は各1件保存。独立評価は両方とも利用上限で途中終了し、正式評価0件。元試行は評価未完で閉じ、同じ入力による復旧後の別評価を記録。",
     "method": "従来版も過去の不足と評価を読んで案を改訂する。変更版は、採用負担を減らす配分・使い方を実際に作ることを優先し、元構築・直前案・変更案を同じ狙いの局面で比較する。",
-    "procedure": "実施済み: 改訂指示の試作、型・機能・公開出力の検査、同じ過去案と別担当の評価から両入力を準備。現在: 両方式の改訂を各30分以内で実施。予定: 新しい提出案または調査資料があれば各15分の独立評価、その後に比較結果と採否を記録。各工程1回。",
+    "procedure": "実施済み: 試作、型・機能・公開出力検査、同一入力から改訂を各1回、独立評価を各1回。評価は利用上限で未提出のまま終了。終了記録と途中出力を保存し、改訂内容を別担当が点検。同じ入力による評価再開はburden-review-recovery-01へ分離。",
     "inputs": "直前の別試行で得たビショップ案「同期疾走ブレード：ユラティオを挟む5枠の別打点」とその独立評価を、保存された本文・原則・11資料とともに両方式へ同じ内容で渡す。成立は支持されたが採用負担で追加検討となった実際の既知入力。未知発見試験でも閉じた前試行の延長・再採点でもない。",
     "criteria": "公開コマンドで工程を完了できるか、手順に重大な誤りがないか、実際の疑問が解消するか、通常の用法との差・失う役割・核を引かない場合を踏まえて試す価値があるか、未確認を正直に示すか。資料数や改訂件数では加点しない。40枚完成・20点確定・勝率証明は要求しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "公開出力の検査は合格。両方式の担当を起動し、改訂工程の実行を確認した。正式改訂・独立評価の結果は未確認。",
-      "limitations": "既知の1案を再利用。新しい入力の発見力や方法の一般優位は未検証。前試行の採点は変更しない。"
+      "summary": "正式な改訂は各1件。配分と行動の実変更は両方式にあったが、新しい独立評価は各0件。有用性は未評価。",
+      "limitations": "利用上限による評価未完。既知入力1件。復旧後の評価は別試行とし、元の実行条件内で完了したことにしない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "試行推薦のある種へ進むかを実利用で確かめてから判断する。試作は本体へ未反映。"
+      "status": "deferred",
+      "reason": "独立評価が未完のため、負担が減った事実だけでは本採用しない。試作は本体へ未反映。"
     },
     "started_at": "2026-09-10T04:44:10.722391+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-10T05:31:21.035315+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -65,46 +65,46 @@
       {
         "id": "generation_a",
         "title": "従来版で案を発展",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T04:56:29.535906+00:00",
-        "ended_at": null,
-        "note": "担当プロセスの開始を確認。上限30分で公開入口から改訂を実施中。終了・成果は未確認。",
+        "ended_at": "2026-09-10T05:09:49.681422+00:00",
+        "note": "新しい正式案1件、調査資料3件を保存。公開操作125回、失敗0回。経過800.170秒。元からあった案と評価は新成果に含めない。",
         "budget_minutes": 30
       },
       {
         "id": "generation_b",
         "title": "負担の解消を優先する版で案を発展",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-10T04:56:29.535917+00:00",
-        "ended_at": null,
-        "note": "担当プロセスの開始を確認。上限30分で公開入口から改訂を実施中。終了・成果は未確認。",
+        "ended_at": "2026-09-10T05:15:29.033472+00:00",
+        "note": "新しい正式案1件、調査資料4件を保存。公開操作36回、失敗0回。経過1139.519秒。元からあった案と評価は新成果に含めない。",
         "budget_minutes": 30
       },
       {
         "id": "review_a",
         "title": "従来版の結果を別担当が評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "未着手",
+        "status": "interrupted",
+        "started_at": "2026-09-10T05:11:01.098488+00:00",
+        "ended_at": "2026-09-10T05:20:16.692094+00:00",
+        "note": "利用上限で終了。新しい正式評価0件、経過555.588秒。途中出力を保存。元からある評価は新成果に含めない。",
         "budget_minutes": 15
       },
       {
         "id": "review_b",
         "title": "変更版の結果を別担当が評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "未着手",
+        "status": "interrupted",
+        "started_at": "2026-09-10T05:16:20.689815+00:00",
+        "ended_at": "2026-09-10T05:19:07.273425+00:00",
+        "note": "利用上限で終了。新しい正式評価0件、経過166.582秒。途中出力を保存。元からある評価は新成果に含めない。",
         "budget_minutes": 15
       },
       {
         "id": "report",
         "title": "比較結果と採否を記録",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "未着手",
+        "status": "completed",
+        "started_at": "2026-09-10T05:31:21.029679+00:00",
+        "ended_at": "2026-09-10T05:31:21.035308+00:00",
+        "note": "元試行を評価未完・本採用保留として記録。復旧後の評価を別試行へ分離。時刻はこの記録作成スクリプトの区間で、診断担当や回収作業の全時間は含まない。",
         "budget_minutes": null
       }
     ],
@@ -123,19 +123,132 @@
       "evals/discovery/burden-revision-01/b/run-start.json",
       "evals/discovery/burden-revision-01/reader-check.json",
       "evals/discovery/burden-revision-01/registration-corrections.json",
-      "evals/discovery/burden-revision-01/live-observation.json"
+      "evals/discovery/burden-revision-01/live-observation.json",
+      "evals/discovery/burden-revision-01/a/generation/collection.json",
+      "evals/discovery/burden-revision-01/a/generation/proposal.json",
+      "evals/discovery/burden-revision-01/a/generation/report.json",
+      "evals/discovery/burden-revision-01/a/generation/public-operations.json.gz",
+      "evals/discovery/burden-revision-01/a/review/input-summary.json",
+      "evals/discovery/burden-revision-01/a/review/run-start.json",
+      "evals/discovery/burden-revision-01/b/generation/collection.json",
+      "evals/discovery/burden-revision-01/b/generation/proposal.json",
+      "evals/discovery/burden-revision-01/b/generation/report.json",
+      "evals/discovery/burden-revision-01/b/generation/public-operations.json.gz",
+      "evals/discovery/burden-revision-01/b/review/input-summary.json",
+      "evals/discovery/burden-revision-01/b/review/run-start.json",
+      "evals/discovery/burden-revision-01/collection-audit.json",
+      "evals/discovery/burden-revision-01/collection-check.json",
+      "evals/discovery/burden-revision-01/change-diagnostic.json",
+      "evals/discovery/burden-revision-01/collect-generation.py",
+      "evals/discovery/burden-revision-01/collect-review.py",
+      "evals/discovery/burden-revision-01/a/review/collection.json",
+      "evals/discovery/burden-revision-01/a/review/failure-observation.json",
+      "evals/discovery/burden-revision-01/a/review/public-operations.json.gz",
+      "evals/discovery/burden-revision-01/b/review/collection.json",
+      "evals/discovery/burden-revision-01/b/review/failure-observation.json",
+      "evals/discovery/burden-revision-01/b/review/public-operations.json.gz"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/burden-revision-01/README.md",
-      "sha256": "335c450b77517cfa081e5678f1d6aa183412ffcdd5e221d039645fd1437587bc",
-      "size": 3786
+      "sha256": "4f0500b8d9fbb550405a8f4f154f28f4b50b95127e07c7ef40a8f5e16f21b261",
+      "size": 5497
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/generation/collection.json",
+      "sha256": "151d803ef067d512fbb640a1a30eb18590189ca1a7a08216c03a64c3a550a405",
+      "size": 1529
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/generation/proposal.json",
+      "sha256": "58795633e743b118a670268bf0635ac209590a3ae780481c4bc18df98d83d5c3",
+      "size": 26570
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/generation/public-operations.json.gz",
+      "sha256": "6cd6e36c68e81d70a1f5295230c46a5ad1e6ab6de7e38e25e7e0550d29df664b",
+      "size": 180415
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/generation/report.json",
+      "sha256": "428048be1bccd41b4b0bcfd0672cb583a1820f497dcfade5e5ffcd2625a5e53f",
+      "size": 38631
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/review/collection.json",
+      "sha256": "ab3a68d8b365cadb5c07b24e5bb1e299eb3a9548c3197ff0ab2da8b95a5f4b8d",
+      "size": 1083
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/review/failure-observation.json",
+      "sha256": "c22c5a50ab76e43ef9e77477e8bbae3651a6bf828b9d7243dc01cab60c81c027",
+      "size": 714
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/review/input-summary.json",
+      "sha256": "fffa31dce23d740515c5763799b29c59d5e77bec2137d45ffaa7da61d3945b9a",
+      "size": 6305
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/review/public-operations.json.gz",
+      "sha256": "514ee2e9b3ee9295a769ba6457ba619686c69b0328c6a2ff8a6a63a2f61fd672",
+      "size": 132958
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/a/review/run-start.json",
+      "sha256": "78779a13a75c5318a18eed988600518415e3753bb91cf8c41d1a80acee9929f9",
+      "size": 1709
     },
     {
       "path": "evals/discovery/burden-revision-01/a/run-start.json",
       "sha256": "6d0da0221da47f5493e3e5052305ae207b22cc227a266b132983294e23749334",
       "size": 1678
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/generation/collection.json",
+      "sha256": "ab337ac91e4953fed554e53caf3f79cdb08a14737d4dc4be82d7684838de1346",
+      "size": 1637
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/generation/proposal.json",
+      "sha256": "e556df38af0a47fce15052006d395c4d9163c403e22465e29407d4b4bd83bc5c",
+      "size": 26178
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/generation/public-operations.json.gz",
+      "sha256": "b802a546865d0a787dcd2a02b9d88ab96b931adc3a77aa8f5e2690fb3cd5a369",
+      "size": 156363
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/generation/report.json",
+      "sha256": "5a24abb6db3d648a44be78b2b8031e9c9c2f5364f4dc3a74e2ad27a24cb87eb8",
+      "size": 39357
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/review/collection.json",
+      "sha256": "a225c8936abb21464729f2beee589a4b1d296957125e388a24acab984f249a56",
+      "size": 1081
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/review/failure-observation.json",
+      "sha256": "63bfd3ba586341ffaaa9e406643818b2661fbba35b1166718c7c5361a87d3a96",
+      "size": 715
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/review/input-summary.json",
+      "sha256": "9b0145b5734b563e0661a4bd0761c577eaaf596ecf75b7a36e835464635eddb9",
+      "size": 6305
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/review/public-operations.json.gz",
+      "sha256": "ea1e11a623d8b1a859f64c918fd15581fdcba34ffc535eb285697e1c3e0ad886",
+      "size": 146176
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/b/review/run-start.json",
+      "sha256": "a0bd10abbfdad6ccae3f9c8157857197d1d399f62edaebf043202c196b6234c4",
+      "size": 1711
     },
     {
       "path": "evals/discovery/burden-revision-01/b/run-start.json",
@@ -146,6 +259,31 @@
       "path": "evals/discovery/burden-revision-01/boundary-check.json",
       "sha256": "cc399f73d47118337c00297e5febdeec84a126f76a0c47f986b1c2ac0534d1d9",
       "size": 2109
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/change-diagnostic.json",
+      "sha256": "490620af3fdb25f0053505f32fbc28017a8d13243b29a140684bddcc86843bd3",
+      "size": 1944
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/collect-generation.py",
+      "sha256": "5937629177f37bda860ca6588967b295fa93f78f04bdcbcba92cdede16e2aa7e",
+      "size": 8201
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/collect-review.py",
+      "sha256": "e19900cff4a2a7503a1fd4ea74da09b5e2318b1bc46519ae5cfbfba544536844",
+      "size": 5063
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/collection-audit.json",
+      "sha256": "a46f6960cf5deaac8f2c2290ffb64cb3cdad80dca298d58a485b5cfe249b3b5e",
+      "size": 1411
+    },
+    {
+      "path": "evals/discovery/burden-revision-01/collection-check.json",
+      "sha256": "6c3cebfa6b6270375f2bba838e14952d4bfc8345199c0b6c1a4999d17b3c8225",
+      "size": 2158
     },
     {
       "path": "evals/discovery/burden-revision-01/common-files.json",

@@ -1,21 +1,41 @@
 {
-  "checked_at": "2026-09-10T05:03:36.486144+00:00",
+  "checked_at": "2026-09-10T05:31:21.045337+00:00",
   "generation_handles": {
-    "a": 97594,
-    "b": 59901
+    "a": {
+      "session_id": 97594,
+      "exit_code": 0,
+      "collected": true
+    },
+    "b": {
+      "session_id": 59901,
+      "exit_code": 0,
+      "collected": true
+    }
   },
   "base": "/tmp/sv-burden-revision-01",
   "prototype": "/tmp/sv-burden-revision-prototype",
   "collectors": {
     "/tmp/collect-burden-generation.py": {
-      "sha256": "bfdb46cacadbba904dcfd125323596c2d3a87148633e490b2084c854bb3e96da",
-      "status": "syntax checked; not executed"
+      "sha256": "5937629177f37bda860ca6588967b295fa93f78f04bdcbcba92cdede16e2aa7e",
+      "status": "both original generations and failed reviews collected; no new formal reviews"
     },
     "/tmp/collect-burden-review.py": {
-      "sha256": "6113bfbbf7ceb26027e50455812189db2dcccb4d29ca003340af56781c29159f",
-      "status": "syntax checked; not executed"
+      "sha256": "e19900cff4a2a7503a1fd4ea74da09b5e2318b1bc46519ae5cfbfba544536844",
+      "status": "both original generations and failed reviews collected; no new formal reviews"
     }
   },
-  "next": "Poll the original generation handles. Only after terminal confirmation run the generation collector with arm, handle and exit code. It prepares a separate review only for a new proposal or new source. Start that review through svdeck.worker with 900 elapsed seconds, grace 2; then collect its original handle and run the review collector. Never restart solely because observation times out.",
-  "formal_counts": "Do not count inherited revision 1 or inherited review 1 as new outputs of this trial."
+  "next": "元試行の全担当は終了・回収済み。再回収しない。復旧後の評価はburden-review-recovery-01で管理。",
+  "formal_counts": "Do not count inherited revision 1 or inherited review 1 as new outputs of this trial.",
+  "review_handles": {
+    "a": {
+      "session_id": 80527,
+      "exit_code": 1,
+      "collected": true
+    },
+    "b": {
+      "session_id": 53611,
+      "exit_code": 1,
+      "collected": true
+    }
+  }
 }

@@ -1,0 +1,50 @@
+{
+  "id": "burden-review-recovery-01",
+  "frozen_at": "2026-09-10T05:25:06.992774+00:00",
+  "purpose": "利用上限で両評価が正式提出前に終了したため、利用可能へ戻った後、同じ最終案と同じ評価入力から新しい独立評価を実施する。",
+  "relationship": "元試行burden-revision-01は評価未完のまま保持。これは復旧後の別実行であり、元試行の1回制限内の成功として集計しない。",
+  "inputs": {
+    "a": {
+      "session": "/tmp/sv-burden-review-recovery-01/a/review/work/session",
+      "packet_hash": "12841ef8efa176eec7a849db95af4272bdc48d4bf538682e2110442c9f179762",
+      "context_hash": "58ebce3bcf1c54f803cc9527acf3d8e478422dc471b45d9b30b8f7699aa39b2d",
+      "formal_revision": 2,
+      "initial_files": 28,
+      "same_as_interrupted_review_input": true,
+      "same_prompt_except_work_path": true,
+      "archive": {
+        "path": "data/discovery-archives/burden-review-recovery-01/initial-a.tar.gz",
+        "sha256": "36f4a83b3361f8f06c8ca27e706fd6e23a809b776f4f3a65f18402f4c1c78b69"
+      }
+    },
+    "b": {
+      "session": "/tmp/sv-burden-review-recovery-01/b/review/work/session",
+      "packet_hash": "afff61c6cdf6edfb13d55707819e672fb1f3b9ef686d6ebe33aad0d7edd4196d",
+      "context_hash": "58ebce3bcf1c54f803cc9527acf3d8e478422dc471b45d9b30b8f7699aa39b2d",
+      "formal_revision": 2,
+      "initial_files": 29,
+      "same_as_interrupted_review_input": true,
+      "same_prompt_except_work_path": true,
+      "archive": {
+        "path": "data/discovery-archives/burden-review-recovery-01/initial-b.tar.gz",
+        "sha256": "629130bd1d8c5aff65fc96b6e4b6c70782157bd47f491a36220eb16cadd2721b"
+      }
+    }
+  },
+  "fixed_grading": {
+    "workflow": "公開コマンドで資料読出し、提案、実際の追加資料の保持、必要なら改訂、別評価、レポートを完了できる。コードの手直しなしで完了した範囲と障害を別記する。",
+    "correctness": "最終提案の手順について、合法性、効果の対象・時間、PP、手札、場、進化権、相手依存に既知の重大な誤りがない。未確認は未確認とする。",
+    "development": "追加工程を行った場合、実際の疑問が少なくとも1つ解消する、手順・構築方針が根拠により変わる、または適切に枝を止める。言い換え・質問の再掲のみは不合格。初回で終了した場合は未実施と記録する。",
+    "utility": "最終時点で試す理由のある種が残るかを別判定。既知の標準用法との差、元の構築で失う役割と得る役割、核が揃わない時の勝ち方を具体的に説明でき、採用負担に見合う可能性が根拠付きで残る。全棄却・未完成の保留のみなら、この試行では有用な出力は得られなかったとする。手順が正しいだけで合格にしない。",
+    "honesty": "共起0やWebヒットなしを未知の証明とせず、検索範囲を残す。Tier・勝率・初見の勝率加点を捏造しない。"
+  },
+  "fixed_grading_semantic_hash": "934268c8dd5415cf10a12ae8d4eb80a76340f93e086b7b118b71c268d17f2583",
+  "review_seconds": 900,
+  "maximum_review_attempts_per_arm": 1,
+  "budget_clock": "elapsed",
+  "controls": "評価入力は元と同じhash。新しい独立担当が同じREVIEWを使用。未提出の下書き・途中の独立評価・方式比較の結論は渡さない。考案の再実行はしない。",
+  "adoption": "両方式の最新案を同じ基準で評価し、元の改訂と組み合わせた有用性の限定的証拠にする。成立や実変更だけでは採用しない。未評価を失敗の種と扱わない。方法の一般優位や全体完成はこの1入力で認定しない。",
+  "stop": "各評価は1回。再び実行が失敗すれば途中出力を保存して未判定とし、代理提出や下書きの正式評価扱いはしない。",
+  "resource_state": "旧担当の終了出力はusage limit。再開指示後のget_usage_limitsでcodex使用0%、上限到達なしを確認。リセット消費の操作は行っていない。",
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414"
+}

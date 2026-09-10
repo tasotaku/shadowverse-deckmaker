@@ -1,0 +1,149 @@
+{
+  "id": "burden-review-recovery-01",
+  "revision": 3,
+  "saved_at": "2026-09-10T05:35:04.615989+00:00",
+  "actor": "codex",
+  "reason": "読み手による再確認で必須修正が残らないことを記録",
+  "record": {
+    "category": "method",
+    "criteria": "公開コマンドで工程を完了できるか、手順に重大な誤りがないか、実際の疑問が解消するか、通常の用法との差・失う役割・核を引かない場合を踏まえて試す価値があるか、未確認を正直に示すか。資料数や改訂件数では加点しない。40枚完成・20点確定・勝率証明は要求しない。",
+    "id": "burden-review-recovery-01",
+    "title": "途中終了した改訂案の独立評価を再開",
+    "status": "running",
+    "summary": "利用可能復帰後、元の評価と同じ入力から2案を別担当が評価中。考案は再実行せず、有用性と採否は未判断。",
+    "method": "従来版と負担解消優先版の最終案を、同じ基準と元と同じ入力で新しい別担当が評価する。",
+    "procedure": "停止前の評価入力を全ファイル照合して固定。各1回、上限15分の評価を実施中。終了後に正式提出と結果表示を照合し、元の改訂と組み合わせた有用性・採否・時間を記録する。",
+    "inputs": "burden-revision-01の評価開始時と同一内容。従来版28ファイル、変更版29ファイル。元の未提出評価や途中判断は含めない。各案の本文、カード資料、調査資料を保持。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "評価中。新しい正式評価と有用性は未確認。",
+      "limitations": "元試行は評価未完で保持。既知入力1件の再利用。元試行の上限内成功、未知発見力、方法の一般優位は認定しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "独立評価の正式結果を回収してから判断する。試作は本体へ未反映。"
+    },
+    "started_at": "2026-09-10T05:25:05.857327+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "停止前と同じ評価入力を固定",
+        "status": "completed",
+        "started_at": "2026-09-10T05:25:05.857327+00:00",
+        "ended_at": "2026-09-10T05:25:06.998001+00:00",
+        "note": "入力の全内容と評価用資料の識別値が一致。時刻は準備スクリプトの区間。",
+        "budget_minutes": null
+      },
+      {
+        "id": "review_a",
+        "title": "従来版の案を別担当が評価",
+        "status": "running",
+        "started_at": "2026-09-10T05:25:23.198211+00:00",
+        "ended_at": null,
+        "note": "同じ入力で新しい担当が評価中。上限15分・1回。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "review_b",
+        "title": "変更版の案を別担当が評価",
+        "status": "running",
+        "started_at": "2026-09-10T05:25:23.198212+00:00",
+        "ended_at": null,
+        "note": "同じ入力で新しい担当が評価中。上限15分・1回。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "report",
+        "title": "正式評価を回収し採否を記録",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "未着手",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/burden-review-recovery-01/README.md",
+      "evals/discovery/burden-review-recovery-01/protocol.json",
+      "evals/discovery/burden-review-recovery-01/preparation.json",
+      "evals/discovery/burden-review-recovery-01/collect-review.py",
+      "evals/discovery/burden-review-recovery-01/a/review/run-start.json",
+      "evals/discovery/burden-review-recovery-01/a/review/initial-files.json",
+      "evals/discovery/burden-review-recovery-01/a/review/input-summary.json",
+      "evals/discovery/burden-review-recovery-01/a/review/prompt.md",
+      "evals/discovery/burden-review-recovery-01/b/review/run-start.json",
+      "evals/discovery/burden-review-recovery-01/b/review/initial-files.json",
+      "evals/discovery/burden-review-recovery-01/b/review/input-summary.json",
+      "evals/discovery/burden-review-recovery-01/b/review/prompt.md",
+      "evals/discovery/burden-review-recovery-01/reader-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/burden-review-recovery-01/README.md",
+      "sha256": "88e34e548b07807b232fbe6a5185c1e2810c422eb7ea19b632356ba31a5ca3b7",
+      "size": 2309
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/a/review/initial-files.json",
+      "sha256": "9ec3160ed532b41aca779bbdb782b77dc8ee51e6892963eebb9b09bb2b875bee",
+      "size": 3938
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/a/review/input-summary.json",
+      "sha256": "e431f3eb3d107f608e9d76121be7270ef3592480e2297bfb7ad17100866fa477",
+      "size": 6312
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/a/review/prompt.md",
+      "sha256": "d89916e7e75fcbd6d5296fc1577910be3dd6c731bdda3dae7433870d8e395b01",
+      "size": 2567
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/a/review/run-start.json",
+      "sha256": "9c4dc18f5f81bc3acd4b59ca2689fd9c51737ff8ade440bfcb9115cc166d08a6",
+      "size": 1711
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/b/review/initial-files.json",
+      "sha256": "b5820a0a10b42173cbdff9b34b50b8800b6afb6852e0edda5951a0c7017199bd",
+      "size": 4089
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/b/review/input-summary.json",
+      "sha256": "874d98ba61c44eec5ae0ef82fd4a20a9e4666d7849e027dfd9b9a71f3f79cd81",
+      "size": 6312
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/b/review/prompt.md",
+      "sha256": "721af205c9a634e9769939e231bc79e0f0f6af59ad82b0d138a9064e10e9cca8",
+      "size": 2567
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/b/review/run-start.json",
+      "sha256": "078b734479dc5ca0f568a5523674842624d84c848ac1693e7402f06bfbf53033",
+      "size": 1711
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/collect-review.py",
+      "sha256": "d3a5d636b313ae1339c996f18982959d1ead094f4e40f10b961b30783a1d59f3",
+      "size": 5091
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/preparation.json",
+      "sha256": "d1019569e0f310977880874ca491402586d2cda4b4af878ea6480b7acea3d2f9",
+      "size": 1359
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/protocol.json",
+      "sha256": "7e197ffc03ba648eefa3c86e71d47ced2a0a34109957bc1be9ad376423c1fb62",
+      "size": 4289
+    },
+    {
+      "path": "evals/discovery/burden-review-recovery-01/reader-check.json",
+      "sha256": "4e75aa4a6e02a5aa31bedf3683c51b34f2cedb79f5eaceedf243a5a364ec851b",
+      "size": 976
+    }
+  ]
+}

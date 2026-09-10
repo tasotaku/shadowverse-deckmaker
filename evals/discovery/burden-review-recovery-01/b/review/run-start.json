@@ -1,0 +1,48 @@
+{
+  "session_id": 14422,
+  "observed_at": "2026-09-10T05:31:21.032633+00:00",
+  "run": {
+    "status": "running",
+    "command": [
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--search",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "workspace-write",
+      "--skip-git-repo-check",
+      "--cd",
+      "/tmp/sv-burden-review-recovery-01/b/review/work",
+      "--json",
+      "--output-last-message",
+      "/tmp/sv-burden-review-recovery-01/b/review/work/final-message.md",
+      "-"
+    ],
+    "cwd": "/private/tmp/sv-burden-review-recovery-01/b/review/work",
+    "stdin": "/private/tmp/sv-burden-review-recovery-01/b/review/work/prompt.md",
+    "output": "/private/tmp/sv-burden-review-recovery-01/b/review/run",
+    "started_at": "2026-09-10T05:25:23.198212+00:00",
+    "deadline_at": null,
+    "budget_clock": "elapsed",
+    "deadline_monotonic": 2258663.871869333,
+    "timeout_seconds": 900.0,
+    "termination_grace_seconds": 2.0,
+    "supervisor_pid": 24103,
+    "worker_pid": 24104,
+    "worker_returncode": null,
+    "ended_at": null,
+    "events": [
+      {
+        "event": "started",
+        "at": "2026-09-10T05:25:23.199137+00:00",
+        "elapsed_seconds": 0.0007053329609334469
+      },
+      {
+        "event": "launched",
+        "at": "2026-09-10T05:25:23.202249+00:00",
+        "elapsed_seconds": 0.003853083122521639
+      }
+    ],
+    "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review."
+  }
+}

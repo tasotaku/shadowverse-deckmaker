@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-09-10T05:35:26.067189+00:00",
+  "destination": "http://127.0.0.1:8765/",
+  "api": {
+    "burden-revision-01": {
+      "revision": 7,
+      "status": "interrupted",
+      "source_changes": {
+        "error": null,
+        "paths": []
+      },
+      "api_record_matches_input": true
+    },
+    "burden-review-recovery-01": {
+      "revision": 3,
+      "status": "running",
+      "source_changes": {
+        "error": null,
+        "paths": []
+      },
+      "api_record_matches_input": true
+    }
+  },
+  "ui_observation": "CUA tab9 showed recovery revision1, both review stages running with 2026/09/10 14:25:23 start. API current revision3 verified separately; later revisions are not claimed as UI-observed.",
+  "backup_integrity": "ok",
+  "check_correction": "初回はsource_changesを配列と誤認して検査側が失敗。実際のerror/paths形式へ照合を直し、保存原文に差がないことを確認。"
+}
