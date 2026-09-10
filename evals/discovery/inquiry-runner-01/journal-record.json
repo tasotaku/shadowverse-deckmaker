@@ -1,27 +1,27 @@
 {
   "id": "inquiry-runner-01",
-  "revision": 2,
-  "saved_at": "2026-09-10T10:27:12.908491+00:00",
+  "revision": 5,
+  "saved_at": "2026-09-10T10:31:50.241016+00:00",
   "actor": "codex",
-  "reason": "実装と検査を完了し実AIの調査・別照合を予定",
+  "reason": "結果欄と採否理由も実装完了・実調査中の状態へ揃える",
   "record": {
     "id": "inquiry-runner-01",
     "title": "残った問いの調査と別担当への引渡しをつなぐ",
     "category": "method",
     "status": "running",
-    "summary": "実行入口を実装し関連139検査・型検査・別点検を通過。調査15分・照合10分の実AI確認へ進む。",
+    "summary": "19時27分45秒から実際の調査を開始。評価の4番目の問いを固定し、元案を改訂せず資料を集めている。調査15分・別照合10分、各1回。",
     "method": "採用済みの資料保存・固定ファイル照合・実行期限・操作記録を再利用し、終了条件を調査報告と照合報告にする。旧採点や案の本文は変更しない。",
     "procedure": "条件固定→実装・関連検査→調査15分→別照合10分→元入力・本文・結果の回収→採否記録。",
     "inputs": "fresh-nightmare-01の正式案1件と評価1件の保存版。評価の4番目の問いを明示指定。旧失敗事例からの再採点ではない。",
     "criteria": "正式案・旧評価・入力保全、公開保存と再読、別担当への受渡し、根拠と結論の対応、未確認の明示。資料件数で成功を判定しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "実装・検査中。実AIの調査・照合は未実施。",
+      "summary": "実装・関連139検査・型検査・別点検は完了。実際の調査を実行中で、別担当への引渡しと資料内容の評価はまだ完了していない。",
       "limitations": "一問の実利用で一般的な発見力や独自性を認定しない。"
     },
     "decision": {
       "status": "deferred",
-      "reason": "公開入口の実装、関連検査、実際の資料調査と引渡しが未完了。"
+      "reason": "実装の検査は完了。採用の判断には、実際の調査報告保存と別担当の照合までの確認が残る。"
     },
     "started_at": "2026-09-10T10:17:52.459570+00:00",
     "ended_at": null,
@@ -38,10 +38,10 @@
       {
         "id": "live-inquiry",
         "title": "評価の問いを調査して資料を保存",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-10T10:27:45.403513+00:00",
         "ended_at": null,
-        "note": "公開添付、資料新版からの本文再読、report確認まで行う。未提出の代理補完なし。",
+        "note": "公開添付、資料新版からの本文再読、report確認まで行う。未提出の代理補完なし。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-runner-01/run/inquiry-run",
         "budget_minutes": 15
       },
       {
@@ -66,8 +66,8 @@
   "evidence": [
     {
       "path": "evals/discovery/inquiry-runner-01/README.md",
-      "sha256": "5ea58fa9f371ee330cd19b74b814245a9830ee7336d69ac3b7eb63dde4874b17",
-      "size": 1472
+      "sha256": "e5482d17a7de2d8c581c7e707106963d48fded0e96ab2e291eef0f8699ed7d06",
+      "size": 1765
     },
     {
       "path": "evals/discovery/inquiry-runner-01/boundary-audit.json",
