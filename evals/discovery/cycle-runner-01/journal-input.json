@@ -3,14 +3,14 @@
   "title": "評価後の改訂を一度だけ自動でつなぐ",
   "category": "method",
   "status": "running",
-  "summary": "101機能検査・型検査を通過。エルフの4記事を固定して実AI検証を準備。",
+  "summary": "初回考案を19:00:21に開始。固定した12資料から実AIが検討中。自動改訂の成否は未確認。",
   "method": "考案・別評価 → 正式保存の再検査 → developかつ次の問いがある場合だけ改訂・別評価を1回 → 終了",
   "procedure": "実行条件を固定→実装と分岐・保存の検査→公開CLIで実AI実行→内容・採否・工程時刻を記録。",
   "inputs": "エルフ・ローテーション。DBに保存された4記事を全件選び、全40枚と説明を取得する。カードDB・注記・既存設計原則は既知。具体的な旧案・評価やrootのカード答案は与えない。",
   "criteria": "機能検査と実AIの経路確認が通れば実行補助として採用。実AIで通らなかった分岐を実AI確認済みとしない。出力案の価値・独自性は別評価し、補助の成功を発見力・システム完成へ広げない。",
   "result": {
     "outcome": "unassessed",
-    "summary": "公開CLIの試験用実行先では2回接続と停止を確認。実AIと案の価値は未確認。",
+    "summary": "101機能検査と型検査PASS。実AIの成果・方式の採用は未判定。",
     "limitations": "同時対照による方法優位の検査ではない。問いの重要性や調査を自動選定する仕組みは今回含めない。"
   },
   "decision": {
@@ -23,26 +23,72 @@
     {
       "id": "implementation",
       "title": "条件の固定と実装・機能検査",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-11T04:22:13.213327+00:00",
-      "ended_at": null,
-      "note": "101機能検査・型検査を通過。独立したコード点検の回収中。20分目安を超過しており、空白原因は未確認。",
+      "ended_at": "2026-09-11T10:00:20.584842+00:00",
+      "note": "101機能検査・厳格な型検査PASS。独立したコード点検は別途回収中。開始終了の時刻差は目安超過で、pytestの28.48秒とは別。空白原因は未確認。",
       "budget_minutes": 20
     },
     {
       "id": "input",
       "title": "参考4記事と新しい探索入力を準備",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-11T07:23:36.103542+00:00",
-      "ended_at": null,
-      "note": "記事はDB保存のエルフ記事4件を全件選定。",
+      "ended_at": "2026-09-11T10:00:20.584842+00:00",
+      "note": "DB保存の全4記事を取得し、構築・取得情報・本文の12資料を保存。具体的な過去案・評価を追加せず、新しい探索入力と資料識別値を固定。",
       "budget_minutes": 8
+    },
+    {
+      "id": "cycle-1-develop",
+      "title": "1回目の考案・改訂",
+      "status": "running",
+      "started_at": "2026-09-11T10:00:21.603871+00:00",
+      "ended_at": null,
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/develop-run",
+      "budget_minutes": 30
+    },
+    {
+      "id": "cycle-1-review",
+      "title": "1回目の別担当の評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "cycle-2-develop",
+      "title": "2回目の考案・改訂",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
+      "budget_minutes": 30
+    },
+    {
+      "id": "cycle-2-review",
+      "title": "2回目の別担当の評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
+      "budget_minutes": 15
     }
   ],
   "evidence_paths": [
     "evals/discovery/cycle-runner-01/README.md",
     "evals/discovery/cycle-runner-01/protocol.json",
     "evals/discovery/cycle-runner-01/boundary-audit.json",
-    "evals/discovery/cycle-runner-01/test-verification.json"
+    "evals/discovery/cycle-runner-01/test-verification.json",
+    "evals/discovery/cycle-runner-01/input-start.json",
+    "evals/discovery/cycle-runner-01/source-intake.json",
+    "evals/discovery/cycle-runner-01/frozen-input.json",
+    "evals/discovery/cycle-runner-01/input-session.tar.gz",
+    "evals/discovery/cycle-runner-01/articles/1.json",
+    "evals/discovery/cycle-runner-01/articles/2.json",
+    "evals/discovery/cycle-runner-01/articles/3.json",
+    "evals/discovery/cycle-runner-01/articles/4.json",
+    "evals/discovery/cycle-runner-01/launch-check.json",
+    "evals/discovery/cycle-runner-01/running-check.json"
   ]
 }

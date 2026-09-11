@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-11 07:11:50 UTC",
+  "ended_at_utc": "2026-09-11 10:01:48 UTC",
+  "verdict": "PASS",
+  "verdict_scope": "読んだ試作コードの対象境界では、実AI起動を止めるべき実害のある欠陥を確認しなかった。全経路の動作保証や機能テストの独立PASSではない。",
+  "findings": [],
+  "scope": "discovery_cycle.pyの限定読取と、先に確認済みの既存engine/worker契約との照合。コード編集・私的stdout/JSONL閲覧・実AI実行・追加機能テストは行っていない。親の打切り指示後は点検範囲を広げていない。",
+  "checks": [
+    {
+      "id": 1,
+      "topic": "正式評価による継続判断",
+      "result": "PASS（静的確認）",
+      "reason": "engine.runがcompletedで、保存先と正式件数1/1が一致した場合だけ分岐する。next_stepは対象改訂が最新で評価が1件であることを確認し、提案・評価の正式再保存検査を行う。厳密にdevelopかつnext_questions非空だけがcontinueとなり、test/drop/unknown・問いなしは停止する。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py",
+        "lines": [
+          60,
+          78,
+          124,
+          133
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "topic": "最大2回と履歴の保持",
+      "result": "PASS（静的確認）",
+      "reason": "反復は(1,2)に固定し、2回目の判定はround_limitで必ず停止する。次の入力は完成したround-N/sessionで、入力に存在した正式ファイルの保持を確認する。第1回出力をprotectedへ加え、第2回の前後も照合する。集約時に新たな提案・評価を捏造せず正式sessionをコピーする。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py",
+        "lines": [
+          71,
+          77,
+          103,
+          128,
+          145
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "topic": "コード版と元入力の固定",
+      "result": "PASS（静的確認）",
+      "reason": "prepareが実装一式と入力を保存し、execvで同じPIDを置換した新しいPythonへ固定runtimeを先頭の読込元として渡す。各engine.runのruntimeが開始時manifestに一致することを確認する。source・input・runtime・configを工程前後と分岐後に照合するため、live版を各回で読み直す構造になっていない。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py",
+        "lines": [
+          29,
+          53,
+          81,
+          107,
+          115,
+          127,
+          134,
+          141,
+          177,
+          181
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "topic": "失敗・中断と既存記録の保持",
+      "result": "PASS（主実行経路の静的確認）",
+      "reason": "開始済みresultは再実行を拒否し、出力は新規作成する。子engineが未完了ならround_failedで打切り、保存・検証例外はfailed、工程間のKeyboardInterruptはinterruptedとなる。finallyで終了UTCと結果を残す。担当実行中の停止は既存workerに委ね、次回へ進むにはengine完了が必要である。第2回失敗を第1回成功でcompletedに読み替えない。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py",
+        "lines": [
+          38,
+          54,
+          57,
+          84,
+          98,
+          115,
+          126,
+          151,
+          161
+        ]
+      },
+      "unverified": "OSシグナル・exec置換・保存障害・停止未確認等の異常経路を本監査で動作させてはいない。"
+    },
+    {
+      "id": 5,
+      "topic": "時刻・台帳・完了と試用価値の区別",
+      "result": "PASS（静的確認）",
+      "reason": "各回に異なるstage-prefixを渡し、round開始終了UTCとengineの実行結果を保持する。全体の開始終了UTCも保存し、子の監視時間へUTCを置き換える処理はない。test/drop/問いなし・2回上限での正常停止理由を残し、limitsで発見力・実戦の強さ・方法採用を自動認定しないと明記する。",
+      "evidence": {
+        "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py",
+        "lines": [
+          39,
+          47,
+          90,
+          92,
+          111,
+          119,
+          147,
+          157
+        ]
+      },
+      "unverified": "台帳側の工程ID登録・実際の同期結果、および子の監視時間とUTCの表示は本監査では実行確認していない。"
+    }
+  ],
+  "not_independently_verified": [
+    "実AIによる2回連結の完走、同一入力での方法の有用性。",
+    "os.execvが実環境で固定版をロードする動的確認と、シグナル時の子プロセス回収。",
+    "親が報告した101検査（新規21+既存80）および型検査の再実行。親の確認結果として受領し、本監査の実行実績には数えない。"
+  ],
+  "timing_note": "開始終了はclockが返した実際のUTC。約2時間49分の差を短く補正していない。この差はCPU作業時間や連続した読取作業時間を表すと断定せず、原因も推測しない。予定の約3分を大幅に超えたため、親の指示で範囲を広げず終了した。",
+  "output_path": "/tmp/discovery-cycle-code-audit.json",
+  "elapsed_seconds": 10198
+}

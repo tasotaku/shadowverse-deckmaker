@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-09-11T10:00:20.584842+00:00",
+  "fixed_input_unchanged": true,
+  "packet_hash": "a0d2594f5c02df29efeeef7b49a58f899e49136cb8a03cf57b3ee962bd00d2a5",
+  "implementation_commit": "f10d4237667ef520509a8610fa7addbbcfeb08f0",
+  "code_audit": "独立点検は回収中。機能検査と型検査を通過した試作として実行する。未完の点検をPASSとは扱わない。",
+  "command": "PYTHONPATH=src caffeinate -i /tmp/sv-system-venv/bin/python -B -m svdeck.discovery_cycle data/discovery/cycle-runner-01-input /tmp/sv-cycle-runner-01 --codex /Applications/ChatGPT.app/Contents/Resources/codex --develop-seconds 1800 --review-seconds 900 --journal-root . --experiment-id cycle-runner-01 --stage-prefix cycle"
+}
