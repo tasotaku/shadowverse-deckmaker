@@ -1,9 +1,9 @@
 {
   "id": "cycle-runner-01",
-  "revision": 5,
-  "saved_at": "2026-09-11T10:26:11.599032+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-11T11:03:18.979640+00:00",
   "actor": "codex",
-  "reason": "初回考案開始と固定実装の一致を観測",
+  "reason": "独立点検を回収。長い時刻差とOSスリープ区間の重なりを分けて記録",
   "record": {
     "id": "cycle-runner-01",
     "title": "評価後の改訂を一度だけ自動でつなぐ",
@@ -17,7 +17,7 @@
     "result": {
       "outcome": "unassessed",
       "summary": "101機能検査と型検査PASS。実AIの成果・方式の採用は未判定。",
-      "limitations": "同時対照による方法優位の検査ではない。問いの重要性や調査を自動選定する仕組みは今回含めない。"
+      "limitations": "実行補助の検証であり、方法の一般優位・発見力・実戦の強さは未確認。準備5時間38分07秒のうち5時間15分23秒がOS記録のスリープ区間と重なる。差引きをCPU作業時間とは扱わない。現在の実AI中にもスリープがあり、実時刻と監視時間を分ける。"
     },
     "decision": {
       "status": "unassessed",
@@ -32,7 +32,7 @@
         "status": "completed",
         "started_at": "2026-09-11T04:22:13.213327+00:00",
         "ended_at": "2026-09-11T10:00:20.584842+00:00",
-        "note": "101機能検査・厳格な型検査PASS。独立したコード点検は別途回収中。開始終了の時刻差は目安超過で、pytestの28.48秒とは別。空白原因は未確認。",
+        "note": "101機能検査・型検査PASS。独立コード点検も限定範囲では重大な欠陥なし。準備の時刻差5時間38分07秒のうち5時間15分23秒がOSスリープと重なる。実行28.48秒はpytestだけの値。",
         "budget_minutes": 20
       },
       {
@@ -79,6 +79,15 @@
         "ended_at": null,
         "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
         "budget_minutes": 15
+      },
+      {
+        "id": "code-audit",
+        "title": "独立した担当が実行境界を点検",
+        "status": "completed",
+        "started_at": "2026-09-11T07:11:50+00:00",
+        "ended_at": "2026-09-11T10:01:48+00:00",
+        "note": "静的点検の対象範囲では重大な欠陥なし。動的な全経路保証ではない。2時間49分58秒の時刻差のうち、OSスリープ区間と2時間38分24秒が重なる。準備と並行しており合算しない。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
@@ -95,14 +104,16 @@
       "evals/discovery/cycle-runner-01/articles/3.json",
       "evals/discovery/cycle-runner-01/articles/4.json",
       "evals/discovery/cycle-runner-01/launch-check.json",
-      "evals/discovery/cycle-runner-01/running-check.json"
+      "evals/discovery/cycle-runner-01/running-check.json",
+      "evals/discovery/cycle-runner-01/code-audit.json",
+      "evals/discovery/cycle-runner-01/power-observation.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/cycle-runner-01/README.md",
-      "sha256": "35e7838b876177a75cb07b98518d7542920a338a4df1d64ea028b41f09a4ea5b",
-      "size": 1465
+      "sha256": "1c8c40f4bf1a8c17a9fefa5aceed5c12b73687caff6a7e8e5d1f280e9f92bfc5",
+      "size": 1840
     },
     {
       "path": "evals/discovery/cycle-runner-01/articles/1.json",
@@ -130,6 +141,11 @@
       "size": 8418
     },
     {
+      "path": "evals/discovery/cycle-runner-01/code-audit.json",
+      "sha256": "65f76caa2ee1e44e64512c8b53fbec2a7e4568a1b3e0be9962c8cb45958fe58a",
+      "size": 5781
+    },
+    {
       "path": "evals/discovery/cycle-runner-01/frozen-input.json",
       "sha256": "45c0e8455b00cea37abab04e49b36b3b981509a22410b93170f7d25ba64572dc",
       "size": 6278
@@ -148,6 +164,11 @@
       "path": "evals/discovery/cycle-runner-01/launch-check.json",
       "sha256": "04e1512d1bbd4a94f50f45e2f9725d4c731ef73452033232db13c4e34b1dfdbc",
       "size": 742
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/power-observation.json",
+      "sha256": "f50975686eee69fec395abf71547eedc1ef8d9f0f3b89681b56030be8611e254",
+      "size": 6657
     },
     {
       "path": "evals/discovery/cycle-runner-01/protocol.json",
