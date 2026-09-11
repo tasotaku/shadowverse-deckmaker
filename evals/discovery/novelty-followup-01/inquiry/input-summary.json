@@ -1,0 +1,115 @@
+{
+  "sha256": "0d6e3bf12e64824aff145e89f2990e6c3217a188d39d105726822cfe66637852",
+  "packet_path": "/private/tmp/sv-novelty-followup-01/inquiry/session/packets/0d6e3bf12e64824aff145e89f2990e6c3217a188d39d105726822cfe66637852.json",
+  "stage": "inquiry",
+  "revision": 1,
+  "context_hash": "0ef2957ad107e2fbe78f198e16f7510cf5fc3118a5c27dd5d160cd06d7b98e71",
+  "objective": "独自で、そこそこ戦えるエルフのデッキの種を探す。参考記事の構築と説明を読み、既存構築との役割交換や使い方の変更に、試す理由があるかを確かめる。特定のアンカーを必須にせず、複数段の接続・副次的効果・強い基盤・役割の読み替えも考えられる。参考構築を選ぶ場合は出典の全40枚と比較し、追加札と失う札の役割、同じ状態で通常側も得られる分を分ける。40枚の完成や勝率の証明は要求せず、未確認のものを強さ・独自性の証拠にしない。",
+  "instruction": "保存済みの案に残った問いを調べる担当です。inquiry_focusの問いを調査し、根拠と結論を追加資料として保存してください。\n元案の再改訂・採点はしません。カード本文・両側の注記・既存資料を必要な範囲で読み、問いを解くために必要な調査を行います。\n先行例はカード名だけでなく、使い方・条件・構築で担う役割を照合してください。誰かが試しただけで一般的に広まっているとは扱いません。\n実際の検索語・検索範囲・URL・観察日時、取得本文と自分の解釈、用途の一致と相違、取得不能・未確認を分けて残します。\n見つからないことを未発見の証明にせず、調べて分かったことと残る問いを書いてください。勝率や実機観察を作りません。\n参照した資料はattach-file等で保持し、結論をanswer.mdへまとめて指定の位置へ保存します。元案・評価・DBを書き換えません。",
+  "response_example": {
+    "file": "answer.md",
+    "kind": "inquiry-result",
+    "location": "inquiry:bdc01ccc32ab4e7d997271d1c065b757:inquiry",
+    "content": "問い・結論・実際の調査範囲/検索語・出典/確認時刻・取得本文と解釈・一致/相違・未確認"
+  },
+  "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
+  "sections": [
+    {
+      "section": "cards",
+      "unit": "cards",
+      "total": 212,
+      "full_packet_path": "data.context.cards"
+    },
+    {
+      "section": "rules",
+      "unit": "lines",
+      "total": 134,
+      "full_packet_path": "data.context.rules"
+    },
+    {
+      "section": "keywords",
+      "unit": "keywords",
+      "total": 37,
+      "full_packet_path": "data.context.ability_keywords"
+    },
+    {
+      "section": "principles",
+      "unit": "lines",
+      "total": 644,
+      "full_packet_path": "data.context.principles"
+    },
+    {
+      "section": "known_decks",
+      "unit": "decks",
+      "total": 4,
+      "full_packet_path": "data.context.known_decks"
+    },
+    {
+      "section": "search",
+      "unit": "questions",
+      "total": 0,
+      "full_packet_path": "data.search"
+    },
+    {
+      "section": "proposal",
+      "unit": "lines",
+      "total": 254,
+      "full_packet_path": "data.proposal"
+    },
+    {
+      "section": "previous_reviews",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.previous_reviews"
+    },
+    {
+      "section": "review_contexts",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.review_contexts"
+    },
+    {
+      "section": "history",
+      "unit": "lines",
+      "total": 1,
+      "full_packet_path": "data.history"
+    },
+    {
+      "section": "sources",
+      "unit": "lines",
+      "total": 654,
+      "full_packet_path": "data.sources"
+    },
+    {
+      "section": "context_metadata",
+      "unit": "lines",
+      "total": 22,
+      "full_packet_path": "data.context"
+    },
+    {
+      "section": "fulfillment_map",
+      "unit": "lines",
+      "total": 234,
+      "full_packet_path": "data.context.fulfillment_map"
+    },
+    {
+      "section": "instruction",
+      "unit": "lines",
+      "total": 6,
+      "full_packet_path": "data.instruction"
+    },
+    {
+      "section": "response_example",
+      "unit": "lines",
+      "total": 6,
+      "full_packet_path": "data.response_example"
+    },
+    {
+      "section": "packet_metadata",
+      "unit": "lines",
+      "total": 16,
+      "full_packet_path": "data"
+    }
+  ],
+  "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。offsetは0始まりです。回答のpacket_hashには上のsha256を使います。"
+}

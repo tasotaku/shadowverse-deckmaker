@@ -2,23 +2,23 @@
   "id": "novelty-followup-01",
   "title": "比較試用の後に使い方の先例と普及を調べる",
   "category": "method",
-  "status": "running",
-  "summary": "実AIによる先例・普及の調査を20:47:30に開始。問い番号の指定なしで固定の調査目的へ接続。調査後に別照合へ進む。",
+  "status": "completed",
+  "summary": "任意の調査接続として採用。実AIは調査10分39秒・別照合6分35秒で7資料を追加。広い終盤打点役の先例を確認し、一般的普及は未確認と区別。元の案・評価は保持。",
   "method": "試用かつ独自性未確認の正式評価から、同じ使い方の先例と普及を調べる固定の問いを作り、既存の調査→別照合へ接続する。カード答案・既知結論は与えない。",
-  "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。",
+  "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。\n5. 調査担当が報告と追加資料を正式保存し、公開再読を確認。10分39秒で正常終了して別照合へ自動移行。\n6. 別担当が主要な出典を再取得し、3資料を追加（計7資料）。広い終盤打点役の先例と、詳細運用・一般的普及の未確認を区別。\n7. 元案・旧評価・実装の保持と正式報告の再読を検査。最終報告を別担当が全文点検し、任意の調査接続として採用。",
   "inputs": "cycle-runner-01の正式案1件・別評価1件。既存のカード資料・記事と元の履歴を保持。rootがカード答案や問い番号を指定しない。",
   "criteria": "機能検査・型検査・独立点検と公開入口の実AIで調査→別照合の保存が通り、出典に照らして先例・普及・未確認を具体化できれば、任意の調査接続として採用。ヒットの有無や案の採否を合格条件にしない。未実施の経路は未確認として残す。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "未判定。実装・機能検査中。",
-    "limitations": "実AIは保存済み案からの調査で、初回考案からの全工程確認や新しい種の発見力を示すものではない。"
+    "outcome": "pass",
+    "summary": "159機能検査・型検査、公開入口での実AIの調査→別照合→7資料保存を確認。問い番号の指定なしで先例の本文を照合し、細かな条件の違いだけで新規性を作らないという判断材料を残した。正式案・正式評価の追加は0件。",
+    "limitations": "実AIは保存済み案からの後続2工程で、初回考案からの全接続は合成検査のみ。一般的普及・非普及・独自性・実戦の強さは未確認。出典保存は抜粋・要約・操作の記録で全ページ本文ではない。実行終了後の回収・報告待ちとOSスリープを別記し、担当の実行時間へ足さない。"
   },
   "decision": {
-    "status": "unassessed",
-    "reason": "実装と実AIの有用性を確認してから判定する。"
+    "status": "adopted",
+    "reason": "固定した開始前の条件に沿って、正式入力から調査・別照合・履歴付き保存へ進み、出典本文に照らして先例と普及未確認を具体化できたため、任意の調査接続として採用。検索の不発や資料件数だけを成功理由にしていない。"
   },
   "started_at": "2026-09-11T11:38:28.307822+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-11T15:53:05.568497+00:00",
   "stages": [
     {
       "id": "implementation",
@@ -41,20 +41,38 @@
     {
       "id": "live-inquiry",
       "title": "実案の使い方の先例と普及を調査",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-11T11:47:30.288866+00:00",
-      "ended_at": null,
-      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inquiry-run",
+      "ended_at": "2026-09-11T11:58:09.066219+00:00",
+      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n調査報告を正式保存。時刻差638.777秒、監視638.773秒。過去の近い使用例はあるが、一般的普及は未確認という部分回答。",
       "budget_minutes": 15
     },
     {
       "id": "live-inspect",
       "title": "調査結果を別担当が出典と照合",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。",
+      "status": "completed",
+      "started_at": "2026-09-11T11:58:09.369725+00:00",
+      "ended_at": "2026-09-11T12:04:43.967096+00:00",
+      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inspect-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n主要出典を再確認。広い終盤打点役の先例は確認、詳細条件の相違だけで独自性を作らない。時刻差394.597秒、監視394.594秒。",
       "budget_minutes": 10
+    },
+    {
+      "id": "report",
+      "title": "結果・採用範囲・工程時間を最終記録",
+      "status": "completed",
+      "started_at": "2026-09-11T13:31:21.207609+00:00",
+      "ended_at": "2026-09-11T15:53:05.568497+00:00",
+      "note": "原案と旧評価を保持し、先例・未確認と採用範囲を保存。報告中にOSスリープが重なり、実時刻の目安8分を超過。観測した閉じたスリープ区間と実行終了後の回収間隔を別記し、CPU作業時間へ置き換えない。",
+      "budget_minutes": 8
+    },
+    {
+      "id": "reader",
+      "title": "別担当が最終報告を全文点検",
+      "status": "completed",
+      "started_at": "2026-09-11T14:55:28+00:00",
+      "ended_at": "2026-09-11T15:50:51+00:00",
+      "budget_minutes": 2,
+      "note": "指定2ファイルの全文を読みPASS。時刻差55分23秒で、読解作業時間とはしない。OSスリープが重なる報告工程と並行。"
     }
   ],
   "evidence_paths": [
@@ -67,6 +85,31 @@
     "evals/discovery/novelty-followup-01/frozen-input.json",
     "evals/discovery/novelty-followup-01/runtime.tar.gz",
     "evals/discovery/novelty-followup-01/input-session.tar.gz",
-    "evals/discovery/novelty-followup-01/launch-check.json"
+    "evals/discovery/novelty-followup-01/launch-check.json",
+    "evals/discovery/novelty-followup-01/inquiry/answer.md",
+    "evals/discovery/novelty-followup-01/inquiry/run.json",
+    "evals/discovery/novelty-followup-01/research-observation.json",
+    "evals/discovery/novelty-followup-01/ui-check.json",
+    "evals/discovery/novelty-followup-01/result.json",
+    "evals/discovery/novelty-followup-01/report.json",
+    "evals/discovery/novelty-followup-01/verification.json",
+    "evals/discovery/novelty-followup-01/collection-timing.json",
+    "evals/discovery/novelty-followup-01/session.tar.gz",
+    "evals/discovery/novelty-followup-01/inspect/answer.md",
+    "evals/discovery/novelty-followup-01/inspect/run.json",
+    "evals/discovery/novelty-followup-01/evaluation.json",
+    "evals/discovery/novelty-followup-01/reader-final.json",
+    "evals/discovery/novelty-followup-01/additional-sources.json",
+    "evals/discovery/novelty-followup-01/delivery-power-observation.json",
+    "evals/discovery/novelty-followup-01/inquiry/public-config.json",
+    "evals/discovery/novelty-followup-01/inquiry/input-summary.json",
+    "evals/discovery/novelty-followup-01/inquiry/prompt.md",
+    "evals/discovery/novelty-followup-01/inquiry/public-operations.json.gz",
+    "evals/discovery/novelty-followup-01/inquiry/final-message.md",
+    "evals/discovery/novelty-followup-01/inspect/public-config.json",
+    "evals/discovery/novelty-followup-01/inspect/input-summary.json",
+    "evals/discovery/novelty-followup-01/inspect/prompt.md",
+    "evals/discovery/novelty-followup-01/inspect/public-operations.json.gz",
+    "evals/discovery/novelty-followup-01/inspect/final-message.md"
   ]
 }

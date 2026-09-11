@@ -1,30 +1,30 @@
 {
   "id": "novelty-followup-01",
-  "revision": 4,
-  "saved_at": "2026-09-11T11:50:25.541546+00:00",
+  "revision": 11,
+  "saved_at": "2026-09-11T15:53:05.980846+00:00",
   "actor": "codex",
-  "reason": "実AIの新入口と固定実装の一致を観測",
+  "reason": "出典照合と7資料を確認し、任意の調査接続として採用。全工程の実時刻と待ち時間を確定",
   "record": {
     "id": "novelty-followup-01",
     "title": "比較試用の後に使い方の先例と普及を調べる",
     "category": "method",
-    "status": "running",
-    "summary": "実AIによる先例・普及の調査を20:47:30に開始。問い番号の指定なしで固定の調査目的へ接続。調査後に別照合へ進む。",
+    "status": "completed",
+    "summary": "任意の調査接続として採用。実AIは調査10分39秒・別照合6分35秒で7資料を追加。広い終盤打点役の先例を確認し、一般的普及は未確認と区別。元の案・評価は保持。",
     "method": "試用かつ独自性未確認の正式評価から、同じ使い方の先例と普及を調べる固定の問いを作り、既存の調査→別照合へ接続する。カード答案・既知結論は与えない。",
-    "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。",
+    "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。\n5. 調査担当が報告と追加資料を正式保存し、公開再読を確認。10分39秒で正常終了して別照合へ自動移行。\n6. 別担当が主要な出典を再取得し、3資料を追加（計7資料）。広い終盤打点役の先例と、詳細運用・一般的普及の未確認を区別。\n7. 元案・旧評価・実装の保持と正式報告の再読を検査。最終報告を別担当が全文点検し、任意の調査接続として採用。",
     "inputs": "cycle-runner-01の正式案1件・別評価1件。既存のカード資料・記事と元の履歴を保持。rootがカード答案や問い番号を指定しない。",
     "criteria": "機能検査・型検査・独立点検と公開入口の実AIで調査→別照合の保存が通り、出典に照らして先例・普及・未確認を具体化できれば、任意の調査接続として採用。ヒットの有無や案の採否を合格条件にしない。未実施の経路は未確認として残す。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定。実装・機能検査中。",
-      "limitations": "実AIは保存済み案からの調査で、初回考案からの全工程確認や新しい種の発見力を示すものではない。"
+      "outcome": "pass",
+      "summary": "159機能検査・型検査、公開入口での実AIの調査→別照合→7資料保存を確認。問い番号の指定なしで先例の本文を照合し、細かな条件の違いだけで新規性を作らないという判断材料を残した。正式案・正式評価の追加は0件。",
+      "limitations": "実AIは保存済み案からの後続2工程で、初回考案からの全接続は合成検査のみ。一般的普及・非普及・独自性・実戦の強さは未確認。出典保存は抜粋・要約・操作の記録で全ページ本文ではない。実行終了後の回収・報告待ちとOSスリープを別記し、担当の実行時間へ足さない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "実装と実AIの有用性を確認してから判定する。"
+      "status": "adopted",
+      "reason": "固定した開始前の条件に沿って、正式入力から調査・別照合・履歴付き保存へ進み、出典本文に照らして先例と普及未確認を具体化できたため、任意の調査接続として採用。検索の不発や資料件数だけを成功理由にしていない。"
     },
     "started_at": "2026-09-11T11:38:28.307822+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-11T15:53:05.568497+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -47,20 +47,38 @@
       {
         "id": "live-inquiry",
         "title": "実案の使い方の先例と普及を調査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-11T11:47:30.288866+00:00",
-        "ended_at": null,
-        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inquiry-run",
+        "ended_at": "2026-09-11T11:58:09.066219+00:00",
+        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n調査報告を正式保存。時刻差638.777秒、監視638.773秒。過去の近い使用例はあるが、一般的普及は未確認という部分回答。",
         "budget_minutes": 15
       },
       {
         "id": "live-inspect",
         "title": "調査結果を別担当が出典と照合",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。",
+        "status": "completed",
+        "started_at": "2026-09-11T11:58:09.369725+00:00",
+        "ended_at": "2026-09-11T12:04:43.967096+00:00",
+        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inspect-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n主要出典を再確認。広い終盤打点役の先例は確認、詳細条件の相違だけで独自性を作らない。時刻差394.597秒、監視394.594秒。",
         "budget_minutes": 10
+      },
+      {
+        "id": "report",
+        "title": "結果・採用範囲・工程時間を最終記録",
+        "status": "completed",
+        "started_at": "2026-09-11T13:31:21.207609+00:00",
+        "ended_at": "2026-09-11T15:53:05.568497+00:00",
+        "note": "原案と旧評価を保持し、先例・未確認と採用範囲を保存。報告中にOSスリープが重なり、実時刻の目安8分を超過。観測した閉じたスリープ区間と実行終了後の回収間隔を別記し、CPU作業時間へ置き換えない。",
+        "budget_minutes": 8
+      },
+      {
+        "id": "reader",
+        "title": "別担当が最終報告を全文点検",
+        "status": "completed",
+        "started_at": "2026-09-11T14:55:28+00:00",
+        "ended_at": "2026-09-11T15:50:51+00:00",
+        "budget_minutes": 2,
+        "note": "指定2ファイルの全文を読みPASS。時刻差55分23秒で、読解作業時間とはしない。OSスリープが重なる報告工程と並行。"
       }
     ],
     "evidence_paths": [
@@ -73,19 +91,64 @@
       "evals/discovery/novelty-followup-01/frozen-input.json",
       "evals/discovery/novelty-followup-01/runtime.tar.gz",
       "evals/discovery/novelty-followup-01/input-session.tar.gz",
-      "evals/discovery/novelty-followup-01/launch-check.json"
+      "evals/discovery/novelty-followup-01/launch-check.json",
+      "evals/discovery/novelty-followup-01/inquiry/answer.md",
+      "evals/discovery/novelty-followup-01/inquiry/run.json",
+      "evals/discovery/novelty-followup-01/research-observation.json",
+      "evals/discovery/novelty-followup-01/ui-check.json",
+      "evals/discovery/novelty-followup-01/result.json",
+      "evals/discovery/novelty-followup-01/report.json",
+      "evals/discovery/novelty-followup-01/verification.json",
+      "evals/discovery/novelty-followup-01/collection-timing.json",
+      "evals/discovery/novelty-followup-01/session.tar.gz",
+      "evals/discovery/novelty-followup-01/inspect/answer.md",
+      "evals/discovery/novelty-followup-01/inspect/run.json",
+      "evals/discovery/novelty-followup-01/evaluation.json",
+      "evals/discovery/novelty-followup-01/reader-final.json",
+      "evals/discovery/novelty-followup-01/additional-sources.json",
+      "evals/discovery/novelty-followup-01/delivery-power-observation.json",
+      "evals/discovery/novelty-followup-01/inquiry/public-config.json",
+      "evals/discovery/novelty-followup-01/inquiry/input-summary.json",
+      "evals/discovery/novelty-followup-01/inquiry/prompt.md",
+      "evals/discovery/novelty-followup-01/inquiry/public-operations.json.gz",
+      "evals/discovery/novelty-followup-01/inquiry/final-message.md",
+      "evals/discovery/novelty-followup-01/inspect/public-config.json",
+      "evals/discovery/novelty-followup-01/inspect/input-summary.json",
+      "evals/discovery/novelty-followup-01/inspect/prompt.md",
+      "evals/discovery/novelty-followup-01/inspect/public-operations.json.gz",
+      "evals/discovery/novelty-followup-01/inspect/final-message.md"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/novelty-followup-01/README.md",
-      "sha256": "619a5e89af49a169869820c087b51891a5f03f00035403af206ddae99d4b58e2",
-      "size": 2637
+      "sha256": "66636dd823ddf7f0a0ed3a7e4098f7f8d0d21ad0b03292179ed8f7497cef9174",
+      "size": 9079
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/additional-sources.json",
+      "sha256": "aae5b49f03bc80e8bacd2c57d2df25041834ecbe07f180d25b01cadf17d4bcc4",
+      "size": 57317
     },
     {
       "path": "evals/discovery/novelty-followup-01/code-audit.json",
       "sha256": "73328caa3c038614bfba97ca7789bea548331e9087b3d8f3b73196ec1186f4db",
       "size": 6011
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/collection-timing.json",
+      "sha256": "c06cbd976a99433f871ae8b88c9081df5a82c79a1167bc77d5119a426d318c07",
+      "size": 378
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/delivery-power-observation.json",
+      "sha256": "7974ac72acb32ce29f6f896f3070f665d1a2bcdd652f5bd20c151aae02fc23e5",
+      "size": 8989
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/evaluation.json",
+      "sha256": "824e7c42f02d7bdc38bf7e86520a959d9d04730552c0dae0d8b281528dc5c9d5",
+      "size": 1116
     },
     {
       "path": "evals/discovery/novelty-followup-01/frozen-input.json",
@@ -103,6 +166,76 @@
       "size": 1523184
     },
     {
+      "path": "evals/discovery/novelty-followup-01/inquiry/answer.md",
+      "sha256": "01d1fe4046a627f866687feef5af985305fb2d26dd12b1de14898cdb9c2d00f3",
+      "size": 6845
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/final-message.md",
+      "sha256": "4666dfc2a7a4db4a5f2377bb7857eab43671f4b231af7bb2d5727de227c61fbe",
+      "size": 383
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/input-summary.json",
+      "sha256": "be08f71b5a06464d47c6d9b53b9aebe5d6d571a6bed7db464d3482c06865db09",
+      "size": 5051
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/prompt.md",
+      "sha256": "e218dcaf2a63c38fe02e49e296c742de98fdaf5134fd46862a61675141180f19",
+      "size": 4375
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/public-config.json",
+      "sha256": "a5c58e413fc8a4cd66bd8ef0f344da604a19f2e81e682fa49fdb10f18e014ba6",
+      "size": 298
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/public-operations.json.gz",
+      "sha256": "3e50ad513dfab8ed509da0022c42940cce613ae99af1a9fef92efe3299c9feda",
+      "size": 199124
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inquiry/run.json",
+      "sha256": "9191a6aa66c95dd7e8fb9bcdb94a2556c521c28b174447d666ea4e64e0c4132b",
+      "size": 2969
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/answer.md",
+      "sha256": "dfa46c7596cf8fe0b35a7818d859382182b563ec09b368a0d4175fe10bc817e9",
+      "size": 10208
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/final-message.md",
+      "sha256": "ef9e24eb11e3474cdfff998dfa60856aaec711665c487fdf3645d7fdc1cfefbe",
+      "size": 343
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/input-summary.json",
+      "sha256": "66fd2ce2e539bc48264e9eef4d47a77ea041a5bc5c51b51a383d2491e8c45ec7",
+      "size": 4822
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/prompt.md",
+      "sha256": "4da040af979f6ebd4ca5611088c6f3a1d3025d034b4974f942dfa0137cfe3430",
+      "size": 4146
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/public-config.json",
+      "sha256": "c3004a27b8360f488ef49fa0c47b0cf9a7657a5aafbda7fc8ee1310ef06b3346",
+      "size": 302
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/public-operations.json.gz",
+      "sha256": "d72a06e4f8c1479453b2c527f4d96ba1c3a168d8905530039bc9c4048579fd12",
+      "size": 195309
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/inspect/run.json",
+      "sha256": "d33dc9cd584bdca5dcac92592e4dc7169343bbd0f5ff21ddc76d04ff02829d6d",
+      "size": 2968
+    },
+    {
       "path": "evals/discovery/novelty-followup-01/launch-check.json",
       "sha256": "766feb27f0ce32c7e44f593067b17544b548994c8a59cb5072b77a2ca8fcb295",
       "size": 419
@@ -113,14 +246,49 @@
       "size": 2498
     },
     {
+      "path": "evals/discovery/novelty-followup-01/reader-final.json",
+      "sha256": "c6ed9c2c5959388bfcfa8016a285307069ae2aa665bbfeb0596f3c93e2cf3f60",
+      "size": 2056
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/report.json",
+      "sha256": "1808a8b3749d470465986336e8af7d154b0d4ce924697aeb298ce7473c6b6470",
+      "size": 28242
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/research-observation.json",
+      "sha256": "0624fd1aa0d4db4b102f88e2c73e08241b4d411137e569e617a1a602e7e2ad46",
+      "size": 909
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/result.json",
+      "sha256": "7d62bda8b052ee043931109358afb5bba9065e2104c6b9f503dec87acee0eaec",
+      "size": 12493
+    },
+    {
       "path": "evals/discovery/novelty-followup-01/runtime.tar.gz",
       "sha256": "adb191df574b9122d5dd44b04e067fd5b709c817be5bdf11559b4171b2e20724",
       "size": 191288
     },
     {
+      "path": "evals/discovery/novelty-followup-01/session.tar.gz",
+      "sha256": "52f6ff06dffa53ba45e37dc59e47a2c6ef18756639899c2d79d442bc3b7fe834",
+      "size": 1814101
+    },
+    {
       "path": "evals/discovery/novelty-followup-01/test-verification.json",
       "sha256": "842bbd6b84f119f1572024db9950e262ef97db47029993bcc25b668b2884977a",
       "size": 2256
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/ui-check.json",
+      "sha256": "3e12eb2df1b08eae8441e2a8c6e4309bdb0da335c684df664ad8a266de457863",
+      "size": 551
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/verification.json",
+      "sha256": "221eab2ee68e4d576443af532175b286eedbf25aaab0b8451d78431e8d4c8be1",
+      "size": 4279
     },
     {
       "path": "evals/discovery/novelty-followup-01/workflow-checkpoint.json",
@@ -129,6 +297,48 @@
     }
   ],
   "history": [
+    {
+      "revision": 11,
+      "saved_at": "2026-09-11T15:53:05.980846+00:00",
+      "actor": "codex",
+      "reason": "出典照合と7資料を確認し、任意の調査接続として採用。全工程の実時刻と待ち時間を確定"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-11T13:31:21.478794+00:00",
+      "actor": "codex",
+      "reason": "追加7資料と別照合を回収し、最終報告へ移る"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-11T12:04:43.976496+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 8,
+      "saved_at": "2026-09-11T12:00:02.412036+00:00",
+      "actor": "codex",
+      "reason": "正式な調査報告と別照合への自動移行を確認"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-11T11:58:09.373947+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-11T11:58:09.071442+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-11T11:56:18.460633+00:00",
+      "actor": "codex",
+      "reason": "結果未判定の説明を現在の調査工程に合わせる"
+    },
     {
       "revision": 4,
       "saved_at": "2026-09-11T11:50:25.541546+00:00",
