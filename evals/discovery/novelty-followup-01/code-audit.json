@@ -1,0 +1,85 @@
+{
+  "audit": "novelty-followup-01-code-boundary",
+  "started_at_utc": "2026-09-11T11:40:10+00:00",
+  "ended_at_utc": "2026-09-11T11:44:14.983905+00:00",
+  "elapsed_seconds": 244.983905,
+  "verdict": "PASS",
+  "conclusion": "指定された差分の静的点検では、誤接続・履歴破損・未提出/期限停止の誤成功・固定実装の継承に実害のある欠陥は確認しなかった。実行補助の採用や調査内容の有用性を認定する判定ではない。",
+  "findings": [
+    {
+      "status": "PASS",
+      "point": "新しい入口は正式保存された対象評価の一致を確認し、最新改訂かつ test/unconfirmed の場合だけ固定の調査目的を作る。next_questions が空でも利用でき、既存の問い番号指定とは排他的。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:128",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:133",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:267"
+      ]
+    },
+    {
+      "status": "PASS",
+      "point": "cycle は調査・照合の両予算が指定された場合だけ、既存の停止判断後に test/unconfirmed を対象として1回接続する。任意入口を指定しない既定動作と、改訂最大2回の上限を変更していない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:37",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:148",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:158"
+      ]
+    },
+    {
+      "status": "PASS",
+      "point": "既存の案・評価は保存したまま、追加改訂0/追加評価0と引継ぎファイルの不変を検査する。最終判断は元の判断のままで、固定調査文も保存資料を独自性の証明としない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:41",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:216",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:240",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:172",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:180"
+      ]
+    },
+    {
+      "status": "PASS",
+      "point": "各担当の正常終了と報告保存・再読・公開報告の確認を必要とする既存検査が維持される。調査/照合が失敗・未提出・期限停止なら完成扱いにせず、cycle も followup_failed として止まる。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:60",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:213",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:220",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:223",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:168"
+      ]
+    },
+    {
+      "status": "PASS",
+      "point": "固定実装から再起動した cycle が同じ実装内の inquiry を呼び、調査後も保護対象・設定・追加工程の実装内容を照合する。実UTCと担当の監視時間を変更する差分はない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:165",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:171",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:216",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:152",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:253"
+      ]
+    }
+  ],
+  "checked_scope": [
+    "evals/discovery/novelty-followup-01/protocol.json",
+    "src/svdeck/discovery_inquiry.py の今回の git diff と必要周辺",
+    "src/svdeck/discovery_cycle.py の今回の git diff と必要周辺"
+  ],
+  "not_checked": [
+    "機能検査・型検査の独立再実行",
+    "実AIの調査→別照合、取得出典の妥当性・具体的有用性",
+    "生成から任意調査へ至る実AI全接続",
+    "既存 --inspect-source 再開時に保存報告が指定の調査目的と対応するかという意味上の組み合わせ（今回の cycle 接続はこのオプションを使わない）",
+    "実行中の信号・時刻差・書込み競合の動的検証",
+    "点検完了後に追加された正式入口による再検査と複数評価拒否の実装差分"
+  ],
+  "limits": [
+    "コード・DBを変更せず、新しいカード案や採点基準を作成していない。",
+    "私的 stdout.log/JSONL を読んでいない。",
+    "protocol が要求する実AI結果を見ていないため、方法採用やシステム全体完成には結び付けない。"
+  ],
+  "protocol": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/novelty-followup-01/protocol.json",
+  "post_audit_update": {
+    "source": "parent message after completion",
+    "summary": "--novelty の対象検査直後に案・評価の verify_submission 再検査と、最新改訂の複数評価拒否を追加したとの連絡。今回の点検確定後の変更であり未読。通常の問い番号指定は変更しないとの説明。",
+    "independently_verified": false
+  }
+}

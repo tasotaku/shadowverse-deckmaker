@@ -1,0 +1,71 @@
+{
+  "id": "novelty-followup-01",
+  "title": "比較試用の後に使い方の先例と普及を調べる",
+  "category": "method",
+  "status": "running",
+  "summary": "159機能検査・型検査を通過。固定の調査目的で、保存済み実案の先例・普及を実AIが調べる工程へ進む。未採用。",
+  "method": "試用かつ独自性未確認の正式評価から、同じ使い方の先例と普及を調べる固定の問いを作り、既存の調査→別照合へ接続する。カード答案・既知結論は与えない。",
+  "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。",
+  "inputs": "cycle-runner-01の正式案1件・別評価1件。既存のカード資料・記事と元の履歴を保持。rootがカード答案や問い番号を指定しない。",
+  "criteria": "機能検査・型検査・独立点検と公開入口の実AIで調査→別照合の保存が通り、出典に照らして先例・普及・未確認を具体化できれば、任意の調査接続として採用。ヒットの有無や案の採否を合格条件にしない。未実施の経路は未確認として残す。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "未判定。実装・機能検査中。",
+    "limitations": "実AIは保存済み案からの調査で、初回考案からの全工程確認や新しい種の発見力を示すものではない。"
+  },
+  "decision": {
+    "status": "unassessed",
+    "reason": "実装と実AIの有用性を確認してから判定する。"
+  },
+  "started_at": "2026-09-11T11:38:28.307822+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "implementation",
+      "title": "条件を固定し、接続を実装・機能検査",
+      "status": "completed",
+      "started_at": "2026-09-11T11:38:28.307822+00:00",
+      "ended_at": "2026-09-11T11:47:11.603408+00:00",
+      "note": "関連159件と型検査PASS。合成データ不足・合成実行側のpyc生成を修正。製品の採点・保存条件は維持。独立点検後の再保存2行は破損拒否テストを追加確認。",
+      "budget_minutes": 25
+    },
+    {
+      "id": "code-audit",
+      "title": "接続と保存の境界を別担当が点検",
+      "status": "completed",
+      "started_at": "2026-09-11T11:40:10+00:00",
+      "ended_at": "2026-09-11T11:44:14.983905+00:00",
+      "budget_minutes": 3,
+      "note": "静的点検範囲はPASS。最後に追加した正式入口の再検査2行は対象外で、機能検査に含めて確認。目安3分に対し4分04秒。"
+    },
+    {
+      "id": "live-inquiry",
+      "title": "実案の使い方の先例と普及を調査",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。",
+      "budget_minutes": 15
+    },
+    {
+      "id": "live-inspect",
+      "title": "調査結果を別担当が出典と照合",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。",
+      "budget_minutes": 10
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/novelty-followup-01/README.md",
+    "evals/discovery/novelty-followup-01/protocol.json",
+    "evals/discovery/novelty-followup-01/code-audit.json",
+    "evals/discovery/novelty-followup-01/test-verification.json",
+    "evals/discovery/novelty-followup-01/workflow-checkpoint.json",
+    "evals/discovery/novelty-followup-01/input-check.json",
+    "evals/discovery/novelty-followup-01/frozen-input.json",
+    "evals/discovery/novelty-followup-01/runtime.tar.gz",
+    "evals/discovery/novelty-followup-01/input-session.tar.gz"
+  ]
+}

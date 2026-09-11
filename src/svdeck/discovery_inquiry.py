@@ -20,7 +20,7 @@ import uuid
 from svdeck import discovery, worker
 from svdeck.discovery_evidence import digest, read_object, write_new
 from svdeck.discovery_read import packet_summary, read_packet
-from svdeck.discovery_run import check_packet, check_unchanged, copy_session, manifest
+from svdeck.discovery_run import check_packet, check_unchanged, copy_session, manifest, verify_submission
 from svdeck.discovery_sources import load_sources
 from svdeck.worker_journal import RunJournal
 
@@ -37,6 +37,10 @@ INSPECT = """調査担当とは別の資料照合担当です。inquiry_focusの
 カード名の同居と同用途、同用途の例と一般的な普及、取得本文と調査担当の解釈を区別してください。
 資料件数・報告の存在・過去の採点だけで問いの解決を認定しません。案の改訂や強さの再採点は行いません。
 answer.mdへ、照合できた主張と根拠、誤り・根拠不足、問いに新しく答えられた範囲、未確認をまとめ、指定の位置へ資料として保存してください。"""
+
+NOVELTY_QUESTION = """対象案のフォーマット、具体的な使い方、構築で担う役割について、同じ用途の先例と一般的な普及を外部出典で調べてください。
+カード名の同居だけで同じ用途とせず、誰かが試した例だけで一般に広まっているとしません。検索語・調査範囲・URL・確認日時・実際に取得した内容と解釈を分けて残してください。
+検索で見つからないことを独自性の証明にせず、分かったこと・判断できない範囲を示してください。元の案の改訂、採点の変更、自動棄却は行いません。"""
 
 
 def refresh_packet(session: Path, packet_hash: str) -> dict[str, Any]:
@@ -105,7 +109,7 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
             'public_attachment': True, 'public_reread': True, 'report_read': True}
 
 
-def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int,
+def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int | None,
         research_seconds: float, inspect_seconds: float, journal_root: Path | None = None,
         experiment_id: str | None = None, stage_prefix: str = 'live',
         inspect_source: str | None = None) -> dict[str, Any]:
@@ -122,12 +126,25 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
     if inspect_source is not None and not any(s['source_hash'] == inspect_source and s['kind'] == 'inquiry-result' for s in load_sources(source)):
         raise ValueError('照合だけを行う場合は保存済みの調査報告の識別値が必要です')
     selected = [r for r in discovery._reviews(source, revision) if digest(r) == review_hash]
-    if len(selected) != 1 or type(question_index) is not int or not 0 <= question_index < len(selected[0]['next_questions']):
-        raise ValueError('対象改訂の評価識別値と範囲内の問い位置が必要です')
+    if len(selected) != 1:
+        raise ValueError('対象改訂に対応する正式評価の識別値が必要です')
     review = selected[0]
+    # AI_NOTE: 独自性調査の目的は判定条件から固定し、自由文の問いを文字列検索で選ばない。
+    if question_index is None:
+        if revision != prior['revisions'][-1]['revision'] or review['value'] != 'test' or review['novelty'] != 'unconfirmed':
+            raise ValueError('独自性調査は最新の正式案のtestかつunconfirmedの評価が対象です')
+        verify_submission(source, 'develop', revision)
+        verify_submission(source, 'review', revision)
+        question = NOVELTY_QUESTION
+    else:
+        if type(question_index) is not int or not 0 <= question_index < len(review['next_questions']):
+            raise ValueError('範囲内の問い位置が必要です')
+        question = review['next_questions'][question_index]
     focus = {'revision': revision, 'proposal_hash': review['proposal_hash'], 'review_hash': review_hash,
              'input_packet_hash': review['packet_hash'], 'question_index': question_index,
-             'question': review['next_questions'][question_index]}
+             'question': question}
+    if question_index is None:
+        focus['origin'] = 'unconfirmed-novelty'
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,
@@ -166,7 +183,7 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
 
 今回の問い: {focus['question']}
 今回照合する保存済み報告の識別値: {inspect_source or 'この実行の調査工程が保存した報告'}。
-参照元: 改訂{revision} / 評価{review_hash} / 問い位置{question_index}（0始まり）。
+参照元: 改訂{revision} / 評価{review_hash} / {f'問い位置{question_index}（0始まり）' if question_index is not None else '独自性未確認の試用評価から設定した固定の調査目的'}。
 今回は{stage}を1回だけ、待ち時間込みの経過{seconds:g}秒まで行います。担当ID: {config['author']}。
 上限は監視側の経過時計で判定します。残り秒は次で確認できます: {sys.executable} -c "import os,time; print(float(os.environ['SVDECK_DEADLINE_MONOTONIC']) - time.monotonic())"
 UTCの開始・終了も記録しますが、その時刻差だけで期限切れと判定しません。PC休止等の扱いはOSに依存し、時計差があれば両方の値と未確認の原因を報告します。終了前に提出・保存を済ませてください。
@@ -248,7 +265,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--codex', type=Path, required=True)
     parser.add_argument('--revision', type=int, required=True)
     parser.add_argument('--review-hash', required=True)
-    parser.add_argument('--question-index', type=int, required=True)
+    focus = parser.add_mutually_exclusive_group(required=True)
+    focus.add_argument('--question-index', type=int)
+    focus.add_argument('--novelty', action='store_true', help='最新のtest/unconfirmed評価から、使い方の先例と普及を調査する')
     parser.add_argument('--research-seconds', type=float, required=True)
     parser.add_argument('--inspect-seconds', type=float, required=True)
     parser.add_argument('--journal-root', type=Path)

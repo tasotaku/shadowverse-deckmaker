@@ -18,13 +18,14 @@ import sys
 from types import FrameType
 from typing import Any
 
-from svdeck import discovery, discovery_run as engine, worker
+from svdeck import discovery, discovery_inquiry as inquiry, discovery_run as engine, worker
 from svdeck.discovery_evidence import digest, read_object, write_new
 
 
 def prepare(source: Path, output: Path, codex: Path, develop_seconds: float, review_seconds: float,
             journal_root: Path | None = None, experiment_id: str | None = None,
-            stage_prefix: str = 'cycle') -> Path:
+            stage_prefix: str = 'cycle', research_seconds: float | None = None,
+            inspect_seconds: float | None = None) -> Path:
     # AI_NOTE: 開始時の実装と入力を一度固定し、後の改訂へ別版のコードを混ぜない。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if source.is_relative_to(output) or output.is_relative_to(source):
@@ -33,6 +34,9 @@ def prepare(source: Path, output: Path, codex: Path, develop_seconds: float, rev
         raise ValueError('実行ファイルと有限の正の制限秒数が必要です')
     if bool(journal_root) != bool(experiment_id) or not stage_prefix.strip():
         raise ValueError('journal-rootとexperiment-idは一緒に指定し、stage-prefixは空にしないでください')
+    if ((research_seconds is None) != (inspect_seconds is None)
+            or any(n is not None and (not math.isfinite(n) or n <= 0) for n in (research_seconds, inspect_seconds))):
+        raise ValueError('追加の調査・照合には両方の有限の正の制限秒数が必要です')
     original = engine.manifest(source)
     discovery.report(source)
     output.mkdir(parents=True, exist_ok=False)
@@ -48,7 +52,8 @@ def prepare(source: Path, output: Path, codex: Path, develop_seconds: float, rev
                   'input_manifest': engine.manifest(output / 'input'), 'runtime_manifest': engine.manifest(runtime),
                   'codex': str(codex), 'develop_seconds': develop_seconds, 'review_seconds': review_seconds,
                   'journal_root': str(journal_root.resolve()) if journal_root else None,
-                  'experiment_id': experiment_id, 'stage_prefix': stage_prefix}
+                  'experiment_id': experiment_id, 'stage_prefix': stage_prefix,
+                  'research_seconds': research_seconds, 'inspect_seconds': inspect_seconds}
         write_new(output / 'config.json', config)
         return output
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
@@ -141,6 +146,34 @@ def run_prepared(output: Path) -> int:
             protected.append((destination, engine.manifest(destination)))
             current = destination
             if decision['action'] == 'stop':
+                # AI_NOTE: 追加予算を明示した試用・独自性未確認だけを調査へ渡し、元の採点は保持する。
+                if config.get('research_seconds') is not None:
+                    eligible = decision['judgment']['value'] == 'test' and decision['judgment']['novelty'] == 'unconfirmed'
+                    result['followup'] = {'status': 'pending' if eligible else 'skipped',
+                                          'reason': 'test_unconfirmed' if eligible else 'judgment_not_eligible',
+                                          'review_hash': decision['review_hash']}
+                    worker.save_record(output / 'result.json', result)
+                    if eligible:
+                        followup_output = output / 'novelty'
+                        followup = inquiry.run(current, followup_output, Path(config['codex']), latest + 1,
+                                               decision['review_hash'], None, config['research_seconds'], config['inspect_seconds'],
+                                               Path(config['journal_root']) if config['journal_root'] else None,
+                                               config['experiment_id'], f"{config['stage_prefix']}-novelty")
+                        result['followup']['result'] = followup
+                        result['followup']['status'] = followup['status']
+                        for folder, before in protected:
+                            engine.check_unchanged(folder, before, exact=True)
+                        if (output / 'config.json').read_bytes() != config_before:
+                            raise ValueError('実行条件が変更されました')
+                        if followup['status'] != 'completed':
+                            result.update(status='followup_failed', stop_reason=followup['status'])
+                            break
+                        engine.check_unchanged(followup_output / 'runtime', config['runtime_manifest'], exact=True)
+                        if (followup.get('session') != str(followup_output / 'session')
+                                or followup.get('formal_revisions') != 0 or followup.get('formal_reviews') != 0):
+                            raise ValueError('追加調査が元の正式案・評価の件数または保存先を変更しました')
+                        engine.check_unchanged(followup_output / 'session', engine.manifest(current))
+                        current = followup_output / 'session'
                 engine.copy_session(current, output / 'session')
                 engine.check_unchanged(output / 'session', engine.manifest(current), exact=True)
                 write_new(output / 'report.json', discovery.report(output / 'session'))
@@ -169,13 +202,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--codex', type=Path, required=True)
     parser.add_argument('--develop-seconds', type=float, required=True)
     parser.add_argument('--review-seconds', type=float, required=True)
+    parser.add_argument('--research-seconds', type=float, help='最終test/unconfirmedだけに追加する調査の上限秒数')
+    parser.add_argument('--inspect-seconds', type=float, help='追加調査を別担当が照合する上限秒数。research-secondsと一緒に指定')
     parser.add_argument('--journal-root', type=Path)
     parser.add_argument('--experiment-id')
     parser.add_argument('--stage-prefix', default='cycle')
     args = parser.parse_args(argv)
     try:
         output = prepare(args.session, args.output, args.codex, args.develop_seconds, args.review_seconds,
-                         args.journal_root, args.experiment_id, args.stage_prefix)
+                         args.journal_root, args.experiment_id, args.stage_prefix, args.research_seconds, args.inspect_seconds)
         script = ('import sys; from pathlib import Path; sys.path.insert(0, sys.argv[1]); '
                   'from svdeck.discovery_cycle import run_prepared; raise SystemExit(run_prepared(Path(sys.argv[2])))')
         os.execv(sys.executable, [sys.executable, '-B', '-c', script, str(output / 'runtime'), str(output)])

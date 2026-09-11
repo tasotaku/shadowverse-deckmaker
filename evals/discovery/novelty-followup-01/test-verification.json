@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-09-11T11:47:11.603408+00:00",
+  "verdict": "PASS",
+  "distinct_test_count": 159,
+  "related_regression_tests": 133,
+  "new_tests": 26,
+  "executions": [
+    {
+      "command": "PYTHONPATH=src:tests:tests/temp python -m pytest tests/temp/test_novelty_followup_temp.py tests/temp/test_discovery_inquiry_temp.py tests/temp/test_discovery_cycle_temp.py tests/test_discovery.py tests/test_discovery_review_contexts.py tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py -q",
+      "result": "初回5失敗・153合格、57.17秒。合成試用案のplanとdifferentiated用の合成照合資料の不足。実プロセス用の合成実行側にもpyc書込み防止の不足。",
+      "product_threshold_relaxed": false
+    },
+    {
+      "result": "正式入口の再検査と破損テスト追加後、1失敗・158合格、57.15秒。残る実プロセス検査は、合成実行側のimportが固定実装へpycを追加したため拒否。"
+    },
+    {
+      "command": "PYTHONPATH=src:tests:tests/temp python -m pytest tests/temp/test_novelty_followup_temp.py -q",
+      "result": "合成実行側のsys.dont_write_bytecode=True追加後、26合格、14.69秒。前回合格の関連133件と合わせ159件を確認。製品コードは前回全件実行から未変更。"
+    }
+  ],
+  "type_check": "mypy strict: Success: no issues found in 2 source files",
+  "checks": [
+    "適格評価・問いなしから固定目的を設定し、旧案・旧評価を保持して調査→別照合を保存",
+    "条件外・古い案・違う評価・不正な正式保存物・未指定/二重指定・不正予算を拒否",
+    "合成の別プロセスで公開cycleから考案・評価・調査・照合を接続し、固定実装一致と独自性判定の不変を確認",
+    "調査期限停止・提出なし・照合なし・実装改変で最終完了へ進めない",
+    "既存の問い番号指定・保存済み照合再開・既定cycleの回帰確認"
+  ],
+  "limits": "合成検査であり実カードの調査品質ではない。最後に追加した正式再保存2行は独立コード点検後の追加で、破損拒否を含む機能検査と型検査で確認。"
+}
