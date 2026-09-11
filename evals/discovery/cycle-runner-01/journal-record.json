@@ -1,30 +1,30 @@
 {
   "id": "cycle-runner-01",
-  "revision": 10,
-  "saved_at": "2026-09-11T11:16:49.371675+00:00",
+  "revision": 13,
+  "saved_at": "2026-09-11T11:36:04.014344+00:00",
   "actor": "codex",
-  "reason": "正式案1件と別評価への自動移行を確認",
+  "reason": "実行補助として採用。結果・訂正・未確認範囲と工程の実時刻を確定",
   "record": {
     "id": "cycle-runner-01",
     "title": "評価後の改訂を一度だけ自動でつなぐ",
     "category": "method",
-    "status": "running",
-    "summary": "正式な初回案1件を保存し、別評価へ自動移行。1枠の即時打点補助が、防御の損失に見合うかを評価中。",
+    "status": "completed",
+    "summary": "実行補助として採用。正式案1件・別評価1件を保存し、試用判定で正常停止。二回目は実AI未実施、案の独自性と実戦の強さは未確認。",
     "method": "考案・別評価 → 正式保存の再検査 → developかつ次の問いがある場合だけ改訂・別評価を1回 → 終了",
-    "procedure": "1. 継続条件と最大2回の停止条件を固定。\n2. 既存の考案・別評価の指示を変えず、固定版から実行する入口を実装。\n3. 101機能検査・型検査と独立コード点検を実施し、追加で実中断時の子の終了1件を確認。\n4. エルフの参考4記事から12資料を固定し、実AIの初回考案を開始。\n5. 正式案1件と考案担当の正常終了を確認し、別評価へ自動移行。必要時の改訂への分岐と最終結果はこれから確認する。",
+    "procedure": "1. 継続条件と最大2回の停止条件を固定。\n2. 既存の考案・別評価の指示を変えず、固定版から実行する入口を実装。\n3. 101機能検査・型検査と独立コード点検を行い、実中断時の子の終了1件を追加確認（合計102件）。\n4. エルフの参考4記事から12資料を固定し、公開入口で実AIを実行。\n5. 正式案1件の保存と考案担当の正常終了後、別評価へ自動移行。\n6. 別評価は比較試用となり、問い4件を保持して停止。二回目の2工程は未実施。\n7. 元の案、評価での訂正と使える範囲、全工程の時間を保存。独立点検と文章点検を行い、時間の説明の曖昧さを修正した。",
     "inputs": "エルフ・ローテーション。DBに保存された4記事を全件選び、全40枚と説明を取得する。カードDB・注記・既存設計原則は既知。具体的な旧案・評価やrootのカード答案は与えない。",
     "criteria": "機能検査と実AIの経路確認が通れば実行補助として採用。実AIで通らなかった分岐を実AI確認済みとしない。出力案の価値・独自性は別評価し、補助の成功を発見力・システム完成へ広げない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "102検査・型検査PASS。実AIで初回考案から別評価への自動移行を確認。考案は監視18分08秒・時刻差1時間14分48秒。別評価・必要時の自動改訂・方式の採用は未判定。",
-      "limitations": "実行補助の検証であり、方法の一般優位・発見力・実戦の強さは未確認。準備5時間38分07秒のうち5時間15分23秒がOS記録のスリープ区間と重なる。差引きをCPU作業時間とは扱わない。現在の実AI中にもスリープがあり、実時刻と監視時間を分ける。"
+      "outcome": "pass",
+      "summary": "102機能検査・型検査・独立点検と実AIの初回終了経路を確認。初回は成立・比較試用・独自性未確認で、問い4件があっても停止した。別評価で妖精1枚の過剰消費を訂正。通常の決着札がある場合の優位は示していない。",
+      "limitations": "実行補助に限定し、実AIの二回目接続・一般的な発見力・実戦の強さは未確認。実装・機能検査の時刻差5時間38分07秒のうち5時間15分23秒がOSスリープと重なる。考案の時刻差1時間14分48秒と監視18分08秒を分けて保持。同期間のOSスリープ重複56分52秒と時計差56分40秒は完全には一致しない。差引きをCPU作業時間とは扱わない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "実AIの考案・別評価・必要時の自動改訂を検証中。"
+      "status": "adopted",
+      "reason": "開始前に固定した条件に従い、正式保存・別評価・条件に沿う停止・履歴保持を手動の接続なしで確認したため、実行補助として採用。二回目は機能検査のみで、実AI確認済みとはしない。案の独自性と実戦の強さ、システム全体の完成は別判断。"
     },
     "started_at": "2026-09-11T04:22:13.213327+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-11T11:36:03.898628+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -50,34 +50,16 @@
         "status": "completed",
         "started_at": "2026-09-11T10:00:21.603871+00:00",
         "ended_at": "2026-09-11T11:15:09.944437+00:00",
-        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n時刻差1時間14分48秒、監視18分08秒。正式提出1件。OSスリープと56分52秒の重なりを観測。",
         "budget_minutes": 30
       },
       {
         "id": "cycle-1-review",
         "title": "1回目の別担当の評価",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-11T11:15:10.743335+00:00",
-        "ended_at": null,
-        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/review-run",
-        "budget_minutes": 15
-      },
-      {
-        "id": "cycle-2-develop",
-        "title": "2回目の考案・改訂",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
-        "budget_minutes": 30
-      },
-      {
-        "id": "cycle-2-review",
-        "title": "2回目の別担当の評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
+        "ended_at": "2026-09-11T11:21:45.735135+00:00",
+        "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n正式評価1件。比較試用・独自性未確認で正常停止。時刻差と監視はいずれも約6分35秒。",
         "budget_minutes": 15
       },
       {
@@ -88,6 +70,42 @@
         "ended_at": "2026-09-11T10:01:48+00:00",
         "note": "静的点検の対象範囲では重大な欠陥なし。動的な全経路保証ではない。2時間49分58秒の時刻差のうち、OSスリープ区間と2時間38分24秒が重なる。準備と並行しており合算しない。",
         "budget_minutes": 3
+      },
+      {
+        "id": "report",
+        "title": "結果・訂正・採否と工程時間を保存",
+        "status": "completed",
+        "started_at": "2026-09-11T11:24:18.276555+00:00",
+        "ended_at": "2026-09-11T11:36:03.898628+00:00",
+        "note": "原案と訂正、未実施の二回目、採用範囲と時間を保存。文章点検で時間の対象工程が曖昧だったため、表と同じ工程名へ修正。10分の目安を超えた実時刻をそのまま残す。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "final-audit",
+        "title": "独立した担当が結果と採用範囲を点検",
+        "status": "completed",
+        "started_at": "2026-09-11T11:23:30+00:00",
+        "ended_at": "2026-09-11T11:25:55+00:00",
+        "note": "公開記録の整合と固定条件に沿う実行補助の採用を支持。コード検査の再実行ではない。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "reader",
+        "title": "報告文の分かりやすさを別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-11T11:33:57+00:00",
+        "ended_at": "2026-09-11T11:34:34+00:00",
+        "note": "FAIL。所見原文は証拠として保存。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "reader-recheck",
+        "title": "時間説明の修正を別担当が再確認",
+        "status": "completed",
+        "started_at": "2026-09-11T11:35:01+00:00",
+        "ended_at": "2026-09-11T11:35:15+00:00",
+        "note": "PASS。所見原文は証拠として保存。",
+        "budget_minutes": 0.5
       }
     ],
     "evidence_paths": [
@@ -109,14 +127,33 @@
       "evals/discovery/cycle-runner-01/power-observation.json",
       "evals/discovery/cycle-runner-01/interrupt-verification.json",
       "evals/discovery/cycle-runner-01/first-proposal-observation.json",
-      "evals/discovery/cycle-runner-01/ui-check.json"
+      "evals/discovery/cycle-runner-01/ui-check.json",
+      "evals/discovery/cycle-runner-01/result.json",
+      "evals/discovery/cycle-runner-01/config.json",
+      "evals/discovery/cycle-runner-01/report.json",
+      "evals/discovery/cycle-runner-01/runtime.tar.gz",
+      "evals/discovery/cycle-runner-01/session.tar.gz",
+      "evals/discovery/cycle-runner-01/cycle-verification.json",
+      "evals/discovery/cycle-runner-01/round-1/result.json",
+      "evals/discovery/cycle-runner-01/round-1/report.json",
+      "evals/discovery/cycle-runner-01/round-1/verification.json",
+      "evals/discovery/cycle-runner-01/round-1/timing-verification.json",
+      "evals/discovery/cycle-runner-01/round-1/decision.json",
+      "evals/discovery/cycle-runner-01/round-1/develop/proposal.json",
+      "evals/discovery/cycle-runner-01/round-1/review/review.json",
+      "evals/discovery/cycle-runner-01/round-1/session.tar.gz",
+      "evals/discovery/cycle-runner-01/evaluation.json",
+      "evals/discovery/cycle-runner-01/final-audit.json",
+      "evals/discovery/cycle-runner-01/power-final-observation.json",
+      "evals/discovery/cycle-runner-01/reader-final.json",
+      "evals/discovery/cycle-runner-01/reader-recheck.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/cycle-runner-01/README.md",
-      "sha256": "a5630451c572cd4f0b189c159ec840fc5b1e5f62f0e1f8696ba3c5bfa3e3bd7f",
-      "size": 2394
+      "sha256": "16d44615dc41f6d8b51854fab7bab102b6a3906110b6cf7a41f4f2a1fba533e0",
+      "size": 8683
     },
     {
       "path": "evals/discovery/cycle-runner-01/articles/1.json",
@@ -149,6 +186,26 @@
       "size": 5781
     },
     {
+      "path": "evals/discovery/cycle-runner-01/config.json",
+      "sha256": "c7665f5d247b9ade4acddbffbb7ad0f96c72d6fe15811465f4c5b988e2e3abee",
+      "size": 8860
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/cycle-verification.json",
+      "sha256": "050a5cd49a4dd73a80aadc2f294e587d94c5957a46bc44ec75d3c11d7f5d180d",
+      "size": 600
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/evaluation.json",
+      "sha256": "9c233307a9a116bf326b9b369cbc8f850e2ebefa45066f88222c6e480ac1b760",
+      "size": 1226
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/final-audit.json",
+      "sha256": "90cb2007165e606bfab41597e327241ff3a0bda6f0d0b6b96c685883d03aae87",
+      "size": 10790
+    },
+    {
       "path": "evals/discovery/cycle-runner-01/first-proposal-observation.json",
       "sha256": "27c79800cfd159643ce0b9ba5ea66433b13b86fb99e0cbd003d4862dfda21aa7",
       "size": 1009
@@ -179,6 +236,11 @@
       "size": 742
     },
     {
+      "path": "evals/discovery/cycle-runner-01/power-final-observation.json",
+      "sha256": "6e5a71fe1127a535ee256642e16ab153c7035c8aabb397b25328e9bc37296049",
+      "size": 1580
+    },
+    {
       "path": "evals/discovery/cycle-runner-01/power-observation.json",
       "sha256": "f50975686eee69fec395abf71547eedc1ef8d9f0f3b89681b56030be8611e254",
       "size": 6657
@@ -189,9 +251,79 @@
       "size": 2243
     },
     {
+      "path": "evals/discovery/cycle-runner-01/reader-final.json",
+      "sha256": "83559849b3b2a629af2841b7ab7b3ba9a762c2592cdec696ef1c0d024d56cfa2",
+      "size": 1919
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/reader-recheck.json",
+      "sha256": "dbc7caeb10ed1404f86416e9acfa7ea163cc33ee20d7e9fd96438a0b4367d79a",
+      "size": 740
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/report.json",
+      "sha256": "112f4bfe4f76cc9f2cfa0a13c4a9339435e2951a1e91d057af718aa77b399135",
+      "size": 25396
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/result.json",
+      "sha256": "8c87fa49a4d07d69eb296ad6e66d1f3e01e5397959c15e933ded9366b3e9b8de",
+      "size": 14153
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/decision.json",
+      "sha256": "3af8fab6d0af26c3bc0011176be40983216042da29ba4de594e5d49dfe29ba07",
+      "size": 1517
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/develop/proposal.json",
+      "sha256": "91b4aabd319f98ca7056a305694a3fda351f039c25c7e072a23a8f6c3de34dcc",
+      "size": 18052
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/report.json",
+      "sha256": "112f4bfe4f76cc9f2cfa0a13c4a9339435e2951a1e91d057af718aa77b399135",
+      "size": 25396
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/result.json",
+      "sha256": "96d38f1af562c3780fadd19e0cdf328a9cc8595dfabd4e11b58fefa22963dc2d",
+      "size": 10339
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/review/review.json",
+      "sha256": "bde121f953755cb228075391ab01ec5b84cde5e9d761c7d70c58496f615bcf76",
+      "size": 8166
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/session.tar.gz",
+      "sha256": "9fe9f34cc5e7925c9cda5b7e022873818c4e6b54a24f7074872a7b737822270f",
+      "size": 1523198
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/timing-verification.json",
+      "sha256": "e3aa001352644cc205e774aec69ef9412df323f9d86a054cccb20758a04128d1",
+      "size": 2132
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/round-1/verification.json",
+      "sha256": "fc5769859611c48864e245ab8d9a06635a26282a7c2930ef60081ca5c02ff65a",
+      "size": 1013
+    },
+    {
       "path": "evals/discovery/cycle-runner-01/running-check.json",
       "sha256": "f9a4f1f8bf04d6492f3a2819c071b77d4f8b92d87c609dd34665dbc12fd33cf4",
       "size": 455
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/runtime.tar.gz",
+      "sha256": "7b3326f2ea52c5d672a88c5a8ca66f8e424f003bbbd615f0ceb19d553a401b91",
+      "size": 190092
+    },
+    {
+      "path": "evals/discovery/cycle-runner-01/session.tar.gz",
+      "sha256": "7154f45c9a68e75a070f370ac9d7099a4a46ae90ca80fcd6735a38d15fe3ceb0",
+      "size": 1523178
     },
     {
       "path": "evals/discovery/cycle-runner-01/source-intake.json",
@@ -208,5 +340,89 @@
       "sha256": "356714a2711bd4ac35d89d6fe66405c3d63242bba9c6470f68222f3e6f039190",
       "size": 543
     }
-  ]
+  ],
+  "history": [
+    {
+      "revision": 13,
+      "saved_at": "2026-09-11T11:36:04.014344+00:00",
+      "actor": "codex",
+      "reason": "実行補助として採用。結果・訂正・未確認範囲と工程の実時刻を確定"
+    },
+    {
+      "revision": 12,
+      "saved_at": "2026-09-11T11:24:18.461600+00:00",
+      "actor": "codex",
+      "reason": "実AIの正常停止と正式1案1評価を回収。未実施の追加2工程は予定から外し、報告へ移る"
+    },
+    {
+      "revision": 11,
+      "saved_at": "2026-09-11T11:21:45.740916+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-11T11:16:49.371675+00:00",
+      "actor": "codex",
+      "reason": "正式案1件と別評価への自動移行を確認"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-11T11:15:10.749354+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 8,
+      "saved_at": "2026-09-11T11:15:09.964987+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-11T11:13:30.043949+00:00",
+      "actor": "codex",
+      "reason": "実中断の追加確認と実施手順を保存"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-11T11:03:18.979640+00:00",
+      "actor": "codex",
+      "reason": "独立点検を回収。長い時刻差とOSスリープ区間の重なりを分けて記録"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-11T10:26:11.599032+00:00",
+      "actor": "codex",
+      "reason": "初回考案開始と固定実装の一致を観測"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-11T10:00:21.608529+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-11T10:00:20.783053+00:00",
+      "actor": "codex",
+      "reason": "固定入力と101検査を確認。実AIの最大4工程を登録"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-11T07:23:36.239599+00:00",
+      "actor": "codex",
+      "reason": "101検査と型検査を確認。全4記事を選定して実AI入力を準備"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-11T04:22:25.298510+00:00",
+      "actor": "codex",
+      "reason": "一度だけの自動改訂接続の検証を開始"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
 }

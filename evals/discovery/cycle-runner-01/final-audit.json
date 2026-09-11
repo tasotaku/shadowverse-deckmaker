@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-11 11:23:30 UTC",
+  "ended_at_utc": "2026-09-11 11:25:55 UTC",
+  "verdict": "PASS（指定された公開記録の整合性と採用範囲の点検）",
+  "conclusion": "固定protocolに沿う実行補助としての採用を支持する。実AIで確認したのは、正式案1件・独立評価1件を完了し、testで第2回を起動せず終了・集約する経路。developから実AIを2回つなぐ経路は未実施であり、その部分は機能検査と静的点検の範囲にとどまる。案のtestは限定した比較試用で、実行補助の成功を発見力・独自性・システム完成へ広げない。",
+  "scope": "protocol、round-1のresult/verification/timing-verification/decision/提案/review、およびcycle resultの読み取り。コード編集、私的stdout/JSONL閲覧、新しいカード答案、基準変更、実AI起動は行わない。",
+  "points": [
+    {
+      "id": 1,
+      "verdict": "PASS",
+      "topic": "停止判断と実行補助の採用範囲",
+      "reason": "正式評価はsupported/test/unconfirmed、次の問い4件。decisionはその評価・問いと一致してvalue_testでstop、cycle resultもcompleted・実行round数1・検証済み案1/評価1で一致する。developかつ問いありだけ継続する固定条件どおりで、問いがあるだけでは追加改訂を強制しない。protocolは実AI未通過分岐を未確認とすることを条件に実行補助の採用を認めており、実AIで2回接続を強制する新条件は作らない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/protocol.json",
+          "pointers": [
+            "/flow",
+            "/checks",
+            "/adoption"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/decision.json",
+          "pointers": [
+            "/judgment",
+            "/next_questions",
+            "/action",
+            "/reason"
+          ]
+        },
+        {
+          "file": "/tmp/sv-cycle-runner-01/result.json",
+          "pointers": [
+            "/status",
+            "/rounds",
+            "/verified_revisions",
+            "/verified_reviews",
+            "/stop_reason"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "verdict": "PASS（限定した試用理由）",
+      "topic": "試用価値と未確認の区別",
+      "reason": "船頭1枚を匠へ替え、既存のシトラスを後半に引いた際、前ターンの味方生存・SEP・奥義蓄積を要さず指定状態で処理と即時5点を得る補助用途が試用理由である。船頭の生成・処理量、通常側の大きい残盤面、共通オルテニアの防御・手札・進化回数を失うことも比較している。相手10→5で非致死、シトラスとEPの自然な残り方、適した突進先、通常決着札不足時の頻度は未確認であり、採用確定・防御改善・強さの証明にはしていない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/review/review.json",
+          "pointers": [
+            "/findings/0",
+            "/findings/2",
+            "/next_questions"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/develop/proposal.json",
+          "pointers": [
+            "/plan/finish",
+            "/plan/without_core",
+            "/plan/allocation",
+            "/plan/comparison",
+            "/uncertainties"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "verdict": "PASS（訂正の正式保存あり）",
+      "topic": "妖精の過剰消費と通常決着札の優位を隠していない",
+      "reason": "review/findings/1に、最後の妖精を1枚だけ突進させれば同じ5点と守護除去を保ち、匠4/4に妖精1/1を残せるという訂正が保存されている。元の手順は成立するが妖精1枚を余分に使い、残盤面を過小評価していた。通常側の最初の攻撃を『相打ち』と呼ぶ誤記も同所で訂正されている。review/findings/2には、両側の共通札をセタス＆メイシアへ替えた別状態では通常札1枚・7PP・EP1で6点と守護処理・6/8守護を得る比較があり、匠を通常決着札が使えない時の補助へ限定している。別状態の札を元の固定手札へ無料追加した比較とは扱わない。",
+      "recording_limit": "訂正は正式reviewへの保存であり、原提案を修正再提出した実績ではない。追加改訂0回のまま、原案と訂正を併記する。旧4/4のみの盤面を訂正後の最適盤面として引用しない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/review/review.json",
+          "pointers": [
+            "/findings/1",
+            "/findings/2"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/develop/proposal.json",
+          "pointers": [
+            "/steps/4",
+            "/steps/5",
+            "/plan/comparison"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/timing-verification.json",
+          "pointers": [
+            "/stages/0/raw_response_preserved_except_assigned_author",
+            "/stages/1/raw_response_preserved_except_assigned_author"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "verdict": "PASS（公開記録間の整合）",
+      "topic": "正式記録・独立性・保全",
+      "reason": "round result、verification、decision、cycle resultの判定が一致する。decisionの提案hash・評価hashはtiming-verificationの正式hashと一致し、cycle内のdecisionも保存decisionと完全一致する。verificationは元入力・source・固定runtimeの保持を記録し、timing-verificationは別担当、旧評価除外、今回packetだけ、正式操作各1件を記録している。指定記録に重要な不整合は見つからなかった。",
+      "limit": "DBはverificationに識別値が保存されている。本監査ではDB、runtime、元入力の全実ファイルを再ハッシュしていないため、公開検証記録の照合と区別する。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/result.json",
+          "pointers": [
+            "/status",
+            "/judgment",
+            "/formal_revisions",
+            "/formal_reviews"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/verification.json",
+          "pointers": [
+            "/source_unchanged",
+            "/original_input_unchanged",
+            "/runtime_matches_fixed",
+            "/main_db_sha256"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/timing-verification.json",
+          "pointers": [
+            "/stages/0/formal_hash",
+            "/stages/1/formal_hash",
+            "/stages/1/author_differs_from_proposal",
+            "/stages/1/old_review_files_omitted",
+            "/stages/1/only_current_review_packet"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "verdict": "PASS（時刻と未実施範囲を分離）",
+      "topic": "実時刻を監視時間へ短縮しない",
+      "reason": "考案のUTC時刻差4488.340566秒と監視1087.562266124878秒、別評価のUTC時刻差394.9918秒と監視394.98879049997777秒が別欄で保存されている。監視値は各予算1800/900秒以内だが、考案を実時間18分だけだったとは報告しない。提出後の約54.44秒・69.07秒も観測差として残し、内訳や大きな時計差の原因を推測しない。実AIの第2回、追加改訂の有用性、普及・独自性、実戦勝率は未確認のままである。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/timing-verification.json",
+          "pointers": [
+            "/stages",
+            "/limits"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/round-1/review/review.json",
+          "pointers": [
+            "/novelty",
+            "/findings/3",
+            "/web_checks"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/protocol.json",
+          "pointers": [
+            "/adoption",
+            "/limits"
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_checks": {
+    "all_judgments_equal": true,
+    "next_questions_count": 4,
+    "decision_questions_equal_formal_response": true,
+    "recorded_cycle_round_count": 1,
+    "cycle_decision_equals_saved_decision": true,
+    "decision_hashes_equal_timing_formal_hashes": true,
+    "monitor_budgets_respected": true,
+    "live_second_round_executed": false
+  },
+  "independent_verification_limit": "親から102機能検査・型検査・静的点検済みとの報告を受けた。本監査ではそれらを再実行せず、独立した機能検査実績とは数えない。実AI未実施の2回接続を実AI確認済みにしない。",
+  "source_sha256": {
+    "protocol.json": "6f542b14f351cdad2109019a69e4fbf25e6fe5dcb7e29a1dd8d6f85353e3845a",
+    "round-1/result.json": "96d38f1af562c3780fadd19e0cdf328a9cc8595dfabd4e11b58fefa22963dc2d",
+    "round-1/verification.json": "fc5769859611c48864e245ab8d9a06635a26282a7c2930ef60081ca5c02ff65a",
+    "round-1/timing-verification.json": "e3aa001352644cc205e774aec69ef9412df323f9d86a054cccb20758a04128d1",
+    "round-1/decision.json": "3af8fab6d0af26c3bc0011176be40983216042da29ba4de594e5d49dfe29ba07",
+    "round-1/develop/proposal.json": "91b4aabd319f98ca7056a305694a3fda351f039c25c7e072a23a8f6c3de34dcc",
+    "round-1/review/review.json": "bde121f953755cb228075391ab01ec5b84cde5e9d761c7d70c58496f615bcf76"
+  },
+  "output_path": "/tmp/cycle-runner-final-audit.json",
+  "elapsed_seconds": 145
+}

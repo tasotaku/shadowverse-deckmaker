@@ -1,0 +1,30 @@
+{
+  "started_at_utc": "2026-09-11 11:33:57 UTC",
+  "finished_at_utc": "2026-09-11 11:34:34 UTC",
+  "elapsed_seconds": 37,
+  "verdict": "FAIL",
+  "reviewed_files": [
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/README.md",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/cycle-runner-01/evaluation.json"
+  ],
+  "findings": [
+    {
+      "severity": "material_ambiguity",
+      "quote": "準備の時刻差のうち5時間15分23秒、独立点検のうち2時間38分24秒はOS記録のスリープ区間と重なります。",
+      "issue": "表にある「入力準備」は2時間36分44秒なので、「準備」のスリープ重複5時間15分23秒とは両立しません。「実装・機能検査」など別工程を指しているなら対象が特定できず、工程別の時間を誤読します。",
+      "minimal_fix": "5時間15分23秒が対応する工程を表と同じ名称で明記する。実装工程の値なら冒頭を「実装・機能検査の時刻差のうち5時間15分23秒」に替える。入力準備の値なら時間を訂正する。"
+    }
+  ],
+  "unreviewed_requested_scope": [],
+  "not_checked": [
+    "コード・リンク先資料・実行ログ・OS記録そのものの正しさは対象外で未確認。",
+    "カード効果や実戦評価の独自検証は対象外で未確認。"
+  ],
+  "otherwise_clear": [
+    "採用範囲は実行補助であり、システム全体の完成ではない。",
+    "実AIは初回1案・1評価から試用判定で停止。二回目は機能検査のみ。",
+    "独自性と実戦強度は未確認。",
+    "考案の時計差56分40秒とOSスリープ重複56分52秒は別の観測値で、完全一致や全因果を主張していない。",
+    "READMEとevaluation.jsonの採用範囲・実施範囲に矛盾はない。"
+  ]
+}
