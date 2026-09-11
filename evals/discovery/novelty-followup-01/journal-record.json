@@ -1,15 +1,15 @@
 {
   "id": "novelty-followup-01",
-  "revision": 2,
-  "saved_at": "2026-09-11T11:47:12.284493+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-11T11:50:25.541546+00:00",
   "actor": "codex",
-  "reason": "159検査を確認し、実AIの調査と別照合を登録",
+  "reason": "実AIの新入口と固定実装の一致を観測",
   "record": {
     "id": "novelty-followup-01",
     "title": "比較試用の後に使い方の先例と普及を調べる",
     "category": "method",
     "status": "running",
-    "summary": "159機能検査・型検査を通過。固定の調査目的で、保存済み実案の先例・普及を実AIが調べる工程へ進む。未採用。",
+    "summary": "実AIによる先例・普及の調査を20:47:30に開始。問い番号の指定なしで固定の調査目的へ接続。調査後に別照合へ進む。",
     "method": "試用かつ独自性未確認の正式評価から、同じ使い方の先例と普及を調べる固定の問いを作り、既存の調査→別照合へ接続する。カード答案・既知結論は与えない。",
     "procedure": "1. 条件と評価範囲を固定。\n2. 保存済み評価からの調査目的の設定と、探索終了後の任意接続を実装。\n3. 機能検査と別担当の点検後、保存済み案で実AIの後続調査を検証する。\n4. 関連159件と型検査を確認し、実装と元の正式入力を固定。実AIは問い番号を渡さず、独自性調査の新入口で起動する。",
     "inputs": "cycle-runner-01の正式案1件・別評価1件。既存のカード資料・記事と元の履歴を保持。rootがカード答案や問い番号を指定しない。",
@@ -47,10 +47,10 @@
       {
         "id": "live-inquiry",
         "title": "実案の使い方の先例と普及を調査",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-11T11:47:30.288866+00:00",
         "ended_at": null,
-        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。",
+        "note": "公開入口の実行監視から開始・終了を自動記録。未実施時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-novelty-followup-01/inquiry-run",
         "budget_minutes": 15
       },
       {
@@ -72,14 +72,15 @@
       "evals/discovery/novelty-followup-01/input-check.json",
       "evals/discovery/novelty-followup-01/frozen-input.json",
       "evals/discovery/novelty-followup-01/runtime.tar.gz",
-      "evals/discovery/novelty-followup-01/input-session.tar.gz"
+      "evals/discovery/novelty-followup-01/input-session.tar.gz",
+      "evals/discovery/novelty-followup-01/launch-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/novelty-followup-01/README.md",
-      "sha256": "cfaf5dbd30a704a12f8c0ee474cf2461784b3e132c30913a075f0830cfa9d64b",
-      "size": 559
+      "sha256": "619a5e89af49a169869820c087b51891a5f03f00035403af206ddae99d4b58e2",
+      "size": 2637
     },
     {
       "path": "evals/discovery/novelty-followup-01/code-audit.json",
@@ -100,6 +101,11 @@
       "path": "evals/discovery/novelty-followup-01/input-session.tar.gz",
       "sha256": "41aa07ef317952698b70903d178cefb3eb59381d8661603c535772d4ac408209",
       "size": 1523184
+    },
+    {
+      "path": "evals/discovery/novelty-followup-01/launch-check.json",
+      "sha256": "766feb27f0ce32c7e44f593067b17544b548994c8a59cb5072b77a2ca8fcb295",
+      "size": 419
     },
     {
       "path": "evals/discovery/novelty-followup-01/protocol.json",
@@ -123,6 +129,18 @@
     }
   ],
   "history": [
+    {
+      "revision": 4,
+      "saved_at": "2026-09-11T11:50:25.541546+00:00",
+      "actor": "codex",
+      "reason": "実AIの新入口と固定実装の一致を観測"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-11T11:47:30.295601+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
     {
       "revision": 2,
       "saved_at": "2026-09-11T11:47:12.284493+00:00",
