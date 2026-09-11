@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-11T07:23:36.103542+00:00",
+  "initial_result": "17 pass / 4 fail。試験用改訂が初回と同じで正式入口に拒否された。期待や製品の制約を緩めず、試験の2回目に保護役を加える実変更を入れた。",
+  "test_result": "101 passed in 28.48s",
+  "test_command": "PYTHONPATH=src:tests /tmp/sv-system-venv/bin/python -m pytest tests/temp/test_discovery_cycle_temp.py tests/test_discovery.py tests/test_discovery_review_contexts.py tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py -q",
+  "mypy": "strict PASS",
+  "public_cli": "試験用実行先で公開CLI→固定実装→2回の考案・別評価→終了を確認。実AIでは未確認。",
+  "limits": "この検査ではカードの発見力を判定していない。",
+  "clock_note": "準備工程の開始04:22:13UTCから報告時点までの時刻差は20分の目安を超過。監視されたpytestの28.48秒を全工程時間の代わりにしない。空白の原因は未確認。"
+}

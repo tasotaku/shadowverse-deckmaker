@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-11 04:22:12 UTC",
+  "ended_at_utc": "2026-09-11 04:24:04 UTC",
+  "scope": "discovery_run.py / discovery.pyの保存形式と検査を読んだ実装境界点検。実装・新規試行・私的stdout/JSONL閲覧は行わない。",
+  "conclusion": "既存runの成果契約を維持し、継続条件を正式評価へ結び、同じ固定版のCLIを最大2回だけ呼ぶ薄い入口として実装できる。必要な保証は以下5件に限定する。",
+  "guarantees": [
+    {
+      "id": 1,
+      "topic": "継続は今回の正式改訂に対応する唯一評価で判定する",
+      "requirement": "最初のCLI終了コード0、result.status=completed、通常runとして新規改訂1・新規評価1、保存sessionと対象expected_revisionの対応を確認する。対象版の正式評価が1件だけで、valueが厳密にdevelop、next_questionsが非空の文字列配列の場合だけ継続する。test/drop/unknown、空配列、複数評価、欠損・型違い・対応不一致は継続しない。result.judgmentだけ、親版の評価、reportのstatus文字列で決めない。",
+      "actual_format": "正式提案・評価は{sha256,data}。reviewにはrevisionとproposal_hashが追加され、next_questionsはreview内にある。result.judgmentはprocedure/value/noveltyの3項目だけ。report.statusは固定の説明文で実行状態ではない。空のnext_questions配列は正式保存として有効なのでcycle側で明示判定が必要。",
+      "avoid_duplicate_work": "正式保存の検査は既存runの検証と既存読出し・検査関数を再利用し、新しいゲーム評価を行わない。破損時に都合のよい評価を選び直さない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py",
+          "lines": [
+            90,
+            99,
+            102,
+            128,
+            132,
+            397,
+            420,
+            433,
+            440,
+            448,
+            457
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+          "lines": [
+            293,
+            307,
+            318,
+            319,
+            334,
+            335
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "次へ渡すのは検証済みの出力sessionで、元入力と初回成果を保持する",
+      "requirement": "第2回のsourceは第1回の完成したOUTPUT/sessionを内容識別値付きで固定し、その最新の正式改訂を親とする。develop/sessionなど集約前の作業場所を渡さない。元入力と第1回sessionは前後の完全一致を確認し、出力先は新規かつ入力との内包・共有リンクを拒む。第2回失敗でも元入力と第1回成果は保持する。",
+      "actual_format": "完成sessionは提案・旧評価・追加資料・対応packetを集約している。次のdevelop packetは正式reviewのnext_questionsと資料差分を既に取り込む。別評価には既存runが旧review・旧packetを除いた複製を渡すため、cycleが問いを書き換えたり、カードの答え・独自の指示を足したりする必要はない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+          "lines": [
+            31,
+            42,
+            50,
+            195,
+            207,
+            217,
+            219,
+            236,
+            237,
+            275,
+            279,
+            321,
+            335
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py",
+          "lines": [
+            137,
+            163,
+            272,
+            279,
+            286,
+            293,
+            299,
+            304,
+            378,
+            392
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "入口開始時に固定した実行用コードを2回とも実際に使う",
+      "requirement": "cycle開始時のsvdeck一式を1回固定してmanifestを保存し、両CLIをその固定コピーから起動する。liveのsrcを再度importしてrunを呼ぶ形にしない。各run内のruntimeが固定コピーと一致することと、固定コピー自体の前後不変を確認する。固定runtimeへの変更を検出したら第2回を起動せず停止する。",
+      "actual_behavior": "discovery_runはPath(__file__).resolve().parentを各runのruntimeへコピーする。したがって両回の実際のモジュール読込元を固定すれば既存CLIを再利用できる。PYTHONPATHを指定したという申告だけで済ませず、読込元・runtimeの内容一致を記録する。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+          "lines": [
+            31,
+            42,
+            213,
+            215,
+            244,
+            245,
+            276
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "最大2回と各工程の時刻・台帳を混同しない",
+      "requirement": "run回数を最大2に固定し、第2回結果にdevelopと問いが残っても3回目へ進まない。分岐前に、対象revision・proposal/reviewのhash・元のnext_questions・継続または停止理由を保存する。各runに別出力先と別stage-prefixを与え、台帳使用時はprefix-develop/prefix-reviewのIDを重複させない。第2回未実施は省略理由付きで記録する。",
+      "timing": "各工程の有限の正の予算を事前に固定し、途中で延長・自動再試行しない。cycle全体と各runのUTC開始終了、子の監視時間・状態を別記し、UTCの長い空白を監視時間へ置き換えない。2回分の工程予算の和を、準備・検証・集約まで含む厳密な全体実時刻上限とは表示しない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+          "lines": [
+            202,
+            205,
+            209,
+            232,
+            269,
+            272,
+            273,
+            274,
+            338,
+            340
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "異常停止を成果の成功へ読み替えず、動いている子を残して次へ進まない",
+      "requirement": "CLI非0、run未完了、検証例外、未提出、保存失敗はcycleも未完了として止める。正式ファイルだけ残っていても自動回収・代理提出・review-only再開を挿入しない。cycleへの中断時は稼働中のCLI監視側へ終了要求を伝え、子の停止確認前に第2回へ進まない。停止未確認はそのまま記録する。",
+      "result_contract": "完走したtest/drop/問いなしや2回上限での停止は、工程を計画どおり終了した理由として失敗と区別する。第2回失敗時は第1回成功を残せるが、それをcycle全体の成功や最終testへ昇格させない。新規改訂・評価件数、最終の有効な保存先、試用価値と工程完了を別々に返す。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+          "lines": [
+            272,
+            280,
+            282,
+            290,
+            305,
+            319,
+            321,
+            334,
+            336,
+            340
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py",
+          "lines": [
+            397,
+            437,
+            440,
+            457
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "これは予定入口の具体的な境界条件で、未作成のdiscovery_cycleの動作確認や新しい品質基準ではない。既存のゲーム判断・評価形式を維持する。",
+  "output_path": "/tmp/discovery-cycle-boundary-audit.json",
+  "elapsed_seconds": 112
+}
