@@ -1,0 +1,86 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/sv-state-transfer-dragon-01/revision/review",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/sv-state-transfer-dragon-01/revision/review/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-state-transfer-dragon-01/revision/review",
+  "stdin": "/private/tmp/sv-state-transfer-dragon-01/revision/review/prompt.md",
+  "output": "/private/tmp/sv-state-transfer-dragon-01/revision/review-run",
+  "started_at": "2026-09-10T16:05:51.489893+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2292246.213359708,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 26381,
+  "worker_pid": 45285,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-10T16:47:51.532750+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-10T16:05:51.490167+00:00",
+      "elapsed_seconds": 0.0002699168398976326
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-10T16:05:51.490691+00:00",
+      "elapsed_seconds": 0.0007950421422719955
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-10T16:05:51.504126+00:00",
+      "elapsed_seconds": 0.014249958097934723
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-10T16:47:51.530971+00:00",
+      "elapsed_seconds": 673.9093615831807,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-10T16:47:51.532757+00:00",
+      "elapsed_seconds": 673.9110784581862
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-10T16:47:51.542663+00:00",
+      "elapsed_seconds": 673.9209851250052
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "state-transfer-dragon-01",
+    "stage_id": "revision-review",
+    "status": "completed",
+    "begin_revision": 15,
+    "claimed_stage": {
+      "id": "revision-review",
+      "title": "改訂後の固有の利益と採用負担を別評価",
+      "status": "running",
+      "started_at": "2026-09-10T16:05:51.489893+00:00",
+      "ended_at": null,
+      "note": "別評価15分、1回。最終が保留のみなら方式の本採用はしない。\n起動処理を開始。実行記録: /private/tmp/sv-state-transfer-dragon-01/revision/review-run",
+      "budget_minutes": 15
+    },
+    "end_revision": 17,
+    "synced_at": "2026-09-10T16:47:51.542654+00:00"
+  },
+  "elapsed_seconds": 673.9110755831935,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

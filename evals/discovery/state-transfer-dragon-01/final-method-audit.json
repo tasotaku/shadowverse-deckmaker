@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-09-10 16:47:07 UTC",
+  "ended_at_utc": "2026-09-10 16:50:53 UTC",
+  "scope": "固定protocol、既読の初回・分岐、改訂提案、提出済みreviewと正式保存の限定読取り。私的stdout/JSONL・Web・追加カード探索・稼働中担当への入力・編集・新規実験は行わない。",
+  "conclusion": {
+    "trial_utility": "PASS：正式reviewの条件付きtestを固定基準の範囲で支持する。",
+    "method_adoption": "PASS：内容面の採用条件に加え、正式回収result・verificationで自然終了completed、正式改訂1件・別評価1件、入力・runtime・DB保持を確認した。固定プロトコルの範囲で比較指示の運用採用を支持する。",
+    "system_completion": "この観測はシステム全体の完成、一般的優越、勝率・Tierの証明ではない。",
+    "threshold_correction": "体力3〜4を候補固有の致死差に含めるのは誤りであり報告で訂正する。ただし体力14の主比較の重大誤りでも、限定した試用理由全体を失わせる誤りでもない。体力5〜7は次に比較する範囲であり、通常側の未知ドローを含む最善行動に対して差がすべて実証済みとはしない。"
+  },
+  "grading": {
+    "workflow": "PASS：正式回収記録でcompleted・改訂1件・別評価1件と保全確認が一致。監視時計の既定予算内で、UTCの長い時刻差は別記する。",
+    "correctness": "PASS（条件を明記）：固定主手順に本文で確認された重大誤りなし。派生した致死範囲の訂正を残す。",
+    "development": "PASS",
+    "utility": "PASS（限定的な比較試用）",
+    "honesty": "PASS（新規性はunconfirmed）"
+  },
+  "points": [
+    {
+      "id": 1,
+      "verdict": "PASS",
+      "topic": "主比較と致死範囲の訂正を区別する",
+      "reason": "相手体力14の主比較では、案7点・2回復・全処理と通常Aの2点・全処理、その代償の手札4枚差・残PP差が正式評価で支持されている。提案は通常Cの深淵2枚直接使用＋波揺花による4点も既に記載していた。誤りはfinishで相手体力3〜7を通常構築全体への致死差へ広げた箇所で、3〜4なら通常Cでも勝つため全処理の不足は問題にならない。これは実際の適用範囲の誤りとして訂正するが、主比較の通常行動を丸ごと落とした場合とは異なる。",
+      "evidence": [
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/develop/proposal.json",
+          "pointers": [
+            "/steps/2",
+            "/steps/4",
+            "/steps/5",
+            "/steps/6",
+            "/plan/finish"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/review.json",
+          "pointers": [
+            "/findings/0",
+            "/findings/3"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/fixed_grading/correctness",
+            "/adoption"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "verdict": "PASS",
+      "topic": "追加工程は実質的に進展した",
+      "reason": "初回で問題になった手札の複製、捨て札3枚・原本保持、起動時進化権と既存8PP札との重複を受け、核そのものと用途を変更した。捨て札2枚、同ターン5PP、起動時進化権不要へ変え、既存の8PP札を両側の共通手札へ入れた比較と8〜10PPでの制限を示す。単なる9→5PPの計算修正ではなく、手札・進化権・採用札・使う窓を根拠により変えている。未確認の少枚数コピー裁定に依存する枝も見送った。",
+      "evidence": [
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/develop/proposal.json",
+          "pointers": [
+            "/change",
+            "/steps/7",
+            "/plan/allocation",
+            "/plan/comparison"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/review.json",
+          "pointers": [
+            "/findings/2",
+            "/findings/3"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/fixed_grading/development"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "verdict": "PASS",
+      "topic": "訂正後も限定した試用理由が残る",
+      "reason": "正式reviewが認める理由は、既存の深淵2枚を直接使う4PP・2点・2回復から、追加1枚を使う3PP・5点・2回復・単体へのランダム3点へ変える交換と、既存8PP本体を払えない窓への役割差である。致死差3〜7の主張だけに依存した推薦ではない。追加は提示との1枠交換で、既存基盤と核不成立時の勝ち方を保持し、失う補充・処理が戻らないことも明記する。したがって、訂正を反映した限定testは固定utilityに沿う。自然な窓の頻度や対戦結果を新たな必須条件にしてdevelopへ下げない。",
+      "evidence": [
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/review.json",
+          "pointers": [
+            "/findings/2",
+            "/findings/3"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/develop/proposal.json",
+          "pointers": [
+            "/plan/early",
+            "/plan/transition",
+            "/plan/without_core",
+            "/plan/allocation"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/fixed_grading/utility"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "verdict": "判断留保",
+      "topic": "残る条件を推薦の中に保持する",
+      "reason": "主比較の体力14では案を実際に使う優位は未成立で、非致死後の手札不足は重い。準備で回復の代わりにランプできる選択、7PP窓への到達、相手2体盤面の代表性、通常側の未知ドロー、核不足時に失う提示の役割は未確認として残す。5〜7は優位が保証された範囲ではなく次に調べる範囲で、得る利益より失う役割が重ければ推薦を撤回するという限定を維持する。これらが未解決であることは、今回の基準にない全面優位・勝率証明を要求する理由にはしない。",
+      "evidence": [
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/review.json",
+          "pointers": [
+            "/findings/1",
+            "/findings/3",
+            "/next_questions"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/develop/proposal.json",
+          "pointers": [
+            "/uncertainties",
+            "/plan/without_core"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "verdict": "PASS",
+      "topic": "方法採用と工程完了・システム完成を分ける",
+      "reason": "通常側の出力を分ける比較が、手札複製の廃止、核の変更、起動資源の軽減、低PPへの用途限定と8〜10PPでの不利の明記へ反映され、訂正後も試す理由のある種が残る。主な比較の重大誤りなし・比較の判断への反映・試す理由という固定adoptionを満たす。正式回収resultとverificationで全体completed・改訂1件・別評価1件・入力保全も確認した。基本ペアの先行言及と新規性保留、新しい入力1件・同時対照なしという限界を維持し、全体完成や一般的優越とはしない。",
+      "evidence": [
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json",
+          "pointers": [
+            "/adoption",
+            "/fixed_grading/workflow",
+            "/fixed_grading/honesty",
+            "/limits"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/review.json",
+          "pointers": [
+            "/novelty",
+            "/findings/4"
+          ]
+        },
+        {
+          "file": "/tmp/sv-state-transfer-dragon-01/revision/review/session/review-0002-d5b5d12eb7e31d97.json",
+          "pointers": [
+            "/sha256",
+            "/data/revision",
+            "/data/proposal_hash"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/result.json",
+          "pointers": [
+            "/status",
+            "/formal_revisions",
+            "/formal_reviews",
+            "/source_unchanged"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/verification.json",
+          "pointers": [
+            "/status",
+            "/original_input_unchanged",
+            "/main_db_unchanged",
+            "/runtime_matches_preflight"
+          ]
+        },
+        {
+          "file": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/timing-verification.json",
+          "pointers": [
+            "/stages/1"
+          ]
+        }
+      ]
+    }
+  ],
+  "formal_review_check": {
+    "file": "/tmp/sv-state-transfer-dragon-01/revision/review/session/review-0002-d5b5d12eb7e31d97.json",
+    "count": 1,
+    "response_matches_formal_fields": true,
+    "revision": 2,
+    "proposal_hash": "02d8ccae0a54b03e2f21109f9cd6c4e0a28a78a82166cb50409d506e37ff6992",
+    "formal_digest": "d5b5d12eb7e31d970269d81a540fd9e4fc2461854b0615c30928cbc40acad05a"
+  },
+  "source_sha256": {
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/protocol.json": "b5d14adfb462a30c7dc5c3a3f1d7d9a170df04937659a80d4677bf1c9a347c14",
+    "/tmp/sv-state-transfer-dragon-01/revision/develop/proposal.json": "782bfc17a485b730b9fcc339eff1af84314e345fbac5b87cba114b044b8fd424",
+    "/tmp/sv-state-transfer-dragon-01/revision/review/review.json": "bc97ad9cceb9f2e2f2230d60314e7da0426743e91435d1d8bd96cd4979b27529",
+    "/tmp/sv-state-transfer-dragon-01/revision/review/session/review-0002-d5b5d12eb7e31d97.json": "dfe33be7c651adac8372c9169d387704d8d1cf970b47855a9bc8da329f886b19",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/result.json": "34535a005d4e819de5f160a92dca9a6c8eeffeb952a4e49c86d6b70cfd9bd0af",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/verification.json": "6b190fcb539ea5df1869466efca3e67d8eba308fcc12a39a0b5d7711290006a2",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/timing-verification.json": "96cf25f3c59408db006bc741d607189a5eb0c57f140d3d48a8d3e15a53890327",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/develop/proposal.json": "782bfc17a485b730b9fcc339eff1af84314e345fbac5b87cba114b044b8fd424",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/state-transfer-dragon-01/revision/review/review.json": "bc97ad9cceb9f2e2f2230d60314e7da0426743e91435d1d8bd96cd4979b27529"
+  },
+  "limitations": "正式回答と回収された公開result・verification・timing-verificationに基づく固定条件の独立点検。入力・runtime・DB保持は公開検証記録を照合したもので、各実ファイルを再ハッシュした全面監査ではない。追加のゲーム探索・対戦検証・私的ログ閲覧は行っていない。",
+  "runtime_timing_note": "正式回収timing-verificationではレビューのUTC時刻差2520.042857秒、監視673.9110755831935秒、予算900秒。正式reviewは16:46:00.925842 UTC、全体終了16:47:52.058965 UTC。空白前に正式提出されたという親の以前の観測順序は訂正済みで採用しない。OSのMaintenance Sleep等は親からの報告であり本監査はOSログを調べていない。UTCの空白を短縮補正せず、方法の意味判定と実行記録を区別した。",
+  "output_path": "/tmp/state-transfer-dragon-01-final-method-audit.json",
+  "elapsed_seconds": 226.0,
+  "final_collection_check": {
+    "status": "completed",
+    "formal_revisions": 1,
+    "formal_reviews": 1,
+    "collected_proposal_and_review_identical_to_audited_files": true,
+    "engine_ended_at": "2026-09-10T16:47:52.058965+00:00",
+    "review_formal_operation_ended_at": "2026-09-10T16:46:00.925842+00:00",
+    "review_wall_seconds": 2520.042857,
+    "review_monitor_seconds": 673.9110755831935,
+    "review_budget_seconds": 900.0,
+    "utc_gap_not_shortened": true
+  }
+}

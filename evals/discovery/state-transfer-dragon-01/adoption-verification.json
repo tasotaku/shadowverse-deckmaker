@@ -1,0 +1,27 @@
+{
+  "observed_completed_at": "2026-09-10T16:55:23.189065+00:00",
+  "functional": {
+    "command": "PYTHONPATH=src python -m pytest tests/test_discovery.py tests/test_discovery_review_contexts.py tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py -q",
+    "passed": 80,
+    "failed": 0,
+    "pytest_seconds": 15.51,
+    "coverage": [
+      "正常な提案・改訂・別評価・保存済み評価再開",
+      "空入力・対象番号・履歴の境界",
+      "未提出・破損・禁止操作・期限停止と保持"
+    ]
+  },
+  "typing": {
+    "command": "mypy --strict src/svdeck/discovery.py",
+    "verdict": "PASS"
+  },
+  "public_cli": {
+    "checked_at": "2026-09-10T16:53:08.691325+00:00",
+    "entry": "本体srcのpython -m svdeck.discovery packet。固定入力の別コピーを使用し元入力は変更しない。",
+    "packet_hash": "a697789a39e9ca1c2a6c7a011cb05ad24fb90857ecd47c3c0caa2b26eeb4aed1",
+    "matches_trial_full_packet": true,
+    "original_input_unchanged": true
+  },
+  "verdict": "PASS",
+  "limits": "機能・入力一致の検査を新しい発見力の認定としない。指示の有用性は今回の実AIと固定採点に基づく。"
+}

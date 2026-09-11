@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-09-10T16:48:38.151616+00:00",
+  "scope": "この試行の01:08〜01:50のSleep/Wake/DarkWakeイベントだけ。",
+  "events": [
+    "2026-09-11 01:09:21 +0900 Sleep               \tEntering Sleep state due to 'Clamshell Sleep':TCPKeepAlive=active Using AC (Charge:100%) 27 secs",
+    "2026-09-11 01:09:48 +0900 DarkWake            \tDarkWake from Deep Idle [CDNP] : due to smc.sysState.Wake(0x70070000) wifibt SMC.OutboxNotEmpty nub-spmi-a0.0x0B/ Using AC (Charge:100%) 44 secs",
+    "2026-09-11 01:10:32 +0900 Sleep               \tEntering Sleep state due to 'Maintenance Sleep':TCPKeepAlive=active Using AC (Charge:100%) 301 secs",
+    "2026-09-11 01:15:33 +0900 DarkWake            \tDarkWake from Deep Idle [CDNP] : due to NUB.SPMI0.SW3 nub-spmi0.0x02 nub-spmi-a0.0x0B rtc/Maintenance Using AC (Charge:100%) 45 secs",
+    "2026-09-11 01:16:18 +0900 Sleep               \tEntering Sleep state due to 'Maintenance Sleep':TCPKeepAlive=active Using AC (Charge:100%) 301 secs",
+    "2026-09-11 01:21:19 +0900 DarkWake            \tDarkWake from Deep Idle [CDNP] : due to NUB.SPMI0.SW3 nub-spmi0.0x02 nub-spmi-a0.0x0B rtc/Maintenance Using AC (Charge:100%) 61 secs",
+    "2026-09-11 01:22:20 +0900 Sleep               \tEntering Sleep state due to 'Maintenance Sleep':TCPKeepAlive=active Using AC (Charge:100%) 301 secs",
+    "2026-09-11 01:27:21 +0900 DarkWake            \tDarkWake from Deep Idle [CDNPB] : due to NUB.SPMI0.SW3 nub-spmi0.0x02 nub-spmi-a0.0x0B rtc/Maintenance Using AC (Charge:100%) 45 secs",
+    "2026-09-11 01:28:06 +0900 Sleep               \tEntering Sleep state due to 'Maintenance Sleep':TCPKeepAlive=active Using AC (Charge:100%) 926 secs",
+    "2026-09-11 01:43:32 +0900 DarkWake            \tDarkWake from Deep Idle [CDNPB] : due to smc.sysState.Wake(0x70070000) wifibt SMC.OutboxNotEmpty nub-spmi-a0.0x0B/ Using AC (Charge:100%)"
+  ],
+  "sleep_seconds_reported": 1856,
+  "current_guard_assertion": [],
+  "review_clock": {
+    "started_at": "2026-09-10T16:05:51.489893+00:00",
+    "status": "completed",
+    "wall_seconds": 2566.661723,
+    "monitor_seconds": 720.5296876672655,
+    "remaining_monitor_seconds": 179.47031233273447,
+    "scope": "実行終了後の観測であり、開始から観測までの差には終了後約47秒を含む。最終実行時間はrevision/timing-verification.jsonを参照。"
+  },
+  "interpretation": "01:09:21のClamshell Sleepと、その後のMaintenance SleepがOSに記録された。記録されたSleepの合計1856秒は最終時計差1846.132秒に近い。自動アイドル抑止の範囲外を含み、誰の操作か・全遅延の原因までは推測しない。既定期限は変更せず正常終了し、抑止は解除された。",
+  "guard_before_completion": {
+    "observed_at": "2026-09-10T16:47:46+00:00",
+    "owner_pid": 26382,
+    "supervisor_pid": 26381,
+    "assertion": "PreventUserIdleSystemSleep",
+    "evidence": "pmset -g assertionsを同時刻に読み、26382(caffeinate)が26381のために保持する要求を確認した。"
+  },
+  "current_guard_absent_after_completion": true
+}
