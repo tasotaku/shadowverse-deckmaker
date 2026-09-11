@@ -3,19 +3,19 @@
   "title": "評価後の改訂を一度だけ自動でつなぐ",
   "category": "method",
   "status": "running",
-  "summary": "初回考案を19:00:21に開始。固定した12資料から実AIが検討中。自動改訂の成否は未確認。",
+  "summary": "正式な初回案1件を保存し、別評価へ自動移行。1枠の即時打点補助が、防御の損失に見合うかを評価中。",
   "method": "考案・別評価 → 正式保存の再検査 → developかつ次の問いがある場合だけ改訂・別評価を1回 → 終了",
-  "procedure": "実行条件を固定→実装と分岐・保存の検査→公開CLIで実AI実行→内容・採否・工程時刻を記録。",
+  "procedure": "1. 継続条件と最大2回の停止条件を固定。\n2. 既存の考案・別評価の指示を変えず、固定版から実行する入口を実装。\n3. 101機能検査・型検査と独立コード点検を実施し、追加で実中断時の子の終了1件を確認。\n4. エルフの参考4記事から12資料を固定し、実AIの初回考案を開始。\n5. 正式案1件と考案担当の正常終了を確認し、別評価へ自動移行。必要時の改訂への分岐と最終結果はこれから確認する。",
   "inputs": "エルフ・ローテーション。DBに保存された4記事を全件選び、全40枚と説明を取得する。カードDB・注記・既存設計原則は既知。具体的な旧案・評価やrootのカード答案は与えない。",
   "criteria": "機能検査と実AIの経路確認が通れば実行補助として採用。実AIで通らなかった分岐を実AI確認済みとしない。出力案の価値・独自性は別評価し、補助の成功を発見力・システム完成へ広げない。",
   "result": {
     "outcome": "unassessed",
-    "summary": "101機能検査と型検査PASS。実AIの成果・方式の採用は未判定。",
+    "summary": "102検査・型検査PASS。実AIで初回考案から別評価への自動移行を確認。考案は監視18分08秒・時刻差1時間14分48秒。別評価・必要時の自動改訂・方式の採用は未判定。",
     "limitations": "実行補助の検証であり、方法の一般優位・発見力・実戦の強さは未確認。準備5時間38分07秒のうち5時間15分23秒がOS記録のスリープ区間と重なる。差引きをCPU作業時間とは扱わない。現在の実AI中にもスリープがあり、実時刻と監視時間を分ける。"
   },
   "decision": {
     "status": "unassessed",
-    "reason": "実装と実AIの確認前。"
+    "reason": "実AIの考案・別評価・必要時の自動改訂を検証中。"
   },
   "started_at": "2026-09-11T04:22:13.213327+00:00",
   "ended_at": null,
@@ -41,19 +41,19 @@
     {
       "id": "cycle-1-develop",
       "title": "1回目の考案・改訂",
-      "status": "running",
+      "status": "completed",
       "started_at": "2026-09-11T10:00:21.603871+00:00",
-      "ended_at": null,
-      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/develop-run",
+      "ended_at": "2026-09-11T11:15:09.944437+00:00",
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/develop-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 30
     },
     {
       "id": "cycle-1-review",
       "title": "1回目の別担当の評価",
-      "status": "planned",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-09-11T11:15:10.743335+00:00",
       "ended_at": null,
-      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。",
+      "note": "2回目は正式評価がdevelopかつ問いがある場合のみ。実行しなかった時刻は補わない。\n起動処理を開始。実行記録: /private/tmp/sv-cycle-runner-01/round-1/review-run",
       "budget_minutes": 15
     },
     {
@@ -100,6 +100,9 @@
     "evals/discovery/cycle-runner-01/launch-check.json",
     "evals/discovery/cycle-runner-01/running-check.json",
     "evals/discovery/cycle-runner-01/code-audit.json",
-    "evals/discovery/cycle-runner-01/power-observation.json"
+    "evals/discovery/cycle-runner-01/power-observation.json",
+    "evals/discovery/cycle-runner-01/interrupt-verification.json",
+    "evals/discovery/cycle-runner-01/first-proposal-observation.json",
+    "evals/discovery/cycle-runner-01/ui-check.json"
   ]
 }
