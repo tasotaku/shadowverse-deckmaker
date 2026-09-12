@@ -1,0 +1,31 @@
+{
+  "id": "live-query-discovery-01",
+  "fixed_at": "2026-09-12T20:33:26.274395+00:00",
+  "parent_experiment": "live-query-01",
+  "base_commit": "c2a5ae073e60386015b2c89d9f99f3a5a22baf40",
+  "query_commit": "2cac856df544e1543d919f5067f04eef398405cc",
+  "class_name": "ナイトメア",
+  "format": "rotation",
+  "articles": [
+    "https://game8.jp/shadowverse-beyond/698338",
+    "https://game8.jp/shadowverse-beyond/698647",
+    "https://game8.jp/shadowverse-beyond/713011",
+    "https://game8.jp/shadowverse-beyond/734194",
+    "https://gamewith.jp/shadowverse-wb/503018",
+    "https://gamewith.jp/shadowverse-wb/503027",
+    "https://gamewith.jp/shadowverse-wb/515276",
+    "https://gamewith.jp/shadowverse-wb/526538"
+  ],
+  "article_selection": "保存DB内のローテーション・ナイトメア記事の全8URL。個別カードを読む前に固定。",
+  "common_docs_manifest": {
+    "design.md": "01feacb61e2fe79feba3ac18efac7e9021a7c4ff50ef35a2e7b03e8ebe63260f",
+    "rules.md": "047bedcc48eccb37e13d25f517ef4322c7b8b65961199941acef423c3ba72d10"
+  },
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/live-query-discovery-01-input",
+  "db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "criteria": "検索補助を採用した後の、別の新規探索入力による比較。ナイトメア・ローテーションを固定し、保存DBの同クラス記事一覧8URLを同じ時点で取得して、初回案なし・旧評価なしの共通入力にする。このクラス自体や全カードが初見であるとは呼ばず、システム全体の既知知識は両方式で同じにする。\nAは検索入口追加前c2a5ae0の固定コード、Bは採用後の固定コード。両方の固定カードDB、記事8URL、本文・注記・元の一般方針・判定基準は完全同一。一般方針は追加前c2a5ae0のdocsを共通にする。異なるのは未提出新要求のquery操作と、その公開案内のみ。queryの使用を強制せず、カードの答え・具体タグ・期待するデッキや評価は開発者が与えない。\n考案20分・独立した別評価10分を両方式で各一度、既存明示終了を使う。追加の自動改訂や時間切れのやり直しはしない。提出や評価の失敗も記録し、未評価をゼロ点に補完しない。\nqueryの使用回数、そこから生じた新しい問いや不足の解決、本文と両側注記の照合、追加候補を検索前にも読んでいたかを公開記録で確認する。queryのヒット数・単なるカード取得・計算訂正を主成果にしない。\n主成果は、通常構築と同じ状態の比較から試す理由があり、一般に広まった使い方の言い直しでない根拠がある着想。試用推薦・独自性・指定条件の手順成立を分ける。別評価が追加した手順や判定差を、提案担当の発見やqueryの効果に加算しない。\n1件ずつの結果の差だけで一般的な因果効果を認定しない。Bが実質的な発展と試用理由へ至っても、query以前から持っていた候補や他の推論の寄与を区別する。Bがqueryを使わない場合は検索機能の有用性未評価とし、未使用の理由を見える範囲で残す。Aも同じ発展を見つければBの上乗せとはしない。\n試用推薦された案で独自性の問いが新たに残る場合は、結果回収後に両方式同じ条件で既存の先例調査15分・別照合10分へ一度接続する。記事取得時刻を記事の新しさ、掲載時点のルール適合や一般普及の証明にしない。実戦勝率・Tierは評価対象外。",
+  "criteria_sha256": "f88a185bf2f358ae329fe2917e69829e333596ad1befef2b49e325e960b85bfd",
+  "develop_seconds": 1200,
+  "review_seconds": 600,
+  "model_override": null
+}
