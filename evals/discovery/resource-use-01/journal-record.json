@@ -1,23 +1,23 @@
 {
   "id": "resource-use-01",
-  "revision": 1,
-  "saved_at": "2026-09-12T17:51:31.419657+00:00",
+  "revision": 5,
+  "saved_at": "2026-09-12T18:01:58.418983+00:00",
   "actor": "codex-root",
-  "reason": "次の発展方法の入力・条件・時刻上限を固定",
+  "reason": "両方式の改訂開始と入力一致、131検査と未判定範囲を保存",
   "record": {
     "id": "resource-use-01",
-    "title": "生んだ資源の別用途を探し元案と比べる",
+    "title": "得たPPや手札の別用途を探して元案と比べる",
     "category": "method",
     "status": "running",
-    "summary": "同じ保存済み案・資料の現行改訂と、一枝だけ別の要求へ検索を戻す改訂を比較する。条件固定済み、隔離実装を準備中。",
+    "summary": "現行は9月13日02:53:05、変更版は02:59:36から改訂中。同じ案と24資料で指示だけを比較。変更版の131機能検査・型検査と実入力一致を確認。本採用・有用性は未判定。",
     "method": "確認済みの供給から別の要求へつながる相方を一枝だけ探し、元案と通常構築を比較して選ぶ。",
     "procedure": "同じ保存済み案・評価・調査と照合の7資料を含む全資料・固定DBを、現行Aと変更Bへ渡す。既知入力による開発用比較であり、未知発見とは呼ばない。\nBの改訂にだけ、確認済みの供給から既存案・別評価・先例にない要求へつながる相方を一枝探し、元案と通常構築に戻して選ぶ動作を加える。開発者はカード名・具体的要求・出典・期待結論を与えない。\n使える時点、PP・手札・場・進化権・発動条件と供給の成立条件を資料に残し、そこから別の要求を一つ置いて既存検索と本文走査へ戻す。両側の本文・注記を読み、追加した相方を外すと何が失われるかも比較へ残す。\n元案も選択肢として保持する。既出というだけで元案を捨てず、別用途が見つからなければ探索範囲と未達を残す。既存の二手順の選び直し、順番変更、枚数縮小、同じ仕事の担当交代は、新しい発展の確認には数えない。\n初回考案、別評価、提出形式、既存比較・採点基準は変えない。A/Bとも改訂15分・別評価10分を各一度、明示終了で実行する。追加の自動改訂や失敗の再実行はしない。後続調査が必要な場合は同じ条件で既存の調査15分・別照合10分へ一度接続する。今回は改訂・別評価までを実行し、後続の適用は結果回収後に登録・確認する。\n主成果は通常構築に対する試用理由と、一般に広まった使い方の言い直しでない根拠のある着想の確認件数。別要求への検索・追加資料・新しい組合せ・形式合格だけでは主成果にしない。試用推薦と独自性は分ける。Aも同じ発展を見つけたらBの上乗せとは認定しない。\nBだけに実質的な発展と試用理由が残り、別評価が支持した場合は別の新規入力で転用を検証する。本体の採用はその結果まで保留し、既知入力一回から一般的優位を主張しない。強制的な元案除外や必要資源の捏造があれば変更不採用とし、失敗も残す。",
     "inputs": "保存済みネメシス案・別評価・最新記事・完了した先例調査と別照合を同一版で渡す。",
     "criteria": "同じ保存済み案・評価・調査と照合の7資料を含む全資料・固定DBを、現行Aと変更Bへ渡す。既知入力による開発用比較であり、未知発見とは呼ばない。\nBの改訂にだけ、確認済みの供給から既存案・別評価・先例にない要求へつながる相方を一枝探し、元案と通常構築に戻して選ぶ動作を加える。開発者はカード名・具体的要求・出典・期待結論を与えない。\n使える時点、PP・手札・場・進化権・発動条件と供給の成立条件を資料に残し、そこから別の要求を一つ置いて既存検索と本文走査へ戻す。両側の本文・注記を読み、追加した相方を外すと何が失われるかも比較へ残す。\n元案も選択肢として保持する。既出というだけで元案を捨てず、別用途が見つからなければ探索範囲と未達を残す。既存の二手順の選び直し、順番変更、枚数縮小、同じ仕事の担当交代は、新しい発展の確認には数えない。\n初回考案、別評価、提出形式、既存比較・採点基準は変えない。A/Bとも改訂15分・別評価10分を各一度、明示終了で実行する。追加の自動改訂や失敗の再実行はしない。後続調査が必要な場合は同じ条件で既存の調査15分・別照合10分へ一度接続する。今回は改訂・別評価までを実行し、後続の適用は結果回収後に登録・確認する。\n主成果は通常構築に対する試用理由と、一般に広まった使い方の言い直しでない根拠のある着想の確認件数。別要求への検索・追加資料・新しい組合せ・形式合格だけでは主成果にしない。試用推薦と独自性は分ける。Aも同じ発展を見つけたらBの上乗せとは認定しない。\nBだけに実質的な発展と試用理由が残り、別評価が支持した場合は別の新規入力で転用を検証する。本体の採用はその結果まで保留し、既知入力一回から一般的優位を主張しない。強制的な元案除外や必要資源の捏造があれば変更不採用とし、失敗も残す。",
     "result": {
       "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "summary": "適用境界と入力保持の検査は合格。実AIによる有用性は改訂・別評価の回収後に判断する。",
+      "limitations": "既知入力一件の比較。機械検査と資料数は発見力の証明ではない。新規境界試験の期待例外・検査環境・型を訂正した履歴を保存。"
     },
     "decision": {
       "status": "unassessed",
@@ -29,19 +29,19 @@
       {
         "id": "implementation",
         "title": "改訂の検索動作だけを隔離して変更・検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T17:51:05.521289+00:00",
-        "ended_at": null,
-        "note": "初回考案・別評価・保存形式・採点基準は保持。カード答案を埋め込まない。",
+        "ended_at": "2026-09-12T17:57:49.657470+00:00",
+        "note": "隔離実装10行、一般設計6行。関連131件（既存122＋境界9）・型検査2ファイル合格。初回・評価・引継ぎは固定版と一致。実装は未採用。担当の明示時刻取得17:52:43〜17:57:49.657 UTC（約5分7秒）、条件固定から約6分44秒。",
         "budget_minutes": 12
       },
       {
         "id": "a-develop",
         "title": "現行の改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T17:53:05.499227+00:00",
         "ended_at": null,
-        "note": "同じ保存済み入力で各一度。個別カードや期待結論は与えない。",
+        "note": "同じ保存済み入力で各一度。個別カードや期待結論は与えない。\n起動処理を開始。実行記録: /private/tmp/sv-resource-use-01-a-live/develop-run",
         "budget_minutes": 15
       },
       {
@@ -56,10 +56,10 @@
       {
         "id": "b-develop",
         "title": "変更の改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T17:59:36.079394+00:00",
         "ended_at": null,
-        "note": "同じ保存済み入力で各一度。個別カードや期待結論は与えない。",
+        "note": "同じ保存済み入力で各一度。個別カードや期待結論は与えない。\n起動処理を開始。実行記録: /private/tmp/sv-resource-use-01-b-live/develop-run",
         "budget_minutes": 15
       },
       {
@@ -74,19 +74,103 @@
     ],
     "evidence_paths": [
       "evals/discovery/resource-use-01/README.md",
-      "evals/discovery/resource-use-01/protocol.json"
+      "evals/discovery/resource-use-01/protocol.json",
+      "evals/discovery/resource-use-01/implementation.json",
+      "evals/discovery/resource-use-01/implementation-tests.xml",
+      "evals/discovery/resource-use-01/boundary-test.py",
+      "evals/discovery/resource-use-01/fixed-base-check.json",
+      "evals/discovery/resource-use-01/test-result.json",
+      "evals/discovery/resource-use-01/type-result.json",
+      "evals/discovery/resource-use-01/test-setup-failure.json",
+      "evals/discovery/resource-use-01/implementation.patch",
+      "evals/discovery/resource-use-01/a-frozen-runtime.json",
+      "evals/discovery/resource-use-01/b-frozen-runtime.json",
+      "evals/discovery/resource-use-01/a-launch-check.json",
+      "evals/discovery/resource-use-01/paired-input-verification.json",
+      "evals/discovery/resource-use-01/setup-correction.json",
+      "evals/discovery/resource-use-01/b-launch-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/resource-use-01/README.md",
-      "sha256": "96a3acb43fbbe0ed1fe608f02be4a682368de1d964abf6885f0b9890484a1479",
-      "size": 788
+      "sha256": "dc86876f8ece1f30018c421fd3a184118e659565ace242d48d771ab85a5f12d9",
+      "size": 5623
+    },
+    {
+      "path": "evals/discovery/resource-use-01/a-frozen-runtime.json",
+      "sha256": "b76cfa780b28516bb80084a06cfaa51f787d9aa95554e5bddf5b0169e744f016",
+      "size": 9617
+    },
+    {
+      "path": "evals/discovery/resource-use-01/a-launch-check.json",
+      "sha256": "9f41067d3153ba1de501b905900e6aa42b156655e59e635ee036ea4fb7f75d2d",
+      "size": 504
+    },
+    {
+      "path": "evals/discovery/resource-use-01/b-frozen-runtime.json",
+      "sha256": "d5cbcf98d69c780804feb6eff0fd5768da4b02a5bd136a5bcc853485460cd840",
+      "size": 4594
+    },
+    {
+      "path": "evals/discovery/resource-use-01/b-launch-check.json",
+      "sha256": "4500756a4f0bc48a0a4147f030a9cdfd1679f11e74e7cfc326b187dba8c5da62",
+      "size": 419
+    },
+    {
+      "path": "evals/discovery/resource-use-01/boundary-test.py",
+      "sha256": "e5457ccf3b61144ceaf5cfe1e00717d6cdcfd36c28ac9650b41560690e3f9929",
+      "size": 3734
+    },
+    {
+      "path": "evals/discovery/resource-use-01/fixed-base-check.json",
+      "sha256": "9930588da2a93d54fc9c550f1061e8cfcb3519e8f6bb168c897c7f283935710c",
+      "size": 1885
+    },
+    {
+      "path": "evals/discovery/resource-use-01/implementation-tests.xml",
+      "sha256": "a3801f46c933c2a06fffd75b2a2477af40161963cf1efdb6da2ab0b8404940e7",
+      "size": 16922
+    },
+    {
+      "path": "evals/discovery/resource-use-01/implementation.json",
+      "sha256": "81c0e4079c9e682e8028a44df3ea8c5fd379c27b3131a7088e834252a6cc6763",
+      "size": 7333
+    },
+    {
+      "path": "evals/discovery/resource-use-01/implementation.patch",
+      "sha256": "d853460fd41a642240740c07c02c5872bec26fcc6e104e1b63a8b775593b91b2",
+      "size": 5060
+    },
+    {
+      "path": "evals/discovery/resource-use-01/paired-input-verification.json",
+      "sha256": "00110ceda14c3b2e36ad37eb30f20cd0f70d06b158119765ee3bdd90b00984fe",
+      "size": 635
     },
     {
       "path": "evals/discovery/resource-use-01/protocol.json",
       "sha256": "3906ea7b814e606d6714690819c32da8189095ed559ad2f1a97c73e90088c932",
       "size": 7914
+    },
+    {
+      "path": "evals/discovery/resource-use-01/setup-correction.json",
+      "sha256": "54b2ef0e07efb5992cfc6af5e6d626359424fd01403caeaed0de887ce0cdd2cc",
+      "size": 329
+    },
+    {
+      "path": "evals/discovery/resource-use-01/test-result.json",
+      "sha256": "3e52adafb6b20490caf161ddaadc5843c62721c78da9c21a5c40559c5b64f4c0",
+      "size": 826
+    },
+    {
+      "path": "evals/discovery/resource-use-01/test-setup-failure.json",
+      "sha256": "822126b66926365d561ca48172b87e610f1e750380b17b47f4ec9801d64519a9",
+      "size": 6076
+    },
+    {
+      "path": "evals/discovery/resource-use-01/type-result.json",
+      "sha256": "3b892e149cbada58eef1d6ba59f83c7bcd19f0c7c0281306b831d73929398c70",
+      "size": 389
     }
   ]
 }

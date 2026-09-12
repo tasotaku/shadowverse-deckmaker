@@ -1,0 +1,115 @@
+{
+  "task": "resource-use-01 isolated implementation",
+  "started_at": "2026-09-12T17:52:43+00:00",
+  "start_time_basis": "最初に明示取得したUTC。これに先立つ依頼受領・最初の資料読取りの正確な開始はこの担当では未計測。親が持つ工程開始とは別。",
+  "ended_at": "2026-09-12T17:57:49.657470+00:00",
+  "worktree": "/private/tmp/sv-resource-use-01-worktree",
+  "branch": "codex/resource-use-01",
+  "worktree_base": "45a39bdca2f6366fa029c16d9d5a86e34e961687",
+  "fixed_comparison_base": "ec1dea5fdb45cc1f8fa2d34c5367f6e3f9cf4ad5",
+  "commit": "97f0d96a5769bf52ec941d9e2fe2cb01f4bffded",
+  "git_status_short": "",
+  "tracked_clean": true,
+  "changed_files": [
+    "src/svdeck/discovery.py",
+    "docs/design.md"
+  ],
+  "change_summary": "通常改訂で保存済みproposalが存在する場合だけ、照合した供給から別要求への相方を一枝探して元案・通常構築と比較する438文字の指示を追加。finish_from_sourceを優先し、初回・別評価・引き継ぎを維持。一般的な設計注記は試作・本採用保留。",
+  "diff_stat": " docs/design.md          |  6 ++++++\n src/svdeck/discovery.py | 10 ++++++++++\n 2 files changed, 16 insertions(+)\n",
+  "runtime_sha256": "ac63851a1221e6ba7194157c27571d02b3375f35ebd89ff50eef9dd24cfb5f1b",
+  "tests": {
+    "started_at": "2026-09-12T17:56:10.514218+00:00",
+    "ended_at": "2026-09-12T17:56:21.954555+00:00",
+    "elapsed_seconds": 11.44018774991855,
+    "command": [
+      "pytest",
+      "-q",
+      "tests/test_discovery.py",
+      "tests/test_discovery_sources.py",
+      "tests/test_discovery_read.py",
+      "tests/test_discovery_review_contexts.py",
+      "tests/test_discovery_history.py",
+      "tests/test_discovery_compare.py",
+      "tests/test_discovery_start_articles.py",
+      "tests/temp/test_resource_use_temp.py",
+      "--junitxml=/tmp/resource-use-related-tests.xml"
+    ],
+    "PYTHONPATH": "src:tests",
+    "returncode": 0,
+    "stdout": "........................................................................ [ 54%]\n...........................................................              [100%]\n131 passed in 10.96s\n",
+    "stderr": ""
+  },
+  "types": {
+    "started_at": "2026-09-12T17:56:21.690663+00:00",
+    "ended_at": "2026-09-12T17:56:22.349043+00:00",
+    "elapsed_seconds": 0.6581712919287384,
+    "command": [
+      "mypy",
+      "--strict",
+      "src/svdeck/discovery.py",
+      "tests/temp/test_resource_use_temp.py"
+    ],
+    "MYPYPATH": "src:tests",
+    "returncode": 0,
+    "stdout": "Success: no issues found in 2 source files\n",
+    "stderr": ""
+  },
+  "fixed_base_check": {
+    "DEVELOP_RULES": {
+      "unchanged": true,
+      "sha256": "10e44aca8f06fc67464ac234c051b2cf61d6c64dd6428147329a6e83389f7744"
+    },
+    "DEVELOP": {
+      "unchanged": true,
+      "sha256": "f17cf453b32692f4dca4dabe5bef53ce25a9bfb42ef1fc417d2435217a971d6f"
+    },
+    "REVIEW": {
+      "unchanged": true,
+      "sha256": "4f08e7a190687d7c4f590ff5375f6ddd170a696976d9d17e165c8c5731b737ed"
+    },
+    "FINISH": {
+      "unchanged": true,
+      "sha256": "30f46b7daf2ecdbd99b6729ba639a58a38073b88f30230f3e54105a1ef9a6975"
+    },
+    "runtime_instruction": {
+      "RESOURCE_USE": "改訂では、元案・別評価・保存済み先例で照合できた供給を一つ選び、使える時点と発動条件、残るPP・手札・場・進化権を固定してください。\nその供給を使える、既存案・別評価・先例にない別の要求を一つ置き、相方を一枝探します。既存のタグ検索と本文走査へ戻り、供給側と要求側の本文・注記・条件を両方確認してください。未確認の供給や都合のよい追加資源を補ってはいけません。\n実際に検索した問い・範囲・結果を既存の追加資料へ残し、元案と通常構築を同じ開始状態・観察終点で比べ、追加した相方を除くと何を失うかを既存の比較欄と根拠に示してください。\n元案は選択肢に残し、既出というだけで捨てません。相方が見つからなければ検索範囲と未達を残し、別用途の成立を捏造せず元案を選べます。既存の二手順の選び直し・順番変更・枚数変更・単なる同役割の担当交代を新しい発展とは数えません。\n検索・資料追加・組合せの成立だけでは試す価値や独自性を認定せず、通常構築に対する利益と負担から改訂を選んでください。\n",
+      "characters": 438
+    }
+  },
+  "test_coverage": {
+    "normal": "親案・別評価・追加資料のある実fixtureをsubmit/review/attachで用意。改訂1と最新(None)でinstructionのみが固定版から変わることと公開summary/readで全文保持を照合。",
+    "edges": "保存済み案がある場合のrevision=0は初回枝を維持。reviewは1/None、finishは0/1/None、空の探索のNoneを固定版と完全一致照合。",
+    "errors": "元案なしreview、未存在の親改訂、不正工程、未存在の引き継ぎ資料の拒否型・文面を固定版と一致照合。",
+    "counts": {
+      "total_passed": 131,
+      "existing_passed": 122,
+      "new_passed": 9
+    },
+    "no_quality_claim": "機械検査は適用境界と保存内容を検証。AIの指示遵守、発展、試用価値、独自性を証明しない。"
+  },
+  "corrections": [
+    "最初の境界検査は8 passed / 1 failed。未存在改訂の既存例外はFileNotFoundErrorであり、テストのValueError期待を訂正。",
+    "CLI readの初稿assertに出力の非空で通るorがあったため、最終検査前にnext_offsetがNoneかつcontent連結が指示全文と完全一致する検査へ訂正。",
+    "初回mypyはdata辞書のinstructionがobject推論のため+=不可。DEVELOPから文字列を組み立てて代入する形へ修正。加えてテストfixtureの型探索にMYPYPATH=src:testsを指定。",
+    "関連検査の最初の実行はPYTHONPATH指定漏れで8ファイルが収集エラーとなり、テスト本体は未実行。PYTHONPATH=src:testsを指定して最終131件を実行。"
+  ],
+  "evidence_paths": [
+    "/tmp/resource-use-related-tests.xml",
+    "/tmp/resource-use-boundary-tests.xml",
+    "/tmp/resource-use-boundary-test.py",
+    "/tmp/resource-use-test-result.json",
+    "/tmp/resource-use-test-setup-failure.json",
+    "/tmp/resource-use-type-result.json",
+    "/tmp/resource-use-fixed-base-check.json",
+    "/tmp/resource-use-implementation.patch"
+  ],
+  "temporary_tests": "test skillに従いtests/tempの実験専用検査は未追跡・commit外。親回収用に/tmp/resource-use-boundary-test.pyへ複写済み。",
+  "delivery": "隔離worktreeの公開packet/summary/read入口で実fixtureを照合。main・本体DB・実AI探索への反映は親担当で、未実施。",
+  "limitations": [
+    "本採用保留。既知入力A/Bと必要時の別入力検証が残る。",
+    "新しいCLI/APIフラグ、DB、スキーマ、実行基盤は追加していない。",
+    "外部API・UI変更なし。実AIは未実行。",
+    "pushせずmainへ取り込んでいない。"
+  ],
+  "verdict": "PASS (isolated implementation and functional boundaries only)"
+}
