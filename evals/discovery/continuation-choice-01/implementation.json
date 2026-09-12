@@ -1,0 +1,84 @@
+{
+  "task": "continuation-choice-01 variant B implementation",
+  "verdict": "PASS",
+  "adoption": "未判定。実AI A/B比較とrootの採用判断は別工程。",
+  "started_at_utc": "2026-09-12T09:37:16+00:00",
+  "ended_at_utc": "2026-09-12T09:40:22.340322+00:00",
+  "elapsed_seconds": 186.340322,
+  "worktree": "/tmp/sv-continuation-choice-01-worktree",
+  "branch": "codex/continuation-choice-01",
+  "base_commit": "3ad3bced681faa4761041b9a1d971fd2f5f98d67",
+  "commit": "eeec297fd6d75baa69f87ffc047fd1f7eba36582",
+  "working_tree_status": "clean",
+  "change": "src/svdeck/discovery.py の既存DEVELOP末尾にprotocol.variant_instructionを一字も変えず追加。AI_NOTE1行と空行を含む3行追加のみ。",
+  "source_sha256_before": "109cb391364649f5d929531154802921aeef8820c1c20d2f4b3ed80563583b26",
+  "source_sha256_after": "92201bb39fbe6f62e1dd5002d31f65f7117284937d6392c4a10a020bfc190e75",
+  "source_sha256_after_verified": "92201bb39fbe6f62e1dd5002d31f65f7117284937d6392c4a10a020bfc190e75",
+  "criteria_sha256": "f41951c03c66f81de0b0a59776262e3cdb0db7d5d4977108ea4f97a3a5505c45",
+  "variant_instruction_sha256": "8fd5581aca594ca172654d49d4f20ce5bf69003e7935a5f0782a55b55d155c6a",
+  "test_scope": [
+    {
+      "case": "初回の公開develop packet",
+      "result": "PASS。Bのinstruction = Aのinstruction + 指定文。instructionを除くdata全体が完全一致。"
+    },
+    {
+      "case": "保存済み改訂・別評価を持つ公開develop packet",
+      "result": "PASS。同じ履歴からの改訂入力で、追加指示以外のdata全体が完全一致。"
+    },
+    {
+      "case": "公開review packet / finish-from-source packet",
+      "result": "PASS。A/Bのenvelopeを含む出力全体が完全一致。"
+    },
+    {
+      "case": "公開inquiry / inspect packet",
+      "result": "PASS。実行IDを合成検査内だけ固定し、実workerを起動せず公開packetの出力全体が完全一致。"
+    },
+    {
+      "case": "他指示・回答例・変更範囲",
+      "result": "PASS。DEVELOP_RULES/REVIEW/FINISH/RESEARCH/INSPECT/NOVELTY_QUESTION/考案と別評価の回答例は同一。ソース差分は指定3行だけ。"
+    },
+    {
+      "case": "既存の正式保存・資料保存・読出し・履歴・別評価資料・全構築比較",
+      "result": "PASS。合法性・引用・担当分離等の既存拒否条件を含む。"
+    }
+  ],
+  "checks": [
+    {
+      "command": "PYTHONPATH=src:tests pytest -q tests/temp/test_continuation_choice_temp.py tests/test_discovery.py tests/test_discovery_read.py tests/test_discovery_sources.py tests/test_discovery_history.py tests/test_discovery_review_contexts.py tests/test_discovery_compare.py",
+      "result": "PASS",
+      "passed": 117,
+      "failed": 0,
+      "new_tests": 7,
+      "existing_tests": 110,
+      "reported_elapsed_seconds": 14.19
+    },
+    {
+      "command": "mypy --strict src/svdeck/discovery.py",
+      "result": "PASS",
+      "files": 1
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "git rev-parse HEAD / git status --short / git show --stat --oneline HEAD",
+      "result": "PASS。コード1ファイル・3行追加だけをコミットし、作業ツリーcleanを確認。"
+    }
+  ],
+  "temporary_tests": "/tmp/sv-continuation-choice-01-worktree/tests/temp/test_continuation_choice_temp.py",
+  "temporary_tests_committed": false,
+  "constraints": [
+    "A実AIの答案は読んでいない。",
+    "実AI起動、カード答案作成、既存DB/進捗/台帳/設計/資料の編集、私的ログ閲覧は行っていない。合成fixtureの一時DBだけを使用。",
+    "別評価・回答形式・終了処理・モデル設定・他コードは変更していない。",
+    "push/mainへの反映は行っていない。"
+  ],
+  "unverified": [
+    "B指示が実AIの比較選択や判断に与える効果",
+    "Aとの差・担当差の切り分け",
+    "案の試用価値と方法の採用",
+    "探索システム全体の発見力改善"
+  ],
+  "retry_count": 0
+}

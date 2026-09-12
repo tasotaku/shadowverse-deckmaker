@@ -1,15 +1,15 @@
 {
   "id": "continuation-choice-01",
-  "revision": 1,
-  "saved_at": "2026-09-12T09:35:02.456991+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-12T09:42:57.730214+00:00",
   "actor": "codex",
-  "reason": "前回の未達を踏まえ、継続判断と比較を結ぶ手順の条件と上限を固定",
+  "reason": "両方式の実AI起動と同一条件を記録し、進行中の段階を更新",
   "record": {
     "id": "continuation-choice-01",
     "title": "同じ核を続ける理由を、判断を変え得る比較へ結ぶ",
     "category": "method",
     "status": "running",
-    "summary": "現行Aと、継続判断と比較を結ぶ変更Bを比べる準備。実装・実AI確認は未完了、採用未判定。",
+    "summary": "117機能検査・型検査に合格。追加指示以外の実入力の一致を確認し、現行A18:37:36・変更B18:41:36から実AIの改訂中。両方の別評価と方法の採否は未完了。",
     "method": "同じ核の継続を判断できる比較に結び付ける手順のA/B試行。rootはカード答案を供給しない。",
     "procedure": "現行Aと変更Bへ同じ保存済み改訂3・別評価・資料を渡し、それぞれ改訂1回と別評価1回。各15分＋10分。自動再試行なし。既知入力の比較として記録。\nBだけに継続判断と比較1件を結ぶ指示を追加。資料本文、回答形式、カード判断の既存基準、別評価指示、実行手段・終了機能・モデル設定は揃える。\n選んだ比較が、直前の不足に答え得る形で着手前に保存されたか。形式的な欄の追加だけを改善と数えない。\n資源の取得・通常使用・保持が同じ短い対応手順につながるか。勝つ状態へ手札やPPを補う、都合のよい開始状態へ移す、完全な実戦頻度や勝率を捏造する比較は解消と数えない。\n新しい具体的根拠が、同じ核の継続・採用配分・使い方・別仮説への変更へ実際に反映され、別評価でも支持されるか。案の試用推薦と方法の判断支援効果は分ける。\nAとの差がない、同じ未解決の言い換えだけ、最後の評価まで揃わない場合は本採用保留。Bが具体的な未解決の解消または根拠ある探索先の変更を示し、Aにない寄与を確認した場合だけ限定的な採用候補とする。\n1入力各1回なので担当差と一般的な発見力は切り分けられない。旧失敗・旧評価は保持し、known単独での棄却や毎回の完全な対戦履歴を義務にしない。",
     "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/explicit-finish-01-result の正式改訂3・別評価・追加資料。同一の既知入力。",
@@ -29,19 +29,19 @@
       {
         "id": "implementation",
         "title": "変更指示を隔離して実装・入力差分を検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T09:35:02.400551+00:00",
-        "ended_at": null,
-        "note": "Bだけ指示を変え、他の入力・別評価・実行条件は維持。",
+        "ended_at": "2026-09-12T09:41:36.287844+00:00",
+        "note": "指定文だけを隔離版へ追加。担当実装09:37:16〜09:40:22 UTC、117検査・型検査合格。本体で使う実入力も追加指示以外同一と固定後に照合した。",
         "budget_minutes": 10
       },
       {
         "id": "a-develop",
         "title": "現行Aの改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T09:37:36.999188+00:00",
         "ended_at": null,
-        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。\n起動処理を開始。実行記録: /private/tmp/sv-continuation-choice-01-a/develop-run",
         "budget_minutes": 15
       },
       {
@@ -56,10 +56,10 @@
       {
         "id": "b-develop",
         "title": "変更Bの改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T09:41:36.832205+00:00",
         "ended_at": null,
-        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。\n起動処理を開始。実行記録: /private/tmp/sv-continuation-choice-01-b/develop-run",
         "budget_minutes": 15
       },
       {
@@ -74,14 +74,50 @@
     ],
     "evidence_paths": [
       "evals/discovery/continuation-choice-01/protocol.json",
-      "evals/discovery/continuation-choice-01/README.md"
+      "evals/discovery/continuation-choice-01/README.md",
+      "evals/discovery/continuation-choice-01/a-input-check.json",
+      "evals/discovery/continuation-choice-01/a-start.json",
+      "evals/discovery/continuation-choice-01/power-scope.json",
+      "evals/discovery/continuation-choice-01/b-input-check.json",
+      "evals/discovery/continuation-choice-01/implementation.json",
+      "evals/discovery/continuation-choice-01/b-start.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/continuation-choice-01/README.md",
-      "sha256": "36e12ee8e0d7871ecd190baf4004adf693688aff9039224c0aed3137d36e08aa",
-      "size": 984
+      "sha256": "72e372c1d9c16360d33043847df223a7048ee725c073a1fd2635632e3a8ff9ef",
+      "size": 1481
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/a-input-check.json",
+      "sha256": "db78ad7b9f624f0cd6efab3631a5cf7429edffa2c51787d05284e7139a40d8f0",
+      "size": 10624
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/a-start.json",
+      "sha256": "a3b8664d3a542ac1589b86e51ff31cdfa295b68fdf6113ec2b544e10e4c3d2bf",
+      "size": 2595
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/b-input-check.json",
+      "sha256": "7dfc7b2010e652196c3600c90f9d35b1145d7159e0d49b41c71b3fc7fe57e500",
+      "size": 10947
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/b-start.json",
+      "sha256": "aaefa03eb42f48d5e5556ba48f795989f2cc001aa00792001d534150f658a200",
+      "size": 2553
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/implementation.json",
+      "sha256": "17acdd666c81fec3a1aba643683e8ce4397c4ad0d6e9c9195693b53e204239dd",
+      "size": 4103
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/power-scope.json",
+      "sha256": "082db39bf7e1a6b4bb7af4a2f5ec8c55f29768382bb8ac4b8c139f7a6029b993",
+      "size": 589
     },
     {
       "path": "evals/discovery/continuation-choice-01/protocol.json",
@@ -90,6 +126,36 @@
     }
   ],
   "history": [
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T09:42:57.730214+00:00",
+      "actor": "codex",
+      "reason": "両方式の実AI起動と同一条件を記録し、進行中の段階を更新"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T09:41:36.834493+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-12T09:41:36.297411+00:00",
+      "actor": "codex",
+      "reason": "変更Bの実装・検査結果を回収し、実入力で指示以外同一を確認"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-12T09:40:00.237099+00:00",
+      "actor": "codex",
+      "reason": "現行Aの固定実装・入力と実AI起動を記録。Bの検査結果は未回収"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-12T09:37:37.002891+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
     {
       "revision": 1,
       "saved_at": "2026-09-12T09:35:02.456991+00:00",

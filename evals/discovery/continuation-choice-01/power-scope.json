@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-09-12T09:40:00.202449+00:00",
+  "released_request": {
+    "pid": 36428,
+    "command": "caffeinate -i -s -t 1200",
+    "absent": true,
+    "absent_observed_at": "2026-09-12T09:42:57.697876+00:00"
+  },
+  "a_guard": {
+    "pid": 51753,
+    "command": "caffeinate -i -s -w 50969",
+    "supervisor_pid": 50969
+  },
+  "limits": "実行監視が終了するまでだけ休止を抑止。恒久設定は変更しない。解除後の不在は別途確認。",
+  "b_guard": {
+    "pid": 56168,
+    "command": "caffeinate -i -s -w 55599",
+    "supervisor_pid": 55599
+  }
+}

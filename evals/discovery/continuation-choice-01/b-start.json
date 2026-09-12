@@ -1,0 +1,70 @@
+{
+  "observed_at": "2026-09-12T09:42:57.697876+00:00",
+  "run": {
+    "status": "running",
+    "command": [
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--search",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "workspace-write",
+      "--skip-git-repo-check",
+      "--cd",
+      "/private/tmp/sv-continuation-choice-01-b/develop",
+      "--json",
+      "--output-last-message",
+      "/private/tmp/sv-continuation-choice-01-b/develop/final-message.md",
+      "-"
+    ],
+    "cwd": "/private/tmp/sv-continuation-choice-01-b/develop",
+    "stdin": "/private/tmp/sv-continuation-choice-01-b/develop/prompt.md",
+    "output": "/private/tmp/sv-continuation-choice-01-b/develop-run",
+    "started_at": "2026-09-12T09:41:36.832205+00:00",
+    "deadline_at": null,
+    "budget_clock": "elapsed",
+    "deadline_monotonic": 2315148.049052791,
+    "explicit_finish": true,
+    "timeout_seconds": 900.0,
+    "termination_grace_seconds": 2,
+    "supervisor_pid": 55599,
+    "worker_pid": 55601,
+    "worker_returncode": null,
+    "ended_at": null,
+    "events": [
+      {
+        "event": "started",
+        "at": "2026-09-12T09:41:36.832407+00:00",
+        "elapsed_seconds": 0.00019737472757697105
+      },
+      {
+        "event": "journal_starting",
+        "at": "2026-09-12T09:41:36.832746+00:00",
+        "elapsed_seconds": 0.0005381247028708458
+      },
+      {
+        "event": "launched",
+        "at": "2026-09-12T09:41:36.837972+00:00",
+        "elapsed_seconds": 0.00580083392560482
+      }
+    ],
+    "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+    "journal_sync": {
+      "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "experiment_id": "continuation-choice-01",
+      "stage_id": "b-develop",
+      "status": "running",
+      "begin_revision": 5,
+      "claimed_stage": {
+        "id": "b-develop",
+        "title": "変更Bの改訂",
+        "status": "running",
+        "started_at": "2026-09-12T09:41:36.832205+00:00",
+        "ended_at": null,
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。\n起動処理を開始。実行記録: /private/tmp/sv-continuation-choice-01-b/develop-run",
+        "budget_minutes": 15
+      }
+    }
+  },
+  "actual_packet_matches_fixed": true
+}
