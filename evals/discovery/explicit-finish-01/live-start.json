@@ -1,0 +1,85 @@
+{
+  "observed_at": "2026-09-12T08:01:30.261029+00:00",
+  "engine": {
+    "run_id": "e7ba1dbdced5444194347a067e555846",
+    "status": "develop",
+    "started_at": "2026-09-12T07:59:43.553831+00:00",
+    "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-review-recovery-01-result",
+    "output": "/private/tmp/sv-explicit-finish-01",
+    "parent_revision": 2,
+    "expected_revision": 3,
+    "explicit_finish": true
+  },
+  "develop": {
+    "status": "running",
+    "command": [
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--search",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "workspace-write",
+      "--skip-git-repo-check",
+      "--cd",
+      "/private/tmp/sv-explicit-finish-01/develop",
+      "--json",
+      "--output-last-message",
+      "/private/tmp/sv-explicit-finish-01/develop/final-message.md",
+      "-"
+    ],
+    "cwd": "/private/tmp/sv-explicit-finish-01/develop",
+    "stdin": "/private/tmp/sv-explicit-finish-01/develop/prompt.md",
+    "output": "/private/tmp/sv-explicit-finish-01/develop-run",
+    "started_at": "2026-09-12T07:59:43.852347+00:00",
+    "deadline_at": null,
+    "budget_clock": "elapsed",
+    "deadline_monotonic": 2312722.752590125,
+    "explicit_finish": true,
+    "timeout_seconds": 900.0,
+    "termination_grace_seconds": 2,
+    "supervisor_pid": 12368,
+    "worker_pid": 12373,
+    "worker_returncode": null,
+    "ended_at": null,
+    "events": [
+      {
+        "event": "started",
+        "at": "2026-09-12T07:59:43.852624+00:00",
+        "elapsed_seconds": 0.0002725832164287567
+      },
+      {
+        "event": "journal_starting",
+        "at": "2026-09-12T07:59:43.853039+00:00",
+        "elapsed_seconds": 0.0006889579817652702
+      },
+      {
+        "event": "launched",
+        "at": "2026-09-12T07:59:43.862846+00:00",
+        "elapsed_seconds": 0.010518166236579418
+      }
+    ],
+    "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+    "journal_sync": {
+      "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "experiment_id": "explicit-finish-01",
+      "stage_id": "live-develop",
+      "status": "running",
+      "begin_revision": 5,
+      "claimed_stage": {
+        "id": "live-develop",
+        "title": "実AIで改訂を提出して終了を明示",
+        "status": "running",
+        "started_at": "2026-09-12T07:59:43.852347+00:00",
+        "ended_at": null,
+        "budget_minutes": 15,
+        "note": "既知の改訂2と別評価を入力に、改訂1件まで。終了処理の実利用検証。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/develop-run"
+      }
+    }
+  },
+  "power": {
+    "pid": 12929,
+    "command": "caffeinate -i -s -w 12368",
+    "supervisor_pid": 12368,
+    "release": "監視プロセス終了までの限定抑止。終了後に不在を確認する。"
+  }
+}

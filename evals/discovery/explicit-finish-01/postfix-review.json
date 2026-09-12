@@ -1,0 +1,89 @@
+{
+  "review": "explicit-finish-postfix-review",
+  "started_at_utc": "2026-09-12T08:00:02Z",
+  "ended_at_utc": "2026-09-12T08:02:05Z",
+  "elapsed_seconds": 123,
+  "worktree": "/tmp/sv-explicit-finish-01-worktree",
+  "requested_commit": "ca46dfa623458274eff98b5ed8fef6528b47668a",
+  "observed_head": "ca46dfa623458274eff98b5ed8fef6528b47668a",
+  "tracked_worktree_clean_before_and_after": true,
+  "method": "対象差分と関連処理の読み取り限定点検。テスト定義名は参照したが、テスト結果を採否の証拠にしていない。",
+  "scope": "前回4指摘の修正確認、および明示終了の受付→停止→保存再検査→次工程で失敗・期限・中断を成功へ変更しない境界。",
+  "verdict": "指摘した4経路の修正を確認。今回の限定した静的点検では残る具体的欠陥を発見しなかった。",
+  "remaining_concrete_findings": [],
+  "previous_findings": [
+    {
+      "id": 1,
+      "status": "resolved_by_reading",
+      "issue": "ヘルプ成功履歴の誤計数と空argsによるIndexError",
+      "evidence": "src/svdeck/discovery_run.py:287",
+      "reason": "submissionメタデータのある成功操作だけを抽出し、args[:1]で空配列を安全に扱う。"
+    },
+    {
+      "id": 2,
+      "status": "resolved_by_reading",
+      "issue": "停止で途切れた無関係の操作JSONによる再検査失敗",
+      "evidence": "src/svdeck/discovery_run.py:282; src/svdeck/discovery_run.py:317",
+      "reason": "要求受付後は固定したsubmit/reportと元finish操作だけを読み、無関係のread・再送の途中記録をJSONとして解析しない。"
+    },
+    {
+      "id": 3,
+      "status": "resolved_by_reading",
+      "issue": "送信処理内で観測した外部信号による非0終了を明示成功へ変更",
+      "evidence": "src/svdeck/worker.py:33; src/svdeck/worker.py:196; src/svdeck/worker.py:264",
+      "reason": "送信直前に自然終了を確認した場合は送信を行わず、その終了番号を優先する。実際に自分のTERMを送れていない場合を明示終了成功へ認定しない。"
+    },
+    {
+      "id": 4,
+      "status": "resolved_by_reading",
+      "issue": "検査例外による期限・中断優先判定の省略",
+      "evidence": "src/svdeck/worker.py:162; src/svdeck/worker.py:274",
+      "reason": "要求検査の例外後と停止後検査の例外後にも期限・中断を確認し、停止理由を優先する。"
+    }
+  ],
+  "boundary_checks": [
+    {
+      "boundary": "受付",
+      "evidence": "src/svdeck/discovery_run.py:83; src/svdeck/discovery_run.py:195; src/svdeck/discovery_run.py:306",
+      "observation": "公開操作の排他、正式提出・reportの照合、操作記録保存後の要求公開がある。要求ファイルだけを成功証明にしない。"
+    },
+    {
+      "boundary": "停止",
+      "evidence": "src/svdeck/worker.py:140; src/svdeck/worker.py:183; src/svdeck/worker.py:244",
+      "observation": "中断・期限・観測済み自然終了を優先し、同じプロセス群の消滅確認が失敗すれば非0で終了する。"
+    },
+    {
+      "boundary": "停止後の保存再検査",
+      "evidence": "src/svdeck/worker.py:257; src/svdeck/discovery_run.py:226; src/svdeck/discovery_run.py:317",
+      "observation": "要求識別値と保存内容を再検査し、成功確定前に期限・中断を再確認する。固定入力・提出対応・正式入口での再保存一致を共通検査へ残している。"
+    },
+    {
+      "boundary": "次工程",
+      "evidence": "src/svdeck/worker.py:291; src/svdeck/discovery_run.py:438; src/svdeck/discovery_run.py:443",
+      "observation": "戻り値0とcompleted/finished_by_requestの両方を要求する。台帳反映失敗は戻り値を非0へ変更する。親側でも保存再検査を行い、不一致なら次工程へ進まない。"
+    },
+    {
+      "boundary": "既定挙動・旧履歴",
+      "evidence": "src/svdeck/discovery_run.py:429; src/svdeck/discovery_run.py:433; src/svdeck/discovery_run.py:453",
+      "observation": "明示終了は任意設定で、既定はfinish_checkなし。元探索の完全一致確認と別出力への集約を維持し、旧実行状態を更新する処理を追加していない。"
+    }
+  ],
+  "source_sha256": {
+    "src/svdeck/discovery_run.py": "98e7ad5e276ebe825a0ddfc031a296bac70e7caaaf0525ae2a89c2531e804eff",
+    "src/svdeck/worker.py": "fa3997fb8f39211aef397bc355606b811f9253301163a8dbf3cf1cfa45ef05d3",
+    "src/svdeck/worker_journal.py": "e872842222cb247ae2e5e7c7fc75ac25249cd3bf1e01a8934f8b3aebcb5df0a4"
+  },
+  "limitations": [
+    "テストと実AIの動作は実行していない。実利用成功や方式採用の認定ではない。",
+    "自身の信号送信と外部信号が同時に起きた場合の原因識別、および元のプロセス群を離れた子の管理は保証していない。"
+  ],
+  "constraints_observed": {
+    "code_edited": false,
+    "tests_executed": false,
+    "real_ai_executed": false,
+    "private_logs_read": false,
+    "model_settings_changed": false,
+    "pushed": false,
+    "only_output_written": "/tmp/explicit-finish-postfix-review.json"
+  }
+}

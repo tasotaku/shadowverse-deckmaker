@@ -1,0 +1,182 @@
+{
+  "task": "explicit-finish-01 implementation and functional checks",
+  "status": "completed",
+  "implementation_verdict": "PASS",
+  "method_adoption": "未判定。実AI検証はrootの別工程。",
+  "started_at_utc": "2026-09-12T05:51:29+00:00",
+  "ended_at_utc": "2026-09-12T06:59:45.952535+00:00",
+  "elapsed_utc_seconds": 4096.952535,
+  "worktree": "/tmp/sv-explicit-finish-01-worktree",
+  "branch": "codex/explicit-finish-01",
+  "base_commit": "b0d7b493380d051518ae240de6d153ed26a6238e",
+  "commit": "ca46dfa623458274eff98b5ed8fef6528b47668a",
+  "git_status_after_commit": "clean (ignored temporary tests retained)",
+  "pushed": false,
+  "cherry_picked_to_main": false,
+  "contract": {
+    "protocol": "/tmp/sv-explicit-finish-01-worktree/evals/discovery/explicit-finish-01/protocol.json",
+    "criteria_sha256": "21b80b1f5df7d714229ccf312cd4eef7e4c46851a5956c11b14300b647b0dce7",
+    "boundary_audit": "/tmp/sv-explicit-finish-01-worktree/evals/discovery/explicit-finish-01/boundary-audit.json",
+    "unchanged": true
+  },
+  "changes": [
+    "discovery_run --explicit-finish を通常の改訂→別評価と review-only に任意提供。担当は正式submit/reviewと提出後reportの後にpublic.py finishを呼ぶ。既定では自然終了経路を維持。",
+    "正式保存と固定入力の検査を validate_stage へ共通化。終了要求を公開操作・割当担当・対象改訂・packet・提出・report・session一覧の識別値に結び、停止後も同じ内容で再検査する。ゲームの判定基準やDEVELOP本体は変更しない。",
+    "公開操作を工程内で排他制御し、終了要求を原子的に公開する。受付後の追加保存を拒否し、同内容のfinish再送を許す。停止後検査は固定した提出/report/finish記録を対象とし、無関係な読出し記録の書込み途中に依存しない。",
+    "監視側は期限/外部中断/観測済み非0自然終了を優先。終了前後の検査と元のプロセス群の不在を期限内に確認した場合だけ finished_by_request とする。実終了コードと工程イベントを保持。期限停止を遡って成功にしない。",
+    "台帳には自然終了との違いを残して工程完了を反映し、台帳反映失敗のrunner非0を保つ。評価内容や採否は変更しない。"
+  ],
+  "test_plan": {
+    "happy": [
+      "明示改訂→別評価",
+      "明示review-only",
+      "既定/明示設定下の自然終了",
+      "同じ完了要求の再送",
+      "台帳へ明示終了理由を保持"
+    ],
+    "edge": [
+      "ヘルプ成功履歴",
+      "空引数ヘルプ",
+      "古い要求・古いreport",
+      "公開操作の排他",
+      "無関係操作の途中JSON",
+      "送信直前の自然終了"
+    ],
+    "error": [
+      "未提出/提出後reportなし",
+      "固定入力/元入力/固定実装/正式保存の改変",
+      "受付後の追加保存",
+      "壊れた要求/操作記録",
+      "期限競合・中断・非0終了",
+      "停止後不一致",
+      "主プロセス終了後の子群残留",
+      "群終了未確認",
+      "台帳反映失敗"
+    ]
+  },
+  "checks": [
+    {
+      "command": "python3 -m py_compile src/svdeck/discovery_run.py src/svdeck/worker.py src/svdeck/worker_journal.py",
+      "result": "PASS"
+    },
+    {
+      "command": "mypy --strict src/svdeck/discovery_run.py src/svdeck/worker.py src/svdeck/worker_journal.py",
+      "result": "PASS",
+      "files": 3,
+      "last_run_on_final_code": true
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    {
+      "command": "PYTHONPATH=src:tests pytest -q tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py tests/temp/test_worker_clock_temp.py tests/temp/test_worker_deadline_temp.py tests/temp/test_worker_journal_temp.py",
+      "result": "PASS",
+      "passed": 88,
+      "reported_elapsed_seconds": 27.23,
+      "phase": "共通検査抽出後の既存関連検査"
+    },
+    {
+      "command": "PYTHONPATH=src:tests:tests/temp pytest -q tests/temp/test_explicit_finish_temp.py tests/temp/test_discovery_run_temp.py tests/temp/test_discovery_review_resume_temp.py tests/temp/test_worker_clock_temp.py tests/temp/test_worker_deadline_temp.py tests/temp/test_worker_journal_temp.py",
+      "result": "PASS",
+      "passed": 126,
+      "reported_elapsed_seconds": 48.11,
+      "phase": "新規38＋既存88。監視中の検査例外文字列をfinish_errorへ残す1行追加前に開始。"
+    },
+    {
+      "command": "PYTHONPATH=src:tests:tests/temp pytest -q tests/temp/test_explicit_finish_temp.py tests/test_discovery.py tests/test_discovery_history.py tests/test_discovery_review_contexts.py",
+      "result": "PASS",
+      "passed": 83,
+      "reported_elapsed_seconds": 29.37,
+      "phase": "最終コードで新規38＋正式入口/履歴/評価資料45を再確認。"
+    },
+    {
+      "command": "git rev-parse HEAD / git status --short / git show --stat --oneline HEAD",
+      "result": "PASS",
+      "observed_commit": "ca46dfa623458274eff98b5ed8fef6528b47668a",
+      "scoped_files": 3
+    }
+  ],
+  "test_totals": {
+    "new_cases": 38,
+    "existing_worker_and_runner_cases": 88,
+    "existing_formal_and_history_cases": 45,
+    "unique_cases_observed_passing": 171,
+    "note": "126と83は新規38件が重複する。単純合算した209件とは報告しない。"
+  },
+  "test_iterations": [
+    {
+      "new_suite_passed": 24,
+      "new_suite_failed": 5,
+      "reported_elapsed_seconds": 19.25,
+      "cause": "合成担当が固定runtimeへpycacheを追加し不変検査に拒否された。テスト側でdont_write_bytecodeを設定し、検査基準は維持。"
+    },
+    {
+      "new_suite_passed": 28,
+      "new_suite_failed": 1,
+      "reported_elapsed_seconds": 19.07,
+      "cause": "停止後改変を拒否した外側状態をfailedと期待していたが、内側finish_invalid/外側develop_failedが実装の契約。期待状態名を訂正し拒否条件を維持。"
+    },
+    {
+      "new_suite_passed": 34,
+      "new_suite_failed": 1,
+      "reported_elapsed_seconds": 20.75,
+      "cause": "前の状態名修正前に開始した検査の回収。新たな競合検査6件は通過。"
+    },
+    {
+      "new_suite_passed": 38,
+      "new_suite_failed": 0,
+      "included_in_final_suites": true
+    }
+  ],
+  "independent_review": {
+    "agent": "readability_check",
+    "findings": 4,
+    "fixed_and_tested": [
+      "helpを提出と誤計数/空argsでIndexError",
+      "無関係の途中操作ログへの依存",
+      "送信内部で観測した外部非0終了の誤成功",
+      "検査例外時の期限/中断優先漏れ"
+    ],
+    "post_fix_read_only_reaudit": "未実施。対応する合成検査で確認。"
+  },
+  "workflow_checkpoint": {
+    "at_utc": "2026-09-12T06:55:01.592823+00:00",
+    "symptom": "目安30分を超え実UTC約63分。前の検査回収に約54分の空白。pytestの当該経過報告は19.07秒。",
+    "cause": "時計上の空白の原因は未確定。実装不具合4件は新しい独立点検で見つかり修正。残る既知テスト失敗は改変拒否時の外側状態名の期待違い。",
+    "fixed_contract": "evals/discovery/explicit-finish-01/protocol.json criteria_sha256=21b80b1f5df7d714229ccf312cd4eef7e4c46851a5956c11b14300b647b0dce7 と boundary-audit.json を維持",
+    "adjustment": "監査範囲を広げず、動いている追加検査を回収し、誤成功しないことと具体的失敗状態を確認して既存関連検査へ合流。新規テストの外側期待値だけを develop_failed に訂正し、内側 finish_invalid 必須は保持。",
+    "next_measure": "追加35検査の実測結果と関連一括結果。UTCとpytest監視秒を別々に記録。"
+  },
+  "time_note": "実UTCの空白は補正していない。05:58台の検査開始から06:52台の回収まで約54分の空白があり、当該pytestは19.07秒と報告した。空白原因と正確な能動作業時間は未確認。UTC総経過とpytestの監視計測を別々に記録する。",
+  "temporary_tests": {
+    "path": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_explicit_finish_temp.py",
+    "committed": false,
+    "copied_existing_files": [
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_run_temp.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_review_resume_temp.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_clock_temp.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_deadline_temp.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_journal_temp.py"
+    ]
+  },
+  "source_sha256": {
+    "src/svdeck/discovery_run.py": "98e7ad5e276ebe825a0ddfc031a296bac70e7caaaf0525ae2a89c2531e804eff",
+    "src/svdeck/worker.py": "fa3997fb8f39211aef397bc355606b811f9253301163a8dbf3cf1cfa45ef05d3",
+    "src/svdeck/worker_journal.py": "e872842222cb247ae2e5e7c7fc75ac25249cd3bf1e01a8934f8b3aebcb5df0a4"
+  },
+  "not_verified": [
+    "実AIによる明示finishの利用・提出後停止・後続別評価の回収",
+    "今回の旧timed_out保存案の回復（rootの別工程）",
+    "OS休止の原因と時計差の分解",
+    "元のプロセス群を離れた子の管理",
+    "自分の信号送信と同時に到達する外部信号の厳密な原因識別。送信前に観測した終了は保持し、自分が送信できなかった負コードは成功にしない。",
+    "実行補助の運用採用、カード案の有用性、システム全体完成"
+  ],
+  "restrictions_observed": [
+    "専用worktree内のコード3ファイルとignored tests/tempだけ編集。最終報告のみ指定/tmpへ保存。",
+    "設計原則・進捗・台帳・カード資料は編集しない。",
+    "実AI実行/モデル設定変更/usage reset/automation/私的stdout・JSONL閲覧なし。合成プロセスのログのみ使用。",
+    "push/mainへのcherry-pickなし。"
+  ]
+}

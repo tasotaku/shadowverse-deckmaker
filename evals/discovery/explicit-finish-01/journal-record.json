@@ -1,18 +1,18 @@
 {
   "id": "explicit-finish-01",
-  "revision": 3,
-  "saved_at": "2026-09-12T06:56:16.231259+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-12T08:03:48.489138+00:00",
   "actor": "codex",
-  "reason": "実装担当の途中報告と目安超過の実時間を記録。検査結果の最終確認と統合は未実施",
+  "reason": "経過報告の初見確認も実際の開始終了時刻で工程へ記録",
   "record": {
     "id": "explicit-finish-01",
     "title": "提出を終えたことを明示し、次の工程へ渡す",
     "category": "infrastructure",
     "status": "running",
-    "summary": "担当が明示的に提出終了を伝える任意の入口を、別の作業場所で実装・検査中。元の期限停止と既定の自然終了は維持。",
+    "summary": "本体へ反映後の171検査と型検査が合格。16:59:43から実AIの改訂が進行中。続く別評価の回収と明示終了の確認は未完了で採用未判定。",
     "method": "担当の明示操作と保存内容の再検査を結び、自然終了を待つだけで期限停止する問題を修正する。",
     "procedure": "既定の自然終了・期限・中断・失敗の挙動を維持する。新方式は明示した任意の設定で使う。旧失敗へ遡って適用しない。\npublic.py finish の明示操作を追加。今回の正式提出・入力・担当の対応と提出後reportを検査し、提出途中やreportだけでは終了しない。\n監視側は明示完了を期限内に確認し、自然終了とは別の終了理由と実際の子終了コードを記録する。期限・外部中断・非0終了を成功へ変更しない。\n終了要求後は正式保存物・固定入力の変更を拒否し、停止後に同一内容を再検査する。プロセス群の残留も上限付きで確認し、停止未確認なら次へ進めない。\n機能・型検査は未提出、古い完了要求、壊れた要求、入力改変、終了中の追加提出、期限競合、中断、非0終了、子群残留、台帳反映失敗を扱う。合成の公開入口で後続工程への接続を確認する。\n機能検査だけでは採用しない。実AIの公開入口で、明示完了の観測・停止後の保持・後続工程への接続を確認した範囲でのみ実行補助として採用する。実戦の強さや発見力は別判定。",
-    "inputs": "現行の discovery_run.py / worker.py / worker_journal.py と inquiry-to-revision-01 の公開提出・停止記録。カード答案は入力しない。",
+    "inputs": "現行の discovery_run.py / worker.py / worker_journal.py と inquiry-to-revision-01 の公開提出・停止記録。カード答案は入力しない。\n実AI確認は保存済み inquiry-review-recovery-01-result の改訂2と別評価。詳細と不変確認用の識別値は live-protocol.json。",
     "criteria": "既定の自然終了・期限・中断・失敗の挙動を維持する。新方式は明示した任意の設定で使う。旧失敗へ遡って適用しない。\npublic.py finish の明示操作を追加。今回の正式提出・入力・担当の対応と提出後reportを検査し、提出途中やreportだけでは終了しない。\n監視側は明示完了を期限内に確認し、自然終了とは別の終了理由と実際の子終了コードを記録する。期限・外部中断・非0終了を成功へ変更しない。\n終了要求後は正式保存物・固定入力の変更を拒否し、停止後に同一内容を再検査する。プロセス群の残留も上限付きで確認し、停止未確認なら次へ進めない。\n機能・型検査は未提出、古い完了要求、壊れた要求、入力改変、終了中の追加提出、期限競合、中断、非0終了、子群残留、台帳反映失敗を扱う。合成の公開入口で後続工程への接続を確認する。\n機能検査だけでは採用しない。実AIの公開入口で、明示完了の観測・停止後の保持・後続工程への接続を確認した範囲でのみ実行補助として採用する。実戦の強さや発見力は別判定。",
     "result": {
       "outcome": "unassessed",
@@ -29,10 +29,10 @@
       {
         "id": "implementation",
         "title": "終了操作と監視側の確認を実装・検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T05:49:51.172585+00:00",
-        "ended_at": null,
-        "note": "独立した作業場所で実装。元の実行・保存案・採点を維持。採用未判定。",
+        "ended_at": "2026-09-12T06:59:45.952535+00:00",
+        "note": "別作業場所で実装・検査完了。担当実装は05:51:29〜06:59:45 UTCの68分17秒、工程開始は条件固定時点。新規38＋既存133の重複なし171件の合格報告。約54分の回収空白を能動時間へ読み替えない。本体へ反映後の検査と実AI確認は別工程。",
         "budget_minutes": 30
       },
       {
@@ -43,6 +43,51 @@
         "ended_at": "2026-09-12T05:47:30+00:00",
         "note": "任意の明示終了は候補として妥当。停止後の群不在確認が必要。実装の検査ではない。",
         "budget_minutes": 4
+      },
+      {
+        "id": "main-verification",
+        "title": "本体反映後の関連検査と実入力の固定",
+        "status": "completed",
+        "started_at": "2026-09-12T07:58:56.224328+00:00",
+        "ended_at": "2026-09-12T08:01:30.261029+00:00",
+        "budget_minutes": 8,
+        "note": "コード反映と関連検査はこの記録前に開始。開始瞬間は別計測していないため、この時刻は固定入力準備の記録時点。"
+      },
+      {
+        "id": "live-develop",
+        "title": "実AIで改訂を提出して終了を明示",
+        "status": "running",
+        "started_at": "2026-09-12T07:59:43.852347+00:00",
+        "ended_at": null,
+        "budget_minutes": 15,
+        "note": "既知の改訂2と別評価を入力に、改訂1件まで。終了処理の実利用検証。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/develop-run"
+      },
+      {
+        "id": "live-review",
+        "title": "続く別評価を提出して終了を明示",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10,
+        "note": "新しい改訂を別担当で評価。旧評価は渡さない。"
+      },
+      {
+        "id": "postfix-review",
+        "title": "修正後の終了処理を別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-12T08:00:02Z",
+        "ended_at": "2026-09-12T08:02:05Z",
+        "budget_minutes": 4,
+        "note": "前回4指摘の修正を確認。限定した読み取り点検で残る具体的欠陥なし。実AI成功の認定ではない。"
+      },
+      {
+        "id": "progress-reader",
+        "title": "経過報告を初見の別担当が読む",
+        "status": "completed",
+        "started_at": "2026-09-12T08:01:54.538803+00:00",
+        "ended_at": "2026-09-12T08:02:34.734149+00:00",
+        "budget_minutes": 2,
+        "note": "40.2秒、PASS。成果・未確認・次工程を判別できた。カードや数字の事実確認ではない。"
       }
     ],
     "evidence_paths": [
@@ -50,14 +95,22 @@
       "evals/discovery/explicit-finish-01/README.md",
       "evals/discovery/explicit-finish-01/boundary-audit.json",
       "evals/discovery/explicit-finish-01/worktree.json",
-      "evals/discovery/explicit-finish-01/implementation-progress.json"
+      "evals/discovery/explicit-finish-01/implementation-progress.json",
+      "evals/discovery/explicit-finish-01/implementation.json",
+      "evals/discovery/explicit-finish-01/live-protocol.json",
+      "evals/discovery/explicit-finish-01/power-scope-start.json",
+      "evals/discovery/explicit-finish-01/main-verification.json",
+      "evals/discovery/explicit-finish-01/live-start.json",
+      "evals/discovery/explicit-finish-01/postfix-review.json",
+      "evals/discovery/explicit-finish-01/progress-reader.json",
+      "evals/discovery/explicit-finish-01/report-power-release.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/explicit-finish-01/README.md",
-      "sha256": "d810979b03473830785ae914bfb8af46453062d4bcf2a2f3da66ab71a1f735ec",
-      "size": 415
+      "sha256": "a29066cab5125825bdf3505891018e5e6883efdab2180833286c8d24ead10939",
+      "size": 2769
     },
     {
       "path": "evals/discovery/explicit-finish-01/boundary-audit.json",
@@ -70,9 +123,49 @@
       "size": 935
     },
     {
+      "path": "evals/discovery/explicit-finish-01/implementation.json",
+      "sha256": "e4ab66f399848b6537b87d2f19eac10d0dac727f3349424c7b53c654be02097b",
+      "size": 10147
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/live-protocol.json",
+      "sha256": "33f7c945189e6ff71cf1a375ed944ed1daf53186335ee493b193c73a960fe53b",
+      "size": 10710
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/live-start.json",
+      "sha256": "2ad68a8fa14f3bc137ef293c0fb1d863836d17ba0bfc52011fe06781059e6dc9",
+      "size": 3157
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/main-verification.json",
+      "sha256": "8c88565d0a9da4a2e3f0b2894499db463f1aa9b5aaee98772210c5af23a84e70",
+      "size": 1047
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/postfix-review.json",
+      "sha256": "c7dca0192d50d4261430cbba7bfb750be8dc0d87c89d5dd5a87cf81c040c22b5",
+      "size": 5288
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/power-scope-start.json",
+      "sha256": "19aaf8e869faf784e1f0b7748d742c773a186469d2b802a5eae37112dbbc2a9c",
+      "size": 313
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/progress-reader.json",
+      "sha256": "652fb0338ebd700551c2122a37368e543ed8586d062af64bb918e61836d22b7c",
+      "size": 3255
+    },
+    {
       "path": "evals/discovery/explicit-finish-01/protocol.json",
       "sha256": "5a52f4aab692eb933b21d90d2be5cd462fa321946805bfd7baaf2796d56c31f2",
       "size": 1971
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/report-power-release.json",
+      "sha256": "d074581478788edae61d87fa094436ec0d06cbfe7661b9c393a88954640e4266",
+      "size": 409
     },
     {
       "path": "evals/discovery/explicit-finish-01/worktree.json",
@@ -81,6 +174,36 @@
     }
   ],
   "history": [
+    {
+      "revision": 8,
+      "saved_at": "2026-09-12T08:03:48.489138+00:00",
+      "actor": "codex",
+      "reason": "経過報告の初見確認も実際の開始終了時刻で工程へ記録"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-12T08:03:23.034305+00:00",
+      "actor": "codex",
+      "reason": "修正後の独立点検と進捗文書の初見検査を保存。実AI検証は進行中"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T08:01:30.281101+00:00",
+      "actor": "codex",
+      "reason": "本体の171検査と実AIの起動を確認し、進行中の段階を報告"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T07:59:43.858659+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-12T07:58:56.777319+00:00",
+      "actor": "codex",
+      "reason": "実装完了と本体への反映、実AI確認の入力・上限・判定条件を記録"
+    },
     {
       "revision": 3,
       "saved_at": "2026-09-12T06:56:16.231259+00:00",
