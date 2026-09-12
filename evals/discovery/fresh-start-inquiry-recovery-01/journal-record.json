@@ -1,0 +1,77 @@
+{
+  "id": "fresh-start-inquiry-recovery-01",
+  "revision": 3,
+  "saved_at": "2026-09-12T16:51:07.687606+00:00",
+  "actor": "codex-root",
+  "reason": "前の工程未登録を直し、保存済み案からの調査初回起動を確認",
+  "record": {
+    "id": "fresh-start-inquiry-recovery-01",
+    "title": "未起動だったネメシス案の先例調査を復旧する",
+    "category": "method",
+    "status": "running",
+    "summary": "両工程の未着手登録を確認し、9月13日01:49:28から調査AIが初回実行中。考案・別評価・以前の起動失敗は保持。",
+    "method": "工程登録の不足を直し、保存済み案と正式評価から後続調査を初回実行する。",
+    "procedure": "前試行の正式案・正式評価・既存資料を保持し、工程未登録で起動しなかった後続調査だけを初回実行へ復旧する。考案・別評価はやり直さず、前の起動失敗を成功へ書き換えない。\n調査15分・別照合10分を各一度。両工程の未着手登録を起動前に確認する。元案・採点・カードDBは変更せず、rootは個別のカード答案・出典・期待結論を渡さない。\n同居・同じ使い方・一般的普及を分け、検索語・日時・URL・取得抜粋・解釈・未確認を保存する。先例だけで棄却せず、未発見や細かな条件差から独自性を認定しない。\n別照合と保存後の全文再読を確認する。既存の後続調査の初回実行であり、新しい案の発見件数を増やさない。調査の成否と入力接続の採用・システム全体の完成は別に判断する。",
+    "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-start-01-result",
+    "criteria": "前試行の正式案・正式評価・既存資料を保持し、工程未登録で起動しなかった後続調査だけを初回実行へ復旧する。考案・別評価はやり直さず、前の起動失敗を成功へ書き換えない。\n調査15分・別照合10分を各一度。両工程の未着手登録を起動前に確認する。元案・採点・カードDBは変更せず、rootは個別のカード答案・出典・期待結論を渡さない。\n同居・同じ使い方・一般的普及を分け、検索語・日時・URL・取得抜粋・解釈・未確認を保存する。先例だけで棄却せず、未発見や細かな条件差から独自性を認定しない。\n別照合と保存後の全文再読を確認する。既存の後続調査の初回実行であり、新しい案の発見件数を増やさない。調査の成否と入力接続の採用・システム全体の完成は別に判断する。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-12T16:49:28.004549+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "live-inquiry",
+        "title": "使い方の先例と普及を調査",
+        "status": "running",
+        "started_at": "2026-09-12T16:49:28.524735+00:00",
+        "ended_at": null,
+        "budget_minutes": 15,
+        "note": "前試行ではAI未起動。今回は両工程の登録を事前確認して一度実行。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-start-inquiry-recovery-01/inquiry-run"
+      },
+      {
+        "id": "live-inspect",
+        "title": "出典と結論を別担当が照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10,
+        "note": "調査の正式資料を受け取り、一度だけ別照合。"
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/fresh-start-inquiry-recovery-01/README.md",
+      "evals/discovery/fresh-start-inquiry-recovery-01/protocol.json",
+      "evals/discovery/fresh-start-inquiry-recovery-01/preflight.json",
+      "evals/discovery/fresh-start-inquiry-recovery-01/launch-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/fresh-start-inquiry-recovery-01/README.md",
+      "sha256": "964e9ca8e0a0fd69998ba4c27873f20071dae81c9dea25475495e48e57cd8be1",
+      "size": 893
+    },
+    {
+      "path": "evals/discovery/fresh-start-inquiry-recovery-01/launch-check.json",
+      "sha256": "cac0c54c1f85c0d8175aa51a88ca1ce63d9cc0e6608d8255552b3fb498dce266",
+      "size": 1374
+    },
+    {
+      "path": "evals/discovery/fresh-start-inquiry-recovery-01/preflight.json",
+      "sha256": "2633117d1c8da27c527cce9bed6d4d15118bef7d4e60af24e757f783bdac5060",
+      "size": 314
+    },
+    {
+      "path": "evals/discovery/fresh-start-inquiry-recovery-01/protocol.json",
+      "sha256": "95c1e741ec253dbcdfa9c57788b7b8631951f44c4d5e9addf421ef61ce8e9a82",
+      "size": 9354
+    }
+  ]
+}

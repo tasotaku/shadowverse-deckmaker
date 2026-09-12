@@ -1,0 +1,117 @@
+{
+  "evaluation": "fresh-start-01 独立方法評価",
+  "started_at": "2026-09-12T16:46:05+00:00",
+  "ended_at": "2026-09-12T16:49:45Z",
+  "budget_seconds": 240,
+  "scope": "正式案・別評価・公開保存資料だけを照合。新たなカード答案は作成せず、記事取得コードの実装検査は保存結果として評価。",
+  "decision": {
+    "feature": "任意の記事取得を初回入力へ接続する機能の限定採用を支持",
+    "feature_scope": "最新取得資料の保持、全40枚比較への接続、失敗境界と既存入力保護の範囲。探索システム全体の完成認定ではない。",
+    "practical_article_use": "全40枚リストの使用は確認。説明本文固有の判断寄与は限定的な証拠に留まる。",
+    "formal_proposals": 1,
+    "independent_reviews": 1,
+    "comparative_test_candidates": 1,
+    "useful_original_seeds_confirmed": 0,
+    "useful_original_seed_status": "独自性未確認のため主成果は未達。零件の確定成果と、候補の否定は区別する。",
+    "formal_review": {
+      "procedure": "supported",
+      "value": "test",
+      "novelty": "unconfirmed"
+    },
+    "causal_superiority": "単一試行で対照群がなく、資料先渡しによる因果的優位・発見力向上は認定しない。",
+    "workflow_completion": "初回考案・別評価は完了。必要な後続調査・別照合は本評価の締切時点で完了未確認。"
+  },
+  "evidence": [
+    {
+      "claim": "固定した5記事から40枚リスト5件・説明5件・取得情報5件を初回入力へ渡した。",
+      "records": [
+        "evals/discovery/fresh-start-01/live-input-protocol.json",
+        "evals/discovery/fresh-start-01/input-verification.json",
+        "evals/discovery/fresh-start-01/launch-check.json",
+        "/tmp/sv-fresh-start-01-live/session/packets/1eab1f31d34b68da3f9bf979db8903fc93786bd3614db497a4f5162338830280.json"
+      ],
+      "observed": "初回packetはdevelop・revision 0・proposal null・previous_reviews空。旧known_decks5件の取得日は7月30日で保持され、9月12日取得の記事資料と分離。launch-checkは担当へ渡った版が準備版と同じと記録。"
+    },
+    {
+      "claim": "40枚リストは表示だけでなく採用配分と通常構築比較に使われた。",
+      "records": [
+        "/tmp/sv-fresh-start-01-live/session/revision-0001.json",
+        "/tmp/sv-fresh-start-01-live/session/sources/9d0e7acfec321d2693527d1189247d8cb0369bc35b3c70cd3e413a301132b6ca.json",
+        "/tmp/sv-fresh-start-01-live/session/sources/378de8e875664b7ad34454955d3d49fbff83d43467d203dff16c5204466ff44c.json"
+      ],
+      "observed": "GameWith AFの16種類40枚を比較元として明記。愚劣の兵器3→2、ニューロン0→1のみ交換し、シアター1・ヨグゼンタ2・ミュー3など39枠を維持。同じT7開始・同ターン終了を固定し、通常側の兵器手順とミュー優先順を比較。通常側も全処理・手札4枚を達成するため、4ドローを手札純増4枚とせず、未知札への入替と現在の展開へ利益を限定した。"
+    },
+    {
+      "claim": "説明本文を保持・参照したことと、本文固有の価値を示したことは同じではない。",
+      "records": [
+        "/tmp/sv-fresh-start-01-live/session/sources/979a8091fa9be7d3e9f6dcd9b70914bdd158170925d36940ac21e630d5a89901.json",
+        "/tmp/sv-fresh-start-01-live/session/sources/378de8e875664b7ad34454955d3d49fbff83d43467d203dff16c5204466ff44c.json",
+        "/tmp/sv-fresh-start-01-live/session/revision-0001.json"
+      ],
+      "observed": "比較資料がarticle_hashを保持し、正式案は序盤AF供給と既存疾走決着を維持し、本文の通常運用と整合する。ただし正式案・別評価のsource_hash引用は比較資料のみで、比較資料のevidenceはカード本文中心。本文の特定説明により何を改めたかを直接示す証拠はなく、本文自体の追加効果を独立に認定しない。GameWith AF説明はpartialでカード画像646の名前欠落を保持。"
+    },
+    {
+      "claim": "別評価の試用支持は提出主手順の盤面枚数差の追認ではない。",
+      "records": [
+        "/tmp/sv-fresh-start-01-live/session/review-0001-2e563c1d095ce924.json"
+      ],
+      "observed": "別評価は提出主手順の本文上の成立を支持しつつ、現在の展開だけでは推薦しないと明記。評価担当が同じ固定状態内で示した別順序ではミューと通常進化権を温存して全処理・補充できることを、1枠交換の比較試用理由にした。これは評価担当の追加指摘であり、初回考案担当がその利益を発見済みだったとは数えない。新しいカード構成や都合のよいドローは追加していない。"
+    },
+    {
+      "claim": "訂正と採用損失が残っており、訂正の記載を性能改善として数えない。",
+      "records": [
+        "/tmp/sv-fresh-start-01-live/session/revision-0001.json",
+        "/tmp/sv-fresh-start-01-live/session/review-0001-2e563c1d095ce924.json"
+      ],
+      "observed": "正式提出前にシアターがT6終了まで除去されない条件を明記。別評価は、ヨグゼンタを使わない比較でもミュー5/7を残せること、オーラ単独は攻撃やランダムダメージを止めないことを訂正した。これらは正式案の成立否定ではなく必要条件と利益の過大解釈の修正。兵器1枚を減らすと4PP単独除去・進化時/終了時処理・本体と軽減コピーの後続展開を失う。シアター/N各1枚への同時アクセス、人形2枚温存、相打ち相手、準備生存条件の負担は未解決。"
+    },
+    {
+      "claim": "既知の併用を新発見には数えていない。",
+      "records": [
+        "/tmp/sv-fresh-start-01-live/session/packets/1eab1f31d34b68da3f9bf979db8903fc93786bd3614db497a4f5162338830280.json",
+        "/tmp/sv-fresh-start-01-live/session/revision-0001.json",
+        "/tmp/sv-fresh-start-01-live/session/review-0001-2e563c1d095ce924.json"
+      ],
+      "observed": "ニューロン注記にヨグゼンタ併用のPP収支と同ターン展開の価値が既出。正式案も別評価もその既知性を明記。旧アイカ経路の不成立を避けたことは新規性の証明にしていない。供給側のヨグゼンタ・シアター・ミュー・兵器の注記空欄も比較資料で確認済みと記録し、空欄を承認に読み替えていない。",
+      "observed_miscount": 0
+    },
+    {
+      "claim": "154件合格は接続機能の証拠で、独自の有用種154件でも発見力の証拠でもない。",
+      "records": [
+        "evals/discovery/fresh-start-01/implementation.json"
+      ],
+      "observed": "関連154件・うち新規12件、型検査4ファイル合格の保存報告を確認。今回は再実行せず、実装の保持・失敗境界・互換の検査として用いた。"
+    }
+  ],
+  "followup_start_failure": {
+    "records": [
+      "/tmp/sv-fresh-start-01-live-novelty/result.json",
+      "/tmp/sv-fresh-start-01-live-novelty/inquiry-run/run.json"
+    ],
+    "observed_status": "journal_start_failed",
+    "outer_status": "inquiry_failed",
+    "error": "指定した工程がありません: novelty-inquiry",
+    "worker_pid": null,
+    "started_at": "2026-09-12T16:12:47.616306+00:00",
+    "ended_at": "2026-09-12T16:12:47.617696+00:00",
+    "elapsed_seconds": 0.0013872920535504818,
+    "attribution": "公開記録は台帳の工程未登録によるworker起動前失敗を示す。rootからは一時実行連結で条件付き後続2工程の登録を忘れたと報告。記事取得コードの失敗と分ける。",
+    "effect_on_judgment": "初回取得保持・40枚比較利用・正式supported/test/unconfirmedは取り消さない。一方、計画した後続調査は完遂しておらず、独自性の解消・工程全体成功は認定しない。",
+    "recovery_accounting": "失敗記録を残し、登録修正後の初めての調査worker実行と別照合を独立した復旧記録へ保存する。考案・別評価の追加実行や成績上積みとは混ぜず、取得や元案を再作成しない。"
+  },
+  "limits": [
+    "主成果の有用な独自種は0件確認。比較試用候補1件と区別する。独自性の不成立を証明したわけではない。",
+    "実戦・勝率・Tier3程度で戦えること・組合せ到達頻度・苦手条件での採用損失は未検証。",
+    "比較は同じ固定状態内の机上照合であり、相手盤面の環境出現頻度や通常構築全体の最善手を保証しない。",
+    "記事取得日時と記事更新表示を区別する。新たに取得しただけで内容の現行性・合法性・普及・強さを認定しない。",
+    "正式案・旧注記には既知のカード知識が含まれる。以前の正式答案を渡していないことから、全過去試行への完全な未知性は認定しない。",
+    "今回の独立評価は保存された公開結果の方法評価。実際のCodex stdout.logやJSONL推論は一切読んでいない。",
+    "main編集・commit・DB更新・新しいユーザー所有task・goal・モデル変更を行っていない。"
+  ],
+  "next_system_step": [
+    "条件付き後続の工程登録を公開実行前に確認し、起動前失敗を保存したまま未実行の調査と別照合だけを固定条件で完走する。",
+    "後続の結果ではカード併用の先例と役割配分の先例、一般的な普及を区別し、検索未検出だけで独自性を認定しない。",
+    "最終集計を、機能の限定採用・試用理由1件・独自性の確認件数・運用失敗の4つに分ける。今回の判断を本体へ反映する際も通常の考案/評価基準は維持する。",
+    "次の検証を設計する場合は、記事本文のどの説明が比較・採用枚数・使い方を変えたかを公開成果から追えるかを測り、単なる資料数増加を成果にしない。"
+  ]
+}

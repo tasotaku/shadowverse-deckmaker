@@ -1,0 +1,59 @@
+{
+  "collection_started_at": "2026-09-12T16:47:41.112516+00:00",
+  "collection_ended_at": "2026-09-12T16:47:43.141427+00:00",
+  "first_status_observed_at": "2026-09-12T16:45:02+00:00",
+  "stages": [
+    {
+      "stage": "develop",
+      "started_at": "2026-09-12T15:51:01.015112+00:00",
+      "ended_at": "2026-09-12T16:06:46.191950+00:00",
+      "wall_seconds": 945.176838,
+      "monitor_seconds": 945.1830077916384,
+      "status": "finished_by_request",
+      "operations": 33,
+      "operation_errors": [
+        {
+          "args": [
+            "submit",
+            "proposal.json"
+          ],
+          "exit_code": 2,
+          "started_at": "2026-09-12T16:05:46.986099+00:00",
+          "ended_at": "2026-09-12T16:05:47.032583+00:00",
+          "stderr": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+        }
+      ],
+      "finish_revalidated": true,
+      "worker_pid": 94688
+    },
+    {
+      "stage": "review",
+      "started_at": "2026-09-12T16:06:46.615950+00:00",
+      "ended_at": "2026-09-12T16:12:46.513442+00:00",
+      "wall_seconds": 359.897492,
+      "monitor_seconds": 359.8999945418909,
+      "status": "finished_by_request",
+      "operations": 25,
+      "operation_errors": [],
+      "finish_revalidated": true,
+      "worker_pid": 11836
+    }
+  ],
+  "formal_proposals": 1,
+  "formal_reviews": 1,
+  "judgment": {
+    "procedure": "supported",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "new_sources": 2,
+  "end_to_collection_seconds": 2094.23597,
+  "original_and_runtime_unchanged": true,
+  "formal_and_finish_revalidated": true,
+  "copy_identical": true,
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "preserved_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fresh-start-01-result",
+  "followup_failure": "後続novelty-inquiry工程の未登録により、調査AIを起動する前に停止。",
+  "followup_worker_started": false,
+  "limits": "私的stdout/JSONLは未読。正式提出と公開操作のみ保存。次工程が加えた一致済み評価入力だけを除いた複製で提出終了を再照合。経過と時刻差はCPU時間ではない。"
+}
