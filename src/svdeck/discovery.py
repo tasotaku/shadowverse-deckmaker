@@ -255,6 +255,27 @@ def _example(stage: str, revision: int) -> JSONDict:
             "uncertainties": ["未確認の前提"]}
 
 
+def query(session: Path, question: str, tag: str) -> JSONDict:
+    # AI_NOTE: 未提出の問いだけを同じ固定DBへ渡し、検索結果や新しい入力版は保存しない。
+    question, tag = _text(question, "question"), _text(tag, "tag")
+    context = _context(session)
+    conn = read_only(session / "snapshot.db")
+    try:
+        result = search_questions(conn, context, [{"question": question, "tag": tag}])[0]
+    finally:
+        conn.close()
+    return {"context_hash": digest(context), "snapshot_sha256": context["snapshot_sha256"],
+            "search": result,
+            "card_references": [{"card_id": card["card_id"], "context_path": f"context.json#/data/cards/{index}",
+                                 "section": "cards", "offset": index, "limit": 1}
+                                for index, card in enumerate(context["cards"]) if card["card_id"] in result["tag_hits"]],
+            "reading": "本文・進化・参照先・注記は同じ探索のpacket --summaryで識別値を確認し、"
+                       "read HASH cards --offset N --limit 1で読む。Nはcard_referencesのoffset。",
+            "limitations": ["型一致は候補の手掛かりで、生成可能性・手順成立・試用価値・独自性を保証しない。",
+                            "0件でも本文を走査する。生成元の自動解決は行わない。",
+                            "結果は未保存。根拠として残す場合は既存のattach又はattach-fileを使う。"]}
+
+
 def attach(session: Path, payload: JSONDict) -> JSONDict:
     # AI_NOTE: 有効な探索へ資料だけを追記する。改訂や評価の作成・昇格は行わない。
     _context(session)
@@ -607,7 +628,7 @@ def recall(library: Path, card_ids: list[int], query: str | None = None,
 
 
 def main(argv: list[str] | None = None) -> int:
-    # AI_NOTE: 任意の参照記事を開始操作へ渡し、記事未指定のコマンドと考案・評価経路は維持する。
+    # AI_NOTE: 任意の記事取得・型検索を公開し、既存の考案・評価経路は維持する。
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     begin = sub.add_parser("start", help="DBを固定して探索開始")
@@ -638,6 +659,10 @@ def main(argv: list[str] | None = None) -> int:
     get.add_argument("--stage", choices=("develop", "review"), default="develop")
     get.add_argument("--finish-from-source", help="指定した保存資料の調査を提案へまとめる担当用の指示を選ぶ")
     get.add_argument("--summary", action="store_true", help="全文の代わりに識別値・指示・回答例・読出し目録を表示")
+    search = sub.add_parser("query", help="未提出の問い1件を固定DBの型検索へ渡す（読み取り専用）")
+    search.add_argument("session", type=Path)
+    search.add_argument("--question", action="append", required=True, help="その場で生じた問い。1件だけ指定")
+    search.add_argument("--tag", action="append", required=True, help="既存の要求タグ。空でない1件だけ指定")
     read = sub.add_parser("read", help="指定した保存資料を区分ごとに分割して読む")
     read.add_argument("session", type=Path)
     read.add_argument("packet_hash")
@@ -675,6 +700,10 @@ def main(argv: list[str] | None = None) -> int:
                 result = packet_summary(args.session, result["sha256"])
         elif args.command == "read":
             result = read_packet(args.session, args.packet_hash, args.section, args.offset, args.limit)
+        elif args.command == "query":
+            if len(args.question) != 1 or len(args.tag) != 1:
+                raise ValueError("questionとtagは1件ずつ指定してください")
+            result = query(args.session, args.question[0], args.tag[0])
         elif args.command == "submit":
             result = submit(args.session, read_object(args.response))
         elif args.command == "review":

@@ -104,6 +104,7 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
             if not args or args in (['--help'], ['help']):
                 print('Use: public.py packet [--summary] | read HASH SECTION [--offset N --limit N] | report')
                 print('For develop: submit FILE | attach FILE | attach-file FILE OPTIONS | compare BEFORE AFTER')
+                print('For develop: query --question TEXT --tag TAG (one each; read-only; save evidence with attach).')
                 print('For review: review FILE. For inquiry/inspect: attach FILE | attach-file FILE OPTIONS.')
                 print('Session and stage are fixed. Read inputs only through this entry.')
                 if config.get('explicit_finish'):
@@ -111,7 +112,7 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
                 code = 0
             else:
                 command, rest = args[0], args[1:]
-                stage_commands = {'develop': {'submit', 'attach', 'attach-file', 'compare'}, 'review': {'review'},
+                stage_commands = {'develop': {'submit', 'attach', 'attach-file', 'compare', 'query'}, 'review': {'review'},
                                   'inquiry': {'attach', 'attach-file'}, 'inspect': {'attach', 'attach-file'}}
                 allowed = {'packet', 'read', 'report'} | stage_commands[stage]
                 if config.get('explicit_finish') and stage in {'develop', 'review'}:
@@ -407,6 +408,9 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
 カード・既存案・評価・入力設定を書き換えず、足りない情報を推測で埋めません。提出できなければその事実をfinal-messageに残してください。
 結論と残った問題を短くfinal-messageに記してください。私的な思考過程は保存資料へ転記しません。
 '''
+            if stage == 'develop':
+                # AI_NOTE: 任意の検索操作だけを案内し、考案の方針・評価基準と別工程の指示は変えない。
+                prompt += f'未提出の新しい問いを型検索へ渡す任意操作: {sys.executable} public.py query --question TEXT --tag TAG（各1件）。結果の本文・注記を公開readで確認し、残す場合は既存attach又はattach-fileを使えます。\n'
             if explicit_finish:
                 prompt += f'正式提出とreport確認を終え、これ以上保存内容を変えない段階で {sys.executable} public.py finish を実行してください。受付後は保存内容を変更できません。監視側が停止と再検査を行い、正式資料から成果を回収します。\n'
             (work / 'prompt.md').write_text(prompt)
