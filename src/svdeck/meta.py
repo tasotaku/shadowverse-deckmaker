@@ -141,7 +141,7 @@ def parse_game8_tier(html_text: str, deck_format: str = "rotation") -> list[Deck
 
 
 def parse_game8_decks(html_text: str) -> list[DeckDetail]:
-    # AI_NOTE: 主レシピ節の小見出しごとに分離し、表示表と同じ見出しのコピー先を対応付ける。
+    # AI_NOTE: 主節の先頭と小見出しごとを分離し、表示表と同じ部分のコピー先だけを対応付ける。
     updated_match = re.search(r'"dateModified":"([^"]+)"', html_text)
     updated_on = updated_match.group(1) if updated_match else None
     start = re.search(r'<h2\b[^>]*\bid="hl_1"[^>]*>', html_text)
@@ -154,20 +154,25 @@ def parse_game8_decks(html_text: str) -> list[DeckDetail]:
         r'<b class="a-bold">×(\d+)</b>',
         re.DOTALL,
     )
-    details = []
+    blocks = [("", "hl_1", re.split(r'<h3\b', segment, maxsplit=1)[0])]
     for index, heading in enumerate(headings):
         end = headings[index + 1].start() if index + 1 < len(headings) else len(segment)
-        block = segment[heading.end():end]
-        if not re.search(r'<th\b[^>]*\bcolspan="5"[^>]*>\s*デッキレシピ\s*</th>', block):
+        blocks.append((heading.group(2), heading.group(1), segment[heading.end():end]))
+    details = []
+    for title, anchor, block in blocks:
+        recipe_headers = re.findall(r'<th\b[^>]*\bcolspan="5"[^>]*>\s*デッキレシピ\s*</th>', block)
+        if not recipe_headers:
             continue
+        if len(recipe_headers) != 1:
+            raise ValueError("1つのレシピ区間に複数のレシピ表があります。対応を確認してください")
         links = list(dict.fromkeys(html.unescape(url) for url in re.findall(r'href="([^"]+)"', block)
                                    if urlparse(html.unescape(url)).hostname == "shadowverse-wb.com"
                                    and urlparse(html.unescape(url)).path.endswith("/deck/detail/")))
         if len(links) > 1:
             raise ValueError("1つのレシピ見出しに複数のコピー先があります。対応を確認してください")
         cards = [(html.unescape(name), int(count)) for name, count in pattern.findall(block)]
-        variant = html.unescape(re.sub(r'<[^>]+>', '', heading.group(2))).strip()
-        details.append(DeckDetail(updated_on, cards, variant, heading.group(1), links[0] if links else ""))
+        variant = html.unescape(re.sub(r'<[^>]+>', '', title)).strip()
+        details.append(DeckDetail(updated_on, cards, variant, anchor, links[0] if links else ""))
     if not details:
         raise ValueError("Game8の主レシピ節から独立したデッキレシピを読めません")
     return details
