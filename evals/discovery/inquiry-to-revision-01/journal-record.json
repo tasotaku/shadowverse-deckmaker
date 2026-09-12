@@ -1,15 +1,15 @@
 {
   "id": "inquiry-to-revision-01",
-  "revision": 4,
-  "saved_at": "2026-09-12T04:47:52.199764+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-12T04:51:26.652241+00:00",
   "actor": "codex",
-  "reason": "準備の時間超過とOSの観測を分けて保存。実行中の担当は再起動しない",
+  "reason": "改訂担当への7資料の引渡しを確認。内容の有用性は未判定のまま保持",
   "record": {
     "id": "inquiry-to-revision-01",
     "title": "保存した追加調査を、案の改善へ使えるか",
     "category": "method",
     "status": "running",
-    "summary": "入力と実装を固定。通常の改訂1回と独立評価1回を公開入口から実行する。",
+    "summary": "13:45:49に改訂開始。追加調査7資料すべてが通常の改訂入力へ含まれることを確認。判断改善は未判定。",
     "method": "追加調査と別照合を保存した既存入力を、通常の改訂・独立評価の公開入口へ渡す。新しい指示やカード答案を追加せず、各工程を一度だけ実行する。",
     "procedure": "1. 既存入力・実装・判定条件を固定。\n2. 通常の公開入口で改訂を1回実行。\n3. 旧評価を隔離し、別担当が新案を1回評価。\n4. 元案との差と根拠の対応を点検し、方法の採否と時間を記録する。",
     "inputs": "data/discovery/novelty-followup-01-result。保存済みの正式案1件・別評価1件と追加調査7資料を含む入力。",
@@ -52,6 +52,15 @@
         "ended_at": null,
         "note": "旧評価を隔離した公開入力で1回実行。",
         "budget_minutes": 10
+      },
+      {
+        "id": "progress-reader",
+        "title": "進捗本文を別担当が読み取れるか点検",
+        "status": "completed",
+        "started_at": "2026-09-12T04:46:46+00:00",
+        "ended_at": "2026-09-12T04:47:30+00:00",
+        "note": "44秒でPASS。資料保存と案の改善、限定採用と全体未完成を区別。実AIの起動時刻やスリープの記録は対象外で、rootが実記録と照合。",
+        "budget_minutes": 2
       }
     ],
     "evidence_paths": [
@@ -59,7 +68,9 @@
       "evals/discovery/inquiry-to-revision-01/protocol.json",
       "evals/discovery/inquiry-to-revision-01/input-check.json",
       "evals/discovery/inquiry-to-revision-01/power-observation.json",
-      "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json"
+      "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json",
+      "evals/discovery/inquiry-to-revision-01/progress-reader.json",
+      "evals/discovery/inquiry-to-revision-01/handoff-check.json"
     ]
   },
   "evidence": [
@@ -67,6 +78,11 @@
       "path": "evals/discovery/inquiry-to-revision-01/README.md",
       "sha256": "2be50660586a469b063497451535754f4123f32be18b5529d1cde9df979432e4",
       "size": 924
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/handoff-check.json",
+      "sha256": "eecb5975ba59d415ae797febd17e6adb155f95c083d038b0b01f2e6f88092d68",
+      "size": 1153
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/input-check.json",
@@ -77,6 +93,11 @@
       "path": "evals/discovery/inquiry-to-revision-01/power-observation.json",
       "sha256": "305b50b7a125faa7f27f9d253128581b43e52c516e97b4c220f48e15091cebe4",
       "size": 4003
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/progress-reader.json",
+      "sha256": "6c0aab5387872fc3c020bc9942db8b62d42f9579379d49af421968f253620c6f",
+      "size": 2861
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/protocol.json",
@@ -90,6 +111,18 @@
     }
   ],
   "history": [
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T04:51:26.652241+00:00",
+      "actor": "codex",
+      "reason": "改訂担当への7資料の引渡しを確認。内容の有用性は未判定のまま保持"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T04:49:27.766279+00:00",
+      "actor": "codex",
+      "reason": "短い進捗本文の読者点検を保存。実AIの工程は維持"
+    },
     {
       "revision": 4,
       "saved_at": "2026-09-12T04:47:52.199764+00:00",

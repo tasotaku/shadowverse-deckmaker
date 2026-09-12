@@ -3,7 +3,7 @@
   "title": "保存した追加調査を、案の改善へ使えるか",
   "category": "method",
   "status": "running",
-  "summary": "入力と実装を固定。通常の改訂1回と独立評価1回を公開入口から実行する。",
+  "summary": "13:45:49に改訂開始。追加調査7資料すべてが通常の改訂入力へ含まれることを確認。判断改善は未判定。",
   "method": "追加調査と別照合を保存した既存入力を、通常の改訂・独立評価の公開入口へ渡す。新しい指示やカード答案を追加せず、各工程を一度だけ実行する。",
   "procedure": "1. 既存入力・実装・判定条件を固定。\n2. 通常の公開入口で改訂を1回実行。\n3. 旧評価を隔離し、別担当が新案を1回評価。\n4. 元案との差と根拠の対応を点検し、方法の採否と時間を記録する。",
   "inputs": "data/discovery/novelty-followup-01-result。保存済みの正式案1件・別評価1件と追加調査7資料を含む入力。",
@@ -46,6 +46,15 @@
       "ended_at": null,
       "note": "旧評価を隔離した公開入力で1回実行。",
       "budget_minutes": 10
+    },
+    {
+      "id": "progress-reader",
+      "title": "進捗本文を別担当が読み取れるか点検",
+      "status": "completed",
+      "started_at": "2026-09-12T04:46:46+00:00",
+      "ended_at": "2026-09-12T04:47:30+00:00",
+      "note": "44秒でPASS。資料保存と案の改善、限定採用と全体未完成を区別。実AIの起動時刻やスリープの記録は対象外で、rootが実記録と照合。",
+      "budget_minutes": 2
     }
   ],
   "evidence_paths": [
@@ -53,6 +62,8 @@
     "evals/discovery/inquiry-to-revision-01/protocol.json",
     "evals/discovery/inquiry-to-revision-01/input-check.json",
     "evals/discovery/inquiry-to-revision-01/power-observation.json",
-    "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json"
+    "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json",
+    "evals/discovery/inquiry-to-revision-01/progress-reader.json",
+    "evals/discovery/inquiry-to-revision-01/handoff-check.json"
   ]
 }
