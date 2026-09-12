@@ -1,0 +1,146 @@
+{
+  "worktree": "/tmp/sv-game8-leading-recipe-01-worktree",
+  "commit": "fa72dcb840186544953aac8e6c57fb408e92e0f5",
+  "base_commit": "7a8a80edf612bfb6e0f6b8dab71c1771ce10ae97",
+  "code_sha256": "0f8bb4f5a8e4bbedbb43f376053400437401dcd2af5ebb89abbb8a41bc62590a",
+  "implementation_checkpoint": {
+    "first_clock_at": "2026-09-12T20:41:53+00:00",
+    "last_diff_observed_at": "2026-09-12T22:00:34+00:00",
+    "clock_difference_seconds": 4721,
+    "status": "interrupted_and_handed_to_root",
+    "reported_facts": "設計初回patchは適用箇所不一致で失敗、次のpatchで設計とコードを保存。個別の成功時刻は未記録。22:00:34の確認後は担当の編集なし。",
+    "unmeasured": "長い時計差の原因と実作業時間は不明。78分41秒を能動実装時間としない。"
+  },
+  "root_takeover_started_at": null,
+  "root_takeover_note": "root引継ぎの正確な着手時刻は未記録。最初の検査コマンド失敗観測22:02:26と以後の計測工程を区別する。",
+  "tests": {
+    "started_at": "2026-09-12T22:02:53.895597+00:00",
+    "ended_at": "2026-09-12T22:02:56.738856+00:00",
+    "elapsed_seconds": 2.842954915948212,
+    "command": [
+      "pytest",
+      "-q",
+      "tests/test_meta.py",
+      "tests/test_meta_integrity.py",
+      "tests/test_discovery_sources.py",
+      "tests/test_discovery_start_articles.py",
+      "tests/temp/test_game8_leading_temp.py",
+      "--junitxml=/tmp/game8-leading-tests-final.xml"
+    ],
+    "returncode": 0,
+    "stdout": "........................................................................ [ 93%]\n.....                                                                    [100%]\n77 passed in 2.32s\n",
+    "stderr": "",
+    "initial_command_failure": {
+      "error": "file or directory not found: tests/test_discovery_article_text.py",
+      "code": 4,
+      "tests_run": 0,
+      "observed_at": "2026-09-12T22:02:26+00:00",
+      "started_at": null,
+      "ended_at": null,
+      "note": "rootが存在しないテストファイルを指定した。正確な開始終了は記録できていない。既存ファイル一覧を確認し訂正。"
+    }
+  },
+  "type_check": {
+    "started_at": "2026-09-12T22:02:53.895588+00:00",
+    "ended_at": "2026-09-12T22:02:55.201803+00:00",
+    "elapsed_seconds": 1.3059219592250884,
+    "returncode": 0,
+    "stdout": "Success: no issues found in 1 source file\n",
+    "stderr": ""
+  },
+  "saved_response_replay": {
+    "started_at": "2026-09-12T22:04:31.098411+00:00",
+    "ended_at": "2026-09-12T22:04:49.224158+00:00",
+    "elapsed_seconds": 18.12574200006202,
+    "total": 8,
+    "fixed": [
+      "https://game8.jp/shadowverse-beyond/734194"
+    ],
+    "unchanged": [
+      "https://game8.jp/shadowverse-beyond/698338",
+      "https://game8.jp/shadowverse-beyond/698647",
+      "https://game8.jp/shadowverse-beyond/713011",
+      "https://gamewith.jp/shadowverse-wb/503018",
+      "https://gamewith.jp/shadowverse-wb/503027",
+      "https://gamewith.jp/shadowverse-wb/515276",
+      "https://gamewith.jp/shadowverse-wb/526538"
+    ],
+    "all_40_card_db_resolution_succeeded": true,
+    "main_db_unchanged": true,
+    "sources_each": 3,
+    "limits": "保存した同じ実HTTP応答を修正前後の公開取得関数へ渡した再現確認。今回はネットワーク再取得をしていない。実記事の強さ・一般普及は未確認。"
+  },
+  "normalization": {
+    "recorded_at": "2026-09-12T22:07:24.345498+00:00",
+    "method": "保存HTMLはPath.read_textで読み、CRLFをLFへ正規化した。修正前後には同じ正規化後の文字列を渡した。原文保存時のバイトSHAとの相違は削除や内容改変ではなく、この記録で追跡する。",
+    "articles": [
+      {
+        "url": "https://game8.jp/shadowverse-beyond/698338",
+        "raw_sha256": "972cc8368b479f00b6d9eeb354ede539fcebbdff1ec13af04b3bfb5c11a691b1",
+        "text_read_sha256": "972cc8368b479f00b6d9eeb354ede539fcebbdff1ec13af04b3bfb5c11a691b1",
+        "crlf_count": 0,
+        "normalized_input_differs_from_raw": false
+      },
+      {
+        "url": "https://game8.jp/shadowverse-beyond/698647",
+        "raw_sha256": "30ef546bac21908537129667e215944800f4e11ae2a738258199a8a18daa6dfb",
+        "text_read_sha256": "30ef546bac21908537129667e215944800f4e11ae2a738258199a8a18daa6dfb",
+        "crlf_count": 0,
+        "normalized_input_differs_from_raw": false
+      },
+      {
+        "url": "https://game8.jp/shadowverse-beyond/713011",
+        "raw_sha256": "e38079794462eaefbd1e04fdc2bb54dabd7e8b182eb351625662a91d829992a2",
+        "text_read_sha256": "e38079794462eaefbd1e04fdc2bb54dabd7e8b182eb351625662a91d829992a2",
+        "crlf_count": 0,
+        "normalized_input_differs_from_raw": false
+      },
+      {
+        "url": "https://game8.jp/shadowverse-beyond/734194",
+        "raw_sha256": "d4f5774d504661bd67bdbe104ee9270212e9b2ed40874a2b6af1f508865ef315",
+        "text_read_sha256": "d4f5774d504661bd67bdbe104ee9270212e9b2ed40874a2b6af1f508865ef315",
+        "crlf_count": 0,
+        "normalized_input_differs_from_raw": false
+      },
+      {
+        "url": "https://gamewith.jp/shadowverse-wb/503018",
+        "raw_sha256": "b48564641b1e3e2937c9daacfc8577c4bcfc5787ef12cf765d39a1c29bf6ec69",
+        "text_read_sha256": "08bd0db33b093ed4d0e947899920a42de76204c92ba61c8b8539923fc406d521",
+        "crlf_count": 5,
+        "normalized_input_differs_from_raw": true
+      },
+      {
+        "url": "https://gamewith.jp/shadowverse-wb/503027",
+        "raw_sha256": "5dccf69842ef8f1e3b0d2a693507a0613364aa07923f2799e9834578510d3044",
+        "text_read_sha256": "015a09fc206cbb301de552df9fc00e59ea1ffd8af3f5eeaa6a5c07ed987ed173",
+        "crlf_count": 5,
+        "normalized_input_differs_from_raw": true
+      },
+      {
+        "url": "https://gamewith.jp/shadowverse-wb/515276",
+        "raw_sha256": "e25b28b75cd9de86fd433dacc1bafde46c7e254b8ab946ced63dcc1e4c4be24f",
+        "text_read_sha256": "3d6ae9546d5d6a7bdb4247015dac39cc9c730725417e892ef28d08ba4ca5613e",
+        "crlf_count": 5,
+        "normalized_input_differs_from_raw": true
+      },
+      {
+        "url": "https://gamewith.jp/shadowverse-wb/526538",
+        "raw_sha256": "cc83a7827f12310df8cedcb272ae912d0d839bc2a212b6aaa2c02cfdd8d107c8",
+        "text_read_sha256": "d310e20f289177aa40bcdaf18974b9e4482b43229e81939f7d0c4566c19cc548",
+        "crlf_count": 5,
+        "normalized_input_differs_from_raw": true
+      }
+    ]
+  },
+  "checks": {
+    "total_tests": 77,
+    "existing_tests": 68,
+    "new_tests": 9,
+    "type_files": 1,
+    "saved_articles": 8,
+    "unchanged": 7,
+    "fixed": 1,
+    "main_db_unchanged": true
+  },
+  "decision": "本体反映と公開startの8URL再取得を確認するまで採否未判定。独立照合進行中。"
+}

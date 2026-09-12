@@ -1,15 +1,15 @@
 {
   "id": "live-query-discovery-01",
-  "revision": 4,
-  "saved_at": "2026-09-12T20:40:03.635147+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-12T22:07:24.448003+00:00",
   "actor": "codex-root",
-  "reason": "台帳記録時刻と担当開始時刻の区別を明記",
+  "reason": "担当中断とroot引継ぎ、77検査と保存原文照合を記録",
   "record": {
     "id": "live-query-discovery-01",
     "title": "考案中に検索できることが案の発展につながるか",
     "category": "method",
     "status": "running",
-    "summary": "8記事を共通入力にする準備がレシピ読取りで中断。比較AIは未起動。固定8URL全部の取得と構造を点検中。",
+    "summary": "記事読取り修正は77検査・型検査・保存8記事照合が成功。既存7件を保持し、元失敗1件を取得。本体反映と再取得へ進む。比較AIは未起動。",
     "method": "固定入力と既存の考案・別評価を揃え、考案中のquery操作と案内の有無を比べる。",
     "procedure": "検索補助を採用した後の、別の新規探索入力による比較。ナイトメア・ローテーションを固定し、保存DBの同クラス記事一覧8URLを同じ時点で取得して、初回案なし・旧評価なしの共通入力にする。このクラス自体や全カードが初見であるとは呼ばず、システム全体の既知知識は両方式で同じにする。\nAは検索入口追加前c2a5ae0の固定コード、Bは採用後の固定コード。両方の固定カードDB、記事8URL、本文・注記・元の一般方針・判定基準は完全同一。一般方針は追加前c2a5ae0のdocsを共通にする。異なるのは未提出新要求のquery操作と、その公開案内のみ。queryの使用を強制せず、カードの答え・具体タグ・期待するデッキや評価は開発者が与えない。\n考案20分・独立した別評価10分を両方式で各一度、既存明示終了を使う。追加の自動改訂や時間切れのやり直しはしない。提出や評価の失敗も記録し、未評価をゼロ点に補完しない。\nqueryの使用回数、そこから生じた新しい問いや不足の解決、本文と両側注記の照合、追加候補を検索前にも読んでいたかを公開記録で確認する。queryのヒット数・単なるカード取得・計算訂正を主成果にしない。\n主成果は、通常構築と同じ状態の比較から試す理由があり、一般に広まった使い方の言い直しでない根拠がある着想。試用推薦・独自性・指定条件の手順成立を分ける。別評価が追加した手順や判定差を、提案担当の発見やqueryの効果に加算しない。\n1件ずつの結果の差だけで一般的な因果効果を認定しない。Bが実質的な発展と試用理由へ至っても、query以前から持っていた候補や他の推論の寄与を区別する。Bがqueryを使わない場合は検索機能の有用性未評価とし、未使用の理由を見える範囲で残す。Aも同じ発展を見つければBの上乗せとはしない。\n試用推薦された案で独自性の問いが新たに残る場合は、結果回収後に両方式同じ条件で既存の先例調査15分・別照合10分へ一度接続する。記事取得時刻を記事の新しさ、掲載時点のルール適合や一般普及の証明にしない。実戦勝率・Tierは評価対象外。",
     "inputs": "ナイトメア・ローテーション、保存DBと8記事URLを同一版で取得。案・評価を引き継がない新規入力。",
@@ -38,11 +38,20 @@
       {
         "id": "article-diagnosis",
         "title": "8記事の取得とレシピ読取りを点検",
-        "status": "running",
-        "started_at": "2026-09-12T20:39:41.319715+00:00",
-        "ended_at": null,
-        "note": "rootが工程を台帳に記録した時刻から記録。担当自身の開始・終了は報告後に区別する。固定8URLを全件分類し、個別カードの答えは探索担当へ与えない。",
+        "status": "completed",
+        "started_at": "2026-09-12T20:38:58Z",
+        "ended_at": "2026-09-12T20:41:39.345217+00:00",
+        "note": "別担当が記録した開始・終了へ更新。全8件分類、7成功・1解析失敗。同じ原文の構造だけで失敗を切り分けた。取得実行は2.77秒、調査全体は2分41秒。",
         "budget_minutes": 5
+      },
+      {
+        "id": "shared-intake-fix",
+        "title": "両方式共通の記事読取り修正と検査",
+        "status": "interrupted",
+        "started_at": "2026-09-12T20:41:53+00:00",
+        "ended_at": "2026-09-12T22:00:34+00:00",
+        "note": "実装担当の最初の時計から保存差分の最終観測まで78分41秒。原因と実作業時間は不明。コード保存済み・未検査でrootへ引継ぎ。個別patch成功時刻は未記録。",
+        "budget_minutes": 15
       },
       {
         "id": "a-develop",
@@ -79,6 +88,33 @@
         "ended_at": null,
         "note": "同じ入力で各一度。具体カードや期待結論は与えない。",
         "budget_minutes": 10
+      },
+      {
+        "id": "intake-tests",
+        "title": "記事読取りの機能検査77件",
+        "status": "completed",
+        "started_at": "2026-09-12T22:02:53.895597+00:00",
+        "ended_at": "2026-09-12T22:02:56.738856+00:00",
+        "note": "既存68＋新規9が成功。初回は存在しない検査ファイルを指定し未実行、別記。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "intake-types",
+        "title": "記事読取りの型検査",
+        "status": "completed",
+        "started_at": "2026-09-12T22:02:53.895588+00:00",
+        "ended_at": "2026-09-12T22:02:55.201803+00:00",
+        "note": "変更1ファイル、問題なし。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "intake-replay",
+        "title": "保存した同じ8記事を修正前後で照合",
+        "status": "completed",
+        "started_at": "2026-09-12T22:04:31.098411+00:00",
+        "ended_at": "2026-09-12T22:04:49.224158+00:00",
+        "note": "8件成功、既存7件の抽出保持。両版へ同じ改行正規化後の入力。初回照合スクリプトの誤りは別記。",
+        "budget_minutes": 5
       }
     ],
     "evidence_paths": [
@@ -89,19 +125,41 @@
       "evals/discovery/live-query-discovery-01/article-start.json",
       "evals/discovery/live-query-discovery-01/a-runtime.json",
       "evals/discovery/live-query-discovery-01/b-runtime.json",
-      "evals/discovery/live-query-discovery-01/failure-observation.json"
+      "evals/discovery/live-query-discovery-01/failure-observation.json",
+      "evals/discovery/live-query-discovery-01/article-diagnosis.json",
+      "evals/discovery/live-query-discovery-01/article-diagnosis.tar.gz",
+      "evals/discovery/live-query-discovery-01/shared-intake-amendment.json",
+      "evals/discovery/live-query-discovery-01/intake-implementation.json",
+      "evals/discovery/live-query-discovery-01/intake-implementation.patch",
+      "evals/discovery/live-query-discovery-01/intake-test-result.json",
+      "evals/discovery/live-query-discovery-01/intake-type-result.json",
+      "evals/discovery/live-query-discovery-01/intake-tests.xml",
+      "evals/discovery/live-query-discovery-01/intake-replay-initial-failure.json",
+      "evals/discovery/live-query-discovery-01/test-evidence",
+      "evals/discovery/live-query-discovery-01/intake-replay",
+      "evals/discovery/live-query-discovery-01/prepare-recovery.py"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/live-query-discovery-01/README.md",
-      "sha256": "e11abeadd12a8e11517d246b2d79176b8bb129ed86050d9e11bd2920cf42dcdc",
-      "size": 2213
+      "sha256": "311922229d6c8310a72debd27f1f824fb69b50ad53f8546cb17f2fa457528081",
+      "size": 4505
     },
     {
       "path": "evals/discovery/live-query-discovery-01/a-runtime.json",
       "sha256": "c86ac43a3d2bf90c43262d5cefb4fe674f0717d826607fd0da698c43ac1c3c35",
       "size": 4348
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/article-diagnosis.json",
+      "sha256": "4b6305297ceef6b8810f308b2e61cba6c2dc13fb84d2e3a3b9c1bc2bbb321285",
+      "size": 16770
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/article-diagnosis.tar.gz",
+      "sha256": "22f6de5c563aaf93cc9e13714016f7806913db16fea85c076743e5ba38006996",
+      "size": 629962
     },
     {
       "path": "evals/discovery/live-query-discovery-01/article-start.json",
@@ -119,6 +177,56 @@
       "size": 370
     },
     {
+      "path": "evals/discovery/live-query-discovery-01/intake-implementation.json",
+      "sha256": "e9b68396b0154867e495341f73f73f177b0e5d1ea5e5aea20cf0846e4a7747ab",
+      "size": 6823
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-implementation.patch",
+      "sha256": "4bf961eea242e606339912ba6a255671fdeaf5fe67b498377fc61534404cb1e2",
+      "size": 4695
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-replay/after.json",
+      "sha256": "3f2e73fc46603bada1611ea0e80fdc3c2c4084ad52928a013fc345273ab3afac",
+      "size": 7995
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-replay/before.json",
+      "sha256": "a9269438b05c40989c112e0e99bd718ee76de240cce7e4ea5cdc48e48893e3f2",
+      "size": 7036
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-replay/normalization.json",
+      "sha256": "66b2129e311394f59a7fa11533113ec67d16dc64786722592147310cc83179ae",
+      "size": 2935
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-replay/verification.json",
+      "sha256": "f968b7c04cd3af65dad4f69f0e1de0ab9acf58d91643e0b215567eeff6e4db52",
+      "size": 905
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-replay-initial-failure.json",
+      "sha256": "b88c5a845545449063c12fcce21df8bd23bf5c519cf46084bd0f27e0262b3639",
+      "size": 490
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-test-result.json",
+      "sha256": "8ec749cbcea94498fb4085778118e10b288f7efaac13eac40a480b6d10be6e84",
+      "size": 1085
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-tests.xml",
+      "sha256": "fbaa4cec32b2c79f4aedb828137e85e82c560623fbf2a971b63169de11792b4d",
+      "size": 10140
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/intake-type-result.json",
+      "sha256": "211fe29ae5d8ec420df17a86116e31f46b69c081c5c0cf76e20c187f733f4de8",
+      "size": 240
+    },
+    {
       "path": "evals/discovery/live-query-discovery-01/preparation-failure.json",
       "sha256": "49690dda4ef0d262ada1f00fa6d84e22e38c5fbece02ca1c1ce9fb0e0b13282a",
       "size": 295
@@ -129,9 +237,24 @@
       "size": 11666
     },
     {
+      "path": "evals/discovery/live-query-discovery-01/prepare-recovery.py",
+      "sha256": "6cc97a0a0627a355c100067ecdc3615b962c7ccc0c2d65a4d82473986ddd07ae",
+      "size": 6077
+    },
+    {
       "path": "evals/discovery/live-query-discovery-01/protocol.json",
       "sha256": "cb88d877bfcf2cfb65c417315af6ece747a1bb6b934d832fc6544e12e35784c7",
       "size": 3931
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/shared-intake-amendment.json",
+      "sha256": "cbf068a8ff8b5c6ba2eafafdf2d6b5372353f086c1ff5b73ddd8743bb63ed25b",
+      "size": 1393
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/test-evidence/test_game8_leading_temp.py",
+      "sha256": "91e9627c2302a11a6df5c31181d435126e2fb4121d677f548fccf289b09c0dbf",
+      "size": 2584
     }
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "started_at": "2026-09-12T22:02:53.895597+00:00",
+  "ended_at": "2026-09-12T22:02:56.738856+00:00",
+  "elapsed_seconds": 2.842954915948212,
+  "command": [
+    "pytest",
+    "-q",
+    "tests/test_meta.py",
+    "tests/test_meta_integrity.py",
+    "tests/test_discovery_sources.py",
+    "tests/test_discovery_start_articles.py",
+    "tests/temp/test_game8_leading_temp.py",
+    "--junitxml=/tmp/game8-leading-tests-final.xml"
+  ],
+  "returncode": 0,
+  "stdout": "........................................................................ [ 93%]\n.....                                                                    [100%]\n77 passed in 2.32s\n",
+  "stderr": "",
+  "initial_command_failure": {
+    "error": "file or directory not found: tests/test_discovery_article_text.py",
+    "code": 4,
+    "tests_run": 0,
+    "observed_at": "2026-09-12T22:02:26+00:00",
+    "started_at": null,
+    "ended_at": null,
+    "note": "rootが存在しないテストファイルを指定した。正確な開始終了は記録できていない。既存ファイル一覧を確認し訂正。"
+  }
+}

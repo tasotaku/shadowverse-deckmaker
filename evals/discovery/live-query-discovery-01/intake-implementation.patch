@@ -1,0 +1,59 @@
+diff --git a/docs/design.md b/docs/design.md
+index ae900b3..4327657 100644
+--- a/docs/design.md
++++ b/docs/design.md
+@@ -124,6 +124,10 @@ LLMを使うのは①④⑤と②の想起補助（LLM走査・§6.1）のみ。
+   カードDBは読み取り専用とし、既存の解析と40枚検査を使う。複数構築は分け、40枚の内訳と記事更新日時・取得対象・表示表との不一致を資料として出力する。
+   出力は既存の `discovery attach` で取り込み、`compare` へ渡す。元の固定入力や既存の環境デッキ一覧は変更しない。
+   現在のTierや当時の能力は記事取得から補完しない。これは資料取得の改善であり、発見力の改善とは別に検証する。
++- Game8の主レシピ節で、最初の小見出しより前にあるレシピ表も独立した構築として読む修正を試作する（2026-09-13・未採用）。
++  主節の先頭部分と既存の小見出しごとの部分を分け、次節・入替候補の表やコピー先を混ぜない。
++  同じ部分に複数のレシピ表・コピー先があれば対応不明として拒否し、40枚・固定DB照合など既存の制約を維持する。
++  記事8件の保存原文で修正箇所以外の抽出を照合し、取得修正を探索方法の評価や採点変更へ転用しない。
+ - `meta --article ... --with-article-text` は、1回の取得から記事の説明も残す任意の取得補助（2026-09-10・採用）。
+   記事本文の見出し・表の行とカード名を保持し、取得時点と抽出限界を添え、既存の資料追加・分割読出しへ渡す。
+   本文が見つからない場合は欠落理由を明示する。画像内だけの文字や動画は確認済みにせず、全40枚リスト・旧入力・DBは維持する。
+diff --git a/src/svdeck/meta.py b/src/svdeck/meta.py
+index db03b10..6e5ccdc 100644
+--- a/src/svdeck/meta.py
++++ b/src/svdeck/meta.py
+@@ -141,7 +141,7 @@ def parse_game8_tier(html_text: str, deck_format: str = "rotation") -> list[Deck
+ 
+ 
+ def parse_game8_decks(html_text: str) -> list[DeckDetail]:
+-    # AI_NOTE: 主レシピ節の小見出しごとに分離し、表示表と同じ見出しのコピー先を対応付ける。
++    # AI_NOTE: 主節の先頭と小見出しごとを分離し、表示表と同じ部分のコピー先だけを対応付ける。
+     updated_match = re.search(r'"dateModified":"([^"]+)"', html_text)
+     updated_on = updated_match.group(1) if updated_match else None
+     start = re.search(r'<h2\b[^>]*\bid="hl_1"[^>]*>', html_text)
+@@ -154,20 +154,25 @@ def parse_game8_decks(html_text: str) -> list[DeckDetail]:
+         r'<b class="a-bold">×(\d+)</b>',
+         re.DOTALL,
+     )
+-    details = []
++    blocks = [("", "hl_1", re.split(r'<h3\b', segment, maxsplit=1)[0])]
+     for index, heading in enumerate(headings):
+         end = headings[index + 1].start() if index + 1 < len(headings) else len(segment)
+-        block = segment[heading.end():end]
+-        if not re.search(r'<th\b[^>]*\bcolspan="5"[^>]*>\s*デッキレシピ\s*</th>', block):
++        blocks.append((heading.group(2), heading.group(1), segment[heading.end():end]))
++    details = []
++    for title, anchor, block in blocks:
++        recipe_headers = re.findall(r'<th\b[^>]*\bcolspan="5"[^>]*>\s*デッキレシピ\s*</th>', block)
++        if not recipe_headers:
+             continue
++        if len(recipe_headers) != 1:
++            raise ValueError("1つのレシピ区間に複数のレシピ表があります。対応を確認してください")
+         links = list(dict.fromkeys(html.unescape(url) for url in re.findall(r'href="([^"]+)"', block)
+                                    if urlparse(html.unescape(url)).hostname == "shadowverse-wb.com"
+                                    and urlparse(html.unescape(url)).path.endswith("/deck/detail/")))
+         if len(links) > 1:
+             raise ValueError("1つのレシピ見出しに複数のコピー先があります。対応を確認してください")
+         cards = [(html.unescape(name), int(count)) for name, count in pattern.findall(block)]
+-        variant = html.unescape(re.sub(r'<[^>]+>', '', heading.group(2))).strip()
+-        details.append(DeckDetail(updated_on, cards, variant, heading.group(1), links[0] if links else ""))
++        variant = html.unescape(re.sub(r'<[^>]+>', '', title)).strip()
++        details.append(DeckDetail(updated_on, cards, variant, anchor, links[0] if links else ""))
+     if not details:
+         raise ValueError("Game8の主レシピ節から独立したデッキレシピを読めません")
+     return details

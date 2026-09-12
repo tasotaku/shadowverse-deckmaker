@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-12T21:30:38.745593+00:00",
+  "before_any_discovery_ai": true,
+  "original_protocol_sha256": "cb88d877bfcf2cfb65c417315af6ece747a1bb6b934d832fc6544e12e35784c7",
+  "reason": "8件の取得は全てHTTP200。1件だけ主レシピ節の最初のh3前に表があり、読取り対象から外れていた。7件は40枚照合まで成功。初回応答本文は未保存で、同URLの今回の再取得で同じ例外を再現した。",
+  "shared_fix": "主レシピ節の先頭に独立レシピ表がある配置にも対応し、両方式へ全く同じmeta.pyを渡す。元のh3別分離・コピーURL対応・40枚検査を保持。具体カードの選別はしない。",
+  "checks_before_retry": [
+    "固定8URL全件の取得・解析・40枚照合が成功",
+    "既存7成功URLの抽出を保持",
+    "複数レシピ・入替候補・次節の混入を拒否",
+    "回帰検査と型検査",
+    "本体へ反映し固定8URLの公開入口で再確認"
+  ],
+  "comparison_criteria_unchanged": true,
+  "keep_original_frozen_runtimes": true,
+  "new_frozen_runtimes": "旧runtimeは残し、両側に同じ修正を加えた別ディレクトリを作る。差分がquery入口と案内だけであることと初回入力の一致を実起動前に再照合する。",
+  "sources_selection_unchanged": true,
+  "do_not_repeat_discovery_ai": true
+}
