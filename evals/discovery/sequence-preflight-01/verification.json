@@ -1,0 +1,157 @@
+{
+  "collection_started_at": "2026-09-12T12:23:59.776154+00:00",
+  "collection_ended_at": "2026-09-12T12:24:02.839765+00:00",
+  "results": [
+    {
+      "side": "a",
+      "stages": [
+        {
+          "stage": "develop",
+          "started_at": "2026-09-12T10:53:06.576452+00:00",
+          "ended_at": "2026-09-12T11:12:25.306548+00:00",
+          "wall_seconds": 1158.730096,
+          "monitor_seconds": 1158.7371518341824,
+          "status": "finished_by_request",
+          "public_operations": 36,
+          "errors": [
+            {
+              "args": [
+                "submit",
+                "proposal.json"
+              ],
+              "exit_code": 2,
+              "started_at": "2026-09-12T11:11:37.541630+00:00",
+              "ended_at": "2026-09-12T11:11:37.593880+00:00",
+              "stderr": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+            }
+          ],
+          "finish_to_stage_end_seconds": 0.292273,
+          "recheck_engine_additions": [
+            "packets/9ca18523a45a051869a0d1f8e8dfe08240b08ac6223e94e6ea09123abae8c3e2.json"
+          ],
+          "finish_revalidated": true,
+          "final_message_exists": false
+        },
+        {
+          "stage": "review",
+          "started_at": "2026-09-12T11:12:25.643525+00:00",
+          "ended_at": "2026-09-12T11:17:24.082488+00:00",
+          "wall_seconds": 298.438963,
+          "monitor_seconds": 298.43802091572434,
+          "status": "finished_by_request",
+          "public_operations": 23,
+          "errors": [],
+          "finish_to_stage_end_seconds": 0.346194,
+          "recheck_engine_additions": [],
+          "finish_revalidated": true,
+          "final_message_exists": false
+        }
+      ],
+      "judgment": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "new_sources": [
+        {
+          "hash": "37f25ce29aa72db1bfe7b5ceb46d143595e7b6db87f19e07ff099a805e054b36",
+          "title": "ララアンセムの遅延生成と通常テトラ先出しの同終点比較",
+          "kind": "固定資料からの条件付き机上比較・実戦未観測",
+          "observed_at": "2026-09-12T11:00:57.003530+00:00"
+        }
+      ],
+      "formal_proposals": 1,
+      "formal_reviews": 1,
+      "source_and_runtime_unchanged": true,
+      "old_formal_files_preserved": true,
+      "formal_and_finish_revalidated": true,
+      "copied_session_identical": true,
+      "review_previous_reviews_empty": true,
+      "ended_to_collection_start_seconds": 3995.368076
+    },
+    {
+      "side": "b",
+      "stages": [
+        {
+          "stage": "develop",
+          "started_at": "2026-09-12T10:55:29.429349+00:00",
+          "ended_at": "2026-09-12T11:11:03.982940+00:00",
+          "wall_seconds": 934.553591,
+          "monitor_seconds": 934.561970542185,
+          "status": "finished_by_request",
+          "public_operations": 29,
+          "errors": [],
+          "finish_to_stage_end_seconds": 0.373836,
+          "recheck_engine_additions": [
+            "packets/0aab143e46ecc66b2ba99d9395d924b991afdd113628c41f10dfadfe0814fc5b.json"
+          ],
+          "finish_revalidated": true,
+          "final_message_exists": false
+        },
+        {
+          "stage": "review",
+          "started_at": "2026-09-12T11:11:04.329416+00:00",
+          "ended_at": "2026-09-12T11:15:49.093845+00:00",
+          "wall_seconds": 284.764429,
+          "monitor_seconds": 284.76353150000796,
+          "status": "finished_by_request",
+          "public_operations": 28,
+          "errors": [
+            {
+              "args": [
+                "review",
+                "review.json"
+              ],
+              "exit_code": 2,
+              "started_at": "2026-09-12T11:14:48.194631+00:00",
+              "ended_at": "2026-09-12T11:14:48.239930+00:00",
+              "stderr": "資料内のカードIDと本文・進化・参照先・注記を参照してください\n"
+            }
+          ],
+          "finish_to_stage_end_seconds": 0.430757,
+          "recheck_engine_additions": [],
+          "finish_revalidated": true,
+          "final_message_exists": false
+        }
+      ],
+      "judgment": {
+        "procedure": "supported",
+        "value": "test",
+        "novelty": "unconfirmed"
+      },
+      "new_sources": [
+        {
+          "hash": "2e18c99d746bd002ae3dbff20ea581a3cc52a4081abe8b25fc4685e5ce1d02f4",
+          "title": "仮比較：カタリナ盤面でのフィーリン突進",
+          "kind": "固定本文に基づく担当の仮比較・手計算",
+          "observed_at": null
+        },
+        {
+          "hash": "d9ba2d4b312bc7427982503b56ba740c5ad64d0c878460deba0e3f54bd154bab",
+          "title": "一度の行動順点検：通常側も守護を残せるため1枠へ縮小",
+          "kind": "固定本文に基づく反例点検・比較改訂記録",
+          "observed_at": null
+        }
+      ],
+      "formal_proposals": 1,
+      "formal_reviews": 1,
+      "source_and_runtime_unchanged": true,
+      "old_formal_files_preserved": true,
+      "formal_and_finish_revalidated": true,
+      "copied_session_identical": true,
+      "review_previous_reviews_empty": true,
+      "ended_to_collection_start_seconds": 4090.343123
+    }
+  ],
+  "workers_and_scoped_power_guards_absent": {
+    "942": "",
+    "943": "",
+    "958": "",
+    "3983": "",
+    "3985": "",
+    "3986": "",
+    "20332": "",
+    "21985": ""
+  },
+  "limits": "元の群を離れた子の監査ではない。終了時点の改訂を再検査するときは、次工程の一致済み評価packetだけを除いた公開保存物の複製を使う。元ファイルは変更しない。担当の監視秒・UTC差・回収待ちを分け、私的なstdout/JSONLは閲覧も保存もしない。"
+}

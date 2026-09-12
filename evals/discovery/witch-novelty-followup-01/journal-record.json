@@ -1,0 +1,104 @@
+{
+  "id": "witch-novelty-followup-01",
+  "revision": 3,
+  "saved_at": "2026-09-12T12:33:09.704037+00:00",
+  "actor": "codex-root",
+  "reason": "公開入口の開始、調査目的と固定入力の一致を確認",
+  "record": {
+    "id": "witch-novelty-followup-01",
+    "title": "ウィッチの試用候補から使い方の先例・普及を調べる",
+    "category": "method",
+    "status": "running",
+    "summary": "既存入口で使い方の先例・普及を調査中。正式評価からの目的生成と元入力・固定実装保持を確認。結果と採否は未判定。",
+    "method": "既存機能で、比較試用された案の用途の先例・普及・未確認を調査し、別担当の照合へ渡す。",
+    "procedure": "保存された最新の試用推薦・独自性未確認という評価を、既存の公開 --novelty 入口へ渡す。rootは個別のカード答案、検索結果、出典候補、期待する独自性判定を与えない。\n調査15分・別担当の照合10分を各一度。未完了・取得不能・出典不足も保存し、自動再実行しない。採点・案・カードDB・既存資料は変更しない。\n同じカードの同居、同じ使い方の先例、現在の一般的普及を分け、検索語・日時・URL・取得本文・解釈・未確認を保存する。見つからないことや単一の投稿だけで独自性や普及を認定しない。\n別担当が調査の本文を出典・保存資料と照合する。両報告の原文保存と再読の一致を確認し、出典の時点・用途・取得限界を結論に反映する。\nこの試行は既存の後続調査機能を新しい案へ接続する運用検証であり、前の点検指示の採用や勝率、発見力の優位を認定しない。元の未確認評価は資料追加だけで上書きせず、調査結果を次の判断材料として残す。",
+    "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/sequence-preflight-01-b-result の改訂1と正式評価 155500668303ac45249207e8a0544a26efef8b6338fe492e54f69c164c4b7591",
+    "criteria": "保存された最新の試用推薦・独自性未確認という評価を、既存の公開 --novelty 入口へ渡す。rootは個別のカード答案、検索結果、出典候補、期待する独自性判定を与えない。\n調査15分・別担当の照合10分を各一度。未完了・取得不能・出典不足も保存し、自動再実行しない。採点・案・カードDB・既存資料は変更しない。\n同じカードの同居、同じ使い方の先例、現在の一般的普及を分け、検索語・日時・URL・取得本文・解釈・未確認を保存する。見つからないことや単一の投稿だけで独自性や普及を認定しない。\n別担当が調査の本文を出典・保存資料と照合する。両報告の原文保存と再読の一致を確認し、出典の時点・用途・取得限界を結論に反映する。\nこの試行は既存の後続調査機能を新しい案へ接続する運用検証であり、前の点検指示の採用や勝率、発見力の優位を認定しない。元の未確認評価は資料追加だけで上書きせず、調査結果を次の判断材料として残す。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未実施。",
+      "limitations": "既存の後続調査機能の運用検証。点検指示の優位や案の勝率は判定しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "出典照合と未確認の範囲を回収してから判断する。"
+    },
+    "started_at": "2026-09-12T12:29:27.786473+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prepare",
+        "title": "正式案・評価を確認し入力と実装を固定",
+        "status": "completed",
+        "started_at": "2026-09-12T12:29:27.786473+00:00",
+        "ended_at": "2026-09-12T12:29:28.128408+00:00",
+        "budget_minutes": 3,
+        "note": "既存の対象条件を確認。入力と本体コードを固定。個別の答えや出典を供給しない。"
+      },
+      {
+        "id": "live-inquiry",
+        "title": "使い方の先例と普及を調査",
+        "status": "running",
+        "started_at": "2026-09-12T12:29:43.534802+00:00",
+        "ended_at": null,
+        "budget_minutes": 15,
+        "note": "公開入口から一度だけ実行し、未完も記録する。\n起動処理を開始。実行記録: /private/tmp/sv-witch-novelty-followup-01/inquiry-run"
+      },
+      {
+        "id": "live-inspect",
+        "title": "出典と結論を別担当が照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10,
+        "note": "公開入口から一度だけ実行し、未完も記録する。"
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/witch-novelty-followup-01/README.md",
+      "evals/discovery/witch-novelty-followup-01/protocol.json",
+      "evals/discovery/witch-novelty-followup-01/launch-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/witch-novelty-followup-01/README.md",
+      "sha256": "b2449130ad7fc14e5662632dd390a46b578759d33dc9f6e50729a6689317dfcd",
+      "size": 1382
+    },
+    {
+      "path": "evals/discovery/witch-novelty-followup-01/launch-check.json",
+      "sha256": "90aa003c4a5695f0d334b092e2cd24c04b0c874105a38e3b410de5cfc8c113c7",
+      "size": 1578
+    },
+    {
+      "path": "evals/discovery/witch-novelty-followup-01/protocol.json",
+      "sha256": "97bbc29bebc8e61f3f35c83c8a062ecdb29457eeac49a56a805e9c18be0564cb",
+      "size": 7205
+    }
+  ],
+  "history": [
+    {
+      "revision": 3,
+      "saved_at": "2026-09-12T12:33:09.704037+00:00",
+      "actor": "codex-root",
+      "reason": "公開入口の開始、調査目的と固定入力の一致を確認"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-12T12:29:43.537022+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-12T12:29:28.134483+00:00",
+      "actor": "codex-root",
+      "reason": "初回探索で得た未確認の試用候補を、既存の調査と別照合へ渡す条件を固定"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
+}

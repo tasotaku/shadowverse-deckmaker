@@ -1,0 +1,82 @@
+{
+  "a": [
+    {
+      "args": [
+        "attach-file",
+        "comparison.md",
+        "--title",
+        "ララアンセムの遅延生成と通常テトラ先出しの同終点比較",
+        "--kind",
+        "固定資料からの条件付き机上比較・実戦未観測",
+        "--location",
+        "comparison.md; packet a866601817fa223aa3fe8bede2b9efb130251ef86fc85da33d14a4cadeb25368; known_decks id=8",
+        "--observed-at",
+        "2026-09-12T11:00:57.003530+00:00",
+        "--limitation",
+        "仮定した相手行動と指定手札での検算。実戦頻度・引き込み・普及は未確認"
+      ],
+      "started_at": "2026-09-12T11:08:03.172381+00:00",
+      "ended_at": "2026-09-12T11:08:03.209643+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"added\": [\n    \"37f25ce29aa72db1bfe7b5ceb46d143595e7b6db87f19e07ff099a805e054b36\"\n  ],\n  \"existing\": [],\n  \"total\": 1,\n  \"next\": \"新しいpacketには追加資料が入ります。保存済みのpacket・改訂・評価は変わりません\",\n  \"input_file\": {\n    \"path\": \"/private/tmp/sv-sequence-preflight-01-a/develop/comparison.md\",\n    \"sha256\": \"f230ac5571df56a6d4096a48c60cba6b70c6324bb0e24b0c73056efe55cfe9f2\",\n    \"bytes\": 10335\n  }\n}\n"
+    },
+    {
+      "args": [
+        "submit",
+        "proposal.json"
+      ],
+      "started_at": "2026-09-12T11:11:46.622770+00:00",
+      "ended_at": "2026-09-12T11:11:46.678683+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"revision\": 1,\n  \"procedure\": \"未評価\",\n  \"value\": \"未評価\",\n  \"next\": \"不足を調べるならpacket、別評価するならpacket --stage review\",\n  \"author\": \"worker:a313ae6b47a04ea4b501ef07e332f8a7:develop\"\n}\n"
+    }
+  ],
+  "b": [
+    {
+      "args": [
+        "attach-file",
+        "comparison-before.json",
+        "--title",
+        "仮比較：カタリナ盤面でのフィーリン突進",
+        "--kind",
+        "固定本文に基づく担当の仮比較・手計算",
+        "--location",
+        "comparison-before.json",
+        "--limitation",
+        "正式提出前の仮比較。実戦・普及・最適性は未検証。"
+      ],
+      "started_at": "2026-09-12T11:05:05.900628+00:00",
+      "ended_at": "2026-09-12T11:05:05.921048+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"added\": [\n    \"2e18c99d746bd002ae3dbff20ea581a3cc52a4081abe8b25fc4685e5ce1d02f4\"\n  ],\n  \"existing\": [],\n  \"total\": 1,\n  \"next\": \"新しいpacketには追加資料が入ります。保存済みのpacket・改訂・評価は変わりません\",\n  \"input_file\": {\n    \"path\": \"/private/tmp/sv-sequence-preflight-01-b/develop/comparison-before.json\",\n    \"sha256\": \"d80e40a9d9dede7f8aa58229a6b8e7239fc0bb9b7817bb9238231e26a0f1347d\",\n    \"bytes\": 14296\n  }\n}\n"
+    },
+    {
+      "args": [
+        "attach-file",
+        "comparison-after.json",
+        "--title",
+        "一度の行動順点検：通常側も守護を残せるため1枠へ縮小",
+        "--kind",
+        "固定本文に基づく反例点検・比較改訂記録",
+        "--location",
+        "comparison-after.json",
+        "--limitation",
+        "案側1手順・通常側1手順のみ。最適性・勝率・普及は未確認。"
+      ],
+      "started_at": "2026-09-12T11:06:47.029771+00:00",
+      "ended_at": "2026-09-12T11:06:47.094663+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"added\": [\n    \"d9ba2d4b312bc7427982503b56ba740c5ad64d0c878460deba0e3f54bd154bab\"\n  ],\n  \"existing\": [],\n  \"total\": 2,\n  \"next\": \"新しいpacketには追加資料が入ります。保存済みのpacket・改訂・評価は変わりません\",\n  \"input_file\": {\n    \"path\": \"/private/tmp/sv-sequence-preflight-01-b/develop/comparison-after.json\",\n    \"sha256\": \"4da5bed9890def443b19881a1b50a1ff4b6ee087123d5c2a30c0f3ab64a87a81\",\n    \"bytes\": 6680\n  }\n}\n"
+    },
+    {
+      "args": [
+        "submit",
+        "proposal.json"
+      ],
+      "started_at": "2026-09-12T11:10:22.585214+00:00",
+      "ended_at": "2026-09-12T11:10:22.650452+00:00",
+      "exit_code": 0,
+      "stdout": "{\n  \"revision\": 1,\n  \"procedure\": \"未評価\",\n  \"value\": \"未評価\",\n  \"next\": \"不足を調べるならpacket、別評価するならpacket --stage review\",\n  \"author\": \"worker:0b046b297be34a4ebb87e8c91a7e504a:develop\"\n}\n"
+    }
+  ]
+}

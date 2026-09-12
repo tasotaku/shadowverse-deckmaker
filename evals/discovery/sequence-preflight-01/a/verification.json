@@ -1,0 +1,67 @@
+{
+  "side": "a",
+  "stages": [
+    {
+      "stage": "develop",
+      "started_at": "2026-09-12T10:53:06.576452+00:00",
+      "ended_at": "2026-09-12T11:12:25.306548+00:00",
+      "wall_seconds": 1158.730096,
+      "monitor_seconds": 1158.7371518341824,
+      "status": "finished_by_request",
+      "public_operations": 36,
+      "errors": [
+        {
+          "args": [
+            "submit",
+            "proposal.json"
+          ],
+          "exit_code": 2,
+          "started_at": "2026-09-12T11:11:37.541630+00:00",
+          "ended_at": "2026-09-12T11:11:37.593880+00:00",
+          "stderr": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+        }
+      ],
+      "finish_to_stage_end_seconds": 0.292273,
+      "recheck_engine_additions": [
+        "packets/9ca18523a45a051869a0d1f8e8dfe08240b08ac6223e94e6ea09123abae8c3e2.json"
+      ],
+      "finish_revalidated": true,
+      "final_message_exists": false
+    },
+    {
+      "stage": "review",
+      "started_at": "2026-09-12T11:12:25.643525+00:00",
+      "ended_at": "2026-09-12T11:17:24.082488+00:00",
+      "wall_seconds": 298.438963,
+      "monitor_seconds": 298.43802091572434,
+      "status": "finished_by_request",
+      "public_operations": 23,
+      "errors": [],
+      "finish_to_stage_end_seconds": 0.346194,
+      "recheck_engine_additions": [],
+      "finish_revalidated": true,
+      "final_message_exists": false
+    }
+  ],
+  "judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "new_sources": [
+    {
+      "hash": "37f25ce29aa72db1bfe7b5ceb46d143595e7b6db87f19e07ff099a805e054b36",
+      "title": "ララアンセムの遅延生成と通常テトラ先出しの同終点比較",
+      "kind": "固定資料からの条件付き机上比較・実戦未観測",
+      "observed_at": "2026-09-12T11:00:57.003530+00:00"
+    }
+  ],
+  "formal_proposals": 1,
+  "formal_reviews": 1,
+  "source_and_runtime_unchanged": true,
+  "old_formal_files_preserved": true,
+  "formal_and_finish_revalidated": true,
+  "copied_session_identical": true,
+  "review_previous_reviews_empty": true,
+  "ended_to_collection_start_seconds": 3995.368076
+}

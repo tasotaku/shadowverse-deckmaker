@@ -1,0 +1,258 @@
+{
+  "status": "completed",
+  "run_id": "0b046b297be34a4ebb87e8c91a7e504a",
+  "started_at": "2026-09-12T10:55:29.277816+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/sequence-preflight-01-input",
+  "output": "/private/tmp/sv-sequence-preflight-01-b",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:0b046b297be34a4ebb87e8c91a7e504a:develop",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-sequence-preflight-01-b/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-sequence-preflight-01-b/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-sequence-preflight-01-b/develop",
+        "stdin": "/private/tmp/sv-sequence-preflight-01-b/develop/prompt.md",
+        "output": "/private/tmp/sv-sequence-preflight-01-b/develop-run",
+        "started_at": "2026-09-12T10:55:29.429349+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2318030.370972916,
+        "explicit_finish": true,
+        "timeout_seconds": 1200.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 3983,
+        "worker_pid": 3986,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-12T11:11:03.982940+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-12T10:55:29.429611+00:00",
+            "elapsed_seconds": 0.000257750041782856
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-12T10:55:29.429992+00:00",
+            "elapsed_seconds": 0.0006401669234037399
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-12T10:55:29.436452+00:00",
+            "elapsed_seconds": 0.007126417011022568
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-12T11:11:03.801850+00:00",
+            "elapsed_seconds": 934.3809103751555,
+            "request_hash": "fc4ae4bdcef2a2a66bd317860496db380e73d378f4a2a2d3f6eb592f89da65f8",
+            "report_hash": "14e129232aa106fc41c038332ac299362597bbe08a73ea23f0c08da90a0c8411"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-12T11:11:03.802926+00:00",
+            "elapsed_seconds": 934.3819592501968,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-12T11:11:03.864102+00:00",
+            "elapsed_seconds": 934.4431353341788
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-12T11:11:03.982283+00:00",
+            "elapsed_seconds": 934.5613189172,
+            "request_hash": "fc4ae4bdcef2a2a66bd317860496db380e73d378f4a2a2d3f6eb592f89da65f8",
+            "report_hash": "14e129232aa106fc41c038332ac299362597bbe08a73ea23f0c08da90a0c8411"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-12T11:11:03.982945+00:00",
+            "elapsed_seconds": 934.5619734590873
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-12T11:11:03.995283+00:00",
+            "elapsed_seconds": 934.5743126249872
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "sequence-preflight-01",
+          "stage_id": "b-develop",
+          "status": "completed",
+          "begin_revision": 4,
+          "claimed_stage": {
+            "id": "b-develop",
+            "title": "変更Bの考案",
+            "status": "running",
+            "started_at": "2026-09-12T10:55:29.429349+00:00",
+            "ended_at": null,
+            "budget_minutes": 20,
+            "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。\n起動処理を開始。実行記録: /private/tmp/sv-sequence-preflight-01-b/develop-run"
+          },
+          "end_revision": 7,
+          "synced_at": "2026-09-12T11:11:03.995277+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "fc4ae4bdcef2a2a66bd317860496db380e73d378f4a2a2d3f6eb592f89da65f8",
+          "report_hash": "14e129232aa106fc41c038332ac299362597bbe08a73ea23f0c08da90a0c8411"
+        },
+        "elapsed_seconds": 934.561970542185,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:0b046b297be34a4ebb87e8c91a7e504a:review",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-sequence-preflight-01-b/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-sequence-preflight-01-b/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-sequence-preflight-01-b/review",
+        "stdin": "/private/tmp/sv-sequence-preflight-01-b/review/prompt.md",
+        "output": "/private/tmp/sv-sequence-preflight-01-b/review-run",
+        "started_at": "2026-09-12T11:11:04.329416+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2318365.2794225,
+        "explicit_finish": true,
+        "timeout_seconds": 600.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 3983,
+        "worker_pid": 20332,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-12T11:15:49.093845+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-12T11:11:04.329669+00:00",
+            "elapsed_seconds": 0.0002477499656379223
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-12T11:11:04.330051+00:00",
+            "elapsed_seconds": 0.0006316248327493668
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-12T11:11:04.337655+00:00",
+            "elapsed_seconds": 0.008260041009634733
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-12T11:15:48.903639+00:00",
+            "elapsed_seconds": 284.57333375001326,
+            "request_hash": "9de74af6f531c73895fd1b9e78b686def4675975041547612ae553f0ad7b8026",
+            "report_hash": "01900947b9deded33478b381c2d0cafcd6203432f00a2025e801fa3d52aa5400"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-12T11:15:48.904546+00:00",
+            "elapsed_seconds": 284.5742328749038,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-12T11:15:48.958933+00:00",
+            "elapsed_seconds": 284.62862224970013
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-12T11:15:49.092349+00:00",
+            "elapsed_seconds": 284.76204229099676,
+            "request_hash": "9de74af6f531c73895fd1b9e78b686def4675975041547612ae553f0ad7b8026",
+            "report_hash": "01900947b9deded33478b381c2d0cafcd6203432f00a2025e801fa3d52aa5400"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-12T11:15:49.093850+00:00",
+            "elapsed_seconds": 284.76353470794857
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-12T11:15:49.102574+00:00",
+            "elapsed_seconds": 284.7722582500428
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "sequence-preflight-01",
+          "stage_id": "b-review",
+          "status": "completed",
+          "begin_revision": 8,
+          "claimed_stage": {
+            "id": "b-review",
+            "title": "変更Bの別評価",
+            "status": "running",
+            "started_at": "2026-09-12T11:11:04.329416+00:00",
+            "ended_at": null,
+            "budget_minutes": 10,
+            "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。\n起動処理を開始。実行記録: /private/tmp/sv-sequence-preflight-01-b/review-run"
+          },
+          "end_revision": 11,
+          "synced_at": "2026-09-12T11:15:49.102569+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "9de74af6f531c73895fd1b9e78b686def4675975041547612ae553f0ad7b8026",
+          "report_hash": "01900947b9deded33478b381c2d0cafcd6203432f00a2025e801fa3d52aa5400"
+        },
+        "elapsed_seconds": 284.76353150000796,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "review_only": false,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 0,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "dc85476a3a5a9cc7e3f9a869b7b7d04101fa3e47867e6bd87174fafbb9536eb3",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5"
+  },
+  "judgment": {
+    "procedure": "supported",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-sequence-preflight-01-b/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-12T11:15:49.433031+00:00"
+}
