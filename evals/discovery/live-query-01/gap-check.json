@@ -1,0 +1,124 @@
+{
+  "task": "考案中の新要求を固定版の型検索へ渡す公開入口の不足確認",
+  "started_at_utc": "2026-09-12 19:07:25 UTC",
+  "ended_at_utc": "2026-09-12 19:09:03 UTC",
+  "scope": "読み取りのみ。実装・DB/git変更・モデル変更・外部検索・個別カード回答なし。Codex私的stdout.log/推論JSONLは未読。",
+  "verdict": "認識を支持する。正式提出前の任意の新要求を、その場で同じ固定snapshotの既存tag_searchへ渡す等価な公開操作は、確認した実装にはない。",
+  "confirmed": [
+    {
+      "fact": "public.pyの許可操作はpacket/read/reportと工程別submit/review/attach/attach-file/compare、条件付きfinishのみ。新しい質問・タグを引数に取るquery/search操作はない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:105",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:113"
+      ]
+    },
+    {
+      "fact": "考案のpacketは固定された親revisionとstageで再生成され、引数は空か--summaryのみ。質問はその親proposal.questionsと、その改訂に属する旧review.next_questionsから作る。初回はproposalがないので質問が空。別評価由来の質問はtag=Noneとして追加される。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:124",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:302",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:317"
+      ]
+    },
+    {
+      "fact": "search_questionsはtagがある場合だけ固定snapshotへtag_searchと直接供給タグ照合を行う。任意質問を受けるPython関数は既にあるが、それを呼ぶ公開CLIがない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:324",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:163"
+      ]
+    },
+    {
+      "fact": "readは固定packetに既に保存されたsearch配列を返すだけ。新しい検索語・タグを受けて検索を起動するものではない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_read.py:37",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_read.py:49",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_read.py:100"
+      ]
+    },
+    {
+      "fact": "今回Bが読んだsearchは8問すべてtag=nullで、全212カードの読出し後に手元のタグ一致・本文走査を行っている。保存資料の『既存searchは空』は、その場で生まれた新要求が共有tag_searchで検索された証拠ではない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/develop/operations/ab9d4b096d0445f2b206d0c27695b47e.json",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/77db1fd8f2494baab5be925d88f87d09.json",
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/search"
+      ]
+    }
+  ],
+  "equivalence_checks": [
+    {
+      "candidate": "新質問をattach/attach-fileで保存してpacketを再取得する",
+      "equivalent": false,
+      "reason": "追加資料は増えるがpacketのquestions生成元は変わらない。資料中の質問を検索へ取り込む処理はない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:258",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:310",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:317"
+      ]
+    },
+    {
+      "candidate": "途中案を先にsubmitし、その質問を次のpacketで検索する",
+      "equivalent": false,
+      "reason": "一般CLIでは新しい正式改訂を作れば可能だが、未提出のままの検索ではない。今回のpublic.pyは親revisionを固定しており、その場のpacketは旧親案を参照し続ける。正式提出1件の条件とも同じ操作にはならない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:124",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:141",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:404",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:302"
+      ]
+    },
+    {
+      "candidate": "explore/reverse/recall --queryを使う",
+      "equivalent": false,
+      "reason": "exploreは登録済み軸カードの要求、reverseは既存active要求、recallは保存された案・評価の語句検索であり、任意の未提出要求を固定snapshotのtag_searchへ渡す公開操作ではない。今回のpublic.pyでも許可されていない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:683",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/reverse.py:57",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:490",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:116"
+      ]
+    },
+    {
+      "candidate": "公開cardsとfulfillment_mapを読み、担当が手元で型一致を再実装する",
+      "equivalent": false,
+      "reason": "材料から手作業で探すことは可能で、今回Bも実施した。ただし共有するtag_searchそのものを使用する経路ではなく、照合規則・生成札タグ伝播・分類処理の再実装差が生じる。新しい型検索CLIの存在を示す反証ではない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:91",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:162",
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/search"
+      ]
+    },
+    {
+      "candidate": "inquiry/inspectで新質問を検索する",
+      "equivalent": false,
+      "reason": "保存済み評価の問いを調査する別工程であり、refresh_packetは追加sourcesだけを反映する。初回考案中のその場検索とは異なる。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:46",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_inquiry.py:163"
+      ]
+    }
+  ],
+  "counterevidence_and_limits": [
+    "今回Bは本文走査で新しい枝を見つけており、query入口の欠如がその枝の不採用を引き起こした証拠はない。不採用理由は通常構築に対する利益不足と追加負担である。",
+    "タグの誤り・未分類・1段だけの生成札伝播は、入口を公開しても解消しない。queryの0件を全文に候補がない・経路が不可能と解釈してはいけない。",
+    "固定入力に含まれる本文を読む既存動作は維持する。型検索を本文化された意味判定や採用価値・独自性の代わりにする根拠はない。",
+    "新しい操作を使えること、共有型検索へ到達したことは機能検査の成果であり、有用な独自着想の発見件数には加算しない。",
+    "現時点で、狭いreadonly queryの実装そのものを否定する等価機能や設計上の反証は確認できなかった。探索品質への効果は未検証。"
+  ],
+  "smallest_supported_direction": {
+    "proposal": "考案中に未提出のquestion/tag/whyを受け取り、同じ固定contextとsnapshotへ既存search_questionsを呼ぶ公開query補助を加える方針は、確認した操作経路の不足と一致する。新しい照合器・生成経路判定器を作る必要はない。",
+    "bounds": [
+      "DBは既存read_onlyを用い、別DBパス・別context・別revisionへ切り替える入力を受けない。正式proposal/reviewと元のpacketの意味内容を変えない。",
+      "実行条件の読み取り専用はDB・正式案・評価を変えないという意味。既存public操作と同じ監査記録の追記は別に扱う。",
+      "query結果は必要時に既存attach/attach-fileで正式資料へ残し、別評価が照合できるようにする。操作のstdoutだけで別評価へ自動伝達されたとみなさない。",
+      "初回・改訂の提出前に使えることを検査し、今回のA/Bや既存採点を後付けで変更しない。"
+    ],
+    "minimal_checks": [
+      "正式案がない初回と、親案がある改訂中で、質問を正式提出せず検索できる。",
+      "同じ人工質問を同じ固定版のsearch_questionsへ直接渡した結果と公開query結果が一致する。",
+      "未分類・0件・不正タグ入力で、本文走査を妨げる成功/不可能判定を付けない。",
+      "呼出し前後でsnapshot/context/正式revision/reviewの識別値が同じ。別版や許可外工程の指定を拒否する。",
+      "既存packet.searchの生成内容と従来のsubmit/review経路を変えない。"
+    ],
+    "not_done": "実装・テスト実行・新しい実AI比較はこの監査では行っていない。"
+  }
+}

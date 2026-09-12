@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-09-12T19:13:25.795700+00:00",
+  "baseline_commit": "c2a5ae073e60386015b2c89d9f99f3a5a22baf40",
+  "artificial_operation_check": true,
+  "real_discovery_query": false,
+  "returncode": 2,
+  "session_unchanged": true,
+  "operation": {
+    "args": [
+      "query",
+      "--question",
+      "未提出の新要求を検索する入口の検査",
+      "--tag",
+      "入口検査用の条件"
+    ],
+    "started_at": "2026-09-12T19:13:25.777985+00:00",
+    "ended_at": "2026-09-12T19:13:25.778378+00:00",
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "この工程では許可されていない操作です\n"
+  },
+  "interpretation": "既存公開入口がqueryを拒否することを確認。人工条件は検索器まで渡らず、カード候補の失敗を示さない。"
+}

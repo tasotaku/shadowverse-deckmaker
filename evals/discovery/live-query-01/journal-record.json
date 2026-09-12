@@ -1,0 +1,92 @@
+{
+  "id": "live-query-01",
+  "revision": 2,
+  "saved_at": "2026-09-12T19:14:02.846727+00:00",
+  "actor": "codex-root",
+  "reason": "既存公開操作の拒否・保存不変と実利用の元入力を固定",
+  "record": {
+    "id": "live-query-01",
+    "title": "考案中の新しい条件をその場で検索する",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "新要求を正式提出前に既存型検索へ渡す公開操作がないことを確認。読み取り専用の入口を隔離して実装・検査する。",
+    "method": "固定したカード資料とDBを保持し、問いと検索条件を1件ずつ既存検索へ渡す公開操作を追加する。",
+    "procedure": "目的は、考案中に新しく生じた要求を、正式な案の提出を前提にせず、固定DBの既存型検索へ渡せる任意の入口を追加すること。別用途を必ず探す指示、生成元自動解決、対戦シミュレータは作らない。\n既存search_questionsを再利用し、snapshotとcontextを毎回既存機能で照合する。新たなquestionと空でないtagを明示して1件ずつ検索する。採用可能カードのIDと検索入力、固定版の識別、全文と注記の参照先を返し、型一致を手順成立・生成可能性・価値・独自性へ昇格しない。任意のファイル、別DB、別探索、クラス変更を入力できない。\n検索だけでは元入力・案・評価・追加資料・既存packetを変更しない。検索結果を残す時は既存の添付を使う。実担当の公開query操作は既存の公開操作記録へ保存し、終了明示後は拒否する。公開入口は考案だけへ追加し、別評価・調査・別照合の従来の許可は変えない。\n既存DEVELOP_RULES/DEVELOP/REVIEW/FINISHと採点を変えない。新しい操作はhelpと実担当が受け取る公開コマンド案内へ明示する。案未提出・検索一致・一致なし・無効値・他クラスと非合法カード・DB改変・公開工程制限・終了後拒否・既存全入力保持を機械検査する。人工例を実カード発見と呼ばない。\n実装と検査は目安12分。次に固定された保存入力から実AIが新要求を1件選び、検索結果と本文・注記を照合して既存添付へ報告する利用確認を6分以内で一度行う。開発者はカードの答え・具体タグ・期待する候補を与えない。別担当が検索・保存の根拠と限界を3分以内で確認する。\n採用候補は機能・型検査と実利用で、提出前の新要求を検索でき、取得した根拠を保持して再読できること。これは検索補助の採用であり、システムの発見力の採用と区別する。失敗時はその段階を記録し採用保留。採用後には別の探索入力で実質的な発展・試用理由・独自性を元の基準で評価する。今回の0対1や新しい検索件数を有用な種の確認数に加算しない。",
+    "inputs": "前試行の変更版の正式保存を利用確認に使う。既知入力の道具確認であり未知の発見試験ではない。",
+    "criteria": "目的は、考案中に新しく生じた要求を、正式な案の提出を前提にせず、固定DBの既存型検索へ渡せる任意の入口を追加すること。別用途を必ず探す指示、生成元自動解決、対戦シミュレータは作らない。\n既存search_questionsを再利用し、snapshotとcontextを毎回既存機能で照合する。新たなquestionと空でないtagを明示して1件ずつ検索する。採用可能カードのIDと検索入力、固定版の識別、全文と注記の参照先を返し、型一致を手順成立・生成可能性・価値・独自性へ昇格しない。任意のファイル、別DB、別探索、クラス変更を入力できない。\n検索だけでは元入力・案・評価・追加資料・既存packetを変更しない。検索結果を残す時は既存の添付を使う。実担当の公開query操作は既存の公開操作記録へ保存し、終了明示後は拒否する。公開入口は考案だけへ追加し、別評価・調査・別照合の従来の許可は変えない。\n既存DEVELOP_RULES/DEVELOP/REVIEW/FINISHと採点を変えない。新しい操作はhelpと実担当が受け取る公開コマンド案内へ明示する。案未提出・検索一致・一致なし・無効値・他クラスと非合法カード・DB改変・公開工程制限・終了後拒否・既存全入力保持を機械検査する。人工例を実カード発見と呼ばない。\n実装と検査は目安12分。次に固定された保存入力から実AIが新要求を1件選び、検索結果と本文・注記を照合して既存添付へ報告する利用確認を6分以内で一度行う。開発者はカードの答え・具体タグ・期待する候補を与えない。別担当が検索・保存の根拠と限界を3分以内で確認する。\n採用候補は機能・型検査と実利用で、提出前の新要求を検索でき、取得した根拠を保持して再読できること。これは検索補助の採用であり、システムの発見力の採用と区別する。失敗時はその段階を記録し採用保留。採用後には別の探索入力で実質的な発展・試用理由・独自性を元の基準で評価する。今回の0対1や新しい検索件数を有用な種の確認数に加算しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-12T19:10:28.359273+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "新要求を検索へ渡す入口を隔離して実装・検査",
+        "status": "running",
+        "started_at": "2026-09-12T19:10:28.359273+00:00",
+        "ended_at": null,
+        "note": "既存型検索を再利用。探索指示・採点・元入力を変更しない。",
+        "budget_minutes": 12
+      },
+      {
+        "id": "live-use",
+        "title": "実担当が新要求を検索して本文と照合・保存",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "検索対象の具体的なカードやタグは担当が選ぶ。各一度、上限6分。",
+        "budget_minutes": 6
+      },
+      {
+        "id": "inspect",
+        "title": "別担当が検索結果と保存の根拠を照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "検索補助としての機能と発見力を分ける。目安3分。",
+        "budget_minutes": 3
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/live-query-01/README.md",
+      "evals/discovery/live-query-01/protocol.json",
+      "evals/discovery/live-query-01/gap-check.json",
+      "evals/discovery/live-query-01/baseline-gap-verification.json",
+      "evals/discovery/live-query-01/source-manifest.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/live-query-01/README.md",
+      "sha256": "8a4e6c9b950a823f133e58c45df686ca8c88274499151df6d8b08a4256a54270",
+      "size": 2099
+    },
+    {
+      "path": "evals/discovery/live-query-01/baseline-gap-verification.json",
+      "sha256": "240caaaa9cb90f1f46161ffed69446809168c33c24fdb8c7e213bafcffd69653",
+      "size": 810
+    },
+    {
+      "path": "evals/discovery/live-query-01/gap-check.json",
+      "sha256": "441c516ba2709cccfc484225aa4f77a5294113dea4708d391072df3220ec9d0b",
+      "size": 9920
+    },
+    {
+      "path": "evals/discovery/live-query-01/protocol.json",
+      "sha256": "4d4cf63f879f554f2e73060891dec84d9730d38500b5841fcefacc88fc6f92c9",
+      "size": 2876
+    },
+    {
+      "path": "evals/discovery/live-query-01/source-manifest.json",
+      "sha256": "a7bd680ded3742e5384a8b5733790c9b64cb2a1a154168c46ef9b2ed49f86e96",
+      "size": 6124
+    }
+  ]
+}
