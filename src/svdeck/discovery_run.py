@@ -10,6 +10,7 @@ import argparse
 from contextlib import redirect_stderr, redirect_stdout
 from datetime import datetime, timezone
 import hashlib
+import fcntl
 import io
 import json
 import math
@@ -80,6 +81,15 @@ def check_packet(session: Path, data: dict[str, Any], fixed: dict[str, Any]) -> 
         raise ValueError('提出資料の過去評価との対応が一致しません')
 
 def public_main(work: Path, argv: list[str] | None = None) -> int:
+    # AI_NOTE: 明示終了を使う工程だけ公開操作を直列化し、受付後の追加保存を拒む。
+    if not read_object(work / 'public-config.json').get('explicit_finish'):
+        return public_operation(work, argv)
+    with (work / '.public.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        return public_operation(work, argv)
+
+
+def public_operation(work: Path, argv: list[str] | None = None) -> int:
     # AI_NOTE: 自分の工程だけを公開し、入口で拒んだ操作も開始終了と共に保存する。
     args = list(sys.argv[1:] if argv is None else argv)
     config = read_object(work / 'public-config.json')
@@ -88,6 +98,7 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
     operation: dict[str, Any] = {'args': args, 'started_at': datetime.now(timezone.utc).isoformat()}
     stdout, stderr = io.StringIO(), io.StringIO()
     code = 2
+    request: dict[str, Any] | None = None
     with redirect_stdout(stdout), redirect_stderr(stderr):
         try:
             if not args or args in (['--help'], ['help']):
@@ -95,12 +106,18 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                 print('For develop: submit FILE | attach FILE | attach-file FILE OPTIONS | compare BEFORE AFTER')
                 print('For review: review FILE. For inquiry/inspect: attach FILE | attach-file FILE OPTIONS.')
                 print('Session and stage are fixed. Read inputs only through this entry.')
+                if config.get('explicit_finish'):
+                    print('After submission and report: finish. This seals saved work and asks the supervisor to stop this worker.')
                 code = 0
             else:
                 command, rest = args[0], args[1:]
                 stage_commands = {'develop': {'submit', 'attach', 'attach-file', 'compare'}, 'review': {'review'},
                                   'inquiry': {'attach', 'attach-file'}, 'inspect': {'attach', 'attach-file'}}
                 allowed = {'packet', 'read', 'report'} | stage_commands[stage]
+                if config.get('explicit_finish') and stage in {'develop', 'review'}:
+                    allowed.add('finish')
+                if (work / 'finish-request.json').exists() and command not in {'finish', 'read'}:
+                    raise ValueError('終了要求後は保存内容を変更できません')
                 if command not in allowed:
                     raise ValueError('この工程では許可されていない操作です')
                 help_only = rest == ['--help']
@@ -138,7 +155,17 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                             raise ValueError('評価は今回の固定資料だけを使います')
                         check_packet(session, data, fixed)
                     rest[0] = str(content)
-                if command in {'submit', 'review'} and not help_only:
+                if command == 'finish':
+                    if rest:
+                        raise ValueError('finishには追加引数を指定しません')
+                    contract = read_object(work / 'finish-config.json')
+                    if (work / 'finish-request.json').exists():
+                        check_finish(work, contract)
+                    else:
+                        request = finish_evidence(work, contract)
+                    print(json.dumps({'status': 'finish_requested', 'completion': '監視側の停止と再検査は未完了'}, ensure_ascii=False))
+                    code = 0
+                elif command in {'submit', 'review'} and not help_only:
                     value = discovery.submit(session, response) if command == 'submit' else discovery.review(session, response)
                     print(json.dumps({**value, 'author': config['author']}, ensure_ascii=False, indent=2))
                     code = 0
@@ -156,7 +183,7 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                     code = 0
                 else:
                     code = discovery.main([command, str(session), *rest])
-        except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+        except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
             print(str(exc), file=sys.stderr)
         except SystemExit as exc:
             code = exc.code if isinstance(exc.code, int) else 2
@@ -164,7 +191,11 @@ def public_main(work: Path, argv: list[str] | None = None) -> int:
                      stdout=stdout.getvalue(), stderr=stderr.getvalue())
     logs = work / 'operations'
     logs.mkdir(exist_ok=True)
-    write_new(logs / (uuid.uuid4().hex + '.json'), operation)
+    operation_path = logs / (uuid.uuid4().hex + '.json')
+    write_new(operation_path, operation)
+    if request is not None and code == 0:
+        request.update(operation=operation_path.name, operation_hash=digest(operation))
+        worker.save_record(work / 'finish-request.json', request)
     sys.stdout.write(stdout.getvalue())
     sys.stderr.write(stderr.getvalue())
     return code
@@ -188,9 +219,120 @@ def verify_submission(session: Path, stage: str, revision: int) -> None:
         if (copy / paths[0].name).read_bytes() != paths[0].read_bytes():
             raise ValueError('正式入口で再保存した内容が一致しません')
 
+class MissingSubmission(ValueError):
+    """A naturally completed worker did not save the assigned formal record."""
+
+
+def validate_stage(work: Path, contract: dict[str, Any]) -> dict[str, Any]:
+    # AI_NOTE: 自然終了と明示終了に同じ正式保存・固定入力検査を適用する。
+    for folder, before in contract['protected'].items():
+        check_unchanged(Path(folder), before, exact=True)
+    fixed = contract['fixed']
+    check_unchanged(work, fixed)
+    config = read_object(work / 'public-config.json')
+    stage, author = config['stage'], config['author']
+    expected, parent, review_only = contract['expected'], contract['parent'], contract['review_only']
+    envelope = read_object(work / 'session/packets' / (config['packet_hash'] + '.json'))
+    report = discovery.report(work / 'session')
+    if stage == 'develop':
+        initial_reviews = {name for name in fixed if name.startswith('session/review-')}
+        current_reviews = {'session/' + path.name for path in (work / 'session').glob('review-*.json')}
+        if current_reviews != initial_reviews:
+            raise ValueError('考案担当は評価ファイルを追加できません')
+        proposals = report['revisions']
+        if len(proposals) == contract['prior_count']:
+            raise MissingSubmission('正式改訂がありません')
+        if len(proposals) != contract['prior_count'] + 1 or proposals[-1]['revision'] != expected or proposals[-1]['parent_revision'] != parent or proposals[-1]['reviews']:
+            raise ValueError('今回の親に対応する正式改訂1件だけが必要です')
+        current = discovery._revision(work / 'session', expected)
+        assert current is not None
+        if current['author'] != author:
+            raise ValueError('正式改訂の担当IDが起動時の割当と一致しません')
+        discovery._validate_proposal(current, envelope['data']['context'], load_sources(work / 'session'))
+        referenced = discovery._response_packet(work / 'session', current, 'develop')
+        check_packet(work / 'session', referenced, envelope['data'])
+    else:
+        reviews = report['revisions'][-1]['reviews']
+        if not reviews and not list((work / 'session').glob('review-*.json')):
+            raise MissingSubmission('正式な別評価がありません')
+        if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != contract['prior_count'] + (0 if review_only else 1):
+            raise ValueError('今回の改訂への正式な別評価1件だけが必要です')
+        stored = reviews[0]
+        if stored['author'] != author:
+            raise ValueError('正式評価の担当IDが起動時の割当と一致しません')
+        discovery._response_packet(work / 'session', stored, 'review')
+        if stored['packet_hash'] != envelope['sha256']:
+            raise ValueError('別評価が今回の固定資料を参照していません')
+        proposal = envelope['data']['proposal']
+        if stored['author'] == proposal['author'] or stored['proposal_hash'] != digest(proposal):
+            raise ValueError('別担当と提案の対応が一致しません')
+    verify_submission(work / 'session', stage, expected)
+    return report
+
+
+def finish_evidence(work: Path, contract: dict[str, Any], pinned: dict[str, Any] | None = None) -> dict[str, Any]:
+    # AI_NOTE: 今回の提出後reportと正式保存を結び、資料保存だけを完了にしない。
+    before = manifest(work / 'session')
+    report = validate_stage(work, contract)
+    config = read_object(work / 'public-config.json')
+    command = 'submit' if config['stage'] == 'develop' else 'review'
+    if pinned is None:
+        paths = list((work / 'operations').glob('*.json'))
+    else:
+        names = [pinned['submission_operation'], pinned['report_operation']]
+        if any(not isinstance(name, str) or Path(name).name != name for name in names):
+            raise ValueError('公開操作の識別値が不正です')
+        paths = [work / 'operations' / name for name in names]
+    operations = [(p.name, read_object(p)) for p in paths]
+    submitted = [(name, op) for name, op in operations if op.get('exit_code') == 0 and isinstance(op.get('submission'), dict) and op.get('args', [])[:1] == [command]]
+    if len(submitted) != 1:
+        raise ValueError('今回の公開正式提出1件が必要です')
+    submission_name, submission = submitted[0]
+    stored = discovery._revision(work / 'session', contract['expected']) if command == 'submit' else report['revisions'][-1]['reviews'][0]
+    raw = submission['submission']
+    if raw['assigned_author'] != config['author'] or stored is None or any(stored.get(k) != v for k, v in raw['response'].items() if k != 'author'):
+        raise ValueError('公開提出と正式保存の内容が一致しません')
+    reports = [(name, op) for name, op in operations if op.get('args') == ['report'] and op.get('exit_code') == 0
+               and op['started_at'] >= submission['ended_at'] and json.loads(op['stdout']) == report]
+    if not reports:
+        raise ValueError('正式提出後の現在内容に一致する公開reportが必要です')
+    report_name, reported = max(reports, key=lambda item: item[1]['ended_at'])
+    check_unchanged(work / 'session', before, exact=True)
+    return {'config_hash': digest(config), 'session_manifest': before, 'report_hash': digest(report),
+            'submission_operation': submission_name, 'submission_hash': digest(submission),
+            'report_operation': report_name, 'report_operation_hash': digest(reported)}
+
+
+def check_finish(work: Path, contract: dict[str, Any]) -> dict[str, Any] | None:
+    # AI_NOTE: 要求は合図だけとし、監視側の固定値と停止前後の同じ保存物で再検査する。
+    path = work / 'finish-request.json'
+    if not path.exists():
+        return None
+    request = read_object(path)
+    if not isinstance(request.get('operation'), str) or Path(request['operation']).name != request['operation']:
+        raise ValueError('終了操作の識別値が不正です')
+    operation = read_object(work / 'operations' / request['operation'])
+    if operation.get('args') != ['finish'] or operation.get('exit_code') != 0 or digest(operation) != request['operation_hash']:
+        raise ValueError('終了要求の公開操作記録が一致しません')
+    evidence = finish_evidence(work, contract, request)
+    if request != {**evidence, 'operation': request['operation'], 'operation_hash': request['operation_hash']}:
+        raise ValueError('終了要求後の保存内容が変わっています')
+    return {'request_hash': digest(request), 'report_hash': request['report_hash']}
+
+
+def poll_finish(work: Path, contract: dict[str, Any]) -> dict[str, Any] | None:
+    # AI_NOTE: 公開操作の書込み中は待ち、途中の操作記録を壊れた要求と誤認しない。
+    with (work / '.public.lock').open('a') as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            return None
+        return check_finish(work, contract)
+
+
 def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, review_seconds: float,
         revision: int | None = None, journal_root: Path | None = None,
-        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False) -> dict[str, Any]:
+        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False, explicit_finish: bool = False) -> dict[str, Any]:
     # AI_NOTE: 別評価のみなら最新の保存案を再検査し、再考案せず旧評価を隔離して渡す。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if output.is_relative_to(source) or source.is_relative_to(output):
@@ -207,7 +349,7 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, 
     original = manifest(source)
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
-                              'source': str(source), 'output': str(output), 'stages': [], 'review_only': review_only,
+                              'source': str(source), 'output': str(output), 'stages': [], 'review_only': review_only, 'explicit_finish': explicit_finish,
                               'limits': '実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。'}
     try:
         runtime = output / 'runtime'
@@ -241,7 +383,7 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, 
                 envelope = discovery.packet(work / 'session', target, stage)
             summary = packet_summary(work / 'session', envelope['sha256'])
             write_new(work / 'input-summary.json', summary)
-            write_new(work / 'public-config.json', {'stage': stage, 'revision': target, 'packet_hash': envelope['sha256'], 'author': author})
+            write_new(work / 'public-config.json', {'stage': stage, 'revision': target, 'packet_hash': envelope['sha256'], 'author': author, 'explicit_finish': explicit_finish})
             (work / 'public.py').write_text('import sys\nsys.dont_write_bytecode = True\nfrom pathlib import Path\nsys.path.insert(0, ' + repr(str(runtime)) + ')\nfrom svdeck.discovery_run import public_main\nraise SystemExit(public_main(Path(__file__).resolve().parent))\n')
             instruction = envelope['data']['instruction']
             reading = 'カード本文、注記、生成先、資料、履歴' + ('、直前評価' if stage == 'develop' else '')
@@ -262,61 +404,50 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
 カード・既存案・評価・入力設定を書き換えず、足りない情報を推測で埋めません。提出できなければその事実をfinal-messageに残してください。
 結論と残った問題を短くfinal-messageに記してください。私的な思考過程は保存資料へ転記しません。
 '''
+            if explicit_finish:
+                prompt += f'正式提出とreport確認を終え、これ以上保存内容を変えない段階で {sys.executable} public.py finish を実行してください。受付後は保存内容を変更できません。監視側が停止と再検査を行い、正式資料から成果を回収します。\n'
             (work / 'prompt.md').write_text(prompt)
             fixed = manifest(work)
+            protected = {str(source): original, str(runtime): runtime_before}
+            if stage == 'review':
+                protected[str(prepared)] = prepared_before
+            contract = {'fixed': fixed, 'protected': protected, 'expected': expected, 'parent': parent,
+                        'prior_count': len(prior['revisions']), 'review_only': review_only}
+            if explicit_finish:
+                write_new(work / 'finish-config.json', contract)
+                (work / '.public.lock').touch()
+                fixed = manifest(work)
+                contract = {**contract, 'fixed': fixed}
             result['status'] = stage
             worker.save_record(output / 'result.json', result)
             journal = RunJournal(journal_root, experiment_id, f'{stage_prefix}-{stage}') if journal_root and experiment_id else None
             command = [str(codex), '--search', 'exec', '--ephemeral', '--sandbox', 'workspace-write',
                        '--skip-git-repo-check', '--cd', str(work), '--json', '--output-last-message', str(work / 'final-message.md'), '-']
-            code, execution = worker.run(command, output / (stage + '-run'), limit, 2, work,
-                                         work / 'prompt.md', 'elapsed', journal)
+            if explicit_finish:
+                code, execution = worker.run(command, output / (stage + '-run'), limit, 2, work,
+                                             work / 'prompt.md', 'elapsed', journal, lambda: poll_finish(work, contract))
+            else:
+                code, execution = worker.run(command, output / (stage + '-run'), limit, 2, work,
+                                             work / 'prompt.md', 'elapsed', journal)
             result['stages'].append({'stage': stage, 'author': author, 'returncode': code, 'run': execution})
             check_unchanged(source, original, exact=True)
             check_unchanged(runtime, runtime_before, exact=True)
             check_unchanged(work, fixed)
             if stage == 'review':
                 check_unchanged(prepared, prepared_before, exact=True)
-            if code != 0 or execution['status'] != 'completed':
+            if code != 0 or execution['status'] not in ({'completed', 'finished_by_request'} if explicit_finish else {'completed'}):
                 result.update(status=stage + '_failed', failure='担当の実行が完了していないため次へ進みません')
                 break
-            report = discovery.report(work / 'session')
-            if stage == 'develop':
-                initial_reviews = {name for name in fixed if name.startswith('session/review-')}
-                current_reviews = {'session/' + path.name for path in (work / 'session').glob('review-*.json')}
-                if current_reviews != initial_reviews:
-                    raise ValueError('考案担当は評価ファイルを追加できません')
-                proposals = report['revisions']
-                if len(proposals) == len(prior['revisions']):
-                    result.update(status='develop_missing', failure='担当は終了しましたが正式改訂がありません')
-                    break
-                if len(proposals) != len(prior['revisions']) + 1 or proposals[-1]['revision'] != expected or proposals[-1]['parent_revision'] != parent or proposals[-1]['reviews']:
-                    raise ValueError('今回の親に対応する正式改訂1件だけが必要です')
-                current = discovery._revision(work / 'session', expected)
-                assert current is not None
-                if current['author'] != author:
-                    raise ValueError('正式改訂の担当IDが起動時の割当と一致しません')
-                discovery._validate_proposal(current, envelope['data']['context'], load_sources(work / 'session'))
-                referenced = discovery._response_packet(work / 'session', current, 'develop')
-                check_packet(work / 'session', referenced, envelope['data'])
-            else:
-                reviews = report['revisions'][-1]['reviews']
-                if not reviews and not list((work / 'session').glob('review-*.json')):
-                    result.update(status='review_missing', failure='担当は終了しましたが正式な別評価がありません')
-                    break
-                if len(list((work / 'session').glob('review-*.json'))) != 1 or len(reviews) != 1 or any(p['reviews'] for p in report['revisions'][:-1]) or len(report['revisions']) != len(prior['revisions']) + (0 if review_only else 1):
-                    raise ValueError('今回の改訂への正式な別評価1件だけが必要です')
-                stored = reviews[0]
-                if stored['author'] != author:
-                    raise ValueError('正式評価の担当IDが起動時の割当と一致しません')
-                discovery._response_packet(work / 'session', stored, 'review')
-                if stored['packet_hash'] != envelope['sha256']:
-                    raise ValueError('別評価が今回の固定資料を参照していません')
-                proposal = envelope['data']['proposal']
-                if stored['author'] == proposal['author'] or stored['proposal_hash'] != digest(proposal):
-                    raise ValueError('別担当と提案の対応が一致しません')
+            try:
+                if explicit_finish:
+                    check_finish(work, contract)
+                report = validate_stage(work, contract)
+            except MissingSubmission as exc:
+                result.update(status=stage + '_missing', failure=str(exc))
+                break
+            if stage == 'review':
+                stored = report['revisions'][-1]['reviews'][0]
                 result['judgment'] = {key: stored[key] for key in ('procedure', 'value', 'novelty')}
-            verify_submission(work / 'session', stage, expected)
             write_new(output / (stage + '-report.json'), report)
         if result['status'] == 'review':
             destination = output / 'session'
@@ -333,7 +464,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
             write_new(output / 'report.json', discovery.report(destination))
             result.update(status='completed', session=str(destination), source_unchanged=True,
                           formal_revisions=0 if review_only else 1, formal_reviews=1)
-    except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
         result.update(status='failed', failure=str(exc))
     finally:
         result['ended_at'] = datetime.now(timezone.utc).isoformat()
@@ -351,14 +482,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--review-seconds', type=float, required=True)
     parser.add_argument('--revision', type=int)
     parser.add_argument('--review-only', action='store_true', help='最新の保存済み正式改訂を再考案せず別評価する。revision必須、develop-secondsは指定不可。')
+    parser.add_argument('--explicit-finish', action='store_true', help='担当のfinish操作と保存再検査で監視側が終了させる任意方式')
     parser.add_argument('--journal-root', type=Path)
     parser.add_argument('--experiment-id')
     parser.add_argument('--stage-prefix', default='live')
     args = parser.parse_args(argv)
     try:
         result = run(args.session, args.output, args.codex, args.develop_seconds, args.review_seconds,
-                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only)
-    except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only, args.explicit_finish)
+    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
         parser.error(str(exc))
     print(json.dumps({key: value for key, value in result.items() if key not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))
     return 0 if result['status'] == 'completed' else 2

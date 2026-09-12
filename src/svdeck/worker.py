@@ -9,11 +9,12 @@ import math
 import os
 from pathlib import Path
 import signal
+import sqlite3
 import subprocess
 import sys
 import time
 from types import FrameType
-from typing import Literal
+from typing import Any, Callable, Literal
 
 from svdeck.worker_journal import JOURNAL_ERRORS, RunJournal
 
@@ -29,10 +30,12 @@ def save_record(path: Path, record: dict[str, object]) -> None:
     temporary.replace(path)
 
 
-def signal_group(process: subprocess.Popen[bytes], sig: int) -> bool:
+def signal_group(process: subprocess.Popen[bytes], sig: int, require_running: bool = False) -> bool:
     # AI_NOTE: 終了直後の群は親の回収後も一時的にEPERMになり得るため、短い上限内で再確認する。
     for attempt in range(5):
-        process.poll()
+        code = process.poll()
+        if require_running and code is not None:
+            return False
         try:
             os.killpg(process.pid, sig)
             return True
@@ -48,7 +51,8 @@ def signal_group(process: subprocess.Popen[bytes], sig: int) -> bool:
 def run(command: list[str], output: Path, timeout: float, grace: float,
         cwd: Path | None = None, stdin: Path | None = None,
         clock: Literal['deadline', 'elapsed'] = 'deadline',
-        journal: RunJournal | None = None) -> tuple[int, dict[str, object]]:
+        journal: RunJournal | None = None,
+        finish_check: Callable[[], dict[str, Any] | None] | None = None) -> tuple[int, dict[str, object]]:
     # AI_NOTE: 判定の中身に触れず、実行の期限・終了確認と既存出力の保持だけを担当する。
     if os.name != 'posix':
         raise ValueError('この入口のプロセス群制御はPOSIX専用です')
@@ -72,6 +76,7 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
         'started_at': started.isoformat(),
         'deadline_at': deadline.isoformat() if clock == 'deadline' else None,
         'budget_clock': clock, 'deadline_monotonic': clock_start + timeout,
+        'explicit_finish': finish_check is not None,
         'timeout_seconds': timeout, 'termination_grace_seconds': grace,
         'supervisor_pid': os.getpid(), 'worker_pid': None, 'worker_returncode': None,
         'ended_at': None, 'events': events,
@@ -87,6 +92,8 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
                        'elapsed_seconds': time.monotonic() - clock_start, **fields})
         save_record(record_path, record)
 
+    finish_evidence: dict[str, Any] | None = None
+    own_termination = False
     interrupted: int | None = None
 
     def request_stop(signum: int, frame: FrameType | None) -> None:
@@ -149,10 +156,54 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
                     exit_code = code if code >= 0 else 128 - code
                     mark('worker_exit_observed', returncode=code)
                     break
+                if finish_check is not None:
+                    try:
+                        candidate = finish_check()
+                    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
+                        record['finish_error'] = str(exc)
+                        if interrupted is not None or time.monotonic() - clock_start >= timeout or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline):
+                            continue
+                        if process.poll() is not None:
+                            continue
+                        raise
+                    if candidate is not None:
+                        # AI_NOTE: 検査中の期限・中断・自然終了を先に裁き、要求の時刻だけで成功にしない。
+                        if interrupted is not None or time.monotonic() - clock_start >= timeout or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline):
+                            continue
+                        if process.poll() is not None:
+                            continue
+                        finish_evidence = candidate
+                        record.update(status='finish_requested', finish_evidence=candidate)
+                        mark('finish_request_verified', **candidate)
+                        exit_code = 0
+                        break
                 time.sleep(min(0.1, max(0.001, timeout - (time.monotonic() - clock_start))))
 
             # AI_NOTE: 親が先に終わっても残った子処理を放置せず、猶予後に群全体へ終了を強制する。
-            if signal_group(process, signal.SIGTERM):
+            if finish_evidence is not None:
+                # AI_NOTE: 終了要求の直前にも競合を確認し、先に起きた自然終了を保持する。
+                if interrupted is not None:
+                    record['status'], exit_code = 'interrupted', 128 + interrupted
+                elif time.monotonic() - clock_start >= timeout or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline):
+                    record['status'], exit_code = 'timed_out', 124
+                elif process.poll() is not None:
+                    natural_code = process.returncode
+                    assert natural_code is not None
+                    record['status'] = 'completed' if natural_code == 0 else 'failed'
+                    exit_code = natural_code if natural_code >= 0 else 128 - natural_code
+                    mark('worker_exit_observed', returncode=natural_code)
+            if record['status'] == 'finish_requested':
+                own_termination = signal_group(process, signal.SIGTERM, require_running=True)
+                # AI_NOTE: 送信内部で先に見えた自然終了を、自分の信号の結果へ読み替えない。
+                if process.returncode is not None:
+                    natural_code = process.returncode
+                    record['status'] = 'completed' if natural_code == 0 else 'failed'
+                    exit_code = natural_code if natural_code >= 0 else 128 - natural_code
+                    mark('worker_exit_observed', returncode=natural_code)
+                sent = own_termination
+            else:
+                sent = signal_group(process, signal.SIGTERM)
+            if sent:
                 mark('termination_requested', signal=int(signal.SIGTERM))
                 stop_clock = time.monotonic()
                 stop_deadline = datetime.now(timezone.utc) + timedelta(seconds=grace)
@@ -173,7 +224,7 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
     except JournalStartExpired as exc:
         record.update(status='interrupted' if interrupted is not None else 'timed_out', error=str(exc))
         exit_code = 128 + interrupted if interrupted is not None else 124
-    except OSError as exc:
+    except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
         record.update(status='launch_failed' if process is None else 'supervisor_failed', error=str(exc))
         exit_code = 127 if process is None else 125
     finally:
@@ -190,6 +241,43 @@ def run(command: list[str], output: Path, timeout: float, grace: float,
                 record['status'] = 'termination_unconfirmed'
                 exit_code = 125
             record['worker_returncode'] = process.returncode
+            if finish_check is not None:
+                # AI_NOTE: 主PIDだけでなく元の群の消滅を確認し、残留を完了へ渡さない。
+                try:
+                    stop_clock = time.monotonic()
+                    stop_utc = datetime.now(timezone.utc) + timedelta(seconds=1)
+                    while signal_group(process, 0):
+                        if time.monotonic() - stop_clock >= 1 or datetime.now(timezone.utc) >= stop_utc:
+                            raise OSError('同じプロセス群の終了を確認できません')
+                        time.sleep(0.05)
+                    mark('process_group_gone')
+                except OSError as exc:
+                    record.update(status='termination_unconfirmed', termination_error=str(exc))
+                    exit_code = 125
+        if finish_evidence is not None and exit_code == 0:
+            # AI_NOTE: 停止後の同一内容と期限内の最終確認でだけ明示完了を確定する。
+            try:
+                assert finish_check is not None
+                if finish_check() != finish_evidence:
+                    raise ValueError('停止後の完了要求が一致しません')
+                if record['status'] == 'finish_requested':
+                    if not own_termination or (process is not None and process.returncode not in (0, -signal.SIGTERM, -signal.SIGKILL)):
+                        record['status'], exit_code = 'failed', 125
+                    else:
+                        record['status'] = 'finished_by_request'
+                if interrupted is not None:
+                    record['status'], exit_code = 'interrupted', 128 + interrupted
+                elif time.monotonic() - clock_start >= timeout or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline):
+                    record['status'], exit_code = 'timed_out', 124
+                if exit_code == 0:
+                    mark('finish_confirmed', **finish_evidence)
+            except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
+                record.update(status='finish_invalid', error=str(exc))
+                exit_code = 125
+                if interrupted is not None:
+                    record['status'], exit_code = 'interrupted', 128 + interrupted
+                elif time.monotonic() - clock_start >= timeout or (clock == 'deadline' and datetime.now(timezone.utc) >= deadline):
+                    record['status'], exit_code = 'timed_out', 124
         for sig, handler in previous.items():
             signal.signal(sig, handler)
     record.update(ended_at=datetime.now(timezone.utc).isoformat(),

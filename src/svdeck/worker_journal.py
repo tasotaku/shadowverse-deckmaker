@@ -86,8 +86,9 @@ class RunJournal:
             raise ValueError('停止処理を終えた実行記録だけを反映できます')
         claimed = link['claimed_stage']
         desired = deepcopy(claimed)
-        state = 'completed' if run['status'] == 'completed' else 'interrupted'
+        state = 'completed' if run['status'] in {'completed', 'finished_by_request'} else 'interrupted'
         detail = ('監視終了・子の停止未確認' if run['status'] == 'termination_unconfirmed'
+                  else '担当の明示要求による停止と保存再検査を確認' if run['status'] == 'finished_by_request'
                   else '担当の停止処理を終了')
         desired.update(status=state, ended_at=run['ended_at'],
                        note=claimed['note'] + f"\n{detail}。実行状態: {run['status']}、"
