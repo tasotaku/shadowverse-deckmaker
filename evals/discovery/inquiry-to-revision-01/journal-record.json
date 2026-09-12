@@ -1,30 +1,30 @@
 {
   "id": "inquiry-to-revision-01",
-  "revision": 6,
-  "saved_at": "2026-09-12T04:51:26.652241+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-12T05:47:16.874401+00:00",
   "actor": "codex",
-  "reason": "改訂担当への7資料の引渡しを確認。内容の有用性は未判定のまま保持",
+  "reason": "改訂1件を回収し、期限停止・別評価未実施を保持して採用保留",
   "record": {
     "id": "inquiry-to-revision-01",
     "title": "保存した追加調査を、案の改善へ使えるか",
     "category": "method",
-    "status": "running",
-    "summary": "13:45:49に改訂開始。追加調査7資料すべてが通常の改訂入力へ含まれることを確認。判断改善は未判定。",
+    "status": "completed",
+    "summary": "改訂案1件・比較資料1件を保存したが、15分期限停止で別評価は未実施。方法の採用は保留。",
     "method": "追加調査と別照合を保存した既存入力を、通常の改訂・独立評価の公開入口へ渡す。新しい指示やカード答案を追加せず、各工程を一度だけ実行する。",
     "procedure": "1. 既存入力・実装・判定条件を固定。\n2. 通常の公開入口で改訂を1回実行。\n3. 旧評価を隔離し、別担当が新案を1回評価。\n4. 元案との差と根拠の対応を点検し、方法の採否と時間を記録する。",
     "inputs": "data/discovery/novelty-followup-01-result。保存済みの正式案1件・別評価1件と追加調査7資料を含む入力。",
     "criteria": "保存済みの追加調査が改訂用の入力に含まれ、正式案と別評価を各1件まで保存できる。原案・旧評価・元資料・固定実装を変更しない。\n先例・同じ用途・一般的普及・不明な範囲を混同せず、調査の限界と矛盾を保持する。未発見や細かな枚数差を独自性の証拠にしない。\n追加資料から得た事実が、使い方・構成・採用条件または見送り判断へ具体的に反映されたか、元案との差と新しい別評価で確認する。資料を引用しただけでは改善と数えない。\n通常構築との同じ開始状態での比較が成立し、得る利益・失う役割・残る未確認を示せるか確認する。\n方式の有用性は、具体的な判断改善が根拠と別評価で支持された範囲に限る。実行成功だけでは採用しない。改善なし・未提出・誤りの持越しでは保留とし、理由を残す。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "準備完了。改訂と別評価は未判定。",
-      "limitations": "同じ案の前後比較で同時対照なし。機能の動作と方法の有用性は別に判断する。"
+      "outcome": "mixed",
+      "summary": "正式案と提出後のreportを保存。自然終了待ちの間に期限停止し、別評価0件。新案の正しさ・判断改善は未確認。",
+      "limitations": "形式的な保存の再検査を実施。実戦の強さ・独自性・方法の一般的優越は未認定。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "新案と別評価を観測してから判断する。"
+      "status": "deferred",
+      "reason": "固定した条件のうち、独立評価で判断改善を裏付ける工程が未実施。期限停止を成功へ読み替えない。"
     },
     "started_at": "2026-09-12T04:07:30.695244+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-12T05:47:16.827476+00:00",
     "stages": [
       {
         "id": "setup",
@@ -38,19 +38,19 @@
       {
         "id": "live-develop",
         "title": "保存資料を使って案を改訂",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-12T04:45:49.363907+00:00",
-        "ended_at": null,
-        "note": "既存の公開入口を1回実行。実時刻を自動記録。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-to-revision-01/develop-run",
+        "ended_at": "2026-09-12T05:00:49.447709+00:00",
+        "note": "既存の公開入口を1回実行。実時刻を自動記録。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-to-revision-01/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。 正式案1件と比較資料1件は保存・再検査済み。13:56:15の提出と13:56:38のreport後に自然終了せず、14:00:49に期限停止。",
         "budget_minutes": 15
       },
       {
         "id": "live-review",
         "title": "新しい案を別担当が評価",
-        "status": "planned",
+        "status": "interrupted",
         "started_at": null,
         "ended_at": null,
-        "note": "旧評価を隔離した公開入力で1回実行。",
+        "note": "前工程の期限停止により未実施。開始・終了時刻は補わない。",
         "budget_minutes": 10
       },
       {
@@ -61,6 +61,15 @@
         "ended_at": "2026-09-12T04:47:30+00:00",
         "note": "44秒でPASS。資料保存と案の改善、限定採用と全体未完成を区別。実AIの起動時刻やスリープの記録は対象外で、rootが実記録と照合。",
         "budget_minutes": 2
+      },
+      {
+        "id": "result-record",
+        "title": "停止結果と正式保存を照合して記録",
+        "status": "completed",
+        "started_at": "2026-09-12T05:42:29+00:00",
+        "ended_at": "2026-09-12T05:47:16.827476+00:00",
+        "note": "最初の結果確認時刻の観測から記録保存まで。新案の独立評価は行っていない。実行終了からの待ち時間は別記。",
+        "budget_minutes": 8
       }
     ],
     "evidence_paths": [
@@ -70,14 +79,67 @@
       "evals/discovery/inquiry-to-revision-01/power-observation.json",
       "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json",
       "evals/discovery/inquiry-to-revision-01/progress-reader.json",
-      "evals/discovery/inquiry-to-revision-01/handoff-check.json"
+      "evals/discovery/inquiry-to-revision-01/handoff-check.json",
+      "evals/discovery/inquiry-to-revision-01/result.json",
+      "evals/discovery/inquiry-to-revision-01/report.json",
+      "evals/discovery/inquiry-to-revision-01/verification.json",
+      "evals/discovery/inquiry-to-revision-01/evaluation.json",
+      "evals/discovery/inquiry-to-revision-01/partial-session.tar.gz",
+      "evals/discovery/inquiry-to-revision-01/power-release-check.json",
+      "evals/discovery/inquiry-to-revision-01/develop/run.json",
+      "evals/discovery/inquiry-to-revision-01/develop/proposal.json",
+      "evals/discovery/inquiry-to-revision-01/develop/revision-comparison.md",
+      "evals/discovery/inquiry-to-revision-01/develop/public-operations.json.gz",
+      "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
+      "evals/discovery/inquiry-to-revision-01/develop/submission-verification.json",
+      "evals/discovery/inquiry-to-revision-01/develop/run-timing.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-to-revision-01/README.md",
-      "sha256": "2be50660586a469b063497451535754f4123f32be18b5529d1cde9df979432e4",
-      "size": 924
+      "sha256": "8d9095e7028e4b72fb0a21bbed8d46e89ae306aba1b4ffd5bdb575f04dc8931e",
+      "size": 3744
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
+      "sha256": "ddac1af58433f4995700f8fa640e54e09487fb15d65c19c57333475f893f1621",
+      "size": 752
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/proposal.json",
+      "sha256": "83f040e6613b9f26482541b00c584b17b7361b2dfce13da967081b3ec58321ce",
+      "size": 22997
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/public-operations.json.gz",
+      "sha256": "d93332d46457eb59b121381e027f22937f55b55f3dbb86b06b81b766e011a682",
+      "size": 172494
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/revision-comparison.md",
+      "sha256": "e240548cc12b310322ee7abcde0d6a40d4536cf58c4c171508e88e3766ed6ce5",
+      "size": 24306
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/run-timing.json",
+      "sha256": "3b80cff6e533cccf73d957cc2b7e61ac83052c376a9c21204b6325dd8c32b552",
+      "size": 737
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/run.json",
+      "sha256": "f6b64a6d8ee8f1170bd87d3c50e1ddb9ba6dcd993aff941cbacb36bc5a670272",
+      "size": 3147
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/develop/submission-verification.json",
+      "sha256": "1bcd4540a1739dd2bb9d7a82a92327781c7bad871c34ae8f45bd4fa4b99ed3d5",
+      "size": 689
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/evaluation.json",
+      "sha256": "75a1e674763fc48052a11d0a7d539290e8118e5f88046f3c3fa34cf6ce23806a",
+      "size": 702
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/handoff-check.json",
@@ -90,9 +152,19 @@
       "size": 8874
     },
     {
+      "path": "evals/discovery/inquiry-to-revision-01/partial-session.tar.gz",
+      "sha256": "1f3f61d4accfc4265438368ec2501b7210d1a37aadaae7ca77d5bfe204bf3a59",
+      "size": 2123120
+    },
+    {
       "path": "evals/discovery/inquiry-to-revision-01/power-observation.json",
       "sha256": "305b50b7a125faa7f27f9d253128581b43e52c516e97b4c220f48e15091cebe4",
       "size": 4003
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/power-release-check.json",
+      "sha256": "128e74569bbd2284b1fe7472155ba9607e27f6371ec217a00faf5ed858db4bf1",
+      "size": 447
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/progress-reader.json",
@@ -105,12 +177,39 @@
       "size": 2551
     },
     {
+      "path": "evals/discovery/inquiry-to-revision-01/report.json",
+      "sha256": "8134968458ee13efae2bd947ce8950f22a5af098c8dcb3a8add8fca60e1b4470",
+      "size": 34814
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/result.json",
+      "sha256": "1cc1ea3674d442dadc5aba97d29cfd9b2df292d893922c2c9c09d7307fd5e2d9",
+      "size": 8844
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/verification.json",
+      "sha256": "ea00d3456fb07196f0dbff79f13616f033c93bc7f1c8e3614d27e56df29b40da",
+      "size": 1365
+    },
+    {
       "path": "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json",
       "sha256": "8bab0a8b392251b3119b8ad91978eeab3bb7ba79f4684a6dba8023094b80742b",
       "size": 1909
     }
   ],
   "history": [
+    {
+      "revision": 8,
+      "saved_at": "2026-09-12T05:47:16.874401+00:00",
+      "actor": "codex",
+      "reason": "改訂1件を回収し、期限停止・別評価未実施を保持して採用保留"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-12T05:00:49.458529+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
     {
       "revision": 6,
       "saved_at": "2026-09-12T04:51:26.652241+00:00",

@@ -1,0 +1,130 @@
+{
+  "audit": "explicit-finish-boundary",
+  "started_at_utc": "2026-09-12T05:44:13+00:00",
+  "ended_at_utc": "2026-09-12T05:47:30.211818+00:00",
+  "elapsed_seconds": 197.211818,
+  "verdict": "条件付きで最小改善候補として妥当。実装・採用・実行成功の認定ではない。",
+  "conclusion": "担当自身の公開 finish 操作を唯一の早期終了要求とし、既存の成果検査を共有して監視側が終了と内容不変を確認する方式は、案や採点の条件を変えずに追加できる。submit/report だけでは終了させず、過去の timed_out を成功へ変更しない。",
+  "observed_run": {
+    "path": "/tmp/sv-inquiry-to-revision-01",
+    "result_status": "develop_failed",
+    "worker_status": "timed_out",
+    "submit_success_at": "2026-09-12T04:56:15.682529+00:00",
+    "report_success_at": "2026-09-12T04:56:38.042412+00:00",
+    "deadline_observed_at": "2026-09-12T05:00:49.383645+00:00",
+    "worker_ended_at": "2026-09-12T05:00:49.447709+00:00",
+    "budget_clock": "elapsed",
+    "budget_seconds": 900,
+    "worker_elapsed_seconds": 900.0727261253633,
+    "worker_returncode": -15,
+    "runner_returncode": 124,
+    "formal_revision": 2,
+    "formal_revision_envelope_sha256": "c3ab8274bda09f931c84226053191ce6c99e0a68dc66f9b6490d2e6a82bc6938",
+    "inherited_input_files_matching_saved_manifest": 29,
+    "inherited_input_files_total": 29,
+    "revision2_reviews": 0,
+    "interpretation": "公開記録は提出後の継続と期限停止を示すが、継続の原因は特定できない。保存済み正式案の存在と実行完了は別。今回の案の中身や価値は採点していない。"
+  },
+  "minimal_design": [
+    {
+      "id": 1,
+      "requirement": "最初は develop/review にだけ任意の public.py finish を設ける。担当が正式提出1件と直後の公開 report を確認し、これ以上変更しないと判断して呼ぶ。report の自動監視だけでは終わらせない。要求に今回の実行・工程・対象改訂・担当・固定 packet・正式提出・対応 report 操作・session 一覧の識別値を束ねる。finish の戻り値は要求受付であり、監視側の完了確認ではない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:82",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:125",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:163"
+      ]
+    },
+    {
+      "id": 2,
+      "requirement": "既存の工程後検査を副作用のない共通処理へ切り出し、要求時と監視側と停止後に利用する。元入力・固定実装・固定資料・準備コピーの不変、正しい親の改訂1件/独立評価1件、担当/packet/案の対応、verify_submission の再保存一致を省略しない。最新の成功 report が今回の正式提出後で現在の報告と一致することも照合する。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:174",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:275",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:283",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:319"
+      ]
+    },
+    {
+      "id": 3,
+      "requirement": "作業先ごとの短い排他制御で公開操作と finish を直列化する。終了要求が成立した後は submit/review/attach と、新しい packet を保存する操作を拒否する。同じ内容の finish 再送は同じ要求として扱い、別内容で置換しない。要求は完全な操作記録を保存した後に原子的に公開する。監視側は要求ファイルを成功証明とせず、自分の開始時の固定値で再検査する。直接書換えや並行書込みには、終了前に記録した session 一覧と停止後の完全一致で対応する。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:101",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:141",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:167",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:25"
+      ]
+    },
+    {
+      "id": 4,
+      "requirement": "監視は中断・期限・既に自然終了した非0終了を先に扱う。正常な finish を観測した場合だけ明示要求による終了処理へ進み、自然終了 completed とは別の状態（例 finished_by_request）と実際の子終了コードを残す。最初の小検証では保守的に、停止後の再照合まで期限内に完了承認できた場合だけ新状態を成功とし、それ以前の期限到達は timed_out のままとする。既存の停止猶予は後片付けの上限であり成功認定を延長する時間にしない。検査前後・終了要求直前・最終承認直前に同じ指定時計と中断を再確認する。自然0終了が先に起きた場合は既存の自然終了経路で検査し、非0終了を自分の停止理由へ読み替えない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:133",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:146",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:195",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:280"
+      ]
+    },
+    {
+      "id": 5,
+      "requirement": "既存の群への TERM→猶予→KILL を再利用し、主プロセスの wait に加えて同じプロセス群の不在を短い上限で確認する。現状の KILL 後は主プロセスの終了確認が中心なので、そのまま完全終了の証明にしない。群が残る/確認できない、保存物が変わる、記録や台帳反映が失敗する場合は未完了に留め次工程へ進めない。要求・検査・停止要求・群消滅・最終検査の実UTCと監視経過秒、証拠の識別値、実終了コードを別々に保存する。元の群から離れた子まで管理できるとの主張は追加しない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:80",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:154",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:165",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:180",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py:198"
+      ]
+    }
+  ],
+  "necessary_tests": [
+    "submit/report のみで待つ担当を早期終了しない。finish 未実施時は従来の自然終了・期限停止が維持される。",
+    "有効な finish を出して待つ担当は監視側終了として記録され、停止と再検査後だけ次工程へ進む。実終了コードを偽装しない。",
+    "未提出、旧 report、別工程/改訂/担当、複数提出、壊れた/途中の要求、同内容再送と異内容再送を区別する。",
+    "finish 前後の資料追加・正式案書換え・固定実装/入力変更・公開操作の並行実行を成功にしない。入力一覧にない新規ファイルも終了後の一致検査対象にする。",
+    "検査中/終了要求直前/最終確認時の期限到達・外部停止、要求検査中の自然0/非0終了を決定的な時計の検査で確認する。",
+    "主プロセスが先に終了して子が同じ群に残る例、TERMを無視する例、群終了を確認できない例で残留を成功にしない。",
+    "旧改訂・旧評価・資料は完全一致で保持し、別評価用コピーには旧評価を見せず、最終集約は新評価1件だけを追加する。要求/記録/台帳の保存失敗は未完了として残る。",
+    "合成検査後に、新しい実行として固定実装・同じ既定品質条件で明示 finish の公開利用を1回確認する。今回の旧 timed_out の保存物を新方式の実成功証拠にしない。"
+  ],
+  "recovery_separation": {
+    "required": true,
+    "existing_review_only": "今回の保存済み develop/session を入力に、別出力・別試行として --review-only --revision 2 で回復可能か既存入口の正式再検査を通す。追加改訂0、別評価1を目標にする。今回はこの再実行も再保存検査もしていない。",
+    "original_record": "/tmp/sv-inquiry-to-revision-01 の develop_failed/timed_out、時刻、未評価の事実を保存したままとし、別試行の参照を追記するに留める。新評価の結果で旧失敗を採点し直さない。",
+    "new_method": "明示終了方式の機能・競合検査と実AIによる検証は独立した新試行にする。review-only で回復できたことは、新方式を利用した証明にも有用なデッキ案の証明にもならない。",
+    "evidence": [
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:224",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:234",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:321"
+    ]
+  },
+  "evidence_files": [
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/worker.py",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/awake-review-01/formal-completion-audit.json",
+    "/tmp/sv-inquiry-to-revision-01/result.json",
+    "/tmp/sv-inquiry-to-revision-01/develop-run/run.json",
+    "/tmp/sv-inquiry-to-revision-01/develop/operations/a67b233e9c5f45b592fa06a9caadb345.json",
+    "/tmp/sv-inquiry-to-revision-01/develop/operations/b4a6d79d8763411cb8571c0596ae992d.json",
+    "/tmp/sv-inquiry-to-revision-01/develop/operations/e90aa7a805544d3a88667c140843bcee.json",
+    "/tmp/sv-inquiry-to-revision-01/develop/session/revision-0002.json"
+  ],
+  "source_hashes": {
+    "src/svdeck/discovery_run.py": "4758b22550fa5b81b6b6a1637308d391ad4eb58c405e2ca6a097a51540b8265b",
+    "src/svdeck/worker.py": "08f73bba57c27c1226e68efb4ba27f7f8ad0d16bcd6b9bd9ffe2cd624df81dfb"
+  },
+  "not_checked": [
+    "新方式の実装・テスト・実AI動作（今回未作成）",
+    "今回案の品質・ゲーム内容・採点",
+    "今回提出後に継続した原因",
+    "実際の残存子プロセスや元の群を離れた子の有無",
+    "今回保存案の verify_submission 再実行と別評価回復",
+    "元入力の現在地全体の不変（保存 manifest と作業 session への継承29件は一致確認）"
+  ],
+  "constraints_observed": [
+    "コード編集なし",
+    "私的 stdout.log/JSONL/推論ログの閲覧なし",
+    "新しいカード答案・採点・実AI起動なし",
+    "UTCを補正せず監視秒と分離"
+  ]
+}

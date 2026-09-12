@@ -1,0 +1,47 @@
+{
+  "id": "inquiry-review-recovery-01",
+  "title": "保存済みの改訂案を、作り直さず別評価する",
+  "category": "method",
+  "status": "running",
+  "summary": "条件を固定。保存済みの改訂2を、既存の別評価再開入口へ渡して1回評価する。",
+  "method": "保存済みの改訂2を、既存の別評価再開入口へ渡して1回評価する。",
+  "procedure": "元の失敗と原案・旧評価を保存し、新しい評価担当を1回だけ起動する。改訂はしない。\n通常のreview-only公開入口で最新版2の正式案を評価。旧採点は評価用入力から隔離する。10分で未完なら停止し、この試行内で再試行しない。\n別評価の成立性・試す価値・独自性と理由を確認し、追加資料を使った変更の有用性が支持された範囲だけを記録する。\n元の15分期限停止や未実施工程を成功に変更せず、新しい評価の開始・終了を別記する。1入力だけで発見力の一般的改善や全体完成は認定しない。",
+  "inputs": "data/discovery/inquiry-to-revision-01-partial",
+  "criteria": "元の失敗と原案・旧評価を保存し、新しい評価担当を1回だけ起動する。改訂はしない。\n通常のreview-only公開入口で最新版2の正式案を評価。旧採点は評価用入力から隔離する。10分で未完なら停止し、この試行内で再試行しない。\n別評価の成立性・試す価値・独自性と理由を確認し、追加資料を使った変更の有用性が支持された範囲だけを記録する。\n元の15分期限停止や未実施工程を成功に変更せず、新しい評価の開始・終了を別記する。1入力だけで発見力の一般的改善や全体完成は認定しない。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "未判定。",
+    "limitations": "元の試行は採用保留。今回は失敗後の回復で、同時対照なし。新しい提出終了方式とは別の実装・試行。"
+  },
+  "decision": {
+    "status": "unassessed",
+    "reason": "確認結果から限定した採否を決める。"
+  },
+  "started_at": "2026-09-12T05:49:51.172585+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "prepare",
+      "title": "保存案と別評価の条件を固定",
+      "status": "completed",
+      "started_at": "2026-09-12T05:49:51.172585+00:00",
+      "ended_at": "2026-09-12T05:49:51.172585+00:00",
+      "note": "改訂2の正式保存条件を再検査。既存の実装を固定して使う。",
+      "budget_minutes": 3
+    },
+    {
+      "id": "live-review",
+      "title": "保存済みの新案を別担当が評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "10分上限で1回。未実施時刻を補わない。",
+      "budget_minutes": 10
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/inquiry-review-recovery-01/protocol.json",
+    "evals/discovery/inquiry-review-recovery-01/README.md",
+    "evals/discovery/inquiry-review-recovery-01/input-check.json"
+  ]
+}

@@ -2,23 +2,23 @@
   "id": "inquiry-to-revision-01",
   "title": "保存した追加調査を、案の改善へ使えるか",
   "category": "method",
-  "status": "running",
-  "summary": "13:45:49に改訂開始。追加調査7資料すべてが通常の改訂入力へ含まれることを確認。判断改善は未判定。",
+  "status": "completed",
+  "summary": "改訂案1件・比較資料1件を保存したが、15分期限停止で別評価は未実施。方法の採用は保留。",
   "method": "追加調査と別照合を保存した既存入力を、通常の改訂・独立評価の公開入口へ渡す。新しい指示やカード答案を追加せず、各工程を一度だけ実行する。",
   "procedure": "1. 既存入力・実装・判定条件を固定。\n2. 通常の公開入口で改訂を1回実行。\n3. 旧評価を隔離し、別担当が新案を1回評価。\n4. 元案との差と根拠の対応を点検し、方法の採否と時間を記録する。",
   "inputs": "data/discovery/novelty-followup-01-result。保存済みの正式案1件・別評価1件と追加調査7資料を含む入力。",
   "criteria": "保存済みの追加調査が改訂用の入力に含まれ、正式案と別評価を各1件まで保存できる。原案・旧評価・元資料・固定実装を変更しない。\n先例・同じ用途・一般的普及・不明な範囲を混同せず、調査の限界と矛盾を保持する。未発見や細かな枚数差を独自性の証拠にしない。\n追加資料から得た事実が、使い方・構成・採用条件または見送り判断へ具体的に反映されたか、元案との差と新しい別評価で確認する。資料を引用しただけでは改善と数えない。\n通常構築との同じ開始状態での比較が成立し、得る利益・失う役割・残る未確認を示せるか確認する。\n方式の有用性は、具体的な判断改善が根拠と別評価で支持された範囲に限る。実行成功だけでは採用しない。改善なし・未提出・誤りの持越しでは保留とし、理由を残す。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "準備完了。改訂と別評価は未判定。",
-    "limitations": "同じ案の前後比較で同時対照なし。機能の動作と方法の有用性は別に判断する。"
+    "outcome": "mixed",
+    "summary": "正式案と提出後のreportを保存。自然終了待ちの間に期限停止し、別評価0件。新案の正しさ・判断改善は未確認。",
+    "limitations": "形式的な保存の再検査を実施。実戦の強さ・独自性・方法の一般的優越は未認定。"
   },
   "decision": {
-    "status": "unassessed",
-    "reason": "新案と別評価を観測してから判断する。"
+    "status": "deferred",
+    "reason": "固定した条件のうち、独立評価で判断改善を裏付ける工程が未実施。期限停止を成功へ読み替えない。"
   },
   "started_at": "2026-09-12T04:07:30.695244+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-12T05:47:16.827476+00:00",
   "stages": [
     {
       "id": "setup",
@@ -32,19 +32,19 @@
     {
       "id": "live-develop",
       "title": "保存資料を使って案を改訂",
-      "status": "running",
+      "status": "interrupted",
       "started_at": "2026-09-12T04:45:49.363907+00:00",
-      "ended_at": null,
-      "note": "既存の公開入口を1回実行。実時刻を自動記録。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-to-revision-01/develop-run",
+      "ended_at": "2026-09-12T05:00:49.447709+00:00",
+      "note": "既存の公開入口を1回実行。実時刻を自動記録。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-to-revision-01/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。 正式案1件と比較資料1件は保存・再検査済み。13:56:15の提出と13:56:38のreport後に自然終了せず、14:00:49に期限停止。",
       "budget_minutes": 15
     },
     {
       "id": "live-review",
       "title": "新しい案を別担当が評価",
-      "status": "planned",
+      "status": "interrupted",
       "started_at": null,
       "ended_at": null,
-      "note": "旧評価を隔離した公開入力で1回実行。",
+      "note": "前工程の期限停止により未実施。開始・終了時刻は補わない。",
       "budget_minutes": 10
     },
     {
@@ -55,6 +55,15 @@
       "ended_at": "2026-09-12T04:47:30+00:00",
       "note": "44秒でPASS。資料保存と案の改善、限定採用と全体未完成を区別。実AIの起動時刻やスリープの記録は対象外で、rootが実記録と照合。",
       "budget_minutes": 2
+    },
+    {
+      "id": "result-record",
+      "title": "停止結果と正式保存を照合して記録",
+      "status": "completed",
+      "started_at": "2026-09-12T05:42:29+00:00",
+      "ended_at": "2026-09-12T05:47:16.827476+00:00",
+      "note": "最初の結果確認時刻の観測から記録保存まで。新案の独立評価は行っていない。実行終了からの待ち時間は別記。",
+      "budget_minutes": 8
     }
   ],
   "evidence_paths": [
@@ -64,6 +73,19 @@
     "evals/discovery/inquiry-to-revision-01/power-observation.json",
     "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json",
     "evals/discovery/inquiry-to-revision-01/progress-reader.json",
-    "evals/discovery/inquiry-to-revision-01/handoff-check.json"
+    "evals/discovery/inquiry-to-revision-01/handoff-check.json",
+    "evals/discovery/inquiry-to-revision-01/result.json",
+    "evals/discovery/inquiry-to-revision-01/report.json",
+    "evals/discovery/inquiry-to-revision-01/verification.json",
+    "evals/discovery/inquiry-to-revision-01/evaluation.json",
+    "evals/discovery/inquiry-to-revision-01/partial-session.tar.gz",
+    "evals/discovery/inquiry-to-revision-01/power-release-check.json",
+    "evals/discovery/inquiry-to-revision-01/develop/run.json",
+    "evals/discovery/inquiry-to-revision-01/develop/proposal.json",
+    "evals/discovery/inquiry-to-revision-01/develop/revision-comparison.md",
+    "evals/discovery/inquiry-to-revision-01/develop/public-operations.json.gz",
+    "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
+    "evals/discovery/inquiry-to-revision-01/develop/submission-verification.json",
+    "evals/discovery/inquiry-to-revision-01/develop/run-timing.json"
   ]
 }
