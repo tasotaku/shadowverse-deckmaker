@@ -1,0 +1,71 @@
+{
+  "inspection_id": "live-query-01-use-independent-inspection",
+  "started_at": "2026-09-12T19:26:32+00:00",
+  "ended_at": "2026-09-12T19:29:19.444745+00:00",
+  "elapsed_seconds": 167.445,
+  "scope": "正式な利用資料の読み取り照合。実装・私的実行ログ・他担当の方法評価を判断根拠にせず、コード・DB・git・公開入口へ書き込んでいない。",
+  "verdict": "検索補助としての実利用条件は達成。発見力・採用カードの強さ・正式案の改善は未確認。機械検査全体は本照合の対象外。",
+  "sources": [
+    "evals/discovery/live-query-01/protocol.json",
+    "evals/discovery/live-query-01/use-verification.json",
+    "evals/discovery/live-query-01/use/answer.md",
+    "evals/discovery/live-query-01/use/public-operations.json.gz",
+    "evals/discovery/live-query-01/use/session.tar.gz"
+  ],
+  "findings": [
+    {
+      "criterion": "提出前に新しい問いを1件検索した",
+      "status": "supported",
+      "evidence": "公開操作[10]（0始まり）、2026-09-12T19:20:00.167959+00:00。queryは全29操作中1回。新しいsubmit/review/finishはなくrevision 2を維持。問いはN/Yを保持できる頻度の残問を、フォロワーを引く補助手段へ具体化した。",
+      "quote": "フォロワーを指定して山札から引く手段で両者へのアクセスを補えるか。"
+    },
+    {
+      "criterion": "旧searchの問いとタグをそのまま再実行していない",
+      "status": "supported",
+      "evidence": "公開操作[2]および保存packet 72c7a090.../data.searchの8件と比較。新問の完全一致なし。旧非空tagは破壊(味方フォロワー)の1件、新tagは山札密度操作(フォロワー)。問いの由来は既存proposal.questionsに実在する。",
+      "limitation": "操作[9]で候補を含むcards 0..19をquery前に読んでいるため、候補を知らずに新カードを発見した証拠とはしない。"
+    },
+    {
+      "criterion": "固定された結果と候補本文を照合した",
+      "status": "supported",
+      "evidence": "操作[10]の3つの一致欄は全て10002210。重複を除き1候補。参照はcards offset 6。操作[15]で候補全文・注記を再読。answer.mdのquery JSONは操作[10]のJSONと同一。",
+      "quote": "【ファンファーレ】自分のデッキからフォロワー1枚を引く。",
+      "interpretation": "名前やコストを指定する効果ではなく、1枚を引く。N/Y両方の確保や確定サーチを保証しないという報告の読みは本文と整合。3PP・設置1枠と、アミュレットがNの回復頭数に入らないという制約も保存本文・種別と整合。"
+    },
+    {
+      "criterion": "主役と候補双方の注記・必要な参照先を読んだ",
+      "status": "supported",
+      "evidence": "操作[15]の候補10002210はnote空。操作[16]にN10573110とY10674120の本文・進化・note。操作[20]に深淵90074320と操り人形90071110。保存contextの同じ6カードのみを独立照合した。Nのアイカ反復に関する否定注記を今回の引き込み一般へ拡張せず、候補・Y・深淵の空注記を評価で補っていない。",
+      "limitation": "参照先の既存資料を読めたという確認であり、取得元の自動解決や多段生成を新実装したという認定ではない。"
+    },
+    {
+      "criterion": "報告を保存して公開入口で全文再読できた",
+      "status": "supported",
+      "evidence": "操作[22] attach-fileでsource_hash 0b1f8587bcc93e38c7bfcf13610da0dcde76897a8baa95af97d88feaf726dae4を追加。操作[25] sources offset 0 limit 100 と操作[26] offset 100 limit 40の連結から対象資料全体を復元でき、answer.mdと完全一致。操作[28] reportにも同source_hashあり。保存archive内source.contentもanswer.mdと一致。",
+      "file_sha256": "555d6ab72a16c31e63fdd8b24e432e01e264335060b0ce0a83f0f900732d43cc"
+    },
+    {
+      "criterion": "型一致と手順・価値・独自性を区別した",
+      "status": "supported",
+      "evidence": "報告はギルドをフォロワーに絞る補助候補までとし、引く頻度、採用交換枠、序盤の損失、N/Y保持頻度、通常構築に対する利益を未確認に残す。生成・再プレイ・場枠等の手順成立を実証したとは述べていない。件数を強さや独自性に加算していない。"
+    },
+    {
+      "criterion": "空結果の扱い",
+      "status": "unconfirmed_in_live_use",
+      "evidence": "今回のqueryは1件のため、0件時の実担当の本文走査は観測していない。query出力は0件でも本文を走査することを明示。0件を不存在や無価値の証拠にした記述はない。"
+    }
+  ],
+  "preservation_checks": {
+    "context_before_after_and_archive_equal": true,
+    "proposal_previous_reviews_search_history_instruction_response_example_revision_unchanged": true,
+    "attachment_changes": "sourcesが増加。review_contexts[0].additional_source_hashesは0件から1件へ増加し、添付反映として識別した。"
+  },
+  "timing_and_precision": {
+    "first_public_operation": "2026-09-12T19:19:20.616333+00:00",
+    "last_public_operation": "2026-09-12T19:23:16.823405+00:00",
+    "public_operation_span_seconds": 236.207072,
+    "live_use_start": "最初の直接観測UTCより前の開始はanswer.mdに推定として記載されており、正確な開始は独立確認していない。公開操作による保存・再読は6分以内の範囲と整合する。",
+    "minor_wording_difference": "answer.mdはpacket --summary確認後に候補再読と述べるが、操作[15]の候補再読と[19]のsummaryは並行でsummary完了が後。最初のsummary[1]と同じ固定packetで読み、同一contextも確認できるため本目的を妨げない。"
+  },
+  "adoption_limit": "検索入力・結果参照・注記照合・保存再読を行う補助入口の実利用証拠として採用可能。新しい有用な種の確認数へ加算しない。別入力での発展、実戦の利益、独自性の検証は残る。"
+}

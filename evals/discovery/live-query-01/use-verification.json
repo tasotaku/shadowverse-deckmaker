@@ -1,0 +1,60 @@
+{
+  "first_collection_started_at": null,
+  "recovery_started_at": "2026-09-12T19:25:49.004156+00:00",
+  "recovery_ended_at": "2026-09-12T19:25:49.547733+00:00",
+  "report_verification": {
+    "source_hash": "0b1f8587bcc93e38c7bfcf13610da0dcde76897a8baa95af97d88feaf726dae4",
+    "file_sha256": "555d6ab72a16c31e63fdd8b24e432e01e264335060b0ce0a83f0f900732d43cc",
+    "public_attachment": true,
+    "public_reread": true,
+    "report_read": true
+  },
+  "query_recomputed_exact": true,
+  "query_input": {
+    "question": "ニューロン1枚・ヨグゼンタ2枚の保持頻度が未確認という残問に対し、フォロワーを指定して山札から引く手段で両者へのアクセスを補えるか。人形を序盤処理に使う余地を残せるか判断するため、対象の限定、準備PPと場枠、他のAFフォロワーを引く可能性を本文で確認したい。",
+    "tag": "山札密度操作(フォロワー)"
+  },
+  "query_result": {
+    "context_hash": "7628cd50b9ae87b4b8e79e461e2ea8cd878a897899cc1a455d99f43edd92e332",
+    "snapshot_sha256": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "search": {
+      "question": "ニューロン1枚・ヨグゼンタ2枚の保持頻度が未確認という残問に対し、フォロワーを指定して山札から引く手段で両者へのアクセスを補えるか。人形を序盤処理に使う余地を残せるか判断するため、対象の限定、準備PPと場枠、他のAFフォロワーを引く可能性を本文で確認したい。",
+      "tag": "山札密度操作(フォロワー)",
+      "tag_hits": [
+        10002210
+      ],
+      "direct_supply_hits": [
+        10002210
+      ],
+      "requirement_matches": [
+        10002210
+      ],
+      "interpretation": "型検索は手掛かり。本文・注記で用途と起動条件を確認し、全文でも探す。"
+    },
+    "card_references": [
+      {
+        "card_id": 10002210,
+        "context_path": "context.json#/data/cards/6",
+        "section": "cards",
+        "offset": 6,
+        "limit": 1
+      }
+    ],
+    "reading": "本文・進化・参照先・注記は同じ探索のpacket --summaryで識別値を確認し、read HASH cards --offset N --limit 1で読む。Nはcard_referencesのoffset。",
+    "limitations": [
+      "型一致は候補の手掛かりで、生成可能性・手順成立・試用価値・独自性を保証しない。",
+      "0件でも本文を走査する。生成元の自動解決は行わない。",
+      "結果は未保存。根拠として残す場合は既存のattach又はattach-fileを使う。"
+    ]
+  },
+  "source_runtime_preserved": true,
+  "session_copy_identical": true,
+  "archive_identical": true,
+  "saved_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/live-query-01-result",
+  "formal_records_added": 0,
+  "operations_count": 29,
+  "operation_errors": [],
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "end_to_recovery_seconds": 139.659036,
+  "limitations": "初回回収の正確な開始終了は未保存。復旧時刻を初回回収時刻にしない。公開操作・正式資料・最終回答のみ保存し、私的stdout/JSONLは未読。query再計算は機能一致で、独立した意味評価ではない。"
+}

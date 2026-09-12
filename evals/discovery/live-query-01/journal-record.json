@@ -1,27 +1,27 @@
 {
   "id": "live-query-01",
-  "revision": 2,
-  "saved_at": "2026-09-12T19:14:02.846727+00:00",
+  "revision": 10,
+  "saved_at": "2026-09-12T19:30:29.552094+00:00",
   "actor": "codex-root",
-  "reason": "既存公開操作の拒否・保存不変と実利用の元入力を固定",
+  "reason": "独立照合を確認して検索補助として採用、本体反映へ進む",
   "record": {
     "id": "live-query-01",
     "title": "考案中の新しい条件をその場で検索する",
     "category": "infrastructure",
     "status": "running",
-    "summary": "新要求を正式提出前に既存型検索へ渡す公開操作がないことを確認。読み取り専用の入口を隔離して実装・検査する。",
+    "summary": "検索補助として採用。178検査・型検査と実利用4分22秒、別照合2分47秒を確認。本体反映と入口の確認中。新しい有用な着想の確認には加算しない。",
     "method": "固定したカード資料とDBを保持し、問いと検索条件を1件ずつ既存検索へ渡す公開操作を追加する。",
     "procedure": "目的は、考案中に新しく生じた要求を、正式な案の提出を前提にせず、固定DBの既存型検索へ渡せる任意の入口を追加すること。別用途を必ず探す指示、生成元自動解決、対戦シミュレータは作らない。\n既存search_questionsを再利用し、snapshotとcontextを毎回既存機能で照合する。新たなquestionと空でないtagを明示して1件ずつ検索する。採用可能カードのIDと検索入力、固定版の識別、全文と注記の参照先を返し、型一致を手順成立・生成可能性・価値・独自性へ昇格しない。任意のファイル、別DB、別探索、クラス変更を入力できない。\n検索だけでは元入力・案・評価・追加資料・既存packetを変更しない。検索結果を残す時は既存の添付を使う。実担当の公開query操作は既存の公開操作記録へ保存し、終了明示後は拒否する。公開入口は考案だけへ追加し、別評価・調査・別照合の従来の許可は変えない。\n既存DEVELOP_RULES/DEVELOP/REVIEW/FINISHと採点を変えない。新しい操作はhelpと実担当が受け取る公開コマンド案内へ明示する。案未提出・検索一致・一致なし・無効値・他クラスと非合法カード・DB改変・公開工程制限・終了後拒否・既存全入力保持を機械検査する。人工例を実カード発見と呼ばない。\n実装と検査は目安12分。次に固定された保存入力から実AIが新要求を1件選び、検索結果と本文・注記を照合して既存添付へ報告する利用確認を6分以内で一度行う。開発者はカードの答え・具体タグ・期待する候補を与えない。別担当が検索・保存の根拠と限界を3分以内で確認する。\n採用候補は機能・型検査と実利用で、提出前の新要求を検索でき、取得した根拠を保持して再読できること。これは検索補助の採用であり、システムの発見力の採用と区別する。失敗時はその段階を記録し採用保留。採用後には別の探索入力で実質的な発展・試用理由・独自性を元の基準で評価する。今回の0対1や新しい検索件数を有用な種の確認数に加算しない。",
     "inputs": "前試行の変更版の正式保存を利用確認に使う。既知入力の道具確認であり未知の発見試験ではない。",
     "criteria": "目的は、考案中に新しく生じた要求を、正式な案の提出を前提にせず、固定DBの既存型検索へ渡せる任意の入口を追加すること。別用途を必ず探す指示、生成元自動解決、対戦シミュレータは作らない。\n既存search_questionsを再利用し、snapshotとcontextを毎回既存機能で照合する。新たなquestionと空でないtagを明示して1件ずつ検索する。採用可能カードのIDと検索入力、固定版の識別、全文と注記の参照先を返し、型一致を手順成立・生成可能性・価値・独自性へ昇格しない。任意のファイル、別DB、別探索、クラス変更を入力できない。\n検索だけでは元入力・案・評価・追加資料・既存packetを変更しない。検索結果を残す時は既存の添付を使う。実担当の公開query操作は既存の公開操作記録へ保存し、終了明示後は拒否する。公開入口は考案だけへ追加し、別評価・調査・別照合の従来の許可は変えない。\n既存DEVELOP_RULES/DEVELOP/REVIEW/FINISHと採点を変えない。新しい操作はhelpと実担当が受け取る公開コマンド案内へ明示する。案未提出・検索一致・一致なし・無効値・他クラスと非合法カード・DB改変・公開工程制限・終了後拒否・既存全入力保持を機械検査する。人工例を実カード発見と呼ばない。\n実装と検査は目安12分。次に固定された保存入力から実AIが新要求を1件選び、検索結果と本文・注記を照合して既存添付へ報告する利用確認を6分以内で一度行う。開発者はカードの答え・具体タグ・期待する候補を与えない。別担当が検索・保存の根拠と限界を3分以内で確認する。\n採用候補は機能・型検査と実利用で、提出前の新要求を検索でき、取得した根拠を保持して再読できること。これは検索補助の採用であり、システムの発見力の採用と区別する。失敗時はその段階を記録し採用保留。採用後には別の探索入力で実質的な発展・試用理由・独自性を元の基準で評価する。今回の0対1や新しい検索件数を有用な種の確認数に加算しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "pass",
+      "summary": "新規28＋既存150＝178検査と型検査に合格。実担当は4分22秒で新要求の検索1回、本文・双方の注記の照合、1報告の添付・公開再読を完了。別担当も2分47秒で対応を確認。",
+      "limitations": "既知入力での検索補助の実利用。候補はquery前にも読まれており未知発見の証明ではない。0件の場合の実利用、採用カードの強さ、独自性、正式案の改善は未確認。回収の本体DB誤参照を訂正。初回回収の開始終了は未保存。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "adopted",
+      "reason": "新要求を正式提出前に固定DBの既存型検索へ渡し、返った位置から本文と注記を確認して結果を保存・再読できた。型検査・178機能検査と独立した実利用照合を満たしたため検索補助として採用する。発見力やカード案の採用は認定しない。"
     },
     "started_at": "2026-09-12T19:10:28.359273+00:00",
     "ended_at": null,
@@ -29,29 +29,56 @@
       {
         "id": "implementation",
         "title": "新要求を検索へ渡す入口を隔離して実装・検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T19:10:28.359273+00:00",
-        "ended_at": null,
-        "note": "既存型検索を再利用。探索指示・採点・元入力を変更しない。",
+        "ended_at": "2026-09-12T19:17:40.837786+00:00",
+        "note": "コード2ファイルと一般設計のみ。新規28＋既存150＝178検査と型検査2ファイルに合格。初回fixture import漏れは訂正記録を保持。条件固定から7分12.479秒、担当の明示計測は04:11:01〜04:17:40.838。実AI利用・採否は未確認。",
         "budget_minutes": 12
       },
       {
         "id": "live-use",
         "title": "実担当が新要求を検索して本文と照合・保存",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "検索対象の具体的なカードやタグは担当が選ぶ。各一度、上限6分。",
+        "status": "completed",
+        "started_at": "2026-09-12T19:19:06.882683+00:00",
+        "ended_at": "2026-09-12T19:23:29.345120+00:00",
+        "note": "検索対象の具体的なカードやタグは担当が選ぶ。各一度、上限6分。\n起動処理を開始。実行記録: /private/tmp/sv-live-query-01-use/use-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 6
       },
       {
         "id": "inspect",
         "title": "別担当が検索結果と保存の根拠を照合",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "検索補助としての機能と発見力を分ける。目安3分。",
+        "status": "completed",
+        "started_at": "2026-09-12T19:26:32+00:00",
+        "ended_at": "2026-09-12T19:29:19.444745+00:00",
+        "note": "新要求1件のquery、本文と双方の注記、添付・公開再読を確認。検索前にも候補を読んでおり未知発見とはしない。0件時の実利用は未確認。",
         "budget_minutes": 3
+      },
+      {
+        "id": "progress-reader",
+        "title": "別担当が進行中の報告を初見で確認",
+        "status": "completed",
+        "started_at": "2026-09-12T19:21:20+00:00",
+        "ended_at": "2026-09-12T19:22:03+00:00",
+        "note": "PASS。実装・178検査と実利用進行中・採否未判定を区別できた。旧比較の成果とも混同なし。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "collect-use-recovery",
+        "title": "回収確認のDB参照先を訂正し残りの照合を完了",
+        "status": "completed",
+        "started_at": "2026-09-12T19:25:49.004156+00:00",
+        "ended_at": "2026-09-12T19:25:49.547733+00:00",
+        "note": "凍結runtime相対のDBを誤参照した初回失敗を保持。複写済み成果を再照合し、AI再実行なし。初回回収の開始終了は未保存。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "integrate",
+        "title": "採用した検索補助を本体へ反映し公開入口を確認",
+        "status": "running",
+        "started_at": "2026-09-12T19:30:29.528234+00:00",
+        "ended_at": null,
+        "note": "178検査・実利用4分22秒・独立照合2分47秒を根拠に検索補助として採用。発見力の改善は未確認。",
+        "budget_minutes": 8
       }
     ],
     "evidence_paths": [
@@ -59,14 +86,42 @@
       "evals/discovery/live-query-01/protocol.json",
       "evals/discovery/live-query-01/gap-check.json",
       "evals/discovery/live-query-01/baseline-gap-verification.json",
-      "evals/discovery/live-query-01/source-manifest.json"
+      "evals/discovery/live-query-01/source-manifest.json",
+      "evals/discovery/live-query-01/boundary-tests.xml",
+      "evals/discovery/live-query-01/collect-use.py",
+      "evals/discovery/live-query-01/frozen-runtime.json",
+      "evals/discovery/live-query-01/implementation.json",
+      "evals/discovery/live-query-01/implementation.patch",
+      "evals/discovery/live-query-01/related-tests.xml",
+      "evals/discovery/live-query-01/run-use.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_discovery_review_resume_temp.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_discovery_run_temp.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_explicit_finish_temp.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_worker_clock_temp.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_worker_deadline_temp.py",
+      "evals/discovery/live-query-01/test-evidence/reference/test_worker_journal_temp.py",
+      "evals/discovery/live-query-01/test-evidence/test_live_query.py",
+      "evals/discovery/live-query-01/test-result.json",
+      "evals/discovery/live-query-01/type-result.json",
+      "evals/discovery/live-query-01/launch-check.json",
+      "evals/discovery/live-query-01/progress-reader.json",
+      "evals/discovery/live-query-01/collection-correction.json",
+      "evals/discovery/live-query-01/use-verification.json",
+      "evals/discovery/live-query-01/use/result.json",
+      "evals/discovery/live-query-01/use/run.json",
+      "evals/discovery/live-query-01/use/answer.md",
+      "evals/discovery/live-query-01/use/session.tar.gz",
+      "evals/discovery/live-query-01/use/public-operations.json.gz",
+      "evals/discovery/live-query-01/collect-use-initial.py",
+      "evals/discovery/live-query-01/recover-collection.py",
+      "evals/discovery/live-query-01/use-inspection.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/live-query-01/README.md",
-      "sha256": "8a4e6c9b950a823f133e58c45df686ca8c88274499151df6d8b08a4256a54270",
-      "size": 2099
+      "sha256": "8838f28451dd3ee791608c3e30366ec97072474ae5067a3edd434aa4b6d1d501",
+      "size": 3763
     },
     {
       "path": "evals/discovery/live-query-01/baseline-gap-verification.json",
@@ -74,9 +129,54 @@
       "size": 810
     },
     {
+      "path": "evals/discovery/live-query-01/boundary-tests.xml",
+      "sha256": "2a7fc97a8af1b7f78338d80f3a232ff94467b170b589195c5f2d7602fc83ee8e",
+      "size": 5283
+    },
+    {
+      "path": "evals/discovery/live-query-01/collect-use-initial.py",
+      "sha256": "bcfdd08c6f02adca17e1b17e6f3e8b6c287485ab067e90599557d1a1e1a6f36f",
+      "size": 4286
+    },
+    {
+      "path": "evals/discovery/live-query-01/collect-use.py",
+      "sha256": "5eb139696f025a47e1a2d7c47863b971f669a5f692cb66e9468857e396a45342",
+      "size": 4301
+    },
+    {
+      "path": "evals/discovery/live-query-01/collection-correction.json",
+      "sha256": "3895b47ede26cb6388804df8793b39aee41c30f0a5c56ed8a455dffbfa544e32",
+      "size": 1050
+    },
+    {
+      "path": "evals/discovery/live-query-01/frozen-runtime.json",
+      "sha256": "1364448d889c00d1a8d4f322bedebdc5cf23200812bbc9de88e31912d2473648",
+      "size": 9731
+    },
+    {
       "path": "evals/discovery/live-query-01/gap-check.json",
       "sha256": "441c516ba2709cccfc484225aa4f77a5294113dea4708d391072df3220ec9d0b",
       "size": 9920
+    },
+    {
+      "path": "evals/discovery/live-query-01/implementation.json",
+      "sha256": "8c8ab7f2947720e0531e2c362e68710779b7bdd7be391b943613716b49f7934c",
+      "size": 7223
+    },
+    {
+      "path": "evals/discovery/live-query-01/implementation.patch",
+      "sha256": "a88def96dc4fde41b9797ba226e0f0629a75124b07da6697142ee5f0bfc12d53",
+      "size": 9426
+    },
+    {
+      "path": "evals/discovery/live-query-01/launch-check.json",
+      "sha256": "d26f766f290c07506bcf80556488fa1e002e809c714619186287123c0377fcaa",
+      "size": 618
+    },
+    {
+      "path": "evals/discovery/live-query-01/progress-reader.json",
+      "sha256": "feda5b365513acf4d38c707e0e97834a23d55e2ccb77e359f8543fdde3ec6fe4",
+      "size": 3525
     },
     {
       "path": "evals/discovery/live-query-01/protocol.json",
@@ -84,9 +184,104 @@
       "size": 2876
     },
     {
+      "path": "evals/discovery/live-query-01/recover-collection.py",
+      "sha256": "e01ac459c5e0568a96a45ddd2b28506c368d4c0e95ab38052c8b249df531c21d",
+      "size": 4779
+    },
+    {
+      "path": "evals/discovery/live-query-01/related-tests.xml",
+      "sha256": "69b9605a60405301983c9e1792ad47fa72b39cef07aeba8d2e72605091979941",
+      "size": 20372
+    },
+    {
+      "path": "evals/discovery/live-query-01/run-use.py",
+      "sha256": "a1cd9558a8b97839f4aa4901c349918a7e5905ca90b43378ef66c645bed5b2cd",
+      "size": 7419
+    },
+    {
       "path": "evals/discovery/live-query-01/source-manifest.json",
       "sha256": "a7bd680ded3742e5384a8b5733790c9b64cb2a1a154168c46ef9b2ed49f86e96",
       "size": 6124
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_discovery_review_resume_temp.py",
+      "sha256": "53e534afff73e2a93e2e53f11f68dc0057fff72f548fe8d702de1452406dda3e",
+      "size": 5977
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_discovery_run_temp.py",
+      "sha256": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e",
+      "size": 12438
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_explicit_finish_temp.py",
+      "sha256": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c",
+      "size": 14071
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_worker_clock_temp.py",
+      "sha256": "237d882db517eed998ee1df3345083dac4193c3551c114db21c75e5e2e0565d0",
+      "size": 3888
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_worker_deadline_temp.py",
+      "sha256": "30ada5b3051797f9a745fdf95035acbf0ef880855762da5b10f94614705d48b0",
+      "size": 9337
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/reference/test_worker_journal_temp.py",
+      "sha256": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43",
+      "size": 11331
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-evidence/test_live_query.py",
+      "sha256": "39b3b9b9a5a41f912161d6d7511446934bface618054ac39960aaacc61ae7e3c",
+      "size": 6829
+    },
+    {
+      "path": "evals/discovery/live-query-01/test-result.json",
+      "sha256": "01136dc34b3b3d422264fede20a9bcf8f9bcf08df602b8297eda666f189ecb55",
+      "size": 1036
+    },
+    {
+      "path": "evals/discovery/live-query-01/type-result.json",
+      "sha256": "6f52ae74016bc212e06014cc1e92aac8232eb381c406a0b064963c5efba1b78d",
+      "size": 392
+    },
+    {
+      "path": "evals/discovery/live-query-01/use/answer.md",
+      "sha256": "555d6ab72a16c31e63fdd8b24e432e01e264335060b0ce0a83f0f900732d43cc",
+      "size": 10076
+    },
+    {
+      "path": "evals/discovery/live-query-01/use/public-operations.json.gz",
+      "sha256": "51add416187fc88176e006dad5bcfb7559902733a11e77160f2d0b9b3b72cff6",
+      "size": 129556
+    },
+    {
+      "path": "evals/discovery/live-query-01/use/result.json",
+      "sha256": "c446aea84cb6b982d6bff0a66656ba729e4205d7033fd60354a74a2a285c2e7f",
+      "size": 16466
+    },
+    {
+      "path": "evals/discovery/live-query-01/use/run.json",
+      "sha256": "4e270f05a4ff5e827e8f4ad941050068d234453dc0a03e151d2e7b604c4813b6",
+      "size": 2924
+    },
+    {
+      "path": "evals/discovery/live-query-01/use/session.tar.gz",
+      "sha256": "e8b560377c5f4e4b94d94adc6cadca93188c1a436115b18197262baebb46a26c",
+      "size": 2965607
+    },
+    {
+      "path": "evals/discovery/live-query-01/use-inspection.json",
+      "sha256": "47e097e582d857b0b607ba6299ae07df4784e8a5bc2c5f02edc97a5e31266395",
+      "size": 6254
+    },
+    {
+      "path": "evals/discovery/live-query-01/use-verification.json",
+      "sha256": "9870401bd9779aeaaee6a8f742faeff27a6a8ad9d9d05e27b6991619f4346e03",
+      "size": 3365
     }
   ]
 }

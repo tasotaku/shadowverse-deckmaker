@@ -1,0 +1,22 @@
+{
+  "started_at": "2026-09-12T19:15:01.039550+00:00",
+  "ended_at": "2026-09-12T19:15:44.416743+00:00",
+  "elapsed_seconds": 43.376819249708205,
+  "command": [
+    "pytest",
+    "-q",
+    "/tmp/live-query-tests/test_live_query.py",
+    "tests/test_discovery.py",
+    "tests/test_discovery_sources.py",
+    "tests/test_discovery_read.py",
+    "tests/test_discovery_review_contexts.py",
+    "tests/test_discovery_history.py",
+    "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_run_temp.py",
+    "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_explicit_finish_temp.py",
+    "--junitxml=/tmp/live-query-related-tests.xml"
+  ],
+  "PYTHONPATH": "src:tests:/tmp/sv-explicit-finish-01-worktree/tests/temp",
+  "returncode": 0,
+  "stdout": "........................................................................ [ 40%]\n........................................................................ [ 80%]\n..................................                                       [100%]\n178 passed in 42.89s\n",
+  "stderr": ""
+}

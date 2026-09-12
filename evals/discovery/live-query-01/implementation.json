@@ -1,0 +1,113 @@
+{
+  "id": "live-query-01",
+  "started_at": "2026-09-12T19:11:01Z",
+  "ended_at": "2026-09-12T19:17:40.837786+00:00",
+  "started_basis": "最初のツールでUTCを明示取得後に固定条件・不足確認を読取り、worktreeを作成。",
+  "worktree": "/private/tmp/sv-live-query-01-worktree",
+  "branch": "codex/live-query-01",
+  "base_commit": "c2a5ae073e60386015b2c89d9f99f3a5a22baf40",
+  "commit": "2b835dfd8bb1a293d088919bc4db839617000689",
+  "git_status_short": "",
+  "clean": true,
+  "changes": {
+    "docs/design.md": "一般的な試作境界・未採用を先行記録。",
+    "src/svdeck/discovery.py": "query(session,question,tag)とquery CLIを追加。_text/_context/read_only/search_questionsを再利用。context_hash/snapshot_sha256、search、card_references、reading、limitationsを返し、保存しない。",
+    "src/svdeck/discovery_run.py": "developのみquery許可、公開helpと実担当の公開コマンド案内へ追記。既存公開操作記録と終了後拒否を再利用。"
+  },
+  "diff_stat": " docs/design.md              |  6 ++++++\n src/svdeck/discovery.py     | 31 ++++++++++++++++++++++++++++++-\n src/svdeck/discovery_run.py |  6 +++++-\n 3 files changed, 41 insertions(+), 2 deletions(-)\n",
+  "runtime_hashes": {
+    "src/svdeck/discovery.py": "c05aef1f67caa5b589760ddafb6b8d76274815326c0d3f98b2335eadd65c1c4e",
+    "src/svdeck/discovery_run.py": "750f6761af9c4fe86acd5c79a25abd2e8b7a7578883bc9430a589eb39064012c"
+  },
+  "functional_tests": {
+    "started_at": "2026-09-12T19:15:01.039550+00:00",
+    "ended_at": "2026-09-12T19:15:44.416743+00:00",
+    "elapsed_seconds": 43.376819249708205,
+    "command": [
+      "pytest",
+      "-q",
+      "/tmp/live-query-tests/test_live_query.py",
+      "tests/test_discovery.py",
+      "tests/test_discovery_sources.py",
+      "tests/test_discovery_read.py",
+      "tests/test_discovery_review_contexts.py",
+      "tests/test_discovery_history.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_run_temp.py",
+      "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_explicit_finish_temp.py",
+      "--junitxml=/tmp/live-query-related-tests.xml"
+    ],
+    "PYTHONPATH": "src:tests:/tmp/sv-explicit-finish-01-worktree/tests/temp",
+    "returncode": 0,
+    "stdout": "........................................................................ [ 40%]\n........................................................................ [ 80%]\n..................................                                       [100%]\n178 passed in 42.89s\n",
+    "stderr": ""
+  },
+  "test_counts": {
+    "": 90,
+    "tests.test_discovery": 23,
+    "tests.test_discovery_sources": 24,
+    "tests.test_discovery_read": 19,
+    "tests.test_discovery_review_contexts": 15,
+    "tests.test_discovery_history": 7
+  },
+  "type_check": {
+    "command": "MYPYPATH=src:tests:/tmp/sv-explicit-finish-01-worktree/tests/temp mypy --strict src/svdeck/discovery.py src/svdeck/discovery_run.py",
+    "returncode": 0,
+    "stdout": "Success: no issues found in 2 source files\n",
+    "completed_observed_at": "2026-09-12T19:14:33Z",
+    "timing_limit": "型検査単体の開始・所要秒は未計測。完了後UTC取得時刻だけ記録。"
+  },
+  "coverage": {
+    "normal": "未提出のquestion/tagが既存search_questionsと同一結果を返す。初回と改訂の全保存物が検索前後で同一。候補からpublic read用のoffsetで本文・注記を復元。",
+    "edges": "packet未作成・案未提出、一致なし、他クラス・非合法・生成専用カードを候補から除外、重複引数拒否。",
+    "errors": "空値・不正型、DB/context改変、別DB/クラス/改訂/別探索への入力変更、許可外3工程、正式提出/report/検証済みfinish後の拒否。",
+    "instructions": "固定baseのDEVELOP_RULES/DEVELOP/REVIEW/FINISHと初回packet全文が同一。合成実行で考案promptだけにquery案内が現れ、別評価promptには追加されない。",
+    "public_logging": "許可・拒否のqueryとも従来の開始終了/args/stdout/exit_codeの操作記録に保存。探索sessionは不変。"
+  },
+  "corrections": [
+    "新規検査初回は26 passed / 1 error。正式finishを作る既存prepared fixtureに必要なsource fixtureのimport漏れを修正。プロダクトコードの失敗ではない。",
+    "初回後にpacket未作成で検索できる境界検査を1件追加し、最終は新規28件を含む178件PASS。",
+    "最終検査後のコード差分はmainの既存AI_NOTEコメント1行の目的説明だけ。実装動作は変えていない。"
+  ],
+  "new_tests": "/tmp/live-query-tests/test_live_query.py",
+  "test_reference_copies": {
+    "/tmp/live-query-tests/reference/test_discovery_run_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_run_temp.py",
+      "sha256": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e"
+    },
+    "/tmp/live-query-tests/reference/test_explicit_finish_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_explicit_finish_temp.py",
+      "sha256": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c"
+    },
+    "/tmp/live-query-tests/reference/test_worker_journal_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_journal_temp.py",
+      "sha256": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43"
+    },
+    "/tmp/live-query-tests/reference/test_worker_clock_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_clock_temp.py",
+      "sha256": "237d882db517eed998ee1df3345083dac4193c3551c114db21c75e5e2e0565d0"
+    },
+    "/tmp/live-query-tests/reference/test_worker_deadline_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_worker_deadline_temp.py",
+      "sha256": "30ada5b3051797f9a745fdf95035acbf0ef880855762da5b10f94614705d48b0"
+    },
+    "/tmp/live-query-tests/reference/test_discovery_review_resume_temp.py": {
+      "original": "/tmp/sv-explicit-finish-01-worktree/tests/temp/test_discovery_review_resume_temp.py",
+      "sha256": "53e534afff73e2a93e2e53f11f68dc0057fff72f548fe8d702de1452406dda3e"
+    }
+  },
+  "evidence": [
+    "/tmp/live-query-related-tests.xml",
+    "/tmp/live-query-boundary-tests.xml",
+    "/tmp/live-query-test-result.json",
+    "/tmp/live-query-type-result.json",
+    "/tmp/live-query-implementation.patch"
+  ],
+  "delivery": "隔離worktreeで実際の公開CLI/query/readと公開操作、合成担当の入口を確認。本体への採用・実AI利用確認はroot担当。",
+  "limits": [
+    "型検索の静的一致であり、生成可能性・手順成立・試用価値・独自性の判定ではない。",
+    "新たな照合器・自動生成元解決・候補選別・具体カード答えは追加していない。",
+    "main・本体DBは変更していない。push・cherry-pick・実AI探索は未実施。",
+    "テストはコードと別に/tmpへ保存。commitはコード2ファイルと設計だけ。"
+  ],
+  "verdict": "PASS — isolated implementation; adoption pending live use"
+}

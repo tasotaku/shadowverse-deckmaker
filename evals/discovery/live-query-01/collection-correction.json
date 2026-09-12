@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-09-12T19:24:54.354445+00:00",
+  "failed_operation": "回収確認のmain DB hash読出し",
+  "error": "FileNotFoundError: /private/tmp/sv-live-query-01-launch/data/cards.db",
+  "reason": "凍結runtimeのsvdeck.db.DB_PATHはruntime相対の場所を指す。root確認用スクリプトは本体のroot/data/cards.dbを明示すべきだった。",
+  "completed_before_error": [
+    "担当の正常終了",
+    "報告の添付・公開再読の再照合",
+    "query結果の再計算一致",
+    "正式sessionの完全一致複写",
+    "成果ファイルと公開操作、session archiveの保存"
+  ],
+  "recovery": "既存複写を保持して再照合し、DB pathを本体の絶対位置へ修正して未保存の検証記録だけを完成する。実AIは再実行しない。",
+  "first_attempt_started_at": null,
+  "first_attempt_timing_limit": "初回の回収時刻は失敗前に永続化していなかったため正確な開始終了を記録できない。ファイル時刻から推定しない。"
+}

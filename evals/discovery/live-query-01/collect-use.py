@@ -1,0 +1,19 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import json,shutil,gzip,tarfile,hashlib,subprocess,os
+from svdeck.discovery_run import manifest,copy_session,check_unchanged
+from svdeck.discovery_inquiry import verify_report
+from svdeck.discovery_evidence import read_object
+from svdeck.journal_store import Journal,validate
+from svdeck.db import DB_PATH
+root=Path.cwd();e=root/'evals/discovery/live-query-01';output=Path('/tmp/sv-live-query-01-use');work=output/'use';result=read_object(output/'result.json');assert result['status']=='completed';started=datetime.now(timezone.utc).isoformat();source=Path(result['source']);check_unchanged(source,result['source_manifest'],exact=True);check_unchanged(Path('/tmp/sv-live-query-01-launch/runtime'),result['runtime_manifest'],exact=True)
+verified=verify_report(work,read_object(work/'public-config.json'));assert verified==result['report_verification']
+query=result['query'];args=query['args'];question=args[args.index('--question')+1];tag=args[args.index('--tag')+1]
+cmd=['/tmp/sv-system-venv/bin/python','-B','-m','svdeck.discovery','query',str(work/'session'),'--question',question,'--tag',tag];probe=subprocess.run(cmd,capture_output=True,text=True,check=True,env={**os.environ,'PYTHONPATH':'/tmp/sv-live-query-01-launch/runtime'});assert json.loads(probe.stdout)==json.loads(query['stdout']);queryresult=json.loads(query['stdout'])
+saved=root/'data/discovery/live-query-01-result';copy_session(work/'session',saved);assert manifest(saved)==manifest(work/'session');a=e/'use';a.mkdir(exist_ok=False)
+for name in ['public-config.json','input-summary.json','prompt.md','answer.md','final-message.md']:shutil.copyfile(work/name,a/name)
+shutil.copyfile(output/'result.json',a/'result.json');shutil.copyfile(output/'use-run/run.json',a/'run.json')
+ops=[read_object(p) for p in (work/'operations').glob('*.json')];ops.sort(key=lambda x:x['started_at'])
+with gzip.open(a/'public-operations.json.gz','wt',encoding='utf-8') as f:json.dump(ops,f,ensure_ascii=False,indent=2)
+with tarfile.open(a/'session.tar.gz','w:gz') as f:f.add(saved,arcname='session')
+ended=datetime.now(timezone.utc).isoformat();verification={'collection_started_at':started,'collection_ended_at':ended,'report_verification':verified,'query_recomputed_exact':True,'query_input':{'question':question,'tag':tag},'query_result':queryresult,'source_runtime_preserved':True,'session_copy_identical':True,'saved_session':str(saved),'formal_records_added':0,'operations_count':len(ops),'operation_errors':[{'args':o['args'],'stderr':o['stderr'],'exit_code':o['exit_code']} for o in ops if o['exit_code']],'main_db_sha256':hashlib.sha256((root/'data/cards.db').read_bytes()).hexdigest(),'end_to_collection_seconds':(datetime.fromisoformat(started)-datetime.fromisoformat(result['run']['ended_at'])).total_seconds(),'limitations':'公開操作・正式資料・最終回答のみ保存。私的なCodex stdout/JSONLは読んでいない。query再計算は機能一致の確認であり独立した意味評価ではない。'};(e/'use-verification.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2)+'\n');j=Journal(root);c=j.get(e.name);r=c['record'];r['summary']='実担当の新要求検索と報告保存を回収。固定データでの再計算と公開入口の再読を照合済み。別担当の意味確認と採否は未完了。';r['stages'].append({'id':'collect-use','title':'検索結果と報告保存を回収して再照合','status':'completed','started_at':started,'ended_at':ended,'note':'query出力を同じ固定データで再計算、報告の添付・公開再読・元案と旧評価の保持を確認。','budget_minutes':3});r['evidence_paths'] += [str((e/name).relative_to(root)) for name in ['use-verification.json','use/result.json','use/run.json','use/answer.md','use/session.tar.gz','use/public-operations.json.gz']];validate(r);j.save(r,c['revision'],'codex-root','実利用の検索結果と添付・公開再読を回収確認');(e/'journal-record.json').write_text(json.dumps(j.get(e.name),ensure_ascii=False,indent=2)+'\n');print({k:verification[k] for k in ['collection_started_at','collection_ended_at','query_recomputed_exact','formal_records_added','operations_count','operation_errors','end_to_collection_seconds']})
