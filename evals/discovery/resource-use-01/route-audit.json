@@ -1,0 +1,113 @@
+{
+  "task": "効果札の取得経路を遡る機能の重複監査",
+  "started_at_utc": "2026-09-12 19:02:51 UTC",
+  "ended_at_utc": "2026-09-12 19:06:12 UTC",
+  "scope": "必要箇所のコード・設計・既存テストと、今回の公開operations/sourcesを読み取り評価。実装・テストファイル追加・DB/git/モデル変更・外部検索なし。私的stdout.log/推論JSONLは読んでいない。",
+  "conclusion": "新しい生成元逆引きの実装を今選ぶ根拠は不足している。資料の収録、名前参照、多段の取得元保存、1段の生成札タグ伝播は既にある。任意の効果札から条件付き取得経路を自動で返す専用公開操作は確認できないが、その欠如が今回の失敗原因だとは示せていない。単純な逆引き追加は既存データから作れる処理と重なり、今回の3除外札には既存の参照辺がないため、それだけでは結果が変わらない。",
+  "existing_operations": [
+    {
+      "operation": "既存の公開入口で packet --summary → read HASH cards --offset 0 --limit N とページを読み、keywordsも読む。今回のBではreadにより全212カード、採用可能113カード、各本文・注記・related_card_idsを取得済み。",
+      "what_it_enables": "採用可能カードと全効果札の本文を同じ固定版で確認できる。全カードのrelated_card_idsを受け側IDで逆集計すれば、名前/用語/カード群参照でその札を指すカードを既存データだけから列挙できる。参照が実際に生成を意味するかは本文で判断する。",
+      "limits": "readにcard_idフィルタや生成元専用区分はない。逆集計は読出し後の処理であり専用CLIではない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_read.py:37",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_read.py:100",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/77db1fd8f2494baab5be925d88f87d09.json"
+      ]
+    },
+    {
+      "operation": "build_contextが採用可能札と全効果札を選び、本文・進化・参照先の名前参照、再帰的な公式用語定義、カード群参照を辿ってrelated_card_idsへ保存する。",
+      "what_it_enables": "明示名の多段関係や別クラスの参照先も資料へ含められる。単純な『効果札の本文を入れる』『生成の中継札を保存する』機能の新設は重複する。",
+      "limits": "related_card_idsは生成専用の辺ではない。本文に名前があること・集合に含むことを記録する。名前やカード群を明示しない条件生成を完全に解決する関係データではない。全効果札の包含は生成可能性を証明しない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:84",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:140",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests/test_discovery.py:97",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests/test_discovery.py:280"
+      ]
+    },
+    {
+      "operation": "役割にaccess=effectとviaを指定し、stepsへ取得の本文引用と資源・順序を記してsubmitする。既存検査は採用札からの多段連結を許可し、欠落元・循環・不正IDを拒否する。",
+      "what_it_enables": "複数段で得た効果札を採用札と区別して既存形式に保存できる。取得経路の提出形式を新設する必要はない。",
+      "limits": "viaの記載は担当の申告で、検査はグラフ連結まで。生成効果が実在すること、指定時点・PP・手札・場で取得できることは自動証明しない。この境界は現行指示に明記される。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:37",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:361",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:378",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests/test_discovery.py:302",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests/test_discovery.py:312"
+      ]
+    },
+    {
+      "operation": "タグ付きのquestionsを正式案へ保存し、次のpacketのsearchをreadする。内部のtag_searchは生成元が持つトークン召喚/存在タグから、名指しした効果札の供給タグを生成元へ1段伝播する。",
+      "what_it_enables": "効果札をデッキへ直接採用する偽候補を出さず、条件に合う生成元を検索候補へ返す経路が既にある。",
+      "limits": "伝播は1段、特定のタグ形式、is_token札に限る。search_questionsの出力はID配列なので、内部Candidate.reasonの『トークン経由』という経路根拠を保持しない。型検索は利用可能なPPや場を証明しない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:317",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:163",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:91",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:162",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/bench.py:370"
+      ]
+    },
+    {
+      "operation": "一般CLIのpython -m svdeck.explore CARD_ID --format rotationは登録された軸カードの要求から候補を検索する。python -m svdeck.reverse CARD_ID --format rotationは指定札の供給が既存active要求の何を満たすかを返す。",
+      "what_it_enables": "explore/reverseとも生成札のタグ伝播を再利用する。",
+      "limits": "reverseは効果札の生成元を逆引きするコマンドではない。一般CLIは今回のpublic.pyの許可操作には含まれず、勝手に別DBのCLIへ切り替えることは同じ固定入力の比較にならない。今回実行していない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/reverse.py:1",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/reverse.py:57",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/explore.py:683",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:105"
+      ]
+    }
+  ],
+  "observed_gaps": [
+    {
+      "finding": "Bが読んだ既存searchは8問すべてtag=null、ヒット配列は空だった。実装上tag=nullならtag_searchも直接タグ照合も走らない。この空結果は、今回新たに置いた味方破壊要求が既存の生成札伝播で検索され、失敗した証拠ではない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/develop/operations/ab9d4b096d0445f2b206d0c27695b47e.json",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:170"
+      ],
+      "interpretation": "Bの追加資料には手元の全カードに対する独自タグ一致と本文走査があるが、その結果を既存search_questionsの結果と混同しない。"
+    },
+    {
+      "finding": "公開cardsの読出し結果を逆集計した。保存比較で除外された効果札90044320/90064320/90074310は3件とも資料内にあるが、それぞれへ入るrelated_card_idsは0件。採用可能札からの入辺も0件。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/develop/operations/77db1fd8f2494baab5be925d88f87d09.json",
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/search/excluded"
+      ],
+      "interpretation": "今回効果札自体が欠落したのではない。単純にrelated_card_idsを逆向き表示するだけでは、この3件の生成元は増えない。"
+    },
+    {
+      "finding": "0入辺の原因が合法な取得元の不在なのか、名前を明示しない生成・表記差・関連付け不足なのかは未確認。今回資料では『固定状態へ至る合法な生成元を確認できない』と記録されており、全範囲で生成不能とは断定していない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/search/excluded",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_evidence.py:85"
+      ],
+      "interpretation": "既存機能で発見できた正しい取得経路を担当が見落とした、という証拠はこの監査では得ていない。"
+    },
+    {
+      "finding": "専用の『効果札ID→条件付き取得経路』公開操作は確認できず、一般的な自動検索能力の余地はある。しかし現在の全文読出し・名前参照・viaで人/AIが条件を点検することはできる。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:609",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_run.py:113",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:39"
+      ],
+      "interpretation": "専用操作がないという一般的機能差と、今回の発見未達の原因は別。自動化の追加を即時に採用する根拠にはしない。"
+    }
+  ],
+  "next_minimal_verification": {
+    "decision": "新しい取得経路機能はまだ実装しない。まず既存公開読出しだけで多段取得を正しく追えるかを、小さい人工入力で1回確認する。",
+    "cases": [
+      "既存tests/test_discovery.pyの採用札→効果札→効果札の人工例。最後の効果札から逆に辿り、元札・各本文・条件を列挙できるか。",
+      "同じ人工例で、本文に名前は出るが生成ではない参照を置く。related_card_idsへの掲載を生成可能と誤認しないか。",
+      "取得関係は同じだが指定開始状態でPPまたは場が足りない条件。viaの形式通過を手順成立と誤認しないか。"
+    ],
+    "fixed_judgment": "入力と正しい取得関係・不成立条件を開始前に固定。3ケースすべてで参照、実際の生成、指定状態での実行可能性を区別できることを確認する。これは発見件数・独自性の検査ではない。",
+    "use_existing": "新しい公開コマンドや提出形式を作らず、既存のpacket/readと追加資料の形式を使用する。既存テストの人工カードを再利用し、実カードの組合せ答案は作らない。",
+    "branch_after_result": "現行読出しで通れば逆引き機能案は見送る。失敗時は、必要な本文が入力から欠ける、経路根拠が出力で落ちる、担当が読むが取り違える、のどこで失敗したかを公開記録で特定し、その1点だけを改修候補にする。今回の0入辺3件についても、原因未確認のまま一般的な欠落へ広げない。",
+    "status": "今回未実施。既存テストはコードを読んだのみで、テスト実行・人工入力の新規作成はしていない。"
+  },
+  "prior_proposal_revision": "前報の『生成元を逆引きして返す部分を改善』は、既存機能の重複が大きく、今回に効く証拠も足りないため、実装候補から既存機能の最小検証へ戻す。"
+}

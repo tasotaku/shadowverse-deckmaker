@@ -1,0 +1,142 @@
+{
+  "task": "resource-use-01 方法評価",
+  "started_at_utc": "2026-09-12 18:55:28 UTC",
+  "ended_at_utc": "2026-09-12 18:59:04 UTC",
+  "scope": "公開成果を読む方法評価。既知入力1件。カード個別案の作成・実装・DB/git編集・外部検索は実施していない。Codex私的stdout.log/JSONLは読んでいない。",
+  "observations": [
+    {
+      "finding": "A/Bとも正式改訂1件・正式別評価1件を各一度完了。固定元は変更なし。Aはsupported/develop/unconfirmed、Bはsupported/test/unconfirmed。入力比較記録では改訂指示のみが相違する。ただしA/Bの改訂結果と評価根拠が同一という意味ではない。",
+      "evidence": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/resource-use-01/protocol.json#/criteria",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/resource-use-01/paired-input-verification.json",
+        "/tmp/sv-resource-use-01-a-live/result.json",
+        "/tmp/sv-resource-use-01-b-live/result.json"
+      ]
+    },
+    {
+      "finding": "Bは確認済みの同ターン4PP供給を、味方への終了時ダメージで低攻撃力相手でも補充する要求へ接続した。全212件（採用可能113件）の本文・注記走査、タグ一致、除外理由を保存し、暗黒次元1枝を検討した。供給側・相方・比較側の本文とnote、発動時点、場5枠、進化権、生成経路が資料にある。公開操作にはcards/search/fulfillment_mapの読出しと追加資料の登録がある。全文走査の実施内容は保存報告による証拠であり、私的実行履歴の監査はしていない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content (lock,search,inspected_cards,common_engine)",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/77db1fd8f2494baab5be925d88f87d09.json",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/ab9d4b096d0445f2b206d0c27695b47e.json",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/fc1bac6709c54b409a5aa1f6e3b415c5.json",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/95b01015c3ab4a36ad1a3354fdc6c103.json"
+      ]
+    },
+    {
+      "finding": "途中の枝は指定した低攻撃力の相手盤面で成立し、反撃2以上を必要とした補充を反撃1でも可能にした。ただし人形を相打ちさせて場を空ける必要は残る。空盤面・攻撃力0では置く枠がなく不成立。終了時の4ドローを同ターン再投資へ算入していない。追加札を外した比較では手札+3と引換えに盤面・AF供給・突進付与を失い、通常構築との比較では手札枚数差が+1になる。別評価も追加採用見送りを支持した。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content (candidate_dark,ablation,comparison,decision)",
+        "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/findings/0",
+        "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/findings/4"
+      ]
+    },
+    {
+      "finding": "Bは旧5枚手札から候補側D/元案側Cを各1枚加え、双方の山札も1枚減らした6枚条件で比較した。この条件変更を明示し、到達率は未確認としている。新条件での成立を旧5枚条件でも成立したとは読めない。都合のよい追加札を隠した証拠や、先例だけを理由に元案を強制除外した証拠は見当たらない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/lock",
+        "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/change",
+        "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/uncertainties"
+      ]
+    },
+    {
+      "finding": "最終Bは暗黒次元を採用せず元のN1/W2へ戻し、低攻撃力相手には通常基盤を使う条件を明確にした。これは不成立条件と選び分けの成果であり、有用な新しい枝の採用成果ではない。Aも既知の相打ち処理を使ってMと進化権を残す改訂を行ったため、元案側の進化権温存をBの独占成果にはできない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/hypothesis",
+        "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/change",
+        "/tmp/sv-resource-use-01-a-live/session/revision-0002.json#/data/hypothesis",
+        "/tmp/sv-resource-use-01-a-live/session/revision-0002.json#/data/change"
+      ]
+    },
+    {
+      "finding": "Bのtest根拠は暗黒次元の新枝ではなく、別評価が元の4/5守護2体状態を再検算して『全処理後、残る4PPで既知Mを進化せず置く』と具体化したN1/W2の限定試用である。AはMを手札に残す終点を評価し、進化権の具体的用途と失う兵器の役割が釣り合う根拠不足からdevelopとした。評価者の判断差と、B評価者が新たに提示した元案内の手順が混在するので、test件数差を追加指示の因果効果とは認めない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/findings/3",
+        "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/findings/4",
+        "/tmp/sv-resource-use-01-a-live/session/review-0002-9711a20c5f500ac9.json#/data/findings/2",
+        "/tmp/sv-resource-use-01-a-live/session/review-0002-9711a20c5f500ac9.json#/data/findings/3",
+        "/tmp/sv-resource-use-01-a-live/session/revision-0002.json#/data/plan/comparison",
+        "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/plan/comparison"
+      ]
+    },
+    {
+      "finding": "両方とも基礎用途の先例を既知として扱い、全体一致・一般的普及は未確認。外部先例の調査と別照合は既存入力で完了している。今回の同じ残問を再調査して発見件数を増やす理由はない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/findings/5",
+        "/tmp/sv-resource-use-01-a-live/session/review-0002-9711a20c5f500ac9.json#/data/findings/4",
+        "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/prior_precedent"
+      ]
+    },
+    {
+      "finding": "Bは提出形式の拒否1回を受け、同じ実行内で訂正して正式改訂1件を提出した。公開エラーはrolesの重複/採用可能札のaccess指定に関するもの。失敗を隠さず、追加実AI実行や第2改訂には数えない。",
+      "evidence": [
+        "/tmp/sv-resource-use-01-b-live/develop/operations/abdff8a2c5ab483ab74fec793c4d9caf.json",
+        "/tmp/sv-resource-use-01-b-live/develop/operations/8430aab1ee96448cbe1fb1ebf37d1b8c.json",
+        "/tmp/sv-resource-use-01-b-live/session/sources/c89bb45a092936183f6d14d3d5dc93ad6f51bae6589c4c18183f8c926c8d6cf9.json"
+      ]
+    }
+  ],
+  "adoption": {
+    "conclusion": "追加動作は実行され、成立する途中の枝と採用見送りの根拠を生んだ。しかし『Bだけに実質的な発展と試用理由が残り、別評価が支持する』条件は未達。本体への採用は保留を維持し、今回の成功を前提とする新規入力検証へ自動昇格しない。",
+    "primary_confirmed": {
+      "A": 0,
+      "B": 0
+    },
+    "new_branch": {
+      "B_searched": 1,
+      "B_procedure_supported": 1,
+      "B_recommended_for_test": 0,
+      "B_novelty_confirmed": 0
+    },
+    "final_value_labels": {
+      "A": "develop",
+      "B": "test"
+    },
+    "attribution": "Bの最終testは元案の限定推薦。新枝へのtestは0。探索件数・成立件数・否定的結果・試用ラベルを主成果の代替にしない。",
+    "negative_result_value": "場が満杯で相手が空または攻撃力0だと起動できないこと、追加札がAF基盤を傷めること、通常構築も進化権を残して全処理できることを、次の方法改善へ渡せる具体的制約として保持する。",
+    "limits": [
+      "既知入力1件の開発比較であり、一般的優位も未知発見力も示さない。",
+      "A/Bの評価者の判断差と評価者が追加した手順を切り分ける対照は今回ない。",
+      "固定状態の机上成立であり到達率・実戦勝率・継続採用を測っていない。",
+      "条件・採点は変更していない。"
+    ]
+  },
+  "next_mechanism": {
+    "one_change": "効果で得る札が検索に出たとき、生成元を固定カード本文から逆引きし、取得経路とその成立条件を候補に返す部分を点検・改善する。",
+    "why_this": "今回、味方を破壊する効果札は検索に出たが『この手札と4PP供給へ至る合法な生成元を確認できない』として除外された。同時に、採用可能な相方では場5枠・相手不在の不成立条件が残った。効果札の取得経路を明示して照合できるかが次の狭い課題になる。利用可能な経路があるとは仮定しない。",
+    "bounded_input": "保存された不成立条件（回復後4PP・自場5枠・相手空盤面または攻撃力0）と、既に保存された効果札の検索ヒット。固定カード集合の生成元、生成条件、必要な先行準備、採用枠を逆向きに追う。未保存カード・都合のよい手札・追加PPを与えない。",
+    "what_to_return": "到達する経路と満たすべき条件、資源不足で到達しない経路、固定資料に生成元がない経路を区別する。経路なしも保存し、発見件数には加算しない。現在の公開入口に同等機能があれば重複実装せず、返し方・到達範囲の欠損だけを直す。",
+    "difference_from_prior": "初回に別札へ仕事を任せる指示、同じ組を続ける選択、既知手順の順番点検、得た資源から別用途を一枝探す指示の追加ではない。対象は既にヒットした効果札の生成関係を遡る取得経路の検索である。",
+    "evaluation": "今回の効果札ヒットを開発用の回帰入力にする。既知生成経路のある入力と資源不足・生成元欠落の入力を事前固定して、取得可能と未確認の取り違えを減らせるかをまず検査する。その後、別の新規入力で実質的な発展・試用理由・独自性を元基準のまま評価する。",
+    "status": "提案のみ。公開入口の実装欠損をこの読み取り評価から断定していない。コード作成は未実施。",
+    "evidence": [
+      "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/search/excluded",
+      "/tmp/sv-resource-use-01-b-live/session/sources/a39d1cbe2ddfe117232bed2984d8c912a579e880d4647a4d7d03362583567e77.json#/data/content/ablation",
+      "/tmp/sv-resource-use-01-b-live/session/revision-0002.json#/data/questions/1",
+      "/tmp/sv-resource-use-01-b-live/session/review-0002-0947e7bc1fd34b72.json#/data/next_questions/2"
+    ]
+  },
+  "stage_times_utc": {
+    "a_develop": {
+      "start": "2026-09-12T17:53:05.499227+00:00",
+      "end": "2026-09-12T18:03:13.935971+00:00",
+      "elapsed_seconds": 608.4342628750019
+    },
+    "a_review": {
+      "start": "2026-09-12T18:03:14.515090+00:00",
+      "end": "2026-09-12T18:08:41.057158+00:00",
+      "elapsed_seconds": 326.5407967087813
+    },
+    "b_develop": {
+      "start": "2026-09-12T17:59:36.079394+00:00",
+      "end": "2026-09-12T18:13:28.662403+00:00",
+      "elapsed_seconds": 832.579813666176
+    },
+    "b_review": {
+      "start": "2026-09-12T18:13:29.219587+00:00",
+      "end": "2026-09-12T18:20:57.342286+00:00",
+      "elapsed_seconds": 448.1386501248926
+    },
+    "note": "result.jsonの監督実行開始・終了。CPU時間ではなく壁時計。並行工程を合算しない。"
+  }
+}
