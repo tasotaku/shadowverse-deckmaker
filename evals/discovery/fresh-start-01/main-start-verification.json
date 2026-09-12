@@ -1,0 +1,64 @@
+{
+  "started_at": "2026-09-12T16:57:34.035149+00:00",
+  "ended_at": "2026-09-12T16:57:35.627423+00:00",
+  "command": [
+    "/tmp/sv-system-venv/bin/python",
+    "-B",
+    "-m",
+    "svdeck.discovery",
+    "start",
+    "/tmp/sv-fresh-start-main-delivery-01",
+    "--db",
+    "data/cards.db",
+    "--class",
+    "ネメシス",
+    "--format",
+    "rotation",
+    "--objective",
+    "本体反映後の記事取得と初回入力の保持を確認する。新規デッキ探索の試行には数えない。",
+    "--article",
+    "https://gamewith.jp/shadowverse-wb/503019"
+  ],
+  "exit_code": 0,
+  "stderr": "",
+  "scope": "採用後の本体公開CLIの接続確認。実AIを起動せず、新規探索成果には数えない。",
+  "result": {
+    "session": "/private/tmp/sv-fresh-start-main-delivery-01",
+    "context_sha256": "0ecb6d22a305100bdef5d9785869c850b023a24656de4cd70fdb01dbf02f68b6",
+    "eligible_cards": 113,
+    "related_cards": 99,
+    "next": "packet --summaryまたはreadで、記事を含む初回入力を確認できます",
+    "articles": [
+      "https://gamewith.jp/shadowverse-wb/503019"
+    ],
+    "source_hashes": [
+      "ebd6649ae8cccc792868915bd1362053ffccad4ad07e37878aace15ee8bb3c3a",
+      "e3ce7feb4b90bef8e6750f2eaeb3c13c16e3a94c420323fa4108c7bdfc2afcb2",
+      "a06f337ddba1e0820e87b6bf05105e5515fc929511b3804f929d3b1bb8789f4d"
+    ],
+    "packet_sha256": "41d03e6d41f789ae13d09105c34cdcf816df6e1d6465fd0e9a8a32496074d3bf",
+    "reference_scope": "known_decksはDB固定時の保存資料です。今回取得した記事はsourcesに分け、取得日時だけで内容の新しさ・普及を認定しません。"
+  },
+  "public_read": {
+    "ended_at": "2026-09-12T16:59:55.446696+00:00",
+    "source_count": 3,
+    "pages": 2,
+    "full_content_identical_by_source_hash": true,
+    "main_db_unchanged": true,
+    "packet_sha256": "41d03e6d41f789ae13d09105c34cdcf816df6e1d6465fd0e9a8a32496074d3bf",
+    "note": "初回照合は公開読出しがcontentを改行保持の配列へ変換する仕様を扱わず失敗した。順序差との仮説では解消せず、配列を空文字で連結して識別値ごとに全文一致を確認。1ページ読みでは上限100行となるため全2ページを再読した。入力や資料は変更していない。"
+  },
+  "verification_environment_corrections": [
+    "最初のPython環境にはpytestがなく試験未起動。既存pytestコマンドで12件合格0.87秒。",
+    "最初のmypyスクリプトはmodule欠落で検査未起動。既存mypyコマンドで4ファイル合格。"
+  ],
+  "verification": {
+    "tests": 12,
+    "passed": 12,
+    "mypy_files": 4,
+    "mypy": "PASS",
+    "main_code_identical_to_tested_commit": true,
+    "commit": "e7db331c965c778a8c3dd9e8733672e01b27a7e8",
+    "scope": "採用後の本体CLI・全資料の再読と、採用した新規12検査を実行。隔離版の関連154検査と区別する。"
+  }
+}

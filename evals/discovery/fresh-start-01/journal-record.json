@@ -1,15 +1,15 @@
 {
   "id": "fresh-start-01",
-  "revision": 13,
-  "saved_at": "2026-09-12T16:56:42.235085+00:00",
+  "revision": 15,
+  "saved_at": "2026-09-12T17:05:57.921973+00:00",
   "actor": "codex-root",
-  "reason": "資料接続に範囲を限った採用判断と本体反映開始を記録",
+  "reason": "記事接続の限定採用、本体確認、結果と全工程時間を確定",
   "record": {
     "id": "fresh-start-01",
     "title": "現在の参考構築を初回考案前へ接続する",
     "category": "method",
-    "status": "running",
-    "summary": "正式案・別評価各1件で1枠の比較試用を推薦。任意の記事接続機能の限定採用を決定し、本体反映中。独自性は別の復旧調査で確認中。",
+    "status": "completed",
+    "summary": "指定記事を初回入力へ接続する任意機能を採用し、本体でも取得・全文一致を確認。1枠の比較試用候補が残ったが、独自性・発見力は未確認。後続の起動前失敗を別記録で復旧し、出典の別照合中。",
     "method": "任意の記事URLを新規探索の準備へ接続する。既存の取得・追加・入力作成を再利用。",
     "procedure": "指定した現在の参考記事の全40枚・説明・取得時点・限界を、新規探索の初回入力へ一つの公開開始操作で渡す。記事URL未指定の従来動作と、考案・別評価・採点の指示は変更しない。\n既存のmeta.article_sources(with_text=True)、固定DB、資料検査、追加保存を再利用し、重複URLで重複取得しない。全記事の取得・整合確認が済む前に成功を返さない。失敗を古い入力で代用した成功にせず、既存保存先・元DB・元案・旧評価を変更しない。\n取得日時と記事内容の時点を区別する。現在取得しただけで最新環境・合法性・普及・勝率を認定しない。旧known_decksは履歴として保持し、現行資料との区別を記録する。\n機能検査・型検査と、実記事の取得から初回入力の公開再読までを確かめる。旧ウィッチ事例は回帰確認であり、新規発見には数えない。機能採用はこの接続の保持と失敗境界の検証に限る。\n別途、カード答案・期待結論・旧採点を与えない新規入力を一つ固定し、考案20分・別評価10分を各一度行う。最新評価が試用・独自性未確認なら既存調査15分・別照合10分へ一度つなぐ。未完・取得失敗も結果として残し、自動やり直しで成績を上積みしない。\n主成果は現行通常構築に対して試す利益と負担を説明でき、一般に広まった使い方の言い直しでない根拠がある種の数（最大1）。試用推薦と独自性未確認を別記し、資料数・棄却数・表示だけを発見力の成果にしない。単一試行から方法の一般的優位を認定しない。\n一般に広まっていない使い方でそこそこ戦える種という既存の目的・合法性・成立・試用価値・独自性の基準を保持する。先例だけで除外しない。未発見から独自性を認定しない。実戦や勝率を捏造しない。",
     "inputs": "新規ネメシス・ローテーションの初回探索。保存参考一覧から事前に選んだ全5URLを取得。旧提案・評価・ウィッチの調査資料は入力しない。",
@@ -21,10 +21,10 @@
     },
     "decision": {
       "status": "adopted",
-      "reason": "任意の記事取得を初回入力へ接続する機能だけを採用。154機能検査・型検査と、実5記事15資料の保持、通常40枚比較への利用を確認。本体反映をこの後検証する。発見力・全体完成は未認定。"
+      "reason": "記事取得を初回入力へ接続する任意機能のみ採用。関連154機能検査・型検査、実5記事15資料の保持、現在の40枚比較への利用を確認。本体反映後も実記事1件3資料の全文一致、12件と型検査4ファイルに合格。独自性・発見力の一般的改善・全体完成は未認定。"
     },
     "started_at": "2026-09-12T13:37:13.533321+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-12T17:05:57.836789+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -119,11 +119,38 @@
       {
         "id": "adopt-main",
         "title": "確認した機能を本体へ反映し公開入口を確認",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T16:56:42.209683+00:00",
-        "ended_at": null,
-        "note": "隔離して検証済みの実装を反映する。進行中調査の固定実装は変更しない。",
+        "ended_at": "2026-09-12T16:59:55.446696+00:00",
+        "note": "検証済み実装を本体へ反映しコード一致を確認。本体の実記事1件3資料・全2ページ再読の本文一致、元DB保持、12機能検査と型検査4ファイル合格。検査環境・照合手順の訂正を記録。",
         "budget_minutes": 10
+      },
+      {
+        "id": "report-final",
+        "title": "結果・採用範囲・工程時間を画面へ保存",
+        "status": "completed",
+        "started_at": "2026-09-12T16:59:55.446696+00:00",
+        "ended_at": "2026-09-12T17:05:57.836789+00:00",
+        "note": "結果・採用理由・後続の起動前失敗と別復旧を記録。初見確認の定義不足・時刻表示精度を訂正し、対象2点の再確認に合格。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "final-reader",
+        "title": "報告を初見で読み採用範囲と時間を確認",
+        "status": "completed",
+        "started_at": "2026-09-12T17:02:03+00:00",
+        "ended_at": "2026-09-12T17:02:59+00:00",
+        "note": "種の定義と時刻差の表示精度の2点を指摘。ほかの採用範囲・未確認・失敗と復旧は読み分け可能。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "final-reader-recheck",
+        "title": "指摘した定義と時刻表示の修正を再確認",
+        "status": "completed",
+        "started_at": "2026-09-12T17:04:15+00:00",
+        "ended_at": "2026-09-12T17:04:34+00:00",
+        "note": "対象2点の修正を別担当が再読してPASS。外部事実の確認とは区別。",
+        "budget_minutes": 1
       }
     ],
     "evidence_paths": [
@@ -151,19 +178,33 @@
       "evals/discovery/fresh-start-01/followup-start-failure/result.json",
       "evals/discovery/fresh-start-01/followup-start-failure/continuation.json",
       "evals/discovery/fresh-start-01/independent-outcome.json",
-      "evals/discovery/fresh-start-01/adoption-decision.json"
+      "evals/discovery/fresh-start-01/adoption-decision.json",
+      "evals/discovery/fresh-start-01/main-start-verification.json",
+      "evals/discovery/fresh-start-01/main-tests.xml",
+      "evals/discovery/fresh-start-01/final-reader.json",
+      "evals/discovery/fresh-start-01/final-reader-recheck.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/fresh-start-01/README.md",
-      "sha256": "aab750f30db285d305935832d3465835cdbb0471289b2c36f7350bec6966bf00",
-      "size": 5930
+      "sha256": "a0d752b2bee76f25ea5dcbf79e89f12827f2a4b46a575a0cabe36a68bc69fd9b",
+      "size": 11333
     },
     {
       "path": "evals/discovery/fresh-start-01/adoption-decision.json",
       "sha256": "f48cd694e60dfc20ae2d4d9bec67290662e554928939f39797469ece8321a8fa",
       "size": 1164
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/final-reader-recheck.json",
+      "sha256": "fe873704961ffd7c5bce41905973763ff08355fae22af9228f0c12dffeb55a35",
+      "size": 1337
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/final-reader.json",
+      "sha256": "bae85b05a0d6420656a9aff56d6c33eab5194339310e3c0e1b3cdf7183b82755",
+      "size": 2619
     },
     {
       "path": "evals/discovery/fresh-start-01/followup-start-failure/continuation.json",
@@ -219,6 +260,16 @@
       "path": "evals/discovery/fresh-start-01/live-input-protocol.json",
       "sha256": "661a00f3b8517d57d4e3343519881831c856a2fc1d3f988eb19620b66ea1560c",
       "size": 3193
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/main-start-verification.json",
+      "sha256": "8ec58e8899fb8a50e725934034bfa3a85eeb032a7e76b8d6c7623c218efeac54",
+      "size": 2957
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/main-tests.xml",
+      "sha256": "c550c57dc782c08c1098e4d87add09d3966d25cace868acbe246584aaec9c32d",
+      "size": 1835
     },
     {
       "path": "evals/discovery/fresh-start-01/output-reader.json",
