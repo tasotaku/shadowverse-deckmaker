@@ -1,0 +1,299 @@
+{
+  "status": "completed",
+  "run_id": "e6aaba5539d446fcac8c8e39bc961a9e",
+  "started_at": "2026-09-12T09:41:36.488348+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/explicit-finish-01-result",
+  "output": "/private/tmp/sv-continuation-choice-01-b",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:e6aaba5539d446fcac8c8e39bc961a9e:develop",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-continuation-choice-01-b/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-continuation-choice-01-b/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-continuation-choice-01-b/develop",
+        "stdin": "/private/tmp/sv-continuation-choice-01-b/develop/prompt.md",
+        "output": "/private/tmp/sv-continuation-choice-01-b/develop-run",
+        "started_at": "2026-09-12T09:41:36.832205+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2315148.049052791,
+        "explicit_finish": true,
+        "timeout_seconds": 900.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 55599,
+        "worker_pid": 55601,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-12T09:56:19.138701+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-12T09:41:36.832407+00:00",
+            "elapsed_seconds": 0.00019737472757697105
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-12T09:41:36.832746+00:00",
+            "elapsed_seconds": 0.0005381247028708458
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-12T09:41:36.837972+00:00",
+            "elapsed_seconds": 0.00580083392560482
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-12T09:56:18.871463+00:00",
+            "elapsed_seconds": 881.7919113747776,
+            "request_hash": "8dae124e215ac3198417a6c4aac6942f8a4a2a47e506ffca21e2796ad23bf605",
+            "report_hash": "ba2536f76dbca8e86c3ee7a17721995808c29c9a7555361a0e28d9241633f47d"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-12T09:56:18.872387+00:00",
+            "elapsed_seconds": 881.7928158747964,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-12T09:56:18.930794+00:00",
+            "elapsed_seconds": 881.8512263749726
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-12T09:56:19.138103+00:00",
+            "elapsed_seconds": 882.0585424997844,
+            "request_hash": "8dae124e215ac3198417a6c4aac6942f8a4a2a47e506ffca21e2796ad23bf605",
+            "report_hash": "ba2536f76dbca8e86c3ee7a17721995808c29c9a7555361a0e28d9241633f47d"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-12T09:56:19.138707+00:00",
+            "elapsed_seconds": 882.0591417090036
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-12T09:56:19.147750+00:00",
+            "elapsed_seconds": 882.0681846248917
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "continuation-choice-01",
+          "stage_id": "b-develop",
+          "status": "completed",
+          "begin_revision": 5,
+          "claimed_stage": {
+            "id": "b-develop",
+            "title": "変更Bの改訂",
+            "status": "running",
+            "started_at": "2026-09-12T09:41:36.832205+00:00",
+            "ended_at": null,
+            "note": "固定入力で一回だけ。正式保存と明示終了を使う。\n起動処理を開始。実行記録: /private/tmp/sv-continuation-choice-01-b/develop-run",
+            "budget_minutes": 15
+          },
+          "end_revision": 9,
+          "synced_at": "2026-09-12T09:56:19.147744+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "8dae124e215ac3198417a6c4aac6942f8a4a2a47e506ffca21e2796ad23bf605",
+          "report_hash": "ba2536f76dbca8e86c3ee7a17721995808c29c9a7555361a0e28d9241633f47d"
+        },
+        "elapsed_seconds": 882.0591383748688,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:e6aaba5539d446fcac8c8e39bc961a9e:review",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-continuation-choice-01-b/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-continuation-choice-01-b/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-continuation-choice-01-b/review",
+        "stdin": "/private/tmp/sv-continuation-choice-01-b/review/prompt.md",
+        "output": "/private/tmp/sv-continuation-choice-01-b/review-run",
+        "started_at": "2026-09-12T09:56:19.777307+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2315730.746819666,
+        "explicit_finish": true,
+        "timeout_seconds": 600.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 55599,
+        "worker_pid": 72723,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-12T10:02:10.616082+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-12T09:56:19.777582+00:00",
+            "elapsed_seconds": 0.00026916665956377983
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-12T09:56:19.778001+00:00",
+            "elapsed_seconds": 0.0006901249289512634
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-12T09:56:19.785014+00:00",
+            "elapsed_seconds": 0.007727041840553284
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-12T10:02:10.382358+00:00",
+            "elapsed_seconds": 350.6137108337134,
+            "request_hash": "197be473906a43f8af480833d1ebc11edb214e05d44e7e8bea5c9eb4aa8b01dc",
+            "report_hash": "b43b9ceca3de0b71a3dc2becac32716f627b99fad5521e583438d98a13c6076a"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-12T10:02:10.383082+00:00",
+            "elapsed_seconds": 350.6144268340431,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-12T10:02:10.443907+00:00",
+            "elapsed_seconds": 350.67525466671214
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-12T10:02:10.613408+00:00",
+            "elapsed_seconds": 350.8447616668418,
+            "request_hash": "197be473906a43f8af480833d1ebc11edb214e05d44e7e8bea5c9eb4aa8b01dc",
+            "report_hash": "b43b9ceca3de0b71a3dc2becac32716f627b99fad5521e583438d98a13c6076a"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-12T10:02:10.616088+00:00",
+            "elapsed_seconds": 350.8474367088638
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-12T10:02:10.620398+00:00",
+            "elapsed_seconds": 350.851746249944
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "continuation-choice-01",
+          "stage_id": "b-review",
+          "status": "completed",
+          "begin_revision": 10,
+          "claimed_stage": {
+            "id": "b-review",
+            "title": "変更Bの別評価",
+            "status": "running",
+            "started_at": "2026-09-12T09:56:19.777307+00:00",
+            "ended_at": null,
+            "note": "固定入力で一回だけ。正式保存と明示終了を使う。\n起動処理を開始。実行記録: /private/tmp/sv-continuation-choice-01-b/review-run",
+            "budget_minutes": 10
+          },
+          "end_revision": 12,
+          "synced_at": "2026-09-12T10:02:10.620393+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "197be473906a43f8af480833d1ebc11edb214e05d44e7e8bea5c9eb4aa8b01dc",
+          "report_hash": "b43b9ceca3de0b71a3dc2becac32716f627b99fad5521e583438d98a13c6076a"
+        },
+        "elapsed_seconds": 350.84743274981156,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "review_only": false,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 3,
+  "expected_revision": 4,
+  "original_manifest": {
+    "context.json": "3f52928654d6418aca4afd2f49d73b0e0822b86e789adff753852c509fb0f928",
+    "packets/40a27217ea24f7ab0fc201d48547a943a0dc26a6ccc04e4f42ecfef41d9a2413.json": "b21a17034f7102b60528d3892b2d5f02013f968ca74cf697c8f57564eb029098",
+    "packets/6359b07d1dac6aeafeebb6c724f4662268340f280431c21323180385f938b2da.json": "69756b8656758e6550d138ab09f64f2f56df09055e48b519858e71d546bcf948",
+    "packets/8b564aa323e5ebf6fc6b005a9c072c74e14a9c7928614e2d8be685ce9e8a3531.json": "a791dc55521dd502f5b91bddc9b17601065dec2fe6db6265186f8205abadedfd",
+    "packets/9ce3f33831b1a8a71f749e2e8e00946956784f86bec047cb165746178ab30375.json": "e454b038cc8479d6c0799ccd4cf93b8e9b122785a26facdb4a63a1d36eaf44d8",
+    "packets/a0d2594f5c02df29efeeef7b49a58f899e49136cb8a03cf57b3ee962bd00d2a5.json": "48a37bb627d3f765a9bdbafe946dc71a63d20f18df38cdde93bebcdc866c5466",
+    "packets/b29c6a53d2c5d41620356ef82a731447d7f4f4663210bc8ef8600cb0ed231187.json": "e2c5181479f0181cf5f53b2b0cf36f9a7217e21588d0c27ffe44f9e0dd7ec5ec",
+    "packets/d05a924f6100d744a4fb8771942982998632c47a189bb89c45bc7074b03ee885.json": "144053bb050228c5d01453822d2fbd9852bb6c9a20ac518dac29e59a3724559d",
+    "packets/d0f2214768273bf60ab1c6977e0e58a8437ecf66ccf81f19796b7c2691a6bb67.json": "948cde4b87853692fd83472e977e69195da5015596664e0ac820e8626b44f0b7",
+    "packets/d399da0a4d9c824360a293fb7ec0fae9402c485f6f5f4b3d8258164d29050462.json": "9e0c80836eedf30e4513fd40cced519164be207424e67d36754592f08a7c9206",
+    "packets/e342704eb316fb06b2ad69f89ee5ec6bfbf50e9b10eff613124c72ccf349faf1.json": "bb5cdac682dc640e1f87cd0a2857bca771a65216c0d4f6fb9c44aec61b39ba3b",
+    "packets/e5651c084fbe5218b22c84ebf31697bfaf0a07ccf7a092e2a9e2b915d32f9432.json": "6c5ef7c8a4b98a62eca373dacfa916b26dba7e4ed0913c8fe44b8af85e9ff0c1",
+    "review-0001-19a2546b8aae1f10.json": "27301445e9980f742b52cb76059f84c078d036f9f2ad8099805f300846d80fd5",
+    "review-0002-52d9dfbfef52a472.json": "83ce6096b8b2542207d01cbc8e99169234dd8cbe601ff356062cf0c93e0ed0f0",
+    "review-0003-a84ea0cd5fec2832.json": "a50c0f6f5e6a4cdf3fce909311a202b124f472dce2c4d9777c322d35d671b389",
+    "revision-0001.json": "728814778699148b5fc6f25128482ff4f19c88a2da4e89f2646eb85ed8d1d2fc",
+    "revision-0002.json": "85a1d57d046642e2bb4846c7354629eae9c6f340d8e3288269a1474b79c3a279",
+    "revision-0003.json": "80982a4f6944a8837d62b17a15b7abcec47e11608e1858ddb7cea23ba025b761",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/02329e22398272686c7a8045897754bdafe45a09d1b3bdc3b11a4dc037489f6d.json": "2a35d0960f737bc53ebbe69b9fa98cb29c8508aa986d9ea9cda8b339ce2e7387",
+    "sources/10d7228bb9d0cdb979bcd0ad5ed0334341125391ca3cfcce6295567a91e46ad5.json": "b161e3e159e866b2fa0a6bbfc8f2a81a85e5f9b381ad519b8af477b1ac9538a6",
+    "sources/12ecf847580d51ab6b794403d8f674e4ffc9d07c13914fc914bca9e5568bedad.json": "7218b25dacf43ee25f510963c17cbfd0d5868a7cb80b6ba6fcdd80f2a6ad847f",
+    "sources/291663d514612eec3fb515f37fe4dcf6cd5e38122f6364bf6f56308252af7d29.json": "358ae25bfa8b60006262e1d5b07b58ce0234d8620f27c30fae9a039864cd9f21",
+    "sources/2bce406527f6f06da3745ee76919fa0d15c48e05b26dc7d4b84f82e760149e4b.json": "09f403bb9dac0cc9633171e6b96e77100a031359dcd98487fd35349b8e9b5c17",
+    "sources/338f4db029ef1e8ec32e00f6c1e0d6d8ecc0004b03e17e7fb3ce0440134260e7.json": "fadae530085a5a6fcf743bfc13e0bd495b9b7ea78bbb12a8082aa5d155ca4165",
+    "sources/38b864d5f749055fe4df47de3015d8d697f80939dda8d06e8bf4402f78d55343.json": "14238590902e91c6e1b74565167d449b0c996e141a771022499ecdbe9bcfbde1",
+    "sources/3ffb145d24a87ee4298bfd5a58231e6f8e3b3985375b5aeb568bd4031db4a87e.json": "8588faf83432f476f8971d841dc9e740f1441fd3bbc0d40c2f4f857838968b8d",
+    "sources/4077ac00ee84e309e62e13d7e5b5482c706498f46c317cc6a3e215810345dab6.json": "77bff3d8244c09154df6e0495182baaad4ff07d6cd88847cd09654cb8d3ad1c5",
+    "sources/4dd4791fd754d77e93538d5f21f217645bd708bfbd4c22bd255506770c35fb36.json": "56476b1fbc9cdd348707c9e362856801582de102f488a10603e9d629c93d8851",
+    "sources/54954b2fca09ed74d5ec1faf1bc24c2f438be4b9d5c0432ab51d6857d0362383.json": "158c2325cc252596662bf9cc1ed2f51e2abc24461748679a717e6bd64721a242",
+    "sources/55237734bc25d3add90a42a0794b8c99c7785bca8490943eb30398f1bf8885da.json": "5f897974262771149f3774a81ce9114d74554b571e411b33aa77689b1aecb4d6",
+    "sources/5f39048ba3d27014ca721ade9e44ef1c3cdf6d6842949ccf3de42afbb3a940d9.json": "a4daa46a201f7f2842fd8338a71301051fff876bbfe09c88ea9e3ac433a567ce",
+    "sources/6bc89af07282c5713c372e56b9228c6e34e310babcf3106bdc4eae35c9fa178d.json": "5feb8d6881852f83374d6096e5bcccca3c9e7713f28169a2027236a2e21b22f4",
+    "sources/76a5695aa4db1dfa40213e9368fbbc28d7be5d37504dd29d8844f8563bd6c2d5.json": "d032fe7a79a4f40eb622d6186a97c2ab930155583c54fb9fed44cd157191fde2",
+    "sources/93120e838a703aa8f92298c9d383bc8119fc0d276c656f5b7b784cef22c5de72.json": "8276eb97b8b84c259cbe5683c80469716037c361dea650667d693971511892a7",
+    "sources/9ceb5562d423b7bf3b312c4790a111ca7e2a2b79863c19192bad557bec70786f.json": "9106cb04c1d10e260f576b95ae12354c4e24e9c488bbb9b314f97b571fcd75b4",
+    "sources/ab5ffa4cdc84d55e969ceb0da08ced85a3186cb2f31ee54b28924478c6ffb2aa.json": "af63b402993170a149f59b113f5a5f97b717feb1e28c849ab916e2ab39676cf8",
+    "sources/db6251919975085ad9aa812ca9dbf3ec2782db813966818b9916232d19cb68db.json": "169e34eec2ce79385f7101164b461d37bb5a30c773409be30de376c6e6786b69",
+    "sources/e313dcc4700bdd2a64f41b3a113ddc0fa78eaf8630ad3180bfc0370c22eefd3e.json": "ad36a2f658ead38af2314f89b8e08f8205fc34d55f5e1110fcffcda958d67aa8",
+    "sources/e5e687a2dfa6bd7c6a596099dbc739173ed6dcb368977b65e7d8d79d1cc4d639.json": "6b3587bde765dc5510465ef1d07f9561f393836663679458818bd7f47a395e49",
+    "sources/f03aea78edcba95be1d87ecb108a46e13ef3d193579642c955e8cc2f92e0cec3.json": "c5a3f8820323be20dc889fa873a84385bded2a679eac078a45ede24184f91300",
+    "sources/f5989de4ea4432da947352cbc0d1e3b878fd6e36b842de42d2ed3f1751158360.json": "b933f70d4cab2c4a99847be62d947c559ac65cb1ded10d6a1df36ac76c4a616f",
+    "sources/ff971d803477bdb1ba24bc94bf5392681cd215c7d75c4fed58883630e3f09382.json": "18e7b0e8b121e2962255492d155844386d72cd9d14c4893b350e353446f79148"
+  },
+  "judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-continuation-choice-01-b/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-12T10:02:11.129181+00:00"
+}

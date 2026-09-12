@@ -1,0 +1,131 @@
+{
+  "evaluation_id": "continuation-choice-01-outcome",
+  "started_at_utc": "2026-09-12T10:35:26Z",
+  "ended_at_utc": "2026-09-12T10:38:40.637484+00:00",
+  "scope": "固定基準に沿う公開提出物の読み取り専用評価。コード・DB・台帳・正式採点・履歴は変更しない。個別カードの新しい答案は作らない。",
+  "protocol": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/continuation-choice-01/protocol.json",
+  "criteria_sha256": "f41951c03c66f81de0b0a59776262e3cdb0db7d5d4977108ea4f97a3a5505c45",
+  "prohibited_material_accessed": false,
+  "evidence": {
+    "base_revision": "data/discovery/explicit-finish-01-result/revision-0003.json",
+    "base_review": "data/discovery/explicit-finish-01-result/review-0003-a84ea0cd5fec2832.json",
+    "a_revision": "/tmp/sv-continuation-choice-01-a/session/revision-0004.json",
+    "a_review": "/tmp/sv-continuation-choice-01-a/session/review-0004-6a5a70e9d4a3a918.json",
+    "a_preregistered_source": "0cb65b93b2f777a0375a723482953c4f8081d788d80c85a82d438649b3bcba10",
+    "a_comparison_source": "8eaa0eeb011d816f13e750c3e754517345ced6b07bca6f0328b069b72044edeb",
+    "b_revision": "/tmp/sv-continuation-choice-01-b/session/revision-0004.json",
+    "b_review": "/tmp/sv-continuation-choice-01-b/session/review-0004-0b29fb1410f45f92.json",
+    "b_preregistered_source": "89b918306abc46b8c91a80c2153e47d1e7ae960870016f5ffd4e2b22ceec7f9a",
+    "b_comparison_source": "7cec6a0fb499abba72f99e216ea35880b23599c50611c939a2be450e5c35b866"
+  },
+  "preserved_official_scores": {
+    "parent_revision_3": {
+      "procedure": "conditional",
+      "value": "develop",
+      "novelty": "known"
+    },
+    "a_revision_4": {
+      "procedure": "supported",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    },
+    "b_revision_4": {
+      "procedure": "conditional",
+      "value": "develop",
+      "novelty": "unconfirmed"
+    }
+  },
+  "criteria": [
+    {
+      "number": 1,
+      "status": "未確認",
+      "observed": [
+        "両側に改訂4と改訂4の別評価が存在し、parent_revisionは3。",
+        "既知の保存済み入力を使う比較である。"
+      ],
+      "limits": [
+        "同一入力は親担当の照合済み事項として受領。各1回・時間上限・再試行なし・全旧資料保持の最終確認は親担当の時刻と操作件数の監査に委ねる。実行stdout.log/JSONLは閲覧していない。"
+      ]
+    },
+    {
+      "number": 2,
+      "status": "観測済み",
+      "basis": "親担当からA/Bの追加指示以外の入力・設定を同一確認済みと受領。本文上Bには直前の不足、判断を変え得る比較、分岐条件の事前記載があり、その比較結果への参照もある。",
+      "verification_scope": "実行手段・モデル設定の直接監査は行わず、親担当の確認に基づく。"
+    },
+    {
+      "number": 3,
+      "status": "未確認",
+      "a": {
+        "status": "未達",
+        "basis": "主比較の開始状態と終点は事前保存資料にあるが、内容は既に選んだ別核の比較である。直前の旧核の資源競合へ、新しい比較を通じて継続可否を判断する結び付きは見られない。旧核を撤回する判断自体は本文で説明している。"
+      },
+      "b": {
+        "status": "観測済み",
+        "basis": "事前資料は旧核の通常使用と取得・保持の競合を選び、ミロクを通常のPP回復に使う直前のT6から、同一手札・外部条件・終了時点で比較し、保持を正当化できなければ分岐すると明記。比較結果はこの問いに沿うG/P/F/Dを記載している。",
+        "time_limit": "事前資料本文の時刻は概時刻09:45。正確な保存順序は公開operationsによる親担当の照合待ち。本文中の事前記載だけで時系列を認定していない。"
+      }
+    },
+    {
+      "number": 4,
+      "status": "未達",
+      "observed": [
+        "Bは同じT6から取得G、通常PP使用P、森人F、共通除去Dを比較した。GとPの終点差は未使用2PPと手札妖精2枚であり、DやFで失う処理・盤面・守護・進化も記載した。",
+        "Aは別核の当ターンPP回復・生成・使用を同一のT8比較へ接続し、旧生成札の長期保持を前提から外した。Bも新核では当ターンに場へ出した札を使い、旧長期保持要求を外した。"
+      ],
+      "not_met": [
+        "旧案の取得・通常使用からT9の保持・決着までを同じ短い対応手順で接続した結果は両側ともない。BはT6終了時までしか保持を確認できないと明記し、Aも旧保持不足を未解決としている。"
+      ],
+      "integrity_notes": [
+        "新核への変更を旧保持問題の解消とは数えない。",
+        "Bの事前主比較の山札24→29は両側同時の計数訂正。手札・PP・盤面は増やしておらず、この訂正を採用価値の改善と数えていない。",
+        "指定開始状態の机上比較であり、その実戦頻度・勝率・将来の手札利益は両側とも未確認。完全な対戦履歴を新たな合格必須条件にしていない。"
+      ]
+    },
+    {
+      "number": 5,
+      "status": "観測済み",
+      "a": {
+        "basis": "Aも新核の同じ手札による複数通常線との比較を、1枠候補と用途の限定へ反映した。ただし別評価は、開始条件で排除されていない敵の配置なら通常側にも全処理できる行動順があると訂正し、主比較の追加除去を一般的な利益とは支持しなかった。旧核の撤回には旧不足が未解決という理由があるが、旧資源競合の新しい対応比較はない。"
+      },
+      "b": {
+        "basis": "Bで新しく具体化した根拠は、生成の追加費用がこの局面では未使用2PPで済む一方、同じ手札の通常処理Dなら敵2体を処理して盤面を残せるという選択の競合である。結果資料冒頭と改訂4のchange/plan.comparisonはこれを旧核の継続見送りへ結び付ける。別評価の「進歩と残件」もこの費用と未解決の保持を確認し、新核が長期保持要求を外したことを設計上の変更と支持する。",
+        "additional_basis": "新核でも通常N1が同じ全処理とSEP温存を持つと自ら照合し、利益をセタス保持・生成手札への移動に限定して採用推奨を保留した。別評価も利益の限定とdevelop維持を支持する。RTで本体を全て失うという費用は別評価で訂正されたため、その費用額までは支持済み扱いにしない。"
+      },
+      "separation": "観測されたのは判断の根拠を具体化する寄与。案そのものを試す推薦はA/Bともまだ得られていない。"
+    },
+    {
+      "number": 6,
+      "status": "観測済み",
+      "decision": "本採用保留。Bは旧核の継続可否を具体的な比較に結び付ける手順に限定した採用候補。",
+      "basis": "Bには、Aに見られない旧資源競合の新しい対応比較と、その結果から旧核の微調整を見送る説明がある。単なる資料増・別仮説への変更・同じdevelop点数を理由にせず、この根拠から判断への結び付きを限定的寄与とする。Aも自律的に分岐できたため、Bが分岐を可能にしたとは言えず、探索先や案の価値がAより良いという証拠もない。保存順序等の実行条件が親監査で成立したことを採用候補の前提とする。"
+    },
+    {
+      "number": 7,
+      "status": "観測済み",
+      "basis": "両側は旧案をknown単独で棄却せず、通常用途との資源競合を理由に撤回した。旧成立と未解決事項を本文で保持し、新核の独自性は未確認としている。各1入力1回で担当差と一般的な発見力は切り分けられない。正式旧採点はこの評価で一切変更していない。",
+      "limit": "全旧ファイルのハッシュ保持は親担当が確認する。"
+    }
+  ],
+  "method_decision": {
+    "full_adoption": "保留",
+    "limited_candidate": "Bの「直前の不足へ答え得る比較を先に選び、結果から継続・分岐の理由を説明する」部分。公開保存順序の確認を前提とする。",
+    "what_is_not_established": [
+      "BがAより価値の高い案を作ること。",
+      "旧核の通常使用から長期保持までの接続。",
+      "新核の1枠を実際に試す価値、独自性、勝率。",
+      "一度の担当差を超えた一般的効果。"
+    ],
+    "common_remaining_problems": [
+      "新しい案でも比較上の試用理由は不足し、通常の用途との交換損失と同時に札を持つ条件が残る。",
+      "同じ開始状態内での行動順の点検が不十分。Aは通常側の追加の処理線を見落とし、Bは案側RTの本体全損を不可避の費用にしていた。これは既存別評価の指摘であり、本評価が新しいカード答案を追加したものではない。",
+      "指定状態の比較から、保持手札や序盤枠を失う代価の価値判断へつながる根拠がまだ不足する。未確認の将来利益を加算して解消した扱いにはしていない。"
+    ]
+  },
+  "next_minimal_system_change_candidate": {
+    "count": 1,
+    "proposal": "正式提出前に、同じ開始状態のまま行動順を変える反例点検を1回入れ、通常側の代替手順や案側の不要な損失が見つかったら比較と判断文へ戻す。",
+    "reason": "A/Bとも別評価で初めて見つかった行動順の問題へ直接対応する。新しい有利な手札・PP・敵条件を作る工程や完全な対戦履歴の義務にはしない。",
+    "implementation_status": "候補のみ。実装・再実行・モデル変更は行っていない。"
+  }
+}

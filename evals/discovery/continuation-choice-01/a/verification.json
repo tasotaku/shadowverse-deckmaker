@@ -1,0 +1,79 @@
+{
+  "side": "a",
+  "stages": [
+    {
+      "stage": "develop",
+      "started_at": "2026-09-12T09:37:36.999188+00:00",
+      "ended_at": "2026-09-12T09:52:05.295876+00:00",
+      "wall_seconds": 868.296688,
+      "monitor_seconds": 868.3182259998284,
+      "status": "finished_by_request",
+      "public_operations": 39,
+      "errors": [
+        {
+          "args": [
+            "submit",
+            "proposal.json"
+          ],
+          "exit_code": 2,
+          "started_at": "2026-09-12T09:51:24.721870+00:00",
+          "ended_at": "2026-09-12T09:51:24.790664+00:00",
+          "stderr": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+        }
+      ],
+      "finish_to_stage_end_seconds": 0.590558,
+      "recheck_engine_additions": [
+        "packets/7cff8d9d15cdd9f9c02f9322e1c0af8fd80296684c09bf88c9e7d7a2ae78cfea.json"
+      ],
+      "finish_revalidated": true,
+      "final_message_exists": false
+    },
+    {
+      "stage": "review",
+      "started_at": "2026-09-12T09:52:05.896725+00:00",
+      "ended_at": "2026-09-12T09:57:37.731453+00:00",
+      "wall_seconds": 331.834728,
+      "monitor_seconds": 331.57379295816645,
+      "status": "finished_by_request",
+      "public_operations": 16,
+      "errors": [],
+      "finish_to_stage_end_seconds": 0.444488,
+      "recheck_engine_additions": [],
+      "finish_revalidated": true,
+      "final_message_exists": false
+    }
+  ],
+  "judgment": {
+    "procedure": "supported",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "new_sources": [
+    {
+      "hash": "0cb65b93b2f777a0375a723482953c4f8081d788d80c85a82d438649b3bcba10",
+      "title": "改訂4の正式判断前に固定した開始状態と終点",
+      "kind": "作成した比較条件・推論の前提",
+      "observed_at": null
+    },
+    {
+      "hash": "8eaa0eeb011d816f13e750c3e754517345ced6b07bca6f0328b069b72044edeb",
+      "title": "リコリス1枠への分岐：参考40枚・同一8PP比較と失うバリア",
+      "kind": "固定能力から作成した比較・推論",
+      "observed_at": null
+    },
+    {
+      "hash": "d3f438ea2cfb6310f7ea0bdef332d335453c840dd7d9133ff6e8b116ded5b67b",
+      "title": "改訂4の初回観測と提出準備終了時の時計比較",
+      "kind": "時計の直接観測記録",
+      "observed_at": null
+    }
+  ],
+  "formal_proposals": 1,
+  "formal_reviews": 1,
+  "source_and_runtime_unchanged": true,
+  "old_formal_files_preserved": true,
+  "formal_and_finish_revalidated": true,
+  "copied_session_identical": true,
+  "review_previous_reviews_empty": true,
+  "ended_to_collection_start_seconds": 2347.4805
+}
