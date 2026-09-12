@@ -1,9 +1,9 @@
 {
   "id": "inquiry-to-revision-01",
-  "revision": 8,
-  "saved_at": "2026-09-12T05:47:16.874401+00:00",
+  "revision": 11,
+  "saved_at": "2026-09-12T05:56:59.795995+00:00",
   "actor": "codex",
-  "reason": "改訂1件を回収し、期限停止・別評価未実施を保持して採用保留",
+  "reason": "訂正した現在状態の表記を限定再確認。元のFAILと採用保留は保持",
   "record": {
     "id": "inquiry-to-revision-01",
     "title": "保存した追加調査を、案の改善へ使えるか",
@@ -24,7 +24,7 @@
       "reason": "固定した条件のうち、独立評価で判断改善を裏付ける工程が未実施。期限停止を成功へ読み替えない。"
     },
     "started_at": "2026-09-12T04:07:30.695244+00:00",
-    "ended_at": "2026-09-12T05:47:16.827476+00:00",
+    "ended_at": "2026-09-12T05:56:59.776313+00:00",
     "stages": [
       {
         "id": "setup",
@@ -70,6 +70,24 @@
         "ended_at": "2026-09-12T05:47:16.827476+00:00",
         "note": "最初の結果確認時刻の観測から記録保存まで。新案の独立評価は行っていない。実行終了からの待ち時間は別記。",
         "budget_minutes": 8
+      },
+      {
+        "id": "final-reader",
+        "title": "結果報告と進捗本文の表記を別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-12T05:53:38+00:00",
+        "ended_at": "2026-09-12T05:54:34+00:00",
+        "note": "56秒。数字と結果は整合するが、後続作業の「実装はまだ」という表記をFAIL。実装着手・未採用へ訂正。元のFAIL所見を保持。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "reader-correction",
+        "title": "指摘された現在状態の表記を再確認",
+        "status": "completed",
+        "started_at": "2026-09-12T05:55:59+00:00",
+        "ended_at": "2026-09-12T05:56:13+00:00",
+        "note": "14秒でPASS。該当箇所だけを再確認。元のFAILと案の未評価を保持。",
+        "budget_minutes": 0.5
       }
     ],
     "evidence_paths": [
@@ -92,14 +110,16 @@
       "evals/discovery/inquiry-to-revision-01/develop/public-operations.json.gz",
       "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
       "evals/discovery/inquiry-to-revision-01/develop/submission-verification.json",
-      "evals/discovery/inquiry-to-revision-01/develop/run-timing.json"
+      "evals/discovery/inquiry-to-revision-01/develop/run-timing.json",
+      "evals/discovery/inquiry-to-revision-01/final-reader.json",
+      "evals/discovery/inquiry-to-revision-01/reader-correction.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-to-revision-01/README.md",
-      "sha256": "8d9095e7028e4b72fb0a21bbed8d46e89ae306aba1b4ffd5bdb575f04dc8931e",
-      "size": 3744
+      "sha256": "110b781bb8edd83a6c9495e57e84f3e7d0504a1b4316298b1cd9629c514ba66a",
+      "size": 3819
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
@@ -142,6 +162,11 @@
       "size": 702
     },
     {
+      "path": "evals/discovery/inquiry-to-revision-01/final-reader.json",
+      "sha256": "5fd9cb85162416ca4c330df8a5f9993977ba3a2d0b829e8fd4f7eb0661e4ecce",
+      "size": 3133
+    },
+    {
       "path": "evals/discovery/inquiry-to-revision-01/handoff-check.json",
       "sha256": "eecb5975ba59d415ae797febd17e6adb155f95c083d038b0b01f2e6f88092d68",
       "size": 1153
@@ -163,8 +188,8 @@
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/power-release-check.json",
-      "sha256": "128e74569bbd2284b1fe7472155ba9607e27f6371ec217a00faf5ed858db4bf1",
-      "size": 447
+      "sha256": "492c96b76b662dfb69bc4ced6b6cf11b34758ed7eeb40cf54047522a0a97ecac",
+      "size": 638
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/progress-reader.json",
@@ -175,6 +200,11 @@
       "path": "evals/discovery/inquiry-to-revision-01/protocol.json",
       "sha256": "e99fa71143f6a7f74e11035b91f8f1b9556c8cbc1efd54e5f985bc986cf5f58d",
       "size": 2551
+    },
+    {
+      "path": "evals/discovery/inquiry-to-revision-01/reader-correction.json",
+      "sha256": "fb4fefdf22d8cba05f048d5c3db98930c62eae9de36c165dc7c91e67cef93563",
+      "size": 918
     },
     {
       "path": "evals/discovery/inquiry-to-revision-01/report.json",
@@ -198,6 +228,24 @@
     }
   ],
   "history": [
+    {
+      "revision": 11,
+      "saved_at": "2026-09-12T05:56:59.795995+00:00",
+      "actor": "codex",
+      "reason": "訂正した現在状態の表記を限定再確認。元のFAILと採用保留は保持"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-12T05:55:40.037665+00:00",
+      "actor": "codex",
+      "reason": "読者点検のFAILを保存し、後続の実装が進行中である表記へ訂正"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-12T05:54:18.201859+00:00",
+      "actor": "codex",
+      "reason": "結果保存時の一時抑止を解除して不在を確認。元の実行・工程日時は維持"
+    },
     {
       "revision": 8,
       "saved_at": "2026-09-12T05:47:16.874401+00:00",

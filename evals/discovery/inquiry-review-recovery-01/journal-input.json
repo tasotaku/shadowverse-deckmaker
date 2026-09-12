@@ -2,46 +2,76 @@
   "id": "inquiry-review-recovery-01",
   "title": "保存済みの改訂案を、作り直さず別評価する",
   "category": "method",
-  "status": "running",
-  "summary": "条件を固定。保存済みの改訂2を、既存の別評価再開入口へ渡して1回評価する。",
+  "status": "completed",
+  "summary": "別評価は約7分20秒で正常終了。指定手順と温存を外す変更は支持されたが、中盤の損失と狭い条件が残り、方法の採用は保留。",
   "method": "保存済みの改訂2を、既存の別評価再開入口へ渡して1回評価する。",
   "procedure": "元の失敗と原案・旧評価を保存し、新しい評価担当を1回だけ起動する。改訂はしない。\n通常のreview-only公開入口で最新版2の正式案を評価。旧採点は評価用入力から隔離する。10分で未完なら停止し、この試行内で再試行しない。\n別評価の成立性・試す価値・独自性と理由を確認し、追加資料を使った変更の有用性が支持された範囲だけを記録する。\n元の15分期限停止や未実施工程を成功に変更せず、新しい評価の開始・終了を別記する。1入力だけで発見力の一般的改善や全体完成は認定しない。",
   "inputs": "data/discovery/inquiry-to-revision-01-partial",
   "criteria": "元の失敗と原案・旧評価を保存し、新しい評価担当を1回だけ起動する。改訂はしない。\n通常のreview-only公開入口で最新版2の正式案を評価。旧採点は評価用入力から隔離する。10分で未完なら停止し、この試行内で再試行しない。\n別評価の成立性・試す価値・独自性と理由を確認し、追加資料を使った変更の有用性が支持された範囲だけを記録する。\n元の15分期限停止や未実施工程を成功に変更せず、新しい評価の開始・終了を別記する。1入力だけで発見力の一般的改善や全体完成は認定しない。",
   "result": {
-    "outcome": "unassessed",
-    "summary": "未判定。",
-    "limitations": "元の試行は採用保留。今回は失敗後の回復で、同時対照なし。新しい提出終了方式とは別の実装・試行。"
+    "outcome": "mixed",
+    "summary": "正式評価1件。手順は支持、価値は追加検討。先例のある中核としてknownだが一般普及は未確認。新規改訂0件。",
+    "limitations": "同時対照なし。保存出典の範囲の評価で、実戦・一般普及・発見力の一般的改善は未認定。"
   },
   "decision": {
-    "status": "unassessed",
-    "reason": "確認結果から限定した採否を決める。"
+    "status": "deferred",
+    "reason": "別評価は正常終了し、改訂で進化権と特定札の温存を外した点と、指定状態の手順は支持された。一方、必要PP増加・成立局面の狭さ・交換札が担う中盤の役割を失う負担が残り、比較試用の推薦には届かなかった。"
   },
   "started_at": "2026-09-12T05:49:51.172585+00:00",
-  "ended_at": null,
+  "ended_at": "2026-09-12T06:58:42.507361+00:00",
   "stages": [
     {
       "id": "prepare",
       "title": "保存案と別評価の条件を固定",
       "status": "completed",
       "started_at": "2026-09-12T05:49:51.172585+00:00",
-      "ended_at": "2026-09-12T05:49:51.172585+00:00",
-      "note": "改訂2の正式保存条件を再検査。既存の実装を固定して使う。",
+      "ended_at": "2026-09-12T05:49:51.540966+00:00",
+      "note": "改訂2の正式保存条件を再検査。既存の実装を固定して使う。 準備終了は新規台帳の実保存時刻を採用。開始と同値だった初回の終了表記を実記録へ訂正。",
       "budget_minutes": 3
     },
     {
       "id": "live-review",
       "title": "保存済みの新案を別担当が評価",
-      "status": "planned",
-      "started_at": null,
-      "ended_at": null,
-      "note": "10分上限で1回。未実施時刻を補わない。",
+      "status": "completed",
+      "started_at": "2026-09-12T05:50:34.564846+00:00",
+      "ended_at": "2026-09-12T05:57:53.870023+00:00",
+      "note": "10分上限で1回。未実施時刻を補わない。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-review-recovery-01/review-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
       "budget_minutes": 10
+    },
+    {
+      "id": "save-result",
+      "title": "評価と保持検査の結果を保存",
+      "status": "completed",
+      "started_at": "2026-09-12T06:52:26.616465+00:00",
+      "ended_at": "2026-09-12T06:52:27.506916+00:00",
+      "note": "保存工程の開始・終了を記録。前段の評価内容の読解開始は別途計測していない。実行終了から回収までの時刻差はverification.jsonに保持。",
+      "budget_minutes": 5
+    },
+    {
+      "id": "reader",
+      "title": "概要だけを別担当が読み、結論と限界を確認",
+      "status": "completed",
+      "started_at": "2026-09-12T06:55:50+00:00",
+      "ended_at": "2026-09-12T06:56:32+00:00",
+      "note": "42秒でPASS。採用保留と理由を読めた。本文の略号を平易化し、固定条件と具体的な評価への参照を追加。カード内容の正しさの点検ではない。",
+      "budget_minutes": 1.5
     }
   ],
   "evidence_paths": [
     "evals/discovery/inquiry-review-recovery-01/protocol.json",
     "evals/discovery/inquiry-review-recovery-01/README.md",
-    "evals/discovery/inquiry-review-recovery-01/input-check.json"
+    "evals/discovery/inquiry-review-recovery-01/input-check.json",
+    "evals/discovery/inquiry-review-recovery-01/power-scope.json",
+    "evals/discovery/inquiry-review-recovery-01/result.json",
+    "evals/discovery/inquiry-review-recovery-01/report.json",
+    "evals/discovery/inquiry-review-recovery-01/verification.json",
+    "evals/discovery/inquiry-review-recovery-01/evaluation.json",
+    "evals/discovery/inquiry-review-recovery-01/session.tar.gz",
+    "evals/discovery/inquiry-review-recovery-01/review/review.json",
+    "evals/discovery/inquiry-review-recovery-01/review/run.json",
+    "evals/discovery/inquiry-review-recovery-01/review/public-operations.json.gz",
+    "evals/discovery/inquiry-review-recovery-01/review/final-message.md",
+    "evals/discovery/inquiry-review-recovery-01/reader.json",
+    "evals/discovery/inquiry-review-recovery-01/report-power-release.json"
   ]
 }

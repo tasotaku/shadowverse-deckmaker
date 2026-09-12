@@ -18,7 +18,7 @@
     "reason": "固定した条件のうち、独立評価で判断改善を裏付ける工程が未実施。期限停止を成功へ読み替えない。"
   },
   "started_at": "2026-09-12T04:07:30.695244+00:00",
-  "ended_at": "2026-09-12T05:47:16.827476+00:00",
+  "ended_at": "2026-09-12T05:56:59.776313+00:00",
   "stages": [
     {
       "id": "setup",
@@ -64,6 +64,24 @@
       "ended_at": "2026-09-12T05:47:16.827476+00:00",
       "note": "最初の結果確認時刻の観測から記録保存まで。新案の独立評価は行っていない。実行終了からの待ち時間は別記。",
       "budget_minutes": 8
+    },
+    {
+      "id": "final-reader",
+      "title": "結果報告と進捗本文の表記を別担当が点検",
+      "status": "completed",
+      "started_at": "2026-09-12T05:53:38+00:00",
+      "ended_at": "2026-09-12T05:54:34+00:00",
+      "note": "56秒。数字と結果は整合するが、後続作業の「実装はまだ」という表記をFAIL。実装着手・未採用へ訂正。元のFAIL所見を保持。",
+      "budget_minutes": 2
+    },
+    {
+      "id": "reader-correction",
+      "title": "指摘された現在状態の表記を再確認",
+      "status": "completed",
+      "started_at": "2026-09-12T05:55:59+00:00",
+      "ended_at": "2026-09-12T05:56:13+00:00",
+      "note": "14秒でPASS。該当箇所だけを再確認。元のFAILと案の未評価を保持。",
+      "budget_minutes": 0.5
     }
   ],
   "evidence_paths": [
@@ -86,6 +104,8 @@
     "evals/discovery/inquiry-to-revision-01/develop/public-operations.json.gz",
     "evals/discovery/inquiry-to-revision-01/develop/author-final-note.md",
     "evals/discovery/inquiry-to-revision-01/develop/submission-verification.json",
-    "evals/discovery/inquiry-to-revision-01/develop/run-timing.json"
+    "evals/discovery/inquiry-to-revision-01/develop/run-timing.json",
+    "evals/discovery/inquiry-to-revision-01/final-reader.json",
+    "evals/discovery/inquiry-to-revision-01/reader-correction.json"
   ]
 }
