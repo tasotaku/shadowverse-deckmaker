@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-09-12T04:07:30.695244+00:00",
+  "previous_task_pids": [
+    33032,
+    38841
+  ],
+  "processes_present": false,
+  "signal_sent": false,
+  "assertions": "2026-09-12 13:07:30 +0900 \nAssertion status system-wide:\n   BackgroundTask                 1\n   ApplePushServiceTask           0\n   UserIsActive                   0\n   PreventUserIdleDisplaySleep    0\n   SoftwareUpdateTask             0\n   PreventSystemSleep             0\n   ExternalMedia                  0\n   PreventUserIdleSystemSleep     0\n   NetworkClientActive            0\n   InternalPreventSleep           1\nListed by owning process:\n   pid 573(apsd): [0x00232e1e000ba1a1] 00:00:13 ApplePushServiceTask named: \"com.apple.apsd-waitingformessages-push.apple.com\"  \n\tTimeout will fire in 6 secs Action=<unknown action>\n   pid 573(apsd): [0x00232e1e000ba1a4] 00:00:13 ApplePushServiceTask named: \"com.apple.apsd-waitingformessages-push.apple.com\"  \n\tTimeout will fire in 6 secs Action=<unknown action>\n   pid 573(apsd): [0x00232e1e000ba1a6] 00:00:13 ApplePushServiceTask named: \"com.apple.apsd-waitingformessages-push.apple.com\"  \n\tTimeout will fire in 6 secs Action=<unknown action>\n   pid 544(powerd): [0x00232e0a000da195] 00:00:34 InternalPreventSleep named: \"com.apple.powermanagement.acwakelinger\"  \n\tTimeout will fire in 11 secs Action=TimeoutActionRelease\nKernel Assertions: 0x100=MAGICWAKE\n   id=541  level=255 0x100=MAGICWAKE creat=2026/07/17 2:18  mod=2026/09/08 13:24 description=en0 owner=IOSkywalkNetworkBSDClient\n",
+  "limits": "この観測時点で両プロセスは存在せず、今回の抑止は残っていない。正確な終了時刻と終了理由は観測していない。後から終了時刻を補完しない。"
+}

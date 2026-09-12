@@ -1,9 +1,9 @@
 {
   "id": "novelty-followup-01",
-  "revision": 11,
-  "saved_at": "2026-09-11T15:53:05.980846+00:00",
+  "revision": 12,
+  "saved_at": "2026-09-12T04:07:30.742161+00:00",
   "actor": "codex",
-  "reason": "出典照合と7資料を確認し、任意の調査接続として採用。全工程の実時刻と待ち時間を確定",
+  "reason": "前回の一時的なスリープ抑止が残っていないことを確認。元の工程時刻と結果は保持",
   "record": {
     "id": "novelty-followup-01",
     "title": "比較試用の後に使い方の先例と普及を調べる",
@@ -116,14 +116,15 @@
       "evals/discovery/novelty-followup-01/inspect/input-summary.json",
       "evals/discovery/novelty-followup-01/inspect/prompt.md",
       "evals/discovery/novelty-followup-01/inspect/public-operations.json.gz",
-      "evals/discovery/novelty-followup-01/inspect/final-message.md"
+      "evals/discovery/novelty-followup-01/inspect/final-message.md",
+      "evals/discovery/novelty-followup-01/power-release-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/novelty-followup-01/README.md",
-      "sha256": "66636dd823ddf7f0a0ed3a7e4098f7f8d0d21ad0b03292179ed8f7497cef9174",
-      "size": 9079
+      "sha256": "e7c36d67f7b899e1e156e93d575f62c8ffb884f3056b644df3265a1bb13dfe66",
+      "size": 9196
     },
     {
       "path": "evals/discovery/novelty-followup-01/additional-sources.json",
@@ -241,6 +242,11 @@
       "size": 419
     },
     {
+      "path": "evals/discovery/novelty-followup-01/power-release-check.json",
+      "sha256": "cf4ad292582427824a1f9a9665d4b75746d1eca3106ae10df7b2621f5ee85847",
+      "size": 1763
+    },
+    {
       "path": "evals/discovery/novelty-followup-01/protocol.json",
       "sha256": "6c8751d011811a0a5f8fb5d1e3b8536772d4ab2d4c049edca4f492c03b53b14b",
       "size": 2498
@@ -297,6 +303,12 @@
     }
   ],
   "history": [
+    {
+      "revision": 12,
+      "saved_at": "2026-09-12T04:07:30.742161+00:00",
+      "actor": "codex",
+      "reason": "前回の一時的なスリープ抑止が残っていないことを確認。元の工程時刻と結果は保持"
+    },
     {
       "revision": 11,
       "saved_at": "2026-09-11T15:53:05.980846+00:00",

@@ -1,0 +1,58 @@
+{
+  "id": "inquiry-to-revision-01",
+  "title": "保存した追加調査を、案の改善へ使えるか",
+  "category": "method",
+  "status": "running",
+  "summary": "入力と実装を固定。通常の改訂1回と独立評価1回を公開入口から実行する。",
+  "method": "追加調査と別照合を保存した既存入力を、通常の改訂・独立評価の公開入口へ渡す。新しい指示やカード答案を追加せず、各工程を一度だけ実行する。",
+  "procedure": "1. 既存入力・実装・判定条件を固定。\n2. 通常の公開入口で改訂を1回実行。\n3. 旧評価を隔離し、別担当が新案を1回評価。\n4. 元案との差と根拠の対応を点検し、方法の採否と時間を記録する。",
+  "inputs": "data/discovery/novelty-followup-01-result。保存済みの正式案1件・別評価1件と追加調査7資料を含む入力。",
+  "criteria": "保存済みの追加調査が改訂用の入力に含まれ、正式案と別評価を各1件まで保存できる。原案・旧評価・元資料・固定実装を変更しない。\n先例・同じ用途・一般的普及・不明な範囲を混同せず、調査の限界と矛盾を保持する。未発見や細かな枚数差を独自性の証拠にしない。\n追加資料から得た事実が、使い方・構成・採用条件または見送り判断へ具体的に反映されたか、元案との差と新しい別評価で確認する。資料を引用しただけでは改善と数えない。\n通常構築との同じ開始状態での比較が成立し、得る利益・失う役割・残る未確認を示せるか確認する。\n方式の有用性は、具体的な判断改善が根拠と別評価で支持された範囲に限る。実行成功だけでは採用しない。改善なし・未提出・誤りの持越しでは保留とし、理由を残す。",
+  "result": {
+    "outcome": "unassessed",
+    "summary": "準備完了。改訂と別評価は未判定。",
+    "limitations": "同じ案の前後比較で同時対照なし。機能の動作と方法の有用性は別に判断する。"
+  },
+  "decision": {
+    "status": "unassessed",
+    "reason": "新案と別評価を観測してから判断する。"
+  },
+  "started_at": "2026-09-12T04:07:30.695244+00:00",
+  "ended_at": null,
+  "stages": [
+    {
+      "id": "setup",
+      "title": "入力・実装・判断条件を固定",
+      "status": "completed",
+      "started_at": "2026-09-12T04:07:30.695244+00:00",
+      "ended_at": "2026-09-12T04:45:13.732153+00:00",
+      "note": "元入力20資料・正式案1件・別評価1件と実装41ファイルを固定。台帳新規作成で版指定の誤りが1回あり、0へ訂正して保存。入力や判定基準は再作成していない。 開始終了差2263.037秒のうち2050.000秒は閉じたOSスリープ区間との重なり。担当の実行時間とは分ける。",
+      "budget_minutes": 10
+    },
+    {
+      "id": "live-develop",
+      "title": "保存資料を使って案を改訂",
+      "status": "running",
+      "started_at": "2026-09-12T04:45:49.363907+00:00",
+      "ended_at": null,
+      "note": "既存の公開入口を1回実行。実時刻を自動記録。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-to-revision-01/develop-run",
+      "budget_minutes": 15
+    },
+    {
+      "id": "live-review",
+      "title": "新しい案を別担当が評価",
+      "status": "planned",
+      "started_at": null,
+      "ended_at": null,
+      "note": "旧評価を隔離した公開入力で1回実行。",
+      "budget_minutes": 10
+    }
+  ],
+  "evidence_paths": [
+    "evals/discovery/inquiry-to-revision-01/README.md",
+    "evals/discovery/inquiry-to-revision-01/protocol.json",
+    "evals/discovery/inquiry-to-revision-01/input-check.json",
+    "evals/discovery/inquiry-to-revision-01/power-observation.json",
+    "evals/discovery/inquiry-to-revision-01/workflow-checkpoint.json"
+  ]
+}
