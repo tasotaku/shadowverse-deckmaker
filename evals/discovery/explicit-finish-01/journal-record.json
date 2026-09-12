@@ -1,30 +1,30 @@
 {
   "id": "explicit-finish-01",
-  "revision": 8,
-  "saved_at": "2026-09-12T08:03:48.489138+00:00",
+  "revision": 15,
+  "saved_at": "2026-09-12T09:36:26.231123+00:00",
   "actor": "codex",
-  "reason": "経過報告の初見確認も実際の開始終了時刻で工程へ記録",
+  "reason": "初見確認の実時刻を正規表記で保存し、報告保存の二つの拒否と修正も記録",
   "record": {
     "id": "explicit-finish-01",
     "title": "提出を終えたことを明示し、次の工程へ渡す",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "本体へ反映後の171検査と型検査が合格。16:59:43から実AIの改訂が進行中。続く別評価の回収と明示終了の確認は未完了で採用未判定。",
+    "status": "completed",
+    "summary": "実AIの改訂13分29秒・別評価6分13秒が明示終了で完了。正式1案・別評価1件を回収し、終了と引き渡しの補助を採用。案の試用推薦は0件。",
     "method": "担当の明示操作と保存内容の再検査を結び、自然終了を待つだけで期限停止する問題を修正する。",
     "procedure": "既定の自然終了・期限・中断・失敗の挙動を維持する。新方式は明示した任意の設定で使う。旧失敗へ遡って適用しない。\npublic.py finish の明示操作を追加。今回の正式提出・入力・担当の対応と提出後reportを検査し、提出途中やreportだけでは終了しない。\n監視側は明示完了を期限内に確認し、自然終了とは別の終了理由と実際の子終了コードを記録する。期限・外部中断・非0終了を成功へ変更しない。\n終了要求後は正式保存物・固定入力の変更を拒否し、停止後に同一内容を再検査する。プロセス群の残留も上限付きで確認し、停止未確認なら次へ進めない。\n機能・型検査は未提出、古い完了要求、壊れた要求、入力改変、終了中の追加提出、期限競合、中断、非0終了、子群残留、台帳反映失敗を扱う。合成の公開入口で後続工程への接続を確認する。\n機能検査だけでは採用しない。実AIの公開入口で、明示完了の観測・停止後の保持・後続工程への接続を確認した範囲でのみ実行補助として採用する。実戦の強さや発見力は別判定。",
     "inputs": "現行の discovery_run.py / worker.py / worker_journal.py と inquiry-to-revision-01 の公開提出・停止記録。カード答案は入力しない。\n実AI確認は保存済み inquiry-review-recovery-01-result の改訂2と別評価。詳細と不変確認用の識別値は live-protocol.json。",
     "criteria": "既定の自然終了・期限・中断・失敗の挙動を維持する。新方式は明示した任意の設定で使う。旧失敗へ遡って適用しない。\npublic.py finish の明示操作を追加。今回の正式提出・入力・担当の対応と提出後reportを検査し、提出途中やreportだけでは終了しない。\n監視側は明示完了を期限内に確認し、自然終了とは別の終了理由と実際の子終了コードを記録する。期限・外部中断・非0終了を成功へ変更しない。\n終了要求後は正式保存物・固定入力の変更を拒否し、停止後に同一内容を再検査する。プロセス群の残留も上限付きで確認し、停止未確認なら次へ進めない。\n機能・型検査は未提出、古い完了要求、壊れた要求、入力改変、終了中の追加提出、期限競合、中断、非0終了、子群残留、台帳反映失敗を扱う。合成の公開入口で後続工程への接続を確認する。\n機能検査だけでは採用しない。実AIの公開入口で、明示完了の観測・停止後の保持・後続工程への接続を確認した範囲でのみ実行補助として採用する。実戦の強さや発見力は別判定。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定。",
-      "limitations": "旧失敗は保持。実装・合成検査・実AI確認を分けて記録し、今回の案の評価再開とは別試行にする。"
+      "outcome": "pass",
+      "summary": "終了操作の受付後0.535秒・0.446秒で工程完了。入力・旧保存・実装の保持と正式提出を再検査。公開85操作のヘルプ1失敗は修正後39検査で確認。",
+      "limitations": "既知入力1件の実行補助の確認。案はconditional/develop/knownで試用推薦0。実行終了から回収開始の68分24秒と、最初の回収処理の失敗も保持。ヘルプ修正後の実AI再実行なし。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "確認結果から限定した採否を決める。"
+      "status": "adopted",
+      "reason": "実AIの正式提出・終了明示・停止後保持・次工程への引き渡しを確認できたため、任意の実行補助として採用。カード案の有用性とシステム完成は認定しない。"
     },
     "started_at": "2026-09-12T05:44:13+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-12T09:33:39.870535+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -56,20 +56,20 @@
       {
         "id": "live-develop",
         "title": "実AIで改訂を提出して終了を明示",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T07:59:43.852347+00:00",
-        "ended_at": null,
+        "ended_at": "2026-09-12T08:13:12.984081+00:00",
         "budget_minutes": 15,
-        "note": "既知の改訂2と別評価を入力に、改訂1件まで。終了処理の実利用検証。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/develop-run"
+        "note": "既知の改訂2と別評価を入力に、改訂1件まで。終了処理の実利用検証。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。"
       },
       {
         "id": "live-review",
         "title": "続く別評価を提出して終了を明示",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
+        "status": "completed",
+        "started_at": "2026-09-12T08:13:13.557387+00:00",
+        "ended_at": "2026-09-12T08:19:26.866152+00:00",
         "budget_minutes": 10,
-        "note": "新しい改訂を別担当で評価。旧評価は渡さない。"
+        "note": "新しい改訂を別担当で評価。旧評価は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。"
       },
       {
         "id": "postfix-review",
@@ -88,6 +88,42 @@
         "ended_at": "2026-09-12T08:02:34.734149+00:00",
         "budget_minutes": 2,
         "note": "40.2秒、PASS。成果・未確認・次工程を判別できた。カードや数字の事実確認ではない。"
+      },
+      {
+        "id": "collect-results",
+        "title": "正式保存・停止後保持を照合して回収",
+        "status": "completed",
+        "started_at": "2026-09-12T09:27:50.967159+00:00",
+        "ended_at": "2026-09-12T09:27:52.478131+00:00",
+        "budget_minutes": 8,
+        "note": "元入力・実装・旧正式保存の保持、公開finishと停止後再検査、別評価への引き渡しを確認。最初の結果読出しはこの工程の前で、開始時刻は別計測していない。"
+      },
+      {
+        "id": "adoption-report",
+        "title": "採用範囲と未解決の点を報告へまとめる",
+        "status": "completed",
+        "started_at": "2026-09-12T09:31:51.941574+00:00",
+        "ended_at": "2026-09-12T09:33:39.870535+00:00",
+        "budget_minutes": 8,
+        "note": "終了機能の採用と案の追加検討を分け、実行・回収の時計差を残す。"
+      },
+      {
+        "id": "system-outcome",
+        "title": "案に残った不足を仕組みの改善へ返す",
+        "status": "completed",
+        "started_at": "2026-09-12T09:27:50+00:00",
+        "ended_at": "2026-09-12T09:30:58.979347+00:00",
+        "budget_minutes": 4,
+        "note": "188.98秒。既存指示で行われた比較と、通常使用から終盤保持へつながらない不足を区別。同核を続ける判断を比較1件へ結ぶ候補を提案。実装は別試行。"
+      },
+      {
+        "id": "adoption-reader",
+        "title": "採用報告を初見の別担当が読む",
+        "status": "completed",
+        "started_at": "2026-09-12T09:32:15+00:00",
+        "ended_at": "2026-09-12T09:32:53+00:00",
+        "budget_minutes": 2,
+        "note": "38秒、PASS。限定採用と未完成、実行・回収の時計差、ヘルプ修正後の実AI未確認を読み分けた。原文のUTC時刻をISO形式へ変換。"
       }
     ],
     "evidence_paths": [
@@ -103,19 +139,63 @@
       "evals/discovery/explicit-finish-01/live-start.json",
       "evals/discovery/explicit-finish-01/postfix-review.json",
       "evals/discovery/explicit-finish-01/progress-reader.json",
-      "evals/discovery/explicit-finish-01/report-power-release.json"
+      "evals/discovery/explicit-finish-01/report-power-release.json",
+      "evals/discovery/explicit-finish-01/verification.json",
+      "evals/discovery/explicit-finish-01/collection-recheck.json",
+      "evals/discovery/explicit-finish-01/result.json",
+      "evals/discovery/explicit-finish-01/report.json",
+      "evals/discovery/explicit-finish-01/session.tar.gz",
+      "evals/discovery/explicit-finish-01/develop/run.json",
+      "evals/discovery/explicit-finish-01/develop/public-operations.json.gz",
+      "evals/discovery/explicit-finish-01/review/run.json",
+      "evals/discovery/explicit-finish-01/review/public-operations.json.gz",
+      "evals/discovery/explicit-finish-01/evaluation.json",
+      "evals/discovery/explicit-finish-01/help-fix.json",
+      "evals/discovery/explicit-finish-01/adoption-reader.json",
+      "evals/discovery/explicit-finish-01/system-outcome.json",
+      "evals/discovery/explicit-finish-01/report-checkpoint.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/explicit-finish-01/README.md",
-      "sha256": "a29066cab5125825bdf3505891018e5e6883efdab2180833286c8d24ead10939",
-      "size": 2769
+      "sha256": "dfa96202115d98504ab9a7e693f30d16d8fb81e0720dc28c30fd59d51582c6de",
+      "size": 5360
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/adoption-reader.json",
+      "sha256": "8dc915f4b35274a602a9cf534f8fd2be92ef46693701a082278e3ad6cac44f5e",
+      "size": 2675
     },
     {
       "path": "evals/discovery/explicit-finish-01/boundary-audit.json",
       "sha256": "a464f2d5985adaaa5f3a8a7aa3068a33d3961125824677550c1286e711c5f6ec",
       "size": 11550
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/collection-recheck.json",
+      "sha256": "cd658ccab27db47640f2231fd5b12e7dd05adec68022cb6fa23b91ee3203d5a8",
+      "size": 927
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/develop/public-operations.json.gz",
+      "sha256": "5fc111538119b5508217bfe89eba115762bbfbffe7c88261a96d4a7ece02c8f8",
+      "size": 211738
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/develop/run.json",
+      "sha256": "e823cf0f09d619276d940f086c02a6f282b3caab860cea63ef51189fff39b8fe",
+      "size": 3982
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/evaluation.json",
+      "sha256": "589a8da0ebcd02827f51ab9d1b0a3c32b9e9a15983977ec6bbd68a81b36b8b01",
+      "size": 1985
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/help-fix.json",
+      "sha256": "5944701c96b91103fbcfe63af8c18bfdc639b665aa536fa1f641156b8c45df65",
+      "size": 1111
     },
     {
       "path": "evals/discovery/explicit-finish-01/implementation-progress.json",
@@ -163,9 +243,49 @@
       "size": 1971
     },
     {
+      "path": "evals/discovery/explicit-finish-01/report-checkpoint.json",
+      "sha256": "fd161f4b02172f588b55d46e7d90335edf1c4c43f403db945f97f7999a232c87",
+      "size": 801
+    },
+    {
       "path": "evals/discovery/explicit-finish-01/report-power-release.json",
       "sha256": "d074581478788edae61d87fa094436ec0d06cbfe7661b9c393a88954640e4266",
       "size": 409
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/report.json",
+      "sha256": "13c6fdffdfa049a5588596ed9ed57dea0265a26360dd819973f9a8164951cf7e",
+      "size": 70505
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/result.json",
+      "sha256": "9812ea8b580ab6e2a0bac87cab0b959dc6f5298539bc4b7bf8f9301b3a32134a",
+      "size": 15516
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/review/public-operations.json.gz",
+      "sha256": "9d85b67b2dd7e9b08a4a1676175f2a37975807c129c75e4114a1a9261c8c723f",
+      "size": 638146
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/review/run.json",
+      "sha256": "0180f93eab043c4c8d24c3a908f7fcd7df2c4b15722617f7c5307fdcc76535db",
+      "size": 3951
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/session.tar.gz",
+      "sha256": "b3aa425fa48f502f042063e9645e796c2b78a7ac9b5c310c1096c8e04147b242",
+      "size": 2790955
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/system-outcome.json",
+      "sha256": "0dcea275d36bf985af50a36265c500c3e0b8a8dfc9d7714e938ab287c4a6a8bd",
+      "size": 12645
+    },
+    {
+      "path": "evals/discovery/explicit-finish-01/verification.json",
+      "sha256": "ea5891868bb670ee498856cacb4d082b23e0adb003e3f07db2d4c5fc7284e542",
+      "size": 3810
     },
     {
       "path": "evals/discovery/explicit-finish-01/worktree.json",
@@ -174,6 +294,48 @@
     }
   ],
   "history": [
+    {
+      "revision": 15,
+      "saved_at": "2026-09-12T09:36:26.231123+00:00",
+      "actor": "codex",
+      "reason": "初見確認の実時刻を正規表記で保存し、報告保存の二つの拒否と修正も記録"
+    },
+    {
+      "revision": 14,
+      "saved_at": "2026-09-12T09:33:39.910307+00:00",
+      "actor": "codex",
+      "reason": "実AI結果と独立点検・初見報告検査を踏まえ、実行補助の限定採用を確定。全体開発は継続"
+    },
+    {
+      "revision": 13,
+      "saved_at": "2026-09-12T09:31:51.976421+00:00",
+      "actor": "codex",
+      "reason": "終了と引き渡しを実行補助として採用し、案の未解決・回収失敗・ヘルプ修正を別記"
+    },
+    {
+      "revision": 12,
+      "saved_at": "2026-09-12T09:27:52.528022+00:00",
+      "actor": "codex",
+      "reason": "実AIの明示終了と改訂から別評価までの結果を、正式保存から照合して回収"
+    },
+    {
+      "revision": 11,
+      "saved_at": "2026-09-12T08:19:26.871042+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-12T08:13:13.561024+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-12T08:13:12.993591+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
     {
       "revision": 8,
       "saved_at": "2026-09-12T08:03:48.489138+00:00",

@@ -1,0 +1,127 @@
+{
+  "task": "explicit-finish-01 system outcome analysis",
+  "started_at_utc": "2026-09-12T09:27:50+00:00",
+  "ended_at_utc": "2026-09-12T09:30:58.979347+00:00",
+  "elapsed_seconds": 188.979347,
+  "conclusion": "実行完了とは別に、今回の案は通常使用との資源競合を解消できていない。主な不足は比較指示の全面欠落ではなく、既に求められた準備・中盤損失と終盤利益の接続が未実行なこと。次の最小候補は、改訂前に「同じ核を続ける理由と、今回それを判断できる比較1件」を固定し、用意できない場合は別仮説へ分岐する運用を既存の考案・改訂指示に具体化すること。",
+  "formal_judgment_unchanged": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "known",
+    "proposal_hash": "3a2d2bfa80f40b5069fcd854286f11eb5cb646141804e3540a202158a3993ced",
+    "review_hash": "a84ea0cd5fec283288f3212ad84e284e83a9daa6ad2385fbb8c7e230e97a4235"
+  },
+  "findings": [
+    {
+      "id": 1,
+      "finding": "当ターンの通常側比較は実際に進んだ。共通手札・PP・生成先・観察終点を揃え、通常側の処理と防御を確認し、別評価も指定手札での決着差を支持している。今回を以前と同じ単純な通常側の能力見落としとは扱わない。ただし支持されるのは固定された当ターンの差であり、試用価値全体ではない。",
+      "instruction_status": "既存指示が実行された部分",
+      "evidence": [
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/steps/0",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/steps/3",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/steps/5",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/1",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:664"
+      ]
+    },
+    {
+      "id": 2,
+      "finding": "取得例、中盤の交換損失、終盤の成功状態は独立した比較のまま。生成・保持に資源を使うことは認める一方、通常用途へ使った後にも必要札が残る理由、通常使用を控えた場合に何を失うかを同じ有限の手順で比較していない。「予約しない」という方針と、終盤に必要札が残るという前提の間が未接続。交換元変更で中盤負担を別の役割へ移した点も解消していない。",
+      "instruction_status": "目的は既に指示され、直前評価でも明示されたが、その比較は未完了。単なる指示欠落ではない。取得・通常使用・保持を同じ比較へ接続する具体的な工程まではDEVELOPに明記されていない。",
+      "evidence": [
+        "/tmp/sv-explicit-finish-01/session/review-0002-52d9dfbfef52a472.json#/data/next_questions/0",
+        "/tmp/sv-explicit-finish-01/session/review-0002-52d9dfbfef52a472.json#/data/next_questions/1",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/steps/7",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/steps/8",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/plan/early",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/uncertainties/1",
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/uncertainties/2",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/3",
+        "/tmp/sv-explicit-finish-01/session/sources/93120e838a703aa8f92298c9d383bc8119fc0d276c656f5b7b784cef22c5de72.json#/data/content/生成札の出所と追加費用",
+        "/tmp/sv-explicit-finish-01/session/sources/93120e838a703aa8f92298c9d383bc8119fc0d276c656f5b7b784cef22c5de72.json#/data/content/副比較: 中盤で失うもの",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:31",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:33",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:664"
+      ]
+    },
+    {
+      "id": 3,
+      "finding": "開始状態の修正や交換元の復元は検証改善として有効だが、負担を消した根拠にはならない。取得例のEP開始値訂正も必要であり、取得例を示すことと実際の保持を説明することは別。通常の別手札に対する比較は残るが、主な未達を解決する前に成功条件をさらに整える方向へ広げるべきではない。",
+      "instruction_status": "効果・順序・資源確認は既存指示にある。EP取得例の誤りは指示未実行、将来状態の成立を未確認に留めたこと自体は指示に従っている。ここを成功へ読み替えない。",
+      "evidence": [
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/2",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/4",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/next_questions/0",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/next_questions/3",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:35",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:36",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:39"
+      ]
+    },
+    {
+      "id": 4,
+      "finding": "同じ既知の核の改訂を続けることで探索の幅が狭まる可能性はある。ただし実行上限違反ではない。DEVELOPは説明追加だけを改善とせず別仮説への分岐を許す一方、cycleの継続は当該評価develop＋問いありで判断し、上限は一実行の最大2回。別の実行として同じ履歴を再入力する累積継続や、その時間を別入力へ割く判断までは制御しない。今回の2→3は配分と手順を実際に変えたが、独立評価では同じ種類の資源競合が残った。探索幅への影響は示唆であり、候補全体の比較調査はしていない。",
+      "instruction_status": "分岐の許可と一実行の上限は存在する。未解決の同核を新しい実行で続けるための具体的な判断手順が不足している。knownだけを自動棄却条件へ追加する問題ではない。",
+      "evidence": [
+        "/tmp/sv-explicit-finish-01/session/revision-0003.json#/data/change",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/3",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/4",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/5",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:32",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:65",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:76",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery_cycle.py:108"
+      ]
+    },
+    {
+      "id": 5,
+      "finding": "今回のconditional/develop/knownと矛盾せず、終了処理の改善は案の試用価値や探索システム全体の完成を意味しない。追加比較を一件作ったという形式だけでも方法の有用性は認定できない。",
+      "instruction_status": "既存の成立・試用価値・独自性を分ける指示を維持する。",
+      "evidence": [
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/3",
+        "/tmp/sv-explicit-finish-01/session/review-0003-a84ea0cd5fec2832.json#/data/findings/5",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:34"
+      ]
+    }
+  ],
+  "minimal_change_candidate": {
+    "one_change": "既存の改訂指示へ、同じ核を続けるか別仮説へ移るかの判断を、直前評価の未解決比較1件に結び付ける短い手順を追加する。独立した新担当・新評価器・カード固有条件・追加の長いチェックリストは作らない。",
+    "where": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src/svdeck/discovery.py:31 と :664 の改訂・比較指示の接続部分",
+    "candidate_instruction": "改訂前に、直前評価で試用を妨げた不足を一つ選び、今回のどの比較が判断を変え得るかを既存の比較欄か追加資料へ先に残してください。資源の取得・通常使用・保持が争点なら、その資源を通常用途に使う直前から、同じ外部条件の短い対応手順で、得た利益・使った資源・残る札と失う役割を比較します。別々に作った取得例と成功局面を接続済みとは扱いません。同じ不足に答え得る比較を用意できず、成功局面の条件変更だけになる場合は、同じ核の微調整を続けず別仮説へ分岐してください。未確認部分は未確認のまま残し、既存の採点や履歴を変更しません。",
+    "why_small": "既存の「同じ説明は改善でない」「別仮説へ分岐可」と「同一状態比較」を、今回の未達に結び付ける1つの選択手順。新しい勝率基準、全対戦履歴、全手札列挙、40枚完成義務を要求しない。",
+    "bound": "次の実行も既存の改訂・別評価回数と予算を維持。known単独では分岐や棄却を強制せず、問いが存在するだけでも同核継続の理由にしない。",
+    "status": "設計候補のみ。実装・採用は未実施。"
+  },
+  "one_next_validation": {
+    "input": "今回の正式revision3と対応する別評価・公開資料を新しい試行へ渡す。カード固有の回答や期待する採点は渡さない。",
+    "procedure": "上の短い指示だけを追加して既存の考案/改訂1回＋独立評価1回を行う。着手時の継続理由と選んだ比較1件を保存し、比較後に同核継続か別仮説への変更かを正式案へ反映する。新しい実行IDで旧案・旧採点を保持する。",
+    "fixed_oracle": [
+      "既存の5基準と提出条件を変えない。test/drop/knownなど特定の評価を期待答案にしない。",
+      "選んだ比較が直前の資源競合へ答えているか、単に別の有利な開始手札へ移しただけかを別評価で確認する。",
+      "費用・残存資源・失う通常用途を同じ短い対応手順へ結び付け、その結果が採用配分・使用条件・仮説変更の判断を実際に変えたか確認する。",
+      "資料や欄が増えただけ、同じ未解決を言い換えただけなら方法は保留。新しい具体的根拠で継続可否を判断できた場合だけ、比較方法または探索配分への限定的な効果として扱う。"
+    ],
+    "measures": [
+      "選択理由の事前保存の有無",
+      "未解決比較が解消・具体化・未解決のどれになったか",
+      "独立評価の理由に対応する実質変更または別仮説への変更の有無",
+      "同核への追加改訂回数と実UTC/担当の監視秒"
+    ],
+    "limits": "1回では発見力全体や探索幅の改善を証明しない。実AI試行の可否・予算設定・採用判断はroot側で別途決定し、この点検では起動しない。"
+  },
+  "scope_extension": "parentの追加指示により、既存回数上限との対応に限り discovery_cycle.py:65-83 と最大2回ループを追加で読んだ。全体監査へは広げていない。",
+  "not_checked": [
+    "カード本文の新規検索・新しいカード答案",
+    "旧採点の再実行・書換え",
+    "今回実行の終了処理や時刻の正式検証（rootが担当）",
+    "完全な過去対戦履歴・出現頻度・実戦勝率",
+    "他の核・入力を含む探索幅の定量比較",
+    "提案した指示変更の実装と実AI検証"
+  ],
+  "restrictions_observed": [
+    "コード/DB/進捗/台帳を編集しない",
+    "私的stdout.log/JSONLを読まない",
+    "新しいAI実行/モデル変更なし",
+    "指定した報告ファイルのみ保存"
+  ]
+}

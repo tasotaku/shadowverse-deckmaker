@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-12T09:31:51.941574+00:00",
+  "observed_problem": "実AIの公開finish --helpだけが引数不正で1回失敗。後の引数なしfinishは成功し、実行は完了した。",
+  "change": "任意の明示終了モードでfinish --helpをヘルプ表示として受け付ける。終了要求や正式提出を作らない。",
+  "test": "本体で新規1件と既存明示終了38件が39 passed in 19.64s。strict mypy 1ファイルPASS。",
+  "test_scope": "未提出状態の公開入口でヘルプ成功・終了要求なし・提出履歴なしを確認。不正な追加引数は引き続き拒否する。",
+  "runtime_before_sha256": "98e7ad5e276ebe825a0ddfc031a296bac70e7caaaf0525ae2a89c2531e804eff",
+  "runtime_after_sha256": "e9bc36235f864932a3e2a2bdcf2b1443e412d24a06d451e726262196a0d45df5",
+  "limits": "実AIはヘルプ修正前の固定実装で実行した。修正後に実AIを再実行していない。終了受付・停止・保存検査の処理と判定条件は変更していない。修正・テスト開始のUTCは独立計測していない。"
+}

@@ -1,0 +1,104 @@
+{
+  "id": "continuation-choice-01",
+  "revision": 1,
+  "saved_at": "2026-09-12T09:35:02.456991+00:00",
+  "actor": "codex",
+  "reason": "前回の未達を踏まえ、継続判断と比較を結ぶ手順の条件と上限を固定",
+  "record": {
+    "id": "continuation-choice-01",
+    "title": "同じ核を続ける理由を、判断を変え得る比較へ結ぶ",
+    "category": "method",
+    "status": "running",
+    "summary": "現行Aと、継続判断と比較を結ぶ変更Bを比べる準備。実装・実AI確認は未完了、採用未判定。",
+    "method": "同じ核の継続を判断できる比較に結び付ける手順のA/B試行。rootはカード答案を供給しない。",
+    "procedure": "現行Aと変更Bへ同じ保存済み改訂3・別評価・資料を渡し、それぞれ改訂1回と別評価1回。各15分＋10分。自動再試行なし。既知入力の比較として記録。\nBだけに継続判断と比較1件を結ぶ指示を追加。資料本文、回答形式、カード判断の既存基準、別評価指示、実行手段・終了機能・モデル設定は揃える。\n選んだ比較が、直前の不足に答え得る形で着手前に保存されたか。形式的な欄の追加だけを改善と数えない。\n資源の取得・通常使用・保持が同じ短い対応手順につながるか。勝つ状態へ手札やPPを補う、都合のよい開始状態へ移す、完全な実戦頻度や勝率を捏造する比較は解消と数えない。\n新しい具体的根拠が、同じ核の継続・採用配分・使い方・別仮説への変更へ実際に反映され、別評価でも支持されるか。案の試用推薦と方法の判断支援効果は分ける。\nAとの差がない、同じ未解決の言い換えだけ、最後の評価まで揃わない場合は本採用保留。Bが具体的な未解決の解消または根拠ある探索先の変更を示し、Aにない寄与を確認した場合だけ限定的な採用候補とする。\n1入力各1回なので担当差と一般的な発見力は切り分けられない。旧失敗・旧評価は保持し、known単独での棄却や毎回の完全な対戦履歴を義務にしない。",
+    "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/explicit-finish-01-result の正式改訂3・別評価・追加資料。同一の既知入力。",
+    "criteria": "現行Aと変更Bへ同じ保存済み改訂3・別評価・資料を渡し、それぞれ改訂1回と別評価1回。各15分＋10分。自動再試行なし。既知入力の比較として記録。\nBだけに継続判断と比較1件を結ぶ指示を追加。資料本文、回答形式、カード判断の既存基準、別評価指示、実行手段・終了機能・モデル設定は揃える。\n選んだ比較が、直前の不足に答え得る形で着手前に保存されたか。形式的な欄の追加だけを改善と数えない。\n資源の取得・通常使用・保持が同じ短い対応手順につながるか。勝つ状態へ手札やPPを補う、都合のよい開始状態へ移す、完全な実戦頻度や勝率を捏造する比較は解消と数えない。\n新しい具体的根拠が、同じ核の継続・採用配分・使い方・別仮説への変更へ実際に反映され、別評価でも支持されるか。案の試用推薦と方法の判断支援効果は分ける。\nAとの差がない、同じ未解決の言い換えだけ、最後の評価まで揃わない場合は本採用保留。Bが具体的な未解決の解消または根拠ある探索先の変更を示し、Aにない寄与を確認した場合だけ限定的な採用候補とする。\n1入力各1回なので担当差と一般的な発見力は切り分けられない。旧失敗・旧評価は保持し、known単独での棄却や毎回の完全な対戦履歴を義務にしない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未実施。",
+      "limitations": "同じ既知入力の各1回比較。一般的な発見力は認定しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "現行との差と具体的判断への寄与を回収後に判定。"
+    },
+    "started_at": "2026-09-12T09:35:02.400551+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "変更指示を隔離して実装・入力差分を検査",
+        "status": "running",
+        "started_at": "2026-09-12T09:35:02.400551+00:00",
+        "ended_at": null,
+        "note": "Bだけ指示を変え、他の入力・別評価・実行条件は維持。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-develop",
+        "title": "現行Aの改訂",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-review",
+        "title": "現行Aの別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-develop",
+        "title": "変更Bの改訂",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "b-review",
+        "title": "変更Bの別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "固定入力で一回だけ。正式保存と明示終了を使う。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/continuation-choice-01/protocol.json",
+      "evals/discovery/continuation-choice-01/README.md"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/continuation-choice-01/README.md",
+      "sha256": "36e12ee8e0d7871ecd190baf4004adf693688aff9039224c0aed3137d36e08aa",
+      "size": 984
+    },
+    {
+      "path": "evals/discovery/continuation-choice-01/protocol.json",
+      "sha256": "e2bbfebffbdd43d84b637719978c4d677d802e5357cadfed2a7e4135e4e49515",
+      "size": 9508
+    }
+  ],
+  "history": [
+    {
+      "revision": 1,
+      "saved_at": "2026-09-12T09:35:02.456991+00:00",
+      "actor": "codex",
+      "reason": "前回の未達を踏まえ、継続判断と比較を結ぶ手順の条件と上限を固定"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
+}

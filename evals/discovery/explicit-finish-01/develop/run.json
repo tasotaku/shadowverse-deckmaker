@@ -1,0 +1,110 @@
+{
+  "status": "finished_by_request",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/sv-explicit-finish-01/develop",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/sv-explicit-finish-01/develop/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-explicit-finish-01/develop",
+  "stdin": "/private/tmp/sv-explicit-finish-01/develop/prompt.md",
+  "output": "/private/tmp/sv-explicit-finish-01/develop-run",
+  "started_at": "2026-09-12T07:59:43.852347+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2312722.752590125,
+  "explicit_finish": true,
+  "timeout_seconds": 900.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 12368,
+  "worker_pid": 12373,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-12T08:13:12.984081+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-12T07:59:43.852624+00:00",
+      "elapsed_seconds": 0.0002725832164287567
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-12T07:59:43.853039+00:00",
+      "elapsed_seconds": 0.0006889579817652702
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-12T07:59:43.862846+00:00",
+      "elapsed_seconds": 0.010518166236579418
+    },
+    {
+      "event": "finish_request_verified",
+      "at": "2026-09-12T08:13:12.736156+00:00",
+      "elapsed_seconds": 808.891746958252,
+      "request_hash": "310e08a3de9d29984b56a9fad3f2b99db06009fdfa587dee5272a93c0f6478c3",
+      "report_hash": "3ce488f54f9b18c4a24027b5dee1fc2ac885f85e9808d442218205b08d8a38a2"
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-12T08:13:12.737017+00:00",
+      "elapsed_seconds": 808.8925858750008,
+      "signal": 15
+    },
+    {
+      "event": "process_group_gone",
+      "at": "2026-09-12T08:13:12.797740+00:00",
+      "elapsed_seconds": 808.9533092500642
+    },
+    {
+      "event": "finish_confirmed",
+      "at": "2026-09-12T08:13:12.983474+00:00",
+      "elapsed_seconds": 809.1390462499112,
+      "request_hash": "310e08a3de9d29984b56a9fad3f2b99db06009fdfa587dee5272a93c0f6478c3",
+      "report_hash": "3ce488f54f9b18c4a24027b5dee1fc2ac885f85e9808d442218205b08d8a38a2"
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-12T08:13:12.984087+00:00",
+      "elapsed_seconds": 809.1396536249667
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-12T08:13:12.995051+00:00",
+      "elapsed_seconds": 809.1506183748133
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "explicit-finish-01",
+    "stage_id": "live-develop",
+    "status": "completed",
+    "begin_revision": 5,
+    "claimed_stage": {
+      "id": "live-develop",
+      "title": "実AIで改訂を提出して終了を明示",
+      "status": "running",
+      "started_at": "2026-09-12T07:59:43.852347+00:00",
+      "ended_at": null,
+      "budget_minutes": 15,
+      "note": "既知の改訂2と別評価を入力に、改訂1件まで。終了処理の実利用検証。\n起動処理を開始。実行記録: /private/tmp/sv-explicit-finish-01/develop-run"
+    },
+    "end_revision": 9,
+    "synced_at": "2026-09-12T08:13:12.995045+00:00"
+  },
+  "finish_evidence": {
+    "request_hash": "310e08a3de9d29984b56a9fad3f2b99db06009fdfa587dee5272a93c0f6478c3",
+    "report_hash": "3ce488f54f9b18c4a24027b5dee1fc2ac885f85e9808d442218205b08d8a38a2"
+  },
+  "elapsed_seconds": 809.1396502908319,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

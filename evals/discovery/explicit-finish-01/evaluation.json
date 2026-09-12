@@ -1,0 +1,29 @@
+{
+  "recorded_at": "2026-09-12T09:31:51.941574+00:00",
+  "outcome": "pass",
+  "decision": "adopted",
+  "scope": "discovery_runの任意explicit-finishを実行補助として採用。既定動作は維持。",
+  "reason": "本体171検査・型検査・修正後の独立点検に加え、実AIの改訂から別評価まで両担当の明示要求と停止後保持を確認。正式改訂1・別評価1を回収し、旧保存物と入力・実装の不変を照合できた。",
+  "live_results": {
+    "formal_proposals": 1,
+    "formal_reviews": 1,
+    "additional_sources": 3,
+    "source_note": "比較開始状態1件・比較本文1件・その集計訂正版1件。独立した3つの発見とは数えない。",
+    "public_operations": 85,
+    "public_errors": 1
+  },
+  "deck_judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "known",
+    "interpretation": "指定終盤の手順と中盤の損失比較は支持された。一方、序盤に普通に使う札を終盤の組へ残せる根拠と、新しい交換元の守護・進化供給を失う負担は未解決。比較試用の推薦0。knownは核の先例で、一般的普及の認定ではない。"
+  },
+  "limits": [
+    "保存済みの既知入力1件の実行確認。発見力の一般的優越、独自性、実戦の強さ、システム完成は認定しない。",
+    "review-onlyの明示終了は機能検査で確認。実AIは通常の改訂から別評価の接続で実施。",
+    "実AIに旧判断が一切伝わらなかったという保証ではない。旧評価ファイル・previous_reviewsは除外したが、改訂理由の文章は過去評価を要約し得る。",
+    "終了処理が管理できるのは元のプロセス群。OS休止や外部信号の完全な原因識別は保証しない。",
+    "ヘルプ修正は実AI終了後に行い、39機能検査で確認。元の失敗ログは保持。"
+  ],
+  "system_complete": false
+}

@@ -155,7 +155,10 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
                             raise ValueError('評価は今回の固定資料だけを使います')
                         check_packet(session, data, fixed)
                     rest[0] = str(content)
-                if command == 'finish':
+                if command == 'finish' and help_only:
+                    print('finish: 正式提出と提出後reportを確認して終了を要求します。追加引数はありません。ヘルプでは終了を要求しません。')
+                    code = 0
+                elif command == 'finish':
                     if rest:
                         raise ValueError('finishには追加引数を指定しません')
                     contract = read_object(work / 'finish-config.json')
