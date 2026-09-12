@@ -1,23 +1,23 @@
 {
   "id": "fresh-start-01",
-  "revision": 1,
-  "saved_at": "2026-09-12T13:37:50.308957+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-12T15:57:06.808223+00:00",
   "actor": "codex-root",
-  "reason": "完了調査の入力時点の問題を開始時の接続へ戻す条件を固定",
+  "reason": "途中報告の読者確認を保存。実AIの工程はそのまま継続",
   "record": {
     "id": "fresh-start-01",
     "title": "現在の参考構築を初回考案前へ接続する",
     "category": "method",
     "status": "running",
-    "summary": "新弾前の参考構築から始める問題を受け、既存の取得・追加を開始操作へまとめる試作に着手。検査・実利用は未実施。",
+    "summary": "開始時の記事接続を隔離実装。関連154件・型検査合格、5実記事を8.204秒で取得し15資料を初回入力へ保持。別担当の出力確認95秒も合格。9月13日00:51:01から新規案を考案中、本採用は未判定。",
     "method": "任意の記事URLを新規探索の準備へ接続する。既存の取得・追加・入力作成を再利用。",
     "procedure": "指定した現在の参考記事の全40枚・説明・取得時点・限界を、新規探索の初回入力へ一つの公開開始操作で渡す。記事URL未指定の従来動作と、考案・別評価・採点の指示は変更しない。\n既存のmeta.article_sources(with_text=True)、固定DB、資料検査、追加保存を再利用し、重複URLで重複取得しない。全記事の取得・整合確認が済む前に成功を返さない。失敗を古い入力で代用した成功にせず、既存保存先・元DB・元案・旧評価を変更しない。\n取得日時と記事内容の時点を区別する。現在取得しただけで最新環境・合法性・普及・勝率を認定しない。旧known_decksは履歴として保持し、現行資料との区別を記録する。\n機能検査・型検査と、実記事の取得から初回入力の公開再読までを確かめる。旧ウィッチ事例は回帰確認であり、新規発見には数えない。機能採用はこの接続の保持と失敗境界の検証に限る。\n別途、カード答案・期待結論・旧採点を与えない新規入力を一つ固定し、考案20分・別評価10分を各一度行う。最新評価が試用・独自性未確認なら既存調査15分・別照合10分へ一度つなぐ。未完・取得失敗も結果として残し、自動やり直しで成績を上積みしない。\n主成果は現行通常構築に対して試す利益と負担を説明でき、一般に広まった使い方の言い直しでない根拠がある種の数（最大1）。試用推薦と独自性未確認を別記し、資料数・棄却数・表示だけを発見力の成果にしない。単一試行から方法の一般的優位を認定しない。\n一般に広まっていない使い方でそこそこ戦える種という既存の目的・合法性・成立・試用価値・独自性の基準を保持する。先例だけで除外しない。未発見から独自性を認定しない。実戦や勝率を捏造しない。",
-    "inputs": "対象クラス・フォーマットの保存参考URLから選ぶ。候補の答案を見てURLを選別しない。新規入力のURLと目的は実行前に固定。",
+    "inputs": "新規ネメシス・ローテーションの初回探索。保存参考一覧から事前に選んだ全5URLを取得。旧提案・評価・ウィッチの調査資料は入力しない。",
     "criteria": "指定した現在の参考記事の全40枚・説明・取得時点・限界を、新規探索の初回入力へ一つの公開開始操作で渡す。記事URL未指定の従来動作と、考案・別評価・採点の指示は変更しない。\n既存のmeta.article_sources(with_text=True)、固定DB、資料検査、追加保存を再利用し、重複URLで重複取得しない。全記事の取得・整合確認が済む前に成功を返さない。失敗を古い入力で代用した成功にせず、既存保存先・元DB・元案・旧評価を変更しない。\n取得日時と記事内容の時点を区別する。現在取得しただけで最新環境・合法性・普及・勝率を認定しない。旧known_decksは履歴として保持し、現行資料との区別を記録する。\n機能検査・型検査と、実記事の取得から初回入力の公開再読までを確かめる。旧ウィッチ事例は回帰確認であり、新規発見には数えない。機能採用はこの接続の保持と失敗境界の検証に限る。\n別途、カード答案・期待結論・旧採点を与えない新規入力を一つ固定し、考案20分・別評価10分を各一度行う。最新評価が試用・独自性未確認なら既存調査15分・別照合10分へ一度つなぐ。未完・取得失敗も結果として残し、自動やり直しで成績を上積みしない。\n主成果は現行通常構築に対して試す利益と負担を説明でき、一般に広まった使い方の言い直しでない根拠がある種の数（最大1）。試用推薦と独自性未確認を別記し、資料数・棄却数・表示だけを発見力の成果にしない。単一試行から方法の一般的優位を認定しない。\n一般に広まっていない使い方でそこそこ戦える種という既存の目的・合法性・成立・試用価値・独自性の基準を保持する。先例だけで除外しない。未発見から独自性を認定しない。実戦や勝率を捏造しない。",
     "result": {
       "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "summary": "機能確認と記事の受け渡しは完了。新規入力で案を生む有用性は考案中のため未判定。",
+      "limitations": "説明1件は未解決カード画像1件を残す部分取得。取得日だけで内容の最新性や独自性を認定しない。隔離実装であり本体へ未採用。"
     },
     "decision": {
       "status": "unassessed",
@@ -29,24 +29,142 @@
       {
         "id": "implementation",
         "title": "開始時の資料接続を実装・機能検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T13:37:13.533321+00:00",
-        "ended_at": null,
+        "ended_at": "2026-09-12T13:46:56+00:00",
         "budget_minutes": 15,
-        "note": "条件固定・隔離した実装・関連検査を行う。個別のカード答案を加えない。"
+        "note": "隔離実装。担当実働13:39:00〜13:46:56 UTC。関連154件（新規12件含む）・型検査4ファイル合格。本採用・発見力は未判定。"
+      },
+      {
+        "id": "prepare-live",
+        "title": "実記事を取得し初回入力へ接続",
+        "status": "completed",
+        "started_at": "2026-09-12T13:47:16.562379+00:00",
+        "ended_at": "2026-09-12T13:47:24.766644+00:00",
+        "budget_minutes": 5,
+        "note": "公開開始操作の終了値0。元DB・固定実装保持を確認。本文の引き継ぎは別途公開再読で照合。"
+      },
+      {
+        "id": "input-verify",
+        "title": "初回入力の公開再読と本文保持を確認",
+        "status": "completed",
+        "started_at": "2026-09-12T15:33:53.087821+00:00",
+        "ended_at": "2026-09-12T15:33:53.607923+00:00",
+        "budget_minutes": 3,
+        "note": "5記事・40枚5構築・説明5件・取得情報5件、計15資料。保存本文と公開読出し一致、旧案・旧評価0。取得終了から再読開始まで1時間46分28秒、原因未分類。"
+      },
+      {
+        "id": "live-develop",
+        "title": "現在の参考構築から新しく考案",
+        "status": "running",
+        "started_at": "2026-09-12T15:51:01.015112+00:00",
+        "ended_at": null,
+        "budget_minutes": 20,
+        "note": "同じ固定入力と実装から一度だけ実行。元案や期待結論は供給しない。\n起動処理を開始。実行記録: /private/tmp/sv-fresh-start-01-live/develop-run"
+      },
+      {
+        "id": "live-review",
+        "title": "案を別担当が評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10,
+        "note": "同じ固定入力と実装から一度だけ実行。元案や期待結論は供給しない。"
+      },
+      {
+        "id": "output-reader",
+        "title": "別担当が公開読出しの実出力を確認",
+        "status": "completed",
+        "started_at": "2026-09-12T15:51:35+00:00",
+        "ended_at": "2026-09-12T15:53:10+00:00",
+        "budget_minutes": 2,
+        "note": "PASS。5記事・15資料と部分取得1件の明示を確認。旧参考の保存日そのものは指定出力に含まず、日付差・記事の真偽・強さ・普及は未認定。考案と並行。"
+      },
+      {
+        "id": "progress-reader",
+        "title": "報告の完成範囲と時間の説明を別担当が確認",
+        "status": "completed",
+        "started_at": "2026-09-12T15:55:25+00:00",
+        "ended_at": "2026-09-12T15:55:58+00:00",
+        "budget_minutes": 1.5,
+        "note": "PASS。機能確認・進行中の有用性評価・本採用未判定と長い間隔を区別できた。本文のみの読者確認。"
       }
     ],
     "evidence_paths": [
       "evals/discovery/fresh-start-01/README.md",
       "evals/discovery/fresh-start-01/protocol.json",
-      "evals/discovery/fresh-start-01/workflow-checkpoint.json"
+      "evals/discovery/fresh-start-01/workflow-checkpoint.json",
+      "evals/discovery/fresh-start-01/live-input-protocol.json",
+      "evals/discovery/fresh-start-01/implementation.json",
+      "evals/discovery/fresh-start-01/implementation-tests.xml",
+      "evals/discovery/fresh-start-01/start-result.json",
+      "evals/discovery/fresh-start-01/start-stdout.json",
+      "evals/discovery/fresh-start-01/input-verification.json",
+      "evals/discovery/fresh-start-01/frozen-runtime.json",
+      "evals/discovery/fresh-start-01/launch-check.json",
+      "evals/discovery/fresh-start-01/output-reader.json",
+      "evals/discovery/fresh-start-01/record-correction.json",
+      "evals/discovery/fresh-start-01/implementation.patch",
+      "evals/discovery/fresh-start-01/input-session.tar.gz",
+      "evals/discovery/fresh-start-01/run-live.py",
+      "evals/discovery/fresh-start-01/progress-reader.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/fresh-start-01/README.md",
-      "sha256": "6ef568602d9dbbb1c98880b3579748407f1275b180527a32784c75c23f1462b7",
-      "size": 1236
+      "sha256": "aab750f30db285d305935832d3465835cdbb0471289b2c36f7350bec6966bf00",
+      "size": 5930
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/frozen-runtime.json",
+      "sha256": "93648d4cfbabf6076437dcec3daae9ca7fe0ff44675d00e3eed7f078d474ccbe",
+      "size": 10535
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/implementation-tests.xml",
+      "sha256": "e5a5e9221147f04b14d9ff177e3c799da2b4ca665837397c94783394fc6b6664",
+      "size": 19908
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/implementation.json",
+      "sha256": "0e6924c10bd090629e13fe1967c8ac445b7578a163fc4743b002003aea5aa71a",
+      "size": 5936
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/implementation.patch",
+      "sha256": "32422d74cec6a75a9ba8ac7b6a235d5e654cdd5409b088c36f91a099c15e42df",
+      "size": 18364
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/input-session.tar.gz",
+      "sha256": "45dfb54d1c8c1397a0aad1371363684a0ab621cbb48202d7391410dbabc37eac",
+      "size": 1280030
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/input-verification.json",
+      "sha256": "07765deb9460002cf22b90b995798069da106e23e08d0b5655306d7db1ba8605",
+      "size": 1889
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/launch-check.json",
+      "sha256": "0197f2aaea384fe593bc8cd28dbd871b075a090162a6300a8bd4b94a0a976c4c",
+      "size": 726
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/live-input-protocol.json",
+      "sha256": "661a00f3b8517d57d4e3343519881831c856a2fc1d3f988eb19620b66ea1560c",
+      "size": 3193
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/output-reader.json",
+      "sha256": "8088cab910d5c168dbb07b295080e7d09c9207cbba43cb72a913ee4e55dcae66",
+      "size": 6497
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/progress-reader.json",
+      "sha256": "376343d5f953c4eb8a1b09fd55854aa092f306f70e71ef0190378e6d0335ccf6",
+      "size": 2458
     },
     {
       "path": "evals/discovery/fresh-start-01/protocol.json",
@@ -54,9 +172,83 @@
       "size": 2824
     },
     {
+      "path": "evals/discovery/fresh-start-01/record-correction.json",
+      "sha256": "615313da0a3d5ae8c2bf8389da12ea34c247db27c6c0215b1a0f0d0d7348ab5f",
+      "size": 531
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/run-live.py",
+      "sha256": "853dedff91ce0c3e95d59543bf7d44fa5d5200131b0f97cf8adda7d63b55287d",
+      "size": 3275
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/start-result.json",
+      "sha256": "3220075c2c1790e9e7d974356a8c63c27ea6590592b6fa00f7bf6f589dec5e46",
+      "size": 4176
+    },
+    {
+      "path": "evals/discovery/fresh-start-01/start-stdout.json",
+      "sha256": "67e76c454a752143cfa40c978e11896a0240c56bd426ab447c0f738cb6697fa6",
+      "size": 2000
+    },
+    {
       "path": "evals/discovery/fresh-start-01/workflow-checkpoint.json",
       "sha256": "b89f5c823d1ad7491854322824e56db404d584a667d207ecd96452cfdcb0f14e",
       "size": 1229
     }
-  ]
+  ],
+  "history": [
+    {
+      "revision": 8,
+      "saved_at": "2026-09-12T15:57:06.808223+00:00",
+      "actor": "codex-root",
+      "reason": "途中報告の読者確認を保存。実AIの工程はそのまま継続"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-12T15:55:29.403319+00:00",
+      "actor": "codex-root",
+      "reason": "実AIの開始・初回入力一致と、別担当の実出力確認を保存"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T15:51:01.018346+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T15:51:00.301849+00:00",
+      "actor": "codex-root",
+      "reason": "資料パスを台帳仕様のroot相対へ直し、実入力照合と次の考案工程を記録"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-12T13:47:24.793074+00:00",
+      "actor": "codex-root",
+      "reason": "実記事の取得と初回保存の実行結果を記録"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-12T13:47:16.565021+00:00",
+      "actor": "codex-root",
+      "reason": "隔離実装の機能検査後、事前固定した参照先から実入力を準備"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-12T13:44:47.008196+00:00",
+      "actor": "codex-root",
+      "reason": "実際の記事内容を見る前に、対象クラスの参照先全5件と一回の探索条件を固定"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-12T13:37:50.308957+00:00",
+      "actor": "codex-root",
+      "reason": "完了調査の入力時点の問題を開始時の接続へ戻す条件を固定"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
 }

@@ -1,0 +1,85 @@
+{
+  "phase_started_at": "2026-09-12T13:37:13.533321+00:00",
+  "started_at": "2026-09-12 13:39:00 UTC",
+  "ended_at": "2026-09-12 13:46:56 UTC",
+  "commit": "e28ba7b4ba0e7ceea8e7071a48a75a458e6acfef",
+  "branch": "codex/fresh-start-01",
+  "base": "7d3e27e",
+  "worktree": "/tmp/sv-fresh-start-01-worktree",
+  "working_tree_clean": true,
+  "diff_intent": [
+    "discovery.startへ任意のkeyword-only articles引数、CLI startへ繰返し可能な--articleを追加。",
+    "記事指定時は同じ親の一時領域で従来startを実行し、固定snapshot.dbに対する既存article_sources(with_text=True)→attach→packetを接続。全資料と初回入力を保存した後だけ最終保存先を公開。",
+    "URLは完全一致で重複排除。保存先を公開直前にも排他的に確保し、開始前または取得中にできた既存先を上書きしない。",
+    "未指定のAPI・CLI・戻り値は維持。通常の考案・評価指示・回答形式を変更しない。旧known_decksは書換えず、sourcesに記事の時点・本文・取得限界を保持。",
+    "docs/design.mdに接続と失敗時の範囲を追記。新規回帰試験12件を保存。"
+  ],
+  "tests": {
+    "verdict": "PASS",
+    "related": {
+      "command": "PYTHONPATH=src pytest -q tests/test_discovery.py tests/test_discovery_sources.py tests/test_discovery_start_articles.py tests/test_discovery_read.py tests/test_discovery_history.py tests/test_discovery_review_contexts.py tests/test_discovery_compare.py tests/test_meta.py tests/test_meta_integrity.py --junitxml=/tmp/fresh-start-related-tests.xml",
+      "tests": 154,
+      "passed": 154,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 11.413,
+      "junit": "/tmp/fresh-start-related-tests.xml"
+    },
+    "new": {
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "seconds": 0.352,
+      "junit": "/tmp/fresh-start-new-tests.xml",
+      "file": "/tmp/sv-fresh-start-01-worktree/tests/test_discovery_start_articles.py",
+      "coverage": [
+        "HTTPだけを固定した実記事解析・40枚検査・説明保存・初回公開読出し",
+        "同じURLの重複指定と異なる2記事の取得",
+        "未作成の親配下への新規作成",
+        "元DB不変・旧known_decks保持・通常考案指示保持",
+        "後続記事の通信失敗・不正構築",
+        "空・型不正・本文不正の資料",
+        "開始前と取得中の既存保存先保護",
+        "記事未指定None/空配列のAPI互換",
+        "CLI失敗時の終了2・成功JSON非出力",
+        "最終公開失敗時の予約先・一時領域清掃"
+      ]
+    },
+    "strict_mypy": {
+      "command": "PYTHONPATH=src mypy --strict src/svdeck/discovery.py src/svdeck/meta.py src/svdeck/discovery_sources.py tests/test_discovery_start_articles.py",
+      "result": "Success: no issues found in 4 source files",
+      "checked_files": 4,
+      "note": "拡張した型検査の初回は新規テストのitem注釈不足1件で失敗。dict[str, Any]を付けて再検査合格。関連154件合格後の変更はその型注釈のみで、新規12件も再実行合格。"
+    },
+    "other": [
+      "git diff --check / staged diff check合格",
+      "公開 start --helpで--article表示を確認",
+      "commit後のgit rev-parseでhash確認・git statusで変更なし確認"
+    ],
+    "delivery": "隔離worktreeの公開CLIとAPIで検査。実Web取得と実AI探索はrootへ引継ぎ、ここでは未実施。"
+  },
+  "api": {
+    "cli": "PYTHONPATH=src python -m svdeck.discovery start SESSION --db DB --class CLASS --format rotation --objective OBJECTIVE --article URL1 --article URL2",
+    "python": "start(session, db, class_name, format_name, objective, docs=DOCS, articles=[url1, url2])",
+    "result_with_articles": [
+      "通常の開始結果",
+      "articles（取得した重複なしURL）",
+      "source_hashes（追加資料識別値）",
+      "packet_sha256（保存済み初回入力）",
+      "reference_scope（旧known_decksと記事資料の区別）"
+    ],
+    "read": "python -m svdeck.discovery packet SESSION --summary または python -m svdeck.discovery read SESSION PACKET_SHA256 sources",
+    "compatibility": "articles未指定または[]では従来の開始処理・戻り値を維持し、記事取得や初回packet自動作成はしない。"
+  },
+  "remaining_limits": [
+    "実記事のライブ取得と実AIの初回考案・評価はroot担当。本工程は機能境界と保持の検査までで、発見力・一般的優位・本採用は認定していない。",
+    "新設した親ディレクトリは失敗時も残す。未公開の探索本体と一時領域は通常の例外経路で除去する。",
+    "プロセス強制終了・電源断では一時領域や空の予約ディレクトリが残る可能性があり、そこに完成した探索入力があるとは扱わない。",
+    "既存記事取得の対象はGameWith/Game8のHTTPS。取得日時だけで内容の新しさ・合法性・用途の普及・勝率を認定しない。抽出本文がない場合は既存抽出機能の欠落情報と限界を保持する。",
+    "URL重複判定は完全一致で、別表記・別クエリの同じページを推測で統合しない。",
+    "一時領域から予約済みの空ディレクトリへの公開は今回のmacOS上で実動作確認した。Windowsへの移植検証は今回未実施。",
+    "HTTP固定試験の40枚は架空カードによる接続確認用で、ゲーム上の採用可能構築や強さの証明ではない。",
+    "mainの編集・commit、push、カードDB更新、外部ライブ探索、カード答案作成、新しいユーザー所有タスク・goal・モデル変更は行っていない。Codex stdout.log/JSONL推論は読んでいない。"
+  ]
+}

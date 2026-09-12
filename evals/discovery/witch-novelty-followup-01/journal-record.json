@@ -1,15 +1,15 @@
 {
   "id": "witch-novelty-followup-01",
-  "revision": 7,
-  "saved_at": "2026-09-12T13:35:41.413329+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-12T13:40:08.516550+00:00",
   "actor": "codex-root",
-  "reason": "完了した後続調査の結果を回収し、部分達成と採用保留の理由を記録",
+  "reason": "読者確認を終え、独自な種としての推薦保留と次の実装着手を記録",
   "record": {
     "id": "witch-novelty-followup-01",
     "title": "ウィッチの試用候補から使い方の先例・普及を調べる",
     "category": "method",
-    "status": "running",
-    "summary": "調査11分01秒・別照合7分44秒で5資料保存。基本用途の既存記述と参考構築の古さを確認。普及・独自性は未確認、運用結果は一部達成。結果の報告と次の改善を記録中。",
+    "status": "completed",
+    "summary": "調査11分01秒・別照合7分44秒で5資料保存。基本用途の既存記述と参考構築の古さを確認。独自な種として薦める判断は保留。次は初回考案前の資料接続を試作。",
     "method": "比較試用を推薦された案の用途の先例・普及・未確認を、既存の後続調査と別担当の照合へ渡す。",
     "procedure": "保存された最新の試用推薦・独自性未確認という評価を、既存の公開 --novelty 入口へ渡す。rootは個別のカード答案、検索結果、出典候補、期待する独自性判定を与えない。\n調査15分・別担当の照合10分を各一度。未完了・取得不能・出典不足も保存し、自動再実行しない。採点・案・カードDB・既存資料は変更しない。\n同じカードの同居、同じ使い方の先例、現在の一般的普及を分け、検索語・日時・URL・取得本文・解釈・未確認を保存する。見つからないことや単一の投稿だけで独自性や普及を認定しない。\n別担当が調査の本文を出典・保存資料と照合する。両報告の原文保存と再読の一致を確認し、出典の時点・用途・取得限界を結論に反映する。\nこの試行は既存の後続調査機能を新しい案へ接続する運用検証であり、前の点検指示の採用や勝率、発見力の優位を認定しない。元の未確認評価は資料追加だけで上書きせず、調査結果を次の判断材料として残す。",
     "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/sequence-preflight-01-b-result の改訂1と正式評価 155500668303ac45249207e8a0544a26efef8b6338fe492e54f69c164c4b7591",
@@ -21,10 +21,10 @@
     },
     "decision": {
       "status": "deferred",
-      "reason": "基本用途の既存記述と古い参考構築の時点差を確認できたが、普及・独自性は未確認。検索記録に一部URL欠落。既存機能の運用結果として残し、新しい方法や前の点検指示は採用しない。"
+      "reason": "今回の案を独自な種として薦める判断は保留。基本用途の先例は確認したが一般普及・独自性は未確認。既存の後続調査機能の採用は維持し、今回を新しい方法や前の行動順点検指示の本採用根拠にはしない。"
     },
     "started_at": "2026-09-12T12:29:27.786473+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-12T13:40:08.495074+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -65,11 +65,29 @@
       {
         "id": "report",
         "title": "結果・採否・次の改善を報告",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T13:35:41.383639+00:00",
-        "ended_at": null,
+        "ended_at": "2026-09-12T13:40:08.495074+00:00",
         "budget_minutes": 10,
-        "note": "出典照合の留保を反映し、別担当の短い読者確認後に終了する。"
+        "note": "出典照合の留保を反映。初見確認49秒PASS、保留対象を具体化。APIと保存物の再読で確認。"
+      },
+      {
+        "id": "next-method",
+        "title": "入力の問題から次の最小改善を別担当が検討",
+        "status": "completed",
+        "started_at": "2026-09-12T13:32:07+00:00",
+        "ended_at": "2026-09-12T13:34:50+00:00",
+        "budget_minutes": 4,
+        "note": "既存の取得・追加を初回開始へ接続する提案。新規カード答案は作らず、発見力向上は未確定。回収と並行。"
+      },
+      {
+        "id": "reader-check",
+        "title": "初見の読者が報告の意味を確認",
+        "status": "completed",
+        "started_at": "2026-09-12T13:38:18+00:00",
+        "ended_at": "2026-09-12T13:39:07+00:00",
+        "budget_minutes": 2,
+        "note": "PASS。保留対象の軽微な曖昧さを指摘し、本文を具体化。事実の出典照合とは別。"
       }
     ],
     "evidence_paths": [
@@ -81,14 +99,16 @@
       "evals/discovery/witch-novelty-followup-01/result.json",
       "evals/discovery/witch-novelty-followup-01/inquiry/answer.md",
       "evals/discovery/witch-novelty-followup-01/inspect/answer.md",
-      "evals/discovery/witch-novelty-followup-01/session.tar.gz"
+      "evals/discovery/witch-novelty-followup-01/session.tar.gz",
+      "evals/discovery/witch-novelty-followup-01/next-method.json",
+      "evals/discovery/witch-novelty-followup-01/reader-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/witch-novelty-followup-01/README.md",
-      "sha256": "1baf1e7c6ff1778bac7ea10eddf53859077b187aa3346b490e139d411582d867",
-      "size": 6044
+      "sha256": "818f555f24ca05efa0c67548230c6e79829a7492f58cffa186f2f8672b075672",
+      "size": 6032
     },
     {
       "path": "evals/discovery/witch-novelty-followup-01/evaluation.json",
@@ -111,9 +131,19 @@
       "size": 1578
     },
     {
+      "path": "evals/discovery/witch-novelty-followup-01/next-method.json",
+      "sha256": "2db7c05b8902bb5162d68bb09aab26012429f59cee6fcb2c42462e70f835a39a",
+      "size": 6841
+    },
+    {
       "path": "evals/discovery/witch-novelty-followup-01/protocol.json",
       "sha256": "97bbc29bebc8e61f3f35c83c8a062ecdb29457eeac49a56a805e9c18be0564cb",
       "size": 7205
+    },
+    {
+      "path": "evals/discovery/witch-novelty-followup-01/reader-check.json",
+      "sha256": "975a52bb99c1bf6e1ffc77e5d694578f8cd7834cdafca05cfa3d169ac3fe10a3",
+      "size": 3100
     },
     {
       "path": "evals/discovery/witch-novelty-followup-01/result.json",
@@ -130,5 +160,59 @@
       "sha256": "90c4e27b7ccf9d3849ff316b10dbbe0f548f0195c63e5640a7b4ebdbd01f3a8d",
       "size": 2583
     }
-  ]
+  ],
+  "history": [
+    {
+      "revision": 8,
+      "saved_at": "2026-09-12T13:40:08.516550+00:00",
+      "actor": "codex-root",
+      "reason": "読者確認を終え、独自な種としての推薦保留と次の実装着手を記録"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-12T13:35:41.413329+00:00",
+      "actor": "codex-root",
+      "reason": "完了した後続調査の結果を回収し、部分達成と採用保留の理由を記録"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T12:48:29.244953+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T12:40:45.018587+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-12T12:40:44.422033+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-12T12:33:09.704037+00:00",
+      "actor": "codex-root",
+      "reason": "公開入口の開始、調査目的と固定入力の一致を確認"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-12T12:29:43.537022+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-12T12:29:28.134483+00:00",
+      "actor": "codex-root",
+      "reason": "初回探索で得た未確認の試用候補を、既存の調査と別照合へ渡す条件を固定"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
 }

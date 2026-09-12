@@ -1,0 +1,106 @@
+{
+  "task": "fresh-start-output-reader",
+  "started_at_utc": "2026-09-12 15:51:35 UTC",
+  "ended_at_utc": "2026-09-12 15:53:10 UTC",
+  "scope": "指定された4つの保存済みCLI出力のみの独立読解。コード・私的ログ・実行中担当・記事原本・DBは未参照。",
+  "inputs": [
+    "evals/discovery/fresh-start-01/start-result.json",
+    "evals/discovery/fresh-start-01/start-stdout.json",
+    "evals/discovery/fresh-start-01/initial-summary.json",
+    "evals/discovery/fresh-start-01/initial-source-read.json"
+  ],
+  "overall": "PASS",
+  "overall_scope": "保存済みの公開読出し出力に、指定記事の15資料と必要な留保が表示されていることについてPASS。取得内容と記事原本の一致や現在のゲーム状況は判定しない。",
+  "checks": [
+    {
+      "item": "指定5記事がsourcesへ入った",
+      "status": "OK",
+      "evidence": "start-result.commandの5つの--articleとstart-stdout.articlesが一致。sourcesのlocationからfragmentを除いた5URLも一致。15件のsource_hashはstdoutと入力manifestのsources集合に一致。"
+    },
+    {
+      "item": "全40枚リスト5件・説明5件・取得情報5件の15資料を公開読出しできた",
+      "status": "OK",
+      "evidence": "initial-source-readはsection=sources、offset=0、total=713、next_offset=null。contentを復元したJSONに公開記事の全40枚リスト5件、公開記事の説明5件、記事から取得した出典情報5件。各リストのcount合計は40で、card_id/nameの欠損はない。"
+    },
+    {
+      "item": "本文と観察日時・記事時点・抽出限界が分かれる",
+      "status": "OK",
+      "evidence": "各資料にlocation、observed_at、content、limitationsが別項目で存在。5件の取得情報にarticle_updated_on、選択したリスト、selected_total、表示表とコピー先の照合情報がある。説明資料にはtext、status、scope、unresolved_card_image_idsがある。"
+    },
+    {
+      "item": "部分取得・未解決画像を完全取得と偽っていない",
+      "status": "OK",
+      "evidence": "GameWith 503019の説明はstatus=partial、unresolved_card_image_ids=[646]。他4説明はextractedだが、全5説明に画像内文字・動画・動的表示は未確認という範囲がある。40枚という表示は構築リストに限定され、説明全文・記事全体の完全取得の主張ではない。",
+      "reservation": "partialのreasonはnullだが、未解決画像IDと抽出範囲により何が未確認かは読める。記事原本との照合はしていない。"
+    },
+    {
+      "item": "旧参考構築と今回取得資料の時点の違いが読み取れる",
+      "status": "OK",
+      "evidence": "start-stdout.reference_scopeはknown_decksをDB固定時の保存資料、今回の記事をsourcesとして区別し、取得日時だけで新しさ・普及を認定しないと明記。summary.objectiveも保存済み構築は取得時点の参考とする。GameWith 515274の説明には第8弾以前の内容を暫定掲載との注記が保存されている。"
+    },
+    {
+      "item": "旧参考構築との差を具体的な日付で確認できる",
+      "status": "不明",
+      "evidence": "今回5記事の更新日は2026-09-11〜12、観察日時は2026-09-12T13:47:18〜24 UTCと分かる。一方、指定4保存物にはknown_decksの実内容・各保存日が含まれず、具体的な何日差かは確定できない。"
+    },
+    {
+      "item": "新規案と旧評価の区別",
+      "status": "OK",
+      "evidence": "summaryはstage=develop、revision=0で、新規案の考案・改訂を依頼するinstructionとresponse_exampleが分離されている。proposal、previous_reviews、review_contextsは各total=0。旧注記は用途・時点の範囲で解釈するよう明記。記事の評価文も出典の主張として留保される。",
+      "reservation": "新規案の内容や旧評価との実際の比較の品質は、この初回出力には存在せず未評価。"
+    },
+    {
+      "item": "記事の真偽・最新能力・強さ・普及まで確認した扱いにしない",
+      "status": "OK",
+      "evidence": "summary.source_usageは出典の実在・主張の正しさを自動確認したものではないと記す。各説明は公式能力・実戦の強さ・普及を認定しないと記す。リスト・取得情報はカード本文・合法性・現在のTier・勝率を確認しないと記し、current_tierは全5件null。"
+    }
+  ],
+  "articles": [
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/503019",
+      "list_total": 40,
+      "description_status": "partial",
+      "unresolved_card_image_ids": [
+        "646"
+      ],
+      "article_updated_on": "2026-09-12T14:35:49+09:00"
+    },
+    {
+      "url": "https://gamewith.jp/shadowverse-wb/515274",
+      "list_total": 40,
+      "description_status": "extracted",
+      "unresolved_card_image_ids": [],
+      "article_updated_on": "2026-09-12T14:24:28+09:00"
+    },
+    {
+      "url": "https://game8.jp/shadowverse-beyond/698326",
+      "list_total": 40,
+      "description_status": "extracted",
+      "unresolved_card_image_ids": [],
+      "article_updated_on": "2026-09-11T16:09:04.000+09:00"
+    },
+    {
+      "url": "https://game8.jp/shadowverse-beyond/713009",
+      "list_total": 40,
+      "description_status": "extracted",
+      "unresolved_card_image_ids": [],
+      "article_updated_on": "2026-09-11T16:08:59.000+09:00"
+    },
+    {
+      "url": "https://game8.jp/shadowverse-beyond/764035",
+      "list_total": 40,
+      "description_status": "extracted",
+      "unresolved_card_image_ids": [],
+      "article_updated_on": "2026-09-11T17:04:52.000+09:00"
+    }
+  ],
+  "reservations": [
+    "保存済み出力から公開読出しの完了を確認した。CLIの再実行、元記事へのアクセス、取得プログラムの検査はしていない。",
+    "40枚は保存リストの数量合計の検査であり、現在の合法性・能力・勝率・普及の検査ではない。",
+    "known_decks各件の保存日と本文が指定資料にないため、旧参考構築との具体的な日付差や構成差は不明。",
+    "新規案の完成・実戦上の有用性・旧評価との比較結果はこの出力確認の対象外。"
+  ],
+  "modifications": [
+    "/tmp/fresh-start-output-reader.json"
+  ]
+}
