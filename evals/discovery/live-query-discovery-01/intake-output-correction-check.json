@@ -1,0 +1,147 @@
+{
+  "started_at": "2026-09-12T22:09:34+00:00",
+  "ended_at": "2026-09-12T22:10:22.699966+00:00",
+  "elapsed_seconds": 48.7,
+  "overall": "PASS",
+  "scope": "初回監査で不足とした改行正規化条件の訂正確認のみ。原文の再監査・再取得はしていない。",
+  "initial_finding": {
+    "overall": "NEEDS_REVIEW",
+    "check_1": "NG",
+    "reason": "初回記録ではGameWith 4件の生バイト識別値と投入文字列識別値が異なる理由が記載されず、全8件の同一性を条件なしには主張できなかった。",
+    "preserved_in_previous_report_fields": [
+      "initial_overall",
+      "checks[0].initial_status",
+      "initial_ended_at"
+    ]
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "OK",
+      "evidence": "生バイト識別値・正規化後識別値・両版の入力識別値が全8件対応する。初回監査で独立計算した値との一致を確認。",
+      "per_url": [
+        {
+          "url": "https://game8.jp/shadowverse-beyond/698338",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": false,
+          "crlf_count": 0
+        },
+        {
+          "url": "https://game8.jp/shadowverse-beyond/698647",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": false,
+          "crlf_count": 0
+        },
+        {
+          "url": "https://game8.jp/shadowverse-beyond/713011",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": false,
+          "crlf_count": 0
+        },
+        {
+          "url": "https://game8.jp/shadowverse-beyond/734194",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": false,
+          "crlf_count": 0
+        },
+        {
+          "url": "https://gamewith.jp/shadowverse-wb/503018",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": true,
+          "crlf_count": 5
+        },
+        {
+          "url": "https://gamewith.jp/shadowverse-wb/503027",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": true,
+          "crlf_count": 5
+        },
+        {
+          "url": "https://gamewith.jp/shadowverse-wb/515276",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": true,
+          "crlf_count": 5
+        },
+        {
+          "url": "https://gamewith.jp/shadowverse-wb/526538",
+          "raw_id_matches_independent_observation": true,
+          "normalized_id_matches_independent_observation": true,
+          "normalized_id_matches_both_outputs": true,
+          "crlf_count_matches_independent_observation": true,
+          "raw_and_normalized_differ": true,
+          "crlf_count": 5
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "status": "OK",
+      "evidence": "差があるのはGameWith 4件のみで、いずれも5箇所のCRLFをLFに正規化したため。Game8 4件はCRLFがなく識別値は変わらない。"
+    },
+    {
+      "id": 3,
+      "status": "OK",
+      "evidence": "normalization.methodとREADMEに両版へ同一の正規化済み文字列を渡した比較であると明記。READMEはネットワーク再取得とは別であることも明記。",
+      "method": "保存HTMLはPath.read_textで読み、CRLFをLFへ正規化した。修正前後には同じ正規化後の文字列を渡した。原文保存時のバイトSHAとの相違は削除や内容改変ではなく、この記録で追跡する。"
+    },
+    {
+      "id": 4,
+      "status": "OK",
+      "evidence": "一時保存、リポジトリ内のnormalization.json、intake-implementation.json内normalizationの3記録がJSON全体で一致。"
+    }
+  ],
+  "previous_report": {
+    "path": "/tmp/game8-leading-output-check.json",
+    "sha256_at_followup_start": "43bfb8fdbe78dbc64f33038b77f5df2d3aff6b1b0e125fa61dc9f35c34efe03d",
+    "unchanged_during_this_followup": true,
+    "timing_note": "別JSONを残すという追加指示の到着直前に、初回報告の現行判定を追加記録込みのPASSへ更新していた。初回NGはinitial字段として保持。今回の訂正確認ではそのファイルを編集していない。"
+  },
+  "artifacts": [
+    {
+      "path": "/tmp/game8-leading-replay-final/normalization.json",
+      "sha256": "66b2129e311394f59a7fa11533113ec67d16dc64786722592147310cc83179ae"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/intake-replay/normalization.json",
+      "sha256": "66b2129e311394f59a7fa11533113ec67d16dc64786722592147310cc83179ae"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/intake-implementation.json",
+      "sha256": "e9b68396b0154867e495341f73f73f177b0e5d1ea5e5aea20cf0846e4a7747ab"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/README.md",
+      "sha256": "311922229d6c8310a72debd27f1f824fb69b50ad53f8546cb17f2fa457528081"
+    }
+  ],
+  "limits": [
+    "PASSは追加説明と識別値の追跡の訂正確認に限る。",
+    "生バイトがbefore/after入力と全件同一になったという意味ではない。",
+    "両版への入力と実行の対応は保存記録での確認であり、この訂正確認で実行を再度行ってはいない。",
+    "再取得の成功、探索の発見力、記事や構築の強さを証明しない。"
+  ],
+  "mutations": [
+    "/tmp/game8-leading-output-correction-check.json の新規保存のみ"
+  ]
+}
