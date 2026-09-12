@@ -1,15 +1,15 @@
 {
   "id": "sequence-preflight-01",
-  "revision": 1,
-  "saved_at": "2026-09-12T10:50:53.923423+00:00",
+  "revision": 6,
+  "saved_at": "2026-09-12T10:57:25.634511+00:00",
   "actor": "codex-root",
-  "reason": "前の比較の共通見落としから、別クラスの初回探索と同じ開始状態の点検を固定",
+  "reason": "初見確認と開始時刻・固定入力・DB保持を照合して記録",
   "record": {
     "id": "sequence-preflight-01",
     "title": "提出前に同じ開始状態で行動順を点検する",
     "category": "method",
     "status": "running",
-    "summary": "初回ウィッチ探索で現行と点検指示の追加を比較。準備中、採否未判定。",
+    "summary": "両方式が初回考案中。変更版は95機能検査・型検査合格、追加指示以外の実入力一致を確認。方法の採否は未判定。",
     "method": "正式提出前に、通常構築と比べた自分の仮の比較を、開始状態・行動順・終点・暫定判断とともに追加資料へ一度保存してください。その後、同じ開始状態の手札・PP・盤面・進化権・取得履歴を保って、案側と通常側でそれぞれ最大一通り、行動順を変える反例を点検してください。自案の利益が通常側にもある、または自案の損失を避けられる手順が見つかれば、比較と採用配分・使い方・判断を修正し、元の比較と点検結果の両方を残します。反例が見つからなかったことを最適性の証明にせず、未指定の相手条件や裁定は未確認に残してください。有利な手札・PP・盤面を補ったり、完全な対戦履歴を新しい必須条件にしたりしません。この点検は一回で終え、既存の提出と別評価へ進みます。着想段階の未解決は許し、既存の成立・試用価値・独自性の基準は変更しません。",
     "procedure": "ウィッチ・ローテーションの新規初回探索を、同じ固定入力で現行Aと変更B各一度行う。考案20分・別評価10分。追加改訂と自動再試行なし。未提出・未評価も結果として保持する。\nBだけDEVELOP末尾へ指定文を追加。通常の別評価、その他の指示、回答形式、資料・ルール、実行・明示終了、モデル設定を変更しない。旧continuation-choiceの変更は混ぜない。\nBが仮比較を公開保存した後に、同じ開始状態から順序を変える点検結果を正式提出までに残すかを確認する。私的思考の時系列は観測済みとせず、公開保存の順序だけを検査する。\n点検で、通常側の見落とした代替手順または自案の避けられる損失を具体化し、比較・使い方・配分・判断へ反映できたかを確認する。別担当の評価がその訂正を支持するか、残る誤りも確認する。欄や件数を増やしただけでは改善と数えない。\nAにも同様の訂正がある、Bの寄与が具体化しない、またはBが点検に時間を使って正式案・別評価を保存できないなら本採用保留。単一の成功、点数や推薦件数だけでは発見力の改善としない。\n同じ初期入力でもAIが選ぶカード・局面は異なり得る。A/B各一回では担当差・問題難度・一般的効果を分離できない。既存より判断に使える根拠が増えた場合も限定的候補とし、新しい案の試用価値・独自性は別に記録する。\nカードDBと旧失敗・旧評価は変更しない。既知使用単独で棄却せず、勝率・Tier・初見効果・実戦頻度を推測で加点しない。今回の新規入力は保存DBから作成し、最新環境の取得や完全な未知評価とは呼ばない。",
     "inputs": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/sequence-preflight-01-input。採用可能114枚、関連98枚。保存DBからの初回入力。",
@@ -29,20 +29,20 @@
       {
         "id": "implementation",
         "title": "点検指示を隔離して実装・入力を照合",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T10:50:53.775705+00:00",
-        "ended_at": null,
+        "ended_at": "2026-09-12T10:55:29.113281+00:00",
         "budget_minutes": 6,
-        "note": "指定文だけを変更。本文・他の指示・回答形式・正式保存を維持する検査を行う。"
+        "note": "担当実装10:52:09〜10:54:23 UTC。新7＋既存88検査、型検査合格。rootが実入力を照合し追加文以外の一致を確認。確認側の余分な改行期待を訂正し、実装は変えていない。"
       },
       {
         "id": "a-develop",
         "title": "現行Aの考案",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T10:53:06.576452+00:00",
         "ended_at": null,
         "budget_minutes": 20,
-        "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。"
+        "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。\n起動処理を開始。実行記録: /private/tmp/sv-sequence-preflight-01-a/develop-run"
       },
       {
         "id": "a-review",
@@ -56,11 +56,11 @@
       {
         "id": "b-develop",
         "title": "変更Bの考案",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-12T10:55:29.429349+00:00",
         "ended_at": null,
         "budget_minutes": 20,
-        "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。"
+        "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。\n起動処理を開始。実行記録: /private/tmp/sv-sequence-preflight-01-b/develop-run"
       },
       {
         "id": "b-review",
@@ -70,19 +70,73 @@
         "ended_at": null,
         "budget_minutes": 10,
         "note": "同じ固定入力を一回だけ実行する。正式保存と明示終了を使用。"
+      },
+      {
+        "id": "reader",
+        "title": "進行中報告の初見確認",
+        "status": "completed",
+        "started_at": "2026-09-12T10:54:43Z",
+        "ended_at": "2026-09-12T10:55:14Z",
+        "budget_minutes": 2,
+        "note": "PASS。前比較の採用保留と新比較の進行中を区別できる。軽微な指示語の曖昧さを修正。追加されたB開始時刻は実行記録でrootが確認。"
       }
     ],
     "evidence_paths": [
+      "evals/discovery/sequence-preflight-01/b-start.json",
+      "evals/discovery/sequence-preflight-01/implementation-tests.xml",
+      "evals/discovery/sequence-preflight-01/implementation.json",
+      "evals/discovery/sequence-preflight-01/a-input-check.json",
+      "evals/discovery/sequence-preflight-01/power-scope.json",
+      "evals/discovery/sequence-preflight-01/input-check-correction.json",
       "evals/discovery/sequence-preflight-01/README.md",
+      "evals/discovery/sequence-preflight-01/reader.json",
+      "evals/discovery/sequence-preflight-01/b-input-check.json",
       "evals/discovery/sequence-preflight-01/input-session.tar.gz",
-      "evals/discovery/sequence-preflight-01/protocol.json"
+      "evals/discovery/sequence-preflight-01/protocol.json",
+      "evals/discovery/sequence-preflight-01/a-start.json",
+      "evals/discovery/sequence-preflight-01/variant.patch"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/sequence-preflight-01/README.md",
-      "sha256": "9131c58cc59e244b46a587b6e2084dce14bf8643e7d287b0487f0f9f91468c51",
-      "size": 1570
+      "sha256": "cdd89d2c658121a1894b9bbe32e6211df6ab2ae410fa7907c716c6a1937b9a9d",
+      "size": 1993
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/a-input-check.json",
+      "sha256": "aa4d1b6abb8be6f0e414a77f8c4cd6b28e484c00eb2211aef6d1db472103999a",
+      "size": 4753
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/a-start.json",
+      "sha256": "cca830f515971c0a35c351f5d970d0930b1237c8e0411b77d5cebb2beda044b0",
+      "size": 1353
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/b-input-check.json",
+      "sha256": "babb85e145a6e5761fbed0458d8edbccaf373fab56e014367de8cfddb505202e",
+      "size": 4732
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/b-start.json",
+      "sha256": "cb7306bea1ee609b800c9032150edfd3e01e0224f46a4b4c474d9a4bb49b2b2c",
+      "size": 1281
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/implementation-tests.xml",
+      "sha256": "377c4c9e330ee137bd81cfeada3c467d59138871676eb587239fe8434798ca45",
+      "size": 12436
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/implementation.json",
+      "sha256": "eff942010d6f03ed273d6f8beb4eeb397a41107494357d4df55306ac5fddd50f",
+      "size": 3425
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/input-check-correction.json",
+      "sha256": "8362ad5db97d324047fd344d1f254c5ab6c70f3a2cecc47733dccb82c08f4556",
+      "size": 444
     },
     {
       "path": "evals/discovery/sequence-preflight-01/input-session.tar.gz",
@@ -90,12 +144,57 @@
       "size": 1151053
     },
     {
+      "path": "evals/discovery/sequence-preflight-01/power-scope.json",
+      "sha256": "2d64d5b419c1c4f8ccde99eb0a3b0b8b1d3b9e65258163db8e51bc5c03f6fd04",
+      "size": 414
+    },
+    {
       "path": "evals/discovery/sequence-preflight-01/protocol.json",
       "sha256": "2ef1aa5b8ca5ba6de17404f6659aaedec1ae798bd11799281b1255d8da26d638",
       "size": 4007
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/reader.json",
+      "sha256": "582e50b506521dce16ece668dfac4c62af3f79afcba381a842d0ff5d0dfbb178",
+      "size": 1435
+    },
+    {
+      "path": "evals/discovery/sequence-preflight-01/variant.patch",
+      "sha256": "c02860170e7ec61f8ecba879bb17229ee857fbb1c23e873c486cef299039b325",
+      "size": 2401
     }
   ],
   "history": [
+    {
+      "revision": 6,
+      "saved_at": "2026-09-12T10:57:25.634511+00:00",
+      "actor": "codex-root",
+      "reason": "初見確認と開始時刻・固定入力・DB保持を照合して記録"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-12T10:56:38.321713+00:00",
+      "actor": "codex-root",
+      "reason": "実装検査と実入力一致を確認し、両方式の初回考案開始を保存"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-12T10:55:29.432896+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-12T10:54:12.252376+00:00",
+      "actor": "codex-root",
+      "reason": "現行の実入力一致と実際の開始を確認し、変更版の実装待ちを明示"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-12T10:53:06.580655+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
     {
       "revision": 1,
       "saved_at": "2026-09-12T10:50:53.923423+00:00",

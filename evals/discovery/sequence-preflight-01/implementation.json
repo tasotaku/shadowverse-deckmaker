@@ -1,0 +1,82 @@
+{
+  "id": "sequence-preflight-01",
+  "started_at": "2026-09-12T10:52:09+00:00",
+  "ended_at": "2026-09-12T10:54:23.467574+00:00",
+  "elapsed_seconds": 134.467574,
+  "worktree": "/tmp/sv-sequence-preflight-01-worktree",
+  "branch": "codex/sequence-preflight-01",
+  "base_commit": "100fed554f955ba116989fcf54e5085724a37592",
+  "implementation_commit": "423bef077fc5c40ff989d75381330f79604a230e",
+  "implementation_sha256": "36e83ed5c458f4c6aad946773201e963647bca45c8e935082d3cc59938b081e8",
+  "changed_tracked_files": [
+    "src/svdeck/discovery.py"
+  ],
+  "change": "DEVELOP末尾へprotocol.variant_instructionを文字どおり追加。AI_NOTE 1行。",
+  "verdict": "PASS",
+  "quality_verdict": "unassessed",
+  "static_checks": [
+    {
+      "command": "PYTHONPATH=src /tmp/sv-system-venv/bin/python -m mypy --strict src/svdeck/discovery.py",
+      "result": "PASS: no issues found in 1 source file"
+    },
+    {
+      "command": "git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "tests": {
+    "runner": "pytest",
+    "total": 95,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 14.54,
+    "by_file": {
+      "tests.test_discovery": 23,
+      "tests.test_discovery_sources": 24,
+      "tests.test_discovery_read": 19,
+      "tests.test_discovery_history": 7,
+      "tests.test_discovery_review_contexts": 15,
+      "tests.temp.test_sequence_preflight_temp": 7
+    },
+    "existing": 88,
+    "temporary": 7,
+    "retries": 0,
+    "command": "PYTHONPATH=src:tests /tmp/sv-system-venv/bin/python -m pytest -q tests/test_discovery.py tests/test_discovery_sources.py tests/test_discovery_read.py tests/test_discovery_history.py tests/test_discovery_review_contexts.py tests/temp/test_sequence_preflight_temp.py --junitxml=/tmp/sequence-preflight-tests.xml",
+    "junit_xml": "/tmp/sequence-preflight-tests.xml",
+    "temporary_test_path": "/tmp/sv-sequence-preflight-01-worktree/tests/temp/test_sequence_preflight_temp.py"
+  },
+  "coverage": {
+    "happy_path": [
+      "初回・改訂の公開develop packetは追加指示を除き完全一致",
+      "部分案の提出・別評価・改訂を既存公開入口で往復"
+    ],
+    "edge_cases": [
+      "reviewとfinishの公開packet完全一致",
+      "inquiryとinspectの公開packet完全一致（workerのみ合成差し替え、実AI未起動）",
+      "他の指示とdevelop/review回答例の一致",
+      "元の合成探索ファイルのmanifest不変"
+    ],
+    "error_paths": [
+      "不正カード・異クラス・ローテ対象外・生成札の直接採用を拒否",
+      "偽引用・異なるpacket・不正親改訂を拒否",
+      "自己評価・根拠不足推薦・Web確認なし独自性判定を拒否",
+      "改ざん資料・探索・評価参照を拒否"
+    ]
+  },
+  "unverified": [
+    "実AIによる順序点検と正式提出の完了",
+    "案の成立・試用価値・独自性・今回変更の試行品質",
+    "本番/main/remoteへの反映（指定により未実施）"
+  ],
+  "isolation": {
+    "real_answers_read": false,
+    "trial_input_content_read": false,
+    "prior_trial_answers_read": false,
+    "real_ai_stdout_or_jsonl_read": false,
+    "real_ai_launched": false,
+    "goals_or_automations_changed": false,
+    "pushed_or_main_changed": false
+  },
+  "delivery": "指定された隔離worktreeのcommitのみ。git rev-parseとclean statusで保存を確認。"
+}
