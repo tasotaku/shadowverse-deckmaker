@@ -14,6 +14,7 @@ from pathlib import Path
 import re
 import sqlite3
 import sys
+from tempfile import TemporaryDirectory
 from typing import Any
 
 from svdeck.db import DB_PATH
@@ -24,6 +25,7 @@ from svdeck.discovery_evidence import (
 )
 from svdeck.discovery_read import packet_summary, read_packet
 from svdeck.discovery_sources import load_sources, save_sources
+from svdeck.meta import article_sources
 
 DOCS = Path(__file__).resolve().parents[2] / "docs"
 
@@ -164,11 +166,39 @@ def _review_contexts(session: Path, reviews: list[JSONDict], sources: list[JSOND
     return records
 
 
-def start(session: Path, db: Path, class_name: str, format_name: str, objective: str, docs: Path = DOCS) -> JSONDict:
-    # AI_NOTE: 本番DBを読み取り専用で複製し、本文と検索が同じ固定版を参照するようにする。
+def start(session: Path, db: Path, class_name: str, format_name: str, objective: str, docs: Path = DOCS,
+          *, articles: list[str] | None = None) -> JSONDict:
+    # AI_NOTE: 記事指定時だけ一時領域で初回入力まで完成させ、取得・保存失敗を通常探索の成功として残さない。
     _text(objective, "objective")
-    if session.exists():
+    if session.exists() or session.is_symlink():
         raise ValueError("保存先は既に存在します。新しい探索用ディレクトリを指定してください")
+    if articles:
+        session.parent.mkdir(parents=True, exist_ok=True)
+        with TemporaryDirectory(prefix=f".{session.name}-", dir=session.parent) as temporary:
+            staged = Path(temporary) / "session"
+            result = start(staged, db, class_name, format_name, objective, docs)
+            urls = list(dict.fromkeys(articles))
+            sources = []
+            for url in urls:
+                fetched = article_sources(staged / "snapshot.db", url, format_name, with_text=True)
+                items = _objects(fetched.get("sources"), "記事のsources")
+                if not items:
+                    raise ValueError("記事の資料が0件です")
+                sources.extend(items)
+            added = attach(staged, {"sources": sources})
+            initial = packet(staged, None, "develop")
+            # AI_NOTE: 公開直前に保存先を排他的に確保し、取得中に作られた既存先も上書きしない。
+            session.mkdir()
+            try:
+                staged.rename(session)
+            except OSError:
+                session.rmdir()
+                raise
+        return {**result, "session": str(session.resolve()), "articles": urls,
+                "source_hashes": added["added"], "packet_sha256": initial["sha256"],
+                "reference_scope": "known_decksはDB固定時の保存資料です。今回取得した記事はsourcesに分け、取得日時だけで内容の新しさ・普及を認定しません。",
+                "next": "packet --summaryまたはreadで、記事を含む初回入力を確認できます"}
+    # AI_NOTE: 記事未指定では従来どおり、本番DBの固定保存だけを行う。
     source = read_only(db)
     snapshot = sqlite3.connect(":memory:")
     try:
@@ -577,7 +607,7 @@ def recall(library: Path, card_ids: list[int], query: str | None = None,
 
 
 def main(argv: list[str] | None = None) -> int:
-    # AI_NOTE: 保存済み調査から提出をまとめる選択肢も、通常と同じ公開入口で扱う。
+    # AI_NOTE: 任意の参照記事を開始操作へ渡し、記事未指定のコマンドと考案・評価経路は維持する。
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
     begin = sub.add_parser("start", help="DBを固定して探索開始")
@@ -586,6 +616,7 @@ def main(argv: list[str] | None = None) -> int:
     begin.add_argument("--class", dest="class_name", choices=CLASSES, required=True)
     begin.add_argument("--format", choices=("rotation", "unlimited"), default="rotation")
     begin.add_argument("--objective", required=True)
+    begin.add_argument("--article", action="append", default=[], help="初回入力へ構築と説明を取り込む記事URL。複数回指定可能")
     add = sub.add_parser("attach", help="比較資料・観察のJSONを固定して追記")
     add.add_argument("session", type=Path)
     add.add_argument("sources", type=Path)
@@ -629,7 +660,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         if args.command == "start":
-            result = start(args.session, args.db, args.class_name, args.format, args.objective)
+            result = start(args.session, args.db, args.class_name, args.format, args.objective, articles=args.article)
         elif args.command == "attach":
             result = attach(args.session, read_object(args.sources))
         elif args.command == "attach-file":
