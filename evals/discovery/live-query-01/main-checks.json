@@ -1,0 +1,15 @@
+{
+  "completed_observed_at": "2026-09-12T19:33:59.758801+00:00",
+  "tests": {
+    "command": "PYTHONPATH=src:tests:/tmp/sv-explicit-finish-01-worktree/tests/temp pytest -q /tmp/live-query-tests/test_live_query.py --junitxml=/tmp/live-query-main-tests.xml",
+    "passed": 28,
+    "display_elapsed_seconds": 3.57,
+    "returncode": 0
+  },
+  "types": {
+    "command": "MYPYPATH=src:tests:/tmp/sv-explicit-finish-01-worktree/tests/temp mypy --strict src/svdeck/discovery.py src/svdeck/discovery_run.py",
+    "returncode": 0,
+    "stdout": "Success: no issues found in 2 source files"
+  },
+  "limit": "本体反映後の関連再検査。既存178件に新たな検査項目28件を加算した意味ではない。単体の開始終了はXMLまたは未計測。"
+}

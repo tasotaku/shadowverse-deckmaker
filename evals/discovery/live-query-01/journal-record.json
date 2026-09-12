@@ -1,15 +1,15 @@
 {
   "id": "live-query-01",
-  "revision": 10,
-  "saved_at": "2026-09-12T19:30:29.552094+00:00",
+  "revision": 12,
+  "saved_at": "2026-09-12T20:30:52.063269+00:00",
   "actor": "codex-root",
-  "reason": "独立照合を確認して検索補助として採用、本体反映へ進む",
+  "reason": "採用後の最終報告も別担当が確認。限界の読み分けを確認",
   "record": {
     "id": "live-query-01",
     "title": "考案中の新しい条件をその場で検索する",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "検索補助として採用。178検査・型検査と実利用4分22秒、別照合2分47秒を確認。本体反映と入口の確認中。新しい有用な着想の確認には加算しない。",
+    "status": "completed",
+    "summary": "検索補助として採用して本体反映済み。178検査、実利用4分22秒、独立照合2分47秒、本体CLIと関連28件の再確認を完了。発見力・実戦の利益・独自性は未確認。",
     "method": "固定したカード資料とDBを保持し、問いと検索条件を1件ずつ既存検索へ渡す公開操作を追加する。",
     "procedure": "目的は、考案中に新しく生じた要求を、正式な案の提出を前提にせず、固定DBの既存型検索へ渡せる任意の入口を追加すること。別用途を必ず探す指示、生成元自動解決、対戦シミュレータは作らない。\n既存search_questionsを再利用し、snapshotとcontextを毎回既存機能で照合する。新たなquestionと空でないtagを明示して1件ずつ検索する。採用可能カードのIDと検索入力、固定版の識別、全文と注記の参照先を返し、型一致を手順成立・生成可能性・価値・独自性へ昇格しない。任意のファイル、別DB、別探索、クラス変更を入力できない。\n検索だけでは元入力・案・評価・追加資料・既存packetを変更しない。検索結果を残す時は既存の添付を使う。実担当の公開query操作は既存の公開操作記録へ保存し、終了明示後は拒否する。公開入口は考案だけへ追加し、別評価・調査・別照合の従来の許可は変えない。\n既存DEVELOP_RULES/DEVELOP/REVIEW/FINISHと採点を変えない。新しい操作はhelpと実担当が受け取る公開コマンド案内へ明示する。案未提出・検索一致・一致なし・無効値・他クラスと非合法カード・DB改変・公開工程制限・終了後拒否・既存全入力保持を機械検査する。人工例を実カード発見と呼ばない。\n実装と検査は目安12分。次に固定された保存入力から実AIが新要求を1件選び、検索結果と本文・注記を照合して既存添付へ報告する利用確認を6分以内で一度行う。開発者はカードの答え・具体タグ・期待する候補を与えない。別担当が検索・保存の根拠と限界を3分以内で確認する。\n採用候補は機能・型検査と実利用で、提出前の新要求を検索でき、取得した根拠を保持して再読できること。これは検索補助の採用であり、システムの発見力の採用と区別する。失敗時はその段階を記録し採用保留。採用後には別の探索入力で実質的な発展・試用理由・独自性を元の基準で評価する。今回の0対1や新しい検索件数を有用な種の確認数に加算しない。",
     "inputs": "前試行の変更版の正式保存を利用確認に使う。既知入力の道具確認であり未知の発見試験ではない。",
@@ -24,7 +24,7 @@
       "reason": "新要求を正式提出前に固定DBの既存型検索へ渡し、返った位置から本文と注記を確認して結果を保存・再読できた。型検査・178機能検査と独立した実利用照合を満たしたため検索補助として採用する。発見力やカード案の採用は認定しない。"
     },
     "started_at": "2026-09-12T19:10:28.359273+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-12T19:35:12+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -74,11 +74,20 @@
       {
         "id": "integrate",
         "title": "採用した検索補助を本体へ反映し公開入口を確認",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-12T19:30:29.528234+00:00",
-        "ended_at": null,
-        "note": "178検査・実利用4分22秒・独立照合2分47秒を根拠に検索補助として採用。発見力の改善は未確認。",
+        "ended_at": "2026-09-12T19:33:59.758801+00:00",
+        "note": "本体82f5bffへ反映。関連28件の再検査・型検査2ファイル合格。保存済み実利用資料に本体CLI query/readを実行し、検索結果・参照先・全保存物の保持が一致。",
         "budget_minutes": 8
+      },
+      {
+        "id": "final-reader",
+        "title": "採用後の報告を別担当が再確認",
+        "status": "completed",
+        "started_at": "2026-09-12T19:34:44+00:00",
+        "ended_at": "2026-09-12T19:35:12+00:00",
+        "note": "PASS。検索補助の採用と発見力未確認、既知候補・0件時の実利用未確認、初回回収時刻欠落を区別。",
+        "budget_minutes": 2
       }
     ],
     "evidence_paths": [
@@ -114,14 +123,18 @@
       "evals/discovery/live-query-01/use/public-operations.json.gz",
       "evals/discovery/live-query-01/collect-use-initial.py",
       "evals/discovery/live-query-01/recover-collection.py",
-      "evals/discovery/live-query-01/use-inspection.json"
+      "evals/discovery/live-query-01/use-inspection.json",
+      "evals/discovery/live-query-01/main-delivery.json",
+      "evals/discovery/live-query-01/main-checks.json",
+      "evals/discovery/live-query-01/main-tests.xml",
+      "evals/discovery/live-query-01/final-reader.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/live-query-01/README.md",
-      "sha256": "8838f28451dd3ee791608c3e30366ec97072474ae5067a3edd434aa4b6d1d501",
-      "size": 3763
+      "sha256": "b92cfbb1c4d1409064d58aba047384b8bb7b96eafed084b2cfb9bfdd75a7118f",
+      "size": 7677
     },
     {
       "path": "evals/discovery/live-query-01/baseline-gap-verification.json",
@@ -149,6 +162,11 @@
       "size": 1050
     },
     {
+      "path": "evals/discovery/live-query-01/final-reader.json",
+      "sha256": "a0756f739b988d9e962cf4aa9dee7354c6fc67d5ed539b0a6d018af4d697013b",
+      "size": 2621
+    },
+    {
       "path": "evals/discovery/live-query-01/frozen-runtime.json",
       "sha256": "1364448d889c00d1a8d4f322bedebdc5cf23200812bbc9de88e31912d2473648",
       "size": 9731
@@ -172,6 +190,21 @@
       "path": "evals/discovery/live-query-01/launch-check.json",
       "sha256": "d26f766f290c07506bcf80556488fa1e002e809c714619186287123c0377fcaa",
       "size": 618
+    },
+    {
+      "path": "evals/discovery/live-query-01/main-checks.json",
+      "sha256": "063a5eb555d5aadc85b4efc03eb1088e07bc88d823f7e29a97b6de01cd79a2ba",
+      "size": 762
+    },
+    {
+      "path": "evals/discovery/live-query-01/main-delivery.json",
+      "sha256": "6d7616a2b6240f09472b5e13ce38448ebd896b9dc28f4d2572db5c5519a5b306",
+      "size": 982
+    },
+    {
+      "path": "evals/discovery/live-query-01/main-tests.xml",
+      "sha256": "b701165faded62fb5ad353c203699402ab552b73bba4c58b53e9789a259e55bf",
+      "size": 3320
     },
     {
       "path": "evals/discovery/live-query-01/progress-reader.json",

@@ -1,0 +1,36 @@
+{
+  "scope": [
+    "docs/progress.md の冒頭から最初の --- の直前まで",
+    "evals/discovery/live-query-01/README.md"
+  ],
+  "started_at_utc": "2026-09-12 19:34:44 UTC",
+  "ended_at_utc": "2026-09-12 19:35:12 UTC",
+  "verdict": "PASS",
+  "reason": "検索補助として本体へ採用した範囲と、発見力・候補採用の価値・システム完成が未確認であることを区別できる。既知候補による実利用、検索0件時の実利用未確認、初回回収時刻の欠落と復旧照合時刻の違いも明示されている。",
+  "checks": {
+    "adopted_search_support_vs_unverified_discovery": {
+      "result": "PASS",
+      "reader_understanding": "正式案提出前の新条件で検索し、本文と双方の注記を確認し、報告を保存・再読できたため検索補助として採用した。178件と型検査、実担当の利用、別担当の照合、本体での確認がその根拠。有用で独自な着想の新しい確認は0件で、発見力やカードの採用価値、システム全体の完成を示したわけではない。"
+    },
+    "candidate_was_already_known": {
+      "result": "PASS",
+      "reader_understanding": "今回の候補は検索前にも読まれていた。新しい問いを検索へ渡す利用は確認できたが、未知のカードを発見できた証拠にはしていない。"
+    },
+    "no_match_runtime_behavior_not_confirmed": {
+      "result": "PASS",
+      "reader_understanding": "一致なしの動作は機械検査の対象だが、検索結果が0件だったときに実担当がどう続けるかは今回の実利用では未確認。本文で明確に区別されている。"
+    },
+    "missing_initial_collection_times_vs_recovery_times": {
+      "result": "PASS",
+      "reader_understanding": "初回の回収確認はDB誤参照で停止し、開始・終了の正確な時刻は保存されていなかった。記載された04:25:49台は復旧後の照合であり、担当終了からの2分19.659秒も復旧開始までの時間。初回回収までの時間には置き換えていない。"
+    },
+    "previous_comparison_not_mixed_with_adoption": {
+      "result": "PASS",
+      "reader_understanding": "以前の別用途探索の指示は本採用保留のまま、本体へ取り込んでいない。今回採用したのは検索入口であり、推薦0対1をその成果に混ぜていない。"
+    }
+  },
+  "required_corrections": [],
+  "additional_explanation_required": false,
+  "read_other_materials_or_results": false,
+  "edited_source_db_or_git": false
+}
