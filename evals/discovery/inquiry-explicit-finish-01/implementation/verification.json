@@ -1,0 +1,91 @@
+{
+  "started_at": "2026-09-13T14:31:44Z",
+  "ended_at": "2026-09-13T14:44:06.473336+00:00",
+  "baseline": "bf9a8f1",
+  "branch": "codex/inquiry-explicit-finish",
+  "workspace": "/tmp/sv-inquiry-explicit-finish-worktree",
+  "scope": [
+    "src/svdeck/discovery_inquiry.py",
+    "src/svdeck/discovery_run.py"
+  ],
+  "test_verdict": "PASS",
+  "test_suites": {
+    "final-new-tests": {
+      "tests": "74",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "55.463"
+    },
+    "regression-tests": {
+      "tests": "194",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "102.113"
+    }
+  },
+  "total_tests": 268,
+  "type_check": "Success: no issues found in 2 source files",
+  "observed": [
+    "Public CLI inquiry then inspect and inspect-only: finished_by_request, process_group_gone, finish_confirmed.",
+    "Natural success without finish remains accepted with explicit_finish enabled; nonzero, timeout and stop-time tampering remain failures.",
+    "Current verify_report requirements remain; evidence pins answer/session and operation basenames with SHA256.",
+    "Duplicate finish and later reads preserve evidence; sealed mutations and changed or missing evidence are rejected.",
+    "Synthetic overall journal stays running until final recheck; recheck failure interrupts and journal sync failure returns nonzero.",
+    "Existing develop/review, cycle, inquiry, novelty, deadline and journal regressions pass."
+  ],
+  "limitations": [
+    "Only synthetic processes and synthetic test data were used. Real AI use remains for the parent task.",
+    "No completion or success is asserted for any previous timed_out run.",
+    "No writes were made to the main checkout, real database or production journal. No private Codex logs were read."
+  ],
+  "source_sha256": {
+    "src/svdeck/discovery_inquiry.py": "337f1b1fd94a4059098fcece7cb41c610e56df9bb155166100980a710439b266",
+    "src/svdeck/discovery_run.py": "2ee1772de72cf7b2ce089ba4f900a3c6b77572d7c73c7bb560bc2716489c23a4",
+    "src/svdeck/worker.py": "fa3997fb8f39211aef397bc355606b811f9253301163a8dbf3cf1cfa45ef05d3",
+    "src/svdeck/discovery_cycle.py": "779e6faca917a24b8c855ef06e163a9f97e064ce1022dae55ca57991ba804cc3"
+  },
+  "test_sha256": {
+    "reference/test_discovery.py": "c4dbf0848ba341ef51e71614cace30c6f804ccabbed0d0df5db0dab42c20da65",
+    "reference/test_discovery_cycle_temp.py": "ec9b107c9a2badeb5cfb448fd5b0bf6b6e7a12111175ced6f31bf96d3269bcb2",
+    "reference/test_discovery_inquiry_temp.py": "0b33dc223e92604cf497d01640e5df92d47b60642964157d09556fe61f2f710e",
+    "reference/test_discovery_run_temp.py": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e",
+    "reference/test_explicit_finish_current_temp.py": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c",
+    "reference/test_finished_session_stability_temp.py": "c1c8fc1dd528e9fa1032ae3cd7c41388326107c4225e50ed1aa46ee69edecf40",
+    "reference/test_novelty_followup_temp.py": "2180a2850a65dabe343b0ba184874399f71c32baaddb0a199f210018e5819e68",
+    "reference/test_worker_clock_temp.py": "237d882db517eed998ee1df3345083dac4193c3551c114db21c75e5e2e0565d0",
+    "reference/test_worker_deadline_temp.py": "30ada5b3051797f9a745fdf95035acbf0ef880855762da5b10f94614705d48b0",
+    "reference/test_worker_journal_temp.py": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43",
+    "test_inquiry_explicit_finish_temp.py": "ee377cac41890c879ce1c196f9c7cef61c587cc661f4a186767b460c859289ed"
+  },
+  "earlier_test_runs": {
+    "new-tests": {
+      "tests": "68",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "43.082"
+    },
+    "journal-tests": {
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "6.271"
+    },
+    "regression-tests": {
+      "tests": "194",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "102.113"
+    }
+  },
+  "review_followup": "Parent review identified that a naturally completed inspector must still preserve the already-finished inquiry/session. Added unconditional previous-session integrity check when explicit_finish is enabled, with unchanged/addition/modification synthetic regressions.",
+  "static_attempts": [
+    "Initial implementation: PASS.",
+    "Previous-session check initially exposed a mypy inferred-object indexing error.",
+    "Annotated the heterogeneous contract with dict[str, Any], matching existing helper interfaces; final mypy PASS."
+  ]
+}

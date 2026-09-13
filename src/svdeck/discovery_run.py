@@ -109,14 +109,17 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
                 print('For review: review FILE. For inquiry/inspect: attach FILE | attach-file FILE OPTIONS.')
                 print('Session and stage are fixed. Read inputs only through this entry.')
                 if config.get('explicit_finish'):
-                    print('After submission and report: finish. This seals saved work and asks the supervisor to stop this worker.')
+                    if stage in {'inquiry', 'inspect'}:
+                        print('answer.mdを公開添付し、新版から全文をreadで再読し、最新reportを確認した後: finish。監視側へ終了を要求します。')
+                    else:
+                        print('After submission and report: finish. This seals saved work and asks the supervisor to stop this worker.')
                 code = 0
             else:
                 command, rest = args[0], args[1:]
                 stage_commands = {'develop': {'submit', 'attach', 'attach-file', 'compare', 'query'}, 'review': {'review'},
                                   'inquiry': {'attach', 'attach-file'}, 'inspect': {'attach', 'attach-file'}}
                 allowed = {'packet', 'read', 'report'} | stage_commands[stage]
-                if config.get('explicit_finish') and stage in {'develop', 'review'}:
+                if config.get('explicit_finish') and stage in {'develop', 'review', 'inquiry', 'inspect'}:
                     allowed.add('finish')
                 if (work / 'finish-request.json').exists() and command not in {'finish', 'read'}:
                     raise ValueError('終了要求後は保存内容を変更できません')
@@ -158,7 +161,8 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
                         check_packet(session, data, fixed)
                     rest[0] = str(content)
                 if command == 'finish' and help_only:
-                    print('finish: 正式提出と提出後reportを確認して終了を要求します。追加引数はありません。ヘルプでは終了を要求しません。')
+                    required = 'answer.mdの公開添付・新版からの全文再読・最新report' if stage in {'inquiry', 'inspect'} else '正式提出と提出後report'
+                    print(f'finish: {required}を確認して終了を要求します。追加引数はありません。ヘルプでは終了を要求しません。')
                     code = 0
                 elif command == 'finish':
                     if rest:
@@ -277,6 +281,10 @@ def validate_stage(work: Path, contract: dict[str, Any]) -> dict[str, Any]:
 
 def finish_evidence(work: Path, contract: dict[str, Any], pinned: dict[str, Any] | None = None) -> dict[str, Any]:
     # AI_NOTE: 今回の提出後reportと正式保存を結び、資料保存だけを完了にしない。
+    if read_object(work / 'public-config.json')['stage'] in {'inquiry', 'inspect'}:
+        # AI_NOTE: 調査の資料提出は専用検査へ渡し、既存の相互importを起動時に循環させない。
+        from svdeck.discovery_inquiry import inquiry_finish_evidence
+        return inquiry_finish_evidence(work, contract, pinned)
     before = manifest(work / 'session')
     report = validate_stage(work, contract)
     config = read_object(work / 'public-config.json')

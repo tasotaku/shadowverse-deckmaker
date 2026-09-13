@@ -20,7 +20,7 @@ import uuid
 from svdeck import discovery, worker
 from svdeck.discovery_evidence import digest, read_object, write_new
 from svdeck.discovery_read import packet_summary, read_packet
-from svdeck.discovery_run import check_packet, check_unchanged, copy_session, manifest, verify_submission
+from svdeck.discovery_run import check_finish, check_packet, check_unchanged, copy_session, manifest, poll_finish, verify_submission
 from svdeck.discovery_sources import load_sources
 from svdeck.worker_journal import RunJournal
 from svdeck.inquiry_journal import InquiryJournal
@@ -58,7 +58,7 @@ def refresh_packet(session: Path, packet_hash: str) -> dict[str, Any]:
     return envelope
 
 
-def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
+def verify_report(work: Path, config: dict[str, Any], operation_paths: list[Path] | None = None) -> dict[str, Any]:
     # AI_NOTE: 報告ファイルだけで完了にせず、公開添付・新版への反映・全本文の再読を保存物と照合する。
     session = work / 'session'
     raw = (work / 'answer.md').read_bytes()
@@ -66,7 +66,9 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
     if len(matches) != 1 or matches[0]['content'] != raw.decode('utf-8'):
         raise ValueError('answer.mdと一致する正式な調査・照合資料が1件必要です')
     source = matches[0]
-    operations = sorted((read_object(p) for p in (work / 'operations').glob('*.json')), key=lambda x: x['started_at'])
+    # AI_NOTE: 終了後は受付時に固定した操作だけで同じ検査を再現し、後から増えた読出しを根拠へ足さない。
+    paths = (work / 'operations').glob('*.json') if operation_paths is None else operation_paths
+    operations = sorted((read_object(p) for p in paths), key=lambda x: x['started_at'])
     attached = False
     reports = False
     covered: dict[str, set[int]] = {}
@@ -114,10 +116,45 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
             'public_attachment': True, 'public_reread': True, 'report_read': True}
 
 
+def inquiry_finish_evidence(work: Path, contract: dict[str, Any], pinned: dict[str, Any] | None = None) -> dict[str, Any]:
+    # AI_NOTE: 担当・固定資料・元案を保持した資料提出だけを閉じ、受付時の公開操作そのものも固定する。
+    for folder, before in contract['protected'].items():
+        check_unchanged(Path(folder), before, exact=True)
+    fixed = contract['fixed']
+    check_unchanged(work, fixed)
+    config = read_object(work / 'public-config.json')
+    if not config.get('explicit_finish') or config['stage'] not in {'inquiry', 'inspect'}:
+        raise ValueError('調査・照合の明示終了が選択されていません')
+    session = work / 'session'
+    before = manifest(session)
+    packet = discovery._read_envelope(session / 'packets' / (config['packet_hash'] + '.json'))
+    if packet['stage'] != config['stage'] or packet['revision'] != config['revision']:
+        raise ValueError('終了対象の工程・改訂が固定資料と一致しません')
+    expected = {name for name in fixed if name.startswith('session/revision-')}
+    actual = {'session/' + path.name for path in session.glob('revision-*.json')}
+    if actual != expected or list(session.glob('review-*.json')):
+        raise ValueError('調査担当は案の改訂・正式評価を追加できません')
+    if pinned is None:
+        operation_hashes = {path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+                            for path in (work / 'operations').glob('*.json')}
+    else:
+        operation_hashes = pinned['operation_manifest']
+        if not isinstance(operation_hashes, dict) or any(not isinstance(name, str) or Path(name).name != name
+                                                        or not name.endswith('.json') for name in operation_hashes):
+            raise ValueError('公開操作の識別値が不正です')
+    check_unchanged(work / 'operations', operation_hashes)
+    submission = verify_report(work, config, [work / 'operations' / name for name in operation_hashes])
+    report = discovery.report(session)
+    check_unchanged(session, before, exact=True)
+    check_unchanged(work / 'operations', operation_hashes)
+    return {'config_hash': digest(config), 'session_manifest': before, 'report_hash': digest(report),
+            'answer_sha256': submission['file_sha256'], 'submission': submission, 'operation_manifest': operation_hashes}
+
+
 def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int | None,
         research_seconds: float, inspect_seconds: float, journal_root: Path | None = None,
         experiment_id: str | None = None, stage_prefix: str = 'live',
-        inspect_source: str | None = None, journal_run_stage: str | None = None) -> dict[str, Any]:
+        inspect_source: str | None = None, journal_run_stage: str | None = None, explicit_finish: bool = False) -> dict[str, Any]:
     # AI_NOTE: 調査と照合を資料提出としてつなぎ、元案・旧評価は最終出力まで保持する。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if output.is_relative_to(source) or source.is_relative_to(output):
@@ -159,7 +196,7 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,
-                              'inspect_source': inspect_source,
+                              'inspect_source': inspect_source, 'explicit_finish': explicit_finish,
                               'limits': '資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。'}
     run_journal = InquiryJournal(journal_root, experiment_id, journal_run_stage) if journal_root and experiment_id and journal_run_stage else None
     try:
@@ -193,7 +230,8 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
             envelope = discovery._envelope(data)
             write_new(work / 'session/packets' / (envelope['sha256'] + '.json'), envelope)
             config = {'stage': stage, 'revision': revision, 'packet_hash': envelope['sha256'],
-                      'author': f"worker:{result['run_id']}:{stage}", 'report_kind': kind, 'report_location': location}
+                      'author': f"worker:{result['run_id']}:{stage}", 'report_kind': kind, 'report_location': location,
+                      'explicit_finish': explicit_finish}
             write_new(work / 'public-config.json', config)
             write_new(work / 'input-summary.json', packet_summary(work / 'session', envelope['sha256']))
             (work / 'public.py').write_text('import sys\nsys.dont_write_bytecode = True\nfrom pathlib import Path\nsys.path.insert(0, ' + repr(str(runtime)) + ')\nfrom svdeck.discovery_run import public_main\nraise SystemExit(public_main(Path(__file__).resolve().parent))\n')
@@ -219,22 +257,44 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切�
 正式改訂・評価の提出は行いません。報告を保存できなかった場合は代理提出を求めず、final-messageに未完了の事実を記してください。
 調査報告の保存と問いを解決できたかは別です。最終回答は保存資料の識別値と結論・未確認だけを短く記してください。
 '''
+            if explicit_finish:
+                prompt += f'answer.mdの公開添付・新版からの全文再読・最新reportを終え、これ以上保存内容を変えない段階で {sys.executable} public.py finish を実行してください。受付後は保存内容を変更できません。監視側が停止と再検査を行い、公開資料から成果を回収します。\n'
             (work / 'prompt.md').write_text(prompt)
             fixed = manifest(work)
+            if explicit_finish:
+                protected = {str(source): original, str(base): input_before, str(runtime): runtime_before}
+                if previous != base:
+                    protected[str(previous)] = manifest(previous)
+                contract: dict[str, Any] = {'fixed': fixed, 'protected': protected}
+                write_new(work / 'finish-config.json', contract)
+                (work / '.public.lock').touch()
+                fixed = manifest(work)
+                contract = {**contract, 'fixed': fixed}
             result['status'] = stage
             worker.save_record(output / 'result.json', result)
             journal = RunJournal(journal_root, experiment_id, f'{stage_prefix}-{stage}') if journal_root and experiment_id else None
             command = [str(codex), '--search', 'exec', '--ephemeral', '--sandbox', 'workspace-write', '--skip-git-repo-check',
                        '--cd', str(work), '--json', '--output-last-message', str(work / 'final-message.md'), '-']
-            code, execution = worker.run(command, output / (stage + '-run'), seconds, 2, work, work / 'prompt.md', 'elapsed', journal)
+            if explicit_finish:
+                code, execution = worker.run(command, output / (stage + '-run'), seconds, 2, work,
+                                             work / 'prompt.md', 'elapsed', journal, lambda: poll_finish(work, contract))
+            else:
+                code, execution = worker.run(command, output / (stage + '-run'), seconds, 2, work, work / 'prompt.md', 'elapsed', journal)
             result['stages'].append({'stage': stage, 'author': config['author'], 'returncode': code, 'run': execution})
             check_unchanged(source, original, exact=True)
             check_unchanged(base, input_before, exact=True)
             check_unchanged(runtime, runtime_before, exact=True)
             check_unchanged(work, fixed)
-            if code != 0 or execution['status'] != 'completed':
+            if explicit_finish and previous != base:
+                # AI_NOTE: 次担当がfinishなしで自然終了しても、完了済み調査の資料を封じたまま保持する。
+                check_unchanged(previous, contract['protected'][str(previous)], exact=True)
+            if code != 0 or execution['status'] not in ({'completed', 'finished_by_request'} if explicit_finish else {'completed'}):
                 result.update(status=stage + '_failed', failure='担当が完了していないため次へ進みません')
                 break
+            if explicit_finish:
+                finished = check_finish(work, contract)
+                if execution['status'] == 'finished_by_request' and finished is None:
+                    raise ValueError('監視側が受理した終了要求が見つかりません')
             expected_revisions = {name for name in fixed if name.startswith('session/revision-')}
             actual_revisions = {'session/' + p.name for p in (work / 'session').glob('revision-*.json')}
             if actual_revisions != expected_revisions or list((work / 'session').glob('review-*.json')):
@@ -304,11 +364,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--stage-prefix', default='live')
     parser.add_argument('--journal-run-stage', help='最終提出検査までの全実行を記録する、事前登録済みの未着手工程ID')
     parser.add_argument('--inspect-source', help='保存済みinquiry-result資料を指定し、調査を再実行せず照合だけを行う')
+    parser.add_argument('--explicit-finish', action='store_true', help='公開添付・全文再読・最新report後のfinishを監視側が検査して終了させる任意方式')
     args = parser.parse_args(argv)
     try:
         result = run(args.session, args.output, args.codex, args.revision, args.review_hash, args.question_index,
                      args.research_seconds, args.inspect_seconds, args.journal_root, args.experiment_id, args.stage_prefix,
-                     args.inspect_source, args.journal_run_stage)
+                     args.inspect_source, args.journal_run_stage, explicit_finish=args.explicit_finish)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         parser.error(str(exc))
     print(json.dumps({k: v for k, v in result.items() if k not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))
