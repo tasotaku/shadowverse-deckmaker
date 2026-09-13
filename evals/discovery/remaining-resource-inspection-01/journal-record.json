@@ -1,0 +1,71 @@
+{
+  "id": "remaining-resource-inspection-01",
+  "revision": 3,
+  "saved_at": "2026-09-13T04:03:52.507677+00:00",
+  "actor": "codex-root",
+  "reason": "保存済み調査から別照合のみ起動したことを実入力で確認",
+  "record": {
+    "id": "remaining-resource-inspection-01",
+    "title": "保存した使途調査から、別照合だけを再開する",
+    "category": "method",
+    "status": "running",
+    "summary": "12:58:28から保存済みの使途調査を別照合中。調査はやり直さず、元失敗と旧評価を保持。",
+    "method": "既存inspect-source入口から、報告の裏付けと問いへの答えを別担当が照合する。",
+    "procedure": "保存済みの調査報告をinspect-sourceで指定し、別照合だけを一度行う。調査は再実行しない。前試験の提出確認失敗と別照合未起動を保持する。\n既存の照合入口・指示・固定実装を使う。元案と旧評価と42ファイルの保持を確認し、今回の追加資料4件と入力版だけを別コピーに追記する。\n照合10分を一度、自然終了を確認する既存経路を使う。時間切れ・保存失敗では部分成果と時刻を残し、自動再実行や代理提出で成功へ書換えない。\n条件付き用途の報告が本文・出典に支えられ、通常側の代用手段、未確認の生存・引き込み・相手条件を扱っているかを別担当が確認する。報告存在やカード同居だけで有用性・独自性は認定しない。\n正式改訂・強さの再採点は行わない。調査の根拠が比較や配分判断に使えるかの資料確認と、案の試用推薦やシステムの本採用は別。対照なしの既知入力1件として効果の一般化をしない。",
+    "inputs": "正式改訂3件・評価2件と資料31件。元入力42ファイル保持、調査報告本文一致。",
+    "criteria": "保存済みの調査報告をinspect-sourceで指定し、別照合だけを一度行う。調査は再実行しない。前試験の提出確認失敗と別照合未起動を保持する。\n既存の照合入口・指示・固定実装を使う。元案と旧評価と42ファイルの保持を確認し、今回の追加資料4件と入力版だけを別コピーに追記する。\n照合10分を一度、自然終了を確認する既存経路を使う。時間切れ・保存失敗では部分成果と時刻を残し、自動再実行や代理提出で成功へ書換えない。\n条件付き用途の報告が本文・出典に支えられ、通常側の代用手段、未確認の生存・引き込み・相手条件を扱っているかを別担当が確認する。報告存在やカード同居だけで有用性・独自性は認定しない。\n正式改訂・強さの再採点は行わない。調査の根拠が比較や配分判断に使えるかの資料確認と、案の試用推薦やシステムの本採用は別。対照なしの既知入力1件として効果の一般化をしない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "別照合の起動と既存指示・保存報告の一致を確認。有用性は未判定。",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T03:58:10.716930+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prepare",
+        "title": "保存済み報告・旧案・評価と再開条件を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T03:58:10.716930+00:00",
+        "ended_at": "2026-09-13T03:58:11.034465+00:00",
+        "note": "元入力保持と調査報告の本文一致、固定実装を確認。調査の再実行はしない。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "live-inspect",
+        "title": "保存済みの使途調査を別照合",
+        "status": "running",
+        "started_at": "2026-09-13T03:58:28.249543+00:00",
+        "ended_at": null,
+        "note": "既存の照合指示を使い、根拠と未確認を資料保存。原案の再改訂・採点は行わない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inspection-01-live/inspect-run",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/remaining-resource-inspection-01/README.md",
+      "evals/discovery/remaining-resource-inspection-01/protocol.json",
+      "evals/discovery/remaining-resource-inspection-01/launch-verification.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/README.md",
+      "sha256": "080629bcf6c79c500375b2e72bbde392a2b38aa0b22af5996085ab4397f49efb",
+      "size": 2974
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/launch-verification.json",
+      "sha256": "d9a0148931192f424ef5011f09289a7ef2534200782617b59e6d589373d6dca7",
+      "size": 1684
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/protocol.json",
+      "sha256": "a85af6750ddaca55889fd65be219e7ff9fdd10018362f99e00b6eec2ac727144",
+      "size": 13634
+    }
+  ]
+}

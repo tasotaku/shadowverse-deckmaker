@@ -1,0 +1,56 @@
+{
+  "id": "inquiry-completion-diagnostics-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T04:01:20.778272+00:00",
+  "actor": "codex-root",
+  "reason": "担当へ依頼した診断補助の作業を登録。実時刻は未回収として区別",
+  "record": {
+    "id": "inquiry-completion-diagnostics-01",
+    "title": "提出確認のどこで止まったかを分かるようにする",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "別の作業場所で、失敗理由の区別と最後の保存後に確認する手順を実装・検査中。本体採用未判定。",
+    "method": "添付・全文再読・最終報告確認の不足を区別する診断補助。受理条件は変えない。",
+    "procedure": "条件確認→隔離実装→機能・型・公開CLI検査→本体への反映と確認。",
+    "inputs": "直前の実行で得た公開32操作と同じverify_report失敗の再現。",
+    "criteria": "添付不足・全文再読不足・最終report不一致の原因が分かる。\nreport後の資料追加は引き続き拒否し、追加保存後のreportを受理する。\n元の受理条件・操作許可・時間上限・資料保存形式を維持。\n型検査・意味ある機能検査・公開CLI利用を通す。実AIの旧失敗を成功へ書き換えない。\n診断補助として採用を判断し、新しい種の発見力の証明にはしない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": null,
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "診断表示と手順の限定修正・検査",
+        "status": "running",
+        "started_at": null,
+        "ended_at": null,
+        "note": "実時刻は担当から回収。登録日時を開始日時へ転用しない。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/inquiry-completion-diagnostics-01/README.md",
+      "evals/discovery/inquiry-completion-diagnostics-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/README.md",
+      "sha256": "fec210d04ce65d8a2bf6fe8bc2ef4d0f3a97f8bbdf36424a0f50e1a24abb9402",
+      "size": 1174
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/protocol.json",
+      "sha256": "e5aba55e1c79a6e15ab11d9be928f47c8d6a63f5f87e6aeaf8ede47fcf6b82eb",
+      "size": 1043
+    }
+  ]
+}

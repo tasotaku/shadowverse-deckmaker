@@ -1,0 +1,213 @@
+{
+  "conclusion": "missing_report_after_final_attachment; no_evidence_of_full_reread_false_negative",
+  "summary_ja": "answer.mdの公開添付と全文再読は合格。report確認だけが最終保存状態と不一致。report実行後にcompletion.jsonを追加し、その後reportを実行していない。現状の検査を通す実操作が不足した事例であり、全文再読の判定不具合ではない。",
+  "times_utc": {
+    "agent_first_clock": "2026-09-13 03:56:05 UTC",
+    "diagnostic_start": "2026-09-13T03:57:37.882575+00:00",
+    "failure_reproduced": "2026-09-13T03:57:38.137969+00:00",
+    "diagnostic_end": "2026-09-13T03:57:38.175143+00:00",
+    "agent_end": "2026-09-13T03:57:59.896246+00:00"
+  },
+  "verify_report": {
+    "status": "FAIL",
+    "error": "answer.mdの公開添付、新しい資料版からの全文再読、report確認が必要です",
+    "type": "ValueError"
+  },
+  "checks": {
+    "public_attachment": "PASS",
+    "full_reread": "PASS",
+    "report_matches_final_state": "FAIL",
+    "original_hashes_preserved": "PASS",
+    "inspect_execution": "未確認: parent reports not started",
+    "private_logs": "NOT_READ"
+  },
+  "coverage": {
+    "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95": {
+      "count": 5738,
+      "min": 0,
+      "max": 5737
+    },
+    "complete": {
+      "count": 1,
+      "min": 1,
+      "max": 1
+    }
+  },
+  "report_operation": {
+    "path": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/f7361923148f44f8b10db99398ea0690.json",
+    "sha256": "78ce91803a5379524eb25c00ab65376f10a0d2be79fcf5d9b207b8a7bf9b9b3c",
+    "started_at": "2026-09-13T02:59:49.677195+00:00"
+  },
+  "report_mismatching_paths": [
+    "/sources/length"
+  ],
+  "last_operation": {
+    "path": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/2d0a363eba5a4b2a9adfff84ead9209a.json",
+    "sha256": "27329e2ac90124e406a6d5bf502e92fd90cb5df7993a95e503aa70cdcbcce50c",
+    "started_at": "2026-09-13T02:59:50.164753+00:00",
+    "args": [
+      "attach-file",
+      "completion.json",
+      "--title",
+      "報告保存と全文再読の完了時刻",
+      "--kind",
+      "inquiry-completion",
+      "--location",
+      "inquiry:2df641262e0448e3a3a6e55ed3c20349:inquiry"
+    ]
+  },
+  "post_answer_reads": [
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/5f97d496bee04e488fee48415912519e.json",
+      "sha256_file": "241842103da54f7406a4e5a7e7d40f6dff4ff7cf62977e8ddcc1dc1605b9e5b1",
+      "packet_hash": "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95",
+      "section": "sources",
+      "offset": 0,
+      "returned_lines": 5738
+    },
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/bd73683a77c24663b42db66c0bda56b6.json",
+      "sha256_file": "9d0ea80a9063ac185cafad93efbb5736c3f9993f1eaf143e5c6bff04e06c454f",
+      "packet_hash": "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95",
+      "section": "sources",
+      "offset": 4464,
+      "returned_lines": 58
+    },
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/d8ac0631fedb40e1aec435ee0ad559a2.json",
+      "sha256_file": "a829d9850ac65924a4712bf55914a7c31f64d7112ce67f7e444a91ba25982bbe",
+      "packet_hash": "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95",
+      "section": "sources",
+      "offset": 4522,
+      "returned_lines": 56
+    },
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/e1b0f5d3ab6b4080a18d5490c760a790.json",
+      "sha256_file": "e510424fad7ed1513138946caf997bb2bb4142de8911ac7b6dbfe9cce51fec71",
+      "packet_hash": "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95",
+      "section": "sources",
+      "offset": 4464,
+      "returned_lines": 58
+    },
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/7c7b53ca035f4a32a4f1a8208396cda8.json",
+      "sha256_file": "7fc0c30dd4ac04ddc122d921a291055a1b08ac2525657fcd45e33f03dd0348fe",
+      "packet_hash": "8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95",
+      "section": "sources",
+      "offset": 4522,
+      "returned_lines": 56
+    }
+  ],
+  "file_hashes": {
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/answer.md": "141210d76ebd5497a76cf9a017c59194a5aeaab87f1d7e9234d2c7a4776094b1",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/public-config.json": "b58dd7b1f45c06382314ee01c329253f03f248c1438a42bc103503c371247f6c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/prompt.md": "f65a68e631cd38542fd5eb9f4ba0ff9c9b23c199255c84a8d47ba8374f513753",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/completion.json": "71886046415cbc2d133e89eac685364d1e4fb4dcfef583b1c5fada2c2a19640a",
+    "/tmp/sv-remaining-resource-inquiry-01-live/runtime/svdeck/discovery_inquiry.py": "77f4b413843ec69779485b3a4e31f0619eae8f3c060782a359cdba0b06d1ae01",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/context.json": "fb77bc5e18605ba033ed608ea6599adfbe2e8c3a7ac04a417fd210339c14b862",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/packets/41a5d608245632ad9e6e045b64a745ff7fca29ceb804712320d52572364bc3b5.json": "45cee7ba2e7b8f1d20083edc488b776898905243b54913a32b84ccd415ae803f",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/packets/8f009ccb395cfe7817a10654122e17928926aa1c577bcf1ae1564cd8c5a93c95.json": "10909aace4f8f382bc59aa676a932acb57305e866890f3a1896175653f49924d",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/revision-0001.json": "cdbd4e4cceb1d252622093810604f99f79e614acf7140b801d6f0c0056dc1dc0",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/revision-0002.json": "877da8cc3746803fcd6dbce5d086b5d6b8f8820a349b0b26c437a3a169176ccc",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/revision-0003.json": "3fe1d09634387628c2f771b8e9784ae6c10aca762193c29c59c4525b84839b29",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/0372ed34111607081f7058def2ef2dafd49fd9694d365a7a855f192c8f7025b1.json": "ef7c0bb235f960feed34a01a6a228a37330439d8b17d1fc194d8a52b4371b7dc",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/1cef0b4b764e8da876245d311200bac99ffe51140f41ab2cd5300dfc08f3bbbb.json": "35d7adb4142de6ff01ac3785240298115324a8ac72b691634015dfa7ef0b3cb4",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/2170ec9d8eaf25e315235b04ad4c2ff576a72a5a791701ce825a230df3a07706.json": "477e18914aeba0d92a4965c0effd9b95707558fad17a912c1e07700c57ef7133",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/26da480e57a88aea0678c18ffc7a4ad186fe40ada46fd195b6ed0544b030a063.json": "0266c5415a219f8d8a26e1ac07cbd82b02582846e7c9646a9064fbd38e13acc2",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/495b3d86dcc805aeaeb82a7abbe23710ed0036ae365136bd9aaf4918b5093d8f.json": "97078f402c1fa19ff92b24832f9a663dc9cef86f1e0f8ad87983745c97d29725",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/4b27071736eff15aa39c7293062bea065c924964afe0fffd1bcca9f0b2968871.json": "039ed4141268e25a99274fefc4ca76649076fa02f45d4c8c906511d7fa3f8a21",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/52eb36650a1420ce406cbeb5aa09f6c5c2d4737e9522f19b17782abf9a92035a.json": "e9d22fbc9380d19bd1d2a8dda49b0bfbec5de8be91aba5d673cf38bbd0d0175a",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/5970ab198bc17122696f491304cc7715d50d2e5aa2240ecd0c16f62d8773be6a.json": "420fe22b4adc0599145803fb8d61db2b90f652b61eda1278849c6ef6f44c74d8",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/6426c687636d323c003afa2179f550a20f6bc7d4761c3c11e322855f75776a82.json": "1fe1f07a1e2224d488bf0309e26bf359781cfce21074a57615b43c261d5cb936",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/67047ce1a5d2464b88aa34e99acc0045d2d7b28a6fad1744a11f26fd571e2a02.json": "3434f59d87e3d2479bd1c8d9f80e5d4317c26f29390e6ba786850f515c763377",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/68ea1cb806954b608e9a99faa1c8f85ba5b0b42d9298522afd3443ca41975e28.json": "91ec707c3fbb76254362657471f0277d91aab983fbfb41be55ad8e68283e7f8b",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/8b8f6728a27c599148d25e201e53b5f45b44ef91caec6eb70e200d9d0705283f.json": "2ae01a21199000e9526867ccbd6600e049246a86d8c248022cec3b1ac19f350c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/92bca20f6c84f718f5d6db4adcfa78a2413f33e2926022bf9c460b714dc5e705.json": "77b5ab22f45c395894228c6a14eec5074e5ab4b6168d8dea4e1557552a49ee5d",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/96e649adadd0773d4eb15128c7b99233acb01e9208086795f7cc961b749c6a03.json": "c094ce8ee5ec03d608c2dba98bf504808cc1004a6f6e7e99ae460166bb8a4d6d",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/9d91a4a169563467f4728194093a3e6d4f86efc3e72138057f9e25153a555b18.json": "2bcebb5ccbdeac5f85f3e444717ef96ba9e5be0bdbe9bd9a84b8f22cbf8c0432",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/a25b57cb93acce3b887ef7e250b49284e94fb2990767256b175f4c4553e4e866.json": "ea609e7761e7b959bee89a6c2d26385945f47a27395c4f0e41fffb498873fcce",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/a3a35d7d37a173a6a225e3beb883a5dba45d63d8332f4ed6f78c83537d05b88d.json": "dcf2b3d06739e0cdea4d3d4194294217687b071558f5f300d1b164d63ca6ceef",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/a446fa2844a4d5426191cd3e04869208cac207ec235313d972b9654dfcf6264e.json": "08a061a3395cc4989fdbd1f42b3c2b8dfd717660912d13efdca40f71f8ee2af8",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/a61967c0970ef1411264d5c06c5510dcf770c1b9e07aca76f2dd83a525cc39f3.json": "506e2305c9552c64824f3e6d7391a7e63c854fea25efd3dbf126c5b48333921e",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/b08e2d42f36a12d35fb175280eac9789003e522b8b1e093506a24db534ce8e78.json": "af5dd52006b9e05fcde05a8aee227b1db8aeb3275778a185d201eb978793e494",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/b80ca2a9af7e3778a7797b7b7c86032cb4a794c3a591c7efda4511392b756a51.json": "e61141f9ec8d029378a4667b574a5b6ed6557fb2fa328ae94ecf830b3beba7b7",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/b9a7066bcc19586660b037c43e7bb1d1736b19d0e01d0df037e1a34ed2ad2163.json": "3b0a35a5990f95a018901a7f987645bae2f705faf1cd056b4da44fc137c711b3",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/bb503942ec513f0212293687bab9e84cf2e81a0e18d6188d1cb431772eef8546.json": "d2cda397312c50fc50a0b97586589467c86e1b449c26351ebfb57b1170a39b45",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/bc0a38d43e0c3133041ea98d9a916de5dafffb71a4c60d8a585b2c835c4fb89e.json": "c03ab6bb1d8f38b78e417fdea004a145d90f2c661a415add31fff89dd960a493",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/c982f7ac137ab2dc2caa0c727afbd2c8c56e5a9ce3752c029a4a5ec9472040fc.json": "13633ecbd3e866b9c2d83fb6694610cad26ad031100210bfdfdacbdf76a24bca",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/d0fc743bb71e052aea6cc86794065f250e468df5512589a0c929a17a9b18806c.json": "9e7ee998ba43782e5caabbdb4ac5b77c76d79cc83fe6ec6f73cdcc508d89ae4c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/d2da1c631eecb897b3f53755486ed6365ef053d2f5c219ee9cd399864732b9b4.json": "24019a5c95d79974c0cb388888ea3309fdf0a4841c72a7a9b8a1de9d47bc15ab",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/dbd1bbae45828655f471276827f500b410ed37321aa57bbd9500c09282935681.json": "24c45b2c88b3cf44748da9bfb3da388ecce27f9ecfe273464092faca1fbd88f0",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/f014f9f425d27bfb832f04e8d91ec784d8dd4bfecdc0f0a059482b483999b6a1.json": "3163b81a6105c3d94694fab03993d12e8a58d0a2edbbc9d4973462f69711577d",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/f3f143b190591a896af40beb5096807a302a641424c8aa0e68020d906ce45bb2.json": "b347961c6c08c8a33c0fe5895dcbb312a2bc792f08d735d4cf4dce2c796b2c0f",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/session/sources/f6aea0a6845fb3f881d9f775e06dc4b448aedf203e9280d831ddadaed17bf4d4.json": "aecb148c16e2bce27946c094cef6c030bb73d1abdf28e7c7cca70540b0406654",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/02910f20ad6a46108bc488acd350a2d2.json": "c3c2946d2e1311ec8bcdbd2f89d05748483ab1907076a3a129447ba481701361",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/1698062d3ba7469c8e71cf1558272faf.json": "ced78fb710b774afffba4e12084a7eedfaa73fef7fa24d136c0309a502c9a7a5",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/1b737bc390de4313a04ff94c9cd120cc.json": "e768b61fc19e1e826f6149dad8f868c4687f466c91a783f9b12b6efba10cc34a",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/208ced052fec46309315642189785c43.json": "dec5005b5228913756d50f6b56dad43fdbd6acaeb599be4730f2305c7338a6e4",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/2d0a363eba5a4b2a9adfff84ead9209a.json": "27329e2ac90124e406a6d5bf502e92fd90cb5df7993a95e503aa70cdcbcce50c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/33d0098a045e443b9195559f9c00fe3b.json": "873cc72fb0bbcd7c2e31426aa8982303f4c3a9b1b0a240b9bb5eda9a1b84f579",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/375bb359844f496184d5b2382a623d31.json": "82a35bbebe7fd66e25ae9d3813872ca77abfa8e44239ba87c3a443eb5927c33a",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/5ccdfa8439bf43458060a0e4c0b84cdc.json": "709bae75190d27ac5670d4df4ef42e36368dacebe62d5ab8cafc2691d114f1ff",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/5f97d496bee04e488fee48415912519e.json": "241842103da54f7406a4e5a7e7d40f6dff4ff7cf62977e8ddcc1dc1605b9e5b1",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/6126e3822ca64da29f9daee7bd1fcd5b.json": "3af7426b8e46eb4ae55d34274924089977748bd9bd137adbf9180ce611408802",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/79c49e2dde544dc496cdc6f4cdfe5333.json": "c591af4d4f03ab6bdfa1a460ec7f81da61e000f9f64786f0c304e39cf722be91",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/7c7b53ca035f4a32a4f1a8208396cda8.json": "7fc0c30dd4ac04ddc122d921a291055a1b08ac2525657fcd45e33f03dd0348fe",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/7ef0fc400b124ae88e6a5261cc9a36f2.json": "a254fa6466fff365198ac71da6fda5b64fed3b127bc63b4a47a183ae2eb66c99",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/86dfcddf3e89438e8d36b136878e09f5.json": "228e07ab2b09d5c9a0af16e89ff9f04b5f90a5a1cb40946ec53fe5ca299ab7a2",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/aa477d89c902415c9db912e09ca31b4a.json": "fb2237b267a3d881703b2d3727e79872849378247fee60119f935f4e7c5dc10c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/b01e7e46011e47ddb2dffe287a5ae7be.json": "1b3c7bfae1554b57c113039bd6cc09e7a8d6ae3ca1734591337b6208c1465a39",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/b3d9dc755c804bad96ecee8fab612613.json": "bd2981e9843055fcde53975e70e564d2b0d44156067abe28fbad9d26c8611b29",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/b5a7c60bbfc241a083d25a4ec1ad0a33.json": "848500702b077cfce0811d4f2cd812e9ea3bcb3f08453820a0b0a08f12a54c15",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/bd73683a77c24663b42db66c0bda56b6.json": "9d0ea80a9063ac185cafad93efbb5736c3f9993f1eaf143e5c6bff04e06c454f",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/bfee6ded848443afa17a74513ed23ba6.json": "310763a905541d0248f32ff0401fff6407e3e946a4580da2da887d034b236742",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/c0e6409a24be4a97a37cef9be5ad82e2.json": "7d8d5080959795eb1f8690c02ac2949bb0105c9986b4aac371f05d915d1ac792",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/d8ac0631fedb40e1aec435ee0ad559a2.json": "a829d9850ac65924a4712bf55914a7c31f64d7112ce67f7e444a91ba25982bbe",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/dde94702d55446f58d9f0ddca2ccc29f.json": "91f118a1159248230d5844b2f501a01a22a1c51740ef67d41b551d233c8194e9",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/e1b0f5d3ab6b4080a18d5490c760a790.json": "e510424fad7ed1513138946caf997bb2bb4142de8911ac7b6dbfe9cce51fec71",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/e55edc99487746c5bdf0463d80af2256.json": "23910fb62d7a15a95b13eef73d69d72e43fd66080a64f18af53cdf5cc1bf3597",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/e7622a5d609b46689fc5707677477b0f.json": "5bc112380291cc319db52acc635fe562f4f58f8144b50797bfeff3c471cf4f32",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/e8eef0977ec84be291816b7de808e1cd.json": "95313bbae64bac097828b19e3d6038e57675e3fb05b57b8937bd01498e931d8d",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/ee0c5b777a0d4b0b86c9bbecec36a4c0.json": "385dd188d3b471c2cd9d4949db8a7a8add8b1f187753d4c5fb71087d58ff2aa6",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/f7361923148f44f8b10db99398ea0690.json": "78ce91803a5379524eb25c00ab65376f10a0d2be79fcf5d9b207b8a7bf9b9b3c",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/f8e3685254cd4fdebc4a37d3ea01a32b.json": "e42b7388542a570e8b03b8f51394325fbd153e722ab3a0da203b136527110d21",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/f9fae3f49917440b921773167c8c4be2.json": "7b5654de09ba66fe96bdd9b9c8c0b7f9978dc2e23f3d11f438ad3d6a3a950b42",
+    "/tmp/sv-remaining-resource-inquiry-01-live/inquiry/operations/fff951f9e0324f0ba0ed6f60f547fbd8.json": "8bc4d7f4401de966b477e414708d13baa636a07d89073933f891446320d2fb6e"
+  },
+  "code_evidence": [
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/runtime/svdeck/discovery_inquiry.py",
+      "line": 83,
+      "sha256": "77f4b413843ec69779485b3a4e31f0619eae8f3c060782a359cdba0b06d1ae01",
+      "meaning": "report記録を最終sessionのreport全体と比較"
+    },
+    {
+      "file": "/tmp/sv-remaining-resource-inquiry-01-live/runtime/svdeck/discovery_inquiry.py",
+      "line": 106,
+      "meaning": "添付・全文再読・reportのいずれか不成立なら同じ例外"
+    }
+  ],
+  "reproduction": "Use unchanged runtime, config and original work; call verify_report(work, config). It raises the original ValueError with attached=True, reports=False, covered.complete={1}. No public operation was replayed or fabricated.",
+  "fix_assessment": {
+    "functional_bug_confirmed": false,
+    "acceptance_change_proposed": false,
+    "candidate": "機能の採用条件は維持。担当手順の末尾で追加保存を終えてからreportを実行する指示と、失敗理由を添付/再読/reportに分ける診断改善は候補。今回は実装しない。",
+    "tests_needed": [
+      "report後に別資料を追加して再reportしない場合は現行の拒否を維持",
+      "最後の資料追加後に公開reportを実行した記録なら受理",
+      "既存の全文再読欠落・改変・別資料版・異なるanswerの拒否を維持"
+    ]
+  },
+  "root_source_sha256": "77f4b413843ec69779485b3a4e31f0619eae8f3c060782a359cdba0b06d1ae01",
+  "root_matches_runtime": true,
+  "report_difference": {
+    "saved_source_count": 30,
+    "final_source_count": 31,
+    "added_hashes": [
+      "f3f143b190591a896af40beb5096807a302a641424c8aa0e68020d906ce45bb2"
+    ],
+    "removed_hashes": [],
+    "extra_is_completion_attachment": true
+  }
+}

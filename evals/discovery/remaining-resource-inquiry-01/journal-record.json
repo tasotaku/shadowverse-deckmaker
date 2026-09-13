@@ -1,30 +1,30 @@
 {
   "id": "remaining-resource-inquiry-01",
-  "revision": 6,
-  "saved_at": "2026-09-13T03:55:05.662659+00:00",
+  "revision": 7,
+  "saved_at": "2026-09-13T04:01:20.761793+00:00",
   "actor": "codex-root",
-  "reason": "正常終了した担当と提出完了契約の失敗を区別し、再実行せず部分保存を回収",
+  "reason": "公開操作と同じ提出検査の切り分けから中断・採用保留を確定。報告は保持し別照合だけへ再開",
   "record": {
     "id": "remaining-resource-inquiry-01",
     "title": "温存した進化権の使い道を、既存の調査工程で確認する",
     "category": "method",
-    "status": "running",
-    "summary": "調査担当は12分49秒で正常終了したが、提出確認で停止し別照合は未起動。報告本文と追加4資料を保持。失敗の切り分け中。",
+    "status": "interrupted",
+    "summary": "調査担当は12分49秒で終了し報告と4資料を保存したが、最後の追加保存後の報告確認がなく停止。別照合は未起動で、方法の採用を保留。",
     "method": "保存された第1問を既存の調査・別照合へ渡し、根拠の追加と未確認範囲を検査する。",
     "procedure": "既存調査→別照合の適用確認。コード・指示の新設なし。focused-inquiry-01/inquiry-to-revision-01と重なる既存工程の別用途への再検証であり、新手法や本体の追加採用とはしない。\n前試験の現行Aから残った先頭の問いを選ぶ固定規則。対象は保存済みT6比較の終点後のEP使途で、通常側のSEPと自動進化という代替も含む未比較箇所。根拠が得られない結論を許し、成功状態・カード答案をrootから与えない。\n調査15分・別照合10分、各1回のみ。自然終了を確認する既存経路を使用。時間切れは部分資料を保持し、再実行・代理提出しない。正式改訂・強さの再採点はこの実行では行わない。\n元案・旧評価・固定DBと実装を保持し、報告の正式添付・全文再読・report一致を確認する。これは動作の検証で、資料数や完走を有用性に数えない。\n問いに新しく答えた根拠、通常側でもできる分、相手・引き込み・生存の未確認を別照合する。使途と採用利益につながる根拠がなければ未解決を記録し、同じ問いの言い換えで追加工程へ自動継続しない。\n同時対照なし・既知入力1件のため、調査を分けることの一般的効果や発見力は認定しない。独自性や実戦勝率も自動認定しない。",
     "inputs": "現行Aの正式改訂3・評価2・資料27。同じ42ファイルと先頭の問いを保持。",
     "criteria": "既存調査→別照合の適用確認。コード・指示の新設なし。focused-inquiry-01/inquiry-to-revision-01と重なる既存工程の別用途への再検証であり、新手法や本体の追加採用とはしない。\n前試験の現行Aから残った先頭の問いを選ぶ固定規則。対象は保存済みT6比較の終点後のEP使途で、通常側のSEPと自動進化という代替も含む未比較箇所。根拠が得られない結論を許し、成功状態・カード答案をrootから与えない。\n調査15分・別照合10分、各1回のみ。自然終了を確認する既存経路を使用。時間切れは部分資料を保持し、再実行・代理提出しない。正式改訂・強さの再採点はこの実行では行わない。\n元案・旧評価・固定DBと実装を保持し、報告の正式添付・全文再読・report一致を確認する。これは動作の検証で、資料数や完走を有用性に数えない。\n問いに新しく答えた根拠、通常側でもできる分、相手・引き込み・生存の未確認を別照合する。使途と採用利益につながる根拠がなければ未解決を記録し、同じ問いの言い換えで追加工程へ自動継続しない。\n同時対照なし・既知入力1件のため、調査を分けることの一般的効果や発見力は認定しない。独自性や実戦勝率も自動認定しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "調査報告は追加資料と本文一致。公開添付・再読・reportの完了確認で停止し、別照合未実施。",
-      "limitations": "調査の主張はまだ別照合しておらず、問いの解決・有用性は未判定。"
+      "outcome": "fail",
+      "summary": "報告本文の添付と全文再読は確認済み。最後に資料が30→31件へ増えた後のreport確認がなく、既存の提出検査で拒否。別照合は未実施。",
+      "limitations": "条件付き用途の説明は保存されたが別照合前。手法の有用性・元案の試用価値・独自性は未判定。元の失敗を成功へ変更しない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "調査から別照合まで完了せず、報告の裏付けと新しく答えた範囲を確認できていない。資料数や担当の正常終了だけで採用しない。"
     },
     "started_at": "2026-09-13T02:47:00.078991+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-13T04:01:20.745314+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -41,16 +41,16 @@
         "status": "completed",
         "started_at": "2026-09-13T02:47:21.121096+00:00",
         "ended_at": "2026-09-13T03:00:09.880491+00:00",
-        "note": "保存評価の先頭の問いをそのまま渡し、根拠と未確認を資料保存。具体答えはrootから与えない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inquiry-01-live/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "note": "保存評価の先頭の問いをそのまま渡し、根拠と未確認を資料保存。具体答えはrootから与えない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inquiry-01-live/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。\n担当プロセスは正常終了。後続の提出確認は別工程で失敗し、調査全体の成功とは区別。",
         "budget_minutes": 15
       },
       {
         "id": "live-inspect",
         "title": "調査の根拠と問いへの答えを別照合",
-        "status": "planned",
+        "status": "interrupted",
         "started_at": null,
         "ended_at": null,
-        "note": "正式保存・出典の裏付け・新しく答えた範囲を確認。工程完了と有用性を区別。",
+        "note": "前工程の提出確認で停止したため未起動。開始・終了時刻はない。保存した報告から別の再開記録へ引き継ぐ。",
         "budget_minutes": 10
       },
       {
@@ -69,6 +69,24 @@
         "started_at": "2026-09-13T03:53:43.490345+00:00",
         "ended_at": "2026-09-13T03:55:05.575786+00:00",
         "note": "元案・旧評価・入力・実装保持、answer本文一致と提出確認の失敗を再現。別照合は未起動。失敗を成功へ変更していない。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "submission-check",
+        "title": "終了後の提出状態を確認",
+        "status": "interrupted",
+        "started_at": null,
+        "ended_at": "2026-09-13T03:00:10.525206+00:00",
+        "note": "確認開始の正確な時刻は未記録。担当終了後、添付・再読はあるが最終資料数とreportが不一致で拒否。",
+        "budget_minutes": null
+      },
+      {
+        "id": "completion-diagnosis",
+        "title": "提出確認の失敗を別担当が切り分け",
+        "status": "completed",
+        "started_at": "2026-09-13T03:56:05+00:00",
+        "ended_at": "2026-09-13T03:57:59.896246+00:00",
+        "note": "約1分55秒。添付と全文再読は合格、report後の1資料追加だけで最終状態に不一致。誤判定ではなく必要操作不足。",
         "budget_minutes": 5
       }
     ],
@@ -89,14 +107,15 @@
       "evals/discovery/remaining-resource-inquiry-01/verification.json",
       "evals/discovery/remaining-resource-inquiry-01/collect-partial-initial.py",
       "evals/discovery/remaining-resource-inquiry-01/collection-first-start.json",
-      "evals/discovery/remaining-resource-inquiry-01/collection-error.json"
+      "evals/discovery/remaining-resource-inquiry-01/collection-error.json",
+      "evals/discovery/remaining-resource-inquiry-01/completion-diagnosis.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/README.md",
-      "sha256": "d2b21506359b8ba6761cec8f62c109e925ea664f81db02179bf869ecedacaec6",
-      "size": 4381
+      "sha256": "f771bf4fc09c7497601c63d3d21b46713c4e7accd09182fc8d1b223f51c72d98",
+      "size": 5578
     },
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/collect-partial-initial.py",
@@ -122,6 +141,11 @@
       "path": "evals/discovery/remaining-resource-inquiry-01/collection-start.json",
       "sha256": "a6652081651581e6fc9715bdf504619626066c6f264ca9ef81028ec462e62d35",
       "size": 114
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/completion-diagnosis.json",
+      "sha256": "82af2aa8210e6fd4dd6449db33726b61bad2185e9009093e59949914a4da2de0",
+      "size": 20124
     },
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/delivery-verification.json",
