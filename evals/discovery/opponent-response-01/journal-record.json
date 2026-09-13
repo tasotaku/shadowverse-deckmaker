@@ -1,23 +1,23 @@
 {
   "id": "opponent-response-01",
-  "revision": 19,
-  "saved_at": "2026-09-13T13:30:08.821828+00:00",
+  "revision": 20,
+  "saved_at": "2026-09-13T13:40:33.545681+00:00",
   "actor": "codex-root",
-  "reason": "当該比較の採否を確定し次の修正へ継続",
+  "reason": "独自性判定の確定違反という断定を追加証拠で訂正",
   "record": {
     "id": "opponent-response-01",
     "title": "相手の返しを受けた後の利益を比較する",
     "category": "method",
     "status": "completed",
-    "summary": "既知2例とも追加検討で、本人判断との一致0/2。相手資料の供給補助を採用、判断方法は本採用保留。利益の時点・独自性の判定と次の入力修正へ継続。",
+    "summary": "既知2例とも追加検討、本人判断との一致0/2。資料供給補助を採用、判断方法は保留。独自性の確定違反との先の断定は訂正し、選択肢の定義不足を課題として記録。",
     "method": "相手の保存構築・効果・注記を追加し、同じ条件の返しを提案と通常側へ適用する",
     "procedure": "資料生成の実装と機能検査→固定した既知2例を各1回評価→主要な返しと残る利益を別照合→採否を記録し次の改善へ進む",
     "inputs": "reviewer-utility-01 の出題用コピー2例、同じカードDB保存版から抽出する合法な相手の40枚構築。直接の過去採否は追加しない。",
     "criteria": "期待判断は前回のA=test/B=dropを維持。両側で同じ返しの合法な支払・対象・発動順を具体化し、残る利益と失う用途を照合。架空の取得・頻度・相手盤面を成功として数えない。各1回の既知例で未知評価精度を認定しない。",
     "result": {
       "outcome": "mixed",
-      "summary": "53機能検査と型検査合格。正式評価2件・固定期待との一致0/2。具体的な返しの比較4種類を保存したが、Aは発動前で検証が止まり、Bは独自性の基準を取り違えた。",
-      "limitations": "各1回の既知例。仮定した手札と盤面で、頻度・最善手・現環境代表性・未知案での有用性は未確認。本人の見送りの決め手は未確認。"
+      "summary": "53機能検査と型検査合格。正式評価2件・固定期待との一致0/2。4種類の返しを保存したが、Aは発動前で検証が止まった。Bのknownは確定した違反ではなく、定義と後続処理の意味の不足として追加照合で訂正。",
+      "limitations": "各1回の既知例。仮定した手札と盤面で、頻度・最善手・現環境代表性・未知案での有用性は未確認。本人の見送りの決め手は未確認。 先のgrading.jsonのBに対する強い断定は追加照合で訂正。正式評価本文・期待判断・一致数は維持。"
     },
     "decision": {
       "status": "deferred",
@@ -170,6 +170,7 @@
       "evals/discovery/opponent-response-01/entry-review.json",
       "evals/discovery/opponent-response-01/runtime-manifest.json",
       "evals/discovery/opponent-response-01/protocol.json",
+      "evals/discovery/opponent-response-01/novelty-audit-correction.json",
       "evals/discovery/opponent-response-01/launch.json",
       "evals/discovery/opponent-response-01/timing-correction.json",
       "evals/discovery/opponent-response-01/b",
@@ -180,8 +181,8 @@
   "evidence": [
     {
       "path": "evals/discovery/opponent-response-01/README.md",
-      "sha256": "054b061ca08e711767734814bcce6bee3f9c7e15b5ba2de1676a84b17beb34b9",
-      "size": 4406
+      "sha256": "b19f72badebe56f6ad31bcf167b7c94443f273d0f9c8e503857172f1af2988f1",
+      "size": 4670
     },
     {
       "path": "evals/discovery/opponent-response-01/a/finish-config.json",
@@ -367,6 +368,11 @@
       "path": "evals/discovery/opponent-response-01/launch.json",
       "sha256": "1bebb7c5884921524c4fb7f4872c1c4aca59eb3384eb472aaab85b069631a0fd",
       "size": 637
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/novelty-audit-correction.json",
+      "sha256": "102d94a1d68d61ce9cfebce1565fe2a3a67351ebfe90798441cd8898008b96f3",
+      "size": 8073
     },
     {
       "path": "evals/discovery/opponent-response-01/opponent-inventory.json",

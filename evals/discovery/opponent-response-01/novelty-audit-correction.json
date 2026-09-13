@@ -1,0 +1,92 @@
+{
+  "audit_type": "Novelty contract and follow-up eligibility audit; not a regrade of opponent-response-01.",
+  "timing": {
+    "started_at": "2026-09-13T13:37:48+00:00",
+    "ended_at": "2026-09-13T13:39:39.425754+00:00",
+    "wall_seconds": 111.425754,
+    "basis": "Start clock tool; end UTC wall clock before writing artifact."
+  },
+  "scope": {
+    "read_only_files": [
+      "src/svdeck/discovery.py (REVIEW, review persistence, selected-review loading/report)",
+      "src/svdeck/discovery_inquiry.py (NOVELTY_QUESTION, run eligibility, CLI)",
+      "docs/design.md (two novelty principles and optional follow-up contract)",
+      "evals/discovery/opponent-response-01/b/review.json"
+    ],
+    "repo_or_db_edits": false,
+    "private_logs_read": false,
+    "external_research": false,
+    "previous_audit_changed": false
+  },
+  "classification": {
+    "result": "定義の曖昧さ・処理間の意味の不足。正式Bによる確定したルール違反とは、この範囲の証拠では断定できない。",
+    "reason": [
+      "REVIEWはknown/unconfirmed/differentiatedの選択肢と同居なしだけならunconfirmedという片方向の条件を示すが、knownを一般的普及の確認と定義していない。",
+      "設計の「壁」は一般的な普及を基準とする一方、別の運用原則はknownから広い普及や自動棄却を導かないと明記している。先例の認識と除外の基準を別に読むと両者は両立する。",
+      "正式Bはknownを内部の保存記録に限定し、外部公開・普及は未確認、knownを採否の根拠にしないと明示している。少なくとも普及の誤認・自動棄却は行っていない。"
+    ],
+    "prior_audit_claim": "先の監査で「knownが設計基準に反する」と確定問題にした記述は強すぎた。ここでその根拠の限界を追加報告する。旧正式評価・期待値・0/2の採点は変更しない。",
+    "confirmed_gap": "先例の有無と普及の未確認が同じnovelty値に押し込まれており、後続調査の入口がunconfirmedだけを見るため、先例あり・普及未確認を扱う契約が明示されていない。"
+  },
+  "evidence": [
+    {
+      "source": "src/svdeck/discovery.py:73",
+      "quote": "noveltyはknown/unconfirmed/differentiatedから選びます。ローカルに同居なしだけならunconfirmedです。"
+    },
+    {
+      "source": "src/svdeck/discovery.py:457-488",
+      "finding": "保存処理はenum、各軸の理由、引用整合等を検査。knownにWeb照合や普及の証明は要求しない。Web照合必須なのはdifferentiated。元responseのnoveltyを変更せず新規評価ファイルへ保存する。"
+    },
+    {
+      "source": "docs/design.md:193 (this read)",
+      "quote": "knownから広い普及や自動棄却を導かない。"
+    },
+    {
+      "source": "docs/design.md:894 (this read)",
+      "quote": "壁の基準は「一般に広まっているか」であって「誰かが試したか」ではない"
+    },
+    {
+      "source": "evals/discovery/opponent-response-01/b/review.json findings[5]",
+      "quote": "knownは今回の保存記録に対しての判定。",
+      "additional": "外部での公開初出・普及・最新構築との独自性は今回未確認。knownを採用可否の根拠にはしない。"
+    },
+    {
+      "source": "src/svdeck/discovery_inquiry.py:143",
+      "quote": "revision != prior['revisions'][-1]['revision'] or review['value'] != 'test' or review['novelty'] != 'unconfirmed'"
+    },
+    {
+      "source": "src/svdeck/discovery_inquiry.py:40",
+      "finding": "固定の問いは同用途の先例と一般的な普及を分けて調べ、元案の改訂・採点変更・自動棄却を禁止する。"
+    }
+  ],
+  "followup_conditions": {
+    "explicit_novelty_entry": "CLIで--noveltyを選ぶとquestion_index=None。指定revisionに存在する正式評価をreview_hashで一意に選び、そのrevisionが最新、value=test、novelty=unconfirmedの全条件を要求する。条件外では研究開始前にValueError。追加で正式提出物の検証に成功する必要がある。",
+    "latest_precision": "実装で検査しているのは最新の改訂。指定したreview_hashがその改訂の時系列上いちばん新しい評価かは、この条件では検査していない。複数評価時は「最新の正式評価」と雑に言い換えない。",
+    "actual_b": "正式Bはdevelopかつknownなので二つの条件で対象外。仮にnoveltyだけunconfirmedでもdevelopが残り対象外。今回の後続調査欠落をknownだけに帰因することはできない。",
+    "future_counterexample": "最新改訂の正式評価がtest+knownで、理由が内部先例あり・普及未確認の場合、固定の普及調査へ--noveltyから入れない。この入口制限はコードで確定。未調査が実害になった具体的実行までは未確認。",
+    "manual_question_path": "--question-indexは有効な保存済みnext_questionsの番号を選ぶ別経路で、test/unconfirmed/最新改訂の条件は課さない。Bの4問は価値・相手・配分の問いであり、固定の先例/普及調査をそのまま選べる問いではない。",
+    "cycle_limit": "設計は追加予算を明示したcycleのみ同条件で一度接続し、条件外では終了すると記す。discovery_cycle.pyは指定範囲外のため読んでおらず、実装の一致や今回の自動接続実行は未検証。",
+    "semantic_limit": "調査入口に制限があることと、案を自動棄却することは別。入口制限が意図に反するかは要件の未確定部分。"
+  },
+  "minimal_prospective_repair": {
+    "preserve": [
+      "旧reviewの値・finding・hash・保存ファイルを変更しない。",
+      "期待値と採点結果を変更しない。",
+      "一般的普及と先例が別である既存原則を維持する。"
+    ],
+    "contract_text": "今後のREVIEWに「knownは資料で同じ使い方の先例を確認したという判定で、一般的な普及を意味しません。findingに先例の範囲（内部記録／外部公開）と普及の確認状況を分けてください。先例だけでvalueを変更しません。」を加える案。新しい評価契約の適用時点を記録し、旧評価の意味を遡って固定しない。",
+    "smallest_entry_change": "普及未確認の先例あり案にも明示指定で調査を接続したいと決める場合、--noveltyの対象を最新改訂のtestかつnovelty in {unconfirmed,known}へ広げる。入力ラベルの置換やfinding文字列の自動判定は不要。固定の問いは既に先例と普及の両方を調べ、再採点を禁止しているので維持する。",
+    "automatic_scope": "自動cycleの条件拡張はこの限定監査では提案の必須部分にしない。まず明示的入口のみに限定すれば既存の自動実行範囲を変えず、旧評価をそのまま使った追加調査が可能。自動接続まで広げるなら別途実装確認が必要。",
+    "b_impact": "この案でもdevelopのBは対象外のまま。Bを通すためにvalueを書き換えたり、期待採点を動かしたりしない。",
+    "tests_if_implemented": [
+      "最新test+knownの明示調査を受理し、元reviewファイル/hashを維持する。",
+      "既存test+unconfirmedが通る。develop/drop、古い改訂、誤ったreview_hashは従来通り拒む。",
+      "番号指定経路を維持する。自動cycleを変更しない場合はその条件が変わっていないことを確認する。"
+    ]
+  },
+  "unconfirmed": [
+    "knownの意図についてこの2原則以外の合意履歴は未確認。",
+    "後続調査を省く方針自体がユーザー要件違反かは未確定。",
+    "型・機能テストと実AI試行は未実行。今回は読取り専用監査のみ。"
+  ]
+}

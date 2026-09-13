@@ -1,0 +1,108 @@
+{
+  "started_at": "2026-09-13T14:08:25Z",
+  "ended_at": "2026-09-13T14:11:01.114506+00:00",
+  "review_scope": "公開保存された調査・照合本文と抜粋根拠、対象案・旧評価、保存整合の限定確認。外部再調査・再採点なし。",
+  "public_materials_checked": [
+    "/tmp/known-use-inquiry-01-live/result.json",
+    "/tmp/known-use-inquiry-01-live/inquiry-report.json",
+    "/tmp/known-use-inquiry-01-live/inspect-report.json",
+    "/tmp/known-use-inquiry-01-live/session/context.json",
+    "/tmp/known-use-inquiry-01-live/session/revision-0002.json",
+    "/tmp/known-use-inquiry-01-live/session/review-0002-54791eda3a351742.json",
+    "/tmp/known-use-inquiry-01-live/inquiry/answer.md",
+    "/tmp/known-use-inquiry-01-live/inspect/answer.md",
+    "/tmp/known-use-inquiry-01-live/inquiry/final-message.md",
+    "/tmp/known-use-inquiry-01-live/inspect/final-message.md",
+    "/tmp/known-use-inquiry-01-live/session/sources/1153d6d05f53f80dcbe6a0c9d57955baa9523a753aa6c6388553970f0447bb49.json",
+    "/tmp/known-use-inquiry-01-live/session/sources/a6975f5921447c877973e26753b946f28ee647ad74a0c7a272d2f80442247da3.json"
+  ],
+  "additional_read_scope": "sources全件の表題・種類・出典を確認。外部根拠E1/E2/E6と照合側の32列表の説明を重点確認。全出典本文・全操作再現ではない。",
+  "run_observed": {
+    "status": "completed",
+    "elapsed_wall_seconds": 1023.161504,
+    "research_seconds": 575.5970209999941,
+    "inspection_seconds": 445.73841274995357,
+    "added_sources": 6,
+    "formal_revisions": 0,
+    "formal_reviews": 0,
+    "original_judgment": {
+      "procedure": "supported",
+      "value": "test",
+      "novelty": "known"
+    },
+    "source_records_preserved": [
+      {
+        "file": "session/context.json",
+        "matches_original_manifest": true
+      },
+      {
+        "file": "session/review-0002-54791eda3a351742.json",
+        "matches_original_manifest": true
+      },
+      {
+        "file": "session/revision-0001.json",
+        "matches_original_manifest": true
+      },
+      {
+        "file": "session/revision-0002.json",
+        "matches_original_manifest": true
+      }
+    ],
+    "public_answers": [
+      {
+        "stage": "inquiry",
+        "answer_matches_saved_public_source": true,
+        "source_hash": "1a92806109bf415be454538fbe60f6b7d745946d115089f84f548cb249619473"
+      },
+      {
+        "stage": "inspect",
+        "answer_matches_saved_public_source": true,
+        "source_hash": "f1672a7e83030a5de4c2b95ba449f0bb8da4f8fdca3019795e5b9f100a71a9c9"
+      }
+    ],
+    "context": {
+      "format": "rotation",
+      "class_name": "ナイトメア"
+    }
+  },
+  "conclusion": "限定的だが実用的な追加調査。既知の役割を外部本文で補強し、収集された連勝リストで採用が複数ある資料を追加した。同用途の先例と一般的普及を混同せず、未確認を新規性の証明にもしていない。17分で新しいデッキや試用価値を得たのではなく、既知の用途の裏づけと採用の広がりに関する限定資料を得た。",
+  "newly_established": [
+    {
+      "claim": "同基盤で全体5点・進化権回復・進化2ドローを論じる別筆者の記事を特定し、能力の接続まで既に公開検討されていた根拠を追加した。",
+      "source": "https://note.com/abura_semi/n/n0c03c3eb0df1",
+      "limit": "実戦採用例ではなく公開検討。本文でrotationの語の明示は未確認。"
+    },
+    {
+      "claim": "検索索引に収録されたミッドレンジ連勝リスト32列中26列にイツルギがあり、1枚採用12列、バアル2＋イツルギ1は3列だった。",
+      "source": "https://svlabo.jp/blog-entry-1890.html?deck=%E3%83%9F%E3%83%83%E3%83%89%E3%83%AC%E3%83%B3%E3%82%B8Ni",
+      "verification": "保存行の先頭32値から0/1/2/3枚別6/12/10/4列と組合せ8/12/15列を独立再計算して一致。照合担当は不足していた列見出しと末尾6集計欄の構造を追加保存した。",
+      "limit": "一般プレイヤーの採用率や同用途の頻度ではない。検索索引と直接本文の版が異なる。"
+    },
+    {
+      "claim": "GameWithの同役割説明を外部から再取得して照合した。",
+      "source": "https://gamewith.jp/shadowverse-wb/503027",
+      "limit": "この説明は元入力にも存在したため、新発見には数えない。"
+    }
+  ],
+  "remaining_unknown": [
+    "各採用者が処理・2ドロー・素材や墓場の温存のために用いたかという実際の採用理由・使用モード。",
+    "一般利用者についての用途別頻度、投稿者の重複、採用一覧の代表性と原投稿の対応。",
+    "同じ39枚・交換・EP0・墓場2等まで一致する実戦記録。ただし完全一致の未発見は同役割の既知性を取り消さず、新規性の証明にもならない。",
+    "勝率・実戦優位・今回の採用変更の推奨強度・手法全体の優位。"
+  ],
+  "assessment_of_scope": {
+    "role_precedent_vs_prevalence": "適切に区別。GameWithとsemiを同役割の公開説明として肯定し、26/32をカード採用の限られた広がりとして扱う。未確認を普及していないとの否定へ変換していない。",
+    "over_strict_unknown": "全文では同役割の既知性を認めているので、固定条件の完全一致がないことを理由にknownを覆す過剰な未確認判定は確認されない。ただし短いfinalだけでは完全一致の未確認が強く見え、新しい別出典と採用集計が伝わりにくい。",
+    "practical_entry_value": "元案・旧test/knownを保持したまま明示調査→別照合→6資料の保存へ進めた。以前拒否されていた起点から追加確認する入口の実用価値はある。問い全体の解決や探索性能の認定には不足。",
+    "time_value": "約17分03秒（調査9分36秒・照合7分26秒）。成果は別筆者の役割検討と限定的な採用集計、その追跡可能性の補強。一般的普及を確定するだけの新証拠は得られなかった。"
+  },
+  "findings": [],
+  "limitations": [
+    "保存された抜粋・報告との整合を確認したもので、外部サイトの真正性や当時の表示を再取得して検証していない。",
+    "元保存物の保持はresult.jsonのoriginal_manifestと最終sessionの該当ハッシュ比較で確認。外部の元探索そのものは再読していない。",
+    "私有stdout.log・JSONL・思考ログは参照していない。",
+    "本文の細部がすべて検証済みという意味ではない。"
+  ],
+  "repository_writes": false,
+  "database_access": false
+}

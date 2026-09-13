@@ -1,0 +1,50 @@
+{
+  "started_at": "2026-09-13T13:50:55Z",
+  "ended_at": "2026-09-13T13:52:04.098908+00:00",
+  "scope": "限定された差分・受理条件・保存保護・既存自動条件・対応テストの読み取り専用確認。",
+  "files": {
+    "src/svdeck/discovery_inquiry.py": "56fd8cd80231cb3dfa0d01b7ab22b1707c8f6548db80cf9207e29385719a03ff",
+    "src/svdeck/discovery_cycle.py": "779e6faca917a24b8c855ef06e163a9f97e064ce1022dae55ca57991ba804cc3",
+    "tests/temp/test_novelty_followup_temp.py": "9e0039c1874aae46d8a1b981073641772320fb0721e3725be574a46342808d65"
+  },
+  "findings": [
+    {
+      "priority": "P2",
+      "file": "src/svdeck/discovery_inquiry.py",
+      "line": 205,
+      "title": "knownでも担当向け開始文が独自性未確認と説明する",
+      "trigger": "最新改訂の正式test/known評価を--noveltyで明示調査する。",
+      "observation": "focus.originはknown-use-prevalenceになるが、promptの参照元の説明はquestion_index is Noneなら一律「独自性未確認の試用評価から設定した固定の調査目的」。このpromptはprompt.mdへ保存され、worker.runのstdinとして渡される。",
+      "impact": "元評価のDB・JSONを書き換える不具合ではないが、担当へ渡す説明が起点の評価と食い違う。実調査結果への因果影響は未測定。",
+      "minimal_fix": "originに応じて「同用途の先例ありとされた試用評価」と「独自性未確認の試用評価」の説明を分ける。対応テストでpacket_metadataだけでなく担当向けstdinの説明も照合する。",
+      "test_gap": "tests/temp/test_novelty_followup_temp.py:25の合成workerはinquiry_focus.originを検査するがstdinの文言は検査していない。"
+    }
+  ],
+  "observed": [
+    {
+      "location": "src/svdeck/discovery_inquiry.py:142-158",
+      "result": "最新改訂、value=test、novelty in {unconfirmed,known}をANDで要求。develop/knownやdevelop/unconfirmedの追加受理はしない。既存の番号指定経路の条件は変更なし。originは元のnoveltyから区別し、元review dictへ代入しない。"
+    },
+    {
+      "location": "src/svdeck/discovery_inquiry.py:225-240,263-268",
+      "result": "担当実行後に元探索・入力・実装の保持を確認し、結果の正式案・旧評価本文も元reportと照合する既存保護が残る。追加保存物はsources/packetsだけをコピーし、元評価の判断を置換しない。"
+    },
+    {
+      "location": "src/svdeck/discovery_cycle.py:148-158",
+      "result": "追加予算が指定され、最終判定value=testかつnovelty=unconfirmedの場合だけ自動調査。knownを自動接続する変更はない。"
+    },
+    {
+      "location": "tests/temp/test_novelty_followup_temp.py:62-68,131-147,198-212",
+      "result": "develop/drop/unknownとknownの組を拒否する検査、cycleのtest/knownを飛ばす検査、明示knownでorigin・元評価・元探索の同一性を確認する検査がある。"
+    }
+  ],
+  "unreviewed": [
+    "105件の機能検査・型検査は親の合格報告を再実行していない。",
+    "本レビューでは実DB・実AI・保存済み試行・私有ログを読んでいない。",
+    "既に開始された実調査に開始文の食い違いが影響したかは未測定。",
+    "旧test/known拒否の再現結果は親の実測報告であり、本レビューでは再実行していない。"
+  ],
+  "repository_writes": false,
+  "database_access": false,
+  "private_logs_access": false
+}

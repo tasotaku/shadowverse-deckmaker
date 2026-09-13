@@ -1,15 +1,15 @@
 {
   "id": "clean-input-discovery-01",
-  "revision": 5,
-  "saved_at": "2026-09-13T13:36:26.922768+00:00",
-  "actor": "codex-root",
-  "reason": "新規探索の概要を保存",
+  "revision": 15,
+  "saved_at": "2026-09-13T14:16:28.885298+00:00",
+  "actor": "codex",
+  "reason": "成果・採否・比較不足を根拠とともに更新",
   "record": {
     "id": "clean-input-discovery-01",
     "title": "実験の採点を除いた入力で新しい種を探索する",
     "category": "method",
     "status": "running",
-    "summary": "新規入力の準備が完了。考案15分・別評価10分を上限に各1回実行する。",
+    "summary": "正式案と別評価は保存済み。通常側にも同じ翌ターンの起爆があり、進化権等の交換の評価が不足。先例調査と別照合を続行中。",
     "method": "実験履歴を除いた通常の原則と保存カード資料から考案し、別担当で評価する",
     "procedure": "新規開始→合法な相手40枚資料を追加→考案1回→別評価1回→得た種と失敗を検証し次の修正へ戻す",
     "inputs": "保存DB版のビショップ・ローテーション、カード注記とルール、同フォーマットの相手連携ロイヤル。現在の環境評価とは区別。",
@@ -38,45 +38,116 @@
       {
         "id": "whole",
         "title": "考案から別評価と最終保存確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T13:33:24.530480+00:00",
-        "ended_at": null,
-        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live",
+        "ended_at": "2026-09-13T13:55:01.031653+00:00",
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 25
       },
       {
         "id": "fresh-develop",
         "title": "ビショップの種を考案",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T13:33:24.840388+00:00",
-        "ended_at": null,
-        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live/develop-run",
+        "ended_at": "2026-09-13T13:47:08.509657+00:00",
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "fresh-review",
         "title": "別担当が種を評価",
+        "status": "completed",
+        "started_at": "2026-09-13T13:47:08.817653+00:00",
+        "ended_at": "2026-09-13T13:55:00.687914+00:00",
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "collection",
+        "title": "正式案と評価を回収して保存内容を再検査",
+        "status": "completed",
+        "started_at": "2026-09-13T13:57:23.740585+00:00",
+        "ended_at": "2026-09-13T14:00:44.462360+00:00",
+        "note": "正式1案・別評価1件を保持。初回の再検査はcontroller追加の評価packet1件で失敗。元manifestの全ファイル不変と追加packetの対応を確認し、終了時点を別コピーで再検査。AI再実行なし。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "novelty-whole",
+        "title": "新規候補の先例調査から別照合・最終保存まで",
+        "status": "running",
+        "started_at": "2026-09-13T14:07:10.975034+00:00",
+        "ended_at": null,
+        "note": "旧案・旧評価を保持し、使い方の先例と一般的な普及を調べて追記する。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-novelty-live",
+        "budget_minutes": 20
+      },
+      {
+        "id": "novelty-inquiry",
+        "title": "新規候補の使い方と先例を調査",
+        "status": "running",
+        "started_at": "2026-09-13T14:07:11.285163+00:00",
+        "ended_at": null,
+        "note": "旧案・旧評価を保持し、使い方の先例と一般的な普及を調べて追記する。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-novelty-live/inquiry-run",
+        "budget_minutes": 10
+      },
+      {
+        "id": "novelty-inspect",
+        "title": "別担当が新規候補の調査内容を照合",
         "status": "planned",
         "started_at": null,
         "ended_at": null,
-        "note": "正式提出と保存再検査までを実行する。自動再試行なし。",
+        "note": "旧案・旧評価を保持し、使い方の先例と一般的な普及を調べて追記する。",
         "budget_minutes": 10
+      },
+      {
+        "id": "comparison-audit",
+        "title": "枚数・成立手順・通常側との利益を別照合",
+        "status": "completed",
+        "started_at": "2026-09-13T14:01:51.263841+00:00",
+        "ended_at": "2026-09-13T14:04:06.372269+00:00",
+        "note": "40枚とT5主要手順は整合。通常DにもT6起爆があり、EP等の交換を採用理由まで結ぶ比較は不足。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
       "evals/discovery/clean-input-discovery-01/input-summary.json",
       "evals/discovery/clean-input-discovery-01/input-manifest.json",
+      "evals/discovery/clean-input-discovery-01/reader-review.json",
+      "evals/discovery/clean-input-discovery-01/novelty-launch-input.json",
       "evals/discovery/clean-input-discovery-01/README.md",
       "evals/discovery/clean-input-discovery-01/start.json",
       "evals/discovery/clean-input-discovery-01/input-session.tar.gz",
-      "evals/discovery/clean-input-discovery-01/opponents.json"
+      "evals/discovery/clean-input-discovery-01/opponents.json",
+      "evals/discovery/clean-input-discovery-01/result/post-finish-packet.json",
+      "evals/discovery/clean-input-discovery-01/result/report.json",
+      "evals/discovery/clean-input-discovery-01/result/result.json",
+      "evals/discovery/clean-input-discovery-01/result/independent-comparison.json",
+      "evals/discovery/clean-input-discovery-01/result/review-report.json",
+      "evals/discovery/clean-input-discovery-01/result/session.tar.gz",
+      "evals/discovery/clean-input-discovery-01/result/runtime-manifest.json",
+      "evals/discovery/clean-input-discovery-01/result/verification.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/public-operations.json.gz",
+      "evals/discovery/clean-input-discovery-01/result/develop/input-summary.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/finish-request.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/prompt.md",
+      "evals/discovery/clean-input-discovery-01/result/develop/finish-config.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/public-config.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/proposal.json",
+      "evals/discovery/clean-input-discovery-01/result/develop/run.json",
+      "evals/discovery/clean-input-discovery-01/result/review/public-operations.json.gz",
+      "evals/discovery/clean-input-discovery-01/result/review/input-summary.json",
+      "evals/discovery/clean-input-discovery-01/result/review/finish-request.json",
+      "evals/discovery/clean-input-discovery-01/result/review/prompt.md",
+      "evals/discovery/clean-input-discovery-01/result/review/finish-config.json",
+      "evals/discovery/clean-input-discovery-01/result/review/public-config.json",
+      "evals/discovery/clean-input-discovery-01/result/review/review.json",
+      "evals/discovery/clean-input-discovery-01/result/review/run.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/clean-input-discovery-01/README.md",
-      "sha256": "140727d7610baee27c77606424912fb74ae1805f91d6ab6bcb2fcea3133e49e7",
-      "size": 1035
+      "sha256": "0cd701da456c2cbfa76b2ca13df5cb0732626d0a4718ea3cdf5c3c187a7490a2",
+      "size": 2673
     },
     {
       "path": "evals/discovery/clean-input-discovery-01/input-manifest.json",
@@ -94,9 +165,139 @@
       "size": 7854
     },
     {
+      "path": "evals/discovery/clean-input-discovery-01/novelty-launch-input.json",
+      "sha256": "c9c42c36f1646c28f6a8fdf20274abaee8f1531faf5d3645cced1b056d848000",
+      "size": 520
+    },
+    {
       "path": "evals/discovery/clean-input-discovery-01/opponents.json",
       "sha256": "2f2e31c1a3241df58055cfb12c5a7848b5a1ebacd9370df7c58e79fa0813e75b",
       "size": 249
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/reader-review.json",
+      "sha256": "16bdf66e69619a706a982311f2af428bc2da70ef5b74b9395022135a3e3b3a55",
+      "size": 4347
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/finish-config.json",
+      "sha256": "9df4d98f30081b29773fc81212200d3150c31e4efe3dd82a1ea3f4b100b06f1b",
+      "size": 5908
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/finish-request.json",
+      "sha256": "e8df3abecff80d239cc758908a7b4aaae87c36559b0052cd6e1e197ebc1bba71",
+      "size": 1540
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/input-summary.json",
+      "sha256": "addffa69b902fb195ec2ed211d48da4e391d623e9b2febcb6675f14f4b0d338b",
+      "size": 7869
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/prompt.md",
+      "sha256": "e86db340bf2e43355b325f791defabbd0d7ad0873ff4749f7bfedee8c05d575f",
+      "size": 6159
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/proposal.json",
+      "sha256": "defacd6bb74d7923ed2f6cd2d46333c54ff8e3d16c8961b9a833b8d309bff5a5",
+      "size": 23323
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/public-config.json",
+      "sha256": "388255f4b17474a490c43b1cfeb55eb5b9bd3273e683e594da4195fae8b5dace",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/public-operations.json.gz",
+      "sha256": "cd984fba900aad60ee4e90a7fadadc4a4fa82cc8e51a274cdbfb279cd22e7362",
+      "size": 161890
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/develop/run.json",
+      "sha256": "3f4bb500ec72985803261fa7831f06da12b224f74951edef6bfe2398373dfb18",
+      "size": 4131
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/independent-comparison.json",
+      "sha256": "9cfde7cba5a450a0c5a15b51f6f760a20debbf93b4a2f482c4adb9ef6c094112",
+      "size": 9345
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/post-finish-packet.json",
+      "sha256": "6c8e799f2fe7ad2fd23a948b4798b3a2a5417d9357f87199b0d7c332db480490",
+      "size": 669
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/report.json",
+      "sha256": "40aad2df0c23e072efa5fbcf16bc4267cf7d1d90105c963ada2fa8fcee21a5b8",
+      "size": 21627
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/result.json",
+      "sha256": "a3c30fb178b9bfb719a35562517c60716f98910068cb078a135388c097d2e222",
+      "size": 12113
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/finish-config.json",
+      "sha256": "f661bf42c660e9c2f9c6accf6f52ad5d96dde54183db8bfe0f929820ce13d7a8",
+      "size": 7295
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/finish-request.json",
+      "sha256": "6188247b2c86cb895c5803245fe26327894c1d5d4af8270f46b1e7f711157182",
+      "size": 1496
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/input-summary.json",
+      "sha256": "213441fb59e3722dcb3bfc564de22483ae8a1eb008cc63c36eb987258439020d",
+      "size": 6311
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/prompt.md",
+      "sha256": "2a219364ceaeaa4e9349178f031ef391b2a1f160d466c95af5d32e94a22efeee",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/public-config.json",
+      "sha256": "453264c29018bdaac5cacaf2a7f548d00941d909167a02c2ceb08e2a79ce567d",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/public-operations.json.gz",
+      "sha256": "10f4ec58f0437e90509bb0dbf668b6128a9d4a483a42b8de44a2b3cb464bb3f6",
+      "size": 124612
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/review.json",
+      "sha256": "549b1e4e07eb497177d039f2f1ffe98fb55105ae83dcad160b1b014ca98fb14a",
+      "size": 12512
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review/run.json",
+      "sha256": "e29998daa243d189c09e7cafe04b991a75c8d453bd8dfec0f17a86f8f1dd27d5",
+      "size": 4117
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/review-report.json",
+      "sha256": "40aad2df0c23e072efa5fbcf16bc4267cf7d1d90105c963ada2fa8fcee21a5b8",
+      "size": 21627
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/runtime-manifest.json",
+      "sha256": "d2b4bc9c0aa40da5289a6dabd8cbff600968db38851e4fd78c5b3ad823fe268c",
+      "size": 4137
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/session.tar.gz",
+      "sha256": "184dc48dfc79b487f0382a35f5c2fa318f923b8a3b8f948103788bff9cf68f80",
+      "size": 1518411
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/verification.json",
+      "sha256": "193411a22fff41f2364ce817c9f910cc56b2354cf8e407c47098a111be60f7ef",
+      "size": 2863
     },
     {
       "path": "evals/discovery/clean-input-discovery-01/start.json",

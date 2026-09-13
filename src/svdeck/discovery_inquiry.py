@@ -140,8 +140,9 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
     review = selected[0]
     # AI_NOTE: 独自性調査の目的は判定条件から固定し、自由文の問いを文字列検索で選ばない。
     if question_index is None:
-        if revision != prior['revisions'][-1]['revision'] or review['value'] != 'test' or review['novelty'] != 'unconfirmed':
-            raise ValueError('独自性調査は最新の正式案のtestかつunconfirmedの評価が対象です')
+        if (revision != prior['revisions'][-1]['revision'] or review['value'] != 'test'
+                or review['novelty'] not in {'unconfirmed', 'known'}):
+            raise ValueError('独自性調査は最新の正式案のtestで、noveltyがunconfirmedまたはknownの評価が対象です')
         verify_submission(source, 'develop', revision)
         verify_submission(source, 'review', revision)
         question = NOVELTY_QUESTION
@@ -153,7 +154,8 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
              'input_packet_hash': review['packet_hash'], 'question_index': question_index,
              'question': question}
     if question_index is None:
-        focus['origin'] = 'unconfirmed-novelty'
+        # AI_NOTE: 先例ありの評価を未確認へ書き換えず、明示調査の出発点を区別する。
+        focus['origin'] = 'known-use-prevalence' if review['novelty'] == 'known' else 'unconfirmed-novelty'
     output.mkdir(parents=True, exist_ok=False)
     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),
                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,
@@ -200,7 +202,7 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
 
 今回の問い: {focus['question']}
 今回照合する保存済み報告の識別値: {inspect_source or 'この実行の調査工程が保存した報告'}。
-参照元: 改訂{revision} / 評価{review_hash} / {f'問い位置{question_index}（0始まり）' if question_index is not None else '独自性未確認の試用評価から設定した固定の調査目的'}。
+参照元: 改訂{revision} / 評価{review_hash} / {f'問い位置{question_index}（0始まり）' if question_index is not None else '同用途の先例ありとされた試用評価から設定した固定の調査目的' if review['novelty'] == 'known' else '独自性未確認の試用評価から設定した固定の調査目的'}。
 今回は{stage}を1回だけ、待ち時間込みの経過{seconds:g}秒まで行います。担当ID: {config['author']}。
 上限は監視側の経過時計で判定します。残り秒は次で確認できます: {sys.executable} -c "import os,time; print(float(os.environ['SVDECK_DEADLINE_MONOTONIC']) - time.monotonic())"
 UTCの開始・終了も記録しますが、その時刻差だけで期限切れと判定しません。PC休止等の扱いはOSに依存し、時計差があれば両方の値と未確認の原因を報告します。終了前に提出・保存を済ませてください。
@@ -294,7 +296,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--review-hash', required=True)
     focus = parser.add_mutually_exclusive_group(required=True)
     focus.add_argument('--question-index', type=int)
-    focus.add_argument('--novelty', action='store_true', help='最新のtest/unconfirmed評価から、使い方の先例と普及を調査する')
+    focus.add_argument('--novelty', action='store_true', help='最新改訂のtest評価（unconfirmedまたはknown）から、使い方の先例と普及を調査する')
     parser.add_argument('--research-seconds', type=float, required=True)
     parser.add_argument('--inspect-seconds', type=float, required=True)
     parser.add_argument('--journal-root', type=Path)

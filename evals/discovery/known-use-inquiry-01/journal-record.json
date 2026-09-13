@@ -1,0 +1,296 @@
+{
+  "id": "known-use-inquiry-01",
+  "revision": 12,
+  "saved_at": "2026-09-13T14:16:28.862968+00:00",
+  "actor": "codex",
+  "reason": "成果・採否・比較不足を根拠とともに更新",
+  "record": {
+    "id": "known-use-inquiry-01",
+    "title": "先例がある試用候補も明示指定で普及を調査する",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "先例ありの試用候補も明示指定で追加調査できる機能を採用。17分03秒で別筆者の役割検討と限定採用集計を追加。一般的な用途別普及は未確認。",
+    "method": "先例がある試用候補を明示指定した場合にも、既存の先例・普及調査へ渡す",
+    "procedure": "実際の保存済み評価で現行の対象外を確認→明示指定の条件だけ追加→保存保持と従来対象・自動接続を検査→同じ旧評価から実調査と別照合を行う",
+    "inputs": "same-slot-alternative-01 の保存済み最新改訂2・test/known評価。旧値・本文・識別を維持。",
+    "criteria": "明示した最新改訂のtest+knownを受け付け、既存test+unconfirmedと番号指定を保持。develop/drop/unknown・古い改訂・誤識別は拒否。自動cycleの実行条件・固定調査の問い・採点は変更しない。資料保存と有用性は区別。",
+    "result": {
+      "outcome": "pass",
+      "summary": "先例ありの試用候補も明示指定で追加調査できる機能を採用。17分03秒で別筆者の役割検討と限定採用集計を追加。一般的な用途別普及は未確認。",
+      "limitations": "実行補助の確認。元案・元評価の採否は変更せず、デッキの強さや探索性能は未証明。実AIは案内文訂正前の固定版、訂正後は105機能検査で確認。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "以前拒否されていた起点から、元案・旧評価を保持して調査・別照合・6資料保存まで実用できた。先例の有無と普及を区別するための明示入口として採用。"
+    },
+    "started_at": "2026-09-13T13:43:16.285645+00:00",
+    "ended_at": "2026-09-13T14:16:28.834277+00:00",
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "明示調査の対象を追加して検査",
+        "status": "completed",
+        "started_at": "2026-09-13T13:43:16.285645+00:00",
+        "ended_at": "2026-09-13T13:47:05.963442+00:00",
+        "note": "明示のtest/knownを既存の調査と別照合へ接続。105機能検査（49.16秒）と型検査合格。旧評価保持と自動cycleの条件不変を確認。",
+        "budget_minutes": 8
+      },
+      {
+        "id": "whole",
+        "title": "調査から別照合と最終保存確認まで",
+        "status": "completed",
+        "started_at": "2026-09-13T13:47:06.368775+00:00",
+        "ended_at": "2026-09-13T14:04:09.530279+00:00",
+        "note": "各1回、正式資料の保存まで確認する。\n起動処理を開始。実行記録: /private/tmp/known-use-inquiry-01-live\n調査・照合は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+        "budget_minutes": 20
+      },
+      {
+        "id": "known-inquiry",
+        "title": "先例と普及を調査",
+        "status": "completed",
+        "started_at": "2026-09-13T13:47:06.755216+00:00",
+        "ended_at": "2026-09-13T13:56:42.337775+00:00",
+        "note": "各1回、正式資料の保存まで確認する。\n起動処理を開始。実行記録: /private/tmp/known-use-inquiry-01-live/inquiry-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "known-inspect",
+        "title": "別担当が調査内容を照合",
+        "status": "completed",
+        "started_at": "2026-09-13T13:56:42.882414+00:00",
+        "ended_at": "2026-09-13T14:04:08.860060+00:00",
+        "note": "各1回、正式資料の保存まで確認する。\n起動処理を開始。実行記録: /private/tmp/known-use-inquiry-01-live/inspect-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "collection",
+        "title": "調査結果と旧評価の保持を確認して保存",
+        "status": "completed",
+        "started_at": "2026-09-13T14:09:41.406919+00:00",
+        "ended_at": "2026-09-13T14:10:09.175063+00:00",
+        "note": "結果回収は完了。Journal.saveの引数名をexpected_revisionと誤記して失敗。expectedに修正して記録だけを再開。AIや回収の再実行なし。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "result-audit",
+        "title": "追加成果と未確認範囲の別点検",
+        "status": "completed",
+        "started_at": "2026-09-13T14:08:25Z",
+        "ended_at": "2026-09-13T14:11:01.114506+00:00",
+        "note": "同用途の先例と用途別普及の混同は確認されず。別筆者の検討と限定採用集計が新たな成果。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "report",
+        "title": "採否と成果を報告にまとめて初見確認",
+        "status": "completed",
+        "started_at": "2026-09-13T14:11:01.114506+00:00",
+        "ended_at": "2026-09-13T14:16:28.834277+00:00",
+        "note": "初見確認で自動接続の意味が曖昧と指摘され、評価後に自動で調査する対象を明記した。この区間は他の作業と並行した経過時間。",
+        "budget_minutes": 5
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/known-use-inquiry-01/before.json",
+      "evals/discovery/known-use-inquiry-01/tests.json",
+      "evals/discovery/known-use-inquiry-01/report.json",
+      "evals/discovery/known-use-inquiry-01/result.json",
+      "evals/discovery/known-use-inquiry-01/test_novelty_followup.py",
+      "evals/discovery/known-use-inquiry-01/prompt-correction.json",
+      "evals/discovery/known-use-inquiry-01/input.json",
+      "evals/discovery/known-use-inquiry-01/reader-review.json",
+      "evals/discovery/known-use-inquiry-01/tests.xml",
+      "evals/discovery/known-use-inquiry-01/session.tar.gz",
+      "evals/discovery/known-use-inquiry-01/README.md",
+      "evals/discovery/known-use-inquiry-01/entry-review.json",
+      "evals/discovery/known-use-inquiry-01/contract-audit.json",
+      "evals/discovery/known-use-inquiry-01/verification.json",
+      "evals/discovery/known-use-inquiry-01/inspect-report.json",
+      "evals/discovery/known-use-inquiry-01/result-audit.json",
+      "evals/discovery/known-use-inquiry-01/inquiry-report.json",
+      "evals/discovery/known-use-inquiry-01/test-plan.md",
+      "evals/discovery/known-use-inquiry-01/tests-after-fix.xml",
+      "evals/discovery/known-use-inquiry-01/inspect/public-operations.json.gz",
+      "evals/discovery/known-use-inquiry-01/inspect/input-summary.json",
+      "evals/discovery/known-use-inquiry-01/inspect/final-message.md",
+      "evals/discovery/known-use-inquiry-01/inspect/prompt.md",
+      "evals/discovery/known-use-inquiry-01/inspect/answer.md",
+      "evals/discovery/known-use-inquiry-01/inspect/public-config.json",
+      "evals/discovery/known-use-inquiry-01/inspect/run.json",
+      "evals/discovery/known-use-inquiry-01/inquiry/public-operations.json.gz",
+      "evals/discovery/known-use-inquiry-01/inquiry/input-summary.json",
+      "evals/discovery/known-use-inquiry-01/inquiry/final-message.md",
+      "evals/discovery/known-use-inquiry-01/inquiry/prompt.md",
+      "evals/discovery/known-use-inquiry-01/inquiry/answer.md",
+      "evals/discovery/known-use-inquiry-01/inquiry/public-config.json",
+      "evals/discovery/known-use-inquiry-01/inquiry/run.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/known-use-inquiry-01/README.md",
+      "sha256": "c9198ccae0ffa2d300e595e084b23363d6523bfd39d91e52465657f5775d67f5",
+      "size": 2152
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/before.json",
+      "sha256": "197f7ae69a42a14b5d544ca1f62a22e3f50162708f7338ea44259530af247a47",
+      "size": 1779
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/contract-audit.json",
+      "sha256": "102d94a1d68d61ce9cfebce1565fe2a3a67351ebfe90798441cd8898008b96f3",
+      "size": 8073
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/entry-review.json",
+      "sha256": "3bc0dbe533c8a642bc5246ec167f375c0a06cb21685e85890d6ded8bdf14a826",
+      "size": 3597
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/input.json",
+      "sha256": "43631985df5d2ce6c4b0875dd2ebe372003630d68603da24c1a6c0fe72528b6c",
+      "size": 270
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/answer.md",
+      "sha256": "3c50d6588293ff8a478699aed1ecc16832de7ff74f839cd5359e438999a136a5",
+      "size": 11216
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/final-message.md",
+      "sha256": "542166cd7f1c36fb986e2edfbaccdd661a3559c84eab32e3a7302cf11ae4b675",
+      "size": 382
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/input-summary.json",
+      "sha256": "02eae49e0e897a926f575e6d3ef079ffa87ed4ce3eff3dc1d19d27d8a9272655",
+      "size": 4585
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/prompt.md",
+      "sha256": "f560c65ab0de201d308272946d306efa12da8ac5b92d15c224fddbb8e05ac143",
+      "size": 4589
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/public-config.json",
+      "sha256": "300ab33e77b97f98045a489c34dbda921c8375aaddbd9ca795f97cabbda47f2e",
+      "size": 298
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/public-operations.json.gz",
+      "sha256": "611c258260032fc0a89d4f65c1b9b1714fdde92e73c40b96b942d94f89d3ab77",
+      "size": 256411
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry/run.json",
+      "sha256": "4daf392cbc6c612e7d6c9aeb778e623e9bab3d416ba678246758e940055f1402",
+      "size": 3134
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inquiry-report.json",
+      "sha256": "8d7e8bb2e07759631f5dcb7ebc9284c0e37ffb591e6c3c7dd8ab89bcaa79f8b2",
+      "size": 25966
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/answer.md",
+      "sha256": "a133cb0190f39fccde2a42352129a765ac817f5476be9ccce791276086cfb175",
+      "size": 9379
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/final-message.md",
+      "sha256": "bc9e32987e9891d617139fb09d10d84cf812f0ba7d1390b19bc37fabb7845105",
+      "size": 245
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/input-summary.json",
+      "sha256": "56a7822af97fea02bf10bf6fbbd797bb5ba5a05e43068a4d25975a2e48a3fd76",
+      "size": 4355
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/prompt.md",
+      "sha256": "64f3f238d4ceedc51782341d8918aef0d6b58e4c7fd5b8c59c11dcb666f2fdbc",
+      "size": 4360
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/public-config.json",
+      "sha256": "ee4b130f42164bf884a6f90c7246f7658963769a1be2937d7ebd7100584e0981",
+      "size": 302
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/public-operations.json.gz",
+      "sha256": "bf2dd129c2dea1429b990fdef68b01334b52056e66bd7a43ca30cf658b0b0884",
+      "size": 444278
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect/run.json",
+      "sha256": "900d1ee98862d021244ea32e8f14669edb69018b0d105128128804597a5bc14e",
+      "size": 3143
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/inspect-report.json",
+      "sha256": "6ea913fa8d044531b5659d0d87abe6fd367725a9349bb6b691c843e83c3e2414",
+      "size": 26629
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/prompt-correction.json",
+      "sha256": "2cc7fa18ca72dcd14e84620f5094237c4811ec085af8e5724346076c3ea4a4d3",
+      "size": 555
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/reader-review.json",
+      "sha256": "16bdf66e69619a706a982311f2af428bc2da70ef5b74b9395022135a3e3b3a55",
+      "size": 4347
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/report.json",
+      "sha256": "cea51819ecb66a8790b82902b74dd608ab8949f416f0128fdb07c4b57085828f",
+      "size": 39477
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/result-audit.json",
+      "sha256": "9d672ac5752758b7e79351e58227638784113aa92e9c449782c9724e78535b97",
+      "size": 6836
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/result.json",
+      "sha256": "0a8191223cadea4b33c7c5485b022fd150ae170fe818e753a6d10dc0e306540c",
+      "size": 16143
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/session.tar.gz",
+      "sha256": "0c62fd6c1c0f0f43daa79bdac083ebb7707d9fe38fe8a9032e2ca431df90cc01",
+      "size": 2329545
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/test-plan.md",
+      "sha256": "e149755781ea9e893557e4400a274da503c258ccfe650f497b6fee8f4ad8714d",
+      "size": 747
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/test_novelty_followup.py",
+      "sha256": "2180a2850a65dabe343b0ba184874399f71c32baaddb0a199f210018e5819e68",
+      "size": 12476
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/tests-after-fix.xml",
+      "sha256": "b9f8b159247a8f580840736dc5be5c9d4fb2bff781d570dcf3da6930a3136d1b",
+      "size": 15123
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/tests.json",
+      "sha256": "fc4a80abfa6c9183a6e34af89be7295d3f3aca167e0c4c2983a6acf5a4e88eef",
+      "size": 324
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/tests.xml",
+      "sha256": "ea3d028e7c10df43218ca313c7e42ffefe3d96add632b2e33d14368d5e63e697",
+      "size": 15123
+    },
+    {
+      "path": "evals/discovery/known-use-inquiry-01/verification.json",
+      "sha256": "a121cb477d52f3b0b76a7c8aab4753bf8c684431c0f259b97dde1959202ae80a",
+      "size": 6808
+    }
+  ]
+}
