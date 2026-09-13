@@ -1,0 +1,97 @@
+{
+  "started_at_utc": "2026-09-13T14:17:02.403187+00:00",
+  "finished_at_utc": "2026-09-13T14:18:06.858129+00:00",
+  "elapsed_seconds": 64.454942,
+  "scope": "src/svdeck/discovery_run.py の今回の差分と直接接続する検査・packet生成・指定3試験ファイルの読み取り専用点検。リポジトリ変更なし、実行ログ・非公開stdout/JSONL・思考ログの読取なし。",
+  "conclusion": "限定した確認範囲では、実害を伴う新規不具合や終了検査の緩和を見つけなかった。終了済みdevelop/sessionへのpacket追記を避ける修正として筋が通る。",
+  "findings": [],
+  "verified_by_inspection": [
+    {
+      "topic": "終了済み資料の保持",
+      "lines": [
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405
+      ],
+      "finding": "preparedのmanifestを採取した後、正式資料をreview-inputへ複製し、packetの書込み先をreview-inputへ分離する。discovery.packetの保存副作用は当該sessionのpacketsへの書込み。終了済みpreparedへのreview packet追記がなくなる。"
+    },
+    {
+      "topic": "準備先の改変拒否",
+      "lines": [
+        440,
+        441,
+        465,
+        466
+      ],
+      "finding": "preparedとreview-inputを両方protectedへ登録。validate_stageでexact=Trueの照合が行われ、runのreview終了後にも両方exact=Trueで照合するため、削除・改変だけでなく追加ファイルも拒否する。"
+    },
+    {
+      "topic": "終了証拠の検査",
+      "lines": [
+        278,
+        311,
+        442,
+        445,
+        472,
+        473
+      ],
+      "finding": "finish_evidence/check_finish/validate_stageの本体は今回未変更。session_manifestの一致、公開正式提出とreportの結び付け、停止後照合、正式保存入口での再検査を緩めていない。"
+    },
+    {
+      "topic": "review-only",
+      "lines": [
+        377,
+        378,
+        379,
+        380,
+        390,
+        443
+      ],
+      "finding": "最新改訂指定とverify_submissionの前提を保持。review-inputは既存のprepare/sessionから作られるため、review-onlyも同じ分離手順を通る。改訂件数検査のreview_only分岐も変更なし。"
+    },
+    {
+      "topic": "旧評価の隔離と保存",
+      "lines": [
+        52,
+        58,
+        59,
+        404,
+        483,
+        484,
+        485
+      ],
+      "finding": "review-inputは古い評価・packetを含む正式資料の複製だが、評価作業sessionへのcopy_session(..., for_review=True)で旧評価と旧packetは引き続き除外される。packet自体のprevious_reviews/review_contextsはreview時に空。最終sessionはpreparedから複製するので過去評価を保持する。旧評価を作業sessionから除外する既存設計の緩和はない。"
+    },
+    {
+      "topic": "最終資料への結合",
+      "lines": [
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493
+      ],
+      "finding": "最終sessionはpreparedのcontext・snapshot・sources・旧packet・全revision・旧reviewを複製し、今回reviewとそれが参照するreview packetを既存処理で追加する。review packetはsources等を新規保存しないため、review-inputの追加packet以外にここで失われる新規正式資料は確認できない。"
+    },
+    {
+      "topic": "指定試験の確認",
+      "finding": "新規試験は通常実行とreview-onlyの完了後check_finish再実行・session_manifest一致・最終review packet接続を検査し、develop/sessionとreview-inputへの追加改変の拒否も検査する。既存試験には旧評価保持、追加sourcesの接続、旧評価/旧packetの非提供、review-onlyの旧評価+今回評価2件保持の検査がある。"
+    }
+  ],
+  "test_execution": "親から指定3ファイル合計66件合格の報告を受領。私は試験コードを点検し、重複実行はしていない。",
+  "limits": [
+    "約2分以内の差分中心の静的点検であり、全実行経路やOSによる作業領域外アクセスの監査ではない。",
+    "公開保存物の実際の終了後check_finish再実行は親側の試験・後続実行による確認。",
+    "AI Code Guideスキルを読み、内部点検には通常の読取を使うという指示に従って画面表示ツールは起動していない。"
+  ]
+}

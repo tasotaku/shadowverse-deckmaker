@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="6.070" timestamp="2026-09-13T23:11:26.904007+09:00" hostname="miyauchitsubasanoMacBook-Air.local"><testcase classname="tests.temp.test_finished_session_stability_temp" name="test_completed_stages_remain_verifiable[False]" time="3.507"><failure message="AssertionError: assert {'context.jso...5bdee9d', ...} == {'context.jso...5bdee9d', ...}&#10;  &#10;  Omitting 8 identical items, use -vv to show&#10;  Left contains 1 more item:&#10;  {'packets/df31f9cbbfa525c4697e9aff0852c5462e7efa9aa983d8399062595f63fbd496.json': '7654cd2ae47e5ca7229143fbc65b5714b9dcce9de410e8e08db22078f53d344a'}&#10;  Use -v to get more diff">source = PosixPath('/private/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/pytest-of-miyauchitsubasa/pytest-717/test_completed_stages_remain_v0/source')
+tmp_path = PosixPath('/private/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/pytest-of-miyauchitsubasa/pytest-717/test_completed_stages_remain_v0')
+review_only = False
+
+    @pytest.mark.parametrize('review_only', [False, True])
+    def test_completed_stages_remain_verifiable(source, tmp_path, review_only):
+        out = tmp_path / 'completed'
+        result = r.run(source, out, synthetic(tmp_path), None if review_only else 10, 10,
+                       revision=1 if review_only else None, review_only=review_only, explicit_finish=True)
+        assert result['status'] == 'completed', result
+        for entry in result['stages']:
+            work = out / entry['stage']
+            contract = json.loads((work / 'finish-config.json').read_text())
+            request = json.loads((work / 'finish-request.json').read_text())
+&gt;           assert r.manifest(work / 'session') == request['session_manifest']
+E           AssertionError: assert {'context.jso...5bdee9d', ...} == {'context.jso...5bdee9d', ...}
+E             
+E             Omitting 8 identical items, use -vv to show
+E             Left contains 1 more item:
+E             {'packets/df31f9cbbfa525c4697e9aff0852c5462e7efa9aa983d8399062595f63fbd496.json': '7654cd2ae47e5ca7229143fbc65b5714b9dcce9de410e8e08db22078f53d344a'}
+E             Use -v to get more diff
+
+tests/temp/test_finished_session_stability_temp.py:21: AssertionError</failure></testcase><testcase classname="tests.temp.test_finished_session_stability_temp" name="test_completed_stages_remain_verifiable[True]" time="2.326" /></testsuite></testsuites>

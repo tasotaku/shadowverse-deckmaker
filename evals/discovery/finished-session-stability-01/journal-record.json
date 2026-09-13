@@ -1,0 +1,116 @@
+{
+  "id": "finished-session-stability-01",
+  "revision": 3,
+  "saved_at": "2026-09-13T14:24:48.067481+00:00",
+  "actor": "codex",
+  "reason": "初見点検で曖昧な説明を訂正して根拠を更新",
+  "record": {
+    "id": "finished-session-stability-01",
+    "title": "終了済みの考案結果を次の評価準備で変更しない",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "評価の準備先を分離する修正を採用。完了後も両工程の終了記録をそのまま再検査可能。関連66件と型検査に合格。",
+    "method": "次の評価資料を別の準備先で作り、完了済み工程を保持する",
+    "procedure": "実際の追加ファイルを特定→同じ流れを再現する回帰検査→準備先を分離→終了済み両工程と最終結果を再検査",
+    "inputs": "clean-input-discovery-01の実発生記録。再現は架空カードと公開提出を行う合成プロセス。",
+    "criteria": "考案・評価とも、全体完了後に元の終了要求で再検査できる。追加・改変の拒否、過去評価の隔離、最終評価資料の保存を維持。",
+    "result": {
+      "outcome": "pass",
+      "summary": "評価の準備先を分離する修正を採用。完了後も両工程の終了記録をそのまま再検査可能。関連66件と型検査に合格。",
+      "limitations": "実AIを新たに考案させる検査ではなく、公開提出と終了を行う合成プロセスで保存順序を確認した。元の実AI結果と終了証拠は書き換えない。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "実発生した後続資料による不一致を再現して修正。終了検査を緩めず、両工程の保存不変と最終評価資料の保持を確認。"
+    },
+    "started_at": "2026-09-13T14:11:24.649156+00:00",
+    "ended_at": "2026-09-13T14:20:20.079488+00:00",
+    "stages": [
+      {
+        "id": "fix",
+        "title": "再現・実装修正・回帰検査",
+        "status": "completed",
+        "started_at": "2026-09-13T14:11:24.649156+00:00",
+        "ended_at": "2026-09-13T14:20:20.079488+00:00",
+        "note": "修正前は追加の正常往復検査1失敗・評価のみ1合格。修正後66件・型検査合格。別点検64秒、修正提案なし。経過区間は報告作成と他の試行の準備を含む。",
+        "budget_minutes": 8
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/finished-session-stability-01/before.xml",
+      "evals/discovery/finished-session-stability-01/test_explicit_finish_current_temp.py",
+      "evals/discovery/finished-session-stability-01/independent-review.json",
+      "evals/discovery/finished-session-stability-01/tests.json",
+      "evals/discovery/finished-session-stability-01/test_finished_session_stability_temp.py",
+      "evals/discovery/finished-session-stability-01/reader-review.json",
+      "evals/discovery/finished-session-stability-01/test_worker_journal_temp.py",
+      "evals/discovery/finished-session-stability-01/tests.xml",
+      "evals/discovery/finished-session-stability-01/README.md",
+      "evals/discovery/finished-session-stability-01/test_discovery_run_temp.py",
+      "evals/discovery/finished-session-stability-01/test-plan.md",
+      "evals/discovery/clean-input-discovery-01/result/post-finish-packet.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/clean-input-discovery-01/result/post-finish-packet.json",
+      "sha256": "6c8e799f2fe7ad2fd23a948b4798b3a2a5417d9357f87199b0d7c332db480490",
+      "size": 669
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/README.md",
+      "sha256": "08cebd685fa8137e0bd3112c0c873415d5b0c7c9c61804ff331b2656d42d1698",
+      "size": 1767
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/before.xml",
+      "sha256": "b2ba54a46c1e988fe3ac720c3035c52d46146ab086be6e4a011ce4c8a16bc5d9",
+      "size": 2504
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/independent-review.json",
+      "sha256": "45cc7710e4b7ffe5b8b1f51c9caaa30fd89610e855db8aba11606ccd95a0938d",
+      "size": 4575
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/reader-review.json",
+      "sha256": "8a0a4e68b37ee9b2c4471872dd50288b116666c8ed34360d937cb7bff29d1711",
+      "size": 2163
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/test-plan.md",
+      "sha256": "087698d016bdde688b2b2978773d6f71f6669b8c358f25282fae357edc65e93b",
+      "size": 575
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/test_discovery_run_temp.py",
+      "sha256": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e",
+      "size": 12438
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/test_explicit_finish_current_temp.py",
+      "sha256": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c",
+      "size": 14071
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/test_finished_session_stability_temp.py",
+      "sha256": "c1c8fc1dd528e9fa1032ae3cd7c41388326107c4225e50ed1aa46ee69edecf40",
+      "size": 2031
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/test_worker_journal_temp.py",
+      "sha256": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43",
+      "size": 11331
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/tests.json",
+      "sha256": "c637774e785fcc3f4ac25d34112af724e302ba664b450598cd394c97f85e97e8",
+      "size": 607
+    },
+    {
+      "path": "evals/discovery/finished-session-stability-01/tests.xml",
+      "sha256": "ce732fd399873f875dddcde3417159759e4dd1ccc0562121f733e270ed0f6e8b",
+      "size": 9648
+    }
+  ]
+}

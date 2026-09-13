@@ -395,10 +395,14 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, 
             author = f"worker:{result['run_id']}:{stage}"
             if stage == 'review':
                 work = output / 'review'
-                envelope = discovery.packet(prepared, target, stage)
-                copy_session(prepared, work / 'session', for_review=True)
-                write_new(work / 'session/packets' / (envelope['sha256'] + '.json'), envelope)
+                # AI_NOTE: 終了済みの考案資料を封じたまま、次の評価資料を別の準備先で作る。
                 prepared_before = manifest(prepared)
+                review_input = output / 'review-input'
+                copy_session(prepared, review_input)
+                envelope = discovery.packet(review_input, target, stage)
+                review_input_before = manifest(review_input)
+                copy_session(review_input, work / 'session', for_review=True)
+                write_new(work / 'session/packets' / (envelope['sha256'] + '.json'), envelope)
             else:
                 envelope = discovery.packet(work / 'session', target, stage)
             summary = packet_summary(work / 'session', envelope['sha256'])
@@ -434,6 +438,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
             protected = {str(source): original, str(runtime): runtime_before}
             if stage == 'review':
                 protected[str(prepared)] = prepared_before
+                protected[str(review_input)] = review_input_before
             contract = {'fixed': fixed, 'protected': protected, 'expected': expected, 'parent': parent,
                         'prior_count': len(prior['revisions']), 'review_only': review_only}
             if explicit_finish:
@@ -458,6 +463,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
             check_unchanged(work, fixed)
             if stage == 'review':
                 check_unchanged(prepared, prepared_before, exact=True)
+                check_unchanged(review_input, review_input_before, exact=True)
             if code != 0 or execution['status'] not in ({'completed', 'finished_by_request'} if explicit_finish else {'completed'}):
                 result.update(status=stage + '_failed', failure='担当の実行が完了していないため次へ進みません')
                 break
