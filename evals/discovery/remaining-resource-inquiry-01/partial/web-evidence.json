@@ -1,0 +1,653 @@
+{
+  "title": "EP1用途の調査：実検索・取得状態・本文抜粋と解釈",
+  "observation_clock": "UTCは各web.run応答受領直後。公開日/クロール日は観察日時ではない。",
+  "scope": "日本語Web検索、指定の公式ドメイン検索、公開GameWith記事、note著者記事。検索で返された範囲のみ。ログイン済みSNS・非公開Discord・動画全編・大会全デッキ・実機は未調査。",
+  "search_log": [
+    {
+      "batch": 1,
+      "observed_at_utc": "2026-09-13T02:48:29.898Z",
+      "request": {
+        "search_query": [
+          {
+            "q": "site.shadowverse-wb.com 進化 超進化 同じターン 1回"
+          },
+          {
+            "q": "\"魂の捕食\" \"淵底の大佐\""
+          },
+          {
+            "q": "\"ガロダートVSゼット\" \"幽冥の中尉\" 進化"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10104120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10142130"
+        },
+        {
+          "title": "Shadowverse新カードパック・アズヴォルト・レヴナントカード別評価のメモ書き(簡易版)｜誠実",
+          "url": "https://note.com/spine634/n/nc6aa23027c71"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗超進化とは・通常の進化との違い〖シャドウバース ワールズ ビヨンド〗｜ゲームエイト",
+          "url": "https://game8.jp/shadowverse-beyond/696356"
+        },
+        {
+          "title": "〖シャドバWB〗第9弾ミッドレンジナイトメアデッキ解説｜ガロダートVSゼット×マクミラン | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3374"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗超進化の効果と可能ターン数〖シャドウバース ワールズ ビヨンド〗 - ゲームウィズ",
+          "url": "https://gamewith.jp/shadowverse-wb/497248"
+        },
+        {
+          "title": "〖ローテ〗グラマス到達デッキリスト比較〖~2026-8-28〗 - シャドラボ～シャドウバース分析～",
+          "url": "https://svlabo.jp/blog-entry-1896.html?deck=%E9%80%B2%E5%8C%96Ni"
+        },
+        {
+          "title": "Shadowverse Worlds Beyond カードボイス 文字起こし#9 (アズヴォルト・レヴナント)｜nemuk",
+          "url": "https://note.com/glad_crow7483/n/n501468539822"
+        },
+        {
+          "title": "超進化とは〖シャドバビヨンド〗 - Shadowverse Magazine〖シャドバ総合メディア / シャドマガ〗",
+          "url": "https://shadowverse-magazine.com/svwb/superevolve/"
+        },
+        {
+          "title": "Playguide | Gameguide | Shadowverse〖シャドウバース | シャドバ〗公式サイト | Cygames",
+          "url": "https://shadowverse.jp/gameguide/playguide.php"
+        },
+        {
+          "title": "Evolve | Shadowverse Wiki | Fandom",
+          "url": "https://shadowverse.fandom.com/wiki/Evolve"
+        },
+        {
+          "title": "〖シャドバWB 第9弾〗アズヴォルト・レヴナント環境Tier＆全カード完全評価｜🏇 ZERO-BIAS",
+          "url": "https://note.com/zero_bias/n/nb13cde546888"
+        },
+        {
+          "title": "Shadowverse: Worlds Beyond",
+          "url": "https://en.wikipedia.org/wiki/Shadowverse%3A_Worlds_Beyond"
+        },
+        {
+          "title": "11.6. 不正進化処理",
+          "url": "https://shadowverse-evolve.com/wordpress/wp-content/uploads/2024/01/12163903/ShadowverseEVOLVE_cr_1.9.0_231215.pdf"
+        },
+        {
+          "title": "Shadowverse EVOLVE",
+          "url": "https://files.microcms-assets.io/assets/268e6dd485d94271977e512e33c6fa6a/49bdd9e444b14aa0b506df17fad643f3/EVOLVE_GP2025Summer_%E5%A4%A7%E4%BC%9A%E8%A6%8F%E7%B4%84_20250423.pdf"
+        },
+        {
+          "title": "Shadowverse EVOLVE",
+          "url": "https://files.microcms-assets.io/assets/268e6dd485d94271977e512e33c6fa6a/623cd4ed721b47998a167c3819b400dc/SVE_GP%E4%BA%AC%E9%83%BD2024Winter_BO3Challenge%E5%A4%A7%E4%BC%9A%E8%A6%8F%E7%B4%84.pdf"
+        },
+        {
+          "title": "Shadowverse EVOLVE",
+          "url": "https://files.microcms-assets.io/assets/268e6dd485d94271977e512e33c6fa6a/7167a92a140c40be9e1b0042f2b900f4/EVOLVE_GP%E5%8D%83%E8%91%892024Autumn_%E5%A4%A7%E4%BC%9A%E8%A6%8F%E7%B4%84_%E5%90%88%E4%BD%93%E7%89%8820240920.pdf"
+        },
+        {
+          "title": "1.3. ゲームの大原則",
+          "url": "https://shadowverse-evolve.com/wordpress/wp-content/uploads/2023/06/09115412/ShadowverseEVOLVE_cr_1.6.0_230609.pdf"
+        },
+        {
+          "title": "Shadowverse EVOLVE",
+          "url": "https://files.microcms-assets.io/assets/24e4bf74b60a46619c6316e1057737d8/9fe81f63735641dcb3046835f3f772bf/SVE_GP%E4%BA%AC%E9%83%BD2026Summer_%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%AA%E3%83%BC%E3%83%90%E3%83%BCChallenge%E5%A4%A7%E4%BC%9A%E8%A6%8F%E7%B4%84.pdf"
+        },
+        {
+          "title": "Shadowverse",
+          "url": "https://en.wikipedia.org/wiki/Shadowverse"
+        },
+        {
+          "title": "ユーリ reveal Skybound Dragons reveal: Portalcraft Silver",
+          "url": "https://www.reddit.com/r/Shadowverse/comments/1oesbkj"
+        },
+        {
+          "title": "闇影詩章",
+          "url": "https://zh.wikipedia.org/wiki/%E9%97%87%E5%BD%B1%E8%A9%A9%E7%AB%A0"
+        }
+      ]
+    },
+    {
+      "batch": 2,
+      "observed_at_utc": "2026-09-13T02:49:04.216Z",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"魂の捕食\" \"淵底の大佐\" \"ビヨンド\""
+          },
+          {
+            "q": "\"幽冥の中尉\" \"進化\" \"突進\""
+          },
+          {
+            "q": "\"淵底の大佐\" \"進化\" \"自壊\""
+          }
+        ],
+        "open": [
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/system/cardbattle/battle/"
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10951120"
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10954120"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "〖シャドバ ビヨンド〗幽冥の中尉の評価と採用デッキ〖シャドウバース ワールズ ビヨンド〗｜ゲームエイト",
+          "url": "https://game8.jp/shadowverse-beyond/811758"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗幽冥の中尉の評価と採用デッキ〖シャドウバース ワールズ ビヨンド〗 - ゲームウィズ",
+          "url": "https://gamewith.jp/shadowverse-wb/573830"
+        },
+        {
+          "title": "〖シャドバWB〗回復しながら20点OTK！ベリアル進化ナイトメア徹底解説〖第9弾〗 | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3397"
+        },
+        {
+          "title": "シャドバビヨンド第9弾アズヴォルト・レヴナント クラスナイトメア所感｜20マンモス",
+          "url": "https://note.com/200000is/n/n674f438d7aad"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗突進のカード一覧と効果〖シャドウバース ワールズ ビヨンド〗｜ゲームエイト",
+          "url": "https://game8.jp/shadowverse-beyond/698629"
+        },
+        {
+          "title": "〖シャドバWB〗第9弾ミッドレンジナイトメアデッキ解説｜ガロダートVSゼット×マクミラン | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3374"
+        },
+        {
+          "title": "shadowverse WB　ミッドレンジナイトメア構築　Revenants of Azvaldt編｜semi",
+          "url": "https://note.com/abura_semi/n/n0c03c3eb0df1"
+        },
+        {
+          "title": "〖シャドバビヨンド〗ラストワード型アズヴォルトデッキ｜8ターン起動の回し方 | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3409"
+        },
+        {
+          "title": "Shadowverse新カードパック・アズヴォルト・レヴナントカード別評価のメモ書き(簡易版)｜誠実",
+          "url": "https://note.com/spine634/n/nc6aa23027c71"
+        },
+        {
+          "title": "〖シャドバビヨンド〗第9弾ナイトメア新カード全10枚を考察｜アズヴォルト・レヴナント | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3344"
+        },
+        {
+          "title": "オタわむれ　日々是戯言也blog",
+          "url": "https://hanhans.hatenablog.com/?page=2"
+        },
+        {
+          "title": "〖シャドバビヨンド〗死神払いの本命は大型フォロワー！コンボ成立でほぼ勝てる3つのルート | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3419"
+        },
+        {
+          "title": "対戦する | カードバトル | System | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10951120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10954120"
+        }
+      ]
+    },
+    {
+      "batch": 3,
+      "observed_at_utc": "2026-09-13T02:50:33.675Z",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+            "lineno": 100
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10951120",
+            "lineno": 20
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10104120",
+            "lineno": 60
+          },
+          {
+            "ref_id": "https://note.com/200000is/n/n674f438d7aad"
+          },
+          {
+            "ref_id": "https://gamewith.jp/shadowverse-wb/503027"
+          },
+          {
+            "ref_id": "https://note.com/abura_semi/n/n0c03c3eb0df1"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "対戦する | カードバトル | System | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10951120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10104120"
+        },
+        {
+          "title": "シャドバビヨンド第9弾アズヴォルト・レヴナント クラスナイトメア所感｜20マンモス",
+          "url": "https://note.com/200000is/n/n674f438d7aad"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗ミッドレンジナイトメアのローテーションデッキレシピと立ち回り〖シャドウバース ワールズ ビヨンド〗 - ゲームウィズ",
+          "url": "https://gamewith.jp/shadowverse-wb/503027"
+        },
+        {
+          "title": "shadowverse WB　ミッドレンジナイトメア構築　Revenants of Azvaldt編｜semi",
+          "url": "https://note.com/abura_semi/n/n0c03c3eb0df1"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "observed_at_utc": "2026-09-13T02:50:55.863Z",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://shadowverse-wb.com/web/CardList/card?card_id=10951120&lang=ja"
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/web/CardList/card?card_id=10954120&lang=ja"
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/web/CardList/card?card_id=10001130&lang=ja"
+          },
+          {
+            "ref_id": "https://shadowverse-wb.com/web/System/abilityKeywordList?lang=ja"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site:shadowverse-wb.com \"EPを消費して行う進化と\" \"SEP\""
+          },
+          {
+            "q": "\"幽冥の中尉\" \"通常進化\""
+          },
+          {
+            "q": "\"中尉\" \"ガロダート\" \"5点\""
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10544110"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10374110"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10114110"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10113120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?battle_format=1&card_id=10864120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10132110"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10514120"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10104110"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10123140"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10141140"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10734120"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10224110"
+        }
+      ]
+    },
+    {
+      "batch": 5,
+      "observed_at_utc": "2026-09-13T02:51:33.239Z",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"魂の捕食\" \"淵底の大佐\""
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "私家版*band用語集　か",
+          "url": "https://beoline.nobody.jp/bandterm-ka.html"
+        },
+        {
+          "title": "名古屋学院大学　学術情報センター部（ブログ）: DVD紹介アーカイブ",
+          "url": "https://blog.ngu.ac.jp/gkjblg/dvd/"
+        },
+        {
+          "title": "神岡気功ヒーリング　拡散希望　内容紹介 - 1697521327 - したらば掲示板",
+          "url": "https://jbbs.shitaraba.net/bbs/read.cgi/otaku/18041/1697521327/"
+        },
+        {
+          "title": "ネタの書きこみ　その166 - 1692446329 - したらば掲示板",
+          "url": "https://jbbs.shitaraba.net/bbs/read.cgi/otaku/9191/1692446329/"
+        },
+        {
+          "title": "DDS-NERD辞書",
+          "url": "https://blue.sakuraweb.com/dds/dic/dic_s.php"
+        },
+        {
+          "title": "攻略困難な最強のキャラ(人間・異星人・ロボット・戦艦)たち～随時更新～ : ゴッド速報άΩΔ∞ΧΡZ",
+          "url": "https://blog.livedoor.jp/nityannnerumatome/archives/69017721.html"
+        },
+        {
+          "title": "〖2023年最新版〗本当に面白い漫画の人気おすすめランキング100選 | まんぷくクイズ",
+          "url": "https://manpukuoyakudati.com/%E3%80%902023%E5%B9%B4%E6%9C%80%E6%96%B0%E7%89%88%E3%80%91%E6%9C%AC%E5%BD%93%E3%81%AB%E9%9D%A2%E7%99%BD%E3%81%84%E6%BC%AB%E7%94%BB%E3%81%AE%E4%BA%BA%E6%B0%97%E3%81%8A%E3%81%99%E3%81%99%E3%82%81/"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗シルバーのカード一覧〖シャドウバース ワールズ ビヨンド〗｜ゲームエイト",
+          "url": "https://game8.jp/shadowverse-beyond/699451"
+        },
+        {
+          "title": "町山のおすすめ映画だけを見ていたい",
+          "url": "https://tomomachi-picks.vercel.app/"
+        },
+        {
+          "title": "か～こ",
+          "url": "https://www11.big.or.jp/~denden/tare/tare02ka.html"
+        },
+        {
+          "title": "〖絶傑の継承者 前半戦〗2Pick7勝のクラス分布と人気カード",
+          "url": "https://svlabo-wb.com/data/031/2pick/"
+        },
+        {
+          "title": "映画の公開予定スケジュール（2025年6月以降） | 映画ポップコーン",
+          "url": "https://eiga-pop.com/coming/202506-"
+        }
+      ]
+    },
+    {
+      "batch": 6,
+      "observed_at_utc": "2026-09-13T02:53:10.066Z",
+      "request": {
+        "search_query": [
+          {
+            "q": "\"幽冥の中尉\" \"通常進化\"",
+            "domains": [
+              "note.com",
+              "gamewith.jp",
+              "game8.jp",
+              "shadowverse-wb.com"
+            ]
+          },
+          {
+            "q": "\"魂の捕食\" \"大佐\" \"EP\""
+          },
+          {
+            "q": "\"中尉\" \"ガロダート\" \"守護\""
+          }
+        ],
+        "find": [
+          {
+            "ref_id": "https://gamewith.jp/shadowverse-wb/503027",
+            "pattern": "イツルギ"
+          },
+          {
+            "ref_id": "https://note.com/abura_semi/n/n0c03c3eb0df1",
+            "pattern": "中尉"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "〖シャドバWB〗第9弾ミッドレンジナイトメアデッキ解説｜ガロダートVSゼット×マクミラン | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3374"
+        },
+        {
+          "title": "一周回ってガロゼット - 二次元裏＠ふたば",
+          "url": "https://img.2chan.net/b/res/1466396407.htm"
+        },
+        {
+          "title": "Re:天才シャドバプレイヤーなら全カード語れる説第五百九十四回「冥府の中尉」｜岼音ソウ",
+          "url": "https://note.com/grudgeso/n/n4cc5237742dc"
+        },
+        {
+          "title": "「セレス ナイトメア」のX（旧Twitter）検索結果 - Yahoo!リアルタイム検索",
+          "url": "https://search.yahoo.co.jp/realtime/search?ei=UTF-8&mtype=image&p=%E3%82%BB%E3%83%AC%E3%82%B9+%E3%83%8A%E3%82%A4%E3%83%88%E3%83%A1%E3%82%A2&rkf=1"
+        },
+        {
+          "title": "羅刹の咎人・ガロダート - おんJシャドバ部",
+          "url": "https://onj-shadowverse.game-info.wiki/d/%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%CD%A1%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD"
+        },
+        {
+          "title": "シャドバwbについてミッドレンジナイトメアが巷で話題になっていますけ... - Yahoo!知恵袋",
+          "url": "https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q14331060314"
+        },
+        {
+          "title": "八獄魔境アズヴォルトカード評価・考察｜Utatomo",
+          "url": "https://note.com/utatomo_note/n/n57f3d7aa452e"
+        },
+        {
+          "title": "海老原 悠 @CASTER_ebibkw - Twitter Profile | TwStalker",
+          "url": "https://mobile.twstalker.com/CASTER_ebibkw"
+        },
+        {
+          "title": "〖シャドウバースエボルヴ〗ブースターパック「天魔八虐」カード紹介＋事前評価｜くりくす",
+          "url": "https://note.com/insanityp1nk/n/nbd00bc6f8d73"
+        },
+        {
+          "title": "EAA2Pickヴァンパイア完全解説〖シャドバ2Pick/八獄魔境アズヴォルト〗｜ソー/シャドバ2Pick",
+          "url": "https://note.com/sopickmemo/n/n31365b1970a6"
+        },
+        {
+          "title": "〖シャドバビヨンド〗第9弾ナイトメア新カード全10枚を考察｜アズヴォルト・レヴナント | にゃんたんゲームブログ",
+          "url": "https://www.nyantan-kkkmhf.com/?p=3344"
+        },
+        {
+          "title": "マガチヨママのテカテ - 二次元裏＠ふたば",
+          "url": "https://tsumanne.net/si/data/2026/08/26/10808785/"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗ミッドレンジナイトメアのローテーションデッキレシピと立ち回り〖シャドウバース ワールズ ビヨンド〗 - ゲームウィズ",
+          "url": "https://gamewith.jp/shadowverse-wb/503027"
+        },
+        {
+          "title": "shadowverse WB　ミッドレンジナイトメア構築　Revenants of Azvaldt編｜semi",
+          "url": "https://note.com/abura_semi/n/n0c03c3eb0df1"
+        }
+      ]
+    },
+    {
+      "batch": 7,
+      "observed_at_utc": "2026-09-13T02:53:20.007Z",
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://gamewith.jp/shadowverse-wb/503027",
+            "lineno": 420
+          },
+          {
+            "ref_id": "https://note.com/abura_semi/n/n0c03c3eb0df1",
+            "lineno": 45
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site:shadowverse-wb.com \"幽冥の中尉\" \"ラストワード\""
+          },
+          {
+            "q": "site:shadowverse-wb.com \"ガロダートVSゼット\" \"疾走\""
+          },
+          {
+            "q": "site:shadowverse-wb.com \"激震のゴリアテ\" \"守護\""
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_page_headers": [
+        {
+          "title": "卡牌一览 | Shadowverse: Worlds Beyond（影之诗：超凡世界 | 影之诗WB）官方网站 | Cygames",
+          "url": "https://shadowverse-wb.com/chs/deck/cardslist/card/?card_id=10954120"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10104110"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10341110"
+        },
+        {
+          "title": "カード一覧 | Shadowverse: Worlds Beyond（シャドウバース ワールズビヨンド | シャドバWB）公式サイト | Cygames",
+          "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10344120"
+        },
+        {
+          "title": "卡片一覽｜Shadowverse: Worlds Beyond（闇影詩章：凌越世界｜闇影詩章WB）官方網站｜Cygames",
+          "url": "https://shadowverse-wb.com/cht/deck/cardslist/card/?card_id=10104110"
+        },
+        {
+          "title": "Card Library | Shadowverse: Worlds Beyond | Cygames",
+          "url": "https://shadowverse-wb.com/en/deck/cardslist/card/?card_id=10104110"
+        },
+        {
+          "title": "카드 일람 | 섀도우버스 월즈 비욘드(섀버WB) 공식 홈페이지 | Cygames",
+          "url": "https://shadowverse-wb.com/ko/deck/cardslist/card/?card_id=10412110"
+        },
+        {
+          "title": "卡片一覽｜Shadowverse: Worlds Beyond（闇影詩章：凌越世界｜闇影詩章WB）官方網站｜Cygames",
+          "url": "https://shadowverse-wb.com/cht/deck/cardslist/card/?card_id=10503210"
+        },
+        {
+          "title": "〖シャドバ ビヨンド〗ミッドレンジナイトメアのローテーションデッキレシピと立ち回り〖シャドウバース ワールズ ビヨンド〗 - ゲームウィズ",
+          "url": "https://gamewith.jp/shadowverse-wb/503027"
+        },
+        {
+          "title": "shadowverse WB　ミッドレンジナイトメア構築　Revenants of Azvaldt編｜semi",
+          "url": "https://note.com/abura_semi/n/n0c03c3eb0df1"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "W1",
+      "url": "https://shadowverse-wb.com/ja/system/cardbattle/battle/",
+      "observed_at_utc": "2026-09-13T02:50:33.675Z",
+      "acquisition": "本文取得。進化/超進化の節、PPと手札上限の節を読んだ。",
+      "exact_excerpt": "受けるダメージを0にして",
+      "paraphrase": "通常進化は+2/+2、超進化は+3/+3。超進化は自ターンの被ダメージをなくし効果破壊を防ぐ。対フォロワー攻撃による破壊時は相手リーダーへ1点。PPは10まで。手札上限9。",
+      "interpretation": "中尉を通常進化して戦闘で死亡させる行為と、超進化して同じ相手を攻撃する行為ではLW発生が異なる。",
+      "limit": "この中尉手順の実機観察ではない。"
+    },
+    {
+      "id": "W2",
+      "url": "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10544110",
+      "observed_at_utc": "2026-09-13T02:50:55.863Z",
+      "acquisition": "公式URLの検索掲載本文。カードページ直接openでは共通枠だけが返る事例があり、同一ターン制限は検索掲載本文で確認。",
+      "exact_excerpt": "同じターンには行えません。",
+      "paraphrase": "EPによる進化とSEPによる超進化を同じターンに両方は行えない。各ターン1回。",
+      "interpretation": "中尉EPとガロダートSEPを同一ターンに並べた11点計算は不可。主例ではガロダートを進化しない8点だけ数える。",
+      "limit": "検索掲載本文の鮮度と公式ページ動的本文の直接取得は未確認。"
+    },
+    {
+      "id": "W3",
+      "url": "https://note.com/200000is/n/n674f438d7aad",
+      "observed_at_utc": "2026-09-13T02:50:33.675Z",
+      "acquisition": "公開本文L20-21,34-35,47-49を確認。表示公開日時2026-08-26 22:24（記事表示）。",
+      "exact_excerpt": "合計体力5までを1枚で削る",
+      "paraphrase": "著者20マンモスは、徒姫から出た中尉の先当たりと、その後の徒姫超進化による5点処理を構築上の狙いとして記述。大佐は予約展開とLW、ガロダートは攻防のモード切替として説明。",
+      "interpretation": "中尉の死亡後の別個体を追加攻撃に用いる発想は既存記述にある。ただし供給源は徒姫の展開・突進・バフで、残EPによる手出し中尉3+2とは手順/PP/資源が違う。T6捕食でEPを残しT10の守護突破へ回す同用途の証拠ではない。",
+      "limit": "個人の新弾所感。実戦実施・一般普及・勝率を裏づけない。"
+    },
+    {
+      "id": "W4",
+      "url": "https://note.com/abura_semi/n/n0c03c3eb0df1",
+      "observed_at_utc": "2026-09-13T02:53:20.007Z",
+      "acquisition": "本文L31-60を直接取得。find(中尉)はNo matching textと返したが、その後openで実際の中尉記述を確認した。",
+      "exact_excerpt": "超進化温存やリーサル拒否に使えて便利。",
+      "paraphrase": "著者semiのミッドレンジ構築では中尉を盤面維持・処理・リアニメイト候補、バアルを強化/除去、ビバティーを補充、ネハンを場の進化、ガロダートを打点および守りに用いる。ガロダートを1軽減するとライブと併用できるとの説明もある。",
+      "interpretation": "既存のSEP温存とガロダート+除去の代替は無視できない。本報告T10例の差は未軽減8PPを固定した時の1PP境界。7PPまで軽減されれば通常側もライブ3+ガロダート7を10PPで実行でき、残EPだけの差は失われる。",
+      "limit": "単一著者の構築記事。採用枚数・評価は出典の主張。一般普及は未確認。"
+    },
+    {
+      "id": "W5",
+      "url": "https://gamewith.jp/shadowverse-wb/503027",
+      "observed_at_utc": "2026-09-13T02:53:20.007Z",
+      "acquisition": "公開本文のカード表L336-447と候補表L451以降の一部を取得。find(イツルギ)はNo matching textと返したがopen L460に記載あり。保存記事全文は公開sourcesにもある。",
+      "exact_excerpt": "幽冥の中尉",
+      "paraphrase": "表示40枚表は中尉3、バアル3、ライブ3、ビバティー3、ネハン1、大佐2、ガロダート3などを含む。T6比較が使う基盤と該当枚数が一致。",
+      "interpretation": "中尉やガロダートの同居は確認できるが、T6捕食で残したEPを守護5突破へ使う運用の確認とは異なる。通常側のカード役割を落とさず対照に残した。",
+      "limit": "表と一部本文の取得。掲載構築の採用頻度・現在Tier・勝率・全対面での優位を確認したものではない。"
+    },
+    {
+      "id": "W6",
+      "url": "https://shadowverse-wb.com/chs/deck/cardslist/card/?card_id=10954120",
+      "observed_at_utc": "2026-09-13T02:53:20.007Z",
+      "acquisition": "検索掲載本文（chs URLに日本語能力文が表示された）。",
+      "exact_excerpt": "（1）これは〖疾走〗を持つ。",
+      "paraphrase": "疾走と自傷2のモード、守護と全体8点のモード、手札での体力12以下による終了時軽減が掲載。",
+      "interpretation": "疾走と全体8点を同時に得たとは計算しない。",
+      "limit": "検索掲載本文のみ。現在の日本語カードページ・公式APIの動的本文は取得できず。"
+    }
+  ],
+  "unavailable": [
+    {
+      "urls": [
+        "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10951120",
+        "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10954120",
+        "https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id=10104120"
+      ],
+      "observed_at_utc": "2026-09-13T02:50:33.675Z",
+      "result": "openは68行のナビゲーション・Q&A見出し・共通枠のみ。カード本文を取得できたとは扱わない。"
+    },
+    {
+      "urls": [
+        "https://shadowverse-wb.com/web/CardList/card?card_id=10951120&lang=ja",
+        "https://shadowverse-wb.com/web/CardList/card?card_id=10954120&lang=ja",
+        "https://shadowverse-wb.com/web/CardList/card?card_id=10001130&lang=ja",
+        "https://shadowverse-wb.com/web/System/abilityKeywordList?lang=ja"
+      ],
+      "observed_at_utc": "2026-09-13T02:50:55.863Z",
+      "result": "web.openはInternal Error。HTTP原因・認証要否は未確認。正準カードの確認は今回入力の公開cards本文に依拠。"
+    }
+  ],
+  "search_interpretation": "単独の「魂の捕食」「淵底の大佐」検索(batch5)は無関係な用語集・映画等と一般カード一覧を返し、問いの同用途に一致する報告は今回の返却範囲で特定できなかった。複数queryの結果は統合されるため各結果を特定queryのヒットと断定しない。未発見の証明にはならない。広げた「中尉」「ガロダート」検索では旧Shadowverse・EVOLVEのカードも混入したため除外。同名/近似名だけではWBの先行例としない。",
+  "preservation": "引用は短い取得本文抜粋とし、それ以外を観察要約/解釈に分離。検索応答全記事の複製や内部思考の転記は行っていない。"
+}
