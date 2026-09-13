@@ -1,0 +1,411 @@
+{
+  "audit_started_at": "2026-09-13T15:00:18Z",
+  "audit_ended_at": "2026-09-13T15:59:39.249324+00:00",
+  "scope": "指定実行の公開result/runメタデータ、prompt/config、未提出answer、公開operations、工程sessionの正式資料のみ。私的stdout.log・JSONL・思考ログ・他の試行は未読。",
+  "classification": "期限内に報告提出と明示終了へ移れていない実行失敗。監視または公開保存機能の不具合は観測されない。時間配分の問題を示す証拠はあるが、内部処理・通信待ち等の寄与とfinish未試行の内的理由は未確定。",
+  "observed": {
+    "status": "inquiry_failed",
+    "failure": "担当が完了していないため次へ進みません",
+    "explicit_finish": true,
+    "run_status": "timed_out",
+    "budget_seconds": 600.0,
+    "elapsed_seconds": 600.1012125001289,
+    "deadline_observed": {
+      "event": "deadline_observed",
+      "at": "2026-09-13T14:56:50.536776+00:00",
+      "elapsed_seconds": 600.0008338331245,
+      "elapsed_expired": true,
+      "utc_expired": false
+    },
+    "worker_returncode": -15,
+    "run_returncode": 124,
+    "process_group_gone": {
+      "event": "process_group_gone",
+      "at": "2026-09-13T14:56:50.602803+00:00",
+      "elapsed_seconds": 600.0667585409246
+    },
+    "finish_events": [],
+    "finish_request_exists": false,
+    "final_message_exists": false,
+    "final_session_exists": false,
+    "public_operation_counts": {
+      "packet": 1,
+      "read": 9,
+      "attach-file": 5
+    },
+    "all_recorded_operations_exit_zero": true,
+    "answer_file": {
+      "path": "/tmp/inquiry-explicit-finish-01-live/inquiry/answer.md",
+      "bytes": 13306,
+      "sha256": "c9dfdaa32cd7132be490c7d48e81c61990f1fdf9b52ebf246eac6473e8ac4df8",
+      "mtime_utc": "2026-09-13T14:56:38.898783+00:00",
+      "seconds_from_mtime_to_deadline_observation": 11.637993,
+      "mtime_limitation": "最終更新のファイル時刻。本文を書き始めた時刻や担当が完了と判断した時刻ではない。"
+    },
+    "added_sources": [
+      {
+        "source_hash": "b8f730805451ed1aa5a9faefb291957ab83ef4e559679e94e81f22d5ef13b33d",
+        "title": "先行noteランプ構築画像・取得バイト保持",
+        "kind": "出典画像原本のbase64と取得メタデータ",
+        "location": "https://assets.st-note.com/img/1787774548-m4cDupEW5tYSnGOXAviBs6b8.png?width=2000&height=2000&fit=bounds&quality=85",
+        "content_characters": 463707,
+        "is_formal_inquiry_result": false
+      },
+      {
+        "source_hash": "510373469362cbc639eda395a304b38e1b25af8a6d07d88bf52b11cbcd4fe235",
+        "title": "先行note疾走構築画像・取得バイト保持",
+        "kind": "出典画像原本のbase64と取得メタデータ",
+        "location": "https://assets.st-note.com/img/1787774168-dYN50KHMrnIqDhQFBoyzk2J9.png?width=2000&height=2000&fit=bounds&quality=85",
+        "content_characters": 488567,
+        "is_formal_inquiry_result": false
+      },
+      {
+        "source_hash": "1b166e6987c8e3325f9f421d13a479b242a4603379e0047ebbe4913fe4299daf",
+        "title": "保存済みTook先行記事の元デッキ画像",
+        "kind": "出典画像原本のbase64と取得メタデータ",
+        "location": "https://note.com/took3116/n/n463e32944a0a",
+        "content_characters": 470736,
+        "is_formal_inquiry_result": false
+      },
+      {
+        "source_hash": "95a8b9c46dc52043ef2e1b51806e643f03f1eab6fd89fe9540f9074f10ed7adc",
+        "title": "参考40枚の元Deck Portal・カード名と枚数の再取得",
+        "kind": "公開画面DOMの取得値",
+        "location": "https://game8.jp/shadowverse-beyond/698541#hm_1",
+        "content_characters": 6379,
+        "is_formal_inquiry_result": false
+      }
+    ],
+    "protected_records": [
+      {
+        "file": "context.json",
+        "unchanged": true
+      },
+      {
+        "file": "revision-0001.json",
+        "unchanged": true
+      },
+      {
+        "file": "revision-0002.json",
+        "unchanged": true
+      }
+    ]
+  },
+  "completion_ladder": [
+    {
+      "step": "出典の取得と公開保存",
+      "state": "observed",
+      "evidence": "画像原本3件とDeck Portal取得値1件をattach-fileで保存。最終保存は14:56:38.821939 UTC。"
+    },
+    {
+      "step": "answer.mdの作成",
+      "state": "observed_as_draft_only",
+      "evidence": "13,306 bytesの草稿が存在。最終更新14:56:38.898783 UTC、期限観測の約11.64秒前。"
+    },
+    {
+      "step": "answer.mdの指定kind/locationでの公開添付",
+      "state": "not_observed",
+      "evidence": "attach-file answer.mdの操作がなく、指定inquiry-resultに一致する保存資料も0件。"
+    },
+    {
+      "step": "自分の報告を含む新版packet取得と全文read",
+      "state": "not_observed",
+      "evidence": "保存されたreadは全て初期packet f304b7a4...で、自分の報告はまだ正式添付されていない。"
+    },
+    {
+      "step": "最新report",
+      "state": "not_observed",
+      "evidence": "公開report操作0件。"
+    },
+    {
+      "step": "finish操作・監視受付",
+      "state": "not_observed",
+      "evidence": "公開finish操作0件、finish-request.jsonなし、監視側のfinish受付イベントなし。"
+    },
+    {
+      "step": "別照合・最終成果の回収",
+      "state": "not_reached",
+      "evidence": "inquiry_failedで次工程へ進まず、全体session出力も存在しない。"
+    }
+  ],
+  "public_timing": {
+    "first_operation": "2026-09-13T14:47:08.341590+00:00",
+    "last_operation": "2026-09-13T14:56:38.821939+00:00",
+    "deadline_at": "2026-09-13T14:56:50.536776+00:00",
+    "events": [
+      {
+        "args": [
+          "packet",
+          "--summary"
+        ],
+        "started_at": "2026-09-13T14:47:08.341590+00:00",
+        "ended_at": "2026-09-13T14:47:08.364320+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/ee5351b7dded4402a9ea3e7ede5af54c.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "sources",
+          "--offset",
+          "0",
+          "--limit",
+          "140"
+        ],
+        "started_at": "2026-09-13T14:47:23.935058+00:00",
+        "ended_at": "2026-09-13T14:47:23.967967+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/98ef3b7a986043388fa561483c0856dd.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "proposal",
+          "--offset",
+          "0",
+          "--limit",
+          "150"
+        ],
+        "started_at": "2026-09-13T14:47:23.968718+00:00",
+        "ended_at": "2026-09-13T14:47:23.993546+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/a93dbd7eb08f469d9388d48ceafc6820.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "packet_metadata",
+          "--offset",
+          "0",
+          "--limit",
+          "20"
+        ],
+        "started_at": "2026-09-13T14:47:23.994481+00:00",
+        "ended_at": "2026-09-13T14:47:24.018811+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/859749edb2704e98bf2b1e0f87419290.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "sources",
+          "--offset",
+          "140",
+          "--limit",
+          "1100"
+        ],
+        "started_at": "2026-09-13T14:47:39.371816+00:00",
+        "ended_at": "2026-09-13T14:47:39.401911+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/f2f0739edf7a45a9b45eda0cb1ceb245.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "proposal",
+          "--offset",
+          "150",
+          "--limit",
+          "130"
+        ],
+        "started_at": "2026-09-13T14:47:39.403095+00:00",
+        "ended_at": "2026-09-13T14:47:39.427688+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/89d3f985cb5e418a82a9ebc410710411.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "sources",
+          "--offset",
+          "0",
+          "--limit",
+          "1200"
+        ],
+        "started_at": "2026-09-13T14:47:58.796791+00:00",
+        "ended_at": "2026-09-13T14:47:58.820458+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/ac84d77d6545479e80ce9f31992ecd29.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "cards",
+          "--offset",
+          "0",
+          "--limit",
+          "220"
+        ],
+        "started_at": "2026-09-13T14:47:58.923244+00:00",
+        "ended_at": "2026-09-13T14:47:58.948436+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/5fa4995d41084cc7945e25c639ee8493.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "cards",
+          "--offset",
+          "0",
+          "--limit",
+          "220"
+        ],
+        "started_at": "2026-09-13T14:48:28.260137+00:00",
+        "ended_at": "2026-09-13T14:48:28.292256+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/86aa6230afd64315bdf9a8d211beec4f.json"
+      },
+      {
+        "args": [
+          "attach-file",
+          "--help"
+        ],
+        "started_at": "2026-09-13T14:48:28.437737+00:00",
+        "ended_at": "2026-09-13T14:48:28.445611+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/82ecdeb3730d4f98a7ad913c77ac0f1b.json"
+      },
+      {
+        "args": [
+          "attach-file",
+          "note-ramp-image.json",
+          "--title",
+          "先行noteランプ構築画像・取得バイト保持",
+          "--kind",
+          "出典画像原本のbase64と取得メタデータ",
+          "--location",
+          "https://assets.st-note.com/img/1787774548-m4cDupEW5tYSnGOXAviBs6b8.png?width=2000&height=2000&fit=bounds&quality=85",
+          "--observed-at",
+          "2026-09-13T14:50:28.644Z"
+        ],
+        "started_at": "2026-09-13T14:52:14.319445+00:00",
+        "ended_at": "2026-09-13T14:52:14.349702+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/fc62a95d5bbd4696958f127793606957.json"
+      },
+      {
+        "args": [
+          "attach-file",
+          "note-storm-image.json",
+          "--title",
+          "先行note疾走構築画像・取得バイト保持",
+          "--kind",
+          "出典画像原本のbase64と取得メタデータ",
+          "--location",
+          "https://assets.st-note.com/img/1787774168-dYN50KHMrnIqDhQFBoyzk2J9.png?width=2000&height=2000&fit=bounds&quality=85"
+        ],
+        "started_at": "2026-09-13T14:52:48.081927+00:00",
+        "ended_at": "2026-09-13T14:52:48.124975+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/19b3b46d82d34bafac3d8b1873d1b813.json"
+      },
+      {
+        "args": [
+          "attach-file",
+          "game8-original-portal.json",
+          "--title",
+          "参考40枚の元Deck Portal・カード名と枚数の再取得",
+          "--kind",
+          "公開画面DOMの取得値",
+          "--location",
+          "https://game8.jp/shadowverse-beyond/698541#hm_1",
+          "--observed-at",
+          "2026-09-13T14:52:47.411Z"
+        ],
+        "started_at": "2026-09-13T14:53:42.755895+00:00",
+        "ended_at": "2026-09-13T14:53:42.789663+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/bf60d42981ed4005a6abc57efd6ff610.json"
+      },
+      {
+        "args": [
+          "read",
+          "f304b7a45f30649261a8181a0ce92a6c1e6f52516e7218ee4f8e499cd57ec02d",
+          "sources",
+          "--offset",
+          "0",
+          "--limit",
+          "1200"
+        ],
+        "started_at": "2026-09-13T14:53:42.926274+00:00",
+        "ended_at": "2026-09-13T14:53:42.968898+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/56d9479fcd6042249db6dfa4b4fdb0a0.json"
+      },
+      {
+        "args": [
+          "attach-file",
+          "took-deck-image.json",
+          "--title",
+          "保存済みTook先行記事の元デッキ画像",
+          "--kind",
+          "出典画像原本のbase64と取得メタデータ",
+          "--location",
+          "https://note.com/took3116/n/n463e32944a0a"
+        ],
+        "started_at": "2026-09-13T14:56:38.791018+00:00",
+        "ended_at": "2026-09-13T14:56:38.821939+00:00",
+        "exit_code": 0,
+        "file": "/tmp/inquiry-explicit-finish-01-live/inquiry/operations/419c5c9b5d2545febbe02f4577c1017a.json"
+      }
+    ],
+    "read_volume_note": "同じcards offset0 limit220が2回（各332,783文字）、重複するsources範囲も再取得している。これは公開応答量で、担当が全てを読んだことや何秒を費やしたかの証明ではない。"
+  },
+  "diagnosis": [
+    {
+      "claim": "監視の早期停止や停止失敗を示す証拠はない",
+      "evidence": "経過600.0008秒で期限検出、SIGTERM後に元の群の消滅を確認。finish不正・保存エラーの記録なし。",
+      "limit": "この実行だけで全監視機能の正しさを証明はしない。"
+    },
+    {
+      "claim": "終了命令の追加だけでは、この1回を完走させられなかった",
+      "evidence": "prompt末尾にattach→新版全文read→report→finishを明記しflag=trueだが、最後の外部出典保存と草稿更新が期限約12秒前で、報告提出自体へ進んでいない。",
+      "limit": "finishに到達していないので、実AIでのfinish受付・停止・再検査の経路を試せたことにはならない。"
+    },
+    {
+      "claim": "締切直前まで資料取得・草稿作成が続いた時間配分が主要な候補",
+      "evidence": "14:52:14/14:52:48/14:53:42/14:56:38に出典を保存し、報告の公開提出に使える残りが約12秒。",
+      "limit": "公開観測だけでは、推論・外部待ち・画像処理・本文執筆それぞれの耗時を分離できない。"
+    },
+    {
+      "claim": "前回と今回の失敗位置は同一ではない",
+      "evidence": "親報告の前回はreport完了後に期限停止。今回はreport以前、answer.mdの正式添付にも未到達。",
+      "limit": "前回記録は今回再読していない。"
+    }
+  ],
+  "minimal_next_steps": [
+    {
+      "priority": 1,
+      "action": "同じ外部調査をやり直さず、今回保存できた出典4件と未提出answer.mdを新しい照合用入力へ引き継ぐ。元のinquiry_failedは保持する。",
+      "details": "草稿は「期限停止した担当の未提出草稿」と出所・hashを明示して扱い、旧担当が正式提出したinquiry-resultへ代理昇格しない。新しい担当は公開資料を読み、画像内カード同定・参考40枚との対応・指定運用記載の有無を照合し、自分の報告を正式保存する。",
+      "entry_constraint": "既存--inspect-sourceは正式なinquiry-resultを要求するため、この出力の草稿をそのまま指定できない。既存の未提出資料を新しい照合へ渡す回復入口があればそれを使い、なければ別の明示した草稿照合経路として最小接続を用意する。既存受理検査を緩めない。"
+    },
+    {
+      "priority": 2,
+      "action": "次回新規実行では残り時間に応じて外部取得を止め、提出へ切り替える時点を明示する小変更を試す。",
+      "details": "600秒の総枠を維持し、例として残り180秒で新規探索を止め、未確認を含む短い報告の保存→公開添付→新版の報告部分だけを全文read→report→finishへ移る。予算延長や保存物の自動成功化ではなく、本人による提出を先に完了させる。"
+    },
+    {
+      "priority": 3,
+      "action": "取得内容の再読を対象部分へ絞る。",
+      "details": "カード全件や同じ初期sourcesを再表示する代わりに必要IDと出典位置を保持し、報告再読はその報告の範囲だけを使う。特にbase64画像を含む巨大な資料全体を終了直前に再読しない。"
+    }
+  ],
+  "preservation_and_limits": [
+    "元試行・採点・DBを変更しない。新しい照合成功を旧失敗の成功へ書き換えない。",
+    "今回の草稿内容の正しさや画像の同定は本切分けでは認定していない。",
+    "保存された公開記録にfinish試行がないという観測であり、記録作成前に中断した未完操作の可能性まで否定しない。",
+    "旧失敗の事後verify_report合格や草稿存在を、今回の正式提出・明示終了の代用にしない。",
+    "私的stdout.log・JSONL・思考ログは読んでいない。"
+  ],
+  "main_writes": false,
+  "database_access": false
+}

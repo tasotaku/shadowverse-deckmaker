@@ -1,15 +1,15 @@
 {
   "id": "benefit-comparison-01",
-  "revision": 13,
-  "saved_at": "2026-09-13T14:40:17.198857+00:00",
+  "revision": 14,
+  "saved_at": "2026-09-13T15:00:54.527416+00:00",
   "actor": "codex",
-  "reason": "この試行の採否と限界を確定し、後続の方法検証へ継続",
+  "reason": "後続試験による方法の最終採否を追記",
   "record": {
     "id": "benefit-comparison-01",
     "title": "通常構築の各手順まで利益を対応づけて評価する",
     "category": "method",
     "status": "completed",
-    "summary": "通常側も持つ翌ターンの起爆を追加指示側は明示。別点検は4項目支持、現行は3支持・1部分的。本採用は保留し、同じ指示をドラゴンへ転用中。",
+    "summary": "共通する翌ターンの利益に限定した差を確認。後続のドラゴン比較では上乗せ未確認となり、追加指示の常用を見送った。",
     "method": "通常構築の各手順と利益を対応させる短い評価指示が、選びやすい比較だけで試用理由を作る不足を減らすか",
     "procedure": "同じ案・資料を複製→現行と追加指示で別評価→判定項目に沿って照合→有望なら別入力へ転用",
     "inputs": "clean-input-discovery-01の正式改訂1と固定資料。指摘報告・元評価を評価担当へ追加しない。",
@@ -20,8 +20,8 @@
       "limitations": "現行側にも進化権等の交換はある。採否ラベルや約1分の時間差を改善の証拠にせず、既知の1案で未知精度を認定しない。"
     },
     "decision": {
-      "status": "deferred",
-      "reason": "1案の各1回では方法の安定した改善と判断できない。共通する利益の扱いは改善候補として残り、同じ指示で別案の比較を進める。"
+      "status": "rejected",
+      "reason": "この試行の1項目の限定した差は維持する。後続benefit-comparison-dragon-01では両側が4項目を満たし、常用に加える根拠が不足したため見送る。過去の正式評価は変更しない。"
     },
     "started_at": "2026-09-13T14:18:58.177661+00:00",
     "ended_at": "2026-09-13T14:40:17.172381+00:00",
@@ -150,8 +150,8 @@
   "evidence": [
     {
       "path": "evals/discovery/benefit-comparison-01/README.md",
-      "sha256": "d7c821f9981fabdb6a9d48f5e0a12c143c85b606e71403d94a180a24d6246873",
-      "size": 2563
+      "sha256": "330e4e5afc63ce98cac33783e407b5ec2263808a882ebc2bddbfaccee783df1f",
+      "size": 2643
     },
     {
       "path": "evals/discovery/benefit-comparison-01/a/finish-config.json",

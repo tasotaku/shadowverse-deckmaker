@@ -1,27 +1,27 @@
 {
   "id": "inquiry-explicit-finish-01",
-  "revision": 1,
-  "saved_at": "2026-09-13T14:30:55.565462+00:00",
+  "revision": 9,
+  "saved_at": "2026-09-13T16:55:31.451093+00:00",
   "actor": "codex",
-  "reason": "実発生に対する任意の終了経路の実装を開始",
+  "reason": "報告提出の余白を固定する小変更を実用する",
   "record": {
     "id": "inquiry-explicit-finish-01",
     "title": "調査の保存確認を終えた担当から終了を明示する",
     "category": "infrastructure",
     "status": "running",
-    "summary": "調査報告の保存後も自然終了前に期限停止した事例を受け、既存の明示終了方式を調査・別照合にも任意提供する。",
+    "summary": "残り3分で取得を打ち切る指示を隔離して試す。未提出草稿と出典を引き継ぎ、新しい報告→別照合の完了を確認する。",
     "method": "公開添付・全文再読・最新reportを確認した担当がfinishし、監視側が停止前後の同一保存物を再検査する",
     "procedure": "実発生と最小設計を確認→独立作業先で実装と回帰検査→親側で差分確認→保存済み問いで実用して確認",
     "inputs": "clean-input-discovery-01の期限停止記録、既存の明示終了・調査入口と保存検査。",
     "criteria": "未指定の自然終了・既存cycle・期限や異常優先を保持。明示終了は資料と根拠操作を固定し、停止前後に同一証拠を検査。元失敗を書き換えず、報告内容を自動採点しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "268実装検査は合格。実調査は10分で未提出のまま停止。別の共通着想収集では明示終了と再検査まで完了。",
+      "limitations": "今回の実調査は終了要求自体に未到達。通常調査→別照合全体の実利用は未確認。別担当切分けの時刻差は59分21秒で、稼働内訳は未計測。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "実装の検査と共通収集での完了は確認したが、通常調査では提出時間の不足が残る。取得を打ち切る時点を固定する試作で継続確認する。"
     },
     "started_at": "2026-09-13T14:30:55.555686+00:00",
     "ended_at": null,
@@ -29,28 +29,352 @@
       {
         "id": "implementation",
         "title": "独立作業先で実装と関連検査",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T14:30:55.555686+00:00",
-        "ended_at": null,
-        "note": "コード変更は別作業先だけで行い、主作業先では評価方法の比較を継続する。",
+        "ended_at": "2026-09-13T14:44:19+00:00",
+        "note": "独立作業先で12分35秒。新規74件・既存回帰194件の268件と型検査合格。親点検で自然終了時の前工程保持の不足を修正し、追加・変更・無変更の3検査を追加。",
         "budget_minutes": 20
+      },
+      {
+        "id": "integration",
+        "title": "主作業先へ反映して公開入口を確認",
+        "status": "completed",
+        "started_at": "2026-09-13T14:44:19+00:00",
+        "ended_at": "2026-09-13T14:46:22.146278+00:00",
+        "note": "独立commitを反映し、--helpで任意指定を確認。実AIはこれから行う。親側準備の経過を含む。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "live-whole",
+        "title": "新しい問いの調査から別照合・最終保存まで",
+        "status": "interrupted",
+        "started_at": "2026-09-13T14:46:50.244235+00:00",
+        "ended_at": "2026-09-13T14:56:51.273367+00:00",
+        "note": "明示終了を選択して各1回実用する。自然終了しても保存を確認し、方式を実際に使ったか区別。\n起動処理を開始。実行記録: /private/tmp/inquiry-explicit-finish-01-live\n調査・照合が途中で停止。全実行の終了状態: inquiry_failed。停止理由: 担当が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 20
+      },
+      {
+        "id": "live-inquiry",
+        "title": "先行記事の具体的な使い方を調査",
+        "status": "interrupted",
+        "started_at": "2026-09-13T14:46:50.544392+00:00",
+        "ended_at": "2026-09-13T14:56:50.637252+00:00",
+        "note": "明示終了を選択して各1回実用する。自然終了しても保存を確認し、方式を実際に使ったか区別。\n起動処理を開始。実行記録: /private/tmp/inquiry-explicit-finish-01-live/inquiry-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "live-inspect",
+        "title": "別担当が調査資料を照合",
+        "status": "interrupted",
+        "started_at": null,
+        "ended_at": "2026-09-13T14:56:51.273367+00:00",
+        "note": "調査が期限切れし、正式報告未提出のため起動しなかった。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "failure-collection",
+        "title": "未提出草稿と出典を区別して保存",
+        "status": "completed",
+        "started_at": "2026-09-13T15:02:50.427848+00:00",
+        "ended_at": "2026-09-13T15:02:50.935644+00:00",
+        "note": "期限停止を維持。元案・元評価は保持し、正式提出を代行しない。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "failure-audit",
+        "title": "提出前に止まった原因候補を別担当が切り分け",
+        "status": "completed",
+        "started_at": "2026-09-13T15:00:18Z",
+        "ended_at": "2026-09-13T15:59:39.249324+00:00",
+        "note": "公開保存エラーなし。未提出・finish未試行。時刻差約59分21秒、実作業時間と待機の内訳未計測。予定5分を超えた記録をそのまま保持。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "reserve-preparation",
+        "title": "未提出草稿の引継ぎと提出用3分を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T16:55:30.784460+00:00",
+        "ended_at": "2026-09-13T16:55:31.276273+00:00",
+        "note": "旧失敗は維持。草稿はunsubmitted-inquiry-draftとして明示、正式調査報告にしない。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "reserve-whole",
+        "title": "保存済み草稿の継続から別照合・最終保存まで",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "budget_minutes": 20
+      },
+      {
+        "id": "reserve-inquiry",
+        "title": "保存済み草稿と出典を照合して新しい報告を提出",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "reserve-inspect",
+        "title": "新しい報告を別担当が照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "budget_minutes": 10
       }
     ],
     "evidence_paths": [
+      "evals/discovery/inquiry-explicit-finish-01/live-input.json",
+      "evals/discovery/inquiry-explicit-finish-01/README.md",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-checkpoint.json",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-addition.txt",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-input.json",
       "evals/discovery/inquiry-explicit-finish-01/design-review.json",
-      "evals/discovery/clean-input-discovery-01/novelty-timeout/verification.json"
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/public-operations.json.gz",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/input-summary.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/result.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/working-session.tar.gz",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/independent-failure-audit.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/prompt.md",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/answer.md",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/finish-config.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/verification.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/public-config.json",
+      "evals/discovery/inquiry-explicit-finish-01/live-timeout/run.json",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/regression-tests.xml",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/mypy.txt",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/new-tests.txt",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/regression-tests.txt",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/new-tests.xml",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/README.md",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/design-input.json",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/journal-tests.txt",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/final-new-tests.xml",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/verification.json",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/journal-tests.xml",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/test_inquiry_explicit_finish_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/test-plan.md",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/final-new-tests.txt",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_novelty_followup_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_inquiry_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_deadline_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_explicit_finish_current_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_clock_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_finished_session_stability_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_journal_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_run_temp.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery.py",
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_cycle_temp.py"
     ]
   },
   "evidence": [
     {
-      "path": "evals/discovery/clean-input-discovery-01/novelty-timeout/verification.json",
-      "sha256": "0401d67d9b2f20c855b8e6f4f0434a65e64579bcf14198971947f53da6203a0c",
-      "size": 1129
+      "path": "evals/discovery/inquiry-explicit-finish-01/README.md",
+      "sha256": "259d3d7bee37e07e56d5780e8b501e3daddbee9db2c9bfe0b095c70061933eff",
+      "size": 2232
     },
     {
       "path": "evals/discovery/inquiry-explicit-finish-01/design-review.json",
       "sha256": "e878812765ef66aef99fb8e15839dab42db2c039b7e52f29bfb32e4396cfc7a6",
       "size": 9582
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/README.md",
+      "sha256": "41f0cf4c47936212a9492d14c1ee3429e780dae9810f81ea17bd00ad32d5d9dc",
+      "size": 3100
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/design-input.json",
+      "sha256": "e878812765ef66aef99fb8e15839dab42db2c039b7e52f29bfb32e4396cfc7a6",
+      "size": 9582
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/final-new-tests.txt",
+      "sha256": "3bbc0ef6b2284962791a219e95948154130c8961c3218aa31818ef5ccab4aab9",
+      "size": 180
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/final-new-tests.xml",
+      "sha256": "621b63eae089d535e91a98797b9a2d12f5df9b714d9a769719c71cc8f8e5ceeb",
+      "size": 11063
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/journal-tests.txt",
+      "sha256": "b2382f4cbc286433e6cbb6e76f8c3632c274dd08ed044c76c20f73e652bf4ae7",
+      "size": 113
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/journal-tests.xml",
+      "sha256": "73f132a1f9893f9ab45d3e869be9dc0b3d842ecb427dd9cb7448c751f41410e5",
+      "size": 700
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/mypy.txt",
+      "sha256": "f9b031e5c45aa702cd4fef028d465551cb20a2c4698e0913c7b00766b20ac4d8",
+      "size": 43
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/new-tests.txt",
+      "sha256": "d2c10d4dbebca488b34485da237fd187cb371d96e0df960608081d7307507973",
+      "size": 100
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/new-tests.xml",
+      "sha256": "51e1973ba7a1f9c00e3f5b7e64b2957689a0fe78438125cea4396fcadc558d96",
+      "size": 10165
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery.py",
+      "sha256": "c4dbf0848ba341ef51e71614cace30c6f804ccabbed0d0df5db0dab42c20da65",
+      "size": 16173
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_cycle_temp.py",
+      "sha256": "ec9b107c9a2badeb5cfb448fd5b0bf6b6e7a12111175ced6f31bf96d3269bcb2",
+      "size": 9859
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_inquiry_temp.py",
+      "sha256": "0b33dc223e92604cf497d01640e5df92d47b60642964157d09556fe61f2f710e",
+      "size": 10043
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_run_temp.py",
+      "sha256": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e",
+      "size": 12438
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_explicit_finish_current_temp.py",
+      "sha256": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c",
+      "size": 14071
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_finished_session_stability_temp.py",
+      "sha256": "c1c8fc1dd528e9fa1032ae3cd7c41388326107c4225e50ed1aa46ee69edecf40",
+      "size": 2031
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_novelty_followup_temp.py",
+      "sha256": "2180a2850a65dabe343b0ba184874399f71c32baaddb0a199f210018e5819e68",
+      "size": 12476
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_clock_temp.py",
+      "sha256": "237d882db517eed998ee1df3345083dac4193c3551c114db21c75e5e2e0565d0",
+      "size": 3888
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_deadline_temp.py",
+      "sha256": "30ada5b3051797f9a745fdf95035acbf0ef880855762da5b10f94614705d48b0",
+      "size": 9337
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_journal_temp.py",
+      "sha256": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43",
+      "size": 11331
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/regression-tests.txt",
+      "sha256": "9101723dc4e615ca90d7e3bea289a0c21791d7cbe7f7475160cf4d66411f10e5",
+      "size": 272
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/regression-tests.xml",
+      "sha256": "75bb8fd9408800852b41e354ae4c90148dbc5570cc94b1d98c9e9d0a4f3c1850",
+      "size": 27732
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/test-plan.md",
+      "sha256": "22a31cac26f43367f2cf983b1575c711d8af8e07ea3fe7c682e196609f6c5502",
+      "size": 3050
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/test_inquiry_explicit_finish_temp.py",
+      "sha256": "ee377cac41890c879ce1c196f9c7cef61c587cc661f4a186767b460c859289ed",
+      "size": 16017
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/implementation/verification.json",
+      "sha256": "5ccf5243211f2344954544a8e6330a40501d83d66b08c47d0d0c7bbdf518e2bb",
+      "size": 4533
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-input.json",
+      "sha256": "f82863b95a198094dd7b8be63360394f2fc55bc44dcb3c5909ffc741f61ec9a6",
+      "size": 9118
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/answer.md",
+      "sha256": "c9dfdaa32cd7132be490c7d48e81c61990f1fdf9b52ebf246eac6473e8ac4df8",
+      "size": 13306
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/finish-config.json",
+      "sha256": "6e8a59dc6a127b3daae05a9c8b556a7147d36a5fbb86e2207dc9e908b2ac9695",
+      "size": 17108
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/independent-failure-audit.json",
+      "sha256": "834cfcf8110e7c02d4d838b6fe87f8672f3cde5e6427d1ac45d5fa29e40479c9",
+      "size": 17884
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/input-summary.json",
+      "sha256": "f2f6b4b990b117d8a60c93822fd77a5b4c5471d10f83dfa4efe7a39c36ed0cac",
+      "size": 4705
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/prompt.md",
+      "sha256": "8d72e2cdf2c7a3a5878892ee37bbfdcae02c204054ff950649ca5cebcaf9e9d7",
+      "size": 4450
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/public-config.json",
+      "sha256": "813d49ec1d9d502467afb1e1315e4d3964d2f3aec10a09106d1c22d83f060545",
+      "size": 325
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/public-operations.json.gz",
+      "sha256": "c35740427b1f1016ea1a0945264b3f972cab9fe9aaeaad3bec13431d75bf96b6",
+      "size": 200043
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/result.json",
+      "sha256": "ff851dcb75702ff6c14667e9733cdb8826dd3a0bc32bd2e9efda99b85d575684",
+      "size": 11058
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/run.json",
+      "sha256": "15cb1b2630f8f6e02e48dbe4cf439ef5f27a3d01777a8839dc4f23b42f84d0e1",
+      "size": 3653
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/verification.json",
+      "sha256": "346539839ed1cb35231f609484cb816f9e40f65510aae5172dc8a86e9c6c70d7",
+      "size": 880
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/live-timeout/working-session.tar.gz",
+      "sha256": "f06e3dbcc4954ec5d083391e4ba3ad7c86c787be677cecd52973ee292a4b59cb",
+      "size": 2398417
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-addition.txt",
+      "sha256": "afd096646e23336804611b82f173d245d7b0823779b5e0e54ad1183aac4be005",
+      "size": 1126
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-checkpoint.json",
+      "sha256": "dea1dc1c7ff11fe1ddbe81237d4313aed0b404279f53b06bd0bb7815991d153d",
+      "size": 1097
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-input.json",
+      "sha256": "93cee7e8e57959e2120a6707a3246d6770b5fb8bbaf19b70349509bc944964eb",
+      "size": 10626
     }
   ]
 }
