@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-09-13T11:29:54.750366+00:00",
+  "stage": "before reviewer execution",
+  "failure": "旧保存版のknown_decksと現行生成版の完全一致確認で失敗。",
+  "observed_difference": "全5デッキへsource:nullが追加されたことだけ。カード本文と注記の許可した変更以外の一致検査は成功済み。",
+  "correction": "sourceが全てnullであることを先に確認し、その追加キー以外の全項目を旧版と一致検査する。判断基準とカード事実は変えない。",
+  "first_input_kept": "/tmp/sv-reviewer-utility-01",
+  "new_input": "/tmp/sv-reviewer-utility-01-input",
+  "actor_runs_before_correction": 0
+}

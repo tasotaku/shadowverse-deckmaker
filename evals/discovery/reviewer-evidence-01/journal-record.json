@@ -1,15 +1,15 @@
 {
   "id": "reviewer-evidence-01",
-  "revision": 7,
-  "saved_at": "2026-09-13T11:12:11.558208+00:00",
+  "revision": 9,
+  "saved_at": "2026-09-13T11:29:12.385074+00:00",
   "actor": "codex-root",
-  "reason": "訂正と反映確認を完了し本人判断の確認待ちを明記",
+  "reason": "回答前の草案と本人了承後の接続を区別して報告へ反映",
   "record": {
     "id": "reviewer-evidence-01",
     "title": "評価AIの信頼性を裏づける既存検証の点検",
     "category": "method",
-    "status": "waiting",
-    "summary": "既存5記録・7行の点検と具体的な草案、初見確認と反映照合を完了。未知案の試用価値を識別する信頼性は未確認。試用候補とする条件について本人判断を確認中。",
+    "status": "completed",
+    "summary": "5記録・7行の根拠点検と草案を保存。本人の了承を受け、新しい2例の評価検証へ接続した。",
     "method": "保存済みの評価検証を根拠の種類別に照合",
     "procedure": "固定した既存記録から目的・正解の出所・入力のヒント・結果・未確認を表へ整理",
     "inputs": "known-candidate-review、mazel-role-review、history-review、role-chain、既存の基準点検",
@@ -21,10 +21,10 @@
     },
     "decision": {
       "status": "deferred",
-      "reason": "ユーザーの試用判断と必要情報を対応づける基準例が未確定で、次の検証方法と正解は草案の段階。"
+      "reason": "旧検証だけでは未知案の試用価値を見分ける信頼性は認定しない。具体的な草案への本人了承を受け、別試行 reviewer-utility-01 へ進む。"
     },
     "started_at": "2026-09-13T10:51:46.342944+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-13T11:21:24.025034+00:00",
     "stages": [
       {
         "id": "evidence-audit",
@@ -65,10 +65,10 @@
       {
         "id": "criteria-confirmation",
         "title": "試す候補として認める条件をユーザーへ確認",
-        "status": "waiting",
+        "status": "completed",
         "started_at": "2026-09-13T11:10:58.951765+00:00",
-        "ended_at": null,
-        "note": "草案保存後に確認を依頼済み。開始時刻は確認待ち状態を台帳へ登録した時刻で、質問送信時刻ではない。マゼルの実績を伏せても試用候補にするか、先にどの確認が必要かの回答待ち。新しい評価試験は未実施。",
+        "ended_at": "2026-09-13T11:21:24.025034+00:00",
+        "note": "草案保存後に確認を依頼済み。開始時刻は確認待ち状態を台帳へ登録した時刻で、質問送信時刻ではない。マゼルの実績を伏せても試用候補にするか、先にどの確認が必要かの回答待ち。新しい評価試験は未実施。 / 本人の「いいんじゃない？」を受領。マゼルを構想段階の試用候補とする正例と受け取り、解釈を会話冒頭に示した。",
         "budget_minutes": null
       }
     ],
@@ -84,8 +84,8 @@
   "evidence": [
     {
       "path": "evals/discovery/reviewer-evidence-01/README.md",
-      "sha256": "de6434570e4276d039b7bbd79de8cdc721e1f9db6d8f8de9511ae2c29fc013dc",
-      "size": 3792
+      "sha256": "9f093f4bf90826eb982ffe40f4c6565e954842295274798c461306c9bfa68cd0",
+      "size": 4064
     },
     {
       "path": "evals/discovery/reviewer-evidence-01/audit.json",
@@ -99,8 +99,8 @@
     },
     {
       "path": "evals/discovery/reviewer-evidence-01/next-evaluation-draft.md",
-      "sha256": "ab88471d3b5046d86dc1b5f8af842661da6c57eaf42fd738015f3a7623e7abc6",
-      "size": 3619
+      "sha256": "33ab72877dcc27ecd172b877a0bba3dba1311e80dc0f4fcb53764d96f7376c56",
+      "size": 3790
     },
     {
       "path": "evals/discovery/reviewer-evidence-01/protocol.json",
