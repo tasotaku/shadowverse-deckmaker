@@ -1,8 +1,12 @@
 {
-  "checked_at": "2026-09-13T11:58:54.954992+00:00",
+  "checked_at": "2026-09-13T12:12:26.437211+00:00",
   "url": "http://127.0.0.1:8765/api/experiments/reviewer-utility-02",
-  "revision": 7,
-  "status": "running",
+  "revision": 22,
+  "status": "completed",
+  "decision": {
+    "status": "deferred",
+    "reason": "1件の変化は得たが見送る例の不一致が残る。理由が網羅されても採否の信頼性は示せず、本体の指示へ採用しない。"
+  },
   "source_changes": {
     "error": null,
     "paths": []
@@ -10,9 +14,17 @@
   "stage_statuses": {
     "prepare": "completed",
     "functional-tests": "completed",
-    "a-whole": "running",
-    "a-review": "running",
-    "b-whole": "running",
-    "b-review": "running"
-  }
+    "a-whole": "completed",
+    "a-review": "completed",
+    "b-whole": "completed",
+    "b-review": "completed",
+    "a-collection": "completed",
+    "b-collection": "completed",
+    "independent-grading": "completed",
+    "report-writing": "completed",
+    "report-reader": "completed"
+  },
+  "main_db_unchanged": true,
+  "production_reviewer_unchanged": true,
+  "verification_scope": "既存進捗サービスの個別APIから当該結果を確認。UIの目視や新しい画面実装の検査ではない。"
 }

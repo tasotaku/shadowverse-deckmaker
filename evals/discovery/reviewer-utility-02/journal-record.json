@@ -1,30 +1,30 @@
 {
   "id": "reviewer-utility-02",
-  "revision": 8,
-  "saved_at": "2026-09-13T11:59:09.846275+00:00",
+  "revision": 23,
+  "saved_at": "2026-09-13T12:12:56.265396+00:00",
   "actor": "codex-root",
-  "reason": "報告資料と現在の結果を保存",
+  "reason": "確定報告の文法を整える",
   "record": {
     "id": "reviewer-utility-02",
     "title": "試す前に必要な確認の分け方を変える",
     "category": "method",
-    "status": "running",
-    "summary": "同じ2例を各1回評価中。補足5文だけを変更し、実際の出題の一致と57機能検査・型検査を確認。採否は未判定。",
+    "status": "completed",
+    "summary": "一致1/2、ナイフの不一致が残り補足の本採用は保留。機能検査57件・型検査、正式評価2件・別照合・報告を完了。システムの有用性は未達。",
     "method": "試用判断の前に利益・負担と未確認の役割を照合する補足を、同じ2例で検査",
     "procedure": "同一の入力・期待判断を再利用→評価指示だけに補足を加えた隔離版を確認→通常の評価入口を各1回実行→前の正式評価と理由を比較",
     "inputs": "reviewer-utility-01の固定済みa/b入力。新資料・新案・旧評価の追加なし。",
     "criteria": "同じ本人判断（マゼル試用候補、当該ナイフ案見送り）と重大誤りの禁止を維持する。\n指示の文言以外の実入力の一致を確認する。\nラベルと具体的理由を分けて評価し、旧合否や期待値を変更しない。\n同じ開発用2例の再検査で、未知案への効果や一般的な強さを証明しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "本人判断への一致は0/2から1/2へ変化。マゼルは試用候補になったが当該ナイフ案の見送り不一致が残る。正式評価2件・改訂追加0・再試行0。",
+      "limitations": "既知の開発用2例を各1回。補足だけの因果効果、未知案への信頼性、自然な発見力、勝率・システム完成は未確認。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "1件の変化は得たが見送る例の不一致が残る。理由が網羅されても採否の信頼性は示せず、本体の指示へ採用しない。"
     },
     "started_at": "2026-09-13T11:50:24.385155+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-13T12:11:57.578543+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -47,61 +47,242 @@
       {
         "id": "a-whole",
         "title": "マゼルの役割分担：評価から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T11:57:23.613930+00:00",
-        "ended_at": null,
-        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live",
+        "ended_at": "2026-09-13T12:01:32.095581+00:00",
+        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "a-review",
         "title": "マゼルの役割分担：うち評価担当の実行",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T11:57:24.062687+00:00",
-        "ended_at": null,
-        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live/review-run",
+        "ended_at": "2026-09-13T12:01:31.737391+00:00",
+        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-whole",
         "title": "当該ナイフ2枠案：評価から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T11:57:23.620760+00:00",
-        "ended_at": null,
-        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-b-live",
+        "ended_at": "2026-09-13T12:02:57.603384+00:00",
+        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-b-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-review",
         "title": "当該ナイフ2枠案：うち評価担当の実行",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T11:57:24.062906+00:00",
-        "ended_at": null,
-        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-b-live/review-run",
+        "ended_at": "2026-09-13T12:02:57.295103+00:00",
+        "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
+      },
+      {
+        "id": "a-collection",
+        "title": "Aの正式評価と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T12:01:54.210772+00:00",
+        "ended_at": "2026-09-13T12:01:54.779571+00:00",
+        "note": "結果 completed。正式保存・終了・入力保持を再検査して回収。本人評価との照合は未実施。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "b-collection",
+        "title": "Bの正式評価と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T12:03:13.982474+00:00",
+        "ended_at": "2026-09-13T12:03:14.546665+00:00",
+        "note": "結果 completed。正式保存・終了・入力保持を再検査して回収。本人評価との照合は未実施。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "independent-grading",
+        "title": "本人判断との一致と主要な理由を別担当が照合",
+        "status": "completed",
+        "started_at": "2026-09-13T12:03:14.728518+00:00",
+        "ended_at": "2026-09-13T12:07:41+00:00",
+        "note": "本人判断へ一致1/2。必要な理由は6/6、主要処理の重大誤りは確認範囲で0。担当の検査237秒、起動からの全体266.3秒で目安4分を26.3秒超過。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "report-writing",
+        "title": "結果・採否・工程時間の報告を作成",
+        "status": "completed",
+        "started_at": "2026-09-13T12:03:14.728518+00:00",
+        "ended_at": "2026-09-13T12:11:57.578543+00:00",
+        "note": "結果・採否・工程時間の報告を作成し初見確認2点を修正。経過522.9秒、目安6分を162.9秒超過。別照合・初見確認・結果整理を含み、純粋な執筆時間やCPU時間ではない。",
+        "budget_minutes": 6
+      },
+      {
+        "id": "report-reader",
+        "title": "報告を初見の別担当が確認",
+        "status": "completed",
+        "started_at": "2026-09-13T12:09:41+00:00",
+        "ended_at": "2026-09-13T12:10:20+00:00",
+        "note": "初見担当の時計で39秒。台帳登録より前の実開始時刻を担当記録から反映。本人・案・確認した理由項目とゲーム処理の範囲を明記する2点を修正。",
+        "budget_minutes": 1
       }
     ],
     "evidence_paths": [
+      "evals/discovery/reviewer-utility-02/grading.json",
       "evals/discovery/reviewer-utility-02/review.patch",
       "evals/discovery/reviewer-utility-02/review-addition.txt",
       "evals/discovery/reviewer-utility-02/tests.json",
       "evals/discovery/reviewer-utility-02/input-manifest.json",
       "evals/discovery/reviewer-utility-02/expected.json",
+      "evals/discovery/reviewer-utility-02/reader-review.json",
       "evals/discovery/reviewer-utility-02/collect-result.py",
+      "evals/discovery/reviewer-utility-02/a",
       "evals/discovery/reviewer-utility-02/tests.xml",
       "evals/discovery/reviewer-utility-02/input-equivalence.json",
+      "evals/discovery/reviewer-utility-02/reader-brief.json",
       "evals/discovery/reviewer-utility-02/README.md",
       "evals/discovery/reviewer-utility-02/runtime-manifest.json",
       "evals/discovery/reviewer-utility-02/protocol.json",
       "evals/discovery/reviewer-utility-02/launch.json",
+      "evals/discovery/reviewer-utility-02/timing-coverage.json",
+      "evals/discovery/reviewer-utility-02/b",
       "evals/discovery/reviewer-utility-02/inputs"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/reviewer-utility-02/README.md",
-      "sha256": "a4d708e634901c9b65260dce6c17ece8b242ec03d3be978040a467d578df7bc2",
-      "size": 1212
+      "sha256": "b2e79c4c3fed3db35bea1cce694627352ac2943c773da88842719a30e65d83e5",
+      "size": 6624
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/finish-config.json",
+      "sha256": "4925b8e1ab97192d6681aec8da171801b5ec391db0fad032f6046ff2315c226a",
+      "size": 7131
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/finish-request.json",
+      "sha256": "6cb64d4f4178ccba04fc8216063af0fc9ab9584eafbca088cdf96858cf1c3871",
+      "size": 1343
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/input-summary.json",
+      "sha256": "74f43c73f438fcc3394887ad6ecaf2ba2c70cacb35f912089a63f6773408a37a",
+      "size": 7468
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/prompt.md",
+      "sha256": "f5cc59737e58630dbdf272e6a20f7806ca769b07b9a0d7723f53d37b832e6190",
+      "size": 5425
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/public-config.json",
+      "sha256": "605b8ac721f30caed9f9a0a26b9a43bd22f6be6c6874246366d7a8abd1f41c83",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/public-operations.json.gz",
+      "sha256": "b14068412c4d4e9525e1410c1f97166bd2b09b1ef9d4facc2b67539334e85e83",
+      "size": 213805
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/report.json",
+      "sha256": "21dab0e82780d1740bd8dff47c90f3b6c105f8dce8aba7f0f8b5cf445d444909",
+      "size": 16897
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/result.json",
+      "sha256": "c6628361af09456b7f9325aa631860b267c69ef25425f0bd281800cd46cfff4c",
+      "size": 7563
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/review-report.json",
+      "sha256": "21dab0e82780d1740bd8dff47c90f3b6c105f8dce8aba7f0f8b5cf445d444909",
+      "size": 16897
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/review.json",
+      "sha256": "28de72451f24c17ebbcb29ea2dec1a8cd838fe584d35c6eb192a0897ceb46ea2",
+      "size": 10358
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/run.json",
+      "sha256": "67dea63f1f7e8a6dae32a368a8cf301dc55a3948bfccab15e9b3cfba11ce35b2",
+      "size": 4184
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/session.tar.gz",
+      "sha256": "1363c27c6941c839c1cd079eebb2a571170af327df9c62506ef648090d102901",
+      "size": 1579321
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/a/verification.json",
+      "sha256": "8426c2fd445278b177acc20e83b6c37b12f0b28d5c8081ebd0dd173de51ae104",
+      "size": 2125
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/finish-config.json",
+      "sha256": "1f582ab264478dd6e6d23091ddd0c6d171342cba9af764b60c814f72ed75218f",
+      "size": 12151
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/finish-request.json",
+      "sha256": "f6fee21eb107ad41411d59157d43165eabaf53f4006cd1073718812561c23f76",
+      "size": 2873
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/input-summary.json",
+      "sha256": "e7202bb4906a63301e99ad78e78a03e2cd0d44e344f712bc29cb7bdf80b68590",
+      "size": 7469
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/prompt.md",
+      "sha256": "8cebe0492eb6e35471bda5e52bb5f742763c56abd0bf4c996699f6e42feabe59",
+      "size": 5425
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/public-config.json",
+      "sha256": "c58e50286f188c480ea90681dc78e93d4bfe42b6a956f7a8f87b8eb0ce4e81f8",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/public-operations.json.gz",
+      "sha256": "f35d9f9855b9db1e00db6a3f9f273a33112b121196c88ddb76ac57dc3bca1cf7",
+      "size": 151858
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/report.json",
+      "sha256": "b5e05fe98cc21c62895a9dafa03929cfbf88985145ca5575de7ae3ab5f849cb6",
+      "size": 27097
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/result.json",
+      "sha256": "03d3c97471ab8af9c356d8c186603a0d0c5795d9caa202d9cd88c4f9aa20dd09",
+      "size": 9241
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/review-report.json",
+      "sha256": "b5e05fe98cc21c62895a9dafa03929cfbf88985145ca5575de7ae3ab5f849cb6",
+      "size": 27097
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/review.json",
+      "sha256": "9c623a4809feb685146ade439dfb7d7eac3c764162a234ab587d138b19a481eb",
+      "size": 12651
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/run.json",
+      "sha256": "f1ef4dfff0b8c40778cd20d49e810c1a475b94c04a86daf3e762a04202431a28",
+      "size": 4181
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/session.tar.gz",
+      "sha256": "77cd8029f046721b503a3cc8539833849d734508222164fa1985c0d9379fb52d",
+      "size": 1555291
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/b/verification.json",
+      "sha256": "e2911be7d4d25c034f880f779d6c1952d12aa61877b4a29b165458608af21c2d",
+      "size": 3806
     },
     {
       "path": "evals/discovery/reviewer-utility-02/collect-result.py",
@@ -112,6 +293,11 @@
       "path": "evals/discovery/reviewer-utility-02/expected.json",
       "sha256": "54f57697609a4c8d58640a35bb83b9324295719fc23c8b6718f3a18a8d23c826",
       "size": 2951
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/grading.json",
+      "sha256": "8a874d8d8d64258f37b3b17242ae2b1397668682883a37784e0c699362892b91",
+      "size": 6914
     },
     {
       "path": "evals/discovery/reviewer-utility-02/input-equivalence.json",
@@ -144,6 +330,16 @@
       "size": 1036
     },
     {
+      "path": "evals/discovery/reviewer-utility-02/reader-brief.json",
+      "sha256": "318e92f4193339e1180162d57128fb206c0ee550e5ea87be6b63def0ac337164",
+      "size": 807
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/reader-review.json",
+      "sha256": "f1304a40cdcc58c490178d2e940fadafed3ffad1281ce4c96e4f4101f3b6bc75",
+      "size": 2730
+    },
+    {
       "path": "evals/discovery/reviewer-utility-02/review-addition.txt",
       "sha256": "eda30c09385034b845f2eaf158b3af704c999d09b30b88a17fb5af557e2cc837",
       "size": 887
@@ -167,6 +363,11 @@
       "path": "evals/discovery/reviewer-utility-02/tests.xml",
       "sha256": "2384b0cb8f937e1bb249ef4088868942f91089ab97a9df63a8d7d19fc1442cc1",
       "size": 7636
+    },
+    {
+      "path": "evals/discovery/reviewer-utility-02/timing-coverage.json",
+      "sha256": "ca3ac2f5021153256eea00c2f3a07817b76230659920df80c7c5bcbd4f1eada8",
+      "size": 392
     }
   ]
 }

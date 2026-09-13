@@ -1,0 +1,167 @@
+{
+  "status": "completed",
+  "run_id": "4edd8150d5894dbba68c590a0b218c2e",
+  "started_at": "2026-09-13T11:57:23.613930+00:00",
+  "source": "/private/tmp/sv-reviewer-utility-01-input/a/session",
+  "output": "/private/tmp/sv-reviewer-utility-02-a-live",
+  "stages": [
+    {
+      "stage": "review",
+      "author": "worker:4edd8150d5894dbba68c590a0b218c2e:review",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-reviewer-utility-02-a-live/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-reviewer-utility-02-a-live/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-reviewer-utility-02-a-live/review",
+        "stdin": "/private/tmp/sv-reviewer-utility-02-a-live/review/prompt.md",
+        "output": "/private/tmp/sv-reviewer-utility-02-a-live/review-run",
+        "started_at": "2026-09-13T11:57:24.062687+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2351403.341375,
+        "explicit_finish": true,
+        "timeout_seconds": 600.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 19330,
+        "worker_pid": 19342,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-13T12:01:31.737391+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T11:57:24.062902+00:00",
+            "elapsed_seconds": 0.00020945817232131958
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T11:57:24.063275+00:00",
+            "elapsed_seconds": 0.0005837911739945412
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T11:57:24.070035+00:00",
+            "elapsed_seconds": 0.007368541322648525
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-13T12:01:31.529369+00:00",
+            "elapsed_seconds": 247.46723712515086,
+            "request_hash": "be115b4030998ca6914f14bf6b4d03be8999248798968cf43a9313c126f5013e",
+            "report_hash": "e97a3c0aa19f5f07d2840bc809ce21629a05cc13d5320d2a82cbd9e37a114b03"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-13T12:01:31.530195+00:00",
+            "elapsed_seconds": 247.46804750012234,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-13T12:01:31.582228+00:00",
+            "elapsed_seconds": 247.52008216595277
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-13T12:01:31.736658+00:00",
+            "elapsed_seconds": 247.67451504105702,
+            "request_hash": "be115b4030998ca6914f14bf6b4d03be8999248798968cf43a9313c126f5013e",
+            "report_hash": "e97a3c0aa19f5f07d2840bc809ce21629a05cc13d5320d2a82cbd9e37a114b03"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T12:01:31.737397+00:00",
+            "elapsed_seconds": 247.67524791602045
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T12:01:31.747605+00:00",
+            "elapsed_seconds": 247.6854549581185
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "reviewer-utility-02",
+          "stage_id": "a-review",
+          "status": "completed",
+          "begin_revision": 5,
+          "claimed_stage": {
+            "id": "a-review",
+            "title": "マゼルの役割分担：うち評価担当の実行",
+            "status": "running",
+            "started_at": "2026-09-13T11:57:24.062687+00:00",
+            "ended_at": null,
+            "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live/review-run",
+            "budget_minutes": 10
+          },
+          "claimed_summary": "補足5文だけの隔離版で型検査と57機能検査を完了。同一入力・期待判断を使って各1回評価を開始する。",
+          "end_revision": 9,
+          "synced_at": "2026-09-13T12:01:31.747599+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "be115b4030998ca6914f14bf6b4d03be8999248798968cf43a9313c126f5013e",
+          "report_hash": "e97a3c0aa19f5f07d2840bc809ce21629a05cc13d5320d2a82cbd9e37a114b03"
+        },
+        "elapsed_seconds": 247.67524325009435,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "review_only": true,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 1,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "443a4a470a244a3c9ae6395c763431e8f5e75de78af0da5343cff381260d9c3e",
+    "packets/8749eeb031452a4903053c354d642fcef5ff6e0debeff4ec341a3ac35b744d35.json": "4c100ede60fcfcdcd1773cbf88ac5ebd98dff27d13c2c703114a5e708a29ca1a",
+    "packets/fdbf41709e54d4fdd25aa731ed7d4738006ed32e9415f8f8bdb984c85e0ec73f.json": "bfd263cb8342c606de78c083f35adf89df21fd38b11d6c362478d9fb8f90f306",
+    "revision-0001.json": "9ad875b7dbba88a0761df61d80cb2524bb5b927d72d028cc171153c4d7e64a55",
+    "snapshot.db": "7dcc2a90e314ec6c85e37b9bf702f2c4581dbcc28b471f53c04bc82b7119bedd",
+    "sources/e7e81aec9be8b75593cf3a293c86e9199085cd5981581842abcbe0d089fae875.json": "2bca762c88345f1415674c3b4fa3f965612cc113aece664b6d9059fb60e0ed7d"
+  },
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "reviewer-utility-02",
+    "stage_id": "a-whole",
+    "status": "completed",
+    "begin_revision": 3,
+    "claimed_stage": {
+      "id": "a-whole",
+      "title": "マゼルの役割分担：評価から最終提出確認まで",
+      "status": "running",
+      "started_at": "2026-09-13T11:57:23.613930+00:00",
+      "ended_at": null,
+      "note": "補足した指示で各1回・上限10分。旧評価と正解は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-02-a-live",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "補足5文だけの隔離版で型検査と57機能検査を完了。同一入力・期待判断を使って各1回評価を開始する。",
+    "end_revision": 10,
+    "synced_at": "2026-09-13T12:01:32.099615+00:00"
+  },
+  "judgment": {
+    "procedure": "conditional",
+    "value": "test",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-reviewer-utility-02-a-live/session",
+  "source_unchanged": true,
+  "formal_revisions": 0,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-13T12:01:32.095581+00:00"
+}

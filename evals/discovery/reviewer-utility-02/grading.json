@@ -1,0 +1,100 @@
+{
+  "id": "reviewer-utility-02-independent-grading",
+  "started_at": "2026-09-13 12:03:44 UTC",
+  "ended_at": "2026-09-13 12:07:41 UTC",
+  "elapsed_seconds": 237,
+  "verdict": "FAIL_EXPECTED_ALIGNMENT",
+  "totals": {
+    "cases": 2,
+    "expected_matches": 1,
+    "expected_mismatches": 1,
+    "required_reasons_met": 6,
+    "required_reasons_total": 6,
+    "confirmed_material_mechanics_errors_in_scope": 0,
+    "confirmed_material_input_defects_in_scope": 0,
+    "equation": "2 = 一致1 + 不一致1"
+  },
+  "input_integrity": {
+    "observed": "両gzipと初回gzipのdata差分はinstructionのみ。差分は補足5文挿入。保存済み実packetとも全文一致。previous_reviews/history/review_contextsは空。",
+    "expected_sha256": "54f57697609a4c8d58640a35bb83b9324295719fc23c8b6718f3a18a8d23c826",
+    "expected_unchanged": true,
+    "execution": "verificationは両方completed、各review1件・revision追加0・操作エラー0。設定と主DB不変はlaunch/verification記録による確認で、主DBの独立再測定はしていない。",
+    "refs": [
+      "input-equivalence.json",
+      "launch.json",
+      "a/verification.json",
+      "b/verification.json",
+      "inputs/{a,b}/expected-review-packet.json.gz"
+    ]
+  },
+  "cases": {
+    "a": {
+      "expected": "test",
+      "actual": "test",
+      "match": true,
+      "required_reason_checks": [
+        true,
+        true,
+        true
+      ],
+      "procedure": "保持中の4離脱で両ベイル8→4。ベイル4＋マゼル4PP・通常進化1回。終了時に残りベイル廃棄、証明1＋6＝7枚、終了直前比+5。元山札再取得を否定し、8PP例の頻度・最速を保証しない。",
+      "value_reason": "後半の補充を置換先へ任せて元構築を前半へ寄せる利益を試用理由と認め、4PP・進化権・既存用途喪失・未取得時の手札切れを保持。",
+      "evidence": [
+        {
+          "ref": "a/review.json#/findings/1/reason",
+          "quote": "前半へ配分を寄せつつ手札切れ後の継続行動を得る利益が、4PP・進化権と後半の選別性を交換して試す理由になる"
+        },
+        {
+          "ref": "inputs/a/expected-review-packet.json.gz#/data/context/cards[card_id=10113130]/skill_text",
+          "quote": "手札で働く。自分のフォロワーが場を離れたとき、これのコストを-1する。"
+        },
+        {
+          "ref": "inputs/a/expected-review-packet.json.gz#/data/context/cards[card_id=10304110]/ref_effect_text",
+          "quote": "自分のターン終了時、自分の手札の『絶大の証明』でないカードすべてを捨てる。自分のデッキから6枚を引く。"
+        }
+      ],
+      "baseline_change": "develop→test。前回は具体的配分差と序盤改善を試用前に求め、今回は同じ未確定の配分・頻度を試用で測る項目へ移した。前回も役割分担の利益自体は認識。procedureはsupported→conditional（進化時期・クレスト枠等を明記）。"
+    },
+    "b": {
+      "expected": "drop",
+      "actual": "test",
+      "match": false,
+      "required_reason_checks": [
+        true,
+        true,
+        true
+      ],
+      "procedure": "21＝6＋5＋4＋6、準備8PP・超進化1・翌通常進化1、総手札と使用札、場5枠を整合的に扱う。自身は潜伏しないリオナと原本の生存・攻撃通過・人形の当て先を条件化。リオナ喪失16点と追加ヨグ3体分岐を区別。",
+      "value_reason": "ベルゼバブ3→2・ランサー1→0・リオナ0→2による取得減・処理札喪失・人形と進化権予約を読んだうえで、条件付き1ターン早い経路等を試す理由とした。本人の見送りとの重み付けの不一致が残る。",
+      "evidence": [
+        {
+          "ref": "b/review.json#/findings/2/reason",
+          "quote": "それでも既存の打点資源を1ターン早く使う別経路と低コスト配分の利益は効果と運用から説明でき"
+        },
+        {
+          "ref": "inputs/b/expected-review-packet.json.gz#/data/context/cards[card_id=10871120]/skill_text",
+          "quote": "自分の場の他のフォロワー1枚を選ぶ。それは【潜伏】を持つ。"
+        },
+        {
+          "ref": "inputs/b/expected-review-packet.json.gz#/data/sources[source_hash=1e4553604e61eaa47cda7159a18dba79682bb3acb59d6440669ab25da621047f]/content",
+          "quote": "これは必要札が揃った手順の比較で、実戦の平均決着ターンではない。"
+        }
+      ],
+      "baseline_change": "testのまま。前回も早い経路・共通38枚と追加負担を比較。今回は低コスト札増加、ベルゼバブ未取得時の用途を加え、頻度と損失を試用で測ると明記。保存リストは各40枚・共通38枚と再集計一致。",
+      "not_misattributed": "比較利益を示しているため『条件列挙だけでtest』『無条件21点』『リオナ除去で全用途否定』とは採点しない。必要理由3/3でも採否不一致は残る。"
+    }
+  },
+  "observed_vs_inference": {
+    "observed": "前回0/2→今回1/2。Aの未確認の扱いは変わり、Bの採否は変わらない。両方で補足が求めた比較と分類が文章化。",
+    "inference": "未確認を分類する文章だけでは本人の利益・負担の重み付けを再現できない可能性。各条件1回なので補足だけの因果効果は確定しない。"
+  },
+  "adoption_advice": "本採用の合格とはしない。Aの変化を開発上の観測として保存し、Bの不一致を維持。理由の網羅と採否の信頼性を分ける。",
+  "next_concrete_correction": "同種の補足を重ねる前に、Bの利益・負担を比較表にし、本人が見送る決め手と『条件が一つ変われば試す』境界を直接確認して記録する。価値判断用の比較例を作り、別の本人評価済み案を事前固定して検証する。未実施の提案。",
+  "limits": [
+    "既知の開発用2例。未知案の判断精度、自然な発見力、勝率・Tier、システム完成は対象外。",
+    "主要procedure/value、関連本文・出典を確認。全544カードの全欄、全入力の採否漏れを網羅保証しない。確認した主要注記・提案・出典に当該案の直接採否は未検出。",
+    "保存資料との照合。最新公式照合・実対戦・頻度測定は未実施。Aの76枚定義と77行の差、配分・頻度の未確定は未解消。",
+    "開始時規約で現行design.mdを読み前回結果概要に接した。前回grading.jsonは今回主要主張を独立照合した後に読んだ。",
+    "非公開stdout.log・JSONL・思考ログは未読。書込先はこの/tmp JSONのみ。"
+  ]
+}
