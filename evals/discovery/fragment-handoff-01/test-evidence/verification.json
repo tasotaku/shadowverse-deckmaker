@@ -1,0 +1,45 @@
+{
+  "started_at": "2026-09-13T14:49:13Z",
+  "ended_at": "2026-09-13T14:56:23.889005+00:00",
+  "baseline": "e932a0e7c6bd93ea3ca56a173004d0568c087d0b",
+  "scope": "Experimental common fragment scout only; no product src edits.",
+  "verdict": "PASS",
+  "tests": {
+    "tests": {
+      "tests": "21",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "22.060"
+    },
+    "smoke-tests": {
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "4.639"
+    }
+  },
+  "type_check": "Success: no issues found in 1 source file",
+  "observed": [
+    "Synthetic public CLI: attach, full reread, report, explicit finish, worker termination, process group gone, final evidence check.",
+    "Natural completion uses the same saved-report validation. Missing, timeout, nonzero, formal additions and input/runtime changes remain failures.",
+    "Finished evidence can be checked again after completion; later answer modifications are rejected.",
+    "Synthetic RunJournal captures worker start/end without assigning overall experiment result or decision."
+  ],
+  "limitations": [
+    "Real AI use is delegated to the parent task.",
+    "Max-three and field semantics are public instructions, not automatically certified content quality.",
+    "No main checkout writes, real database operations, production journal operations or private Codex log reads."
+  ],
+  "notes": [
+    "Initial mypy invocation needed MYPYPATH=src to use repository types; no import errors remain.",
+    "After adding the entry-level bytecode guard, the public completion/natural completion cases were rerun."
+  ],
+  "file_sha256": {
+    "scout-run.py": "c9c384ff49d2b0169808f8ff63079537d70ac2988471f05be618f5932418d822",
+    "test-evidence/test_discovery.py": "c4dbf0848ba341ef51e71614cace30c6f804ccabbed0d0df5db0dab42c20da65",
+    "test-evidence/test_fragment_scout_temp.py": "a07244c2abe5fdee6922f86d85a367b5ea301e4f8e05c356175f695d059b360d",
+    "test-evidence/test_worker_journal_temp.py": "cb2551fb8fbcf13c6f973059a2af58d841209554d78cf0022c2454553e1c7c43"
+  }
+}
