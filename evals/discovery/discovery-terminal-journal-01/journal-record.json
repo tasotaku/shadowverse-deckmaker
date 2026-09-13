@@ -1,0 +1,56 @@
+{
+  "id": "discovery-terminal-journal-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T10:11:11.950104+00:00",
+  "actor": "codex-root",
+  "reason": "次の実AI比較に必要な自動記録の接続を限定実装",
+  "record": {
+    "id": "discovery-terminal-journal-01",
+    "title": "改訂と評価の全体工程を自動記録する",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "19:07:26から改訂・評価の全体工程記録を接続中。採用未判定。",
+    "method": "全体工程の自動記録を考案/改訂・別評価へ接続",
+    "procedure": "設計→隔離実装→型・機能検査→本体の人工CLI→既存画面確認",
+    "inputs": "採用済みの調査全体記録を再利用。実AI入力は変更しない。",
+    "criteria": "任意指定と事前登録、既存挙動、時刻と成否、手動訂正/並行工程/結果/採否の保持を確認\n自然終了・明示終了・別評価のみ・未提出/不整合で確認\n本体の人工CLIと既存画面データで確認後、今回の実AI比較へ使用",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T10:07:26+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "改訂・評価の全体工程を接続し検査",
+        "status": "running",
+        "started_at": "2026-09-13T10:07:26+00:00",
+        "ended_at": null,
+        "note": "任意指定なしの挙動と結果・採否を保持する。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/discovery-terminal-journal-01/README.md",
+      "evals/discovery/discovery-terminal-journal-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/README.md",
+      "sha256": "9866df4160671f12e621a3d134bea2c603d2bf6cab6c21f329d46c2159a5b6b5",
+      "size": 715
+    },
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/protocol.json",
+      "sha256": "279a1aec9a8aa8844b0b336e278d78af763cf6a9bb4c1cd34f9b65c1280aaaf1",
+      "size": 705
+    }
+  ]
+}

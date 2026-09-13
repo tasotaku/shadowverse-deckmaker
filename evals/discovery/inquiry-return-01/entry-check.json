@@ -1,0 +1,213 @@
+{
+  "started_at_utc": "2026-09-13 10:05:58 UTC",
+  "ended_at_utc": "2026-09-13 10:08:09 UTC",
+  "elapsed_seconds": 131,
+  "commit": "22d1480",
+  "verdict": "PASS（公開入口・実ヘルプ・入力件数の読取点検）。実AIの完走、条件付き用途の改訂への反映、試用価値は未確認。",
+  "position": "追加実装なし。既存の『保存資料→通常改訂→別評価』を、失敗実行から保全した部分資料へ適用する一度の新試験。旧調査/照合のfailedは維持し、今回の正常終了で過去を成功に変更しない。",
+  "source_verified": {
+    "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-resource-inspection-01-partial",
+    "files": 54,
+    "sources": 34,
+    "formal_revisions": [
+      1,
+      2,
+      3
+    ],
+    "formal_review_count": 2,
+    "review_revisions": [
+      2,
+      3
+    ],
+    "latest_revision": 3,
+    "latest_value": "develop",
+    "latest_novelty": "unconfirmed"
+  },
+  "invocation": {
+    "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src"
+    },
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "svdeck.discovery_run",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-resource-inspection-01-partial",
+      "/tmp/inquiry-return-01-run",
+      "--codex",
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--revision",
+      "3",
+      "--develop-seconds",
+      "900",
+      "--review-seconds",
+      "600",
+      "--explicit-finish",
+      "--journal-root",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "--experiment-id",
+      "inquiry-return-01",
+      "--stage-prefix",
+      "live"
+    ],
+    "shell": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH='/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src' '/opt/homebrew/opt/python@3.14/bin/python3.14' '-B' '-m' 'svdeck.discovery_run' '/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-resource-inspection-01-partial' '/tmp/inquiry-return-01-run' '--codex' '/Applications/ChatGPT.app/Contents/Resources/codex' '--revision' '3' '--develop-seconds' '900' '--review-seconds' '600' '--explicit-finish' '--journal-root' '/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker' '--experiment-id' 'inquiry-return-01' '--stage-prefix' 'live'",
+    "executed": false,
+    "notes": [
+      "experiment-id=inquiry-return-01とOUTPUT=/tmp/inquiry-return-01-runは新試験用の提案値。rootの記録IDに合わせて変更する。出力先は未存在・元資料と相互に内包しない場所が必要。",
+      "900秒/600秒は既存の成功例と同じ具体的な予算候補。rootの開始前固定に合わせる。",
+      "--revision 3は改訂元の指定で、提出番号を3に固定する指定ではない。最新3なので期待提出は4。",
+      "既存資料を全て引き継ぐ通常改訂を使う。discovery_runに--finish-from-sourceや指定調査資料だけを使うオプションはないため、存在しない引数を追加しない。",
+      "調査/別照合工程を再起動しない。考案担当の追加検索やWeb利用を禁止する公開スイッチはない。runnerは--searchで起動し、考案にはqueryも許可するので『追加調査を一切しない』ことを技術的に保証する入口とは呼ばない。"
+    ]
+  },
+  "expected_formal_counts": {
+    "per_run": {
+      "revisions": 1,
+      "reviews": 1
+    },
+    "final_session": {
+      "revision_count": 4,
+      "review_count": 3,
+      "new_revision": 4,
+      "new_review_revision": 4
+    },
+    "conditions": "両担当が正式提出・保存検査を通り、実行完了した場合のみ。expected countsは成果実績ではない。旧改訂3件・旧評価2件を保持し、新しい改訂/評価を追加する。"
+  },
+  "journal": {
+    "minimum_required_stage_ids": [
+      "live-develop",
+      "live-review"
+    ],
+    "pre_registration": [
+      {
+        "id": "live-develop",
+        "title": "部分資料を通常改訂へ戻す",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "調査と照合を再起動せず、保持した追加資料を読んで正式改訂を一度行う。失敗来歴と未確認を維持。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "live-review",
+        "title": "新しい改訂を別担当が評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "比較・配分への反映と試用理由を確認。工程成功と有用性を分ける。",
+        "budget_minutes": 10
+      }
+    ],
+    "rules": [
+      "RunJournalは工程を新設しない。両方を事前登録する。",
+      "実験全体はcompleted/interruptedでないこと。各工程はplannedかつ開始終了null。",
+      "条件固定・来歴添付・回収/報告はroot側で別工程として記録できるがrunner必須の2工程とは区別する。"
+    ],
+    "evidence": [
+      "src/svdeck/discovery_run.py:374",
+      "src/svdeck/discovery_run.py:430",
+      "src/svdeck/worker_journal.py:45",
+      "src/svdeck/worker_journal.py:58"
+    ]
+  },
+  "finish_and_deadline": {
+    "recommended": "--explicit-finish を指定",
+    "sequence": "担当が正式submit/review→最後の保存に対応するreport→public.py finish。runnerが保存対応・停止・停止後の同一性を再検査する。",
+    "clock": "discovery_runは現行コードでelapsed固定。--clock等の変更引数はない。待機込みの経過秒を予算とし、UTC開始終了も別記録。PC休止等による両時計差を削らない。",
+    "failure": "期限・未提出・保存不整合では後続へ進めず、過去失敗を代理補完しない。--explicit-finishは期限延長や保存検査免除ではない。",
+    "fallback": "--review-only --revision 4 --review-seconds 600は、将来新しい改訂4が正式保存された後、別評価だけを別の新試験で行う時の既存入口。今回の初回コマンドには使わない。",
+    "evidence": [
+      "src/svdeck/discovery_run.py:406",
+      "src/svdeck/discovery_run.py:414",
+      "src/svdeck/discovery_run.py:434",
+      "src/svdeck/discovery_run.py:445",
+      "src/svdeck/discovery_run.py:449",
+      "src/svdeck/discovery_run.py:491"
+    ]
+  },
+  "partial_provenance_attach": {
+    "available": true,
+    "procedure": "rootが作る来歴本文を、新試験用に複製した入力へattach-fileする。保全済みpartial本体には添付しない。添付後の資料数・入力識別値を改めて固定し、その複製を上記SESSION引数にする。今回この複製・添付は実行していない。",
+    "example_argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "svdeck.discovery",
+      "attach-file",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-input",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/partial-provenance.md",
+      "--title",
+      "引き継ぐ部分資料と未完了の来歴",
+      "--kind",
+      "execution-provenance-summary",
+      "--location",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-resource-inspection-01-partial",
+      "--limitation",
+      "旧調査・別照合の実行失敗は維持。保存資料の利用は元実行の成功や問いの解決を認定しない。"
+    ],
+    "path_status": "inquiry-return-01-inputとpartial-provenance.mdは将来rootが用意する提案パスで、今回作成していない。",
+    "body_needed": [
+      "部分資料の取得元と今回確認した正式保存物の識別値・件数",
+      "調査/照合のanswerが公開添付・全文再読された事実と根拠",
+      "最後の追加保存後のreport未実施によるfailedという未完了来歴",
+      "資料の主張は未評価/条件付きであり、今回は通常改訂と新しい別評価に渡すだけであること"
+    ],
+    "observed_at": "元の観察時刻が不明なら--observed-atを省略してnullとする。本文作成時刻で過去の観察時刻を補わない。",
+    "limits": [
+      "親の新しいカード答案・有利な状態・推薦を来歴へ混ぜない。",
+      "旧採否を期待答案として転載しない。既存の資料に含まれる旧判断が新しい別評価から完全に消えることまではrunnerは保証しない。",
+      "attach-fileはUTF-8本文を保存するだけで、内容の真偽や成功判定を変更しない。"
+    ],
+    "evidence": [
+      "src/svdeck/discovery.py:285",
+      "src/svdeck/discovery.py:644",
+      "src/svdeck/discovery_run.py:383"
+    ]
+  },
+  "prior_checks_max_three": [
+    {
+      "trial": "explicit-finish-01",
+      "status": "工程成功・終了引渡し補助として採用、試用推薦0件",
+      "overlap": "既存改訂2→新改訂1件→別評価1件を15分/10分で実行、両担当が明示終了。今回が初めての接続検証とは呼ばない。",
+      "evidence": [
+        "evals/discovery/explicit-finish-01/README.md:3",
+        "evals/discovery/explicit-finish-01/README.md:10",
+        "evals/discovery/explicit-finish-01/README.md:31"
+      ]
+    },
+    {
+      "trial": "inquiry-to-revision-01",
+      "status": "改訂1件保存、15分期限停止で別評価未実施",
+      "overlap": "保存した調査資料を通常改訂へ戻す手法は既試行。今回は明示終了が利用可能で、別の部分資料と条件付き用途の反映を見る適用確認。",
+      "evidence": [
+        "evals/discovery/inquiry-to-revision-01/README.md:3",
+        "evals/discovery/inquiry-to-revision-01/README.md:5",
+        "evals/discovery/inquiry-to-revision-01/README.md:7"
+      ]
+    },
+    {
+      "trial": "revision-runner-01",
+      "status": "初期試行は改訂1件・別評価0件で採用保留",
+      "overlap": "同一担当名による旧保存失敗があり、現行は実行側IDへ結ぶ実装を持つ。この初期失敗を現行完走の証拠に転用しない。",
+      "evidence": [
+        "evals/discovery/revision-runner-01/README.md:3",
+        "evals/discovery/revision-runner-01/README.md:18",
+        "src/svdeck/discovery_run.py:400"
+      ]
+    }
+  ],
+  "verification_performed": [
+    "mainのHEAD 22d1480を読取確認",
+    "実ヘルプ discovery_run --help と discovery attach-file --help がexit0",
+    "partialの正式JSONを読んで54files/34sources/改訂3/評価2を確認",
+    "既存コードからstageID・期待提出数・時計・明示終了選択肢を照合"
+  ],
+  "untested": [
+    "実AIの起動・資料読出し・改訂・評価",
+    "新しい条件付き用途が比較や採用配分に反映されるか",
+    "新試験全体の有用性"
+  ],
+  "scope_compliance": "この出力JSON以外のコード・資料・DB・台帳を変更していない。実AI・Web検索未起動。私的stdout/JSONL/推論ログ未読。デッキ/カードの答えを作成していない。"
+}

@@ -1,0 +1,149 @@
+{
+  "id": "inquiry-return-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T10:11:11.934603+00:00",
+  "actor": "codex-root",
+  "reason": "追加調査の有無を比較する条件と入力を実AI起動前に固定",
+  "record": {
+    "id": "inquiry-return-01",
+    "title": "追加調査を採用判断へ戻す比較",
+    "category": "method",
+    "status": "running",
+    "summary": "Aは追加調査なし、Bは調査・照合と未完了来歴を追加。入力固定済み、実AI未起動。",
+    "method": "追加調査を渡す場合と渡さない場合で、採用判断への発展を比較する",
+    "procedure": "元入力保持→Bへ来歴追加→同一実装固定→各方式で改訂1回・別評価1回→回収と比較",
+    "inputs": "A:27資料、B:35資料。共通の正式改訂3・評価2とカード入力を保持。",
+    "criteria": "同じ正式改訂3・旧評価2・カード入力・既存指示から、追加調査と来歴の有無だけを変えて通常改訂と別評価を各一度行う。\nAは元の27資料、Bは調査・照合7資料と未完了来歴1資料を追加した35資料。元の失敗を成功へ変更せず、rootからカード答案・有利な状態・採用推薦を足さない。\n各方式の改訂15分・別評価10分を各一度、明示終了を使用。未提出・期限停止時は代理補完も同試行の自動再実行もしない。\n資料の引用が、比較・使い方・配分・継続/中止の具体的判断へどう反映されたかを別評価と正式記録で確認する。説明の増加や資料数だけは改善と数えない。\n通常側の代案や途中の保持/到達条件を落とした有利な局面の説明だけで採用利益を認定しない。未確認は未確認のまま残す。\n試用推薦数だけでなく、追加資料が役立った箇所と見落としを記録する。各方式1回・既知入力1件であり、出力差をすべて資料効果へ帰属させず、一般的優越や全体完成を認定しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T10:05:58+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "entry-check",
+        "title": "既存の改訂入口と過去試験を確認",
+        "status": "completed",
+        "started_at": "2026-09-13T10:05:58+00:00",
+        "ended_at": "2026-09-13T10:08:09+00:00",
+        "note": "公開入口と件数の読取点検。目安2分に対し131秒。実AIは起動せず。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "prepare",
+        "title": "共通入力と追加資料・未完了来歴を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T10:11:10.334561+00:00",
+        "ended_at": "2026-09-13T10:11:11.879126+00:00",
+        "note": "元42/54ファイル保持、A27/B35資料。原本を変更せず別入力へ来歴を添付。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "a-whole",
+        "title": "追加調査なし：改訂から最終提出確認まで",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 25
+      },
+      {
+        "id": "a-develop",
+        "title": "追加調査なし：保存案を改訂",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-review",
+        "title": "追加調査なし：改訂案を別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-whole",
+        "title": "追加調査あり：改訂から最終提出確認まで",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 25
+      },
+      {
+        "id": "b-develop",
+        "title": "追加調査あり：保存案を改訂",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "b-review",
+        "title": "追加調査あり：改訂案を別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/inquiry-return-01/README.md",
+      "evals/discovery/inquiry-return-01/protocol.json",
+      "evals/discovery/inquiry-return-01/partial-provenance.md",
+      "evals/discovery/inquiry-return-01/provenance-attachment.json",
+      "evals/discovery/inquiry-return-01/entry-check.json",
+      "evals/discovery/inquiry-return-01/input-a.tar.gz",
+      "evals/discovery/inquiry-return-01/input-b.tar.gz"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/inquiry-return-01/README.md",
+      "sha256": "50312e97511822e2df0705870666f2f64dcfe905e090ba162452556490b823cf",
+      "size": 1702
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/entry-check.json",
+      "sha256": "f6ab44f95cd2b04b1c0ee6880188f521658311c581d827b38796e8641cbd8365",
+      "size": 11518
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/input-a.tar.gz",
+      "sha256": "30d8cf4a208964acfd819f6deb1a2bb3d3656d1274c60b07162fee34713b1b4d",
+      "size": 2477616
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/input-b.tar.gz",
+      "sha256": "8b0d16b54d41ee84b48f282f687c2880e599bba2b5d29478a498703340cb8201",
+      "size": 3532617
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/partial-provenance.md",
+      "sha256": "c9c705b47c2a8df130fb82826178de012521e38fe7ed11fcd0119e953df478ee",
+      "size": 1741
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/protocol.json",
+      "sha256": "ec02ea8c85deb68334af95c96c9c58d0dda3667f55ebd57fdc2b2968bd24d42e",
+      "size": 23330
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/provenance-attachment.json",
+      "sha256": "74edd8ed6745b5779347e032bf7062c8af83fc7fad088721194f5b9da6f948b3",
+      "size": 1527
+    }
+  ]
+}
