@@ -1,0 +1,71 @@
+{
+  "started_at_utc": "2026-09-13T01:23:38Z",
+  "ended_at_utc": "2026-09-13T01:26:43.436541+00:00",
+  "scope": "独立の読み取り専用点検。正式改訂・正式評価・現行案内・過去の開始前条件と結果を照合。実AI起動、コード編集、private stdout/reasoningログの閲覧なし。",
+  "verdict": "条件を絞った再検証としては値する。新しい発展方法が欠けていたという診断は不成立。",
+  "conclusion": "最大1件の差分は、試す価値あり・既知という改訂後にも、既存の残問から未比較の使用時点または失う役割を一つ選び、問いの保存だけで終わらず一つの対応比較へ移すこと。一般的な別用途探索の追加ではない。現行Aも同じ残問を自力で作っているため、追加指示に効果があるかは未確認。",
+  "existing_coverage": [
+    {
+      "evidence": "src/svdeck/discovery.py:32",
+      "finding": "不足をquestionsへ渡し、改訂時に直前の不足と評価を読む指示が既にある。"
+    },
+    {
+      "evidence": "src/svdeck/discovery.py:35",
+      "finding": "序盤・切替・決着と増減する役割の交換は既に考案指示に含まれる。"
+    },
+    {
+      "evidence": "src/svdeck/discovery.py:68",
+      "finding": "後半を任せて序盤の配分を変える案は既に評価対象。"
+    },
+    {
+      "evidence": "src/svdeck/discovery.py:724",
+      "finding": "時点・残る効果・失う役割を同条件で比較し、使い方か配分へ返す指示がある。ただし、既知案への変更後に残った問いを必ず一つ実比較へ移す条件は明記されていない。"
+    }
+  ],
+  "observed_gap": [
+    {
+      "evidence": "data/discovery/same-slot-alternative-01-a-result/revision-0002.json:218",
+      "finding": "現行Aは8PP以前の不足を既に次の問いにしている。問いを思いつけないことは今回の不足ではない。"
+    },
+    {
+      "evidence": "data/discovery/same-slot-alternative-01-a-result/revision-0002.json:228",
+      "finding": "旧案だけが保持する1PP深淵の即応性も、未解決の次問として明記。既知案の全面優越とは扱っていない。"
+    },
+    {
+      "evidence": "data/discovery/same-slot-alternative-01-b-result/revision-0002.json:261",
+      "finding": "Bにも8PP未満の補充を探す問いが残る。"
+    },
+    {
+      "evidence": "data/discovery/same-slot-alternative-01-b-result/review-0002-ec160d1b5e536cc0.json:123",
+      "finding": "別評価も後半の補充を任せることで中盤の資源を使えるかという前後配分の問いを返す。"
+    },
+    {
+      "evidence": "data/discovery/same-slot-alternative-01-a-result/review-0002-54791eda3a351742.json:67",
+      "finding": "同じ既知用途への移行であり、今回の枚数や検算は独自な種の証拠ではない。"
+    }
+  ],
+  "overlap_with_prior_trials": [
+    {
+      "evidence": "evals/discovery/resource-use-01/protocol.json:44",
+      "finding": "過去試験は得た供給から既存案・別評価・先例にない新要求を作り、相方を一枝探す。今回を単に別用途を一枝探すと書くなら再命名。ただし既存の残問を選んで使用時点の未比較を埋めるという条件は、新要求の発明とは異なる。"
+    },
+    {
+      "evidence": "evals/discovery/idea-comparison-01/protocol.json:83",
+      "finding": "前後の配分は既に別着想の差として扱われている。配分という語を足すだけでは新しい比較方法にならない。"
+    },
+    {
+      "evidence": "evals/discovery/continuation-choice-01/protocol.json:61",
+      "finding": "不足を一つ選び、通常使用直前から比較して継続判断へ返す動作と大きく重なる。違いを置けるのは、試用を妨げた不足ではなく、試用可だが既知の案へ移った後の未比較の残問を対象にする発動条件。独立した新方式ではなく対象を絞った再検証と呼ぶべき。"
+    }
+  ],
+  "candidate_count": 1,
+  "candidate": {
+    "name": "既知案への変更後に残った問いを、一つの比較へ移す",
+    "minimal_instruction_delta": "比較で有力な既知案へ移った場合は、直前案・別評価に残る、まだ比較していない使用時点または失う役割の不足を一つ選び、その不足が生じる時点から同じ外部条件の短い対応手順で比較してください。結果が既知案の使う時点や前後の採用配分を変えるかを確かめ、根拠がなければ既知案と未解決を残してください。",
+    "fixed_test_conditions": "一つの正式改訂2とその正式評価・資料を開始前に選び、両方式に同じものを渡す。Aは現行案内、Bだけに上記条件を追加する。カード名・具体用途の答えは追加指示に入れない。候補選定後に双方の開始状態と終点を揃え、未知の引き込み・生存を補わない。既知案の維持、元案の不復活、新枝なしを許す。",
+    "observable_difference": "問いを既存資料から選んだだけでなく、元の観察終点では答えられなかった不足に対する新しい対応比較が保存され、その根拠が使う時点または前後配分の判断へ実際に反映されたか。Aにも同じ比較があればBの上乗せとはしない。",
+    "not_success": "同じ既知案の再推薦、問いの言い換え、未知の枝を捏造、単なる順番・枚数変更、既知代案へ移れたこと。対応比較による不足の解消と、有用で独自な種の獲得は分け、後者の基準を下げない。",
+    "failure_condition": "Bでも既存の問いの再掲に終わる、元の8PP比較の条件だけを有利に変える、Aと差がない、または独立評価が比較と判断の接続を支持しない場合、この追加指示の寄与は未達。"
+  },
+  "limitations": "開始状態の到達頻度・実戦の勝率・一般的発見力は調べていない。今回の正式結果に残る問いの存在は確認したが、通常の次回改訂でも十分解消できる可能性を排除していない。採用推奨ではない。"
+}

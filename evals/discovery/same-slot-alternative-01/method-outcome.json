@@ -1,0 +1,174 @@
+{
+  "task": "same-slot-alternative-01 formal outcome assessment",
+  "started_at_utc": "2026-09-13T01:18:24+00:00",
+  "ended_at_utc": "2026-09-13T01:22:48.309545+00:00",
+  "elapsed_seconds": 264.31,
+  "target_seconds": 300,
+  "timekeeping": "開始はclock.curr_timeの実時計。終了は同環境UTC時計。直近clock確認は2026-09-13 01:20:46 UTC。待ち操作なし。",
+  "scope": {
+    "read": [
+      "protocol.json",
+      "両sessionのrevision/review/source/context",
+      "両develop/review/operations/*.jsonの公開操作・返却結果"
+    ],
+    "not_read": [
+      "Codex private stdout.log",
+      "思考JSONL",
+      "*-run私的ログ",
+      "本体コード"
+    ],
+    "edits": "この評価報告の保存のみ。本体・正式提案・正式評価は変更していない。"
+  },
+  "conclusion": "両方が同じ採用枠の既知代案を別評価前に比較し、捕食を撤回してイツルギ1枚へ配分を変更した。比較は採用判断へ戻っており、通常構築と比べて試す理由も具体化された。しかしA現行でも同じ変更が起きているため、Bへ加えた一文の上乗せ効果は未確認。両方knownであり、独自な種の発見は未達。",
+  "recommendation": {
+    "production_prompt": "追加一文の本体採用は保留。今回の1組ではAとの差を確認できない。",
+    "trial_artifact": "既知の1枚調整を比べる提案として結果を保存することは支持。構築の優越・勝率改善・新発見の推薦はしない。",
+    "causal_limit": "同じ旧案を知った状態からの各1回の改訂であり、新規初見探索や一般的な発見力への因果効果は判定できない。"
+  },
+  "formal_results": {
+    "a": {
+      "procedure": "supported",
+      "value": "test",
+      "novelty": "known",
+      "proposal": "/tmp/sv-same-slot-alternative-01-a-live/session/revision-0002.json",
+      "review": "/tmp/sv-same-slot-alternative-01-a-live/session/review-0002-54791eda3a351742.json"
+    },
+    "b": {
+      "procedure": "supported",
+      "value": "test",
+      "novelty": "known",
+      "proposal": "/tmp/sv-same-slot-alternative-01-b-live/session/revision-0002.json",
+      "review": "/tmp/sv-same-slot-alternative-01-b-live/session/review-0002-ec160d1b5e536cc0.json"
+    }
+  },
+  "old_to_new": {
+    "old_revision_sha256": "d4672494c85e343fdeaf996d96b6edbe47c24b5b1911d3ed77457ee3fdb17a96",
+    "both_old_revisions_equal": true,
+    "old": "参考構築のバアル3→2・捕食0→1。中尉＋捕食＋ビバティーの3枚と8PP、墓場4消費で除去と補充を接続。",
+    "both_new": "バアル2枚を維持し、捕食1→0・イツルギ0→1。39枚共通。補充と全体除去を単独で行い、素材・中尉とビバティー同時所持・外部進化権・墓場4消費への依存を外した。",
+    "material_change": true,
+    "evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/session/revision-0002.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/revision-0002.json"
+    ]
+  },
+  "comparison_and_decision": {
+    "same_slot_and_state": "両改訂は同じバアル1枠、同じ参考40枚、共通39枚、T8・8PP・EP0・墓場2・相手2/2×2から比較。",
+    "proposal_found": "Aは現行案内のまま、Bは追加案内の下で、双方の提案担当がイツルギを選んで比較している。カード名選定や配分変更を別評価の追加成果に数えない。",
+    "endpoint_difference": "同じ8PPで旧案は手札5・場5/3・自墓場1、代案は手札6・場8/7・自墓場2。共通の未知2枚を以後の手順には使わない。旧案の深淵1枚と、代案の中尉＋ビバティー保持という手札の質の差は残し、完全上位としない。",
+    "return_to_use_allocation": "両方がT8補充用途の捕食推奨を撤回し、終盤の単独補充役へ1枠を移した。低PPの補充不足・早引き事故は未解決として次の問いに残した。",
+    "a_b_differences": "Bは次の問いで大遊戯世界・変わりし流れを挙げるが、その同枠比較は今回実施していないため追加成果に数えない。Aは旧案だけが残す深淵の使いやすさを次の問いへ残す。中核の採用配分は同じ。",
+    "evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/session/revision-0002.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/revision-0002.json",
+      "/tmp/sv-same-slot-alternative-01-a-live/session/sources/0372ed34111607081f7058def2ef2dafd49fd9694d365a7a855f192c8f7025b1.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/sources/14480f0ec1a15cd322e8a30e70f102448d0ea29e29a49c09da107d0149b69333.json"
+    ]
+  },
+  "trial_reason_and_limits": {
+    "reason": "通常ライブ3PPでも全処理とガロダート保持は可能。その線より追加5PPで手札+2と8/7を得る。通常ガロダート防御と同じ8PPでは手札+2とガロダート保持を得る代わりに、守護と場体力1を失う。除去・補充・守りの配分差を試す理由はある。",
+    "costs": "3PPのバアル1枚を8PP札へ替え、3PPフォロワー5→4、6PP以上15→16、7PP以上9→10となる。1～2PPの11枚は維持。これらは固定資料から再計算して整合。",
+    "limits": [
+      "指定開始状態への到達頻度は未確認。交換札をT8手札へ固定した条件付き比較。",
+      "8PP以前に使えない負担、早期のバアル欠損、補充が要らない対面、守護が必要な状況での損失は残る。",
+      "未知ドローの内容、8/7の次ターン生存、次ターンの利益、対戦成績は実証されていない。",
+      "旧捕食の内部解決順と、通常側N5の相手場なしでのクレスト自側破壊は実機未確認。主手順の支持はこれらへ依存しない。"
+    ],
+    "evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/session/review-0002-54791eda3a351742.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/review-0002-ec160d1b5e536cc0.json",
+      "/tmp/sv-same-slot-alternative-01-a-live/session/sources/0372ed34111607081f7058def2ef2dafd49fd9694d365a7a855f192c8f7025b1.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/sources/14480f0ec1a15cd322e8a30e70f102448d0ea29e29a49c09da107d0149b69333.json"
+    ]
+  },
+  "proposal_vs_separate_review": {
+    "proposal_already_did": [
+      "同枠イツルギ比較",
+      "通常ライブ・バアル・ガロダート各手順との比較",
+      "捕食撤回と配分変更",
+      "記事既載を理由に独自性未達と明記",
+      "序盤事故・守護欠損・深淵保持の違いを残す"
+    ],
+    "review_added": [
+      "手順成立と通常1枚調整としての試用判定を正式化",
+      "序盤札・重い札の枚数を計数して配分負担を具体化",
+      "比較資料N1～N5に旧案を指す「提案側」が残る問題を両方で指摘",
+      "墓場4以上や守護必須・全体5点が足りない状態など、固定条件への偏りを外す検証範囲を明確化"
+    ],
+    "independence_scope": "別評価はformal authorの:reviewとして保存され、:developと区別できる。プロセスや入力隔離の成立は本担当の別監査に委ね、この報告では独立性を私的ログから推定しない。"
+  },
+  "novelty": {
+    "judgment": "knownは妥当。",
+    "basis": "保存記事は同じミッドレンジで、バアルを交換候補にイツルギを採用し、ガロダートを使わない処理・補充・回復と序盤事故の負担を既に記す。EP0からの具体的な検算と1枚配分だけでは別用途を得たとはいえない。",
+    "unconfirmed": "記事の現在表示、広い普及度、他の既出範囲は調べていない。",
+    "evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/session/sources/f6aea0a6845fb3f881d9f775e06dc4b448aedf203e9280d831ddadaed17bf4d4.json"
+    ]
+  },
+  "text_and_notes_check": {
+    "fixed_context": "/tmp/sv-same-slot-alternative-01-a-live/session/context.json",
+    "checked_card_ids": [
+      10854110,
+      10052310,
+      10654120,
+      10951120,
+      10954120,
+      10753310,
+      10452130
+    ],
+    "supported_claims": [
+      "イツルギはFF全体5点＋EP回復の後、回復したEPで通常進化して2ドローを選べる。別モードの顔打点・回復・PP回復は同時に足していない。",
+      "捕食と中尉の本文は破壊・2ドロー・2/1突進かつLW喪失の再生成を支える。ビバティーは墓場4による効果進化と深淵生成。",
+      "捕食の否定的実戦注記は保持され、素材変更だけで一般評価を覆していない。ビバティーの過去評価は現在の強さへ転用していない。ガロダート不採用注記はアルメス等の別構築に関するものとして扱っている。",
+      "イツルギ・中尉・バアルの注記は空。"
+    ],
+    "exposure_vs_understanding": "公開read返却結果には、両developで当該カード本文・注記と記事本文が含まれる。これは返却された証拠であり、表示された全文の全てを担当が認知した証明ではない。今回の正式提案ではEP回復→実際のEP進化→ドローとモード排他、注記の用途限定が具体的に使われており、その必要部分の理解は出力から支持できる。",
+    "public_read_evidence": {
+      "a": [
+        "/tmp/sv-same-slot-alternative-01-a-live/develop/operations/2cc03e08908a47b09d8f1ed8455675fb.json",
+        "/tmp/sv-same-slot-alternative-01-a-live/develop/operations/3f2964eb29624246aef4c18079afbba5.json"
+      ],
+      "b": [
+        "/tmp/sv-same-slot-alternative-01-b-live/develop/operations/e4a48a22877642d48ef9d77582fbb5fb.json",
+        "/tmp/sv-same-slot-alternative-01-b-live/develop/operations/32c4cd2999634307a85701c24d5a6830.json"
+      ]
+    }
+  },
+  "operations": {
+    "a_develop_observed": "最初の公開操作00:19:30.690152→finish返却00:29:31.067838、約600秒。",
+    "b_develop_observed": "最初の公開操作00:19:33.499032→finish返却00:29:12.105921、約579秒。",
+    "a_review_observed": "00:29:47.011282→finish返却00:34:18.074453、約271秒。",
+    "b_review_observed": "00:29:24.397138→finish返却00:34:50.266862、約326秒。",
+    "bounds": "公開操作から観測できる区間は改訂900秒・評価600秒以内。ただし起動・停止完了を含む総時間や待ちの内訳はこの範囲から確定できない。finish返却は停止と再検査未完了と明記する。",
+    "failure": "Bは00:28:41のsubmitがカードID重複でexit 2。約12.6秒後の再submitでrevision 2を一度だけ正式保存。内容改訂の追加周回や時間切れやり直しと数えない。",
+    "failure_evidence": "/tmp/sv-same-slot-alternative-01-b-live/develop/operations/44b0049c4e25413cad6da3d55fb777e2.json",
+    "successful_submit_evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/develop/operations/01b86cc91f944af6ab9c654384ac1489.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/develop/operations/49e8c77227aa493a8a51051ae0b425aa.json"
+    ],
+    "review_after_proposal": "両方とも成功submitは別評価の最初の公開操作より前。"
+  },
+  "next_system_problem": {
+    "count": 1,
+    "problem": "改訂で主役を替えた後も、再利用した比較資料の「提案側」が旧案の数値を指したまま残る。",
+    "observed_impact": "Aのreference_tracesとBのreference_actions_recheckedのN1～N5には旧捕食の5/3や手札差が残り、改訂イツルギとの比較だと誤読できる。新案の終点表と正式本文は整合しており、主手順反証とはしない。",
+    "candidate_direction": "比較判断が旧案・改訂案のどちらを指すかを保存時に明示して、改訂後の差と混同しないようにする。具体実装の設計はしていない。",
+    "existing_handling": "今回すでに両方の別評価が検出している。保存前に防ぐ既存対処・後続改訂で解消する仕組みの有無は、本体コード未調査のため未確認。",
+    "evidence": [
+      "/tmp/sv-same-slot-alternative-01-a-live/session/sources/0372ed34111607081f7058def2ef2dafd49fd9694d365a7a855f192c8f7025b1.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/sources/14480f0ec1a15cd322e8a30e70f102448d0ea29e29a49c09da107d0149b69333.json",
+      "/tmp/sv-same-slot-alternative-01-a-live/session/review-0002-54791eda3a351742.json",
+      "/tmp/sv-same-slot-alternative-01-b-live/session/review-0002-ec160d1b5e536cc0.json"
+    ],
+    "scope_limit": "これは比較資料の正確さの問題であり、単なる表記修正を発見力改善とは数えない。次に採用する発見力改善策は、この観測からは未確定。"
+  },
+  "unconfirmed": [
+    "共通入力の封じた保存境界と後評価非流入の完全照合は主担当の別監査。",
+    "実際の起動時刻・監視停止完了時刻・不明な待ちの原因はこの公開操作範囲では確定できない。",
+    "固定入力に含まれる全文の返却と、担当による全箇所の理解は同一視しない。",
+    "この一文の上乗せ効果、別の旧案・別カード・反復での一般化、独自な種の発見力改善。",
+    "本体側の既存対処の有無。"
+  ],
+  "protocol": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/same-slot-alternative-01/protocol.json",
+  "coordination_note": "主担当から保存照合完了の連絡あり。旧案・元入力・実装・終了明示保持、A追加資料1件/B2件との報告。これらはこの担当自身の全面照合結果ではない。"
+}
