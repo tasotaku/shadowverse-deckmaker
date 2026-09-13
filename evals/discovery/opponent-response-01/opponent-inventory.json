@@ -1,0 +1,1256 @@
+{
+  "started_at_utc": "2026-09-13T12:26:34Z",
+  "finished_at_utc": "2026-09-13T12:29:10.703954+00:00",
+  "purpose": "保存済みの40枚から相手が返せる動きを読むための資料点検。現環境のTier主張、相手手札推定、特定案の採否は行わない。",
+  "read_only_databases": true,
+  "repo_changed": false,
+  "private_codex_logs_read": false,
+  "web_used": false,
+  "storage": {
+    "deck_metadata": "meta_deck(id,site,url,name,tier,format,updated_on,fetched_at)",
+    "deck_composition": "meta_deck_card(deck_id,card_name,count,card_id): card_idとcountで40枚を復元",
+    "card_effects": "card.skill_text; card.evo_json; card.ref_effect_text; 関連生成カードもcardから参照",
+    "user_notes": "card_note(card_id,note,updated_at)",
+    "class": "meta_deckにクラス列はない。構成カードのcard.class/class_nameから非ニュートラル1クラスを確認"
+  },
+  "inventory": [
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+      "open_mode": "file:...?...mode=ro, uri=True; read transaction",
+      "total_saved_decks": 69,
+      "rotation_decks": 35,
+      "rotation_40_and_ids_resolved": 34,
+      "rotation_40_ids_resolved_and_all_cards_flagged_rotation": 12,
+      "saved_updated_on_min": "2026-07-29T17:59:25.000+09:00",
+      "saved_updated_on_max": "2026-07-30T12:52:31+09:00",
+      "saved_fetched_at_values": [
+        "2026-07-30 08:15:56"
+      ],
+      "card_count_anomalies": [
+        {
+          "id": 21,
+          "name": "テンポエルフ",
+          "format": "rotation",
+          "updated_on": "2026-07-29T17:59:27.000+09:00",
+          "fetched_at": "2026-07-30 08:15:56",
+          "card_count": 41,
+          "missing_count": 0,
+          "not_flagged_rotation": 3
+        }
+      ],
+      "deck_metadata_sha256": "7370ef91903611e617749f5d64d87383e5d9383e418979d80ae1f44dd960b094",
+      "deck_card_rows_sha256": "be4872f8e8cfe75459c886d9e12c8c1f31fe35e132984f70fe176d6687433175"
+    },
+    {
+      "path": "/tmp/sv-reviewer-utility-01-input/b/session/snapshot.db",
+      "open_mode": "file:...?...mode=ro, uri=True; read transaction",
+      "total_saved_decks": 69,
+      "rotation_decks": 35,
+      "rotation_40_and_ids_resolved": 34,
+      "rotation_40_ids_resolved_and_all_cards_flagged_rotation": 12,
+      "saved_updated_on_min": "2026-07-29T17:59:25.000+09:00",
+      "saved_updated_on_max": "2026-07-30T12:52:31+09:00",
+      "saved_fetched_at_values": [
+        "2026-07-30 08:15:56"
+      ],
+      "card_count_anomalies": [
+        {
+          "id": 21,
+          "name": "テンポエルフ",
+          "format": "rotation",
+          "updated_on": "2026-07-29T17:59:27.000+09:00",
+          "fetched_at": "2026-07-30 08:15:56",
+          "card_count": 41,
+          "missing_count": 0,
+          "not_flagged_rotation": 3
+        }
+      ],
+      "deck_metadata_sha256": "7370ef91903611e617749f5d64d87383e5d9383e418979d80ae1f44dd960b094",
+      "deck_card_rows_sha256": "be4872f8e8cfe75459c886d9e12c8c1f31fe35e132984f70fe176d6687433175"
+    }
+  ],
+  "selection_basis": "保存枚数40、カードID全解決、DB内の全カードがrotationフラグ1であるものから、クラスの異なる3件を資料として列挙。強さ順や現環境代表性による選抜ではない。",
+  "candidates": [
+    {
+      "id": 8,
+      "name": "スペルウィッチ",
+      "class": "ウィッチ",
+      "class_id": 3,
+      "class_source": "meta_deck_card.card_id -> card.class/class_name; neutral ignored",
+      "format": "rotation",
+      "source": {
+        "site": "gamewith",
+        "url": "https://gamewith.jp/shadowverse-wb/527318",
+        "database_paths": [
+          "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+          "/tmp/sv-reviewer-utility-01-input/b/session/snapshot.db"
+        ],
+        "locator": "meta_deck WHERE id=8; meta_deck_card WHERE deck_id=8"
+      },
+      "date": {
+        "updated_on": "2026-07-30T12:52:31+09:00",
+        "fetched_at": "2026-07-30 08:15:56",
+        "fetched_at_timezone": "not recorded in stored value",
+        "card_text_revision_date": "not recorded in card table"
+      },
+      "full_40_reconstructable": true,
+      "card_count": 40,
+      "distinct_card_rows": 14,
+      "missing_card_rows": [],
+      "stored_card_rotation_check": {
+        "all_40_flagged_rotation": true,
+        "not_flagged_rotation": [],
+        "scope": "DB保存値での検査。公開情報を再取得していない。"
+      },
+      "main_and_snapshot_equal": {
+        "deck_metadata": true,
+        "selected_card_fields_and_notes": true
+      },
+      "notes": [
+        {
+          "card_id": 10534110,
+          "name": "歩む《愚者》・リンクル",
+          "note": "アンカー(ユーザー指名2026-07-05): 何度も出せれば(コピー/リアニメイト/デッキから出す)早期リーサル",
+          "updated_at": "2026-07-05 09:10:15",
+          "locator": "card_note WHERE card_id=10534110"
+        }
+      ],
+      "response_example": {
+        "card_id": 10131320,
+        "card_name": "ストームブラスト",
+        "copies_in_40": 3,
+        "cost": 1,
+        "text_locator": "card WHERE card_id=10131320: skill_text",
+        "skill_text": "Xは2から始まる。\n【<color=Keyword>スペルブースト時</color>】これのXを+1する。\n<hr>相手の場のフォロワー1枚を選ぶ。それにXダメージ。",
+        "description": "ストームブラストは、選べる敵フォロワー1枚に 2 + このカードのスペルブースト回数 のダメージを与える。",
+        "required_inputs": [
+          "このカードが相手手札に実際にあるか",
+          "相手が1PPを払えるか",
+          "このカードが受けたスペルブースト回数",
+          "対象を選択できるか、およびダメージ軽減・無効化等の状態"
+        ],
+        "limits": "手札所持、強化回数、除去成立、残存確率はいずれも保存レシピから確定しない。"
+      },
+      "deck_list": [
+        {
+          "card_id": 10031310,
+          "source_card_name": "知恵の輝き",
+          "name": "知恵の輝き",
+          "count": 3
+        },
+        {
+          "card_id": 10131320,
+          "source_card_name": "ストームブラスト",
+          "name": "ストームブラスト",
+          "count": 3
+        },
+        {
+          "card_id": 10503210,
+          "source_card_name": "大遊戯世界",
+          "name": "大遊戯世界",
+          "count": 3
+        },
+        {
+          "card_id": 10531310,
+          "source_card_name": "明越花の転変",
+          "name": "明越花の転変",
+          "count": 2
+        },
+        {
+          "card_id": 10532120,
+          "source_card_name": "余情の俳人",
+          "name": "余情の俳人",
+          "count": 3
+        },
+        {
+          "card_id": 10534110,
+          "source_card_name": "歩む《愚者》リンクル",
+          "name": "歩む《愚者》・リンクル",
+          "count": 3
+        },
+        {
+          "card_id": 10534120,
+          "source_card_name": "明越花アラ",
+          "name": "明越花・アラ",
+          "count": 3
+        },
+        {
+          "card_id": 10803310,
+          "source_card_name": "相承の意思",
+          "name": "相承の意思",
+          "count": 3
+        },
+        {
+          "card_id": 10832110,
+          "source_card_name": "ハッピーフラワーサミー＆マリー",
+          "name": "ハッピーフラワー・サミー＆マリー",
+          "count": 3
+        },
+        {
+          "card_id": 10832310,
+          "source_card_name": "睦まやかな団欒",
+          "name": "睦まやかな団欒",
+          "count": 2
+        },
+        {
+          "card_id": 10833110,
+          "source_card_name": "マナリアスクリプターティコ",
+          "name": "マナリアスクリプター・ティコ",
+          "count": 3
+        },
+        {
+          "card_id": 10833310,
+          "source_card_name": "鋼鉄の微睡み",
+          "name": "鋼鉄の微睡み",
+          "count": 3
+        },
+        {
+          "card_id": 10834110,
+          "source_card_name": "恩愛の大地テトラ&ラティカ",
+          "name": "恩愛の大地・テトラ＆ラティカ",
+          "count": 3
+        },
+        {
+          "card_id": 10834120,
+          "source_card_name": "災いの言霊ジンジャー",
+          "name": "災いの言霊・ジンジャー",
+          "count": 3
+        }
+      ],
+      "response_material": [
+        {
+          "card_id": 10031310,
+          "source_card_name": "知恵の輝き",
+          "count": 3,
+          "name": "知恵の輝き",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "自分のデッキから1枚を引く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10131320,
+          "source_card_name": "ストームブラスト",
+          "count": 3,
+          "name": "ストームブラスト",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "Xは2から始まる。\n【<color=Keyword>スペルブースト時</color>】これのXを+1する。\n<hr>相手の場のフォロワー1枚を選ぶ。それにXダメージ。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10503210,
+          "source_card_name": "大遊戯世界",
+          "count": 3,
+          "name": "大遊戯世界",
+          "class": 0,
+          "class_name": "ニュートラル",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_5】\n自分が他のカードをプレイしたとき、場にそれ以外の元のコストXのカードがあるなら、これのカウントを-1する。Xはプレイしたカードの元のコストである。\n【<color=Keyword>ラストワード</color>】自分のデッキから2枚を引く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10531310,
+          "source_card_name": "明越花の転変",
+          "count": 2,
+          "name": "明越花の転変",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "自分の手札1枚を選ぶ。それを捨てる。自分のデッキから2枚を引く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10532120,
+          "source_card_name": "余情の俳人",
+          "count": 3,
+          "name": "余情の俳人",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 6,
+          "atk": 2,
+          "life": 1,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>スペルブースト時</color>】これのコストを-1する。\n<hr>【<color=Keyword>ファンファーレ</color>】自分のデッキから1枚を引く。\n<hr>【<color=Keyword>ラストワード</color>】自分の手札すべては1回スペルブーストする。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10534110,
+          "source_card_name": "歩む《愚者》リンクル",
+          "count": 3,
+          "name": "歩む《愚者》・リンクル",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 1,
+          "atk": 1,
+          "life": 1,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】自分は『クレスト：歩む《愚者》・リンクル』を持つ。\n<hr>【<color=Keyword>突進</color>】\n<hr><sev>【<color=Keyword>超進化時</color>】『<color=Keyword>歩む《愚者》・リンクル</color>』10枚を自分のデッキに加える。</sev>",
+          "ref_effect_text": "クレスト: 自分の『<color=Keyword>歩む《愚者》・リンクル</color>』が場に出たとき、相手のリーダーの体力の最大値を-2する。",
+          "note": "アンカー(ユーザー指名2026-07-05): 何度も出せれば(コピー/リアニメイト/デッキから出す)早期リーサル",
+          "note_updated_at": "2026-07-05 09:10:15"
+        },
+        {
+          "card_id": 10534120,
+          "source_card_name": "明越花アラ",
+          "count": 3,
+          "name": "明越花・アラ",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 10,
+          "atk": 4,
+          "life": 4,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>スペルブースト時</color>】これのコストを-1する。\n<hr>【<color=Keyword>ファンファーレ</color>】相手の場のフォロワー1枚を選ぶ。それに10ダメージ。\n<hr><ev>【<color=Keyword>進化時</color>】場の他のフォロワー1枚を選ぶ。それは『<color=Keyword>壮麗なる隼</color>』に変身する。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10803310,
+          "source_card_name": "相承の意思",
+          "count": 3,
+          "name": "相承の意思",
+          "class": 0,
+          "class_name": "ニュートラル",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>モード</color>】1つを選んでその能力が働く。\n<ridx=0>（1）相手の場のフォロワーからランダム1枚に3ダメージ。</ridx>\n<ridx=1>（2）【<color=Keyword>リアニメイト</color>_2】を行う。</ridx>\n<ridx=2>（3）自分の場のフォロワーすべては+1/+0する。</ridx>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10832110,
+          "source_card_name": "ハッピーフラワーサミー＆マリー",
+          "count": 3,
+          "name": "ハッピーフラワー・サミー＆マリー",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 5,
+          "atk": 1,
+          "life": 2,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>スペルブースト時</color>】これのコストを-1する。\n<hr>【<color=Keyword>ファンファーレ</color>】自分のデッキから2枚を引く。相手は自身のデッキから1枚を引く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10832310,
+          "source_card_name": "睦まやかな団欒",
+          "count": 2,
+          "name": "睦まやかな団欒",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "自分のリーダーを2回復。自分の手札すべては1回スペルブーストする。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10833110,
+          "source_card_name": "マナリアスクリプターティコ",
+          "count": 3,
+          "name": "マナリアスクリプター・ティコ",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 3,
+          "atk": 3,
+          "life": 2,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>マナリアの魔弾</color>』2枚を自分の手札に加える。\n<hr><ev>【<color=Keyword>進化時</color>】自分の手札のマナリア・スペルすべてのコストを-1する。</ev>\n<sev>【<color=Keyword>超進化時</color>】自分は『クレスト：マナリアスクリプター・ティコ』を持つ。</sev>",
+          "ref_effect_text": "クレスト: 自分がマナリア・スペルをプレイしたとき、相手のリーダーに1ダメージ。",
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10833310,
+          "source_card_name": "鋼鉄の微睡み",
+          "count": 3,
+          "name": "鋼鉄の微睡み",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 3,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "Xは0から始まる。\n【<color=Keyword>スペルブースト時</color>】これのXを+1する。\n<hr>自分のデッキから2枚を引く。Xが5以上なら、自分のリーダーを2回復。自分のPPを2回復。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10834110,
+          "source_card_name": "恩愛の大地テトラ&ラティカ",
+          "count": 3,
+          "name": "恩愛の大地・テトラ＆ラティカ",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 6,
+          "atk": 5,
+          "life": 5,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "Xは0から始まる。\n【<color=Keyword>スペルブースト時</color>】これのXを+1する。\n<hr>【<color=Keyword>ファンファーレ</color>】Xが10以上なら、『<color=Keyword>ソニック・フォー</color>』1枚を自分の手札に加える。20以上なら、『<color=Keyword>大いなる回帰</color>』1枚を自分の手札に加える。\n<hr>【<color=Keyword>疾走</color>】",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10834120,
+          "source_card_name": "災いの言霊ジンジャー",
+          "count": 3,
+          "name": "災いの言霊・ジンジャー",
+          "class": 3,
+          "class_name": "ウィッチ",
+          "cost": 7,
+          "atk": 5,
+          "life": 5,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>ガーディアンゴーレム</color>』2枚を自分の場に出す。\n<hr>自分の他のフォロワーが場に出たとき、それは【<color=Keyword>突進</color>】を持つ。自分の手札すべては1回スペルブーストする。\n<hr><ev>【<color=Keyword>進化時</color>】『<color=Keyword>ガーディアンゴーレム</color>』1枚を自分の場に出す。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "連携ロイヤル",
+      "class": "ロイヤル",
+      "class_id": 2,
+      "class_source": "meta_deck_card.card_id -> card.class/class_name; neutral ignored",
+      "format": "rotation",
+      "source": {
+        "site": "gamewith",
+        "url": "https://gamewith.jp/shadowverse-wb/559138",
+        "database_paths": [
+          "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+          "/tmp/sv-reviewer-utility-01-input/b/session/snapshot.db"
+        ],
+        "locator": "meta_deck WHERE id=16; meta_deck_card WHERE deck_id=16"
+      },
+      "date": {
+        "updated_on": "2026-07-30T12:49:49+09:00",
+        "fetched_at": "2026-07-30 08:15:56",
+        "fetched_at_timezone": "not recorded in stored value",
+        "card_text_revision_date": "not recorded in card table"
+      },
+      "full_40_reconstructable": true,
+      "card_count": 40,
+      "distinct_card_rows": 14,
+      "missing_card_rows": [],
+      "stored_card_rotation_check": {
+        "all_40_flagged_rotation": true,
+        "not_flagged_rotation": [],
+        "scope": "DB保存値での検査。公開情報を再取得していない。"
+      },
+      "main_and_snapshot_equal": {
+        "deck_metadata": true,
+        "selected_card_fields_and_notes": true
+      },
+      "notes": [],
+      "response_example": {
+        "card_id": 10724120,
+        "card_name": "寛厳の音帥・セザール",
+        "copies_in_40": 3,
+        "cost": 7,
+        "text_locator": "card WHERE card_id=10724120: skill_text",
+        "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>スティールナイト</color>』2枚を自分の場に出す。自分の場の他のロイヤル・フォロワーすべては+1/+3して【<color=Keyword>守護</color>】を持つ。\n<hr>【<color=Keyword>守護</color>】\n<hr><sev>【<color=Keyword>超進化時</color>】相手の場のフォロワー1枚を選ぶ。それを破壊。</sev>",
+        "description": "寛厳の音帥・セザールは7PPの手札プレイで守護の本体を出し、スティールナイト2体を場に出して他のロイヤル・フォロワーに +1/+3 と守護を与える。さらに超進化時には選べる敵フォロワー1枚を破壊する。",
+        "required_inputs": [
+          "このカードが相手手札に実際にあるか",
+          "相手が7PPを払えるか",
+          "相手の場の空きと既存フォロワー",
+          "超進化を行える時点と権利があるか",
+          "対象選択可否および破壊を防ぐ状態"
+        ],
+        "limits": "守護の総数・強化先は場の空きと既存盤面に依存する。超進化除去と本体の手札プレイを無条件の一式にしない。"
+      },
+      "deck_list": [
+        {
+          "card_id": 10021110,
+          "source_card_name": "刹那のクイックブレイダー",
+          "name": "刹那のクイックブレイダー",
+          "count": 2
+        },
+        {
+          "card_id": 10424110,
+          "source_card_name": "真紅と群青ゼタ&ベアトリクス",
+          "name": "真紅と群青・ゼタ＆ベアトリクス",
+          "count": 3
+        },
+        {
+          "card_id": 10424120,
+          "source_card_name": "十天衆の頭目シエテ",
+          "name": "十天衆の頭目・シエテ",
+          "count": 3
+        },
+        {
+          "card_id": 10624120,
+          "source_card_name": "旧き天剣イドメタ",
+          "name": "旧き天剣・イドメタ",
+          "count": 3
+        },
+        {
+          "card_id": 10721120,
+          "source_card_name": "調伝の連絡兵",
+          "name": "調伝の連絡兵",
+          "count": 3
+        },
+        {
+          "card_id": 10722110,
+          "source_card_name": "聴略の諜報兵",
+          "name": "聴略の諜報兵",
+          "count": 3
+        },
+        {
+          "card_id": 10722120,
+          "source_card_name": "斬奏の衛生兵",
+          "name": "斬奏の衛生兵",
+          "count": 3
+        },
+        {
+          "card_id": 10722310,
+          "source_card_name": "無音の包囲",
+          "name": "無音の包囲",
+          "count": 3
+        },
+        {
+          "card_id": 10723110,
+          "source_card_name": "響爪の分班長",
+          "name": "響爪の分班長",
+          "count": 3
+        },
+        {
+          "card_id": 10724110,
+          "source_card_name": "統音のアナテマギルダリア",
+          "name": "統音のアナテマ・ギルダリア",
+          "count": 3
+        },
+        {
+          "card_id": 10724120,
+          "source_card_name": "寛厳の音帥セザール",
+          "name": "寛厳の音帥・セザール",
+          "count": 3
+        },
+        {
+          "card_id": 10821110,
+          "source_card_name": "武力と治安ナハトナハト＆ヴィンセント",
+          "name": "武力と治安・ナハト・ナハト＆ヴィンセント",
+          "count": 2
+        },
+        {
+          "card_id": 10824110,
+          "source_card_name": "天命の弾丸バニー&バロン",
+          "name": "天命の弾丸・バニー＆バロン",
+          "count": 3
+        },
+        {
+          "card_id": 10824120,
+          "source_card_name": "焦がれし炎将マーズ",
+          "name": "焦がれし炎将・マーズ",
+          "count": 3
+        }
+      ],
+      "response_material": [
+        {
+          "card_id": 10021110,
+          "source_card_name": "刹那のクイックブレイダー",
+          "count": 2,
+          "name": "刹那のクイックブレイダー",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 1,
+          "atk": 1,
+          "life": 1,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>疾走</color>】",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10424110,
+          "source_card_name": "真紅と群青ゼタ&ベアトリクス",
+          "count": 3,
+          "name": "真紅と群青・ゼタ＆ベアトリクス",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 4,
+          "atk": 3,
+          "life": 2,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>真紅と群青・ゼタ＆ベアトリクス</color>』1枚を自分の場に出す。\n【<color=Keyword>エンハンス</color>_6】それは【<color=Keyword>必殺</color>】を持つ。これは【<color=Keyword>疾走</color>】を持つ。\n<hr>【<color=Keyword>突進</color>】",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10424120,
+          "source_card_name": "十天衆の頭目シエテ",
+          "count": 3,
+          "name": "十天衆の頭目・シエテ",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 4,
+          "atk": 4,
+          "life": 3,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】【<color=Keyword>奥義</color>】自分の場の進化前のフォロワーすべては進化する。【<color=Keyword>解放奥義</color>】進化するのではなく超進化する。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10624120,
+          "source_card_name": "旧き天剣イドメタ",
+          "count": 3,
+          "name": "旧き天剣・イドメタ",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 2,
+          "atk": 1,
+          "life": 2,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>天剣の深淵</color>』1枚を自分の手札に加える。\n<hr><ev>【<color=Keyword>進化時</color>】信仰値を-5して、自分の信仰は「自分がカードを【<color=Keyword>エンハンス</color>】でプレイしたとき、自分の場のフォロワーすべては+1/+1する。」を持つ。</ev>",
+          "ref_effect_text": "信仰: 信仰値は0から始まる。\n<hr>自分がカードを【<color=Keyword>エンハンス</color>】でプレイしたとき、信仰値を+1する。",
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10721120,
+          "source_card_name": "調伝の連絡兵",
+          "count": 3,
+          "name": "調伝の連絡兵",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 3,
+          "atk": 2,
+          "life": 3,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>ナイト</color>』1枚を自分の場に出す。『<color=Keyword>スティールナイト</color>』1枚を自分の手札に加える。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10722110,
+          "source_card_name": "聴略の諜報兵",
+          "count": 3,
+          "name": "聴略の諜報兵",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 2,
+          "atk": 2,
+          "life": 1,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ラストワード</color>】『<color=Keyword>ナイト</color>』1枚を自分の場に出す。\n<hr><ev>【<color=Keyword>進化時</color>】相手の場のフォロワー1枚を選ぶ。それに3ダメージ。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10722120,
+          "source_card_name": "斬奏の衛生兵",
+          "count": 3,
+          "name": "斬奏の衛生兵",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 5,
+          "atk": 2,
+          "life": 3,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】自分のデッキから2枚を引く。『<color=Keyword>ナイト</color>』2枚を自分の場に出す。\n<hr><ev>【<color=Keyword>進化時</color>】相手の場のフォロワー1枚を選ぶ。それに3ダメージ。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10722310,
+          "source_card_name": "無音の包囲",
+          "count": 3,
+          "name": "無音の包囲",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "『<color=Keyword>スティールナイト</color>』1枚を自分の手札に加える。それは【<color=Keyword>突進</color>】を持つ。【<color=Keyword>連携</color>_10】1枚ではなく2枚。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10723110,
+          "source_card_name": "響爪の分班長",
+          "count": 3,
+          "name": "響爪の分班長",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 5,
+          "atk": 3,
+          "life": 2,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>ナイト</color>』3枚を自分の場に出す。【<color=Keyword>モード</color>】1つを選んでその能力が働く。\n<ridx=0>（1）自分の場の他のフォロワーすべては+1/+0して【<color=Keyword>突進</color>】を持つ。</ridx>\n<ridx=1>（2）自分の場の他のフォロワーすべては+0/+1して【<color=Keyword>守護</color>】を持つ。</ridx>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10724110,
+          "source_card_name": "統音のアナテマギルダリア",
+          "count": 3,
+          "name": "統音のアナテマ・ギルダリア",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 4,
+          "atk": 4,
+          "life": 4,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】【<color=Keyword>連携</color>_20】自分は『クレスト：統音のアナテマ・ギルダリア』を持つ。これは進化する。\n<hr>自分の他のフォロワーが場に出たとき、自分のターンなら、それは【<color=Keyword>突進</color>】を持つ。\n<hr><ev>これが進化したとき、『<color=Keyword>スティールナイト</color>』2枚を自分の場に出す。</ev>",
+          "ref_effect_text": "クレスト: 【<color=Keyword>カウントダウン</color>_1】\n自分のフォロワーが場に出たとき、自分のターンなら、相手のリーダーに1ダメージ。",
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10724120,
+          "source_card_name": "寛厳の音帥セザール",
+          "count": 3,
+          "name": "寛厳の音帥・セザール",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 7,
+          "atk": 5,
+          "life": 7,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>スティールナイト</color>』2枚を自分の場に出す。自分の場の他のロイヤル・フォロワーすべては+1/+3して【<color=Keyword>守護</color>】を持つ。\n<hr>【<color=Keyword>守護</color>】\n<hr><sev>【<color=Keyword>超進化時</color>】相手の場のフォロワー1枚を選ぶ。それを破壊。</sev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10821110,
+          "source_card_name": "武力と治安ナハトナハト＆ヴィンセント",
+          "count": 2,
+          "name": "武力と治安・ナハト・ナハト＆ヴィンセント",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 7,
+          "atk": 5,
+          "life": 4,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>ナハトの私兵</color>』1枚を自分の場に出す。相手の場のフォロワーすべてに3ダメージ。\n<hr><sev>【<color=Keyword>超進化時</color>】【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。</sev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10824110,
+          "source_card_name": "天命の弾丸バニー&バロン",
+          "count": 3,
+          "name": "天命の弾丸・バニー＆バロン",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 5,
+          "atk": 4,
+          "life": 4,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>天命の弾丸・バニー＆バロン</color>』1枚を自分の場に出す。【<color=Keyword>連携</color>_20】相手のリーダーに4ダメージ。\n<hr>【<color=Keyword>突進</color>】\n<hr><ev>【<color=Keyword>進化時</color>】『<color=Keyword>デスペラードショット</color>』1枚を自分の手札に加える。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10824120,
+          "source_card_name": "焦がれし炎将マーズ",
+          "count": 3,
+          "name": "焦がれし炎将・マーズ",
+          "class": 2,
+          "class_name": "ロイヤル",
+          "cost": 8,
+          "atk": 1,
+          "life": 5,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】『<color=Keyword>ナイト</color>』3枚を自分の場に出す。\n<hr>【<color=Keyword>疾走</color>】\n【<color=Keyword>必殺</color>】\n自分の兵士・フォロワーが場に出たとき、それは+2/+0して【<color=Keyword>突進</color>】を持つ。これは+1/+0する。\n<hr><sev>【<color=Keyword>超進化時</color>】『<color=Keyword>ナイト</color>』1枚を自分の場に出す。</sev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "アミュレットビショップ",
+      "class": "ビショップ",
+      "class_id": 6,
+      "class_source": "meta_deck_card.card_id -> card.class/class_name; neutral ignored",
+      "format": "rotation",
+      "source": {
+        "site": "game8",
+        "url": "https://game8.jp/shadowverse-beyond/698347",
+        "database_paths": [
+          "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/cards.db",
+          "/tmp/sv-reviewer-utility-01-input/b/session/snapshot.db"
+        ],
+        "locator": "meta_deck WHERE id=24; meta_deck_card WHERE deck_id=24"
+      },
+      "date": {
+        "updated_on": "2026-07-29T17:59:29.000+09:00",
+        "fetched_at": "2026-07-30 08:15:56",
+        "fetched_at_timezone": "not recorded in stored value",
+        "card_text_revision_date": "not recorded in card table"
+      },
+      "full_40_reconstructable": true,
+      "card_count": 40,
+      "distinct_card_rows": 14,
+      "missing_card_rows": [],
+      "stored_card_rotation_check": {
+        "all_40_flagged_rotation": true,
+        "not_flagged_rotation": [],
+        "scope": "DB保存値での検査。公開情報を再取得していない。"
+      },
+      "main_and_snapshot_equal": {
+        "deck_metadata": true,
+        "selected_card_fields_and_notes": true
+      },
+      "notes": [
+        {
+          "card_id": 10664110,
+          "name": "崇高の憎悪・カンディマ",
+          "note": "アンカー取り下げ(2026-07-06): 破壊履歴から同名2種再展開の天井を開く具体条件を提示できず。破壊履歴軸は供給側として保持",
+          "updated_at": "2026-07-05 16:52:05",
+          "locator": "card_note WHERE card_id=10664110"
+        },
+        {
+          "card_id": 10664120,
+          "name": "旧き天書・リアントース",
+          "note": "アンカー(ユーザー指名2026-07-05): 天書の深淵後に確実にリーサルを取る方法があれば。既知例: 相手デッキコピー(侵略されし世界)で土の印/リーシェナを奪い無限アミュ破壊20点(土の印は破壊不可で何度も対象化・白の章も再破壊可)",
+          "updated_at": "2026-07-05 09:10:15",
+          "locator": "card_note WHERE card_id=10664120"
+        }
+      ],
+      "response_example": {
+        "card_id": 10764120,
+        "card_name": "アドアマネージャー・イニシア",
+        "copies_in_40": 3,
+        "cost": 7,
+        "text_locator": "card WHERE card_id=10764120: skill_text",
+        "skill_text": "【<color=Keyword>ファンファーレ</color>】相手の場のフォロワー1枚を選ぶ。それを消滅。自分の場のアミュレットの枚数が3以上なら、自分のリーダーを3回復。\n<hr>【<color=Keyword>守護</color>】\n【<color=Keyword>オーラ</color>】\n<hr><sev>【<color=Keyword>超進化時</color>】【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。</sev>",
+        "description": "アドアマネージャー・イニシアは7PPの手札プレイで、選べる敵フォロワー1枚を消滅させ、守護・オーラを持つ本体を置く。自分の場のアミュレットが3枚以上なら3回復する。",
+        "required_inputs": [
+          "このカードが相手手札に実際にあるか",
+          "相手が7PPを払えるか",
+          "相手の場に本体を出せる空きがあるか",
+          "対象選択可否および消滅処理に関わる状態",
+          "回復も数える場合は相手のアミュレット枚数と残り体力"
+        ],
+        "limits": "消滅と破壊を同一視しない。回復条件、手札所持、残る打点は保存レシピから確定しない。超進化時にも同能力が働くが、追加の権利を未確認で足さない。"
+      },
+      "deck_list": [
+        {
+          "card_id": 10062210,
+          "source_card_name": "有翼の石像",
+          "name": "有翼の石像",
+          "count": 3
+        },
+        {
+          "card_id": 10463110,
+          "source_card_name": "魔杖の外科医・ティコ",
+          "name": "魔杖の外科医・ティコ",
+          "count": 2
+        },
+        {
+          "card_id": 10503210,
+          "source_card_name": "大遊戯世界",
+          "name": "大遊戯世界",
+          "count": 3
+        },
+        {
+          "card_id": 10661110,
+          "source_card_name": "崇奉の怯者",
+          "name": "崇奉の怯者",
+          "count": 3
+        },
+        {
+          "card_id": 10661210,
+          "source_card_name": "汚濁の聖水",
+          "name": "汚濁の聖水",
+          "count": 3
+        },
+        {
+          "card_id": 10662210,
+          "source_card_name": "救済の聖典",
+          "name": "救済の聖典",
+          "count": 3
+        },
+        {
+          "card_id": 10663210,
+          "source_card_name": "崇高の天書",
+          "name": "崇高の天書",
+          "count": 3
+        },
+        {
+          "card_id": 10664110,
+          "source_card_name": "崇高の憎悪・カンディマ",
+          "name": "崇高の憎悪・カンディマ",
+          "count": 3
+        },
+        {
+          "card_id": 10664120,
+          "source_card_name": "旧き天書・リアントース",
+          "name": "旧き天書・リアントース",
+          "count": 3
+        },
+        {
+          "card_id": 10761210,
+          "source_card_name": "陽光の耳飾り",
+          "name": "陽光の耳飾り",
+          "count": 3
+        },
+        {
+          "card_id": 10762210,
+          "source_card_name": "無欠の時計",
+          "name": "無欠の時計",
+          "count": 3
+        },
+        {
+          "card_id": 10763210,
+          "source_card_name": "海蝕の三叉槍",
+          "name": "海蝕の三叉槍",
+          "count": 3
+        },
+        {
+          "card_id": 10764120,
+          "source_card_name": "アドアマネージャー・イニシア",
+          "name": "アドアマネージャー・イニシア",
+          "count": 3
+        },
+        {
+          "card_id": 10863210,
+          "source_card_name": "朋友の学級",
+          "name": "朋友の学級",
+          "count": 2
+        }
+      ],
+      "response_material": [
+        {
+          "card_id": 10062210,
+          "source_card_name": "有翼の石像",
+          "count": 3,
+          "name": "有翼の石像",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_4】\n【<color=Keyword>ラストワード</color>】『<color=Keyword>ホーリーファルコン</color>』1枚を自分の場に出す。\n<hr>コスト1【<color=Keyword>アクト</color>】これのカウントを-1する。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10463110,
+          "source_card_name": "魔杖の外科医・ティコ",
+          "count": 2,
+          "name": "魔杖の外科医・ティコ",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 1,
+          "atk": 0,
+          "life": 4,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "自分がアミュレットを【<color=Keyword>アクト</color>】したとき、自分のリーダーを1回復。\n<hr><ev>【<color=Keyword>進化時</color>】相手の場のフォロワー1枚を選ぶ。それに3ダメージ。</ev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10503210,
+          "source_card_name": "大遊戯世界",
+          "count": 3,
+          "name": "大遊戯世界",
+          "class": 0,
+          "class_name": "ニュートラル",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_5】\n自分が他のカードをプレイしたとき、場にそれ以外の元のコストXのカードがあるなら、これのカウントを-1する。Xはプレイしたカードの元のコストである。\n【<color=Keyword>ラストワード</color>】自分のデッキから2枚を引く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10661110,
+          "source_card_name": "崇奉の怯者",
+          "count": 3,
+          "name": "崇奉の怯者",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 5,
+          "atk": 4,
+          "life": 5,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "これが場に出たとき、自分のリーダーを2回復。\n<hr>【<color=Keyword>必殺</color>】\n【<color=Keyword>守護</color>】",
+          "ref_effect_text": "結晶(2): 【<color=Keyword>カウントダウン</color>_3】\n【<color=Keyword>ラストワード</color>】『<color=Keyword>崇奉の怯者</color>』1枚を自分の場に出す。",
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10661210,
+          "source_card_name": "汚濁の聖水",
+          "count": 3,
+          "name": "汚濁の聖水",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_3】\n【<color=Keyword>ラストワード</color>】自分のデッキから1枚を引く。相手の場のフォロワーからランダム1枚を破壊。\n<hr>コスト1【<color=Keyword>アクト</color>】これのカウントを-1する。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10662210,
+          "source_card_name": "救済の聖典",
+          "count": 3,
+          "name": "救済の聖典",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_4】\n【<color=Keyword>ラストワード</color>】自分のデッキから2枚を引く。相手の場のフォロワーすべてに2ダメージ。自分のリーダーを2回復。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10663210,
+          "source_card_name": "崇高の天書",
+          "count": 3,
+          "name": "崇高の天書",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 4,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】場の他のカード1枚を選ぶ。それを破壊。自分のアミュレットを選んだなら、自分のPPを2回復。\n<hr>【<color=Keyword>カウントダウン</color>_2】\n【<color=Keyword>ラストワード</color>】このバトル中に破壊された自分の「元のコスト2以下の、【<color=Keyword>ラストワード</color>】を持つアミュレット」からランダム1枚と同名のカード1枚を自分の場に出す。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10664110,
+          "source_card_name": "崇高の憎悪・カンディマ",
+          "count": 3,
+          "name": "崇高の憎悪・カンディマ",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 4,
+          "atk": 3,
+          "life": 3,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】このバトル中に破壊された自分の「元のコスト2以下の、【<color=Keyword>ラストワード</color>】を持つアミュレット」からランダム2種類と同名のカード1枚ずつを自分の場に出す。\n<hr><sev>【<color=Keyword>超進化時</color>】場の他のカード1枚を選ぶ。それを破壊。自分のアミュレットを選んだなら、相手の場のフォロワーすべてに3ダメージ。</sev>",
+          "ref_effect_text": null,
+          "note": "アンカー取り下げ(2026-07-06): 破壊履歴から同名2種再展開の天井を開く具体条件を提示できず。破壊履歴軸は供給側として保持",
+          "note_updated_at": "2026-07-05 16:52:05"
+        },
+        {
+          "card_id": 10664120,
+          "source_card_name": "旧き天書・リアントース",
+          "count": 3,
+          "name": "旧き天書・リアントース",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 9,
+          "atk": 9,
+          "life": 9,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】場の他のカード3枚を選ぶ。それを破壊。\n<hr>【<color=Keyword>守護</color>】\n自分のターン終了時、信仰値を-10して、『<color=Keyword>天書の深淵</color>』1枚を自分の手札に加える。",
+          "ref_effect_text": "信仰: 信仰値は0から始まる。\n<hr>自分のアミュレットが破壊されたとき、信仰値を+1する。",
+          "note": "アンカー(ユーザー指名2026-07-05): 天書の深淵後に確実にリーサルを取る方法があれば。既知例: 相手デッキコピー(侵略されし世界)で土の印/リーシェナを奪い無限アミュ破壊20点(土の印は破壊不可で何度も対象化・白の章も再破壊可)",
+          "note_updated_at": "2026-07-05 09:10:15"
+        },
+        {
+          "card_id": 10761210,
+          "source_card_name": "陽光の耳飾り",
+          "count": 3,
+          "name": "陽光の耳飾り",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 1,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】自分の手札1枚を選ぶ。それをデッキに戻す。自分のデッキから1枚を引く。\n<hr>【<color=Keyword>アクト</color>】これを破壊。【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10762210,
+          "source_card_name": "無欠の時計",
+          "count": 3,
+          "name": "無欠の時計",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>エンハンス</color>_4】相手の場のフォロワーすべてに1ダメージ。\n<hr>【<color=Keyword>アクト</color>】これを破壊。相手の場のフォロワーすべてに1ダメージ。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10763210,
+          "source_card_name": "海蝕の三叉槍",
+          "count": 3,
+          "name": "海蝕の三叉槍",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 3,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】相手の場のフォロワー1枚を選ぶ。それに4ダメージ。\n<hr>【<color=Keyword>アクト</color>】これを破壊。相手の場のフォロワー1枚を選ぶ。それに2ダメージ。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10764120,
+          "source_card_name": "アドアマネージャー・イニシア",
+          "count": 3,
+          "name": "アドアマネージャー・イニシア",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 7,
+          "atk": 4,
+          "life": 7,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>ファンファーレ</color>】相手の場のフォロワー1枚を選ぶ。それを消滅。自分の場のアミュレットの枚数が3以上なら、自分のリーダーを3回復。\n<hr>【<color=Keyword>守護</color>】\n【<color=Keyword>オーラ</color>】\n<hr><sev>【<color=Keyword>超進化時</color>】【<color=Keyword>ファンファーレ</color>】と同じ能力が働く。</sev>",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        },
+        {
+          "card_id": 10863210,
+          "source_card_name": "朋友の学級",
+          "count": 2,
+          "name": "朋友の学級",
+          "class": 6,
+          "class_name": "ビショップ",
+          "cost": 2,
+          "atk": 0,
+          "life": 0,
+          "is_include_rotation": 1,
+          "deck_enabled_num": 3,
+          "skill_text": "【<color=Keyword>カウントダウン</color>_2】\n自分のターン終了時、自分のデッキから1枚を引く。自分の場に進化後のフォロワーがあるなら、自分のリーダーを1回復。自分の場に超進化後のフォロワーがあるなら、1回復ではなく2回復。",
+          "ref_effect_text": null,
+          "note": null,
+          "note_updated_at": null
+        }
+      ]
+    }
+  ],
+  "supplemental_referenced_card": [
+    {
+      "card_id": 90021120,
+      "name": "スティールナイト",
+      "class": 2,
+      "class_name": "ロイヤル",
+      "cost": 1,
+      "atk": 2,
+      "life": 2,
+      "skill_text": ""
+    }
+  ],
+  "limitations": [
+    "保存デッキは7月末の収録で、現在時点のTier・採用率・代表性を証明しない。",
+    "35件のrotationラベルは収録時の区分。現在DBのカードrotationフラグと食い違う保存デッキもある。",
+    "card本文には各カードの更新時刻がないため、デッキ収録日当時のカード本文である保証はない。",
+    "meta_deck_card.card_nameは出典の表記でcard.nameと中黒等が違うが、候補のcard_idはすべて解決済み。",
+    "相手手札、PP、場、進化権、超進化権、各種履歴、勝率や生存率の試験時入力が別途必要。"
+  ]
+}

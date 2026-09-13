@@ -1,0 +1,28 @@
+{
+  "started_at": "2026-09-13 12:38:07 UTC",
+  "ended_at": "2026-09-13 12:39:57 UTC",
+  "scope": [
+    "src/svdeck/discovery_opponent.py",
+    "src/svdeck/discovery.py opponents branch",
+    "tests/temp/test_discovery_opponent_temp.py",
+    "read-only supporting inspection of discovery_evidence.py, discovery_sources.py, fixed data/cards.db"
+  ],
+  "result": "1 material finding",
+  "findings": [
+    {
+      "priority": 2,
+      "file": "src/svdeck/discovery_opponent.py",
+      "start_line": 39,
+      "end_line": 42,
+      "title": "再録を含む同名カードの合計上限を検査する",
+      "body": "現在の検査は card_id ごとに count と copy_limit を比較するため、同名の別IDを各3枚入れた40枚構築を合法として保存できる。固定DBにはストームブラスト 10131320 / 10831310 があり、両方 is_include_rotation=1、deck_enabled_num=3。各3枚と他34枚を登録すると既存条件をすべて満たすが、公式ルールは再録も含め同名カード合計3枚まで。DBの card.name で採用枚数を集計して上限を検査する必要がある。",
+      "evidence": {
+        "method": "Static path inspection plus read-only DB query; no dynamic mutation-based reproduction",
+        "official_source": "https://shadowverse-wb.com/ja/news/detail/?id=01KVCDEM37YGTQ70Z1C6N68Q09",
+        "official_rule": "再録カードが使えるルールにおいては、好きなイラストの同名カードを3枚までデッキに編成することができます。"
+      }
+    }
+  ],
+  "other_checked": "通常の40枚、クラス、token、ローテーション、card_idごとの枚数、未知ID、DBのread-only接続、追加資料の検証順序、自分の固定候補への混入、保存版照合について追加の重大問題は確認しなかった。",
+  "limitations": "短時間のコードレビュー。テストは実行していない。リポジトリとDBは変更していない。"
+}

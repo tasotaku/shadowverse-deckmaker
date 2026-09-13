@@ -1,0 +1,27 @@
+{
+  "fixed_at": "2026-09-13T12:42:13.276160+00:00",
+  "finding": "再録の別IDを含む同名合計の枚数上限を追加検査",
+  "official_source": "https://shadowverse-wb.com/ja/news/detail/?id=01KVCDEM37YGTQ70Z1C6N68Q09",
+  "official_excerpt": "好きなイラストの同名カードを3枚までデッキに編成することができます。",
+  "source_observation": "Web検索が返した公式記事本文で確認。openではニュース本文が展開されなかった。",
+  "tests_after_fix": {
+    "new": 15,
+    "existing": 38,
+    "total": 53,
+    "verdict": "PASS",
+    "seconds": 5.53,
+    "type_check": "2ファイルPASS"
+  },
+  "cases": {
+    "a": {
+      "reprinted_copy_limit_satisfied": true,
+      "entire_source_matches_fixed_version": true
+    },
+    "b": {
+      "reprinted_copy_limit_satisfied": true,
+      "entire_source_matches_fixed_version": true
+    }
+  },
+  "ai_repeated": false,
+  "live_runtime": "起動時の凍結版のまま。該当2入力への出力が修正版と一致することを別検査。"
+}

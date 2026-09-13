@@ -24,6 +24,7 @@ from svdeck.discovery_evidence import (
     read_only, search_questions, write_new,
 )
 from svdeck.discovery_read import packet_summary, read_packet
+from svdeck.discovery_opponent import opponent_sources
 from svdeck.discovery_sources import load_sources, save_sources
 from svdeck.meta import article_sources
 
@@ -675,6 +676,10 @@ def main(argv: list[str] | None = None) -> int:
         accept.add_argument("response", type=Path)
     show = sub.add_parser("report", help="改訂と評価を確認")
     show.add_argument("session", type=Path)
+    opponent = sub.add_parser("opponents", help="固定DBの相手40枚と参照効果を比較資料へ追加")
+    opponent.add_argument("session", type=Path)
+    opponent.add_argument("--deck-id", type=int, action="append", required=True)
+    opponent.add_argument("--preview", action="store_true", help="資料を表示し、探索へは追加しない")
     memory = sub.add_parser("recall", help="別探索の正式案と評価をカード・使い方から探す（読み取り専用）")
     memory.add_argument("library", type=Path)
     memory.add_argument("--card-id", type=int, action="append", default=[])
@@ -710,6 +715,11 @@ def main(argv: list[str] | None = None) -> int:
             result = review(args.session, read_object(args.response))
         elif args.command == "recall":
             result = recall(args.library, args.card_id, args.query, args.class_name, args.format, args.limit)
+        elif args.command == "opponents":
+            # AI_NOTE: 自分の固定資料は変更せず、相手の本文・注記を版付きの追加資料として扱う。
+            context = _context(args.session)
+            payload = opponent_sources(args.session / "snapshot.db", context, args.deck_id)
+            result = payload if args.preview else attach(args.session, payload)
         else:
             result = report(args.session)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:

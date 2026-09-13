@@ -1,0 +1,224 @@
+{
+  "id": "opponent-response-01",
+  "revision": 8,
+  "saved_at": "2026-09-13T12:42:13.596802+00:00",
+  "actor": "codex-root",
+  "reason": "同名合計の上限検査を修正し、実評価入力に影響しないことを再生成で確認",
+  "record": {
+    "id": "opponent-response-01",
+    "title": "相手の返しを受けた後の利益を比較する",
+    "category": "method",
+    "status": "running",
+    "summary": "相手資料を加えた2例の実評価中。実際の出題は固定資料に全文一致。52件と型検査は合格、方法の有用性は未判定。",
+    "method": "相手の保存構築・効果・注記を追加し、同じ条件の返しを提案と通常側へ適用する",
+    "procedure": "資料生成の実装と機能検査→固定した既知2例を各1回評価→主要な返しと残る利益を別照合→採否を記録し次の改善へ進む",
+    "inputs": "reviewer-utility-01 の出題用コピー2例、同じカードDB保存版から抽出する合法な相手の40枚構築。直接の過去採否は追加しない。",
+    "criteria": "期待判断は前回のA=test/B=dropを維持。両側で同じ返しの合法な支払・対象・発動順を具体化し、残る利益と失う用途を照合。架空の取得・頻度・相手盤面を成功として数えない。各1回の既知例で未知評価精度を認定しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T12:26:34Z",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "相手の保存構築と効果を渡す入口を実装",
+        "status": "completed",
+        "started_at": "2026-09-13T12:28:25.141612+00:00",
+        "ended_at": "2026-09-13T12:34:18.643915+00:00",
+        "note": "相手40枚・参照効果・注記を渡す公開入口を実装。新規14+既存38=52検査と型検査合格。出題2件を同じ固定資料から構成。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-whole",
+        "title": "マゼル：評価から最終提出確認まで",
+        "status": "running",
+        "started_at": "2026-09-13T12:34:33.703569+00:00",
+        "ended_at": null,
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-review",
+        "title": "マゼル：評価担当の実行",
+        "status": "running",
+        "started_at": "2026-09-13T12:34:34.131185+00:00",
+        "ended_at": null,
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live/review-run",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-whole",
+        "title": "ナイフ：評価から最終提出確認まで",
+        "status": "running",
+        "started_at": "2026-09-13T12:34:33.705656+00:00",
+        "ended_at": null,
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-review",
+        "title": "ナイフ：評価担当の実行",
+        "status": "running",
+        "started_at": "2026-09-13T12:34:34.125350+00:00",
+        "ended_at": null,
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live/review-run",
+        "budget_minutes": 10
+      },
+      {
+        "id": "opponent-inventory",
+        "title": "保存済みの相手構築と欠損を別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-13T12:26:34Z",
+        "ended_at": "2026-09-13T12:29:10.703954+00:00",
+        "note": "ローテ保存35件中12件が40枚・ID解決・保存版の合法性を満たす。7月末の取得で現環境代表性は未確認。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "functional-tests",
+        "title": "相手資料の保持・保存・拒否を52件検査",
+        "status": "completed",
+        "started_at": "2026-09-13T21:31:27.032902+09:00",
+        "ended_at": "2026-09-13T21:31:32.841902+09:00",
+        "note": "新規14件と既存38件に合格。型検査2ファイルも合格。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "entry-review",
+        "title": "相手資料の取り込み口を別担当が点検",
+        "status": "completed",
+        "started_at": "2026-09-13T12:38:07+00:00",
+        "ended_at": "2026-09-13T12:39:57+00:00",
+        "note": "同名の別IDを合算しない欠落1件を検出。修正後53検査合格。実評価の2入力は修正版の出力に全文一致。",
+        "budget_minutes": 2
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/opponent-response-01/test_opponents.py",
+      "evals/discovery/opponent-response-01/opponent-inventory.json",
+      "evals/discovery/opponent-response-01/review-addition.txt",
+      "evals/discovery/opponent-response-01/tests.json",
+      "evals/discovery/opponent-response-01/input-manifest.json",
+      "evals/discovery/opponent-response-01/expected.json",
+      "evals/discovery/opponent-response-01/copy-limit-fix.json",
+      "evals/discovery/opponent-response-01/collect-result.py",
+      "evals/discovery/opponent-response-01/tests.xml",
+      "evals/discovery/opponent-response-01/README.md",
+      "evals/discovery/opponent-response-01/entry-review.json",
+      "evals/discovery/opponent-response-01/runtime-manifest.json",
+      "evals/discovery/opponent-response-01/protocol.json",
+      "evals/discovery/opponent-response-01/launch.json",
+      "evals/discovery/opponent-response-01/timing-correction.json",
+      "evals/discovery/opponent-response-01/inputs",
+      "evals/discovery/opponent-response-01/tests-after-fix.xml"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/opponent-response-01/README.md",
+      "sha256": "a8dcf7368408c87e3f617ed53c7496a18d72a98b9d758065ae88dfae56b16346",
+      "size": 1575
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/collect-result.py",
+      "sha256": "0e8b741f29c80456849632bad78bb05f9f55d13a9f017647ffdbabfa7bab3863",
+      "size": 5346
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/copy-limit-fix.json",
+      "sha256": "d2402c47669eb9b115e970d365b9a0cef4a935850019c877e7c623026387d876",
+      "size": 1054
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/entry-review.json",
+      "sha256": "ffdd87c0873e9d9eddbe882b724ef23376557b9d580c7933ceb12734636921fb",
+      "size": 1986
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/expected.json",
+      "sha256": "54f57697609a4c8d58640a35bb83b9324295719fc23c8b6718f3a18a8d23c826",
+      "size": 2951
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/input-manifest.json",
+      "sha256": "bb8e97fb69374194aa6a179dea8d26eaf354911f3a8666a795913f76ac5a945d",
+      "size": 5374
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/inputs/a/expected-review-packet.json.gz",
+      "sha256": "07ec0eafaa33da189276c413b18634a0410c108e4bb8a89f414bc96146e7d86a",
+      "size": 142200
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/inputs/a/opponent-source.json.gz",
+      "sha256": "639223fc2bb2a37f812bb6e5882604c5774e52c1a0df461c8515702a45fbd88a",
+      "size": 8907
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/inputs/b/expected-review-packet.json.gz",
+      "sha256": "a63b969c8080b9c835d11813987eaa33fdacc664abe7ce97ea920b215ade6a6e",
+      "size": 110303
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/inputs/b/opponent-source.json.gz",
+      "sha256": "507ae1bdb7d4a077a45e11a531beb4ff31e306110e7b71f2b7a4a4b50b6b9444",
+      "size": 7693
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/launch.json",
+      "sha256": "1bebb7c5884921524c4fb7f4872c1c4aca59eb3384eb472aaab85b069631a0fd",
+      "size": 637
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/opponent-inventory.json",
+      "sha256": "89fc9a102f02b54d406d08855b76f3ea905708a524feb3867e02409e54ac7f59",
+      "size": 56534
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/protocol.json",
+      "sha256": "e8996a322f0f2c400eee6cf1a297ebed7f7d273e8c854c2e55aaad7ddbeb064c",
+      "size": 987
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/review-addition.txt",
+      "sha256": "24fe97b061d6598d52d1599f3ccdfbe6d7b820330c53396a307bd401ad7f84a1",
+      "size": 1369
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/runtime-manifest.json",
+      "sha256": "ddb5b4fb1ae9b5d7f3a381485bcaeca4eb68562212e3bfb6f99ec0994f63588c",
+      "size": 4627
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/test_opponents.py",
+      "sha256": "2c0e16cd0976411275deaca6372406b81004113b1f3bb003f584fc0be3b896c7",
+      "size": 5805
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/tests-after-fix.xml",
+      "sha256": "26b24871a0e1db74a91afb7aa86c3e08f35c8ac918adcbc9b3d80542b38d52c2",
+      "size": 7737
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/tests.json",
+      "sha256": "c37a91f9a6a52731b3d714b7b7fddb711162166fe82490b2b8a556f8f54f8a41",
+      "size": 517
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/tests.xml",
+      "sha256": "95f729471d3ca3d7f9662375a38db54bf786ac1f4264dad274bd10e63ca4b41a",
+      "size": 7545
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/timing-correction.json",
+      "sha256": "64188e369ef0b270a0ce22f04988cf13b50df8374f9cacb20e798a48a09fd24d",
+      "size": 541
+    }
+  ]
+}
