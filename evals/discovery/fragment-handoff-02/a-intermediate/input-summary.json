@@ -1,0 +1,115 @@
+{
+  "sha256": "c1877c3e34e99d6d7008caa3f61e4df3e60906629ce1864a592e9078c950d6f1",
+  "packet_path": "/private/tmp/fragment-handoff-02-a-intermediate/inquiry/session/packets/c1877c3e34e99d6d7008caa3f61e4df3e60906629ce1864a592e9078c950d6f1.json",
+  "stage": "inquiry",
+  "revision": 0,
+  "context_hash": "a110e52ae3de12f9436950ef8a3c931b4afaca7f7de30355342eecf217be468c",
+  "objective": "通常構築の役割と比べ、独自でそこそこ戦えるデッキの種を考案する。効果の別用途や、役割分担による採用配分の変化も検討する。特定カードや過去の期待解に合わせず、固定資料で成立する利益と残る不足を示す。",
+  "instruction": "共通の未完成着想から、次に正式案へまとめる対象を1件だけ選び、発展した内容を保存する担当です。今回は正式案のJSONや評価を提出しません。公開資料を必要な範囲で読み、出典の事実と自分の仮説を区別します。成果をanswer.mdへ、起点のfragment ID/選んだカードIDと使い方/不足/変えた役割または配分/増える利益/代償と失う用途/通常の参考構築との比較状態/まだ必要な確認という項目で残してください。根拠を読めなければ不明と書き、資料数や段数を成果としません。未完成や不成立も残せます。種の試用推薦や独自性の採点はしません。カード本文・両側の注記は通常どおり確認します。過去のAI評価や期待カードを探しません。\n今回の担当は5分です。残り120秒で調査を止め、確認済みと未確認を含む中間報告の公開保存・再読・report・finishへ移ります。\n共有した未完成の着想を選んで通常のまとめ方で発展。別の着想を使うことも禁止しない。",
+  "response_example": {
+    "file": "answer.md",
+    "kind": "inquiry-result",
+    "location": "experiment-fragments:25462a44fdfd4c0eb6d264e4712e4f95",
+    "content": "実数0〜3件。各件はID・出典付き効果・残る/減るもの・使えそうな役割・今は困る条件一つ。順位・採否なし。"
+  },
+  "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
+  "sections": [
+    {
+      "section": "cards",
+      "unit": "cards",
+      "total": 212,
+      "full_packet_path": "data.context.cards"
+    },
+    {
+      "section": "rules",
+      "unit": "lines",
+      "total": 139,
+      "full_packet_path": "data.context.rules"
+    },
+    {
+      "section": "keywords",
+      "unit": "keywords",
+      "total": 37,
+      "full_packet_path": "data.context.ability_keywords"
+    },
+    {
+      "section": "principles",
+      "unit": "lines",
+      "total": 690,
+      "full_packet_path": "data.context.principles"
+    },
+    {
+      "section": "known_decks",
+      "unit": "decks",
+      "total": 4,
+      "full_packet_path": "data.context.known_decks"
+    },
+    {
+      "section": "search",
+      "unit": "questions",
+      "total": 0,
+      "full_packet_path": "data.search"
+    },
+    {
+      "section": "proposal",
+      "unit": "lines",
+      "total": 0,
+      "full_packet_path": "data.proposal"
+    },
+    {
+      "section": "previous_reviews",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.previous_reviews"
+    },
+    {
+      "section": "review_contexts",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.review_contexts"
+    },
+    {
+      "section": "history",
+      "unit": "lines",
+      "total": 1,
+      "full_packet_path": "data.history"
+    },
+    {
+      "section": "sources",
+      "unit": "lines",
+      "total": 418,
+      "full_packet_path": "data.sources"
+    },
+    {
+      "section": "context_metadata",
+      "unit": "lines",
+      "total": 22,
+      "full_packet_path": "data.context"
+    },
+    {
+      "section": "fulfillment_map",
+      "unit": "lines",
+      "total": 234,
+      "full_packet_path": "data.context.fulfillment_map"
+    },
+    {
+      "section": "instruction",
+      "unit": "lines",
+      "total": 3,
+      "full_packet_path": "data.instruction"
+    },
+    {
+      "section": "response_example",
+      "unit": "lines",
+      "total": 6,
+      "full_packet_path": "data.response_example"
+    },
+    {
+      "section": "packet_metadata",
+      "unit": "lines",
+      "total": 10,
+      "full_packet_path": "data"
+    }
+  ],
+  "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。offsetは0始まりです。回答のpacket_hashには上のsha256を使います。"
+}

@@ -1,0 +1,352 @@
+{
+  "status": "completed",
+  "started_at": "2026-09-13T21:56:32.099659+00:00",
+  "ended_at": "2026-09-13T22:01:28.267901+00:00",
+  "run_id": "ad5824306ef04733a7503c29cbc105b3",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fragment-handoff-01-development-input",
+  "output": "/private/tmp/fragment-handoff-02-b-intermediate",
+  "seconds": 300,
+  "source_manifest": {
+    "context.json": "ccdf3367616a702ccccb3075961a456c40e1d2c55dad9ed3703faf6695ed9feb",
+    "packets/126758e996e9c2bcd1308c250c54f3fe4f4f0eedf1794291a21a72b2339b21af.json": "c48a6aa868369d521b9db04edc867c385e0cd1fc95259078667bd6e793adef79",
+    "packets/2e996a71a891d60d71e467e124d1273889e5e8544c37697dceee33103d1f7f86.json": "7418244939eda0094dc42012dc73f25f4fb02fdcfad484bfd580831212fb202f",
+    "packets/c64ae7d5d6ca6ab6348fd61b3f2ac462c78e45ee54832aaf9e5e89f57e519d55.json": "e795f2e84e0203691060d41ae4a53212a1e351f55fd127b461ded5b192509d51",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/0e7aabe9415eb7c99b52858df22267cb2e2cb7b918261845eadf48b51b022c11.json": "d81269501be328dd7017e1a38e25727bae818f8a2430dfeec683eee36073c98e",
+    "sources/4a9132a632cccd188fb8719b3e53a188f1f17b47ee653999de0329bea0f3255e.json": "3516f7bbe48219b0f58257e8999da67cc6b6ecc51e5f1c1018dfe6c5e7785e9c",
+    "sources/54a1fa92ac29b5ba96c4e97febef0b5e3d9439fb3af1eead6ca1b135e49ba24e.json": "01af1d1021ab2b7bcab9a6b5ed4bfec93ea7b4a580cbaa7ab1e0e4e7a6a0d153",
+    "sources/5c897a8695527282f5de8acd9a752d44b2c9387671d13d7f9ad036a7ddfc51fb.json": "749e67f423784a3436506729da540c7f9eceb5c1ffe4aaa60d655a7fc743c6d7",
+    "sources/7e685ce8b88ce8b48a1e95c708a3b8c1150e540741c2722c63ae192789df8227.json": "c8b78f700ba11f822df63b00ee24eaea1c14c689dd38b8bd59a7d7c2c7abddfd",
+    "sources/bc6d1c730e3f53e60da99e1d72786e88fe7bf9015b7f1833bac7c07f4da751fe.json": "8638b4e77fea5e0f5e9fdde053a862f14f86edc37d1717631ca112a320016b43",
+    "sources/ebd5ba46554322bfcb6c7648121b457f4711cd5af88ee34fe87aaeb4a7411cfb.json": "6af45c1bab1bd96e486d1193e2e85756201cc64811dfef0b0e74e1664d6cea5b"
+  },
+  "runtime_manifest": {
+    "svdeck/__init__.py": "f0478dfc6416030e4eb7d99aa288bb6e271dcd360d41963f93d34465d93e5aad",
+    "svdeck/article_text.py": "f74f6b3e52b473e03af8cd37692539157d15c6c21df2f0eb393cbbd09a612c41",
+    "svdeck/atoms.py": "2f9d97ca5f5090820025deb86af02a5c0dce78b28511d795dd47b501d90381ba",
+    "svdeck/augment.py": "2d43b14dbdf6b8cb0acd007742161506a57361fbe382fc83907250d71e60ac58",
+    "svdeck/bench.py": "3bc82565ffeabfa3e43b60babe4f9080fad7571211949fb66e04ba196d6cbe8b",
+    "svdeck/data/anchor_require_ledger.json": "ec7105cfb444bb80fe7128c6c32afa281660b797dc6090b832bf05967cc2c8ed",
+    "svdeck/data/backfill_requires.json": "829a6fbcc74ad43f539e221e32c44c8475962fe2ab32d3733e45909445435b2d",
+    "svdeck/data/experiment_catalog.json": "fda155b86cc83565409503499b95d0ae5d40c4f32b5c6f552fef72d763b44273",
+    "svdeck/data/fulfillment_map.json": "50923a927a6e140261c7da941bd2f80b952497a0a7bd54a02f05aaaeb080e933",
+    "svdeck/data/paraphrase_map.json": "6531a6aef0ffc211d0791328ed04012901f29214aad832d76135b4795e9b44f7",
+    "svdeck/data/promoted_tags.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "svdeck/db.py": "f767b249a5074df2be2ba817f0b3f2575cac4d87494435ef541de8052aa7b14e",
+    "svdeck/discovery.py": "06f1373d02851bbd270de5fa709b71ce1075ec8efbb18c8e17ba08f907179162",
+    "svdeck/discovery_compare.py": "1f55b486809be6e469e0ec0c7f182e3517e42a663550ce65c19c10f00522b8a4",
+    "svdeck/discovery_cycle.py": "779e6faca917a24b8c855ef06e163a9f97e064ce1022dae55ca57991ba804cc3",
+    "svdeck/discovery_evidence.py": "864d6ab4f41ea73089d8104bcdf337f4cd75224fa6b53c0613cf5870b616b79b",
+    "svdeck/discovery_inquiry.py": "337f1b1fd94a4059098fcece7cb41c610e56df9bb155166100980a710439b266",
+    "svdeck/discovery_opponent.py": "21737f668787f1081ad82e666a6b3b134e95fdfa51184be159c795cd55194c31",
+    "svdeck/discovery_read.py": "e139e70ea14ea44ea6e5cb7bf985acd6cefae4f4ca1606a328d76b776da09744",
+    "svdeck/discovery_run.py": "2ee1772de72cf7b2ce089ba4f900a3c6b77572d7c73c7bb560bc2716489c23a4",
+    "svdeck/discovery_sources.py": "6f66ccfd143e9d13d07e8dfe9c274cd4e055a24123889106791927bd9d54e0af",
+    "svdeck/experiments.py": "480488417735fd0be6d8956b86fde5e4ab488634088047bcab0ed3fd36a2bf2a",
+    "svdeck/explore.py": "14cc5ccec322c4eab5defd783abf333ed03f9fbb44ede91c4f46cd43ed3f2ff6",
+    "svdeck/fetch.py": "0dae9e6b228c37801e4c4597ecb849d84421c205fc168070d244848c1b949810",
+    "svdeck/inquiry_journal.py": "4e775bbe3f01ca306c48eac09806685087b5d07a2c4420d9588c553d3683c3b8",
+    "svdeck/journal_store.py": "562d35ce5ab556f246e314c6b77446063e14f5b54a82a63e9401db0894e7164e",
+    "svdeck/journal_web/app.js": "f2b473f387f26f84a99773cbbb36aa7951d3396acc0c42ad909f920f4d82af0a",
+    "svdeck/journal_web/index.html": "b57d5318200d688b3e14ba935a823c3e9ff3b4ada7f2976f46568c330805084c",
+    "svdeck/journal_web/style.css": "15d05dbde59055826990a8d16af909faaa22a95736d05962f7bd488e85a4c1c6",
+    "svdeck/keywords.py": "ec167e90dfbc1671a667f6b85f6bbe2097d4cdab61abd42fd5821de79b53454e",
+    "svdeck/memo.py": "9c0a09917f3ce3ab62477db8704dcbfb269c60bf48b6b18f820cab32e57019fb",
+    "svdeck/meta.py": "0f8bb4f5a8e4bbedbb43f376053400437401dcd2af5ebb89abbb8a41bc62590a",
+    "svdeck/paraphrase.py": "e566f56c7d397a4b34463bda3c56bcb204ebab4c9fd0335f4e8064e829dd814b",
+    "svdeck/profile.py": "35b2276cf72b59b188dcabaa1ea6e297f72679198b6c733cab84c4e04ac09205",
+    "svdeck/promote.py": "7611f755758cf8366c92a071996a9c76e90a62003721dc7077c84ff94b5bebe2",
+    "svdeck/require.py": "a26389ef94a4684fade133d565f5f64d107d9ba328ade53a2e74597bea24b469",
+    "svdeck/retag.py": "204058617cfb1612f083074b61cc5db2c6e108be399b74bfc6a5fb1be5eb1b4a",
+    "svdeck/reverse.py": "a6dfba16780d50c53c029d72be902d815414a05a14653fa2744c50fb4fcedc7f",
+    "svdeck/strength.py": "02d5e7268b9c69df3a8ad7930b88f7b45eb438563ec0d9aa6b67719cd829e25f",
+    "svdeck/vector.py": "e40c33f5f478a07d79331a1ddfc13c90fdbc244203e1d51be669e7e042c4a8a3",
+    "svdeck/vectorize.py": "5129ea0f3f66585f63821c761f19aaac9c1f9dadb118350724836f12dacae7bc",
+    "svdeck/worker.py": "fa3997fb8f39211aef397bc355606b811f9253301163a8dbf3cf1cfa45ef05d3",
+    "svdeck/worker_journal.py": "2da11055934d7908e543105a10717ace3807e57d669125db39811f535acfaefc"
+  },
+  "run": {
+    "status": "finished_by_request",
+    "command": [
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--search",
+      "exec",
+      "--ephemeral",
+      "--sandbox",
+      "workspace-write",
+      "--skip-git-repo-check",
+      "--cd",
+      "/private/tmp/fragment-handoff-02-b-intermediate/inquiry",
+      "--json",
+      "--output-last-message",
+      "/private/tmp/fragment-handoff-02-b-intermediate/inquiry/final-message.md",
+      "-"
+    ],
+    "cwd": "/private/tmp/fragment-handoff-02-b-intermediate/inquiry",
+    "stdin": "/private/tmp/fragment-handoff-02-b-intermediate/inquiry/prompt.md",
+    "output": "/private/tmp/fragment-handoff-02-b-intermediate/inquiry-run",
+    "started_at": "2026-09-13T21:56:32.403584+00:00",
+    "deadline_at": null,
+    "budget_clock": "elapsed",
+    "deadline_monotonic": 2362946.122694333,
+    "explicit_finish": true,
+    "timeout_seconds": 300,
+    "termination_grace_seconds": 2,
+    "supervisor_pid": 40486,
+    "worker_pid": 40493,
+    "worker_returncode": -15,
+    "ended_at": "2026-09-13T22:01:27.905701+00:00",
+    "events": [
+      {
+        "event": "started",
+        "at": "2026-09-13T21:56:32.403854+00:00",
+        "elapsed_seconds": 0.00026674987748265266
+      },
+      {
+        "event": "journal_starting",
+        "at": "2026-09-13T21:56:32.404285+00:00",
+        "elapsed_seconds": 0.0006979997269809246
+      },
+      {
+        "event": "launched",
+        "at": "2026-09-13T21:56:32.410202+00:00",
+        "elapsed_seconds": 0.006656374782323837
+      },
+      {
+        "event": "finish_request_verified",
+        "at": "2026-09-13T22:01:27.774926+00:00",
+        "elapsed_seconds": 295.36973041668534,
+        "request_hash": "804a3eaee9cf1ae3741250bc53d9c4b13fe3bf0677df274394af72aadabeddbe",
+        "report_hash": "d955313ebfb16e700e397c830b6c86c4b4f55776b51a9f00f1bcb5cbba20daa8"
+      },
+      {
+        "event": "termination_requested",
+        "at": "2026-09-13T22:01:27.776220+00:00",
+        "elapsed_seconds": 295.3709924998693,
+        "signal": 15
+      },
+      {
+        "event": "process_group_gone",
+        "at": "2026-09-13T22:01:27.837268+00:00",
+        "elapsed_seconds": 295.4320409167558
+      },
+      {
+        "event": "finish_confirmed",
+        "at": "2026-09-13T22:01:27.904646+00:00",
+        "elapsed_seconds": 295.4994251248427,
+        "request_hash": "804a3eaee9cf1ae3741250bc53d9c4b13fe3bf0677df274394af72aadabeddbe",
+        "report_hash": "d955313ebfb16e700e397c830b6c86c4b4f55776b51a9f00f1bcb5cbba20daa8"
+      },
+      {
+        "event": "supervisor_finished",
+        "at": "2026-09-13T22:01:27.905706+00:00",
+        "elapsed_seconds": 295.5004756669514
+      },
+      {
+        "event": "journal_finished",
+        "at": "2026-09-13T22:01:27.911629+00:00",
+        "elapsed_seconds": 295.5063986671157
+      }
+    ],
+    "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+    "journal_sync": {
+      "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "experiment_id": "fragment-handoff-02",
+      "stage_id": "b-intermediate",
+      "status": "completed",
+      "begin_revision": 2,
+      "claimed_stage": {
+        "id": "b-intermediate",
+        "title": "B：着想の発展を中間報告へ保存",
+        "status": "running",
+        "started_at": "2026-09-13T21:56:32.403584+00:00",
+        "ended_at": null,
+        "note": "5分、正式案・評価は提出しない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-intermediate/inquiry-run",
+        "budget_minutes": 5
+      },
+      "claimed_summary": "同じ3着想からの発展を中間報告に残す2方式を起動。前回の未提出を置き換えず、考案枠15分として別記録。",
+      "end_revision": 6,
+      "synced_at": "2026-09-13T22:01:27.911623+00:00"
+    },
+    "finish_evidence": {
+      "request_hash": "804a3eaee9cf1ae3741250bc53d9c4b13fe3bf0677df274394af72aadabeddbe",
+      "report_hash": "d955313ebfb16e700e397c830b6c86c4b4f55776b51a9f00f1bcb5cbba20daa8"
+    },
+    "elapsed_seconds": 295.500472957734,
+    "runner_returncode": 0,
+    "execution_returncode": 0
+  },
+  "submission": {
+    "source_hash": "f1e7c4acf8c8ab7e2c8c0f27bb4fadb7a8b3aa3c81050a89cf629b227b5ec282",
+    "file_sha256": "a1c53267c3740f647ef0a8eb46fb077adf7c4cfdabbea4111e59e451e3174abb",
+    "public_attachment": true,
+    "public_reread": true,
+    "report_read": true
+  },
+  "limits": "実験用の共通前段。最大3件・項目・出典の意味的な充足は別途点検する。保存成功は着想の正しさ・有用性ではない。",
+  "work": "/private/tmp/fragment-handoff-02-b-intermediate/inquiry",
+  "packet_hash": "db55bd89e35c73dd6369d9260a61d66861fa56155864112e1a63d2e3958a7786",
+  "author": "worker:ad5824306ef04733a7503c29cbc105b3:inquiry",
+  "returncode": 0,
+  "evidence": {
+    "config_hash": "2eb5be3535b6506d701d5fbb534115b34a0916ed8a90608d3c809746365e42a3",
+    "session_manifest": {
+      "context.json": "ccdf3367616a702ccccb3075961a456c40e1d2c55dad9ed3703faf6695ed9feb",
+      "packets/126758e996e9c2bcd1308c250c54f3fe4f4f0eedf1794291a21a72b2339b21af.json": "c48a6aa868369d521b9db04edc867c385e0cd1fc95259078667bd6e793adef79",
+      "packets/2e996a71a891d60d71e467e124d1273889e5e8544c37697dceee33103d1f7f86.json": "7418244939eda0094dc42012dc73f25f4fb02fdcfad484bfd580831212fb202f",
+      "packets/b2d9de3438184868021124a5386784e73009fd4b659ea534fc3e4afc7fc4d924.json": "6ba9bb523c5e584f2b363dc172711e55a2c024f52821754abbffb00f59b4aa37",
+      "packets/c64ae7d5d6ca6ab6348fd61b3f2ac462c78e45ee54832aaf9e5e89f57e519d55.json": "e795f2e84e0203691060d41ae4a53212a1e351f55fd127b461ded5b192509d51",
+      "packets/db55bd89e35c73dd6369d9260a61d66861fa56155864112e1a63d2e3958a7786.json": "6f96e6206d37fe01a4e662a3663117ccadb4c4d9befe3701019bc13c2e332116",
+      "packets/fb87cc206bc691e98175bbbde2ab3464a31a1c94c413f22d1048c74ce7fca6e6.json": "71a440cbca8de14d8b120b1aa2f69a99a6ddedad2122a6640a3d14897910bef1",
+      "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+      "sources/0e7aabe9415eb7c99b52858df22267cb2e2cb7b918261845eadf48b51b022c11.json": "d81269501be328dd7017e1a38e25727bae818f8a2430dfeec683eee36073c98e",
+      "sources/493f4646924f9400e679f57b56cbb20bfa5e1af7b09ece3b2a49f2ad22c42b2b.json": "67d6226775423073805c2c2a5b4f587095086016c4d68df254f39a7a859d5f63",
+      "sources/4a9132a632cccd188fb8719b3e53a188f1f17b47ee653999de0329bea0f3255e.json": "3516f7bbe48219b0f58257e8999da67cc6b6ecc51e5f1c1018dfe6c5e7785e9c",
+      "sources/54a1fa92ac29b5ba96c4e97febef0b5e3d9439fb3af1eead6ca1b135e49ba24e.json": "01af1d1021ab2b7bcab9a6b5ed4bfec93ea7b4a580cbaa7ab1e0e4e7a6a0d153",
+      "sources/5c897a8695527282f5de8acd9a752d44b2c9387671d13d7f9ad036a7ddfc51fb.json": "749e67f423784a3436506729da540c7f9eceb5c1ffe4aaa60d655a7fc743c6d7",
+      "sources/7e685ce8b88ce8b48a1e95c708a3b8c1150e540741c2722c63ae192789df8227.json": "c8b78f700ba11f822df63b00ee24eaea1c14c689dd38b8bd59a7d7c2c7abddfd",
+      "sources/bc6d1c730e3f53e60da99e1d72786e88fe7bf9015b7f1833bac7c07f4da751fe.json": "8638b4e77fea5e0f5e9fdde053a862f14f86edc37d1717631ca112a320016b43",
+      "sources/ebd5ba46554322bfcb6c7648121b457f4711cd5af88ee34fe87aaeb4a7411cfb.json": "6af45c1bab1bd96e486d1193e2e85756201cc64811dfef0b0e74e1664d6cea5b",
+      "sources/f1e7c4acf8c8ab7e2c8c0f27bb4fadb7a8b3aa3c81050a89cf629b227b5ec282.json": "db8ad2cd49c7fd4e57ccb47b88697e966a432c3a71da62f9215a3c0501486b95"
+    },
+    "report_hash": "d955313ebfb16e700e397c830b6c86c4b4f55776b51a9f00f1bcb5cbba20daa8",
+    "answer_sha256": "a1c53267c3740f647ef0a8eb46fb077adf7c4cfdabbea4111e59e451e3174abb",
+    "submission": {
+      "source_hash": "f1e7c4acf8c8ab7e2c8c0f27bb4fadb7a8b3aa3c81050a89cf629b227b5ec282",
+      "file_sha256": "a1c53267c3740f647ef0a8eb46fb077adf7c4cfdabbea4111e59e451e3174abb",
+      "public_attachment": true,
+      "public_reread": true,
+      "report_read": true
+    },
+    "operation_manifest": {
+      "d6f10b7f3f8d4b7c92dc7cf7f965f60b.json": "1b6b23646609b358ab91aecdad2a7d4a28acf89acadcafbf9cd54a1a9c352489",
+      "2c4d53777dec487f81bf72b997bc8d46.json": "0fb7cd025040a350c0498fde055ca7733dbd1964c083fa1ec405e41a640a2465",
+      "1d0667415be14623873aa52f6bfa2135.json": "5d975d3ddb86844656b302751a35821c7e8adeca729d4125e78f4100a4a6c06f",
+      "5aacf7fec1904a1ca358d7141bcc64f2.json": "224c3c51d56704b4bdc67e01bf4f1de1ef3c1f9b5d4484af0c9bedce44a59035",
+      "0a09f025dd1f44449f3f7d26fb5dbca2.json": "8cc45574f0b3d4153a1fd8512854e7310628ee0e3fa1cad53033a50cf442cf0d",
+      "71847758eefd47b59aa72694ef4e6e13.json": "db53efc00bd886d1ec7eee93884b3db3138e1ff0d1e9e1e6384508c64e3368dc",
+      "604243047d624b5291ce9081589cfcc3.json": "79fed01e732ef13a8d5d2c50c7d663ec77017b0ef5a3a6439e7aa1d321288be8",
+      "a32e1580af01439fa1e3d23f336577c5.json": "37929365eb08e0530f7f31a0a7f88f72a4f05825258497fc6d70aec0810f86de",
+      "01ea7608a7d5485e8dec6db23a61748a.json": "c810c57a469812253f914a53c0c28a9a21f3b0fc00679d8b5368184e7bb3a6e0",
+      "13e3bff9710f4416b5fb09897bd033ca.json": "66bca12902d7d840e61a383bace7431c471e943978db91298ceb60924637b650",
+      "2b27a0ed478845c8a3050dbedef93957.json": "5e590460efb7845d6b21bd49a545b0580da6494aa0f6db5c8996030655557665",
+      "a2d2f12f189e4bb4add6a0286a0460fa.json": "0c4320f690321fd4985760a7073f086116aa9721fae81e3713d3d7929441e459",
+      "4e098fc423e74b94bbe1b716b1dddcce.json": "05e9f1e0fea0df11e69b94e98c677c2daea306d7929b712da6ad2e979794e62e",
+      "172df55cb92b466bb829015c9b945984.json": "6643d3e13d2a38ea83a91eb9f4b965b7a4d33f05280a4e1e97f1eaa4f9428732",
+      "84414935e1bd4f3a80551568eda2bc53.json": "fc425dff34463b4cf929b177fa7844331aecb90045b590d11e475a2a90f9a127",
+      "dd0866ee6cd546d3bcfbc4a1f50eefec.json": "38691b6f9c2801bff0ff608810899b73b703578e4428a1132467ff8fafe167fa",
+      "af75357f1bf544a9863f4abc8f9510a5.json": "5016a31eb4955f6fa66bfca4b13c7e29bea095d9fc49da8f954f155617f2f12e",
+      "8198829d610c4a7e9ebca38d9a5b5ce6.json": "3ec1fb7203019ce43a525463d91aff4e0eda6e5341c3bf13ff4ece6cdf733a9b",
+      "010f94b83db447bbaa27a49771b97cd2.json": "e649e97011df1d113c161f589fa1f3fb7df53a4acb5017f9cdd7dc8ddb63551c",
+      "e37f5342bf0a42cfba59ca3bfc37cbc5.json": "d66f73da268e3073030f21edf05ab8317c085f7f05e5bd5c39dd58ec586a9644",
+      "51c6e4f2419542b6844d6f1864628e6b.json": "92be57ed28482474c91f4b8d5f0e4bfdb09e57ac186d439687a913becf129f96",
+      "be94d6fe83c947ab96236238a49be206.json": "a897479ab58cd8c1207c039be48633bac85edbdbd6f03b6d6a9e46dd8c99a09e",
+      "ea9d2ecc57fe4b208524c9011ce830f1.json": "67d04e946971e1334a3b3ead85389c2c659f32a68af27401031ae9c93f1e12f6",
+      "5a3ed656485443b1a9e8c1af10a5d257.json": "1504cc47b070c5bf626b1fa881748c1c7939f0363027c3137cbba01baf2e93ba"
+    }
+  },
+  "session": "/private/tmp/fragment-handoff-02-b-intermediate/session",
+  "report": {
+    "objective": "通常構築の役割と比べ、独自でそこそこ戦えるデッキの種を考案する。効果の別用途や、役割分担による採用配分の変化も検討する。特定カードや過去の期待解に合わせず、固定資料で成立する利益と残る不足を示す。",
+    "captured_at": "2026-09-13T14:56:08.127926+00:00",
+    "format": "rotation",
+    "class_name": "エルフ",
+    "revisions": [],
+    "sources": [
+      {
+        "source_hash": "0e7aabe9415eb7c99b52858df22267cb2e2cb7b918261845eadf48b51b022c11",
+        "title": "サンプルデッキレシピ",
+        "kind": "公開記事の全40枚リスト",
+        "location": "https://game8.jp/shadowverse-beyond/698543#hm_1",
+        "observed_at": "2026-09-13T15:59:20.087367+00:00",
+        "limitations": [
+          "指定したフォーマットの資料。カード本文・合法性・現在のTier・勝率はこの取得では確認しない。",
+          "記事の表示表とコピー先の相違、記事更新日時は同じ出典の取得情報を参照。"
+        ]
+      },
+      {
+        "source_hash": "493f4646924f9400e679f57b56cbb20bfa5e1af7b09ece3b2a49f2ad22c42b2b",
+        "title": "fragment-3の役割引受と小効果の再検討",
+        "kind": "inquiry-evidence",
+        "location": "experiment-fragments:ad5824306ef04733a7503c29cbc105b3",
+        "observed_at": null,
+        "limitations": []
+      },
+      {
+        "source_hash": "4a9132a632cccd188fb8719b3e53a188f1f17b47ee653999de0329bea0f3255e",
+        "title": "サンプルデッキレシピの取得情報",
+        "kind": "記事から取得した出典情報",
+        "location": "https://game8.jp/shadowverse-beyond/698543#hm_1",
+        "observed_at": "2026-09-13T15:59:20.087367+00:00",
+        "limitations": [
+          "指定したフォーマットの資料。カード本文・合法性・現在のTier・勝率はこの取得では確認しない。",
+          "記事の表示表とコピー先の相違、記事更新日時は同じ出典の取得情報を参照。"
+        ]
+      },
+      {
+        "source_hash": "54a1fa92ac29b5ba96c4e97febef0b5e3d9439fb3af1eead6ca1b135e49ba24e",
+        "title": "サンプルデッキレシピ",
+        "kind": "公開記事の全40枚リスト",
+        "location": "https://game8.jp/shadowverse-beyond/734200#hm_1",
+        "observed_at": "2026-09-13T15:59:20.043550+00:00",
+        "limitations": [
+          "指定したフォーマットの資料。カード本文・合法性・現在のTier・勝率はこの取得では確認しない。",
+          "記事の表示表とコピー先の相違、記事更新日時は同じ出典の取得情報を参照。"
+        ]
+      },
+      {
+        "source_hash": "5c897a8695527282f5de8acd9a752d44b2c9387671d13d7f9ad036a7ddfc51fb",
+        "title": "記事の説明本文",
+        "kind": "公開記事の説明",
+        "location": "https://game8.jp/shadowverse-beyond/734200",
+        "observed_at": "2026-09-13T15:59:20.043550+00:00",
+        "limitations": [
+          "記事本文の最初のh2見出しから関連記事の前までのテキストと画像alt・カード名辞書。目次・広告要素・非表示templateを除外。画像内の文字・動画・動的表示は未確認。",
+          "記事内の記述は出典の主張であり、公式能力・実戦の強さ・普及をこの取得で認定しない。"
+        ]
+      },
+      {
+        "source_hash": "7e685ce8b88ce8b48a1e95c708a3b8c1150e540741c2722c63ae192789df8227",
+        "title": "共通前段の未完成な着想",
+        "kind": "inquiry-result",
+        "location": "experiment-fragments:8541b82c44f84ebeafb8cbc8c36082df",
+        "observed_at": null,
+        "limitations": []
+      },
+      {
+        "source_hash": "bc6d1c730e3f53e60da99e1d72786e88fe7bf9015b7f1833bac7c07f4da751fe",
+        "title": "記事の説明本文",
+        "kind": "公開記事の説明",
+        "location": "https://game8.jp/shadowverse-beyond/698543",
+        "observed_at": "2026-09-13T15:59:20.087367+00:00",
+        "limitations": [
+          "記事本文の最初のh2見出しから関連記事の前までのテキストと画像alt・カード名辞書。目次・広告要素・非表示templateを除外。画像内の文字・動画・動的表示は未確認。",
+          "記事内の記述は出典の主張であり、公式能力・実戦の強さ・普及をこの取得で認定しない。"
+        ]
+      },
+      {
+        "source_hash": "ebd5ba46554322bfcb6c7648121b457f4711cd5af88ee34fe87aaeb4a7411cfb",
+        "title": "サンプルデッキレシピの取得情報",
+        "kind": "記事から取得した出典情報",
+        "location": "https://game8.jp/shadowverse-beyond/734200#hm_1",
+        "observed_at": "2026-09-13T15:59:20.043550+00:00",
+        "limitations": [
+          "指定したフォーマットの資料。カード本文・合法性・現在のTier・勝率はこの取得では確認しない。",
+          "記事の表示表とコピー先の相違、記事更新日時は同じ出典の取得情報を参照。"
+        ]
+      },
+      {
+        "source_hash": "f1e7c4acf8c8ab7e2c8c0f27bb4fadb7a8b3aa3c81050a89cf629b227b5ec282",
+        "title": "共通前段の未完成な着想",
+        "kind": "inquiry-result",
+        "location": "experiment-fragments:ad5824306ef04733a7503c29cbc105b3",
+        "observed_at": null,
+        "limitations": []
+      }
+    ],
+    "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+  },
+  "source_unchanged": true,
+  "formal_revisions": 0,
+  "formal_reviews": 0
+}

@@ -1,0 +1,154 @@
+{
+  "status": "develop_failed",
+  "run_id": "6b2c9e981ab348398f35f8ab32c095a8",
+  "started_at": "2026-09-13T18:01:18.487177+00:00",
+  "source": "/private/tmp/fragment-handoff-01-arms/B/source",
+  "output": "/private/tmp/fragment-handoff-01-arms/B/run",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:6b2c9e981ab348398f35f8ab32c095a8:develop",
+      "returncode": 124,
+      "run": {
+        "status": "timed_out",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/fragment-handoff-01-arms/B/run/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/fragment-handoff-01-arms/B/run/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/fragment-handoff-01-arms/B/run/develop",
+        "stdin": "/private/tmp/fragment-handoff-01-arms/B/run/develop/prompt.md",
+        "output": "/private/tmp/fragment-handoff-01-arms/B/run/develop-run",
+        "started_at": "2026-09-13T18:01:19.596746+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2361901.169247041,
+        "explicit_finish": true,
+        "timeout_seconds": 600.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 16136,
+        "worker_pid": 16242,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-13T20:29:47.608962+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T18:01:19.597061+00:00",
+            "elapsed_seconds": 0.0003089588135480881
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T18:01:19.597630+00:00",
+            "elapsed_seconds": 0.000879709143191576
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T18:01:19.641888+00:00",
+            "elapsed_seconds": 0.0451922919601202
+          },
+          {
+            "event": "deadline_observed",
+            "at": "2026-09-13T20:29:47.539688+00:00",
+            "elapsed_seconds": 600.0081647499464,
+            "elapsed_expired": true,
+            "utc_expired": false
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-13T20:29:47.544853+00:00",
+            "elapsed_seconds": 600.0132128340192,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-13T20:29:47.607878+00:00",
+            "elapsed_seconds": 600.0762217091396
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T20:29:47.608971+00:00",
+            "elapsed_seconds": 600.0773078338243
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T20:29:47.629287+00:00",
+            "elapsed_seconds": 600.0976250842214
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fragment-handoff-01",
+          "stage_id": "b-develop",
+          "status": "completed",
+          "begin_revision": 9,
+          "claimed_stage": {
+            "id": "b-develop",
+            "title": "B：同じ着想から考案",
+            "status": "running",
+            "started_at": "2026-09-13T18:01:19.596746+00:00",
+            "ended_at": null,
+            "note": "各1回。新しい出力で実行し、条件を事後変更しない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-01-arms/B/run/develop-run",
+            "budget_minutes": 10
+          },
+          "claimed_summary": "同じ3着想・2参考構築を使う2方式の考案を開始。各10分考案→10分別評価。入力差は発展方法の指示のみと実資料で確認。",
+          "end_revision": 12,
+          "synced_at": "2026-09-13T20:29:47.629274+00:00"
+        },
+        "elapsed_seconds": 600.077302583959,
+        "runner_returncode": 124,
+        "execution_returncode": 124
+      }
+    }
+  ],
+  "review_only": false,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 0,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "ccdf3367616a702ccccb3075961a456c40e1d2c55dad9ed3703faf6695ed9feb",
+    "packets/126758e996e9c2bcd1308c250c54f3fe4f4f0eedf1794291a21a72b2339b21af.json": "c48a6aa868369d521b9db04edc867c385e0cd1fc95259078667bd6e793adef79",
+    "packets/2e996a71a891d60d71e467e124d1273889e5e8544c37697dceee33103d1f7f86.json": "7418244939eda0094dc42012dc73f25f4fb02fdcfad484bfd580831212fb202f",
+    "packets/c64ae7d5d6ca6ab6348fd61b3f2ac462c78e45ee54832aaf9e5e89f57e519d55.json": "e795f2e84e0203691060d41ae4a53212a1e351f55fd127b461ded5b192509d51",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/0e7aabe9415eb7c99b52858df22267cb2e2cb7b918261845eadf48b51b022c11.json": "d81269501be328dd7017e1a38e25727bae818f8a2430dfeec683eee36073c98e",
+    "sources/4a9132a632cccd188fb8719b3e53a188f1f17b47ee653999de0329bea0f3255e.json": "3516f7bbe48219b0f58257e8999da67cc6b6ecc51e5f1c1018dfe6c5e7785e9c",
+    "sources/54a1fa92ac29b5ba96c4e97febef0b5e3d9439fb3af1eead6ca1b135e49ba24e.json": "01af1d1021ab2b7bcab9a6b5ed4bfec93ea7b4a580cbaa7ab1e0e4e7a6a0d153",
+    "sources/5c897a8695527282f5de8acd9a752d44b2c9387671d13d7f9ad036a7ddfc51fb.json": "749e67f423784a3436506729da540c7f9eceb5c1ffe4aaa60d655a7fc743c6d7",
+    "sources/7e685ce8b88ce8b48a1e95c708a3b8c1150e540741c2722c63ae192789df8227.json": "c8b78f700ba11f822df63b00ee24eaea1c14c689dd38b8bd59a7d7c2c7abddfd",
+    "sources/bc6d1c730e3f53e60da99e1d72786e88fe7bf9015b7f1833bac7c07f4da751fe.json": "8638b4e77fea5e0f5e9fdde053a862f14f86edc37d1717631ca112a320016b43",
+    "sources/ebd5ba46554322bfcb6c7648121b457f4711cd5af88ee34fe87aaeb4a7411cfb.json": "6af45c1bab1bd96e486d1193e2e85756201cc64811dfef0b0e74e1664d6cea5b"
+  },
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fragment-handoff-01",
+    "stage_id": "b-whole",
+    "status": "completed",
+    "begin_revision": 8,
+    "claimed_stage": {
+      "id": "b-whole",
+      "title": "B：考案から別評価・最終保存まで",
+      "status": "running",
+      "started_at": "2026-09-13T18:01:18.487177+00:00",
+      "ended_at": null,
+      "note": "各1回。新しい出力で実行し、条件を事後変更しない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-01-arms/B/run",
+      "budget_minutes": 20
+    },
+    "claimed_summary": "同じ3着想・2参考構築を使う2方式の考案を開始。各10分考案→10分別評価。入力差は発展方法の指示のみと実資料で確認。",
+    "end_revision": 13,
+    "synced_at": "2026-09-13T20:29:47.923688+00:00"
+  },
+  "failure": "担当の実行が完了していないため次へ進みません",
+  "ended_at": "2026-09-13T20:29:47.905441+00:00"
+}

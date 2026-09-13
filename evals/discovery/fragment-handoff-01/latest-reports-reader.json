@@ -1,0 +1,38 @@
+{
+  "started_at": "2026-09-13T22:01:17+00:00",
+  "ended_at": "2026-09-13T22:01:50.798522+00:00",
+  "verdict": "PASS",
+  "required_fixes": [],
+  "target_count": 4,
+  "confirmed_count": 4,
+  "targets": [
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fragment-handoff-01/README.md",
+      "sha256": "912911ecc27d1d875a7db27a68429b050e4b000f52894e8232011f920ea1059a",
+      "reader_finding": "両方式が正式案未提出・正式案と別評価0件、方法の有用性比較は未達、本採用保留と明示されている。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/fragment-handoff-02/README.md",
+      "sha256": "209d01ab2178d1c17b9d0112446bda56b81811d79aa5cb068c4143247becf66d",
+      "reader_finding": "新試行の予定と判定方法の説明であり、正式案や別評価の完了結果は記載されていない。工程分割と時間増加を片方だけの効果としない限定がある。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-explicit-finish-01/README.md",
+      "sha256": "791026a515eaeb31d8da0cae0eda488e54267e431593a58dd50a5975929c2f03",
+      "reader_finding": "実装検査の合格と実調査の未提出・採用判断保留を区別している。別用途での終了成功を通常調査・別照合全体の完了証明へ広げていない。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/source-specific-read-01/README.md",
+      "sha256": "8caec29aaa285bc07bbd9af22ce4d86a0b9dad66faf5cc4873a65e3e8633fd49",
+      "reader_finding": "資料1件の取得と機能検査の成功を示し、時間短縮・報告提出完了はこれから確認すると明示している。"
+    }
+  ],
+  "conclusion": "必須修正は確認しなかった。機能実装・資料保存の確認と、正式案提出や方法の有用性を分けて読める。実利用未達を方法の合格・常用採用とは読ませていない。",
+  "scope": "4本文だけの読み取りによる読者確認。ゲーム内容の検算、現在の実行状態やリンク先との事実照合はしていない。fragment-handoff-02の実際の着手状況は本文だけでは確定せず、結果未記載として扱った。",
+  "constraints": {
+    "private_logs_read": false,
+    "other_materials_read": false,
+    "db_read_or_written": false,
+    "repo_edited": false
+  }
+}

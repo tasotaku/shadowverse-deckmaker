@@ -1,22 +1,22 @@
 {
   "id": "inquiry-explicit-finish-01",
-  "revision": 9,
-  "saved_at": "2026-09-13T16:55:31.451093+00:00",
+  "revision": 16,
+  "saved_at": "2026-09-13T22:05:21.765218+00:00",
   "actor": "codex",
-  "reason": "報告提出の余白を固定する小変更を実用する",
+  "reason": "途中成果と後続の作業先を記録",
   "record": {
     "id": "inquiry-explicit-finish-01",
     "title": "調査の保存確認を終えた担当から終了を明示する",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "残り3分で取得を打ち切る指示を隔離して試す。未提出草稿と出典を引き継ぎ、新しい報告→別照合の完了を確認する。",
+    "status": "waiting",
+    "summary": "通常調査と時間配分の補足は未提出。資料を1件ずつ選ぶ改善 source-specific-read-01 の実利用結果を待って、終了機能の採否を確定する。",
     "method": "公開添付・全文再読・最新reportを確認した担当がfinishし、監視側が停止前後の同一保存物を再検査する",
     "procedure": "実発生と最小設計を確認→独立作業先で実装と回帰検査→親側で差分確認→保存済み問いで実用して確認",
     "inputs": "clean-input-discovery-01の期限停止記録、既存の明示終了・調査入口と保存検査。",
     "criteria": "未指定の自然終了・既存cycle・期限や異常優先を保持。明示終了は資料と根拠操作を固定し、停止前後に同一証拠を検査。元失敗を書き換えず、報告内容を自動採点しない。",
     "result": {
       "outcome": "mixed",
-      "summary": "268実装検査は合格。実調査は10分で未提出のまま停止。別の共通着想収集では明示終了と再検査まで完了。",
+      "summary": "実装検査と共通収集での終了は確認。通常調査・時間配分追加の継続はいずれも10分で未提出。",
       "limitations": "今回の実調査は終了要求自体に未到達。通常調査→別照合全体の実利用は未確認。別担当切分けの時刻差は59分21秒で、稼働内訳は未計測。"
     },
     "decision": {
@@ -101,28 +101,28 @@
       {
         "id": "reserve-whole",
         "title": "保存済み草稿の継続から別照合・最終保存まで",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "status": "interrupted",
+        "started_at": "2026-09-13T16:55:31.713744+00:00",
+        "ended_at": "2026-09-13T19:27:26.536314+00:00",
+        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。\n起動処理を開始。実行記録: /private/tmp/inquiry-time-reserve-01-live\n調査・照合が途中で停止。全実行の終了状態: inquiry_failed。停止理由: 担当が完了していないため次へ進みません。結果・採否は別途確認する。",
         "budget_minutes": 20
       },
       {
         "id": "reserve-inquiry",
         "title": "保存済み草稿と出典を照合して新しい報告を提出",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "status": "interrupted",
+        "started_at": "2026-09-13T16:55:32.118629+00:00",
+        "ended_at": "2026-09-13T19:27:25.907712+00:00",
+        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。\n起動処理を開始。実行記録: /private/tmp/inquiry-time-reserve-01-live/inquiry-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "reserve-inspect",
         "title": "新しい報告を別担当が照合",
-        "status": "planned",
+        "status": "interrupted",
         "started_at": null,
-        "ended_at": null,
-        "note": "残り3分で新規取得を終了。公開保存と終了検査は従来どおり。",
+        "ended_at": "2026-09-13T19:27:26.536314+00:00",
+        "note": "新しい報告未提出のため起動なし。",
         "budget_minutes": 10
       }
     ],
@@ -158,6 +158,13 @@
       "evals/discovery/inquiry-explicit-finish-01/implementation/test_inquiry_explicit_finish_temp.py",
       "evals/discovery/inquiry-explicit-finish-01/implementation/test-plan.md",
       "evals/discovery/inquiry-explicit-finish-01/implementation/final-new-tests.txt",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/public-operations.json.gz",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/result.json",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/prompt.md",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/session.tar.gz",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/verification.json",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/public-config.json",
+      "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/run.json",
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_novelty_followup_temp.py",
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_inquiry_temp.py",
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_deadline_temp.py",
@@ -173,8 +180,8 @@
   "evidence": [
     {
       "path": "evals/discovery/inquiry-explicit-finish-01/README.md",
-      "sha256": "259d3d7bee37e07e56d5780e8b501e3daddbee9db2c9bfe0b095c70061933eff",
-      "size": 2232
+      "sha256": "791026a515eaeb31d8da0cae0eda488e54267e431593a58dd50a5975929c2f03",
+      "size": 2346
     },
     {
       "path": "evals/discovery/inquiry-explicit-finish-01/design-review.json",
@@ -375,6 +382,41 @@
       "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-input.json",
       "sha256": "93cee7e8e57959e2120a6707a3246d6770b5fb8bbaf19b70349509bc944964eb",
       "size": 10626
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/prompt.md",
+      "sha256": "f80513069e323f579fd12a795d9d45c462e63d846dc53d160ab64595e6b20309",
+      "size": 5576
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/public-config.json",
+      "sha256": "c3758f58adfc1439b049329cdf9fe2f2e3f05eabda58c6acba853d1c694d4ef4",
+      "size": 325
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/public-operations.json.gz",
+      "sha256": "795eacc2fb91d078137291a1c0cc2ea32021b0159dd41ae061cb5ae09c8e952d",
+      "size": 1134258
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/result.json",
+      "sha256": "35ac4c081df671ac34f4875cd30a66ef625dd1869fd2d90cb374c1321de48c79",
+      "size": 11844
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/run.json",
+      "sha256": "6affb3014914d3df680e55bfc7226ec5d41e695c1d1d130ba1aae6908f1bcdfe",
+      "size": 3588
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/session.tar.gz",
+      "sha256": "22cdabe48738574ee962cd23df3c5ac1c4f972bea06729150f14df653f488856",
+      "size": 3498305
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/time-reserve-timeout/verification.json",
+      "sha256": "88f972e23b76c2e84127c51abf41b3c2f9a7a845e4a6b425374adef4e2a011af",
+      "size": 600
     }
   ]
 }

@@ -1,0 +1,125 @@
+{
+  "id": "source-specific-read-01",
+  "revision": 5,
+  "saved_at": "2026-09-13T22:05:21.773734+00:00",
+  "actor": "codex",
+  "reason": "途中成果と後続の作業先を記録",
+  "record": {
+    "id": "source-specific-read-01",
+    "title": "必要な追加資料1件を選んで読み、報告提出まで確認する",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "171検査と型検査合格。前回と同じ22資料・同じ10分枠で、索引から本文を選ぶ実利用を開始する。",
+    "method": "資料の本文を除いた索引と、識別値で選んだ1件の本文読出し。報告再読の証拠をこの経路でも検査する。",
+    "procedure": "限定実装→171検査と型検査→実資料の完全一致→同じ資料の調査/別照合→提出と終了証拠を検査",
+    "inputs": "前回の未提出草稿を含む22資料、同じ正式改訂2と残問。同じ時間配分補足、各600秒。",
+    "criteria": "別資料を読出し出力へ混ぜず、必要な報告を全文再読して担当本人の提出と終了後の同一性を確認。問いの解決と保存成功は別。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T21:59:27.852642+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "integration",
+        "title": "実資料22件から指定草稿だけを取得して照合",
+        "status": "completed",
+        "started_at": "2026-09-13T21:59:27.852642+00:00",
+        "ended_at": "2026-09-13T21:59:27.942923+00:00",
+        "note": "本文6289文字が保存草稿と完全一致。約140万文字の別画像資料を混ぜない。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "live-whole",
+        "title": "調査から別照合と最終保存まで",
+        "status": "running",
+        "started_at": "2026-09-13T21:59:28.283360+00:00",
+        "ended_at": null,
+        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live",
+        "budget_minutes": 20
+      },
+      {
+        "id": "live-inquiry",
+        "title": "同じ保存資料の調査報告を提出",
+        "status": "running",
+        "started_at": "2026-09-13T21:59:28.680372+00:00",
+        "ended_at": null,
+        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live/inquiry-run",
+        "budget_minutes": 10
+      },
+      {
+        "id": "live-inspect",
+        "title": "新しい報告の別照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ600秒と時間配分補足を維持。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/source-specific-read-01/live-input.json",
+      "evals/discovery/source-specific-read-01/mypy.txt",
+      "evals/discovery/source-specific-read-01/tests.txt",
+      "evals/discovery/source-specific-read-01/integration-check.json",
+      "evals/discovery/source-specific-read-01/tests.xml",
+      "evals/discovery/source-specific-read-01/README.md",
+      "evals/discovery/source-specific-read-01/verification.json",
+      "evals/discovery/source-specific-read-01/test_source_specific_read_temp.py",
+      "evals/discovery/source-specific-read-01/test-plan.md"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/source-specific-read-01/README.md",
+      "sha256": "8caec29aaa285bc07bbd9af22ce4d86a0b9dad66faf5cc4873a65e3e8633fd49",
+      "size": 823
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/integration-check.json",
+      "sha256": "39da15b97112d29191c8e871ec2895f32e45003f30ec458039970d53d3e68984",
+      "size": 418
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/live-input.json",
+      "sha256": "71dd1082ad0ae1d3184dcd72c5179d840f60ece395cdc4813a648b2830fd4e74",
+      "size": 10019
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/mypy.txt",
+      "sha256": "8228fcc5ce46d42d01caf3cd941f4e9c5f2bcc372bb5b147a2f0572d2dd675a8",
+      "size": 43
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/test-plan.md",
+      "sha256": "6f82958b0c241ce67426a10fc0a0ce2c6573864c325fbb0c65c5ce25408df224",
+      "size": 1275
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/test_source_specific_read_temp.py",
+      "sha256": "12a5946a3b56210aa071ad9d157777c76a865ecdd7bbf648a4d3225d64bfccff",
+      "size": 8224
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/tests.txt",
+      "sha256": "969741089725fa71d461d048261b500f80c212ef539dc3c13aa3268bacb3aee1",
+      "size": 271
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/tests.xml",
+      "sha256": "34898e69e304be0744f830cd07fe7425db05d1a85c5e6a405c621b5bae327d84",
+      "size": 24726
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/verification.json",
+      "sha256": "4d0e08a0e98751799e258f5df6ff4e62f3c7b92cdfe9494b86b9962fd97651c8",
+      "size": 2482
+    }
+  ]
+}
