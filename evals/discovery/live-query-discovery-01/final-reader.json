@@ -1,0 +1,87 @@
+{
+  "verdict": "PASS",
+  "started_at_utc": "2026-09-13 00:15:51 UTC",
+  "ended_at_utc": "2026-09-13 00:17:52 UTC",
+  "wall_clock_seconds": 121,
+  "guideline_seconds": 180,
+  "active_work_seconds": null,
+  "active_work_note": "能動作業時間を測定していないため推定しない。",
+  "review_scope": {
+    "type": "読み取り専用・初見の本文レビュー",
+    "reader": "結果を読み、探索方法の採否と次の検証の方向を判断する利用者",
+    "known_knowledge": "本文から確認できたものだけ。背景会話を根拠にしない。",
+    "unknown_knowledge": "実際の読者の用語知識と、次の検証の詳細状態",
+    "edited_files": [
+      "/tmp/live-query-discovery-final-reader.json"
+    ]
+  },
+  "checked_targets": [
+    "evals/discovery/live-query-discovery-01/README.md",
+    "docs/progress.md 冒頭の2026年09月13日09:14:21更新部分",
+    "evals/discovery/live-query-discovery-01/verification.json",
+    "evals/discovery/live-query-discovery-01/method-outcome.json",
+    "evals/discovery/live-query-discovery-01/comparison-scope-check.json",
+    "evals/discovery/live-query-discovery-01/journal-record.json",
+    "http://127.0.0.1:8765/api/experiments/live-query-discovery-01"
+  ],
+  "findings": [
+    {
+      "severity": "確認済み",
+      "topic": "方法・結果・保留理由",
+      "finding": "同じ資料から検索入口と案内の有無だけを比較し、各1案・各1別評価を完了、試用推薦0対0、指定状態の手順は条件付き成立、試す価値は追加検討、独自性は未確認と読める。検索前の本文取得と評価者の寄与が明確に分けられ、検索補助の既存採用を撤回せず発見力の追加認定を保留する判断に前提飛躍はない。",
+      "sources": [
+        "verification.json sides",
+        "method-outcome.json conclusion/query_use/reviewer_contributions_excluded_from_developer_credit"
+      ]
+    },
+    {
+      "severity": "確認済み",
+      "topic": "次の検証",
+      "finding": "同じ保存案を後の評価を渡さず改訂し、同じ変更枠を争う代案の比較を促す指示を試す意図が本文から分かる。比較欄の充足や棄却だけを成功扱いせず、用途・配分の変更と試す理由への接続を判断する説明がある。比較指示の不足を根本原因とは断定していない。",
+      "sources": [
+        "README.md 次に変えて試すこと",
+        "comparison-scope-check.json findings/scope"
+      ]
+    },
+    {
+      "severity": "確認済み",
+      "topic": "数値・時間超過",
+      "finding": "各方式の案数・評価数・検索回数1・候補23、考案17分29.6秒/17分32.0秒、別評価5分23.8秒/5分23.1秒、終了から回収89分14秒/89分03秒、最初の観測から回収48分46秒は許可されたJSONと一致。記事修正78分41秒と方法の別評価約51分は経過時間として記し、目安超過・原因不明・能動作業時間不明も残っている。",
+      "sources": [
+        "verification.json",
+        "method-outcome.json time_note/start_time_precision",
+        "journal-record.json record.stages"
+      ]
+    },
+    {
+      "severity": "確認済み",
+      "topic": "利用先",
+      "finding": "対象APIのrecordはjournal-record.jsonのrecordと完全一致。revision 20、対象status completed、decision.status deferred。18工程 = completed 16 + interrupted 2。READMEと進捗冒頭の結果・採否・工程説明と矛盾しない。",
+      "api_revision": 20,
+      "total_stages": 18,
+      "completed_stages": 16,
+      "interrupted_stages": 2
+    },
+    {
+      "severity": "軽微・任意改善",
+      "topic": "保存案の指示対象",
+      "location": "README.md:27 / docs/progress.md:11",
+      "finding": "『同じ保存済みの仮案』『同じ保存案』だけでは、今回の入口あり・なしのどちらの案を次に使うかは本文だけでは確定できない。次の検証へのリンクはあるため採否理解を妨げる欠陥ではない。",
+      "suggested_change": "次の検証の固定記録で確認して、使う側または案の名称を一語添える。今回許可された照合資料だけから側を推定しない。"
+    },
+    {
+      "severity": "軽微・任意改善",
+      "topic": "報告保存の時間",
+      "location": "README.md:77",
+      "finding": "『採否・次の検証条件・報告を記録』の0.00分は保存された開始終了に一致する。ただし一覧だけ見ると報告作成全体の所要時間と取り違えられる余地がある。",
+      "suggested_change": "工程名を『採否・次の検証条件・報告を保存』とするか、『保存操作のみ。文書作成時間は未計測』と注記する。"
+    }
+  ],
+  "undefined_terms_assessment": "採否を逆に理解させる重大な未定義語は見つからない。『試用推薦』は本文に定義がある。『指定状態』は後段の同じ開始状態からの比較説明で補われる。ゲームの用語知識そのものは読者本人に確認していない。",
+  "limitations": [
+    "次のsame-slot-alternative-01のAPI・資料は指定範囲外のため未取得。次の試験が未起動という現在状態と改訂15分/別評価10分という固定上限の独立照合は本レビューに含めない。",
+    "記事取得修正の77検査などの数はjournal-record.json内の記録との照合に限定し、元検査の再実行や生データ照合はしていない。",
+    "API一覧、Codex private stdout/reasoningログは取得・閲覧していない。",
+    "実際の読者本人による理解確認ではなく、会話の背景を渡されていない別担当の初見検査。"
+  ]
+}

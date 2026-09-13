@@ -4,7 +4,7 @@ import hashlib, io, json, subprocess, tarfile
 from svdeck.discovery_run import manifest
 from svdeck.journal_store import Journal
 root=Path('/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker');e=root/'evals/discovery/same-slot-alternative-01'
-implementation=json.loads((e/'implementation.json').read_text());protocol=json.loads((e/'protocol.json').read_text());assert implementation['verdict']=='PASS'
+implementation=json.loads((e/'implementation.json').read_text());protocol=json.loads((e/'protocol.json').read_text());assert implementation['result']['verdict']=='PASS'
 started=datetime.now(timezone.utc).isoformat();result={}
 for side,commit in [('a',protocol['base_commit']),('b',implementation['commit'])]:
  destination=Path('/tmp/sv-same-slot-alternative-01-'+side+'-launch');destination.mkdir(exist_ok=False);runtime=destination/'runtime';runtime.mkdir()

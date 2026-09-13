@@ -1,22 +1,22 @@
 {
   "id": "same-slot-alternative-01",
-  "revision": 3,
-  "saved_at": "2026-09-13T00:15:05.278103+00:00",
+  "revision": 10,
+  "saved_at": "2026-09-13T00:24:52.125403+00:00",
   "actor": "codex-root",
-  "reason": "後の評価を含まない共通入力を復元確認",
+  "reason": "入力復元と実装固定の工程名を区別し、時間表の区切りを整える",
   "record": {
     "id": "same-slot-alternative-01",
     "title": "同じ採用枠を争う代案を比較へ戻す案内",
     "category": "method",
     "status": "running",
-    "summary": "限定試作の条件を固定。既知代案を比較範囲へ戻す短い案内を隔離して検証する。",
+    "summary": "現行・追加版とも改訂を開始。実際の入力は案内の一文以外同じことを確認。改訂15分・別評価10分を各一度。",
     "method": "現行の通常構築比較に、同じ変更枠の有力な既知代案を比較へ戻す案内だけを加える。",
     "procedure": "同じ仮比較から、採用枠を争う既知代案を比較へ戻す案内を検証する。探索担当が既に保存したlive-query-discovery-01 B初回案の提出終了時点を共通入力にし、後の別評価は与えない。評価前の封じた保存内容から復元し、正式案1件・評価0件・資料25件を確認する。旧案は既知の入力として扱い、新規初見の探索とは呼ばない。\nAは現行のDEVELOP、Bは資料内に同じ不足を満たす有力な代案がある場合、同じ変更枠・共通構築・開始状態からその代案も一件比較し、差を採用配分/用途/枝の継続判断へ戻す案内を加える。特定カード名・タグ・期待する代案・後の別評価の答えは両方に与えない。カード入力・本文と双方注記・query・既存回答形式・別評価基準・FINISH・DEVELOP_RULESは同一。\n改訂15分・別評価10分を各一度、既存の明示終了を使う。自動の追加改訂・時間切れやり直しはしない。比較欄を埋めたことや、弱い案を落とせたことだけを発見力の改善にはしない。主成果は、代案との比較が実際に用途/配分/採用候補の変更へ戻り、通常構築との比較から試す理由が残るか。試用推薦・手順成立・独自性を分ける。提案担当が見つけた比較と別評価が追加した比較を区別する。\n両方が同じ比較を自発的に補えば追加指示の上乗せとはしない。異なる案への発展や各1回の判定差だけで一般的な因果効果を断定しない。出力の有用性が未確立なら本体への指示追加は保留する。今回の旧案にしか効かない可能性を残す。提出/評価の失敗や時間超過、待ち・欠測も記録する。",
     "inputs": "前のB初回案の提出終了時点。後の別評価を含めない。同じ保存仮比較から改訂する既知入力。",
     "criteria": "同じ仮比較から、採用枠を争う既知代案を比較へ戻す案内を検証する。探索担当が既に保存したlive-query-discovery-01 B初回案の提出終了時点を共通入力にし、後の別評価は与えない。評価前の封じた保存内容から復元し、正式案1件・評価0件・資料25件を確認する。旧案は既知の入力として扱い、新規初見の探索とは呼ばない。\nAは現行のDEVELOP、Bは資料内に同じ不足を満たす有力な代案がある場合、同じ変更枠・共通構築・開始状態からその代案も一件比較し、差を採用配分/用途/枝の継続判断へ戻す案内を加える。特定カード名・タグ・期待する代案・後の別評価の答えは両方に与えない。カード入力・本文と双方注記・query・既存回答形式・別評価基準・FINISH・DEVELOP_RULESは同一。\n改訂15分・別評価10分を各一度、既存の明示終了を使う。自動の追加改訂・時間切れやり直しはしない。比較欄を埋めたことや、弱い案を落とせたことだけを発見力の改善にはしない。主成果は、代案との比較が実際に用途/配分/採用候補の変更へ戻り、通常構築との比較から試す理由が残るか。試用推薦・手順成立・独自性を分ける。提案担当が見つけた比較と別評価が追加した比較を区別する。\n両方が同じ比較を自発的に補えば追加指示の上乗せとはしない。異なる案への発展や各1回の判定差だけで一般的な因果効果を断定しない。出力の有用性が未確立なら本体への指示追加は保留する。今回の旧案にしか効かない可能性を残す。提出/評価の失敗や時間超過、待ち・欠測も記録する。",
     "result": {
       "outcome": "unassessed",
-      "summary": "未判定",
+      "summary": "隔離試作と122検査・型検査は成功。両方式の改訂は実行中で、有用性と採否は未判定。",
       "limitations": "未記録"
     },
     "decision": {
@@ -29,15 +29,15 @@
       {
         "id": "prototype",
         "title": "案内の限定試作と関連検査",
-        "status": "running",
-        "started_at": null,
-        "ended_at": null,
-        "note": "担当の実施時計を報告後に記録。本体には未反映。特定カードや新しい回答項目を追加しない。",
+        "status": "completed",
+        "started_at": "2026-09-13T00:11:44+00:00",
+        "ended_at": "2026-09-13T00:16:58.955542+00:00",
+        "note": "隔離試作と検査は5分15秒。実装1分3秒・検査1分58秒を含む。関連122件と型検査、実入力の公開読出し差分を確認。追加文以外の条件保持。本体未採用。",
         "budget_minutes": 10
       },
       {
         "id": "prepare",
-        "title": "評価前の同じ仮比較と実装を固定",
+        "title": "評価前の同じ仮比較を復元",
         "status": "completed",
         "started_at": "2026-09-13T00:15:04.899503+00:00",
         "ended_at": "2026-09-13T00:15:05.102826+00:00",
@@ -45,12 +45,21 @@
         "budget_minutes": 5
       },
       {
+        "id": "runtime-freeze",
+        "title": "両方式の実装を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T00:18:59.443426+00:00",
+        "ended_at": "2026-09-13T00:18:59.670347+00:00",
+        "note": "コード差分は考案案内を含む1ファイルだけ。カード・資料の入力を保持。",
+        "budget_minutes": 5
+      },
+      {
         "id": "a-develop",
         "title": "現行の改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.208233+00:00",
         "ended_at": null,
-        "note": "同じ入力で一度。具体カードの答えは与えない。",
+        "note": "同じ入力で一度。具体カードの答えは与えない。\n起動処理を開始。実行記録: /private/tmp/sv-same-slot-alternative-01-a-live/develop-run",
         "budget_minutes": 15
       },
       {
@@ -65,10 +74,10 @@
       {
         "id": "b-develop",
         "title": "追加版の改訂",
-        "status": "planned",
-        "started_at": null,
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.205386+00:00",
         "ended_at": null,
-        "note": "同じ入力で一度。具体カードの答えは与えない。",
+        "note": "同じ入力で一度。具体カードの答えは与えない。\n起動処理を開始。実行記録: /private/tmp/sv-same-slot-alternative-01-b-live/develop-run",
         "budget_minutes": 15
       },
       {
@@ -79,6 +88,15 @@
         "ended_at": null,
         "note": "同じ入力で一度。具体カードの答えは与えない。",
         "budget_minutes": 10
+      },
+      {
+        "id": "launch-report-check",
+        "title": "報告と既存進捗画面の記録を別担当が確認",
+        "status": "completed",
+        "started_at": "2026-09-13T00:22:05+00:00",
+        "ended_at": "2026-09-13T00:23:26+00:00",
+        "note": "81秒で方法・試す理由・検証条件・採否未判定が読め、既存API第8版と一致すると確認。探索AIの成果は未評価。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
@@ -87,14 +105,56 @@
       "evals/discovery/same-slot-alternative-01/preparation.json",
       "evals/discovery/same-slot-alternative-01/input-finish-request.json",
       "evals/discovery/same-slot-alternative-01/input.tar.gz",
-      "evals/discovery/same-slot-alternative-01/prepare-input.py"
+      "evals/discovery/same-slot-alternative-01/prepare-input.py",
+      "evals/discovery/same-slot-alternative-01/implementation.json",
+      "evals/discovery/same-slot-alternative-01/implementation.patch",
+      "evals/discovery/same-slot-alternative-01/implementation-evidence.tar.gz",
+      "evals/discovery/same-slot-alternative-01/public-packet-scope.json",
+      "evals/discovery/same-slot-alternative-01/freeze-runtime.py",
+      "evals/discovery/same-slot-alternative-01/a-runtime.json",
+      "evals/discovery/same-slot-alternative-01/b-runtime.json",
+      "evals/discovery/same-slot-alternative-01/launch-settings.json",
+      "evals/discovery/same-slot-alternative-01/paired-launch-verification.json",
+      "evals/discovery/same-slot-alternative-01/verify-launch.py",
+      "evals/discovery/same-slot-alternative-01/launch-reader.json",
+      "evals/discovery/same-slot-alternative-01/launch-delivery-verification.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/same-slot-alternative-01/README.md",
-      "sha256": "823fcf1b75a88ad9a314af198197757082e8ea526148a326ef8689c99d02f024",
-      "size": 1049
+      "sha256": "0b466a28bedc57a07d9b4513b42db6bb769fce53fd72585859231e1e5bcca2d1",
+      "size": 5366
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/a-runtime.json",
+      "sha256": "6d8f8115ebd907a2c9dc6ac5655a4857a264960a3ebf8ac95bab1ba1210d1898",
+      "size": 4160
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/b-runtime.json",
+      "sha256": "a1adf2bdf8765c2501cfa5b624d80d2662d52086ed64fe3c1f6e97e851435086",
+      "size": 4160
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/freeze-runtime.py",
+      "sha256": "27c82f7111f066f06a00c3d8e66af30572dd100052e9b85e0d8d9389fe05b243",
+      "size": 2227
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/implementation-evidence.tar.gz",
+      "sha256": "02d88ef1b3a0287fd56018c52cfb4d1257c462301125fa1ddaba43de62a0b324",
+      "size": 1457985
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/implementation.json",
+      "sha256": "ef54cc9ca863016d7b25b8d3daaee45c4cc684a3288ab693e61a6614c8304c11",
+      "size": 15679
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/implementation.patch",
+      "sha256": "fbde0eda89872778e9a40fadd254948fc73fd6ac12cb5bf25dd4facec8908db5",
+      "size": 3150
     },
     {
       "path": "evals/discovery/same-slot-alternative-01/input-finish-request.json",
@@ -105,6 +165,26 @@
       "path": "evals/discovery/same-slot-alternative-01/input.tar.gz",
       "sha256": "ea24d03bc28c4b5b5c331da60f6df005b22ecbd17e47f993bf26d46db0f777c4",
       "size": 1469172
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/launch-delivery-verification.json",
+      "sha256": "60b143e1c3a8107c3bd8de8e4fe35418afd3cba5de54dff5369c81db1e5a57b5",
+      "size": 1111
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/launch-reader.json",
+      "sha256": "73226b24829964f9590fb3e66bf2f239699a0d04a3b3f157c00972bc340d6d7d",
+      "size": 6765
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/launch-settings.json",
+      "sha256": "c4608bf100303b346089fcf178d983005d101567f905cfbe364414307d2848a2",
+      "size": 662
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/paired-launch-verification.json",
+      "sha256": "6bf175708b366435187a42bb192f5ad07714204f95f0b646f5450e53da544ed5",
+      "size": 1811
     },
     {
       "path": "evals/discovery/same-slot-alternative-01/preparation.json",
@@ -120,6 +200,16 @@
       "path": "evals/discovery/same-slot-alternative-01/protocol.json",
       "sha256": "735b516d484a6f833b3c7e8bee37e2dc7d57dfe85c84ff18fcf236b48ce7c188",
       "size": 2432
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/public-packet-scope.json",
+      "sha256": "b2cb05d8ed94e7c1eba06ac169c3f38f03d5f12b3e82c4588ab52fd13115ef23",
+      "size": 10884
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/verify-launch.py",
+      "sha256": "903fcf15325baec001a209561a58478d68b51057665c22c16a794244c0f4841c",
+      "size": 3578
     }
   ]
 }

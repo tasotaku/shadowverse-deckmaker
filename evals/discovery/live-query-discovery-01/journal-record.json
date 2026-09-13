@@ -1,9 +1,9 @@
 {
   "id": "live-query-discovery-01",
-  "revision": 20,
-  "saved_at": "2026-09-13T00:14:21.566652+00:00",
+  "revision": 21,
+  "saved_at": "2026-09-13T00:18:59.333299+00:00",
   "actor": "codex-root",
-  "reason": "検索ありなしの完了結果・保留理由・次の限定試験と全工程時間を記録",
+  "reason": "別担当の読者確認を保存し、次の元案と保存処理の時間範囲を明記",
   "record": {
     "id": "live-query-discovery-01",
     "title": "考案中に検索できることが案の発展につながるか",
@@ -181,11 +181,11 @@
       },
       {
         "id": "report-result",
-        "title": "採否・次の検証条件・報告を記録",
+        "title": "採否報告の保存処理",
         "status": "completed",
         "started_at": "2026-09-13T00:14:21.513496+00:00",
         "ended_at": "2026-09-13T00:14:21.515148+00:00",
-        "note": "両方式の評価結果と検索前の取得を区別し、試用推薦0対0と本採用保留を記録。次試験は旧案からの改訂として固定。",
+        "note": "両方式の評価結果と検索前の取得を区別し、試用推薦0対0と本採用保留を記録。次試験は旧案からの改訂として固定。 計時は保存スクリプトの実行だけで、執筆・判断の全時間ではない。",
         "budget_minutes": 5
       }
     ],
@@ -232,14 +232,15 @@
       "evals/discovery/live-query-discovery-01/b",
       "evals/discovery/live-query-discovery-01/method-outcome.json",
       "evals/discovery/live-query-discovery-01/comparison-scope-check.json",
-      "evals/discovery/live-query-discovery-01/followup-decision.json"
+      "evals/discovery/live-query-discovery-01/followup-decision.json",
+      "evals/discovery/live-query-discovery-01/final-reader.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/live-query-discovery-01/README.md",
-      "sha256": "eb583f2d6a9674b26fcfb377fa96e7a0c5513d568ba43f18c4246d80dd66f5c2",
-      "size": 11454
+      "sha256": "11b888c731897fc8eb06f63cfc1ef30a3a10658253a259afbf3507a95b9d8149",
+      "size": 11614
     },
     {
       "path": "evals/discovery/live-query-discovery-01/a/develop/finish-config.json",
@@ -505,6 +506,11 @@
       "path": "evals/discovery/live-query-discovery-01/failure-observation.json",
       "sha256": "6bd57f347315066a64759ddcd78382d4e1f214196914023e473f231a1a6dc431",
       "size": 370
+    },
+    {
+      "path": "evals/discovery/live-query-discovery-01/final-reader.json",
+      "sha256": "c551b67f0ecd7b600f8d3478663a76408a856a885351e246e48e71419365f44e",
+      "size": 5866
     },
     {
       "path": "evals/discovery/live-query-discovery-01/followup-decision.json",

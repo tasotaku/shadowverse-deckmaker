@@ -1,0 +1,427 @@
+{
+  "started_at": "2026-09-13T00:11:44+00:00",
+  "worktree": "/tmp/sv-same-slot-alternative-01-worktree",
+  "branch": "codex/same-slot-alternative-01",
+  "base_commit": "251a5c66f28a2257d1aeaa8d916c9738178f4b25",
+  "phases": {
+    "implementation": {
+      "started_at": "2026-09-13T00:13:30.182773+00:00",
+      "ended_at": "2026-09-13T00:14:33.293817+00:00",
+      "elapsed_seconds": 63.111044
+    },
+    "verification": {
+      "started_at": "2026-09-13T00:15:00.941876+00:00",
+      "ended_at": "2026-09-13T00:16:58.877404+00:00",
+      "elapsed_seconds": 117.935528
+    }
+  },
+  "failures": [
+    {
+      "phase": "inspection",
+      "command": "rg -n 'DEVELOP|REVIEW|FINISH' svdeck/discovery*",
+      "exit_code": 1,
+      "error": "zsh: no matches found: svdeck/discovery*",
+      "resolution": "rg --filesでsrc配下を特定して読み直した"
+    }
+  ],
+  "real_discovery_ai_started": false,
+  "adoption": "未採用",
+  "exact_instruction": "資料内に同じ不足を満たす有力な代案がある場合は、同じ変更枠・共通構築・開始状態からその代案も1件比較し、差を採用配分・用途・枝の継続判断へ戻してください。\n",
+  "design_commit": "905fca4286d9d89d9c3feaeb9eecb613d89ea57c",
+  "test_scope": [
+    {
+      "group": "happy_path",
+      "behavior": "公開の初回・改訂用packetへ案内が載り、その他のデータと回答形式は同じ",
+      "coverage": "既存公開往復テストと公開CLIの基準版比較"
+    },
+    {
+      "group": "edge",
+      "behavior": "追加資料0件・旧packet・review・finish用packetを保持する",
+      "coverage": "既存資料/読出しテストと公開CLIの基準版比較"
+    },
+    {
+      "group": "error_path",
+      "behavior": "不正引用・非合法札・壊れた入力・自己評価を従来通り拒む",
+      "coverage": "tests/test_discovery.py と tests/test_discovery_sources.py"
+    }
+  ],
+  "tests": [
+    {
+      "name": "mypy",
+      "command": [
+        "mypy",
+        "src/svdeck/discovery.py"
+      ],
+      "cwd": "/private/tmp/sv-same-slot-alternative-01-worktree",
+      "started_at": "2026-09-13T00:15:00.945940+00:00",
+      "ended_at": "2026-09-13T00:15:03.914007+00:00",
+      "exit_code": 0,
+      "log": "/tmp/same-slot-alternative-prototype-evidence/mypy.log",
+      "output": "Success: no issues found in 1 source file\n"
+    },
+    {
+      "name": "pytest",
+      "command": [
+        "pytest",
+        "-q",
+        "tests/test_discovery.py",
+        "tests/test_discovery_read.py",
+        "tests/test_discovery_sources.py",
+        "tests/test_discovery_history.py",
+        "tests/test_discovery_review_contexts.py",
+        "tests/test_discovery_start_articles.py",
+        "tests/test_discovery_compare.py"
+      ],
+      "cwd": "/private/tmp/sv-same-slot-alternative-01-worktree",
+      "started_at": "2026-09-13T00:15:03.918586+00:00",
+      "ended_at": "2026-09-13T00:15:16.104818+00:00",
+      "exit_code": 0,
+      "log": "/tmp/same-slot-alternative-prototype-evidence/pytest.log",
+      "output": "........................................................................ [ 59%]\n..................................................                       [100%]\n122 passed in 9.51s\n"
+    }
+  ],
+  "public_packet_check": {
+    "path": "/tmp/same-slot-alternative-prototype-evidence/public-packet-scope.json",
+    "started_at": "2026-09-13T00:16:27.268428+00:00",
+    "ended_at": "2026-09-13T00:16:29.446783+00:00",
+    "common_input": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/same-slot-alternative-01-input",
+    "common_input_files": 30,
+    "common_input_unchanged": true,
+    "initial_counts": {
+      "revisions": 1,
+      "reviews": 0,
+      "sources": 25
+    },
+    "checks": [
+      {
+        "case": "develop-revision-0",
+        "changed_paths": [
+          "/data/instruction",
+          "/sha256"
+        ],
+        "expected_paths": [
+          "/data/instruction",
+          "/sha256"
+        ],
+        "passed": true,
+        "a_sha256": "355a0d1e6095dec615cfabb1434b2e2a15087385cbc5e520253e879b0d4644a0",
+        "b_sha256": "ac7b74e343f52f3ad8a0e55ac566fa56bbd450634d8e584dc946eec3d25afec6",
+        "preserves_existing_instruction": true,
+        "added_instruction": "資料内に同じ不足を満たす有力な代案がある場合は、同じ変更枠・共通構築・開始状態からその代案も1件比較し、差を採用配分・用途・枝の継続判断へ戻してください。\n"
+      },
+      {
+        "case": "develop-revision-1",
+        "changed_paths": [
+          "/data/instruction",
+          "/sha256"
+        ],
+        "expected_paths": [
+          "/data/instruction",
+          "/sha256"
+        ],
+        "passed": true,
+        "a_sha256": "1ebb25db8d6c6a5b00e9d89b6210d8cf0a84f8f3a3bc0f54649707a8fd7257c1",
+        "b_sha256": "8e71caaea5994dca4d95881740f48e1d8d0e37041f7fb7c21f41ef87e5cf22f5",
+        "preserves_existing_instruction": true,
+        "added_instruction": "資料内に同じ不足を満たす有力な代案がある場合は、同じ変更枠・共通構築・開始状態からその代案も1件比較し、差を採用配分・用途・枝の継続判断へ戻してください。\n"
+      },
+      {
+        "case": "a-public-summary-and-read",
+        "passed": true
+      },
+      {
+        "case": "b-public-summary-and-read",
+        "passed": true
+      },
+      {
+        "case": "review-revision-1",
+        "changed_paths": [],
+        "expected_paths": [],
+        "passed": true,
+        "a_sha256": "68963b4ad8106c976697baf95ba7f05adcfa8b51fa5ac199988f80fedd23a7e6",
+        "b_sha256": "68963b4ad8106c976697baf95ba7f05adcfa8b51fa5ac199988f80fedd23a7e6"
+      },
+      {
+        "case": "finish-revision-0",
+        "changed_paths": [],
+        "expected_paths": [],
+        "passed": true,
+        "a_sha256": "293e33b8313d23ee66e6938add9e3198bb29cc4bc974129ad8398cd98621b7e1",
+        "b_sha256": "293e33b8313d23ee66e6938add9e3198bb29cc4bc974129ad8398cd98621b7e1"
+      },
+      {
+        "case": "finish-revision-1",
+        "changed_paths": [],
+        "expected_paths": [],
+        "passed": true,
+        "a_sha256": "ed0f32efda9c922a557cac70ac2595351969ecdb39e132833a877f2ad2df80e8",
+        "b_sha256": "ed0f32efda9c922a557cac70ac2595351969ecdb39e132833a877f2ad2df80e8"
+      }
+    ],
+    "commands": [
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "1"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-1.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "0"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-0.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-0.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "0"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-develop-revision-0.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-develop-revision-0.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "1"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-develop-revision-1.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "1"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-develop-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-develop-revision-1.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "1",
+          "--summary"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-develop-summary.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-develop-summary.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "read",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "1ebb25db8d6c6a5b00e9d89b6210d8cf0a84f8f3a3bc0f54649707a8fd7257c1",
+          "instruction",
+          "--limit",
+          "100"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-instruction-read.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-instruction-read.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "1",
+          "--summary"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-develop-summary.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-develop-summary.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "read",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "8e71caaea5994dca4d95881740f48e1d8d0e37041f7fb7c21f41ef87e5cf22f5",
+          "instruction",
+          "--limit",
+          "100"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-instruction-read.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-instruction-read.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "1",
+          "--stage",
+          "review"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-review-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-review-revision-1.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "1",
+          "--stage",
+          "review"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-review-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-review-revision-1.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "0",
+          "--finish-from-source",
+          "1cef0b4b764e8da876245d311200bac99ffe51140f41ab2cd5300dfc08f3bbbb"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-finish-revision-0.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-finish-revision-0.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "0",
+          "--finish-from-source",
+          "1cef0b4b764e8da876245d311200bac99ffe51140f41ab2cd5300dfc08f3bbbb"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-finish-revision-0.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-finish-revision-0.stderr"
+      },
+      {
+        "variant": "a",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/a-session",
+          "--revision",
+          "1",
+          "--finish-from-source",
+          "1cef0b4b764e8da876245d311200bac99ffe51140f41ab2cd5300dfc08f3bbbb"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/a-finish-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/a-finish-revision-1.stderr"
+      },
+      {
+        "variant": "b",
+        "command": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-m",
+          "svdeck.discovery",
+          "packet",
+          "/tmp/same-slot-alternative-prototype-evidence/b-session",
+          "--revision",
+          "1",
+          "--finish-from-source",
+          "1cef0b4b764e8da876245d311200bac99ffe51140f41ab2cd5300dfc08f3bbbb"
+        ],
+        "exit_code": 0,
+        "output": "/tmp/same-slot-alternative-prototype-evidence/b-finish-revision-1.json",
+        "stderr": "/tmp/same-slot-alternative-prototype-evidence/b-finish-revision-1.stderr"
+      }
+    ],
+    "passed": true
+  },
+  "commit": "71a8eca042db4a9496e662882461d7abe4bab478",
+  "patch_path": "/tmp/same-slot-alternative-prototype-evidence/prototype.patch",
+  "changed_files": [
+    "docs/design.md",
+    "src/svdeck/discovery.py"
+  ],
+  "git_status": "",
+  "result": {
+    "verdict": "PASS",
+    "implementation": "DEVELOPのみへ短い汎用比較案内を1件追加",
+    "existing_tests_passed": 122,
+    "mypy": "PASS",
+    "public_packet_scope": "PASS",
+    "common_input_unchanged": true,
+    "limitations": "有用性・発見力は未検証。本体への採用・push・実探索AI起動なし。",
+    "delivery": "指定隔離worktreeと保存済み公開packet出力"
+  },
+  "ended_at": "2026-09-13T00:16:58.955542+00:00",
+  "elapsed_seconds": 314.955542
+}

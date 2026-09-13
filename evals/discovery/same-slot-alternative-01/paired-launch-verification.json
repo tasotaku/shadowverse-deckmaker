@@ -1,0 +1,59 @@
+{
+  "verified_at": "2026-09-13T00:20:07.401905+00:00",
+  "sides": {
+    "a": {
+      "output": "/tmp/sv-same-slot-alternative-01-a-live",
+      "run_id": "fee81ef6af744c5ea415e5798f50e277",
+      "engine_started_at": "2026-09-13T00:19:17.921116+00:00",
+      "status": "develop",
+      "packet_hash": "1ebb25db8d6c6a5b00e9d89b6210d8cf0a84f8f3a3bc0f54649707a8fd7257c1",
+      "runtime_matches": true,
+      "tool_session_id": 31907
+    },
+    "b": {
+      "output": "/tmp/sv-same-slot-alternative-01-b-live",
+      "run_id": "8f1b14f68de54608a4b12ad5a725465e",
+      "engine_started_at": "2026-09-13T00:19:17.920754+00:00",
+      "status": "develop",
+      "packet_hash": "8e71caaea5994dca4d95881740f48e1d8d0e37041f7fb7c21f41ef87e5cf22f5",
+      "runtime_matches": true,
+      "tool_session_id": 89169
+    },
+    "stages": [
+      {
+        "id": "a-develop",
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.208233+00:00",
+        "ended_at": null
+      },
+      {
+        "id": "a-review",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null
+      },
+      {
+        "id": "b-develop",
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.205386+00:00",
+        "ended_at": null
+      },
+      {
+        "id": "b-review",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null
+      }
+    ]
+  },
+  "only_data_difference": "instruction",
+  "only_prompt_difference": "同じ採用枠の代案を比較する追加文（担当ID・入力識別値は正規化）",
+  "original_source_unchanged": true,
+  "main_db_unchanged": true,
+  "each_run_wrapped_with_caffeinate": [
+    "-i",
+    "-s"
+  ],
+  "model_override": null,
+  "limitations": "開始と入力一致の確認。案・評価の有用性は未判定。"
+}

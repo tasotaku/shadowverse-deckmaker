@@ -1,0 +1,142 @@
+{
+  "verdict": "PASS",
+  "started_at_utc": "2026-09-13 00:22:05 UTC",
+  "ended_at_utc": "2026-09-13 00:23:26 UTC",
+  "wall_clock_seconds": 81,
+  "guideline_seconds": 180,
+  "active_work_seconds": null,
+  "active_work_note": "能動作業時間は計測しておらず推定しない。",
+  "checked_targets": [
+    "evals/discovery/same-slot-alternative-01/README.md",
+    "docs/progress.md 2026年09月13日09:21:32更新部分",
+    "evals/discovery/same-slot-alternative-01/implementation.json",
+    "evals/discovery/same-slot-alternative-01/preparation.json",
+    "evals/discovery/same-slot-alternative-01/paired-launch-verification.json",
+    "http://127.0.0.1:8765/api/experiments/same-slot-alternative-01",
+    "evals/discovery/live-query-discovery-01/README.md 前回の指摘2箇所"
+  ],
+  "reader_check": {
+    "reader": "方法の採否と現在の検証状況を判断する利用者",
+    "main_conclusion": "同じ採用枠を争う代案も比較する一文を加え、旧案からの改訂を現行版と比較中。実装確認は成功しているが、方法の有用性と採否は未判定。",
+    "method": "通常構築との比較に、同じ変更枠・共通構築・開始状態で有力な代案1件を比較し、その差を採用枚数や用途へ戻す指示を加える。",
+    "why": "前の試験で資料と検索結果にある競合候補が提案担当の比較から抜け、別評価が初めて比較へ戻したため。",
+    "validation": "前の検索入口あり側の提出終了時点の保存案を共通入力とし、後の評価を除外。改訂15分と別評価10分を両方式各一度。比較欄の充足や棄却だけでは成功にせず、変更後にも試す理由が残るかを見る。",
+    "current_state": "両方式とも09:19:18 JSTから改訂中。別評価は両方未着手。",
+    "adoption": "本体未採用。実装と入力の確認結果を手法の有用性と区別している。",
+    "undefined_terms_or_missing_premises": "採否判断を妨げる未定義語や前提飛躍は見つからない。採用配分と枝の継続判断は本文で説明されている。",
+    "time": "試作314.96秒、入力復元0.20秒、実装固定0.23秒と各開始終了が記録と一致。進行中の表は起動確認時の保存記録と明記し、最新終了時刻の確認先を進捗画面へ示している。"
+  },
+  "required_changes": [],
+  "specific_findings": [
+    {
+      "result": "PASS",
+      "finding": "README引用の追加一文はimplementation.jsonのexact_instructionと一致。入力一致の範囲と、有用性未判定の区別を本文・保存記録・APIで確認。"
+    },
+    {
+      "result": "PASS",
+      "finding": "保存一覧30ファイル、正式案1・評価0・資料25、後の評価入力の除外、関連122検査と型検査成功、15分/10分の上限を許可されたJSONと対象APIで照合。"
+    },
+    {
+      "result": "PASS",
+      "finding": "API revision 8はrunning、結果unassessed、採否unassessed。7工程 = 完了3 + 改訂中2 + 別評価未着手2。paired-launch-verification.jsonの4実行工程の状態と開始終了時刻が一致。"
+    },
+    {
+      "result": "PASS",
+      "finding": "前試験READMEは、次の元案を検索入口あり側と明示。0.00分は採否報告の保存スクリプトだけの時間で、執筆・判断の全時間ではないと明示。前回の任意改善2点を確認。"
+    }
+  ],
+  "api_confirmation": {
+    "api_url": "http://127.0.0.1:8765/api/experiments/same-slot-alternative-01",
+    "api_revision": 8,
+    "api_saved_at": "2026-09-13T00:21:32.059648+00:00",
+    "api_status": "running",
+    "api_result_outcome": "unassessed",
+    "api_decision_status": "unassessed",
+    "api_stages": [
+      {
+        "id": "prototype",
+        "title": "案内の限定試作と関連検査",
+        "status": "completed",
+        "started_at": "2026-09-13T00:11:44+00:00",
+        "ended_at": "2026-09-13T00:16:58.955542+00:00",
+        "budget_minutes": 10
+      },
+      {
+        "id": "prepare",
+        "title": "評価前の同じ仮比較と実装を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T00:15:04.899503+00:00",
+        "ended_at": "2026-09-13T00:15:05.102826+00:00",
+        "budget_minutes": 5
+      },
+      {
+        "id": "runtime-freeze",
+        "title": "両方式の実装を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T00:18:59.443426+00:00",
+        "ended_at": "2026-09-13T00:18:59.670347+00:00",
+        "budget_minutes": 5
+      },
+      {
+        "id": "a-develop",
+        "title": "現行の改訂",
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.208233+00:00",
+        "ended_at": null,
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-review",
+        "title": "現行の別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-develop",
+        "title": "追加版の改訂",
+        "status": "running",
+        "started_at": "2026-09-13T00:19:18.205386+00:00",
+        "ended_at": null,
+        "budget_minutes": 15
+      },
+      {
+        "id": "b-review",
+        "title": "追加版の別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "budget_minutes": 10
+      }
+    ],
+    "checks": {
+      "implementation_elapsed_314_96_seconds": true,
+      "preparation_manifest_30_files": true,
+      "preparation_counts_1_0_25": true,
+      "manifest_matched": true,
+      "one_later_review_packet_excluded": true,
+      "122_existing_tests": true,
+      "mypy_pass": true,
+      "public_packet_scope_pass": true,
+      "only_launch_data_difference_instruction": true,
+      "paired_launch_stages_match_api": true,
+      "budgets_15_10_each": true,
+      "prototype_times_match_api": true,
+      "preparation_times_match_api": true,
+      "current_running_unassessed": true,
+      "quoted_instruction_matches": true
+    },
+    "all_checks_pass": true
+  },
+  "limitations": [
+    "進行中のAIの正式案・評価・最終結果は読まず、有用性は評価していない。",
+    "検査結果は指定された保存JSONとの照合であり、テストの再実行や元データの再監査はしていない。",
+    "API一覧・Codex私的stdout・reasoningログは取得していない。",
+    "工程状態はAPI revision 8の読取り時点。今後の自動更新を保証する検査ではない。",
+    "実際の読者本人による理解確認ではない。"
+  ],
+  "edited_files": [
+    "/tmp/same-slot-alternative-launch-reader.json"
+  ]
+}
