@@ -1,0 +1,252 @@
+{
+  "status": "completed",
+  "run_id": "c671387cc39d481eb528632b6641dbce",
+  "started_at": "2026-09-13T09:58:11.987945+00:00",
+  "source": "/private/tmp/sv-inquiry-terminal-journal-main-success/source",
+  "output": "/private/tmp/sv-inquiry-terminal-journal-main-success/run",
+  "focus": {
+    "revision": 1,
+    "proposal_hash": "0d211fefaca4e8dfc6a6b55c23e8bdc6e0bdebee69181c00b1690ce6e47bd5ff",
+    "review_hash": "9ab74e7cd989d22a8350810c24a2ac0c18b14f820eaaf4fb3550d5b680e55564",
+    "input_packet_hash": "264c12459af36ea9e4903c2a91165ffa65ec585f5d7df6920119555a06801b0d",
+    "question_index": 0,
+    "question": "継続して得るものは何か"
+  },
+  "stages": [
+    {
+      "stage": "inquiry",
+      "author": "worker:c671387cc39d481eb528632b6641dbce:inquiry",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/synthetic-codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry",
+        "stdin": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry/prompt.md",
+        "output": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry-run",
+        "started_at": "2026-09-13T09:58:12.423828+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2343661.762671291,
+        "explicit_finish": false,
+        "timeout_seconds": 10.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 87662,
+        "worker_pid": 87777,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-13T09:58:13.368591+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T09:58:12.424089+00:00",
+            "elapsed_seconds": 0.00025625014677643776
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T09:58:12.424574+00:00",
+            "elapsed_seconds": 0.0007427502423524857
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T09:58:12.430495+00:00",
+            "elapsed_seconds": 0.006685334257781506
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-13T09:58:13.366969+00:00",
+            "elapsed_seconds": 0.9431616673246026,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T09:58:13.368601+00:00",
+            "elapsed_seconds": 0.9447729592211545
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T09:58:13.373280+00:00",
+            "elapsed_seconds": 0.9494525422342122
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "inquiry-terminal-journal-01",
+          "stage_id": "main-success-inquiry",
+          "status": "completed",
+          "begin_revision": 7,
+          "claimed_stage": {
+            "id": "main-success-inquiry",
+            "title": "人工入力で調査担当の終了を確認",
+            "status": "running",
+            "started_at": "2026-09-13T09:58:12.423828+00:00",
+            "ended_at": null,
+            "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-terminal-journal-main-success/run/inquiry-run",
+            "budget_minutes": 1
+          },
+          "claimed_summary": "本体で人工資料を使い、正常提出と提出確認失敗の時刻・状態を確認中。採用未判定。",
+          "end_revision": 8,
+          "synced_at": "2026-09-13T09:58:13.373273+00:00"
+        },
+        "elapsed_seconds": 0.9447694169357419,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      },
+      "submission": {
+        "source_hash": "099881678441afc424ab06876dfb5951f2204ca17c137d9398f54b51b8a90f16",
+        "file_sha256": "778f51ff96870a834d535b0e5173db6200eecfe129250fcf36c24f29d97db0d5",
+        "public_attachment": true,
+        "public_reread": true,
+        "report_read": true
+      }
+    },
+    {
+      "stage": "inspect",
+      "author": "worker:c671387cc39d481eb528632b6641dbce:inspect",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/synthetic-codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect",
+        "stdin": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect/prompt.md",
+        "output": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect-run",
+        "started_at": "2026-09-13T09:58:13.423941+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2343662.762789875,
+        "explicit_finish": false,
+        "timeout_seconds": 10.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 87662,
+        "worker_pid": 87818,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-13T09:58:13.849169+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T09:58:13.424237+00:00",
+            "elapsed_seconds": 0.00029125018045306206
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T09:58:13.424678+00:00",
+            "elapsed_seconds": 0.0007373332045972347
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T09:58:13.433178+00:00",
+            "elapsed_seconds": 0.009262291248887777
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-13T09:58:13.847976+00:00",
+            "elapsed_seconds": 0.42404758324846625,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T09:58:13.849175+00:00",
+            "elapsed_seconds": 0.4252296253107488
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T09:58:13.853685+00:00",
+            "elapsed_seconds": 0.4297406249679625
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "inquiry-terminal-journal-01",
+          "stage_id": "main-success-inspect",
+          "status": "completed",
+          "begin_revision": 9,
+          "claimed_stage": {
+            "id": "main-success-inspect",
+            "title": "人工入力で照合担当の終了を確認",
+            "status": "running",
+            "started_at": "2026-09-13T09:58:13.423941+00:00",
+            "ended_at": null,
+            "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-terminal-journal-main-success/run/inspect-run",
+            "budget_minutes": 1
+          },
+          "claimed_summary": "本体で人工資料を使い、正常提出と提出確認失敗の時刻・状態を確認中。採用未判定。",
+          "end_revision": 10,
+          "synced_at": "2026-09-13T09:58:13.853680+00:00"
+        },
+        "elapsed_seconds": 0.4252272080630064,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      },
+      "submission": {
+        "source_hash": "20e3d33cbc59226d9438966d86292c8ef52a4caa3f903bde82d91207af94730c",
+        "file_sha256": "778f51ff96870a834d535b0e5173db6200eecfe129250fcf36c24f29d97db0d5",
+        "public_attachment": true,
+        "public_reread": true,
+        "report_read": true
+      }
+    }
+  ],
+  "original_manifest": {
+    "context.json": "3387eb7980e7c7a6362c02fb22e9f27a2836017f27f15b0c119fac8a0fc4c187",
+    "packets/264c12459af36ea9e4903c2a91165ffa65ec585f5d7df6920119555a06801b0d.json": "148a063dd70456e271985a3756691539e4a3e03450513c3f71033d4eccae3004",
+    "packets/7aa80d5bd3482301bf82a9df653a6a7915d5bf705e764b5223c770ec350e23e0.json": "148fdfe32436073b38dcd9335b5d2241e975b82926e1537f1b3b9f727c289547",
+    "review-0001-9ab74e7cd989d22a.json": "39de0413cc849cf55c9ba84e006475a208cf98fe0441d60ea18a19f63cdc3f10",
+    "revision-0001.json": "159097d9995b61815dd13f5deff12f54990bea1e75b71e77f12a1c30800b6bd3",
+    "snapshot.db": "cff2b225b20691037ecadc357f6e56293bcebdd108527a34a65e642526310f5f"
+  },
+  "inspect_source": null,
+  "limits": "資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "inquiry-terminal-journal-01",
+    "stage_id": "main-success-whole",
+    "status": "completed",
+    "begin_revision": 6,
+    "claimed_stage": {
+      "id": "main-success-whole",
+      "title": "人工入力の正常提出を全体工程で確認",
+      "status": "running",
+      "started_at": "2026-09-13T09:58:11.987945+00:00",
+      "ended_at": null,
+      "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-terminal-journal-main-success/run",
+      "budget_minutes": 1
+    },
+    "claimed_summary": "本体で人工資料を使い、正常提出と提出確認失敗の時刻・状態を確認中。採用未判定。",
+    "end_revision": 11,
+    "synced_at": "2026-09-13T09:58:13.910506+00:00"
+  },
+  "session": "/private/tmp/sv-inquiry-terminal-journal-main-success/run/session",
+  "source_unchanged": true,
+  "formal_revisions": 0,
+  "formal_reviews": 0,
+  "additional_sources": 2,
+  "ended_at": "2026-09-13T09:58:13.907850+00:00"
+}

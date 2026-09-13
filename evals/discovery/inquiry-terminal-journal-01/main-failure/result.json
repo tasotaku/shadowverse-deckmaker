@@ -1,0 +1,141 @@
+{
+  "status": "failed",
+  "run_id": "5dfce556afc649a8adcfda8043e2494c",
+  "started_at": "2026-09-13T09:58:14.558617+00:00",
+  "source": "/private/tmp/sv-inquiry-terminal-journal-main-failure/source",
+  "output": "/private/tmp/sv-inquiry-terminal-journal-main-failure/run",
+  "focus": {
+    "revision": 1,
+    "proposal_hash": "376888a48389534ab10eb8b3be33630dd84d9f4253c17db7959201ae4dd9b156",
+    "review_hash": "c2dbd8e3cc238a52e8a661242cbb11a835018410c2018723685cf4d611d3e905",
+    "input_packet_hash": "629a1a3cd3e00e434c57502deb06c6889a2945a7747a4661adf6db2b7ee10f55",
+    "question_index": 0,
+    "question": "継続して得るものは何か"
+  },
+  "stages": [
+    {
+      "stage": "inquiry",
+      "author": "worker:5dfce556afc649a8adcfda8043e2494c:inquiry",
+      "returncode": 0,
+      "run": {
+        "status": "completed",
+        "command": [
+          "/private/tmp/sv-inquiry-terminal-journal-main-failure/synthetic-codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry",
+        "stdin": "/private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry/prompt.md",
+        "output": "/private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry-run",
+        "started_at": "2026-09-13T09:58:14.847089+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2343664.18594425,
+        "explicit_finish": false,
+        "timeout_seconds": 10.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 87827,
+        "worker_pid": 87840,
+        "worker_returncode": 0,
+        "ended_at": "2026-09-13T09:58:15.794027+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T09:58:14.847353+00:00",
+            "elapsed_seconds": 0.0002597910352051258
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T09:58:14.847768+00:00",
+            "elapsed_seconds": 0.0006752912886440754
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T09:58:14.856415+00:00",
+            "elapsed_seconds": 0.009339415933936834
+          },
+          {
+            "event": "worker_exit_observed",
+            "at": "2026-09-13T09:58:15.793049+00:00",
+            "elapsed_seconds": 0.9459679583087564,
+            "returncode": 0
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T09:58:15.794034+00:00",
+            "elapsed_seconds": 0.9469445832073689
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T09:58:15.798610+00:00",
+            "elapsed_seconds": 0.951521540991962
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "inquiry-terminal-journal-01",
+          "stage_id": "main-failure-inquiry",
+          "status": "completed",
+          "begin_revision": 15,
+          "claimed_stage": {
+            "id": "main-failure-inquiry",
+            "title": "人工入力で調査担当の終了を確認",
+            "status": "running",
+            "started_at": "2026-09-13T09:58:14.847089+00:00",
+            "ended_at": null,
+            "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-terminal-journal-main-failure/run/inquiry-run",
+            "budget_minutes": 1
+          },
+          "claimed_summary": "調査・照合は提出確認まで完了。結果・採否の確認待ち。",
+          "end_revision": 16,
+          "synced_at": "2026-09-13T09:58:15.798600+00:00"
+        },
+        "elapsed_seconds": 0.9469414581544697,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "original_manifest": {
+    "context.json": "50ea1aec6807be38d54e8dbd69c2d2631c9f99568743b655a369cf4dd0595ce8",
+    "packets/629a1a3cd3e00e434c57502deb06c6889a2945a7747a4661adf6db2b7ee10f55.json": "719fda9861d1f7760267939ad07a0734604774fd617c69705342c109425c0cec",
+    "packets/c210245c1a0bb05db7f37c71157759fe5b5328e7fc96d8913c6f7ab2bb0f8f39.json": "d7adc78be42222c1aea950c3816cef042f3b892f67741b10cff04d44b341a313",
+    "review-0001-c2dbd8e3cc238a52.json": "325b51b40f6722e50b05568241ae02dfbf31644e748d8d1672abc8938d0304e8",
+    "revision-0001.json": "5d7e3d8523963f8fdb9e12913311f0fd56787cb0d973b3c85cee45ef17f6c425",
+    "snapshot.db": "cff2b225b20691037ecadc357f6e56293bcebdd108527a34a65e642526310f5f"
+  },
+  "inspect_source": null,
+  "limits": "資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "inquiry-terminal-journal-01",
+    "stage_id": "main-failure-whole",
+    "status": "completed",
+    "begin_revision": 14,
+    "claimed_stage": {
+      "id": "main-failure-whole",
+      "title": "人工入力の提出確認失敗を全体工程で確認",
+      "status": "running",
+      "started_at": "2026-09-13T09:58:14.558617+00:00",
+      "ended_at": null,
+      "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-terminal-journal-main-failure/run",
+      "budget_minutes": 1
+    },
+    "claimed_summary": "調査・照合は提出確認まで完了。結果・採否の確認待ち。",
+    "end_revision": 17,
+    "synced_at": "2026-09-13T09:58:15.814522+00:00"
+  },
+  "failure": "最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください",
+  "ended_at": "2026-09-13T09:58:15.810211+00:00"
+}

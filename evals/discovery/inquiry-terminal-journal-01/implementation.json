@@ -1,0 +1,165 @@
+{
+  "purpose": "最終提出検査までの全体実行を任意工程へ記録し、結果・採否の確認待ちを表示する実行補助。発見力は評価しない。",
+  "started_at": "2026-09-13T09:46:18+00:00",
+  "finished_at": "2026-09-13T09:56:08.735841+00:00",
+  "observed_elapsed_seconds": 590.735841,
+  "budget_seconds": 900,
+  "worktree": "/tmp/sv-inquiry-terminal-journal-worktree",
+  "base_commit": "96c593d",
+  "commits": [
+    "90b5464645c6350b66705ab5be572dfb4978893a",
+    "5e3d84e8904712df12a906c5caca343dbf57e37b",
+    "9111c31dc07d6aadc6fac84af19c468b5e616050"
+  ],
+  "observations": [
+    {
+      "at": "2026-09-13T09:46:18Z",
+      "event": "着手時計を確認"
+    },
+    {
+      "at": "2026-09-13T09:47:59Z",
+      "event": "設計を実装前にコミット",
+      "source": "git commit time"
+    },
+    {
+      "at": "2026-09-13T09:49:04Z",
+      "event": "初期実装と3ファイルの型検査成功を回収"
+    },
+    {
+      "at": "2026-09-13T09:52:20Z",
+      "event": "初回22検査成功を回収。flagなしの例外挙動保持と日本語要約へ訂正"
+    },
+    {
+      "at": "2026-09-13T09:53:38Z",
+      "event": "追加24件と関連既存検査を実行中と観測"
+    },
+    {
+      "at": "2026-09-13T09:54:24Z",
+      "event": "86検査成功を回収、停止未確認の設計をコミット"
+    },
+    {
+      "at": "2026-09-13T09:55:02Z",
+      "event": "実装コミット",
+      "source": "git commit time"
+    }
+  ],
+  "behavior": [
+    "任意 --journal-run-stage 未指定の元のrun/CLIは維持。既存RunJournal開始リンクに開始時summaryの値だけを追記。",
+    "入力の事前検査を通した後、担当起動前に事前登録したplanned全体工程を確保。全体IDと担当IDの衝突を拒否。",
+    "最終提出検査まで成功したときだけ全体工程completed、失敗・未提出・期限・例外はinterrupted。担当工程は独立。",
+    "自分の全体工程を閉じられ、試行がrunning、他のrunning/waiting工程なし、停止未確認なしの場合だけ試行waitingへ。結果・採否と全体終了日時は変更しない。",
+    "開始時のsummaryが変わっていない場合だけ平易な日本語の終了状態と確認待ち案内へ変更。",
+    "他工程の更新はCAS最大3回、同工程・終了済み記録の訂正は拒否。台帳の同期失敗は元のresult/例外と分けてresult.jsonに保持。"
+  ],
+  "corrections": [
+    "親の途中確認で、追加のBaseException捕捉がflag未指定時にもresultを変更すると指摘。run_journal有効時だけに限定し、新規検査で従来状態を確認。",
+    "親の途中確認で、summaryを英語状態名中心から日本語に変更。詳細noteには元の状態名を保持。",
+    "停止未確認では全停止を断定できないため、確認待ち自動遷移を抑制してnoteに記録。",
+    "実行テスト失敗は0件。最初の22件成功後に上記修正と2件追加を行い関連既存と合わせ86件を確認。"
+  ],
+  "tests": {
+    "verdict": "PASS",
+    "initial": {
+      "passed": 22,
+      "failed": 0,
+      "elapsed_seconds": 11.04
+    },
+    "final": {
+      "passed": 86,
+      "failed": 0,
+      "new": 24,
+      "existing": 62,
+      "elapsed_seconds": 31.82
+    },
+    "mypy": "3 source files: Success, no issues",
+    "diff_check": "PASS",
+    "public_cli": "人工入力・偽の担当による実CLI7実行（ok/missing/stale/exit/timeout各1、inspect-only1、同じ試験への新工程追加後stale1）。実AIなし。"
+  },
+  "evidence": [
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/docs/design.md",
+      "sha256": "d0831967e424416e0f20bc171ef6ece3d0cc73c00f7316bca2103a9aaf2a9c1d",
+      "bytes": 141435
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/src/svdeck/discovery_inquiry.py",
+      "sha256": "1b15e32cd9397b2b00b1c4e2af10ef937172c9e5999975dd33581a8582fbbfeb",
+      "bytes": 23995
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/src/svdeck/inquiry_journal.py",
+      "sha256": "59463fd9573dea40e23384dc7f27a4ea423cd9601ad65973fc2e778e30306438",
+      "bytes": 3140
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/src/svdeck/worker_journal.py",
+      "sha256": "2da11055934d7908e543105a10717ace3807e57d669125db39811f535acfaefc",
+      "bytes": 7503
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/tests/temp/test_inquiry_terminal_journal_temp.py",
+      "sha256": "d9b4731bcaff32bfa43ee36683202b9a5fa62b9d90c6f345396244c80ca4a4f2",
+      "bytes": 10980
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/tests/temp/inquiry_terminal_fixture.py",
+      "sha256": "1ea4f61df2559990e10540c62a46fb1b3e911b4b988d148caa7aa54b1f45bee4",
+      "bytes": 4987
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-tests-first.xml",
+      "sha256": "66a01a93fb8d55a0c44e771ac3d50ae2f258e1899736d0f66a7c90c1026476af",
+      "bytes": 3403
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-tests-final.xml",
+      "sha256": "efb518c8e1808a5e1874daa8c03d42e0a3ac661457c3d5e57802b05c6ae7a85b",
+      "bytes": 11957
+    }
+  ],
+  "full_diff": "diff --git a/docs/design.md b/docs/design.md\nindex 6929fa4..e11c26c 100644\n--- a/docs/design.md\n+++ b/docs/design.md\n@@ -317,6 +317,9 @@ UTC予定時刻を実期限として誤用させない。既存の固定試行\n 提出失敗の診断を補助する（2026-09-13）：公開添付の欠落、報告全文の再読不足、最終保存状態とreportの不一致を分けて示す。\n 全ての追加資料を保存した後にreportを実行し、その後に資料を追加した場合はreportを取り直すよう担当へ明記する。\n 受理条件・保存構造・操作許可・期限は維持し、古いreportを受理したり不足操作を自動補完したりしない。これは診断と手順案内の改善であり、発見力の改善とは扱わない。\n+調査全体の終端を記録する試作（2026-09-13）：任意の `--journal-run-stage STAGE` は、事前登録した未着手工程を入力検査後・担当起動前に確保し、最後の提出検査を含む全実行の開始・終了・失敗を台帳へ反映する。担当ごとの工程とは別のIDを使い、未指定時の挙動は維持する。\n+正常な全実行終了は工程完了、期限・未提出・提出検査失敗・例外は工程中断として残す。担当終了だけでは全体工程を閉じない。停止未確認の場合は確認待ちへ移さない。全体工程の反映後、他に実行中・待機中の工程がなく試行が実行中の場合だけ、試行を結果・採否の確認待ちへ移す。結果・採否は変更しない。\n+開始時の要約が変更されていない場合だけ終了状態と確認待ちの案内へ更新する。終了済みの試行・同工程の訂正を上書きせず、別工程の更新は最新版へ合わせる。台帳の保存失敗は result.json に追加し、元の実行結果・例外を保持する。実行そのものを再試行したり、失敗資料を自動受理したりしない。\n 別担当も調査報告を根拠と照合して資料へ保存する。保存成功は問いの解決や独自性の認定ではなく、内容を別に点検する。\n 元案・旧評価・元資料を保持し、正式改訂0件・正式評価0件で追加資料とreportを別の出力先へ残す。未提出・失敗・期限停止は代理で補完しない。\n 初回実AIは添付のヘルプを通常JSONとして解析して引渡しに失敗した。ヘルプを完了根拠にも解析対象にも数えず、実提出と実読出しは引き続き必須にする。\ndiff --git a/src/svdeck/discovery_inquiry.py b/src/svdeck/discovery_inquiry.py\nindex 5e86b42..c6f28ac 100644\n--- a/src/svdeck/discovery_inquiry.py\n+++ b/src/svdeck/discovery_inquiry.py\n@@ -23,6 +23,7 @@ from svdeck.discovery_read import packet_summary, read_packet\n from svdeck.discovery_run import check_packet, check_unchanged, copy_session, manifest, verify_submission\n from svdeck.discovery_sources import load_sources\n from svdeck.worker_journal import RunJournal\n+from svdeck.inquiry_journal import InquiryJournal\n \n \n RESEARCH = \"\"\"保存済みの案に残った問いを調べる担当です。inquiry_focusの問いを調査し、根拠と結論を追加資料として保存してください。\n@@ -116,7 +117,7 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:\n def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int | None,\n         research_seconds: float, inspect_seconds: float, journal_root: Path | None = None,\n         experiment_id: str | None = None, stage_prefix: str = 'live',\n-        inspect_source: str | None = None) -> dict[str, Any]:\n+        inspect_source: str | None = None, journal_run_stage: str | None = None) -> dict[str, Any]:\n     # AI_NOTE: 調査と照合を資料提出としてつなぎ、元案・旧評価は最終出力まで保持する。\n     source, output, codex = source.resolve(), output.resolve(), codex.resolve()\n     if output.is_relative_to(source) or source.is_relative_to(output):\n@@ -125,6 +126,10 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str\n         raise ValueError('実行ファイルと有限の正の制限秒数が必要です')\n     if bool(journal_root) != bool(experiment_id):\n         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')\n+    if journal_run_stage is not None and (not journal_root or not experiment_id or not journal_run_stage):\n+        raise ValueError('journal-run-stageにはjournal-rootとexperiment-idが必要です')\n+    if journal_run_stage in {f'{stage_prefix}-inquiry', f'{stage_prefix}-inspect'}:\n+        raise ValueError('調査全体の工程IDは担当ごとの工程IDと分けてください')\n     original = manifest(source)\n     prior = discovery.report(source)\n     if inspect_source is not None and not any(s['source_hash'] == inspect_source and s['kind'] == 'inquiry-result' for s in load_sources(source)):\n@@ -154,7 +159,15 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str\n                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,\n                               'inspect_source': inspect_source,\n                               'limits': '資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。'}\n+    run_journal = InquiryJournal(journal_root, experiment_id, journal_run_stage) if journal_root and experiment_id and journal_run_stage else None\n     try:\n+        if run_journal:\n+            try:\n+                result['journal_sync'] = run_journal.begin(result)\n+            except Exception as exc:\n+                result['journal_sync'] = {**result.get('journal_sync', run_journal.identity()),\n+                                          'status': 'failed', 'error': str(exc)}\n+                raise\n         runtime = output / 'runtime'\n         shutil.copytree(Path(__file__).resolve().parent, runtime / 'svdeck', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))\n         runtime_before = manifest(runtime)\n@@ -256,8 +269,17 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切\n                           formal_revisions=0, formal_reviews=0, additional_sources=len(report['sources']) - len(prior['sources']))\n     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:\n         result.update(status='failed', failure=str(exc))\n+    except BaseException as exc:\n+        if run_journal:\n+            result.update(status='failed', failure=f'{type(exc).__name__}: {exc}')\n+        raise\n     finally:\n         result['ended_at'] = datetime.now(timezone.utc).isoformat()\n+        if run_journal and result.get('journal_sync', {}).get('claimed_stage'):\n+            try:\n+                result['journal_sync'] = run_journal.finish(result)\n+            except Exception as exc:\n+                result['journal_sync'] = {**result['journal_sync'], 'status': 'failed', 'error': str(exc)}\n         worker.save_record(output / 'result.json', result)\n     return result\n \n@@ -278,16 +300,17 @@ def main(argv: list[str] | None = None) -> int:\n     parser.add_argument('--journal-root', type=Path)\n     parser.add_argument('--experiment-id')\n     parser.add_argument('--stage-prefix', default='live')\n+    parser.add_argument('--journal-run-stage', help='最終提出検査までの全実行を記録する、事前登録済みの未着手工程ID')\n     parser.add_argument('--inspect-source', help='保存済みinquiry-result資料を指定し、調査を再実行せず照合だけを行う')\n     args = parser.parse_args(argv)\n     try:\n         result = run(args.session, args.output, args.codex, args.revision, args.review_hash, args.question_index,\n                      args.research_seconds, args.inspect_seconds, args.journal_root, args.experiment_id, args.stage_prefix,\n-                     args.inspect_source)\n+                     args.inspect_source, args.journal_run_stage)\n     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:\n         parser.error(str(exc))\n     print(json.dumps({k: v for k, v in result.items() if k not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))\n-    return 0 if result['status'] == 'completed' else 2\n+    return 0 if result['status'] == 'completed' and result.get('journal_sync', {}).get('status') != 'failed' else 2\n \n \n if __name__ == '__main__':\ndiff --git a/src/svdeck/inquiry_journal.py b/src/svdeck/inquiry_journal.py\nnew file mode 100644\nindex 0000000..4f1f268\n--- /dev/null\n+++ b/src/svdeck/inquiry_journal.py\n@@ -0,0 +1,54 @@\n+\"\"\"Record an inquiry's terminal submission check separately from its workers.\"\"\"\n+from __future__ import annotations\n+\n+from copy import deepcopy\n+from datetime import datetime, timezone\n+from typing import Any\n+\n+from svdeck.worker_journal import RunJournal\n+\n+\n+class InquiryJournal(RunJournal):\n+    def finish(self, run: dict[str, object]) -> dict[str, Any]:\n+        # AI_NOTE: 担当の終了と最終提出検査を分け、全実行停止後も結果・採否を自動認定しない。\n+        link = run['journal_sync']\n+        if not isinstance(link, dict) or not isinstance(link.get('claimed_stage'), dict):\n+            raise ValueError('開始時の工程記録がなく、終了を反映できません')\n+        if not run.get('ended_at') or run.get('status') in {'preparing', 'inquiry', 'inspect'}:\n+            raise ValueError('全実行が終端状態になった記録だけを反映できます')\n+        executions = run.get('stages', [])\n+        stopped = isinstance(executions, list) and all(\n+            entry.get('run', {}).get('status') != 'termination_unconfirmed' for entry in executions)\n+        claimed = link['claimed_stage']\n+        desired = deepcopy(claimed)\n+        state = 'completed' if run['status'] == 'completed' else 'interrupted'\n+        summary = '調査・照合は提出確認まで完了。' if state == 'completed' else '調査・照合が途中で停止。'\n+        detail = summary + f\"全実行の終了状態: {run['status']}。\"\n+        if run.get('failure'):\n+            reason = f\"停止理由: {run['failure']}。\"\n+            detail += reason\n+            summary += reason\n+        if not stopped:\n+            detail += '担当または子処理の停止は未確認。'\n+        desired.update(status=state, ended_at=run['ended_at'],\n+                       note=claimed['note'] + '\\n' + detail + '結果・採否は別途確認する。')\n+\n+        def amend(record: dict[str, Any]) -> bool:\n+            # AI_NOTE: 同工程・終了済み記録の訂正を守り、別工程の変更だけ最新版へ合わせる。\n+            stage = self.stage(record)\n+            if stage == desired:\n+                return False\n+            if record['status'] in {'completed', 'interrupted'}:\n+                raise ValueError('終了済み試行の訂正を上書きしません')\n+            if stage != claimed:\n+                raise ValueError('開始後に同じ工程が変更されています。訂正を上書きしません')\n+            stage.update(desired)\n+            if stopped and record['status'] == 'running' and not any(s['status'] in {'running', 'waiting'} for s in record['stages']):\n+                record['status'] = 'waiting'\n+                if record['summary'] == link.get('claimed_summary'):\n+                    record['summary'] = summary + '結果・採否の確認待ち。'\n+            return True\n+\n+        item = self.change(amend, '最終提出検査までの全実行の終了を反映。結果・採否は変更しない')\n+        return {**link, 'status': 'completed', 'end_revision': item['revision'],\n+                'synced_at': datetime.now(timezone.utc).isoformat()}\ndiff --git a/src/svdeck/worker_journal.py b/src/svdeck/worker_journal.py\nindex 8da3704..8cbe6ca 100644\n--- a/src/svdeck/worker_journal.py\n+++ b/src/svdeck/worker_journal.py\n@@ -70,12 +70,13 @@ class RunJournal:\n                 record['started_at'] = run['started_at']\n             # AI_NOTE: 保存確定後の応答だけ失敗しても、未起動の工程を同じ内容で後から閉じられるよう残す。\n             run['journal_sync'] = {**self.identity(), 'status': 'starting',\n-                                   'claimed_stage': deepcopy(stage)}\n+                                   'claimed_stage': deepcopy(stage), 'claimed_summary': record['summary']}\n             return True\n \n         item = self.change(amend, '担当の起動処理を開始。結果・採否は変更しない')\n         return {**self.identity(), 'status': 'running', 'begin_revision': item['revision'],\n-                'claimed_stage': deepcopy(self.stage(item['record']))}\n+                'claimed_stage': deepcopy(self.stage(item['record'])),\n+                'claimed_summary': item['record']['summary']}\n \n     def finish(self, run: dict[str, object]) -> dict[str, Any]:\n         # AI_NOTE: 実行結果を工程状態へ写すだけで、提出や探索成果の合格を作らない。\n",
+  "root_reproduction": {
+    "PYTHONPATH": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src:/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests:/tmp/sv-inquiry-terminal-journal-worktree/tests/temp",
+    "prepare_argv": [
+      "/Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python",
+      "/tmp/sv-inquiry-terminal-journal-worktree/tests/temp/inquiry_terminal_fixture.py",
+      "/tmp/sv-inquiry-terminal-journal-main-success",
+      "--journal-root",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "--experiment-id",
+      "inquiry-terminal-journal-01",
+      "--append-existing",
+      "--stage-prefix",
+      "main-success",
+      "--journal-run-stage",
+      "main-success-whole",
+      "--mode",
+      "ok"
+    ],
+    "run": "準備スクリプトが出力するJSONのcommand配列をsubprocess.runへ直接渡す。mode=okはCLI0と全体completed/試行waiting、mode=staleはCLI2と全体interrupted/担当completed/試行waitingを期待。",
+    "failure_fixture_changes": {
+      "workspace": "/tmp/sv-inquiry-terminal-journal-main-failure",
+      "stage_prefix": "main-failure",
+      "journal_run_stage": "main-failure-whole",
+      "mode": "stale"
+    },
+    "precondition": "親のimplementation工程を回収してcompletedにする。他のrunning/waiting工程があれば試行はrunningのままが正しい。既存試行はcompleted/interruptedにせず採否確認可能な状態で実行する。",
+    "view": "http://127.0.0.1:8765/api/experiments/inquiry-terminal-journal-01 の個別GETから確認する。コレクションAPIを出力しない。",
+    "new_tests_argv": [
+      "/Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "/tmp/sv-inquiry-terminal-journal-worktree/tests/temp/test_inquiry_terminal_journal_temp.py",
+      "-k",
+      "real_public_cli_terminal"
+    ]
+  },
+  "limits": [
+    "実Codex private stdout.log/JSONL/推論ログは読んでいない。実AIは起動していない。",
+    "実行原本・カードDB・card_note・共有mainは変更していない。",
+    "終了状態の記録補助であり、発見力・手法採用・全システム完成は確認していない。",
+    "ユーザーの既存8765画面での本体確認とpushは親が行う。作業場所での検査だけで届け先確認済みとしない。",
+    "全実行の終了から台帳保存までの時間は別の採否作業を含まない。時計の観測点は工程の厳密な境界と混同しない。"
+  ]
+}

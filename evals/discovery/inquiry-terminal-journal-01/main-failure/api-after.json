@@ -1,30 +1,30 @@
 {
   "id": "inquiry-terminal-journal-01",
-  "revision": 19,
-  "saved_at": "2026-09-13T10:02:10.640520+00:00",
-  "actor": "codex-root",
-  "reason": "初見確認の結論と実時刻を保存。探索の有用性とは区別",
+  "revision": 17,
+  "saved_at": "2026-09-13T09:58:15.811656+00:00",
+  "actor": "担当の実行監視",
+  "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない",
   "record": {
     "id": "inquiry-terminal-journal-01",
     "title": "提出確認まで含めて進捗を自動記録する",
     "category": "infrastructure",
-    "status": "completed",
-    "summary": "提出確認まで含む全体工程の自動記録を実行補助として採用。86検査・型検査と、本体の正常例/失敗例を既存画面データで確認。",
+    "status": "waiting",
+    "summary": "調査・照合が途中で停止。停止理由: 最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください。結果・採否の確認待ち。",
     "method": "担当終了後の提出確認結果を自動で台帳へ反映する実行補助",
     "procedure": "条件記録→隔離実装→型・機能検査→本体の公開操作→既存画面で確認",
     "inputs": "提出確認で失敗し、担当工程は終了済みだが全体はrunningのままだった実行2件。",
     "criteria": "提出確認まで含む全体工程の実開始・終了と成否を自動記録し、担当の正常終了と区別する。\n任意の事前登録工程だけを使う。旧引数・旧呼出し・担当工程の挙動を保持する。\n自分の終端反映が成立し、他に実行/待機工程がない時だけ全体を確認待ちへ。手動訂正・終了済み試験・他の工程を上書きしない。\n案の採否、結果の評価、元実行の成否を自動変更しない。同期失敗も元の実行結果とともに残す。\n機能・型検査と本体の公開CLI利用を確認し、既存の進捗画面の個別データで時刻・状態を再確認する。人工入力を実AIの有用性証明に数えない。",
     "result": {
-      "outcome": "pass",
-      "summary": "86検査と型検査に合格。本体の人工入力2例で、全体工程の完了/中断、確認待ちへの遷移、開始終了時刻と結果・採否の保持を確認。",
-      "limitations": "人工資料と偽の担当による公開CLI実行。実AIでの新経路とデッキ発見力は未確認。全体工程は担当時間を含み、単純合計しない。"
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
     },
     "decision": {
-      "status": "adopted",
-      "reason": "担当終了後の提出確認失敗も自動で記録し、手動回収前に確認待ちと分かる。手動訂正・他担当・結果・採否を保持できたため。"
+      "status": "unassessed",
+      "reason": "未判定"
     },
     "started_at": "2026-09-13T09:46:18+00:00",
-    "ended_at": "2026-09-13T10:02:10.620595+00:00",
+    "ended_at": null,
     "stages": [
       {
         "id": "implementation",
@@ -83,19 +83,10 @@
       {
         "id": "main-failure-inspect",
         "title": "人工入力で照合担当の終了を確認",
-        "status": "interrupted",
+        "status": "planned",
         "started_at": null,
         "ended_at": null,
-        "note": "人工的な提出確認失敗で前段から進まなかったため未起動。開始・終了時刻を補わない。",
-        "budget_minutes": 1
-      },
-      {
-        "id": "report-reader",
-        "title": "採用結果と所要時間の報告を別担当が初見確認",
-        "status": "completed",
-        "started_at": "2026-09-13T10:00:59+00:00",
-        "ended_at": "2026-09-13T10:01:06+00:00",
-        "note": "採用した自動記録と探索手法の有用性保留、実装検査9分51秒と担当時間、実AI検証未起動を区別できる。時間を合算しない説明も明確。必須修正なし。",
+        "note": "人工入力の検査",
         "budget_minutes": 1
       }
     ],
@@ -103,25 +94,14 @@
       "evals/discovery/inquiry-terminal-journal-01/README.md",
       "evals/discovery/inquiry-terminal-journal-01/protocol.json",
       "evals/discovery/inquiry-terminal-journal-01/implementation.json",
-      "evals/discovery/inquiry-terminal-journal-01/test-evidence",
-      "evals/discovery/inquiry-terminal-journal-01/main-checks.json",
-      "evals/discovery/inquiry-terminal-journal-01/main-success",
-      "evals/discovery/inquiry-terminal-journal-01/main-failure",
-      "evals/discovery/inquiry-terminal-journal-01/registration-check.json",
-      "evals/discovery/inquiry-terminal-journal-01/checkpoint.json",
-      "evals/discovery/inquiry-terminal-journal-01/report-reader.json"
+      "evals/discovery/inquiry-terminal-journal-01/test-evidence"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-terminal-journal-01/README.md",
-      "sha256": "d86fbc6a367453f924029542ff44f147f4d30c96196f273cd2bb786cef5af412",
-      "size": 4565
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/checkpoint.json",
-      "sha256": "f065ac111a5ffdc961fc6edf24bdb0b050f61bed71fd8244529f93b37115759a",
-      "size": 320
+      "sha256": "404cb9b2b9bacde013077e5074fa81432f5f12bd26f68726b8fb3046fcd8bd58",
+      "size": 1246
     },
     {
       "path": "evals/discovery/inquiry-terminal-journal-01/implementation.json",
@@ -129,54 +109,9 @@
       "size": 21367
     },
     {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-checks.json",
-      "sha256": "e4eb8db78e779a7b7452fafb03bb4ac083a673925455c2c41de78e462e7aec63",
-      "size": 9172
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-failure/api-after.json",
-      "sha256": "c3b231b6d1ad9bc53b99c93c493de2e49e59fe35f5bad7a62fe5b164b1db2221",
-      "size": 11075
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-failure/result.json",
-      "sha256": "c4060a706260ed865b15aab8d26b302b76a487a6a9c214a1b144ee40ce86518e",
-      "size": 6503
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-failure/verification.json",
-      "sha256": "cc978492df4f13d78ed960c6e00f6f4da2cc7b826b5d99a42634a2103bdc4bdc",
-      "size": 4256
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-success/api-after.json",
-      "sha256": "5dcddc27db3149764acc3c8765efd8842e706bc25034557a3f2c08bfa553d55e",
-      "size": 8144
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-success/result.json",
-      "sha256": "9fb5a889df9f3b6ddc7d09392e7f9c76d985d60c2f619a3df365f778cd64435b",
-      "size": 11153
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/main-success/verification.json",
-      "sha256": "426e1f9af061a0321531f9cd55636b43c7c9ebf0ba65fb7b7f88678bc93c656b",
-      "size": 4244
-    },
-    {
       "path": "evals/discovery/inquiry-terminal-journal-01/protocol.json",
       "sha256": "8f472e93fa0d8374713ecc0f3d9fd01256c907332206e3100ad3506f1d4371bf",
       "size": 1418
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/registration-check.json",
-      "sha256": "06ee950f240e2a26d3accdb3489b7c1967f4d9d887b4908ace642d4c380d5cc0",
-      "size": 762
-    },
-    {
-      "path": "evals/discovery/inquiry-terminal-journal-01/report-reader.json",
-      "sha256": "38af64118e592b12a1230546d030498765780c0f7675d125ceb094574c9014be",
-      "size": 539
     },
     {
       "path": "evals/discovery/inquiry-terminal-journal-01/test-evidence/sv-inquiry-terminal-tests-final.xml",
@@ -188,5 +123,113 @@
       "sha256": "66a01a93fb8d55a0c44e771ac3d50ae2f258e1899736d0f66a7c90c1026476af",
       "size": 3403
     }
-  ]
+  ],
+  "history": [
+    {
+      "revision": 17,
+      "saved_at": "2026-09-13T09:58:15.811656+00:00",
+      "actor": "担当の実行監視",
+      "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない"
+    },
+    {
+      "revision": 16,
+      "saved_at": "2026-09-13T09:58:15.796442+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 15,
+      "saved_at": "2026-09-13T09:58:14.849746+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 14,
+      "saved_at": "2026-09-13T09:58:14.561121+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 13,
+      "saved_at": "2026-09-13T09:58:14.296414+00:00",
+      "actor": "codex-root",
+      "reason": "人工検査の工程名を表示向けに明記"
+    },
+    {
+      "revision": 12,
+      "saved_at": "2026-09-13T09:58:14.269874+00:00",
+      "actor": "synthetic-test",
+      "reason": "人工入力の検査を事前登録"
+    },
+    {
+      "revision": 11,
+      "saved_at": "2026-09-13T09:58:13.909289+00:00",
+      "actor": "担当の実行監視",
+      "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-13T09:58:13.851511+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-13T09:58:13.427146+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 8,
+      "saved_at": "2026-09-13T09:58:13.371506+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-13T09:58:12.426486+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-13T09:58:11.990215+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-13T09:58:11.599742+00:00",
+      "actor": "codex-root",
+      "reason": "人工検査の工程名を表示向けに明記"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-13T09:58:11.571875+00:00",
+      "actor": "synthetic-test",
+      "reason": "人工入力の検査を事前登録"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-13T09:58:10.823748+00:00",
+      "actor": "codex-root",
+      "reason": "実装担当の完了と検査を回収。本体での動作確認へ進む"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-13T09:54:17.378651+00:00",
+      "actor": "codex-root",
+      "reason": "担当の検査中間報告を保存し、採用判断とは区別"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-13T09:47:48.022045+00:00",
+      "actor": "codex-root",
+      "reason": "観測済みの進捗状態の不足を実行補助として限定実装・検査"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
 }
