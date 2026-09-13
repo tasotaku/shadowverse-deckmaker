@@ -1,15 +1,15 @@
 {
   "id": "inquiry-return-01",
-  "revision": 9,
-  "saved_at": "2026-09-13T10:25:38.231029+00:00",
+  "revision": 7,
+  "saved_at": "2026-09-13T10:24:39.325566+00:00",
   "actor": "codex-root",
-  "reason": "実行中の説明を保存資料へ更新",
+  "reason": "実AI開始と実起動の入力・実装の一致を確認",
   "record": {
     "id": "inquiry-return-01",
     "title": "追加調査を採用判断へ戻す比較",
     "category": "method",
     "status": "running",
-    "summary": "19:22:43から追加調査あり・なしの改訂を実行中。改訂15分・評価10分を各一度。実起動の共通入力と同一実装を確認。結果・採否は未判定。",
+    "summary": "19:22:38から追加調査あり・なしの改訂を実行中。改訂15分・評価10分を各一度。実起動の共通入力と同一実装を確認。結果・採否は未判定。",
     "method": "追加調査を渡す場合と渡さない場合で、採用判断への発展を比較する",
     "procedure": "元入力保持→Bへ来歴追加→同一実装固定→各方式で改訂1回・別評価1回→回収と比較",
     "inputs": "A:27資料、B:35資料。共通の正式改訂3・評価2とカード入力を保持。",
@@ -133,8 +133,8 @@
   "evidence": [
     {
       "path": "evals/discovery/inquiry-return-01/README.md",
-      "sha256": "6c81cb88eede2507e1bda0dab8a614a141fdf3c9215622320cd20b9bf6412dc9",
-      "size": 1786
+      "sha256": "50312e97511822e2df0705870666f2f64dcfe905e090ba162452556490b823cf",
+      "size": 1702
     },
     {
       "path": "evals/discovery/inquiry-return-01/actual-input-check.json",
@@ -181,5 +181,53 @@
       "sha256": "74edd8ed6745b5779347e032bf7062c8af83fc7fad088721194f5b9da6f948b3",
       "size": 1527
     }
-  ]
+  ],
+  "history": [
+    {
+      "revision": 7,
+      "saved_at": "2026-09-13T10:24:39.325566+00:00",
+      "actor": "codex-root",
+      "reason": "実AI開始と実起動の入力・実装の一致を確認"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-13T10:22:43.972528+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-13T10:22:43.938925+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-13T10:22:43.781211+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-13T10:22:43.767633+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-13T10:14:49.313117+00:00",
+      "actor": "codex-root",
+      "reason": "差分は追加資料とその派生一覧だけと確認。初回照合失敗と訂正も保持"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-13T10:11:11.934603+00:00",
+      "actor": "codex-root",
+      "reason": "追加調査の有無を比較する条件と入力を実AI起動前に固定"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
 }

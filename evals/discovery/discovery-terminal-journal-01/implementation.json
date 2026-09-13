@@ -1,0 +1,176 @@
+{
+  "purpose": "既存の全体実行記録を考案・改訂→別評価と保存案の評価だけにも任意接続する。発見力は判定しない。",
+  "started_at": "2026-09-13T10:07:26+00:00",
+  "finished_at": "2026-09-13T10:15:04.083525+00:00",
+  "observed_elapsed_seconds": 458.083525,
+  "budget_seconds": 600,
+  "worktree": "/tmp/sv-discovery-terminal-journal-worktree",
+  "base_commit": "22d1480",
+  "commits": [
+    "f624d01be53516ffffec4f1cae1595a4da796f40",
+    "83df517907b0e89423876ff771b28755dca486f3"
+  ],
+  "observations": [
+    {
+      "at": "2026-09-13T10:07:26Z",
+      "event": "開始時計を確認"
+    },
+    {
+      "at": "2026-09-13T10:08:25Z",
+      "event": "設計を実装前にコミット",
+      "source": "git commit time"
+    },
+    {
+      "at": "2026-09-13T10:09:07Z",
+      "event": "実装と初期型検査3ファイルの成功を回収"
+    },
+    {
+      "at": "2026-09-13T10:11:08Z",
+      "event": "初回追加検査が実行中と観測"
+    },
+    {
+      "at": "2026-09-13T10:11:31Z",
+      "event": "21検査成功を回収"
+    },
+    {
+      "at": "2026-09-13T10:13:26Z",
+      "event": "110検査成功を回収"
+    },
+    {
+      "at": "2026-09-13T10:13:47Z",
+      "event": "実装コミット",
+      "source": "git commit time"
+    }
+  ],
+  "behavior": [
+    "任意 --journal-run-stage を後方互換な最終引数として discovery_run.run / CLI に追加。cycleは変更なし。",
+    "担当IDとの衝突・journal-root/id不足は出力準備前に拒否。正式入力と資料化を検査してからplanned全体工程を確保。",
+    "担当終了後のverify_submissionを含む保存再検査と最終保存までを全体工程へ反映。自然終了と明示終了、初回考案・改訂→評価、review-onlyに対応。",
+    "InquiryJournal.finish の既存デフォルト/APIを保ち、activityとactive_statesの任意キーワード指定だけを追加。競合・手動訂正・停止未確認・結果/採否保持の処理を再利用。",
+    "保存案の評価 / 考案・改訂・評価 と正確な活動名を要約へ表示。全体終了記録の同期失敗は実行成否を変えず、journal_syncに残しCLI2を返す。",
+    "flag未指定のRuntimeError時は以前の実行状態を保持。指定時は失敗状態を記録し元の例外を再送出。"
+  ],
+  "failures_and_corrections": [
+    "実装・検査とも、この限定作業で観測した失敗は0件。初回21件成功後に、旧flagなしの例外保持・停止未確認・CLI同期失敗の3件を追加して既存と合流した。"
+  ],
+  "validation": {
+    "verdict": "PASS",
+    "initial": {
+      "passed": 21,
+      "failed": 0,
+      "elapsed_seconds": 22.51
+    },
+    "final": {
+      "passed": 110,
+      "failed": 0,
+      "new": 24,
+      "existing": 86,
+      "elapsed_seconds": 69.26
+    },
+    "mypy": "3 files: Success, no issues found",
+    "diff_check": "PASS",
+    "public_cli": "新規9ケースを実際のCLIと非AIの偽担当で実行。成功5件（改訂/初回/評価のみ、自然終了/明示終了）、失敗4件（未提出/固定入力変更/担当異常終了/期限）。既存の明示終了・調査全体記録も回帰確認。"
+  },
+  "evidence": [
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/docs/design.md",
+      "sha256": "5b30cc4402f8049727e9421aca0deb6e25e35f2a3d3e4a5e65ffc7dd9dfaedf6",
+      "bytes": 142644
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/src/svdeck/discovery_run.py",
+      "sha256": "6c690503a7df18d9f0475cd281eff605566a702381fe52123092135d5cf9f734",
+      "bytes": 36684
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/src/svdeck/inquiry_journal.py",
+      "sha256": "4e775bbe3f01ca306c48eac09806685087b5d07a2c4420d9588c553d3683c3b8",
+      "bytes": 3243
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/tests/temp/discovery_terminal_fixture.py",
+      "sha256": "5eee08490a1cc9348c48c75f87a888c401b5dcafacae717faacdbcfa50e459dd",
+      "bytes": 5481
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/tests/temp/test_discovery_terminal_journal_temp.py",
+      "sha256": "96b63d78495e25676d0514419e1d7bac7f6f89bbf979145530dc3a9c8f977874",
+      "bytes": 9069
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-tests-first.xml",
+      "sha256": "1d07f22f03dd63515fdfc6761117bb565dfa1489f440ecb3e89f4f14075848e4",
+      "bytes": 3407
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-tests-final.xml",
+      "sha256": "91962c3154ed1ac61686fe8e56cdc6423d656bc9f0e5a30beb5427b372861865",
+      "bytes": 17344
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/evals/discovery/live-query-01/test-evidence/reference/test_discovery_run_temp.py",
+      "sha256": "4960b12f283c18b33fb04ab2e9e743777d12d9d696a1f07b95ad79ce91b17a7e",
+      "bytes": 12438
+    },
+    {
+      "path": "/tmp/sv-discovery-terminal-journal-worktree/evals/discovery/live-query-01/test-evidence/reference/test_explicit_finish_temp.py",
+      "sha256": "1ce72a13c48f3280b7e40e5b1f2a4bbd836f5695b4ee58821047eeceb9d3082c",
+      "bytes": 14071
+    },
+    {
+      "path": "/tmp/sv-inquiry-terminal-journal-worktree/tests/temp/test_inquiry_terminal_journal_temp.py",
+      "sha256": "d9b4731bcaff32bfa43ee36683202b9a5fa62b9d90c6f345396244c80ca4a4f2",
+      "bytes": 10980
+    }
+  ],
+  "full_diff": "diff --git a/docs/design.md b/docs/design.md\nindex b9cb728..635de6a 100644\n--- a/docs/design.md\n+++ b/docs/design.md\n@@ -295,6 +295,8 @@ test/drop/unknown、問いなし、未提出・失敗は継続せず、2回目\n ただし開始済みの試行で全体開始が未記録の場合、その不明は維持し、今回の担当開始で過去の全体開始を補完しない。\n 開始の記録に失敗したら担当を起動しない。終了の反映失敗は実行記録へ残し、担当が成功していた場合も監視入口は非0を返す。\n 停止後の再反映は担当を再実行せず、保存した実行記録から行う。台帳の再反映履歴は元の失敗記録と分ける。\n+全実行の提出検査までの台帳接続を考案・改訂と別評価にも追加する試作（2026-09-13）：`discovery_run --journal-run-stage STAGE` は任意指定とし、入力検査後・担当起動前に登録済み未着手工程を確保する。正式提出の再検査と最終保存が終わるまで全体工程を開き、正常終了は完了、それ以外は中断にする。考案・改訂→評価、保存案の評価だけ、自然終了・明示終了で同じ記録契約を使う。\n+調査全体の記録処理を再利用し、活動名と未終了状態だけを実行経路に合わせる。他の作業中・待機中工程、停止未確認、手動訂正、結果・採否を保持し、終了を反映できた全実行だけを結果・採否確認待ちへ移す。接続引数の欠落と担当工程とのID衝突は起動前に拒否する。台帳同期失敗は元の実行結果・例外と分けて保存し、公開入口は同期失敗を終了番号で知らせる。指定なしの既存挙動とcycleの接続は変更しない。\n 画面の一覧は定期更新、詳細本文は最新版を表示する操作が必要という既存挙動を維持する。実行と記録の接続の確認を発見力の証明とは数えない。\n \n `--clock elapsed` は、経過時計だけで作業の制限時間を判定する選択肢（2026-09-10・実行確認済み、提出までの検証は未達）。\ndiff --git a/src/svdeck/discovery_run.py b/src/svdeck/discovery_run.py\nindex 47c732d..8d00a6c 100644\n--- a/src/svdeck/discovery_run.py\n+++ b/src/svdeck/discovery_run.py\n@@ -27,6 +27,7 @@ from svdeck.discovery_evidence import digest, read_object, write_new\n from svdeck.discovery_sources import load_sources\n from svdeck.discovery_read import packet_summary\n from svdeck.worker_journal import RunJournal\n+from svdeck.inquiry_journal import InquiryJournal\n \n \n def manifest(folder: Path) -> dict[str, str]:\n@@ -336,7 +337,8 @@ def poll_finish(work: Path, contract: dict[str, Any]) -> dict[str, Any] | None:\n \n def run(source: Path, output: Path, codex: Path, develop_seconds: float | None, review_seconds: float,\n         revision: int | None = None, journal_root: Path | None = None,\n-        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False, explicit_finish: bool = False) -> dict[str, Any]:\n+        experiment_id: str | None = None, stage_prefix: str = 'live', review_only: bool = False, explicit_finish: bool = False,\n+        journal_run_stage: str | None = None) -> dict[str, Any]:\n     # AI_NOTE: 別評価のみなら最新の保存案を再検査し、再考案せず旧評価を隔離して渡す。\n     source, output, codex = source.resolve(), output.resolve(), codex.resolve()\n     if output.is_relative_to(source) or source.is_relative_to(output):\n@@ -350,11 +352,16 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float | None,\n         raise ValueError('実行ファイルと有限の正の制限秒数が必要です')\n     if bool(journal_root) != bool(experiment_id):\n         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')\n+    if journal_run_stage is not None and (not journal_root or not experiment_id or not journal_run_stage):\n+        raise ValueError('journal-run-stageにはjournal-rootとexperiment-idが必要です')\n+    if journal_run_stage in {f'{stage_prefix}-develop', f'{stage_prefix}-review'}:\n+        raise ValueError('全実行の工程IDは担当ごとの工程IDと分けてください')\n     original = manifest(source)\n     output.mkdir(parents=True, exist_ok=False)\n     result: dict[str, Any] = {'status': 'preparing', 'run_id': uuid.uuid4().hex, 'started_at': datetime.now(timezone.utc).isoformat(),\n                               'source': str(source), 'output': str(output), 'stages': [], 'review_only': review_only, 'explicit_finish': explicit_finish,\n                               'limits': '実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。'}\n+    run_journal = InquiryJournal(journal_root, experiment_id, journal_run_stage) if journal_root and experiment_id and journal_run_stage else None\n     try:\n         runtime = output / 'runtime'\n         shutil.copytree(Path(__file__).resolve().parent, runtime / 'svdeck', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))\n@@ -371,6 +378,15 @@ def run(source: Path, output: Path, codex: Path, develop_seconds: float | None,\n             if revision != latest:\n                 raise ValueError('review-onlyのrevisionは最新の保存済み正式改訂を指定してください')\n             verify_submission(prepared, 'develop', expected)\n+        if run_journal:\n+            # AI_NOTE: 入力の資料化まで検査してから全体工程を確保し、担当の起動前に保存する。\n+            discovery.packet(prepared, expected if review_only else parent, 'review' if review_only else 'develop')\n+            try:\n+                result['journal_sync'] = run_journal.begin(result)\n+            except Exception as exc:\n+                result['journal_sync'] = {**result.get('journal_sync', run_journal.identity()),\n+                                          'status': 'failed', 'error': str(exc)}\n+                raise\n         stages = [('review', review_seconds, expected)]\n         if not review_only:\n             assert develop_seconds is not None\n@@ -473,8 +489,19 @@ input-summary.jsonには今回の資料識別値と回答形式があります\n                           formal_revisions=0 if review_only else 1, formal_reviews=1)\n     except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:\n         result.update(status='failed', failure=str(exc))\n+    except BaseException as exc:\n+        if run_journal:\n+            result.update(status='failed', failure=f'{type(exc).__name__}: {exc}')\n+        raise\n     finally:\n         result['ended_at'] = datetime.now(timezone.utc).isoformat()\n+        if run_journal and result.get('journal_sync', {}).get('claimed_stage'):\n+            try:\n+                result['journal_sync'] = run_journal.finish(\n+                    result, activity='保存案の評価' if review_only else '考案・改訂・評価',\n+                    active_states=frozenset({'preparing', 'develop', 'review'}))\n+            except Exception as exc:\n+                result['journal_sync'] = {**result['journal_sync'], 'status': 'failed', 'error': str(exc)}\n         worker.save_record(output / 'result.json', result)\n     return result\n \n@@ -493,14 +520,15 @@ def main(argv: list[str] | None = None) -> int:\n     parser.add_argument('--journal-root', type=Path)\n     parser.add_argument('--experiment-id')\n     parser.add_argument('--stage-prefix', default='live')\n+    parser.add_argument('--journal-run-stage', help='最終提出検査までの全実行を記録する、事前登録済みの未着手工程ID')\n     args = parser.parse_args(argv)\n     try:\n         result = run(args.session, args.output, args.codex, args.develop_seconds, args.review_seconds,\n-                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only, args.explicit_finish)\n+                     args.revision, args.journal_root, args.experiment_id, args.stage_prefix, args.review_only, args.explicit_finish, args.journal_run_stage)\n     except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:\n         parser.error(str(exc))\n     print(json.dumps({key: value for key, value in result.items() if key not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))\n-    return 0 if result['status'] == 'completed' else 2\n+    return 0 if result['status'] == 'completed' and result.get('journal_sync', {}).get('status') != 'failed' else 2\n \n \n if __name__ == '__main__':\ndiff --git a/src/svdeck/inquiry_journal.py b/src/svdeck/inquiry_journal.py\nindex 4f1f268..0706625 100644\n--- a/src/svdeck/inquiry_journal.py\n+++ b/src/svdeck/inquiry_journal.py\n@@ -9,12 +9,13 @@ from svdeck.worker_journal import RunJournal\n \n \n class InquiryJournal(RunJournal):\n-    def finish(self, run: dict[str, object]) -> dict[str, Any]:\n+    def finish(self, run: dict[str, object], *, activity: str = '調査・照合',\n+               active_states: frozenset[str] = frozenset({'preparing', 'inquiry', 'inspect'})) -> dict[str, Any]:\n         # AI_NOTE: 担当の終了と最終提出検査を分け、全実行停止後も結果・採否を自動認定しない。\n         link = run['journal_sync']\n         if not isinstance(link, dict) or not isinstance(link.get('claimed_stage'), dict):\n             raise ValueError('開始時の工程記録がなく、終了を反映できません')\n-        if not run.get('ended_at') or run.get('status') in {'preparing', 'inquiry', 'inspect'}:\n+        if not run.get('ended_at') or run.get('status') in active_states:\n             raise ValueError('全実行が終端状態になった記録だけを反映できます')\n         executions = run.get('stages', [])\n         stopped = isinstance(executions, list) and all(\n@@ -22,7 +23,7 @@ class InquiryJournal(RunJournal):\n         claimed = link['claimed_stage']\n         desired = deepcopy(claimed)\n         state = 'completed' if run['status'] == 'completed' else 'interrupted'\n-        summary = '調査・照合は提出確認まで完了。' if state == 'completed' else '調査・照合が途中で停止。'\n+        summary = f'{activity}は提出確認まで完了。' if state == 'completed' else f'{activity}が途中で停止。'\n         detail = summary + f\"全実行の終了状態: {run['status']}。\"\n         if run.get('failure'):\n             reason = f\"停止理由: {run['failure']}。\"\n",
+  "root_reproduction": {
+    "PYTHONPATH": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src:/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests:/tmp/sv-discovery-terminal-journal-worktree/tests/temp",
+    "prepare_argv": [
+      "/Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python",
+      "/tmp/sv-discovery-terminal-journal-worktree/tests/temp/discovery_terminal_fixture.py",
+      "/tmp/sv-discovery-terminal-main-success",
+      "--journal-root",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "--experiment-id",
+      "REGISTERED_EXPERIMENT_ID",
+      "--append-existing",
+      "--stage-prefix",
+      "main-discovery-success",
+      "--journal-run-stage",
+      "main-discovery-success-whole",
+      "--explicit-finish"
+    ],
+    "prepare_note": "REGISTERED_EXPERIMENT_IDを親が登録した実行補助検査のIDへ置換する。新規の試験行を作らず、未使用IDの全体・考案担当・評価担当の3工程を追加する。結果/採否と既存工程は保持する。",
+    "run": "準備スクリプトのJSON出力にあるcommand配列をsubprocess.runへ渡す（shell不要）。CLI0、全体工程completed、他のactive工程がなければ試行waiting、結果/採否不変を期待。",
+    "failure_case": {
+      "workspace": "/tmp/sv-discovery-terminal-main-failure",
+      "stage_prefix": "main-discovery-failure",
+      "journal_run_stage": "main-discovery-failure-whole",
+      "flags": [
+        "--mode",
+        "missing"
+      ],
+      "remove_flags": [
+        "--explicit-finish"
+      ],
+      "expected": "CLI2、担当はcompletedでも全体はinterrupted、確認待ち。"
+    },
+    "review_only_case": {
+      "flags": [
+        "--review-only",
+        "--explicit-finish"
+      ],
+      "expected": "保存案の評価という表示、正式改訂0/正式評価1。"
+    },
+    "view": "既存 http://127.0.0.1:8765/api/experiments/<登録済みID> の個別GETで確認。コレクションAPIは出力しない。",
+    "precondition": "親のimplementation工程を終了させるなど、試行全体を確認待ちへ送る検査時には他のrunning/waiting工程を残さない。試行全体はcompleted/interruptedにせず、rootが現在の実際の状態を登録する。"
+  },
+  "limits": [
+    "実AI、本番DB、card_note、元の実行原本、共有mainの台帳を変更していない。",
+    "実Codex private stdout.log/JSONL/推論ログは読んでいない。人工入力の公開資料だけを検査。",
+    "tests/tempは未コミット・pushなし。検査証拠として必要なら親がevalsへ保存する。",
+    "既存8765画面での本体確認とpushは親が行う。作業場所の成功を届け先確認済みとはしない。",
+    "この接続による発見力、手法採用、全システム完成は未検証。"
+  ]
+}

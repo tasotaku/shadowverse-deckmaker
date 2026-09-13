@@ -1,0 +1,26 @@
+{
+  "started_at_utc": "2026-09-13T10:23:07Z",
+  "ended_at_utc": "2026-09-13T10:23:20Z",
+  "scope": [
+    "evals/discovery/discovery-terminal-journal-01/README.md",
+    "evals/discovery/discovery-terminal-journal-01/main-validation.json"
+  ],
+  "method": "指定された2ファイルだけを読み、読み手として整合性を確認。コード、他資料、ログ、ネット、他タスクは参照せず、対象ファイルは編集していない。",
+  "verdict": "内容の矛盾なし。訂正内容の記録に軽微な不足あり。",
+  "findings": [
+    {
+      "severity": "minor",
+      "location": "main-validation.json: success-corrected の実行記録、および README.md の本体確認の段落",
+      "problem": "相対指定のPYTHONPATHを絶対指定へ直した説明は分かるが、訂正後の実行記録には環境変数がなく、実際に使った絶対パスが残っていない。prepare_argvとrun_argvだけでは説明された訂正そのものを確認できない。",
+      "suggestion": "最初と訂正後の実行で使ったPYTHONPATHを、必要な値だけ記録すると訂正を追跡できる。"
+    }
+  ],
+  "assessment": {
+    "adoption_scope": "実行を記録する補助としての採用だと明確。探索方法の発見力の評価と区別されている。",
+    "initial_failure_and_correction": "最初の正常系確認の失敗、原因、別実行による訂正、元の失敗の保持は矛盾なく読める。訂正後の環境変数の値は未記録。",
+    "main_and_existing_service": "本体で人工担当を動かし、既存進捗サービスの個別データで状態等を照合したと読める。訂正後の正常提出と意図した未提出の両方にapi_record=trueがある。実サービス自体の再確認は今回の範囲外。",
+    "timing": "READMEの19時台の時刻は日本時間としてJSONのUTC時刻と一致する。実装7分38秒と本体確認の時間は区別され、重複時間を合算しない方針も明記されている。",
+    "unverified_scope": "実AI比較での運用、有用な種の発見、システム完成を確認したとは扱っておらず、未確認範囲は明確。",
+    "usefulness_vs_test_success": "検査合格を探索の有用性の証明と混同していない。"
+  }
+}

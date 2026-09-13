@@ -1,0 +1,67 @@
+{
+  "started_at": "2026-09-13T10:24:39.127981+00:00",
+  "ended_at": "2026-09-13T10:24:39.302834+00:00",
+  "checks": {
+    "a_runtime_equal": true,
+    "a_input_unchanged": true,
+    "b_runtime_equal": true,
+    "b_input_unchanged": true,
+    "actual_common_packet_equal_except_sources_and_derived_index": true,
+    "main_db_unchanged": true
+  },
+  "extra_b_sources": [
+    "67308f8c9b2d1081ca279c353dcfc4a7919b5247afc8bcd2cea66ec60ab15a9a",
+    "68ea1cb806954b608e9a99faa1c8f85ba5b0b42d9298522afd3443ca41975e28",
+    "8622aa495fe058041dc15b601d46c2fa8789c5c376866757ea608627e7f36dc8",
+    "92bca20f6c84f718f5d6db4adcfa78a2413f33e2926022bf9c460b714dc5e705",
+    "a61967c0970ef1411264d5c06c5510dcf770c1b9e07aca76f2dd83a525cc39f3",
+    "bc486ebfa05442c461522ce2c009da61446827960794172cd58437ca27c1a84a",
+    "bc6e6c0416a3b8a0ad257c2190ce07c08ba0f0158364222fd0bdb574f3c42ffe",
+    "f3f143b190591a896af40beb5096807a302a641424c8aa0e68020d906ce45bb2"
+  ],
+  "initial_check_failure": "保存ファイルの外側を入力本文と誤認しKeyError sources。実入力を変更せずdata内を読むよう確認スクリプトを訂正。",
+  "runs": {
+    "a": {
+      "started_at": "2026-09-13T10:22:43.933073+00:00",
+      "status": "running",
+      "command": [
+        "/Applications/ChatGPT.app/Contents/Resources/codex",
+        "--search",
+        "exec",
+        "--ephemeral",
+        "--sandbox",
+        "workspace-write",
+        "--skip-git-repo-check",
+        "--cd",
+        "/private/tmp/sv-inquiry-return-01-a-live/develop",
+        "--json",
+        "--output-last-message",
+        "/private/tmp/sv-inquiry-return-01-a-live/develop/final-message.md",
+        "-"
+      ],
+      "timeout_seconds": 900.0,
+      "budget_clock": "elapsed"
+    },
+    "b": {
+      "started_at": "2026-09-13T10:22:43.966822+00:00",
+      "status": "running",
+      "command": [
+        "/Applications/ChatGPT.app/Contents/Resources/codex",
+        "--search",
+        "exec",
+        "--ephemeral",
+        "--sandbox",
+        "workspace-write",
+        "--skip-git-repo-check",
+        "--cd",
+        "/private/tmp/sv-inquiry-return-01-b-live/develop",
+        "--json",
+        "--output-last-message",
+        "/private/tmp/sv-inquiry-return-01-b-live/develop/final-message.md",
+        "-"
+      ],
+      "timeout_seconds": 900.0,
+      "budget_clock": "elapsed"
+    }
+  }
+}

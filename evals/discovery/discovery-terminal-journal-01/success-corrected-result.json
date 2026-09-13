@@ -1,0 +1,283 @@
+{
+  "status": "completed",
+  "run_id": "fccd7ed65e7842e0a9db8e59084550a2",
+  "started_at": "2026-09-13T10:21:09.112414+00:00",
+  "source": "/private/tmp/sv-discovery-terminal-main-success-corrected/source",
+  "output": "/private/tmp/sv-discovery-terminal-main-success-corrected/run",
+  "stages": [
+    {
+      "stage": "develop",
+      "author": "worker:fccd7ed65e7842e0a9db8e59084550a2:develop",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/synthetic-codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/run/develop",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/run/develop/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/develop",
+        "stdin": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/develop/prompt.md",
+        "output": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/develop-run",
+        "started_at": "2026-09-13T10:21:09.541736+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2345038.887794333,
+        "explicit_finish": true,
+        "timeout_seconds": 10.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 13855,
+        "worker_pid": 13870,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-13T10:21:10.573753+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T10:21:09.542837+00:00",
+            "elapsed_seconds": 0.001077250111848116
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T10:21:09.543907+00:00",
+            "elapsed_seconds": 0.0021494580432772636
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T10:21:09.552735+00:00",
+            "elapsed_seconds": 0.011017499957233667
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-13T10:21:10.478055+00:00",
+            "elapsed_seconds": 0.9363009170629084,
+            "request_hash": "da4526d0e829cccb1de1e9eea3894e11a74f941a8ad40802f8a9a57f9c76338f",
+            "report_hash": "2b5c5056ea129bdab804486ba68595e56df6e47660caba0a45f25ec28e5796bc"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-13T10:21:10.479194+00:00",
+            "elapsed_seconds": 0.9374369168654084,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-13T10:21:10.535024+00:00",
+            "elapsed_seconds": 0.993266582954675
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-13T10:21:10.573100+00:00",
+            "elapsed_seconds": 1.0313460831530392,
+            "request_hash": "da4526d0e829cccb1de1e9eea3894e11a74f941a8ad40802f8a9a57f9c76338f",
+            "report_hash": "2b5c5056ea129bdab804486ba68595e56df6e47660caba0a45f25ec28e5796bc"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T10:21:10.573759+00:00",
+            "elapsed_seconds": 1.0319981668144464
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T10:21:10.577726+00:00",
+            "elapsed_seconds": 1.0359655828215182
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "discovery-terminal-journal-01",
+          "stage_id": "main-discovery-success-corrected-develop",
+          "status": "completed",
+          "begin_revision": 12,
+          "claimed_stage": {
+            "id": "main-discovery-success-corrected-develop",
+            "title": "正常提出の再確認の改訂担当",
+            "status": "running",
+            "started_at": "2026-09-13T10:21:09.541736+00:00",
+            "ended_at": null,
+            "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run/develop-run",
+            "budget_minutes": 1
+          },
+          "claimed_summary": "考案・改訂・評価が途中で停止。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否の確認待ち。",
+          "end_revision": 13,
+          "synced_at": "2026-09-13T10:21:10.577719+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "da4526d0e829cccb1de1e9eea3894e11a74f941a8ad40802f8a9a57f9c76338f",
+          "report_hash": "2b5c5056ea129bdab804486ba68595e56df6e47660caba0a45f25ec28e5796bc"
+        },
+        "elapsed_seconds": 1.0319942920468748,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    },
+    {
+      "stage": "review",
+      "author": "worker:fccd7ed65e7842e0a9db8e59084550a2:review",
+      "returncode": 0,
+      "run": {
+        "status": "finished_by_request",
+        "command": [
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/synthetic-codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/run/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/sv-discovery-terminal-main-success-corrected/run/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/review",
+        "stdin": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/review/prompt.md",
+        "output": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/review-run",
+        "started_at": "2026-09-13T10:21:10.702335+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2345040.048377875,
+        "explicit_finish": true,
+        "timeout_seconds": 10.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 13855,
+        "worker_pid": 13887,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-13T10:21:11.607328+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-13T10:21:10.702691+00:00",
+            "elapsed_seconds": 0.0003480412997305393
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-13T10:21:10.703312+00:00",
+            "elapsed_seconds": 0.0009708330035209656
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-13T10:21:10.710472+00:00",
+            "elapsed_seconds": 0.008159250020980835
+          },
+          {
+            "event": "finish_request_verified",
+            "at": "2026-09-13T10:21:11.470174+00:00",
+            "elapsed_seconds": 0.7678523752838373,
+            "request_hash": "1e6137118df4cb527db281d898d1cfd50f88f5ca5fee8daf1fe6d4634d2f6712",
+            "report_hash": "b3fb21616d2c0f02ef190750fa6cae233e5d99b5af6729ebd51686d0f92c05e3"
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-13T10:21:11.471540+00:00",
+            "elapsed_seconds": 0.7692085411399603,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-13T10:21:11.527382+00:00",
+            "elapsed_seconds": 0.8250922914594412
+          },
+          {
+            "event": "finish_confirmed",
+            "at": "2026-09-13T10:21:11.606413+00:00",
+            "elapsed_seconds": 0.9040816663764417,
+            "request_hash": "1e6137118df4cb527db281d898d1cfd50f88f5ca5fee8daf1fe6d4634d2f6712",
+            "report_hash": "b3fb21616d2c0f02ef190750fa6cae233e5d99b5af6729ebd51686d0f92c05e3"
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-13T10:21:11.607336+00:00",
+            "elapsed_seconds": 0.9049970414489508
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-13T10:21:11.613391+00:00",
+            "elapsed_seconds": 0.9110528333112597
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "discovery-terminal-journal-01",
+          "stage_id": "main-discovery-success-corrected-review",
+          "status": "completed",
+          "begin_revision": 14,
+          "claimed_stage": {
+            "id": "main-discovery-success-corrected-review",
+            "title": "正常提出の再確認の評価担当",
+            "status": "running",
+            "started_at": "2026-09-13T10:21:10.702335+00:00",
+            "ended_at": null,
+            "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run/review-run",
+            "budget_minutes": 1
+          },
+          "claimed_summary": "考案・改訂・評価が途中で停止。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否の確認待ち。",
+          "end_revision": 15,
+          "synced_at": "2026-09-13T10:21:11.613379+00:00"
+        },
+        "finish_evidence": {
+          "request_hash": "1e6137118df4cb527db281d898d1cfd50f88f5ca5fee8daf1fe6d4634d2f6712",
+          "report_hash": "b3fb21616d2c0f02ef190750fa6cae233e5d99b5af6729ebd51686d0f92c05e3"
+        },
+        "elapsed_seconds": 0.9049929580651224,
+        "runner_returncode": 0,
+        "execution_returncode": 0
+      }
+    }
+  ],
+  "review_only": false,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 1,
+  "expected_revision": 2,
+  "original_manifest": {
+    "context.json": "61d809e2e4b43fbd6450631a8963d59db0b41ffe553980822814677a40e08468",
+    "packets/0c1346cfb099579b6f115d5e60b7a8271af402f679f50ca6500089069e85d1c8.json": "e0a658544a0428233e6723b07acd8277d39b74e6fb948fdd2326ea741d8dcdfc",
+    "packets/d98ac78dd52cc66c77efdd3a852181f1dcc1cdfc3806f7549965c3088d2e74b0.json": "6f199b30b270c9d904cdedf5d5b7969f216e0b396725e4e64f608b7cc4e66127",
+    "review-0001-683e388e176de245.json": "448b6ec8db3cd74a21bcf740e48b21087978268ef903f0ded4d539177c25453b",
+    "revision-0001.json": "b323e01c66729629780d50a32a71c72d97f85fe4fb5166abb91d7de50bd6ebab",
+    "snapshot.db": "cff2b225b20691037ecadc357f6e56293bcebdd108527a34a65e642526310f5f"
+  },
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "discovery-terminal-journal-01",
+    "stage_id": "main-discovery-success-corrected-whole",
+    "status": "completed",
+    "begin_revision": 11,
+    "claimed_stage": {
+      "id": "main-discovery-success-corrected-whole",
+      "title": "正常提出の再確認の全体確認",
+      "status": "running",
+      "started_at": "2026-09-13T10:21:09.112414+00:00",
+      "ended_at": null,
+      "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run",
+      "budget_minutes": 1
+    },
+    "claimed_summary": "考案・改訂・評価が途中で停止。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否の確認待ち。",
+    "end_revision": 16,
+    "synced_at": "2026-09-13T10:21:11.708853+00:00"
+  },
+  "judgment": {
+    "procedure": "conditional",
+    "value": "develop",
+    "novelty": "unconfirmed"
+  },
+  "session": "/private/tmp/sv-discovery-terminal-main-success-corrected/run/session",
+  "source_unchanged": true,
+  "formal_revisions": 1,
+  "formal_reviews": 1,
+  "ended_at": "2026-09-13T10:21:11.705703+00:00"
+}

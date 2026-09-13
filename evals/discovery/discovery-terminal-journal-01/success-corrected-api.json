@@ -1,0 +1,224 @@
+{
+  "id": "discovery-terminal-journal-01",
+  "revision": 16,
+  "saved_at": "2026-09-13T10:21:11.707011+00:00",
+  "actor": "担当の実行監視",
+  "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない",
+  "record": {
+    "id": "discovery-terminal-journal-01",
+    "title": "改訂と評価の全体工程を自動記録する",
+    "category": "infrastructure",
+    "status": "waiting",
+    "summary": "考案・改訂・評価は提出確認まで完了。結果・採否の確認待ち。",
+    "method": "全体工程の自動記録を考案/改訂・別評価へ接続",
+    "procedure": "設計→隔離実装→型・機能検査→本体の人工CLI→既存画面確認",
+    "inputs": "採用済みの調査全体記録を再利用。実AI入力は変更しない。",
+    "criteria": "任意指定と事前登録、既存挙動、時刻と成否、手動訂正/並行工程/結果/採否の保持を確認\n自然終了・明示終了・別評価のみ・未提出/不整合で確認\n本体の人工CLIと既存画面データで確認後、今回の実AI比較へ使用",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T10:07:26+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "改訂・評価の全体工程を接続し検査",
+        "status": "completed",
+        "started_at": "2026-09-13T10:07:26+00:00",
+        "ended_at": "2026-09-13T10:15:04.083525+00:00",
+        "note": "7分38秒。110件（追加24・既存86）と型検査3ファイル成功。実AIなし。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "main-discovery-success-whole",
+        "title": "正常提出の全体確認",
+        "status": "interrupted",
+        "started_at": "2026-09-13T10:20:29.504471+00:00",
+        "ended_at": "2026-09-13T10:20:30.651735+00:00",
+        "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success/run\n考案・改訂・評価が途中で停止。全実行の終了状態: develop_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "main-discovery-success-develop",
+        "title": "正常提出の改訂担当",
+        "status": "interrupted",
+        "started_at": "2026-09-13T10:20:30.006466+00:00",
+        "ended_at": "2026-09-13T10:20:30.642354+00:00",
+        "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success/run/develop-run\n担当の停止処理を終了。実行状態: failed、担当終了番号: 1。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "main-discovery-success-review",
+        "title": "正常提出の評価担当",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "人工入力の検査",
+        "budget_minutes": 1
+      },
+      {
+        "id": "main-discovery-success-corrected-whole",
+        "title": "正常提出の再確認の全体確認",
+        "status": "completed",
+        "started_at": "2026-09-13T10:21:09.112414+00:00",
+        "ended_at": "2026-09-13T10:21:11.705703+00:00",
+        "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "main-discovery-success-corrected-develop",
+        "title": "正常提出の再確認の改訂担当",
+        "status": "completed",
+        "started_at": "2026-09-13T10:21:09.541736+00:00",
+        "ended_at": "2026-09-13T10:21:10.573753+00:00",
+        "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "main-discovery-success-corrected-review",
+        "title": "正常提出の再確認の評価担当",
+        "status": "completed",
+        "started_at": "2026-09-13T10:21:10.702335+00:00",
+        "ended_at": "2026-09-13T10:21:11.607328+00:00",
+        "note": "人工入力の検査\n起動処理を開始。実行記録: /private/tmp/sv-discovery-terminal-main-success-corrected/run/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 1
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/discovery-terminal-journal-01/README.md",
+      "evals/discovery/discovery-terminal-journal-01/protocol.json",
+      "evals/discovery/discovery-terminal-journal-01/implementation.json",
+      "evals/discovery/discovery-terminal-journal-01/tests.xml"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/README.md",
+      "sha256": "9866df4160671f12e621a3d134bea2c603d2bf6cab6c21f329d46c2159a5b6b5",
+      "size": 715
+    },
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/implementation.json",
+      "sha256": "6fcd3d3d72f04bee662ba78020b1db8f2c2a45d6cae9fc548dfdeedf0917f32d",
+      "size": 19173
+    },
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/protocol.json",
+      "sha256": "279a1aec9a8aa8844b0b336e278d78af763cf6a9bb4c1cd34f9b65c1280aaaf1",
+      "size": 705
+    },
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/tests.xml",
+      "sha256": "91962c3154ed1ac61686fe8e56cdc6423d656bc9f0e5a30beb5427b372861865",
+      "size": 17344
+    }
+  ],
+  "history": [
+    {
+      "revision": 16,
+      "saved_at": "2026-09-13T10:21:11.707011+00:00",
+      "actor": "担当の実行監視",
+      "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない"
+    },
+    {
+      "revision": 15,
+      "saved_at": "2026-09-13T10:21:11.611396+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 14,
+      "saved_at": "2026-09-13T10:21:10.705509+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 13,
+      "saved_at": "2026-09-13T10:21:10.575982+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 12,
+      "saved_at": "2026-09-13T10:21:09.547605+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 11,
+      "saved_at": "2026-09-13T10:21:09.492146+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 10,
+      "saved_at": "2026-09-13T10:21:09.046099+00:00",
+      "actor": "codex-root",
+      "reason": "本体の人工検査に工程名を付与"
+    },
+    {
+      "revision": 9,
+      "saved_at": "2026-09-13T10:21:09.028728+00:00",
+      "actor": "synthetic-test",
+      "reason": "人工入力の検査を事前登録"
+    },
+    {
+      "revision": 8,
+      "saved_at": "2026-09-13T10:20:30.652788+00:00",
+      "actor": "担当の実行監視",
+      "reason": "最終提出検査までの全実行の終了を反映。結果・採否は変更しない"
+    },
+    {
+      "revision": 7,
+      "saved_at": "2026-09-13T10:20:30.644290+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の停止処理を終え、工程の実行結果と終了時刻を反映"
+    },
+    {
+      "revision": 6,
+      "saved_at": "2026-09-13T10:20:30.009517+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 5,
+      "saved_at": "2026-09-13T10:20:29.966915+00:00",
+      "actor": "担当の実行監視",
+      "reason": "担当の起動処理を開始。結果・採否は変更しない"
+    },
+    {
+      "revision": 4,
+      "saved_at": "2026-09-13T10:20:29.421215+00:00",
+      "actor": "codex-root",
+      "reason": "本体の人工検査に工程名を付与"
+    },
+    {
+      "revision": 3,
+      "saved_at": "2026-09-13T10:20:29.400033+00:00",
+      "actor": "synthetic-test",
+      "reason": "人工入力の検査を事前登録"
+    },
+    {
+      "revision": 2,
+      "saved_at": "2026-09-13T10:20:02.232036+00:00",
+      "actor": "codex-root",
+      "reason": "隔離実装の検査と同一コードの取り込みを確認"
+    },
+    {
+      "revision": 1,
+      "saved_at": "2026-09-13T10:11:11.950104+00:00",
+      "actor": "codex-root",
+      "reason": "次の実AI比較に必要な自動記録の接続を限定実装"
+    }
+  ],
+  "source_changes": {
+    "error": null,
+    "paths": []
+  }
+}
