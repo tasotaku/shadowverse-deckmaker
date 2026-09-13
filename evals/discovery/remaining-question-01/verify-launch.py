@@ -1,0 +1,15 @@
+from datetime import datetime, timezone
+from pathlib import Path
+import hashlib,json
+from svdeck.discovery_run import manifest
+from svdeck.journal_store import Journal
+root=Path('/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker');e=root/'evals/discovery/remaining-question-01';implementation=json.loads((e/'implementation.json').read_text());prep=json.loads((e/'preparation.json').read_text());extra=implementation['exact_instruction'];source=Path(prep['source']);assert manifest(source)==prep['manifest']
+packets={};prompts={};side_info={}
+for side in ['a','b']:
+ work=Path('/tmp/sv-remaining-question-01-'+side+'-live');config=json.loads((work/'develop/public-config.json').read_text());packet=json.loads((work/'develop/session/packets'/(config['packet_hash']+'.json')).read_text());packets[side]=packet
+ prompts[side]=(work/'develop/prompt.md').read_text().replace(config['packet_hash'],'PACKET_HASH').replace(config['author'],'AUTHOR')
+ fixed=json.loads((e/(side+'-runtime.json')).read_text());assert manifest(work/'runtime')==fixed['manifest'];result=json.loads((work/'result.json').read_text());side_info[side]={'output':str(work),'run_id':result['run_id'],'engine_started_at':result['started_at'],'status':result['status'],'packet_hash':config['packet_hash'],'runtime_matches':True}
+a,b=packets['a']['data'],packets['b']['data'];assert b['instruction']==a['instruction']+extra;assert {k:v for k,v in a.items() if k!='instruction'}=={k:v for k,v in b.items() if k!='instruction'};assert prompts['b'].replace(extra,'',1)==prompts['a'];assert hashlib.sha256((root/'data/cards.db').read_bytes()).hexdigest()=='11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414'
+j=Journal(root);c=j.get(e.name);r=c['record'];side_info['stages']=[{k:s[k] for k in ['id','status','started_at','ended_at']} for s in r['stages'] if s['id'] in {'a-develop','b-develop','a-review','b-review'}]
+proof={'verified_at':datetime.now(timezone.utc).isoformat(),'sides':side_info,'only_data_difference':'instruction','only_prompt_difference':'残った問いを実比較へ戻す追加文（担当ID・入力識別値は正規化）','original_source_unchanged':True,'main_db_unchanged':True,'each_run_wrapped_with_caffeinate':['-i','-s'],'model_override':None,'limitations':'開始と入力一致の確認。案・評価の有用性は未判定。'};(e/'paired-launch-verification.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
+settings=json.loads((e/'launch-settings.json').read_text());r['stages'].insert(3,{'id':'runtime-freeze','title':'両方式の実装を固定','status':'completed','started_at':settings['started_at'],'ended_at':settings['ended_at'],'note':'コード差分は考案案内を含む1ファイルだけ。カード・資料の入力を保持。','budget_minutes':5});r['summary']='現行・追加版とも改訂を開始。実際の入力は案内の一文以外同じことを確認。改訂15分・別評価10分を各一度。';r['result']['summary']='隔離試作と90検査・型検査は成功。両方式の改訂は実行中で、有用性と採否は未判定。';r['evidence_paths']+=['evals/discovery/remaining-question-01/'+n for n in ['a-runtime.json','b-runtime.json','launch-settings.json','paired-launch-verification.json','verify-launch.py']];j.save(r,c['revision'],'codex-root','両方式の実AI起動と案内以外の実入力一致を確認');(e/'journal-record.json').write_text(json.dumps(j.get(e.name),ensure_ascii=False,indent=2)+'\n');print(proof)

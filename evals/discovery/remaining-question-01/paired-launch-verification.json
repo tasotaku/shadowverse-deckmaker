@@ -1,0 +1,57 @@
+{
+  "verified_at": "2026-09-13T01:37:38.093367+00:00",
+  "sides": {
+    "a": {
+      "output": "/tmp/sv-remaining-question-01-a-live",
+      "run_id": "bb1815eab9ad4a9db8a1144bbe095508",
+      "engine_started_at": "2026-09-13T01:37:18.861633+00:00",
+      "status": "develop",
+      "packet_hash": "9e02edd0eeb20cc6bf4b538836b20641fad57eaae8b451d8330027e78f790375",
+      "runtime_matches": true
+    },
+    "b": {
+      "output": "/tmp/sv-remaining-question-01-b-live",
+      "run_id": "905e2df6219144f0a3cf58d24f68ab37",
+      "engine_started_at": "2026-09-13T01:37:18.861633+00:00",
+      "status": "develop",
+      "packet_hash": "a5beef4b07b2b1ba3c8424770001c6d031472a264e729cdbb013ca99c589a3f9",
+      "runtime_matches": true
+    },
+    "stages": [
+      {
+        "id": "a-develop",
+        "status": "running",
+        "started_at": "2026-09-13T01:37:19.209984+00:00",
+        "ended_at": null
+      },
+      {
+        "id": "a-review",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null
+      },
+      {
+        "id": "b-develop",
+        "status": "running",
+        "started_at": "2026-09-13T01:37:19.209987+00:00",
+        "ended_at": null
+      },
+      {
+        "id": "b-review",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null
+      }
+    ]
+  },
+  "only_data_difference": "instruction",
+  "only_prompt_difference": "残った問いを実比較へ戻す追加文（担当ID・入力識別値は正規化）",
+  "original_source_unchanged": true,
+  "main_db_unchanged": true,
+  "each_run_wrapped_with_caffeinate": [
+    "-i",
+    "-s"
+  ],
+  "model_override": null,
+  "limitations": "開始と入力一致の確認。案・評価の有用性は未判定。"
+}

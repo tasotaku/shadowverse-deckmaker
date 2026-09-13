@@ -1,0 +1,134 @@
+{
+  "result": {
+    "verdict": "PASS",
+    "scope": "Isolated implementation and public-input invariants; AI discovery usefulness is untested."
+  },
+  "started_at": "2026-09-13T01:29:15+00:00",
+  "ended_at": "2026-09-13T01:35:13.228058+00:00",
+  "phases": [
+    {
+      "name": "preparation",
+      "started_at": "2026-09-13T01:29:15+00:00",
+      "ended_at": "2026-09-13T01:30:44.840804+00:00",
+      "duration_seconds": 89.841
+    },
+    {
+      "name": "implementation",
+      "started_at": "2026-09-13T01:30:44.840804+00:00",
+      "ended_at": "2026-09-13T01:31:34.593182+00:00",
+      "duration_seconds": 49.752
+    },
+    {
+      "name": "verification",
+      "started_at": "2026-09-13T01:31:34.593182+00:00",
+      "ended_at": "2026-09-13T01:34:39.707739+00:00",
+      "duration_seconds": 185.115
+    },
+    {
+      "name": "commit_and_evidence",
+      "started_at": "2026-09-13T01:34:39.707739+00:00",
+      "ended_at": "2026-09-13T01:35:13.228058+00:00",
+      "duration_seconds": 33.52
+    }
+  ],
+  "commit": "722d120b8daab464c174190f70cec5e846763c45",
+  "worktree": "/tmp/sv-remaining-question-01-worktree",
+  "exact_instruction": "比較で有力な既知案へ移った場合は、直前案・別評価に残る、まだ比較していない使用時点または失う役割の不足を一つ選び、その不足が生じる時点から同じ外部条件の短い対応手順で比較してください。既知案がまだ使えないだけで利益とせず、その時点の通常構築とも比べます。結果が使う時点や前後の採用配分を変えるかを確かめ、根拠がなければ既知案と未解決を残してください。元案の復活や新しい枝の作出を必須にしません。\n",
+  "tests": [
+    {
+      "name": "existing_discovery_regressions",
+      "command": "PYTHONPATH=src pytest -q tests/test_discovery.py tests/test_discovery_history.py tests/test_discovery_review_contexts.py tests/test_discovery_read.py tests/test_discovery_sources.py",
+      "exit_code": 0,
+      "passed": 88,
+      "duration_seconds": 8.11,
+      "log": "/tmp/remaining-question-prototype-evidence/pytest-existing.log"
+    },
+    {
+      "name": "scope_and_public_packets",
+      "command": "PYTHONPATH=src pytest -q tests/temp/test_remaining_question_temp.py",
+      "exit_code": 0,
+      "passed": 2,
+      "duration_seconds": 2.16,
+      "log": "/tmp/remaining-question-prototype-evidence/pytest-scope.log"
+    },
+    {
+      "name": "mypy",
+      "command": "PYTHONPATH=src mypy src/svdeck/discovery.py",
+      "exit_code": 0,
+      "checked_source_files": 1,
+      "log": "/tmp/remaining-question-prototype-evidence/mypy-retry.log"
+    },
+    {
+      "name": "diff_whitespace",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "public_packet_check": {
+    "verdict": "PASS",
+    "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/same-slot-alternative-01-a-result",
+    "source_files": 36,
+    "formal_revisions": 2,
+    "latest_reviews": 1,
+    "sources": 26,
+    "public_cli_packet_invocations": 8,
+    "develop_changes": [
+      "data.instruction",
+      "sha256"
+    ],
+    "initial_develop_changes": [
+      "data.instruction",
+      "sha256"
+    ],
+    "review_byte_semantics_identical": true,
+    "finish_byte_semantics_identical": true,
+    "non_instruction_data_identical": true,
+    "context_cards_notes_proposal_history_sources_search_review_contexts_response_example_identical": true,
+    "review_excludes_old_reviews": true,
+    "copy_original_files_preserved": true,
+    "packet_hashes": {
+      "base-develop": "9e02edd0eeb20cc6bf4b538836b20641fad57eaae8b451d8330027e78f790375",
+      "base-initial": "801ca3c4ff61325e548bed5ce213a20c7f4a53ea3033482be3baf5721f311bd8",
+      "base-review": "031dbe2e91fed7d59eb6ab1fbd47152ce4a61403375067abef4a297c11853b6c",
+      "base-finish": "46709e703cc75ec00036c9640d45dd750f766e79d61989335e85f2858a4caa86",
+      "variant-develop": "a5beef4b07b2b1ba3c8424770001c6d031472a264e729cdbb013ca99c589a3f9",
+      "variant-initial": "4d2386d24ac8caa60decd0c67b3ce11bdd27b0c8e3de0ce65146fc7bc8882043",
+      "variant-review": "031dbe2e91fed7d59eb6ab1fbd47152ce4a61403375067abef4a297c11853b6c",
+      "variant-finish": "46709e703cc75ec00036c9640d45dd750f766e79d61989335e85f2858a4caa86"
+    },
+    "no_ai_launched": true,
+    "original_input_unchanged": true,
+    "review_and_finish_public_output_bytes_identical": true
+  },
+  "patch_path": "/tmp/remaining-question-prototype-evidence/prototype.patch",
+  "failures": [
+    {
+      "phase": "preparation",
+      "description": "/tmp/sv-system-venv/bin/pytest does not exist; pytest runner will be located separately.",
+      "kind": "runner_path_probe",
+      "resolved": true,
+      "resolution": "Located pytest at /Users/miyauchitsubasa/.pyenv/shims/pytest; no installation or runtime changes."
+    },
+    {
+      "phase": "verification",
+      "kind": "mypy_runner_environment",
+      "description": "/tmp/sv-system-venv/bin/mypy failed because mypy module is unavailable to its interpreter.",
+      "exit_code": 1,
+      "log": "/tmp/remaining-question-prototype-evidence/mypy.log",
+      "resolved": true,
+      "resolution": "PYTHONPATH=src mypy src/svdeck/discovery.py passed using the existing pyenv shim."
+    }
+  ],
+  "design_commit": "bde0556474041c2979fe12968029aeddaf494171",
+  "public_packet_check_path": "/tmp/remaining-question-prototype-evidence/public-packet-check.json",
+  "no_ai_launched": true,
+  "main_edited": false,
+  "pushed": false,
+  "adopted": false,
+  "duration_seconds": 358.228,
+  "patch_sha256": "50172c1cc0f746b2c8f5578e3f99c745636a2cc27d017e7b06b0390701918ae5",
+  "changed_files": [
+    "docs/design.md",
+    "src/svdeck/discovery.py"
+  ]
+}

@@ -1,9 +1,9 @@
 {
   "id": "same-slot-alternative-01",
-  "revision": 19,
-  "saved_at": "2026-09-13T01:30:25.839275+00:00",
+  "revision": 20,
+  "saved_at": "2026-09-13T01:34:42.257748+00:00",
   "actor": "codex-root",
-  "reason": "既存指示と過去試験の点検を踏まえ、対象を絞った次の再検証へ接続",
+  "reason": "報告と既存届け先の独立照合を工程時刻付きで保存",
   "record": {
     "id": "same-slot-alternative-01",
     "title": "同じ採用枠を争う代案を比較へ戻す案内",
@@ -24,7 +24,7 @@
       "reason": "同じ採用枠の代案を比較して配分へ戻す動作は両方に見られ、現行にない寄与は確認できなかった。122機能検査と入力一致は指示の実装確認であり、発見力改善の証明ではない。追加文は本体へ取り込まず、正式案・評価・時刻と学びを保持する。"
     },
     "started_at": "2026-09-13T00:07:26.663488+00:00",
-    "ended_at": "2026-09-13T01:25:44.531347+00:00",
+    "ended_at": "2026-09-13T01:34:42.224419+00:00",
     "stages": [
       {
         "id": "prototype",
@@ -115,6 +115,15 @@
         "ended_at": "2026-09-13T01:22:48.309545+00:00",
         "note": "別担当が4分24秒で確認。現行も同じ代案を比較して配分を変更したため追加文の上乗せ未確認。旧表記の残存は別評価の指摘と区別。",
         "budget_minutes": 5
+      },
+      {
+        "id": "final-report-check",
+        "title": "報告と既存進捗画面の結果を別担当が照合",
+        "status": "completed",
+        "started_at": "2026-09-13T01:31:23+00:00",
+        "ended_at": "2026-09-13T01:33:12.636003+00:00",
+        "note": "109.64秒で合格。比較結果・採用保留・次の未評価試験と既存API第19版の一致を確認。先例から広い普及を推定していない。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
@@ -142,7 +151,9 @@
       "evals/discovery/same-slot-alternative-01/a",
       "evals/discovery/same-slot-alternative-01/b",
       "evals/discovery/same-slot-alternative-01/method-outcome.json",
-      "evals/discovery/remaining-question-01/prior-gap-check.json"
+      "evals/discovery/remaining-question-01/prior-gap-check.json",
+      "evals/discovery/same-slot-alternative-01/final-reader.json",
+      "evals/discovery/same-slot-alternative-01/delivery-verification.json"
     ]
   },
   "evidence": [
@@ -153,8 +164,8 @@
     },
     {
       "path": "evals/discovery/same-slot-alternative-01/README.md",
-      "sha256": "023a642fdfb764fdc8115d8df96973fab9eb3785a01a980c6fc7799067c0e675",
-      "size": 8076
+      "sha256": "49376fcf8cf3c4afdf7c0ea250f84e45b3b38699670e83c2b56fb91d9e432efc",
+      "size": 8191
     },
     {
       "path": "evals/discovery/same-slot-alternative-01/a/develop/finish-config.json",
@@ -385,6 +396,16 @@
       "path": "evals/discovery/same-slot-alternative-01/collection-start.json",
       "sha256": "64dd3e271e3f67bc5aa329a49070a65612720a8d8fd1b1fac8b93294c957c2bd",
       "size": 238
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/delivery-verification.json",
+      "sha256": "83103cbcd21e0ff54a9cf4d811ffc78f5f49621a011a20967f6ff537f251e2aa",
+      "size": 445
+    },
+    {
+      "path": "evals/discovery/same-slot-alternative-01/final-reader.json",
+      "sha256": "45f9b1dceb5b193c48d69085164497b7f643bf13d0274f432705d49fcb628bd5",
+      "size": 5166
     },
     {
       "path": "evals/discovery/same-slot-alternative-01/freeze-runtime.py",

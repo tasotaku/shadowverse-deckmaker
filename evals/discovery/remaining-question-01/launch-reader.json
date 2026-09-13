@@ -1,0 +1,70 @@
+{
+  "task": "remaining-question-01 independent launch report review",
+  "started_at_utc": "2026-09-13T01:39:50+00:00",
+  "ended_at_utc": "2026-09-13T01:41:03.252065+00:00",
+  "elapsed_seconds": 73.25,
+  "target_seconds": 120,
+  "verdict": "PASS",
+  "scope": {
+    "documents": [
+      "evals/discovery/remaining-question-01/README.md",
+      "docs/progress.md latest introduction"
+    ],
+    "evidence": [
+      "protocol.json",
+      "implementation.json",
+      "prior-gap-check.json",
+      "paired-launch-verification.json",
+      "journal-record.json"
+    ],
+    "private_ai_logs_read": false,
+    "result_quality_assessed": false,
+    "source_edits": false,
+    "background_conversation_used_for_judgment": false
+  },
+  "understanding": {
+    "method": "保存済みの案と別評価に残る未比較の問い一つを選び、必要な時点の通常構築と比較して、採用枚数・使い方の判断へ戻す指示を現行と比べる。",
+    "prior_overlap": "不足を比較へ戻す既存の手順と重なり、試す価値あり・既知という案へ移った後の残問に対象を絞る再検証と明示。一般的な別用途探索を新しく実装したとは述べていない。",
+    "current_state": "2026-09-13 10:37:19 JSTから現行・追加版とも改訂実行中。別評価は未着手。公開入力等の検査成功と探索成果の評価を区別している。",
+    "adoption": "有用性と採否は未判定。本体への追加未採用。現行でも同じ比較へ進めば追加指示の上乗せにしない。",
+    "time": "改訂15分・別評価10分を各一度。過去の差分点検3分05秒の目安超過と試作5分58秒の内訳、進行中工程の開始時刻を記録している。",
+    "known_boundary": "記事に使い方があることから広い普及を推定しない。既知案の維持や未解決も許し、独自な種の獲得と比較を判断へ戻す効果を区別する。"
+  },
+  "checks": {
+    "test_count": "88 + 2 = 90; type check passed",
+    "common_input_count": "36 files: revisions 2, latest review 1, sources 26, other input files 7",
+    "protocol_fixed_jst": "2026-09-13 10:28:38",
+    "live_input_difference": "追加指示のみ。担当ID・入力識別値は正規化して照合済みの保存結果を確認。",
+    "all_8_stage_times_and_states_match_api": true,
+    "all_saved_journal_fields_match_api": true
+  },
+  "delivery": {
+    "url": "http://127.0.0.1:8765/api/experiments/remaining-question-01",
+    "revision": 7,
+    "saved_at": "2026-09-13T01:39:05.093836+00:00",
+    "source_changes": {
+      "error": null,
+      "paths": []
+    },
+    "status": "running",
+    "result": "unassessed",
+    "decision": "unassessed"
+  },
+  "findings": [],
+  "optional_clarity_notes": [
+    {
+      "file": "evals/discovery/remaining-question-01/README.md",
+      "line": 18,
+      "note": "「改訂15分・別評価10分ずつ、一度だけ起動しました」は直後の現在地と表で区別できるが、単独では別評価も開始済みに読める。より直接的には「改訂15分・別評価10分を上限として各一度行います。両方式で改訂を開始しました」とできる。現状は文脈と表で解消されるため必須修正には数えない。"
+    },
+    {
+      "file": "docs/progress.md",
+      "line": 9,
+      "note": "進行中の新しい試験の段落にも「方法の有用性と採否は未判定」と一文置くと、冒頭で述べた前試験の採用保留と区別しやすい。リンク先READMEの冒頭は明示済み。"
+    }
+  ],
+  "limitations": [
+    "改訂中の案・結果・方法の有用性は評価していない。",
+    "APIの内容を確認した。ブラウザ上の画面配置・表示崩れの目視は対象外。"
+  ]
+}
