@@ -1,0 +1,278 @@
+{
+  "assessment": "live-query-discovery-01 independent public-record outcome assessment",
+  "assessment_started_at_utc": "2026-09-12T23:14Z",
+  "assessment_ended_at_utc": "2026-09-13T00:05:37.191515+00:00",
+  "time_note": "親担当によると初回依頼はUTC 2026-09-12 23:14台。自担当が出力から明示確認できた最初のUTCは翌日00:01:25。終了は上記ended_at。5分目安を壁時計で大きく超過している。両時刻の間を能動作業時間とみなせず、待機・中断・実作業の内訳は不明。先の初稿で00:01:25を開始と置いた値は、実際の依頼開始ではなく初めて明示確認した観測時刻へ訂正した。",
+  "scope": "固定比較の結果評価のみ。実Codexのstdout.log、推論JSONL、私的ログは未読。コード・DB・入力・元評価の変更、外部の新規性再調査、新しいカード解答の作成は行っていない。",
+  "fixed_conditions": {
+    "evidence_paths": [
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/protocol.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/shared-intake-amendment.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/live-query-discovery-01/paired-launch-verification.json"
+    ],
+    "finding": "共通クラス・フォーマット・固定8記事・同一初回入力、考案20分と別評価10分を各一度。取得処理の共通修正は探索AI起動前で、差は未提出の問いをqueryへ渡せる入口とその案内。起動記録では同一packet hashを確認済み。",
+    "initial_packet_sha256": "5e14c80f0e1a198d996dd8954da6c0714fcfecfd92b332e952c9bb86c0087d3b"
+  },
+  "sides": {
+    "a": {
+      "title": "退出1枠で墓場枯渇後のビバティーを起動",
+      "formal_revision_count": 1,
+      "formal_review_count": 1,
+      "proposal_path": "/tmp/sv-live-query-discovery-01-a-live/session/revision-0001.json",
+      "proposal_hash": "d325e77611e14887ddfe6b98356249a6afd55d0ff9c8c24d7ec9ccaaf86c682f",
+      "review_path": "/tmp/sv-live-query-discovery-01-a-live/session/review-0001-c5b7d146a7ad772f.json",
+      "review_hash": "c5b7d146a7ad772f1e88094c39e49e271bc4d390f1ebb1ba73dce03d4b1d13c5",
+      "verdict": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "stages": {
+        "develop": {
+          "operation_count": 38,
+          "query_count": 0,
+          "queries": [],
+          "distinct_cards_returned_by_read": 212,
+          "note_quote_checks": [
+            {
+              "card_id": 10852310,
+              "quote_matches_read_note": true,
+              "read_path": "/tmp/sv-live-query-discovery-01-a-live/develop/operations/5c24ca1154bb43e8b633b3cf2756666c.json"
+            },
+            {
+              "card_id": 10654120,
+              "quote_matches_read_note": true,
+              "read_path": "/tmp/sv-live-query-discovery-01-a-live/develop/operations/fc5a4e4165c34bd899c29f7c0fb13107.json"
+            },
+            {
+              "card_id": 90051120,
+              "quote_matches_read_note": true,
+              "read_path": "/tmp/sv-live-query-discovery-01-a-live/develop/operations/be80088a80df49cf8e3a8ad963fd0a95.json"
+            }
+          ],
+          "first_key_card_reads": [
+            {
+              "card_id": 10852310,
+              "name": "旅立ちの退出",
+              "at": "2026-09-12T22:11:26.170860+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-a-live/develop/operations/5c24ca1154bb43e8b633b3cf2756666c.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10654120,
+              "name": "旧き天眼・ビバティー",
+              "at": "2026-09-12T22:11:09.467098+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-a-live/develop/operations/fc5a4e4165c34bd899c29f7c0fb13107.json",
+              "note_empty": false
+            }
+          ],
+          "failed_operations": []
+        },
+        "review": {
+          "operation_count": 25,
+          "query_count": 0,
+          "queries": [],
+          "distinct_cards_returned_by_read": 212,
+          "note_quote_checks": [],
+          "first_key_card_reads": [
+            {
+              "card_id": 10852310,
+              "name": "旅立ちの退出",
+              "at": "2026-09-12T22:28:24.554383+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-a-live/review/operations/0c25c2b98627446580655669dcdd5471.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10654120,
+              "name": "旧き天眼・ビバティー",
+              "at": "2026-09-12T22:28:24.554383+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-a-live/review/operations/0c25c2b98627446580655669dcdd5471.json",
+              "note_empty": false
+            }
+          ],
+          "failed_operations": []
+        }
+      }
+    },
+    "b": {
+      "title": "中尉の交代を前倒しする捕食1枠",
+      "formal_revision_count": 1,
+      "formal_review_count": 1,
+      "proposal_path": "/tmp/sv-live-query-discovery-01-b-live/session/revision-0001.json",
+      "proposal_hash": "d4672494c85e343fdeaf996d96b6edbe47c24b5b1911d3ed77457ee3fdb17a96",
+      "review_path": "/tmp/sv-live-query-discovery-01-b-live/session/review-0001-0b8bf2a63712a326.json",
+      "review_hash": "0b8bf2a63712a3263ba4d26776ae3ef7e343969fc996300eebe35b47d2f257b4",
+      "verdict": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "stages": {
+        "develop": {
+          "operation_count": 56,
+          "query_count": 1,
+          "queries": [
+            {
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/2f1669e99b244b86bdf465f5794be6cf.json",
+              "started_at": "2026-09-12T22:14:06.524745+00:00",
+              "question": "イステンデッドの継続除去を使うミッドレンジナイトメアで、ビバティーの墓場4消費や超進化権を追加で使わず、重い盤面処理と同じターンに併用できる低コストの山札ドローはあるか。生成札と条件のない部分も全文で確認したい。",
+              "tag": "ドロー",
+              "tag_hits": 23,
+              "direct_supply_hits": 18,
+              "requirement_matches": 23,
+              "selected_card_in_results": true,
+              "review_alternative_in_results": true
+            }
+          ],
+          "distinct_cards_returned_by_read": 212,
+          "note_quote_checks": [
+            {
+              "card_id": 10052310,
+              "quote_matches_read_note": true,
+              "read_path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/485be5085f9c4cd98a5ed697a4ef3cc8.json"
+            }
+          ],
+          "first_key_card_reads": [
+            {
+              "card_id": 10052310,
+              "name": "魂の捕食",
+              "at": "2026-09-12T22:10:51.202291+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/485be5085f9c4cd98a5ed697a4ef3cc8.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10951120,
+              "name": "幽冥の中尉",
+              "at": "2026-09-12T22:11:29.416498+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/43cbe8e4022b4377b8994edf51070b82.json",
+              "note_empty": true
+            },
+            {
+              "card_id": 10654120,
+              "name": "旧き天眼・ビバティー",
+              "at": "2026-09-12T22:11:28.645391+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/89220aa2afba488ea5301d6f19e8c0bd.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10854110,
+              "name": "出発の憧憬・イツルギ＆タケツミ",
+              "at": "2026-09-12T22:11:29.264873+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/b722ae41ea424deaa9e98ad58109b4ef.json",
+              "note_empty": true
+            }
+          ],
+          "failed_operations": [
+            {
+              "path": "/tmp/sv-live-query-discovery-01-b-live/develop/operations/9ebff9292dcc4ba582ca42fea1c1678e.json",
+              "args": [
+                "submit",
+                "proposal.json"
+              ],
+              "exit_code": 2,
+              "message": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+            }
+          ]
+        },
+        "review": {
+          "operation_count": 30,
+          "query_count": 0,
+          "queries": [],
+          "distinct_cards_returned_by_read": 212,
+          "note_quote_checks": [],
+          "first_key_card_reads": [
+            {
+              "card_id": 10052310,
+              "name": "魂の捕食",
+              "at": "2026-09-12T22:28:37.129351+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/review/operations/a4531e589e5043348e10e3a247b06455.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10951120,
+              "name": "幽冥の中尉",
+              "at": "2026-09-12T22:28:37.129351+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/review/operations/a4531e589e5043348e10e3a247b06455.json",
+              "note_empty": true
+            },
+            {
+              "card_id": 10654120,
+              "name": "旧き天眼・ビバティー",
+              "at": "2026-09-12T22:28:37.129351+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/review/operations/a4531e589e5043348e10e3a247b06455.json",
+              "note_empty": false
+            },
+            {
+              "card_id": 10854110,
+              "name": "出発の憧憬・イツルギ＆タケツミ",
+              "at": "2026-09-12T22:28:37.129351+00:00",
+              "path": "/tmp/sv-live-query-discovery-01-b-live/review/operations/a4531e589e5043348e10e3a247b06455.json",
+              "note_empty": true
+            }
+          ],
+          "failed_operations": []
+        }
+      }
+    }
+  },
+  "conclusion": {
+    "formal_outcomes": "A/Bとも正式1案＋独立別評価1件を完了。両方conditional / develop / unconfirmed。試用推薦testは0/2で、未実行・未評価の0ではない。指定状態での手順成立は2/2、独自性確認成功は0/2。",
+    "method_recommendation": "検索補助として採用済みのqueryを撤回する根拠は今回得られていない。一方、今回の発見力比較から、試す価値と独自性が確認された案を増やす方法として優れていると追加認定することはできない。既存採用判断は維持し、今回の発見力の上乗せは未確認とする。",
+    "why": "Bには本文・注記から複数段の接続を具体化した成果があるが、Aにも同じビバティーの墓場不足を起点にした別用途が生じた。Bの主要カードはquery前に取得されており、両方とも試用推薦まで届いていない。各1回の結果差を一般的な因果効果にしない。"
+  },
+  "query_use": {
+    "count": "A考案0・別評価0。B考案1・別評価0。",
+    "difference_from_old_search": "公開記録と固定条件から確認できる追加分は、正式案を提出する前の新しい問いとタグを、その場で既存の型による候補検索へ渡し、本文を読む位置を得られること。Aは公開readで本文・注記・資料を走査した。別の知識DBや高度な新検索方式に変えた比較ではない。旧検索全体の内部実装は本評価では調査していない。",
+    "hits_and_zero": "Bはドローで23候補、直接供給18、要求一致23。捕食と、別評価が指摘した競合のイツルギ＆タケツミも含まれる。結果自体が本文・注記確認と0件時の全文走査を明示。今回0件のqueryは発生しておらず、0件からの回復動作は未評価。",
+    "candidate_preexposure": "両方の考案・別評価で公開readから異なるカード212件の返却を確認。Bはquery前に212件を取得しており、捕食・中尉・ビバティー・イツルギ＆タケツミは既読操作がある。query後に捕食・ビバティー・中尉等を1件ずつ再取得。実際の注意配分や心中の着想時刻は公開記録から分からず、検索が初発見したとはしない。",
+    "persistence": "Bはqueryの問い・候補23件・選択札・問いから用途が変わった留保を正式追加資料に保存した。検索結果をそのまま成立・強さ・独自性にしていない。"
+  },
+  "development_and_notes": {
+    "a": "退出の墓場供給をセレス用の蓄積から、消費後のビバティー起動へ転用。退出の低カードパワー注記とビバティーの注記を本文とともに引用し照合。通常側でも深淵を得られるため追加補充を固有利益から除き、同一状態の主比較をEP1温存に絞った。残るEPの実用途、交換で落ちる除去性能、局面の頻度が未解決。",
+    "b": "捕食の素材を、注記で低評価だった渇仰の悪魔からその場で交代できる中尉へ変え、盤面が消える損失を抑えた。中尉の破壊・捕食使用の墓場加算をビバティーの判定前へ置くことで、同ターンの進化・補充・処理へ接続した。捕食とビバティーの注記を読み、中尉の注記は空であることを明記。旧評価を撤回せず、文脈別の再検討とした。",
+    "b_query_question_residual": "当初の問いは墓場4消費を追加せず重い盤面処理と低コスト補充を両立するもの。最終の主手順は墓場4を消費し、小型2体を対象とするため当初の不足を全て解決していない。中尉の2点上限、素材欠損、墓場消費と終盤札の競合を次の問いに残した。",
+    "evidence_paths": [
+      "/tmp/sv-live-query-discovery-01-a-live/session/sources/954953767e50b04b6394811d8653ce9d3d17e148dcaa54034eb43f2f9901c929.json",
+      "/tmp/sv-live-query-discovery-01-b-live/session/sources/67047ce1a5d2464b88aa34e99acc0045d2d7b28a6fad1744a11f26fd571e2a02.json"
+    ]
+  },
+  "trial_comparison": {
+    "a": "ライブ1枠を退出へ変更し39枚共通。開始状態・終点を固定し、通常側のEP進化とリリム進化を比較。主差EP1を得るが除去は6点割振りからランダム単体3点へ低下。別評価は相手体力を1下げるだけでも通常側が盤面を多く残せる点を指摘し、試用推薦に必要な交換価値が不足するとした。",
+    "b": "バアル1枠を捕食へ変更し39枚共通。通常側6手順を同じ開始状態・終了時点まで比較した。通常でも全処理でき、残る価値は墓場を先に用意し補充へ資源を配分すること。追加PP・同時所持・墓場消費・バアル欠損に見合う枠の価値は未成立。"
+  },
+  "reviewer_contributions_excluded_from_developer_credit": {
+    "a": "ライブのネクロマンス6消費により開始墓場6～8でも差が残る訂正、墓場8の枝から後続マクミランへ届く再検討の問い、体力6の相手で通常側が5/5を残せる感度比較は別評価の寄与。A提案担当の発展として加点しない。",
+    "b": "記事の入替候補イツルギ＆タケツミへ同じ1枠を使う比較を補完。既存の開始状態で、より少ない同時所持要求で処理・補充・強い残存盤面を得る競合を示した。B提案担当やqueryが完成させた比較として加点しない。queryは競合を取得していたが採用判断への反映は別評価で行われた。"
+  },
+  "common_and_differences": {
+    "common": "固定8記事と全文・注記を読んだうえでミッドレンジの39枚を維持する1枠交換。どちらもビバティーの墓場4を先に作る点へ発展し、通常側が得る利益を差し引いた。指定状態だけの成立・試用・独自性を分離。",
+    "difference": "Aは墓場供給でEPを残す用途。Bは自分のカードを壊した後の交代を早め、補充と同ターンの墓場不足へつなぐ用途。Bでqueryを実際に使えたことは確認できるが、この用途差の原因をqueryだけへ帰属できない。"
+  },
+  "next_system_issue": {
+    "count": 1,
+    "issue": "資料中に既にある、同じ変更枠で同じ不足を解く有力な候補が、考案担当の比較から抜ける。",
+    "observed_evidence": "Bのqueryはイツルギ＆タケツミを候補として返し、考案担当は本文も検索前に取得済み。参考記事にも入替候補として存在するが、正式比較6手順にその1枠代案がなく、別評価が初めて比較へ戻した。",
+    "candidate_system_change": "次に調べる修正候補は、選んだ1枠について同じ役割の有力代案が比較対象に含まれているかを、正式提出前の比較確認へつなぐこと。特定カードを答えとして固定しない。",
+    "already_addressed": "資料の取得と検索結果への収録は対処済み。既存の比較欄・追加資料・別評価があり、今回の別評価は欠落を検出した。",
+    "unconfirmed": "考案時の比較漏れを防ぐ機能が既に存在するか、今回ただ使われなかったのかは、許可された公開記録だけでは未確認。機能欠如や根本原因は断定しない。",
+    "implementation_status": "候補提示のみ。コード変更なし。"
+  },
+  "limitations": [
+    "各方式1回であり、発見力・時間効率・一般的な優越の因果推定はしない。",
+    "公開readで内容が返されたことと、その全文を実際に理解・使用したことは同じではない。注記の引用と判断への反映は正式案から別途確認した。",
+    "外部の先例再調査は行っていない。試用推薦案に接続する後段調査の対象は今回0件。未確認独自性を成功と数えない。",
+    "試用推薦0は未実行ではない。両者とも実行・正式提出・独立評価の結果。Bは公開submitが1回形式拒否され、その後1件の正式案を提出した。追加の考案実行や正式改訂ではない。",
+    "検索回数、候補数、計算訂正を主成果にしない。",
+    "A/Bの停止監視完了や稼働プロセスは今回の許可対象外のため独立監査せず、正式成果数と評価結果を公開ファイルから確認した。"
+  ],
+  "first_locally_confirmed_time_utc": "2026-09-13T00:01:25Z",
+  "start_time_precision": "minute; parent-reported initial assignment time, exact seconds unknown",
+  "five_minute_guideline_exceeded_wall_clock": true,
+  "active_work_duration_seconds": null,
+  "parent_preservation_confirmation": {
+    "source": "親担当からのメッセージ。自担当の独立再監査ではない。",
+    "started_at_utc": "2026-09-13T00:02:30.773684Z",
+    "ended_at_utc": "2026-09-13T00:02:33.908907Z",
+    "finding": "A/B各25資料、正式1案＋1別評価、元入力・runtime・明示終了の保持を確認済み。A38/25操作エラー0、B56/30操作で考案エラー1/query1。私的ログ未読。"
+  }
+}

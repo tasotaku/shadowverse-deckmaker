@@ -1,0 +1,113 @@
+{
+  "first_status_observed_at": "2026-09-12T23:13:45+00:00",
+  "collection_started_at": "2026-09-13T00:02:30.773684+00:00",
+  "collection_ended_at": "2026-09-13T00:02:33.908907+00:00",
+  "elapsed_seconds": 3.1345104593783617,
+  "sides": [
+    {
+      "side": "a",
+      "started_at": "2026-09-12T22:10:21.834670+00:00",
+      "ended_at": "2026-09-12T22:33:16.285284+00:00",
+      "end_to_collection_seconds": 5354.4884,
+      "stages": [
+        {
+          "stage": "develop",
+          "started_at": "2026-09-12T22:10:22.045857+00:00",
+          "ended_at": "2026-09-12T22:27:51.620756+00:00",
+          "wall_seconds": 1049.574899,
+          "monitor_seconds": 1049.58163916599,
+          "status": "finished_by_request",
+          "operations": 38,
+          "operation_errors": [],
+          "query_operations": 0,
+          "finish_revalidated": true,
+          "worker_pid": 71538
+        },
+        {
+          "stage": "review",
+          "started_at": "2026-09-12T22:27:52.040093+00:00",
+          "ended_at": "2026-09-12T22:33:15.865664+00:00",
+          "wall_seconds": 323.825571,
+          "monitor_seconds": 323.82762512518093,
+          "status": "finished_by_request",
+          "operations": 25,
+          "operation_errors": [],
+          "query_operations": 0,
+          "finish_revalidated": true,
+          "worker_pid": 90457
+        }
+      ],
+      "formal_revisions_added": 1,
+      "formal_reviews_added": 1,
+      "judgment": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "additional_sources": 1,
+      "preserved_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/live-query-discovery-01-a-result",
+      "formal_and_finish_revalidated": true,
+      "copy_identical": true,
+      "runtime_and_source_unchanged": true
+    },
+    {
+      "side": "b",
+      "started_at": "2026-09-12T22:10:31.600449+00:00",
+      "ended_at": "2026-09-12T22:33:27.742281+00:00",
+      "end_to_collection_seconds": 5343.031403,
+      "stages": [
+        {
+          "stage": "develop",
+          "started_at": "2026-09-12T22:10:31.815515+00:00",
+          "ended_at": "2026-09-12T22:28:03.847417+00:00",
+          "wall_seconds": 1052.031902,
+          "monitor_seconds": 1052.0386605407111,
+          "status": "finished_by_request",
+          "operations": 56,
+          "operation_errors": [
+            {
+              "args": [
+                "submit",
+                "proposal.json"
+              ],
+              "exit_code": 2,
+              "started_at": "2026-09-12T22:27:16.543796+00:00",
+              "ended_at": "2026-09-12T22:27:16.622267+00:00",
+              "stderr": "rolesには資料内のカードIDを重複なく指定してください。採用可能な札はaccess=deckです\n"
+            }
+          ],
+          "query_operations": 1,
+          "finish_revalidated": true,
+          "worker_pid": 71841
+        },
+        {
+          "stage": "review",
+          "started_at": "2026-09-12T22:28:04.269096+00:00",
+          "ended_at": "2026-09-12T22:33:27.362290+00:00",
+          "wall_seconds": 323.093194,
+          "monitor_seconds": 323.09524491708726,
+          "status": "finished_by_request",
+          "operations": 30,
+          "operation_errors": [],
+          "query_operations": 0,
+          "finish_revalidated": true,
+          "worker_pid": 90818
+        }
+      ],
+      "formal_revisions_added": 1,
+      "formal_reviews_added": 1,
+      "judgment": {
+        "procedure": "conditional",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "additional_sources": 1,
+      "preserved_session": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/live-query-discovery-01-b-result",
+      "formal_and_finish_revalidated": true,
+      "copy_identical": true,
+      "runtime_and_source_unchanged": true
+    }
+  ],
+  "main_db_unchanged": true,
+  "limits": "実際のCodex私的stdout/JSONLは未読。正式資料・公開操作のみ保存。次工程が加えた一致済み評価入力だけを除いた複製で提出終了を再照合。時刻差・監視時間と回収までの間隔を区別し、CPU時間や休止原因を推定しない。"
+}
