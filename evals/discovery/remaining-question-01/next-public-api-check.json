@@ -1,0 +1,128 @@
+{
+  "started_at_utc": "2026-09-13 02:41:35 UTC",
+  "ended_at_utc": "2026-09-13 02:43:25 UTC",
+  "elapsed_seconds": 110,
+  "conclusion": "公開APIで可能。既存の調査工程の適用確認、追加実装なし。今回Aの正式revision3・別評価の第1問を、そのまま--question-index 0で指定できる。AI起動・台帳登録・新試験実行は行っていない。",
+  "question": "T7以降のどの具体的な課題で、残したEP1が通常側のSEP2や既存の自動進化では得られない利益を生むか。ビバティーの生存や都合のよいドローを加えず示せるか。",
+  "instruction_fit": {
+    "status": "適用可能だが用途比較に特化していない",
+    "supported": "RESEARCHは『問いを解くために必要な調査』とし、カード本文・両側の注記・既存資料を読むことを明示する。外部先例の確認だけに限定する制約はない。INSPECTは出典が報告を支えるか、問いに何を答えたかを照合する。",
+    "limitations": [
+      "RESEARCH/INSPECTには先行例・検索語・URL・用途一致/普及の指示が多く、能動的なカード用途比較を必ず生む専用工程ではない。問いを渡せることから有用な答えが出るとは断定しない。",
+      "正式改訂・強さの再採点は禁止され、結果は追加資料だけ。後続の通常改訂が今回runnerに自動接続されるわけではない。",
+      "調査と照合で使える公開操作はpacket/read/report/attach/attach-file。考案時のqueryは許可されないが、固定カード本文はreadで確認できる。",
+      "runnerの内部起動には--searchが既に含まれる。既存のままの将来実行では外部検索可能で、今回の確認ではネット検索もAI起動も行っていない。",
+      "現行の調査runnerは自然終了を待つ経路で、明示finishは調査・照合へ許可されていない。期限停止時は保存があっても次工程へ進まず失敗を残す。"
+    ],
+    "evidence": [
+      "src/svdeck/discovery_inquiry.py:28",
+      "src/svdeck/discovery_inquiry.py:29",
+      "src/svdeck/discovery_inquiry.py:31",
+      "src/svdeck/discovery_inquiry.py:35",
+      "src/svdeck/discovery_inquiry.py:38",
+      "src/svdeck/discovery_run.py:115",
+      "src/svdeck/discovery_run.py:118",
+      "src/svdeck/discovery_inquiry.py:207",
+      "src/svdeck/discovery_inquiry.py:215"
+    ]
+  },
+  "public_invocation": {
+    "cwd": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "env": {
+      "PYTHONPATH": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-m",
+      "svdeck.discovery_inquiry",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-question-01-a-result",
+      "/tmp/remaining-question-ep-inquiry-01-run",
+      "--codex",
+      "/Applications/ChatGPT.app/Contents/Resources/codex",
+      "--revision",
+      "3",
+      "--review-hash",
+      "fc38d738bcdd12e64e0ebc3713c86a9a1bb3cfe2702a5fded90141cfa437d2ab",
+      "--question-index",
+      "0",
+      "--research-seconds",
+      "900",
+      "--inspect-seconds",
+      "600",
+      "--journal-root",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+      "--experiment-id",
+      "remaining-question-ep-inquiry-01",
+      "--stage-prefix",
+      "live"
+    ],
+    "shell": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH='/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src' '/opt/homebrew/opt/python@3.14/bin/python3.14' '-B' '-m' 'svdeck.discovery_inquiry' '/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-question-01-a-result' '/tmp/remaining-question-ep-inquiry-01-run' '--codex' '/Applications/ChatGPT.app/Contents/Resources/codex' '--revision' '3' '--review-hash' 'fc38d738bcdd12e64e0ebc3713c86a9a1bb3cfe2702a5fded90141cfa437d2ab' '--question-index' '0' '--research-seconds' '900' '--inspect-seconds' '600' '--journal-root' '/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker' '--experiment-id' 'remaining-question-ep-inquiry-01' '--stage-prefix' 'live'",
+    "status": "生成のみ、未実行。出力先は確認時点で存在しない。experiment-idと出力先は新規試験用の提案値で、必要な未着手工程を先に登録する。調査900秒・照合600秒は従来例を踏まえた具体的な提案値で、今この確認で予算や起動を確定してはいない。",
+    "codex_binary": "直前remaining-question-01の公開run metadataの起動実体に合わせた。ファイル存在のみ確認し、codexは実行していない。",
+    "without_journal": "台帳が不要なら--journal-root/--experiment-id/--stage-prefixをまとめて省略できる。記録画面へ反映する今回の運用では台帳登録を推奨する。",
+    "do_not_use": [
+      "--novelty（今回はvalue=developであり専用条件と異なる。番号指定経路にはtest/unconfirmed条件がない）",
+      "--inspect-source（今回は新しく調査と別照合を行うため指定しない）"
+    ],
+    "evidence": [
+      "src/svdeck/discovery_inquiry.py:128",
+      "src/svdeck/discovery_inquiry.py:133",
+      "src/svdeck/discovery_inquiry.py:139",
+      "src/svdeck/discovery_inquiry.py:142",
+      "src/svdeck/discovery_inquiry.py:163",
+      "src/svdeck/discovery_inquiry.py:260",
+      "evals/discovery/remaining-question-01/a/develop/run.json:4",
+      "data/discovery/remaining-question-01-a-result/review-0003-fc38d738bcdd12e6.json:82"
+    ]
+  },
+  "journal": {
+    "experiment_id": "remaining-question-ep-inquiry-01",
+    "title": "温存した進化権の使い道を、既存の調査工程で確認する",
+    "minimum_required_stage_ids": [
+      "live-inquiry",
+      "live-inspect"
+    ],
+    "stages": [
+      {
+        "id": "live-inquiry",
+        "title": "保存済みの第1問を調査して資料を保存",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "既存調査工程の適用確認。元評価の問いをそのまま渡し、資料・結論・未確認を保存。rootから具体的な答えを与えない。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "live-inspect",
+        "title": "別担当が資料と結論を照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "問いに答えられた範囲と根拠不足を照合。資料保存や正常終了を有用性認定にしない。",
+        "budget_minutes": 10
+      }
+    ],
+    "rules": [
+      "RunJournalは工程を自動新設しないため2件とも事前登録が必要。",
+      "試験全体はplanned/running等の未終了状態。completed/interruptedでは起動拒否。",
+      "両工程はstatus=planned、started_at=null、ended_at=nullであること。",
+      "追加の条件固定・回収・報告工程はrootが管理する工程であり、runnerが要求する2工程とは区別する。"
+    ],
+    "evidence": [
+      "src/svdeck/discovery_inquiry.py:206",
+      "src/svdeck/worker_journal.py:45",
+      "src/svdeck/worker_journal.py:58",
+      "src/svdeck/worker_journal.py:60",
+      "src/svdeck/journal_store.py:92"
+    ]
+  },
+  "verified_help": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -B -m svdeck.discovery_inquiry --help",
+    "exit_code": 0,
+    "notes": "必要引数・二択・stage-prefixの存在を実ヘルプで確認。-B/PYTHONDONTWRITEBYTECODEを使い、bytecodeを書かない。"
+  },
+  "what_completion_means": "両工程の正式資料保存、全文再読、本文一致、元案・旧評価保持、担当正常終了が確認された時だけ工程完了。元案の改訂0件・正式評価0件。温存EPの具体的な利益が新しく裏付けられたかは保存内容と別照合で別に判断し、工程成功を有用性とは呼ばない。",
+  "no_mutation_scope": "今回の出力ファイル2件以外に書き込みを行っていない。コード・正式保存物・カード注記・台帳を変更せず、AIとネット検索も起動していない。"
+}

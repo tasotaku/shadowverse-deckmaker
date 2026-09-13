@@ -1,0 +1,98 @@
+{
+  "experiment_id": "remaining-question-01",
+  "started_at_utc": "2026-09-13 02:43:21 UTC",
+  "ended_at_utc": "2026-09-13 02:45:42 UTC",
+  "guide_seconds": 120,
+  "verdict": "PASS",
+  "first_read": {
+    "reader": "探索システムの開発を追い、追加指示を本体へ採用するかと次の検証内容を判断する利用者・開発責任者。",
+    "action": "追加指示の採用保留を理解し、既存の調査・別照合へ残問を一つ渡す実行可能性の確認を待つ。必要なら実験記録へ進む。",
+    "conclusion": "正式改訂と別評価は両方式で完了し試用推薦は各0件。現行でも比較と配分変更ができて追加指示の独自寄与を示せず採用保留。次は既存の調査経路の適用を確認。",
+    "undefined_terms": [
+      "T5/T6、PP/EP、結晶、カードの略称はカードゲームの文脈依存。ただし採否と次の行動の理解を妨げる追加定義は要求しない。"
+    ],
+    "logic_gaps": [],
+    "missing_for_decision": [],
+    "scope_note": "初回の進捗抽出は見出し形式を誤認し過去の更新も出力されたため、次の『更新：』で切り直して冒頭を確認した。初回API・結果JSONの確認前に本文から判断を記録。"
+  },
+  "required_fixes": [],
+  "optional_suggestions": [],
+  "checks": {
+    "requested_body_documents": {
+      "target": 2,
+      "checked": 2,
+      "result": "PASS"
+    },
+    "named_evidence_json": {
+      "target": 3,
+      "checked": 3,
+      "names": [
+        "verification.json",
+        "method-outcome.json",
+        "next-gap-check.json"
+      ],
+      "result": "PASS"
+    },
+    "public_single_api": {
+      "target": 1,
+      "checked": 1,
+      "url": "http://127.0.0.1:8765/api/experiments/remaining-question-01",
+      "revision": 16,
+      "result": "PASS"
+    },
+    "api_local_fields": {
+      "target": 4,
+      "checked": 4,
+      "names": [
+        "status",
+        "decision",
+        "result",
+        "stages"
+      ],
+      "result": "PASS",
+      "note": "journal-record.json の record 内と全件一致。"
+    },
+    "stages": {
+      "target": 12,
+      "checked": 12,
+      "result": "PASS",
+      "note": "APIとローカルの工程全体が完全一致。READMEの全12行について名前・日本時間開始終了・時刻差・目安/上限を機械照合し一致。"
+    },
+    "source_changes": {
+      "result": "PASS",
+      "error": null,
+      "paths": [],
+      "api_evidence_count": 67
+    },
+    "numeric_claims": {
+      "result": "PASS",
+      "notes": [
+        "正式改訂・別評価は各方式1件ずつ、正式判定は双方develop（追加検討）で新たな試用推薦0件ずつ。",
+        "改訂865.580192秒/783.379373秒、別評価308.762396秒/316.946809秒は本文の分秒への丸めと一致し全4工程上限内。",
+        "終了から回収開始2351.8746秒/2425.874205秒は39分12秒/40分26秒と一致。能動作業時間へ加算していない。",
+        "方法評価251.687565秒、根拠25件は本文と一致。",
+        "共通入力36ファイル・改訂2件・最新評価1件・資料26件はpreparation.jsonとmethod-outcome.json、implementation.jsonの記録と一致。",
+        "機能検査88件+2件=90件および型検査はimplementation.jsonの成功記録と一致。今回再実行していない。",
+        "条件固定01:28:38 UTCは本文の10:28:38日本時間と一致。各一度、改訂900秒・別評価600秒はprotocol.jsonと一致。",
+        "次工程点検は6試験・正式4記録、208秒。新たな実装変更0件という本文結論はnext-gap-check.jsonと一致。"
+      ]
+    },
+    "limits_and_corrections": {
+      "result": "PASS",
+      "notes": [
+        "追加指示の寄与未確認、各一度の既知入力、局所手順成立と試す価値の区別を保持。",
+        "到達頻度・生存・未知ドロー・実戦勝率・Tier・初見優位・広い普及を未確認としており、保存記事の一致だけで一般化していない。",
+        "交換札の開始手札/山札記述の矛盾と、開始手札内へ限定した成立判定を本文へ残している。",
+        "別評価の識別値省略による拒否1回、回収初回起動の失敗と同実行内の訂正をAI試行の再実行と区別している。"
+      ]
+    }
+  },
+  "machine_checks_path": "/tmp/remaining-question-reader-machine-checks.json",
+  "scope": "読み取り専用。元ファイル未編集。私的Codexログ/実Codex JSONL/reasoning未読。API一覧は取得・出力していない。単体APIと確認結果のみ/tmpへ保存。",
+  "audit_operation_corrections": [
+    "初回の進捗抽出が見出しを誤認し過去更新も出力したため、次の『更新：』で切り直した。厳密な『最新冒頭だけを読んだ初見』ではない点を明記する。",
+    "API/localの初回比較でローカルのrecord階層を参照せずfalseを出した。直後に同じrecord階層へ修正し4項目および12工程の完全一致を確認した。文書の不一致ではない。"
+  ],
+  "elapsed_seconds": 141,
+  "within_guide": false
+}

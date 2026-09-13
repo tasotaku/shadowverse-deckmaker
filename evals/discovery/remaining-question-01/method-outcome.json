@@ -1,0 +1,263 @@
+{
+  "experiment_id": "remaining-question-01",
+  "started_at_utc": "2026-09-13T02:35:37Z",
+  "ended_at_utc": "2026-09-13T02:39:48.687565+00:00",
+  "scope": "独立の読み取り専用手法評価。正式案・正式評価・追加資料・公開操作を照合。元repo、DB、注記、コードを変更せず、追加AI試行、private stdout.log、実Codex JSONL、reasoningを参照していない。許可された /tmp 出力のみ作成。",
+  "verdict": "保留",
+  "adoption": "追加文の本体採用を保留。現行方式を維持する。",
+  "conclusion": "B は残問を比較と配分判断へ進めたが、A も同じ種類の発展を行った。B に固有の有用な発展や、試す理由を備えた独自な種の獲得は示されていない。比較手順の成立は確認できるが、追加文の上乗せ効果には数えない。",
+  "precommitted_criteria_preserved": true,
+  "previous_trial": "前試験の両方式 test/known と同じ既知代案への変更は共通入力の背景としてのみ使用した。今回の develop は改訂3の正式案に対する判定であり、改訂2の比較試用価値を撤回・再採点したものではない。",
+  "integrity": {
+    "common_input_file_count": 36,
+    "a_original_files_byte_identical": 36,
+    "b_original_files_byte_identical": 36,
+    "input_mismatches": [],
+    "new_revisions_per_arm": 1,
+    "new_reviews_per_arm": 1,
+    "a_sources": {
+      "before": 26,
+      "after": 27,
+      "added": 1
+    },
+    "b_sources": {
+      "before": 26,
+      "after": 28,
+      "added": 2
+    },
+    "both_completed": true,
+    "all_four_stages_finished_by_request": true,
+    "develop_reports_before_review_have_no_revision3_review": true,
+    "final_reports_match_revision3_review_labels": true
+  },
+  "arms": {
+    "A": {
+      "formal_labels": {
+        "procedure": "supported",
+        "value": "develop",
+        "novelty": "unconfirmed"
+      },
+      "previous_to_current": "共通の8PP補充案から、既存の結晶大佐を6ターン目に能動破壊する案へ移った。使う素材・時点・用途を変え、イツルギ1枚を捕食1枚へ交換した。",
+      "question_answered": "8PP以前の能動破壊と深淵保持という既存の問いを、同じ開始状態の通常進化攻撃と比較した。通常側でも全処理・回復・実際の2ドローが得られる分を差し引いた。",
+      "actual_difference": "主比較の残差は追加1PPと引き換えのEP1温存、および手札のバアルを未使用深淵へ換えること。手札総数・処理・回復・残る5/3は同じ。通常側の深淵保持や少消費処理も比較済み。",
+      "decision_connection": "提案担当は捕食1枚の限定試用へ配分を変更したが、別評価は追加の発展が必要と判定した。配分へ結びついた事実と、その配分を試す価値が支持されたことを区別する。",
+      "trial_blocker": "残EPと未使用深淵が、通常側の超進化・自動進化・保持するバアルでは解けない次の課題へまだつながっていない。素材と同時所持の条件、結晶維持、捕食が使えない間に失う除去・強化の負担に見合う根拠がない。",
+      "novelty_limit": "保存記事でこの用途を見つけなかったという範囲。独自性・広い普及は未確認であり、B より良い独自案を得たとは認定しない。",
+      "material_caveat": "追加資料の draw_policy は交換札を山札内へ置くと記述するが、開始手札に捕食/バアルを指定した手順と矛盾する。別評価 supported は正式stepsの開始手札に限定され、資料全体が矛盾なく整ったという意味ではない。手札指定に限定した局所比較の資源差はこの矛盾だけで消えない。"
+    },
+    "B": {
+      "formal_labels": {
+        "procedure": "supported",
+        "value": "develop",
+        "novelty": "known"
+      },
+      "previous_to_current": "8PP以前の補充と交換で失う役割を5ターン目に比較し、既存ビバティーで早期補充を行う使い方を具体化した。正式配分はイツルギ1枚を外しバアル3枚の参考構築へ戻した。",
+      "question_answered": "進化権を払える5ターン目には通常構築と直前案の共通札でも処理と補充ができ、旧捕食案を復活させる必要がないことを対応手順で確認した。代案がまだ使えない事実だけを利益にしていない。",
+      "actual_difference": "捕食のEP1・残PP1・墓場2・ビバティー保持には手札1枚と5/3の喪失が対応する。バアルを抜いた側も通常札で処理できるが、同じPP・手札枚数・進化権を使ったときの2/2の不足が残る。",
+      "decision_connection": "早期補充を理由とする交換枠の常設推奨を保留し、参考構築へ戻した。局所差を基準配分を超える強さの証明にせず、後半用のイツルギ比較試用は残した。",
+      "trial_blocker": "正式案は参考40枚のままで、通常構築に対する新しい改善案には至っていない。前半の欠損と後半の補充改善のどちらが採用価値を変えるかは未解決。捕食の残資源にも次の具体的利益が未提示。",
+      "novelty_limit": "正式リストと採用用途に対応する既知の保存記事があるという判定。known だけで棄却したものではなく、広い普及や現在の強さを意味しない。",
+      "review_only_contributions": "別評価が返した、後のターンへの接続やバアル以外の交換枠を探す問いは、提案担当が今回発見して比較した成果へ加算しない。"
+    }
+  },
+  "method_assessment": {
+    "comparison_procedure_established": {
+      "a": true,
+      "b": true,
+      "scope": "両方式が既存残問を選び、通常構築の同時点の行動と比較し、使い方または配分判断へ返した。各側内の比較であり、A のT6とB のT5の数値を直接比べない。"
+    },
+    "useful_distinctive_seed_obtained": {
+      "a": false,
+      "b": false,
+      "meaning": "獲得を裏付ける証拠なし。存在し得ないという断定ではない。"
+    },
+    "current_method_can_also_develop": true,
+    "b_unique_contribution": "B は同じ素材の早期通常手順と失う役割の確認に集中し、A は素材と用途を変えた。内容上の差はあるが、B にしかない方法上の利益とは言えない。A も新しい対応比較から配分変更へ進んだため、事前基準の上乗せ条件を満たさない。",
+    "causal_limit": "共通入力・追加文だけの一回ずつの実行。結果の内容と判定差から、B が発展を抑制した・A が一般に優れる等の因果効果も推定しない。"
+  },
+  "unconfirmed": [
+    "主な追加効果と一般的な発見力",
+    "両案の残資源を使う次の具体的な利益",
+    "開始状態への到達頻度と、交換札を引かない試合・早期終了を含む前後配分の価値",
+    "実機での処理、勝率、現在環境の強さ",
+    "A の用途の広い既出範囲、両案の普及度"
+  ],
+  "next_fix_count": 0,
+  "next_fix": null,
+  "next_fix_reason": "今回の証拠だけで新たに足すべき手法上の指示は特定できない。残した資源を次の課題へ接続することや通常構築と比べることは既存指示にあり、新案として再提案しない。A の所在記述は資料の個別訂正点として保持し、方法の追加案とは数えない。",
+  "phases": [
+    {
+      "phase": "前提・正式案の照合",
+      "started_at_utc": "2026-09-13T02:35:37Z",
+      "ended_at_utc": "2026-09-13T02:36:29Z",
+      "elapsed_seconds": 52
+    },
+    {
+      "phase": "別評価・追加資料・公開操作の照合",
+      "started_at_utc": "2026-09-13T02:36:29Z",
+      "ended_at_utc": "2026-09-13T02:37:38Z",
+      "elapsed_seconds": 69
+    },
+    {
+      "phase": "判断・証拠保存",
+      "started_at_utc": "2026-09-13T02:37:38Z",
+      "ended_at_utc": "2026-09-13T02:39:48.687565+00:00",
+      "elapsed_seconds": 130.687565
+    }
+  ],
+  "timing_note": "UTC実時計の観測点間の差。能動作業時間やCPU時間ではない。",
+  "evidence": [
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-question-01/protocol.json",
+      "file_sha256": "6b88377ed0d5cd3697999a4c144d16e299084b2ed924dfd06c43d99193e94370",
+      "record_sha256": null,
+      "purpose": "開始前に固定した追加文と採否基準"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-question-01/README.md",
+      "file_sha256": "4edea20a40def41ec036478485537cb407a699a0b57fcc0f1745660c4315ac08",
+      "record_sha256": null,
+      "purpose": "開始前の試験目的と前試験の位置づけ"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-question-01/prior-gap-check.json",
+      "file_sha256": "bcf59c7600aaa3e6779095218b5551c845f4516de1db4ba4a82ff69ef7a43989",
+      "record_sha256": null,
+      "purpose": "既存指示が既に扱う範囲と未確認の追加効果"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-question-01-input/revision-0002.json",
+      "file_sha256": "877da8cc3746803fcd6dbce5d086b5d6b8f8820a349b0b26c437a3a169176ccc",
+      "record_sha256": "6159b5f43cd9e195b9b1caffe8e8d9e66abb73f341589940d46309d181dee341",
+      "purpose": "共通の直前案と残る問い"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/remaining-question-01-input/review-0002-54791eda3a351742.json",
+      "file_sha256": "8b361153b7f3607a8cbb0649a2513294bb629f282d0449078b05447f4ad3d567",
+      "record_sha256": "54791eda3a3517420f589aa6852affe0e107434375197ac31e771da6ae5244f2",
+      "purpose": "共通の別評価と残る問い"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/result.json",
+      "file_sha256": "b9a2ac96ba3243c555b274a1c78a5bd1abcb68532221292d938660c122f671b9",
+      "record_sha256": null,
+      "purpose": "A の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/report.json",
+      "file_sha256": "069c63f48956787407514307bd45188ca05d61e415a1e828efa2062b2e508d3e",
+      "record_sha256": null,
+      "purpose": "A の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/develop-report.json",
+      "file_sha256": "49c48df6c855bfa31648d5c9fc04b25a49a8242e00a312b2ec325d5f4a2bc4b3",
+      "record_sha256": null,
+      "purpose": "A の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/review-report.json",
+      "file_sha256": "5623b0729d8e72ad53ead3b20c9559511336627dce29d78915f91934d00509b0",
+      "record_sha256": null,
+      "purpose": "A の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/session/revision-0003.json",
+      "file_sha256": "3fe1d09634387628c2f771b8e9784ae6c10aca762193c29c59c4525b84839b29",
+      "record_sha256": "5ad280866a7f6821ed0e07051d9e49313993fcaef33d07144202aa4d313f5abe",
+      "purpose": "A の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/session/review-0003-fc38d738bcdd12e6.json",
+      "file_sha256": "93157fbbeda0c61f537963ec0d32e812b2fbf959399283f708905deb923402f7",
+      "record_sha256": "fc38d738bcdd12e64e0ebc3713c86a9a1bb3cfe2702a5fded90141cfa437d2ab",
+      "purpose": "A の改訂3への独立評価"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/session/sources/b80ca2a9af7e3778a7797b7b7c86032cb4a794c3a591c7efda4511392b756a51.json",
+      "file_sha256": "e61141f9ec8d029378a4667b574a5b6ed6557fb2fa328ae94ecf830b3beba7b7",
+      "record_sha256": "b80ca2a9af7e3778a7797b7b7c86032cb4a794c3a591c7efda4511392b756a51",
+      "purpose": "A の提案担当が追加した資料"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/develop/operations/2d793706ac3d406f926f96e7953240da.json",
+      "file_sha256": "151877b66830630cbf1e885e3cb2231c146665b794d93a9ca462d0fa04f3f39b",
+      "record_sha256": null,
+      "purpose": "A の資料追加・正式提出の公開操作と実時刻"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-a-live/develop/operations/a0c44c9bcc1241989f3ee06305d804d5.json",
+      "file_sha256": "2df13cee9f3b9dd45dd21d6db39e2138cc205a3f1df8950386bd437f62b439d3",
+      "record_sha256": null,
+      "purpose": "A の資料追加・正式提出の公開操作と実時刻"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/result.json",
+      "file_sha256": "9edb6fcb2f234a0ddc86d3a5f94286457eb1a82788ffb739de57583f992ad7ff",
+      "record_sha256": null,
+      "purpose": "B の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/report.json",
+      "file_sha256": "ad6fefd06103fb45be14c235497ca136e1134baae3e22beec78904fffc62ab88",
+      "record_sha256": null,
+      "purpose": "B の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/develop-report.json",
+      "file_sha256": "2aca07fb352619f6bd5a1c42d69e039058171f3c62a12de4fe98b656c2feef62",
+      "record_sha256": null,
+      "purpose": "B の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/review-report.json",
+      "file_sha256": "0828bd2fa4eeb16bd61069b185c0774271c96320445bf6659473de0f24a33c7d",
+      "record_sha256": null,
+      "purpose": "B の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/session/revision-0003.json",
+      "file_sha256": "97458add16323b0a86047f97357e9df66b372d9c517a2448d2a186e2dd409da8",
+      "record_sha256": "a5ecf6691c8bd2c9c2c1fa40d62d13d6002a7e1dc1b30c927bdb2a8243a446b7",
+      "purpose": "B の正式結果・判定引継ぎ"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/session/review-0003-6a6cdbd698cbc110.json",
+      "file_sha256": "1c74d67c06724a7ff2aee434f4e61a893794f7400a3875a381fb3d4a7551cc17",
+      "record_sha256": "6a6cdbd698cbc11059860cb09228f937f1923589f368922ae8ea55b63f863a21",
+      "purpose": "B の改訂3への独立評価"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/session/sources/08bd7b1b0e0e5780d34a034532a895e128734a0f3d379faacc4fc73f18cb18f1.json",
+      "file_sha256": "36e7d843409727f202dad276c1175d8dffa644b1e18fedebd2651536110362d6",
+      "record_sha256": "08bd7b1b0e0e5780d34a034532a895e128734a0f3d379faacc4fc73f18cb18f1",
+      "purpose": "B の提案担当が追加した資料"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/session/sources/7ed33bd3e377564329594a4f126996f16efad1a403a448d394703582c57bb9da.json",
+      "file_sha256": "2a6a46c3f35ebe86d2992d910e9071285f12c819d7c605fa9cb42eba381e51f3",
+      "record_sha256": "7ed33bd3e377564329594a4f126996f16efad1a403a448d394703582c57bb9da",
+      "purpose": "B の提案担当が追加した資料"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/develop/operations/578f11c7b509486ba2eb4124d6d2a2fa.json",
+      "file_sha256": "6e16b02587c3a4b54a15b54ad171060069c8580d46826311afe4f4122324da77",
+      "record_sha256": null,
+      "purpose": "B の資料追加・正式提出の公開操作と実時刻"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/develop/operations/8163f3f2f28c4625ab6e4fbfa1bb228b.json",
+      "file_sha256": "a3b36026b101644493056b3288ba19baf48e4fb13ce7d33c001466e0230c2bd4",
+      "record_sha256": null,
+      "purpose": "B の資料追加・正式提出の公開操作と実時刻"
+    },
+    {
+      "path": "/tmp/sv-remaining-question-01-b-live/develop/operations/93300107bc914129beedac6f847c4d7f.json",
+      "file_sha256": "ef8814fce4c711181e173106773331cfbb7eadae5cccd55972346aa2ab590285",
+      "record_sha256": null,
+      "purpose": "B の資料追加・正式提出の公開操作と実時刻"
+    }
+  ],
+  "elapsed_seconds": 251.687565,
+  "within_five_minute_guide": true
+}

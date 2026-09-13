@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-09-13T02:46:19+00:00",
+  "started_at": null,
+  "exit_code": 1,
+  "error": "assert manifest(src)==manifest(frozen_runtime)",
+  "difference": "追跡実装は一致。src内に型検査キャッシュ・bytecode・egg-infoがあり、Gitから展開した実装には存在しなかった。",
+  "fix": "Git追跡ファイル集合の現物内容と固定runtime全体を完全一致で比較する。入力の保持検査は変更しない。",
+  "ai_started": false,
+  "prior_draft": "prepare-initial.py"
+}

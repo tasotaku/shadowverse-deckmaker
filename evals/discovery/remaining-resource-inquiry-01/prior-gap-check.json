@@ -1,0 +1,148 @@
+{
+  "started_at_utc": "2026-09-13 02:37:47 UTC",
+  "ended_at_utc": "2026-09-13 02:41:15 UTC",
+  "elapsed_seconds": 208,
+  "scope": "読み取り専用の次工程設計点検。既存コード・評価・カード注記は変更していない。正式保存物と公開操作のみを参照し、Codex private stdout/JSONL/reasoningログは読んでいない。",
+  "conclusion": "現時点で採用を提案できる新しい実装変更は0件。温存資源から次の利益への接続と前後の役割交換の判断は未達だが、実装された入口・既存指示が欠けている証拠は得られなかった。指示追加で再度試す場合は、既存の別用途探索・残問比較・一問調査から改訂への接続の再検証と記録する。",
+  "diagnosis": [
+    {
+      "observation": "Aの新しいT6手順は成立するが、残EP1がT7以降のSEP2や既存の自動進化を超えて必要になる課題を示せず、深淵1PPも後続の高コスト札と競合する。",
+      "missing_evidence": "資源温存の量ではなく、通常側の別手順まで含めて、既知の手札・使用可能な資源が具体的な次の仕事を改善する根拠。",
+      "implementation_gap": "未立証。現行指示は複数段の接続・各時点の資源・通常側の代替・残る役割を既に要求する。",
+      "evidence": [
+        "data/discovery/remaining-question-01-a-result/review-0003-fc38d738bcdd12e6.json:53",
+        "data/discovery/remaining-question-01-a-result/review-0003-fc38d738bcdd12e6.json:82",
+        "data/discovery/remaining-question-01-a-result/review-0003-fc38d738bcdd12e6.json:83",
+        "src/svdeck/discovery.py:35",
+        "src/svdeck/discovery.py:37",
+        "src/svdeck/discovery.py:49",
+        "src/svdeck/discovery.py:724"
+      ]
+    },
+    {
+      "observation": "BはT5の共通補充とバアル欠損を具体化して基準構築へ戻した。一方、別評価は旧T8のイツルギ1枠には比較試用理由が残ると区別している。",
+      "missing_evidence": "T5の局所損失とT8の後半役割を、今回の配分判断へ結ぶ根拠。どちらか一つの終点の優劣だけで全体配分は決まらない。",
+      "implementation_gap": "未立証。序盤・切替・決着・核不在と役割交換は既存指示にあり、旧T8資料と評価も引き継ぐ。頻度・全試合の価値は今回の本文比較では観測しておらず、勝率やシミュレータで埋める対象ではない。",
+      "evidence": [
+        "data/discovery/remaining-question-01-b-result/revision-0003.json:9",
+        "data/discovery/remaining-question-01-b-result/review-0003-6a6cdbd698cbc110.json:38",
+        "data/discovery/remaining-question-01-b-result/review-0003-6a6cdbd698cbc110.json:72",
+        "src/svdeck/discovery.py:35",
+        "src/svdeck/discovery.py:337",
+        "src/svdeck/discovery.py:354",
+        "docs/design.md:16"
+      ]
+    },
+    {
+      "observation": "最新評価のnext_questionsはpacketへ取り込まれ、履歴・追加資料・評価時資料との差分も公開読出しできる。",
+      "missing_evidence": "今回の資料引き継ぎ欠落や読出し不能を示す証拠なし。",
+      "implementation_gap": "残問の引渡し入口新設は不要。公開queryは考案担当が利用可能だが、今回のA/Bでは未使用であり、機能不存在とは異なる。",
+      "evidence": [
+        "src/svdeck/discovery.py:330",
+        "src/svdeck/discovery.py:338",
+        "src/svdeck/discovery.py:343",
+        "src/svdeck/discovery.py:354",
+        "src/svdeck/discovery_run.py:107",
+        "src/svdeck/discovery_run.py:115",
+        "src/svdeck/discovery.py:662"
+      ]
+    }
+  ],
+  "public_operations_observation": {
+    "a": {
+      "total": 61,
+      "read": 53,
+      "packet": 2,
+      "attach_file": 2,
+      "query": 0,
+      "submit": 1,
+      "report": 1,
+      "finish": 1,
+      "help": 1
+    },
+    "b": {
+      "total": 45,
+      "read": 34,
+      "attach_file": 3,
+      "packet": 2,
+      "query": 0,
+      "report": 2,
+      "finish": 2,
+      "help": 1,
+      "submit": 1
+    },
+    "sources": [
+      "evals/discovery/remaining-question-01/a/develop/public-operations.json.gz",
+      "evals/discovery/remaining-question-01/b/develop/public-operations.json.gz"
+    ],
+    "limit": "操作名の集計のみ。読出した資料を内部でどう理解したか、指示未遵守が原因かは推定しない。query未使用の事実から検索強制の有用性も認定しない。"
+  },
+  "prior_overlap": [
+    {
+      "suggestion": "得た資源を別の用途へ使い、追加負担・失う役割・通常側と比較する",
+      "overlap": "resource-use-01で試行済み。新しい別用途への試用推薦0件、本採用保留。",
+      "evidence": [
+        "evals/discovery/resource-use-01/README.md:14",
+        "evals/discovery/resource-use-01/README.md:36",
+        "evals/discovery/resource-use-01/README.md:38"
+      ]
+    },
+    {
+      "suggestion": "残問を先に選ぶ／別の時点や失う役割を比べて継続判断する",
+      "overlap": "continuation-choice-01とremaining-question-01そのもの。後者も既に再検証と明記。",
+      "evidence": [
+        "evals/discovery/continuation-choice-01/README.md:5",
+        "evals/discovery/continuation-choice-01/README.md:20",
+        "evals/discovery/remaining-question-01/README.md:9",
+        "evals/discovery/remaining-question-01/README.md:11"
+      ]
+    },
+    {
+      "suggestion": "複数着想を先に比較する",
+      "overlap": "idea-comparison-01で最大3件を比較。両方式とも有用性不合格で本採用見送り。",
+      "evidence": [
+        "evals/discovery/idea-comparison-01/README.md:3",
+        "evals/discovery/idea-comparison-01/README.md:9"
+      ]
+    },
+    {
+      "suggestion": "比較前に一問調査を分け、資料を改訂へ返す",
+      "overlap": "focused-inquiry-01とinquiry-to-revision-01の再検証になる。前者は一問指定の優位未確認、後者は保存案あり・期限停止で別評価未実施。公開discovery_inquiryと通常改訂入口は既にある。",
+      "evidence": [
+        "evals/discovery/focused-inquiry-01/README.md:5",
+        "evals/discovery/focused-inquiry-01/README.md:30",
+        "evals/discovery/inquiry-to-revision-01/README.md:5",
+        "evals/discovery/inquiry-to-revision-01/README.md:7",
+        "docs/design.md:309",
+        "src/svdeck/discovery_inquiry.py:28",
+        "src/svdeck/discovery.py:52"
+      ]
+    }
+  ],
+  "small_implementation_candidate": null,
+  "reason_no_candidate": "構造化した資源・終点欄を新設する、残問を強調する、調査工程を増やすだけでは、既存のsteps/追加資料/packet/調査からの引継ぎでできることの言い換えになる。今回観測した利益の未接続を直す因果的な根拠がないため、コード差分を無理に作らない。",
+  "optional_next_revalidation": {
+    "status": "実装案ではなく既存工程の再検証候補。今回まだ実行していない。",
+    "focus": "Aの正式revision3の別評価next_questions[0]（温存EPが具体的に必要になる課題）を、既存discovery_inquiryの一問指定で調査・別照合し、通常改訂へ資料として返す。既存案の復活や成功状態は開発者から与えない。",
+    "comparison": "同一のrevision3・固定DB・旧評価・資料を複製し、現行の通常改訂と、一問調査→別照合→通常改訂を比較するなら、両側の合計実行予算・正式評価条件を先に揃える。追加工程による時間増と手法効果を分ける。",
+    "overlap": "focused-inquiry-01／inquiry-to-revision-01の接続を、資源の使途という別の残問で再検証するもの。新方式や今回発見した実装不足とは呼ばない。",
+    "go_no_go": "新しい裏付けを得る調査対象または保存資料の未比較箇所を担当が具体的に特定できる場合だけ実行候補にする。同じ残問を言い換えるだけなら追加しない。",
+    "boundaries": [
+      "rootが新規カードコンボ・都合のよい手札・相手の返し・勝つ状態を回答として投入しない",
+      "未知ドロー・生存・相手行動を利益へ足さない",
+      "頻度・勝率・40枚完成・対戦シミュレータは判定対象へ追加しない",
+      "元評価を上書きせず、新しい評価を別保存する"
+    ],
+    "acceptance": [
+      "通常側でもできる分を差し引いた具体的な用途が資料で支持され、それが使い方または採用配分を変え、別評価にも試す理由が残ることを方法の有用性候補として見る",
+      "工程の完走・資料増・検索件数・残問の解消だけを独自で有用な種の獲得と数えない",
+      "現行も同じ発展に達する、通常復帰や既知案の再推薦だけ、温存量の言い換えだけなら上乗せ未確認で本採用保留",
+      "各一度・既知入力の比較で一般的優越を断定しない"
+    ]
+  },
+  "checked_target_count": "対象README 6件＝確認済み6件。今回正式revision3 2件・別評価2件＝確認済み4件。一般的な全実装監査はしていない。",
+  "caveats": [
+    "remaining-question-01/README.mdは点検時点では実行中表記が残っていたため、今回結果はdata/discoveryの正式revision3と別評価を根拠とした。rootが並行して報告更新中。",
+    "AI Code Guideスキルを読み、エージェント自身の事実確認では表示ツールを起動しないという規定に従い通常の読み取り専用調査を行った。"
+  ]
+}

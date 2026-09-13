@@ -1,0 +1,110 @@
+{
+  "id": "remaining-resource-inquiry-01",
+  "revision": 3,
+  "saved_at": "2026-09-13T02:48:59.283252+00:00",
+  "actor": "codex-root",
+  "reason": "実際の起動と元問い・既存指示・入力保持を確認",
+  "record": {
+    "id": "remaining-resource-inquiry-01",
+    "title": "温存した進化権の使い道を、既存の調査工程で確認する",
+    "category": "method",
+    "status": "running",
+    "summary": "11:47:21から温存した進化権の具体的使途を調査中。既存工程への適用確認で追加実装なし。別照合・有用性は未判定。",
+    "method": "保存された第1問を既存の調査・別照合へ渡し、根拠の追加と未確認範囲を検査する。",
+    "procedure": "既存調査→別照合の適用確認。コード・指示の新設なし。focused-inquiry-01/inquiry-to-revision-01と重なる既存工程の別用途への再検証であり、新手法や本体の追加採用とはしない。\n前試験の現行Aから残った先頭の問いを選ぶ固定規則。対象は保存済みT6比較の終点後のEP使途で、通常側のSEPと自動進化という代替も含む未比較箇所。根拠が得られない結論を許し、成功状態・カード答案をrootから与えない。\n調査15分・別照合10分、各1回のみ。自然終了を確認する既存経路を使用。時間切れは部分資料を保持し、再実行・代理提出しない。正式改訂・強さの再採点はこの実行では行わない。\n元案・旧評価・固定DBと実装を保持し、報告の正式添付・全文再読・report一致を確認する。これは動作の検証で、資料数や完走を有用性に数えない。\n問いに新しく答えた根拠、通常側でもできる分、相手・引き込み・生存の未確認を別照合する。使途と採用利益につながる根拠がなければ未解決を記録し、同じ問いの言い換えで追加工程へ自動継続しない。\n同時対照なし・既知入力1件のため、調査を分けることの一般的効果や発見力は認定しない。独自性や実戦勝率も自動認定しない。",
+    "inputs": "現行Aの正式改訂3・評価2・資料27。同じ42ファイルと先頭の問いを保持。",
+    "criteria": "既存調査→別照合の適用確認。コード・指示の新設なし。focused-inquiry-01/inquiry-to-revision-01と重なる既存工程の別用途への再検証であり、新手法や本体の追加採用とはしない。\n前試験の現行Aから残った先頭の問いを選ぶ固定規則。対象は保存済みT6比較の終点後のEP使途で、通常側のSEPと自動進化という代替も含む未比較箇所。根拠が得られない結論を許し、成功状態・カード答案をrootから与えない。\n調査15分・別照合10分、各1回のみ。自然終了を確認する既存経路を使用。時間切れは部分資料を保持し、再実行・代理提出しない。正式改訂・強さの再採点はこの実行では行わない。\n元案・旧評価・固定DBと実装を保持し、報告の正式添付・全文再読・report一致を確認する。これは動作の検証で、資料数や完走を有用性に数えない。\n問いに新しく答えた根拠、通常側でもできる分、相手・引き込み・生存の未確認を別照合する。使途と採用利益につながる根拠がなければ未解決を記録し、同じ問いの言い換えで追加工程へ自動継続しない。\n同時対照なし・既知入力1件のため、調査を分けることの一般的効果や発見力は認定しない。独自性や実戦勝率も自動認定しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "調査を起動し、先頭の問いと既存指示の完全一致、27資料・入力・実装保持を確認。内容の有用性は未判定。",
+      "limitations": "同時対照なしの既知入力1件。一般的効果や独自性・勝率は認定しない。"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T02:47:00.078991+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "prepare",
+        "title": "問いと入力・実装・判断条件を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T02:47:00.078991+00:00",
+        "ended_at": "2026-09-13T02:47:00.518181+00:00",
+        "note": "正式案・評価の対応、元入力、現行srcと隔離実装の完全一致を確認。追加実装なし。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "live-inquiry",
+        "title": "温存した進化権の具体的な使途を調査",
+        "status": "running",
+        "started_at": "2026-09-13T02:47:21.121096+00:00",
+        "ended_at": null,
+        "note": "保存評価の先頭の問いをそのまま渡し、根拠と未確認を資料保存。具体答えはrootから与えない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inquiry-01-live/inquiry-run",
+        "budget_minutes": 15
+      },
+      {
+        "id": "live-inspect",
+        "title": "調査の根拠と問いへの答えを別照合",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式保存・出典の裏付け・新しく答えた範囲を確認。工程完了と有用性を区別。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/remaining-resource-inquiry-01/protocol.json",
+      "evals/discovery/remaining-resource-inquiry-01/prepare.py",
+      "evals/discovery/remaining-resource-inquiry-01/README.md",
+      "evals/discovery/remaining-resource-inquiry-01/public-api-check.json",
+      "evals/discovery/remaining-resource-inquiry-01/prior-gap-check.json",
+      "evals/discovery/remaining-resource-inquiry-01/prepare-initial.py",
+      "evals/discovery/remaining-resource-inquiry-01/preparation-error.json",
+      "evals/discovery/remaining-resource-inquiry-01/launch-verification.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/README.md",
+      "sha256": "f878c2b92b96eb9a198c9f83e46ccbe80a2c0a535765c925982423fdcdd794f9",
+      "size": 3750
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/launch-verification.json",
+      "sha256": "91d3cfd2e62495eb1247ea70483aedd463e98ab364e1eb971a0df71faf271d5c",
+      "size": 1147
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/preparation-error.json",
+      "sha256": "717742f56034fd1b3ea0b001f8fdb39f8ab621ef954567bf9068559f50322ca8",
+      "size": 532
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/prepare-initial.py",
+      "sha256": "f5888650a92a2e018cd74f3c0537a9d88c422e334914ce79a7dc7081313d6bc5",
+      "size": 9260
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/prepare.py",
+      "sha256": "3b7e473d4ed0f35c9597679ec59ceebeee97f214a7a0683265584863fc8e5c30",
+      "size": 9548
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/prior-gap-check.json",
+      "sha256": "f3396818b81234052e234261641d9dae7a41a3dfb779d1611a11f5d8f66b4fb3",
+      "size": 9887
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/protocol.json",
+      "sha256": "0ee1184359fa55f6167cf0fee186949e0dd0a950bf67252304f6616c0b35c793",
+      "size": 12969
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/public-api-check.json",
+      "sha256": "dac35938446e9922ea0b3505acc85507a980a975cb2a7a6a85a9631bf7468c2c",
+      "size": 8381
+    }
+  ]
+}
