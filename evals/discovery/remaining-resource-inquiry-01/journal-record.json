@@ -1,9 +1,9 @@
 {
   "id": "remaining-resource-inquiry-01",
-  "revision": 3,
-  "saved_at": "2026-09-13T02:48:59.283252+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-13T02:52:24.706900+00:00",
   "actor": "codex-root",
-  "reason": "実際の起動と元問い・既存指示・入力保持を確認",
+  "reason": "既存の利用先と報告の独立照合を保存。調査の有用性は未判定のまま",
   "record": {
     "id": "remaining-resource-inquiry-01",
     "title": "温存した進化権の使い道を、既存の調査工程で確認する",
@@ -52,6 +52,15 @@
         "ended_at": null,
         "note": "正式保存・出典の裏付け・新しく答えた範囲を確認。工程完了と有用性を区別。",
         "budget_minutes": 10
+      },
+      {
+        "id": "launch-report-check",
+        "title": "起動報告と既存の記録画面を別担当が照合",
+        "status": "completed",
+        "started_at": "2026-09-13T02:50:15+00:00",
+        "ended_at": "2026-09-13T02:51:31+00:00",
+        "note": "1分16秒で合格。今回3工程・親14工程の計17工程と、固定入力42ファイルを全件照合。調査中・別照合未着手・効果未判定を確認。",
+        "budget_minutes": 2
       }
     ],
     "evidence_paths": [
@@ -62,14 +71,26 @@
       "evals/discovery/remaining-resource-inquiry-01/prior-gap-check.json",
       "evals/discovery/remaining-resource-inquiry-01/prepare-initial.py",
       "evals/discovery/remaining-resource-inquiry-01/preparation-error.json",
-      "evals/discovery/remaining-resource-inquiry-01/launch-verification.json"
+      "evals/discovery/remaining-resource-inquiry-01/launch-verification.json",
+      "evals/discovery/remaining-resource-inquiry-01/launch-reader.json",
+      "evals/discovery/remaining-resource-inquiry-01/delivery-verification.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/README.md",
-      "sha256": "f878c2b92b96eb9a198c9f83e46ccbe80a2c0a535765c925982423fdcdd794f9",
-      "size": 3750
+      "sha256": "d2b21506359b8ba6761cec8f62c109e925ea664f81db02179bf869ecedacaec6",
+      "size": 4381
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/delivery-verification.json",
+      "sha256": "c3c1aee8931de8c5ba7dd03ca6b375c804b0e99c45bd82acd40d91481cc56346",
+      "size": 4186
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inquiry-01/launch-reader.json",
+      "sha256": "5f2e65517a1e3ea8e86b7fc7fba7fb060d8dc973e58eb719f008db94cbe6bccc",
+      "size": 4221
     },
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/launch-verification.json",

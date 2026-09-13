@@ -1,0 +1,76 @@
+{
+  "experiment_id": "remaining-resource-inquiry-01",
+  "started_at_utc": "2026-09-13 02:50:15 UTC",
+  "ended_at_utc": "2026-09-13 02:51:31 UTC",
+  "elapsed_seconds": 76,
+  "guide_seconds": 120,
+  "verdict": "PASS",
+  "required_fixes": [],
+  "conclusion": "本文と実際の単体APIは、11:47:21日本時間から調査中・別照合未着手・有用性未判定で一致する。既存経路へ問いを渡せた事実を、新たな実装成果・問いの解決・方法の効果と混同していない。親試験の採用保留も保持している。",
+  "target_counts": {
+    "body_and_launch_documents": 4,
+    "checked_body_and_launch_documents": 4,
+    "single_api": 2,
+    "checked_single_api": 2,
+    "api_local_fields": 8,
+    "checked_api_local_fields": 8,
+    "stages": 17,
+    "checked_stages": 17,
+    "source_manifest_files": 42,
+    "checked_source_manifest_files": 42
+  },
+  "evidence": [
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/docs/progress.md",
+      "scope": "11:48:59日本時間の最新冒頭だけを、次の『更新：』まで読んだ。前試験の保留と後続調査開始・有用性未判定を明示。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-resource-inquiry-01/README.md",
+      "scope": "冒頭で調査中・別照合未着手・有用性未判定・追加実装なしを明示。正式保存と別照合の完了条件を、根拠や使う理由の獲得と区別する。同時対照なし、既知入力1件の限界も保持。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-resource-inquiry-01/protocol.json",
+      "scope": "research_seconds=900、inspect_seconds=600、attempts_per_stage=1、code_changed=false。保存済み正式評価第1問がREADME引用・起動入力と完全一致。入力42ファイルの各ハッシュを実ファイルと照合し不一致0件。改訂3件・評価2件・資料27件。準備時刻差0.439190秒は本文0.439秒と一致。"
+    },
+    {
+      "path": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/remaining-resource-inquiry-01/launch-verification.json",
+      "scope": "開始02:47:21.121096 UTC、status=inquiry、元入力/実装保持と既存RESEARCH指示一致の確認。記録自体が起動入力の確認であり、成果・問いの解決・採用未判定と限定する。"
+    },
+    {
+      "url": "http://127.0.0.1:8765/api/experiments/remaining-resource-inquiry-01",
+      "revision": 3,
+      "status": "running",
+      "decision": "unassessed",
+      "result": "unassessed",
+      "stage_count": 3,
+      "stages": {
+        "prepare": "completed",
+        "live-inquiry": "running",
+        "live-inspect": "planned"
+      },
+      "note": "調査開始時刻あり・終了なし。別照合の開始/終了はともにnull。status/stages/decision/resultはローカルjournal-record.jsonのrecordと全件一致。",
+      "source_changes": {
+        "error": null,
+        "paths": []
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8765/api/experiments/remaining-question-01",
+      "revision": 17,
+      "status": "completed",
+      "decision": "deferred",
+      "result": "mixed",
+      "stage_count": 14,
+      "completed_stage_count": 14,
+      "note": "全14工程に開始終了がありcompleted。status/stages/decision/resultはローカル第17版と完全一致。前回の追加指示採用保留と正式案・評価の結論を保持。",
+      "source_changes": {
+        "error": null,
+        "paths": []
+      }
+    }
+  ],
+  "machine_checks_path": "/tmp/remaining-resource-reader-machine.json",
+  "limitations": "この確認は報告と公開実行状態の整合性を対象とし、進行中の調査内容や将来の有用性は評価していない。親試験の前回読者点検を行った同一担当による続報確認である。",
+  "scope": "原本未変更。単体APIのみ取得し、API一覧・私的Codexログ・実Codex JSONL・reasoningは未読。/tmpのAPI写しと確認結果だけを保存。",
+  "within_guide": true
+}
