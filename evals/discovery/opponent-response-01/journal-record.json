@@ -1,30 +1,30 @@
 {
   "id": "opponent-response-01",
-  "revision": 8,
-  "saved_at": "2026-09-13T12:42:13.596802+00:00",
+  "revision": 19,
+  "saved_at": "2026-09-13T13:30:08.821828+00:00",
   "actor": "codex-root",
-  "reason": "同名合計の上限検査を修正し、実評価入力に影響しないことを再生成で確認",
+  "reason": "当該比較の採否を確定し次の修正へ継続",
   "record": {
     "id": "opponent-response-01",
     "title": "相手の返しを受けた後の利益を比較する",
     "category": "method",
-    "status": "running",
-    "summary": "相手資料を加えた2例の実評価中。実際の出題は固定資料に全文一致。52件と型検査は合格、方法の有用性は未判定。",
+    "status": "completed",
+    "summary": "既知2例とも追加検討で、本人判断との一致0/2。相手資料の供給補助を採用、判断方法は本採用保留。利益の時点・独自性の判定と次の入力修正へ継続。",
     "method": "相手の保存構築・効果・注記を追加し、同じ条件の返しを提案と通常側へ適用する",
     "procedure": "資料生成の実装と機能検査→固定した既知2例を各1回評価→主要な返しと残る利益を別照合→採否を記録し次の改善へ進む",
     "inputs": "reviewer-utility-01 の出題用コピー2例、同じカードDB保存版から抽出する合法な相手の40枚構築。直接の過去採否は追加しない。",
     "criteria": "期待判断は前回のA=test/B=dropを維持。両側で同じ返しの合法な支払・対象・発動順を具体化し、残る利益と失う用途を照合。架空の取得・頻度・相手盤面を成功として数えない。各1回の既知例で未知評価精度を認定しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "53機能検査と型検査合格。正式評価2件・固定期待との一致0/2。具体的な返しの比較4種類を保存したが、Aは発動前で検証が止まり、Bは独自性の基準を取り違えた。",
+      "limitations": "各1回の既知例。仮定した手札と盤面で、頻度・最善手・現環境代表性・未知案での有用性は未確認。本人の見送りの決め手は未確認。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "資料を供給する補助は採用。判断方法は固定2例に合わず、利益の時点と検証の終点にもずれがあるため本採用保留。通常REVIEWは変更しない。"
     },
     "started_at": "2026-09-13T12:26:34Z",
-    "ended_at": null,
+    "ended_at": "2026-09-13T13:30:08.801068+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -38,37 +38,37 @@
       {
         "id": "a-whole",
         "title": "マゼル：評価から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T12:34:33.703569+00:00",
-        "ended_at": null,
-        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live",
+        "ended_at": "2026-09-13T12:43:09.185330+00:00",
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "a-review",
         "title": "マゼル：評価担当の実行",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T12:34:34.131185+00:00",
-        "ended_at": null,
-        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live/review-run",
+        "ended_at": "2026-09-13T12:43:08.754354+00:00",
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-whole",
         "title": "ナイフ：評価から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T12:34:33.705656+00:00",
-        "ended_at": null,
-        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live",
+        "ended_at": "2026-09-13T12:43:41.012650+00:00",
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-review",
         "title": "ナイフ：評価担当の実行",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T12:34:34.125350+00:00",
-        "ended_at": null,
-        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live/review-run",
+        "ended_at": "2026-09-13T12:43:40.655545+00:00",
+        "note": "相手の返しの比較を各1回・上限10分。固定の期待判断は渡さない。\n起動処理を開始。実行記録: /private/tmp/sv-opponent-response-01-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
@@ -97,17 +97,74 @@
         "ended_at": "2026-09-13T12:39:57+00:00",
         "note": "同名の別IDを合算しない欠落1件を検出。修正後53検査合格。実評価の2入力は修正版の出力に全文一致。",
         "budget_minutes": 2
+      },
+      {
+        "id": "a-collection",
+        "title": "Aの正式評価と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T12:44:43.457101+00:00",
+        "ended_at": "2026-09-13T12:44:44.167995+00:00",
+        "note": "結果 completed。正式保存・終了・入力保持を再検査して回収。本人評価との照合は未実施。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "b-collection",
+        "title": "Bの正式評価と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T12:44:44.468482+00:00",
+        "ended_at": "2026-09-13T12:44:45.300574+00:00",
+        "note": "結果 completed。正式保存・終了・入力保持を再検査して回収。本人評価との照合は未実施。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "independent-comparison",
+        "title": "相手の返しと両側に残る利益を別照合",
+        "status": "completed",
+        "started_at": "2026-09-13T13:18:57Z",
+        "ended_at": "2026-09-13T13:21:29.256257+00:00",
+        "note": "選んだ4種類の返しを確認。Aの終点とBの独自性判定に問題。未知案の有用性は未確認。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "grading-dispatch-gap",
+        "title": "別照合を依頼してから実測開始まで",
+        "status": "completed",
+        "started_at": "2026-09-13T12:44:45.445615+00:00",
+        "ended_at": "2026-09-13T13:18:57Z",
+        "note": "依頼時刻と担当の実測開始時刻の差。実作業時間ではない。原因未解明。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "report",
+        "title": "結果と採用範囲を報告へまとめる",
+        "status": "completed",
+        "started_at": "2026-09-13T13:26:13.905035+00:00",
+        "ended_at": "2026-09-13T13:30:08.801068+00:00",
+        "note": "初見確認を行い、通常側の具体的な比較対象、工程の案名、次の入力修正の完了条件を明記。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "report-reading",
+        "title": "報告だけを初見で確認",
+        "status": "completed",
+        "started_at": "2026-09-13T22:26:37+09:00",
+        "ended_at": "2026-09-13T22:27:12+09:00",
+        "note": "結論は理解可能。通常側とA/Bの対応・次の修正条件を明記。ゲーム経験のある読者に不要なPPの解説は追加しない。",
+        "budget_minutes": 1
       }
     ],
     "evidence_paths": [
       "evals/discovery/opponent-response-01/test_opponents.py",
+      "evals/discovery/opponent-response-01/grading.json",
       "evals/discovery/opponent-response-01/opponent-inventory.json",
       "evals/discovery/opponent-response-01/review-addition.txt",
       "evals/discovery/opponent-response-01/tests.json",
       "evals/discovery/opponent-response-01/input-manifest.json",
       "evals/discovery/opponent-response-01/expected.json",
       "evals/discovery/opponent-response-01/copy-limit-fix.json",
+      "evals/discovery/opponent-response-01/reader-review.json",
       "evals/discovery/opponent-response-01/collect-result.py",
+      "evals/discovery/opponent-response-01/a",
       "evals/discovery/opponent-response-01/tests.xml",
       "evals/discovery/opponent-response-01/README.md",
       "evals/discovery/opponent-response-01/entry-review.json",
@@ -115,6 +172,7 @@
       "evals/discovery/opponent-response-01/protocol.json",
       "evals/discovery/opponent-response-01/launch.json",
       "evals/discovery/opponent-response-01/timing-correction.json",
+      "evals/discovery/opponent-response-01/b",
       "evals/discovery/opponent-response-01/inputs",
       "evals/discovery/opponent-response-01/tests-after-fix.xml"
     ]
@@ -122,8 +180,138 @@
   "evidence": [
     {
       "path": "evals/discovery/opponent-response-01/README.md",
-      "sha256": "a8dcf7368408c87e3f617ed53c7496a18d72a98b9d758065ae88dfae56b16346",
-      "size": 1575
+      "sha256": "054b061ca08e711767734814bcce6bee3f9c7e15b5ba2de1676a84b17beb34b9",
+      "size": 4406
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/finish-config.json",
+      "sha256": "1a9fdf56d316c6469d17bd0cafdb5c2567b82e424b08a45896f0f75ab4167cef",
+      "size": 8021
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/finish-request.json",
+      "sha256": "d309c06bff7e1c038784587af3ade8869d56e6055591c2ad2e0b7c99707fd161",
+      "size": 1496
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/input-summary.json",
+      "sha256": "43401182324d175cd8795e67f454c8ab5562ab26e0b89dc7c9570b281c713a8e",
+      "size": 7954
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/prompt.md",
+      "sha256": "fbdb8f2dfa7873e47d0fefe02a0d9b2806750b01c4918a878e2a0f0179072d79",
+      "size": 5907
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/public-config.json",
+      "sha256": "4362fac940b0b8d9a18b62044d5a62512fca2ce889f0c95340215a12394b71cd",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/public-operations.json.gz",
+      "sha256": "ae37d31449c292587d21cde18a90d19bdd7fe5d4e5ff2e66a6b6c64d6afd5ace",
+      "size": 344864
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/report.json",
+      "sha256": "8a16aa42a65b96d58383e5f9e29c25ce8e812c1857400e8f5fca35e67d7ec1b8",
+      "size": 26006
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/result.json",
+      "sha256": "3913d77ae9642dbd574b0a0cfd350a4e6f1c02223121f198f3cbdfe61cba18c3",
+      "size": 7916
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/review-report.json",
+      "sha256": "8a16aa42a65b96d58383e5f9e29c25ce8e812c1857400e8f5fca35e67d7ec1b8",
+      "size": 26006
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/review.json",
+      "sha256": "1ab2303950dfdb3d904e2e0910e6c76b311c8b8ea84b2e0f508e08a96be89c65",
+      "size": 18279
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/run.json",
+      "sha256": "235a1e9c502f9c89904cddd7f21c02ab0602119d516c9148859b259433711dea",
+      "size": 4204
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/session.tar.gz",
+      "sha256": "53d1d0ab9525290391e2ca1b2fb761747b5d1a137324cb8543263e967f59189f",
+      "size": 1740144
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/a/verification.json",
+      "sha256": "f27c012b18c786963b67ae34c638fbaa16fbd08d2bfda401458d61d196071711",
+      "size": 2432
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/finish-config.json",
+      "sha256": "1f2136842cd476eca1d86985a3890881e0c09c2585204849f6636bc528226948",
+      "size": 13041
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/finish-request.json",
+      "sha256": "74dc5674342762b86cbef9fa2d2cc6447c2e1be81f18878d2941f8c3b4de2f32",
+      "size": 3026
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/input-summary.json",
+      "sha256": "9f87b1af455d1a414e4e8f3acf6102f1234c2eb3b32893e24d9a6e83cad031f1",
+      "size": 7954
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/prompt.md",
+      "sha256": "12ef1e42926f74533985323ef84f27532e163316aa70cf3bb6842e0f8c080b33",
+      "size": 5907
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/public-config.json",
+      "sha256": "6b1751d7985b5a772d3efe3c43e2bb119da1056a14a27c2b67221e9054a7288f",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/public-operations.json.gz",
+      "sha256": "2142b29806815a3ca8a22fdac347fea0a97d3bd30282a68b03a6948bc720f5a9",
+      "size": 190459
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/report.json",
+      "sha256": "910d0c5d08512c1074a268c70dae0cb8843339fe4bb64b2fe59a0f6a7f9f0a8f",
+      "size": 35399
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/result.json",
+      "sha256": "4b5d668c8299f62d6d89ef6c4cdbe50df3f6a36c6953749ec5629c3fa8e94026",
+      "size": 9595
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/review-report.json",
+      "sha256": "910d0c5d08512c1074a268c70dae0cb8843339fe4bb64b2fe59a0f6a7f9f0a8f",
+      "size": 35399
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/review.json",
+      "sha256": "b640ca66459d999d762dfe936626075d2a1cdaa8bf48782a8728c277d031dd34",
+      "size": 20318
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/run.json",
+      "sha256": "ab7411d29b363b8d1e3d2681a09fd5e0735292813032f82e5bf68c4a120ce4ba",
+      "size": 4204
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/session.tar.gz",
+      "sha256": "865889f43e2f04250e1f20b1ec7ca46387f933bee73bc2c47244440dc80faa4c",
+      "size": 1683083
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/b/verification.json",
+      "sha256": "8bff4ac4d7ffeac60dcf3b492b5fa23f00efb58e9e27bcd1323936b73c3aab36",
+      "size": 4433
     },
     {
       "path": "evals/discovery/opponent-response-01/collect-result.py",
@@ -144,6 +332,11 @@
       "path": "evals/discovery/opponent-response-01/expected.json",
       "sha256": "54f57697609a4c8d58640a35bb83b9324295719fc23c8b6718f3a18a8d23c826",
       "size": 2951
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/grading.json",
+      "sha256": "64bd2568d357e60dc1d612862544937389b20d79a9757e8e16a7d3bb017070dd",
+      "size": 7846
     },
     {
       "path": "evals/discovery/opponent-response-01/input-manifest.json",
@@ -184,6 +377,11 @@
       "path": "evals/discovery/opponent-response-01/protocol.json",
       "sha256": "e8996a322f0f2c400eee6cf1a297ebed7f7d273e8c854c2e55aaad7ddbeb064c",
       "size": 987
+    },
+    {
+      "path": "evals/discovery/opponent-response-01/reader-review.json",
+      "sha256": "392c1dcc6030e7954816701db52edc7357b3dbf6b84a31dd9df67b696acc05c8",
+      "size": 1923
     },
     {
       "path": "evals/discovery/opponent-response-01/review-addition.txt",

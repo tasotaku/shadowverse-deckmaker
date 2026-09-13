@@ -1,0 +1,107 @@
+{
+  "id": "clean-input-discovery-01",
+  "revision": 5,
+  "saved_at": "2026-09-13T13:36:26.922768+00:00",
+  "actor": "codex-root",
+  "reason": "新規探索の概要を保存",
+  "record": {
+    "id": "clean-input-discovery-01",
+    "title": "実験の採点を除いた入力で新しい種を探索する",
+    "category": "method",
+    "status": "running",
+    "summary": "新規入力の準備が完了。考案15分・別評価10分を上限に各1回実行する。",
+    "method": "実験履歴を除いた通常の原則と保存カード資料から考案し、別担当で評価する",
+    "procedure": "新規開始→合法な相手40枚資料を追加→考案1回→別評価1回→得た種と失敗を検証し次の修正へ戻す",
+    "inputs": "保存DB版のビショップ・ローテーション、カード注記とルール、同フォーマットの相手連携ロイヤル。現在の環境評価とは区別。",
+    "criteria": "正式な新規案・別評価を保存。具体的な役割や配分の変更、通常構築との差、条件と失う用途、残問を照合する。形式充足だけを有用性とせず、採用や未知案での信頼性を単発で認定しない。期待するカード名・採点ラベルを渡さない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T13:33:23.834502+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "新規入力と相手資料を準備",
+        "status": "completed",
+        "started_at": "2026-09-13T13:33:23.834502+00:00",
+        "ended_at": "2026-09-13T13:33:24.361757+00:00",
+        "note": "ビショップの新規入力と相手連携ロイヤル40枚を公開入口から保存。履歴の除外と元資料を固定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "whole",
+        "title": "考案から別評価と最終保存確認まで",
+        "status": "running",
+        "started_at": "2026-09-13T13:33:24.530480+00:00",
+        "ended_at": null,
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live",
+        "budget_minutes": 25
+      },
+      {
+        "id": "fresh-develop",
+        "title": "ビショップの種を考案",
+        "status": "running",
+        "started_at": "2026-09-13T13:33:24.840388+00:00",
+        "ended_at": null,
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-live/develop-run",
+        "budget_minutes": 15
+      },
+      {
+        "id": "fresh-review",
+        "title": "別担当が種を評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "正式提出と保存再検査までを実行する。自動再試行なし。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/clean-input-discovery-01/input-summary.json",
+      "evals/discovery/clean-input-discovery-01/input-manifest.json",
+      "evals/discovery/clean-input-discovery-01/README.md",
+      "evals/discovery/clean-input-discovery-01/start.json",
+      "evals/discovery/clean-input-discovery-01/input-session.tar.gz",
+      "evals/discovery/clean-input-discovery-01/opponents.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/clean-input-discovery-01/README.md",
+      "sha256": "140727d7610baee27c77606424912fb74ae1805f91d6ab6bcb2fcea3133e49e7",
+      "size": 1035
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/input-manifest.json",
+      "sha256": "a409faa3b9ec3f081004fc12ebcb21931ccf40db579748ac45aabd7da383df87",
+      "size": 795
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/input-session.tar.gz",
+      "sha256": "8b7e97486f90ccebbd8949acfe98eceeb0280eb8fa3c7fe6cae3cbe10f5ae004",
+      "size": 1267011
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/input-summary.json",
+      "sha256": "40485b5cff4f86c200e026dbb03a635249f12a29a419d552fca8fa4f2c5e1dbf",
+      "size": 7854
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/opponents.json",
+      "sha256": "2f2e31c1a3241df58055cfb12c5a7848b5a1ebacd9370df7c58e79fa0813e75b",
+      "size": 249
+    },
+    {
+      "path": "evals/discovery/clean-input-discovery-01/start.json",
+      "sha256": "fb8655f5dac9fa6b01c252b5f094c516e7037088efa752c47bdc342870d8bf81",
+      "size": 290
+    }
+  ]
+}

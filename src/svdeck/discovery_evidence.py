@@ -137,6 +137,30 @@ def _known_decks(conn: sqlite3.Connection, cards: list[JSONDict], format_name: s
     return decks
 
 
+def operational_principles(design: str) -> str:
+    # AI_NOTE: 明示した実験履歴だけを除き、境界が壊れた資料を担当へ渡さない。
+    lines: list[str] = []
+    in_history = False
+    for line in design.splitlines(keepends=True):
+        marker = line.strip()
+        if marker == "<!-- discovery-history:start -->":
+            if in_history:
+                raise ValueError("実験履歴の開始境界が重複しています")
+            in_history = True
+        elif marker == "<!-- discovery-history:end -->":
+            if not in_history:
+                raise ValueError("実験履歴の終了境界に対応する開始がありません")
+            in_history = False
+        elif "<!-- discovery-history:" in line:
+            raise ValueError("実験履歴の境界は単独行に正しい形式で指定してください")
+        elif not in_history:
+            lines.append(line)
+    if in_history:
+        raise ValueError("実験履歴の終了境界がありません")
+    sections = re.split(r"(?=^## )", "".join(lines), flags=re.MULTILINE)
+    return "\n".join(s for s in sections if re.match(r"## (?:1\.|1\.5 |3\.|5\.|6\.|7\.|8\.)", s))
+
+
 def build_context(conn: sqlite3.Connection, class_name: str, format_name: str,
                   objective: str, docs: Path, captured_at: str) -> JSONDict:
     # AI_NOTE: 対象全文・ルール・関連する判定原則を一つの固定入力にまとめる。
@@ -148,8 +172,7 @@ def build_context(conn: sqlite3.Connection, class_name: str, format_name: str,
     if not any(c["deck_eligible"] for c in cards):
         raise ValueError("採用可能なカードがありません")
     design = (docs / "design.md").read_text(encoding="utf-8")
-    sections = re.split(r"(?=^## )", design, flags=re.MULTILINE)
-    principles = "\n".join(s for s in sections if re.match(r"## (?:1\.|1\.5 |3\.|5\.|6\.|7\.|8\.)", s))
+    principles = operational_principles(design)
     return {"version": 1, "objective": objective, "class_name": class_name, "format": format_name,
             "captured_at": captured_at, "freshness": "ローカルDBの保存版。取得時刻は能力の適用日や公式再確認日ではない。",
             "cards": cards, "known_decks": _known_decks(conn, cards, format_name),

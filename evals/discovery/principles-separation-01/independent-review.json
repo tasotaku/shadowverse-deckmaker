@@ -1,0 +1,173 @@
+{
+  "started_at": "2026-09-13T13:28:31Z",
+  "ended_at": "2026-09-13T13:30:38.006590+00:00",
+  "scope": "指定3ファイルの変更差分、以前の混在11箇所、採用済み比較3文を限定確認。全文再監査なし。",
+  "files": {
+    "docs/design.md": "df0355008d0e4885d86ff59a2e6697f399c722df0c8dc7c442a9120359e751e2",
+    "evals/discovery/principles-separation-01/principles-after.md": "caf01005243d78404ef4a89073148d2357d5e2d5ad4ef13f9d8397fa2642c58b",
+    "src/svdeck/discovery_evidence.py": "864d6ab4f41ea73089d8104bcdf337f4cd75224fa6b53c0613cf5870b616b79b"
+  },
+  "result": "混在11箇所・採用済み比較3文の限定確認で確定した不具合なし。通常運用13文を保持、実験結果17文言を除外。ユーザー用途評価のcard_note保持は親のDB確認報告で補完。保存afterと現在の差は並行追加された採用済みopponents説明4行。",
+  "findings": [],
+  "observed": {
+    "standalone_marker_pairs": 37,
+    "extract_matches_saved_after_ignoring_outer_whitespace": false,
+    "retained_operational_text": [
+      {
+        "text": "本人による用途の評価はその構成と使い方の範囲に限定し、勝率・現環境の強さ・全構成へ広げない。通常のカード注記は保持する。",
+        "present": true,
+        "line": 44
+      },
+      {
+        "text": "考案・別評価・調査引き継ぎの既存指示と判定基準は維持する。",
+        "present": true,
+        "line": 127
+      },
+      {
+        "text": "knownから広い普及や自動棄却を導かない。",
+        "present": true,
+        "line": 130
+      },
+      {
+        "text": "取得修正を探索方法の評価や採点変更へ転用しない。",
+        "present": true,
+        "line": 148
+      },
+      {
+        "text": "明示要求による完了は自然終了と別の状態で、実際の終了番号とともに台帳へ残す。",
+        "present": true,
+        "line": 198
+      },
+      {
+        "text": "同一状態から通常構築を比較する指示をDEVELOPへ採用する。",
+        "present": true,
+        "line": 225
+      },
+      {
+        "text": "正式改訂の前に開始状態と観察終点、両側の共通資源・交換札を固定し、能力全文から行動・発動時点と消費・残る役割を追う。通常側でも得られる分を分け、残る利益を使い方や配分の判断へ返す。",
+        "present": true,
+        "line": 226
+      },
+      {
+        "text": "別評価・回答形式・モデル設定は維持する。比較指示だけで誤りを防ぐ保証ではなく、別評価の訂正と未確認事項を保持する運用として採用する。",
+        "present": true,
+        "line": 227
+      },
+      {
+        "text": "`discovery_run --journal-run-stage STAGE` は任意指定とし、入力検査後・担当起動前に登録済み未着手工程を確保する。正式提出の再検査と最終保存が終わるまで全体工程を開き、正常終了は完了、それ以外は中断にする。",
+        "present": true,
+        "line": 254
+      },
+      {
+        "text": "既定の `deadline` は従来どおり両時計の早い方で止める。",
+        "present": true,
+        "line": 260
+      },
+      {
+        "text": "任意の `--journal-run-stage STAGE` は、事前登録した未着手工程を入力検査後・担当起動前に確保し、最後の提出検査を含む全実行の開始・終了・失敗を台帳へ反映する。担当ごとの工程とは別のIDを使い、未指定時の挙動は維持する。",
+        "present": true,
+        "line": 278
+      },
+      {
+        "text": "ヘルプを完了根拠にも解析対象にも数えず、実提出と実読出しは引き続き必須にする。",
+        "present": true,
+        "line": 284
+      },
+      {
+        "text": "修正と保存済み資料からの照合入口を実行補助として採用した。",
+        "present": true,
+        "line": 289
+      }
+    ],
+    "removed_experiment_text": [
+      {
+        "text": "マゼルの正例は役割分担の意味を問う",
+        "absent": true
+      },
+      {
+        "text": "イマリの期待判断は過去AI由来",
+        "absent": true
+      },
+      {
+        "text": "実績を伏せても実際に組んで試す候補として扱う正例に用いる",
+        "absent": true
+      },
+      {
+        "text": "一致0・不一致2だった",
+        "absent": true
+      },
+      {
+        "text": "一致は0/2から1/2へ変わった",
+        "absent": true
+      },
+      {
+        "text": "178機能検査",
+        "absent": true
+      },
+      {
+        "text": "既存7件の抽出を保持",
+        "absent": true
+      },
+      {
+        "text": "171検査",
+        "absent": true
+      },
+      {
+        "text": "限定的な比較試用理由が残ったため",
+        "absent": true
+      },
+      {
+        "text": "110検査と本体",
+        "absent": true
+      },
+      {
+        "text": "正式案0件で提出まで進む問題は解消しなかった",
+        "absent": true
+      },
+      {
+        "text": "86検査と本体",
+        "absent": true
+      },
+      {
+        "text": "初回実AIは添付のヘルプを通常JSONとして解析",
+        "absent": true
+      },
+      {
+        "text": "143検査・旧20操作",
+        "absent": true
+      },
+      {
+        "text": "現行0・変更版1の最終試用推薦",
+        "absent": true
+      },
+      {
+        "text": "現行側は正式改訂と別評価でdevelop",
+        "absent": true
+      },
+      {
+        "text": "条件付きtestへ進んだ",
+        "absent": true
+      }
+    ],
+    "extraction_change": "既存の章選択を保持し、単独行の明示境界内のみ除外。境界の重複・不整合・未閉鎖・同一行混在はValueError。カード本文や注記を抽出対象から除く変更はない。",
+    "extract_matches_saved_after_ignoring_blank_lines": false,
+    "saved_after_difference": "現在の抽出結果には、保存済みprinciples-after.mdよりopponents資料供給補助の採用済み説明4行が追加されていた。レビュー中の並行編集であり、採点の漏れではない。最終成果物は現行内容で再生成が必要。"
+  },
+  "pending_checks": [
+    {
+      "location": "docs/design.md §1.2 / 旧46〜49行",
+      "detail": "実績を伏せてもマゼルの序盤配分と後半補充を試す候補にする具体的ユーザー用途評価、当該ナイフ案の本人見送りは実験割当と一緒に原則から外れ、抽出後は一般的な範囲限定文に置換されている。card_noteに具体的内容が残るかを本レビューでは読んでいない。親に公開入力で対応確認を依頼済み。",
+      "parent_evidence": "親は本体DBを読み取り専用で確認し、10304110 のユーザー成功例・tier3〜4・後半置換と序盤配分・勝率未提示、10871120/10972120 の当該2枠案の見送り・他用途へ一般化しない評価の保持を報告した。私はDBを独立再読していない。"
+    }
+  ],
+  "unreviewed": [
+    "カード注記の内容と新規packet内の同一性（親が担当）",
+    "抽出後全文の別の章に存在しうる未識別の実験履歴",
+    "凍結済み比較入力・採点・実行ログ",
+    "親報告の67検査・型検査は再実行していない",
+    "新指示のAI判断への因果効果"
+  ],
+  "repository_writes": false,
+  "database_access": false,
+  "private_logs_access": false
+}

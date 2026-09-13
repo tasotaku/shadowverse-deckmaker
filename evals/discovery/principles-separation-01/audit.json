@@ -1,0 +1,79 @@
+{
+  "started_at": "2026-09-13T12:44:08Z",
+  "ended_at": "2026-09-13T13:19:39Z",
+  "scope": "Read-only bounded audit of fresh operational principles. No existing frozen evaluation context, review, private stdout, JSONL, or reasoning log inspected. No repository writes performed; temp start/packet artifacts only.",
+  "public_verification": {
+    "start_exit_code": 0,
+    "packet_summary_exit_code": 0,
+    "session": "/tmp/operational-principles-audit",
+    "class": "ビショップ",
+    "format": "rotation",
+    "context_sha256": "8a4997bad27f8e3a8bc8821e068e78cd649092d56b643e5dd7584955f12844e0",
+    "packet_sha256": "ff68adfdacd09ab98c77b0571df1336f30d594d608bd513f0da3851cd376cd42",
+    "snapshot_sha256": "0f7d98455ea5da5bab27361ae74a509328a552477d7f2620a76b58770ceb8413",
+    "packet_path": "/tmp/operational-principles-audit/packets/ff68adfdacd09ab98c77b0571df1336f30d594d608bd513f0da3851cd376cd42.json",
+    "card_count": 212,
+    "cards_with_user_notes": 16,
+    "principles_characters": 38552,
+    "stage": "develop",
+    "previous_reviews": 0
+  },
+  "observed": [
+    {
+      "source": "docs/design.md",
+      "start_line": 47,
+      "end_line": 48,
+      "exact_snippet": "実績を伏せても実際に組んで試す候補として扱う正例に用いる。勝率・現環境の強さ・全てのマゼル構成への評価には広げない。\n当該ナイフ案の本人による見送りと対にし、具体的な比較材料を保持した出題用コピーから直接の採否・実績だけを分離して、",
+      "in_fresh_packet_principles": true,
+      "classification": "Experiment-specific expected positive/negative case mapping; underlying scoped user preference is legitimate operational data, but choosing a positive/negative evaluation case is evaluation metadata."
+    },
+    {
+      "source": "docs/design.md",
+      "start_line": 51,
+      "end_line": 52,
+      "exact_snippet": "[本人評価のある2例の検証](../evals/discovery/reviewer-utility-01/README.md)は、一致0・不一致2だった。\nマゼルでは具体的な配分差を試用前に求め、当該ナイフ案では1ターン早める機会と共有枠から試用を選んだ。",
+      "in_fresh_packet_principles": true,
+      "classification": "Experiment grading history and old case outcomes."
+    },
+    {
+      "source": "docs/design.md",
+      "start_line": 266,
+      "end_line": 267,
+      "exact_snippet": "変更版は別用途1案の成立と追加採用見送りを残したが、新しい別用途への試用推薦は0件だった。\n現行0・変更版1の最終試用推薦は、元案への評価と評価者が補った手順を含み、指示の効果とは認定しない。",
+      "in_fresh_packet_principles": true,
+      "classification": "Experiment comparison output labels/counts and adoption history."
+    }
+  ],
+  "selection_mechanism": {
+    "source": "src/svdeck/discovery_evidence.py",
+    "lines": [
+      151,
+      152
+    ],
+    "detail": "Split only at level-2 Markdown headings and join matched entire sections, including §§1.2 and 3.x. No distinction between operational principles and evaluation metadata."
+  },
+  "separation_rule": {
+    "source": "docs/design.md",
+    "lines": [
+      246,
+      247
+    ],
+    "exact_text": "検査の個別の入力・正解・採点結果は [評価記録](../evals/discovery/README.md) に保存し、探索担当へ毎回渡す原則の中へ\n正解として埋め込まない。ユーザーの評価と用途の範囲は引き続きカード注記と設計原則へ保存する。"
+  },
+  "uncertainty": [
+    "Text inclusion is verified; no AI run or counterfactual was performed, so influence on proposals/reviews is unmeasured.",
+    "One fresh Bishop rotation session tested; selection itself is independent of class/format.",
+    "This audit does not assess or alter frozen opponent-response-01 comparison inputs/results.",
+    "Ordinary card facts and scoped user judgments should remain available. An expected-label mapping for a specific experiment is distinguishable from those facts.",
+    "Observed start/end clocks span 35m31s despite short command execution durations; the intervening delay is unexplained, so this is not reported as meeting a 2-minute elapsed-time limit."
+  ],
+  "recommended_minimal_edit": "Move experiment-specific case selection/expected-label mappings, per-run grading counts/outcomes, and trial progress paragraphs out of selected design.md sections into the already linked evals records. Leave concise accepted operational rules and their scope in design.md; preserve scoped user facts/preferences and all card_note rows. Do not exclude whole §§1 or 3, and do not rewrite old frozen contexts. If retaining all history inline is necessary, add explicit evaluation-history boundaries and exclude those blocks during build_context; a fresh-packet regression check should prove history absence and retained operational rules/user notes.",
+  "repository_writes": false,
+  "host_clock_ended_at": "2026-09-13T13:19:32.184445+00:00",
+  "time_observations": [
+    "clock tool start: 2026-09-13 12:44:08 UTC",
+    "clock tool intermediate: 2026-09-13 12:45:01 UTC",
+    "host clock report creation: 2026-09-13T13:19:32.184445+00:00",
+    "clock tool end: 2026-09-13 13:19:39 UTC"
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "id": "principles-separation-01",
+  "revision": 4,
+  "saved_at": "2026-09-13T13:38:43.252910+00:00",
+  "actor": "codex-root",
+  "reason": "入力分離を採用し新規実探索へ継続",
+  "record": {
+    "id": "principles-separation-01",
+    "title": "探索に渡す判断原則と実験の採点履歴を分ける",
+    "category": "infrastructure",
+    "status": "completed",
+    "summary": "入力の不具合修正として採用。67機能検査合格、実験履歴37範囲を分離し、必要原則・カード注記を公開入口で保持確認。新規探索は別記録で進行中。",
+    "method": "設計文書の実験履歴を明示的に区切り、探索開始時の原則抽出で除外する",
+    "procedure": "公開入口の再現→境界の指定と抽出修正→必要原則・カード注記・旧入力の保持検査→新規入力で実際に探索",
+    "inputs": "現在の設計文書、通常の読み取り専用カードDB、新規ビショップ・ローテーション入力",
+    "criteria": "実験の正解・採点履歴を通常の原則へ混ぜない。確定した運用原則とカード注記・ゲームルールは保持。境界の破損は黙って通さず新規開始を拒否。旧入力と既知例の採点は不変。これ自体を発見力向上と認定しない。",
+    "result": {
+      "outcome": "pass",
+      "summary": "境界37範囲を指定。67検査と型検査に合格。新規公開入力で原則13文とカード212枚・注記16件を保持し、実験結果17文言を除外。別の合法な入力で本人評価3枚の保持も確認。",
+      "limitations": "明示した範囲を除く方式。未指定の将来の履歴を意味で自動判別しない。未知の種の質や評価者の判断精度の改善は未認定。旧固定入力はそのまま。"
+    },
+    "decision": {
+      "status": "adopted",
+      "reason": "原則へ実験の正解を混ぜない既存要件の修正として採用。通常のゲーム知識と本人評価は保持し、公開入口での保存内容と機能を確認した。探索の有用性は別の新規試行で継続する。"
+    },
+    "started_at": "2026-09-13T12:44:08Z",
+    "ended_at": "2026-09-13T13:38:43.236080+00:00",
+    "stages": [
+      {
+        "id": "audit",
+        "title": "公開開始で混入箇所を別担当が確認",
+        "status": "completed",
+        "started_at": "2026-09-13T12:44:08Z",
+        "ended_at": "2026-09-13T13:19:39Z",
+        "note": "3件の全文一致を確認。開始終了の時刻差とコマンド実行時間との差は未解明。判断への影響は未測定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "implementation",
+        "title": "実験履歴の境界と抽出を修正",
+        "status": "completed",
+        "started_at": "2026-09-13T13:23:10.896247+00:00",
+        "ended_at": "2026-09-13T13:32:14.819764+00:00",
+        "note": "37範囲を明示。67検査・型検査合格。公開開始で212枚・16注記を保持。原則13文を保持、採点17文言を除外。合法な別入力で本人評価3枚の注記も確認。",
+        "budget_minutes": 12
+      },
+      {
+        "id": "report",
+        "title": "分離した範囲と検査結果を報告",
+        "status": "completed",
+        "started_at": "2026-09-13T13:36:26.908102+00:00",
+        "ended_at": "2026-09-13T13:38:43.236080+00:00",
+        "note": "初見で結論・未確認範囲を確認。カードを採用できる入力の意味を明示。工程時刻は保存値から再生成。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "reader-check",
+        "title": "報告の結論と範囲を初見で確認",
+        "status": "completed",
+        "started_at": "2026-09-13T22:36:57+09:00",
+        "ended_at": "2026-09-13T22:37:36+09:00",
+        "note": "2報告の結論と未確認範囲は読み取れる。種の意味は依頼者と共有済みで説明は増やさない。",
+        "budget_minutes": 1
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/principles-separation-01/mixed-history.json",
+      "evals/discovery/principles-separation-01/history-spans.json",
+      "evals/discovery/principles-separation-01/audit.json",
+      "evals/discovery/principles-separation-01/independent-review.json",
+      "evals/discovery/principles-separation-01/checkpoint.json",
+      "evals/discovery/principles-separation-01/test_principles.py",
+      "evals/discovery/principles-separation-01/reader-review.json",
+      "evals/discovery/principles-separation-01/public-packet-summary.json",
+      "evals/discovery/principles-separation-01/principles-separation-01-after-context.json.gz",
+      "evals/discovery/principles-separation-01/operational-principles-audit-context.json.gz",
+      "evals/discovery/principles-separation-01/tests.md",
+      "evals/discovery/principles-separation-01/tests.xml",
+      "evals/discovery/principles-separation-01/README.md",
+      "evals/discovery/principles-separation-01/boundary-fix.json",
+      "evals/discovery/principles-separation-01/public-start.json",
+      "evals/discovery/principles-separation-01/design-before.md",
+      "evals/discovery/principles-separation-01/principles-after.md",
+      "evals/discovery/principles-separation-01/public-verification.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/principles-separation-01/README.md",
+      "sha256": "e0cf52f213af0fb8619c00d41b80bba35647907708c4d850ce3887cc2577d577",
+      "size": 2335
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/audit.json",
+      "sha256": "6c077fdb940b0d25cb7c92a35dfeaf17116c3b1667388f15dbf1ee89395ebe02",
+      "size": 5324
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/boundary-fix.json",
+      "sha256": "a36a04c67915da34e1ce05b340a3831ef56d5fb0dee78066b43104df33d5e4f9",
+      "size": 243
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/checkpoint.json",
+      "sha256": "d9f6fb570e25cb86f732b6786108045bca5cfe88311f04a1395759bc46192ab1",
+      "size": 1030
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/design-before.md",
+      "sha256": "ed0926909d04feed66d3cf163ffe7e2b847a735d6b01e247864409a020c2bf6e",
+      "size": 150079
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/history-spans.json",
+      "sha256": "c5f962148c088fb3ffe45fd6c1625b6669112b9d59a2b4a16fde8e9a28c39418",
+      "size": 23455
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/independent-review.json",
+      "sha256": "98b7475a4c6cddbd1d330270e8e2e62ce84bfba6bbbd720556354671c0afb8ae",
+      "size": 7684
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/mixed-history.json",
+      "sha256": "719c4c027f853a91a2b10757f79cdbd64cd7a14f68d518b023a6f61ef7092dbc",
+      "size": 2564
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/operational-principles-audit-context.json.gz",
+      "sha256": "75466fbf0f3d61d357de9cca28bcede144ebae4b930fda7d39a95d7a11b314a0",
+      "size": 105625
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/principles-after.md",
+      "sha256": "ee94be2e35b97b7c91e1978b1cf4599046220bae2bdff5ca8d269944d1faa379",
+      "size": 77958
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/principles-separation-01-after-context.json.gz",
+      "sha256": "898fc819f248cda490254d8a1e8f251d62a4092a3d839452a4cad2797eeb47bb",
+      "size": 99817
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/public-packet-summary.json",
+      "sha256": "7c49d016dc8b417d3e214ea3a2e48e9f08e6c17fad2c6a371bb9e9569bb69e21",
+      "size": 7621
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/public-start.json",
+      "sha256": "8a825c3e6467c36dde0cd5f2c6d226872d767d94b2f54c11a8cd17a2987bab3b",
+      "size": 813
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/public-verification.json",
+      "sha256": "73c71a7311fecc4d537dfbcefb88e002d33085d029871ff53b578111ded36b3c",
+      "size": 3952
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/reader-review.json",
+      "sha256": "b8e65987e20bc21f20ef80603497a25b67b536076dc79befef8a67545df345c1",
+      "size": 2432
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/test_principles.py",
+      "sha256": "c79897c86ad8480506002980127765050ca970f3b6d34847e7980dbcf2d84819",
+      "size": 4365
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/tests.md",
+      "sha256": "78383186300045e6b430b126da65e02a6ef563ed1773646878ce43db13030bff",
+      "size": 821
+    },
+    {
+      "path": "evals/discovery/principles-separation-01/tests.xml",
+      "sha256": "61391fcc93436a69b7eaa9fe5f9424abd4166c13a086b9805639805c2c24901e",
+      "size": 9421
+    }
+  ]
+}
