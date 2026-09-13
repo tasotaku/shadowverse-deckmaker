@@ -70,12 +70,13 @@ class RunJournal:
                 record['started_at'] = run['started_at']
             # AI_NOTE: 保存確定後の応答だけ失敗しても、未起動の工程を同じ内容で後から閉じられるよう残す。
             run['journal_sync'] = {**self.identity(), 'status': 'starting',
-                                   'claimed_stage': deepcopy(stage)}
+                                   'claimed_stage': deepcopy(stage), 'claimed_summary': record['summary']}
             return True
 
         item = self.change(amend, '担当の起動処理を開始。結果・採否は変更しない')
         return {**self.identity(), 'status': 'running', 'begin_revision': item['revision'],
-                'claimed_stage': deepcopy(self.stage(item['record']))}
+                'claimed_stage': deepcopy(self.stage(item['record'])),
+                'claimed_summary': item['record']['summary']}
 
     def finish(self, run: dict[str, object]) -> dict[str, Any]:
         # AI_NOTE: 実行結果を工程状態へ写すだけで、提出や探索成果の合格を作らない。

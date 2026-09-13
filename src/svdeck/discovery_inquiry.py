@@ -23,6 +23,7 @@ from svdeck.discovery_read import packet_summary, read_packet
 from svdeck.discovery_run import check_packet, check_unchanged, copy_session, manifest, verify_submission
 from svdeck.discovery_sources import load_sources
 from svdeck.worker_journal import RunJournal
+from svdeck.inquiry_journal import InquiryJournal
 
 
 RESEARCH = """保存済みの案に残った問いを調べる担当です。inquiry_focusの問いを調査し、根拠と結論を追加資料として保存してください。
@@ -116,7 +117,7 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
 def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str, question_index: int | None,
         research_seconds: float, inspect_seconds: float, journal_root: Path | None = None,
         experiment_id: str | None = None, stage_prefix: str = 'live',
-        inspect_source: str | None = None) -> dict[str, Any]:
+        inspect_source: str | None = None, journal_run_stage: str | None = None) -> dict[str, Any]:
     # AI_NOTE: 調査と照合を資料提出としてつなぎ、元案・旧評価は最終出力まで保持する。
     source, output, codex = source.resolve(), output.resolve(), codex.resolve()
     if output.is_relative_to(source) or source.is_relative_to(output):
@@ -125,6 +126,10 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
         raise ValueError('実行ファイルと有限の正の制限秒数が必要です')
     if bool(journal_root) != bool(experiment_id):
         raise ValueError('journal-rootとexperiment-idは一緒に指定してください')
+    if journal_run_stage is not None and (not journal_root or not experiment_id or not journal_run_stage):
+        raise ValueError('journal-run-stageにはjournal-rootとexperiment-idが必要です')
+    if journal_run_stage in {f'{stage_prefix}-inquiry', f'{stage_prefix}-inspect'}:
+        raise ValueError('調査全体の工程IDは担当ごとの工程IDと分けてください')
     original = manifest(source)
     prior = discovery.report(source)
     if inspect_source is not None and not any(s['source_hash'] == inspect_source and s['kind'] == 'inquiry-result' for s in load_sources(source)):
@@ -154,7 +159,15 @@ def run(source: Path, output: Path, codex: Path, revision: int, review_hash: str
                               'source': str(source), 'output': str(output), 'focus': focus, 'stages': [], 'original_manifest': original,
                               'inspect_source': inspect_source,
                               'limits': '資料保存と問いの解決・種の有用性は別。公開操作の記録はOS全体の監査ではない。履歴本文に転記された過去判断までは自動除去しない。'}
+    run_journal = InquiryJournal(journal_root, experiment_id, journal_run_stage) if journal_root and experiment_id and journal_run_stage else None
     try:
+        if run_journal:
+            try:
+                result['journal_sync'] = run_journal.begin(result)
+            except Exception as exc:
+                result['journal_sync'] = {**result.get('journal_sync', run_journal.identity()),
+                                          'status': 'failed', 'error': str(exc)}
+                raise
         runtime = output / 'runtime'
         shutil.copytree(Path(__file__).resolve().parent, runtime / 'svdeck', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         runtime_before = manifest(runtime)
@@ -256,8 +269,17 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切�
                           formal_revisions=0, formal_reviews=0, additional_sources=len(report['sources']) - len(prior['sources']))
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         result.update(status='failed', failure=str(exc))
+    except BaseException as exc:
+        if run_journal:
+            result.update(status='failed', failure=f'{type(exc).__name__}: {exc}')
+        raise
     finally:
         result['ended_at'] = datetime.now(timezone.utc).isoformat()
+        if run_journal and result.get('journal_sync', {}).get('claimed_stage'):
+            try:
+                result['journal_sync'] = run_journal.finish(result)
+            except Exception as exc:
+                result['journal_sync'] = {**result['journal_sync'], 'status': 'failed', 'error': str(exc)}
         worker.save_record(output / 'result.json', result)
     return result
 
@@ -278,16 +300,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument('--journal-root', type=Path)
     parser.add_argument('--experiment-id')
     parser.add_argument('--stage-prefix', default='live')
+    parser.add_argument('--journal-run-stage', help='最終提出検査までの全実行を記録する、事前登録済みの未着手工程ID')
     parser.add_argument('--inspect-source', help='保存済みinquiry-result資料を指定し、調査を再実行せず照合だけを行う')
     args = parser.parse_args(argv)
     try:
         result = run(args.session, args.output, args.codex, args.revision, args.review_hash, args.question_index,
                      args.research_seconds, args.inspect_seconds, args.journal_root, args.experiment_id, args.stage_prefix,
-                     args.inspect_source)
+                     args.inspect_source, args.journal_run_stage)
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         parser.error(str(exc))
     print(json.dumps({k: v for k, v in result.items() if k not in {'stages', 'original_manifest'}}, ensure_ascii=False, indent=2))
-    return 0 if result['status'] == 'completed' else 2
+    return 0 if result['status'] == 'completed' and result.get('journal_sync', {}).get('status') != 'failed' else 2
 
 
 if __name__ == '__main__':
