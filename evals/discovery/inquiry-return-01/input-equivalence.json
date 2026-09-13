@@ -1,0 +1,53 @@
+{
+  "started_at": "2026-09-13T10:14:48.829556+00:00",
+  "ended_at": "2026-09-13T10:14:49.297940+00:00",
+  "common_packet_equal_except_sources_and_verified_additional_source_index": true,
+  "common_source_count": 27,
+  "extra_b_source_count": 8,
+  "extra_b_sources": [
+    {
+      "source_hash": "67308f8c9b2d1081ca279c353dcfc4a7919b5247afc8bcd2cea66ec60ab15a9a",
+      "kind": "inquiry-inspection-completion",
+      "title": "照合報告の保存・全文再読完了記録"
+    },
+    {
+      "source_hash": "68ea1cb806954b608e9a99faa1c8f85ba5b0b42d9298522afd3443ca41975e28",
+      "kind": "inquiry-evidence",
+      "title": "公開入口で確認したカード本文・両側注記・固定比較の抜粋"
+    },
+    {
+      "source_hash": "8622aa495fe058041dc15b601d46c2fa8789c5c376866757ea608627e7f36dc8",
+      "kind": "inquiry-inspection",
+      "title": "指定した問いへの報告"
+    },
+    {
+      "source_hash": "92bca20f6c84f718f5d6db4adcfa78a2413f33e2926022bf9c460b714dc5e705",
+      "kind": "inquiry-web-evidence",
+      "title": "EP1用途の実検索記録・取得本文抜粋・先行用途照合"
+    },
+    {
+      "source_hash": "a61967c0970ef1411264d5c06c5510dcf770c1b9e07aca76f2dd83a525cc39f3",
+      "kind": "inquiry-result",
+      "title": "指定した問いへの報告"
+    },
+    {
+      "source_hash": "bc486ebfa05442c461522ce2c009da61446827960794172cd58437ca27c1a84a",
+      "kind": "inquiry-inspection-evidence",
+      "title": "EP1用途報告の出典再照合記録"
+    },
+    {
+      "source_hash": "bc6e6c0416a3b8a0ad257c2190ce07c08ba0f0158364222fd0bdb574f3c42ffe",
+      "kind": "execution-provenance-summary",
+      "title": "引き継ぐ部分資料と未完了の来歴"
+    },
+    {
+      "source_hash": "f3f143b190591a896af40beb5096807a302a641424c8aa0e68020d906ce45bb2",
+      "kind": "inquiry-completion",
+      "title": "報告保存と全文再読の完了時刻"
+    }
+  ],
+  "original_inputs_unchanged": true,
+  "initial_check_failure": "sources以外の完全一致assertはreview_contexts[0].additional_source_hashesの差で失敗。",
+  "correction": "Bの追加資料一覧が追加8資料の識別値と完全一致することを確認し、この派生一覧だけを正規化。他の入力・旧評価・指示は完全一致。入力そのものは変更せず、差分を隠して全一致とは呼ばない。",
+  "limits": "実行前のコピーで生成した入力の比較。実起動の入力・固定実装は起動後に別途確認。"
+}

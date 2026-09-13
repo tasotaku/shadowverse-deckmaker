@@ -1,9 +1,9 @@
 {
   "id": "inquiry-return-01",
-  "revision": 1,
-  "saved_at": "2026-09-13T10:11:11.934603+00:00",
+  "revision": 2,
+  "saved_at": "2026-09-13T10:14:49.313117+00:00",
   "actor": "codex-root",
-  "reason": "追加調査の有無を比較する条件と入力を実AI起動前に固定",
+  "reason": "差分は追加資料とその派生一覧だけと確認。初回照合失敗と訂正も保持",
   "record": {
     "id": "inquiry-return-01",
     "title": "追加調査を採用判断へ戻す比較",
@@ -97,6 +97,15 @@
         "ended_at": null,
         "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
         "budget_minutes": 10
+      },
+      {
+        "id": "input-check",
+        "title": "追加資料とその一覧以外の入力一致を確認",
+        "status": "completed",
+        "started_at": "2026-09-13T10:14:48.829556+00:00",
+        "ended_at": "2026-09-13T10:14:49.297940+00:00",
+        "note": "sources以外の完全一致assertはreview_contexts[0].additional_source_hashesの差で失敗。 Bの追加資料一覧が追加8資料の識別値と完全一致することを確認し、この派生一覧だけを正規化。他の入力・旧評価・指示は完全一致。入力そのものは変更せず、差分を隠して全一致とは呼ばない。",
+        "budget_minutes": 2
       }
     ],
     "evidence_paths": [
@@ -106,7 +115,8 @@
       "evals/discovery/inquiry-return-01/provenance-attachment.json",
       "evals/discovery/inquiry-return-01/entry-check.json",
       "evals/discovery/inquiry-return-01/input-a.tar.gz",
-      "evals/discovery/inquiry-return-01/input-b.tar.gz"
+      "evals/discovery/inquiry-return-01/input-b.tar.gz",
+      "evals/discovery/inquiry-return-01/input-equivalence.json"
     ]
   },
   "evidence": [
@@ -129,6 +139,11 @@
       "path": "evals/discovery/inquiry-return-01/input-b.tar.gz",
       "sha256": "8b0d16b54d41ee84b48f282f687c2880e599bba2b5d29478a498703340cb8201",
       "size": 3532617
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/input-equivalence.json",
+      "sha256": "575e772c8c5d057e2152f884721c3d37ca0c25052cce4f080b29b8e7fac7fd89",
+      "size": 2516
     },
     {
       "path": "evals/discovery/inquiry-return-01/partial-provenance.md",
