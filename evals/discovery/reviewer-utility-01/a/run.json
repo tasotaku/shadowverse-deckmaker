@@ -1,0 +1,111 @@
+{
+  "status": "finished_by_request",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/sv-reviewer-utility-01-a-live/review",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/sv-reviewer-utility-01-a-live/review/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/sv-reviewer-utility-01-a-live/review",
+  "stdin": "/private/tmp/sv-reviewer-utility-01-a-live/review/prompt.md",
+  "output": "/private/tmp/sv-reviewer-utility-01-a-live/review-run",
+  "started_at": "2026-09-13T11:35:10.480934+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2350069.756663291,
+  "explicit_finish": true,
+  "timeout_seconds": 600.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 95272,
+  "worker_pid": 95277,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-13T11:39:27.694760+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-13T11:35:10.481117+00:00",
+      "elapsed_seconds": 0.00018062535673379898
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-13T11:35:10.481481+00:00",
+      "elapsed_seconds": 0.0005453340709209442
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-13T11:35:10.493229+00:00",
+      "elapsed_seconds": 0.01231675036251545
+    },
+    {
+      "event": "finish_request_verified",
+      "at": "2026-09-13T11:39:27.487087+00:00",
+      "elapsed_seconds": 257.0067423339933,
+      "request_hash": "73c711dbe257a03208282dfa559311badc1861b1d10dd19c5a0334fbddd89898",
+      "report_hash": "9eb6f3a78f4aee484048406ac37ef3d0010eed3acb71d10ff66d0eefae9e5097"
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-13T11:39:27.487898+00:00",
+      "elapsed_seconds": 257.0075360001065,
+      "signal": 15
+    },
+    {
+      "event": "process_group_gone",
+      "at": "2026-09-13T11:39:27.543695+00:00",
+      "elapsed_seconds": 257.0633330424316
+    },
+    {
+      "event": "finish_confirmed",
+      "at": "2026-09-13T11:39:27.694125+00:00",
+      "elapsed_seconds": 257.21376516716555,
+      "request_hash": "73c711dbe257a03208282dfa559311badc1861b1d10dd19c5a0334fbddd89898",
+      "report_hash": "9eb6f3a78f4aee484048406ac37ef3d0010eed3acb71d10ff66d0eefae9e5097"
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-13T11:39:27.694765+00:00",
+      "elapsed_seconds": 257.21439954219386
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-13T11:39:27.707978+00:00",
+      "elapsed_seconds": 257.22761258436367
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "reviewer-utility-01",
+    "stage_id": "a-review",
+    "status": "completed",
+    "begin_revision": 8,
+    "claimed_stage": {
+      "id": "a-review",
+      "title": "マゼルの役割分担を通常の指示で別評価",
+      "status": "running",
+      "started_at": "2026-09-13T11:35:10.480934+00:00",
+      "ended_at": null,
+      "note": "上限10分で1回。正式保存と明示終了を既存入口で確認。\n起動処理を開始。実行記録: /private/tmp/sv-reviewer-utility-01-a-live/review-run",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "2例の出題・正解を固定し、過去の直接採否漏れと比較材料を独立点検済み。通常の評価担当を各1回起動する。",
+    "end_revision": 11,
+    "synced_at": "2026-09-13T11:39:27.707972+00:00"
+  },
+  "finish_evidence": {
+    "request_hash": "73c711dbe257a03208282dfa559311badc1861b1d10dd19c5a0334fbddd89898",
+    "report_hash": "9eb6f3a78f4aee484048406ac37ef3d0010eed3acb71d10ff66d0eefae9e5097"
+  },
+  "elapsed_seconds": 257.2143955002539,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

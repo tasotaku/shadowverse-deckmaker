@@ -1,0 +1,149 @@
+{
+  "id": "reviewer-utility-01-independent-grading",
+  "started_at": "2026-09-13T11:42:40+00:00",
+  "ended_at": "2026-09-13T11:46:22.493413+00:00",
+  "elapsed_seconds": 222.493,
+  "verdict": "FAIL_EXPECTED_ALIGNMENT",
+  "verdict_scope": "本人が事前に固定した、この2構想を試用候補にするかの判断への一致を検査した結果。世間一般の強さ、勝率、未知案の評価精度は判定しない。",
+  "expected_sha256": "54f57697609a4c8d58640a35bb83b9324295719fc23c8b6718f3a18a8d23c826",
+  "expected_unchanged": true,
+  "totals": {
+    "cases": 2,
+    "expected_matches": 0,
+    "expected_mismatches": 2,
+    "equation": "2 = 一致0 + 不一致2",
+    "cases_with_confirmed_material_input_defect": 0,
+    "cases_with_confirmed_material_card_or_resource_error_in_reviewed_scope": 0
+  },
+  "cases": {
+    "a": {
+      "expected": "test",
+      "actual": "develop",
+      "matches": false,
+      "meaning_and_resources": "指定状態の処理を支持。ベイルを持つ間の味方4回離脱で各8→4PP、ベイル4＋マゼル4と通常進化1回を支払う。終了時に残りベイルを捨て、証明1＋取得6＝手札7、終了直前比で純増5。元の山札の札を以後通常取得せず、8PP例を最速・平均・必須切替ターンへ一般化していない。確認した主要本文と整合する。",
+      "alignment_reason": "前半の手札消費と攻撃へ元構築を寄せ、後半の補充を別の山札へ任せる利益そのものは評価者も認めた。しかし少数でも具体的な配分差と序盤改善の提示を試用前の条件にし、構想段階で本人が認めた試用価値には到達しなかった。役割分担が不成立、直接打点0だから無価値、という読み違いによる不一致ではない。",
+      "benefit_used": "毎ターンの大量補充を1枚から始動し、元構築を序盤へ寄せること。前半役を通常構築と共有できること。",
+      "burden_used": "4PP、進化権、補充を使えるまでの時間差、残りベイル廃棄、元構築の狙った後続札を使う機会の喪失。比較元にも手札生成・継続供給と後半の攻撃手段がある。",
+      "unknown_treatment": "何を何枚減らしてどの序盤行動が増えるか、引けない場合の手札切れ、切替時の盤面安全性を未確認とし、追加具体化で判断が変わるのでdevelopへ置いた。完全な40枚や勝率証明を明示要求したわけではない。",
+      "expected_reason_checks": {
+        "role_allocation_as_trial_candidate": "不一致。利益は認識したが試用候補にしない。",
+        "cost_and_failure_retained": "一致。",
+        "specified_example_scope_retained": "一致。"
+      },
+      "material_input_defect": "確認した範囲ではなし。配分・40枚・頻度の不足は入力が明示する構想段階の限界であり、期待値はそれを承知で固定されている。これを自動的な入力失格や期待値変更の理由にはしない。",
+      "citations": [
+        {
+          "path": "expected.json#/a",
+          "quote": "元構築を前半の攻撃と手札消費に寄せ、後半の補充を置換先へ任せる配分に試す理由があると認める。"
+        },
+        {
+          "path": "a/review.json#/findings/2/reason",
+          "quote": "元の構築を序盤へ寄せられるという利益は実在する。"
+        },
+        {
+          "path": "a/review.json#/findings/3/reason",
+          "quote": "現案はその差分をまだ示しておらず、マゼルを得るまでの手札切れと、進化権を前半に使う機会損失を上回る改善を判断できない。"
+        },
+        {
+          "path": "a/review.json#/findings/0/reason",
+          "quote": "終了直前比は純増5枚で、場上限5・手札上限9に抵触しない。"
+        },
+        {
+          "path": "inputs/a/review-packet.json.gz#/data/proposal/plan/comparison",
+          "quote": "直接打点を足す単体コンボの優位ではなく、手札を使う段階と補充する段階の役割分担。"
+        },
+        {
+          "path": "inputs/a/review-packet.json.gz#/data/context/cards/36/skill_text",
+          "quote": "手札で働く。自分のフォロワーが場を離れたとき、これのコストを-1する。"
+        },
+        {
+          "path": "inputs/a/review-packet.json.gz#/data/context/cards/67/ref_effect_text",
+          "quote": "自分のターン終了時、自分の手札の『絶大の証明』でないカードすべてを捨てる。自分のデッキから6枚を引く。"
+        }
+      ]
+    },
+    "b": {
+      "expected": "drop",
+      "actual": "test",
+      "matches": false,
+      "meaning_and_resources": "指定盤面では8PPと超進化1回で準備し、翌ターンに旧ナイフとリオナの生存、通常進化1回、攻撃通過、人形の当て先を条件として11＋4＋6＝21点。評価者は総手札と使用4枚を区別し、守護変身を顔攻撃より前へ訂正。リオナ自身は潜伏せず、準備日の2点を翌日へ合算しない。追加ヨグ3体手順と、同じ保存札でリオナだけを失う16点を区別した。",
+      "alignment_reason": "本人が見送った当該2枠交換を、条件付きで1ターン早い経路と38枚共通の基盤を理由に試用候補へ上げた。評価者は生存・権利・人形温存と失う枠を列挙したが、その負担を課してでも早い機会を試す価値があると重み付けし、本人の判断とずれた。利益の提示は実在するため、「説明が揃っただけ」「21点算術だけでtest」とは採点しない。",
+      "benefit_used": "保存手順同士では通常の9PP前置きを8PP準備へ変更して1ターン早い決着候補を得る。供給役が比較元にも入り、既存38枚とベルゼバブ2枚を残す。条件付き16点も相手体力次第では用途がある。",
+      "burden_used": "ベルゼバブ3→2による取得機会減、ランサー1→0で本体と手札の改良人形を失う。人形保存2→3、超進化・通常進化の予約、旧ナイフ生存、21点ではリオナ生存も必要。通常側は本体除去後も増幅が残り、旧ナイフの生存・顔攻撃を要しない。",
+      "unknown_treatment": "早い勝ちが増える利益が保存・権利予約・枠喪失の不利益を上回るかは未確認と認め、その比較を試用後の測定に回した。平均決着速度や生存率を確認済みとはしていない。",
+      "expected_reason_checks": {
+        "compare_opportunity_and_replacement_cost": "比較自体は実施。ただし最終の試用判断は不一致。",
+        "conditional_21_preserved": "一致。",
+        "other_branches_and_general_scope_preserved": "一致。"
+      },
+      "material_input_defect": "確認した範囲ではなし。損失、条件付き生存、通常側の能力20点、追加ヨグ別分岐は入力にある。36枚という表現は最終入力の資料6で共通38枚と補足済み。保存リストを再集計し双方40枚・共通38枚を確認。",
+      "citations": [
+        {
+          "path": "expected.json#/b",
+          "quote": "ベルゼバブ3→2・ランサー1→0・リオナ0→2の当該案の、早める条件付きの機会と失う枠・準備の負担を比較する。"
+        },
+        {
+          "path": "b/review.json#/findings/2/reason",
+          "quote": "専用の供給一式を追加せずに早い経路の有効性を比較できる点が、ユーザーが試す具体的理由になる。"
+        },
+        {
+          "path": "b/review.json#/findings/3/reason",
+          "quote": "追加ヨグを不要にした点は取得・PP負担を減らすが、リオナの生存と通常進化による攻撃打点へ条件を交換したもので、安定性改善は未確認。"
+        },
+        {
+          "path": "b/review.json#/next_questions/0",
+          "quote": "早い決着が増える利益は、ベルゼバブ取得減・ランサー喪失・人形と進化権の温存による敗戦増を上回るか。"
+        },
+        {
+          "path": "inputs/b/review-packet.json.gz#/data/sources/3/content",
+          "quote": "これは必要札が揃った手順の比較で、実戦の平均決着ターンではない。"
+        },
+        {
+          "path": "inputs/b/review-packet.json.gz#/data/sources/4/content",
+          "quote": "増幅1回なら能力4＋8＋保存人形2枚×4＝20で、旧ナイフの生存と攻撃を要しない。"
+        },
+        {
+          "path": "inputs/b/review-packet.json.gz#/data/sources/6/content",
+          "quote": "残すベルゼバブ2枚も含め、比較元と交換後の共通枚数は38枚。"
+        },
+        {
+          "path": "inputs/b/review-packet.json.gz#/data/context/cards/94/skill_text",
+          "quote": "【超進化時】自分の場の他のフォロワー1枚を選ぶ。それは【潜伏】を持つ。"
+        }
+      ]
+    }
+  },
+  "shared_deviation": {
+    "observed": "条件付きの利益と負担を読めても、どの未確認を試用前の保留理由にし、どれを試用で調べる課題へ回すかが本人の基準と合っていない。Aでは構築全体の役割変更を認めながら具体的配分差を追加要求し、Bでは準備・生存条件を増やす限定経路の具体的な1ターン差と少ない交換枚数から試用を選ぶ。",
+    "inference": "この2例では、比較を数字・枠・手順で示しやすい利益の方を試用へ進め、構想段階の配分変更を保留しやすい傾向が見える。ただし入力の具体性が異なるため、数字の存在が原因だと断定はできない。",
+    "not_supported": [
+      "条件を読めない評価者だという断定。主要条件は読み取っている。",
+      "Bが説明の充実だけで推薦されたという断定。実回答は1ターン差と共有基盤を理由にした。",
+      "Aに完全な40枚や勝率証明を要求したという断定。実回答は少数の配分差でもよいとした。",
+      "Bが世間一般に弱い、Aが一般に強い、という実戦上の結論。",
+      "すべての未完成案を試用へ進めるべき、または複雑な条件の案はすべて見送るべき、という一般則。",
+      "未知案・自然な発見・方式全体の品質への一般化。"
+    ]
+  },
+  "input_defects_and_unknowns": {
+    "confirmed_material_defects": [],
+    "resolved_minor_issue": "Bの36/38枚の曖昧さは最終packetの資料6に補足があり、reviewでも38枚として使われた。",
+    "unknowns": [
+      "Aの正確な40枚、具体的配分差、取得頻度、序盤打点は未提示。置換先の76枚定義と保存パック77件の差も未解決。試用価値の期待はそれらを確認済みとせず固定されている。",
+      "Bの準備完了・生存・当て先・攻撃通過の頻度と、通常側の全操作の盤面収支表は揃っていない。比較の平均的優劣は未確認。",
+      "原DB・旧提案全文との完全な差分照合、全544カードの逐語精読、最新公式との再照合はしていない。したがって全入力の無欠落を保証しない。"
+    ],
+    "decision_leak_check": "両packetのprevious_reviews、review_contexts、historyは空。主要3カードの注記を確認し、全JSON文字列に過去の採否・実績の主要語を検索した範囲で、当該2案の直接の採否の残存は確認しなかった。一般的な強さの基準と他カードの見送り注記は残るが、今回の直接採否とは区別した。"
+  },
+  "recommended_next_step": {
+    "status": "未実装の提案",
+    "minimal_process_change": "試用価値を確定する直前の比較判断を1段階だけ明示する。提案で新しく得る利用機会、失う既存用途、使い回せる準備、追加の資源予約・相手依存を同じ比較条件で並べ、決め手となる未確認が「試す理由そのものをまだ説明できない欠落」か「理由はあるうえで試用により測る項目」かを、一般的な理由で判断する。構築配分を変える利益と特定局面を早める利益をともに対象にし、手順の具体性や交換枚数だけを重みの代用にしない。",
+    "constraint": "カード名・固定正解を通常評価へ埋め込まない。元の期待値と過去の不一致を保持し、合格基準を緩和しない。この提案の効果は未検証。"
+  },
+  "inspection_scope": {
+    "read": "expected、protocol、input-check、input-manifest、両review、両verification。両圧縮packetの指示・目的・提案・主要出典と主要カード本文を抽出して確認。Bの保存比較40枚を再集計。原則は関連箇所を検索。",
+    "not_read": "主DB、現行設計文書、Web、private stdout/JSONL/思考ログ、元の旧評価本文、knife-supplement（packet内資料で足りたため）。",
+    "limitations": "初回の大きな表示には切詰めがあったため、結論の根拠に使う主要部分を別の範囲指定抽出で確認した。全カードの全欄を精読した検査ではない。",
+    "mutations": "この/tmpの判定JSONのみ作成。repo・主DB・期待値・過去の評価は変更しない。"
+  }
+}
