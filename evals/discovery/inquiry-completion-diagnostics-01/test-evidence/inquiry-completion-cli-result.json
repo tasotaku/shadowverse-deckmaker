@@ -1,0 +1,116 @@
+{
+  "verdict": "PASS",
+  "started_at_utc": "2026-09-13T04:04:39.606840+00:00",
+  "ended_at_utc": "2026-09-13T04:04:40.118107+00:00",
+  "folder": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work",
+  "events": [
+    {
+      "at": "2026-09-13T04:04:39.953143+00:00",
+      "action": "公開添付→新版全文再読→report→提出検査",
+      "verdict": "PASS",
+      "submission": {
+        "source_hash": "cb1cbeaa3a62f3306dabf00f6af57377693032df6753992611f6925cd972de26",
+        "file_sha256": "1f20f5a721c92afec5a2b406e99fc90293df071a6498b4493f4785b6f12bf312",
+        "public_attachment": true,
+        "public_reread": true,
+        "report_read": true
+      }
+    },
+    {
+      "at": "2026-09-13T04:04:40.038687+00:00",
+      "action": "reportの後に資料追加→提出検査",
+      "verdict": "EXPECTED_REJECTION",
+      "error": "最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください"
+    },
+    {
+      "at": "2026-09-13T04:04:40.117683+00:00",
+      "action": "公開report再実行→提出検査",
+      "verdict": "PASS",
+      "submission": {
+        "source_hash": "cb1cbeaa3a62f3306dabf00f6af57377693032df6753992611f6925cd972de26",
+        "file_sha256": "1f20f5a721c92afec5a2b406e99fc90293df071a6498b4493f4785b6f12bf312",
+        "public_attachment": true,
+        "public_reread": true,
+        "report_read": true
+      }
+    }
+  ],
+  "operations": [
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/e98f84a62fe940319665b88a7593cb26.json",
+      "sha256": "8b7d30a85be0423f81780bfe720699d4149cb53075fb9a90a45d2dc9c1954009",
+      "args": [
+        "attach-file",
+        "answer.md",
+        "--title",
+        "人工資料",
+        "--kind",
+        "inquiry-result",
+        "--location",
+        "test://diagnostics"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:39.737258+00:00"
+    },
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/6742cf763fe14c5dae73303200590e68.json",
+      "sha256": "c5396428d7ac8557131263d872a2ff2780eea5b480840ecfe0038f32a6067c1c",
+      "args": [
+        "packet",
+        "--summary"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:39.796300+00:00"
+    },
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/568d2f29ff55442d846bf26edcc25038.json",
+      "sha256": "b65dbb4decf898fbe3d16ad9c1ad9c118ba8c9f0cef6f9511c766cceee0cf5ce",
+      "args": [
+        "read",
+        "67bdcfacdc50b50a74a2edabf85e6aa7d17d9fef6a8b21e94e97ff0f82275cd0",
+        "sources",
+        "--offset",
+        "0",
+        "--limit",
+        "1000"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:39.869101+00:00"
+    },
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/8dd847a18950431780b7ce159609ed5b.json",
+      "sha256": "8dc37b323260ff596fd175f4c5dd9155566edd19b0a979a3ebca0d23ae9defa6",
+      "args": [
+        "report"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:39.928702+00:00"
+    },
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/1fe082580fee4b9393c65eb2e5920f1e.json",
+      "sha256": "1b53a179fdd1640bd7599b4945c9f99b206e017998610a368896b50db2b18fc7",
+      "args": [
+        "attach-file",
+        "completion.txt",
+        "--title",
+        "人工資料の完了記録",
+        "--kind",
+        "inquiry-completion",
+        "--location",
+        "test://diagnostics"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:40.004117+00:00"
+    },
+    {
+      "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/9cfb0cf9044a4d3895af04eb554b7aeb.json",
+      "sha256": "3da758ff01b328ec6ec63bd0dc1d4216d314c96c743d05195a590ff63cdf9c8f",
+      "args": [
+        "report"
+      ],
+      "exit_code": 0,
+      "started_at": "2026-09-13T04:04:40.090352+00:00"
+    }
+  ],
+  "limits": "人工カードと人工報告による公開CLI実操作。実AI・実カード調査・発見力評価ではない。"
+}

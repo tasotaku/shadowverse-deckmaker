@@ -1,30 +1,30 @@
 {
   "id": "remaining-resource-inspection-01",
-  "revision": 3,
-  "saved_at": "2026-09-13T04:03:52.507677+00:00",
+  "revision": 5,
+  "saved_at": "2026-09-13T09:25:32.553831+00:00",
   "actor": "codex-root",
-  "reason": "保存済み調査から別照合のみ起動したことを実入力で確認",
+  "reason": "担当終了・提出確認失敗・条件付き用途の支持を区別し、時刻と中断も保存",
   "record": {
     "id": "remaining-resource-inspection-01",
     "title": "保存した使途調査から、別照合だけを再開する",
     "category": "method",
-    "status": "running",
-    "summary": "12:58:28から保存済みの使途調査を別照合中。調査はやり直さず、元失敗と旧評価を保持。",
+    "status": "interrupted",
+    "summary": "別照合7分54秒で報告と追加3資料を保存したが、最後の追加保存後の確認がなく中断。条件付き用途は支持、採用利益は未確認で保留。",
     "method": "既存inspect-source入口から、報告の裏付けと問いへの答えを別担当が照合する。",
     "procedure": "保存済みの調査報告をinspect-sourceで指定し、別照合だけを一度行う。調査は再実行しない。前試験の提出確認失敗と別照合未起動を保持する。\n既存の照合入口・指示・固定実装を使う。元案と旧評価と42ファイルの保持を確認し、今回の追加資料4件と入力版だけを別コピーに追記する。\n照合10分を一度、自然終了を確認する既存経路を使う。時間切れ・保存失敗では部分成果と時刻を残し、自動再実行や代理提出で成功へ書換えない。\n条件付き用途の報告が本文・出典に支えられ、通常側の代用手段、未確認の生存・引き込み・相手条件を扱っているかを別担当が確認する。報告存在やカード同居だけで有用性・独自性は認定しない。\n正式改訂・強さの再採点は行わない。調査の根拠が比較や配分判断に使えるかの資料確認と、案の試用推薦やシステムの本採用は別。対照なしの既知入力1件として効果の一般化をしない。",
     "inputs": "正式改訂3件・評価2件と資料31件。元入力42ファイル保持、調査報告本文一致。",
     "criteria": "保存済みの調査報告をinspect-sourceで指定し、別照合だけを一度行う。調査は再実行しない。前試験の提出確認失敗と別照合未起動を保持する。\n既存の照合入口・指示・固定実装を使う。元案と旧評価と42ファイルの保持を確認し、今回の追加資料4件と入力版だけを別コピーに追記する。\n照合10分を一度、自然終了を確認する既存経路を使う。時間切れ・保存失敗では部分成果と時刻を残し、自動再実行や代理提出で成功へ書換えない。\n条件付き用途の報告が本文・出典に支えられ、通常側の代用手段、未確認の生存・引き込み・相手条件を扱っているかを別担当が確認する。報告存在やカード同居だけで有用性・独自性は認定しない。\n正式改訂・強さの再採点は行わない。調査の根拠が比較や配分判断に使えるかの資料確認と、案の試用推薦やシステムの本採用は別。対照なしの既知入力1件として効果の一般化をしない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "別照合の起動と既存指示・保存報告の一致を確認。有用性は未判定。",
-      "limitations": "未記録"
+      "outcome": "fail",
+      "summary": "担当は正常終了、公開22操作・報告本文一致・追加3資料を保存。提出確認は添付と全文再読を満たすが最終reportが不一致。",
+      "limitations": "局面内の条件付き用途は別照合で支持。到達過程・通常側の全代案・採用利益・実戦の強さは未確認。旧固定実装の試行であり新診断案内の効果検証ではない。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "提出確認で中断し、条件付き用途から有用な採用判断へ進めることも未確認。資料保存だけで方法の優位を認定しない。"
     },
     "started_at": "2026-09-13T03:58:10.716930+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-13T09:25:32.420343+00:00",
     "stages": [
       {
         "id": "prepare",
@@ -38,24 +38,80 @@
       {
         "id": "live-inspect",
         "title": "保存済みの使途調査を別照合",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T03:58:28.249543+00:00",
-        "ended_at": null,
-        "note": "既存の照合指示を使い、根拠と未確認を資料保存。原案の再改訂・採点は行わない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inspection-01-live/inspect-run",
+        "ended_at": "2026-09-13T04:06:21.885463+00:00",
+        "note": "既存の照合指示を使い、根拠と未確認を資料保存。原案の再改訂・採点は行わない。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-resource-inspection-01-live/inspect-run\n担当の停止処理を終了。実行状態: completed、担当終了番号: 0。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
+      },
+      {
+        "id": "submission-check",
+        "title": "終了後の最終提出状態を確認",
+        "status": "interrupted",
+        "started_at": null,
+        "ended_at": "2026-09-13T04:06:22.388915+00:00",
+        "note": "開始時刻不明。最後の追加資料後のreportなし。",
+        "budget_minutes": null
+      },
+      {
+        "id": "collect-partial",
+        "title": "照合報告・部分資料・停止結果を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T04:21:44.572044+00:00",
+        "ended_at": "2026-09-13T04:21:46.645751+00:00",
+        "note": "元48ファイル保持、追加3資料と入力版を加え54ファイル・34資料。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "independent-diagnosis",
+        "title": "別担当へ停止理由の点検を依頼",
+        "status": "interrupted",
+        "started_at": null,
+        "ended_at": null,
+        "note": "先に別担当へ3分目安で依頼したが、17:40:45JST時点で成果ファイルがなく中断。実開始・終了・能動作業時間は未確認。rootが公開記録を再現して引き継いだ。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "completion-diagnosis",
+        "title": "引継ぎ後に公開記録だけで停止理由を再検査",
+        "status": "completed",
+        "started_at": "2026-09-13T08:41:20.478932+00:00",
+        "ended_at": "2026-09-13T08:41:21.187753+00:00",
+        "note": "添付あり・全文再読あり・最新reportなしを再現。72ファイル保持。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
       "evals/discovery/remaining-resource-inspection-01/README.md",
       "evals/discovery/remaining-resource-inspection-01/protocol.json",
-      "evals/discovery/remaining-resource-inspection-01/launch-verification.json"
+      "evals/discovery/remaining-resource-inspection-01/launch-verification.json",
+      "evals/discovery/remaining-resource-inspection-01/collect-partial.py",
+      "evals/discovery/remaining-resource-inspection-01/collection-start.json",
+      "evals/discovery/remaining-resource-inspection-01/verification.json",
+      "evals/discovery/remaining-resource-inspection-01/completion-diagnosis.json",
+      "evals/discovery/remaining-resource-inspection-01/partial"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/remaining-resource-inspection-01/README.md",
-      "sha256": "080629bcf6c79c500375b2e72bbde392a2b38aa0b22af5996085ab4397f49efb",
-      "size": 2974
+      "sha256": "8445226ba58e0f415589e85f2ee7d2a372478216f79ddad5a1e7eeba1d71d78f",
+      "size": 5144
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/collect-partial.py",
+      "sha256": "10805faeebd92b03a8d7d7f495d9be5e259c011bc97591b7d8c563cff0a2fe4d",
+      "size": 5416
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/collection-start.json",
+      "sha256": "04b1a4c6685ba3835b5ae77bce284796dfc5c84476ec5c8dd3ed28ebe5df64bb",
+      "size": 55
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/completion-diagnosis.json",
+      "sha256": "fea07fab26f0edb7b940ae53bdd9ee138b1345ae2c106caf855e9c5ac6ea2dda",
+      "size": 2511
     },
     {
       "path": "evals/discovery/remaining-resource-inspection-01/launch-verification.json",
@@ -63,9 +119,79 @@
       "size": 1684
     },
     {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/answer.md",
+      "sha256": "2bbb86f34ade4e34cf1b7e0a4aa35671cf9377cb95a6eb7507b0a75e9081912c",
+      "size": 14025
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/final-message.md",
+      "sha256": "0198ed924749365e67d36ffe1e3b34546deb9e69b321f2c4be238f1ef09ad8fb",
+      "size": 392
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/input-summary.json",
+      "sha256": "7f6d78b65aaaf80030cf4b5ba48d65f5619c011ae30f9110d4dfb87b801b0abd",
+      "size": 4370
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/inspection-completion.json",
+      "sha256": "797d22feb957402943f16cdf53cc4d5e2558f32b4f8b9c798d5f685a65e408e6",
+      "size": 919
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/inspection-evidence.md",
+      "sha256": "19b7a7f5289b5e9b6f7dd0ebce284a0f7bf0bccf5fe6a212ce98693a374d07bb",
+      "size": 6965
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/preserved-session.tar.gz",
+      "sha256": "4f1e8496a347b45fc3cb18716d249da952625ff7430d2f196cd4fa58cb5a687b",
+      "size": 3531688
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/prompt.md",
+      "sha256": "85a9576aa9b2ae2b37a791c76397787d9da575af239f65c2d04fd3a8f8b7d0c3",
+      "size": 3727
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/public-config.json",
+      "sha256": "de08dda5ab3469b06f9ea56693b9529f4edaff13976662c74121408b281038b7",
+      "size": 302
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/public-operations.json.gz",
+      "sha256": "73d8d61a83628dc3f014cd7e339822456175fcd9394cf37f4af3e9a4446de742",
+      "size": 799860
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/report.json",
+      "sha256": "01f79576f239fa34a8c4fabc9abe5c702f0623b8b00b2e0936aa5e3de3db37b1",
+      "size": 56700
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/result.json",
+      "sha256": "d8a9c768eb3026aef8a5d61b5156acd678cdf0089dad10906e78f4fa1cf28d58",
+      "size": 12128
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/run.json",
+      "sha256": "8a7af44067b922ecf2c1c0ed75e852c5f4dbd2cb9fd1c1162be0b0ea91d94969",
+      "size": 3132
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/partial/session.tar.gz",
+      "sha256": "fe19855da55449eecd3bd668952382528f3d4b565601ce0abb21dcad5c308d75",
+      "size": 1898043
+    },
+    {
       "path": "evals/discovery/remaining-resource-inspection-01/protocol.json",
       "sha256": "a85af6750ddaca55889fd65be219e7ff9fdd10018362f99e00b6eec2ac727144",
       "size": 13634
+    },
+    {
+      "path": "evals/discovery/remaining-resource-inspection-01/verification.json",
+      "sha256": "3b325d498c15884d52a2792bf65afe5a338468abd9b1ecf30468e41f60162be5",
+      "size": 1979
     }
   ]
 }

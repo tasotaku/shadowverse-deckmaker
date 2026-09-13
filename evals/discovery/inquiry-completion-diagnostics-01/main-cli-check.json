@@ -1,0 +1,20 @@
+{
+  "started_at": "2026-09-13T04:12:02.796707+00:00",
+  "ended_at": "2026-09-13T04:12:04.800468+00:00",
+  "command": [
+    "/Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "/tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp/test_inquiry_completion_diagnostics_temp.py",
+    "-k",
+    "stale_report",
+    "--basetemp=/tmp/sv-inquiry-diagnostics-main-check"
+  ],
+  "returncode": 0,
+  "stdout": "..                                                                       [100%]\n2 passed, 9 deselected in 1.54s\n",
+  "stderr": "",
+  "main_source_matches_tested_source": true,
+  "limitations": "人工入力で公開CLIを操作。実AIの旧失敗は書き換えない。使い捨てテストは元のtests/tempで保持しpushしない。"
+}

@@ -1,9 +1,9 @@
 {
   "id": "remaining-resource-inquiry-01",
-  "revision": 7,
-  "saved_at": "2026-09-13T04:01:20.761793+00:00",
+  "revision": 8,
+  "saved_at": "2026-09-13T09:25:32.587687+00:00",
   "actor": "codex-root",
-  "reason": "公開操作と同じ提出検査の切り分けから中断・採用保留を確定。報告は保持し別照合だけへ再開",
+  "reason": "後続試行の結果と診断補助の採用を参照し、元失敗は保持",
   "record": {
     "id": "remaining-resource-inquiry-01",
     "title": "温存した進化権の使い道を、既存の調査工程で確認する",
@@ -17,7 +17,7 @@
     "result": {
       "outcome": "fail",
       "summary": "報告本文の添付と全文再読は確認済み。最後に資料が30→31件へ増えた後のreport確認がなく、既存の提出検査で拒否。別照合は未実施。",
-      "limitations": "条件付き用途の説明は保存されたが別照合前。手法の有用性・元案の試用価値・独自性は未判定。元の失敗を成功へ変更しない。"
+      "limitations": "本試行の別照合は未起動。後続の別試行で局面内の条件付き用途は支持されたが、到達過程・採用利益・独自性は未確認。元失敗は維持。"
     },
     "decision": {
       "status": "deferred",
@@ -114,8 +114,8 @@
   "evidence": [
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/README.md",
-      "sha256": "f771bf4fc09c7497601c63d3d21b46713c4e7accd09182fc8d1b223f51c72d98",
-      "size": 5578
+      "sha256": "2eb74cd02281446fa11422961e13364e29fe5e0fdc255dcdb3ab3c47f64b3cc0",
+      "size": 5661
     },
     {
       "path": "evals/discovery/remaining-resource-inquiry-01/collect-partial-initial.py",

@@ -1,56 +1,125 @@
 {
   "id": "inquiry-completion-diagnostics-01",
-  "revision": 1,
-  "saved_at": "2026-09-13T04:01:20.778272+00:00",
+  "revision": 3,
+  "saved_at": "2026-09-13T09:27:15.068129+00:00",
   "actor": "codex-root",
-  "reason": "担当へ依頼した診断補助の作業を登録。実時刻は未回収として区別",
+  "reason": "既存画面の個別APIで3件を確認。初回失敗XMLは空白も変えず可逆圧縮で保存",
   "record": {
     "id": "inquiry-completion-diagnostics-01",
     "title": "提出確認のどこで止まったかを分かるようにする",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "別の作業場所で、失敗理由の区別と最後の保存後に確認する手順を実装・検査中。本体採用未判定。",
+    "status": "completed",
+    "summary": "不足した提出操作を区別する表示と手順案内を診断補助として採用。100件・型検査と本体の公開操作2検査を確認。発見力は未確認。",
     "method": "添付・全文再読・最終報告確認の不足を区別する診断補助。受理条件は変えない。",
     "procedure": "条件確認→隔離実装→機能・型・公開CLI検査→本体への反映と確認。",
     "inputs": "直前の実行で得た公開32操作と同じverify_report失敗の再現。",
     "criteria": "添付不足・全文再読不足・最終report不一致の原因が分かる。\nreport後の資料追加は引き続き拒否し、追加保存後のreportを受理する。\n元の受理条件・操作許可・時間上限・資料保存形式を維持。\n型検査・意味ある機能検査・公開CLI利用を通す。実AIの旧失敗を成功へ書き換えない。\n診断補助として採用を判断し、新しい種の発見力の証明にはしない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "pass",
+      "summary": "既存89件・新規11件の計100件、型検査と本体の公開操作2件が合格。旧失敗は具体的な原因表示で再現し、元資料は保持。",
+      "limitations": "人工入力による機能検査。実AIで失敗が減るか・デッキ発見力が改善するかは未確認。登録は実装着手後。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "adopted",
+      "reason": "受理条件を維持し、不足操作を特定して正しい再確認を案内できたため。診断補助に限定。"
     },
-    "started_at": null,
-    "ended_at": null,
+    "started_at": "2026-09-13T03:59:25+00:00",
+    "ended_at": "2026-09-13T09:25:32.420343+00:00",
     "stages": [
       {
         "id": "implementation",
         "title": "診断表示と手順の限定修正・検査",
-        "status": "running",
-        "started_at": null,
-        "ended_at": null,
-        "note": "実時刻は担当から回収。登録日時を開始日時へ転用しない。",
+        "status": "completed",
+        "started_at": "2026-09-13T03:59:25+00:00",
+        "ended_at": "2026-09-13T04:06:29.240567+00:00",
+        "note": "100件・型検査・人工入力の公開CLI。初回8件失敗は検査の読込パスを訂正。",
         "budget_minutes": 10
+      },
+      {
+        "id": "main-reproduction",
+        "title": "本体で旧失敗と保存物保持を再確認",
+        "status": "completed",
+        "started_at": "2026-09-13T04:06:11.448648+00:00",
+        "ended_at": "2026-09-13T04:06:11.652975+00:00",
+        "note": "公開記録の読取専用再検査。旧失敗は維持。",
+        "budget_minutes": null
+      },
+      {
+        "id": "main-cli",
+        "title": "本体の公開操作で拒否と再確認後の受理を検査",
+        "status": "completed",
+        "started_at": "2026-09-13T04:12:02.796707+00:00",
+        "ended_at": "2026-09-13T04:12:04.800468+00:00",
+        "note": "調査・別照合の人工入力2件が合格。",
+        "budget_minutes": null
       }
     ],
     "evidence_paths": [
       "evals/discovery/inquiry-completion-diagnostics-01/README.md",
-      "evals/discovery/inquiry-completion-diagnostics-01/protocol.json"
+      "evals/discovery/inquiry-completion-diagnostics-01/protocol.json",
+      "evals/discovery/inquiry-completion-diagnostics-01/implementation.json",
+      "evals/discovery/inquiry-completion-diagnostics-01/main-reproduction.json",
+      "evals/discovery/inquiry-completion-diagnostics-01/main-cli-check.json",
+      "evals/discovery/inquiry-completion-diagnostics-01/test-evidence",
+      "evals/discovery/inquiry-completion-diagnostics-01/finish-records.py",
+      "evals/discovery/inquiry-completion-diagnostics-01/delivery-check.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-completion-diagnostics-01/README.md",
-      "sha256": "fec210d04ce65d8a2bf6fe8bc2ef4d0f3a97f8bbdf36424a0f50e1a24abb9402",
-      "size": 1174
+      "sha256": "c1be26c8b3319113e2efb7810ca47ce09bc1080a7567d3a5e9406484b9d93cd2",
+      "size": 3887
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/delivery-check.json",
+      "sha256": "32ec5fc92fb67634a3b9ad7dd8693e294380b71ea8cbea1a2551f569f7ba8d1f",
+      "size": 1385
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/finish-records.py",
+      "sha256": "d4d714cabf7cbce1fbd2482cd64c408cef22c3e8211d5a507b3c727a864e2ada",
+      "size": 18596
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/implementation.json",
+      "sha256": "c4ff2848c8c2f3ed425d9cb5cb00240d4eca762eb165317652fc91baccde4e51",
+      "size": 17387
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/main-cli-check.json",
+      "sha256": "bac6c74a0cda2cd5ecee22da79d860a8a52a880aa1487a41b591f40a98dfafcf",
+      "size": 806
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/main-reproduction.json",
+      "sha256": "f48b71546e67e95cc5941aaaaea090244610a071df3de942db3de31efd845262",
+      "size": 532
     },
     {
       "path": "evals/discovery/inquiry-completion-diagnostics-01/protocol.json",
       "sha256": "e5aba55e1c79a6e15ab11d9be928f47c8d6a63f5f87e6aeaf8ede47fcf6b82eb",
       "size": 1043
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/test-evidence/inquiry-completion-cli-result.json",
+      "sha256": "71bff54984f254bab8f25d829cc3daec6aadbd4b3b3870fd0b47d829e77d4d27",
+      "size": 4445
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/test-evidence/sv-inquiry-diagnostics-final-tests.xml",
+      "sha256": "1307579e118f4fc2ea7a8455d745dc10a4f96b40c88e2b119296d12201bf3dd4",
+      "size": 14401
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/test-evidence/sv-inquiry-diagnostics-new-tests.xml",
+      "sha256": "6ee448eb4c7e63da4fb09cf7c11f594d851d616d2b65b4e0f94424222e854fa1",
+      "size": 1990
+    },
+    {
+      "path": "evals/discovery/inquiry-completion-diagnostics-01/test-evidence/sv-inquiry-diagnostics-tests.xml.gz",
+      "sha256": "1214c6cc03cf6a538dbfa153d93d76a8174e36aab2a6dd4cc9ee5305a634e5bf",
+      "size": 4194
     }
   ]
 }

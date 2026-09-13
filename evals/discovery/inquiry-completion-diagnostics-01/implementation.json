@@ -1,0 +1,293 @@
+{
+  "verdict": "PASS",
+  "scope": "提出失敗の原因表示とreport順序の案内のみ。採用条件を変更しない診断補助。",
+  "delivery": {
+    "worktree": "/tmp/sv-inquiry-completion-diagnostics-worktree",
+    "branch": "codex/inquiry-completion-diagnostics",
+    "base": "3573ef73fde3c9f838c09cbe783e79bb4b61d4de",
+    "commits": [
+      "c07cda39726c4c76bfbe42ec17149c3ae12cfae2",
+      "0e90032e52eb6d0e71e7a5f0ce6a445527414db2"
+    ],
+    "working_tree_clean": true,
+    "pushed": false,
+    "main_modified_by_this_agent": false
+  },
+  "checks": {
+    "strict_typecheck": "PASS: mypy src/svdeck/discovery_inquiry.py; Success: no issues found in 1 source file",
+    "tests": "PASS: 100 passed, 0 failed; 89 existing + 11 new",
+    "public_cli": "PASS: 6 real subprocess public CLI operations on synthetic inputs; stale report rejected then rereport accepted",
+    "diff_check": "PASS",
+    "original_live_files_preserved": "PASS",
+    "original_live_file_count": 75,
+    "only_authorized_code_edits": "PASS: reversing the diagnostic tail and one prompt line exactly reconstructs base source",
+    "real_AI_rerun": "NOT_RUN",
+    "private_Codex_logs": "NOT_READ",
+    "discovery_quality": "未確認: 診断補助の検査であり新規デッキ発見力は評価しない"
+  },
+  "test_plan": {
+    "happy_path": [
+      "既存の調査→別照合の引き渡し",
+      "公開添付・新版全文再読・最終reportで受理",
+      "追加保存後の公開report再実行で受理"
+    ],
+    "edge_cases": [
+      "分割再読",
+      "reportのヘルプを完了と数えない",
+      "調査・別照合の両工程で同じ診断と案内"
+    ],
+    "error_paths": [
+      "保存資料だけあって公開添付がない場合",
+      "全文再読なし・部分再読のみ",
+      "reportなし・最終状態と不一致",
+      "旧検査の本文改変・固定入力改変・操作許可違反を拒否"
+    ],
+    "mapping": "既存89件で正常・分割・破損・許可境界を確認。新規11件で原因の区別、report後の追加と再report、両工程の案内を確認。"
+  },
+  "failures_and_recovery": [
+    {
+      "phase": "tool_discovery",
+      "failure": "Python 3.14環境にpytest/mypyなし",
+      "recovery": "既存pyenv Python 3.10.12とpytest 9.0.3 / mypy 2.1.0を使用",
+      "package_install": false
+    },
+    {
+      "phase": "first_full_test",
+      "failure": "8 failed, 92 passed: 相対PYTHONPATHが子プロセスの作業先変更後に解決できずModuleNotFoundError",
+      "recovery": "実行時PYTHONPATHを絶対化し、使い捨てCLI検査のpublic.pyも検査対象の実装パスを明示。新規11件再検査と全100件再検査がPASS",
+      "production_code_change_for_failure": false
+    }
+  ],
+  "test_runs": [
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-tests.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "8",
+      "skipped": "0",
+      "tests": "100",
+      "time": "20.610",
+      "timestamp": "2026-09-13T13:02:02.853366+09:00",
+      "hostname": "miyauchitsubasanoMacBook-Air.local"
+    },
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-new-tests.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "11",
+      "time": "5.362",
+      "timestamp": "2026-09-13T13:02:27.564733+09:00",
+      "hostname": "miyauchitsubasanoMacBook-Air.local"
+    },
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-final-tests.xml",
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "100",
+      "time": "24.042",
+      "timestamp": "2026-09-13T13:03:02.090974+09:00",
+      "hostname": "miyauchitsubasanoMacBook-Air.local"
+    }
+  ],
+  "public_cli_result": {
+    "verdict": "PASS",
+    "started_at_utc": "2026-09-13T04:04:39.606840+00:00",
+    "ended_at_utc": "2026-09-13T04:04:40.118107+00:00",
+    "folder": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work",
+    "events": [
+      {
+        "at": "2026-09-13T04:04:39.953143+00:00",
+        "action": "公開添付→新版全文再読→report→提出検査",
+        "verdict": "PASS",
+        "submission": {
+          "source_hash": "cb1cbeaa3a62f3306dabf00f6af57377693032df6753992611f6925cd972de26",
+          "file_sha256": "1f20f5a721c92afec5a2b406e99fc90293df071a6498b4493f4785b6f12bf312",
+          "public_attachment": true,
+          "public_reread": true,
+          "report_read": true
+        }
+      },
+      {
+        "at": "2026-09-13T04:04:40.038687+00:00",
+        "action": "reportの後に資料追加→提出検査",
+        "verdict": "EXPECTED_REJECTION",
+        "error": "最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください"
+      },
+      {
+        "at": "2026-09-13T04:04:40.117683+00:00",
+        "action": "公開report再実行→提出検査",
+        "verdict": "PASS",
+        "submission": {
+          "source_hash": "cb1cbeaa3a62f3306dabf00f6af57377693032df6753992611f6925cd972de26",
+          "file_sha256": "1f20f5a721c92afec5a2b406e99fc90293df071a6498b4493f4785b6f12bf312",
+          "public_attachment": true,
+          "public_reread": true,
+          "report_read": true
+        }
+      }
+    ],
+    "operations": [
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/e98f84a62fe940319665b88a7593cb26.json",
+        "sha256": "8b7d30a85be0423f81780bfe720699d4149cb53075fb9a90a45d2dc9c1954009",
+        "args": [
+          "attach-file",
+          "answer.md",
+          "--title",
+          "人工資料",
+          "--kind",
+          "inquiry-result",
+          "--location",
+          "test://diagnostics"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:39.737258+00:00"
+      },
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/6742cf763fe14c5dae73303200590e68.json",
+        "sha256": "c5396428d7ac8557131263d872a2ff2780eea5b480840ecfe0038f32a6067c1c",
+        "args": [
+          "packet",
+          "--summary"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:39.796300+00:00"
+      },
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/568d2f29ff55442d846bf26edcc25038.json",
+        "sha256": "b65dbb4decf898fbe3d16ad9c1ad9c118ba8c9f0cef6f9511c766cceee0cf5ce",
+        "args": [
+          "read",
+          "67bdcfacdc50b50a74a2edabf85e6aa7d17d9fef6a8b21e94e97ff0f82275cd0",
+          "sources",
+          "--offset",
+          "0",
+          "--limit",
+          "1000"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:39.869101+00:00"
+      },
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/8dd847a18950431780b7ce159609ed5b.json",
+        "sha256": "8dc37b323260ff596fd175f4c5dd9155566edd19b0a979a3ebca0d23ae9defa6",
+        "args": [
+          "report"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:39.928702+00:00"
+      },
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/1fe082580fee4b9393c65eb2e5920f1e.json",
+        "sha256": "1b53a179fdd1640bd7599b4945c9f99b206e017998610a368896b50db2b18fc7",
+        "args": [
+          "attach-file",
+          "completion.txt",
+          "--title",
+          "人工資料の完了記録",
+          "--kind",
+          "inquiry-completion",
+          "--location",
+          "test://diagnostics"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:40.004117+00:00"
+      },
+      {
+        "file": "/var/folders/nr/49vs5w392dz8y7jr_1t0dy_00000gn/T/sv-inquiry-diagnostics-cli-qhjl8zlq/public-work/operations/9cfb0cf9044a4d3895af04eb554b7aeb.json",
+        "sha256": "3da758ff01b328ec6ec63bd0dc1d4216d314c96c743d05195a590ff63cdf9c8f",
+        "args": [
+          "report"
+        ],
+        "exit_code": 0,
+        "started_at": "2026-09-13T04:04:40.090352+00:00"
+      }
+    ],
+    "limits": "人工カードと人工報告による公開CLI実操作。実AI・実カード調査・発見力評価ではない。"
+  },
+  "time_utc": {
+    "started_at": "2026-09-13T03:59:25+00:00",
+    "policy_written_observed": "2026-09-13T04:00:12+00:00",
+    "policy_committed": "2026-09-13T04:00:42+00:00",
+    "implementation_mtime_observed": "2026-09-13T04:00:43+00:00",
+    "test_preparation_finished_checkpoint": "2026-09-13T04:02:03+00:00",
+    "initial_test_failure_and_typecheck_collected_checkpoint": "2026-09-13T04:02:28+00:00",
+    "new_tests_recovery_collected_checkpoint": "2026-09-13T04:03:02+00:00",
+    "full_tests_pass_collected_checkpoint": "2026-09-13T04:03:33+00:00",
+    "implementation_committed": "2026-09-13T04:03:45+00:00",
+    "standalone_public_cli_started": "2026-09-13T04:04:39.606840+00:00",
+    "standalone_public_cli_finished": "2026-09-13T04:04:40.118107+00:00",
+    "finished_at": "2026-09-13T04:06:29.240567+00:00",
+    "elapsed_seconds": 424.240567,
+    "limits": "工程終端は実時計の観測点。観測点の間の待機・思考時間は細分化していない。"
+  },
+  "diff_stat": "docs/design.md                  | 3 +++\n src/svdeck/discovery_inquiry.py | 9 +++++++--\n 2 files changed, 10 insertions(+), 2 deletions(-)",
+  "diff": "diff --git a/docs/design.md b/docs/design.md\nindex 86ad0a4..6929fa4 100644\n--- a/docs/design.md\n+++ b/docs/design.md\n@@ -314,6 +314,9 @@ UTC予定時刻を実期限として誤用させない。既存の固定試行\n 調査・照合の資料版には元案、固定カード・注記・原則・資料、指定した問いと元評価への対応を載せる。旧評価の採点は期待答案として渡さない。\n 各担当は検索語、観察時点、URL、取得本文と解釈の区別、用途の一致・相違、取得不能と未確認を報告する。\n 各工程のanswer.mdを公開attach-fileから資料へ保存し、packet再取得とreadで確認する。実行側は提出元本文との一致を照合する。\n+提出失敗の診断を補助する（2026-09-13）：公開添付の欠落、報告全文の再読不足、最終保存状態とreportの不一致を分けて示す。\n+全ての追加資料を保存した後にreportを実行し、その後に資料を追加した場合はreportを取り直すよう担当へ明記する。\n+受理条件・保存構造・操作許可・期限は維持し、古いreportを受理したり不足操作を自動補完したりしない。これは診断と手順案内の改善であり、発見力の改善とは扱わない。\n 別担当も調査報告を根拠と照合して資料へ保存する。保存成功は問いの解決や独自性の認定ではなく、内容を別に点検する。\n 元案・旧評価・元資料を保持し、正式改訂0件・正式評価0件で追加資料とreportを別の出力先へ残す。未提出・失敗・期限停止は代理で補完しない。\n 初回実AIは添付のヘルプを通常JSONとして解析して引渡しに失敗した。ヘルプを完了根拠にも解析対象にも数えず、実提出と実読出しは引き続き必須にする。\ndiff --git a/src/svdeck/discovery_inquiry.py b/src/svdeck/discovery_inquiry.py\nindex fe611e4..5e86b42 100644\n--- a/src/svdeck/discovery_inquiry.py\n+++ b/src/svdeck/discovery_inquiry.py\n@@ -103,8 +103,12 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:\n                 raise ValueError('再読範囲の計算が資料の行数を超えています')\n             if set(range(start, start + length)) <= seen:\n                 covered['complete'] = {1}\n-    if not attached or not reports or not covered.get('complete'):\n-        raise ValueError('answer.mdの公開添付、新しい資料版からの全文再読、report確認が必要です')\n+    if not attached:\n+        raise ValueError('answer.mdの公開添付が必要です')\n+    if not covered.get('complete'):\n+        raise ValueError('新しい資料版からanswer.mdの全文再読が必要です')\n+    if not reports:\n+        raise ValueError('最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください')\n     return {'source_hash': source['source_hash'], 'file_sha256': hashlib.sha256(raw).hexdigest(),\n             'public_attachment': True, 'public_reread': True, 'report_read': True}\n \n@@ -195,6 +199,7 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切\n 最後の結論を作業先のanswer.mdにUTF-8で書き、次の形式で資料へ保存します。観察時刻や限界は実際に合わせて追記できます。\n {sys.executable} public.py attach-file answer.md --title '指定した問いへの報告' --kind {kind} --location {location}\n 保存後にpacket --summaryを再実行し、新しい識別値のsourcesから自分の報告の全文をreadで読み直してください。offsetとlimitで必要範囲を分けられます。全資料の再読は不要です。\n+全ての追加資料を保存し終えてから、最後にreportを実行してください。その後に資料を追加保存した場合はreportを再実行してください。\n {sys.executable} public.py report\n 正式改訂・評価の提出は行いません。報告を保存できなかった場合は代理提出を求めず、final-messageに未完了の事実を記してください。\n 調査報告の保存と問いを解決できたかは別です。最終回答は保存資料の識別値と結論・未確認だけを短く記してください。",
+  "files": [
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/docs/design.md",
+      "sha256": "7e23dd72fbbe69e2c70d4d37bdf544e9a2fa87469038afed6be9f8dc0649370b",
+      "committed": true
+    },
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/src/svdeck/discovery_inquiry.py",
+      "sha256": "f4679cc10aa0e896b38a6f00c1bf4c8d0771e424e627b7bfbe00cc2adb0e5f9f",
+      "committed": true
+    },
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp/test_inquiry_completion_diagnostics_temp.py",
+      "sha256": "115182796856a4e629a39230eb05ea5a779234bae368d948d16727a8f7408667",
+      "committed": false
+    },
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp/test_discovery_inquiry_temp.py",
+      "sha256": "0b33dc223e92604cf497d01640e5df92d47b60642964157d09556fe61f2f710e",
+      "committed": false
+    },
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-tests.xml",
+      "sha256": "7845ac7313c386ea270fe7268a886a0499e1c1e2204580a9baf62ca51bb1fc54",
+      "committed": false
+    },
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-new-tests.xml",
+      "sha256": "6ee448eb4c7e63da4fb09cf7c11f594d851d616d2b65b4e0f94424222e854fa1",
+      "committed": false
+    },
+    {
+      "path": "/tmp/sv-inquiry-diagnostics-final-tests.xml",
+      "sha256": "1307579e118f4fc2ea7a8455d745dc10a4f96b40c88e2b119296d12201bf3dd4",
+      "committed": false
+    },
+    {
+      "path": "/tmp/inquiry-completion-cli-result.json",
+      "sha256": "71bff54984f254bab8f25d829cc3daec6aadbd4b3b3870fd0b47d829e77d4d27",
+      "committed": false
+    }
+  ],
+  "test_file_retention": "testスキルに従い新規検査はtests/tempへ配置。既存の同系統検査を変更せずコピーした。両ファイルはignoredでコミット対象外、作業場所に保持。",
+  "source_evidence": [
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/src/svdeck/discovery_inquiry.py",
+      "line": 106
+    },
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/src/svdeck/discovery_inquiry.py",
+      "line": 202
+    },
+    {
+      "path": "/tmp/sv-inquiry-completion-diagnostics-worktree/docs/design.md",
+      "line": 317
+    }
+  ],
+  "main_reproduction": {
+    "prerequisite": "mainへ c07cda39726c4c76bfbe42ec17149c3ae12cfae2 と 0e90032e52eb6d0e71e7a5f0ce6a445527414db2 を取り込んだ後。人工入力だけを新規作成する。元実AI保存物は使わない。",
+    "test_file": "/tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp/test_inquiry_completion_diagnostics_temp.py",
+    "command": "PYTHONPATH=/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/src:/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/tests:/tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp /Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python -m pytest -q /tmp/sv-inquiry-completion-diagnostics-worktree/tests/temp/test_inquiry_completion_diagnostics_temp.py -k stale_report --basetemp=/tmp/sv-inquiry-diagnostics-main-check",
+    "expected": "2 passed: inquiry/inspectの両方で、公開添付→新版全文再読→reportは受理、資料追加後は最新report不足の具体的理由で拒否、公開report再実行後は受理。CLI検査用public.pyは実際にimportしたmain版の実装ディレクトリを明示する。"
+  }
+}

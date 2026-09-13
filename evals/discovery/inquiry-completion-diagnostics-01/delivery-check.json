@@ -1,0 +1,43 @@
+{
+  "observed_at": "2026-09-13T09:26:47.821956+00:00",
+  "results": [
+    {
+      "id": "inquiry-completion-diagnostics-01",
+      "revision": 2,
+      "status": "completed",
+      "decision": "adopted",
+      "stages": 3,
+      "source_changes": {
+        "error": null,
+        "paths": []
+      },
+      "url": "http://127.0.0.1:8765/api/experiments/inquiry-completion-diagnostics-01"
+    },
+    {
+      "id": "remaining-resource-inspection-01",
+      "revision": 5,
+      "status": "interrupted",
+      "decision": "deferred",
+      "stages": 6,
+      "source_changes": {
+        "error": null,
+        "paths": []
+      },
+      "url": "http://127.0.0.1:8765/api/experiments/remaining-resource-inspection-01"
+    },
+    {
+      "id": "remaining-resource-inquiry-01",
+      "revision": 8,
+      "status": "interrupted",
+      "decision": "deferred",
+      "stages": 7,
+      "source_changes": {
+        "error": null,
+        "paths": []
+      },
+      "url": "http://127.0.0.1:8765/api/experiments/remaining-resource-inquiry-01"
+    }
+  ],
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "first_check_error": "source_changesは空リストではなくerrorとpathsを持つ辞書。辞書全体の真偽を見た初回assertは失敗。実内容error=null, paths=[]を読み訂正。データ側の変更や保存失敗ではない。"
+}

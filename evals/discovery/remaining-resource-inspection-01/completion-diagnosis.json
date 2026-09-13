@@ -1,0 +1,75 @@
+{
+  "started_at": "2026-09-13T08:41:20.478932+00:00",
+  "ended_at": "2026-09-13T08:41:21.187753+00:00",
+  "verifier": "current main verify_report (read only)",
+  "error": "最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください",
+  "observed_completion_conditions": {
+    "attached": true,
+    "reports": false,
+    "full_reread": true
+  },
+  "public_events": [
+    {
+      "args": [
+        "attach-file",
+        "inspection-evidence.md",
+        "--title",
+        "EP1用途報告の出典再照合記録",
+        "--kind",
+        "inquiry-inspection-evidence",
+        "--location",
+        "inquiry:b64be00455f04a3697d12808e228f8e2:inspect"
+      ],
+      "started_at": "2026-09-13T04:02:19.180321+00:00",
+      "ended_at": "2026-09-13T04:02:19.218530+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "attach-file",
+        "answer.md",
+        "--title",
+        "指定した問いへの報告",
+        "--kind",
+        "inquiry-inspection",
+        "--location",
+        "inquiry:b64be00455f04a3697d12808e228f8e2:inspect"
+      ],
+      "started_at": "2026-09-13T04:05:24.608491+00:00",
+      "ended_at": "2026-09-13T04:05:24.635380+00:00",
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "report"
+      ],
+      "started_at": "2026-09-13T04:05:46.073968+00:00",
+      "ended_at": "2026-09-13T04:05:46.100487+00:00",
+      "exit_code": 0,
+      "different_report_fields": [
+        "sources"
+      ]
+    },
+    {
+      "args": [
+        "attach-file",
+        "inspection-completion.json",
+        "--title",
+        "照合報告の保存・全文再読完了記録",
+        "--kind",
+        "inquiry-inspection-completion",
+        "--location",
+        "inquiry:b64be00455f04a3697d12808e228f8e2:inspect"
+      ],
+      "started_at": "2026-09-13T04:06:11.982846+00:00",
+      "ended_at": "2026-09-13T04:06:12.014920+00:00",
+      "exit_code": 0
+    }
+  ],
+  "file_count": 72,
+  "files_unchanged": true,
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "fixed_old_runtime": true,
+  "scope": "実行当時の固定旧実装で止まった試行を現在の原因表示で再検査。新指示の効果検証ではない。",
+  "independent_attempt": "先に別担当へ3分目安で依頼したが、17:40:45JST時点で成果ファイルがなく中断。実開始・終了・能動作業時間は未確認。rootが公開記録を再現して引き継いだ。"
+}
