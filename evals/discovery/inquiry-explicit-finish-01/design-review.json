@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-09-13T14:25:49Z",
+  "ended_at": "2026-09-13T14:28:30.491899+00:00",
+  "scope": "コードの限定読取りから任意明示終了の最小設計を点検。旧実行と私有ログは未読。コード・DB変更なし。",
+  "source_files": {
+    "src/svdeck/discovery_run.py": "19f07ea9627bf03b5789f790a4911c679f948261ce6a80e51dd453610f5d55da",
+    "src/svdeck/discovery_inquiry.py": "4c58012a0077b1aab7766aa32961dd018cb966f05ea377e0d37812e1bbdb5e15",
+    "src/svdeck/worker.py": "fa3997fb8f39211aef397bc355606b811f9253301163a8dbf3cf1cfa45ef05d3"
+  },
+  "trigger": {
+    "reported_by_parent": "/tmp/clean-input-discovery-01-novelty-liveはresearch 600秒でtimed_out。公開answer.md添付・全文再読・reportは14:17:06に完了、14:17:11停止、verify_reportは後から合格。",
+    "interpretation": "資料提出済みでも自然終了の観測に至らない工程に、担当が明示的に成果を閉じる手段を任意提供する。",
+    "unknown": "自然終了しなかった原因は未確認。後からverify_reportが通ることは期限内の監視完了を証明しない。"
+  },
+  "recommended_design": [
+    {
+      "file": "src/svdeck/discovery_inquiry.py",
+      "change": "runの末尾へexplicit_finish=Falseを追加し、CLIに--explicit-finishを任意追加。既存位置引数をずらさず、呼出し側はkeywordで渡す。resultと各public-configに選択を保存。未指定時のworker引数・指示・状態判定は従来のまま。",
+      "reason": "既定挙動とdiscovery_cycleの既存呼出し・自動対象を維持する。cycleへ新しい自動伝播は今回追加しない。"
+    },
+    {
+      "file": "src/svdeck/discovery_run.py:84-203",
+      "change": "public_mainの既存ロックとpublic_operationのfinish受付を再利用し、explicit_finish=true時のみinquiry/inspectにもfinishを許可する。help文は工程に合わせて「answer.md公開添付→新版から全文再読→最新report→finish」と示す。finish --helpは依頼を保存せず、追加引数・未選択工程は拒否する。",
+      "reason": "提出経路を新設せず、終了受付後のattach/attach-file/packet/report拒否、readと同一finish再確認の現行契約を共有する。"
+    },
+    {
+      "file": "src/svdeck/discovery_run.py:278-326 + src/svdeck/discovery_inquiry.py",
+      "change": "finish_evidenceの先頭でconfig.stageがinquiry/inspectなら専用の終了証拠helperへ分岐する。check_finish/poll_finishは要求・操作hashと証拠全体の一致を調べる共通部分なので基本的にそのまま使う。既存validate_stageはdevelop/review専用のまま保つ。",
+      "reason": "案・評価の正式提出を調査資料へ読み替えてvalidate_stageに押し込まない。"
+    },
+    {
+      "file": "src/svdeck/discovery_inquiry.py:verify_report",
+      "change": "専用helperは固定config・担当ID・stage・packet_hash・元探索/入力/実装のprotected manifest、元改訂の集合、正式評価0件を検査し、verify_report(work, config)で現在のanswer.md・正しいkind/locationの資料1件・公開添付・新版全文再読・最新reportを照合する。現行のverify_report受理条件を緩めない。",
+      "reason": "明示終了は終了時点の宣言であって、資料存在だけで成功とする入口ではない。"
+    },
+    {
+      "file": "終了証拠helper",
+      "change": "要求時にconfig_hash、session_manifest、answer.mdのhash、verify_report戻り値、最新report_hashを固定する。さらにその時点までの公開操作ファイルの名前→hashを固定し、再確認で同じ記録の存在・内容を照合する。固定操作群に対してverify_reportを再現できるよう、必要なら任意の操作集合引数を追加する（既定は全操作で旧挙動維持）。finish/readで後から増えた記録を初回証拠へ足さない。名前はbasenameのみを許す。",
+      "reason": "verify_reportの現行戻り値は資料hashと真偽値で、添付・再読・reportの操作記録そのものを固定しない。停止後に違う記録で同じ真偽へ戻ったことを同一証拠としない。"
+    },
+    {
+      "file": "src/svdeck/discovery_inquiry.py:223-247",
+      "change": "起動前に既存discovery_runと同じ順序でfinish-configと.public.lockを作り、再取得したfixed manifestを監視側契約へ固定する。flag選択時のみworker.runへlambda: poll_finish(work, contract)を渡す。promptには最後のreport後にfinishし、受付後は保存物を変更しないと示す。",
+      "reason": "契約ファイル自身のhash循環とロック中の中途半端な終了要求の読み取りを避ける。"
+    },
+    {
+      "file": "src/svdeck/discovery_inquiry.py:232-247",
+      "change": "flag選択時の実行状態はcompletedまたはfinished_by_requestかつ終了番号0だけを候補にし、check_finish・固定資料・改訂/評価集合・verify_reportを停止後にも再検査してから次工程へ進む。自然終了でfinish要求がない場合も従来のverify_reportを要求する。",
+      "reason": "選択しただけでfinishを強制して旧自然終了を失敗にしない。報告提出と監視完了の両条件を維持する。"
+    },
+    {
+      "file": "src/svdeck/worker.py",
+      "change": "変更せず既存finish_checkの停止前・停止後照合、群消滅確認、経過期限・中断・自然非0終了優先を再利用する。期限後のfinish、停止後再検査が期限を越す場合、群不在未確認は成功へ進めない。",
+      "reason": "期限緩和・自動成功化を持ち込まず、終了方式だけを追加する。"
+    }
+  ],
+  "import_notes": [
+    "discovery_inquiryは既にdiscovery_runから補助関数をimportするため、discovery_runからinquiry helper/verify_reportをtop-level importすると循環する。既存refresh_packetの呼出しと同様、finish_evidenceのinquiry分岐内部だけで遅延importする。",
+    "helperを独立モジュールへ大量移設する設計は今回不要。将来共通化はできるが、今回の限定変更では既存二工程の契約を保つ小さい分岐に留める。",
+    "python -m svdeck.discovery_inquiry と公開public.py双方のimport経路を確認する。関数引数の既存位置互換を維持し、既存cycle/inquiry呼出しに未指定falseが伝わることを確認。"
+  ],
+  "required_regressions": [
+    "未指定：inquiry/inspectでfinish拒否、従来の自然終了成功・未提出・期限停止・非0失敗を保持。develop/reviewの既存finish検査も維持。",
+    "選択時の成功：inquiry→inspectの両工程、およびinspect-source指定の照合単独について、公開添付→全文再読→最新report→finishが監視側finished_by_requestへ進み、正式改訂・評価0、元入力・旧評価不変。",
+    "未完拒否：answer.mdのみ、公開添付なし、誤kind/location、本文不一致、全文再読不足、helpだけ、古いreport、report後の資料追加ではfinish不受理。",
+    "公開操作保護：finish --helpで要求作成なし、余分な引数拒否、二重finishは同じ証拠の再確認、受付後の保存操作拒否、readは許可し証拠を変えない。ロック中pollは待つだけ。",
+    "停止前後の同一性：answer.md、資料/packet、改訂/評価、config、根拠操作、finish-requestを終了要求後に変更した場合に拒否。担当・工程・入力版の取り違えも拒否。",
+    "監視優先順位：期限直前/期限後、検査中に期限到来、中断、観測済み自然非0終了、群停止未確認、停止後改変を成功化しない。既存worker用の合成processを使い短時間で確認。",
+    "自然終了との互換：flag選択でもfinishなしで自然0終了＋verify_report合格は従来どおり成功。finish受付後に自然非0終了が観測されたら成功にしない。",
+    "失敗の保持：過去timed_out保存先へ再実行・上書きしない。新しい試行の完了と旧失敗を別記録にする。",
+    "台帳：担当のfinished_by_requestと全体の最終保存検査完了を区別し、停止未確認・最終検査失敗・台帳同期失敗は元の失敗ルールのまま。",
+    "実利用1件：短い保存済み問いを公開CLIの任意flagで実行し、監視側の要求受付・停止・群不在・再検査を観測。既存失敗の事後合格をこの新方式の成功例には数えない。"
+  ],
+  "non_goals": [
+    "answer.mdやreportの存在を監視側が見つけて自動finishしない。担当本人の公開finishを必須とする明示経路のみ追加。",
+    "過去timed_outを完了へ変更しない。今回のverify_report事後合格と元の実行失敗を併記する。",
+    "制限秒数・猶予・実行優先順位を緩めない。",
+    "調査結果の価値・問いの解決・旧採否は自動認定しない。",
+    "自然終了しなかった原因を推測しない。"
+  ],
+  "limitations": [
+    "本記録は実装案であり、新しい方式の動作を検証した結果ではない。",
+    "コードの列挙範囲を読んだ限定設計確認。外部API・私的stdout・JSONL・思考ログは読んでいない。"
+  ],
+  "repository_writes": false,
+  "database_access": false
+}

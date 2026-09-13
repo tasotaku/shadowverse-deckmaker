@@ -1,0 +1,56 @@
+{
+  "id": "inquiry-explicit-finish-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T14:30:55.565462+00:00",
+  "actor": "codex",
+  "reason": "実発生に対する任意の終了経路の実装を開始",
+  "record": {
+    "id": "inquiry-explicit-finish-01",
+    "title": "調査の保存確認を終えた担当から終了を明示する",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "調査報告の保存後も自然終了前に期限停止した事例を受け、既存の明示終了方式を調査・別照合にも任意提供する。",
+    "method": "公開添付・全文再読・最新reportを確認した担当がfinishし、監視側が停止前後の同一保存物を再検査する",
+    "procedure": "実発生と最小設計を確認→独立作業先で実装と回帰検査→親側で差分確認→保存済み問いで実用して確認",
+    "inputs": "clean-input-discovery-01の期限停止記録、既存の明示終了・調査入口と保存検査。",
+    "criteria": "未指定の自然終了・既存cycle・期限や異常優先を保持。明示終了は資料と根拠操作を固定し、停止前後に同一証拠を検査。元失敗を書き換えず、報告内容を自動採点しない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T14:30:55.555686+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "独立作業先で実装と関連検査",
+        "status": "running",
+        "started_at": "2026-09-13T14:30:55.555686+00:00",
+        "ended_at": null,
+        "note": "コード変更は別作業先だけで行い、主作業先では評価方法の比較を継続する。",
+        "budget_minutes": 20
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/inquiry-explicit-finish-01/design-review.json",
+      "evals/discovery/clean-input-discovery-01/novelty-timeout/verification.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/clean-input-discovery-01/novelty-timeout/verification.json",
+      "sha256": "0401d67d9b2f20c855b8e6f4f0434a65e64579bcf14198971947f53da6203a0c",
+      "size": 1129
+    },
+    {
+      "path": "evals/discovery/inquiry-explicit-finish-01/design-review.json",
+      "sha256": "e878812765ef66aef99fb8e15839dab42db2c039b7e52f29bfb32e4396cfc7a6",
+      "size": 9582
+    }
+  ]
+}

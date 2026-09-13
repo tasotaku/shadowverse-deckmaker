@@ -1,0 +1,131 @@
+{
+  "objective": "保存DB版のビショップで、既知構築の役割や採用配分を変え、独自でそこそこ戦えるデッキの種を探索する。特定アンカーを必須にせず、通常構築との比較から得る利用機会と失う用途を示す。現在の環境や勝率は保存資料だけから認定しない。",
+  "captured_at": "2026-09-13T13:33:23.920260+00:00",
+  "format": "rotation",
+  "class_name": "ビショップ",
+  "revisions": [
+    {
+      "revision": 1,
+      "parent_revision": 0,
+      "packet_hash": "0a9e365a2ceddc134c6021276ff29c31f1b3fc8f6c44455887554fe32475f9a8",
+      "title": "石像2枠を即時守護へ：ティコのアクト回復で条規を起動",
+      "hypothesis": "保存DBのローテーション・ビショップ。参考構築24のアミュレット基盤に条規の構成員を2枚入れ、ティコのアクト回復を、そのターンに進化して戦闘できる守護へ変換する。疾走素材と再利用用アミュレットの一部を中盤の守護へ配り直す仮説。通常側もEPを使わず全処理できるため、除去量やEP温存だけを独自利益にしない。残る違いは処理後の守護、手札に残す除去札、将来の疾走・再利用の交換である。",
+      "change": "初回。既存案・直前評価は空。着眼点は基盤と役割配分で、アクト→ティコの回復→条規の効果進化という接続を選んだ。正式決定前にT5開始状態とT5終了を固定し、石像を天書で割る通常行動まで比較した結果、石像の全交換を見送り、石像3→1・条規0→2とする。ティコ2→3の1枠はイニシア3→2から移す。",
+      "questions": [
+        {
+          "question": "ティコと無償アクトが揃わない手札で、既存の聖典・怯者から同ターンに回復を出し、条規の進化を間に合わせる最小の設置順は何か。",
+          "tag": "回復(自リーダー)",
+          "why": "ティコを3枚に増やしても、引き込みと事前アミュレットを要求する不足は残る。代替起動が重ければ条規を1枚へ減らす判断材料になる。"
+        },
+        {
+          "question": "石像を2枠減らした構成で、顔打点と信仰10への接続をどの採用枠で補うか。",
+          "tag": null,
+          "why": "即時守護は攻撃予約・破壊素材を代替しない。決着が遅れるなら石像を戻すか、守護を残したまま別の決着仮説へ分岐する。"
+        },
+        {
+          "question": "固定ロイヤル資料の具体的な返し手札を両比較に同じ条件で与えたとき、4/2守護が実際に防ぐ打点は、通常側の顔2点・天書再利用・手札節約より役立つか。",
+          "tag": null,
+          "why": "今回の終点は守護の配置まで。相手の除去や疾走に対する被害軽減をまだ観測しておらず、実戦的価値の判断に必要。"
+        },
+        {
+          "question": "体力が最大の状態でも回復処理が条規の進化条件を満たすか、固定資料外で公式定義または実機確認が必要か。",
+          "tag": null,
+          "why": "主要比較はHP14なので実回復する。満タン時の扱いを推測すると、序盤の利用機会を過大評価する。"
+        }
+      ],
+      "uncertainties": [
+        "指定状態の手計算であり、実機での処理順・プレイ操作、到達頻度、勝率、Tierは未検証。",
+        "主役の条規と相方ティコのnoteはともに空。全効果・進化本文・参照先・生成物と種族は確認したが、空注記は評価や新規性の根拠にならない。",
+        "時計の残存、必要札の引き込み、HP14に至る過程は指定条件。未知のドローや相手の協力を利益に足していない。",
+        "主要例はHP14→15という実回復で成立を検討し、満タン時の回復イベントは未確認。",
+        "構成員の次ターン生存、実際の被害軽減、相手の具体的な返し手札は未確認。守護の存在から勝ちや追加顔打点を導かない。",
+        "聖典の将来の2ドロー等、天書の将来の石像復元、深淵への接続は継続効果・未解決として分離し、今回の利益に合算しない。",
+        "独自性の調査は未実施。保存された既知構築に同居しないことやカードの新しさを未発見の証明としない。",
+        "参考構築24は保存資料上の合法性を確認した比較元。現環境での普及・実際の強さは認定しない。"
+      ],
+      "reviews": [],
+      "review_contexts": []
+    }
+  ],
+  "sources": [
+    {
+      "source_hash": "073027ff2fcb6ad7f6032746dfc0851dd493dedc4330c87ebef3e28f30ec3a6d",
+      "title": "相手の保存構築と効果：連携ロイヤル",
+      "kind": "opponent-deck-material",
+      "location": "snapshot:e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5:meta_deck/16",
+      "observed_at": "2026-09-13T13:33:23.920260+00:00",
+      "limitations": [
+        "保存版で合法な40枚。最新公式や実戦の再確認は行っていない。",
+        "採用枚数は取得率・常に持っていることの証明ではない。",
+        "カード注記は評価を含む保存情報で、公式の効果本文と区別する。"
+      ]
+    },
+    {
+      "source_hash": "2c60ad7537d731da410d1e50733652ed792f0fc701a0defd2fe7ec2e06bb828a",
+      "title": "指定した問いへの報告",
+      "kind": "inquiry-inspection",
+      "location": "inquiry:c37d623e586847c89e1dc6c9f775d6a6:inspect",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "38464007041988f3fe569e0c54333be33dfbcc9ed867287f754132e3ee90bdcf",
+      "title": "指定報告の外部出典・再照合記録",
+      "kind": "inquiry-inspection-evidence",
+      "location": "inquiry:c37d623e586847c89e1dc6c9f775d6a6:inspect:evidence",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "729b200a0a7ce7c24e5b6f80c6e20c5d9dd7dd4d279302e6250272813e13688c",
+      "title": "条規の構成員：固定T5状態と参考構築24の行動比較",
+      "kind": "analysis-derived-from-fixed-card-text",
+      "location": "local:comparison.md",
+      "observed_at": "2026-09-13T13:39:18.808284+00:00",
+      "limitations": [
+        "能力本文からの手計算であり実機対戦の観察ではない。開始手札・HP・相手行動の頻度は未確認。"
+      ]
+    },
+    {
+      "source_hash": "7d779eeb74201399dbd909ef289d36c146a15f8a3afa3846c2c6671b85dea109",
+      "title": "指定した問いへの報告",
+      "kind": "inquiry-result",
+      "location": "inquiry:f92ef1b56369442488ed8ddcbc6e6a24:inquiry",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "b21b28566af5e74d280730f47e6ec3896ca1f0bb8ad790fed170263d3eb7c7b5",
+      "title": "調査終了時刻と保存全文確認",
+      "kind": "inquiry-completion",
+      "location": "inquiry:f92ef1b56369442488ed8ddcbc6e6a24:completion",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "b8bced39c097ab51774cb940eef2f53d58db273641b7a83720273291a26c1365",
+      "title": "外部出典の取得抜粋・観察要約・用途照合",
+      "kind": "inquiry-evidence",
+      "location": "inquiry:f92ef1b56369442488ed8ddcbc6e6a24:evidence",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "c0d345df3b90bf7806e367bf33f6f08a0713131a2087fe39f6ad2a22ed58dd7a",
+      "title": "資料照合の終了観測・保存全文確認",
+      "kind": "inquiry-inspection-completion",
+      "location": "inquiry:c37d623e586847c89e1dc6c9f775d6a6:inspect:completion",
+      "observed_at": null,
+      "limitations": []
+    },
+    {
+      "source_hash": "da58b8419e5369ed6e67360ef41c845d7803dc5028f53daf7a69e58b82622672",
+      "title": "検索語・取得URL・観察時刻の公開記録",
+      "kind": "inquiry-search-log",
+      "location": "inquiry:f92ef1b56369442488ed8ddcbc6e6a24:search-log",
+      "observed_at": null,
+      "limitations": []
+    }
+  ],
+  "status": "システム試作。発見力と推薦の妥当性は別の実利用評価が必要"
+}

@@ -1,0 +1,104 @@
+{
+  "id": "benefit-comparison-dragon-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T14:34:43.562018+00:00",
+  "actor": "codex",
+  "reason": "変更していない方法を別案へ転用",
+  "record": {
+    "id": "benefit-comparison-dragon-01",
+    "title": "利益の比較方法を、打点と補充を交換する別案でも確認する",
+    "category": "method",
+    "status": "running",
+    "summary": "ビショップで使った追加指示を変更せずドラゴンの保存案へ転用。通常側の打点と補充、PP帯の使い分けを採否理由まで比較できるか確認する。",
+    "method": "同じ利益を通常側の各手順まで追う指示を、7PPで打点と手札を交換する別案へ転用できるか",
+    "procedure": "同じ保存案・資料を固定→現行と追加指示で各1回別評価→事前項目で照合→方法の採否と次の改善を決める",
+    "inputs": "state-transfer-dragon-01の最新正式改訂2、旧評価は担当から隔離。指摘報告は追加しない。",
+    "criteria": "protocolの4項目。採否ラベル自体を正解にしない。各1回・10分、結果後の追加文修正なし。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T14:34:43.214196+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "転用先・指示・判定項目を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T14:34:43.214196+00:00",
+        "ended_at": "2026-09-13T14:34:43.550091+00:00",
+        "note": "追加指示は前試行と同一。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "a-whole",
+        "title": "現行指示の評価から最終保存まで",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ正式案を1回・上限10分で評価。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-review",
+        "title": "現行指示で別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ正式案を1回・上限10分で評価。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-whole",
+        "title": "追加指示の評価から最終保存まで",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ正式案を1回・上限10分で評価。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-review",
+        "title": "追加指示で別評価",
+        "status": "planned",
+        "started_at": null,
+        "ended_at": null,
+        "note": "同じ正式案を1回・上限10分で評価。",
+        "budget_minutes": 10
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/benefit-comparison-dragon-01/review-addition.txt",
+      "evals/discovery/benefit-comparison-dragon-01/collect-result.py",
+      "evals/discovery/benefit-comparison-dragon-01/README.md",
+      "evals/discovery/benefit-comparison-dragon-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/benefit-comparison-dragon-01/README.md",
+      "sha256": "5734c3a9ab586a975bd3483f63433a1cfe8d151a7be897450b7b78c958aef003",
+      "size": 1238
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-dragon-01/collect-result.py",
+      "sha256": "7a849a41bf00182dd3a62c11e736814b404049b3edd69da169248e1d30ec2b57",
+      "size": 5770
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-dragon-01/protocol.json",
+      "sha256": "6595a6a366a8987abb369ddc7a729a3b77541c254c70772518cc2a4354a5f727",
+      "size": 13665
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-dragon-01/review-addition.txt",
+      "sha256": "7b01d83e36c84706b8faaaf50ae7baf5f49c6d7dbc095a7ab78cdda2167b7dc3",
+      "size": 1312
+    }
+  ]
+}

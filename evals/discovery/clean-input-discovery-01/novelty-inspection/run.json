@@ -1,0 +1,88 @@
+{
+  "status": "completed",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/clean-input-discovery-01-inspect-live/inspect",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/clean-input-discovery-01-inspect-live/inspect/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/clean-input-discovery-01-inspect-live/inspect",
+  "stdin": "/private/tmp/clean-input-discovery-01-inspect-live/inspect/prompt.md",
+  "output": "/private/tmp/clean-input-discovery-01-inspect-live/inspect-run",
+  "started_at": "2026-09-13T14:24:47.441153+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2358565.5695225,
+  "explicit_finish": false,
+  "timeout_seconds": 600.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 52926,
+  "worker_pid": 52928,
+  "worker_returncode": 0,
+  "ended_at": "2026-09-13T14:32:26.898924+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-13T14:24:47.441403+00:00",
+      "elapsed_seconds": 0.00024558277800679207
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-13T14:24:47.441784+00:00",
+      "elapsed_seconds": 0.0006265407428145409
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-13T14:24:47.454109+00:00",
+      "elapsed_seconds": 0.012972541153430939
+    },
+    {
+      "event": "worker_exit_observed",
+      "at": "2026-09-13T14:32:26.893402+00:00",
+      "elapsed_seconds": 459.4639779161662,
+      "returncode": 0
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-13T14:32:26.898958+00:00",
+      "elapsed_seconds": 459.46935587516055
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-13T14:32:26.939808+00:00",
+      "elapsed_seconds": 459.5101972911507
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "clean-input-discovery-01",
+    "stage_id": "resume-inspect",
+    "status": "completed",
+    "begin_revision": 20,
+    "claimed_stage": {
+      "id": "resume-inspect",
+      "title": "保存済み調査を別担当が照合",
+      "status": "running",
+      "started_at": "2026-09-13T14:24:47.441153+00:00",
+      "ended_at": null,
+      "note": "検証済み報告を明示指定。調査を重複実行せず別照合を1回・10分で行う。\n起動処理を開始。実行記録: /private/tmp/clean-input-discovery-01-inspect-live/inspect-run",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "先例調査は600秒で期限停止。保存済み報告の検査は合格し、元案・旧評価を保って回収。調査を再実行せず別照合だけを再開する。",
+    "end_revision": 21,
+    "synced_at": "2026-09-13T14:32:26.939791+00:00"
+  },
+  "elapsed_seconds": 459.46933454088867,
+  "runner_returncode": 0,
+  "execution_returncode": 0
+}

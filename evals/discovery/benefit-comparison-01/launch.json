@@ -1,0 +1,24 @@
+{
+  "runs": {
+    "a": {
+      "status": "review",
+      "started_at": "2026-09-13T14:19:26.158127+00:00",
+      "run_id": "ced5eb70d205421b968ba44e6af3acb4",
+      "packet_hash": "a84bd1f30da0da437cee97e50f7464b3957490a8f60c3d628ac38738eb49cd7b",
+      "runtime_matches": true,
+      "original_input_matches": true,
+      "previous_reviews_empty": true
+    },
+    "b": {
+      "status": "review",
+      "started_at": "2026-09-13T14:19:27.322420+00:00",
+      "run_id": "e7592955762e44868d3d2c92ee1d74fe",
+      "packet_hash": "2a9094a566592cca145c38a0645297315ead18f57b4c8bcaff38f5fb12b9911a",
+      "runtime_matches": true,
+      "original_input_matches": true,
+      "previous_reviews_empty": true
+    }
+  },
+  "packet_difference": "instructionの固定4段落だけ。旧評価・指摘報告なし。",
+  "verification_correction": "初回のA実装照合でassertion失敗。開始前manifestに含めたpycache64件は実行側の既定複製で除外されるため、同じ複製規則で照合し直した。残る43件に変更・欠落・追加なし。B43件も完全一致。元protocolは保持。"
+}

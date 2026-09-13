@@ -1,0 +1,332 @@
+{
+  "id": "benefit-comparison-01",
+  "revision": 13,
+  "saved_at": "2026-09-13T14:40:17.198857+00:00",
+  "actor": "codex",
+  "reason": "この試行の採否と限界を確定し、後続の方法検証へ継続",
+  "record": {
+    "id": "benefit-comparison-01",
+    "title": "通常構築の各手順まで利益を対応づけて評価する",
+    "category": "method",
+    "status": "completed",
+    "summary": "通常側も持つ翌ターンの起爆を追加指示側は明示。別点検は4項目支持、現行は3支持・1部分的。本採用は保留し、同じ指示をドラゴンへ転用中。",
+    "method": "通常構築の各手順と利益を対応させる短い評価指示が、選びやすい比較だけで試用理由を作る不足を減らすか",
+    "procedure": "同じ案・資料を複製→現行と追加指示で別評価→判定項目に沿って照合→有望なら別入力へ転用",
+    "inputs": "clean-input-discovery-01の正式改訂1と固定資料。指摘報告・元評価を評価担当へ追加しない。",
+    "criteria": "4つの事前の観察項目と、機械的保存保持・公的提出を確認。採否変更を成功条件にしない。各1回・10分。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "通常側も持つ翌ターンの起爆を追加指示側は明示。別点検は4項目支持、現行は3支持・1部分的。本採用は保留し、同じ指示をドラゴンへ転用中。",
+      "limitations": "現行側にも進化権等の交換はある。採否ラベルや約1分の時間差を改善の証拠にせず、既知の1案で未知精度を認定しない。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "1案の各1回では方法の安定した改善と判断できない。共通する利益の扱いは改善候補として残り、同じ指示で別案の比較を進める。"
+    },
+    "started_at": "2026-09-13T14:18:58.177661+00:00",
+    "ended_at": "2026-09-13T14:40:17.172381+00:00",
+    "stages": [
+      {
+        "id": "preparation",
+        "title": "比較条件と入力を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T14:18:58.177661+00:00",
+        "ended_at": "2026-09-13T14:18:58.459397+00:00",
+        "note": "通常指示と追加4段落以外の差を固定する。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "a-whole",
+        "title": "現行指示の評価から最終保存まで",
+        "status": "completed",
+        "started_at": "2026-09-13T14:19:26.158127+00:00",
+        "ended_at": "2026-09-13T14:27:21.558833+00:00",
+        "note": "同じ正式案を1回・10分で評価。結果と採否は後で照合。\n起動処理を開始。実行記録: /private/tmp/benefit-comparison-01-a-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-review",
+        "title": "現行指示で別評価",
+        "status": "completed",
+        "started_at": "2026-09-13T14:19:26.507983+00:00",
+        "ended_at": "2026-09-13T14:27:21.195392+00:00",
+        "note": "同じ正式案を1回・10分で評価。結果と採否は後で照合。\n起動処理を開始。実行記録: /private/tmp/benefit-comparison-01-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-whole",
+        "title": "比較を追加した指示の評価から最終保存まで",
+        "status": "completed",
+        "started_at": "2026-09-13T14:19:27.322420+00:00",
+        "ended_at": "2026-09-13T14:26:22.595146+00:00",
+        "note": "同じ正式案を1回・10分で評価。結果と採否は後で照合。\n起動処理を開始。実行記録: /private/tmp/benefit-comparison-01-b-live\n保存案の評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-review",
+        "title": "比較を追加した指示で別評価",
+        "status": "completed",
+        "started_at": "2026-09-13T14:19:27.776771+00:00",
+        "ended_at": "2026-09-13T14:26:22.235267+00:00",
+        "note": "同じ正式案を1回・10分で評価。結果と採否は後で照合。\n起動処理を開始。実行記録: /private/tmp/benefit-comparison-01-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-collection",
+        "title": "Aの正式評価と終了証拠を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T14:28:25.402535+00:00",
+        "ended_at": "2026-09-13T14:28:26.147170+00:00",
+        "note": "結果: completed。元評価を保持して保存と終了を再検査。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "b-collection",
+        "title": "Bの正式評価と終了証拠を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T14:28:26.358109+00:00",
+        "ended_at": "2026-09-13T14:28:27.069121+00:00",
+        "note": "結果: completed。元評価を保持して保存と終了を再検査。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "blind-check",
+        "title": "指示の種類を伏せて事前項目を照合",
+        "status": "completed",
+        "started_at": "2026-09-13T14:30:21Z",
+        "ended_at": "2026-09-13T14:32:27Z",
+        "note": "追加指示側4項目支持、現行側3項目支持・1項目部分的。同じT6起爆の扱いが差。採否ラベルの変更自体は数えない。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "closeout",
+        "title": "結果・採否・次の作業を報告して初見確認",
+        "status": "completed",
+        "started_at": "2026-09-13T14:32:27Z",
+        "ended_at": "2026-09-13T14:40:17.172381+00:00",
+        "note": "短い本文の初見確認で必須修正なし。他の作業と並行した経過時間を含む。",
+        "budget_minutes": 5
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/benefit-comparison-01/review-addition.txt",
+      "evals/discovery/benefit-comparison-01/grading-input-map.json",
+      "evals/discovery/benefit-comparison-01/reader-review.json",
+      "evals/discovery/benefit-comparison-01/collect-result.py",
+      "evals/discovery/benefit-comparison-01/README.md",
+      "evals/discovery/benefit-comparison-01/closeout-reader.json",
+      "evals/discovery/benefit-comparison-01/blind-check.json",
+      "evals/discovery/benefit-comparison-01/protocol.json",
+      "evals/discovery/benefit-comparison-01/launch.json",
+      "evals/discovery/benefit-comparison-01/collection-correction.json",
+      "evals/discovery/benefit-comparison-01/a/public-operations.json.gz",
+      "evals/discovery/benefit-comparison-01/a/input-summary.json",
+      "evals/discovery/benefit-comparison-01/a/report.json",
+      "evals/discovery/benefit-comparison-01/a/result.json",
+      "evals/discovery/benefit-comparison-01/a/finish-request.json",
+      "evals/discovery/benefit-comparison-01/a/review-report.json",
+      "evals/discovery/benefit-comparison-01/a/prompt.md",
+      "evals/discovery/benefit-comparison-01/a/session.tar.gz",
+      "evals/discovery/benefit-comparison-01/a/finish-config.json",
+      "evals/discovery/benefit-comparison-01/a/verification.json",
+      "evals/discovery/benefit-comparison-01/a/public-config.json",
+      "evals/discovery/benefit-comparison-01/a/review.json",
+      "evals/discovery/benefit-comparison-01/a/run.json",
+      "evals/discovery/benefit-comparison-01/b/public-operations.json.gz",
+      "evals/discovery/benefit-comparison-01/b/input-summary.json",
+      "evals/discovery/benefit-comparison-01/b/report.json",
+      "evals/discovery/benefit-comparison-01/b/result.json",
+      "evals/discovery/benefit-comparison-01/b/finish-request.json",
+      "evals/discovery/benefit-comparison-01/b/review-report.json",
+      "evals/discovery/benefit-comparison-01/b/prompt.md",
+      "evals/discovery/benefit-comparison-01/b/session.tar.gz",
+      "evals/discovery/benefit-comparison-01/b/finish-config.json",
+      "evals/discovery/benefit-comparison-01/b/verification.json",
+      "evals/discovery/benefit-comparison-01/b/public-config.json",
+      "evals/discovery/benefit-comparison-01/b/review.json",
+      "evals/discovery/benefit-comparison-01/b/run.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/benefit-comparison-01/README.md",
+      "sha256": "d7c821f9981fabdb6a9d48f5e0a12c143c85b606e71403d94a180a24d6246873",
+      "size": 2563
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/finish-config.json",
+      "sha256": "0a578107dba584334214ecbbb5fda4b8c31ecb1176e9e09a8315ffc9d9f9e7b6",
+      "size": 9305
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/finish-request.json",
+      "sha256": "657f94c3ed8b0f5818002ae137daddebf23f563431e3b3a1f6110d18fc0ca897",
+      "size": 1496
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/input-summary.json",
+      "sha256": "f4f0df3a90c1d90a4b4f02a630a74490ee80098ad59bc79f48fa3e65c6bd83ee",
+      "size": 6310
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/prompt.md",
+      "sha256": "6bc12c115affec107ca95d20d2751cf7f192a4b314e3b5095c2ba5cb2d3e5b22",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/public-config.json",
+      "sha256": "3bfc198d23b42ad782c2b60a9ee59ba07b7da6a82f31f22c63b45397e3269785",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/public-operations.json.gz",
+      "sha256": "92d5a915dfcca41cc48c7bfed900e6650a0e093980338ff970f9a542a3242ffc",
+      "size": 336602
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/report.json",
+      "sha256": "0f6ba5bf1675fa4fa1a960639bac131a28f839a71663d90d13b017f774d2f49b",
+      "size": 41245
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/result.json",
+      "sha256": "40b89a906be65a60ad53fff9ce0d1f27f1f23f2dec6557347045bd9ba34605ba",
+      "size": 7958
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/review-report.json",
+      "sha256": "d83fe1e3ba4b6447b8114b9f411694c194a75b98f645db31849b71c83611b5e1",
+      "size": 25762
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/review.json",
+      "sha256": "bad332a950c2ea17d462a442c9da7cc412c1ca918e05b412890ba77745663ae2",
+      "size": 16359
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/run.json",
+      "sha256": "ef9dfd39b4db9f4cf1bbd2eb62b442b0fcf53af3cfbdcbf38187c9bdf420c420",
+      "size": 4173
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/session.tar.gz",
+      "sha256": "44d544e86db943725ac2d3963cbab7715c1fa2317d2f421c4f386348c08f6520",
+      "size": 1520947
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/a/verification.json",
+      "sha256": "d98337722c1582f502aae6d9986e758da96ce49f8b5e5121b6222dbc308a1f08",
+      "size": 1479
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/finish-config.json",
+      "sha256": "6e9e38a07b7476cda831d6761bea7e7168a86b39d3dcfe36097b47cc9d9a774b",
+      "size": 9615
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/finish-request.json",
+      "sha256": "54ab62cc7c38f3340a4708ac471b050ffbb69821bf8a903cc419c67545b9388c",
+      "size": 1496
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/input-summary.json",
+      "sha256": "50b97bbdec7524835173ce1521dec3621e04eb46f6aa6c7e17e26d3ebabd1dd4",
+      "size": 7628
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/prompt.md",
+      "sha256": "76329eb744a72dc94bfae5ed774bec42588d61526b0b8cde1828fd3fc8169038",
+      "size": 5851
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/public-config.json",
+      "sha256": "015059c1d36fc6cc92af59333eac2519cfa9403e5d753111842340d75cd76d87",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/public-operations.json.gz",
+      "sha256": "64c1aea7635cc87272d7c45029c4160a6bb62332a7263e0528ded3da10e18f51",
+      "size": 236310
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/report.json",
+      "sha256": "afff7cfb5285080e4bd85106f857c283cfa12b46e2417684207974fd63adf18f",
+      "size": 36708
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/result.json",
+      "sha256": "f9287108f5d8f98f8a239e5adb3419383fc560797a2a84795e1a3c6c7795ba04",
+      "size": 7986
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/review-report.json",
+      "sha256": "662f116662ccc6929630db49cd3b23b3ba0dce3432beaa63429bdbf976f889e4",
+      "size": 21225
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/review.json",
+      "sha256": "03a63eedd228fc7751cd6d0c0402a896ddcb7373701bad686dfbe2dca00d7175",
+      "size": 12399
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/run.json",
+      "sha256": "218dcccc384cffeb89b1a7ac0d2965fb29352b645eb3361735d792375598848b",
+      "size": 4185
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/session.tar.gz",
+      "sha256": "7aaa68222c0186756e4263eeabbdc675931d5c3634601e652b0d0e61372547f4",
+      "size": 1642409
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/b/verification.json",
+      "sha256": "ef6676c615f62539a345d78f6e591e88a43dee0803c882e853335e63ad6f0738",
+      "size": 977
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/blind-check.json",
+      "sha256": "fc5bf81ff36bbf85f3ae8e0c3c2364dc0038426d51b7eed6d4b6a9cdeaec0c31",
+      "size": 7824
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/closeout-reader.json",
+      "sha256": "c90b997b5cae472e5aa102ea45a4d8bc0d795442c037a89543137dd4ad269de4",
+      "size": 1704
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/collect-result.py",
+      "sha256": "ca74d2e7cee6c1216163f4365d2066a879ce4e78930179ddd82177ede4c71a47",
+      "size": 5756
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/collection-correction.json",
+      "sha256": "18d61879adae292da786c0f5c0cac2d483ca4c7814e317b19d80e9abdb672ef6",
+      "size": 512
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/grading-input-map.json",
+      "sha256": "60c3a018015b66e24ec293a92a9f418a6d26a1db2c60a25734bf8d1bb836f076",
+      "size": 291
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/launch.json",
+      "sha256": "5c1c0a101527f1fa856b5bdfff27a69101cd19edf9e40bef574fc27c60ae02c6",
+      "size": 1116
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/protocol.json",
+      "sha256": "630be103ac03a38e5d6aaf5ef73c053273bbae0da93e86d45314ba3a6fc362c6",
+      "size": 17784
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/reader-review.json",
+      "sha256": "8a0a4e68b37ee9b2c4471872dd50288b116666c8ed34360d937cb7bff29d1711",
+      "size": 2163
+    },
+    {
+      "path": "evals/discovery/benefit-comparison-01/review-addition.txt",
+      "sha256": "7b01d83e36c84706b8faaaf50ae7baf5f49c6d7dbc095a7ab78cdda2167b7dc3",
+      "size": 1312
+    }
+  ]
+}
