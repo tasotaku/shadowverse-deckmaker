@@ -103,8 +103,12 @@ def verify_report(work: Path, config: dict[str, Any]) -> dict[str, Any]:
                 raise ValueError('再読範囲の計算が資料の行数を超えています')
             if set(range(start, start + length)) <= seen:
                 covered['complete'] = {1}
-    if not attached or not reports or not covered.get('complete'):
-        raise ValueError('answer.mdの公開添付、新しい資料版からの全文再読、report確認が必要です')
+    if not attached:
+        raise ValueError('answer.mdの公開添付が必要です')
+    if not covered.get('complete'):
+        raise ValueError('新しい資料版からanswer.mdの全文再読が必要です')
+    if not reports:
+        raise ValueError('最新の保存状態と一致するreportが必要です。資料の追加後にreportを再実行してください')
     return {'source_hash': source['source_hash'], 'file_sha256': hashlib.sha256(raw).hexdigest(),
             'public_attachment': True, 'public_reread': True, 'report_read': True}
 
@@ -195,6 +199,7 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切�
 最後の結論を作業先のanswer.mdにUTF-8で書き、次の形式で資料へ保存します。観察時刻や限界は実際に合わせて追記できます。
 {sys.executable} public.py attach-file answer.md --title '指定した問いへの報告' --kind {kind} --location {location}
 保存後にpacket --summaryを再実行し、新しい識別値のsourcesから自分の報告の全文をreadで読み直してください。offsetとlimitで必要範囲を分けられます。全資料の再読は不要です。
+全ての追加資料を保存し終えてから、最後にreportを実行してください。その後に資料を追加保存した場合はreportを再実行してください。
 {sys.executable} public.py report
 正式改訂・評価の提出は行いません。報告を保存できなかった場合は代理提出を求めず、final-messageに未完了の事実を記してください。
 調査報告の保存と問いを解決できたかは別です。最終回答は保存資料の識別値と結論・未確認だけを短く記してください。
