@@ -1,0 +1,9 @@
+{
+  "observed_at": "2026-09-13T02:36:05.877952+00:00",
+  "start_time": "未記録",
+  "command": "/tmp/sv-system-venv/bin/python -B evals/discovery/remaining-question-01/collect-result.py",
+  "exit_code": 1,
+  "error": "ModuleNotFoundError: No module named svdeck",
+  "phase": "imports, before collection started",
+  "fix": "PYTHONPATH=src を指定。AI試行の再実行ではない。"
+}

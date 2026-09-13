@@ -1,15 +1,15 @@
 {
   "id": "remaining-question-01",
-  "revision": 8,
-  "saved_at": "2026-09-13T01:42:04.041796+00:00",
+  "revision": 15,
+  "saved_at": "2026-09-13T02:36:11.756120+00:00",
   "actor": "codex-root",
-  "reason": "起動報告の読者確認と既存届け先の一致を保存",
+  "reason": "両方式の完了結果を保持確認して回収",
   "record": {
     "id": "remaining-question-01",
     "title": "既知案への変更後に残った問いを、比較へ移す",
     "category": "method",
     "status": "running",
-    "summary": "現行・追加版とも改訂を開始。実際の入力は案内の一文以外同じことを確認。改訂15分・別評価10分を各一度。",
+    "summary": "両方式の正式改訂・別評価各1件を回収。両方とも手順成立・追加検討という評価。試用推薦0件ずつで、追加指示の寄与と保留理由を照合中。",
     "method": "試用可・既知という変更後の残問を一つ、別の使用時点や失う役割を比べる工程へ移す案内を追加する。",
     "procedure": "既知案への変更後に残った問いを、問いの保存だけで終わらず実比較へ移す条件を、通常の次回改訂と比較する。新方式ではなくcontinuation-choice-01の対象を絞った再検証とし、resource-use-01の供給から新要求を発明する条件とは区別する。\n元入力はsame-slot-alternative-01の現行A結果を選ぶ。追加指示のない現行版の出力を引き継ぐ固定規則であり、点数や都合のよいカードで選ばない。正式改訂2件・最新評価1件・26資料と全履歴を共通入力にする。既知の保存案からの検証で、初見の新規探索ではない。\nAはmainの現行DEVELOP、Bは上記追加文だけ。資料、カード本文と双方の注記、回答形式、REVIEW/FINISH/DEVELOP_RULES、検索・提出・時間管理・モデル設定は同じ。rootはカード名・具体質問・用途の答えや勝つ状態を追加しない。担当自身が保存済みの残問から一件選ぶ。\n両方式とも改訂15分・別評価10分を各一度、明示終了を使う。追加の自動改訂や時間切れやり直しはしない。主な観測は前の観察終点では答えられなかった問いに新しい対応比較を行い、使う時点・前後の採用配分へ根拠を返せるか。通常の次回改訂Aも同じ比較へ進めばBの上乗せにしない。\n比較を作れたことは判断支援の範囲。主成果である、有用で一般に広まった使い方の言い直しでない種の獲得と分ける。同じ既知案の再推薦、問いの言い換え、利益を伴わない順番や枚数変更だけを成功と数えない。既知案維持・旧案不復活・新枝なし・未解決を許す。knownだけで棄却せず、広い普及・実戦勝率は推定しない。\n有利な時点へ移しただけ、片側への資源の追加、未知の引き込み・生存の仮定、元案の無理な復活は利益の根拠にしない。選択後の通常構築・代案・今回案の対応する開始状態と観察終点を揃える。既知代案がまだ使えない時点でも、その時点の通常行動と比べる。別評価が後から足した比較は提案担当の発見へ加算しない。\n各1回の判定差や時間差で一般的因果効果を主張しない。試用推薦・手順成立・独自性と方法の寄与を分け、寄与未確認なら本体への追加を保留する。失敗・拒否・時間超過・回収待ち・欠測も保存する。",
     "inputs": "前試験の現行A結果。正式改訂2・最新評価1・資料26の同一版。",
@@ -65,37 +65,37 @@
       {
         "id": "a-develop",
         "title": "現行の改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T01:37:19.209984+00:00",
-        "ended_at": null,
-        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-a-live/develop-run",
+        "ended_at": "2026-09-13T01:51:44.790176+00:00",
+        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-a-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "a-review",
         "title": "現行の別評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。",
+        "status": "completed",
+        "started_at": "2026-09-13T01:51:45.331581+00:00",
+        "ended_at": "2026-09-13T01:56:54.093977+00:00",
+        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-develop",
         "title": "追加版の改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T01:37:19.209987+00:00",
-        "ended_at": null,
-        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-b-live/develop-run",
+        "ended_at": "2026-09-13T01:50:22.589360+00:00",
+        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-b-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "b-review",
         "title": "追加版の別評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。",
+        "status": "completed",
+        "started_at": "2026-09-13T01:50:23.135576+00:00",
+        "ended_at": "2026-09-13T01:55:40.082385+00:00",
+        "note": "実時刻は実行時に記録。具体カードの答えは与えず、一度ずつ実行。\n起動処理を開始。実行記録: /private/tmp/sv-remaining-question-01-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
@@ -106,6 +106,15 @@
         "ended_at": "2026-09-13T01:41:03.252065+00:00",
         "note": "73.25秒で合格。既存API第7版の全8工程と報告を照合。過去手順との重なり、改訂中・別評価未着手・採否未判定が伝わると確認。探索成果は未評価。",
         "budget_minutes": 2
+      },
+      {
+        "id": "collect-result",
+        "title": "両方式の正式案・評価と終了結果を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T02:36:06.415975+00:00",
+        "ended_at": "2026-09-13T02:36:11.625808+00:00",
+        "note": "元入力・固定実装・正式提出・明示終了を再照合。両方式の正式案と別評価は各1件。回収までの長い間隔は実行時間と別記。",
+        "budget_minutes": 5
       }
     ],
     "evidence_paths": [
@@ -127,7 +136,12 @@
       "evals/discovery/remaining-question-01/paired-launch-verification.json",
       "evals/discovery/remaining-question-01/verify-launch.py",
       "evals/discovery/remaining-question-01/launch-reader.json",
-      "evals/discovery/remaining-question-01/launch-delivery-verification.json"
+      "evals/discovery/remaining-question-01/launch-delivery-verification.json",
+      "evals/discovery/remaining-question-01/collection-start.json",
+      "evals/discovery/remaining-question-01/collect-result.py",
+      "evals/discovery/remaining-question-01/verification.json",
+      "evals/discovery/remaining-question-01/a",
+      "evals/discovery/remaining-question-01/b"
     ]
   },
   "evidence": [
@@ -137,14 +151,234 @@
       "size": 5698
     },
     {
+      "path": "evals/discovery/remaining-question-01/a/develop/finish-config.json",
+      "sha256": "63a507f0758edc25cf2a57c16f433bfb2080e566eb813ae9c5e6f8d8b0ba4cc4",
+      "size": 15709
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/finish-request.json",
+      "sha256": "0aaa18694e60c78a7321b9f4688897d7988ea0617a95ff99e2fa3d55af692050",
+      "size": 6427
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/input-summary.json",
+      "sha256": "b17245a849687ac051b1b6cdd1242245fb8aa8ee0712866a26e4371b33cdb931",
+      "size": 7690
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/prompt.md",
+      "sha256": "fbb7e9a512387b4b8b3eb51c28e9e0ec692b0414bdc64b64fb446dd058f87b55",
+      "size": 6159
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/proposal.json",
+      "sha256": "8076626ce6bfbcc4fbec39f2b5b103db4edf7b5c7a744019ac2648a4f3dec1cd",
+      "size": 22429
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/public-config.json",
+      "sha256": "d9e9c18b921d7d826e584b8ad1ccdbfcf0607faf8cbc93302d094e412472f6a7",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/public-operations.json.gz",
+      "sha256": "4bd9915489b4bc8ff3845bdf801ee7bcebd80c5dc7e363e2979d10308655c229",
+      "size": 196544
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop/run.json",
+      "sha256": "a5d28255523b673a117ca578df7d5e02aee75f65fd251bbbbe48615e2cf4ca88",
+      "size": 4009
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/develop-report.json",
+      "sha256": "49c48df6c855bfa31648d5c9fc04b25a49a8242e00a312b2ec325d5f4a2bc4b3",
+      "size": 42050
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/report.json",
+      "sha256": "069c63f48956787407514307bd45188ca05d61e415a1e828efa2062b2e508d3e",
+      "size": 53269
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/result.json",
+      "sha256": "b9a2ac96ba3243c555b274a1c78a5bd1abcb68532221292d938660c122f671b9",
+      "size": 15816
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/finish-config.json",
+      "sha256": "132115a7aee90e98930b22a5ab9ae808f5a9dcbac73b2e70bd766201a5b8f8a9",
+      "size": 21129
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/finish-request.json",
+      "sha256": "718ba080a7661ae22237f04cd0cd57b9f033bf7aa62889bb7b26ec6dc3c42a37",
+      "size": 5509
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/input-summary.json",
+      "sha256": "2c3058a6c43b8acdb2a145c676bb063742f6f0d9cd1466bb3d44912dd9d069a1",
+      "size": 6130
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/prompt.md",
+      "sha256": "163102007a8fc22eaa2b2e1d536e2a1619d735c1270c829864b0e9a4c7deb07a",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/public-config.json",
+      "sha256": "58a63537bad044099415496a0896056182e803444ad314d23e63a2e714cfe674",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/public-operations.json.gz",
+      "sha256": "0fb13d1f7f72973c7bd363cf156382e70b32a7d9642f6b25860a2ff63083cf71",
+      "size": 231840
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/review.json",
+      "sha256": "b7e89fbbdb19996923d041285fb7f492519404cc0b2b6c194bb1275bb5d29d54",
+      "size": 6980
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review/run.json",
+      "sha256": "9b88e46ced79d0e18a84254ec0f83fffc50e55ae7a78bf86d92c1b91373c5956",
+      "size": 4009
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/review-report.json",
+      "sha256": "5623b0729d8e72ad53ead3b20c9559511336627dce29d78915f91934d00509b0",
+      "size": 40821
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/a/session.tar.gz",
+      "sha256": "926d732de2953c28b9264d150e5ba7f7c51f3a411373cc78e7a76fdf3ffe9f38",
+      "size": 2477637
+    },
+    {
       "path": "evals/discovery/remaining-question-01/a-runtime.json",
       "sha256": "2df740ef3424e956d7876a52ae30c98b63b43b0d220de1561dc19c2f3ed0e5eb",
       "size": 4157
     },
     {
+      "path": "evals/discovery/remaining-question-01/b/develop/finish-config.json",
+      "sha256": "05a9603f0c1c27e69d72b6acbf6e1afe7687da9f14a85ed7ce60fdb90ac5ff75",
+      "size": 15709
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/finish-request.json",
+      "sha256": "1e5c81c29fb397d29112b6d108eb58a5a6a85311dde9f785e541ffc41f74c2b8",
+      "size": 6580
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/input-summary.json",
+      "sha256": "1379c6f00b9c5fc10d93514067a7db9b3697ce050635e2e5d4fc19263b527299",
+      "size": 8283
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/prompt.md",
+      "sha256": "bddb508b21dc045fb32186ce2ae5ee02bdcc8073c6fb97b1a26ca100b563672b",
+      "size": 6751
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/proposal.json",
+      "sha256": "5437a308a465a4e0318e38a09a7821a608a995a978009d3f5756d2f4e77df298",
+      "size": 18420
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/public-config.json",
+      "sha256": "d0c61a5d08862643b1dcac85618bc7464f174dbdf388dac49fa6b4b2d7921476",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/public-operations.json.gz",
+      "sha256": "de8dd5ac3c0830d8d05476f79445167e7552da2df459642ae0829c3eef714884",
+      "size": 235401
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop/run.json",
+      "sha256": "b6707f70c2720d9fd154f0bf2fa218759ad11ad33e0134298f4554f14080613b",
+      "size": 4010
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/develop-report.json",
+      "sha256": "2aca07fb352619f6bd5a1c42d69e039058171f3c62a12de4fe98b656c2feef62",
+      "size": 41988
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/report.json",
+      "sha256": "ad6fefd06103fb45be14c235497ca136e1134baae3e22beec78904fffc62ab88",
+      "size": 53535
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/result.json",
+      "sha256": "9edb6fcb2f234a0ddc86d3a5f94286457eb1a82788ffb739de57583f992ad7ff",
+      "size": 15811
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/finish-config.json",
+      "sha256": "05b4d462d217f5d8f4e5283e5099dc26351639e24aceb887bdf37fa0f9e44373",
+      "size": 21445
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/finish-request.json",
+      "sha256": "ee2c1069545cf5f30cd7ad127b3f20630fadd41d28b0c646d54c0e0ae393ee22",
+      "size": 5662
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/input-summary.json",
+      "sha256": "23e78a677607eb3e1c206e8cf016bd7eca6186f0baf825a3f09c42bf03ba7dcf",
+      "size": 6130
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/prompt.md",
+      "sha256": "45352900a3f569d614d456bd54d8def2f642680f1e0ded2718a7e449656aca94",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/public-config.json",
+      "sha256": "222905cd62979da7e7f2b49ff2ed71926b019c0c055ec055e3f2673271614ff7",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/public-operations.json.gz",
+      "sha256": "a590a95c937ef9bb1cf5a266a94b6ffcbcf057490e78c686f52a936146808a26",
+      "size": 563343
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/review.json",
+      "sha256": "69b60bb87671af0bd32b36226c6fe04be9f3c38320e40ccc78721a30a02dc704",
+      "size": 7116
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review/run.json",
+      "sha256": "7e203312a589221485a42363e17a1a0aa336e055c7285679574aa6616b3972de",
+      "size": 4009
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/review-report.json",
+      "sha256": "0828bd2fa4eeb16bd61069b185c0774271c96320445bf6659473de0f24a33c7d",
+      "size": 41007
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/b/session.tar.gz",
+      "sha256": "d10f0eec9968da3adf6b555dbabca5e07ac7281953c658b7418071e426e45f74",
+      "size": 2473292
+    },
+    {
       "path": "evals/discovery/remaining-question-01/b-runtime.json",
       "sha256": "25d724283f27e17e723f951772b06cf5f79d733fd35a7daa613ca380fd3c8810",
       "size": 4157
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/collect-result.py",
+      "sha256": "b1a36d1e4fd04753e39781639418f7a38cfb9db9f1d62ce09d97c00783eed485",
+      "size": 7548
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/collection-start.json",
+      "sha256": "87ada274e264fc663ca1830bae7d6d9031f96a95f4451be9a3f972fd3e1885d4",
+      "size": 235
     },
     {
       "path": "evals/discovery/remaining-question-01/freeze-runtime.py",
@@ -215,6 +449,11 @@
       "path": "evals/discovery/remaining-question-01/public-packet-check.json",
       "sha256": "3bdca0a5b4c8a7b49f5c792abaf1862dcb0931aa61951208d2b93d8c0dba4bda",
       "size": 1583
+    },
+    {
+      "path": "evals/discovery/remaining-question-01/verification.json",
+      "sha256": "09efbc0ddb88641a2233fc0196d5098b9f7acdf17ebcc34036a7bf2cec8fa985",
+      "size": 4338
     },
     {
       "path": "evals/discovery/remaining-question-01/verify-launch.py",
