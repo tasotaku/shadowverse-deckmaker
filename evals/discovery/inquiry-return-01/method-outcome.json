@@ -1,0 +1,267 @@
+{
+  "評価名": "inquiry-return-01 独立した方法評価",
+  "結論": {
+    "総合": "追加調査を既存の改訂・別評価へ戻す経路は、今回も具体的な判断に使えた。効用は主に、未接続の将来利益を採用理由から除き、同じターンで比較できる役割交換へ問いを絞ったこと。追加調査方式の一般的な優越と、試す価値のある独自デッキの発見は未確認。",
+    "採用": "保存済みの追加調査を、未確認事項も含めて通常改訂へ返す既存経路を継続する。",
+    "保留": "追加調査を常に先行させる運用、BがAより優れるという判断、捕食1枠または死神払い1枠の比較試用推薦。",
+    "却下する解釈": "推薦数0だけを失敗の根拠とすること、20点未達だけで価値なしとすること、独自性未確認だけで見送ること、既知を一般普及へ広げること、元調査の失敗を今回の完了で成功へ書き換えること。",
+    "評価の限界": "正式評価は独立した正解そのものではない。評価担当が良い例・悪い例を識別できる信頼性も未解決であり、今回は保存本文と根拠の整合を照合した範囲の方法評価。固定基準や過去採点は変更しない。"
+  },
+  "比較条件": {
+    "入力": "共通の正式改訂3と旧評価2、同じカード入力と同じ改訂指示。A27資料、Bは追加調査・照合7資料と未完了来歴1資料で35資料。",
+    "実行": "同一実装、各方式1回、改訂上限900秒・別評価上限600秒。今回の正式提出は両方式とも改訂4と改訂4に対する別評価1件。累計は改訂4件・評価3件であり、評価4件ではない。",
+    "確認資料": [
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/protocol.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/actual-input-check.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/launch.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/a/verification.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/b/verification.json"
+    ],
+    "制約": "既知入力1件・各1回の比較。出力差には生成のばらつきと選んだ分岐の差が含まれ、差をすべて追加資料へ帰属させない。既存の調査→改訂接続で、新機能の発見力証明ではない。"
+  },
+  "資料が判断へ戻った箇所": [
+    {
+      "対象": "B",
+      "判断": "T10の中尉への通常進化と未軽減ガロダートの8点は局面内で成立するが、T7～T9の生存・札と進化権の保持が未接続なので採用理由から外した。軽減なしを保つには途中の体力条件も必要、という照合結果も未確認として維持した。",
+      "根拠": [
+        "a61967c0970ef1411264d5c06c5510dcf770c1b9e07aca76f2dd83a525cc39f3",
+        "8622aa495fe058041dc15b601d46c2fa8789c5c376866757ea608627e7f36dc8",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/revision-0004.json#change",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/revision-0004.json#uncertainties"
+      ],
+      "効用": "資料を採用の後押しに固定せず、旧主張の制限と撤回に使った。局所的な使い道の具体化を無価値とは扱わない。"
+    },
+    {
+      "対象": "B",
+      "判断": "主比較の相手を10/10から6/7へ変更し、T6中の即時除去・補充・回復と、通常側の守護・墓場維持を比べる用途へ変更。通常側のライブ→バアルも進化権を使わず全処理できるため、進化権温存を新利益から除いた。",
+      "根拠": [
+        "8e40350a13f1df0cfba4f6ae0fc771321b0925395466321b0e5e6790fd6dbd85",
+        "4508dbbd73cbb25cace5b92cfabecf866bac3fe26a52d8a23589068850e1e97b",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/revision-0004.json#hypothesis",
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/revision-0004.json#change"
+      ],
+      "効用": "用途と適用条件を具体化した。旧10/10の状態で利益が増えた証明ではなく、比較対象を変えた仮説である。"
+    },
+    {
+      "対象": "B",
+      "判断": "バアル3→2、捕食0→1の39枚共通を維持し、大佐・ビバティー増量やT2結晶の常時優先には進めなかった。素材なしの捕食、失う単独除去・強化・展開を残した。",
+      "根拠": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/revision-0004.json#plan.allocation",
+        "4508dbbd73cbb25cace5b92cfabecf866bac3fe26a52d8a23589068850e1e97b"
+      ],
+      "効用": "配分変更そのものはないが、増量しない判断と調べるべき局面の限定へ戻っている。"
+    },
+    {
+      "対象": "A",
+      "判断": "追加8資料を渡さなくても、使途不明の進化権温存を見送り、捕食1→0・死神払い0→1へ変更。処理後に4/6守護を戻す用途を、通常側の中尉展開・当ターン補充・深淵保持と比較できた。",
+      "根拠": [
+        "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-a-result/revision-0004.json",
+        "ff7f37c8de1eea5a1806081b1503aeae92c7c44cdd9aa507d02e278d35d5104d"
+      ],
+      "効用": "用途・配分変更と通常側との差し引きはAでも達成。これら全体をB追加資料固有の効果としない。"
+    }
+  ],
+  "通常側と失う役割": {
+    "A": "両側とも全処理・現在2回復は可能。案側は6PP・EP1消費で5/3＋4/6守護、手札4。通常の中尉線は同じ支出・手札4で5/3＋1/1、通常の深淵線は5PPで5/3・手札6・実2ドロー。案側も深淵を保持するため、失うのは当ターンの補充であり、将来の2ドロー権を永久に失うわけではない。守護再配置は確認できる盤面差だが、それがバアル欠損に見合う相手の応手や必要頻度は未確認。",
+    "B": "通常のライブ→バアルは6PP・EP1保持・全処理・大佐4/6守護＋バアル2/2・手札3・墓場5・体力14。捕食案は6PP・EP1保持・全処理・ビバティー5/3のみ・手札6・墓場2・体力16。手札差3は3ドローではなく、通常側の手札には補充源のビバティーも残る。即時除去と深淵保持が守護維持より必要な応手・次の行動は未提示。",
+    "保持と到達": "両側ともT2結晶の所持・生存、T6の必要札や墓場、相手盤面へ至る過程と頻度は未復元。共通準備を案だけの追加費用に二重計上しない。一方、その準備を優先して序盤の攻めを落とす負担は採用判断に残る。BのT10は保持を仮定した局所例のまま。",
+    "根拠": [
+      "ff7f37c8de1eea5a1806081b1503aeae92c7c44cdd9aa507d02e278d35d5104d",
+      "4508dbbd73cbb25cace5b92cfabecf866bac3fe26a52d8a23589068850e1e97b",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-a-result/review-0004-6b74e00df16699bd.json",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result/review-0004-7bdf059478d17eaf.json"
+    ]
+  },
+  "提出案と別評価の区別": [
+    {
+      "対象": "A",
+      "提出で達成": "守護再配置、通常補充との交換、既知用途の確認、捕食温存案の撤回。",
+      "別評価で補足": "『補充を失う』は当ターンに限られ、深淵は保持されて後続1PPで使用できると表現を訂正。",
+      "判定": "supportedは指定状態内に限る。knownは保存記事に中心用途が既出という意味で、正確な手順・1枚配分の一般普及は確認していない。"
+    },
+    {
+      "対象": "B",
+      "提出で達成": "通常側の全処理とEP温存を差し引き、守護・墓場と補充の交換に限定。",
+      "別評価で発見": "大佐を進化・攻撃させず、ビバティーで小型処理→深淵だけで、5PP・手札6・実2ドロー・EP1・大佐4/6守護＋5/3を維持できる通常側分岐。敵6/7は残るので全処理ではない。",
+      "重要な取り落とし": "この型は共通旧資料b80ca…のreference_traces/N-guardに既にあり、B追加68ea…にも再掲されている。今回の6/7比較へ持ち越す段階で正式案から漏れ、今回の別評価で戻った。B提出案の発見として数えない。",
+      "判定": "conditionalでも別評価本文は局所算術を支持している。Aとのラベル差だけでBの手順が劣るとは扱わない。"
+    }
+  ],
+  "資料別の扱い": [
+    {
+      "id": "a61967c0970ef1411264d5c06c5510dcf770c1b9e07aca76f2dd83a525cc39f3",
+      "内容": "T10の具体的用途と代案・境界、未接続の到達条件。",
+      "寄与": "主張を採用理由から外す判断に使われた。"
+    },
+    {
+      "id": "8622aa495fe058041dc15b601d46c2fa8789c5c376866757ea608627e7f36dc8",
+      "内容": "T10手順の本文整合性、未軽減の保持条件、通常側の別終点、出典帰属の訂正。",
+      "寄与": "局所成立と採用利益の範囲を分ける根拠。"
+    },
+    {
+      "id": "68ea1cb806954b608e9a99faa1c8f85ba5b0b42d9298522afd3443ca41975e28",
+      "内容": "19カードの本文・注記、旧案・固定比較の抜粋。",
+      "寄与": "カードと旧比較の根拠。N-guardの保持漏れも確認できる。"
+    },
+    {
+      "id": "92bca20f6c84f718f5d6db4adcfa78a2413f33e2926022bf9c460b714dc5e705",
+      "内容": "検索記録・観察W1～W6・取得不能・先行用途との差。",
+      "寄与": "通常進化の局所用途や類似用途の範囲を示す。検索不一致は新規性の証拠にしない。"
+    },
+    {
+      "id": "bc486ebfa05442c461522ce2c009da61446827960794172cd58437ca27c1a84a",
+      "内容": "O1～O7の再照合。W4のネハン説明は記事記述とカード知識の混在と指摘。",
+      "寄与": "出典と解釈の線引き。改訂4の独自性を確定する資料ではない。"
+    },
+    {
+      "id": "f3f143b190591a896af40beb5096807a302a641424c8aa0e68020d906ce45bb2",
+      "内容": "調査報告の保存・全文再読記録。",
+      "寄与": "内容の有用性や実行全体完了の証拠にはしない。"
+    },
+    {
+      "id": "67308f8c9b2d1081ca279c353dcfc4a7919b5247afc8bcd2cea66ec60ab15a9a",
+      "内容": "照合報告の保存・全文再読記録。",
+      "寄与": "内容の有用性や実行全体完了の証拠にはしない。"
+    },
+    {
+      "id": "bc6e6c0416a3b8a0ad257c2190ce07c08ba0f0158364222fd0bdb574f3c42ffe",
+      "内容": "最後の追加保存後report不足により元調査・元照合はfailed。",
+      "寄与": "元失敗を維持し、部分成果だけを再利用する。"
+    }
+  ],
+  "今回の新規資料": {
+    "A": {
+      "件数": 1,
+      "内容資料": [
+        "ff7f37c8de1eea5a1806081b1503aeae92c7c44cdd9aa507d02e278d35d5104d"
+      ],
+      "終了時資料総数": 28
+    },
+    "B": {
+      "件数": 3,
+      "内容資料": [
+        "8e40350a13f1df0cfba4f6ae0fc771321b0925395466321b0e5e6790fd6dbd85",
+        "4508dbbd73cbb25cace5b92cfabecf866bac3fe26a52d8a23589068850e1e97b"
+      ],
+      "時間記録": [
+        "452decd24fcc6eaa3add5f799e2934f16395d08066ea38dbf4a09e9542c842ae"
+      ],
+      "終了時資料総数": 38
+    },
+    "解釈": "入力manifestとの差とverificationの件数が一致。Bの3件を独立した有効調査3件と数えず、固定条件・比較・時間記録へ分ける。"
+  },
+  "操作と正式保存の確認": {
+    "本文一致": "a/b develop/proposal.jsonと正式revision-0004.jsonの対応する全申告フィールド、review/review.jsonと正式review-0004の対応する全申告フィールドが一致。",
+    "報告": "両方式ともdevelop-reportは改訂4・当該評価0、review-reportとreportは改訂4・当該評価1を保持。resultはcompleted。全4工程の公開操作で正式提出→report→finish成功を確認。",
+    "操作訂正": "A改訂だけsubmitが1件拒否。10:35:07.505481～10:35:07.579626 UTC、rolesのcard_id/access条件エラー。その後同一工程で正式提出成功。方法の価値評価と別に扱う。",
+    "公開操作数": {
+      "A改訂": 30,
+      "A別評価": 22,
+      "B改訂": 71,
+      "B別評価": 29
+    },
+    "実行時間秒": {
+      "A改訂": 818.427696,
+      "A別評価": 327.965183,
+      "B改訂": 800.285766,
+      "B別評価": 328.356459
+    },
+    "限界": "時間と操作数は記録値であり、思考時間や休止原因、追加資料による効率差を推定しない。元調査と元照合のfailedは維持。",
+    "Bの旧通常分岐の受領確認": {
+      "確認": "公開readの成功応答にN-guardの手順と、EP1・守護・実2ドローを保持する終点が含まれる。資料不足ではなく、読取応答に存在した情報を改訂比較へ保持できなかった観測。内的な理解状態は推定しない。",
+      "公開操作ファイル": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/b/develop/public-operations.json.gz",
+      "操作番号_0始まり": 34,
+      "args": [
+        "read",
+        "c36d06069b0b004212df70e48b83728448a135afee63ada78aae6c24eca56183",
+        "sources",
+        "--offset",
+        "3000",
+        "--limit",
+        "500"
+      ],
+      "開始UTC": "2026-09-13T10:24:13.320420+00:00",
+      "終了UTC": "2026-09-13T10:24:13.348905+00:00",
+      "exit_code": 0
+    }
+  },
+  "必要なら行う最小修正": {
+    "件数": 1,
+    "内容": "開始条件を改めた改訂では、旧比較の通常側の各分岐を『維持・変更・不適用』のどれにしたか、既存の比較資料内に1行ずつ対応づける。",
+    "今回の根拠": "旧N-guardはB入力にもあるのに、新しい比較のN-draw-twoでは大佐へのEP支出だけが残り、別評価がEP不要の補充を再追加した。一般的に『通常側も比べる』と再指示するだけでは、今回既にある指示の反復になる。",
+    "範囲": "新しいカード案、専用機構や追加必須工程は提案しない。既存の比較資料で旧分岐の扱いだけを明示する最小変更案。未実装・改善効果は未検証。"
+  },
+  "未確認": [
+    "今回1件以外への再現性、追加資料有無による因果的な改善、安定した発見力。",
+    "両案の到達頻度・実際の全手札での通常側最適行動・対戦勝率・具体的応手後の優劣。",
+    "BのT6→T10の生存と資源保持、主比較6/7への到達頻度。",
+    "Aの中心用途の正確な手順・配分の普及、Bの新用途の既出性。",
+    "元資料の外部公式API取得失敗の原因と現行実機との差。今回はネット・DBを再確認していない。"
+  ],
+  "監査範囲": {
+    "読んだ範囲": "指定された正式JSONの本文、保存sourcesの関連本文、旧改訂3・評価3・比較資料、公開操作、改訂指示。レポート間の一致と入力差をローカルで照合。",
+    "読まなかったもの": "private stdout.log、実Codex JSONL・推論ログ、他タスク、ネット。",
+    "書込先": "/tmp/inquiry-return-method-evaluation.json",
+    "禁止対象への書込": "repo・DB・card_note・元実行には書き込んでいない。"
+  },
+  "根拠パス": {
+    "正式A": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-a-result",
+    "正式B": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-b-result",
+    "元改訂3": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-a-input/revision-0003.json",
+    "元別評価": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/inquiry-return-01-a-input/review-0003-fc38d738bcdd12e6.json",
+    "識別値の解決": "資料の識別値Hは正式保存先のsources/H.json。JSONのdata.contentが本文。",
+    "公開操作": [
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/a/develop/public-operations.json.gz",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/a/review/public-operations.json.gz",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/b/develop/public-operations.json.gz",
+      "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/inquiry-return-01/b/review/public-operations.json.gz"
+    ]
+  },
+  "評価時間": {
+    "開始UTC": "2026-09-13 10:43:19 UTC",
+    "本文確定UTC": "2026-09-13 10:49:13 UTC",
+    "本文確定まで秒": 354,
+    "工程": [
+      {
+        "工程": "指示・評価条件の確認",
+        "開始UTC": "2026-09-13 10:43:19 UTC",
+        "終了UTC": "2026-09-13 10:43:34 UTC",
+        "秒": 15
+      },
+      {
+        "工程": "正式案・別評価の初回照合",
+        "開始UTC": "2026-09-13 10:43:34 UTC",
+        "終了UTC": "2026-09-13 10:43:52 UTC",
+        "秒": 18
+      },
+      {
+        "工程": "追加資料本文・提出内容の照合",
+        "開始UTC": "2026-09-13 10:43:52 UTC",
+        "終了UTC": "2026-09-13 10:45:20 UTC",
+        "秒": 88
+      },
+      {
+        "工程": "通常側の代案・旧資料・公開完了操作の照合",
+        "開始UTC": "2026-09-13 10:45:20 UTC",
+        "終了UTC": "2026-09-13 10:46:55 UTC",
+        "秒": 95
+      },
+      {
+        "工程": "結論の作成と根拠整理",
+        "開始UTC": "2026-09-13 10:46:55 UTC",
+        "終了UTC": "2026-09-13 10:49:13 UTC",
+        "秒": 138
+      },
+      {
+        "工程": "保存・公開read一点確認・限界追記・再読",
+        "開始UTC": "2026-09-13 10:49:13 UTC",
+        "終了UTC": "2026-09-13 10:50:00 UTC",
+        "秒": 47.762
+      }
+    ],
+    "時刻の意味": "この独立方法評価の実測UTC。元の調査・改訂の時間と分離。保存と再読確認の終了時刻は後記する。",
+    "終了UTC": "2026-09-13 10:50:00 UTC",
+    "総秒": 401.762,
+    "目安超過": "目安5分を超過。途中の大きなJSON表示に切詰めがあり、本文を分割して照合した。広い追加試験は行っていない。"
+  }
+}

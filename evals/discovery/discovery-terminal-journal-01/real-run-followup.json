@@ -1,0 +1,65 @@
+{
+  "started_at": "2026-09-13T10:56:27.042135+00:00",
+  "ended_at": "2026-09-13T10:56:27.074973+00:00",
+  "experiment": "inquiry-return-01",
+  "api_revision": 30,
+  "observed_stages": {
+    "a-whole": {
+      "id": "a-whole",
+      "title": "追加調査なし：改訂から最終提出確認まで",
+      "status": "completed",
+      "started_at": "2026-09-13T10:22:43.375796+00:00",
+      "ended_at": "2026-09-13T10:41:51.500034+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+      "budget_minutes": 25
+    },
+    "a-develop": {
+      "id": "a-develop",
+      "title": "追加調査なし：保存案を改訂",
+      "status": "completed",
+      "started_at": "2026-09-13T10:22:43.933073+00:00",
+      "ended_at": "2026-09-13T10:36:22.360769+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 15
+    },
+    "a-review": {
+      "id": "a-review",
+      "title": "追加調査なし：改訂案を別評価",
+      "status": "completed",
+      "started_at": "2026-09-13T10:36:23.007380+00:00",
+      "ended_at": "2026-09-13T10:41:50.972563+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 10
+    },
+    "b-whole": {
+      "id": "b-whole",
+      "title": "追加調査あり：改訂から最終提出確認まで",
+      "status": "completed",
+      "started_at": "2026-09-13T10:22:43.388552+00:00",
+      "ended_at": "2026-09-13T10:41:34.118614+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
+      "budget_minutes": 25
+    },
+    "b-develop": {
+      "id": "b-develop",
+      "title": "追加調査あり：保存案を改訂",
+      "status": "completed",
+      "started_at": "2026-09-13T10:22:43.966822+00:00",
+      "ended_at": "2026-09-13T10:36:04.252588+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 15
+    },
+    "b-review": {
+      "id": "b-review",
+      "title": "追加調査あり：改訂案を別評価",
+      "status": "completed",
+      "started_at": "2026-09-13T10:36:05.092112+00:00",
+      "ended_at": "2026-09-13T10:41:33.448571+00:00",
+      "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+      "budget_minutes": 10
+    }
+  },
+  "code_commit": "3163a513bc7f2897db8be88ce3cb3684b39dfe7d",
+  "all_completed_with_times": true,
+  "method_verdict": "採用保留。実行記録の成功は探索方法の有用性を保証しない。"
+}

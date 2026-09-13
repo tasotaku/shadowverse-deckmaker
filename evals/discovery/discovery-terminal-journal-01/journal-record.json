@@ -1,9 +1,9 @@
 {
   "id": "discovery-terminal-journal-01",
-  "revision": 24,
-  "saved_at": "2026-09-13T10:25:38.185624+00:00",
+  "revision": 26,
+  "saved_at": "2026-09-13T11:11:32.578089+00:00",
   "actor": "codex-root",
-  "reason": "初見確認の軽微な記録不足を補完",
+  "reason": "報告訂正後の根拠ファイルを再照合して保存",
   "record": {
     "id": "discovery-terminal-journal-01",
     "title": "改訂と評価の全体工程を自動記録する",
@@ -17,14 +17,14 @@
     "result": {
       "outcome": "pass",
       "summary": "110検査・型検査と本体の2ケースが合格。最初の本体実行設定誤りも保持。",
-      "limitations": "人工担当の記録検査。実AIでの発見力と全体完成は未検証。"
+      "limitations": "実AIの工程記録も確認。発見力・実戦の強さ・システム全体完成は未検証。"
     },
     "decision": {
       "status": "adopted",
       "reason": "全体の提出検査を含む終了・失敗と時刻を記録し、手動訂正・並行工程・結果・採否を保持できた。"
     },
     "started_at": "2026-09-13T10:07:26+00:00",
-    "ended_at": "2026-09-13T10:25:38.174638+00:00",
+    "ended_at": "2026-09-13T10:56:27.074973+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -124,6 +124,15 @@
         "ended_at": "2026-09-13T10:23:20Z",
         "budget_minutes": 1,
         "note": "13秒。内容に矛盾なし。訂正前後のPYTHONPATHが不足との指摘を受け、実コマンドの値をmain-validation.jsonへ追記。"
+      },
+      {
+        "id": "real-run-record-check",
+        "title": "後続の実AI実行で工程と時刻の記録を確認",
+        "status": "completed",
+        "started_at": "2026-09-13T10:56:27.042135+00:00",
+        "ended_at": "2026-09-13T10:56:27.074973+00:00",
+        "note": "既存進捗サービスで改訂2・別評価2・全体2の計6工程が完了し時刻を保持したことを確認。方法の採用とは別。",
+        "budget_minutes": 1
       }
     ],
     "evidence_paths": [
@@ -138,14 +147,15 @@
       "evals/discovery/discovery-terminal-journal-01/success-corrected-api.json",
       "evals/discovery/discovery-terminal-journal-01/success-corrected-result.json",
       "evals/discovery/discovery-terminal-journal-01/success-result.json",
-      "evals/discovery/discovery-terminal-journal-01/tests.xml"
+      "evals/discovery/discovery-terminal-journal-01/tests.xml",
+      "evals/discovery/discovery-terminal-journal-01/real-run-followup.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/discovery-terminal-journal-01/README.md",
-      "sha256": "67c97741fd01f346bf118aff1a875ed60f11c5ac84ca7bf4934b43b8d8ece765",
-      "size": 2066
+      "sha256": "02effc35fc5d9ef98a5bb3543f485d18c74195cdae3cd186e4c2d8ad34bd2475",
+      "size": 2459
     },
     {
       "path": "evals/discovery/discovery-terminal-journal-01/failure-api.json",
@@ -176,6 +186,11 @@
       "path": "evals/discovery/discovery-terminal-journal-01/reader-review.json",
       "sha256": "17ff7dc0b225c79159e0ff6b467ff4eafcb938e2ef050aa837144fd522441453",
       "size": 2342
+    },
+    {
+      "path": "evals/discovery/discovery-terminal-journal-01/real-run-followup.json",
+      "sha256": "f8f3eb6854ccfd81863e6e85a616b22f15f80d848c0fa76b1dd46d7928573cfd",
+      "size": 4168
     },
     {
       "path": "evals/discovery/discovery-terminal-journal-01/success-api.json",

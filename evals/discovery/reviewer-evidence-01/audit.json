@@ -1,0 +1,168 @@
+{
+  "audit": "reviewer-evidence-01 / 保存検証の限定点検",
+  "started_at_utc": "2026-09-13T10:52:17+00:00",
+  "parent_started_at_utc": "2026-09-13T10:51:46.342944+00:00",
+  "scope": "過去の固定条件・採点・入力の該当部分を照合した。現行評価AIの追加実行、実戦、Web、全カード本文の読解、独立した全検算は行っていない。",
+  "conclusion": "固定条件の手順・意味・算術を読む検査の成功記録はある。実カードの試す価値に近い既知案検査は1/2件一致でFAILだった。未知の有望な案と弱い案を見分ける信頼性は、この範囲では未確認。別AIが担当したこと自体を信頼性の保証にしない。",
+  "oracle_categories": [
+    "ユーザー",
+    "本文算術",
+    "AI",
+    "未確認"
+  ],
+  "table": [
+    {
+      "test": "known-candidate-review / knife",
+      "measured": "試す価値の見分けに関する既知フィードバックの反映。条件付き21点の意味・算術も含む。",
+      "oracle": {
+        "採否": "ユーザー",
+        "手順": "本文算術",
+        "範囲": "9/7の当該潜伏ナイフ構成への見送り評価。カード単体・他構成への評価ではない。"
+      },
+      "input_hint": "あり。実際の入力のナイフとリオナ双方のnoteに「同案は見送り」と明記。expectedを隠しても採否の手がかりは残る。",
+      "observed": "expected drop、actual drop、conditional。保存採点PASS。全2件の総合はFAIL・一致1/2。",
+      "unverified": "注記に答えがない未知案の採否、良い案を取りこぼさない能力、実戦推薦。",
+      "sources": [
+        "known-candidate-review/expected.json#/knife",
+        "known-candidate-review/evaluation.json#/cases/0",
+        "known-candidate-review/packet-knife.json.gz#/data/context/cards[name=ナイフストリンガー|エクセシブガーディアン・リオナ]/note"
+      ]
+    },
+    {
+      "test": "known-candidate-review / imari",
+      "measured": "試す価値に関する調査継続・見送り判断。固定状態の7PP計算と継続価値を分離する検査。",
+      "oracle": {
+        "採否": "AI",
+        "手順": "本文算術",
+        "範囲": "expectedは9/7のイマリ再評価をAI判断と明記。ユーザーがこの17枚型を直接却下したという正解ではない。"
+      },
+      "input_hint": "非対称。イマリnoteは空で、この案へのユーザー直接見送りはない。入力には他案である潜伏ナイフへの見送りnoteが残るが、これをイマリの却下正解に転用できない。旧40枚と具体的経験の欠落が保存採点に記録される。",
+      "observed": "expected drop、actual develop、conditional。保存採点FAIL。試行推薦testへ上げた失敗でも、7PP計算の破綻でもない。入力欠落と継続判断の弱さが併存し、唯一の原因は未確定。",
+      "unverified": "ユーザーの採否との一致、欠落資料を補えば判断が変わるか、未知の価値識別。過去AIのdropが実戦価値の正解だった保証。",
+      "sources": [
+        "known-candidate-review/expected.json#/scope/snapshot_notes",
+        "known-candidate-review/expected.json#/imari/required_findings",
+        "known-candidate-review/evaluation.json#/cases/1",
+        "known-candidate-review/evaluation.json#/observed_input_gaps",
+        "known-candidate-review/packet-imari.json.gz#/data/context/cards[name=尽小花・イマリ]/note"
+      ]
+    },
+    {
+      "test": "mazel-role-review / a",
+      "measured": "手順の意味・算術。前半の攻撃と手札消費、後半の置換先補充という役割分担を認めるか。",
+      "oracle": {
+        "役割の意味": "ユーザー",
+        "資源処理": "本文算術",
+        "今回の採用優先度": "未確認"
+      },
+      "input_hint": "あり。マゼルnoteにユーザー既存成功例と前後半の役割分担が明記。過去レビューと履歴は空だが、意味判断の答えとなる既知説明は入力済み。",
+      "observed": "conditional / develop / known、意味解釈PASS。aの正例という名称は役割の意味を認める例であり、valueの特定ラベル一致を要求していない。指定例8PP、終了直前2枚から終了後7枚で純増5。",
+      "unverified": "現候補を実際に試す優先度、取得頻度、実戦価値、自然な役割発見。過去ユーザーのTier経験は現入力の正解ラベルではない。",
+      "sources": [
+        "mazel-role-review/expected.json#/a/label_scope",
+        "mazel-role-review/expected.json#/a/value_scoring",
+        "mazel-role-review/evaluation.json#/cases/a",
+        "mazel-role-review/a/review-packet.json.gz#/data/context/cards[name=絶大の顕現・マゼルベイン]/note"
+      ]
+    },
+    {
+      "test": "mazel-role-review / b",
+      "measured": "手順の意味・算術。山札置換後の通常ドローで元山札の3枚目ベイルを得られるという主張の反証。",
+      "oracle": {
+        "具体的取得主張": "本文算術",
+        "役割全体を否定しない境界": "ユーザー",
+        "優先度ラベルの正解": "未確認"
+      },
+      "input_hint": "あり。既知のマゼル注記に山札置換と役割分担の境界がある。保存本文・用語・ベイルのパックも入力。",
+      "observed": "refuted / drop / unconfirmed、意味解釈PASS。bもdrop/develop/unknownという優先度ラベル自体は固定しない。a/b合計2/2 PASS。",
+      "unverified": "置換直後から終了前の追加プレイを別資源条件で判断できるか。76枚定義と77行の差、全構成・抽選率、実戦価値。",
+      "sources": [
+        "mazel-role-review/expected.json#/b",
+        "mazel-role-review/evaluation.json#/cases/b",
+        "mazel-role-review/evaluation.json#/limitations"
+      ]
+    },
+    {
+      "test": "history-review / a,b",
+      "measured": "手順の意味・算術と、解消済みの不足・同じ問いの継続を区別する判断。実カードの採用価値検査ではない。",
+      "oracle": {
+        "固定状態の進歩・上限": "本文算術",
+        "条件と履歴の作成者": "AI",
+        "実戦の試す価値": "未確認"
+      },
+      "input_hint": "あり。過去の採否ラベルはないが、aには9PP・13点へ解決した検算、bには全9枚・固定手札で最大8点という本文上限と有限列挙結果を渡す。評価者がその証拠を本文と照合して読む課題。",
+      "observed": "a supported/test、b refuted/drop。固定検査2/2 PASS。aのtestは指定状態で13点へ達する比較に限定。人工的に作られた2改訂で、自然に改訂を思いついた記録ではない。",
+      "unverified": "証拠をまだ持たない未知案の価値識別、自然な改訂、実カード発見、実戦推薦。",
+      "sources": [
+        "history-review/expected.json#/a",
+        "history-review/expected.json#/b",
+        "history-review/expected.json#/common",
+        "history-review/protocol.md",
+        "history-review/evaluation.json#/cases",
+        "history-review/a/review-packet.json.gz#/data/sources/1/content",
+        "history-review/b/review-packet.json.gz#/data/sources/1/content"
+      ]
+    },
+    {
+      "test": "role-chain / a,b",
+      "measured": "手順の意味・算術。仮想9枚で場への生成→手札戻し→元コスト条件→1PP不足を軽減で解く因果と、1条件変更への反応。",
+      "oracle": {
+        "13点成立と8点上限": "本文算術",
+        "入力と正解の作成者": "AI",
+        "実カードの試す価値": "未確認"
+      },
+      "input_hint": "意味の手がかりあり。noteは生成先が場、条件が元コスト、4点と13点は非加算、軽減は当該ターンだけ・負数不可などを補足する。封印expectedは探索担当に非公開。採点担当は入力・正解作成者で、正解を全く知らない採点者ではない。",
+      "observed": "初回aは合法な別解で13点、bは最大8点。2件PASS。bのpublic procedure=supportedは提出された8点手順についてであり、13点主張を支持した意味ではない。",
+      "unverified": "未知の実カードでの価値識別、複数改訂の効果、別の未知課題での再現、実戦推薦。",
+      "sources": [
+        "role-chain/expected.json",
+        "role-chain/observed.json#/independence",
+        "role-chain/observed.json#/cases",
+        "role-chain/packet-a.json#/data/context/cards/*/note",
+        "role-chain/README.md"
+      ]
+    },
+    {
+      "test": "sketch-first-01 / utility-criteria-calibration",
+      "measured": "基準文と既存記録の整合点検。評価AIの実行成績や良い案・悪い案の識別率を測った検査ではない。",
+      "oracle": {
+        "保存設計・過去評価の出所": [
+          "ユーザー",
+          "本文算術",
+          "AI"
+        ],
+        "基準文の整合に関する点検判断": "AI",
+        "4成功例を実際に正しく採点できるか": "未確認"
+      },
+      "input_hint": "既存設計・正解条件・採点を読んだ文書点検で、未知事例を隠した実行試験ではない。",
+      "observed": "40枚完成・Tier証明・全状況優越の明文要求はないという点検。資料不足と価値否定の区別を確認。今回a/bは未採点、4成功例すべての実採点は未確認。過去点検には禁止対象の要約1行が混入した逸脱申告があるが、根拠には使っていないと記録。",
+      "unverified": "基準通りに現評価者が動くか、成功例の取りこぼし防止、方式の優越、有用な未知案の判別。",
+      "sources": [
+        "sketch-first-01/utility-criteria-calibration.md",
+        "sketch-first-01/utility-criteria-calibration.json#/conclusion",
+        "sketch-first-01/utility-criteria-calibration.json#/findings",
+        "sketch-first-01/utility-criteria-calibration.json#/limitations"
+      ]
+    }
+  ],
+  "next_missing_material_or_decision": [
+    "実カードの案について、ユーザーが試す価値を認めた・見送った判断と、その理由・利益・採用負担・比較条件が対応する材料。この範囲ではナイフはユーザー見送り、イマリはAI判断、マゼルは意味の正例であり、価値の正例と負例の対が揃った検査ではない。完全な40枚や勝率証明を新たな必須条件にはしない。",
+    "有用な種に到達したとみなす条件、資料不足時の保留と見送りの境界、既存注記を読む能力と手がかりのない案を見分ける能力のうち何を測るかというユーザーとの判断。具体的な新試験の条件・対象・合格基準は未合意のまま。"
+  ],
+  "preservation": {
+    "past_scores_unchanged": true,
+    "new_ground_truth_created": false,
+    "repo_or_db_or_card_note_written": false,
+    "new_ai_trial_executed": false,
+    "web_or_other_tasks_or_private_logs_used": false
+  },
+  "read_audit": {
+    "fixed_protocol_read_first": "evals/discovery/reviewer-evidence-01/protocol.json",
+    "design_read": "docs/design.md §1.2 の30〜38行。",
+    "evidence_read": "固定範囲のREADME、expected、evaluation/observed、historyのprotocol、utility点検md/json。入力資料は該当note・履歴・追加資料だけを抽出。巨大JSONや全カード本文を全文表示していない。",
+    "output_truncation": "初回の適用ルール一覧・ファイル一覧、評価資料の合同出力、note抽出に途中省略があった。note抽出の初回は対象外カード注記も拾って広すぎたため、結論に用いるナイフ・リオナ・イマリ・マゼル・ベイルと仮想9枚のnote、history sourcesを再抽出した。未表示部分を読んだとは扱わない。",
+    "source_path_resolution": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/ を各table sourcesの先頭に付ける。#以下はJSONの項目位置（name選択は説明用表記）。"
+  },
+  "finished_at_utc": "2026-09-13T10:56:08.951132+00:00",
+  "elapsed_seconds": 231.951132
+}

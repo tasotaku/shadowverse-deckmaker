@@ -1,0 +1,116 @@
+{
+  "id": "reviewer-evidence-01",
+  "revision": 7,
+  "saved_at": "2026-09-13T11:12:11.558208+00:00",
+  "actor": "codex-root",
+  "reason": "訂正と反映確認を完了し本人判断の確認待ちを明記",
+  "record": {
+    "id": "reviewer-evidence-01",
+    "title": "評価AIの信頼性を裏づける既存検証の点検",
+    "category": "method",
+    "status": "waiting",
+    "summary": "既存5記録・7行の点検と具体的な草案、初見確認と反映照合を完了。未知案の試用価値を識別する信頼性は未確認。試用候補とする条件について本人判断を確認中。",
+    "method": "保存済みの評価検証を根拠の種類別に照合",
+    "procedure": "固定した既存記録から目的・正解の出所・入力のヒント・結果・未確認を表へ整理",
+    "inputs": "known-candidate-review、mazel-role-review、history-review、role-chain、既存の基準点検",
+    "criteria": "手順・意味を正しく読む検査と、実際に試す価値を見分ける検査を区別する。\n正解の出所をユーザー評価、カード本文・算術、AI判断、未確認に分ける。正例・負例の名前から決めない。\n入力内に既存評価やヒントを含む検査を、未知事例への識別能力へ広げない。\n新しい正解ラベル・検証基準・採用判断を作らず、過去の採点を維持する。\n次に検証するために足りない資料・判断を具体化する。実AIの追加試験は今回行わない。",
+    "result": {
+      "outcome": "mixed",
+      "summary": "意味・算術の検査と試用価値の識別を区別し、正解の出所と入力中の手がかりを7行へ整理。",
+      "limitations": "指定した5記録の点検。新しい評価者試験・正解の決定・未知案の識別能力の認定は未実施。"
+    },
+    "decision": {
+      "status": "deferred",
+      "reason": "ユーザーの試用判断と必要情報を対応づける基準例が未確定で、次の検証方法と正解は草案の段階。"
+    },
+    "started_at": "2026-09-13T10:51:46.342944+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "evidence-audit",
+        "title": "既存検証の目的・正解の出所と限界を照合",
+        "status": "completed",
+        "started_at": "2026-09-13T10:51:46.342944+00:00",
+        "ended_at": "2026-09-13T10:56:08.951132+00:00",
+        "note": "開始処理を含め4分22.6秒で目安4分を22.6秒超過。担当の実測は19:52:17〜19:56:08、3分51.951秒。対象を7行へ整理。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "evaluation-draft",
+        "title": "次の評価検証の具体的な草案を作る",
+        "status": "completed",
+        "started_at": "2026-09-13T11:00:11.456013+00:00",
+        "ended_at": "2026-09-13T11:03:10.191242+00:00",
+        "note": "マゼルと当該ナイフ案を基準例候補として草案化。未知の試用価値の正解は未確定。",
+        "budget_minutes": 4
+      },
+      {
+        "id": "report-delivery",
+        "title": "点検報告を訂正し進捗画面への反映を確認",
+        "status": "completed",
+        "started_at": "2026-09-13T11:09:22.782052+00:00",
+        "ended_at": "2026-09-13T11:12:11.537375+00:00",
+        "note": "表見出しを訂正し、既存進捗サービスの3記録・計32工程で保存データとの一致と資料変更なしを確認。所要168.8秒。主カードDBも不変。画面目視は未実施。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "draft-reader",
+        "title": "草案を初見で読み未確認と必要判断を識別",
+        "status": "completed",
+        "started_at": "2026-09-13T11:04:55+00:00",
+        "ended_at": "2026-09-13T11:05:36+00:00",
+        "note": "指定2ファイルだけを別担当が読んだ。4観点を識別し、表見出しの軽微な指摘1件を訂正。41秒。担当の開始前・終了後の時間は含まない。",
+        "budget_minutes": 1
+      },
+      {
+        "id": "criteria-confirmation",
+        "title": "試す候補として認める条件をユーザーへ確認",
+        "status": "waiting",
+        "started_at": "2026-09-13T11:10:58.951765+00:00",
+        "ended_at": null,
+        "note": "草案保存後に確認を依頼済み。開始時刻は確認待ち状態を台帳へ登録した時刻で、質問送信時刻ではない。マゼルの実績を伏せても試用候補にするか、先にどの確認が必要かの回答待ち。新しい評価試験は未実施。",
+        "budget_minutes": null
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/reviewer-evidence-01/README.md",
+      "evals/discovery/reviewer-evidence-01/protocol.json",
+      "evals/discovery/reviewer-evidence-01/audit.json",
+      "evals/discovery/reviewer-evidence-01/next-evaluation-draft.md",
+      "evals/discovery/reviewer-evidence-01/reader-review.json",
+      "evals/discovery/reviewer-evidence-01/delivery-check.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/reviewer-evidence-01/README.md",
+      "sha256": "de6434570e4276d039b7bbd79de8cdc721e1f9db6d8f8de9511ae2c29fc013dc",
+      "size": 3792
+    },
+    {
+      "path": "evals/discovery/reviewer-evidence-01/audit.json",
+      "sha256": "620ae40462625b0ab47fa3875bc5809ff728d1aa174d4598dc7e96f4ec1c2f19",
+      "size": 12477
+    },
+    {
+      "path": "evals/discovery/reviewer-evidence-01/delivery-check.json",
+      "sha256": "f8ec6711b4952a42b44a8cffe2355363c181f62e662071b8023c8c4cbfb08ef8",
+      "size": 1313
+    },
+    {
+      "path": "evals/discovery/reviewer-evidence-01/next-evaluation-draft.md",
+      "sha256": "ab88471d3b5046d86dc1b5f8af842661da6c57eaf42fd738015f3a7623e7abc6",
+      "size": 3619
+    },
+    {
+      "path": "evals/discovery/reviewer-evidence-01/protocol.json",
+      "sha256": "5b28be148dcdaad1c68d90c299c520d3fa5d57ac15b79aeff77094962ccdf707",
+      "size": 1389
+    },
+    {
+      "path": "evals/discovery/reviewer-evidence-01/reader-review.json",
+      "sha256": "018122e50b9e3e2bb301279f4132bbdc32e2eea9afa95d442e0e88952df0593e",
+      "size": 2879
+    }
+  ]
+}

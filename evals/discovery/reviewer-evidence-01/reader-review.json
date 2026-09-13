@@ -1,0 +1,46 @@
+{
+  "started_at_utc": "2026-09-13 11:04:55 UTC",
+  "ended_at_utc": "2026-09-13 11:05:36 UTC",
+  "scope": [
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/reviewer-evidence-01/README.md",
+    "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/evals/discovery/reviewer-evidence-01/next-evaluation-draft.md"
+  ],
+  "method": "指定の2ファイルだけを初見で読み、編集・他資料の閲覧・新基準や正解の作成はしていない。",
+  "overall": "4点とも読み取れる。既存検証の限界と次に求める判断は明確。表の見出しに軽微な混同の余地が1点ある。",
+  "checks": [
+    {
+      "id": 1,
+      "question": "既存検証が何を測れたか",
+      "readable": true,
+      "finding": "主に手順の意味・役割分担・算術・誤手順の識別を測れた、とREADME冒頭と各行から分かる。評価基準そのものの点検は評価AIの成績ではないことも区別されている。"
+    },
+    {
+      "id": 2,
+      "question": "何が未確認か",
+      "readable": true,
+      "finding": "未知の案を実際に組んで試す価値の識別は未確認。次の2例でも、その条件で期待判断を返せるかまでで、未知案全体には広げられないことが明記されている。"
+    },
+    {
+      "id": 3,
+      "question": "今どの判断を求められているか",
+      "readable": true,
+      "finding": "草案末尾で、マゼルの実績を伏せた構想説明だけで試用候補と扱えるか、その前に何の確認が必要かを求めていると明確に分かる。Bの情報補完は後続の未確定事項として読める。"
+    },
+    {
+      "id": 4,
+      "question": "AI由来の判断をユーザーの正解と混同していないか",
+      "readable": true,
+      "finding": "イマリは過去AI由来として明示的に除外。Aも自動的な正例にしないと説明している。混同した断定はないが、下記の表見出しは出所の違う内容を同じ正解欄に見せる。"
+    }
+  ],
+  "findings": [
+    {
+      "severity": "軽微",
+      "file": "next-evaluation-draft.md",
+      "location": "比較表の列名「正解として既に分かっていること」とA行の「既存の意味検査でも、この役割分担を認めることは要求済み」",
+      "issue": "ユーザーが述べた評価と、既存検査が要求した判定が同じ『正解』欄に置かれているため、表だけを流し読むと後者もユーザーが定めた正解に見える余地がある。本文全体では区別できている。",
+      "minimal_change": "列名を「確認済みのユーザー評価・既存検査の条件」に変更する。本文の新たな基準や正解は追加しない。"
+    }
+  ],
+  "edits_made": false
+}

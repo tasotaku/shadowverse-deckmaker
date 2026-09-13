@@ -1,30 +1,30 @@
 {
   "id": "inquiry-return-01",
-  "revision": 9,
-  "saved_at": "2026-09-13T10:25:38.231029+00:00",
+  "revision": 32,
+  "saved_at": "2026-09-13T11:11:32.674977+00:00",
   "actor": "codex-root",
-  "reason": "実行中の説明を保存資料へ更新",
+  "reason": "報告訂正後の根拠ファイルを再照合して保存",
   "record": {
     "id": "inquiry-return-01",
     "title": "追加調査を採用判断へ戻す比較",
     "category": "method",
-    "status": "running",
-    "summary": "19:22:43から追加調査あり・なしの改訂を実行中。改訂15分・評価10分を各一度。実起動の共通入力と同一実装を確認。結果・採否は未判定。",
+    "status": "completed",
+    "summary": "追加調査方式の採用判断を保留。主張の訂正には使えたが、実際に組んで試す理由のある着想への到達と方法の優位は未確認。既存分岐の保持漏れとAI評価の限界を記録。",
     "method": "追加調査を渡す場合と渡さない場合で、採用判断への発展を比較する",
     "procedure": "元入力保持→Bへ来歴追加→同一実装固定→各方式で改訂1回・別評価1回→回収と比較",
     "inputs": "A:27資料、B:35資料。共通の正式改訂3・評価2とカード入力を保持。",
     "criteria": "同じ正式改訂3・旧評価2・カード入力・既存指示から、追加調査と来歴の有無だけを変えて通常改訂と別評価を各一度行う。\nAは元の27資料、Bは調査・照合7資料と未完了来歴1資料を追加した35資料。元の失敗を成功へ変更せず、rootからカード答案・有利な状態・採用推薦を足さない。\n各方式の改訂15分・別評価10分を各一度、明示終了を使用。未提出・期限停止時は代理補完も同試行の自動再実行もしない。\n資料の引用が、比較・使い方・配分・継続/中止の具体的判断へどう反映されたかを別評価と正式記録で確認する。説明の増加や資料数だけは改善と数えない。\n通常側の代案や途中の保持/到達条件を落とした有利な局面の説明だけで採用利益を認定しない。未確認は未確認のまま残す。\n試用推薦数だけでなく、追加資料が役立った箇所と見落としを記録する。各方式1回・既知入力1件であり、出力差をすべて資料効果へ帰属させず、一般的優越や全体完成を認定しない。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "改訂・別評価は各1件完了。追加調査が主張の限定に使われたが、両側のAI評価は追加検討で試用推薦0。既存分岐の保持漏れが残った。",
+      "limitations": "1入力各1回。AI判定は正解として校正されておらず、実戦価値・方法の優位・有用な独自の種への到達は未確認。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "追加調査が判断へ返ることは確認できたが、資料なし側も用途・配分を変更し、方法の良さや有用な種の獲得を裏づけていない。既存の任意の調査接続は維持する。"
     },
     "started_at": "2026-09-13T10:05:58+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-13T11:00:11.456013+00:00",
     "stages": [
       {
         "id": "entry-check",
@@ -47,55 +47,55 @@
       {
         "id": "a-whole",
         "title": "追加調査なし：改訂から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T10:22:43.375796+00:00",
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live",
+        "ended_at": "2026-09-13T10:41:51.500034+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 25
       },
       {
         "id": "a-develop",
         "title": "追加調査なし：保存案を改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T10:22:43.933073+00:00",
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live/develop-run",
+        "ended_at": "2026-09-13T10:36:22.360769+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "a-review",
         "title": "追加調査なし：改訂案を別評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "status": "completed",
+        "started_at": "2026-09-13T10:36:23.007380+00:00",
+        "ended_at": "2026-09-13T10:41:50.972563+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-a-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-whole",
         "title": "追加調査あり：改訂から最終提出確認まで",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T10:22:43.388552+00:00",
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live",
+        "ended_at": "2026-09-13T10:41:34.118614+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live\n考案・改訂・評価は提出確認まで完了。全実行の終了状態: completed。結果・採否は別途確認する。",
         "budget_minutes": 25
       },
       {
         "id": "b-develop",
         "title": "追加調査あり：保存案を改訂",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T10:22:43.966822+00:00",
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live/develop-run",
+        "ended_at": "2026-09-13T10:36:04.252588+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 15
       },
       {
         "id": "b-review",
         "title": "追加調査あり：改訂案を別評価",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。",
+        "status": "completed",
+        "started_at": "2026-09-13T10:36:05.092112+00:00",
+        "ended_at": "2026-09-13T10:41:33.448571+00:00",
+        "note": "同じ固定実装で一度だけ実行。元結果・採否は保持。\n起動処理を開始。実行記録: /private/tmp/sv-inquiry-return-01-b-live/review-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
@@ -115,6 +115,51 @@
         "ended_at": "2026-09-13T10:24:39.302834+00:00",
         "note": "追加8資料と派生一覧以外の入力が一致。元入力と実装の固定を確認。確認スクリプトの読出し位置を訂正、入力の変更なし。",
         "budget_minutes": 2
+      },
+      {
+        "id": "method-evaluation",
+        "title": "両方式を照合し方法の有用性を別担当が評価",
+        "status": "completed",
+        "started_at": "2026-09-13T10:42:33.772284+00:00",
+        "ended_at": "2026-09-13T10:50:00+00:00",
+        "budget_minutes": 5,
+        "note": "開始処理から7分26秒、担当の記録は19:43:19〜19:50:00の6分41.762秒。目安5分超過。旧通常側分岐が公開読出しにも含まれたことを確認。AIの評価自体の信頼性は未解決。"
+      },
+      {
+        "id": "report-reader",
+        "title": "検証報告を初見で確認",
+        "status": "completed",
+        "started_at": "2026-09-13T10:54:59.537435+00:00",
+        "ended_at": "2026-09-13T10:56:01+00:00",
+        "budget_minutes": 1,
+        "note": "担当の確認は19:55:22〜19:56:01。全体経過と未計測区間、今回と累計の件数、内部用語の3点を修正。"
+      },
+      {
+        "id": "a-collection",
+        "title": "Aの提出物と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T10:41:58.701454+00:00",
+        "ended_at": "2026-09-13T10:42:00.338497+00:00",
+        "note": "正式保存・入力と実装保持を再検査して回収。結果: completed。採否は未判定。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "b-collection",
+        "title": "Bの提出物と終了記録を回収",
+        "status": "completed",
+        "started_at": "2026-09-13T10:42:07.547953+00:00",
+        "ended_at": "2026-09-13T10:42:09.970587+00:00",
+        "note": "正式保存・入力と実装保持を再検査して回収。結果: completed。採否は未判定。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "report-writing",
+        "title": "報告ファイルを保存",
+        "status": "completed",
+        "started_at": "2026-09-13T10:54:01.514508+00:00",
+        "ended_at": "2026-09-13T10:54:01.562627+00:00",
+        "note": "保存操作の時刻だけ。本文の検討・執筆の開始は別計測しておらず、この所要時間を執筆時間とはしない。",
+        "budget_minutes": 3
       }
     ],
     "evidence_paths": [
@@ -127,19 +172,252 @@
       "evals/discovery/inquiry-return-01/input-b.tar.gz",
       "evals/discovery/inquiry-return-01/input-equivalence.json",
       "evals/discovery/inquiry-return-01/launch.json",
-      "evals/discovery/inquiry-return-01/actual-input-check.json"
+      "evals/discovery/inquiry-return-01/actual-input-check.json",
+      "evals/discovery/inquiry-return-01/a",
+      "evals/discovery/inquiry-return-01/b",
+      "evals/discovery/inquiry-return-01/collect-result.py",
+      "evals/discovery/inquiry-return-01/method-outcome.json",
+      "evals/discovery/inquiry-return-01/report-editor-brief.json",
+      "evals/discovery/inquiry-return-01/paired-integrity-final.json",
+      "evals/discovery/inquiry-return-01/reader-review.json",
+      "evals/discovery/inquiry-return-01/timing-coverage.json"
     ]
   },
   "evidence": [
     {
       "path": "evals/discovery/inquiry-return-01/README.md",
-      "sha256": "6c81cb88eede2507e1bda0dab8a614a141fdf3c9215622320cd20b9bf6412dc9",
-      "size": 1786
+      "sha256": "90c13bad0ed0b4d9bd3a3be39b70bd5da28aec07a7f9e99b4cabc7d86cfcd545",
+      "size": 7112
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/finish-config.json",
+      "sha256": "a7e1ec9d490d2c26d86b74759bee3db40e8223205fbac6fcd57ad3ca2d5b9e49",
+      "size": 17496
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/finish-request.json",
+      "sha256": "ddaa7573f2aa95c888c39081d07426eb7777c7946db6054dd00705d7c1010603",
+      "size": 7242
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/input-summary.json",
+      "sha256": "09210d5812a7eab10805107c9ea007ea33c2e6241443912b52ed33d9dd238040",
+      "size": 7686
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/prompt.md",
+      "sha256": "534c2c6f79afd1c7255f8b194d11ec379408cfb0a3e312fafec256831c994fc2",
+      "size": 6159
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/proposal.json",
+      "sha256": "4ed4720ad20022b8258c44f33d4b436a400772bcafe47172c4a04bc7a645d957",
+      "size": 27897
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/public-config.json",
+      "sha256": "1a7213828133272a57156fcab69f1f9d374c92c52fb66727edae01023e7fe1eb",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/public-operations.json.gz",
+      "sha256": "74ae24448d966b9118d89cc72acb672d5da5c30d0380f785bf6b99f174ca6623",
+      "size": 243985
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop/run.json",
+      "sha256": "5b9e819ef4b243ff58e8883b63f11ec6822fa3afb7f8ce90849f3efcd94a0ee0",
+      "size": 4121
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/develop-report.json",
+      "sha256": "3abcefeb346e3b93379184734a35d8fbb4c499230914a8906cc873c252f90388",
+      "size": 58962
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/report.json",
+      "sha256": "e173bc3f1d18cc9943d228f8e233344e8c29746b0d8b6d11586aa8610ff2171a",
+      "size": 72857
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/result.json",
+      "sha256": "bf4142b5aea0d7a4795550ec62e75392ac54cdab8d86935e94b62e469f8feac2",
+      "size": 17796
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/finish-config.json",
+      "sha256": "76d4fc6d9ad7a2f9b1943df0d2e9244718429e574b9696a48f86cf64a99ee4c2",
+      "size": 23139
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/finish-request.json",
+      "sha256": "7994f3d698dba7269bb2369d9637695864d59c23af62dab5e12a0adde18e6dc7",
+      "size": 5756
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/input-summary.json",
+      "sha256": "dd99b057cd5fdeb509c281a9431517bb452fc4c78b1b027b285c6e698b408976",
+      "size": 6127
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/prompt.md",
+      "sha256": "7673a9af3b10edf49cdef2fe7af8af92e34603fe8cec2cc1387a4c6102455b74",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/public-config.json",
+      "sha256": "04e66cfa4ff6f011643766eb45e4303980ee2a28f7ffc5b489c6e42a73e070bd",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/public-operations.json.gz",
+      "sha256": "7f30cc819d4b734b22fadfffc34c6eb561a6e49bc6ff365f4e5af4fde104bfea",
+      "size": 584277
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/review.json",
+      "sha256": "d6d0d81ae9b3ce1c91dbe05c6c9668319b112dd8473beb40be729484f8f6380e",
+      "size": 9015
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review/run.json",
+      "sha256": "f944862bca5c21c2e9d18f9b8cf073127cf8242b6e99822fcc2fdcb289b23dc4",
+      "size": 4197
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/review-report.json",
+      "sha256": "b15a0450f1e3795f30af7e73854b334d4d8a51bf118568d012916efd0447acdf",
+      "size": 49020
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/session.tar.gz",
+      "sha256": "6a5038e0fbefc278dcfbaa3efb2da0ff6367f5281a98049f7561293ce0732f33",
+      "size": 3058609
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/a/verification.json",
+      "sha256": "096ffc66dc44c5c020775e60c7884e48bbbabf98678e88dc90b90146e534186a",
+      "size": 9028
     },
     {
       "path": "evals/discovery/inquiry-return-01/actual-input-check.json",
       "sha256": "7dcae5cc27dcaf68d92bd9fbb293957407137f16e40188f3cae8e7d21aa8ce5e",
       "size": 2371
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/finish-config.json",
+      "sha256": "8d00d14b444f02fd9d4bf3a389c9f5b4e8fba8e54f0758a9791c90dbe6ea6c1b",
+      "size": 21604
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/finish-request.json",
+      "sha256": "a0aca451c3e514d1cc8dca909e0a1668410352cecb849ab1905136a6599bddfe",
+      "size": 9690
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/input-summary.json",
+      "sha256": "9b08d3931ef60ae489bf3b6bab7daa98b4e07e504f3aa2274f9f0e762ec5817b",
+      "size": 7686
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/prompt.md",
+      "sha256": "bd730274baf0e991b6a913c72de0a7a1f340fbf7eeb1cc2634cce26d2e426591",
+      "size": 6159
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/proposal.json",
+      "sha256": "8f87b4e2aff1da99178cc64836e329fc559df4b54532963aada749889dddc89e",
+      "size": 21356
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/public-config.json",
+      "sha256": "e44ad7548339572705f46e043067490c4496ffe55ac6e1fff8163cced65b49d9",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/public-operations.json.gz",
+      "sha256": "b0ef1abfb498ed14e1e63dd97932d82cbd7ced79c1540c6aec07e8bbd9effa75",
+      "size": 430895
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop/run.json",
+      "sha256": "b5277abd64a50b0abd36dc0832f720912d5bc3e4403f05b462e8641f9ffd2744",
+      "size": 4122
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/develop-report.json",
+      "sha256": "e4900b43fffe995046fa7a222cad05e6e4ebacb8a99c5e142d544dae76cc5343",
+      "size": 63619
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/report.json",
+      "sha256": "095a9a9e4e203ee98631670798d87aac3b8f059ab6ef2b7d48fee5abb1346c4c",
+      "size": 77545
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/result.json",
+      "sha256": "d2c4dbdda3c1226bd68cf4ba0e4b761124f6cf92e2acc908739a3951f3e72d90",
+      "size": 19793
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/finish-config.json",
+      "sha256": "80218478eaec41b1c0f9a514d3c1606275b343668c66c7a7238abfb1071428b8",
+      "size": 29244
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/finish-request.json",
+      "sha256": "b46d69147a7c34971c593ba878ddfc71666441afc9095bbc9ee3fa5c7009881f",
+      "size": 7286
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/input-summary.json",
+      "sha256": "4c018e6eacce625a89f27cce5c8c83b853c81b48529a2d9aa482715e28d97714",
+      "size": 6127
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/prompt.md",
+      "sha256": "5930460ade5836bdc5a4f1774d06855090b239cbe248a358744955b11c97a9f0",
+      "size": 4538
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/public-config.json",
+      "sha256": "9fcbb578389aff9f2d0a737dbdeeaedf9333dec9da9de0144998a4e2deb19a8e",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/public-operations.json.gz",
+      "sha256": "7c8e20695fc157e6078833fe90c9fd608dd922ad835783c5f0853ed267c573aa",
+      "size": 1102292
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/review.json",
+      "sha256": "4e5cd11b4abad936d3450de5782f321f71d754394a4e85ad30063de081395358",
+      "size": 8752
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review/run.json",
+      "sha256": "a2c28bc41a237dd86268ae3fd1ca58ea20ff1d38c11098cd8f858ebc2238183f",
+      "size": 4196
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/review-report.json",
+      "sha256": "1be9d308117e7ea7dc8b7c2a01019cc2a62c1ae2e2f5fedfb2ecb7b2341e5b54",
+      "size": 52108
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/session.tar.gz",
+      "sha256": "cade5a0c695a434a04c4cd6b2aa63ba7b7baa8fd4039511c82f4eaf558994617",
+      "size": 4471329
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/b/verification.json",
+      "sha256": "d8f54ba809d4c57a0c56f98b6e02e8b72dfda38258bfc92e14eea88623ea5da8",
+      "size": 11092
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/collect-result.py",
+      "sha256": "252b4c19b340c4ea3096a6b27e55eb2181917fbf695acf1b30b655da19293fb9",
+      "size": 7690
     },
     {
       "path": "evals/discovery/inquiry-return-01/entry-check.json",
@@ -167,6 +445,16 @@
       "size": 6075
     },
     {
+      "path": "evals/discovery/inquiry-return-01/method-outcome.json",
+      "sha256": "84eb488e564941da88859bff303fb689d5b221aac4d1de9b2ff27674db3e4239",
+      "size": 19201
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/paired-integrity-final.json",
+      "sha256": "008fbe96914d54f9bd599c4ef8c1d770ce6c3fb9ba439f67717a6075e471ea13",
+      "size": 605
+    },
+    {
       "path": "evals/discovery/inquiry-return-01/partial-provenance.md",
       "sha256": "c9c705b47c2a8df130fb82826178de012521e38fe7ed11fcd0119e953df478ee",
       "size": 1741
@@ -180,6 +468,21 @@
       "path": "evals/discovery/inquiry-return-01/provenance-attachment.json",
       "sha256": "74edd8ed6745b5779347e032bf7062c8af83fc7fad088721194f5b9da6f948b3",
       "size": 1527
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/reader-review.json",
+      "sha256": "b643b2b879033b55ee805d29f32ea156e60cd7018504b97336a1e6b4ddcea13c",
+      "size": 3092
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/report-editor-brief.json",
+      "sha256": "894b191e6c68b10afee72cd16d3e2100f9d99f9959c067aaef8e868453f88a22",
+      "size": 1099
+    },
+    {
+      "path": "evals/discovery/inquiry-return-01/timing-coverage.json",
+      "sha256": "c070d7c48910c004e84a40f477e6e4ee43bb55c3aff9ce1b423284a9022ffddb",
+      "size": 402
     }
   ]
 }
