@@ -86,18 +86,23 @@ def verify_report(work: Path, config: dict[str, Any], operation_paths: list[Path
             reports = json.loads(op['stdout']) == discovery.report(session)
         elif attached and args[0] == 'read':
             value = json.loads(op['stdout'])
-            if value['section'] != 'sources':
+            if value['section'] not in {'sources', 'source:' + source['source_hash']}:
                 continue
             packet = discovery._read_envelope(session / 'packets' / (value['sha256'] + '.json'))
             fixed = discovery._read_envelope(session / 'packets' / (config['packet_hash'] + '.json'))
             check_packet(session, packet, fixed)
             if source not in packet['sources']:
                 continue
-            observed = read_packet(session, value['sha256'], 'sources', value['offset'], value['limit'])
+            observed = read_packet(session, value['sha256'], value['section'], value['offset'], value['limit'])
             if value != observed:
                 raise ValueError('公開再読の記録が保存本文と一致しません')
-            seen = covered.setdefault(value['sha256'], set())
+            # AI_NOTE: 単一本文と資料全体では行番号が違うため、同じ版でも再読範囲を混ぜない。
+            seen = covered.setdefault(value['sha256'] + ':' + value['section'], set())
             seen.update(range(value['offset'], value['offset'] + len(value['content'])))
+            if value['section'].startswith('source:'):
+                if set(range(value['total'])) <= seen:
+                    covered['complete'] = {1}
+                continue
             # sourcesは整形JSONの行。対象資料の範囲だけを必須にし、全資料の再読は強制しない。
             lines = json.dumps([{**s, 'content': s['content'].splitlines(keepends=True)} for s in packet['sources']], ensure_ascii=False, indent=2).splitlines(keepends=True)
             start = sum(len(json.dumps({**s, 'content': s['content'].splitlines(keepends=True)}, ensure_ascii=False, indent=2).splitlines()) for s in packet['sources'][:packet['sources'].index(source)]) + 1
@@ -247,11 +252,11 @@ UTCの開始・終了も記録しますが、その時刻差だけで期限切�
 作業先外、親会話、実装、別探索、私的な実行ログは読みません。入力は直接開かず公開入口で読んでください。
 {sys.executable} public.py packet --summary
 {sys.executable} public.py read {envelope['sha256']} SECTION --offset 0 --limit 20
-案はproposal、カードはcards、問いはpacket_metadata、既存資料はsourcesで読めます。資料は保存内容であり、正しさの保証ではありません。
+案はproposal、カードはcards、問いはpacket_metadataで読めます。既存資料は最初にsource_indexで必要な資料の場所を選び、示されたsource:HASHで本文だけを読んでください。資料は保存内容であり、正しさの保証ではありません。
 必要な出典はattach又はattach-fileで保存してください。検索語とURL・確認時刻・実際に見た内容を公開資料へ残し、内部の思考過程は転記しません。
 最後の結論を作業先のanswer.mdにUTF-8で書き、次の形式で資料へ保存します。観察時刻や限界は実際に合わせて追記できます。
 {sys.executable} public.py attach-file answer.md --title '指定した問いへの報告' --kind {kind} --location {location}
-保存後にpacket --summaryを再実行し、新しい識別値のsourcesから自分の報告の全文をreadで読み直してください。offsetとlimitで必要範囲を分けられます。全資料の再読は不要です。
+保存後にpacket --summaryを再実行し、新しい識別値のsource_indexで報告の資料HASHを確認して、そのsource:HASHだけをreadで全文読み直してください。offsetとlimitで必要範囲を分けられます。
 全ての追加資料を保存し終えてから、最後にreportを実行してください。その後に資料を追加保存した場合はreportを再実行してください。
 {sys.executable} public.py report
 正式改訂・評価の提出は行いません。報告を保存できなかった場合は代理提出を求めず、final-messageに未完了の事実を記してください。

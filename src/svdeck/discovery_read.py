@@ -8,6 +8,7 @@ import re
 from typing import Any, NamedTuple
 
 from svdeck.discovery_evidence import JSONDict, digest, read_object
+from svdeck.discovery_sources import validate_source
 
 
 class Section(NamedTuple):
@@ -31,6 +32,29 @@ def _lines(value: object, path: str | None) -> Section:
     # AI_NOTE: 改行を保持して分割するため、ページを順に連結すると元の文章・JSONを復元できる。
     text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, indent=2)
     return Section("lines", text.splitlines(keepends=True), path)
+
+
+def source_index(data: JSONDict) -> list[JSONDict]:
+    # AI_NOTE: 索引には本文を載せず、固定packet内で一意な資料の場所と本文の長さだけを返す。
+    sources = data.get("sources", [])
+    if not isinstance(sources, list):
+        raise ValueError("sourcesは資料の配列である必要があります")
+    result = []
+    seen: set[str] = set()
+    for source in sources:
+        if not isinstance(source, dict):
+            raise ValueError("sourceは資料のオブジェクトである必要があります")
+        key = source.get("source_hash")
+        if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key) or key in seen:
+            raise ValueError("source_hashが不正または重複しています")
+        value = validate_source({k: v for k, v in source.items() if k != "source_hash"})
+        if digest(value) != key:
+            raise ValueError("source_hashと固定資料の内容が一致しません")
+        seen.add(key)
+        result.append({k: source[k] for k in ("source_hash", "title", "kind", "location", "observed_at", "limitations")}
+                      | {"line_count": len(value["content"].splitlines(keepends=True)),
+                         "char_count": len(value["content"]), "section": "source:" + key})
+    return result
 
 
 def _sections(data: JSONDict) -> dict[str, Section]:
@@ -75,6 +99,8 @@ def _sections(data: JSONDict) -> dict[str, Section]:
 def packet_summary(session: Path, packet_hash: str) -> JSONDict:
     # AI_NOTE: 概要にも引き継ぎ対象を載せ、通常の出力は変えず同じ全文資料を参照させる。
     data = _load_packet(session, packet_hash)
+    sections = _sections(data)
+    sections["source_index"] = Section("sources", source_index(data), "data.sources" if "sources" in data else None)
     result = {
         "sha256": packet_hash,
         "packet_path": str((session / "packets" / f"{packet_hash}.json").resolve()),
@@ -87,10 +113,12 @@ def packet_summary(session: Path, packet_hash: str) -> JSONDict:
         "source_usage": data.get("source_usage"),
         "sections": [{"section": name, "unit": section.unit, "total": len(section.content),
                       "full_packet_path": section.full_packet_path}
-                     for name, section in _sections(data).items()],
+                     for name, section in sections.items()],
         "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。"
                    "各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。"
-                   "offsetは0始まりです。回答のpacket_hashには上のsha256を使います。",
+                   "offsetは0始まりです。回答のpacket_hashには上のsha256を使います。"
+                   "資料は最初にsource_indexで必要な資料の場所を選び、示されたsource:HASHで本文だけを読めます。"
+                   "報告の再読は、その報告のsource:HASHだけを全文読んでください。",
     }
     if "finish_from_source" in data:
         result["finish_from_source"] = data["finish_from_source"]
@@ -102,10 +130,24 @@ def read_packet(session: Path, packet_hash: str, section: str, offset: int = 0, 
     if type(offset) is not int or offset < 0 or type(limit) is not int or limit <= 0:
         raise ValueError("offsetは0以上、limitは1以上の整数を指定してください")
     data = _load_packet(session, packet_hash)
-    sections = _sections(data)
-    if section not in sections:
-        raise ValueError(f"未知の区分です: {section}。利用可能: {', '.join(sections)}")
-    selected = sections[section]
+    # AI_NOTE: 索引・単一本文ではsources全体の整形JSONを作らず、必要な出力だけをページ化する。
+    if section == "source_index":
+        selected = Section("sources", source_index(data), "data.sources" if "sources" in data else None)
+    elif section.startswith("source:"):
+        key = section.removeprefix("source:")
+        if not re.fullmatch(r"[0-9a-f]{64}", key):
+            raise ValueError("source:HASHには資料のsha256を指定してください")
+        items = source_index(data)
+        matches = [i for i, item in enumerate(items) if item["source_hash"] == key]
+        if len(matches) != 1:
+            raise ValueError("指定した資料が固定packet内に一意に存在しません")
+        index = matches[0]
+        selected = _lines(data["sources"][index]["content"], f"data.sources[{index}].content")
+    else:
+        sections = _sections(data)
+        if section not in sections:
+            raise ValueError(f"未知の区分です: {section}。利用可能: {', '.join(sections)}, source_index, source:HASH")
+        selected = sections[section]
     total = len(selected.content)
     if offset > total:
         raise ValueError(f"offsetが総数{total}を超えています")

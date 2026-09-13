@@ -1,0 +1,42 @@
+{
+  "started_at": "2026-09-13T21:50:43Z",
+  "ended_at": "2026-09-13T21:57:28.968723+00:00",
+  "baseline": "05f8de6",
+  "branch": "codex/source-specific-read",
+  "workspace": "/tmp/sv-source-specific-read-worktree",
+  "verdict": "PASS",
+  "tests": {
+    "tests": "171",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "80.654"
+  },
+  "new_tests": 23,
+  "regression_tests": 148,
+  "mypy": "Success: no issues found in 3 source files",
+  "observed": [
+    "source_index omits bodies and returns metadata, line_count, char_count and the section name.",
+    "Specific source reads preserve line endings and reject unknown, duplicate or invalid source identities.",
+    "Legacy sources output and packet contents remain unchanged.",
+    "Public inquiry and inspection: attach, source:HASH full reread, report, finish, post-stop evidence verification.",
+    "Wrong source, partial read, pre-attachment read, absent source in old packet and mixed coordinate ranges are rejected."
+  ],
+  "limits": [
+    "Synthetic data/processes only. No real AI, real database or private Codex log access.",
+    "This adds selective reading. It does not establish the cause of previous incomplete runs or demonstrate faster completion."
+  ],
+  "fixture_sources": [
+    "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_inquiry_temp.py",
+    "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_run_temp.py",
+    "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_journal_temp.py",
+    "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_explicit_finish_current_temp.py",
+    "evals/discovery/inquiry-explicit-finish-01/implementation/test_inquiry_explicit_finish_temp.py"
+  ],
+  "pytest_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:tests:tests/temp /Users/miyauchitsubasa/.pyenv/versions/3.10.12/bin/python -m pytest -q tests/temp/test_source_specific_read_temp.py tests/test_discovery_read.py tests/test_discovery_sources.py tests/temp/test_discovery_inquiry_temp.py tests/temp/test_inquiry_explicit_finish_temp.py",
+  "source_sha256": {
+    "src/svdeck/discovery_read.py": "6a7518f37c976f023b7e23621f40c9c4de449606d8ab333aa6c504169079e569",
+    "src/svdeck/discovery_inquiry.py": "7c5be8b0cf232163cc5e9e8ffe7fadbd3e8a9ea641a5eb6a0a5639bd4d7e8577",
+    "src/svdeck/discovery_run.py": "c2d167353beb3c1cf96d17de3df804f67dd3a7276bc49edd519dff96273a5a60"
+  }
+}

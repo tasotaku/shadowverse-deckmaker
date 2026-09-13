@@ -104,6 +104,7 @@ def public_operation(work: Path, argv: list[str] | None = None) -> int:
         try:
             if not args or args in (['--help'], ['help']):
                 print('Use: public.py packet [--summary] | read HASH SECTION [--offset N --limit N] | report')
+                print('資料は最初にsource_indexで場所を選び、source:HASHで本文だけを読みます。報告再読はそのsource:HASHだけを全文読んでください。')
                 print('For develop: submit FILE | attach FILE | attach-file FILE OPTIONS | compare BEFORE AFTER')
                 print('For develop: query --question TEXT --tag TAG (one each; read-only; save evidence with attach).')
                 print('For review: review FILE. For inquiry/inspect: attach FILE | attach-file FILE OPTIONS.')
@@ -431,6 +432,7 @@ input-summary.jsonには今回の資料識別値と回答形式があります�
 {sys.executable} public.py --help
 {sys.executable} public.py packet --summary
 {sys.executable} public.py read {envelope['sha256']} SECTION --offset 0 --limit 20
+資料は最初にsource_indexで必要な資料の場所を選び、示されたsource:HASHで本文だけを読んでください。
 自分の作業先にproposal.json又はreview.jsonを保存して公開submit又はreviewで正式提出し、reportで保存内容を確認してください。今回の正式提出は1件までです。
 追加調査をした考案担当は必要な資料をattach又はattach-fileで保存し、packetを再取得してから正式提出してください。評価担当は旧採否を探さず、今回の固定資料から評価します。
 カード・既存案・評価・入力設定を書き換えず、足りない情報を推測で埋めません。提出できなければその事実をfinal-messageに残してください。
