@@ -1,0 +1,22 @@
+{
+  "id": "inquiry-terminal-journal-01",
+  "registered_at": "2026-09-13T09:47:48.009519+00:00",
+  "implementation_started_at": "2026-09-13T09:46:18+00:00",
+  "registration_note": "依頼・実装着手後の記録。開始前に登録した比較試験とは扱わない。",
+  "base_commit": "96c593d15ecaedb3c68cadedb27f377361a77334",
+  "basis": [
+    "remaining-resource-inquiry-01",
+    "remaining-resource-inspection-01"
+  ],
+  "purpose": "担当終了後の提出確認結果を自動で台帳へ反映する実行補助",
+  "criteria": [
+    "提出確認まで含む全体工程の実開始・終了と成否を自動記録し、担当の正常終了と区別する。",
+    "任意の事前登録工程だけを使う。旧引数・旧呼出し・担当工程の挙動を保持する。",
+    "自分の終端反映が成立し、他に実行/待機工程がない時だけ全体を確認待ちへ。手動訂正・終了済み試験・他の工程を上書きしない。",
+    "案の採否、結果の評価、元実行の成否を自動変更しない。同期失敗も元の実行結果とともに残す。",
+    "機能・型検査と本体の公開CLI利用を確認し、既存の進捗画面の個別データで時刻・状態を再確認する。人工入力を実AIの有用性証明に数えない。"
+  ],
+  "implementation_budget_minutes": 15,
+  "real_AI": false,
+  "adoption": "unassessed"
+}

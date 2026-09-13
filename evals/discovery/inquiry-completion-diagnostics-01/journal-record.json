@@ -1,9 +1,9 @@
 {
   "id": "inquiry-completion-diagnostics-01",
-  "revision": 3,
-  "saved_at": "2026-09-13T09:27:15.068129+00:00",
+  "revision": 4,
+  "saved_at": "2026-09-13T09:43:43.925515+00:00",
   "actor": "codex-root",
-  "reason": "既存画面の個別APIで3件を確認。初回失敗XMLは空白も変えず可逆圧縮で保存",
+  "reason": "記録更新工程の終端と開始時計の欠測、44分11秒の間隔を明記",
   "record": {
     "id": "inquiry-completion-diagnostics-01",
     "title": "提出確認のどこで止まったかを分かるようにする",
@@ -51,6 +51,15 @@
         "started_at": "2026-09-13T04:12:02.796707+00:00",
         "ended_at": "2026-09-13T04:12:04.800468+00:00",
         "note": "調査・別照合の人工入力2件が合格。",
+        "budget_minutes": null
+      },
+      {
+        "id": "record-results",
+        "title": "結果・採否・工程時刻を記録へ反映",
+        "status": "completed",
+        "started_at": null,
+        "ended_at": "2026-09-13T09:25:32.420343+00:00",
+        "note": "開始時計は未記録。別照合の原因再検査17:41:21から記録更新18:25:32まで44分11秒空き、内訳・能動作業時間は不明。実装担当・照合担当の時間と分ける。",
         "budget_minutes": null
       }
     ],

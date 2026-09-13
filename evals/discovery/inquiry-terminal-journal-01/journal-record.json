@@ -1,0 +1,56 @@
+{
+  "id": "inquiry-terminal-journal-01",
+  "revision": 1,
+  "saved_at": "2026-09-13T09:47:48.022045+00:00",
+  "actor": "codex-root",
+  "reason": "観測済みの進捗状態の不足を実行補助として限定実装・検査",
+  "record": {
+    "id": "inquiry-terminal-journal-01",
+    "title": "提出確認まで含めて進捗を自動記録する",
+    "category": "infrastructure",
+    "status": "running",
+    "summary": "18:46:18から限定実装中。担当終了後の提出確認で止まっても実行中表示が残る問題を直す。採用未判定。",
+    "method": "担当終了後の提出確認結果を自動で台帳へ反映する実行補助",
+    "procedure": "条件記録→隔離実装→型・機能検査→本体の公開操作→既存画面で確認",
+    "inputs": "提出確認で失敗し、担当工程は終了済みだが全体はrunningのままだった実行2件。",
+    "criteria": "提出確認まで含む全体工程の実開始・終了と成否を自動記録し、担当の正常終了と区別する。\n任意の事前登録工程だけを使う。旧引数・旧呼出し・担当工程の挙動を保持する。\n自分の終端反映が成立し、他に実行/待機工程がない時だけ全体を確認待ちへ。手動訂正・終了済み試験・他の工程を上書きしない。\n案の採否、結果の評価、元実行の成否を自動変更しない。同期失敗も元の実行結果とともに残す。\n機能・型検査と本体の公開CLI利用を確認し、既存の進捗画面の個別データで時刻・状態を再確認する。人工入力を実AIの有用性証明に数えない。",
+    "result": {
+      "outcome": "unassessed",
+      "summary": "未判定",
+      "limitations": "未記録"
+    },
+    "decision": {
+      "status": "unassessed",
+      "reason": "未判定"
+    },
+    "started_at": "2026-09-13T09:46:18+00:00",
+    "ended_at": null,
+    "stages": [
+      {
+        "id": "implementation",
+        "title": "全体工程の状態と時刻を台帳へ反映する限定実装",
+        "status": "running",
+        "started_at": "2026-09-13T09:46:18+00:00",
+        "ended_at": null,
+        "note": "専用の作業場所で実装。結果・採否不変、競合と他担当の実行を保持。",
+        "budget_minutes": 15
+      }
+    ],
+    "evidence_paths": [
+      "evals/discovery/inquiry-terminal-journal-01/README.md",
+      "evals/discovery/inquiry-terminal-journal-01/protocol.json"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evals/discovery/inquiry-terminal-journal-01/README.md",
+      "sha256": "404cb9b2b9bacde013077e5074fa81432f5f12bd26f68726b8fb3046fcd8bd58",
+      "size": 1246
+    },
+    {
+      "path": "evals/discovery/inquiry-terminal-journal-01/protocol.json",
+      "sha256": "8f472e93fa0d8374713ecc0f3d9fd01256c907332206e3100ad3506f1d4371bf",
+      "size": 1418
+    }
+  ]
+}
