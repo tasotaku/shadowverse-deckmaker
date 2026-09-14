@@ -109,7 +109,10 @@ class BattleHandler(BaseHTTPRequestHandler):
                     self.send_json(snapshot(battle))
                 else:
                     result = snapshot(battle, cursor)
-                    result["record"] = record
+                    # AI_NOTE: 表示中の処理履歴は再計算結果を使い、読み込んだ説明文を正解とみなさない。
+                    result["record"] = {**record, "frames": [
+                        *result["record"].get("frames", []),
+                        *record.get("frames", [])[cursor:]]}
                     self.send_json(result)
             elif path == "/api/test":
                 if not isinstance(body.get("case"), dict):
