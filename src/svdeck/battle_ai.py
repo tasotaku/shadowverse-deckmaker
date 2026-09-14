@@ -11,6 +11,7 @@ import math
 import random
 import time
 from dataclasses import dataclass
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +22,7 @@ Json = dict[str, Any]
 BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
-POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy')
+POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn')
 POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
@@ -53,12 +54,14 @@ class SearchBattle(Battle):
         return super().random_index(length)
 
 
-def sample_world(observation: Json, cards: dict[str, Json], seed: int) -> SearchBattle:
+def sample_world(observation: Json, cards: dict[str, Json], seed: int, use_known: bool = True) -> SearchBattle:
     # AI_NOTE: 本物の山札/相手手札/乱数は受け取れない境界。枚数を保持して山札切れの誤判定を防ぐ。
     state = copy.deepcopy(observation)
     state.pop('legal_actions', None)
-    if 'rng' in state or 'next_id' in state:
+    if 'rng' in state or 'next_id' in state or 'deck_origins' in state:
         raise ValueError('AIには全状態ではなくobservationを渡してください')
+    knowledge = state.pop('deck_knowledge', None)
+    own_originals = state.pop('own_hand_originals', {})
     actor = state['active_player']
     generator = random.Random(seed)
     state['rng'] = generator.randrange(1, 2**32)
@@ -72,6 +75,32 @@ def sample_world(observation: Json, cards: dict[str, Json], seed: int) -> Search
             raise ValueError('AI観測に山札の内容を含めないでください')
         if who != actor and (not isinstance(player['hand'], dict) or set(player['hand']) != {'count'}):
             raise ValueError('AI観測に相手の手札を含めないでください')
+        if use_known and knowledge is not None:
+            # AI_NOTE: 公開した元カードを一度だけ除外し、残りから非復元抽出する。生成札と元札を混同しない。
+            info = knowledge[who]
+            remaining = Counter(info['deck_list'])
+            remaining.subtract(info['revealed'].values())
+            if who == actor:
+                remaining.subtract(e['card_id'] for e in player['hand']
+                                   if e['id'] in own_originals and own_originals[e['id']] not in info['revealed'])
+            if any(count < 0 for count in remaining.values()) or any(cid not in cards for cid in remaining):
+                raise ValueError('公開デッキと既知カードの枚数が一致しません')
+            pool = sorted(remaining.elements())
+            generator.shuffle(pool)
+            deck_count = integer(player['deck']['count'], 'deck.count', 0, 200)
+            if who != actor:
+                hand_count = integer(player['hand']['count'], 'hand.count', 0, 9)
+                known = copy.deepcopy(info['known_hand'])
+                hidden_count = hand_count-len(known)
+                if hidden_count < 0 or len(pool) != hidden_count+deck_count:
+                    raise ValueError('公開デッキから非公開領域の枚数を復元できません')
+                player['hand'] = known+[{'id':f'{prefix}{who}:hand:{i}','card_id':cid}
+                                        for i,cid in enumerate(pool[:hidden_count])]
+                pool = pool[hidden_count:]
+            if len(pool) != deck_count:
+                raise ValueError('公開デッキから山札の枚数を復元できません')
+            player['deck'] = [{'id':f'{prefix}{who}:deck:{i}','card_id':cid} for i,cid in enumerate(pool)]
+            continue
         visible = player['board'] + (player['hand'] if who == actor else [])
         classes = {cards[e['card_id']].get('class_name') for e in visible} - {None, 'ニュートラル'}
         pool = [cid for cid, card in cards.items() if not card.get('synthetic') and not card.get('token')
@@ -181,8 +210,8 @@ class Player:
             raise ValueError(f'未対応のAI方式: {policy}')
         self.cards = cards
         self.policy = policy
-        self.algorithm_version = 2 if policy == 'search' else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1)
-        if self.algorithm_version not in (1,2):
+        self.algorithm_version = 3 if policy == 'search' else (2 if policy=='turn' else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1))
+        if self.algorithm_version not in (1,2,3):
             raise ValueError('未対応のAI判断バージョンです')
         self.weights = dict(weights if weights is not None else load_weights() if policy == 'trained' else BASE_WEIGHTS)
         if set(self.weights) != set(BASE_WEIGHTS) or any(not math.isfinite(v) for v in self.weights.values()):
@@ -205,7 +234,7 @@ class Player:
                     'score': None, 'nodes': 0, 'depth': 1, 'uncertain': False, 'plan': [action], 'candidates': [],
                     'elapsed_ms': (time.perf_counter()-started)*1000}
         owner = observation['active_player']
-        worlds = [sample_world(observation,self.cards,self.seed+i*7919) for i in range(2)]
+        worlds = [sample_world(observation,self.cards,self.seed+i*7919,use_known=self.algorithm_version>=3) for i in range(2)]
         frontier = [Node(worlds, [], 0, False, [])]
         results: list[Node] = []
         seen: set[str] = set()
@@ -225,7 +254,7 @@ class Player:
                     children = [world.branch(action) for world in parent.worlds]
                     nodes += 1
                     uncertain = any(child.uncertain for child in children)
-                    scoring = turn_value if self.algorithm_version == 2 else evaluate
+                    scoring = turn_value if self.algorithm_version >= 2 else evaluate
                     scores = [scoring(child,owner,self.weights) for child in children]
                     score = sum(scores)/len(scores)
                     # Uncertain outcomes cannot be labelled a proven win; replan after seeing the result.
@@ -253,8 +282,15 @@ class Player:
                 limited = True
         if not results:
             raise ValueError('観測の合法手と探索状態が一致しません')
+        if self.algorithm_version >= 3 and observation.get('deck_knowledge') is not None:
+            from .battle_response import choose_response
+            return choose_response(self,observation,results,nodes,started,limited)
         best = max(results,key=lambda item:item.score)
-        return self.report(best,results,nodes,started,False,limited,observation)
+        report = self.report(best,results,nodes,started,False,limited,observation)
+        if self.algorithm_version >= 3:
+            report['reason'] += '。デッキ情報のない条件指定局面のため相手手札の返しは未探索'
+            report['response_search'] = {'available':False,'reason':'known deck lists unavailable'}
+        return report
 
     def report(self, best: Node, results: list[Node], nodes: int, started: float, win: bool, limited: bool, before: Json) -> Json:
         # AI_NOTE: 評価値を勝率と偽らず、未探索の手や未知のドローがあることを記録する。
@@ -264,7 +300,7 @@ class Player:
             key = json.dumps(action,sort_keys=True)
             if key not in candidates or item.score > candidates[key]['score']:
                 candidates[key] = {'action':action,'score':round(item.score,3)}
-        reason = '公開情報だけで勝ち切れる手順を発見' if win else ('ターン終了後の盤面・相手の攻撃と回復・次に使える手札を比較' if self.algorithm_version==2 else '盤面・体力・残り資源と、相手盤面からの危険を比較')
+        reason = '公開情報だけで勝ち切れる手順を発見' if win else ('ターン終了後の盤面・相手の攻撃と回復・次に使える手札を比較' if self.algorithm_version>=2 else '盤面・体力・残り資源と、相手盤面からの危険を比較')
         changes = []
         owner = before['active_player']
         for who,label in ((owner,'自分'),(1-owner,'相手')):
