@@ -28,7 +28,7 @@
 <p class="combat-scope">現在の攻撃力・体力と、進化・超進化の基本ルールで調べます。カード使用・キーワード・固有能力・アミュレット・リーダー効果は除きます。</p>
 <div class="combat-toolbar"><label for="combat-mode">調べる操作</label><select id="combat-mode"><option value="attack">攻撃のみ</option><option value="evolve">進化まで</option><option value="super" selected>超進化まで</option></select><button id="combat-run" class="primary">調べる</button><span id="combat-source"></span></div>
 <p id="combat-status" role="status" aria-live="polite">「調べる」で、表示中の盤面から候補を作ります。</p>
-<p class="hint">相手の顔体力・各フォロワーの数値・進化の残り回数で終了状態を比べます。以後のカード使用まで含めた優劣ではありません。各候補から一手ずつ再生できます。</p>
+<p class="hint">顔体力・各フォロワーの数値・進化の残り回数で比較します。♥ は現在/最大体力。以後のカード使用は対象外で、候補番号は強さの順位ではありません。</p>
 <div id="combat-candidates" class="combat-candidates" aria-label="終了状態の候補"></div>
 <div id="combat-pages" class="combat-pages" hidden><button id="combat-prev">前の30件</button><span id="combat-page"></span><button id="combat-next">次の30件</button></div>
 </dialog>

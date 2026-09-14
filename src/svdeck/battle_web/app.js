@@ -320,7 +320,7 @@ function combatBoard(cards) {
   if (!cards.length) row.append(node('span','hint','なし'));
   for (const card of cards) {
     const item = node('span','combat-unit');
-    item.append(node('span','',`${card.name || card.id} [${card.id}]`),node('b','attack',`⚔ ${card.attack}`),node('b','card-health',`♥ ${card.health}`));
+    item.append(node('span','',`${card.name || card.id} [${card.id}]`),node('b','attack',`⚔ ${card.attack}`),node('b','card-health',`♥ ${card.health}/${card.max_health ?? card.health}`));
     if (card.evolved) item.append(node('span','keywords',card.evolved === 2 ? '超進化' : '進化'));
     row.append(item);
   }
