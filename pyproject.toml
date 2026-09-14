@@ -5,11 +5,18 @@ description = "Shadowverse: Worlds Beyond デッキ制作支援システムの�
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+dev = ["pytest>=8", "mypy>=1"]
+
+[project.scripts]
+svdeck-battle = "svdeck.battle:main"
+svdeck-battle-web = "svdeck.battle_server:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-svdeck = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/experiment_catalog.json"]
+svdeck = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/experiment_catalog.json", "data/battle_cases.json", "data/battle_supported.json", "battle_web/*.html", "battle_web/*.css", "battle_web/*.js"]
 
 [tool.mypy]
 strict = true

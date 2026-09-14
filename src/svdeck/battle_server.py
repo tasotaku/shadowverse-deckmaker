@@ -68,6 +68,9 @@ class BattleHandler(BaseHTTPRequestHandler):
             self.send_json({"state": default_state(), "cards": catalog(), "cases": load_cases(),
                             "presets": presets, "preset_error": preset_error})
             return
+        if path == "/favicon.ico":
+            self.send_data(b"", status=204)
+            return
         assets = {"/": ("index.html", "text/html"),
                   "/app.js": ("app.js", "text/javascript"),
                   "/style.css": ("style.css", "text/css")}
@@ -132,7 +135,7 @@ class BattleHandler(BaseHTTPRequestHandler):
             self.send_json({"error": str(error)}, 400)
 
 
-def create_server(host: str = "127.0.0.1", port: int = 8766) -> ThreadingHTTPServer:
+def create_server(host: str = "127.0.0.1", port: int = 8767) -> ThreadingHTTPServer:
     # AI_NOTE: 対戦状態を外部へ公開しないようループバック接続だけに制限する。
     if host not in {"127.0.0.1", "localhost"}:
         raise ValueError("host must be 127.0.0.1 or localhost")
@@ -142,7 +145,7 @@ def create_server(host: str = "127.0.0.1", port: int = 8766) -> ThreadingHTTPSer
 def main() -> None:
     # AI_NOTE: Ctrl+Cで待受けを閉じ、対戦記録の保存はブラウザ側に任せる。
     parser = argparse.ArgumentParser(description="AI対戦・コンボ検証画面")
-    parser.add_argument("--port", type=int, default=8766)
+    parser.add_argument("--port", type=int, default=8767)
     args = parser.parse_args()
     server = create_server(port=args.port)
     print(f"対戦検証: http://127.0.0.1:{server.server_port}/", flush=True)
