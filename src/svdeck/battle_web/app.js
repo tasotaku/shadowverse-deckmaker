@@ -67,7 +67,15 @@ function entityName(id) {
 function actionLabel(action) {
   // AI_NOTE: 操作対象を日本語で明示し、複数の合法手を区別できるようにする。
   const names = {play:'使用', attack:'攻撃', evolve:'進化', super_evolve:'超進化', end_turn:'ターン終了', extra_pp:'追加PPを使う'};
-  return `${names[action.type] || action.type}${action.card || action.source ? '：' + entityName(action.card || action.source) : ''}${action.target ? ' → ' + entityName(action.target) : ''}`;
+  const forms = {accelerate:'アクセラレート',crystallize:'結晶'};
+  const form = forms[action.form] ? ` · ${forms[action.form]}` : '';
+  const mode = action.mode == null ? '' : ` · モード${Number(action.mode) + 1}`;
+  const choiceNames = {hand:'手札',enemy:'相手',ally:'自分の場',discard:'捨てる手札'};
+  const choices = Object.entries(action.choices || {}).map(([key,value]) => {
+    const cards = (Array.isArray(value) ? value : [value]).map(entityName).join(' ＋ ');
+    return ` · ${choiceNames[key] || '選択'}：${cards}`;
+  }).join('');
+  return `${names[action.type] || action.type}${action.card || action.source ? '：' + entityName(action.card || action.source) : ''}${form}${mode}${action.target ? ' → ' + entityName(action.target) : ''}${choices}`;
 }
 function controls() {
   // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
@@ -99,6 +107,8 @@ function cardNode(card, zone) {
   const text = definition.text || '';
   if (text) element.append(node('div','card-text',text));
   if ((card.keywords || []).length) element.append(node('div','keywords',card.keywords.join(' · ')));
+  if (['crystallize','crystalline'].includes(card.form)) element.append(node('div','keywords','結晶'));
+  if (card.lost_last_words) element.append(node('div','keywords','ラストワード消失'));
   if (card.evolved) element.append(node('div','keywords',card.evolved === 2 ? '超進化' : '進化'));
   if (definition.kind === 'follower' || card.max_health > 0) {
     const stats = node('div','card-stats');
@@ -123,7 +133,18 @@ function renderBoard() {
     const head = node('div','player-head');
     head.dataset.entity = `leader:${index}`;
     head.append(node('span','player-name',`PLAYER ${index + 1}${index === view.state.active_player ? ' · 操作中' : ''}`),node('span','health',`♥ ${player.health}`),node('span','stat',`PP ${player.pp}/${player.max_pp}`),node('span','stat',`進化 ${player.ep} / 超進化 ${player.sep}`),node('span','stat',`山札 ${player.deck.length} · 墓場 ${player.graveyard}`));
+    if (player.damage_shield) head.append(node('span','player-badge','免疫'));
     section.append(head);
+    if ((player.crests || []).length) {
+      const crests = node('div','crests');
+      crests.append(node('span','crest-label','クレスト'));
+      for (const crest of player.crests) {
+        const badge = node('span','player-badge',crest.name || '名前なし');
+        badge.title = [crest.name,...(crest.keywords || [])].filter(Boolean).join(' · ');
+        crests.append(badge);
+      }
+      section.append(crests);
+    }
     for (const zone of index === 1 ? ['hand','board'] : ['board','hand']) {
       section.append(node('div','zone-label',zone === 'hand' ? `手札 ${player.hand.length}枚` : `盤面 ${player.board.length}/5`));
       const cards = node('div','cards');
