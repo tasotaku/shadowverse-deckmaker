@@ -276,6 +276,8 @@ def extended_effect(battle: Battle, effect: Json, owner: int, source: Json, chos
         found = battle.find(source['id'])
         if found:
             found[2]['cost'] = max(0, found[2]['cost']+amount)
+            if found[1] == 'hand':
+                battle.update_known_cost(found[0], found[2])
     elif op == 'leader_max':
         p['max_health'] = amount
         p['health'] = min(p['health'], amount)

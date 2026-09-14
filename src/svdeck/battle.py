@@ -257,8 +257,10 @@ class Battle:
                     raise ValueError('公開された手札は配列です')
                 known_ids = set()
                 for item in entry['known_hand']:
-                    if not isinstance(item, dict) or set(item) != {'id', 'card_id'} or not isinstance(item['id'], str) or not item['id'] or item['card_id'] not in self.cards or item['id'] in known_ids:
+                    if not isinstance(item, dict) or not {'id', 'card_id'} <= set(item) or set(item) - {'id', 'card_id', 'cost'} or not isinstance(item['id'], str) or not item['id'] or item['card_id'] not in self.cards or item['id'] in known_ids:
                         raise ValueError('公開された手札の形式が不正です')
+                    if 'cost' in item:
+                        integer(item['cost'], 'known hand cost')
                     known_ids.add(item['id'])
             self.state['deck_knowledge'] = copy.deepcopy(knowledge)
         if 'deck_origins' in raw:
@@ -290,6 +292,16 @@ class Battle:
         entry['known_hand'] = [item for item in entry['known_hand'] if item['id'] != entity['id']]
         if in_hand:
             entry['known_hand'].append({'id': entity['id'], 'card_id': entity['card_id']})
+            if entity['cost'] != self.cards[entity['card_id']]['cost']:
+                self.update_known_cost(owner, entity)
+
+    def update_known_cost(self, owner: int, entity: Json) -> None:
+        # AI_NOTE: 公開済みの手札だけ更新し、コストが変わった未知の手札を新たに公開しない。
+        if 'deck_knowledge' not in self.state:
+            return
+        for item in self.state['deck_knowledge'][owner]['known_hand']:
+            if item['id'] == entity['id']:
+                item['cost'] = entity['cost']
 
     def emit(self, kind: str, message: str, **values: Any) -> None:
         # AI_NOTE: 数値だけでなく原因と対象を保存し、画面から誤処理を追えるようにする。
@@ -673,6 +685,7 @@ class Battle:
                 for hand_card in p['hand']:
                     if self.cards[hand_card['card_id']].get('spellboost'):
                         hand_card['cost'] = max(0, hand_card['cost']-1)
+                        self.update_known_cost(owner, hand_card)
                         self.emit('spellboost', f'{hand_card["name"]}: コスト-1', target=hand_card['id'], cost=hand_card['cost'])
         elif kind in {'evolve', 'super_evolve'}:
             entity = next(e for e in p['board'] if e['id'] == action['source'])

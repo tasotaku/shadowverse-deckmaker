@@ -143,3 +143,68 @@ def test_old_state_stays_identical_without_opt_in() -> None:
 def test_invalid_public_metadata_rejected(invalid: Any) -> None:
     with pytest.raises(ValueError):
         Battle({'deck_knowledge': invalid}, CARDS)
+
+
+@pytest.mark.parametrize('generated', [False, True], ids=['bounced-original', 'generated-copy'])
+def test_public_garo_discount_keeps_cost_and_original_accounting(generated: bool) -> None:
+    # AI_NOTE: 公開済みガロダートの自分ターン終了時の軽減は、相手にも分かる手札情報。
+    battle = Battle({'players': [
+        {'health': 12, 'hand': [{'id': 'original-garo', 'card_id': '10954120'}], 'deck': ['test-body'] * 39},
+        {'deck': ['test-body'] * 40},
+    ]}, record=False)
+    battle.enable_deck_knowledge()
+    p = battle.state['players'][0]
+    if generated:
+        battle.resolve([{'op': 'generate', 'card_id': '10954120'}], 0, {'id': 'effect', 'name': 'Effect'})
+    else:
+        original = p['hand'].pop(0)
+        rules.summon(battle, 0, original)
+        battle.remove(original['id'], 'bounce')
+    public_id = p['hand'][-1]['id']
+    before = battle.observation(1)
+    battle.step({'type': 'end_turn'})
+    view = battle.observation(1)
+    knowledge = view['deck_knowledge'][0]
+    assert knowledge['known_hand'] == [{'id': public_id, 'card_id': '10954120', 'cost': 7}]
+    assert 'cost' not in before['deck_knowledge'][0]['known_hand'][0]
+    assert knowledge['revealed'] == ({} if generated else {'original-garo': '10954120'})
+    assert Battle(battle.state, battle.cards).observation(1) == view
+    # Returning the same physical card again resets its cost and still consumes no extra original.
+    returned = next(e for e in p['hand'] if e['id'] == public_id)
+    p['hand'].remove(returned)
+    rules.summon(battle, 0, returned)
+    battle.remove(returned['id'], 'bounce')
+    public_id = p['hand'][-1]['id']
+    after = battle.observation(1)['deck_knowledge'][0]
+    assert after['known_hand'] == [{'id': public_id, 'card_id': '10954120'}]
+    assert after['revealed'] == knowledge['revealed']
+    assert p['hand'][-1]['cost'] == 8
+
+
+def test_spellboost_only_updates_already_known_cards() -> None:
+    cards = CARDS | {
+        'boost': {'name': 'Boost', 'kind': 'follower', 'cost': 2, 'attack': 1, 'health': 1, 'spellboost': True},
+        'spell': {'name': 'Spell', 'kind': 'spell', 'cost': 0},
+    }
+    battle = Battle({'players': [
+        {'hand': [{'id': 'hidden-boost', 'card_id': 'boost'}, {'id': 'spell', 'card_id': 'spell'}], 'deck': ['body'] * 38},
+        {'deck': ['body'] * 40},
+    ]}, cards, record=False)
+    battle.enable_deck_knowledge()
+    battle.resolve([{'op': 'generate', 'card_id': 'boost'}], 0, {'id': 'effect', 'name': 'Effect'})
+    public_id = battle.state['players'][0]['hand'][-1]['id']
+    battle.step({'type': 'play', 'card': 'spell'})
+    view = battle.observation(1)
+    assert view['deck_knowledge'][0]['known_hand'] == [{'id': public_id, 'card_id': 'boost', 'cost': 1}]
+    assert view['deck_knowledge'][0]['revealed'] == {'spell': 'spell'}
+    assert 'hidden-boost' not in json.dumps(view)
+    assert all(e['cost'] == 1 for e in battle.state['players'][0]['hand'])
+
+
+@pytest.mark.parametrize('cost', [-1, True, 1.5])
+def test_invalid_known_hand_cost_rejected(cost: Any) -> None:
+    battle = initial()
+    state = copy.deepcopy(battle.state)
+    state['deck_knowledge'][0]['known_hand'] = [{'id': 'own-card', 'card_id': 'body', 'cost': cost}]
+    with pytest.raises(ValueError, match='known hand cost'):
+        Battle(state, CARDS)
