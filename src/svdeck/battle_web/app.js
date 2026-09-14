@@ -2,7 +2,7 @@
 // AI_NOTE: 盤面の結果と合法手は常に対戦エンジンから受け取り、画面にはルールを複製しない。
 const $ = id => document.getElementById(id);
 const STORE = 'svdeck-battle-v1';
-let bootstrap, view, selectedCase = null, busy = false, running = false, selectedSource = null;
+let bootstrap, view, selectedCase = null, busy = false, running = false, selectedSource = null, builderDraft = null;
 
 function node(tag, cls, text) {
   // AI_NOTE: カード名・入力内容をHTMLとして解釈せず、保存記録の読み込みも安全に表示する。
@@ -67,6 +67,7 @@ function controls() {
   // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
   for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub']) $(id).disabled = busy || running;
   $('auto').disabled = busy && !running;
+  for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = busy || running;
   if (!view) return;
   $('act').disabled ||= !view.legal_actions.some(action => !selectedSource || (action.card || action.source) === selectedSource);
   $('case-step').disabled ||= !selectedCase || view.cursor >= (selectedCase.actions || []).length || JSON.stringify(view.record.actions.slice(0,view.cursor)) !== JSON.stringify(selectedCase.actions.slice(0,view.cursor));
@@ -177,7 +178,7 @@ function render() {
     if (typeof event === 'string') box.append(node('strong','',`${index + 1}. ${event}`));
     else {
       box.append(node('strong','',`${index + 1}. ${event.reason || event.message || event.type || '状態の変化'}`));
-      box.append(node('pre','',JSON.stringify(event,null,2)));
+      const detail = node('details'); detail.append(node('summary','','対象・数値の詳細'),node('pre','',JSON.stringify(event,null,2))); box.append(detail);
     }
     $('events').append(box);
   });
@@ -253,6 +254,7 @@ async function autoLoop() {
 async function init() {
   // AI_NOTE: 保存記録を検証して復元し、壊れた記録は消さず理由を表示する。
   bootstrap = await api('bootstrap');
+  setupBuilder();
   $('scenario').append(new Option('5ダメージを試す · 自由操作',''));
   bootstrap.cases.forEach((testCase,index) => $('scenario').append(new Option(testCase.name || testCase.title || testCase.id || `ケース ${index + 1}`,String(index))));
   let saved = null;
@@ -304,5 +306,96 @@ $('import').onchange = () => guarded(async () => {
   $('case-json').value = JSON.stringify({name:'読み込んだ記録',initial:record.initial,actions:record.actions,expected:{}},null,2);
   $('verdict').textContent = '期待結果なし'; $('test-result').replaceChildren();
   accept(result); $('import').value = ''; notify('記録を開き、操作を再実行しました。');
+});
+function builderCatalog() {
+  // AI_NOTE: 読み込んだ記録に独自定義がある場合も、その定義を維持して局面を編集する。
+  return {...bootstrap.cards,...(view?.record.cards || {})};
+}
+function setupBuilder() {
+  // AI_NOTE: 実カードと検証用を区別し、対応範囲をカード選択時に確認できるようにする。
+  const cards = Object.values(builderCatalog());
+  const real = cards.filter(card => !card.synthetic).length;
+  $('catalog-count').textContent = `実カード ${real}種 / 検証用 ${cards.length - real}種`;
+  $('card-options').replaceChildren();
+  for (const card of cards) {
+    const option = node('option'); option.value = `${card.name} [${card.card_id}]`;
+    option.label = `${card.synthetic ? '検証用' : '実カード'} · ${card.cost}PP`;
+    $('card-options').append(option);
+  }
+}
+function loadBuilder() {
+  // AI_NOTE: 表示中の状態を明示的に複製し、編集途中に対戦本体を書き換えない。
+  if (!view) return;
+  builderDraft = JSON.parse(JSON.stringify(view.state));
+  builderDraft.winner = null;
+  $('builder-active').value = String(builderDraft.active_player);
+  setupBuilder(); renderBuilder();
+  $('builder-status').textContent = '現在の状態を読み込みました。変更後に開始してください。';
+}
+function renderBuilder() {
+  // AI_NOTE: 選択した側の配置と数値を並べ、少数のカードだけ修正できるようにする。
+  if (!builderDraft) return;
+  const player = builderDraft.players[Number($('builder-player').value)];
+  for (const [id,key] of [['health','health'],['pp','pp'],['max-pp','max_pp'],['turn','turn']]) $('builder-' + id).value = player[key];
+  $('builder-cards').replaceChildren();
+  for (const [zone,label] of [['hand','手札'],['board','盤面'],['deck','山札']]) {
+    const row = node('div','builder-zone'); row.append(node('strong','',`${label} ${player[zone].length}枚`));
+    player[zone].forEach((card,index) => {
+      const definition = builderCatalog()[card.card_id] || {};
+      const chip = node('span','builder-chip',`${card.name || definition.name || card.card_id}${card.health ? ` (${card.attack}/${card.health})` : ''}`);
+      const remove = node('button','','×'); remove.type = 'button'; remove.title = `${card.name || definition.name}を${label}から取り除く`;
+      remove.setAttribute('aria-label',remove.title);
+      remove.onclick = () => { player[zone].splice(index,1); renderBuilder(); $('builder-status').textContent = '編集しました。開始ボタンで反映します。'; };
+      chip.append(remove); row.append(chip);
+    });
+    $('builder-cards').append(row);
+  }
+}
+function updateBuilderStats() {
+  // AI_NOTE: 数値の入力を検査し、PPと最大PPなどの整合は開始時にエンジンでも確認する。
+  if (!builderDraft) loadBuilder();
+  const player = builderDraft.players[Number($('builder-player').value)];
+  const values = {};
+  for (const [id,key] of [['health','health'],['pp','pp'],['max-pp','max_pp'],['turn','turn']]) {
+    const input = $('builder-' + id), value = Number(input.value);
+    if (input.value === '' || !Number.isInteger(value) || !input.checkValidity()) throw new Error('体力・PP・ターンを指定範囲の整数で入力してください。');
+    values[key] = value;
+  }
+  Object.assign(player,values);
+  player.max_health = Math.max(player.max_health,player.health);
+  builderDraft.active_player = Number($('builder-active').value);
+  $('builder-status').textContent = '数値を編集しました。開始ボタンで反映します。';
+}
+$('builder').ontoggle = () => { if ($('builder').open && !builderDraft) loadBuilder(); };
+$('builder-reset').onclick = loadBuilder;
+$('builder-player').onchange = renderBuilder;
+$('builder-stats').onclick = () => guarded(async () => { updateBuilderStats(); renderBuilder(); });
+$('builder-card').oninput = () => {
+  const card = Object.values(builderCatalog()).find(item => `${item.name} [${item.card_id}]` === $('builder-card').value);
+  $('card-preview').textContent = card ? `${card.synthetic ? '検証用カード' : '実カード'} · ${card.cost}PP · ${card.name}\n${card.text || '能力なし'}${card.note ? '\n' + card.note : ''}` : '候補からカードを選ぶと全文を確認できます。';
+};
+$('builder-add').onclick = () => guarded(async () => {
+  if (!builderDraft) loadBuilder();
+  updateBuilderStats();
+  const card = Object.values(builderCatalog()).find(item => `${item.name} [${item.card_id}]` === $('builder-card').value);
+  if (!card) throw new Error('追加するカードを候補から選んでください。');
+  const zone = $('builder-zone').value;
+  if (zone === 'board' && card.kind === 'spell') throw new Error('スペルは盤面へ配置できません。手札か山札を選んでください。');
+  const cards = builderDraft.players[Number($('builder-player').value)][zone];
+  if (cards.length >= {hand:9,board:5,deck:200}[zone]) throw new Error('配置先の枚数が上限です。先にカードを取り除いてください。');
+  cards.push({card_id:card.card_id}); renderBuilder();
+  $('builder-status').textContent = `${card.name}を追加しました。開始ボタンで反映します。`;
+});
+$('builder-clear').onclick = () => { if (!builderDraft) loadBuilder(); builderDraft.players[Number($('builder-player').value)].board = []; renderBuilder(); $('builder-status').textContent = 'この側の盤面を空にしました。'; };
+$('builder-apply').onclick = () => guarded(async () => {
+  updateBuilderStats();
+  const cards = builderCatalog();
+  const result = await api('start',{state:builderDraft,cards});
+  selectedCase = null;
+  $('case-json').value = JSON.stringify({name:'編集した開始状態',initial:result.state,actions:[],expected:{},cards},null,2);
+  $('verdict').textContent = '期待結果なし'; $('test-result').replaceChildren();
+  accept(result); loadBuilder();
+  $('builder-status').textContent = '編集した状態から開始しました。';
+  notify('編集した状態から新しい対戦を開始しました。');
 });
 guarded(init);
