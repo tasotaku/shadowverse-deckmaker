@@ -73,9 +73,13 @@ class BattleHandler(BaseHTTPRequestHandler):
         if path == "/favicon.ico":
             self.send_data(b"", status=204)
             return
+        if path == "/api/example-replay":
+            self.send_data((WEB_ROOT.parent / "data" / "battle_example_replay.json").read_bytes())
+            return
         assets = {"/": ("index.html", "text/html"),
                   "/app.js": ("app.js", "text/javascript"),
                   "/animation.js": ("animation.js", "text/javascript"),
+                  "/replay.js": ("replay.js", "text/javascript"),
                   "/style.css": ("style.css", "text/css")}
         if path not in assets:
             self.send_json({"error": "見つかりません。"}, 404)

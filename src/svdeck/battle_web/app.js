@@ -52,11 +52,11 @@ function accept(result) {
   render();
   persist();
 }
-function entityName(id) {
+function entityName(id, state = view.state) {
   // AI_NOTE: 同名カードを区別するため内部番号を短く添える。
   if (typeof id !== 'string') return String(id ?? '');
   if (id.startsWith('leader:')) return `プレイヤー${Number(id.split(':')[1]) + 1}`;
-  for (const player of view.state.players) {
+  for (const player of state.players) {
     for (const zone of ['hand','board','deck']) {
       const card = (player[zone] || []).find(card => card.id === id);
       if (card) return `${card.name || card.card_id} [${id}]`;
@@ -64,7 +64,7 @@ function entityName(id) {
   }
   return id;
 }
-function actionLabel(action) {
+function actionLabel(action, state = view.state) {
   // AI_NOTE: 操作対象を日本語で明示し、複数の合法手を区別できるようにする。
   const names = {play:'使用', attack:'攻撃', evolve:'進化', super_evolve:'超進化', end_turn:'ターン終了', extra_pp:'追加PPを使う'};
   const forms = {accelerate:'アクセラレート',crystallize:'結晶'};
@@ -72,16 +72,16 @@ function actionLabel(action) {
   const mode = action.mode == null ? '' : ` · モード${Number(action.mode) + 1}`;
   const choiceNames = {hand:'手札',enemy:'相手',ally:'自分の場',discard:'捨てる手札'};
   const choices = Object.entries(action.choices || {}).map(([key,value]) => {
-    const cards = (Array.isArray(value) ? value : [value]).map(entityName).join(' ＋ ');
+    const cards = (Array.isArray(value) ? value : [value]).map(id => entityName(id,state)).join(' ＋ ');
     return ` · ${choiceNames[key] || '選択'}：${cards}`;
   }).join('');
-  return `${names[action.type] || action.type}${action.card || action.source ? '：' + entityName(action.card || action.source) : ''}${form}${mode}${action.target ? ' → ' + entityName(action.target) : ''}${choices}`;
+  return `${names[action.type] || action.type}${action.card || action.source ? '：' + entityName(action.card || action.source,state) : ''}${form}${mode}${action.target ? ' → ' + entityName(action.target,state) : ''}${choices}`;
 }
 function controls() {
   // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
-  for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub']) $(id).disabled = busy || running;
+  for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub','replay-turn','example-replay']) $(id).disabled = busy || running;
   $('auto').disabled = busy && !running;
-  if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub']) $(id).disabled = false;
+  if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub','replay-turn','example-replay']) $(id).disabled = false;
   for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = busy || running;
   if (!view) return;
   $('act').disabled ||= !view.legal_actions.some(action => !selectedSource || (action.card || action.source) === selectedSource);
@@ -213,6 +213,12 @@ function render() {
     $('events').append(box);
   });
   const previous = view.cursor > 1 ? frames[view.cursor - 2]?.state : view.record.initial;
+  const turns = BattleReplay.turns(view.record);
+  $('replay-turn').replaceChildren(...turns.map(point => new Option(point.label,String(point.cursor))));
+  $('replay-turn').value = String(BattleReplay.currentTurn(turns,view.cursor));
+  $('replay-action').textContent = view.cursor
+    ? `${view.cursor}手目 · ${actionLabel(view.record.actions[view.cursor - 1],previous || state)}`
+    : '開始状態 · 「一手進む」で記録された操作を再生します。';
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
 }
@@ -245,11 +251,31 @@ async function step(action) {
   if (view !== result) return;
   notify(branched ? 'この位置から別の手順へ分岐しました。' : '操作を実行しました。');
 }
-async function seek(cursor) {
+async function seek(cursor, animate = false) {
   // AI_NOTE: 保存された見た目だけを切り替えず、同じ操作をエンジンで再生する。
   stopAuto();
-  accept(await api('replay',{record:view.record,cursor}));
+  const result = await api('replay',{record:view.record,cursor});
+  const before = animate ? animation.capture() : null;
+  accept(result);
+  if (animate) {
+    const presentation = animation.play(result.events || [],before);
+    controls();
+    await presentation;
+    if (view !== result) return;
+  }
   notify(`${cursor}手目を表示しています。`);
+}
+async function openReplay(record) {
+  // AI_NOTE: まず終局まで検査して全ターンの状態を揃え、閲覧は開始状態から始める。
+  stopAuto();
+  const checked = await api('replay',{record});
+  const result = await api('replay',{record:checked.record,cursor:0});
+  selectedCase = null;
+  $('case-json').value = JSON.stringify({name:'読み込んだ記録',initial:record.initial,actions:record.actions,expected:{}},null,2);
+  $('verdict').textContent = '期待結果なし'; $('test-result').replaceChildren();
+  $('case-description').textContent = ''; $('scenario').value = '';
+  accept(result);
+  notify(`${record.meta?.title || '対戦記録'} · 全${record.actions.length}手。「一手進む」または「ターンへ移動」で再生できます。`);
 }
 async function testCase(testCase) {
   // AI_NOTE: 自動試験の記録もそのまま盤面へ開き、失敗局面を調べられるようにする。
@@ -335,9 +361,11 @@ $('test-json').onclick = () => guarded(() => testCase(JSON.parse($('case-json').
 $('apply-case').onclick = () => guarded(() => startCase(JSON.parse($('case-json').value)));
 $('first').onclick = () => guarded(() => seek(0),true);
 $('back').onclick = () => guarded(() => seek(view.cursor - 1),true);
-$('next').onclick = () => guarded(() => seek(view.cursor + 1),true);
+$('next').onclick = () => guarded(() => seek(view.cursor + 1,true),true);
 $('last').onclick = () => guarded(() => seek(view.record.actions.length),true);
 $('scrub').onchange = () => guarded(() => seek(Number($('scrub').value)),true);
+$('replay-turn').onchange = () => guarded(() => seek(Number($('replay-turn').value)),true);
+$('example-replay').onclick = () => guarded(async () => openReplay(await api('example-replay')),true);
 $('auto').onclick = autoLoop;
 $('reveal').onchange = () => { animation.cancel(); if (view) { renderBoard(); persist(); } };
 $('animate').onchange = () => {
@@ -355,10 +383,7 @@ $('import').onchange = () => guarded(async () => {
   stopAuto(); const file = $('import').files[0]; if (!file) return;
   if (file.size > 4 * 1024 * 1024) throw new Error('記録は4MB以内にしてください。');
   const record = JSON.parse(await file.text());
-  const result = await api('replay',{record}); selectedCase = null;
-  $('case-json').value = JSON.stringify({name:'読み込んだ記録',initial:record.initial,actions:record.actions,expected:{}},null,2);
-  $('verdict').textContent = '期待結果なし'; $('test-result').replaceChildren();
-  accept(result); $('import').value = ''; notify('記録を開き、操作を再実行しました。');
+  await openReplay(record); $('import').value = '';
 },true);
 function builderCatalog() {
   // AI_NOTE: 読み込んだ記録に独自定義がある場合も、その定義を維持して局面を編集する。
