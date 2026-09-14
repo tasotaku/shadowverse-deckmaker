@@ -42,7 +42,7 @@ async function guarded(work, interrupt = false) {
 }
 function persist() {
   // AI_NOTE: 再読込時にケースと再生位置を復元でき、保存失敗も利用者へ知らせる。
-  try { localStorage.setItem(STORE, JSON.stringify({record:view.record, cursor:view.cursor, selectedCase, reveal:$('reveal').checked})); }
+  try { localStorage.setItem(STORE, JSON.stringify({record:view.record, cursor:view.cursor, selectedCase, reveal:$('reveal').checked, policy:$('ai-policy').value})); }
   catch { notify('ブラウザの保存領域が不足しています。「記録を保存」でファイルへ保存してください。', true); }
 }
 function accept(result) {
@@ -82,11 +82,12 @@ function actionLabel(action, state = view.state) {
 }
 function controls() {
   // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
-  for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub','replay-turn','example-replay']) $(id).disabled = busy || running;
+  for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub','replay-turn','example-replay','ai-example-replay','ai-step','ai-policy']) $(id).disabled = busy || running;
   $('auto').disabled = busy && !running;
-  if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub','replay-turn','example-replay']) $(id).disabled = false;
+  if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub','replay-turn','example-replay','ai-example-replay']) $(id).disabled = false;
   for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = busy || running;
   if (!view) return;
+  $('ai-step').disabled ||= view.state.winner != null || !view.legal_actions.length;
   $('act').disabled ||= !view.legal_actions.some(action => !selectedSource || (action.card || action.source) === selectedSource);
   $('case-step').disabled ||= !selectedCase || view.cursor >= (selectedCase.actions || []).length || JSON.stringify(view.record.actions.slice(0,view.cursor)) !== JSON.stringify(selectedCase.actions.slice(0,view.cursor));
   $('first').disabled ||= view.cursor === 0;
@@ -243,8 +244,42 @@ function render() {
   $('replay-action').textContent = view.cursor
     ? `${view.cursor}手目 · ${actionLabel(view.record.actions[view.cursor - 1],previous || state)}`
     : '開始状態 · 「一手進む」で記録された操作を再生します。';
+  renderDecision(view.cursor ? frames[view.cursor - 1]?.decision : null,previous || state);
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
+}
+const AI_NAMES = {search:'先読みAI',greedy:'一手評価',random:'無作為'};
+function renderDecision(decision, state) {
+  // AI_NOTE: 判断は表示中の手に保存されたものだけを示し、現在の選択方式と取り違えない。
+  const target = $('ai-decision');
+  target.replaceChildren();
+  $('ai-method').textContent = AI_NAMES[decision?.policy] || '';
+  if (!decision) {
+    target.append(node('p','hint',view.cursor ? 'この手にはAIの判断記録がありません。' : '「AIが一手実行」で、選んだ手と判断理由を記録します。'));
+    return;
+  }
+  target.append(node('p','ai-reason',decision.reason || '判断理由の記録はありません。'));
+  const score = value => Number.isFinite(value) ? value.toFixed(1) : '—';
+  target.append(node('p','ai-metrics',`評価 ${score(decision.score)} · 試した手 ${decision.nodes ?? '—'} · 先読み ${decision.depth ?? '—'}手 · ${Number.isFinite(decision.elapsed_ms) ? (decision.elapsed_ms / 1000).toFixed(2) + '秒' : '時間未記録'}`));
+  target.append(node('p','hint','評価値は手を比べるための点数で、勝率ではありません。相手の手札・山札の中身や並びは判断に使いません。'));
+  if (decision.uncertain) target.append(node('p','ai-caution','未確定の結果を含むため、先読みの評価には限界があります。'));
+  if (decision.candidates?.length) {
+    const table = node('table','ai-candidates');
+    table.append(node('caption','','比べた候補'));
+    const head = node('tr'); head.append(node('th','','操作'),node('th','','評価')); table.append(head);
+    for (const candidate of decision.candidates) {
+      const row = node('tr');
+      row.append(node('td','',actionLabel(candidate.action,state)),node('td','',score(candidate.score)));
+      table.append(row);
+    }
+    target.append(table);
+  }
+  if (decision.plan?.length > 1) {
+    const detail = node('details'), list = node('ol','ai-plan');
+    detail.append(node('summary','','先読みした手順（途中で選び直します）'));
+    for (const action of decision.plan) list.append(node('li','',actionLabel(action,state)));
+    detail.append(list); target.append(detail);
+  }
 }
 function caseInitial(testCase) {
   // AI_NOTE: 入力の開始状態が欠けたまま標準状態へ暗黙に置き換わることを防ぐ。
@@ -263,17 +298,18 @@ async function startCase(testCase) {
   accept(result);
   notify(testCase ? `${testCase.name || testCase.title || testCase.id || '検査ケース'} の開始状態を読み込みました。` : '自由対戦を開始しました。');
 }
-async function step(action) {
-  // AI_NOTE: 過去からの操作はエンジンが履歴を分岐し、元記録は事前に保存できる。
+async function step(action, policy = null) {
+  // AI_NOTE: 手動とAIの結果を同じ演出・履歴経路へ流し、過去からの実行では履歴を分岐する。
   const branched = view.cursor < view.record.actions.length;
-  const result = await api('step',{record:view.record,cursor:view.cursor,action});
+  if (policy) notify(`${AI_NAMES[policy]}が手を選んでいます…`);
+  const result = await api(policy ? 'ai-step' : 'step',{record:view.record,cursor:view.cursor,...(policy ? {policy} : {action})});
   const before = animation.capture();
   accept(result);
   const presentation = animation.play(result.events || result.record.frames?.[result.cursor - 1]?.events || [],before);
   controls();
   await presentation;
   if (view !== result) return;
-  notify(branched ? 'この位置から別の手順へ分岐しました。' : '操作を実行しました。');
+  notify(branched ? 'この位置から別の手順へ分岐しました。' : policy ? `${AI_NAMES[policy]}が一手実行しました。右側の「この手のAI判断」で理由を確認できます。` : '操作を実行しました。');
 }
 async function seek(cursor, animate = false) {
   // AI_NOTE: 保存された見た目だけを切り替えず、同じ操作をエンジンで再生する。
@@ -321,16 +357,13 @@ function stopAuto() {
   running = false; $('auto').textContent = '自動対戦';
 }
 async function autoLoop() {
-  // AI_NOTE: 待ち時間は描画用のみで、選択にはLLMや非公開のルール推定を使わない。
+  // AI_NOTE: 両者とも選択した方式で一手ずつ判断し、停止後は新しい手を要求しない。
   if (running) { stopAuto(); controls(); return; }
   running = true; selectedSource = null; $('auto').textContent = '自動対戦を停止'; controls();
   const currentRun = ++autoRun;
   let count = 0;
   while (currentRun === autoRun && running && view.state.winner == null && view.legal_actions.length && count < 500) {
-    await guarded(async () => {
-      const action = view.legal_actions[Math.floor(Math.random() * view.legal_actions.length)];
-      await step(action);
-    });
+    await guarded(() => step(null,$('ai-policy').value));
     count++;
     await new Promise(resolve => setTimeout(resolve,Number($('speed').value)));
   }
@@ -355,6 +388,7 @@ async function init() {
     try {
       const data = JSON.parse(saved);
       selectedCase = data.selectedCase;
+      if (Object.hasOwn(AI_NAMES,data.policy)) $('ai-policy').value = data.policy;
       $('reveal').checked = data.reveal !== false;
       const restored = await api('replay',{record:data.record,cursor:data.cursor});
       $('case-json').value = JSON.stringify(selectedCase || {name:'自由対戦',initial:data.record.initial,actions:[],expected:{}},null,2);
@@ -393,6 +427,9 @@ $('last').onclick = () => guarded(() => seek(view.record.actions.length),true);
 $('scrub').onchange = () => guarded(() => seek(Number($('scrub').value)),true);
 $('replay-turn').onchange = () => guarded(() => seek(Number($('replay-turn').value)),true);
 $('example-replay').onclick = () => guarded(async () => openReplay(await api('example-replay')),true);
+$('ai-example-replay').onclick = () => guarded(async () => openReplay(await api('ai-example-replay')),true);
+$('ai-step').onclick = () => guarded(() => step(null,$('ai-policy').value));
+$('ai-policy').onchange = () => { if (view) persist(); };
 $('auto').onclick = autoLoop;
 $('reveal').onchange = () => { animation.cancel(); if (view) { renderBoard(); persist(); } };
 $('animate').onchange = () => {

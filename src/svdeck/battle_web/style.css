@@ -121,3 +121,18 @@ dialog{color:var(--text);background:var(--surface);border:1px solid #526a78;bord
   .ability-row{height:11px;min-height:11px}.keywords{line-height:11px}
   .card .attack,.card .card-health,.card.hand .card-stats span{font-size:10px;padding:0 2px;line-height:14px}
 }
+
+/* AIの判断詳細は補助欄に収め、盤面の高さと再生操作の位置を維持する。 */
+#ai-policy{max-width:112px;font-size:12px}#ai-step{border-color:#97bfee;color:#c6dfff}
+#ai-method{float:right;color:#a9cef3;font-size:11px}#ai-panel{margin-bottom:9px}
+#ai-decision{font-size:12px;overflow-wrap:anywhere}.ai-reason{margin:0 0 7px;color:#d8e9f8}
+.ai-metrics{font-size:11px;color:#b5cbe0;margin:6px 0}.ai-caution{font-size:11px;color:#f4d7a4}
+.ai-candidates{width:100%;border-collapse:collapse;font-size:11px;margin:8px 0}
+.ai-candidates caption{text-align:left;font-weight:650;color:#c8dcf0;margin-bottom:4px}
+.ai-candidates th,.ai-candidates td{text-align:left;padding:5px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.ai-candidates th:last-child,.ai-candidates td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ai-plan{padding-left:20px;font-size:11px}.ai-plan li{margin:5px 0}
+@media(min-width:1100px) and (min-height:650px){
+  .auto-row{gap:6px}.auto-row button{padding:5px 7px}.auto-row select{font-size:11px}
+  .replay-entry{flex-wrap:nowrap}.replay-entry span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
