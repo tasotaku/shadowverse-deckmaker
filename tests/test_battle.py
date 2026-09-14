@@ -182,3 +182,16 @@ def test_catalog_and_cases_are_available() -> None:
     assert len(load_cases()) == len(CASES)
     assert len({case['id'] for case in CASES}) == len(CASES)
     assert len(default_state()['players']) == 2
+
+
+def test_expected_error_must_actually_occur() -> None:
+    # AI_NOTE: エラーを期待した例で正常終了した場合を誤って合格にしない。
+    result = run_case({'initial': sample(), 'actions': [], 'expected': {},
+                       'expected_error': 'ValueError'})
+    assert not result['passed']
+
+
+def test_unknown_card_is_rejected() -> None:
+    # AI_NOTE: 未対応カードを能力なしの代用品へ勝手に変換しない。
+    with pytest.raises(ValueError):
+        Battle({'players': [{'hand': [{'id': 'h', 'card_id': 'unsupported-card'}]}, {}]})
