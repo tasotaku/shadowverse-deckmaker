@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>対戦ラボ · Shadowverse</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><div><span class="eyebrow">SHADOWVERSE · BATTLE LAB</span><h1>対戦ラボ <span>動かして、確かめる。</span></h1></div><div class="header-actions"><button id="save">記録を保存</button><label class="button" for="import">記録を開く</label><input id="import" type="file" accept=".json,application/json" hidden></div></header>
+<main>
+<section class="toolbar" aria-label="開始条件"><label for="scenario">開始条件</label><select id="scenario"></select><button id="start" class="primary">この条件で開始</button><button id="test">このケースを検査</button><span id="case-description"></span></section>
+<div id="notice" role="status" aria-live="polite"></div>
+<div class="workspace">
+<section class="arena" aria-label="対戦盤面"><div class="arena-head"><span id="turn">対戦準備中</span><label class="compact"><input type="checkbox" id="reveal" checked> 両者の手札を見る</label></div><div id="board"></div><div class="playbar"><label for="action">可能な操作</label><select id="action"></select><button id="act" class="primary">実行</button><button id="case-step">ケースを一手進める</button></div><div class="auto-row"><button id="auto">自動対戦</button><label for="speed">間隔</label><select id="speed"><option value="600">ゆっくり</option><option value="100">速い</option><option value="0">待ちなし</option></select><small>合法な操作から無作為に選択 · 強さの評価ではありません</small></div></section>
+<aside class="inspector"><div class="section-title"><h2>処理を確認</h2><span id="cursor"></span></div><div class="timeline"><button id="first" title="開始状態へ">最初</button><button id="back" title="一手戻る">← 戻る</button><button id="next" title="一手進む">進む →</button><button id="last" title="最新状態へ">最新</button></div><input id="scrub" type="range" min="0" max="0" value="0" aria-label="再生位置"><p class="hint">過去の位置から操作すると、そこから別の手順へ分岐します。</p><div id="events" class="events"></div><details open><summary>直前の操作で変わった状態</summary><div id="changes" class="changes"></div></details><details id="test-panel"><summary>テスト結果 <span id="verdict">未実行</span></summary><div id="test-result"></div></details></aside>
+</div>
+<details class="advanced"><summary>開始状態・操作列・期待結果を編集 / 全状態を調べる</summary><div class="editor-grid"><div><label for="case-json">検査ケース（開始状態 / 操作列 / 期待する終了状態）</label><textarea id="case-json" spellcheck="false"></textarea><div class="buttons"><button id="apply-case">編集した開始状態を適用</button><button id="test-json">編集したケースを検査</button></div></div><div><label for="state-json">現在の全状態（確認用）</label><textarea id="state-json" readonly spellcheck="false"></textarea></div></div></details>
+<footer>対応済みのカード・効果だけを実行します。未対応の効果はエラーで停止します。自動テスト合格は公式ゲームとの完全一致を保証しません。</footer>
+</main>
+</body></html>
