@@ -16,6 +16,21 @@ MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
 
 
+def ai_observation(battle: Battle) -> dict[str, Any]:
+    # AI_NOTE: 旧記録は初期40枚の構築と現在位置までの公開操作から知識を再構成し、保存状態自体は変えない。
+    owner = battle.state['active_player']
+    if 'deck_knowledge' in battle.state:
+        return battle.observation(owner)
+    tracked = Battle(battle.initial,battle.cards,record=False)
+    try:
+        tracked.enable_deck_knowledge()
+    except ValueError:
+        return battle.observation(owner)
+    for action in battle.actions:
+        tracked.step(action)
+    return tracked.observation(owner)
+
+
 def snapshot(battle: Battle, cursor: int | None = None) -> dict[str, Any]:
     # AI_NOTE: 同じエンジンから画面と保存用の記録を返し、画面独自の対戦処理を持たせない。
     record = battle.export()
@@ -127,7 +142,7 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if path == "/api/ai-step":
                     # AI_NOTE: 観戦の手札表示に関係なく、判断の入力は手番側の観測に限定する。
                     player = Player(battle.cards, policy=body.get('policy', 'search'))
-                    decision = player.choose(battle.observation(battle.state['active_player']))
+                    decision = player.choose(ai_observation(battle))
                     battle.step(decision['action'])
                     battle.frames[-1]['decision'] = decision
                     result = snapshot(battle)

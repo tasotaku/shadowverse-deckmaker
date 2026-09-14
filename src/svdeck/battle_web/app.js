@@ -248,7 +248,7 @@ function render() {
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
 }
-const AI_NAMES = {search:'先読みAI',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
+const AI_NAMES = {search:'先読みAI',reply:'相手の返しを読む（試作）',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
 function renderDecision(decision, state) {
   // AI_NOTE: 判断は表示中の手に保存されたものだけを示し、現在の選択方式と取り違えない。
   const target = $('ai-decision');

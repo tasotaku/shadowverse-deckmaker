@@ -22,7 +22,7 @@ Json = dict[str, Any]
 BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
-POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn')
+POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn', 'reply')
 POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
@@ -67,6 +67,8 @@ def sample_world(observation: Json, cards: dict[str, Json], seed: int, use_known
     state['rng'] = generator.randrange(1, 2**32)
     visible_ids = {e['id'] for p in state['players'] for zone in ('hand', 'board')
                    if isinstance(p[zone], list) for e in p[zone]}
+    if knowledge is not None:
+        visible_ids.update(e['id'] for info in knowledge for e in info['known_hand'])
     prefix = 'ai-hidden:'
     while any(ident.startswith(prefix) for ident in visible_ids):
         prefix += ':'
@@ -210,7 +212,7 @@ class Player:
             raise ValueError(f'未対応のAI方式: {policy}')
         self.cards = cards
         self.policy = policy
-        self.algorithm_version = 3 if policy == 'search' else (2 if policy=='turn' else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1))
+        self.algorithm_version = 3 if policy == 'reply' else (2 if policy in ('search','turn') else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1))
         if self.algorithm_version not in (1,2,3):
             raise ValueError('未対応のAI判断バージョンです')
         self.weights = dict(weights if weights is not None else load_weights() if policy == 'trained' else BASE_WEIGHTS)

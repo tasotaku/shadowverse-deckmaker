@@ -76,9 +76,17 @@ def best_reply(start: SearchBattle, owner: int, weights: dict[str,float],
 def apply_common_plan(world: SearchBattle, node: Node, owner: int) -> SearchBattle:
     # AI_NOTE: 隠れた手札ごとにこちらの手順を変えず、同じ公開手順を全サンプルへ適用する。
     mapping: dict[str,str] = {}
+    def translate(value: Any) -> Any:
+        # AI_NOTE: 複数対象の配列や辞書も、生成個体の対応を再帰的に適用する。
+        if isinstance(value,str):
+            return mapping.get(value,value)
+        if isinstance(value,list):
+            return [translate(item) for item in value]
+        if isinstance(value,dict):
+            return {key:translate(item) for key,item in value.items()}
+        return copy.deepcopy(value)
     for action, layout in zip(node.plan,node.layouts):
-        translated = {key:mapping.get(value,value) if isinstance(value,str) else copy.deepcopy(value)
-                      for key,value in action.items()}
+        translated = translate(action)
         if translated not in world.legal_actions():
             raise ValueError('共通手順と仮定盤面の合法手が一致しません')
         world = world.branch(translated)
@@ -134,7 +142,9 @@ def choose_response(player: Player, observation: Json, results: list[Node], own_
         mean = sum(sample['score'] for sample in samples)/HAND_SAMPLES
         evaluated.append(replace(node,score=mean-.001*len(node.plan)))
         diagnostics.append({'action':node.plan[0],'mean':mean,'worst':min(sample['score'] for sample in samples),
-                            'losing_samples':sum(sample['score']<=-100000 for sample in samples),'samples':samples})
+                            'losing_samples':sum(sample['score']<=-100000 for sample in samples),
+                            'sample_scores':[sample['score'] for sample in samples],
+                            'worst_reply':min(samples,key=lambda sample:sample['score'])})
     best_index = max(range(len(evaluated)),key=lambda i:evaluated[i].score)
     report = player.report(evaluated[best_index],evaluated,own_nodes+reply_nodes,started,False,limited,observation)
     info = diagnostics[best_index]

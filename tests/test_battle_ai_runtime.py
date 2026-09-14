@@ -11,7 +11,7 @@ from typing import Any, Iterator
 import pytest
 
 from svdeck.battle import Battle, replay
-from svdeck.battle_server import create_server
+from svdeck.battle_server import ai_observation, create_server
 from svdeck.battle_training import summarize
 from svdeck.battle_ai import MODEL_PATH, load_weights, model_hash
 
@@ -73,3 +73,21 @@ def test_shipped_model_matches_evaluated_weights() -> None:
     root = Path(__file__).parents[1]/'docs'/'evidence'
     for name in ('ai-trained-vs-search.json','ai-trained-vs-greedy.json'):
         assert json.loads((root/name).read_text())['model_hash']==expected
+
+
+def test_old_replay_can_use_known_deck_replies_without_rewriting_history(server_url: str) -> None:
+    # AI_NOTE: 利用中の古い保存対戦も、初期構築と現在位置までの操作だけで返しを探索できる。
+    path = Path(__file__).parents[1]/'src/svdeck/data/battle_ai_replay.json'
+    record = json.loads(path.read_text())
+    battle = replay(record,cursor=16)
+    before = battle.export()
+    view = ai_observation(battle)
+    assert 'deck_knowledge' in view and 'deck_origins' not in view
+    assert isinstance(view['players'][1]['hand'],dict)
+    assert battle.export()==before
+    result = post(server_url,'/api/ai-step',{'record':record,'cursor':16,'policy':'reply'})
+    assert result['decision']['settings']['policy_version']==3
+    assert result['decision']['response_search']['available']
+    assert result['record']['initial']==record['initial']
+    assert len(result['record']['actions'])==17
+    assert replay(result['record']).state==result['state']

@@ -39,7 +39,7 @@ def test_reply_distinguishes_last_words_contents() -> None:
     # AI_NOTE: 残存能力の一律点では同点だが、全除去を受ける小回復札より後続を残す札を選ぶ。
     battle,view = observed()
     assert Player(battle.cards,policy='turn').choose(view)['action']=={'type':'play','card':'bad'}
-    decision = Player(battle.cards).choose(view)
+    decision = Player(battle.cards,policy='reply').choose(view)
     assert decision['action']=={'type':'play','card':'good'}
     assert decision['response_search']['available']
     assert not decision['proven_win']
@@ -98,9 +98,9 @@ def test_reply_choice_only_depends_on_public_observation() -> None:
     # AI_NOTE: 判断入力に本物の非公開状態は入れず、同じ観測なら返しの候補まで再現する。
     battle,view = observed()
     before = deepcopy(view)
-    a = Player(battle.cards,seed=4).choose(view)
+    a = Player(battle.cards,policy='reply',seed=4).choose(view)
     battle.state['players'][1]['deck'].reverse()
     battle.state['rng']=98765
-    b = Player(battle.cards,seed=4).choose(deepcopy(view))
+    b = Player(battle.cards,policy='reply',seed=4).choose(deepcopy(view))
     assert view==before
     assert {k:v for k,v in a.items() if k!='elapsed_ms'}=={k:v for k,v in b.items() if k!='elapsed_ms'}

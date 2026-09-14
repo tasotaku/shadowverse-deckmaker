@@ -108,7 +108,7 @@ def train(output: Path, workers: int, generations: int = 3, candidates: int = 6,
                         'candidates':[{'weights':weights,'summary':score} for weights,score in zip(variants,scored)],'games':all_results})
         print(json.dumps({'generation':generation,'selected':chosen,'scores':[s['score_rate'] for s in scored]}),flush=True)
     result = {'version':1,'method':'evolutionary weight search; game outcome fitness', 'policy':policy,
-              'policy_version':2 if policy=='search' else 1,
+              'policy_version':3 if policy=='reply' else (2 if policy=='search' else 1),
               'weights':best,'base_weights':BASE_WEIGHTS,'generations':history,
               'scope':'shared weights for both registered decks; no per-card move table',
               'training_games':sum(len(h['games']) for h in history)}
@@ -135,9 +135,9 @@ def main() -> None:
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--seed',type=int,default=10001)
     parser.add_argument('--seeds',type=int,default=12)
-    parser.add_argument('--policy',choices=['random','greedy','search','trained','legacy'],default='search')
-    parser.add_argument('--opponent',choices=['random','greedy','search','trained','legacy'],default='greedy')
-    parser.add_argument('--training-policy',choices=['greedy','search'],default='greedy')
+    parser.add_argument('--policy',choices=['random','greedy','search','trained','legacy','turn','reply'],default='search')
+    parser.add_argument('--opponent',choices=['random','greedy','search','trained','legacy','turn','reply'],default='greedy')
+    parser.add_argument('--training-policy',choices=['greedy','search','reply'],default='greedy')
     parser.add_argument('--model-output',type=Path)
     args = parser.parse_args()
     if args.workers < 1 or args.seeds < 1:
@@ -158,7 +158,7 @@ def main() -> None:
         results = run_jobs(jobs(seeds,args.policy,args.opponent),args.workers)
         data = {'policy':args.policy,'opponent':args.opponent,'seeds':seeds,'summary':summarize(results),'games':results,
                 'model_hash':model_hash(load_weights(),json.loads(MODEL_PATH.read_text()).get('policy_version',1)) if 'trained' in (args.policy,args.opponent) else None,
-                'search_version':2,
+                'search_version':2,'reply_version':3,
                 'model_hash_basis':'policy_version and weights',
                 'conditions':'no mulligan; same initial state for seat swaps; public observations; unfinished scored zero'}
         print(json.dumps(data['summary']),flush=True)
