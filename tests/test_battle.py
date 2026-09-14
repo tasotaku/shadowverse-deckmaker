@@ -195,3 +195,50 @@ def test_unknown_card_is_rejected() -> None:
     # AI_NOTE: 未対応カードを能力なしの代用品へ勝手に変換しない。
     with pytest.raises(ValueError):
         Battle({'players': [{'hand': [{'id': 'h', 'card_id': 'unsupported-card'}]}, {}]})
+
+
+def test_extra_pp_does_not_reset_early() -> None:
+    # AI_NOTE: 後攻序盤の権利はターンごとでなく1回分なので、次ターンも再使用を拒否する。
+    battle = Battle({'active_player': 1, 'players': [
+        {'turn': 1, 'deck': [{'id': 'd0', 'card_id': 'test-body'}]},
+        {'turn': 1, 'deck': [{'id': 'd1', 'card_id': 'test-body'}]},
+    ]})
+    battle.step({'type': 'extra_pp'})
+    battle.step({'type': 'end_turn'})
+    battle.step({'type': 'end_turn'})
+    before = deepcopy(battle.state)
+    assert before['players'][1]['turn'] == 2
+    with pytest.raises(ValueError):
+        battle.step({'type': 'extra_pp'})
+    assert battle.state == before
+
+
+def test_extra_pp_resets_once_at_six() -> None:
+    # AI_NOTE: 序盤に使い切っていてもT6で後半の1回が使え、同ターン2回は拒否する。
+    battle = Battle({'active_player': 1, 'players': [
+        {'turn': 5, 'deck': [{'id': 'd0', 'card_id': 'test-body'}]},
+        {'turn': 5, 'extra_pp_used': True,
+         'deck': [{'id': 'd1', 'card_id': 'test-body'}]},
+    ]})
+    battle.step({'type': 'end_turn'})
+    battle.step({'type': 'end_turn'})
+    before = deepcopy(battle.state)
+    assert before['players'][1]['turn'] == 6
+    battle.step({'type': 'extra_pp'})
+    assert battle.state['players'][1]['pp'] == before['players'][1]['pp'] + 1
+    after = deepcopy(battle.state)
+    with pytest.raises(ValueError):
+        battle.step({'type': 'extra_pp'})
+    assert battle.state == after
+
+
+def test_evolution_and_super_share_turn_limit() -> None:
+    # AI_NOTE: EPとSEPが両方残っていても同ターンの進化操作は合わせて1回まで。
+    battle = Battle({'players': [{'turn': 7, 'board': [
+        {'id': 'a', 'card_id': 'test-body'}, {'id': 'b', 'card_id': 'test-body'},
+    ]}, {}]})
+    battle.step({'type': 'evolve', 'source': 'a'})
+    before = deepcopy(battle.state)
+    with pytest.raises(ValueError):
+        battle.step({'type': 'super_evolve', 'source': 'b'})
+    assert battle.state == before
