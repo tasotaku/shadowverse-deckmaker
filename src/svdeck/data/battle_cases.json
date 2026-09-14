@@ -2917,5 +2917,254 @@
         ]
       }
     }
+  },
+  {
+    "id": "turn-refill-0",
+    "title": "ターン開始：PP最大値0から補充・1枚ドロー",
+    "group": "turn",
+    "description": "docs/rules.md のターン開始ドローとPP上限。公式実機との一致は未検証。",
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 1,
+          "health": 17
+        },
+        {
+          "turn": 0,
+          "max_pp": 0,
+          "pp": 0,
+          "deck": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "end_turn"
+      }
+    ],
+    "expected": {
+      "active_player": 1,
+      "players": [
+        {
+          "health": 17
+        },
+        {
+          "turn": 1,
+          "pp": 1,
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "turn-refill-9",
+    "title": "ターン開始：PP最大値9から補充・1枚ドロー",
+    "group": "turn",
+    "description": "docs/rules.md のターン開始ドローとPP上限。公式実機との一致は未検証。",
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 1,
+          "health": 17
+        },
+        {
+          "turn": 0,
+          "max_pp": 9,
+          "pp": 0,
+          "deck": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "end_turn"
+      }
+    ],
+    "expected": {
+      "active_player": 1,
+      "players": [
+        {
+          "health": 17
+        },
+        {
+          "turn": 1,
+          "pp": 10,
+          "max_pp": 10,
+          "hand": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "turn-refill-10",
+    "title": "ターン開始：PP最大値10から補充・1枚ドロー",
+    "group": "turn",
+    "description": "docs/rules.md のターン開始ドローとPP上限。公式実機との一致は未検証。",
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 1,
+          "health": 17
+        },
+        {
+          "turn": 0,
+          "max_pp": 10,
+          "pp": 0,
+          "deck": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "end_turn"
+      }
+    ],
+    "expected": {
+      "active_player": 1,
+      "players": [
+        {
+          "health": 17
+        },
+        {
+          "turn": 1,
+          "pp": 10,
+          "max_pp": 10,
+          "hand": [
+            {
+              "id": "drawn",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "extra-pp-0-1",
+    "title": "先攻は使用不可",
+    "group": "extra_pp",
+    "description": "docs/rules.md の後攻限定PP+1。序盤と後半の使用回数追跡は別テストで確認する。",
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 1,
+          "pp": 1,
+          "max_pp": 1
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "extra_pp"
+      }
+    ],
+    "expected": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 1,
+          "pp": 1,
+          "max_pp": 1
+        },
+        {}
+      ]
+    },
+    "expected_error": "ValueError"
+  },
+  {
+    "id": "extra-pp-1-1",
+    "title": "後攻1ターン目のエクストラPP",
+    "group": "extra_pp",
+    "description": "docs/rules.md の後攻限定PP+1。序盤と後半の使用回数追跡は別テストで確認する。",
+    "initial": {
+      "active_player": 1,
+      "players": [
+        {},
+        {
+          "turn": 1,
+          "pp": 1,
+          "max_pp": 1
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "extra_pp"
+      }
+    ],
+    "expected": {
+      "players": [
+        {},
+        {
+          "pp": 2,
+          "max_pp": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "extra-pp-1-6",
+    "title": "後攻6ターン目のエクストラPP",
+    "group": "extra_pp",
+    "description": "docs/rules.md の後攻限定PP+1。序盤と後半の使用回数追跡は別テストで確認する。",
+    "initial": {
+      "active_player": 1,
+      "players": [
+        {},
+        {
+          "turn": 6,
+          "pp": 1,
+          "max_pp": 1
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "extra_pp"
+      }
+    ],
+    "expected": {
+      "players": [
+        {},
+        {
+          "pp": 2,
+          "max_pp": 1
+        }
+      ]
+    }
   }
 ]
