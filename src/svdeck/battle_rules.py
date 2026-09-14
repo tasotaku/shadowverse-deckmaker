@@ -246,6 +246,7 @@ def summon(battle: Battle, owner: int, entity: Json, modifiers: Json | None = No
             entity[key] = copy.deepcopy(value)
     entity['entered_turn'] = p['turn']
     p['board'].append(entity)
+    battle.reveal(owner, entity)
     battle.emit('summon', f'{entity["name"]}が場に出た', target=entity['id'])
     trigger(battle, 'enter', owner, entity)
 
@@ -264,6 +265,7 @@ def extended_effect(battle: Battle, effect: Json, owner: int, source: Json, chos
             if found and found[0] == owner and found[1] == 'hand':
                 entity = found[2]
                 p['hand'].remove(entity)
+                battle.reveal(owner, entity)
                 p['graveyard'] += 1
                 battle.emit('discard', f'{entity["name"]}を捨てた', target=target)
                 trigger(battle, 'discard', owner, entity)

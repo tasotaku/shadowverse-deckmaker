@@ -6,6 +6,7 @@ import copy
 import hashlib
 import json
 import time
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -178,7 +179,7 @@ class Battle:
 
     def normalize(self, raw: Json) -> Json:
         # AI_NOTE: 条件指定は実戦で到達済みという保証を付けず、構造と処理可能性を検査する。
-        if not isinstance(raw, dict) or set(raw) - {'version', 'players', 'active_player', 'winner', 'rng', 'next_id'}:
+        if not isinstance(raw, dict) or set(raw) - {'version', 'players', 'active_player', 'winner', 'rng', 'next_id', 'deck_knowledge', 'deck_origins'}:
             raise ValueError('開始状態の項目が不正です')
         if raw.get('version', VERSION) != VERSION:
             raise ValueError('未対応の状態バージョンです')
@@ -234,7 +235,61 @@ class Battle:
             if not isinstance(p['destroyed'], list) or any(str(c) not in self.cards for c in p['destroyed']):
                 raise ValueError('破壊履歴に未対応のカードがあります')
             self.state['players'].append(p)
+        if 'deck_knowledge' in raw:
+            knowledge = raw['deck_knowledge']
+            if not isinstance(knowledge, list) or len(knowledge) != 2:
+                raise ValueError('公開デッキ情報は両者分が必要です')
+            for entry in knowledge:
+                if not isinstance(entry, dict) or set(entry) != {'deck_list', 'revealed', 'known_hand'}:
+                    raise ValueError('公開デッキ情報の形式が不正です')
+                for field in ('deck_list', 'revealed'):
+                    if not isinstance(entry[field], dict):
+                        raise ValueError('公開デッキ・公開履歴は辞書です')
+                for cid, count in entry['deck_list'].items():
+                    if cid not in self.cards:
+                        raise ValueError('公開デッキに未対応のカードがあります')
+                    integer(count, 'deck count', 1, 200)
+                if any(not isinstance(ident, str) or not ident or cid not in entry['deck_list'] for ident, cid in entry['revealed'].items()):
+                    raise ValueError('公開された元カードの情報が不正です')
+                if any(count > entry['deck_list'][cid] for cid, count in Counter(entry['revealed'].values()).items()):
+                    raise ValueError('公開枚数がデッキの枚数を超えています')
+                if not isinstance(entry['known_hand'], list):
+                    raise ValueError('公開された手札は配列です')
+                known_ids = set()
+                for item in entry['known_hand']:
+                    if not isinstance(item, dict) or set(item) != {'id', 'card_id'} or not isinstance(item['id'], str) or not item['id'] or item['card_id'] not in self.cards or item['id'] in known_ids:
+                        raise ValueError('公開された手札の形式が不正です')
+                    known_ids.add(item['id'])
+            self.state['deck_knowledge'] = copy.deepcopy(knowledge)
+        if 'deck_origins' in raw:
+            origins = raw['deck_origins']
+            if 'deck_knowledge' not in raw or not isinstance(origins, list) or len(origins) != 2 or any(not isinstance(mapping, dict) or any(not isinstance(k, str) or not k or not isinstance(v, str) or not v for k, v in mapping.items()) for mapping in origins):
+                raise ValueError('元カードの追跡情報が不正です')
+            self.state['deck_origins'] = copy.deepcopy(origins)
         return self.state
+
+    def enable_deck_knowledge(self) -> None:
+        # AI_NOTE: 旧記録は初期40枚からだけ復元できる。途中局面の隠れたカードから推測しない。
+        if 'deck_knowledge' in self.state:
+            return
+        players = self.state['players']
+        if self.actions or any(p['board'] or len(p['hand']) + len(p['deck']) != 40 or p['destroyed'] or p['graveyard'] or p['combo'] or p['turn'] > 1 for p in players):
+            raise ValueError('公開デッキの登録は未使用の初期40枚から行ってください')
+        self.state['deck_knowledge'] = [{'deck_list': dict(Counter(e['card_id'] for e in p['hand'] + p['deck'])), 'revealed': {}, 'known_hand': []} for p in players]
+        self.state['deck_origins'] = [{e['id']: e['id'] for e in p['hand'] + p['deck']} for p in players]
+        self.initial = copy.deepcopy(self.state)
+
+    def reveal(self, owner: int, entity: Json, in_hand: bool = False) -> None:
+        # AI_NOTE: 公開処理だけで履歴を更新し、生成コピーは元デッキの消費に数えない。
+        if 'deck_knowledge' not in self.state:
+            return
+        entry = self.state['deck_knowledge'][owner]
+        origin = self.state.get('deck_origins', [{}, {}])[owner].get(entity['id'])
+        if origin:
+            entry['revealed'][origin] = entity['card_id']
+        entry['known_hand'] = [item for item in entry['known_hand'] if item['id'] != entity['id']]
+        if in_hand:
+            entry['known_hand'].append({'id': entity['id'], 'card_id': entity['card_id']})
 
     def emit(self, kind: str, message: str, **values: Any) -> None:
         # AI_NOTE: 数値だけでなく原因と対象を保存し、画面から誤処理を追えるようにする。
@@ -375,7 +430,11 @@ class Battle:
             if not entity.get('lost_last_words'):
                 self.pending.append((rules.definition(self, entity).get('last_words', []), owner, entity, 'ラストワード'))
         if mode == 'bounce':
-            self.add_hand(owner, self.fresh(entity['card_id']))
+            returned = self.fresh(entity['card_id'])
+            origin = self.state.get('deck_origins', [{}, {}])[owner].get(entity['id'])
+            if origin:
+                self.state['deck_origins'][owner][returned['id']] = origin
+            self.add_hand(owner, returned, public=True)
         return True
 
     def settle(self) -> None:
@@ -412,14 +471,17 @@ class Battle:
         self.emit('damage', f'{entity.get("name", "リーダー")}: {amount}ダメージ ({before} → {entity["health"]})', target=target_id, source=source.get('id') if source else None, amount=amount, before=before, after=entity['health'])
         return amount
 
-    def add_hand(self, owner: int, entity: Json) -> None:
+    def add_hand(self, owner: int, entity: Json, public: bool = False) -> None:
         # AI_NOTE: 手札あふれは墓場だけを増やし、破壊履歴やラストワードを発生させない。
         p = self.state['players'][owner]
         if len(p['hand']) >= 9:
+            self.reveal(owner, entity)
             p['graveyard'] += 1
             self.emit('overflow', f'{entity["name"]}: 手札上限で手札に入らず墓場+1', target=entity['id'])
             return
         p['hand'].append(entity)
+        if public:
+            self.reveal(owner, entity, in_hand=True)
         self.emit('hand', f'{entity["name"]}を手札に加えた', target=entity['id'])
 
     def random_index(self, length: int) -> int:
@@ -507,7 +569,7 @@ class Battle:
                         continue
                     entity = self.fresh(str(effect['card_id']))
                     if op == 'generate':
-                        self.add_hand(owner, entity)
+                        self.add_hand(owner, entity, public=True)
                     else:
                         rules.summon(self, owner, entity, effect.get('modifiers'))
             elif op == 'ramp':
@@ -597,6 +659,7 @@ class Battle:
             if form:
                 entity.update({'form': form, 'attack': card.get('attack', 0), 'health': card.get('health', 0), 'max_health': card.get('health', 0), 'keywords': card.get('keywords', []), 'countdown': card.get('countdown')})
             p['hand'].remove(entity)
+            self.reveal(owner, entity)
             p['pp'] -= cost
             p['combo'] += 1
             self.emit('play', f'{entity["name"]}を使用（{cost}PP）', source=entity['id'], cost=cost)
@@ -708,6 +771,9 @@ class Battle:
         view = copy.deepcopy(self.state)
         view.pop('rng')
         view.pop('next_id')
+        origins = view.pop('deck_origins', None)
+        if origins is not None:
+            view['own_hand_originals'] = {e['id']: origins[player][e['id']] for e in view['players'][player]['hand'] if e['id'] in origins[player]}
         for who, p in enumerate(view['players']):
             p['deck'] = {'count': len(p['deck'])}
             if who != player:
@@ -839,6 +905,7 @@ def new_game(decks: list[list[str]], seed: int = 1, mulligans: list[list[int]] |
         for index in selected:
             integer(index, 'mulligan', 0, 3)
     battle = Battle({'rng':seed, 'players':[{'turn':0,'deck':decks[0]},{'turn':0,'deck':decks[1]}]}, cards)
+    battle.enable_deck_knowledge()
     for owner, p in enumerate(battle.state['players']):
         for i in range(len(p['deck'])-1, 0, -1):
             j = battle.random_index(i+1)
