@@ -6,6 +6,7 @@ const ANIMATION_STORE = 'svdeck-battle-animation';
 const animation = new BattleAnimation($('board'),$('animation-caption'));
 let operation = 0, autoRun = 0;
 let bootstrap, view, selectedCase = null, busy = false, running = false, selectedSource = null, builderDraft = null;
+let combatOriginal = null, combatAnalysis = null, combatPage = 0;
 
 function node(tag, cls, text) {
   // AI_NOTE: カード名・入力内容をHTMLとして解釈せず、保存記録の読み込みも安全に表示する。
@@ -19,6 +20,7 @@ function notify(message, error = false) {
   $('notice').textContent = message;
   $('notice').className = error ? 'error' : '';
   $('settings-notice').textContent = error && $('settings-dialog').open ? message : '';
+  if (error && $('combat-dialog').open) $('combat-status').textContent = message;
 }
 async function api(path, body) {
   // AI_NOTE: JSON応答の失敗を利用者へ伝え、古い成功表示で上書きしない。
@@ -41,15 +43,18 @@ async function guarded(work, interrupt = false) {
   finally { if (current === operation) { busy = false; controls(); } }
 }
 function persist() {
-  // AI_NOTE: 再読込時にケースと再生位置を復元でき、保存失敗も利用者へ知らせる。
-  try { localStorage.setItem(STORE, JSON.stringify({record:view.record, cursor:view.cursor, selectedCase, reveal:$('reveal').checked, policy:$('ai-policy').value})); }
+  // AI_NOTE: 能力なしの一時再生中も元の対戦を保存し、再読込で失わない。
+  const savedView = combatOriginal || view;
+  try { localStorage.setItem(STORE, JSON.stringify({record:savedView.record, cursor:savedView.cursor, selectedCase, reveal:$('reveal').checked, policy:$('ai-policy').value})); }
   catch { notify('ブラウザの保存領域が不足しています。「記録を保存」でファイルへ保存してください。', true); }
 }
 function accept(result) {
-  // AI_NOTE: 更新後の盤面・操作一覧・履歴をまとめて切り替える。
+  // AI_NOTE: 更新後の盤面・操作一覧・履歴を切り替え、別局面の候補を持ち越さない。
   animation.cancel();
   $('settings-dialog').close();
   $('card-dialog').close();
+  $('combat-dialog').close();
+  if (!combatOriginal) combatAnalysis = null;
   view = result;
   selectedSource = null;
   render();
@@ -81,9 +86,14 @@ function actionLabel(action, state = view.state) {
   return `${names[action.type] || action.type}${action.card || action.source ? '：' + entityName(action.card || action.source,state) : ''}${form}${mode}${action.target ? ' → ' + entityName(action.target,state) : ''}${choices}`;
 }
 function controls() {
-  // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
+  // AI_NOTE: 処理中や履歴端の操作を防ぎ、能力なしの再生中は通常対戦を実行させない。
   for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub','replay-turn','example-replay','ai-example-replay','ai-step','ai-policy']) $(id).disabled = busy || running;
   $('auto').disabled = busy && !running;
+  for (const id of ['settings-open','import','combat-open','combat-run','combat-mode','combat-return']) $(id).disabled = busy || running || !view;
+  $('combat-banner').hidden = !combatOriginal;
+  $('combat-prev').disabled = busy || combatPage === 0;
+  $('combat-next').disabled = busy || !combatAnalysis || (combatPage + 1) * 30 >= combatAnalysis.candidates.length;
+  for (const button of $('combat-candidates').querySelectorAll('button')) button.disabled = busy || running;
   if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub','replay-turn','example-replay','ai-example-replay']) $(id).disabled = false;
   for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = busy || running;
   if (!view) return;
@@ -97,6 +107,11 @@ function controls() {
   $('test').disabled ||= !selectedCase;
   $('auto').disabled ||= view.state.winner !== null && view.state.winner !== undefined && !running;
   $('save').disabled = !view;
+  if (combatOriginal) {
+    for (const id of ['settings-open','import','start','test','apply-case','test-json','act','case-step','action','example-replay','ai-example-replay','ai-step','ai-policy','auto']) $(id).disabled = true;
+    for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = true;
+  }
+  document.querySelector('label[for="import"]').classList.toggle('disabled',$('import').disabled);
 }
 function cardNode(card, zone) {
   // AI_NOTE: カードを直接選ぶと、そのカードで可能な操作だけに絞る。
@@ -188,7 +203,7 @@ function renderActions() {
     const option = node('option','',actionLabel(action)); option.value = String(index); $('action').append(option);
   }
   if (!actions.length) $('action').append(node('option','',selectedSource ? 'このカードからの操作なし · もう一度クリックで解除' : '可能な操作なし'));
-  $('act').disabled = busy || running || !actions.length;
+  $('act').disabled = busy || running || !!combatOriginal || !actions.length;
 }
 const LABELS = {players:'プレイヤー',health:'体力',max_health:'最大体力',pp:'PP',max_pp:'最大PP',ep:'進化回数',sep:'超進化回数',graveyard:'墓場',hand:'手札',board:'盤面',deck:'山札',active_player:'操作するプレイヤー',winner:'勝者',keywords:'能力',cost:'コスト',attack:'攻撃力',attacks:'攻撃回数',evolved:'進化状態',destroyed:'破壊履歴',combo:'プレイ枚数',turn:'ターン',rng:'乱数の状態',next_id:'次のカード番号'};
 function prettyPath(path) {
@@ -298,6 +313,76 @@ function renderDecision(decision, state) {
     });
     detail.append(list); target.append(detail);
   }
+}
+function combatBoard(cards) {
+  // AI_NOTE: 合計値で単体と横展開を同一視せず、残った個体ごとに数値を示す。
+  const row = node('div','combat-board');
+  if (!cards.length) row.append(node('span','hint','なし'));
+  for (const card of cards) {
+    const item = node('span','combat-unit');
+    item.append(node('span','',`${card.name || card.id} [${card.id}]`),node('b','attack',`⚔ ${card.attack}`),node('b','card-health',`♥ ${card.health}`));
+    if (card.evolved) item.append(node('span','keywords',card.evolved === 2 ? '超進化' : '進化'));
+    row.append(item);
+  }
+  return row;
+}
+function renderCombat() {
+  // AI_NOTE: 候補を省略せずページで分け、探索打切りを完全列挙と取り違えさせない。
+  const source = combatOriginal || view;
+  $('combat-source').textContent = `元の対戦 ${source.cursor}手目 · プレイヤー${source.state.active_player + 1}`;
+  $('combat-candidates').replaceChildren();
+  $('combat-pages').hidden = !combatAnalysis?.candidates.length;
+  if (!combatAnalysis) {
+    $('combat-status').textContent = '「調べる」で、この局面の候補を作ります。';
+    controls(); return;
+  }
+  const {candidates,stats,complete,record} = combatAnalysis;
+  $('combat-status').textContent = `${complete ? '探索完了' : '探索上限で打切り · 未探索の候補があります'} · 候補 ${candidates.length}件 · ${stats.states.toLocaleString()}状態 · ${(stats.elapsed_ms / 1000).toFixed(2)}秒`;
+  $('combat-status').classList.toggle('combat-incomplete',!complete);
+  $('combat-status').title = `試した操作 ${stats.transitions} · 同一状態の統合 ${stats.duplicates} · 比較で除いた終了状態 ${stats.dominated}`;
+  const first = combatPage * 30;
+  candidates.slice(first,first + 30).forEach((candidate,offset) => {
+    const item = node('article','combat-candidate');
+    const head = node('div','combat-candidate-head');
+    head.append(node('strong','',`候補 ${first + offset + 1}${candidate.win ? ' · 勝利' : ''}`),node('span','card-health',`相手の顔体力 ${candidate.enemy_health}`),node('span','',`EP ${candidate.ep} / SEP ${candidate.sep}`));
+    const open = node('button','','手順を再生');
+    open.onclick = () => guarded(() => openCombat(candidate));
+    head.append(open); item.append(head);
+    const own = node('div','combat-side'), enemy = node('div','combat-side');
+    own.append(node('strong','','自分の盤面'),combatBoard(candidate.own_board));
+    enemy.append(node('strong','','相手の盤面'),combatBoard(candidate.enemy_board));
+    item.append(own,enemy);
+    if (candidate.actions.length) {
+      const detail = node('details'), steps = node('ol','ai-plan');
+      detail.append(node('summary','',`${candidate.actions.length}操作の手順を見る`));
+      for (const action of candidate.actions) steps.append(node('li','',actionLabel(action,record.initial)));
+      detail.append(steps); item.append(detail);
+    } else item.append(node('p','hint','何もせず、現在の盤面を残す候補です。'));
+    $('combat-candidates').append(item);
+  });
+  $('combat-page').textContent = `${candidates.length ? first + 1 : 0}–${Math.min(first + 30,candidates.length)} / ${candidates.length}件`;
+  $('combat-candidates').scrollTop = 0;
+  controls();
+}
+async function analyzeCombat() {
+  // AI_NOTE: 表示局面の複製だけを調べ、対戦本体や自動AIの選択方式には反映しない。
+  const source = combatOriginal || view, mode = $('combat-mode').value;
+  combatAnalysis = null; combatPage = 0;
+  $('combat-candidates').replaceChildren(); $('combat-pages').hidden = true;
+  $('combat-status').classList.remove('combat-incomplete');
+  $('combat-status').textContent = '攻撃・進化の組合せを調べています…';
+  const result = await api('combat',{record:source.record,cursor:source.cursor,mode});
+  if (source !== (combatOriginal || view) || mode !== $('combat-mode').value) return;
+  combatAnalysis = result; renderCombat();
+}
+async function openCombat(candidate) {
+  // AI_NOTE: 候補の操作列をエンジンで検査し、元の表示位置を保持して一手再生へ渡す。
+  const record = {...combatAnalysis.record,actions:candidate.actions,frames:[]};
+  const checked = await api('replay',{record});
+  const result = await api('replay',{record:checked.record,cursor:0});
+  combatOriginal ||= view;
+  accept(result);
+  notify(`能力なしの検証 · ${candidate.actions.length}操作。「一手進む」で確認し、「元の対戦へ戻る」で復帰できます。`);
 }
 function caseInitial(testCase) {
   // AI_NOTE: 入力の開始状態が欠けたまま標準状態へ暗黙に置き換わることを防ぐ。
@@ -432,6 +517,18 @@ $('start').onclick = () => guarded(() => startCase(chosenScenario()),true);
 $('settings-open').onclick = () => { $('settings-notice').textContent = ''; $('settings-dialog').showModal(); };
 $('settings-close').onclick = () => $('settings-dialog').close();
 $('card-close').onclick = () => $('card-dialog').close();
+$('combat-open').onclick = () => { renderCombat(); $('combat-dialog').showModal(); };
+$('combat-close').onclick = () => $('combat-dialog').close();
+$('combat-run').onclick = () => guarded(analyzeCombat);
+$('combat-mode').onchange = () => { combatAnalysis = null; combatPage = 0; renderCombat(); };
+$('combat-prev').onclick = () => { combatPage--; renderCombat(); };
+$('combat-next').onclick = () => { combatPage++; renderCombat(); };
+$('combat-return').onclick = () => guarded(async () => {
+  const original = combatOriginal;
+  combatOriginal = null;
+  accept(original);
+  notify('元の対戦と再生位置に戻りました。');
+},true);
 $('scenario').onchange = () => { $('case-description').textContent = chosenScenario()?.description || ''; };
 $('act').onclick = () => guarded(() => { const action = view.legal_actions[Number($('action').value)]; if (!action) throw new Error('可能な操作を選んでください。'); return step(action); });
 $('case-step').onclick = () => guarded(() => step(selectedCase.actions[view.cursor]));

@@ -136,3 +136,18 @@ dialog{color:var(--text);background:var(--surface);border:1px solid #526a78;bord
   .auto-row{gap:6px}.auto-row button{padding:5px 7px}.auto-row select{font-size:11px}
   .replay-entry{flex-wrap:nowrap}.replay-entry span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
+/* AI_NOTE: 能力なしの比較はダイアログ内で完結させ、盤面の通常表示を広く保つ。 */
+.button.disabled{opacity:.35;cursor:default;pointer-events:none}
+.combat-banner{display:flex;align-items:center;gap:10px;flex:none;border:1px solid #a88645;background:#392f1b;color:#f4d38b;border-radius:6px;padding:4px 9px;margin-bottom:6px;font-size:12px}
+.combat-banner[hidden]{display:none}.combat-banner button{margin-left:auto;padding:3px 9px}
+#combat-dialog[open]{display:flex;flex-direction:column;width:min(1000px,94vw);max-height:90dvh;overflow:hidden}
+#combat-dialog .dialog-head{flex:none;margin-bottom:8px}.combat-scope{font-size:12px;line-height:1.6;margin:0 0 10px;color:#c8d4df}
+.combat-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;flex:none}.combat-toolbar label{font-size:12px;color:var(--muted)}#combat-source{font-size:12px;color:var(--muted)}
+#combat-status{font-size:13px;color:var(--accent);margin:10px 0 5px;flex:none}#combat-status.combat-incomplete{color:#f4d38b}
+.combat-candidates{min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:10px;padding-right:5px}
+.combat-candidate{flex:none;border:1px solid var(--line);border-radius:7px;background:#121d25;padding:10px}
+.combat-candidate-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;margin-bottom:7px}.combat-candidate-head strong{color:var(--accent)}.combat-candidate-head button{margin-left:auto;padding:4px 9px}
+.combat-side{display:grid;grid-template-columns:78px minmax(0,1fr);align-items:start;gap:6px;margin:5px 0;font-size:12px}.combat-side>strong{font-size:11px;padding-top:4px;color:#a9bdd0}.combat-side:nth-child(3)>strong{color:#e6b7ad}
+.combat-board{display:flex;gap:5px;flex-wrap:wrap}.combat-unit{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;padding:3px 6px;background:#243743;border:1px solid #3b5666;border-radius:5px;max-width:100%;font-size:11px}.combat-unit>span:first-child{overflow-wrap:anywhere}.combat-unit .attack{color:#b1d7ff}.combat-unit .card-health{color:#ffadb0}
+.combat-candidate summary{padding:6px 0}.combat-candidate .hint{margin:5px 0 0}.combat-pages{display:flex;justify-content:center;align-items:center;gap:12px;padding-top:12px;flex:none;font-size:12px}.combat-pages[hidden]{display:none}
+@media(max-width:800px){header{flex-wrap:wrap}.header-actions{flex-wrap:wrap}#combat-dialog{padding:14px}.combat-banner{flex-wrap:wrap}.combat-banner span{display:none}.combat-side{grid-template-columns:1fr}.combat-candidate-head{gap:7px}}
