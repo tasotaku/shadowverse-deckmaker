@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
 
-from .battle import Battle, catalog, default_state, load_cases, replay, run_case
+from .battle import Battle, catalog, default_state, demo_state, load_cases, replay, run_case
 
 MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
@@ -58,7 +58,15 @@ class BattleHandler(BaseHTTPRequestHandler):
             return
         path = urlsplit(self.path).path
         if path == "/api/bootstrap":
-            self.send_json({"state": default_state(), "cards": catalog(), "cases": load_cases()})
+            presets: list[dict[str, Any]] = []
+            preset_error: str | None = None
+            try:
+                presets.append({"id": "elf-game", "title": "アンリミテッド・エルフ40枚同士", "initial": demo_state(),
+                                "description": "対応済みカードで構成したエルフ40枚同士の対戦。アンリミテッド。"})
+            except ValueError as error:
+                preset_error = str(error)
+            self.send_json({"state": default_state(), "cards": catalog(), "cases": load_cases(),
+                            "presets": presets, "preset_error": preset_error})
             return
         assets = {"/": ("index.html", "text/html"),
                   "/app.js": ("app.js", "text/javascript"),

@@ -196,7 +196,7 @@ async function startCase(testCase) {
   // AI_NOTE: 新しい開始条件では以前の合否を消し、別ケースの結果を取り違えない。
   stopAuto();
   const result = await api('start',{state:testCase ? caseInitial(testCase) : bootstrap.state,cards:testCase?.cards || bootstrap.cards});
-  selectedCase = testCase;
+  selectedCase = testCase && Object.hasOwn(testCase,'expected') ? testCase : null;
   $('case-json').value = JSON.stringify(testCase || {name:'自由対戦',initial:bootstrap.state,actions:[],expected:{}},null,2);
   $('case-description').textContent = testCase?.description || '';
   $('verdict').textContent = '未実行'; $('test-result').replaceChildren();
@@ -220,7 +220,7 @@ async function testCase(testCase) {
   // AI_NOTE: 自動試験の記録もそのまま盤面へ開き、失敗局面を調べられるようにする。
   const result = await api('test',{case:testCase});
   if (result.record) {
-    selectedCase = testCase;
+    selectedCase = testCase && Object.hasOwn(testCase,'expected') ? testCase : null;
     accept(await api('replay',{record:result.record}));
   }
   $('verdict').textContent = result.passed ? 'PASS' : 'FAIL';
@@ -256,6 +256,7 @@ async function init() {
   bootstrap = await api('bootstrap');
   setupBuilder();
   $('scenario').append(new Option('5ダメージを試す · 自由操作',''));
+  (bootstrap.presets || []).forEach(preset => $('scenario').append(new Option(preset.title,'preset:' + preset.id)));
   bootstrap.cases.forEach((testCase,index) => $('scenario').append(new Option(testCase.name || testCase.title || testCase.id || `ケース ${index + 1}`,String(index))));
   let saved = null;
   try { saved = localStorage.getItem(STORE); } catch { notify('ブラウザの自動保存を利用できません。ファイル保存は利用できます。',true); }
@@ -279,8 +280,13 @@ async function init() {
   await startCase(null);
 }
 // AI_NOTE: すべての変更操作を単一の処理待ち境界へ結び付ける。
-$('start').onclick = () => guarded(() => startCase($('scenario').value === '' ? null : bootstrap.cases[Number($('scenario').value)]));
-$('scenario').onchange = () => { $('case-description').textContent = $('scenario').value === '' ? '' : bootstrap.cases[Number($('scenario').value)]?.description || ''; };
+function chosenScenario() {
+  // AI_NOTE: 通常対戦の開始条件と期待値を持つ検査ケースを区別する。
+  const value = $('scenario').value;
+  return value === '' ? null : value.startsWith('preset:') ? bootstrap.presets.find(item => 'preset:' + item.id === value) : bootstrap.cases[Number(value)];
+}
+$('start').onclick = () => guarded(() => startCase(chosenScenario()));
+$('scenario').onchange = () => { $('case-description').textContent = chosenScenario()?.description || ''; };
 $('act').onclick = () => guarded(() => { const action = view.legal_actions[Number($('action').value)]; if (!action) throw new Error('可能な操作を選んでください。'); return step(action); });
 $('case-step').onclick = () => guarded(() => step(selectedCase.actions[view.cursor]));
 $('test').onclick = () => guarded(() => testCase(selectedCase));
@@ -386,7 +392,7 @@ $('builder-add').onclick = () => guarded(async () => {
   cards.push({card_id:card.card_id}); renderBuilder();
   $('builder-status').textContent = `${card.name}を追加しました。開始ボタンで反映します。`;
 });
-$('builder-clear').onclick = () => { if (!builderDraft) loadBuilder(); builderDraft.players[Number($('builder-player').value)].board = []; renderBuilder(); $('builder-status').textContent = 'この側の盤面を空にしました。'; };
+$('builder-clear').onclick = () => guarded(async () => { updateBuilderStats(); builderDraft.players[Number($('builder-player').value)].board = []; renderBuilder(); $('builder-status').textContent = 'この側の盤面を空にしました。'; });
 $('builder-apply').onclick = () => guarded(async () => {
   updateBuilderStats();
   const cards = builderCatalog();
