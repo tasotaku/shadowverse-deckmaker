@@ -21,7 +21,7 @@ Json = dict[str, Any]
 BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
-POLICIES = ('random', 'greedy', 'search', 'trained')
+POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy')
 POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
@@ -128,6 +128,27 @@ def evaluate(battle: Battle, owner: int, weights: dict[str, float]) -> float:
     return sum(weights[key]*value for key, value in features(battle, owner).items())
 
 
+def turn_value(battle: SearchBattle, owner: int, weights: dict[str,float]) -> float:
+    # AI_NOTE: 全候補をターン終了後で比較し、相手の通常ドロー/PP増加を終了だけの損失にしない。
+    end = battle if battle.state['winner'] is not None or battle.state['active_player'] != owner else battle.branch({'type':'end_turn'})
+    score = evaluate(end,owner,weights)
+    if end.state['winner'] is not None:
+        return score
+    own,enemy = end.state['players'][owner],end.state['players'][1-owner]
+    # Public board reach and drain prevent treating damage that is immediately healed as lasting pressure.
+    guards = [e for e in own['board'] if '守護' in e['keywords'] and '潜伏' not in e['keywords']]
+    incoming = sum(e['attack'] for e in enemy['board'] if rules.definition(end,e)['kind']=='follower')
+    blocked = sum(e['health']+(3 if 'バリア' in e['keywords'] else 0) for e in guards)
+    incoming = 0 if own.get('damage_shield') else max(0,incoming-blocked)
+    drain = min(incoming,sum(e['attack'] for e in enemy['board'] if 'ドレイン' in e['keywords']),enemy['max_health']-enemy['health'])
+    score -= weights['health']*min(incoming,own['health'])
+    score -= (weights['health']+weights['pressure'])*drain
+    # AI_NOTE: 次ターンに新たに使える手持ちカードを評価し、盤面を取らない展開とPP加速を比較する。
+    next_play = [e['cost'] for e in own['hand'] if e['cost'] <= min(10,own['max_pp']+1)]
+    score += .6*max(next_play,default=0)
+    return float(score)
+
+
 def load_weights() -> dict[str, float]:
     # AI_NOTE: 学習結果は版付きファイルから読み、存在しないモデルを学習済みと呼ばない。
     data = json.loads(MODEL_PATH.read_text())
@@ -138,9 +159,9 @@ def load_weights() -> dict[str, float]:
     return {key: float(value) for key,value in weights.items()}
 
 
-def model_hash(weights: dict[str,float]) -> str:
+def model_hash(weights: dict[str,float], policy_version: int = 1) -> str:
     # AI_NOTE: 採否や評価メモの追記で、実際に対戦した重みの識別が変わらないようにする。
-    return fingerprint({'policy_version':POLICY_VERSION,'weights':weights})
+    return fingerprint({'policy_version':policy_version,'weights':weights})
 
 
 @dataclass
@@ -160,6 +181,9 @@ class Player:
             raise ValueError(f'未対応のAI方式: {policy}')
         self.cards = cards
         self.policy = policy
+        self.algorithm_version = 2 if policy == 'search' else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1)
+        if self.algorithm_version not in (1,2):
+            raise ValueError('未対応のAI判断バージョンです')
         self.weights = dict(weights if weights is not None else load_weights() if policy == 'trained' else BASE_WEIGHTS)
         if set(self.weights) != set(BASE_WEIGHTS) or any(not math.isfinite(v) for v in self.weights.values()):
             raise ValueError('評価重みが不正です')
@@ -201,7 +225,8 @@ class Player:
                     children = [world.branch(action) for world in parent.worlds]
                     nodes += 1
                     uncertain = any(child.uncertain for child in children)
-                    scores = [evaluate(child,owner,self.weights) for child in children]
+                    scoring = turn_value if self.algorithm_version == 2 else evaluate
+                    scores = [scoring(child,owner,self.weights) for child in children]
                     score = sum(scores)/len(scores)
                     # Uncertain outcomes cannot be labelled a proven win; replan after seeing the result.
                     plan = parent.plan+[action]
@@ -239,7 +264,7 @@ class Player:
             key = json.dumps(action,sort_keys=True)
             if key not in candidates or item.score > candidates[key]['score']:
                 candidates[key] = {'action':action,'score':round(item.score,3)}
-        reason = '公開情報だけで勝ち切れる手順を発見' if win else '盤面・体力・残り資源と、相手盤面からの危険を比較'
+        reason = '公開情報だけで勝ち切れる手順を発見' if win else ('ターン終了後の盤面・相手の攻撃と回復・次に使える手札を比較' if self.algorithm_version==2 else '盤面・体力・残り資源と、相手盤面からの危険を比較')
         changes = []
         owner = before['active_player']
         for who,label in ((owner,'自分'),(1-owner,'相手')):
@@ -260,7 +285,7 @@ class Player:
                 'limited':limited,'plan':best.plan,
                 'plan_layouts':best.layouts,
                 'plan_entities':{e['id']:e['name'] for layout in best.layouts for e in layout},
-                'settings':{'policy_version':POLICY_VERSION,'weights':dict(self.weights),'max_nodes':self.max_nodes,
+                'settings':{'policy_version':self.algorithm_version,'weights':dict(self.weights),'max_nodes':self.max_nodes,
                             'width':self.width,'depth':self.depth,'seed':self.seed},
                 'candidates': sorted(candidates.values(),key=lambda item:item['score'],reverse=True)[:5],
                 'elapsed_ms':round((time.perf_counter()-started)*1000,2)}

@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from .battle import Battle, catalog, fingerprint, replay
-from .battle_ai import BASE_WEIGHTS, POLICY_VERSION, Player, load_weights, model_hash
+from .battle_ai import BASE_WEIGHTS, MODEL_PATH, Player, load_weights, model_hash
 from .battle_decks import new_match
 
 Json = dict[str, Any]
@@ -108,6 +108,7 @@ def train(output: Path, workers: int, generations: int = 3, candidates: int = 6,
                         'candidates':[{'weights':weights,'summary':score} for weights,score in zip(variants,scored)],'games':all_results})
         print(json.dumps({'generation':generation,'selected':chosen,'scores':[s['score_rate'] for s in scored]}),flush=True)
     result = {'version':1,'method':'evolutionary weight search; game outcome fitness', 'policy':policy,
+              'policy_version':2 if policy=='search' else 1,
               'weights':best,'base_weights':BASE_WEIGHTS,'generations':history,
               'scope':'shared weights for both registered decks; no per-card move table',
               'training_games':sum(len(h['games']) for h in history)}
@@ -119,8 +120,9 @@ def train(output: Path, workers: int, generations: int = 3, candidates: int = 6,
 def save_model(report: Json, path: Path) -> None:
     # AI_NOTE: 学習履歴と配布用の小さな重みを分離し、採用前でも候補として再利用できる。
     model = {key:report[key] for key in ('version','method','weights','base_weights','scope','training_games')}
+    version = report.get('policy_version',1)
     model.update(status='candidate',training_seeds=[seed for generation in report['generations'] for seed in generation['seeds']],
-                 cards_hash=fingerprint(catalog()),policy_version=POLICY_VERSION,model_hash=model_hash(report['weights']))
+                 cards_hash=fingerprint(catalog()),policy_version=version,model_hash=model_hash(report['weights'],version))
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(model,ensure_ascii=False,indent=2)+'\n')
 
@@ -133,8 +135,8 @@ def main() -> None:
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--seed',type=int,default=10001)
     parser.add_argument('--seeds',type=int,default=12)
-    parser.add_argument('--policy',choices=['random','greedy','search','trained'],default='search')
-    parser.add_argument('--opponent',choices=['random','greedy','search','trained'],default='greedy')
+    parser.add_argument('--policy',choices=['random','greedy','search','trained','legacy'],default='search')
+    parser.add_argument('--opponent',choices=['random','greedy','search','trained','legacy'],default='greedy')
     parser.add_argument('--training-policy',choices=['greedy','search'],default='greedy')
     parser.add_argument('--model-output',type=Path)
     args = parser.parse_args()
@@ -155,7 +157,8 @@ def main() -> None:
         seeds = list(range(args.seed,args.seed+args.seeds))
         results = run_jobs(jobs(seeds,args.policy,args.opponent),args.workers)
         data = {'policy':args.policy,'opponent':args.opponent,'seeds':seeds,'summary':summarize(results),'games':results,
-                'model_hash':model_hash(load_weights()) if 'trained' in (args.policy,args.opponent) else None,
+                'model_hash':model_hash(load_weights(),json.loads(MODEL_PATH.read_text()).get('policy_version',1)) if 'trained' in (args.policy,args.opponent) else None,
+                'search_version':2,
                 'model_hash_basis':'policy_version and weights',
                 'conditions':'no mulligan; same initial state for seat swaps; public observations; unfinished scored zero'}
         print(json.dumps(data['summary']),flush=True)
