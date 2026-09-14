@@ -2,6 +2,9 @@
 // AI_NOTE: 盤面の結果と合法手は常に対戦エンジンから受け取り、画面にはルールを複製しない。
 const $ = id => document.getElementById(id);
 const STORE = 'svdeck-battle-v1';
+const ANIMATION_STORE = 'svdeck-battle-animation';
+const animation = new BattleAnimation($('board'),$('animation-caption'));
+let operation = 0, autoRun = 0;
 let bootstrap, view, selectedCase = null, busy = false, running = false, selectedSource = null, builderDraft = null;
 
 function node(tag, cls, text) {
@@ -25,14 +28,16 @@ async function api(path, body) {
   if (!response.ok) throw new Error(result.error || '操作を完了できませんでした。');
   return result;
 }
-async function guarded(work) {
+async function guarded(work, interrupt = false) {
   // AI_NOTE: 連打による手順の競合を防ぎ、自動対戦も同じ操作境界を通す。
-  if (busy) return;
+  if (busy && !(interrupt && animation.active)) return;
+  if (interrupt) animation.cancel();
+  const current = ++operation;
   busy = true;
   controls();
   try { await work(); }
   catch (error) { stopAuto(); notify(error.message, true); }
-  finally { busy = false; controls(); }
+  finally { if (current === operation) { busy = false; controls(); } }
 }
 function persist() {
   // AI_NOTE: 再読込時にケースと再生位置を復元でき、保存失敗も利用者へ知らせる。
@@ -41,6 +46,7 @@ function persist() {
 }
 function accept(result) {
   // AI_NOTE: 更新後の盤面・操作一覧・履歴をまとめて切り替える。
+  animation.cancel();
   view = result;
   selectedSource = null;
   render();
@@ -67,6 +73,7 @@ function controls() {
   // AI_NOTE: 状態がない時・自動操作中・履歴端で無効な操作を押せないようにする。
   for (const id of ['start','test','apply-case','test-json','act','case-step','first','back','next','last','scenario','action','scrub']) $(id).disabled = busy || running;
   $('auto').disabled = busy && !running;
+  if (animation.active) for (const id of ['start','first','back','next','last','scenario','scrub']) $(id).disabled = false;
   for (const element of $('builder').querySelectorAll('button,input,select')) element.disabled = busy || running;
   if (!view) return;
   $('act').disabled ||= !view.legal_actions.some(action => !selectedSource || (action.card || action.source) === selectedSource);
@@ -84,6 +91,7 @@ function cardNode(card, zone) {
   const available = view.legal_actions.some(action => (action.card || action.source) === card.id);
   const element = node('button', 'card' + (zone === 'hand' ? ' hand' : '') + (available ? ' selectable' : '') + (selectedSource === card.id ? ' chosen' : ''));
   element.type = 'button';
+  element.dataset.entity = card.id;
   const definition = view.record.cards?.[card.card_id] || bootstrap.cards[card.card_id] || {};
   const title = node('div', 'card-name');
   title.append(node('span','cost',card.cost ?? definition.cost ?? '?'), document.createTextNode(card.name || definition.name || card.card_id));
@@ -113,6 +121,7 @@ function renderBoard() {
     const player = view.state.players[index];
     const section = node('div','player' + (index === view.state.active_player ? ' active' : ''));
     const head = node('div','player-head');
+    head.dataset.entity = `leader:${index}`;
     head.append(node('span','player-name',`PLAYER ${index + 1}${index === view.state.active_player ? ' · 操作中' : ''}`),node('span','health',`♥ ${player.health}`),node('span','stat',`PP ${player.pp}/${player.max_pp}`),node('span','stat',`進化 ${player.ep} / 超進化 ${player.sep}`),node('span','stat',`山札 ${player.deck.length} · 墓場 ${player.graveyard}`));
     section.append(head);
     for (const zone of index === 1 ? ['hand','board'] : ['board','hand']) {
@@ -207,7 +216,12 @@ async function step(action) {
   // AI_NOTE: 過去からの操作はエンジンが履歴を分岐し、元記録は事前に保存できる。
   const branched = view.cursor < view.record.actions.length;
   const result = await api('step',{record:view.record,cursor:view.cursor,action});
+  const before = animation.capture();
   accept(result);
+  const presentation = animation.play(result.events || result.record.frames?.[result.cursor - 1]?.events || [],before);
+  controls();
+  await presentation;
+  if (view !== result) return;
   notify(branched ? 'この位置から別の手順へ分岐しました。' : '操作を実行しました。');
 }
 async function seek(cursor) {
@@ -232,14 +246,16 @@ async function testCase(testCase) {
 }
 function stopAuto() {
   // AI_NOTE: 停止後に新たな自動手を予約しない。実行中の一手だけは完了する。
+  autoRun++;
   running = false; $('auto').textContent = '自動対戦';
 }
 async function autoLoop() {
   // AI_NOTE: 待ち時間は描画用のみで、選択にはLLMや非公開のルール推定を使わない。
   if (running) { stopAuto(); controls(); return; }
   running = true; selectedSource = null; $('auto').textContent = '自動対戦を停止'; controls();
+  const currentRun = ++autoRun;
   let count = 0;
-  while (running && view.state.winner == null && view.legal_actions.length && count < 500) {
+  while (currentRun === autoRun && running && view.state.winner == null && view.legal_actions.length && count < 500) {
     await guarded(async () => {
       const action = view.legal_actions[Math.floor(Math.random() * view.legal_actions.length)];
       await step(action);
@@ -247,12 +263,16 @@ async function autoLoop() {
     count++;
     await new Promise(resolve => setTimeout(resolve,Number($('speed').value)));
   }
+  if (currentRun !== autoRun) return;
   const limited = count >= 500;
   stopAuto(); controls();
   if (limited) notify('500操作で一時停止しました。続けるには自動対戦を押してください。');
 }
 async function init() {
   // AI_NOTE: 保存記録を検証して復元し、壊れた記録は消さず理由を表示する。
+  try { $('animate').checked = localStorage.getItem(ANIMATION_STORE) !== 'off'; }
+  catch { notify('演出設定の保存を利用できません。',true); }
+  animation.enabled = $('animate').checked;
   bootstrap = await api('bootstrap');
   setupBuilder();
   $('scenario').append(new Option('5ダメージを試す · 自由操作',''));
@@ -285,20 +305,26 @@ function chosenScenario() {
   const value = $('scenario').value;
   return value === '' ? null : value.startsWith('preset:') ? bootstrap.presets.find(item => 'preset:' + item.id === value) : bootstrap.cases[Number(value)];
 }
-$('start').onclick = () => guarded(() => startCase(chosenScenario()));
+$('start').onclick = () => guarded(() => startCase(chosenScenario()),true);
 $('scenario').onchange = () => { $('case-description').textContent = chosenScenario()?.description || ''; };
 $('act').onclick = () => guarded(() => { const action = view.legal_actions[Number($('action').value)]; if (!action) throw new Error('可能な操作を選んでください。'); return step(action); });
 $('case-step').onclick = () => guarded(() => step(selectedCase.actions[view.cursor]));
 $('test').onclick = () => guarded(() => testCase(selectedCase));
 $('test-json').onclick = () => guarded(() => testCase(JSON.parse($('case-json').value)));
 $('apply-case').onclick = () => guarded(() => startCase(JSON.parse($('case-json').value)));
-$('first').onclick = () => guarded(() => seek(0));
-$('back').onclick = () => guarded(() => seek(view.cursor - 1));
-$('next').onclick = () => guarded(() => seek(view.cursor + 1));
-$('last').onclick = () => guarded(() => seek(view.record.actions.length));
-$('scrub').onchange = () => guarded(() => seek(Number($('scrub').value)));
+$('first').onclick = () => guarded(() => seek(0),true);
+$('back').onclick = () => guarded(() => seek(view.cursor - 1),true);
+$('next').onclick = () => guarded(() => seek(view.cursor + 1),true);
+$('last').onclick = () => guarded(() => seek(view.record.actions.length),true);
+$('scrub').onchange = () => guarded(() => seek(Number($('scrub').value)),true);
 $('auto').onclick = autoLoop;
-$('reveal').onchange = () => { if (view) { renderBoard(); persist(); } };
+$('reveal').onchange = () => { animation.cancel(); if (view) { renderBoard(); persist(); } };
+$('animate').onchange = () => {
+  animation.enabled = $('animate').checked;
+  if (!animation.enabled) animation.cancel();
+  try { localStorage.setItem(ANIMATION_STORE,animation.enabled ? 'on' : 'off'); } catch { notify('演出設定を保存できませんでした。',true); }
+  controls();
+};
 $('save').onclick = () => {
   const link = node('a'); const url = URL.createObjectURL(new Blob([JSON.stringify(view.record,null,2)],{type:'application/json'}));
   link.href = url; link.download = `battle-${Date.now()}.json`; link.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
@@ -312,7 +338,7 @@ $('import').onchange = () => guarded(async () => {
   $('case-json').value = JSON.stringify({name:'読み込んだ記録',initial:record.initial,actions:record.actions,expected:{}},null,2);
   $('verdict').textContent = '期待結果なし'; $('test-result').replaceChildren();
   accept(result); $('import').value = ''; notify('記録を開き、操作を再実行しました。');
-});
+},true);
 function builderCatalog() {
   // AI_NOTE: 読み込んだ記録に独自定義がある場合も、その定義を維持して局面を編集する。
   return {...bootstrap.cards,...(view?.record.cards || {})};
