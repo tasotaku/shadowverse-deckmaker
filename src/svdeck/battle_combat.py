@@ -6,8 +6,9 @@ board/resource criteria, not strategic dominance against future card effects.
 from __future__ import annotations
 
 from collections import deque
+from functools import lru_cache
 from time import perf_counter
-from typing import Iterator, NamedTuple
+from typing import Callable, Iterator, NamedTuple
 
 from .battle import Battle, Json, integer
 from .battle_rules import definition
@@ -109,45 +110,117 @@ def endpoint(state: Position) -> Position:
     return state._replace(own=boards[0], enemy=boards[1], used=False)
 
 
-def dominates(a: Position, b: Position) -> bool:
-    # AI_NOTE: 個体別に比較し、大型一体と小型複数やEPとSEPを合計点で潰さない。相違不明なら残す。
-    if a.win != b.win:
-        return a.win
-    if a.win:
-        return True
-    if a.face > b.face or a.ep < b.ep or a.sep < b.sep:
+def canonical(state: Position) -> Position:
+    # AI_NOTE: 能力なしでは同じ数値の個体の入替えは同一局面。再生する個体IDは代表経路側に保持する。
+    return state._replace(own=tuple(sorted(b for b in state.own if b)),
+                          enemy=tuple(sorted(b for b in state.enemy if b)))
+
+
+@lru_cache(maxsize=100000)
+def board_dominates(larger: tuple[Body | None, ...], smaller: tuple[Body | None, ...]) -> bool:
+    # AI_NOTE: 個体を重複利用せず対応付ける。貪欲に一体ずつ選ぶと正しい対応を見逃すため全組合せで確認。
+    supplies = [b for b in larger if b]
+    demands = [b for b in smaller if b]
+    if len(supplies) < len(demands):
         return False
-    for better, worse in zip(a.own, b.own):
-        if worse is None:
-            continue
-        if better is None or better.evolved != worse.evolved or (
-                better.attack < worse.attack or better.health < worse.health or better.max_health < worse.max_health):
+    choices = [sum(1 << i for i, a in enumerate(supplies) if a.evolved == b.evolved and
+                   a.attack >= b.attack and a.health >= b.health and a.max_health >= b.max_health)
+               for b in demands]
+    choices.sort(key=int.bit_count)
+    available = {0}
+    for options in choices:
+        following: set[int] = set()
+        for used in available:
+            remaining = options & ~used
+            while remaining:
+                bit = remaining & -remaining
+                following.add(used | bit)
+                remaining ^= bit
+        if not following:
             return False
-    for better, worse in zip(a.enemy, b.enemy):
-        if better is None:
-            continue
-        if worse is None or better.evolved != worse.evolved or (
-                better.attack > worse.attack or better.health > worse.health or better.max_health > worse.max_health):
-            return False
+        available = following
     return True
 
 
-def frontier(states: list[Position]) -> list[int]:
-    # AI_NOTE: 終了候補だけを比較する。途中で犠牲が必要な処理を、この比較で探索から落とさない。
-    kept: list[int] = []
+def dominates(a: Position, b: Position) -> bool:
+    # AI_NOTE: 大型一体と小型複数やEPとSEPを合計点で潰さず、個体同士の対応がある場合だけ除く。
+    if a.win or b.win:
+        return a.win
+    return (a.face <= b.face and a.ep >= b.ep and a.sep >= b.sep and
+            board_dominates(a.own, b.own) and board_dominates(b.enemy, a.enemy))
+
+
+def masks(states: list[Position], value: Callable[[Position], int], cumulative: bool = False) -> dict[int, int]:
+    # AI_NOTE: 条件を満たす候補の集合を整数のビットで持ち、数万件同士のPythonループ比較を避ける。
+    groups: dict[int, bytearray] = {}
+    size = (len(states)+7)//8
     for i, state in enumerate(states):
-        if any(dominates(states[j], state) for j in kept):
-            continue
-        kept = [j for j in kept if not dominates(state, states[j])]
-        kept.append(i)
+        v = value(state)
+        if v not in groups:
+            groups[v] = bytearray(size)
+        groups[v][i//8] |= 1 << (i % 8)
+    result, combined = {}, 0
+    for v in sorted(groups, reverse=True):
+        bits = int.from_bytes(groups[v], 'little')
+        combined = combined | bits if cumulative else bits
+        result[v] = combined
+    return result
+
+
+def frontier(states: list[Position]) -> list[int]:
+    # AI_NOTE: 数値の必要条件を集合演算で絞り、最後に個体同士の対応を厳密に検査する。近似枝刈りはしない。
+    if not states:
+        return []
+    for i, state in enumerate(states):
+        if state.win:
+            return [i]
+    vectors = []
+    for state in states:
+        values = [-state.face, state.ep, state.sep]
+        for side, sign in ((state.own, 1), (state.enemy, -1)):
+            for evolved in range(3):
+                group = [b for b in side if b and b.evolved == evolved]
+                for prop in ('health', 'attack', 'max_health'):
+                    ordered = sorted((int(getattr(b, prop)) for b in group), reverse=True)
+                    values.extend(sign * v for v in ordered + [0]*(5-len(ordered)))
+        vectors.append(tuple(values))
+    indexed = {s: i for i, s in enumerate(states)}
+    criteria: list[tuple[int, dict[int, int]]] = []
+    for column in range(len(vectors[0])):
+        def coordinate(s: Position, column: int = column) -> int:
+            # AI_NOTE: 同じ進化状態の数値を大きい順に比較するのは必要条件だけ。対応付けの代用にはしない。
+            return vectors[indexed[s]][column]
+        index = masks(states, coordinate, True)
+        if len(index) > 1:
+            criteria.append((column, index))
+    criteria.sort(key=lambda entry: len(entry[1]), reverse=True)
+    all_bits = (1 << len(states))-1
+    kept = []
+    for i, state in enumerate(states):
+        possible = all_bits ^ (1 << i)
+        for column, index in criteria:
+            possible &= index[vectors[i][column]]
+            if not possible:
+                break
+        beaten = False
+        while possible:
+            bit = possible & -possible
+            j = bit.bit_length()-1
+            if dominates(states[j], state):
+                beaten = True
+                break
+            possible ^= bit
+        if not beaten:
+            kept.append(i)
     return kept
 
 
-def analyze(battle: Battle, mode: str = 'super', max_states: int = 50000) -> Json:
+def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000) -> Json:
     # AI_NOTE: 件数上限は結果の完全性フラグに反映する。上限内の候補を全候補と偽らない。
     if mode not in ('attack', 'evolve', 'super'):
         raise ValueError('探索範囲は attack / evolve / super です')
-    integer(max_states, 'max_states', 1, 200000)
+    if max_states is not None:
+        integer(max_states, 'max_states', 1, 200000)
     if battle.state['winner'] is not None or any(p['health'] <= 0 for p in battle.state['players']):
         raise ValueError('対戦中の盤面を選んでください')
     started = perf_counter()
@@ -156,30 +229,32 @@ def analyze(battle: Battle, mode: str = 'super', max_states: int = 50000) -> Jso
     own, enemy = (projected.state['players'][i] for i in (owner, 1-owner))
     own_ids, enemy_ids = (tuple(e['id'] for e in p['board']) for p in (own, enemy))
     initial = position(projected)
-    parents: dict[Position, tuple[Position, Json] | None] = {initial: None}
+    parents: dict[Position, tuple[Position, Json] | None] = {canonical(initial): None}
     queue = deque([initial])
-    endpoints: dict[Position, Position] = {endpoint(initial): initial}
+    endpoints: dict[Position, Position] = {canonical(endpoint(initial)): initial}
     complete, transitions, duplicates = True, 0, 0
     while queue and complete:
         current = queue.popleft()
         for child, action in successors(current, owner, own['turn'], mode, own_ids, enemy_ids):
             transitions += 1
-            if child in parents:
+            child_key = canonical(child)
+            if child_key in parents:
                 duplicates += 1
                 continue
-            if len(parents) >= max_states:
+            if max_states is not None and len(parents) >= max_states:
                 complete = False
                 break
-            parents[child] = (current, action)
+            parents[child_key] = (canonical(current), action)
             queue.append(child)
-            endpoints.setdefault(endpoint(child), child)
+            endpoints.setdefault(canonical(endpoint(child)), child)
     search_ms = (perf_counter()-started)*1000
     states = list(endpoints)
     kept = frontier(states)
     candidates: list[Json] = []
     for index in kept:
-        end = states[index]
-        cursor = endpoints[end]
+        representative = endpoints[states[index]]
+        end = endpoint(representative)
+        cursor = canonical(representative)
         actions = []
         while (parent := parents[cursor]) is not None:
             cursor, action = parent

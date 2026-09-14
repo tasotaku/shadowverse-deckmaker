@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from itertools import permutations
 from random import Random
 from typing import Any
 
@@ -35,8 +36,8 @@ def summary(battle: Battle) -> Json:
 
 
 def key(value: Json) -> tuple[Any, ...]:
-    return tuple(tuple(tuple(b[k] for k in ('id', 'attack', 'health', 'max_health', 'evolved'))
-                       for b in value[z]) for z in ('own_board', 'enemy_board')) + (
+    return tuple(tuple(sorted(tuple(b[k] for k in ('attack', 'health', 'max_health', 'evolved'))
+                       for b in value[z])) for z in ('own_board', 'enemy_board')) + (
                            value['enemy_health'], value['ep'], value['sep'], value['win'])
 
 
@@ -47,13 +48,17 @@ def no_worse(a: Json, b: Json) -> bool:
     if not (a['enemy_health'] <= b['enemy_health'] and a['ep'] >= b['ep'] and a['sep'] >= b['sep']):
         return False
     for zone, favorable, unfavorable in [('own_board', a, b), ('enemy_board', b, a)]:
-        larger = {e['id']: e for e in favorable[zone]}
-        for smaller in unfavorable[zone]:
-            match = larger.get(smaller['id'])
-            if match is None or match['evolved'] != smaller['evolved']:
-                return False
-            if any(match[k] < smaller[k] for k in ('attack', 'health', 'max_health')):
-                return False
+        larger, smaller = favorable[zone], unfavorable[zone]
+        if len(larger) < len(smaller):
+            return False
+        matches = False
+        for arrangement in permutations(larger, len(smaller)):
+            if all(x['evolved'] == y['evolved'] and all(x[k] >= y[k] for k in ('attack', 'health', 'max_health'))
+                   for x, y in zip(arrangement, smaller)):
+                matches = True
+                break
+        if not matches:
+            return False
     return True
 
 
@@ -77,7 +82,8 @@ def checked(battle: Battle, mode: str = 'super') -> Json:
     assert battle.export() == before
     for candidate in result['candidates']:
         record = {**result['record'], 'actions': candidate['actions'], 'frames': []}
-        assert key(summary(replay(record))) == key(candidate)
+        actual = summary(replay(record))
+        assert actual == {k: v for k, v in candidate.items() if k != 'actions'}
     return result
 
 
@@ -181,3 +187,26 @@ def test_empty_board_and_budget_and_bad_inputs() -> None:
     ended.state['winner'] = 0
     with pytest.raises(ValueError):
         analyze(ended)
+
+
+def test_matching_is_not_greedy_and_separate_stats_are_not_sufficient() -> None:
+    from svdeck.battle_combat import Body, Position, board_dominates, canonical, frontier
+    def b(a: int, h: int) -> Body:
+        return Body(a, h, h, 0, 0, False)
+    assert board_dominates((b(3, 3), b(3, 1)), (b(3, 1), b(1, 3)))
+    assert not board_dominates((b(4, 1), b(1, 4)), (b(3, 3),))
+    x = canonical(Position((b(4, 1), b(1, 4)), (), 20, 1, 1, False, False))
+    y = canonical(Position((b(3, 3),), (), 20, 1, 1, False, False))
+    assert frontier([x, y]) == [0, 1]
+
+
+def test_five_identical_bodies_merge_symmetry_with_replay_witnesses() -> None:
+    result = checked(game([body(f'a{i}', 2, 3) for i in range(5)],
+                          [body(f'x{i}', 2, 3) for i in range(5)], face=20))
+    assert result['stats']['states'] < 1000
+    assert len(result['candidates']) == len({key(c) for c in result['candidates']})
+
+
+def test_equal_winning_lines_keep_one_representative() -> None:
+    result = checked(game([body('a', 3, 3), body('b', 2, 2)], [], face=1))
+    assert len(result['candidates']) == 1 and result['candidates'][0]['win']
