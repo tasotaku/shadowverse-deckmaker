@@ -10,6 +10,7 @@ from urllib.parse import urlsplit
 
 from .battle import Battle, catalog, default_state, demo_state, load_cases, replay, run_case
 from .battle_decks import load_decks, presets as deck_presets
+from .battle_ai import Player
 
 MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
@@ -76,6 +77,9 @@ class BattleHandler(BaseHTTPRequestHandler):
         if path == "/api/example-replay":
             self.send_data((WEB_ROOT.parent / "data" / "battle_example_replay.json").read_bytes())
             return
+        if path == "/api/ai-example-replay":
+            self.send_data((WEB_ROOT.parent / "data" / "battle_ai_replay.json").read_bytes())
+            return
         assets = {"/": ("index.html", "text/html"),
                   "/app.js": ("app.js", "text/javascript"),
                   "/animation.js": ("animation.js", "text/javascript"),
@@ -110,7 +114,7 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if not isinstance(body.get("state"), dict):
                     raise ValueError("開始状態が必要です。")
                 self.send_json(snapshot(Battle(body["state"], cards=body.get("cards"))))
-            elif path in {"/api/replay", "/api/step"}:
+            elif path in {"/api/replay", "/api/step", "/api/ai-step"}:
                 record = body.get("record")
                 if not isinstance(record, dict) or not isinstance(record.get("actions"), list):
                     raise ValueError("対戦記録が必要です。")
@@ -120,7 +124,16 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if isinstance(cursor, bool) or not isinstance(cursor, int) or not 0 <= cursor <= len(record["actions"]):
                     raise ValueError("再生位置が不正です。")
                 battle = replay(record, cursor=cursor)
-                if path == "/api/step":
+                if path == "/api/ai-step":
+                    # AI_NOTE: 観戦の手札表示に関係なく、判断の入力は手番側の観測に限定する。
+                    player = Player(battle.cards, policy=body.get('policy', 'search'))
+                    decision = player.choose(battle.observation(battle.state['active_player']))
+                    battle.step(decision['action'])
+                    battle.frames[-1]['decision'] = decision
+                    result = snapshot(battle)
+                    result['decision'] = decision
+                    self.send_json(result)
+                elif path == "/api/step":
                     if not isinstance(body.get("action"), dict):
                         raise ValueError("操作が必要です。")
                     battle.step(body["action"])

@@ -736,6 +736,9 @@ def replay(record: Json, cursor: int | None = None) -> Battle:
         battle.step(action)
         if i < len(frames) and frames[i]['state'] != battle.state:
             raise ValueError(f'{i+1}手目の保存状態と再計算が一致しません')
+        # AI_NOTE: 判断メモは再計算する対戦結果とは分離して保持する（正しさの保証ではない）。
+        if i < len(frames) and isinstance(frames[i].get('decision'), dict):
+            battle.frames[-1]['decision'] = copy.deepcopy(frames[i]['decision'])
     return battle
 
 
