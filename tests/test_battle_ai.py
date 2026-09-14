@@ -11,7 +11,7 @@ from typing import Any
 import pytest
 
 from svdeck.battle import Battle, catalog
-from svdeck.battle_ai import Player, sample_world
+from svdeck.battle_ai import Player, execute_plan, sample_world
 
 Json = dict[str, Any]
 
@@ -158,15 +158,39 @@ def test_reanimate_marks_random_choice_even_without_random_event(cards: dict[str
     assert result.uncertain, 'リアニメイトの直接乱数呼出しも確定手順に含められない'
 
 
-def test_generated_follower_winning_plan_executes_with_real_entity_ids(cards: dict[str, Json]) -> None:
+@pytest.mark.parametrize('execution', ['replan', 'resolve-plan'])
+def test_generated_follower_uses_observed_real_id(cards: dict[str, Json], execution: str) -> None:
     # next_idは非公開なので、探索中に生成されたe1を実環境のIDと決めつけられない。
     battle = Battle({'next_id': 700, 'players': [player(pp=3, max_pp=3,
                      hand=[entity('10552110', 'trouble')]), player(health=1)]}, cards)
     decision = Player(cards).choose(battle.observation(0))
     assert decision['proven_win']
-    for action in decision['plan']:
-        battle.step(action)
+    ghost_id = decision['plan'][1]['source']
+    assert decision['plan_entities'][ghost_id] == cards['90051130']['name']
+    assert decision['action'] == {'type': 'play', 'card': 'trouble'}
+    if execution == 'resolve-plan':
+        actual_actions = execute_plan(battle, decision)
+        assert actual_actions[0] == decision['action']
+        assert actual_actions[1]['source'] != ghost_id
+        assert battle.state['winner'] == 0
+        return
+    battle.step(decision['action'])
+    actual_ghost = next(e for e in battle.state['players'][0]['board'] if e['card_id'] == '90051130')
+    assert actual_ghost['id'] != ghost_id, 'この回帰条件は仮IDと実IDが異なる必要がある'
+    next_decision = Player(cards).choose(battle.observation(0))
+    assert next_decision['action'] == {'type': 'attack', 'source': actual_ghost['id'], 'target': 'leader:1'}
+    battle.step(next_decision['action'])
     assert battle.state['winner'] == 0
+
+
+def test_uncertain_plan_is_rejected_without_advancing_game(cards: dict[str, Json]) -> None:
+    battle = Battle({'players': [player(pp=3, max_pp=9, hand=[entity('10042310', 'ramp')]), player()]}, cards)
+    decision = Player(cards).choose(battle.observation(0))
+    assert decision['uncertain']
+    before = battle.export()
+    with pytest.raises(ValueError):
+        execute_plan(battle, decision)
+    assert battle.export() == before
 
 
 def test_hidden_deck_count_is_preserved_when_sampling(cards: dict[str, Json]) -> None:
