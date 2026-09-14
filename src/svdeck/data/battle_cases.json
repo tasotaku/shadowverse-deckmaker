@@ -45,7 +45,10 @@
         },
         {
           "board": [],
-          "graveyard": 1
+          "graveyard": 1,
+          "destroyed": [
+            "test-body"
+          ]
         }
       ]
     }
@@ -1129,7 +1132,10 @@
           "health": 10,
           "board": [],
           "graveyard": 1,
-          "hand": []
+          "hand": [],
+          "destroyed": [
+            "test-body"
+          ]
         }
       ]
     },
@@ -1212,7 +1218,10 @@
           "health": 10,
           "board": [],
           "graveyard": 1,
-          "hand": []
+          "hand": [],
+          "destroyed": [
+            "test-body"
+          ]
         }
       ]
     },
@@ -1292,7 +1301,10 @@
           "health": 12,
           "board": [],
           "graveyard": 1,
-          "hand": []
+          "hand": [],
+          "destroyed": [
+            "last"
+          ]
         }
       ]
     },
@@ -1372,7 +1384,8 @@
           "health": 10,
           "board": [],
           "graveyard": 0,
-          "hand": []
+          "hand": [],
+          "destroyed": []
         }
       ]
     },
@@ -1455,7 +1468,8 @@
           "health": 10,
           "board": [],
           "graveyard": 0,
-          "hand": []
+          "hand": [],
+          "destroyed": []
         }
       ]
     },
@@ -1535,7 +1549,8 @@
           "health": 10,
           "board": [],
           "graveyard": 0,
-          "hand": []
+          "hand": [],
+          "destroyed": []
         }
       ]
     },
@@ -1622,7 +1637,8 @@
               "max_health": 3,
               "attack": 2
             }
-          ]
+          ],
+          "destroyed": []
         }
       ]
     },
@@ -1712,7 +1728,8 @@
               "max_health": 3,
               "attack": 2
             }
-          ]
+          ],
+          "destroyed": []
         }
       ]
     },
@@ -1799,7 +1816,8 @@
               "max_health": 3,
               "attack": 2
             }
-          ]
+          ],
+          "destroyed": []
         }
       ]
     },
@@ -3163,6 +3181,556 @@
         {
           "pp": 2,
           "max_pp": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "super-evolve-0-6",
+    "title": "先攻6ターン目の超進化",
+    "group": "super_evolve",
+    "description": "超進化は+3/+3、SEP1消費。解禁ターンの境界を検証する。",
+    "initial": {
+      "players": [
+        {
+          "turn": 6,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "actions": [
+      {
+        "type": "super_evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "turn": 6,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "expected_error": "ValueError"
+  },
+  {
+    "id": "super-evolve-0-7",
+    "title": "先攻7ターン目の超進化",
+    "group": "super_evolve",
+    "description": "超進化は+3/+3、SEP1消費。解禁ターンの境界を検証する。",
+    "initial": {
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "actions": [
+      {
+        "type": "super_evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "ep": 2,
+          "sep": 1,
+          "evolved_this_turn": true,
+          "board": [
+            {
+              "id": "a",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": "super-evolve-1-6",
+    "title": "後攻6ターン目の超進化",
+    "group": "super_evolve",
+    "description": "超進化は+3/+3、SEP1消費。解禁ターンの境界を検証する。",
+    "initial": {
+      "players": [
+        {},
+        {
+          "turn": 6,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ],
+      "active_player": 1
+    },
+    "actions": [
+      {
+        "type": "super_evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {},
+        {
+          "ep": 2,
+          "sep": 1,
+          "evolved_this_turn": true,
+          "board": [
+            {
+              "id": "a",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "super-protection-damage-0",
+    "title": "超進化：自分ターン中の5ダメージ",
+    "group": "super_protection",
+    "description": "超進化の耐性は自分のターン中だけ。カード効果によるダメージと破壊を分けて確認する。",
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用超進化耐性確認",
+        "kind": "spell",
+        "cost": 0,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_ally",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ],
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "turn": 7
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ],
+          "destroyed": [],
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": "super-protection-damage-1",
+    "title": "超進化：相手ターン中の5ダメージ",
+    "group": "super_protection",
+    "description": "超進化の耐性は自分のターン中だけ。カード効果によるダメージと破壊を分けて確認する。",
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用超進化耐性確認",
+        "kind": "spell",
+        "cost": 0,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    "initial": {
+      "active_player": 1,
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        },
+        {
+          "turn": 7,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 1,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "hand": [],
+          "graveyard": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "super-protection-destroy-0",
+    "title": "超進化：自分ターン中の能力破壊",
+    "group": "super_protection",
+    "description": "超進化の耐性は自分のターン中だけ。カード効果によるダメージと破壊を分けて確認する。",
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用超進化耐性確認",
+        "kind": "spell",
+        "cost": 0,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_ally"
+          }
+        ]
+      }
+    },
+    "initial": {
+      "active_player": 0,
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ],
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "turn": 7
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ],
+          "destroyed": [],
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": "super-attack-3",
+    "title": "超進化攻撃：体力3",
+    "group": "super_attack",
+    "description": "超進化で攻撃して破壊したときだけ相手リーダー1ダメージ。反撃は自分のターン中の耐性で0。",
+    "initial": {
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "keywords": []
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 6,
+              "attacks": 1
+            }
+          ]
+        },
+        {
+          "health": 19,
+          "board": [],
+          "graveyard": 1,
+          "destroyed": [
+            "test-body"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "super-attack-6",
+    "title": "超進化攻撃：体力6",
+    "group": "super_attack",
+    "description": "超進化で攻撃して破壊したときだけ相手リーダー1ダメージ。反撃は自分のターン中の耐性で0。",
+    "initial": {
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 6,
+              "max_health": 6,
+              "keywords": []
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 6,
+              "attacks": 1
+            }
+          ]
+        },
+        {
+          "health": 20,
+          "board": [
+            {
+              "id": "e",
+              "health": 1,
+              "keywords": []
+            }
+          ],
+          "graveyard": 0,
+          "destroyed": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "super-attack-3-barrier",
+    "title": "超進化攻撃：体力3・バリアあり",
+    "group": "super_attack",
+    "description": "超進化で攻撃して破壊したときだけ相手リーダー1ダメージ。反撃は自分のターン中の耐性で0。",
+    "initial": {
+      "players": [
+        {
+          "turn": 7,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "evolved": 2
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 6,
+              "attacks": 1
+            }
+          ]
+        },
+        {
+          "health": 20,
+          "board": [
+            {
+              "id": "e",
+              "health": 3,
+              "keywords": []
+            }
+          ],
+          "graveyard": 0,
+          "destroyed": []
         }
       ]
     }
