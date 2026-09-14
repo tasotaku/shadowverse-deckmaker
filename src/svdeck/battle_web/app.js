@@ -18,6 +18,7 @@ function notify(message, error = false) {
   // AI_NOTE: 操作失敗を盤面付近へ表示し、直前の有効状態を保つ。
   $('notice').textContent = message;
   $('notice').className = error ? 'error' : '';
+  $('settings-notice').textContent = error && $('settings-dialog').open ? message : '';
 }
 async function api(path, body) {
   // AI_NOTE: JSON応答の失敗を利用者へ伝え、古い成功表示で上書きしない。
@@ -47,6 +48,8 @@ function persist() {
 function accept(result) {
   // AI_NOTE: 更新後の盤面・操作一覧・履歴をまとめて切り替える。
   animation.cancel();
+  $('settings-dialog').close();
+  $('card-dialog').close();
   view = result;
   selectedSource = null;
   render();
@@ -121,8 +124,16 @@ function cardNode(card, zone) {
     if (busy || running) return;
     selectedSource = selectedSource === card.id ? null : card.id;
     renderBoard(); renderActions();
+    showCard(card,definition);
   };
   return element;
+}
+function showCard(card, definition) {
+  // AI_NOTE: 盤面では短く表示し、現在の能力とカード本文はクリック・キーボードで全文を読める。
+  $('detail-name').textContent = card.name || definition.name || card.card_id;
+  $('detail-stats').textContent = `${card.cost}PP · 攻撃 ${card.attack} / 体力 ${card.health}（最大 ${card.max_health}）\n${(card.keywords || []).join(' · ')}${card.evolved ? '\n' + (card.evolved === 2 ? '超進化' : '進化') : ''}${card.lost_last_words ? '\nラストワード消失' : ''}`;
+  $('detail-text').textContent = definition.text || '能力なし';
+  $('card-dialog').showModal();
 }
 function renderBoard() {
   // AI_NOTE: 相手側を上、自分側を下へ固定し、手番が変わっても盤面の位置を飛ばさない。
@@ -143,11 +154,11 @@ function renderBoard() {
         badge.title = [crest.name,...(crest.keywords || [])].filter(Boolean).join(' · ');
         crests.append(badge);
       }
-      section.append(crests);
+      head.append(crests);
     }
     for (const zone of index === 1 ? ['hand','board'] : ['board','hand']) {
       section.append(node('div','zone-label',zone === 'hand' ? `手札 ${player.hand.length}枚` : `盤面 ${player.board.length}/5`));
-      const cards = node('div','cards');
+      const cards = node('div',`cards ${zone}-cards`);
       if (zone === 'hand' && !$('reveal').checked && index !== view.state.active_player) cards.append(node('div','empty','相手の手札は非公開'));
       else for (const card of player[zone]) cards.append(cardNode(card,zone));
       if (!player[zone].length) cards.append(node('div','empty',zone === 'board' ? '盤面にカードがありません' : '手札がありません'));
@@ -353,6 +364,9 @@ function chosenScenario() {
   return value === '' ? null : value.startsWith('preset:') ? bootstrap.presets.find(item => 'preset:' + item.id === value) : bootstrap.cases[Number(value)];
 }
 $('start').onclick = () => guarded(() => startCase(chosenScenario()),true);
+$('settings-open').onclick = () => { $('settings-notice').textContent = ''; $('settings-dialog').showModal(); };
+$('settings-close').onclick = () => $('settings-dialog').close();
+$('card-close').onclick = () => $('card-dialog').close();
 $('scenario').onchange = () => { $('case-description').textContent = chosenScenario()?.description || ''; };
 $('act').onclick = () => guarded(() => { const action = view.legal_actions[Number($('action').value)]; if (!action) throw new Error('可能な操作を選んでください。'); return step(action); });
 $('case-step').onclick = () => guarded(() => step(selectedCase.actions[view.cursor]));
