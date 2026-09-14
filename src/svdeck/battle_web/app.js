@@ -261,7 +261,7 @@ function renderDecision(decision, state) {
   target.append(node('p','ai-reason',decision.reason || '判断理由の記録はありません。'));
   const score = value => Number.isFinite(value) ? value.toFixed(1) : '—';
   target.append(node('p','ai-metrics',`評価 ${score(decision.score)} · 試した手 ${decision.nodes ?? '—'} · 先読み ${decision.depth ?? '—'}手 · ${Number.isFinite(decision.elapsed_ms) ? (decision.elapsed_ms / 1000).toFixed(2) + '秒' : '時間未記録'}`));
-  target.append(node('p','hint','評価値は手を比べるための点数で、勝率ではありません。相手の手札・山札の中身や並びは判断に使いません。'));
+  target.append(node('p','hint','評価値は勝率ではありません。相手の実際の手札・山札順は見ていません。' + (decision.response_search?.available ? '公開デッキから手札を仮定しています。' : '')));
   if (decision.uncertain) target.append(node('p','ai-caution','未確定の結果を含むため、先読みの評価には限界があります。'));
   if (decision.candidates?.length) {
     const table = node('table','ai-candidates');
@@ -273,6 +273,15 @@ function renderDecision(decision, state) {
       table.append(row);
     }
     target.append(table);
+  }
+  const response = decision.response_search;
+  const worst = response?.candidates?.[response.chosen_candidate]?.worst_reply;
+  if (worst?.labels?.length) {
+    const detail = node('details'), list = node('ol','ai-plan');
+    detail.append(node('summary','','仮定した相手の返し'));
+    detail.append(node('p','hint','選んだ手順に対して、試した手札の中で最も厳しかった返しです。実際の相手手札ではありません。'));
+    for (const label of worst.labels) list.append(node('li','',label));
+    detail.append(list); target.append(detail);
   }
   if (decision.plan?.length > 1) {
     const detail = node('details'), list = node('ol','ai-plan');

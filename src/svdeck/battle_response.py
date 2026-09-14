@@ -100,6 +100,29 @@ def apply_common_plan(world: SearchBattle, node: Node, owner: int) -> SearchBatt
     return finish(world,owner)
 
 
+def describe_reply(world: SearchBattle, actions: list[Json]) -> list[str]:
+    # AI_NOTE: 仮定の返しを生成後のカード名で記録し、仮の個体番号を人に解読させない。
+    labels = []
+    verbs = {'play':'使用','attack':'攻撃','evolve':'進化','super_evolve':'超進化'}
+    for action in actions:
+        if action['type'] in ('end_turn','extra_pp'):
+            labels.append('ターン終了' if action['type']=='end_turn' else '追加PPを使用')
+        else:
+            source = world.find(str(action.get('card',action.get('source',''))))
+            kind = str(action['type'])
+            label = verbs.get(kind,kind)+'：'+(source[2]['name'] if source else '生成カード')
+            if 'target' in action:
+                targets = action['target'] if isinstance(action['target'],list) else [action['target']]
+                names = []
+                for ident in targets:
+                    target = world.find(ident)
+                    names.append(('リーダー' if target[1]=='leader' else target[2]['name']) if target else str(ident))
+                label += ' → '+ '、'.join(names)
+            labels.append(label)
+        world = world.branch(action)
+    return labels
+
+
 def choose_response(player: Player, observation: Json, results: list[Node], own_nodes: int,
                     started: float, limited: bool) -> Json:
     # AI_NOTE: 同一の8手札を全候補に使い、各手札で最も厳しい返しを平均する。珍しい組合せを常備扱いしない。
@@ -129,7 +152,7 @@ def choose_response(player: Player, observation: Json, results: list[Node], own_
     reply_nodes = 0
     for node in selected:
         samples: list[Json] = []
-        for world in worlds:
+        for sample_index,world in enumerate(worlds):
             after = apply_common_plan(world,node,owner)
             hand = {e['id']:e['card_id'] for e in after.state['players'][1-owner]['hand']}
             score, reply, count, cutoff = best_reply(after,owner,player.weights)
@@ -137,14 +160,16 @@ def choose_response(player: Player, observation: Json, results: list[Node], own_
             limited = limited or cutoff
             required = Counter(hand[action['card']] for action in reply
                                if action['type']=='play' and action['card'] in hand)
-            samples.append({'score':score,'reply':reply,'required_cards':dict(required),
+            samples.append({'sample_index':sample_index,'score':score,'reply':reply,'required_cards':dict(required),
                             'sampled_hand':dict(Counter(hand.values())),'limited':cutoff})
         mean = sum(sample['score'] for sample in samples)/HAND_SAMPLES
+        worst = min(samples,key=lambda sample:sample['score'])
+        worst['labels'] = describe_reply(apply_common_plan(worlds[worst['sample_index']],node,owner),worst['reply'])
         evaluated.append(replace(node,score=mean-.001*len(node.plan)))
         diagnostics.append({'action':node.plan[0],'mean':mean,'worst':min(sample['score'] for sample in samples),
                             'losing_samples':sum(sample['score']<=-100000 for sample in samples),
                             'sample_scores':[sample['score'] for sample in samples],
-                            'worst_reply':min(samples,key=lambda sample:sample['score'])})
+                            'worst_reply':worst})
     best_index = max(range(len(evaluated)),key=lambda i:evaluated[i].score)
     report = player.report(evaluated[best_index],evaluated,own_nodes+reply_nodes,started,False,limited,observation)
     info = diagnostics[best_index]
@@ -154,6 +179,6 @@ def choose_response(player: Player, observation: Json, results: list[Node], own_
     report['response_search'] = {'available':True,'hand_samples':HAND_SAMPLES,'own_candidates':len(selected),
                                  'reply_nodes':reply_nodes,'reply_depth':REPLY_DEPTH,'reply_width':REPLY_WIDTH,
                                  'max_reply_nodes_per_sample':REPLY_NODES,'aggregation':'mean of sampled worst replies',
-                                 'horizon':'start of our next turn','candidates':diagnostics}
+                                 'horizon':'start of our next turn','chosen_candidate':best_index,'candidates':diagnostics}
     report['elapsed_ms'] = round((time.perf_counter()-started)*1000,2)
     return report

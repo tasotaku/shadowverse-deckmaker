@@ -85,12 +85,13 @@ def test_sampling_uses_copies_and_joint_hand_availability() -> None:
 def test_public_used_copies_and_own_hand_are_removed_once() -> None:
     # AI_NOTE: 公開済みの使用札・バウンス札と、見えている自分の元札を二重計上しない。
     battle,view = observed()
-    view['deck_knowledge'][1].update(revealed={'used':'clear','returned':'clear'},known_hand=[{'id':'returned-now','card_id':'clear'}])
+    view['deck_knowledge'][1].update(revealed={'used':'clear','returned':'clear'},known_hand=[{'id':'returned-now','card_id':'clear','cost':2}])
     view['players'][1]['hand']={'count':1}
     view['players'][1]['deck']={'count':1}
     sampled = sample_world(view,battle.cards,9)
     assert [e['card_id'] for e in sampled.state['players'][0]['deck']]==['filler']*3
     assert sampled.state['players'][1]['hand'][0]['id']=='returned-now'
+    assert sampled.state['players'][1]['hand'][0]['cost']==2
     assert len(sampled.state['players'][1]['deck'])==1
 
 

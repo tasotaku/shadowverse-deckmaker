@@ -1,0 +1,1455 @@
+{
+  "url": "http://127.0.0.1:8767/",
+  "source": "src/svdeck/data/battle_ai_replay.json",
+  "checks": [
+    {
+      "policy": "search",
+      "cursor": 10,
+      "decision": {
+        "action": {
+          "type": "play",
+          "card": "e15"
+        },
+        "policy": "search",
+        "reason": "ターン終了後の盤面・相手の攻撃と回復・次に使える手札を比較。先読みした到達点：自分の最大PP 3→4",
+        "score": -2.401,
+        "nodes": 5,
+        "depth": 1,
+        "uncertain": false,
+        "proven_win": false,
+        "limited": false,
+        "plan": [
+          {
+            "type": "play",
+            "card": "e15"
+          }
+        ],
+        "plan_layouts": [
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e81",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            }
+          ]
+        ],
+        "plan_entities": {
+          "e3": "空の命運を握る少女・ルリア",
+          "e25": "世界の味方・ゾーイ",
+          "e23": "世界の味方・ゾーイ",
+          "e26": "断頭の斬姫・サガツマツ",
+          "e37": "焦灰のアナテマ・バーンドナイト",
+          "e81": "バット",
+          "e82": "バット"
+        },
+        "settings": {
+          "policy_version": 2,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 0
+        },
+        "candidates": [
+          {
+            "action": {
+              "type": "play",
+              "card": "e15"
+            },
+            "score": -2.401
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "e3"
+            },
+            "score": -2.721
+          },
+          {
+            "action": {
+              "type": "end_turn"
+            },
+            "score": -5.021
+          }
+        ],
+        "elapsed_ms": 7.49
+      }
+    },
+    {
+      "policy": "search",
+      "cursor": 16,
+      "decision": {
+        "action": {
+          "type": "attack",
+          "source": "e3",
+          "target": "e81"
+        },
+        "policy": "search",
+        "reason": "ターン終了後の盤面・相手の攻撃と回復・次に使える手札を比較。先読みした到達点：自分の最大PP 4→5、相手の盤面枚数 3→2",
+        "score": -1.922,
+        "nodes": 23,
+        "depth": 2,
+        "uncertain": false,
+        "proven_win": false,
+        "limited": false,
+        "plan": [
+          {
+            "type": "attack",
+            "source": "e3",
+            "target": "e81"
+          },
+          {
+            "type": "play",
+            "card": "e15"
+          }
+        ],
+        "plan_layouts": [
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e15",
+              "card_id": "10042310",
+              "name": "竜の啓示",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e30",
+              "card_id": "10944120",
+              "name": "禁牙の変貌・ノマグダラ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 5
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e48",
+              "card_id": "10951120",
+              "name": "幽冥の中尉",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            }
+          ],
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e30",
+              "card_id": "10944120",
+              "name": "禁牙の変貌・ノマグダラ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e48",
+              "card_id": "10951120",
+              "name": "幽冥の中尉",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            }
+          ]
+        ],
+        "plan_entities": {
+          "e3": "空の命運を握る少女・ルリア",
+          "e25": "世界の味方・ゾーイ",
+          "e23": "世界の味方・ゾーイ",
+          "e26": "断頭の斬姫・サガツマツ",
+          "e15": "竜の啓示",
+          "e37": "焦灰のアナテマ・バーンドナイト",
+          "e30": "禁牙の変貌・ノマグダラ",
+          "e82": "バット",
+          "e48": "幽冥の中尉"
+        },
+        "settings": {
+          "policy_version": 2,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 0
+        },
+        "candidates": [
+          {
+            "action": {
+              "type": "play",
+              "card": "e15"
+            },
+            "score": -1.922
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "e81"
+            },
+            "score": -1.922
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "e82"
+            },
+            "score": -1.922
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "leader:1"
+            },
+            "score": -5.402
+          },
+          {
+            "action": {
+              "type": "end_turn"
+            },
+            "score": -6.821
+          }
+        ],
+        "elapsed_ms": 24.61
+      }
+    },
+    {
+      "policy": "reply",
+      "cursor": 10,
+      "decision": {
+        "action": {
+          "type": "play",
+          "card": "e3"
+        },
+        "policy": "reply",
+        "reason": "公開デッキから8通りの手札を仮定し、各手札で相手の厳しい返しを比較。返し後の平均評価 -4.1、最低 -6.2。敗北する仮定 0/8（実際の勝率ではありません）",
+        "score": -4.115,
+        "nodes": 827,
+        "depth": 1,
+        "uncertain": false,
+        "proven_win": false,
+        "limited": false,
+        "plan": [
+          {
+            "type": "play",
+            "card": "e3"
+          }
+        ],
+        "plan_layouts": [
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e15",
+              "card_id": "10042310",
+              "name": "竜の啓示",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e81",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            }
+          ]
+        ],
+        "plan_entities": {
+          "e3": "空の命運を握る少女・ルリア",
+          "e25": "世界の味方・ゾーイ",
+          "e23": "世界の味方・ゾーイ",
+          "e26": "断頭の斬姫・サガツマツ",
+          "e15": "竜の啓示",
+          "e37": "焦灰のアナテマ・バーンドナイト",
+          "e81": "バット",
+          "e82": "バット"
+        },
+        "settings": {
+          "policy_version": 3,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 0
+        },
+        "candidates": [
+          {
+            "action": {
+              "type": "play",
+              "card": "e3"
+            },
+            "score": -4.115
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "e15"
+            },
+            "score": -4.832
+          },
+          {
+            "action": {
+              "type": "end_turn"
+            },
+            "score": -6.252
+          }
+        ],
+        "elapsed_ms": 440.61,
+        "response_search": {
+          "available": true,
+          "hand_samples": 8,
+          "own_candidates": 3,
+          "reply_nodes": 822,
+          "reply_depth": 6,
+          "reply_width": 3,
+          "max_reply_nodes_per_sample": 64,
+          "aggregation": "mean of sampled worst replies",
+          "horizon": "start of our next turn",
+          "chosen_candidate": 2,
+          "candidates": [
+            {
+              "action": {
+                "type": "end_turn"
+              },
+              "mean": -6.251250000000001,
+              "worst": -7.7700000000000005,
+              "losing_samples": 0,
+              "sample_scores": [
+                -7.220000000000001,
+                -7.220000000000001,
+                -7.220000000000001,
+                -4.82,
+                -5.47,
+                -4.82,
+                -5.47,
+                -7.7700000000000005
+              ],
+              "worst_reply": {
+                "sample_index": 7,
+                "score": -7.7700000000000005,
+                "reply": [
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:deck:0"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:1"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e82",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10751120": 1,
+                  "10851120": 1
+                },
+                "sampled_hand": {
+                  "10452130": 1,
+                  "10851120": 1,
+                  "10954120": 1,
+                  "10754120": 1,
+                  "10751120": 1
+                },
+                "limited": false,
+                "labels": [
+                  "使用：デーモンドラム・ラズ",
+                  "使用：キュートな悪魔・リリム",
+                  "攻撃：バット → リーダー",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "e15"
+              },
+              "mean": -4.831250000000001,
+              "worst": -6.350000000000001,
+              "losing_samples": 0,
+              "sample_scores": [
+                -5.800000000000001,
+                -5.800000000000001,
+                -5.800000000000001,
+                -3.400000000000001,
+                -4.050000000000001,
+                -3.400000000000001,
+                -4.050000000000001,
+                -6.350000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 7,
+                "score": -6.350000000000001,
+                "reply": [
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:deck:0"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:1"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e82",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10751120": 1,
+                  "10851120": 1
+                },
+                "sampled_hand": {
+                  "10452130": 1,
+                  "10851120": 1,
+                  "10954120": 1,
+                  "10754120": 1,
+                  "10751120": 1
+                },
+                "limited": false,
+                "labels": [
+                  "使用：デーモンドラム・ラズ",
+                  "使用：キュートな悪魔・リリム",
+                  "攻撃：バット → リーダー",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "e3"
+              },
+              "mean": -4.1137500000000005,
+              "worst": -6.17,
+              "losing_samples": 0,
+              "sample_scores": [
+                -5.120000000000001,
+                -5.120000000000001,
+                -5.120000000000001,
+                -2.5200000000000005,
+                -3.1700000000000004,
+                -2.5200000000000005,
+                -3.1700000000000004,
+                -6.17
+              ],
+              "worst_reply": {
+                "sample_index": 7,
+                "score": -6.17,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0",
+                    "mode": 0
+                  }
+                ],
+                "required_cards": {
+                  "10452130": 1
+                },
+                "sampled_hand": {
+                  "10452130": 1,
+                  "10851120": 1,
+                  "10954120": 1,
+                  "10754120": 1,
+                  "10751120": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：バット → リーダー",
+                  "使用：元素の共鳴・バアル"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "policy": "reply",
+      "cursor": 16,
+      "decision": {
+        "action": {
+          "type": "attack",
+          "source": "e3",
+          "target": "leader:1"
+        },
+        "policy": "reply",
+        "reason": "公開デッキから8通りの手札を仮定し、各手札で相手の厳しい返しを比較。返し後の平均評価 -9.3、最低 -11.1。敗北する仮定 0/8（実際の勝率ではありません）",
+        "score": -9.332,
+        "nodes": 4059,
+        "depth": 2,
+        "uncertain": false,
+        "proven_win": false,
+        "limited": true,
+        "plan": [
+          {
+            "type": "attack",
+            "source": "e3",
+            "target": "leader:1"
+          },
+          {
+            "type": "play",
+            "card": "e15"
+          }
+        ],
+        "plan_layouts": [
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e15",
+              "card_id": "10042310",
+              "name": "竜の啓示",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e30",
+              "card_id": "10944120",
+              "name": "禁牙の変貌・ノマグダラ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 5
+            },
+            {
+              "id": "e81",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            },
+            {
+              "id": "e48",
+              "card_id": "10951120",
+              "name": "幽冥の中尉",
+              "owner": 1,
+              "zone": "board",
+              "index": 2
+            }
+          ],
+          [
+            {
+              "id": "e3",
+              "card_id": "10403120",
+              "name": "空の命運を握る少女・ルリア",
+              "owner": 0,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e25",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 0
+            },
+            {
+              "id": "e23",
+              "card_id": "10444120",
+              "name": "世界の味方・ゾーイ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 1
+            },
+            {
+              "id": "e26",
+              "card_id": "10644110",
+              "name": "断頭の斬姫・サガツマツ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 2
+            },
+            {
+              "id": "e37",
+              "card_id": "10744110",
+              "name": "焦灰のアナテマ・バーンドナイト",
+              "owner": 0,
+              "zone": "hand",
+              "index": 3
+            },
+            {
+              "id": "e30",
+              "card_id": "10944120",
+              "name": "禁牙の変貌・ノマグダラ",
+              "owner": 0,
+              "zone": "hand",
+              "index": 4
+            },
+            {
+              "id": "e81",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 0
+            },
+            {
+              "id": "e82",
+              "card_id": "90051120",
+              "name": "バット",
+              "owner": 1,
+              "zone": "board",
+              "index": 1
+            },
+            {
+              "id": "e48",
+              "card_id": "10951120",
+              "name": "幽冥の中尉",
+              "owner": 1,
+              "zone": "board",
+              "index": 2
+            }
+          ]
+        ],
+        "plan_entities": {
+          "e3": "空の命運を握る少女・ルリア",
+          "e25": "世界の味方・ゾーイ",
+          "e23": "世界の味方・ゾーイ",
+          "e26": "断頭の斬姫・サガツマツ",
+          "e15": "竜の啓示",
+          "e37": "焦灰のアナテマ・バーンドナイト",
+          "e30": "禁牙の変貌・ノマグダラ",
+          "e81": "バット",
+          "e82": "バット",
+          "e48": "幽冥の中尉"
+        },
+        "settings": {
+          "policy_version": 3,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 0
+        },
+        "candidates": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "leader:1"
+            },
+            "score": -9.332
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "e15"
+            },
+            "score": -10.143
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "e81"
+            },
+            "score": -11.512
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e3",
+              "target": "e82"
+            },
+            "score": -11.512
+          },
+          {
+            "action": {
+              "type": "end_turn"
+            },
+            "score": -11.563
+          }
+        ],
+        "elapsed_ms": 2307.01,
+        "response_search": {
+          "available": true,
+          "hand_samples": 8,
+          "own_candidates": 8,
+          "reply_nodes": 4036,
+          "reply_depth": 6,
+          "reply_width": 3,
+          "max_reply_nodes_per_sample": 64,
+          "aggregation": "mean of sampled worst replies",
+          "horizon": "start of our next turn",
+          "chosen_candidate": 7,
+          "candidates": [
+            {
+              "action": {
+                "type": "end_turn"
+              },
+              "mean": -11.5625,
+              "worst": -13.02,
+              "losing_samples": 0,
+              "sample_scores": [
+                -10.540000000000001,
+                -10.32,
+                -13.02,
+                -13.02,
+                -11.87,
+                -11.32,
+                -10.540000000000001,
+                -11.87
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -13.02,
+                "reply": [
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e81"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": true,
+                "labels": [
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e3",
+                "target": "e81"
+              },
+              "mean": -11.510000000000002,
+              "worst": -16.740000000000002,
+              "losing_samples": 0,
+              "sample_scores": [
+                -10.52,
+                -7.82,
+                -16.740000000000002,
+                -16.740000000000002,
+                -9.770000000000001,
+                -9.120000000000001,
+                -10.52,
+                -10.850000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -16.740000000000002,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e48",
+                    "target": "e3"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e82"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e82",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：幽冥の中尉 → 空の命運を握る少女・ルリア",
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e3",
+                "target": "e81"
+              },
+              "mean": -12.93,
+              "worst": -18.16,
+              "losing_samples": 0,
+              "sample_scores": [
+                -11.94,
+                -9.24,
+                -18.16,
+                -18.16,
+                -11.190000000000001,
+                -10.540000000000001,
+                -11.94,
+                -12.270000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -18.16,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e48",
+                    "target": "e3"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e82"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e82",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：幽冥の中尉 → 空の命運を握る少女・ルリア",
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e3",
+                "target": "e82"
+              },
+              "mean": -11.510000000000002,
+              "worst": -16.740000000000002,
+              "losing_samples": 0,
+              "sample_scores": [
+                -10.52,
+                -7.82,
+                -16.740000000000002,
+                -16.740000000000002,
+                -9.770000000000001,
+                -9.120000000000001,
+                -10.52,
+                -10.850000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -16.740000000000002,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e48",
+                    "target": "e3"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e81"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：幽冥の中尉 → 空の命運を握る少女・ルリア",
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e3",
+                "target": "e82"
+              },
+              "mean": -12.93,
+              "worst": -18.16,
+              "losing_samples": 0,
+              "sample_scores": [
+                -11.94,
+                -9.24,
+                -18.16,
+                -18.16,
+                -11.190000000000001,
+                -10.540000000000001,
+                -11.94,
+                -12.270000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -18.16,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e48",
+                    "target": "e3"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e81"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：幽冥の中尉 → 空の命運を握る少女・ルリア",
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "e15"
+              },
+              "mean": -11.510000000000002,
+              "worst": -16.740000000000002,
+              "losing_samples": 0,
+              "sample_scores": [
+                -10.52,
+                -7.82,
+                -16.740000000000002,
+                -16.740000000000002,
+                -9.770000000000001,
+                -9.120000000000001,
+                -10.52,
+                -10.850000000000001
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -16.740000000000002,
+                "reply": [
+                  {
+                    "type": "attack",
+                    "source": "e48",
+                    "target": "e3"
+                  },
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e82"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e82",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": false,
+                "labels": [
+                  "攻撃：幽冥の中尉 → 空の命運を握る少女・ルリア",
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "e15"
+              },
+              "mean": -10.1425,
+              "worst": -11.6,
+              "losing_samples": 0,
+              "sample_scores": [
+                -9.120000000000001,
+                -8.9,
+                -11.6,
+                -11.6,
+                -10.45,
+                -9.9,
+                -9.120000000000001,
+                -10.45
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -11.6,
+                "reply": [
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "e81"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": true,
+                "labels": [
+                  "使用：旧き天眼・ビバティー",
+                  "進化：バット",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e3",
+                "target": "leader:1"
+              },
+              "mean": -9.33,
+              "worst": -11.1,
+              "losing_samples": 0,
+              "sample_scores": [
+                -8.020000000000001,
+                -8.9,
+                -11.1,
+                -11.1,
+                -8.75,
+                -8.9,
+                -9.120000000000001,
+                -8.75
+              ],
+              "worst_reply": {
+                "sample_index": 2,
+                "score": -11.1,
+                "reply": [
+                  {
+                    "type": "play",
+                    "card": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "evolve",
+                    "source": "ai-hidden:1:hand:0"
+                  },
+                  {
+                    "type": "attack",
+                    "source": "e81",
+                    "target": "leader:0"
+                  }
+                ],
+                "required_cards": {
+                  "10654120": 1
+                },
+                "sampled_hand": {
+                  "10654120": 1,
+                  "10754110": 1,
+                  "10552110": 1,
+                  "10854110": 1,
+                  "10954110": 1
+                },
+                "limited": true,
+                "labels": [
+                  "使用：旧き天眼・ビバティー",
+                  "進化：旧き天眼・ビバティー",
+                  "攻撃：バット → リーダー"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
