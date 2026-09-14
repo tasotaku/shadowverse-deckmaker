@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .battle import Battle, integer
+from .battle import Battle, fingerprint, integer
 from . import battle_rules as rules
 
 Json = dict[str, Any]
@@ -22,6 +22,7 @@ BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
 POLICIES = ('random', 'greedy', 'search', 'trained')
+POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
 
@@ -137,6 +138,11 @@ def load_weights() -> dict[str, float]:
     return {key: float(value) for key,value in weights.items()}
 
 
+def model_hash(weights: dict[str,float]) -> str:
+    # AI_NOTE: 採否や評価メモの追記で、実際に対戦した重みの識別が変わらないようにする。
+    return fingerprint({'policy_version':POLICY_VERSION,'weights':weights})
+
+
 @dataclass
 class Node:
     worlds: list[SearchBattle]
@@ -206,7 +212,7 @@ class Player:
                     item = Node(children,plan,score-0.001*len(plan),uncertain,parent.layouts+[layout])
                     results.append(item)
                     if all(child.state['winner']==owner for child in children) and not uncertain:
-                        return self.report(item,results,nodes,started,True,limited)
+                        return self.report(item,results,nodes,started,True,limited,observation)
                     terminal = uncertain or any(child.state['winner'] is not None or child.state['active_player'] != owner for child in children)
                     if not terminal:
                         key = json.dumps(children[0].state,sort_keys=True,separators=(',',':'))
@@ -223,9 +229,9 @@ class Player:
         if not results:
             raise ValueError('観測の合法手と探索状態が一致しません')
         best = max(results,key=lambda item:item.score)
-        return self.report(best,results,nodes,started,False,limited)
+        return self.report(best,results,nodes,started,False,limited,observation)
 
-    def report(self, best: Node, results: list[Node], nodes: int, started: float, win: bool, limited: bool) -> Json:
+    def report(self, best: Node, results: list[Node], nodes: int, started: float, win: bool, limited: bool, before: Json) -> Json:
         # AI_NOTE: 評価値を勝率と偽らず、未探索の手や未知のドローがあることを記録する。
         candidates: dict[str, Json] = {}
         for item in results:
@@ -234,6 +240,19 @@ class Player:
             if key not in candidates or item.score > candidates[key]['score']:
                 candidates[key] = {'action':action,'score':round(item.score,3)}
         reason = '公開情報だけで勝ち切れる手順を発見' if win else '盤面・体力・残り資源と、相手盤面からの危険を比較'
+        changes = []
+        owner = before['active_player']
+        for who,label in ((owner,'自分'),(1-owner,'相手')):
+            for key,title in (('health','体力'),('max_pp','最大PP'),('board','盤面枚数')):
+                old = before['players'][who][key]
+                values = [world.state['players'][who][key] for world in best.worlds]
+                old = len(old) if key=='board' else old
+                numbers = [len(value) if key=='board' else value for value in values]
+                low,high = min(numbers),max(numbers)
+                if low != old or high != old:
+                    changes.append(f'{label}の{title} {old}→{low}' + (f'〜{high}' if low!=high else ''))
+        if changes:
+            reason += '。先読みした到達点：' + '、'.join(changes)
         if best.uncertain:
             reason += '。ドローやランダム結果は仮定を含むため、実行後に考え直します'
         return {'action': best.plan[0], 'policy':self.policy,'reason':reason,'score':round(best.score,3),
@@ -241,6 +260,8 @@ class Player:
                 'limited':limited,'plan':best.plan,
                 'plan_layouts':best.layouts,
                 'plan_entities':{e['id']:e['name'] for layout in best.layouts for e in layout},
+                'settings':{'policy_version':POLICY_VERSION,'weights':dict(self.weights),'max_nodes':self.max_nodes,
+                            'width':self.width,'depth':self.depth,'seed':self.seed},
                 'candidates': sorted(candidates.values(),key=lambda item:item['score'],reverse=True)[:5],
                 'elapsed_ms':round((time.perf_counter()-started)*1000,2)}
 

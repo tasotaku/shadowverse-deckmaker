@@ -11,8 +11,8 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from typing import Any
 
-from .battle import Battle, fingerprint, replay
-from .battle_ai import BASE_WEIGHTS, MODEL_PATH, Player
+from .battle import Battle, catalog, fingerprint, replay
+from .battle_ai import BASE_WEIGHTS, POLICY_VERSION, Player, load_weights, model_hash
 from .battle_decks import new_match
 
 Json = dict[str, Any]
@@ -116,6 +116,15 @@ def train(output: Path, workers: int, generations: int = 3, candidates: int = 6,
     return result
 
 
+def save_model(report: Json, path: Path) -> None:
+    # AI_NOTE: 学習履歴と配布用の小さな重みを分離し、採用前でも候補として再利用できる。
+    model = {key:report[key] for key in ('version','method','weights','base_weights','scope','training_games')}
+    model.update(status='candidate',training_seeds=[seed for generation in report['generations'] for seed in generation['seeds']],
+                 cards_hash=fingerprint(catalog()),policy_version=POLICY_VERSION,model_hash=model_hash(report['weights']))
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(json.dumps(model,ensure_ascii=False,indent=2)+'\n')
+
+
 def main() -> None:
     # AI_NOTE: 実験条件と全試合結果を保存し、同じコマンドで学習・比較・再生を繰り返せる。
     parser = argparse.ArgumentParser(description='対戦AIの学習・比較・リプレイ作成')
@@ -127,13 +136,16 @@ def main() -> None:
     parser.add_argument('--policy',choices=['random','greedy','search','trained'],default='search')
     parser.add_argument('--opponent',choices=['random','greedy','search','trained'],default='greedy')
     parser.add_argument('--training-policy',choices=['greedy','search'],default='greedy')
+    parser.add_argument('--model-output',type=Path)
     args = parser.parse_args()
     if args.workers < 1 or args.seeds < 1:
         parser.error('workers・seedsは1以上です')
     if args.command == 'train':
-        train(args.output,args.workers,policy=args.training_policy,
+        report = train(args.output,args.workers,policy=args.training_policy,
               seed_start=301 if args.training_policy=='search' else 101,
               spread=.9 if args.training_policy=='search' else .45)
+        if args.model_output:
+            save_model(report,args.model_output)
         return
     if args.command == 'replay':
         result = game({'seed':args.seed,'decks':list(DECKS),'seat':0,'policy':args.policy,'opponent':args.opponent,'record':True})
@@ -143,7 +155,8 @@ def main() -> None:
         seeds = list(range(args.seed,args.seed+args.seeds))
         results = run_jobs(jobs(seeds,args.policy,args.opponent),args.workers)
         data = {'policy':args.policy,'opponent':args.opponent,'seeds':seeds,'summary':summarize(results),'games':results,
-                'model_hash':fingerprint(json.loads(MODEL_PATH.read_text())) if 'trained' in (args.policy,args.opponent) else None,
+                'model_hash':model_hash(load_weights()) if 'trained' in (args.policy,args.opponent) else None,
+                'model_hash_basis':'policy_version and weights',
                 'conditions':'no mulligan; same initial state for seat swaps; public observations; unfinished scored zero'}
         print(json.dumps(data['summary']),flush=True)
     args.output.parent.mkdir(parents=True,exist_ok=True)

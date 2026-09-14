@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 import threading
 import urllib.error
 import urllib.request
@@ -12,6 +13,7 @@ import pytest
 from svdeck.battle import Battle, replay
 from svdeck.battle_server import create_server
 from svdeck.battle_training import summarize
+from svdeck.battle_ai import MODEL_PATH, load_weights, model_hash
 
 
 @pytest.fixture
@@ -61,3 +63,13 @@ def test_unfinished_games_do_not_become_draws_or_wins() -> None:
     assert summary['games']==4
     assert [summary[k] for k in ('win','loss','draw','unfinished')]==[1,1,1,1]
     assert summary['score_rate']==.375
+
+
+def test_shipped_model_matches_evaluated_weights() -> None:
+    # AI_NOTE: 評価メモの追記で実行重みと保存評価の識別が切れないことを検査する。
+    expected = model_hash(load_weights())
+    model = json.loads(MODEL_PATH.read_text())
+    assert model['model_hash']==expected
+    root = Path(__file__).parents[1]/'docs'/'evidence'
+    for name in ('ai-trained-vs-search.json','ai-trained-vs-greedy.json'):
+        assert json.loads((root/name).read_text())['model_hash']==expected

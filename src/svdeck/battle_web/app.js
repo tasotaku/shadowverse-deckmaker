@@ -248,7 +248,7 @@ function render() {
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
 }
-const AI_NAMES = {search:'先読みAI',greedy:'一手評価',random:'無作為'};
+const AI_NAMES = {search:'先読みAI',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
 function renderDecision(decision, state) {
   // AI_NOTE: 判断は表示中の手に保存されたものだけを示し、現在の選択方式と取り違えない。
   const target = $('ai-decision');
@@ -277,7 +277,16 @@ function renderDecision(decision, state) {
   if (decision.plan?.length > 1) {
     const detail = node('details'), list = node('ol','ai-plan');
     detail.append(node('summary','','先読みした手順（途中で選び直します）'));
-    for (const action of decision.plan) list.append(node('li','',actionLabel(action,state)));
+    // AI_NOTE: 生成後の仮番号を実山札の同番号と取り違えず、その段階の公開配置で名前を解決する。
+    const forecast = {players:state.players.map((player,owner) => ({board:player.board,
+      hand:owner === state.active_player ? player.hand : [],deck:[]}))};
+    decision.plan.forEach((action,index) => {
+      list.append(node('li','',actionLabel(action,forecast)));
+      const layout = decision.plan_layouts?.[index];
+      if (layout) forecast.players.forEach((player,owner) => {
+        for (const zone of ['hand','board']) player[zone] = layout.filter(card => card.owner === owner && card.zone === zone);
+      });
+    });
     detail.append(list); target.append(detail);
   }
 }

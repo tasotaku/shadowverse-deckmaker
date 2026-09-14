@@ -54,9 +54,10 @@ def cards() -> dict[str, Json]:
 
 
 @pytest.mark.parametrize('name,players', CASES, ids=[item[0] for item in CASES])
-def test_search_replans_each_action_and_wins(cards: dict[str, Json], name: str, players: list[Json]) -> None:
+@pytest.mark.parametrize('policy', ['search','trained'])
+def test_search_replans_each_action_and_wins(cards: dict[str, Json], name: str, players: list[Json], policy: str) -> None:
     battle = Battle({'players': players}, cards)
-    ai = Player(cards, policy='search', max_nodes=160, width=6, depth=6, seed=0)
+    ai = Player(cards, policy=policy, max_nodes=160, width=6, depth=6, seed=0)
     for _ in range(6):
         if battle.state['winner'] is not None:
             break
@@ -79,10 +80,11 @@ def test_proven_plan_is_executable_without_replanning(cards: dict[str, Json], na
     assert battle.state['winner'] == 0, name
 
 
-def test_choose_survival_mode_over_immediate_self_defeat(cards: dict[str, Json]) -> None:
+@pytest.mark.parametrize('policy', ['search','trained'])
+def test_choose_survival_mode_over_immediate_self_defeat(cards: dict[str, Json], policy: str) -> None:
     battle = Battle({'players': [player(health=2, pp=8, max_pp=8, hand=[entity('10954120', 'garo')]),
                                   player(health=8, board=[entity('10752110', 'enemy')])]}, cards)
-    decision = Player(cards).choose(battle.observation(0))
+    decision = Player(cards,policy=policy).choose(battle.observation(0))
     assert decision['action'] == {'type': 'play', 'card': 'garo', 'mode': 1}
     battle.step(decision['action'])
     assert battle.state['winner'] is None
@@ -102,7 +104,7 @@ def test_negative_oracles_really_lose(cards: dict[str, Json]) -> None:
     assert suicide.state['winner'] == 1
 
 
-@pytest.mark.parametrize('policy', ['random', 'greedy', 'search'])
+@pytest.mark.parametrize('policy', ['random', 'greedy', 'search', 'trained'])
 def test_hidden_state_cannot_change_observation_or_choice(cards: dict[str, Json], policy: str) -> None:
     first = Battle({'players': [player(pp=3, max_pp=3, hand=[entity('10042310', 'ramp')],
                                       board=[entity('90051130', 'ghost')]),

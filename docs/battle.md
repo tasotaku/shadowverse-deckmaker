@@ -138,6 +138,9 @@ while battle.state['winner'] is None:
 `battle_meta_cards.py` は環境カードの宣言、`battle_decks.py` と `battle_decks.json` は出典つき構築、
 `battle_web/animation.js` は表示だけを担当します。
 
+対戦AIは[方式・学習・比較結果](battle-ai.md)へまとめました。画面の「AIが一手実行」「自動対戦」で使えます。
+「AI対戦例を開く」では、判断理由つきの66手の対戦を一手ずつ再生できます。
+
 `battle_supported.json` はDB本文・数値・参照先能力の識別値です。能力変更後は登録を外し、
 生成先を使う親カードも外します。定義とテストを直してから再登録します。カードDB全体は配布パッケージへ同梱しません。
 保存記録には対戦ルール版 `battle-2` を保持し、旧版も再計算と保存状態が一致する場合だけ再生します。

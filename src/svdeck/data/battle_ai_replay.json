@@ -6170,7 +6170,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 0→1。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -0.001,
         "nodes": 1,
         "depth": 1,
@@ -6233,6 +6233,26 @@
           "e23": "世界の味方・ゾーイ",
           "e26": "断頭の斬姫・サガツマツ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -6241,7 +6261,7 @@
             "score": -0.001
           }
         ],
-        "elapsed_ms": 12.4
+        "elapsed_ms": 4.85
       }
     },
     {
@@ -7717,7 +7737,7 @@
           "card": "e43"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→2",
         "score": 3.197,
         "nodes": 17,
         "depth": 3,
@@ -7872,6 +7892,26 @@
           "e78": "デッドプレゼンター・マクミラン",
           "e71": "イステンデッドVSマルチルゲート"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -7900,7 +7940,7 @@
             "score": -4.301
           }
         ],
-        "elapsed_ms": 41.61
+        "elapsed_ms": 14.87
       }
     },
     {
@@ -9372,7 +9412,7 @@
           "type": "extra_pp"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2",
         "score": 3.198,
         "nodes": 5,
         "depth": 2,
@@ -9481,6 +9521,26 @@
           "e78": "デッドプレゼンター・マクミラン",
           "e71": "イステンデッドVSマルチルゲート"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -9495,7 +9555,7 @@
             "score": -2.001
           }
         ],
-        "elapsed_ms": 18.02
+        "elapsed_ms": 6.99
       }
     },
     {
@@ -10971,7 +11031,7 @@
           "card": "e44"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2",
         "score": 3.199,
         "nodes": 3,
         "depth": 1,
@@ -11035,6 +11095,26 @@
           "e78": "デッドプレゼンター・マクミラン",
           "e71": "イステンデッドVSマルチルゲート"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -11050,7 +11130,7 @@
             "score": -3.401
           }
         ],
-        "elapsed_ms": 15.28
+        "elapsed_ms": 5.79
       }
     },
     {
@@ -12537,7 +12617,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 1→2。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -1.101,
         "nodes": 1,
         "depth": 1,
@@ -12600,6 +12680,26 @@
           "e78": "デッドプレゼンター・マクミラン",
           "e71": "イステンデッドVSマルチルゲート"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -12608,7 +12708,7 @@
             "score": -1.101
           }
         ],
-        "elapsed_ms": 12.38
+        "elapsed_ms": 4.29
       }
     },
     {
@@ -14196,7 +14296,7 @@
           "card": "e13"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の盤面枚数 2→0。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 4.079,
         "nodes": 4,
         "depth": 1,
@@ -14260,6 +14360,26 @@
           "e26": "断頭の斬姫・サガツマツ",
           "e15": "竜の啓示"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -14282,7 +14402,7 @@
             "score": -3.201
           }
         ],
-        "elapsed_ms": 17.78
+        "elapsed_ms": 6.15
       }
     },
     {
@@ -15758,7 +15878,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 1→2。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -0.221,
         "nodes": 1,
         "depth": 1,
@@ -15821,6 +15941,26 @@
           "e26": "断頭の斬姫・サガツマツ",
           "e15": "竜の啓示"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -15829,7 +15969,7 @@
             "score": -0.221
           }
         ],
-        "elapsed_ms": 12.2
+        "elapsed_ms": 3.9
       }
     },
     {
@@ -17295,7 +17435,7 @@
           "card": "e81"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→2",
         "score": 4.818,
         "nodes": 9,
         "depth": 2,
@@ -17422,6 +17562,26 @@
           "e82": "バット",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -17444,7 +17604,7 @@
             "score": -4.081
           }
         ],
-        "elapsed_ms": 29.59
+        "elapsed_ms": 8.67
       }
     },
     {
@@ -18910,7 +19070,7 @@
           "card": "e82"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2",
         "score": 4.819,
         "nodes": 3,
         "depth": 1,
@@ -18983,6 +19143,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -18998,7 +19178,7 @@
             "score": -1.781
           }
         ],
-        "elapsed_ms": 16.78
+        "elapsed_ms": 4.99
       }
     },
     {
@@ -20475,7 +20655,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 2→3。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 0.519,
         "nodes": 1,
         "depth": 1,
@@ -20547,6 +20727,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -20555,7 +20755,7 @@
             "score": 0.519
           }
         ],
-        "elapsed_ms": 13.61
+        "elapsed_ms": 3.98
       }
     },
     {
@@ -22022,7 +22222,7 @@
           "card": "e3"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→1",
         "score": 1.779,
         "nodes": 5,
         "depth": 1,
@@ -22113,6 +22313,26 @@
           "e81": "バット",
           "e82": "バット"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -22135,7 +22355,7 @@
             "score": -4.821
           }
         ],
-        "elapsed_ms": 21.01
+        "elapsed_ms": 6.39
       }
     },
     {
@@ -23613,7 +23833,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 2→3。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -2.521,
         "nodes": 1,
         "depth": 1,
@@ -23703,6 +23923,26 @@
           "e81": "バット",
           "e82": "バット"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -23711,7 +23951,7 @@
             "score": -2.521
           }
         ],
-        "elapsed_ms": 15.26
+        "elapsed_ms": 3.96
       }
     },
     {
@@ -25196,7 +25436,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→3、相手の体力 20→18",
         "score": 10.217,
         "nodes": 46,
         "depth": 3,
@@ -25429,6 +25669,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -25470,7 +25730,7 @@
             "score": 2.738
           }
         ],
-        "elapsed_ms": 102.92
+        "elapsed_ms": 30.37
       }
     },
     {
@@ -26955,7 +27215,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→3、相手の体力 19→18",
         "score": 10.218,
         "nodes": 13,
         "depth": 2,
@@ -27117,6 +27377,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -27148,7 +27428,7 @@
             "score": 0.919
           }
         ],
-        "elapsed_ms": 34.75
+        "elapsed_ms": 10.72
       }
     },
     {
@@ -28615,7 +28895,7 @@
           "card": "e48"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→3",
         "score": 10.219,
         "nodes": 3,
         "depth": 1,
@@ -28706,6 +28986,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -28721,7 +29021,7 @@
             "score": 3.619
           }
         ],
-        "elapsed_ms": 16.8
+        "elapsed_ms": 5.01
       }
     },
     {
@@ -30199,7 +30499,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 3→4。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 5.919,
         "nodes": 1,
         "depth": 1,
@@ -30289,6 +30589,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -30297,7 +30617,7 @@
             "score": 5.919
           }
         ],
-        "elapsed_ms": 12.65
+        "elapsed_ms": 3.91
       }
     },
     {
@@ -31775,7 +32095,7 @@
           "target": "leader:1"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の最大PP 4→5、相手の体力 20→19",
         "score": 1.598,
         "nodes": 23,
         "depth": 2,
@@ -31963,6 +32283,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -32004,7 +32344,7 @@
             "score": -2.522
           }
         ],
-        "elapsed_ms": 49.89
+        "elapsed_ms": 16.57
       }
     },
     {
@@ -33476,7 +33816,7 @@
           "card": "e15"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の最大PP 4→5",
         "score": 1.599,
         "nodes": 3,
         "depth": 1,
@@ -33576,6 +33916,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -33591,7 +33951,7 @@
             "score": -4.121
           }
         ],
-        "elapsed_ms": 15.71
+        "elapsed_ms": 5.26
       }
     },
     {
@@ -35052,7 +35412,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 3→4。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -2.701,
         "nodes": 1,
         "depth": 1,
@@ -35151,6 +35511,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -35159,7 +35539,7 @@
             "score": -2.701
           }
         ],
-        "elapsed_ms": 12.8
+        "elapsed_ms": 3.94
       }
     },
     {
@@ -36608,7 +36988,7 @@
           "source": "e81"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の体力 19→20、相手の体力 18→13",
         "score": 24.796,
         "nodes": 147,
         "depth": 4,
@@ -36945,6 +37325,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e59": "夜の唱のライブ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -36984,7 +37384,7 @@
             "score": 16.897
           }
         ],
-        "elapsed_ms": 310.74
+        "elapsed_ms": 90.96
       }
     },
     {
@@ -38452,7 +38852,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の体力 19→20、相手の体力 18→13",
         "score": 24.797,
         "nodes": 93,
         "depth": 3,
@@ -38711,6 +39111,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e59": "夜の唱のライブ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -38752,7 +39172,7 @@
             "score": 19.218
           }
         ],
-        "elapsed_ms": 193.19
+        "elapsed_ms": 57.11
       }
     },
     {
@@ -40220,7 +40640,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 15→13",
         "score": 24.798,
         "nodes": 49,
         "depth": 2,
@@ -40400,6 +40820,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e59": "夜の唱のライブ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -40441,7 +40881,7 @@
             "score": 19.618
           }
         ],
-        "elapsed_ms": 126.05
+        "elapsed_ms": 34.17
       }
     },
     {
@@ -41902,7 +42342,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 14→13",
         "score": 24.799,
         "nodes": 17,
         "depth": 1,
@@ -42003,6 +42443,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e59": "夜の唱のライブ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -42034,7 +42494,7 @@
             "score": 17.799
           }
         ],
-        "elapsed_ms": 46.64
+        "elapsed_ms": 13.16
       }
     },
     {
@@ -43590,6 +44050,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -43605,7 +44085,7 @@
             "score": 20.499
           }
         ],
-        "elapsed_ms": 18.25
+        "elapsed_ms": 5.18
       }
     },
     {
@@ -45047,7 +45527,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 5→6。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 20.319,
         "nodes": 1,
         "depth": 1,
@@ -45137,6 +45617,26 @@
           "e71": "イステンデッドVSマルチルゲート",
           "e67": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -45145,7 +45645,7 @@
             "score": 20.319
           }
         ],
-        "elapsed_ms": 15.82
+        "elapsed_ms": 3.91
       }
     },
     {
@@ -46592,7 +47092,7 @@
           "card": "e25"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の最大PP 6→7、自分の盤面枚数 1→2、相手の体力 20→19、相手の盤面枚数 3→2",
         "score": 14.106,
         "nodes": 92,
         "depth": 4,
@@ -46945,6 +47445,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -46984,7 +47504,7 @@
             "score": 4.478
           }
         ],
-        "elapsed_ms": 202.31
+        "elapsed_ms": 56.71
       }
     },
     {
@@ -48414,7 +48934,7 @@
           "source": "e25"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 20→19、相手の盤面枚数 3→2",
         "score": 14.107,
         "nodes": 50,
         "depth": 3,
@@ -48681,6 +49201,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -48721,7 +49261,7 @@
             "score": 3.948
           }
         ],
-        "elapsed_ms": 109.38
+        "elapsed_ms": 31.59
       }
     },
     {
@@ -50159,7 +50699,7 @@
           "target": "e81"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 20→19、相手の盤面枚数 3→2",
         "score": 14.108,
         "nodes": 38,
         "depth": 2,
@@ -50339,6 +50879,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -50381,7 +50941,7 @@
             "score": 8.928
           }
         ],
-        "elapsed_ms": 83.52
+        "elapsed_ms": 25.4
       }
     },
     {
@@ -51805,7 +52365,7 @@
           "target": "leader:1"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 20→19",
         "score": 14.109,
         "nodes": 7,
         "depth": 1,
@@ -51906,6 +52466,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -51938,7 +52518,7 @@
             "score": 7.109
           }
         ],
-        "elapsed_ms": 23.75
+        "elapsed_ms": 7.19
       }
     },
     {
@@ -53362,7 +53942,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 4→5。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 9.809,
         "nodes": 1,
         "depth": 1,
@@ -53461,6 +54041,26 @@
           "e82": "バット",
           "e48": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -53469,7 +54069,7 @@
             "score": 9.809
           }
         ],
-        "elapsed_ms": 12.85
+        "elapsed_ms": 3.95
       }
     },
     {
@@ -54881,7 +55481,7 @@
           "source": "e82"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の体力 19→20、相手の体力 13→10、相手の盤面枚数 2→1",
         "score": 18.087,
         "nodes": 86,
         "depth": 3,
@@ -55132,6 +55732,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e1": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -55172,7 +55792,7 @@
             "score": 10.188
           }
         ],
-        "elapsed_ms": 173.19
+        "elapsed_ms": 52.51
       }
     },
     {
@@ -56603,7 +57223,7 @@
           "target": "leader:0"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の体力 19→20、相手の体力 13→10、相手の盤面枚数 2→1",
         "score": 18.088,
         "nodes": 48,
         "depth": 2,
@@ -56776,6 +57396,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e1": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -56818,7 +57458,7 @@
             "score": 12.158
           }
         ],
-        "elapsed_ms": 105.37
+        "elapsed_ms": 30.12
       }
     },
     {
@@ -58278,7 +58918,7 @@
           "target": "e3"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の盤面枚数 2→1",
         "score": 18.089,
         "nodes": 13,
         "depth": 1,
@@ -58370,6 +59010,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e65": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -58402,7 +59062,7 @@
             "score": 11.089
           }
         ],
-        "elapsed_ms": 37.57
+        "elapsed_ms": 10.58
       }
     },
     {
@@ -59810,7 +60470,7 @@
           "target": "e25"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→1",
         "score": 15.609,
         "nodes": 3,
         "depth": 1,
@@ -59893,6 +60553,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e65": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -59909,7 +60589,7 @@
             "score": 13.789
           }
         ],
-        "elapsed_ms": 20.0
+        "elapsed_ms": 5.05
       }
     },
     {
@@ -61303,7 +61983,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 7→8。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 11.309,
         "nodes": 1,
         "depth": 1,
@@ -61384,6 +62064,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e65": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -61392,7 +62092,7 @@
             "score": 11.309
           }
         ],
-        "elapsed_ms": 13.11
+        "elapsed_ms": 3.97
       }
     },
     {
@@ -62786,7 +63486,7 @@
           "target": "leader:1"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2、相手の体力 20→8、相手の盤面枚数 1→0",
         "score": 53.976,
         "nodes": 160,
         "depth": 4,
@@ -63098,6 +63798,26 @@
           "e1": "赤色流し",
           "e2": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -63143,7 +63863,7 @@
             "score": 35.658
           }
         ],
-        "elapsed_ms": 387.7
+        "elapsed_ms": 107.89
       }
     },
     {
@@ -64585,7 +65305,7 @@
           }
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2、相手の体力 13→8、相手の盤面枚数 1→0",
         "score": 56.476,
         "nodes": 140,
         "depth": 4,
@@ -64879,6 +65599,26 @@
           "e2": "赤色流し",
           "e82": "バット"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -64929,7 +65669,7 @@
             "score": 51.868
           }
         ],
-        "elapsed_ms": 290.51
+        "elapsed_ms": 86.4
       }
     },
     {
@@ -66340,7 +67080,7 @@
           "target": "leader:1"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 13→8、相手の盤面枚数 1→0",
         "score": 56.477,
         "nodes": 58,
         "depth": 3,
@@ -66553,6 +67293,26 @@
           "e85": "赤色流し",
           "e82": "バット"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -66607,7 +67367,7 @@
             "score": 53.978
           }
         ],
-        "elapsed_ms": 140.94
+        "elapsed_ms": 36.43
       }
     },
     {
@@ -67992,7 +68752,7 @@
           }
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の盤面枚数 1→0",
         "score": 56.478,
         "nodes": 30,
         "depth": 2,
@@ -68123,6 +68883,26 @@
           "e21": "《世界》の提示",
           "e85": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -68180,7 +68960,7 @@
             "score": 56.478
           }
         ],
-        "elapsed_ms": 81.71
+        "elapsed_ms": 19.48
       }
     },
     {
@@ -69599,6 +70379,26 @@
           "e21": "《世界》の提示",
           "e85": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -69614,7 +70414,7 @@
             "score": 48.279
           }
         ],
-        "elapsed_ms": 18.67
+        "elapsed_ms": 4.85
       }
     },
     {
@@ -70972,7 +71772,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 5→6。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 50.779,
         "nodes": 1,
         "depth": 1,
@@ -71044,6 +71844,26 @@
           "e21": "《世界》の提示",
           "e85": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -71052,7 +71872,7 @@
             "score": 50.779
           }
         ],
-        "elapsed_ms": 13.41
+        "elapsed_ms": 4.02
       }
     },
     {
@@ -72395,7 +73215,7 @@
           "type": "extra_pp"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→4、相手の盤面枚数 2→1。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -2.152,
         "nodes": 23,
         "depth": 2,
@@ -72574,6 +73394,26 @@
           "e2": "幽冥の中尉",
           "e3": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -72609,7 +73449,7 @@
             "score": -181.681
           }
         ],
-        "elapsed_ms": 56.48
+        "elapsed_ms": 15.34
       }
     },
     {
@@ -74054,7 +74894,7 @@
           "card": "e71"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→4、相手の盤面枚数 2→1。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -2.151,
         "nodes": 10,
         "depth": 1,
@@ -74163,6 +75003,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -74199,7 +75059,7 @@
             "score": -183.081
           }
         ],
-        "elapsed_ms": 31.88
+        "elapsed_ms": 8.66
       }
     },
     {
@@ -75654,7 +76514,7 @@
           "source": "e71"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 10→9、相手の盤面枚数 1→0",
         "score": 35.848,
         "nodes": 17,
         "depth": 2,
@@ -75842,6 +76702,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -75878,7 +76758,7 @@
             "score": -6.451
           }
         ],
-        "elapsed_ms": 47.85
+        "elapsed_ms": 12.75
       }
     },
     {
@@ -77309,7 +78189,7 @@
           "target": "e26"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 10→9、相手の盤面枚数 1→0",
         "score": 35.849,
         "nodes": 3,
         "depth": 1,
@@ -77410,6 +78290,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -77426,7 +78326,7 @@
             "score": 29.069
           }
         ],
-        "elapsed_ms": 17.69
+        "elapsed_ms": 5.2
       }
     },
     {
@@ -78903,7 +79803,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 8→9。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 31.769,
         "nodes": 1,
         "depth": 1,
@@ -79002,6 +79902,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -79010,7 +79930,7 @@
             "score": 31.769
           }
         ],
-        "elapsed_ms": 13.59
+        "elapsed_ms": 4.14
       }
     },
     {
@@ -80513,7 +81433,7 @@
           "mode": 1
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→2、相手の盤面枚数 4→0",
         "score": 49.027,
         "nodes": 76,
         "depth": 3,
@@ -80698,6 +81618,26 @@
           "e1": "幽冥の中尉",
           "e2": "幽冥の中尉"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -80748,7 +81688,7 @@
             "score": 33.998
           }
         ],
-        "elapsed_ms": 172.57
+        "elapsed_ms": 47.31
       }
     },
     {
@@ -82133,7 +83073,7 @@
           "mode": 1
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2、相手の盤面枚数 3→0",
         "score": 49.028,
         "nodes": 43,
         "depth": 2,
@@ -82244,6 +83184,26 @@
           "e85": "赤色流し",
           "e7": "喧伝の龍人"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -82294,7 +83254,7 @@
             "score": 43.868
           }
         ],
-        "elapsed_ms": 108.05
+        "elapsed_ms": 26.61
       }
     },
     {
@@ -83624,7 +84584,7 @@
           "card": "e7"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 1→2",
         "score": 49.029,
         "nodes": 3,
         "depth": 1,
@@ -83688,6 +84648,26 @@
           "e21": "《世界》の提示",
           "e85": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -83703,7 +84683,7 @@
             "score": 42.329
           }
         ],
-        "elapsed_ms": 18.25
+        "elapsed_ms": 6.02
       }
     },
     {
@@ -85044,7 +86024,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 6→7。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 44.729,
         "nodes": 1,
         "depth": 1,
@@ -85107,6 +86087,26 @@
           "e21": "《世界》の提示",
           "e85": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -85115,7 +86115,7 @@
             "score": 44.729
           }
         ],
-        "elapsed_ms": 14.24
+        "elapsed_ms": 4.22
       }
     },
     {
@@ -86487,7 +87487,7 @@
           "target": "e7"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→4、相手の体力 9→8、相手の盤面枚数 2→0",
         "score": 39.996,
         "nodes": 57,
         "depth": 4,
@@ -86800,6 +87800,26 @@
           "e46": "デーモンドラム・ラズ",
           "e2": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -86839,7 +87859,7 @@
             "score": -136.256
           }
         ],
-        "elapsed_ms": 163.14
+        "elapsed_ms": 44.07
       }
     },
     {
@@ -88222,7 +89242,7 @@
           "target": "e30"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→4、相手の体力 9→8、相手の盤面枚数 1→0",
         "score": 39.997,
         "nodes": 30,
         "depth": 3,
@@ -88464,6 +89484,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -88494,7 +89534,7 @@
             "score": -135.951
           }
         ],
-        "elapsed_ms": 74.58
+        "elapsed_ms": 21.46
       }
     },
     {
@@ -89854,7 +90894,7 @@
           "target": "e30"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 3→4、相手の体力 9→8、相手の盤面枚数 1→0",
         "score": 39.998,
         "nodes": 8,
         "depth": 2,
@@ -90016,6 +91056,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e46": "デーモンドラム・ラズ"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -90039,7 +91099,7 @@
             "score": -127.931
           }
         ],
-        "elapsed_ms": 29.08
+        "elapsed_ms": 8.57
       }
     },
     {
@@ -91367,7 +92427,7 @@
           "card": "e46"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 3→4",
         "score": 39.999,
         "nodes": 3,
         "depth": 1,
@@ -91458,6 +92518,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e65": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -91473,7 +92553,7 @@
             "score": 32.749
           }
         ],
-        "elapsed_ms": 18.42
+        "elapsed_ms": 5.09
       }
     },
     {
@@ -92875,7 +93955,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の最大PP 9→10。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 33.969,
         "nodes": 1,
         "depth": 1,
@@ -92965,6 +94045,26 @@
           "e67": "傍死のアナテマ・徒姫",
           "e65": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -92973,7 +94073,7 @@
             "score": 33.969
           }
         ],
-        "elapsed_ms": 14.6
+        "elapsed_ms": 3.95
       }
     },
     {
@@ -94304,7 +95404,7 @@
           "card": "e35"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→1、相手の体力 8→6、相手の最大PP 7→8、相手の盤面枚数 4→0。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 46.667,
         "nodes": 40,
         "depth": 3,
@@ -94434,6 +95534,26 @@
           "e85": "赤色流し",
           "e22": "《世界》の提示"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -94479,7 +95599,7 @@
             "score": 41.519
           }
         ],
-        "elapsed_ms": 93.83
+        "elapsed_ms": 26.07
       }
     },
     {
@@ -95823,7 +96943,7 @@
           "source": "e35"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 8→6、相手の最大PP 7→8。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 46.668,
         "nodes": 3,
         "depth": 2,
@@ -95915,6 +97035,26 @@
           "e85": "赤色流し",
           "e22": "《世界》の提示"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -95930,7 +97070,7 @@
             "score": 41.499
           }
         ],
-        "elapsed_ms": 18.79
+        "elapsed_ms": 4.88
       }
     },
     {
@@ -97263,7 +98403,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の体力 8→6、相手の最大PP 7→8。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 46.669,
         "nodes": 1,
         "depth": 1,
@@ -97317,6 +98457,26 @@
           "e85": "赤色流し",
           "e22": "《世界》の提示"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -97325,7 +98485,7 @@
             "score": 46.669
           }
         ],
-        "elapsed_ms": 16.96
+        "elapsed_ms": 4.08
       }
     },
     {
@@ -98708,7 +99868,7 @@
           "card": "e67"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 0→3。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": -149.096,
         "nodes": 4,
         "depth": 1,
@@ -98799,6 +99959,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e66": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -98828,7 +100008,7 @@
             "score": -167.971
           }
         ],
-        "elapsed_ms": 18.82
+        "elapsed_ms": 5.56
       }
     },
     {
@@ -100178,7 +101358,7 @@
           "target": "e35"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の盤面枚数 1→0。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 34.627,
         "nodes": 50,
         "depth": 3,
@@ -100402,6 +101582,26 @@
           "e1": "バット",
           "e2": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -100426,7 +101626,7 @@
             "score": 32.328
           }
         ],
-        "elapsed_ms": 96.22
+        "elapsed_ms": 34.39
       }
     },
     {
@@ -101759,7 +102959,7 @@
           "card": "e95"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：自分の盤面枚数 2→3、相手の盤面枚数 1→0。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 34.628,
         "nodes": 28,
         "depth": 2,
@@ -101912,6 +103112,26 @@
           "e66": "傍死のアナテマ・徒姫",
           "e1": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -101935,7 +103155,7 @@
             "score": -150.502
           }
         ],
-        "elapsed_ms": 55.64
+        "elapsed_ms": 19.12
       }
     },
     {
@@ -103329,7 +104549,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。ドローやランダム結果は仮定を含むため、実行後に考え直します",
+        "reason": "盤面・体力・残り資源と、相手盤面からの危険を比較。先読みした到達点：相手の盤面枚数 1→0。ドローやランダム結果は仮定を含むため、実行後に考え直します",
         "score": 34.629,
         "nodes": 17,
         "depth": 1,
@@ -103410,6 +104630,26 @@
           "e65": "傍死のアナテマ・徒姫",
           "e66": "傍死のアナテマ・徒姫"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 21
+        },
         "candidates": [
           {
             "action": {
@@ -103434,7 +104674,7 @@
             "score": -150.501
           }
         ],
-        "elapsed_ms": 41.71
+        "elapsed_ms": 14.02
       }
     },
     {
@@ -104711,7 +105951,7 @@
           }
         },
         "policy": "search",
-        "reason": "公開情報だけで勝ち切れる手順を発見",
+        "reason": "公開情報だけで勝ち切れる手順を発見。先読みした到達点：自分の盤面枚数 0→1、相手の体力 6→0、相手の最大PP 8→9、相手の盤面枚数 3→2",
         "score": 99999.996,
         "nodes": 154,
         "depth": 4,
@@ -104913,6 +106153,26 @@
           "e1": "赤色流し",
           "e2": "赤色流し"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -104961,7 +106221,7 @@
             "score": 28.828
           }
         ],
-        "elapsed_ms": 313.18
+        "elapsed_ms": 98.24
       }
     },
     {
@@ -106260,7 +107520,7 @@
           }
         },
         "policy": "search",
-        "reason": "公開情報だけで勝ち切れる手順を発見",
+        "reason": "公開情報だけで勝ち切れる手順を発見。先読みした到達点：自分の盤面枚数 0→1、相手の体力 6→0、相手の最大PP 8→9",
         "score": 99999.997,
         "nodes": 12,
         "depth": 3,
@@ -106419,6 +107679,26 @@
           "e95": "バット",
           "e96": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -106444,7 +107724,7 @@
             "score": 18.859
           }
         ],
-        "elapsed_ms": 43.03
+        "elapsed_ms": 11.15
       }
     },
     {
@@ -107712,7 +108992,7 @@
           "target": "leader:1"
         },
         "policy": "search",
-        "reason": "公開情報だけで勝ち切れる手順を発見",
+        "reason": "公開情報だけで勝ち切れる手順を発見。先読みした到達点：相手の体力 6→0、相手の最大PP 8→9",
         "score": 99999.998,
         "nodes": 9,
         "depth": 2,
@@ -107822,6 +109102,26 @@
           "e95": "バット",
           "e96": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -107865,7 +109165,7 @@
             "score": 29.869
           }
         ],
-        "elapsed_ms": 30.03
+        "elapsed_ms": 8.94
       }
     },
     {
@@ -109153,7 +110453,7 @@
           "type": "end_turn"
         },
         "policy": "search",
-        "reason": "公開情報だけで勝ち切れる手順を発見",
+        "reason": "公開情報だけで勝ち切れる手順を発見。先読みした到達点：相手の体力 1→0、相手の最大PP 8→9",
         "score": 99999.999,
         "nodes": 1,
         "depth": 1,
@@ -109216,6 +110516,26 @@
           "e95": "バット",
           "e96": "スケルトン"
         },
+        "settings": {
+          "policy_version": 1,
+          "weights": {
+            "health": 1.0,
+            "pressure": 1.7,
+            "attack": 1.3,
+            "body": 0.65,
+            "hand": 1.5,
+            "ramp": 2.8,
+            "reserve": 1.4,
+            "guard": 1.5,
+            "ability": 1.2,
+            "danger": 4.0,
+            "grave": 0.12
+          },
+          "max_nodes": 160,
+          "width": 6,
+          "depth": 6,
+          "seed": 20
+        },
         "candidates": [
           {
             "action": {
@@ -109224,7 +110544,7 @@
             "score": 99999.999
           }
         ],
-        "elapsed_ms": 15.92
+        "elapsed_ms": 3.95
       }
     }
   ],
