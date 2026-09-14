@@ -9,10 +9,12 @@ import time
 from pathlib import Path
 from typing import Any
 
+from svdeck import battle_rules as rules
+
 Json = dict[str, Any]
 VERSION = 1
 KEYWORDS = {'守護', '突進', '疾走', 'バリア', '必殺', 'ドレイン', '潜伏', 'オーラ', '威圧', '破壊耐性'}
-EFFECT_KEYS = {'op', 'target', 'amount', 'attack', 'health', 'keywords', 'card_id', 'count', 'condition', 'effects'}
+EFFECT_KEYS = {'op', 'target', 'amount', 'attack', 'health', 'keywords', 'card_id', 'count', 'condition', 'effects', 'choice', 'select_count', 'filter', 'modifiers', 'unique', 'crest'}
 OPS = {'damage', 'heal', 'draw', 'buff', 'grant', 'destroy', 'banish', 'bounce', 'summon', 'generate', 'ramp', 'combo', 'necro', 'evolve', 'if', 'countdown'}
 TARGETS = {'chosen_enemy', 'chosen_ally', 'chosen_other_ally', 'chosen_ally_card', 'chosen_any_enemy', 'self', 'own_leader', 'enemy_leader', 'all_enemy', 'all_ally', 'all', 'random_enemy'}
 
@@ -37,18 +39,18 @@ def fingerprint(value: Any) -> str:
 
 def validate_effect(effect: Json, cards: dict[str, Json]) -> None:
     # AI_NOTE: 未対応効果・対象を入力時に拒否し、途中まで処理して継続することを防ぐ。
-    if not isinstance(effect, dict) or set(effect) - EFFECT_KEYS or effect.get('op') not in OPS:
+    if not isinstance(effect, dict) or set(effect) - EFFECT_KEYS or effect.get('op') not in OPS | rules.EXTRA_OPS:
         raise ValueError(f'未対応の効果です: {effect}')
-    if effect.get('target', 'self') not in TARGETS:
+    if effect.get('target', 'self') not in TARGETS | rules.EXTRA_TARGETS:
         raise ValueError('未対応の効果対象です')
     op, target = effect['op'], effect.get('target', 'self')
-    if op in {'draw', 'summon', 'generate', 'ramp', 'combo', 'necro', 'if'} and target != 'self':
+    if op in {'draw', 'summon', 'generate', 'ramp', 'combo', 'necro', 'if', 'pp', 'ep', 'leader_max', 'shield', 'repeat', 'reanimate', 'deck_summon'} and target != 'self':
         raise ValueError('この資源・生成処理は自分側のみ対応しています')
     if op in {'buff', 'grant', 'destroy', 'banish', 'bounce', 'evolve', 'countdown'} and target in {'own_leader', 'enemy_leader', 'chosen_any_enemy'}:
         raise ValueError('この処理はリーダーを対象にできません')
     for key in ('amount', 'count'):
         if key in effect:
-            integer(effect[key], key, 0, 100)
+            integer(effect[key], key, -100 if op == 'cost' else 0, 100) if effect[key] != 'board_count' else None
     for key in ('attack', 'health'):
         if key in effect:
             integer(effect[key], key, -100, 100)
@@ -58,8 +60,13 @@ def validate_effect(effect: Json, cards: dict[str, Json]) -> None:
         raise ValueError('生成先のカードが未対応です')
     if op == 'summon' and cards[str(effect['card_id'])]['kind'] == 'spell':
         raise ValueError('スペルを場に出すことはできません')
-    if 'condition' in effect and effect['condition'] not in {'awakening', 'combo3', 'max_pp10'}:
-        raise ValueError('未対応の発動条件です')
+    rules.validate_condition(effect.get('condition'))
+    rules.validate_filter(effect.get('filter', {}))
+    integer(effect.get('select_count', 1), 'select_count', 1, 9)
+    if 'crest' in effect:
+        rules.validate_triggers(effect['crest']['triggers'], cards)
+    if set(effect.get('modifiers', {})) - {'attack', 'health', 'keywords', 'tribes', 'lost_last_words'}:
+        raise ValueError('未対応の生成時変更です')
     for child in effect.get('effects', []):
         validate_effect(child, cards)
 
@@ -81,7 +88,7 @@ class Battle:
 
     def validate_cards(self) -> None:
         # AI_NOTE: テスト用カードも実カードも同じ閉じた効果形式を検査する。
-        allowed = {'card_id', 'name', 'kind', 'cost', 'attack', 'health', 'keywords', 'text', 'effects', 'fanfare', 'evolve', 'super_evolve', 'last_words', 'end_turn', 'attack_effects', 'enhance', 'enhance_effects', 'spellboost', 'countdown', 'class_name', 'token', 'rotation', 'source_hash', 'note', 'source', 'synthetic'}
+        allowed = {'card_id', 'name', 'kind', 'cost', 'attack', 'health', 'keywords', 'text', 'effects', 'fanfare', 'evolve', 'super_evolve', 'last_words', 'end_turn', 'attack_effects', 'enhance', 'enhance_effects', 'spellboost', 'countdown', 'class_name', 'token', 'rotation', 'source_hash', 'note', 'source', 'synthetic', 'forms', 'modes', 'triggers', 'hand_triggers', 'on_discard', 'on_evolved', 'leave_banish', 'tribes'}
         for key, card in self.cards.items():
             if not isinstance(card, dict) or set(card) - allowed:
                 raise ValueError(f'未対応のカード定義項目です: {key}')
@@ -98,14 +105,20 @@ class Battle:
                 raise ValueError('フォロワー・アミュレットには発動タイミングを指定してください')
             if card['kind'] == 'spell' and any(card.get(phase) for phase in ('fanfare', 'evolve', 'super_evolve', 'last_words', 'end_turn', 'attack_effects')):
                 raise ValueError('スペルに未対応の発動タイミングです')
-            for phase in ('effects', 'fanfare', 'evolve', 'super_evolve', 'last_words', 'end_turn', 'attack_effects', 'enhance_effects'):
-                selected_targets = set()
-                for effect in card.get(phase, []):
-                    validate_effect(effect, self.cards)
-                    if effect.get('target', '').startswith('chosen_'):
-                        selected_targets.add(effect['target'])
-                if len(selected_targets) > 1:
-                    raise ValueError('1行動中の異なる選択対象は未対応です')
+            for variant in [card, *card.get('forms', {}).values()]:
+                for phase in rules.PHASES:
+                    effects = variant.get(phase, [])
+                    for effect in effects:
+                        validate_effect(effect, self.cards)
+                    rules.validate_selections(effects)
+                    for mode in variant.get('modes', {}).get(phase, []):
+                        for effect in mode:
+                            validate_effect(effect, self.cards)
+                        rules.validate_selections(effects + mode)
+                for phase in ('effects', 'fanfare'):
+                    rules.validate_selections(variant.get(phase, []) + variant.get('enhance_effects', []))
+                rules.validate_triggers(variant.get('triggers', []), self.cards)
+                rules.validate_triggers(variant.get('hand_triggers', []), self.cards)
 
     def entity(self, value: Any, ids: set[str]) -> Json:
         # AI_NOTE: 個体IDで同名カードを区別し、盤面から消えた対象を取り違えない。
@@ -113,13 +126,13 @@ class Battle:
             value = {'card_id': str(value)}
         if not isinstance(value, dict):
             raise ValueError('カードの状態はオブジェクトです')
-        allowed = {'id', 'card_id', 'name', 'cost', 'attack', 'health', 'max_health', 'keywords', 'evolved', 'attacks', 'entered_turn', 'countdown'}
+        allowed = {'id', 'card_id', 'name', 'cost', 'attack', 'health', 'max_health', 'keywords', 'evolved', 'attacks', 'entered_turn', 'countdown', 'form', 'tribes', 'lost_last_words', 'last_trigger'}
         if set(value) - allowed:
             raise ValueError(f'未対応の個体状態です: {set(value) - allowed}')
         card_id = str(value.get('card_id'))
         if card_id not in self.cards:
             raise ValueError(f'未対応のカードです: {card_id}')
-        card = self.cards[card_id]
+        card = rules.definition(self, value | {'card_id': card_id})
         if 'id' not in value:
             while f'e{self.state["next_id"]}' in ids:
                 self.state['next_id'] += 1
@@ -129,6 +142,8 @@ class Battle:
             raise ValueError('個体IDが不正または重複しています')
         ids.add(value['id'])
         result: Json = {'id': value['id'], 'card_id': card_id, 'name': card['name'], 'cost': card['cost'], 'attack': card.get('attack', 0), 'health': card.get('health', 0), 'max_health': card.get('health', 0), 'keywords': copy.deepcopy(card.get('keywords', [])), 'evolved': 0, 'attacks': 0, 'entered_turn': 0, 'countdown': card.get('countdown')}
+        if card.get('tribes'):
+            result['tribes'] = copy.deepcopy(card['tribes'])
         result.update(value)
         result['card_id'] = card_id
         if 'health' in value and 'max_health' not in value:
@@ -163,7 +178,7 @@ class Battle:
             self.state['next_id'] += 1
         for raw_player in players:
             p: Json = {'health': 20, 'max_health': 20, 'pp': 0, 'max_pp': 0, 'turn': 1, 'ep': 2, 'sep': 2, 'evolved_this_turn': False, 'extra_pp_used': False, 'graveyard': 0, 'combo': 0, 'hand': [], 'deck': [], 'board': [], 'destroyed': []}
-            if not isinstance(raw_player, dict) or set(raw_player) - set(p):
+            if not isinstance(raw_player, dict) or set(raw_player) - (set(p) | {'crests', 'damage_shield'}):
                 raise ValueError('プレイヤー状態の項目が不正です')
             p.update(copy.deepcopy(raw_player))
             for prop in ('health', 'max_health', 'pp', 'max_pp', 'turn', 'ep', 'sep', 'graveyard', 'combo'):
@@ -183,7 +198,7 @@ class Battle:
                         self.state['next_id'] += 1
                     normalized.append(self.entity(item, ids))
                 p[zone] = normalized
-            if any(self.cards[e['card_id']]['kind'] == 'spell' for e in p['board']):
+            if any(rules.definition(self, e)['kind'] == 'spell' for e in p['board']):
                 raise ValueError('スペルを盤面に配置できません')
             if not isinstance(p['destroyed'], list) or any(str(c) not in self.cards for c in p['destroyed']):
                 raise ValueError('破壊履歴に未対応のカードがあります')
@@ -209,17 +224,18 @@ class Battle:
 
     def condition(self, effect: Json, owner: int) -> bool:
         # AI_NOTE: 条件判定は発動時の資源を参照するため、前の効果による変化を反映できる。
-        p = self.state['players'][owner]
-        return bool({'awakening': p['max_pp'] >= 7, 'combo3': p['combo'] >= 3, 'max_pp10': p['max_pp'] == 10}.get(str(effect.get('condition', '')), True))
+        return rules.condition(self, effect.get('condition'), owner)
 
     def choices(self, target: str, owner: int, source: Json) -> list[str]:
         # AI_NOTE: 守護は攻撃だけに、オーラ/潜伏は相手による選択だけに適用する。
+        if target == 'chosen_hand':
+            return [e['id'] for e in self.state['players'][owner]['hand'] if e['id'] != source['id']]
         enemy = 1 - owner
         result = []
         players = (owner,) if target in {'chosen_ally', 'chosen_other_ally', 'chosen_ally_card'} else (enemy,)
         for who in players:
             for e in self.state['players'][who]['board']:
-                if self.cards[e['card_id']]['kind'] != 'follower' and target != 'chosen_ally_card':
+                if rules.definition(self, e)['kind'] != 'follower' and target != 'chosen_ally_card':
                     continue
                 if target == 'chosen_other_ally' and e['id'] == source['id']:
                     continue
@@ -230,61 +246,57 @@ class Battle:
             result.append(f'leader:{enemy}')
         return result
 
-    def targeting(self, effects: list[Json], owner: int, source: Json, projected_combo: bool = False) -> str | None:
-        # AI_NOTE: 対象の入力が必要な効果を列挙段階で求め、不正なクリックを操作へ変換しない。
-        for effect in effects:
-            condition = self.condition(effect, owner)
-            if projected_combo and effect.get('condition') == 'combo3':
-                condition = self.state['players'][owner]['combo'] + 1 >= 3
-            if not condition:
-                continue
-            if effect.get('target', '').startswith('chosen_'):
-                return str(effect['target'])
-            nested = self.targeting(effect.get('effects', []), owner, source, projected_combo)
-            if nested:
-                return nested
-        return None
-
-    def play_effects(self, card: Json, pp: int) -> list[Json]:
-        # AI_NOTE: エンハンスは追加PPではなく代替コスト。通常効果に追加される効果を区別する。
-        effects = list(card.get('effects' if card['kind'] == 'spell' else 'fanfare', []))
+    def play_effects(self, card: Json, pp: int, mode: int | None = None) -> list[Json]:
+        # AI_NOTE: 元の効果とエンハンスを合成した同じ列を、合法手と実行に渡す。
+        effects = rules.phases(card, 'effects' if card['kind'] == 'spell' else 'fanfare', mode)
         if 'enhance' in card and pp >= card['enhance']:
             effects += card.get('enhance_effects', [])
         return effects
 
+    def playable(self, entity: Json, pp: int) -> tuple[Json, str | None]:
+        # AI_NOTE: 本体を使えるPPでは結晶・アクセラレートを選べない。
+        card = self.cards[entity['card_id']]
+        available = [(name, form) for name, form in card.get('forms', {}).items() if form['cost'] <= pp]
+        if entity['cost'] > pp and available:
+            name, form = max(available, key=lambda item: item[1]['cost'])
+            return rules.definition(self, entity | {'form': name}), name
+        return card, None
+
     def legal_actions(self) -> list[Json]:
-        # AI_NOTE: AIと画面に同じ合法手を渡し、画面だけの対象制限に依存しない。
+        # AI_NOTE: モード・対象・別形態をすべて行動に含め、AIと画面の判断を一致させる。
         if self.state['winner'] is not None:
             return []
         owner = self.state['active_player']
-        p, opponent = self.state['players'][owner], self.state['players'][1 - owner]
+        p, opponent = self.state['players'][owner], self.state['players'][1-owner]
         actions: list[Json] = [{'type': 'end_turn'}]
         if owner == 1 and not p['extra_pp_used']:
             actions.append({'type': 'extra_pp'})
         for entity in p['hand']:
-            card = self.cards[entity['card_id']]
-            cost = card['enhance'] if 'enhance' in card and p['pp'] >= card['enhance'] else entity['cost']
+            card, form = self.playable(entity, p['pp'])
+            cost = card['cost'] if form else (card['enhance'] if 'enhance' in card and p['pp'] >= card['enhance'] else entity['cost'])
             if cost > p['pp'] or (card['kind'] != 'spell' and len(p['board']) >= 5):
                 continue
-            target = self.targeting(self.play_effects(card, p['pp']), owner, entity, True)
-            options: list[str | None] = list(self.choices(target, owner, entity)) if target else [None]
-            if not options and card['kind'] != 'spell':
-                options = [None]
-            for target_id in options:
-                action: Json = {'type': 'play', 'card': entity['id']}
-                if target_id is not None:
-                    action['target'] = target_id
-                actions.append(action)
-        guards = [e['id'] for e in opponent['board'] if self.cards[e['card_id']]['kind'] == 'follower' and '守護' in e['keywords'] and '潜伏' not in e['keywords']]
+            phase = 'effects' if card['kind'] == 'spell' else 'fanfare'
+            modes: list[int | None] = list(range(len(card.get('modes', {}).get(phase, [])))) or [None]
+            for mode in modes:
+                effects = self.play_effects(card, p['pp'], mode)
+                for selected in rules.action_choices(self, effects, owner, entity, card['kind'] == 'spell', True):
+                    action = {'type': 'play', 'card': entity['id'], **selected}
+                    if form:
+                        action['form'] = form
+                    if mode is not None:
+                        action['mode'] = mode
+                    actions.append(action)
+        guards = [e['id'] for e in opponent['board'] if rules.definition(self, e)['kind'] == 'follower' and '守護' in e['keywords'] and '潜伏' not in e['keywords']]
         for entity in p['board']:
-            card = self.cards[entity['card_id']]
+            card = rules.definition(self, entity)
             if card['kind'] != 'follower':
                 continue
             ready = entity['entered_turn'] < p['turn'] or '疾走' in entity['keywords']
             rush = ready or '突進' in entity['keywords'] or entity['evolved'] > 0
-            if entity['attacks'] == 0 and entity['attack'] > 0 and rush:
+            if entity['attacks'] == 0 and rush:
                 for other in opponent['board']:
-                    if self.cards[other['card_id']]['kind'] != 'follower' or set(other['keywords']) & {'潜伏', '威圧'}:
+                    if rules.definition(self, other)['kind'] != 'follower' or set(other['keywords']) & {'潜伏', '威圧'}:
                         continue
                     if not guards or other['id'] in guards:
                         actions.append({'type': 'attack', 'source': entity['id'], 'target': other['id']})
@@ -292,17 +304,17 @@ class Battle:
                     actions.append({'type': 'attack', 'source': entity['id'], 'target': f'leader:{1-owner}'})
             if entity['evolved'] or p['evolved_this_turn']:
                 continue
-            for mode, resource, threshold in (('evolve', 'ep', 5 - owner), ('super_evolve', 'sep', 7 - owner)):
+            for kind, resource, threshold in (('evolve', 'ep', 5-owner), ('super_evolve', 'sep', 7-owner)):
                 if p[resource] <= 0 or p['turn'] < threshold:
                     continue
-                effects = list(card.get('super_evolve', card.get('evolve', [])) or []) if mode == 'super_evolve' else list(card.get('evolve', []) or [])
-                target = self.targeting(effects, owner, entity)
-                options = list(self.choices(target, owner, entity)) if target else [None]
-                for target_id in options or [None]:
-                    action = {'type': mode, 'source': entity['id']}
-                    if target_id is not None:
-                        action['target'] = target_id
-                    actions.append(action)
+                phase = 'super_evolve' if kind == 'super_evolve' and ('super_evolve' in card or 'super_evolve' in card.get('modes', {})) else 'evolve'
+                modes = list(range(len(card.get('modes', {}).get(phase, [])))) or [None]
+                for mode in modes:
+                    for selected in rules.action_choices(self, rules.phases(card, phase, mode), owner, entity, False):
+                        action = {'type': kind, 'source': entity['id'], **selected}
+                        if mode is not None:
+                            action['mode'] = mode
+                        actions.append(action)
         return actions
 
     def fresh(self, card_id: str) -> Json:
@@ -320,14 +332,17 @@ class Battle:
         if mode == 'destroy' and ('破壊耐性' in entity['keywords'] or (entity['evolved'] == 2 and owner == self.state['active_player'])):
             self.emit('prevent_destroy', f'{entity["name"]}は能力による破壊を防いだ', target=target_id)
             return False
+        if rules.definition(self, entity).get('leave_banish'):
+            mode = 'banish'
         p['board'].remove(entity)
         self.emit(mode, f'{entity["name"]}: ' + {'destroy': '破壊', 'death': '体力0で破壊', 'banish': '消滅', 'bounce': '手札へ戻る'}[mode], target=target_id)
         if mode in {'destroy', 'death'}:
             self.destroyed_in_action.add(target_id)
             p['graveyard'] += 1
-            if self.cards[entity['card_id']]['kind'] == 'follower':
+            if rules.definition(self, entity)['kind'] == 'follower':
                 p['destroyed'].append(entity['card_id'])
-            self.pending.append((self.cards[entity['card_id']].get('last_words', []), owner, entity))
+            if not entity.get('lost_last_words'):
+                self.pending.append((rules.definition(self, entity).get('last_words', []), owner, entity))
         if mode == 'bounce':
             self.add_hand(owner, self.fresh(entity['card_id']))
         return True
@@ -336,7 +351,7 @@ class Battle:
         # AI_NOTE: 同時ダメージの反撃前に死亡を処理せず、まとまった作用の後に死亡を確定する。
         for owner in (self.state['active_player'], 1-self.state['active_player']):
             for entity in list(self.state['players'][owner]['board']):
-                if self.cards[entity['card_id']]['kind'] == 'follower' and entity['health'] <= 0:
+                if rules.definition(self, entity)['kind'] == 'follower' and entity['health'] <= 0:
                     self.remove(entity['id'], 'death')
         dead = [i for i, p in enumerate(self.state['players']) if p['health'] <= 0]
         if dead:
@@ -352,6 +367,9 @@ class Battle:
         if amount <= 0:
             return 0
         before = entity['health']
+        if zone == 'leader' and entity.get('damage_shield'):
+            self.emit('prevent_damage', 'リーダーへのダメージを防いだ', target=target_id, before=before, after=before)
+            return 0
         if zone != 'leader' and entity['evolved'] == 2 and owner == self.state['active_player']:
             self.emit('prevent_damage', f'{entity["name"]}: 超進化でダメージを防いだ', target=target_id, before=before, after=before)
             return 0
@@ -369,6 +387,7 @@ class Battle:
         if len(p['hand']) >= 9:
             p['graveyard'] += 1
             self.emit('overflow', f'{entity["name"]}: 手札上限で捨てた', target=entity['id'])
+            rules.trigger(self, 'discard', owner, entity)
             return
         p['hand'].append(entity)
         self.emit('hand', f'{entity["name"]}を手札に加えた', target=entity['id'])
@@ -382,35 +401,57 @@ class Battle:
         self.state['rng'] = x & 0xffffffff
         return int(self.state['rng'] % length)
 
-    def targets(self, effect: Json, owner: int, source: Json, chosen: str | None) -> list[str]:
-        # AI_NOTE: ランダム/全体作用は選択能力とは別なのでオーラによる選択不可を適用しない。
+    def targets(self, effect: Json, owner: int, source: Json, chosen: Any) -> list[str]:
+        # AI_NOTE: 選択IDを用途ごとに読み、対象が先の効果で消えた場合は再選択しない。
         target = effect.get('target', 'self')
         if target.startswith('chosen_'):
-            return [chosen] if chosen and self.find(chosen) else []
+            value = chosen.get(effect.get('choice', 'target')) if isinstance(chosen, dict) else chosen
+            values = value if isinstance(value, list) else ([value] if value else [])
+            return [v for v in values if self.find(v)]
+        if target == 'event':
+            return [source['event_target']] if source.get('event_target') and self.find(source['event_target']) else []
         if target in {'own_leader', 'enemy_leader'}:
             return [f'leader:{owner if target == "own_leader" else 1-owner}']
+        if target == 'all_leaders':
+            return [f'leader:{owner}', f'leader:{1-owner}']
         if target == 'self':
             return [source['id']]
-        owners = (owner, 1-owner) if target == 'all' else ((owner,) if target == 'all_ally' else (1-owner,))
-        result = [e['id'] for i in owners for e in self.state['players'][i]['board'] if self.cards[e['card_id']]['kind'] == 'follower']
-        if target == 'random_enemy' and result:
-            picked = result[self.random_index(len(result))]
-            self.emit('random', 'ランダム対象を決定', candidates=result, target=picked)
-            return [picked]
+        owners = (owner, 1-owner) if target == 'all' else ((owner,) if target in {'all_ally', 'all_other_ally', 'random_ally'} else (1-owner,))
+        entities = [e for i in owners for e in self.state['players'][i]['board'] if (rules.definition(self, e)['kind'] == 'follower' or effect.get('filter', {}).get('last_words')) and rules.matches(self, e, effect.get('filter', {}), source)]
+        if target == 'all_other_ally':
+            entities = [e for e in entities if e['id'] != source['id']]
+        if entities and effect.get('filter', {}).get('highest_attack'):
+            maximum = max(e['attack'] for e in entities)
+            entities = [e for e in entities if e['attack'] == maximum]
+        result = [e['id'] for e in entities]
+        if target.startswith('random_'):
+            picked = []
+            for _ in range(min(effect.get('count', 1), len(result))):
+                value = result.pop(self.random_index(len(result)))
+                self.emit('random', 'ランダム対象を決定', target=value)
+                picked.append(value)
+            return picked
+        if target == 'all_enemy_characters':
+            result.append(f'leader:{1-owner}')
         return result
 
-    def resolve(self, effects: list[Json], owner: int, source: Json, chosen: str | None = None) -> None:
+    def resolve(self, effects: list[Json], owner: int, source: Json, chosen: Any = None) -> None:
         # AI_NOTE: 効果リストの順をそのまま実行し、各作用を履歴に残す。自由文は実行時に解釈しない。
         for effect in effects:
             if self.state['winner'] is not None:
                 break
-            if not self.condition(effect, owner):
+            if not rules.condition(self, effect.get('condition'), owner, source):
                 self.emit('condition', '条件未達のため効果なし', source=source['id'], condition=effect.get('condition'))
                 continue
             p = self.state['players'][owner]
             op = effect['op']
             amount = effect.get('amount', 0)
-            self.emit('effect', f'{source["name"]}: ' + {'damage':'ダメージ','heal':'回復','draw':'カードを引く','buff':'強化','grant':'能力付与','destroy':'破壊','banish':'消滅','bounce':'手札に戻す','summon':'場に出す','generate':'手札に加える','ramp':'PP最大値を増やす','combo':'プレイ枚数を増やす','necro':'墓場を消費','evolve':'効果による進化','if':'条件判定','countdown':'カウントを進める'}[op], source=source['id'], effect=copy.deepcopy(effect))
+            if amount == 'board_count':
+                amount = sum(rules.definition(self, e)['kind'] == 'follower' for player in self.state['players'] for e in player['board'])
+            self.emit('effect', f'{source["name"]}: ' + {'damage':'ダメージ','heal':'回復','draw':'カードを引く','buff':'強化','grant':'能力付与','destroy':'破壊','banish':'消滅','bounce':'手札に戻す','summon':'場に出す','generate':'手札に加える','ramp':'PP最大値を増やす','combo':'プレイ枚数を増やす','necro':'墓場を消費','evolve':'効果による進化','if':'条件判定','countdown':'カウントを進める','repeat':'繰り返し','discard':'手札を捨てる','pp':'PP回復','ep':'EP回復','cost':'手札コスト変更','remove_keywords':'能力を失う','leader_max':'リーダー最大体力変更','shield':'ダメージを防ぐ','split_damage':'ダメージを割りふる','deck_summon':'デッキから場に出す','reanimate':'リアニメイト','copy_banish':'消滅してコピー','crest':'クレスト付与'}[op], source=source['id'], effect=copy.deepcopy(effect))
+            if rules.extended_effect(self, effect, owner, source, chosen):
+                self.settle()
+                continue
             if op in {'if', 'necro'}:
                 if op == 'necro':
                     if p['graveyard'] < amount:
@@ -419,11 +460,16 @@ class Battle:
                 self.resolve(effect.get('effects', []), owner, source, chosen)
             elif op == 'draw':
                 for _ in range(integer(effect.get('count', amount or 1), 'draw count', 0, 100)):
+                    pool = [e for e in p['deck'] if rules.matches(self, e, effect.get('filter', {}))]
+                    if effect.get('filter') and not pool:
+                        continue
                     if not p['deck']:
                         self.state['winner'] = 1-owner
                         self.emit('deck_empty', '山札から引けず敗北', owner=owner)
                         break
-                    self.add_hand(owner, p['deck'].pop(0))
+                    entity = pool[self.random_index(len(pool))] if effect.get('filter') else p['deck'][0]
+                    p['deck'].remove(entity)
+                    self.add_hand(owner, entity)
             elif op in {'summon', 'generate'}:
                 for _ in range(effect.get('count', 1)):
                     if op == 'summon' and len(p['board']) >= 5:
@@ -433,9 +479,7 @@ class Battle:
                     if op == 'generate':
                         self.add_hand(owner, entity)
                     else:
-                        entity['entered_turn'] = p['turn']
-                        p['board'].append(entity)
-                        self.emit('summon', f'{entity["name"]}が場に出た（ファンファーレは発動しない）', target=entity['id'])
+                        rules.summon(self, owner, entity, effect.get('modifiers'))
             elif op == 'ramp':
                 before = p['max_pp']
                 p['max_pp'] = min(10, before+amount)
@@ -459,6 +503,8 @@ class Battle:
                         before = entity['health']
                         entity['health'] = min(entity['max_health'], before+amount)
                         self.emit('heal', f'体力 {before} → {entity["health"]}', target=target_id, before=before, after=entity['health'])
+                        if zone == 'leader':
+                            rules.trigger(self, 'heal', target_owner)
                     elif op in {'destroy', 'banish', 'bounce'}:
                         self.remove(target_id, op)
                     elif op in {'buff', 'grant'}:
@@ -483,13 +529,13 @@ class Battle:
         while self.pending and self.state['winner'] is None:
             effects, owner, source = self.pending.pop(0)
             if effects:
-                self.emit('last_words', f'{source["name"]}のラストワード', source=source['id'])
+                self.emit('trigger', f'{source["name"]}の予約された能力', source=source['id'])
                 self.resolve(effects, owner, source)
             count += 1
             if count > 500:
                 raise ValueError('連鎖効果が実行上限を超えました')
 
-    def evolve(self, entity: Json, owner: int, super_evolve: bool, spend: bool, chosen: str | None) -> None:
+    def evolve(self, entity: Json, owner: int, super_evolve: bool, spend: bool, chosen: Any, mode: int | None = None) -> None:
         # AI_NOTE: 効果進化は能力【進化時】を発動させず、EP/SEPによる進化と分ける。
         if entity['evolved']:
             return
@@ -499,12 +545,14 @@ class Battle:
         entity['health'] += amount
         entity['max_health'] += amount
         self.emit('evolve', f'{entity["name"]}: {"超進化" if super_evolve else "進化"} +{amount}/+{amount}', target=entity['id'])
+        rules.trigger(self, 'evolved', owner, entity)
         if spend:
             p = self.state['players'][owner]
             p['sep' if super_evolve else 'ep'] -= 1
             p['evolved_this_turn'] = True
-            card = self.cards[entity['card_id']]
-            self.resolve(list(card.get('super_evolve', card.get('evolve', [])) or []) if super_evolve else list(card.get('evolve', []) or []), owner, entity, chosen)
+            card = rules.definition(self, entity)
+            phase = 'super_evolve' if super_evolve and ('super_evolve' in card or 'super_evolve' in card.get('modes', {})) else 'evolve'
+            self.resolve(rules.phases(card, phase, mode), owner, entity, chosen)
 
     def execute(self, action: Json) -> None:
         # AI_NOTE: 合法性を確認した1行動から、次の判断が必要な状態まで処理する。
@@ -513,9 +561,11 @@ class Battle:
         kind = action['type']
         if kind == 'play':
             entity = next(e for e in p['hand'] if e['id'] == action['card'])
-            card = self.cards[entity['card_id']]
-            effects = self.play_effects(card, p['pp'])
-            cost = card['enhance'] if 'enhance' in card and p['pp'] >= card['enhance'] else entity['cost']
+            card, form = self.playable(entity, p['pp'])
+            effects = self.play_effects(card, p['pp'], action.get('mode'))
+            cost = card['cost'] if form else (card['enhance'] if 'enhance' in card and p['pp'] >= card['enhance'] else entity['cost'])
+            if form:
+                entity.update({'form': form, 'attack': card.get('attack', 0), 'health': card.get('health', 0), 'max_health': card.get('health', 0), 'keywords': card.get('keywords', []), 'countdown': card.get('countdown')})
             p['hand'].remove(entity)
             p['pp'] -= cost
             p['combo'] += 1
@@ -523,7 +573,8 @@ class Battle:
             if card['kind'] != 'spell':
                 entity['entered_turn'] = p['turn']
                 p['board'].append(entity)
-            self.resolve(effects, owner, entity, action.get('target'))
+                rules.trigger(self, 'enter', owner, entity)
+            self.resolve(effects, owner, entity, action.get('choices', action.get('target')))
             if card['kind'] == 'spell':
                 p['graveyard'] += 1
                 for hand_card in p['hand']:
@@ -532,14 +583,14 @@ class Battle:
                         self.emit('spellboost', f'{hand_card["name"]}: コスト-1', target=hand_card['id'], cost=hand_card['cost'])
         elif kind in {'evolve', 'super_evolve'}:
             entity = next(e for e in p['board'] if e['id'] == action['source'])
-            self.evolve(entity, owner, kind == 'super_evolve', True, action.get('target'))
+            self.evolve(entity, owner, kind == 'super_evolve', True, action.get('choices', action.get('target')), action.get('mode'))
         elif kind == 'attack':
             entity = next(e for e in p['board'] if e['id'] == action['source'])
             entity['attacks'] += 1
             if '潜伏' in entity['keywords']:
                 entity['keywords'].remove('潜伏')
             self.emit('attack', f'{entity["name"]}が攻撃', source=entity['id'], target=action['target'])
-            self.resolve(self.cards[entity['card_id']].get('attack_effects', []), owner, entity)
+            self.resolve(rules.definition(self, entity).get('attack_effects', []), owner, entity)
             self.drain_pending()
             target = self.find(action['target'])
             if target and self.find(entity['id']) and self.state['winner'] is None:
@@ -550,9 +601,9 @@ class Battle:
                     p['health'] = min(p['max_health'], p['health']+dealt)
                     self.emit('drain', f'ドレインで{dealt}回復', after=p['health'])
                 if zone == 'board':
-                    if dealt and '必殺' in entity['keywords']:
+                    if '必殺' in entity['keywords']:
                         self.remove(other['id'], 'destroy')
-                    if received and '必殺' in other['keywords']:
+                    if '必殺' in other['keywords']:
                         self.remove(entity['id'], 'destroy')
                 self.settle()
             if action['target'] in self.destroyed_in_action and entity['evolved'] == 2 and self.state['winner'] is None:
@@ -565,8 +616,13 @@ class Battle:
         elif kind == 'end_turn':
             for entity in list(p['board']):
                 if self.find(entity['id']):
-                    self.resolve(self.cards[entity['card_id']].get('end_turn', []), owner, entity)
-                    self.drain_pending()
+                    self.resolve(rules.definition(self, entity).get('end_turn', []), owner, entity)
+            rules.trigger(self, 'turn_end', owner)
+            self.drain_pending()
+            for player in self.state['players']:
+                shield = player.get('damage_shield')
+                if shield and shield['owner'] == owner and shield['turn'] <= p['turn']:
+                    player.pop('damage_shield')
             if self.state['winner'] is not None:
                 return
             self.state['active_player'] = 1-owner
@@ -586,6 +642,7 @@ class Battle:
                     if entity['countdown'] == 0:
                         self.remove(entity['id'], 'destroy')
             self.emit('turn', f'プレイヤー{owner+1}の{p["turn"]}ターン目', owner=owner)
+            rules.trigger(self, 'turn_start', owner)
             self.drain_pending()
             self.resolve([{'op': 'draw', 'count': 1}], owner, {'id': f'leader:{owner}', 'name': 'ターン開始', 'keywords': []})
         self.settle()
@@ -626,12 +683,12 @@ class Battle:
 
     def export(self) -> Json:
         # AI_NOTE: カード定義も埋め込むことでDB更新後も当時の条件で再生できる。
-        return copy.deepcopy({'version': VERSION, 'engine_version': 'battle-1', 'cards': self.cards, 'cards_hash': fingerprint(self.cards), 'initial': self.initial, 'actions': self.actions, 'frames': self.frames})
+        return copy.deepcopy({'version': VERSION, 'engine_version': 'battle-2', 'cards': self.cards, 'cards_hash': fingerprint(self.cards), 'initial': self.initial, 'actions': self.actions, 'frames': self.frames})
 
 
 def replay(record: Json, cursor: int | None = None) -> Battle:
     # AI_NOTE: 保存された終了状態を信用して表示せず、開始状態と操作から再計算して照合する。
-    if record.get('version') != VERSION or record.get('engine_version', 'battle-1') != 'battle-1':
+    if record.get('version') != VERSION or record.get('engine_version', 'battle-1') not in {'battle-1', 'battle-2'}:
         raise ValueError('未対応のリプレイバージョンです')
     if record.get('cards_hash') != fingerprint(record.get('cards')):
         raise ValueError('リプレイのカード定義が変更されています')

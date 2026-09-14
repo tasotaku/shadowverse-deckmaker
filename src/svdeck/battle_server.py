@@ -73,6 +73,7 @@ class BattleHandler(BaseHTTPRequestHandler):
             return
         assets = {"/": ("index.html", "text/html"),
                   "/app.js": ("app.js", "text/javascript"),
+                  "/animation.js": ("animation.js", "text/javascript"),
                   "/style.css": ("style.css", "text/css")}
         if path not in assets:
             self.send_json({"error": "見つかりません。"}, 404)
