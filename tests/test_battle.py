@@ -179,7 +179,7 @@ def test_unsupported_effect_is_rejected() -> None:
 def test_catalog_and_cases_are_available() -> None:
     # AI_NOTE: パッケージ利用でも組込みカードと検証例を読み出せることを確認する。
     assert 'test-damage-5' in catalog()
-    assert len(load_cases()) == len(CASES)
+    assert {case['id'] for case in CASES} <= {case['id'] for case in load_cases()}
     assert len({case['id'] for case in CASES}) == len(CASES)
     assert len(default_state()['players']) == 2
 

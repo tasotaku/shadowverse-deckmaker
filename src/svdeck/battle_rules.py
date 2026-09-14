@@ -66,6 +66,15 @@ def validate_triggers(rules: list[Json], cards: dict[str, Json]) -> None:
             validate_effect(child, cards)
 
 
+def validate_crest(crest: Json, cards: dict[str, Json]) -> None:
+    # AI_NOTE: 記録から戻す常在効果もカードと同じ検査を通す。
+    if not isinstance(crest, dict) or set(crest) - {'id', 'name', 'keywords', 'triggers', 'last_trigger'}:
+        raise ValueError('クレスト定義が不正です')
+    if not isinstance(crest.get('id'), str) or not crest['id'].startswith('crest:') or not isinstance(crest.get('name'), str):
+        raise ValueError('クレストの識別情報が不正です')
+    validate_triggers(crest.get('triggers', []), cards)
+
+
 def validate_selections(effects: list[Json]) -> dict[str, tuple[str, int]]:
     # AI_NOTE: 非活性な条件の内側も検査し、試験時だけ見えない選択の衝突を防ぐ。
     slots: dict[str, tuple[str, int]] = {}
@@ -94,7 +103,7 @@ def matches(battle: Battle, entity: Json, query: Json, source: Json | None = Non
     card = definition(battle, entity)
     if query.get('exclude_self') and source and entity['id'] == source['id']:
         return False
-    tribes: list[int] = entity.get('tribes', card.get('tribes', []))
+    tribes: list[int] = list(entity.get('tribes') or card.get('tribes') or [])
     return bool(
         ('kind' not in query or card['kind'] == query['kind'])
         and ('class_name' not in query or card.get('class_name') == query['class_name'])
@@ -189,7 +198,7 @@ def trigger(battle: Battle, event: str, owner: int, entity: Json | None = None) 
     if entity and event in {'discard', 'evolved'}:
         effects = definition(battle, entity).get('on_' + event, [])
         if effects:
-            battle.pending.append((copy.deepcopy(effects), owner, copy.deepcopy(entity)))
+            battle.pending.append((copy.deepcopy(effects), owner, copy.deepcopy(entity), '捨てられたとき' if event == 'discard' else '進化したとき'))
     for who in (battle.state['active_player'], 1 - battle.state['active_player']):
         player = battle.state['players'][who]
         sources = [(e, definition(battle, e).get('triggers', [])) for e in list(player['board'])]
@@ -217,7 +226,7 @@ def trigger(battle: Battle, event: str, owner: int, entity: Json | None = None) 
                     source['last_trigger'] = stamp
                 saved = copy.deepcopy(source)
                 saved['event_target'] = entity['id'] if entity else None
-                battle.pending.append((copy.deepcopy(rule['effects']), who, saved))
+                battle.pending.append((copy.deepcopy(rule['effects']), who, saved, {'enter':'場に出たとき', 'heal':'リーダーが回復したとき', 'turn_start':'ターン開始時', 'turn_end':'ターン終了時'}[event]))
 
 
 def summon(battle: Battle, owner: int, entity: Json, modifiers: Json | None = None) -> None:

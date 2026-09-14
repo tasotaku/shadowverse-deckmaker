@@ -67,12 +67,13 @@ def definitions() -> dict[str, Json]:
     d['10102110'] = {'fanfare':[effect('damage','all_enemy',amount=1)], 'evolve':[effect('damage','all_enemy',amount=1)]}
     d['10102310'] = {'effects':[effect('draw',count=2)]}
     d['10103110'] = {'evolve':[effect('destroy','chosen_enemy')]}
-    return d
+    from svdeck.battle_meta_cards import definitions as meta_definitions
+    return d | meta_definitions()
 
 
 def source_hash(row: sqlite3.Row) -> str:
     # AI_NOTE: 能力調整や進化本文の変更を検出し、古い実行定義を自動的に適用しない。
-    return hashlib.sha256(json.dumps([row[k] for k in ('card_id','name','cost','atk','life','type_category','skill_text','evo_json')],ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
+    return hashlib.sha256(json.dumps([row[k] for k in ('card_id','name','cost','atk','life','type_category','skill_text','evo_json','ref_effect_text')],ensure_ascii=False,separators=(',',':')).encode()).hexdigest()
 
 
 def synthetic_cards() -> dict[str, Json]:
@@ -100,21 +101,30 @@ def load_catalog(db_path: Path | None = None) -> dict[str, Json]:
     connection = sqlite3.connect(f'{path.resolve().as_uri()}?mode=ro', uri=True)
     connection.row_factory = sqlite3.Row
     try:
+        tribes: dict[str, list[int]] = {}
+        for item in connection.execute('SELECT card_id, tribe_id FROM card_tribe'):
+            tribes.setdefault(str(item[0]), []).append(item[1])
         for row in connection.execute('SELECT c.*, n.note FROM card c LEFT JOIN card_note n USING(card_id)'):
             card_id = str(row['card_id'])
             if card_id not in defs or manifest.get(card_id) != source_hash(row):
                 continue
-            cards[card_id] = {'card_id':card_id, 'name':row['name'], 'kind':row['type_category'], 'cost':row['cost'], 'attack':row['atk'], 'health':row['life'], 'keywords':[], 'text':re.sub('<[^>]+>', '', row['skill_text'] or ''), 'class_name':row['class_name'], 'token':bool(row['is_token']), 'rotation':bool(row['is_include_rotation']), 'source_hash':manifest[card_id], 'source':f'https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id={card_id}', 'note':row['note'] or '', **defs[card_id]}
+            cards[card_id] = {'card_id':card_id, 'name':row['name'], 'kind':row['type_category'], 'cost':row['cost'], 'attack':row['atk'], 'health':row['life'], 'keywords':[], 'text':re.sub('<[^>]+>', '', row['skill_text'] or ''), 'class_name':row['class_name'], 'token':bool(row['is_token']), 'rotation':bool(row['is_include_rotation']), 'source_hash':manifest[card_id], 'source':f'https://shadowverse-wb.com/ja/deck/cardslist/card/?card_id={card_id}', 'note':row['note'] or '', 'tribes': tribes.get(card_id, []), **defs[card_id]}
     finally:
         connection.close()
-    # Remove cards whose token dependency changed or is missing; never leave a partial effect.
+    # AI_NOTE: ネストした生成先も調べ、本文変更で生成先が外れたら親も対応扱いにしない。
+    def references(value: Any) -> set[str]:
+        if isinstance(value, list):
+            return set().union(*(references(child) for child in value))
+        if isinstance(value, dict):
+            direct = {str(value['card_id'])} if value.get('op') in {'summon', 'generate'} else set()
+            return direct | set().union(*(references(child) for child in value.values()))
+        return set()
+
     changed = True
     while changed:
         changed = False
         for card_id, card in list(cards.items()):
-            serialized = json.dumps(card)
-            dependencies = re.findall(r'"card_id": "(\d+)"', serialized)[1:]
-            if any(dep not in cards for dep in dependencies):
+            if references(card) - cards.keys():
                 del cards[card_id]
                 changed = True
     return cards

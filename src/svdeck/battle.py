@@ -50,7 +50,11 @@ def validate_effect(effect: Json, cards: dict[str, Json]) -> None:
         raise ValueError('この処理はリーダーを対象にできません')
     for key in ('amount', 'count'):
         if key in effect:
-            integer(effect[key], key, -100 if op == 'cost' else 0, 100) if effect[key] != 'board_count' else None
+            if effect[key] == 'board_count':
+                if key != 'amount' or op != 'damage':
+                    raise ValueError('場の枚数を参照する値はダメージのみ対応です')
+            else:
+                integer(effect[key], key, -100 if op == 'cost' else 0, 100)
     for key in ('attack', 'health'):
         if key in effect:
             integer(effect[key], key, -100, 100)
@@ -64,6 +68,7 @@ def validate_effect(effect: Json, cards: dict[str, Json]) -> None:
     rules.validate_filter(effect.get('filter', {}))
     integer(effect.get('select_count', 1), 'select_count', 1, 9)
     if 'crest' in effect:
+        rules.validate_crest(effect['crest'], cards)
         rules.validate_triggers(effect['crest']['triggers'], cards)
     if set(effect.get('modifiers', {})) - {'attack', 'health', 'keywords', 'tribes', 'lost_last_words'}:
         raise ValueError('未対応の生成時変更です')
@@ -80,7 +85,7 @@ class Battle:
         self.events: list[Json] = []
         self.frames: list[Json] = []
         self.actions: list[Json] = []
-        self.pending: list[tuple[list[Json], int, Json]] = []
+        self.pending: list[tuple[list[Json], int, Json, str]] = []
         self.destroyed_in_action: set[str] = set()
         self.validate_cards()
         self.state = self.normalize(state)
@@ -105,7 +110,15 @@ class Battle:
                 raise ValueError('フォロワー・アミュレットには発動タイミングを指定してください')
             if card['kind'] == 'spell' and any(card.get(phase) for phase in ('fanfare', 'evolve', 'super_evolve', 'last_words', 'end_turn', 'attack_effects')):
                 raise ValueError('スペルに未対応の発動タイミングです')
+            if set(card.get('forms', {})) - {'accelerate', 'crystallize'}:
+                raise ValueError('未対応の別形態です')
             for variant in [card, *card.get('forms', {}).values()]:
+                if set(variant) - allowed or set(variant.get('modes', {})) - {'effects', 'fanfare', 'evolve', 'super_evolve'}:
+                    raise ValueError('未対応の別形態・モード定義です')
+                for prop in ('cost', 'attack', 'health'):
+                    integer(variant.get(prop, 0), prop)
+                if set(variant.get('keywords', [])) - KEYWORDS:
+                    raise ValueError('別形態に未対応の能力があります')
                 for phase in rules.PHASES:
                     effects = variant.get(phase, [])
                     for effect in effects:
@@ -157,6 +170,10 @@ class Battle:
             raise ValueError('未対応または重複した能力です')
         if result['countdown'] is not None:
             integer(result['countdown'], 'countdown', 1)
+        if 'lost_last_words' in result and type(result['lost_last_words']) is not bool:
+            raise ValueError('ラストワード喪失の指定は真偽値です')
+        if 'tribes' in result and (not isinstance(result['tribes'], list) or any(type(t) is not int for t in result['tribes'])):
+            raise ValueError('タイプは整数の配列です')
         return result
 
     def normalize(self, raw: Json) -> Json:
@@ -181,6 +198,20 @@ class Battle:
             if not isinstance(raw_player, dict) or set(raw_player) - (set(p) | {'crests', 'damage_shield'}):
                 raise ValueError('プレイヤー状態の項目が不正です')
             p.update(copy.deepcopy(raw_player))
+            if not isinstance(p.get('crests', []), list):
+                raise ValueError('クレストは配列です')
+            crest_ids = set()
+            for crest in p.get('crests', []):
+                rules.validate_crest(crest, self.cards)
+                if crest['id'] in crest_ids:
+                    raise ValueError('同名クレストは重複できません')
+                crest_ids.add(crest['id'])
+            if 'damage_shield' in p:
+                shield = p['damage_shield']
+                if not isinstance(shield, dict) or set(shield) != {'owner', 'turn'}:
+                    raise ValueError('保護期限の形式が不正です')
+                integer(shield['owner'], 'shield.owner', 0, 1)
+                integer(shield['turn'], 'shield.turn', 0)
             for prop in ('health', 'max_health', 'pp', 'max_pp', 'turn', 'ep', 'sep', 'graveyard', 'combo'):
                 integer(p[prop], prop, 0, 10 if prop == 'max_pp' else 100000)
             if p['health'] > p['max_health'] or p['pp'] > p['max_pp'] + 1:
@@ -342,7 +373,7 @@ class Battle:
             if rules.definition(self, entity)['kind'] == 'follower':
                 p['destroyed'].append(entity['card_id'])
             if not entity.get('lost_last_words'):
-                self.pending.append((rules.definition(self, entity).get('last_words', []), owner, entity))
+                self.pending.append((rules.definition(self, entity).get('last_words', []), owner, entity, 'ラストワード'))
         if mode == 'bounce':
             self.add_hand(owner, self.fresh(entity['card_id']))
         return True
@@ -386,8 +417,7 @@ class Battle:
         p = self.state['players'][owner]
         if len(p['hand']) >= 9:
             p['graveyard'] += 1
-            self.emit('overflow', f'{entity["name"]}: 手札上限で捨てた', target=entity['id'])
-            rules.trigger(self, 'discard', owner, entity)
+            self.emit('overflow', f'{entity["name"]}: 手札上限で手札に入らず墓場+1', target=entity['id'])
             return
         p['hand'].append(entity)
         self.emit('hand', f'{entity["name"]}を手札に加えた', target=entity['id'])
@@ -527,9 +557,9 @@ class Battle:
         # AI_NOTE: ラストワードを発生順に処理し、異常な循環は成功にせず打ち切りエラーにする。
         count = 0
         while self.pending and self.state['winner'] is None:
-            effects, owner, source = self.pending.pop(0)
+            effects, owner, source, reason = self.pending.pop(0)
             if effects:
-                self.emit('trigger', f'{source["name"]}の予約された能力', source=source['id'])
+                self.emit('last_words' if reason == 'ラストワード' else 'trigger', f'{source["name"]}: {reason}', source=source['id'])
                 self.resolve(effects, owner, source)
             count += 1
             if count > 500:
@@ -598,8 +628,10 @@ class Battle:
                 dealt = self.damage(action['target'], entity['attack'], entity)
                 received = self.damage(entity['id'], other['attack'], other) if zone == 'board' else 0
                 if dealt and 'ドレイン' in entity['keywords']:
+                    before_health = p['health']
                     p['health'] = min(p['max_health'], p['health']+dealt)
-                    self.emit('drain', f'ドレインで{dealt}回復', after=p['health'])
+                    self.emit('heal', f'ドレインで{dealt}回復', target=f'leader:{owner}', before=before_health, after=p['health'])
+                    rules.trigger(self, 'heal', owner)
                 if zone == 'board':
                     if '必殺' in entity['keywords']:
                         self.remove(other['id'], 'destroy')
@@ -614,9 +646,11 @@ class Battle:
             p['extra_pp_used'] = True
             self.emit('extra_pp', 'エクストラPPを使用（このターンだけ+1PP）')
         elif kind == 'end_turn':
+            # 同時に発動した終了時能力を先に予約し、その結果で出る能力を後ろへ積む。
             for entity in list(p['board']):
-                if self.find(entity['id']):
-                    self.resolve(rules.definition(self, entity).get('end_turn', []), owner, entity)
+                effects = rules.definition(self, entity).get('end_turn', [])
+                if effects:
+                    self.pending.append((copy.deepcopy(effects), owner, copy.deepcopy(entity), 'ターン終了時'))
             rules.trigger(self, 'turn_end', owner)
             self.drain_pending()
             for player in self.state['players']:
@@ -751,7 +785,17 @@ def load_cases() -> list[Json]:
     if not path.exists():
         return []
     value = json.loads(path.read_text())
-    return list(value['cases'] if isinstance(value, dict) else value)
+    cases = list(value['cases'] if isinstance(value, dict) else value)
+    extra = path.with_name('battle_meta_cases.json')
+    if extra.exists():
+        cards = catalog()
+        for case in json.loads(extra.read_text()):
+            try:
+                Battle(case['initial'], cards)
+            except ValueError:
+                continue
+            cases.append(case)
+    return cases
 
 
 def default_state() -> Json:

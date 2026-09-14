@@ -113,9 +113,9 @@ def test_incomplete_expectation_cannot_pass() -> None:
         run_case({'initial':{},'actions':[],'expected':{}})
 
 
-def test_catalog_has_fifty_real_cards() -> None:
+def test_catalog_has_87_real_cards() -> None:
     # AI_NOTE: 対応数を実際のDBと照合し、未対応をカウントへ混ぜない。
-    assert sum(not c.get('synthetic',False) for c in catalog().values()) == 50
+    assert sum(not c.get('synthetic',False) for c in catalog().values()) == 87
 
 
 def test_super_evolution_attack_trigger_destroy() -> None:

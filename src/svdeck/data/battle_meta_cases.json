@@ -1,0 +1,286 @@
+[
+  {
+    "id": "meta-discard-knife",
+    "title": "キミカでヴォーラライを捨てて召喚",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "health": 10,
+          "hand": [
+            {
+              "card_id": "10842120",
+              "id": "k"
+            },
+            {
+              "card_id": "10644120",
+              "id": "v"
+            }
+          ],
+          "deck": [
+            {
+              "card_id": "10001110",
+              "id": "draw"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "k",
+        "choices": {
+          "hand": "v"
+        }
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "health": 11,
+          "graveyard": 1,
+          "board": [
+            {
+              "card_id": "10842120"
+            },
+            {
+              "card_id": "10644120"
+            }
+          ],
+          "hand": [
+            {
+              "id": "draw"
+            }
+          ]
+        },
+        {
+          "health": 20
+        }
+      ]
+    },
+    "description": "環境デッキの実カードを使う検査例。期待値と処理順を確認できます。"
+  },
+  {
+    "id": "meta-accelerate",
+    "title": "リュミオールを3PPでアクセラレート",
+    "initial": {
+      "players": [
+        {
+          "pp": 3,
+          "max_pp": 3,
+          "hand": [
+            {
+              "card_id": "10844120",
+              "id": "r"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "r",
+        "form": "accelerate"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "max_pp": 4,
+          "graveyard": 1,
+          "board": [],
+          "hand": []
+        },
+        {}
+      ]
+    },
+    "description": "環境デッキの実カードを使う検査例。期待値と処理順を確認できます。"
+  },
+  {
+    "id": "meta-reanimate",
+    "title": "イステンで中尉を3枚リアニメイト",
+    "initial": {
+      "players": [
+        {
+          "pp": 7,
+          "max_pp": 7,
+          "destroyed": [
+            "10951120"
+          ],
+          "hand": [
+            {
+              "card_id": "10954110",
+              "id": "i"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "card_id": "10001110",
+              "id": "enemy"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "i"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "board": [
+            {
+              "card_id": "10954110"
+            },
+            {
+              "card_id": "10951120",
+              "tribes": [
+                0,
+                6
+              ]
+            },
+            {
+              "card_id": "10951120",
+              "tribes": [
+                0,
+                6
+              ]
+            },
+            {
+              "card_id": "10951120",
+              "tribes": [
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "board": [],
+          "graveyard": 1
+        }
+      ]
+    },
+    "description": "環境デッキの実カードを使う検査例。期待値と処理順を確認できます。"
+  },
+  {
+    "id": "meta-nomagdala-barrier",
+    "title": "ノマグダラの体力減少はバリアを消費しない",
+    "initial": {
+      "players": [
+        {
+          "pp": 7,
+          "max_pp": 7,
+          "hand": [
+            {
+              "card_id": "10944120",
+              "id": "n"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "card_id": "test-barrier",
+              "id": "barrier"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "n",
+        "mode": 1
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "board": [
+            {
+              "card_id": "10944120"
+            }
+          ]
+        },
+        {
+          "board": [],
+          "graveyard": 1
+        }
+      ]
+    },
+    "description": "環境デッキの実カードを使う検査例。期待値と処理順を確認できます。"
+  },
+  {
+    "id": "meta-red-flow",
+    "title": "赤色流しで手札と敵を別々に選ぶ",
+    "initial": {
+      "players": [
+        {
+          "pp": 1,
+          "max_pp": 1,
+          "health": 10,
+          "hand": [
+            {
+              "card_id": "10642310",
+              "id": "r"
+            },
+            {
+              "card_id": "90044330",
+              "id": "d"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "card_id": "10001110",
+              "id": "enemy"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "r",
+        "choices": {
+          "hand": "d",
+          "enemy": "enemy"
+        }
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "health": 11,
+          "graveyard": 2,
+          "hand": []
+        },
+        {
+          "health": 19,
+          "board": [],
+          "graveyard": 1
+        }
+      ]
+    },
+    "description": "環境デッキの実カードを使う検査例。期待値と処理順を確認できます。"
+  }
+]
