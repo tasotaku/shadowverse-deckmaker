@@ -387,3 +387,103 @@ def test_nested_incompatible_targets_rejected_without_explicit_slots(cards: dict
             {'op': 'heal', 'target': 'chosen_ally', 'amount': 1}]}]}
     with pytest.raises(ValueError):
         start(cards, {'hand': [entity('bad-nested', 'spell')]})
+
+
+@pytest.mark.parametrize('overflow_card', ['10644120', '90044330'])
+def test_overdraw_never_enters_hand_and_is_not_discard(cards: dict[str, Json], overflow_card: str) -> None:
+    # 公式「引く」は手札に加えられず墓場増加。「捨てる」の手札からの除去とは別。
+    b = Battle({'active_player': 1, 'players': [
+        {'health': 10, 'hand': [entity('test-body', f'h{i}') for i in range(9)],
+         'deck': [entity(overflow_card, 'overflow')]}, {}]}, cards=cards)
+    b.step({'type': 'end_turn'})
+    p, q = b.state['players']
+    assert len(p['hand']) == 9 and p['deck'] == []
+    assert p['graveyard'] == 1 and p['destroyed'] == []
+    assert p['board'] == [] and p['health'] == 10 and q['health'] == 20
+
+
+def test_generated_abyss_overflow_is_not_discard(cards: dict[str, Json]) -> None:
+    b = start(cards, {'turn': 7, 'health': 10, 'board': [entity('10644120', 'knife')],
+                      'hand': [entity('test-body', f'h{i}') for i in range(9)]})
+    b.step({'type': 'super_evolve', 'source': 'knife'})
+    p, q = b.state['players']
+    assert len(p['hand']) == 9 and p['graveyard'] == 3
+    assert p['health'] == 10 and q['health'] == 20
+
+
+def test_burndknight_crest_drain_counts_once_each_own_turn_and_replays(cards: dict[str, Json]) -> None:
+    b = Battle({'active_player': 1, 'players': [
+        {'health': 10, 'board': [entity('90051120', 'bat1'), entity('90051120', 'bat2')],
+         'deck': [entity('test-body', 'draw1'), entity('test-body', 'draw2')]},
+        {'turn': 6, 'board': [entity('10744110', 'burn')], 'deck': [entity('test-body', 'draw3')]},
+    ]}, cards=cards)
+    b.step({'type': 'super_evolve', 'source': 'burn'})
+    b.step({'type': 'end_turn'})
+    assert b.state['players'][0]['health'] == 8
+    b.step({'type': 'attack', 'source': 'bat1', 'target': 'leader:1'})
+    assert b.state['players'][0]['health'] == 8
+    b.step({'type': 'attack', 'source': 'bat2', 'target': 'leader:1'})
+    assert b.state['players'][0]['health'] == 9
+    # 発動済みクレストを含む途中状態を保存/復元しても意味が変わらない。
+    assert Battle(b.state, cards).state == b.state
+    assert replay(b.export()).state == b.state
+    b.step({'type': 'end_turn'})
+    b.step({'type': 'end_turn'})
+    assert b.state['players'][0]['health'] == 7
+    b.step({'type': 'attack', 'source': 'bat1', 'target': 'leader:1'})
+    assert b.state['players'][0]['health'] == 7
+    assert replay(b.export()).state == b.state
+
+
+def test_macmillan_summon_trigger_buffs_all_three_and_deals_three(cards: dict[str, Json]) -> None:
+    b = start(cards, {'graveyard': 10, 'hand': [entity('10754120', 'macmillan')]})
+    play(b, 'macmillan')
+    p, q = b.state['players']
+    assert [e['card_id'] for e in p['board']] == ['10754120', '90051140', '90051140', '90051140']
+    assert all(e['attack'] == 3 and e['health'] == 2 and {'突進', '守護'} <= set(e['keywords']) for e in p['board'][1:])
+    assert p['graveyard'] == 0 and q['health'] == 17
+    assert replay(b.export()).state == b.state
+
+
+def test_nomagdala_evolution_mode_reduces_health_through_damage_protection(cards: dict[str, Json]) -> None:
+    b = start(cards, {'turn': 5, 'board': [entity('10944120', 'nomagdala')]},
+              {'board': [entity('test-body', 'barrier', health=4, keywords=['バリア'])]})
+    b.step({'type': 'evolve', 'source': 'nomagdala', 'mode': 1})
+    assert b.state['players'][1]['board'] == []
+    assert b.state['players'][1]['destroyed'] == ['test-body']
+    assert b.state['players'][0]['ep'] == 1
+
+
+def test_itsurugi_fanfare_and_evolution_have_separate_modes(cards: dict[str, Json]) -> None:
+    b = start(cards, {'turn': 7, 'ep': 0, 'hand': [entity('10854110', 'itsurugi')]},
+              {'board': [entity('test-body', 'enemy', health=6)]})
+    play(b, 'itsurugi', mode=1)
+    assert b.state['players'][1]['board'][0]['health'] == 1
+    assert b.state['players'][0]['ep'] == 1 and b.state['players'][0]['pp'] == 2
+    b.step({'type': 'evolve', 'source': 'itsurugi', 'mode': 1})
+    assert b.state['players'][0]['pp'] == 4 and b.state['players'][0]['ep'] == 0
+    assert b.state['players'][1]['board'][0]['health'] == 1
+
+
+@pytest.mark.parametrize('evolved,own_health,enemy_health,damaged_count', [(0, 18, 20, 2), (1, 10, 12, 0)])
+def test_ilantha_end_turn_uses_evolution_state_and_distinct_targets(cards: dict[str, Json], evolved: int, own_health: int, enemy_health: int, damaged_count: int) -> None:
+    b = start(cards, {'health': 10, 'board': [entity('10544110', 'ilantha', evolved=evolved)]},
+              {'board': [entity('test-body', f'e{i}', health=9) for i in range(3)], 'deck': [entity('test-body', 'draw')]})
+    b.step({'type': 'end_turn'})
+    p, q = b.state['players']
+    assert p['health'] == own_health and q['health'] == enemy_health
+    assert sum(e['health'] == 1 for e in q['board']) == damaged_count
+    assert len(q['board']) == 3
+
+
+def test_tohime_deck_summon_is_two_names_and_enter_trigger_grants_rush(cards: dict[str, Json]) -> None:
+    b = start(cards, {'hand': [entity('10754110', 'tohime')],
+                      'deck': [entity('10951120', 'a'), entity('10951120', 'b'), entity('10851120', 'c'), entity('test-body', 'neutral')]})
+    play(b, 'tohime')
+    p = b.state['players'][0]
+    summoned = p['board'][1:]
+    assert {e['card_id'] for e in summoned} == {'10951120', '10851120'}
+    assert all('突進' in e['keywords'] for e in summoned)
+    assert len(p['deck']) == 2 and any(e['id'] == 'neutral' for e in p['deck'])
+    assert p['combo'] == 1 and p['pp'] == 4
+    assert replay(b.export()).state == b.state
