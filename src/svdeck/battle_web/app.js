@@ -200,7 +200,7 @@ async function startCase(testCase) {
   $('case-description').textContent = testCase?.description || '';
   $('verdict').textContent = '未実行'; $('test-result').replaceChildren();
   accept(result);
-  notify(testCase ? `${testCase.name || testCase.id || '検査ケース'} の開始状態を読み込みました。` : '自由対戦を開始しました。');
+  notify(testCase ? `${testCase.name || testCase.title || testCase.id || '検査ケース'} の開始状態を読み込みました。` : '自由対戦を開始しました。');
 }
 async function step(action) {
   // AI_NOTE: 過去からの操作はエンジンが履歴を分岐し、元記録は事前に保存できる。
@@ -254,7 +254,7 @@ async function init() {
   // AI_NOTE: 保存記録を検証して復元し、壊れた記録は消さず理由を表示する。
   bootstrap = await api('bootstrap');
   $('scenario').append(new Option('5ダメージを試す · 自由操作',''));
-  bootstrap.cases.forEach((testCase,index) => $('scenario').append(new Option(testCase.name || testCase.id || `ケース ${index + 1}`,String(index))));
+  bootstrap.cases.forEach((testCase,index) => $('scenario').append(new Option(testCase.name || testCase.title || testCase.id || `ケース ${index + 1}`,String(index))));
   let saved = null;
   try { saved = localStorage.getItem(STORE); } catch { notify('ブラウザの自動保存を利用できません。ファイル保存は利用できます。',true); }
   if (saved) {
