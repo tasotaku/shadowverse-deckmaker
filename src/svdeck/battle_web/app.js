@@ -104,21 +104,26 @@ function cardNode(card, zone) {
   element.type = 'button';
   element.dataset.entity = card.id;
   const definition = view.record.cards?.[card.card_id] || bootstrap.cards[card.card_id] || {};
+  element.dataset.kind = definition.kind || '';
+  element.classList.toggle('wounded',card.health < card.max_health);
+  element.setAttribute('aria-pressed',String(selectedSource === card.id));
   const title = node('div', 'card-name');
   title.append(node('span','cost',card.cost ?? definition.cost ?? '?'), document.createTextNode(card.name || definition.name || card.card_id));
   element.append(title);
   const text = definition.text || '';
   if (text) element.append(node('div','card-text',text));
-  if ((card.keywords || []).length) element.append(node('div','keywords',card.keywords.join(' · ')));
-  if (['crystallize','crystalline'].includes(card.form)) element.append(node('div','keywords','結晶'));
-  if (card.lost_last_words) element.append(node('div','keywords','ラストワード消失'));
-  if (card.evolved) element.append(node('div','keywords',card.evolved === 2 ? '超進化' : '進化'));
+  const abilities = node('div','ability-row');
+  for (const keyword of card.keywords || []) abilities.append(node('span','keywords',keyword));
+  if (['crystallize','crystalline'].includes(card.form)) abilities.append(node('span','keywords','結晶'));
+  if (card.lost_last_words) abilities.append(node('span','keywords','ラストワード消失'));
+  if (card.evolved) abilities.append(node('span','keywords evolution',card.evolved === 2 ? '超進化' : '進化'));
+  if (card.countdown != null) abilities.append(node('span','keywords',`残り ${card.countdown}`));
+  if (abilities.children.length) element.append(abilities);
   if (definition.kind === 'follower' || card.max_health > 0) {
     const stats = node('div','card-stats');
     stats.append(node('span','attack',`⚔ ${card.attack ?? 0}`),node('span','card-health',`♥ ${card.health ?? 0}/${card.max_health ?? 0}`));
     element.append(stats);
   }
-  if (card.countdown != null) element.append(node('div','keywords',`残り ${card.countdown}`));
   element.title = `${card.name || card.card_id} [${card.id}]\n${text}\n${available ? 'クリックで操作を絞る' : '現在このカードから行える操作はありません'}`;
   element.onclick = () => {
     if (busy || running) return;
@@ -131,8 +136,15 @@ function cardNode(card, zone) {
 function showCard(card, definition) {
   // AI_NOTE: 盤面では短く表示し、現在の能力とカード本文はクリック・キーボードで全文を読める。
   $('detail-name').textContent = card.name || definition.name || card.card_id;
-  $('detail-stats').textContent = `${card.cost}PP · 攻撃 ${card.attack} / 体力 ${card.health}（最大 ${card.max_health}）\n${(card.keywords || []).join(' · ')}${card.evolved ? '\n' + (card.evolved === 2 ? '超進化' : '進化') : ''}${card.lost_last_words ? '\nラストワード消失' : ''}`;
-  $('detail-text').textContent = definition.text || '能力なし';
+  $('detail-stats').replaceChildren(node('span','cost-detail',`${card.cost}PP`));
+  if (definition.kind === 'follower' || card.max_health > 0) $('detail-stats').append(
+    node('span','attack',`⚔ 攻撃 ${card.attack}`),node('span','card-health',`♥ 体力 ${card.health} / ${card.max_health}`));
+  for (const ability of [...(card.keywords || []),...(card.evolved ? [card.evolved === 2 ? '超進化' : '進化'] : []),...(card.lost_last_words ? ['ラストワード消失'] : [])]) $('detail-stats').append(node('span','keywords',ability));
+  $('detail-text').replaceChildren();
+  // AI_NOTE: 公式本文を変更せず、能力見出しだけを色と太字で識別する。
+  for (const part of (definition.text || '能力なし').split(/(【[^】]+】)/g)) {
+    $('detail-text').append(part.startsWith('【') ? node('strong','ability-title',part) : document.createTextNode(part));
+  }
   $('card-dialog').showModal();
 }
 function renderBoard() {
@@ -143,7 +155,7 @@ function renderBoard() {
     const section = node('div','player' + (index === view.state.active_player ? ' active' : ''));
     const head = node('div','player-head');
     head.dataset.entity = `leader:${index}`;
-    head.append(node('span','player-name',`PLAYER ${index + 1}${index === view.state.active_player ? ' · 操作中' : ''}`),node('span','health',`♥ ${player.health}`),node('span','stat',`PP ${player.pp}/${player.max_pp}`),node('span','stat',`進化 ${player.ep} / 超進化 ${player.sep}`),node('span','stat',`山札 ${player.deck.length} · 墓場 ${player.graveyard}`));
+    head.append(node('span','player-name',`${index === 0 ? '先攻' : '後攻'} · P${index + 1}${index === view.state.active_player ? ' ▶ 手番' : ''}`),node('span','health',`♥ ${player.health}`),node('span','stat pp',`PP ${player.pp}/${player.max_pp}`),node('span','stat evolution',`進化 ${player.ep} / 超進化 ${player.sep}`),node('span','stat',`山札 ${player.deck.length} · 墓場 ${player.graveyard}`));
     if (player.damage_shield) head.append(node('span','player-badge','免疫'));
     section.append(head);
     if ((player.crests || []).length) {
@@ -157,7 +169,7 @@ function renderBoard() {
       head.append(crests);
     }
     for (const zone of index === 1 ? ['hand','board'] : ['board','hand']) {
-      section.append(node('div','zone-label',zone === 'hand' ? `手札 ${player.hand.length}枚` : `盤面 ${player.board.length}/5`));
+      section.append(node('div',`zone-label ${zone}-label`,zone === 'hand' ? `▤ 手札 · ${player.hand.length}枚` : `▦ 盤面 · ${player.board.length}/5`));
       const cards = node('div',`cards ${zone}-cards`);
       if (zone === 'hand' && !$('reveal').checked && index !== view.state.active_player) cards.append(node('div','empty','相手の手札は非公開'));
       else for (const card of player[zone]) cards.append(cardNode(card,zone));
@@ -216,6 +228,7 @@ function render() {
   if (!events.length) $('events').append(node('div','hint',view.cursor ? 'この操作の処理記録はありません。' : '開始状態です。操作すると効果の処理順がここに表示されます。'));
   events.forEach((event,index) => {
     const box = node('div','event');
+    if (typeof event !== 'string') box.dataset.kind = event.type || '';
     if (typeof event === 'string') box.append(node('strong','',`${index + 1}. ${event}`));
     else {
       box.append(node('strong','',`${index + 1}. ${event.reason || event.message || event.type || '状態の変化'}`));
