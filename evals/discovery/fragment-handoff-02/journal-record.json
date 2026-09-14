@@ -1,30 +1,30 @@
 {
   "id": "fragment-handoff-02",
-  "revision": 12,
-  "saved_at": "2026-09-13T22:05:21.740785+00:00",
+  "revision": 38,
+  "saved_at": "2026-09-14T06:13:55.348986+00:00",
   "actor": "codex",
-  "reason": "途中成果と後続の作業先を記録",
+  "reason": "ユーザー中止指示と調査の保存を記録",
   "record": {
     "id": "fragment-handoff-02",
     "title": "着想の発展を5分で保存してから正式案へつなぐ",
     "category": "method",
-    "status": "running",
-    "summary": "通常3分56秒・追加4分56秒で中間報告を保存。両方式とも正式案の下書きがあり、正式提出と別評価へ進行中。",
+    "status": "interrupted",
+    "summary": "ユーザー指示で一旦中止。調査・試行・失敗・未完をdocs/research-pause-2026-09-14.mdへ保存。本人の再開指示まで新しい検証は行わない。",
     "method": "通常の発展と、不足を別の役割へ引き受けさせる発展を、5分の中間保存→10分正式化→10分別評価で比較する。",
     "procedure": "同じ入力を固定→各5分中間報告→各10分正式化→各10分別評価→事前項目で方法の寄与を点検",
     "inputs": "fragment-handoff-01の共通3着想と、同じ2記事の合法40枚。カード本文・両側注記と既存資料を保持。",
     "criteria": "01と同じ内容基準。中間保存の件数でなく、使い方/配分が変わり比較上の試す理由か判断を変える次の一手が残るか。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "中間報告2件と正式案2件を保持。別評価は未完。方法の有用性は未認定。",
+      "limitations": "通常側の変換は受理後の終了確認前に期限停止。引受側の別評価は期限停止。通常側の後続評価と独立内容点検はユーザー指示で中止。時間枠変更と各1回の比較。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "deferred",
+      "reason": "役割の引受が有用な種へつながった証拠は未確認。保存や形式変換の成功を方法の採用理由にしない。ユーザー指示で中止。"
     },
     "started_at": "2026-09-13T21:56:31.809861+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-14T06:13:55.301642+00:00",
     "stages": [
       {
         "id": "preparation",
@@ -56,64 +56,218 @@
       {
         "id": "a-whole",
         "title": "A：正式化から別評価・最終保存まで",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-13T22:03:09.239417+00:00",
-        "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-final-live",
+        "ended_at": "2026-09-13T23:30:52.093561+00:00",
+        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-final-live\n考案・改訂・評価が途中で停止。全実行の終了状態: develop_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
         "budget_minutes": 20
       },
       {
         "id": "a-develop",
         "title": "A：中間報告1件を正式案へまとめる",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-13T22:03:09.521630+00:00",
-        "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-final-live/develop-run",
+        "ended_at": "2026-09-13T23:30:51.721766+00:00",
+        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-final-live/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "a-review",
         "title": "A：正式案を通常指示で別評価",
-        "status": "planned",
+        "status": "interrupted",
         "started_at": null,
-        "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。",
+        "ended_at": "2026-09-13T23:30:52.093561+00:00",
+        "note": "正式案が未提出のため未起動。",
         "budget_minutes": 10
       },
       {
         "id": "b-whole",
         "title": "B：正式化から別評価・最終保存まで",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-13T22:03:09.239911+00:00",
-        "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-final-live",
+        "ended_at": "2026-09-13T23:30:52.077860+00:00",
+        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-final-live\n考案・改訂・評価が途中で停止。全実行の終了状態: develop_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
         "budget_minutes": 20
       },
       {
         "id": "b-develop",
         "title": "B：中間報告1件を正式案へまとめる",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-13T22:03:09.528258+00:00",
-        "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-final-live/develop-run",
+        "ended_at": "2026-09-13T23:30:51.739902+00:00",
+        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-final-live/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "b-review",
         "title": "B：正式案を通常指示で別評価",
-        "status": "planned",
+        "status": "interrupted",
+        "started_at": null,
+        "ended_at": "2026-09-13T23:30:52.077860+00:00",
+        "note": "正式案が未提出のため未起動。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "final-preparation",
+        "title": "中間報告の保存を再検査して正式化入力を固定",
+        "status": "completed",
+        "started_at": "2026-09-13T22:02:45.702542+00:00",
+        "ended_at": "2026-09-13T22:02:47.204012+00:00",
+        "note": "終了後の証拠を両側とも再検査。同じ正式化・通常評価指示を実資料で確認。資料1件読出しの新入口は両側に同じ適用。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "a-collection",
+        "title": "Aの結果保存と入力・終了証拠を再検査",
+        "status": "completed",
+        "started_at": "2026-09-14T00:48:55.385375+00:00",
+        "ended_at": "2026-09-14T00:48:55.927340+00:00",
+        "note": "develop_failed。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "b-collection",
+        "title": "Bの結果保存と入力・終了証拠を再検査",
+        "status": "completed",
+        "started_at": "2026-09-14T00:48:56.104794+00:00",
+        "ended_at": "2026-09-14T00:48:56.588404+00:00",
+        "note": "develop_failed。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "conversion-preparation",
+        "title": "内容を増やさない形式変換と通常評価を分離",
+        "status": "completed",
+        "started_at": "2026-09-14T03:52:22.783831+00:00",
+        "ended_at": "2026-09-14T03:52:23.283150+00:00",
+        "note": "両側は中間報告まで完了したが、再確認を含む正式化10分は未提出。内容の追加/正当化を行わない形式変換5分を切り分け、成立・試用価値・独自性の通常評価を後段に維持する。",
+        "budget_minutes": 3
+      },
+      {
+        "id": "a-convert-whole",
+        "title": "A：形式変換から通常評価と最終保存まで",
+        "status": "interrupted",
+        "started_at": "2026-09-14T03:52:23.549801+00:00",
+        "ended_at": "2026-09-14T03:57:24.141957+00:00",
+        "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-convert-live\n考案・改訂・評価が途中で停止。全実行の終了状態: develop_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "a-convert-develop",
+        "title": "A：中間報告の内容だけを正式形式へ移す",
+        "status": "interrupted",
+        "started_at": "2026-09-14T03:52:23.856793+00:00",
+        "ended_at": "2026-09-14T03:57:23.926356+00:00",
+        "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-convert-live/develop-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "a-convert-review",
+        "title": "A：成立と価値を通常指示で別評価",
+        "status": "interrupted",
         "started_at": null,
         "ended_at": null,
-        "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。",
+        "note": "変換担当の終了未完のため、この自動接続は未実行。受理済み正式案からの別実行をa-saved-reviewに記録。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-convert-whole",
+        "title": "B：形式変換から通常評価と最終保存まで",
+        "status": "interrupted",
+        "started_at": "2026-09-14T03:52:23.549801+00:00",
+        "ended_at": "2026-09-14T04:55:02.177369+00:00",
+        "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-convert-live\n考案・改訂・評価が途中で停止。全実行の終了状態: review_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 15
+      },
+      {
+        "id": "b-convert-develop",
+        "title": "B：中間報告の内容だけを正式形式へ移す",
+        "status": "completed",
+        "started_at": "2026-09-14T03:52:23.838987+00:00",
+        "ended_at": "2026-09-14T03:55:13.047183+00:00",
+        "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-convert-live/develop-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 5
+      },
+      {
+        "id": "b-convert-review",
+        "title": "B：成立と価値を通常指示で別評価",
+        "status": "interrupted",
+        "started_at": "2026-09-14T03:55:13.525423+00:00",
+        "ended_at": "2026-09-14T04:55:01.618160+00:00",
+        "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-convert-live/review-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-conversion-collection",
+        "title": "Aの結果保存と入力・終了証拠を再検査",
+        "status": "completed",
+        "started_at": "2026-09-14T04:20:17.990956+00:00",
+        "ended_at": "2026-09-14T04:20:18.888333+00:00",
+        "note": "develop_failed。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "a-saved-review-whole",
+        "title": "Aの保存済み正式案から評価と最終保存",
+        "status": "interrupted",
+        "started_at": "2026-09-14T04:55:09.473488+00:00",
+        "ended_at": "2026-09-14T06:07:20.812288+00:00",
+        "note": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-saved-review-live\n保存案の評価が途中で停止。全実行の終了状態: review_failed。停止理由: 担当の実行が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "a-saved-review-review",
+        "title": "Aの保存済み正式案を通常評価",
+        "status": "interrupted",
+        "started_at": "2026-09-14T04:55:09.964343+00:00",
+        "ended_at": "2026-09-14T06:07:20.198229+00:00",
+        "note": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-saved-review-live/review-run\n担当の停止処理を終了。実行状態: interrupted、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "b-conversion-collection",
+        "title": "Bの結果保存と入力・終了証拠を再検査",
+        "status": "completed",
+        "started_at": "2026-09-14T04:55:23.990269+00:00",
+        "ended_at": "2026-09-14T04:55:24.452413+00:00",
+        "note": "review_failed。方法の採否は未判定。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "stop-preservation",
+        "title": "ユーザー指示による中止と調査記録の保存",
+        "status": "completed",
+        "started_at": "2026-09-14T06:09:57.334390+00:00",
+        "ended_at": "2026-09-14T06:13:55.301642+00:00",
+        "note": "実行中2件と担当2件を中断。自動実行PAUSEDを読戻し確認。未完を保持し、既存カードDBを変更していない。",
         "budget_minutes": 10
       }
     ],
     "evidence_paths": [
+      "evals/discovery/fragment-handoff-02/saved-review-input.json",
       "evals/discovery/fragment-handoff-02/develop-fragment.py",
+      "evals/discovery/fragment-handoff-02/conversion-input.json",
+      "evals/discovery/fragment-handoff-02/collect-result.py",
       "evals/discovery/fragment-handoff-02/README.md",
       "evals/discovery/fragment-handoff-02/protocol.json",
       "evals/discovery/fragment-handoff-02/final-input.json",
       "evals/discovery/fragment-handoff-02/prepare-final.py",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/input-summary.json",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/result.json",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/prompt.md",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/session.tar.gz",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/finish-config.json",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/verification.json",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/public-config.json",
+      "evals/discovery/fragment-handoff-02/saved-review-interrupted/run.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/result.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/session.tar.gz",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop-report.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/verification.json",
+      "evals/discovery/fragment-handoff-02/a/result.json",
+      "evals/discovery/fragment-handoff-02/a/session.tar.gz",
+      "evals/discovery/fragment-handoff-02/a/verification.json",
       "evals/discovery/fragment-handoff-02/b-intermediate/public-operations.json.gz",
       "evals/discovery/fragment-handoff-02/b-intermediate/input-summary.json",
       "evals/discovery/fragment-handoff-02/b-intermediate/result.json",
@@ -133,14 +287,168 @@
       "evals/discovery/fragment-handoff-02/a-intermediate/answer.md",
       "evals/discovery/fragment-handoff-02/a-intermediate/finish-config.json",
       "evals/discovery/fragment-handoff-02/a-intermediate/public-config.json",
-      "evals/discovery/fragment-handoff-02/a-intermediate/run.json"
+      "evals/discovery/fragment-handoff-02/a-intermediate/run.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/result.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/session.tar.gz",
+      "evals/discovery/fragment-handoff-02/a-conversion/verification.json",
+      "evals/discovery/fragment-handoff-02/b/result.json",
+      "evals/discovery/fragment-handoff-02/b/session.tar.gz",
+      "evals/discovery/fragment-handoff-02/b/verification.json",
+      "evals/discovery/fragment-handoff-02/b/develop/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/b/develop/input-summary.json",
+      "evals/discovery/fragment-handoff-02/b/develop/prompt.md",
+      "evals/discovery/fragment-handoff-02/b/develop/finish-config.json",
+      "evals/discovery/fragment-handoff-02/b/develop/public-config.json",
+      "evals/discovery/fragment-handoff-02/b/develop/proposal.json",
+      "evals/discovery/fragment-handoff-02/b/develop/run.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/input-summary.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/prompt.md",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/finish-config.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/public-config.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/proposal.json",
+      "evals/discovery/fragment-handoff-02/a-conversion/develop/run.json",
+      "evals/discovery/fragment-handoff-02/a/develop/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/a/develop/input-summary.json",
+      "evals/discovery/fragment-handoff-02/a/develop/prompt.md",
+      "evals/discovery/fragment-handoff-02/a/develop/finish-config.json",
+      "evals/discovery/fragment-handoff-02/a/develop/public-config.json",
+      "evals/discovery/fragment-handoff-02/a/develop/proposal.json",
+      "evals/discovery/fragment-handoff-02/a/develop/run.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/input-summary.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/finish-request.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/prompt.md",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/finish-config.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/public-config.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/proposal.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/develop/run.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/public-operations.json.gz",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/input-summary.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/prompt.md",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/finish-config.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/public-config.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/review.json",
+      "evals/discovery/fragment-handoff-02/b-conversion/review/run.json",
+      "docs/research-pause-2026-09-14.md",
+      "docs/progress.md"
     ]
   },
   "evidence": [
     {
+      "path": "docs/progress.md",
+      "sha256": "1e92b149a985d8640b1628d5281d1e3f2ad27db044cc21d65c6ddb29874c5d99",
+      "size": 44149
+    },
+    {
+      "path": "docs/research-pause-2026-09-14.md",
+      "sha256": "b6da17b6bde2399488e000299def3b51566e61f90cdc9b167b5d96dbdcf93afe",
+      "size": 9091
+    },
+    {
       "path": "evals/discovery/fragment-handoff-02/README.md",
-      "sha256": "209d01ab2178d1c17b9d0112446bda56b81811d79aa5cb068c4143247becf66d",
-      "size": 940
+      "sha256": "9f0314d78f3b6bdad4438d0283547e9fd5a75a3ff11972ad7d30abc5c1cc88de",
+      "size": 3257
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/finish-config.json",
+      "sha256": "65ef4409d1db9cd910ba6312e9f850c1bc9f7e34d0df44d46e4b08e6a241bb2b",
+      "size": 9930
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/input-summary.json",
+      "sha256": "cf3cde85605d1a05140cf4be977a2c4de6c591aae227ed43968f13b09c6d6070",
+      "size": 9404
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/prompt.md",
+      "sha256": "5f9bfde41c23e830bf38dd92811ce9d6d1fbd80aab195c9b2643fea3225d10c2",
+      "size": 7288
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/proposal.json",
+      "sha256": "81ec5dbddb8124b78d047048a710f7aab3566b709aa132f5db868247a4b879e7",
+      "size": 2000
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/public-config.json",
+      "sha256": "1b79c19d57ad39bff1bc5b78c2d78f5ed2cdcb91a62dd2e2f58877abff925025",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/public-operations.json.gz",
+      "sha256": "28f2d9bda3f35463b2be7d130e293a13c18cff4040592487de3d571770e7faab",
+      "size": 34032
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/develop/run.json",
+      "sha256": "2300e1d20ea9f89f12b395709e07fa789514b2b76a663f718567de10cda41aea",
+      "size": 3530
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/result.json",
+      "sha256": "e88013196dd0c9b5aaee4b3b2473cdbf0d001f20eee8a28982b6c1a06ef3c81a",
+      "size": 8309
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/session.tar.gz",
+      "sha256": "25594b8a0216890fa708a522e6ecba5307faaecc27144685ebfb04f674ee5384",
+      "size": 1939698
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a/verification.json",
+      "sha256": "c9df01d8e6345bd8712d2810e3e825afd72c3f57ab52c0c5a0b12af55d678d65",
+      "size": 857
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/finish-config.json",
+      "sha256": "f6062dc50821567ff0d331c3c87fda36523aa26fc3e8a97c75d58c3c58e21c1a",
+      "size": 9932
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/input-summary.json",
+      "sha256": "41b86395d606f50389f7979a95b4451bc186b83cfef5c37e9078067e3b1d2828",
+      "size": 6679
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/prompt.md",
+      "sha256": "f70849a14969bfcadf2801115a1bcbf41aa7b8ec8db956763405c672af096acc",
+      "size": 4589
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/proposal.json",
+      "sha256": "032d27fe2ed7715d47dccbef7f678b00298e6f53785d72fbeeb600733f88271e",
+      "size": 29954
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/public-config.json",
+      "sha256": "720886d6d1f09ca42ebce80bbf3315cc81ee9686f1adf4f80cc3b335403d914c",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/public-operations.json.gz",
+      "sha256": "85823f611bc70fcc50e322b659d32f92927ee2709cc1621cab361c2aad2c914b",
+      "size": 18403
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/develop/run.json",
+      "sha256": "0f484ba283b87fd04b3d456597b51cd72a39754596f3189d3b4ac44960e8a21e",
+      "size": 3642
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/result.json",
+      "sha256": "459ee2213917bacebe8ce343a6841d0e58168959a18f78b22b289bb2eb112cde",
+      "size": 8525
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/session.tar.gz",
+      "sha256": "e40f9da0942517fcb5addd26e82e2f011d0ec2d1356a89d914d95c3545ab0c7f",
+      "size": 1943128
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/a-conversion/verification.json",
+      "sha256": "5dd8be86bb1ecb3b1a8f6fbec39205e7fe6facd45f1aebe716838eba01d4f5a2",
+      "size": 941
     },
     {
       "path": "evals/discovery/fragment-handoff-02/a-intermediate/answer.md",
@@ -193,6 +501,151 @@
       "size": 1820866
     },
     {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/finish-config.json",
+      "sha256": "2c76c17de8537d025815f4633302b840fe6088b8f20652eb2c079891998c3586",
+      "size": 10246
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/input-summary.json",
+      "sha256": "f8704c47eeec6fb24f1c5f9264938311c67accf215bfa44c5d6d64457f4f89ba",
+      "size": 9404
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/prompt.md",
+      "sha256": "a65acab4ec30b62ce8e1fe0cda27c4859b45720d46491f993fd315b7c56e5cf7",
+      "size": 7288
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/proposal.json",
+      "sha256": "0f54f84fb726867aaf02c7a1b5ee9b694bedb26a21c2666fd2a23ad296743556",
+      "size": 1872
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/public-config.json",
+      "sha256": "4bd5cc8146837dc526ddf68c8de0830a90d8651e6ddf40d4faac5976abece484",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/public-operations.json.gz",
+      "sha256": "a774ae79f4a3573f60861376c25456d0467a5b5e38772c6a79a10437e50fe5ab",
+      "size": 78169
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/develop/run.json",
+      "sha256": "7654b0382038e31147560a53552b38eff5188a0f8e7b2e76871c72826447b04a",
+      "size": 3528
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/result.json",
+      "sha256": "83b09bf3a6337c975b40d4625fcf7f083174b42696eb9b8c91d979f8dc8e2a48",
+      "size": 8460
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/session.tar.gz",
+      "sha256": "edeb65204125eb4d9b11d1992791e43f77419d144f0c21fe1b8b98397ef34aa4",
+      "size": 1943229
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b/verification.json",
+      "sha256": "9f608a0f0006170aa2b16ddc9f1768a2a4dce3f4dd7a904b43eab56f97086255",
+      "size": 857
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/finish-config.json",
+      "sha256": "d8ce6bcd32648110381ddd3e859f2ec85885e811f658d2a365f31160cda211a5",
+      "size": 10248
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/finish-request.json",
+      "sha256": "4bd51451afba78e2f05efab8cd12a820fe3b5ee6c290d19377edb4858795b46d",
+      "size": 3376
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/input-summary.json",
+      "sha256": "b00241072f1dcf0a16be18fa5b9248e261c4e9ffb104662f56cc50436cc91dbf",
+      "size": 6679
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/prompt.md",
+      "sha256": "44bac5bd428f50f159b0268f656ad586d5a2b707d45959b278ded45a3eb23609",
+      "size": 4589
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/proposal.json",
+      "sha256": "5dfa91d859c065c2f50f742f41bffb12500382f6123966c0ce298d3b3cd7dd06",
+      "size": 20224
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/public-config.json",
+      "sha256": "43e818ed7fad49046811b8ce23ed5ff6249bda340ebdfc0137e1f9a2bf3b9f42",
+      "size": 217
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/public-operations.json.gz",
+      "sha256": "d6d8c0eb3f1a76ad9a6330cc2c3456c390b02423783c4e4b3b7720c337673fdc",
+      "size": 11279
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop/run.json",
+      "sha256": "4e442d1bbd5db2d83d9ea1a8000398e583634dd57d11aa3333759efac84ad0da",
+      "size": 4296
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/develop-report.json",
+      "sha256": "11795308a18ef855d598ce47cb13f0ebabbd72a90bd6586be61f2624629c798c",
+      "size": 10699
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/result.json",
+      "sha256": "f73f427a035cfb14cc302e6ae3b89260cababd09fd6bbc623f8cd058753b9e13",
+      "size": 13755
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/finish-config.json",
+      "sha256": "5ae17d0b4472b8aa500e973f5b19df44aa975dc470117948f0bbc220308eb36d",
+      "size": 15204
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/input-summary.json",
+      "sha256": "7d8150e0f10283402bfd59aa519f67e75dc6010667431b521c9632967e4996aa",
+      "size": 6621
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/prompt.md",
+      "sha256": "9560663a4cd20f8d9b981933ee6361a792aa5dc3f0a9f529c1e41db42e921a0e",
+      "size": 4673
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/public-config.json",
+      "sha256": "b0a6d52cd881787ad2dcfc9cd0d08de6db6edaebc19267dc8b8f6549577371cc",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/public-operations.json.gz",
+      "sha256": "8b545f54d214f6f8efed03ccd09cefde40e00a6f877463e78c0f5489253df4fd",
+      "size": 90693
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/review.json",
+      "sha256": "48e3f0ac2f56a3a4ff4b7c55dd56463e5e6890cfed40045269f02a446a86c7a4",
+      "size": 10728
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/review/run.json",
+      "sha256": "de74efc021b55ca8d64aa20b9f9f19db0ee4a181c9c27a4d2edd412b387cebac",
+      "size": 3624
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/session.tar.gz",
+      "sha256": "a4e1078ad33978aa16243a759068c18f09c1cbac66338c9d005bb97518f96ae8",
+      "size": 1291363
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/b-conversion/verification.json",
+      "sha256": "f34b6e8e41b1aa9c10a14877ff28d3f62928b660b3516fd256167fede5238b99",
+      "size": 1244
+    },
+    {
       "path": "evals/discovery/fragment-handoff-02/b-intermediate/answer.md",
       "sha256": "a1c53267c3740f647ef0a8eb46fb077adf7c4cfdabbea4111e59e451e3174abb",
       "size": 6708
@@ -243,6 +696,16 @@
       "size": 1823197
     },
     {
+      "path": "evals/discovery/fragment-handoff-02/collect-result.py",
+      "sha256": "18a6f22baae00ee9b2bc1fc1f3b27976d237583ef7e219a199da8478914e43f2",
+      "size": 5212
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/conversion-input.json",
+      "sha256": "0264d7d9d9e7b44ee5f84f3e1017f84f4b6e2e1df87be6a0026664a3baaa56f5",
+      "size": 16584
+    },
+    {
       "path": "evals/discovery/fragment-handoff-02/develop-fragment.py",
       "sha256": "8004d047eabf6dbebfb2280a07d39c440da6337a31725156c2004ce3b212343b",
       "size": 1148
@@ -261,6 +724,56 @@
       "path": "evals/discovery/fragment-handoff-02/protocol.json",
       "sha256": "c02444b98b6283aca10e776f14350873baf5d8e656bc749062b3b1dc1e12ba80",
       "size": 6852
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-input.json",
+      "sha256": "1d5487ceca175b69aebc9448aef2efe46261b391d500baa3af5ff57c94eeb9a9",
+      "size": 20569
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/finish-config.json",
+      "sha256": "4f30d40e7bcae1b95935e97636fab9f6d9c194395229d66e24316cbb1556bde2",
+      "size": 15004
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/input-summary.json",
+      "sha256": "ed06b4733508782cc0f18a309e4d76f69edc5c6b0bb0cf8d2963bfba67e29f62",
+      "size": 6626
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/prompt.md",
+      "sha256": "b8602ac724aa9f140149bbef6989a7a48a799004ea3aff9e58ab588726bc682e",
+      "size": 4673
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/public-config.json",
+      "sha256": "269803a8a155541b13ffbffc8d20f68f989220c965bf2cebe59dbbf416e57351",
+      "size": 215
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/public-operations.json.gz",
+      "sha256": "07193877c04020730cd53a423e5514ffea68e2f11bff59a84613b9735dea9892",
+      "size": 35434
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/result.json",
+      "sha256": "b9c8d405e3a55b40ece5963cbc0469b2e7aa1d9d6f0fe6a2a5c2d15373b96d47",
+      "size": 8784
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/run.json",
+      "sha256": "c495250b74e2613ff36a84d96c2ab9f4cc4a75f8db4c955352995c961631ad51",
+      "size": 3634
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/session.tar.gz",
+      "sha256": "4fd7094f00d39ff22133040caa5e3b39455195bc0e9db3d429c314984686c9c5",
+      "size": 2063290
+    },
+    {
+      "path": "evals/discovery/fragment-handoff-02/saved-review-interrupted/verification.json",
+      "sha256": "7a3bc036a361dccb2db74ac10efe7046dbe68a4557b101d0c777841149d5d676",
+      "size": 1351
     }
   ]
 }

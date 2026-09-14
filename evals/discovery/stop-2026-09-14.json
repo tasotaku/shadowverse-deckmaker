@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-09-14T06:14:48.034326+00:00",
+  "reason": "ユーザーの明示指示で中止し調査記録のみ保存。",
+  "automation": {
+    "id": "automation",
+    "name": "デッキ探索システムの開発経過",
+    "status": "PAUSED",
+    "updated_at": 1789366070003
+  },
+  "workers": [
+    {
+      "name": "fragment-handoff-02-a-saved-review-live",
+      "status": "interrupted",
+      "ended_at": "2026-09-14T06:07:20.198229+00:00",
+      "elapsed_seconds": 428.19405300030485,
+      "matching_processes_running": false
+    },
+    {
+      "name": "source-specific-read-01-saved-inspection-live",
+      "status": "interrupted",
+      "ended_at": "2026-09-14T06:07:20.227566+00:00",
+      "elapsed_seconds": 428.17123962473124,
+      "matching_processes_running": false
+    }
+  ],
+  "native_agents": [
+    "inquiry_completion_failure: interrupted",
+    "inquiry_finish_implementation: interrupted"
+  ],
+  "main_db_sha256": "11aef89fae292ce671781ce31da124d695b15b28f64d7813c6e0c9ad720e1414",
+  "document_check": "リンク存在と原記録の数字・中止状態を自己照合。中止に伴う記録作業のため、新しい独立読者検査は起動していない。",
+  "collection_verification": "A/Bの公開記録回収を実行し、入力/実行コードの同一性と保存済み本文を照合。回収スクリプトのstrict mypy PASS。",
+  "publication": "既存進捗サービスの対象3記録がinterruptedで、保存元との差分なしを確認。"
+}

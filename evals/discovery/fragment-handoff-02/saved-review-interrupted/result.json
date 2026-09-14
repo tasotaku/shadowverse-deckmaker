@@ -1,0 +1,159 @@
+{
+  "status": "review_failed",
+  "run_id": "2a223a2ba91b4e70bb4af92fd61b0893",
+  "started_at": "2026-09-14T04:55:09.473488+00:00",
+  "source": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker/data/discovery/fragment-handoff-02-a-conversion-partial",
+  "output": "/private/tmp/fragment-handoff-02-a-saved-review-live",
+  "stages": [
+    {
+      "stage": "review",
+      "author": "worker:2a223a2ba91b4e70bb4af92fd61b0893:review",
+      "returncode": 130,
+      "run": {
+        "status": "interrupted",
+        "command": [
+          "/Applications/ChatGPT.app/Contents/Resources/codex",
+          "--search",
+          "exec",
+          "--ephemeral",
+          "--sandbox",
+          "workspace-write",
+          "--skip-git-repo-check",
+          "--cd",
+          "/private/tmp/fragment-handoff-02-a-saved-review-live/review",
+          "--json",
+          "--output-last-message",
+          "/private/tmp/fragment-handoff-02-a-saved-review-live/review/final-message.md",
+          "-"
+        ],
+        "cwd": "/private/tmp/fragment-handoff-02-a-saved-review-live/review",
+        "stdin": "/private/tmp/fragment-handoff-02-a-saved-review-live/review/prompt.md",
+        "output": "/private/tmp/fragment-handoff-02-a-saved-review-live/review-run",
+        "started_at": "2026-09-14T04:55:09.964343+00:00",
+        "deadline_at": null,
+        "budget_clock": "elapsed",
+        "deadline_monotonic": 2366054.6034055,
+        "explicit_finish": true,
+        "timeout_seconds": 600.0,
+        "termination_grace_seconds": 2,
+        "supervisor_pid": 92142,
+        "worker_pid": 92155,
+        "worker_returncode": -15,
+        "ended_at": "2026-09-14T06:07:20.198229+00:00",
+        "events": [
+          {
+            "event": "started",
+            "at": "2026-09-14T04:55:09.964538+00:00",
+            "elapsed_seconds": 0.00019012531265616417
+          },
+          {
+            "event": "journal_starting",
+            "at": "2026-09-14T04:55:09.964872+00:00",
+            "elapsed_seconds": 0.0005252910777926445
+          },
+          {
+            "event": "launched",
+            "at": "2026-09-14T04:55:09.980768+00:00",
+            "elapsed_seconds": 0.016451041214168072
+          },
+          {
+            "event": "interruption_observed",
+            "at": "2026-09-14T06:07:20.133321+00:00",
+            "elapsed_seconds": 428.12916541611776,
+            "signal": 2
+          },
+          {
+            "event": "termination_requested",
+            "at": "2026-09-14T06:07:20.136443+00:00",
+            "elapsed_seconds": 428.1322545413859,
+            "signal": 15
+          },
+          {
+            "event": "process_group_gone",
+            "at": "2026-09-14T06:07:20.194785+00:00",
+            "elapsed_seconds": 428.19059691624716
+          },
+          {
+            "event": "supervisor_finished",
+            "at": "2026-09-14T06:07:20.198262+00:00",
+            "elapsed_seconds": 428.1940665412694
+          },
+          {
+            "event": "journal_finished",
+            "at": "2026-09-14T06:07:20.268037+00:00",
+            "elapsed_seconds": 428.2638423750177
+          }
+        ],
+        "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+        "journal_sync": {
+          "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+          "experiment_id": "fragment-handoff-02",
+          "stage_id": "a-saved-review-review",
+          "status": "completed",
+          "begin_revision": 34,
+          "claimed_stage": {
+            "id": "a-saved-review-review",
+            "title": "Aの保存済み正式案を通常評価",
+            "status": "running",
+            "started_at": "2026-09-14T04:55:09.964343+00:00",
+            "ended_at": null,
+            "note": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-saved-review-live/review-run",
+            "budget_minutes": 10
+          },
+          "claimed_summary": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。",
+          "end_revision": 36,
+          "synced_at": "2026-09-14T06:07:20.268021+00:00"
+        },
+        "elapsed_seconds": 428.19405300030485,
+        "runner_returncode": 130,
+        "execution_returncode": 130
+      }
+    }
+  ],
+  "review_only": true,
+  "explicit_finish": true,
+  "limits": "実行完了は試行推薦や発見力の証明ではない。公開入口の制約と固定入力の照合はOS全体の行動監査ではない。追加資料に旧判断を書き写したかは意味の点検が必要。",
+  "parent_revision": 1,
+  "expected_revision": 1,
+  "original_manifest": {
+    "context.json": "ccdf3367616a702ccccb3075961a456c40e1d2c55dad9ed3703faf6695ed9feb",
+    "packets/126758e996e9c2bcd1308c250c54f3fe4f4f0eedf1794291a21a72b2339b21af.json": "c48a6aa868369d521b9db04edc867c385e0cd1fc95259078667bd6e793adef79",
+    "packets/2e996a71a891d60d71e467e124d1273889e5e8544c37697dceee33103d1f7f86.json": "7418244939eda0094dc42012dc73f25f4fb02fdcfad484bfd580831212fb202f",
+    "packets/566ca04369ad0b1592feedc497a5551a5ef2c9c725c528669347955945b7a57e.json": "36210ecae734b5597ac782fb8fa1a173cacbd9aa1ea7165e745948decc39d1a2",
+    "packets/c1877c3e34e99d6d7008caa3f61e4df3e60906629ce1864a592e9078c950d6f1.json": "ae01128fc040f50d60514dc6a9d7ba8065f16af8f1e827a2730944cf5a1835c4",
+    "packets/c64ae7d5d6ca6ab6348fd61b3f2ac462c78e45ee54832aaf9e5e89f57e519d55.json": "e795f2e84e0203691060d41ae4a53212a1e351f55fd127b461ded5b192509d51",
+    "packets/d2137c7bf9246bbaf64749272093ff4749d1c4581232a51cf06bef2324c24169.json": "70dfdc7d77406b75dc3600869699a4b02763900fe7c7875accf6e05aed55eacb",
+    "packets/fb87cc206bc691e98175bbbde2ab3464a31a1c94c413f22d1048c74ce7fca6e6.json": "71a440cbca8de14d8b120b1aa2f69a99a6ddedad2122a6640a3d14897910bef1",
+    "revision-0001.json": "fa7141899117305144b80db3b93a5d998a529cc4cfac5c6220177fdc065e7ca6",
+    "snapshot.db": "e58fc4e70fd22d292e0ee37bcb7b20e4410d6dae83a77c423cfddbbfe816c6a5",
+    "sources/0e7aabe9415eb7c99b52858df22267cb2e2cb7b918261845eadf48b51b022c11.json": "d81269501be328dd7017e1a38e25727bae818f8a2430dfeec683eee36073c98e",
+    "sources/4a9132a632cccd188fb8719b3e53a188f1f17b47ee653999de0329bea0f3255e.json": "3516f7bbe48219b0f58257e8999da67cc6b6ecc51e5f1c1018dfe6c5e7785e9c",
+    "sources/54a1fa92ac29b5ba96c4e97febef0b5e3d9439fb3af1eead6ca1b135e49ba24e.json": "01af1d1021ab2b7bcab9a6b5ed4bfec93ea7b4a580cbaa7ab1e0e4e7a6a0d153",
+    "sources/5c897a8695527282f5de8acd9a752d44b2c9387671d13d7f9ad036a7ddfc51fb.json": "749e67f423784a3436506729da540c7f9eceb5c1ffe4aaa60d655a7fc743c6d7",
+    "sources/6aad9796fb6162e36d1bb5f4628fe88c8b68d74a0c8cef4000b14f4a7eb4200d.json": "b04cd6005983463ced126ca00bef95e7fa01e5ecfff19ee2e16b662f1bbeca54",
+    "sources/7e685ce8b88ce8b48a1e95c708a3b8c1150e540741c2722c63ae192789df8227.json": "c8b78f700ba11f822df63b00ee24eaea1c14c689dd38b8bd59a7d7c2c7abddfd",
+    "sources/bc6d1c730e3f53e60da99e1d72786e88fe7bf9015b7f1833bac7c07f4da751fe.json": "8638b4e77fea5e0f5e9fdde053a862f14f86edc37d1717631ca112a320016b43",
+    "sources/ebd5ba46554322bfcb6c7648121b457f4711cd5af88ee34fe87aaeb4a7411cfb.json": "6af45c1bab1bd96e486d1193e2e85756201cc64811dfef0b0e74e1664d6cea5b"
+  },
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fragment-handoff-02",
+    "stage_id": "a-saved-review-whole",
+    "status": "completed",
+    "begin_revision": 33,
+    "claimed_stage": {
+      "id": "a-saved-review-whole",
+      "title": "Aの保存済み正式案から評価と最終保存",
+      "status": "running",
+      "started_at": "2026-09-14T04:55:09.473488+00:00",
+      "ended_at": null,
+      "note": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-saved-review-live",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "Aの提出自体は期限前に受理。終了確認未完の失敗は保持し、保存済み正式案から別評価だけを開始する。",
+    "end_revision": 37,
+    "synced_at": "2026-09-14T06:07:20.838274+00:00"
+  },
+  "failure": "担当の実行が完了していないため次へ進みません",
+  "ended_at": "2026-09-14T06:07:20.812288+00:00"
+}

@@ -1,15 +1,15 @@
 {
   "id": "inquiry-explicit-finish-01",
-  "revision": 16,
-  "saved_at": "2026-09-13T22:05:21.765218+00:00",
+  "revision": 18,
+  "saved_at": "2026-09-14T06:14:48.187376+00:00",
   "actor": "codex",
-  "reason": "途中成果と後続の作業先を記録",
+  "reason": "中止状態を詳細報告の冒頭にも明記",
   "record": {
     "id": "inquiry-explicit-finish-01",
     "title": "調査の保存確認を終えた担当から終了を明示する",
     "category": "infrastructure",
-    "status": "waiting",
-    "summary": "通常調査と時間配分の補足は未提出。資料を1件ずつ選ぶ改善 source-specific-read-01 の実利用結果を待って、終了機能の採否を確定する。",
+    "status": "interrupted",
+    "summary": "ユーザー指示で一旦中止。調査・試行・失敗・未完をdocs/research-pause-2026-09-14.mdへ保存。本人の再開指示まで新しい検証は行わない。",
     "method": "公開添付・全文再読・最新reportを確認した担当がfinishし、監視側が停止前後の同一保存物を再検査する",
     "procedure": "実発生と最小設計を確認→独立作業先で実装と回帰検査→親側で差分確認→保存済み問いで実用して確認",
     "inputs": "clean-input-discovery-01の期限停止記録、既存の明示終了・調査入口と保存検査。",
@@ -24,7 +24,7 @@
       "reason": "実装の検査と共通収集での完了は確認したが、通常調査では提出時間の不足が残る。取得を打ち切る時点を固定する試作で継続確認する。"
     },
     "started_at": "2026-09-13T14:30:55.555686+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-14T06:13:55.301642+00:00",
     "stages": [
       {
         "id": "implementation",
@@ -124,6 +124,15 @@
         "ended_at": "2026-09-13T19:27:26.536314+00:00",
         "note": "新しい報告未提出のため起動なし。",
         "budget_minutes": 10
+      },
+      {
+        "id": "stop-preservation",
+        "title": "ユーザー指示による中止と調査記録の保存",
+        "status": "completed",
+        "started_at": "2026-09-14T06:09:57.334390+00:00",
+        "ended_at": "2026-09-14T06:13:55.301642+00:00",
+        "note": "実行中2件と担当2件を中断。自動実行PAUSEDを読戻し確認。未完を保持し、既存カードDBを変更していない。",
+        "budget_minutes": 10
       }
     ],
     "evidence_paths": [
@@ -174,14 +183,26 @@
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_worker_journal_temp.py",
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_run_temp.py",
       "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery.py",
-      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_cycle_temp.py"
+      "evals/discovery/inquiry-explicit-finish-01/implementation/reference/test_discovery_cycle_temp.py",
+      "docs/research-pause-2026-09-14.md",
+      "docs/progress.md"
     ]
   },
   "evidence": [
     {
+      "path": "docs/progress.md",
+      "sha256": "1e92b149a985d8640b1628d5281d1e3f2ad27db044cc21d65c6ddb29874c5d99",
+      "size": 44149
+    },
+    {
+      "path": "docs/research-pause-2026-09-14.md",
+      "sha256": "b6da17b6bde2399488e000299def3b51566e61f90cdc9b167b5d96dbdcf93afe",
+      "size": 9091
+    },
+    {
       "path": "evals/discovery/inquiry-explicit-finish-01/README.md",
-      "sha256": "791026a515eaeb31d8da0cae0eda488e54267e431593a58dd50a5975929c2f03",
-      "size": 2346
+      "sha256": "52fce02c2005de9fcb12446ad970f9cf91a87cddaa75329af755c0e4d16eb2c7",
+      "size": 2709
     },
     {
       "path": "evals/discovery/inquiry-explicit-finish-01/design-review.json",

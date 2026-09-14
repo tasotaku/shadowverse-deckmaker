@@ -1,0 +1,100 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/fragment-handoff-02-b-convert-live/review",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/fragment-handoff-02-b-convert-live/review/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/fragment-handoff-02-b-convert-live/review",
+  "stdin": "/private/tmp/fragment-handoff-02-b-convert-live/review/prompt.md",
+  "output": "/private/tmp/fragment-handoff-02-b-convert-live/review-run",
+  "started_at": "2026-09-14T03:55:13.525423+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2365446.191912333,
+  "explicit_finish": true,
+  "timeout_seconds": 600.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 77721,
+  "worker_pid": 81088,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-14T04:55:01.618160+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-14T03:55:13.525704+00:00",
+      "elapsed_seconds": 0.0002748752012848854
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-14T03:55:13.526108+00:00",
+      "elapsed_seconds": 0.0006799171678721905
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-14T03:55:13.543477+00:00",
+      "elapsed_seconds": 0.018089292105287313
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-14T04:55:01.554865+00:00",
+      "elapsed_seconds": 600.0022014998831,
+      "elapsed_expired": true,
+      "utc_expired": false
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-14T04:55:01.559211+00:00",
+      "elapsed_seconds": 600.0064315418713,
+      "signal": 15
+    },
+    {
+      "event": "process_group_gone",
+      "at": "2026-09-14T04:55:01.616998+00:00",
+      "elapsed_seconds": 600.0642069168389
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-14T04:55:01.618169+00:00",
+      "elapsed_seconds": 600.0653720828705
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-14T04:55:01.661808+00:00",
+      "elapsed_seconds": 600.1090107080527
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fragment-handoff-02",
+    "stage_id": "b-convert-review",
+    "status": "completed",
+    "begin_revision": 26,
+    "claimed_stage": {
+      "id": "b-convert-review",
+      "title": "B：成立と価値を通常指示で別評価",
+      "status": "running",
+      "started_at": "2026-09-14T03:55:13.525423+00:00",
+      "ended_at": null,
+      "note": "仮説や未確認の意味は変えず、保存成功を品質の合格としない。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-b-convert-live/review-run",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "両側の中間報告は保存。再確認込みの正式化は未提出だったため、既存内容だけを提出形式へ移す5分工程と通常評価を切り分けて実行する。",
+    "end_revision": 31,
+    "synced_at": "2026-09-14T04:55:01.661795+00:00"
+  },
+  "elapsed_seconds": 600.065367042087,
+  "runner_returncode": 124,
+  "execution_returncode": 124
+}

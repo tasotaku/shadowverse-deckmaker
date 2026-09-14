@@ -1,0 +1,169 @@
+{
+  "sha256": "d2137c7bf9246bbaf64749272093ff4749d1c4581232a51cf06bef2324c24169",
+  "packet_path": "/private/tmp/fragment-handoff-02-a-convert-live/develop/session/packets/d2137c7bf9246bbaf64749272093ff4749d1c4581232a51cf06bef2324c24169.json",
+  "stage": "develop",
+  "revision": 0,
+  "context_hash": "a110e52ae3de12f9436950ef8a3c931b4afaca7f7de30355342eecf217be468c",
+  "objective": "通常構築の役割と比べ、独自でそこそこ戦えるデッキの種を考案する。効果の別用途や、役割分担による採用配分の変化も検討する。特定カードや過去の期待解に合わせず、固定資料で成立する利益と残る不足を示す。",
+  "instruction": "あなたは保存された中間報告を既存の提出形式へ移す担当です。指定資料に書かれた内容だけをJSONへ整理し、公開submitで提出してください。新しい探索や外部調査は行いません。新しいカード・手順・開始状態・利益を補いません。これは記録の変換であり、成立確認・推薦ではありません。\n最初にfinish_sourceとresponse_exampleを公開readで読みます。報告に明記されたカードIDと役割をrolesへ、報告に明記された順序をstepsへ、戦略をplanへ、未解決をquestions/uncertaintiesへ移します。報告にないstepsやplanは空でも構いません。証拠には指定した中間報告のsource_hashとその正確な引用を使います。カードの直接引用を追加で発明しません。生成札のaccess/viaは明記されたときだけ記入し、明記がない条件や計算は不明として残します。title/hypothesis/changeに未検証の仮説であることを明記します。資料の主張を事実に格上げせず、報告で保留/不成立なら維持します。\n300秒以内にproposal.jsonを保存し、public.py submit proposal.json、report、finishを実行します。書かれた内容を形式へ移す範囲の検査だけを行い、成立と価値は次の別評価に渡します。提出を完了できなければ失敗の事実を残します。",
+  "response_example": {
+    "packet_hash": "このpacketのhash",
+    "author": "実際の担当セッション名",
+    "parent_revision": 0,
+    "title": "案の短い名前",
+    "hypothesis": "どう勝ちや役割配分が変わるか",
+    "change": "初回の着眼点、または前の案から変えたこと",
+    "roles": [
+      {
+        "card_id": 0,
+        "role": "この案で担う役割",
+        "access": "deck"
+      }
+    ],
+    "steps": [
+      {
+        "action": "行動と前提",
+        "resources": "前後のPP・手札・場・進化権",
+        "result": "得るもの",
+        "evidence": [
+          {
+            "card_id": 0,
+            "field": "skill_text",
+            "quote": "本文の正確な引用"
+          }
+        ]
+      }
+    ],
+    "plan": {
+      "early": "序盤",
+      "transition": "切替",
+      "finish": "決着",
+      "without_core": "核がない時",
+      "allocation": "増減する役割と枠、失う働き",
+      "comparison": "普通の使い方に対する利益と負担"
+    },
+    "questions": [
+      {
+        "question": "次に解く条件",
+        "tag": null,
+        "why": "これで何が変わるか"
+      }
+    ],
+    "uncertainties": [
+      "未確認の前提"
+    ]
+  },
+  "source_usage": "追加資料の引用はevidenceの{source_hash: 資料の識別値, quote: contentの正確な引用}。資料は入力された内容の保存版であり、出典の実在や主張の正しさを自動確認したものではありません。",
+  "sections": [
+    {
+      "section": "cards",
+      "unit": "cards",
+      "total": 212,
+      "full_packet_path": "data.context.cards"
+    },
+    {
+      "section": "rules",
+      "unit": "lines",
+      "total": 139,
+      "full_packet_path": "data.context.rules"
+    },
+    {
+      "section": "keywords",
+      "unit": "keywords",
+      "total": 37,
+      "full_packet_path": "data.context.ability_keywords"
+    },
+    {
+      "section": "principles",
+      "unit": "lines",
+      "total": 690,
+      "full_packet_path": "data.context.principles"
+    },
+    {
+      "section": "known_decks",
+      "unit": "decks",
+      "total": 4,
+      "full_packet_path": "data.context.known_decks"
+    },
+    {
+      "section": "search",
+      "unit": "questions",
+      "total": 0,
+      "full_packet_path": "data.search"
+    },
+    {
+      "section": "proposal",
+      "unit": "lines",
+      "total": 0,
+      "full_packet_path": "data.proposal"
+    },
+    {
+      "section": "previous_reviews",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.previous_reviews"
+    },
+    {
+      "section": "review_contexts",
+      "unit": "reviews",
+      "total": 0,
+      "full_packet_path": "data.review_contexts"
+    },
+    {
+      "section": "history",
+      "unit": "lines",
+      "total": 1,
+      "full_packet_path": "data.history"
+    },
+    {
+      "section": "sources",
+      "unit": "lines",
+      "total": 503,
+      "full_packet_path": "data.sources"
+    },
+    {
+      "section": "context_metadata",
+      "unit": "lines",
+      "total": 22,
+      "full_packet_path": "data.context"
+    },
+    {
+      "section": "fulfillment_map",
+      "unit": "lines",
+      "total": 234,
+      "full_packet_path": "data.context.fulfillment_map"
+    },
+    {
+      "section": "instruction",
+      "unit": "lines",
+      "total": 3,
+      "full_packet_path": "data.instruction"
+    },
+    {
+      "section": "response_example",
+      "unit": "lines",
+      "total": 47,
+      "full_packet_path": "data.response_example"
+    },
+    {
+      "section": "packet_metadata",
+      "unit": "lines",
+      "total": 7,
+      "full_packet_path": "data"
+    },
+    {
+      "section": "finish_source",
+      "unit": "lines",
+      "total": 85,
+      "full_packet_path": "data.sources[4]"
+    },
+    {
+      "section": "source_index",
+      "unit": "sources",
+      "total": 8,
+      "full_packet_path": "data.sources"
+    }
+  ],
+  "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。offsetは0始まりです。回答のpacket_hashには上のsha256を使います。資料は最初にsource_indexで必要な資料の場所を選び、示されたsource:HASHで本文だけを読めます。報告の再読は、その報告のsource:HASHだけを全文読んでください。",
+  "finish_from_source": "6aad9796fb6162e36d1bb5f4628fe88c8b68d74a0c8cef4000b14f4a7eb4200d"
+}

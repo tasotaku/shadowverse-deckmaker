@@ -1,0 +1,100 @@
+{
+  "status": "timed_out",
+  "command": [
+    "/Applications/ChatGPT.app/Contents/Resources/codex",
+    "--search",
+    "exec",
+    "--ephemeral",
+    "--sandbox",
+    "workspace-write",
+    "--skip-git-repo-check",
+    "--cd",
+    "/private/tmp/fragment-handoff-02-a-final-live/develop",
+    "--json",
+    "--output-last-message",
+    "/private/tmp/fragment-handoff-02-a-final-live/develop/final-message.md",
+    "-"
+  ],
+  "cwd": "/private/tmp/fragment-handoff-02-a-final-live/develop",
+  "stdin": "/private/tmp/fragment-handoff-02-a-final-live/develop/prompt.md",
+  "output": "/private/tmp/fragment-handoff-02-a-final-live/develop-run",
+  "started_at": "2026-09-13T22:03:09.521630+00:00",
+  "deadline_at": null,
+  "budget_clock": "elapsed",
+  "deadline_monotonic": 2363643.238560875,
+  "explicit_finish": true,
+  "timeout_seconds": 600.0,
+  "termination_grace_seconds": 2,
+  "supervisor_pid": 48302,
+  "worker_pid": 48320,
+  "worker_returncode": -15,
+  "ended_at": "2026-09-13T23:30:51.721766+00:00",
+  "events": [
+    {
+      "event": "started",
+      "at": "2026-09-13T22:03:09.521837+00:00",
+      "elapsed_seconds": 0.00020366627722978592
+    },
+    {
+      "event": "journal_starting",
+      "at": "2026-09-13T22:03:09.522173+00:00",
+      "elapsed_seconds": 0.0005403328686952591
+    },
+    {
+      "event": "launched",
+      "at": "2026-09-13T22:03:09.531199+00:00",
+      "elapsed_seconds": 0.009593000169843435
+    },
+    {
+      "event": "deadline_observed",
+      "at": "2026-09-13T23:30:51.663744+00:00",
+      "elapsed_seconds": 600.0054303752258,
+      "elapsed_expired": true,
+      "utc_expired": false
+    },
+    {
+      "event": "termination_requested",
+      "at": "2026-09-13T23:30:51.666718+00:00",
+      "elapsed_seconds": 600.0083341659047,
+      "signal": 15
+    },
+    {
+      "event": "process_group_gone",
+      "at": "2026-09-13T23:30:51.720562+00:00",
+      "elapsed_seconds": 600.0621622912586
+    },
+    {
+      "event": "supervisor_finished",
+      "at": "2026-09-13T23:30:51.721776+00:00",
+      "elapsed_seconds": 600.0633724578656
+    },
+    {
+      "event": "journal_finished",
+      "at": "2026-09-13T23:30:51.735601+00:00",
+      "elapsed_seconds": 600.0771982911974
+    }
+  ],
+  "limits": "Elapsed clocks include waiting; not CPU time. Suspension handling depends on the OS. Host suspension can delay observation. elapsed mode does not enforce a UTC deadline. Only descendants remaining in the original process group are controlled. Partial output is not a completed proposal or review.",
+  "journal_sync": {
+    "root": "/Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker",
+    "experiment_id": "fragment-handoff-02",
+    "stage_id": "a-develop",
+    "status": "completed",
+    "begin_revision": 10,
+    "claimed_stage": {
+      "id": "a-develop",
+      "title": "A：中間報告1件を正式案へまとめる",
+      "status": "running",
+      "started_at": "2026-09-13T22:03:09.521630+00:00",
+      "ended_at": null,
+      "note": "同じ正式化・評価指示。前段で保存した中間報告を固定。\n起動処理を開始。実行記録: /private/tmp/fragment-handoff-02-a-final-live/develop-run",
+      "budget_minutes": 10
+    },
+    "claimed_summary": "両側とも5分以内に中間報告1件を公開保存。各報告から同じ指示で正式案→別評価へ進む。",
+    "end_revision": 14,
+    "synced_at": "2026-09-13T23:30:51.735592+00:00"
+  },
+  "elapsed_seconds": 600.0633671660908,
+  "runner_returncode": 124,
+  "execution_returncode": 124
+}

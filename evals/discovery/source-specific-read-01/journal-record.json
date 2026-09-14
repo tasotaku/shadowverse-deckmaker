@@ -1,30 +1,30 @@
 {
   "id": "source-specific-read-01",
-  "revision": 5,
-  "saved_at": "2026-09-13T22:05:21.773734+00:00",
+  "revision": 16,
+  "saved_at": "2026-09-14T06:13:55.386790+00:00",
   "actor": "codex",
-  "reason": "途中成果と後続の作業先を記録",
+  "reason": "ユーザー中止指示と調査の保存を記録",
   "record": {
     "id": "source-specific-read-01",
     "title": "必要な追加資料1件を選んで読み、報告提出まで確認する",
     "category": "infrastructure",
-    "status": "running",
-    "summary": "171検査と型検査合格。前回と同じ22資料・同じ10分枠で、索引から本文を選ぶ実利用を開始する。",
+    "status": "interrupted",
+    "summary": "ユーザー指示で一旦中止。調査・試行・失敗・未完をdocs/research-pause-2026-09-14.mdへ保存。本人の再開指示まで新しい検証は行わない。",
     "method": "資料の本文を除いた索引と、識別値で選んだ1件の本文読出し。報告再読の証拠をこの経路でも検査する。",
     "procedure": "限定実装→171検査と型検査→実資料の完全一致→同じ資料の調査/別照合→提出と終了証拠を検査",
     "inputs": "前回の未提出草稿を含む22資料、同じ正式改訂2と残問。同じ時間配分補足、各600秒。",
     "criteria": "別資料を読出し出力へ混ぜず、必要な報告を全文再読して担当本人の提出と終了後の同一性を確認。問いの解決と保存成功は別。",
     "result": {
-      "outcome": "unassessed",
-      "summary": "未判定",
-      "limitations": "未記録"
+      "outcome": "mixed",
+      "summary": "実資料22件から選択読出しを使用し調査提出が完了。後続照合は未完。",
+      "limitations": "同じ入力の各1回。一般的な速度改善や全工程の完了率、報告内容の正確さ全体は未認定。"
     },
     "decision": {
-      "status": "unassessed",
-      "reason": "未判定"
+      "status": "adopted",
+      "reason": "資料索引・1件本文読出しと報告再読の機能として採用。171検査と実資料の完全一致、実AIの選択読出し→報告全文再読→終了後同一証拠で確認。調査方式の有用性や別照合完了までを採用根拠に含めない。"
     },
     "started_at": "2026-09-13T21:59:27.852642+00:00",
-    "ended_at": null,
+    "ended_at": "2026-09-14T06:13:55.301642+00:00",
     "stages": [
       {
         "id": "integration",
@@ -38,48 +38,193 @@
       {
         "id": "live-whole",
         "title": "調査から別照合と最終保存まで",
-        "status": "running",
+        "status": "interrupted",
         "started_at": "2026-09-13T21:59:28.283360+00:00",
-        "ended_at": null,
-        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live",
+        "ended_at": "2026-09-14T00:33:09.667991+00:00",
+        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live\n調査・照合が途中で停止。全実行の終了状態: inspect_failed。停止理由: 担当が完了していないため次へ進みません。結果・採否は別途確認する。",
         "budget_minutes": 20
       },
       {
         "id": "live-inquiry",
         "title": "同じ保存資料の調査報告を提出",
-        "status": "running",
+        "status": "completed",
         "started_at": "2026-09-13T21:59:28.680372+00:00",
-        "ended_at": null,
-        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live/inquiry-run",
+        "ended_at": "2026-09-13T22:08:24.982054+00:00",
+        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live/inquiry-run\n担当の明示要求による停止と保存再検査を確認。実行状態: finished_by_request、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
         "budget_minutes": 10
       },
       {
         "id": "live-inspect",
         "title": "新しい報告の別照合",
-        "status": "planned",
-        "started_at": null,
-        "ended_at": null,
-        "note": "同じ600秒と時間配分補足を維持。",
+        "status": "interrupted",
+        "started_at": "2026-09-13T22:08:25.752243+00:00",
+        "ended_at": "2026-09-14T00:33:08.855802+00:00",
+        "note": "同じ600秒と時間配分補足を維持。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-live/inspect-run\n担当の停止処理を終了。実行状態: timed_out、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "collection",
+        "title": "成功した調査と未完の別照合を区別して保存",
+        "status": "completed",
+        "started_at": "2026-09-14T03:53:40.529394+00:00",
+        "ended_at": "2026-09-14T03:53:43.117553+00:00",
+        "note": "調査の終了証拠を別照合停止後にも再検査。元正式案・評価は保持。",
+        "budget_minutes": 2
+      },
+      {
+        "id": "saved-inspection-whole",
+        "title": "保存済み調査報告から別照合と最終保存",
+        "status": "interrupted",
+        "started_at": "2026-09-14T04:55:09.570352+00:00",
+        "ended_at": "2026-09-14T06:07:20.892153+00:00",
+        "note": "調査報告は提出・再読・終了検査済み。旧別照合の期限停止を保持し、この正式な報告から別照合だけ再開する。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-saved-inspection-live\n調査・照合が途中で停止。全実行の終了状態: inspect_failed。停止理由: 担当が完了していないため次へ進みません。結果・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "saved-inspection-inspect",
+        "title": "保存済み調査報告の別照合のみ",
+        "status": "interrupted",
+        "started_at": "2026-09-14T04:55:10.016477+00:00",
+        "ended_at": "2026-09-14T06:07:20.227566+00:00",
+        "note": "調査報告は提出・再読・終了検査済み。旧別照合の期限停止を保持し、この正式な報告から別照合だけ再開する。\n起動処理を開始。実行記録: /private/tmp/source-specific-read-01-saved-inspection-live/inspect-run\n担当の停止処理を終了。実行状態: interrupted、担当終了番号: -15。提出の成否・有用性・採否は別途確認する。",
+        "budget_minutes": 10
+      },
+      {
+        "id": "stop-preservation",
+        "title": "ユーザー指示による中止と調査記録の保存",
+        "status": "completed",
+        "started_at": "2026-09-14T06:09:57.334390+00:00",
+        "ended_at": "2026-09-14T06:13:55.301642+00:00",
+        "note": "実行中2件と担当2件を中断。自動実行PAUSEDを読戻し確認。未完を保持し、既存カードDBを変更していない。",
         "budget_minutes": 10
       }
     ],
     "evidence_paths": [
       "evals/discovery/source-specific-read-01/live-input.json",
+      "evals/discovery/source-specific-read-01/saved-inspection-input.json",
       "evals/discovery/source-specific-read-01/mypy.txt",
+      "evals/discovery/source-specific-read-01/result.json",
       "evals/discovery/source-specific-read-01/tests.txt",
       "evals/discovery/source-specific-read-01/integration-check.json",
       "evals/discovery/source-specific-read-01/tests.xml",
+      "evals/discovery/source-specific-read-01/session.tar.gz",
       "evals/discovery/source-specific-read-01/README.md",
+      "evals/discovery/source-specific-read-01/live-verification.json",
       "evals/discovery/source-specific-read-01/verification.json",
       "evals/discovery/source-specific-read-01/test_source_specific_read_temp.py",
-      "evals/discovery/source-specific-read-01/test-plan.md"
+      "evals/discovery/source-specific-read-01/test-plan.md",
+      "evals/discovery/source-specific-read-01/inspect/public-operations.json.gz",
+      "evals/discovery/source-specific-read-01/inspect/input-summary.json",
+      "evals/discovery/source-specific-read-01/inspect/prompt.md",
+      "evals/discovery/source-specific-read-01/inspect/finish-config.json",
+      "evals/discovery/source-specific-read-01/inspect/public-config.json",
+      "evals/discovery/source-specific-read-01/inspect/run.json",
+      "evals/discovery/source-specific-read-01/inquiry/public-operations.json.gz",
+      "evals/discovery/source-specific-read-01/inquiry/input-summary.json",
+      "evals/discovery/source-specific-read-01/inquiry/finish-request.json",
+      "evals/discovery/source-specific-read-01/inquiry/prompt.md",
+      "evals/discovery/source-specific-read-01/inquiry/answer.md",
+      "evals/discovery/source-specific-read-01/inquiry/finish-config.json",
+      "evals/discovery/source-specific-read-01/inquiry/public-config.json",
+      "evals/discovery/source-specific-read-01/inquiry/run.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/public-operations.json.gz",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/input-summary.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/result.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/prompt.md",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/session.tar.gz",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/finish-config.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/verification.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/public-config.json",
+      "evals/discovery/source-specific-read-01/saved-inspect-interrupted/run.json",
+      "docs/research-pause-2026-09-14.md",
+      "docs/progress.md"
     ]
   },
   "evidence": [
     {
+      "path": "docs/progress.md",
+      "sha256": "1e92b149a985d8640b1628d5281d1e3f2ad27db044cc21d65c6ddb29874c5d99",
+      "size": 44149
+    },
+    {
+      "path": "docs/research-pause-2026-09-14.md",
+      "sha256": "b6da17b6bde2399488e000299def3b51566e61f90cdc9b167b5d96dbdcf93afe",
+      "size": 9091
+    },
+    {
       "path": "evals/discovery/source-specific-read-01/README.md",
-      "sha256": "8caec29aaa285bc07bbd9af22ce4d86a0b9dad66faf5cc4873a65e3e8633fd49",
-      "size": 823
+      "sha256": "59d345d9ce555aeb245d29448077db3f62145d55e1d40fb4deb4dbb75f329372",
+      "size": 2179
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/answer.md",
+      "sha256": "4c209f9c0a277648127a0c2afcf63c903047092eb8c0c2756e472f3adcfb27d6",
+      "size": 7274
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/finish-config.json",
+      "sha256": "f7500714cd2d7ead8d4d853c6953c6e247db27b7fb8d0a8a49b52e84d59bd4cf",
+      "size": 19924
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/finish-request.json",
+      "sha256": "e6e432b745d352b975c9890c135b7f1534377daf8202eef160df8107b093f4b5",
+      "size": 8399
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/input-summary.json",
+      "sha256": "4e5d3a334cb779cb5e1ae821dd2a78be8a8ca4836af45d7cd5d27ab761a8b118",
+      "size": 6173
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/prompt.md",
+      "sha256": "df4e40d03c3f14b56520da56045833cfb066dd2a8f4ad25363c185f2884a5985",
+      "size": 5699
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/public-config.json",
+      "sha256": "4bf1872438146b67c1b9cf40499ad9e29a6b6a550cddf6ce84907ef7ed2099da",
+      "size": 325
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/public-operations.json.gz",
+      "sha256": "8c30fe192cb44a3ffd6c3719c97d94182136af461b45d94f49a1368744b3b9e3",
+      "size": 1532372
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inquiry/run.json",
+      "sha256": "b9386a5d6ea8ec132baf44af4df579a58e1bc46c22a3b9aa26b4d483f2d935eb",
+      "size": 4134
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/finish-config.json",
+      "sha256": "b560485626c000dd1c671024eba53e05047dd3f30a4c0617c908c4f6cd743067",
+      "size": 25036
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/input-summary.json",
+      "sha256": "b95e033308b022275aa874bcdeb7f870f4083d86ba264b59795bc2cb2a6065cd",
+      "size": 5943
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/prompt.md",
+      "sha256": "c087a7e8d9da2f2b08b2a874d2a513001a3afee5aa45bc1121b82429183716c6",
+      "size": 5470
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/public-config.json",
+      "sha256": "273800f73c29dc9e2b29f3b7ea1e7cf21e742b377c7df3ef4a0584838e8ae323",
+      "size": 329
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/public-operations.json.gz",
+      "sha256": "d9b06c349e4c45470ba80a20f9dd8bb088d67cef53367bf653ef1902da1f8ff4",
+      "size": 9470
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/inspect/run.json",
+      "sha256": "fb155598945394863ed9f87581b0e9e2eb9cb499fab30ed7c5722d35b2a1d4ce",
+      "size": 3468
     },
     {
       "path": "evals/discovery/source-specific-read-01/integration-check.json",
@@ -92,9 +237,74 @@
       "size": 10019
     },
     {
+      "path": "evals/discovery/source-specific-read-01/live-verification.json",
+      "sha256": "8004d2f1699bcfc3933a30d31767b0fdaba080051210146caec0965c7b692664",
+      "size": 1535
+    },
+    {
       "path": "evals/discovery/source-specific-read-01/mypy.txt",
       "sha256": "8228fcc5ce46d42d01caf3cd941f4e9c5f2bcc372bb5b147a2f0572d2dd675a8",
       "size": 43
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/result.json",
+      "sha256": "7e4e0169e810216c0a9d665b93555a23e2336cdce293d25cf70ccb54da647230",
+      "size": 16865
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/finish-config.json",
+      "sha256": "5048f0a9751be7379c7a6242f3e310f5e20457077f911fd5fe1200944288a885",
+      "size": 22293
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/input-summary.json",
+      "sha256": "219e71cc906e34cb33a8f4e320a9e6d160d3bdf6205d750f8ca7b4465f31d828",
+      "size": 5960
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/prompt.md",
+      "sha256": "cfa21dbbfeffbfb7b8d22909af2684fa47a03bc7669e69a0740cec6deecb90e0",
+      "size": 5486
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/public-config.json",
+      "sha256": "c1d8696b65e275f965a73c5cfab6de79c2ae6fedb537ae494839b0e5e063dc7a",
+      "size": 329
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/public-operations.json.gz",
+      "sha256": "b93c7aab9c43f5ebe54acba9b676e14fc1f1c0f97b0f9d0ee6300552e71462d2",
+      "size": 1111140
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/result.json",
+      "sha256": "90508db147711afc816c5c71039592d17cc2a49e44282c1ac0a495bc583493e3",
+      "size": 13035
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/run.json",
+      "sha256": "adee9821a6240de5af690a8a565d2a71b717ab9af04c0afa00c13ec14d821e8e",
+      "size": 3712
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/session.tar.gz",
+      "sha256": "b7f6fa36ee1157e10f35a455bd6b7c218787157fa9b4c5ea0472f24a07aeda66",
+      "size": 8199060
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspect-interrupted/verification.json",
+      "sha256": "8268af75560864b3b8f89da49b78bd6bef99fda48cf6948787202fe61b562f53",
+      "size": 1358
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/saved-inspection-input.json",
+      "sha256": "d587842bdaff758309077273e4d21c41e183a1b5eb35040e0c34731020b52d4f",
+      "size": 10865
+    },
+    {
+      "path": "evals/discovery/source-specific-read-01/session.tar.gz",
+      "sha256": "faed9426d8c280c952cc48fb5b61f1cd50bc6a808d279ededde4c0a3adbcfb9f",
+      "size": 6968054
     },
     {
       "path": "evals/discovery/source-specific-read-01/test-plan.md",
