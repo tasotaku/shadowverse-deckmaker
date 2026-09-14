@@ -1,0 +1,2921 @@
+[
+  {
+    "id": "damage-lethal",
+    "title": "5ダメージで体力3を破壊",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "keywords": []
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "board": [],
+          "graveyard": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "damage-survive",
+    "title": "5ダメージで体力6が1残る",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 6,
+              "max_health": 6,
+              "keywords": []
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 1,
+              "max_health": 6,
+              "keywords": []
+            }
+          ],
+          "graveyard": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "damage-barrier",
+    "title": "バリアはダメージを防いで消費",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 3,
+              "max_health": 3,
+              "keywords": []
+            }
+          ],
+          "graveyard": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "damage-empty-fanfare",
+    "title": "敵不在でも登場し対象へのダメージなし",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "fan"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "board": [
+            {
+              "card_id": "fan",
+              "health": 3
+            }
+          ],
+          "graveyard": 0
+        },
+        {
+          "health": 20,
+          "board": []
+        }
+      ]
+    },
+    "cards": {
+      "fan": {
+        "card_id": "fan",
+        "name": "検証用5ダメージ登場",
+        "kind": "follower",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "damage-ally",
+    "title": "味方指定を拒否",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "expected_error": "ValueError"
+  },
+  {
+    "id": "damage-empty-spell",
+    "title": "必須対象が不在のスペルを拒否",
+    "group": "damage",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "test-damage-5"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "expected_error": "ValueError"
+  },
+  {
+    "id": "heal-12",
+    "title": "体力12から5回復（上限20）",
+    "group": "heal",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "health": 12,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "health": 17,
+          "max_health": 20,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "heal-18",
+    "title": "体力18から5回復（上限20）",
+    "group": "heal",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "health": 18,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "heal-20",
+    "title": "体力20から5回復（上限20）",
+    "group": "heal",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "health": 20,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "buff-3",
+    "title": "攻撃+2・体力+3（現在体力3）",
+    "group": "buff",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "keywords": []
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "attack": 4,
+              "health": 6,
+              "max_health": 6,
+              "keywords": []
+            }
+          ],
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "buff",
+            "target": "chosen_ally",
+            "attack": 2,
+            "health": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "buff-1",
+    "title": "攻撃+2・体力+3（現在体力1）",
+    "group": "buff",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "health": 1,
+              "max_health": 3,
+              "keywords": []
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "attack": 4,
+              "health": 4,
+              "max_health": 6,
+              "keywords": []
+            }
+          ],
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "buff",
+            "target": "chosen_ally",
+            "attack": 2,
+            "health": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "buff-1-barrier",
+    "title": "攻撃+2・体力+3（現在体力1）、バリア維持",
+    "group": "buff",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body",
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "attack": 4,
+              "health": 4,
+              "max_health": 6,
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ],
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "buff",
+            "target": "chosen_ally",
+            "attack": 2,
+            "health": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "draw-1",
+    "title": "1枚引く",
+    "group": "draw",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            },
+            {
+              "id": "k0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k4",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k5",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k6",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": [
+            {
+              "id": "d0",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "k0"
+            },
+            {
+              "id": "k1"
+            },
+            {
+              "id": "k2"
+            },
+            {
+              "id": "k3"
+            },
+            {
+              "id": "k4"
+            },
+            {
+              "id": "k5"
+            },
+            {
+              "id": "k6"
+            },
+            {
+              "id": "d0"
+            }
+          ],
+          "deck": [],
+          "pp": 0,
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "target": "self",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "draw-2",
+    "title": "2枚引く",
+    "group": "draw",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            },
+            {
+              "id": "k0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k4",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k5",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k6",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": [
+            {
+              "id": "d0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "d1",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "k0"
+            },
+            {
+              "id": "k1"
+            },
+            {
+              "id": "k2"
+            },
+            {
+              "id": "k3"
+            },
+            {
+              "id": "k4"
+            },
+            {
+              "id": "k5"
+            },
+            {
+              "id": "k6"
+            },
+            {
+              "id": "d0"
+            },
+            {
+              "id": "d1"
+            }
+          ],
+          "deck": [],
+          "pp": 0,
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "target": "self",
+            "count": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "draw-3",
+    "title": "3枚引く、手札上限で1枚あふれる",
+    "group": "draw",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            },
+            {
+              "id": "k0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k4",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k5",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k6",
+              "card_id": "test-body"
+            }
+          ],
+          "deck": [
+            {
+              "id": "d0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "d1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "d2",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "k0"
+            },
+            {
+              "id": "k1"
+            },
+            {
+              "id": "k2"
+            },
+            {
+              "id": "k3"
+            },
+            {
+              "id": "k4"
+            },
+            {
+              "id": "k5"
+            },
+            {
+              "id": "k6"
+            },
+            {
+              "id": "d0"
+            },
+            {
+              "id": "d1"
+            }
+          ],
+          "deck": [],
+          "pp": 0,
+          "graveyard": 2
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "draw",
+            "target": "self",
+            "count": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "destroy-plain",
+    "title": "破壊：通常",
+    "group": "destroy",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 1,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "destroy-barrier",
+    "title": "破壊：バリアがあっても処理",
+    "group": "destroy",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 1,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "destroy-lastword",
+    "title": "破壊：ラストワードの発動有無",
+    "group": "destroy",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "last"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 12,
+          "board": [],
+          "graveyard": 1,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "banish-plain",
+    "title": "消滅：通常",
+    "group": "banish",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "banish",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "banish-barrier",
+    "title": "消滅：バリアがあっても処理",
+    "group": "banish",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "banish",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "banish-lastword",
+    "title": "消滅：ラストワードの発動有無",
+    "group": "banish",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "last"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": []
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "banish",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "bounce-plain",
+    "title": "手札へ戻す：通常",
+    "group": "bounce",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": [
+            {
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "attack": 2
+            }
+          ]
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "bounce",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "bounce-barrier",
+    "title": "手札へ戻す：バリアがあっても処理",
+    "group": "bounce",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "keywords": [
+                "バリア"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": [
+            {
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3,
+              "attack": 2
+            }
+          ]
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "bounce",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "bounce-lastword",
+    "title": "手札へ戻す：ラストワードの発動有無",
+    "group": "bounce",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 10,
+          "board": [
+            {
+              "id": "e",
+              "card_id": "last"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {
+          "health": 10,
+          "board": [],
+          "graveyard": 0,
+          "hand": [
+            {
+              "card_id": "last",
+              "health": 3,
+              "max_health": 3,
+              "attack": 2
+            }
+          ]
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "bounce",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "last": {
+        "card_id": "last",
+        "name": "検証用ラストワード",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "last_words": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "summon-0",
+    "title": "盤面0枚で召喚、ファンファーレは発動しない",
+    "group": "summon",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": []
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "board": [
+            {
+              "card_id": "fan",
+              "attack": 2,
+              "health": 3
+            }
+          ],
+          "graveyard": 1
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 3
+            }
+          ],
+          "health": 20
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "fan",
+            "count": 1
+          }
+        ]
+      },
+      "fan": {
+        "card_id": "fan",
+        "name": "検証用5ダメージ登場",
+        "kind": "follower",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "summon-4",
+    "title": "盤面4枚で召喚、ファンファーレは発動しない",
+    "group": "summon",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": [
+            {
+              "id": "b0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b3",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "board": [
+            {
+              "id": "b0"
+            },
+            {
+              "id": "b1"
+            },
+            {
+              "id": "b2"
+            },
+            {
+              "id": "b3"
+            },
+            {
+              "card_id": "fan",
+              "attack": 2,
+              "health": 3
+            }
+          ],
+          "graveyard": 1
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 3
+            }
+          ],
+          "health": 20
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "fan",
+            "count": 1
+          }
+        ]
+      },
+      "fan": {
+        "card_id": "fan",
+        "name": "検証用5ダメージ登場",
+        "kind": "follower",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "summon-5",
+    "title": "盤面5枚で召喚、ファンファーレは発動しない",
+    "group": "summon",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ],
+          "board": [
+            {
+              "id": "b0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "b4",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "pp": 0,
+          "hand": [],
+          "board": [
+            {
+              "id": "b0"
+            },
+            {
+              "id": "b1"
+            },
+            {
+              "id": "b2"
+            },
+            {
+              "id": "b3"
+            },
+            {
+              "id": "b4"
+            }
+          ],
+          "graveyard": 1
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 3
+            }
+          ],
+          "health": 20
+        }
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "fan",
+            "count": 1
+          }
+        ]
+      },
+      "fan": {
+        "card_id": "fan",
+        "name": "検証用5ダメージ登場",
+        "kind": "follower",
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "attack-1",
+    "title": "攻撃2のフォロワーが体力1を攻撃",
+    "group": "attack",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 1,
+              "max_health": 1
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 1,
+              "attacks": 1
+            }
+          ],
+          "graveyard": 0
+        },
+        {
+          "board": [],
+          "graveyard": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "attack-3",
+    "title": "攻撃2のフォロワーが体力3を攻撃",
+    "group": "attack",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 3,
+              "max_health": 3
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 1,
+              "attacks": 1
+            }
+          ],
+          "graveyard": 0
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 1
+            }
+          ],
+          "graveyard": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "attack-6",
+    "title": "攻撃2のフォロワーが体力6を攻撃",
+    "group": "attack",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "card_id": "test-body",
+              "health": 6,
+              "max_health": 6
+            }
+          ]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "attack",
+        "source": "a",
+        "target": "e"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "id": "a",
+              "health": 1,
+              "attacks": 1
+            }
+          ],
+          "graveyard": 0
+        },
+        {
+          "board": [
+            {
+              "id": "e",
+              "health": 4
+            }
+          ],
+          "graveyard": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "evolve-0-4",
+    "title": "先攻の4ターン目の進化",
+    "group": "evolve",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "turn": 4,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "actions": [
+      {
+        "type": "evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "turn": 4,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "expected_error": "ValueError"
+  },
+  {
+    "id": "evolve-0-5",
+    "title": "先攻の5ターン目の進化",
+    "group": "evolve",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "turn": 5,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ],
+      "active_player": 0
+    },
+    "actions": [
+      {
+        "type": "evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "ep": 1,
+          "evolved_this_turn": true,
+          "board": [
+            {
+              "id": "a",
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "evolved": 1
+            }
+          ]
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": "evolve-1-4",
+    "title": "後攻の4ターン目の進化",
+    "group": "evolve",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {},
+        {
+          "turn": 4,
+          "board": [
+            {
+              "id": "a",
+              "card_id": "test-body"
+            }
+          ]
+        }
+      ],
+      "active_player": 1
+    },
+    "actions": [
+      {
+        "type": "evolve",
+        "source": "a"
+      }
+    ],
+    "expected": {
+      "players": [
+        {},
+        {
+          "ep": 1,
+          "evolved_this_turn": true,
+          "board": [
+            {
+              "id": "a",
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "evolved": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "ramp-2",
+    "title": "PP最大値2から+1（上限10）",
+    "group": "ramp",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 2,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "max_pp": 3,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "ramp",
+            "target": "self",
+            "amount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ramp-9",
+    "title": "PP最大値9から+1（上限10）",
+    "group": "ramp",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 9,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "max_pp": 10,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "ramp",
+            "target": "self",
+            "amount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "ramp-10",
+    "title": "PP最大値10から+1（上限10）",
+    "group": "ramp",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "pp": 2,
+          "max_pp": 10,
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "spell"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "max_pp": 10,
+          "pp": 0,
+          "hand": [],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "spell": {
+        "card_id": "spell",
+        "name": "検証用スペル",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "ramp",
+            "target": "self",
+            "amount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "generate-0",
+    "title": "カード生成：開始手札1枚から2枚追加",
+    "group": "generate",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "gen"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "card_id": "gen"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "test-body"
+            },
+            {
+              "card_id": "test-body"
+            }
+          ],
+          "graveyard": 0
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "gen": {
+        "card_id": "gen",
+        "name": "検証用カード生成",
+        "kind": "follower",
+        "cost": 0,
+        "attack": 1,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "generate",
+            "card_id": "test-body",
+            "count": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "generate-7",
+    "title": "カード生成：開始手札8枚から2枚追加",
+    "group": "generate",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "gen"
+            },
+            {
+              "id": "k0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k4",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k5",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k6",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "card_id": "gen"
+            }
+          ],
+          "hand": [
+            {
+              "id": "k0"
+            },
+            {
+              "id": "k1"
+            },
+            {
+              "id": "k2"
+            },
+            {
+              "id": "k3"
+            },
+            {
+              "id": "k4"
+            },
+            {
+              "id": "k5"
+            },
+            {
+              "id": "k6"
+            },
+            {
+              "card_id": "test-body"
+            },
+            {
+              "card_id": "test-body"
+            }
+          ],
+          "graveyard": 0
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "gen": {
+        "card_id": "gen",
+        "name": "検証用カード生成",
+        "kind": "follower",
+        "cost": 0,
+        "attack": 1,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "generate",
+            "card_id": "test-body",
+            "count": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "generate-8",
+    "title": "カード生成：開始手札9枚から2枚追加",
+    "group": "generate",
+    "description": "合成カードによる処理確認。公式実機との一致を認定する試験ではありません。",
+    "initial": {
+      "players": [
+        {
+          "hand": [
+            {
+              "id": "h",
+              "card_id": "gen"
+            },
+            {
+              "id": "k0",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k1",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k2",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k3",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k4",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k5",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k6",
+              "card_id": "test-body"
+            },
+            {
+              "id": "k7",
+              "card_id": "test-body"
+            }
+          ]
+        },
+        {}
+      ]
+    },
+    "actions": [
+      {
+        "type": "play",
+        "card": "h"
+      }
+    ],
+    "expected": {
+      "players": [
+        {
+          "board": [
+            {
+              "card_id": "gen"
+            }
+          ],
+          "hand": [
+            {
+              "id": "k0"
+            },
+            {
+              "id": "k1"
+            },
+            {
+              "id": "k2"
+            },
+            {
+              "id": "k3"
+            },
+            {
+              "id": "k4"
+            },
+            {
+              "id": "k5"
+            },
+            {
+              "id": "k6"
+            },
+            {
+              "id": "k7"
+            },
+            {
+              "card_id": "test-body"
+            }
+          ],
+          "graveyard": 1
+        },
+        {}
+      ]
+    },
+    "cards": {
+      "gen": {
+        "card_id": "gen",
+        "name": "検証用カード生成",
+        "kind": "follower",
+        "cost": 0,
+        "attack": 1,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "generate",
+            "card_id": "test-body",
+            "count": 2
+          }
+        ]
+      }
+    }
+  }
+]
