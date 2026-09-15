@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
 import pytest
@@ -194,3 +195,32 @@ def test_publish_failure_cleans_reserved_destination(
     with pytest.raises(OSError, match="公開失敗"):
         discovery.start(tmp_path / "run", db, "ウィッチ", "rotation", "開始", articles=["one"])
     assert sorted(path.name for path in tmp_path.iterdir()) == ["cards.db"]
+
+
+@pytest.mark.skipif(sys.platform != "win32", reason="Windows rename rejects even empty destinations")
+@pytest.mark.parametrize("with_file", [False, True])
+def test_windows_publish_race_preserves_destination(
+    db: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, with_file: bool,
+) -> None:
+    # AI_NOTE: 最後のrename直前の競合でも、他操作の空ディレクトリや資料を消さない。
+    item: dict[str, Any] = {"title": "記事", "kind": "説明", "location": "url", "observed_at": None,
+                            "content": "本文", "limitations": []}
+    monkeypatch.setattr(discovery, "article_sources", lambda *args, **kwargs: {"sources": [item]})
+    rename = Path.rename
+    dest = tmp_path / "run"
+
+    def competing_rename(source: Path, target: Path) -> Path:
+        # AI_NOTE: 公開の瞬間に他操作が保存先を確保した状態を作る。
+        target.mkdir()
+        if with_file:
+            (target / "old.txt").write_text("保持", encoding="utf-8")
+        return rename(source, target)
+
+    monkeypatch.setattr(Path, "rename", competing_rename)
+    with pytest.raises(FileExistsError):
+        discovery.start(dest, db, "ウィッチ", "rotation", "開始", articles=["one"])
+    assert dest.is_dir()
+    assert sorted(path.name for path in dest.iterdir()) == (["old.txt"] if with_file else [])
+    if with_file:
+        assert (dest / "old.txt").read_text(encoding="utf-8") == "保持"
+    assert not list(tmp_path.glob(".run-*"))

@@ -189,11 +189,14 @@ def start(session: Path, db: Path, class_name: str, format_name: str, objective:
             added = attach(staged, {"sources": sources})
             initial = packet(staged, None, "develop")
             # AI_NOTE: 公開直前に保存先を排他的に確保し、取得中に作られた既存先も上書きしない。
-            session.mkdir()
+            # AI_NOTE: Windowsのrename自体が既存先を拒むため、空ディレクトリの予約はPOSIXだけで行う。
+            if sys.platform != "win32":
+                session.mkdir()
             try:
                 staged.rename(session)
             except OSError:
-                session.rmdir()
+                if sys.platform != "win32":
+                    session.rmdir()
                 raise
         return {**result, "session": str(session.resolve()), "articles": urls,
                 "source_hashes": added["added"], "packet_sha256": initial["sha256"],
