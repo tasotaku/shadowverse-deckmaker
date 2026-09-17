@@ -1,0 +1,52 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-hard-complete-frontier",
+  "spec_version": 1,
+  "spec_sha256": "9c563a1cba87b448a364df815ec87dffb4d6aebbded18c9589b84dc1d6375c01",
+  "executor_id": "fresh-hard-api-final",
+  "started_at": "2026-09-17T22:52:56.317601+00:00",
+  "finished_at": "2026-09-17T22:54:32.380856+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api-final",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api-final\\comparison-replay.json"
+  },
+  "tests": [
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T22:52:56.317601+00:00",
+      "journey_stopped_at": "2026-09-17T22:53:54.316884+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Fixture timing-finisher-5v5 selected from public description and input only: distinct nonuniform five-versus-five, ordinary/super evolution target choices, multiple opponent targets and final-hit ordering; fixture.json preserved. No T1 result or source inspected.",
+        "FE1 PASS: one POST /api/combat, HTTP 200, complete=true; 858 returned signatures versus all 858 independently certified expected signatures; missing=0, extra=0. Reference complete=true; provenance states production solver neither read nor imported, all 858 reference witnesses replayed.",
+        "FE2 PASS: all 858 candidate witnesses sent once each to /api/replay, HTTP 200 and final-state signature match 858/858. Every action is attack/evolve/super_evolve and final board keywords empty. Raw request/response JSON retained for every candidate.",
+        "FE3 PASS: fixture.json, combat-request.json, combat-response.json, comparison-replay.json and all 858 replay request/response pairs retained in dedicated workspace.",
+        "UX1 PASS: combat body contains only record,cursor,mode; budget adjustments=0; public server commandline captured read-only in server-startup.json.",
+        "UX2 PASS: monotonic POST-to-full-body wall time 0.5939999999973224 seconds <= 60; full 858 HTTP replay phase 45.23399999999674 seconds <= 60; journey 58.0 seconds <= 360.",
+        "UX3 PASS: docs/combat-benchmark.md describes complete, signature and candidate replay schema; docs/battle-ai.md provides public semantics. Only public make_battle/export/signature used, source references=0. GUI clicks/focus/scroll/viewport not applicable.",
+        "Spec lock verified by design-user-tests lint before execution; no retries."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T22:54:32.380856+00:00",
+        "evidence": "Dedicated urllib clients closed by response context managers; client process exited normally. No process or file cleanup outside dedicated output/combat-hard-acceptance-api-final; server left running; evidence preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Partial report contains independently executed T2 only; parent merges T1.",
+    "Server startup commandline directly recorded; no solver internal configuration inspection was performed."
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-hard-complete-frontier",
+  "spec_version": 1,
+  "spec_sha256": "9c563a1cba87b448a364df815ec87dffb4d6aebbded18c9589b84dc1d6375c01",
+  "executor_id": "fresh-hard-api-acceptance-T2",
+  "started_at": "2026-09-17T22:48:50.513840+00:00",
+  "finished_at": "2026-09-17T22:50:37.065808+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api\\replay-summary.json"
+  },
+  "tests": [
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T22:48:50.513840+00:00",
+      "journey_stopped_at": "2026-09-17T22:49:59.306806+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: selected timing-finisher-5v5 from public case descriptions and fixture only: nonuniform 5v5, ordinary/super evolution choices, target allocation and finishing-order choices; no T1 results or product source inspected.",
+        "F1 PASS: exactly one POST /api/combat, mode=super, HTTP 200, complete=true. Public bench.signature normalization gives actual=858, independently certified expected=858, missing=0, extra=0. Entire differences in comparison.json. Independent certificate complete=true and method/provenance documented in reference/method.md and combat_hard_answers.json.",
+        "F2 PASS: all 858 candidates sent exactly once to /api/replay with replacement actions, frames=[], cursor=action count. HTTP 200, full cursor reached and final state signature equals corresponding candidate for 858/858. Allowed action types attack/evolve/super_evolve for 858/858; no card plays or ability actions. Raw response state boards contain ability-free fixture followers.",
+        "F3 PASS: fixture.json, combat.request.json, combat.response.json, combat.meta.json, comparison.json, every replay-NNNN request/response/meta and replay-summary.json preserved in dedicated output directory.",
+        "UX1 PASS: combat body contains only record,cursor,mode; budget adjustments=0. Direct process-command observation saved server-startup.json: python -X utf8 -m svdeck.battle_server --port 8767. Independent HTTP clients and records; shared server left running.",
+        "UX2 PASS: external perf_counter from sending POST through complete read measured 0.7803131999971811 seconds, below 60 seconds. Remaining 857 replay calls plus validation/artifact storage took 18.858723600002122 seconds, using independent requests with 16 client workers.",
+        "UX3 PASS: response complete/candidates/actions interpreted using docs/combat-benchmark.md and API section docs/battle-ai.md. Product source inspections=0. GUI clicks/focus/viewport/scroll not applicable under fixed spec.",
+        "Budget PASS: public API journey completed within 6 minutes; first replay response read once during schema observation and reused for comparison, remaining 857 candidates each replayed once. No retry. Spec lock lint passed before execution."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T22:50:37.065808+00:00",
+        "evidence": "All owned HTTP response contexts closed, 16 worker threads joined, client Python processes exited normally. Dedicated output/combat-hard-acceptance-api artifacts preserved. Shared server and unrelated processes unchanged."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Only T2 assigned to this independent executor. T1 must be merged from its own executor for whole-spec validation.",
+    "Representative certified case only; no claim of correctness for arbitrary boards or ability/card-play rules."
+  ]
+}

@@ -260,7 +260,8 @@ def run(cases: list[Json], output: Path, repeat: int, strategies: list[str], tim
                     'repeat': repeat, 'timeout_seconds': timeout, 'max_states': max_states, 'cases': [], 'status': 'RUNNING',
                     'measurement': {'isolation': 'new child process for each run', 'time': 'analyze only; milliseconds',
                                     'memory': 'process peak resident bytes captured before replay verification',
-                                    'reference': 'independent Battle legal-action enumeration in separate process',
+                                    'reference': ('independent precomputed certificate supplied with --reference-file'
+                                                  if reference_file else 'independent Battle legal-action enumeration in separate process'),
                                     'timeout': 'whole child including startup and replay; phase identifies interrupted work'},
                     'source_sha256': hashlib.sha256(Path(__file__).with_name('battle_combat.py').read_bytes()).hexdigest(),
                     'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),

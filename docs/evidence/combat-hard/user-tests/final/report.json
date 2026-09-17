@@ -1,0 +1,87 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-hard-complete-frontier",
+  "spec_version": 1,
+  "spec_sha256": "9c563a1cba87b448a364df815ec87dffb4d6aebbded18c9589b84dc1d6375c01",
+  "executor_id": "fresh-hard-cli-final | fresh-hard-api-final",
+  "started_at": "2026-09-17T22:52:06.633252+00:00",
+  "finished_at": "2026-09-17T22:54:59.491944+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli-final | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api-final",
+    "completed_record": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli-final\\execution.json | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-api-final\\comparison-replay.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T22:52:06.633252+00:00",
+      "journey_stopped_at": "2026-09-17T22:54:59.491944+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Lock: design-user-tests spec lint PASS, sha256=9c563a1cba87b448a364df815ec87dffb4d6aebbded18c9589b84dc1d6375c01",
+        "F1 PASS: public fixture contains three distinct nonuniform 5v5 inputs, including varied-5v5; no cards or ability keywords. Public docs identify varied attack/evolution choice, allocation competing targets and multiple attackers/sacrifices, timing injury/spent/sick/finishing order.",
+        "F2 PASS: method.md independently enumerates finite targets, feasible last hitters and pre/post evolution without product answers; certificate global and individual complete=true. Full expected sets independently compared to every candidate using public bench.signature; all missing=0, extra=0 and solver complete=true. See comparison.json.",
+        "F3 PASS: saved public execution artifacts contain all 28,667 candidate witnesses and replay final signatures; all indexes covered exactly once and every actual signature equals corresponding candidate signature. Replay errors empty. All action types are attack, evolve, super_evolve.",
+        "F4 PASS: all report.json and report.md record case ID, correctness PASS, solver/reference completion, full-answer links, elapsed time and peak memory. Values finite; elapsed>=0 and peak>0. Time is analyze-only ms; memory Windows PeakWorkingSetSize captured before replay, process-wide bytes in JSON / MiB in Markdown. Startup, reference setup and replay excluded from reported solver time.",
+        "F5 PASS: all runs finished normally, complete=true; PASS agrees with complete reference and full-set comparison. No timeout/truncation/uncertified run was mislabeled; incomplete-path fault injection outside fixed actions.",
+        "UX1 PASS: catalog.stdout.txt lists all IDs; docs/combat-benchmark.md provides executable custom-suite command and certification paths. Product source read count 0; commands saved execution.json.",
+        "UX2 PASS: visually read every generated Markdown report: case, correctness PASS, completion 1/1, time ms, peak MiB, reference.json and full answers links are directly identifiable; reference completion stated as validated. No mandatory field required JSON-only lookup.",
+        "UX3 PASS: each public command measured using time.monotonic from Popen start to full communicate completion; 37.078 / 39.593 / 3.204 seconds, each <60 seconds. No solver retries.",
+        "UX4 N/A: CLI machine journey; clicks, focus, viewport and scroll not applicable. Three solver invocations, one catalog invocation; zero budget overrides.",
+        "No GUI is in this journey. CLI output usability GO: named columns, units, completion and direct evidence links support judgment from Markdown.",
+        "{\"case\": \"varied-5v5\", \"candidate_count\": 13483, \"expected_count\": 13483, \"complete\": true, \"reference_complete\": true, \"missing\": 0, \"extra\": 0, \"replay_checked\": 13483, \"replay_index_coverage\": true, \"replay_mismatch\": 0, \"replay_errors\": [], \"action_types\": [\"attack\", \"evolve\", \"super_evolve\"], \"correctness\": \"PASS\", \"wall_seconds\": 37.078000000008615, \"solver_ms\": 4440.960499996436, \"peak_rss_bytes\": 110952448, \"peak_MiB\": 105.8125, \"finite_resources\": true}",
+        "{\"case\": \"allocation-5v5\", \"candidate_count\": 14326, \"expected_count\": 14326, \"complete\": true, \"reference_complete\": true, \"missing\": 0, \"extra\": 0, \"replay_checked\": 14326, \"replay_index_coverage\": true, \"replay_mismatch\": 0, \"replay_errors\": [], \"action_types\": [\"attack\", \"evolve\", \"super_evolve\"], \"correctness\": \"PASS\", \"wall_seconds\": 39.59300000000803, \"solver_ms\": 5505.886200000532, \"peak_rss_bytes\": 132734976, \"peak_MiB\": 126.5859375, \"finite_resources\": true}",
+        "{\"case\": \"timing-finisher-5v5\", \"candidate_count\": 858, \"expected_count\": 858, \"complete\": true, \"reference_complete\": true, \"missing\": 0, \"extra\": 0, \"replay_checked\": 858, \"replay_index_coverage\": true, \"replay_mismatch\": 0, \"replay_errors\": [], \"action_types\": [\"attack\", \"evolve\", \"super_evolve\"], \"correctness\": \"PASS\", \"wall_seconds\": 3.2039999999979045, \"solver_ms\": 406.97690000524744, \"peak_rss_bytes\": 31817728, \"peak_MiB\": 30.34375, \"finite_resources\": true}",
+        "budget_minutes: 12",
+        "commands_elapsed_monotonic_seconds: 81.14100000000326"
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T22:54:59.491944+00:00",
+        "evidence": "All three owned CLI processes exited code 0; execution harness exited code 0; no timeout or kill invoked, no server started or stopped, no other processes touched. Preserved dedicated workspace C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli-final; completed record C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli-final\\execution.json"
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T22:52:56.317601+00:00",
+      "journey_stopped_at": "2026-09-17T22:53:54.316884+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Fixture timing-finisher-5v5 selected from public description and input only: distinct nonuniform five-versus-five, ordinary/super evolution target choices, multiple opponent targets and final-hit ordering; fixture.json preserved. No T1 result or source inspected.",
+        "FE1 PASS: one POST /api/combat, HTTP 200, complete=true; 858 returned signatures versus all 858 independently certified expected signatures; missing=0, extra=0. Reference complete=true; provenance states production solver neither read nor imported, all 858 reference witnesses replayed.",
+        "FE2 PASS: all 858 candidate witnesses sent once each to /api/replay, HTTP 200 and final-state signature match 858/858. Every action is attack/evolve/super_evolve and final board keywords empty. Raw request/response JSON retained for every candidate.",
+        "FE3 PASS: fixture.json, combat-request.json, combat-response.json, comparison-replay.json and all 858 replay request/response pairs retained in dedicated workspace.",
+        "UX1 PASS: combat body contains only record,cursor,mode; budget adjustments=0; public server commandline captured read-only in server-startup.json.",
+        "UX2 PASS: monotonic POST-to-full-body wall time 0.5939999999973224 seconds <= 60; full 858 HTTP replay phase 45.23399999999674 seconds <= 60; journey 58.0 seconds <= 360.",
+        "UX3 PASS: docs/combat-benchmark.md describes complete, signature and candidate replay schema; docs/battle-ai.md provides public semantics. Only public make_battle/export/signature used, source references=0. GUI clicks/focus/scroll/viewport not applicable.",
+        "Spec lock verified by design-user-tests lint before execution; no retries."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T22:54:32.380856+00:00",
+        "evidence": "Dedicated urllib clients closed by response context managers; client process exited normally. No process or file cleanup outside dedicated output/combat-hard-acceptance-api-final; server left running; evidence preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "固定した能力なしの代表難問を対象とし、任意盤面やカード能力の正確性は保証しない。各担当の部分報告は同じ仕様ロックに基づき統合した。"
+  ]
+}

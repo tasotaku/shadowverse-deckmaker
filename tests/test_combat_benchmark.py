@@ -80,7 +80,7 @@ def test_interrupted_record_preserves_last_complete_json(tmp_path: Path, monkeyp
     assert json.loads(destination.read_text(encoding='utf-8')) == {'status': 'RUNNING', 'peak_rss_bytes': 123}
 
 
-def test_certificate_rejects_stale_inputs_and_incomplete_reference(tmp_path: Path) -> None:
+def test_certificate_rejects_stale_inputs_and_incomplete_reference(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     # AI_NOTE: 名前が同じでも入力変更・未完了・正解差替えがあれば、独立正解の認証を通さない。
     case = json.loads(bench.CATALOG.read_text(encoding='utf-8'))[0]
     expected = bench.oracle(bench.make_battle(case), case['mode'])['expected']
@@ -92,6 +92,9 @@ def test_certificate_rejects_stale_inputs_and_incomplete_reference(tmp_path: Pat
     path = tmp_path/'reference.json'
     bench.save_result(path, data)
     assert bench.certified_references(path, [case])[case['id']]['expected'] == expected
+    monkeypatch.setattr(bench, 'isolated', lambda *_: {'status': 'PASS', 'complete': True, 'signatures': expected})
+    recorded = bench.run([case], tmp_path/'run', 1, ['grouped'], 60, 50000, path)
+    assert recorded['measurement']['reference'] == 'independent precomputed certificate supplied with --reference-file'
     with pytest.raises(ValueError, match='ケース入力'):
         bench.certified_references(path, [{**case, 'face': 1}])
     entry['complete'] = False

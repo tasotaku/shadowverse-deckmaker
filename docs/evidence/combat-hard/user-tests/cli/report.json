@@ -1,0 +1,69 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-hard-complete-frontier",
+  "spec_version": 1,
+  "spec_sha256": "9c563a1cba87b448a364df815ec87dffb4d6aebbded18c9589b84dc1d6375c01",
+  "executor_id": "fresh-hard_cli_acceptance",
+  "started_at": "2026-09-17T22:48:35.029694+00:00",
+  "finished_at": "2026-09-17T22:51:30.822939+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli\\execution.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "FINDINGS",
+      "journey_started_at": "2026-09-17T22:48:35.029694+00:00",
+      "journey_stopped_at": "2026-09-17T22:51:30.822939+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [
+        {
+          "id": "T1-U1",
+          "severity": "minor",
+          "title": "Certified-run JSON misdescribes reference generation",
+          "expected": "Measurement provenance describes the reference actually used.",
+          "observed": "All three current report.json files say measurement.reference='independent Battle legal-action enumeration in separate process'. The requested --reference-file is a pre-generated complete finite-target-assignment certificate; its method states 'complete finite target assignments; all feasible last hitters; pre/post evolution; exact injective dominance'.",
+          "impact": "A reader of machine-readable measurement metadata can wrongly infer reference full legal-action enumeration was performed in a separate process for this run. Numerical completeness/equality/replay and required Markdown fields passed.",
+          "evidence": "output/combat-hard-acceptance-cli/independent-comparison.json: measurement.reference versus tests/fixtures/combat_hard_answers.json: method"
+        }
+      ],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: delivered fixture has three distinct nonuniform 5v5 boards including varied-5v5. Docs and suite catalog identify target assignment/evolution in varied; cooperative lethal and sacrifice/tradeoffs in allocation; spent/sick/injured/super-finisher timing in timing-finisher. Fixtures contain no ability/card actions; every returned action type is attack, evolve or super_evolve.",
+        "F2 PASS: certificate complete=true/status=PASS for all 3; method/independence/finished assignment and endpoint counts present. Independent executor compared every bench.signature(candidate) to entire certificate expected set in both directions, using only documented normalization. All product complete=true, missing=extra=0.",
+        "F3 PASS: inspected all saved replay_answers and corresponding witness candidates from current execution artifacts. Indices exactly cover every candidate once; each actual replay signature equals that candidate signature; reported replay_coverage=all, no errors. This uses the fixed-spec artifact observation option, not new HTTP replay calls.",
+        "F4 PASS: report.json and directly read report.md identify case, correctness PASS, product completion 1/1, certified-reference completion, reference.json and all-answer links, finite nonnegative analysis ms and positive peak memory. Markdown states time=analysis only and memory=process peak through analysis including Python/input/cache; units ms/MiB; JSON bytes and Windows PeakWorkingSetSize.",
+        "F5 PASS: all executions normal exit 0, complete=true with fully complete references; no truncation, timeout, or unverified run labeled as a complete match. Markdown explicitly explains UNVERIFIED.",
+        "UX1 PASS: default and delivered-suite --list-cases each executed once. IDs and commands discovered through docs/combat-benchmark.md; source reads 0. Exact commands/logs in execution.json and *.stdout.txt.",
+        "UX2 PASS: each generated Markdown independently contains correctness, completion, analysis ms, peak MiB, measurement scope and linked complete reference and answers. No mandatory metric required JSON to discover.",
+        "UX3 PASS: external time.monotonic around process launch through normal exit; per-case wall 40.078, 46.375, 3.234 seconds, each below fixed 60 seconds. Each selected case run exactly once; no retries.",
+        "UX4 N/A: CLI machine-use journey; clicks/focus/viewport/scroll/manual surface transitions not applicable.",
+        "Budget: 12-minute journey cap; commands used 94.203 seconds including two catalog invocations; artifact inspection/report performed within cap. T1 single executor; T2 independent parallel executor managed by parent.",
+        "varied-5v5: complete=True, frontier=13483/13483, missing=0, extra=0, replay=13483 all matching, analysis=4424.080100 ms, peak=111321088 bytes (106.16 MiB).",
+        "allocation-5v5: complete=True, frontier=14326/14326, missing=0, extra=0, replay=14326 all matching, analysis=5859.576100 ms, peak=132489216 bytes (126.35 MiB).",
+        "timing-finisher-5v5: complete=True, frontier=858/858, missing=0, extra=0, replay=858 all matching, analysis=407.206600 ms, peak=31793152 bytes (30.32 MiB).",
+        "Report lint: fixed spec lock validated; partial T1 report lint rejects only missing T2: include every fixed test exactly once. Parent must merge independently produced T2."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T22:51:30.822939+00:00",
+        "evidence": "All five directly created CLI processes observed exited with code 0; no timeout/kill needed. Own harness exited. Artifacts preserved at C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\combat-hard-acceptance-cli. No server or other process touched."
+      }
+    }
+  ],
+  "product_findings_count": 1,
+  "blind_spots": [
+    "T1 partial report only; merge T2 from its independent executor before full-spec report lint can succeed.",
+    "Reference exhaustive construction was reviewed via method and completion certificate; expensive independent reference generation was not repeated, as allowed by fixed spec.",
+    "Replay legality observed through permitted current-run saved replay artifacts, not independently reissued HTTP requests."
+  ]
+}
