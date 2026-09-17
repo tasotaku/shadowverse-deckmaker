@@ -262,74 +262,126 @@ def target_combinations(state: Position, target_index: int, own_ids: tuple[str, 
 def grouped_search(initial: Position, owner: int, turn: int, mode: str,
                    own_ids: tuple[str, ...], enemy_ids: tuple[str, ...], max_states: int | None
                    ) -> tuple[dict[Position, tuple[Position, list[Json]]], bool, Json]:
-    # AI_NOTE: 進化を先に選び、敵ごとに処理。比較不能な残存個体・攻撃権は次の敵の検討へ両方渡す。
-    paths: dict[Position, tuple[Position, list[Json]]] = {canonical(initial): (initial, [])}
-    count, transitions, duplicates, pruned = 1, 0, 0, 0
-    complete = True
+    # AI_NOTE: 残り攻撃者の集合をキーに敵一体分の取り方を再利用し、完成した盤面だけを蓄積する。
+    variants: list[tuple[Position, list[Json], int | None, Json | None]] = [(initial, [], None, None)]
     for child, action in successors(initial, owner, turn, mode, own_ids, enemy_ids):
         if action['type'] == 'attack':
             continue
-        transitions += 1
-        key = canonical(child)
-        if key in paths:
-            duplicates += 1
-            continue
-        if max_states is not None and count >= max_states:
-            complete = False
-            break
-        paths[key] = (child, [action])
-        count += 1
-    # Low-health targets first makes useful complete removals available early under a budget.
+        variants.append((child, [action], None, None))
+        # A stronger early hit can steal another super body's finishing ping: keep late evolution too.
+        index = own_ids.index(action['source'])
+        body = initial.own[index]
+        if body and body.ready and not body.attacks and any(b and b.evolved == 2 and not b.attacks for b in initial.own):
+            variants.append((initial._replace(ep=child.ep, sep=child.sep, used=True), [], index, action))
     order = sorted(range(len(initial.enemy)), key=lambda i: b.health if (b := initial.enemy[i]) else 0)
-    for target_index in order:
-        if not complete:
-            break
-        following: dict[Position, tuple[Position, list[Json]]] = {}
-        for current, actions in paths.values():
-            for child, attacks in target_combinations(current, target_index, own_ids, enemy_ids):
-                transitions += len(attacks)
-                key = canonical(child)
-                if key in following:
-                    duplicates += 1
-                    continue
-                if attacks:
-                    if max_states is not None and count >= max_states:
-                        complete = False
-                        break
-                    count += 1
-                following[key] = (child, actions+attacks)
-            if not complete:
-                break
-        if not complete:
-            following = {**paths, **following}
-        # Only compare exactly the same enemies; this does not erase future super-evolution targets.
-        groups: dict[tuple[Body | None, ...], list[Position]] = {}
-        for key in following:
-            groups.setdefault(key.enemy, []).append(key)
-        retained = [keys[i] for keys in groups.values() for i in frontier(keys, continuation=True)]
-        pruned += len(following)-len(retained)
-        paths = {key: following[key] for key in retained}
     results: dict[Position, tuple[Position, list[Json]]] = {}
-    for current, actions in paths.values():
-        # At the final stop boundary unused face attacks have no downside in the declared endpoint criteria.
-        for source, body in enumerate(current.own):
-            if body is None or body.attacks or not body.ready or not body.attack:
-                continue
-            if current.win:
-                break
-            if max_states is not None and count >= max_states:
-                complete = False
-                break
-            count += 1
-            transitions += 1
-            own = list(current.own)
-            own[source] = body._replace(attacks=1)
-            face = max(0, current.face-body.attack)
-            current = current._replace(own=tuple(own), face=face, win=face == 0)
-            actions = actions+[{'type': 'attack', 'source': own_ids[source], 'target': f'leader:{1-owner}'}]
-        results.setdefault(canonical(endpoint(current)), (current, actions))
-    return results, complete, {'states': count, 'transitions': transitions, 'duplicates': duplicates,
-                              'group_pruned': pruned}
+    complete, nodes, duplicates, pruned, allocations = True, 0, 0, 0, 0
+    id_index = {ident: i for i, ident in enumerate(own_ids)}
+
+    def retain(state: Position, actions: list[Json]) -> None:
+        # AI_NOTE: 勝利後に計算上続いた操作は切り、実行可能な勝利直後の状態に戻して記録する。
+        nonlocal complete, duplicates, allocations
+        allocations += 1
+        if state.win:
+            actual = initial
+            witness = []
+            for action in actions:
+                actual = next(child for child, legal in successors(actual, owner, turn, mode, own_ids, enemy_ids) if legal == action)
+                witness.append(action)
+                if actual.win:
+                    break
+            state, actions = actual, witness
+        key = canonical(endpoint(state))
+        if key in results:
+            duplicates += 1
+            return
+        if max_states is not None and len(results) >= max_states:
+            complete = False
+            return
+        results[key] = (state, actions)
+
+    for root, opening, late_index, late_action in variants:
+        if not complete or any(key.win for key in results):
+            break
+        mask = sum(1 << i for i, b in enumerate(root.own) if b and not b.attacks and
+                   b.attack > 0 and (b.ready or b.evolved))
+        cache: dict[tuple[int, int], list[tuple[Position, list[Json], int]]] = {}
+
+        def choices(target: int, available: int) -> list[tuple[Position, list[Json], int]]:
+            # AI_NOTE: 既に別の敵へ割り当てた個体は比較から外し、未使用の同じ部分問題を一度だけ解く。
+            nonlocal pruned
+            cache_key = (target, available)
+            if cache_key in cache:
+                return cache[cache_key]
+            local = root._replace(own=tuple(b if available & (1 << i) else None for i, b in enumerate(root.own)))
+            options = list(target_combinations(local, target, own_ids, enemy_ids))
+            if late_index is None:
+                groups: dict[tuple[Body | None, ...], list[int]] = {}
+                for i, (child, _) in enumerate(options):
+                    groups.setdefault(child.enemy, []).append(i)
+                kept = [indices[j] for indices in groups.values() for j in frontier(
+                    [canonical(options[i][0]) for i in indices], continuation=True)]
+                pruned += len(options)-len(kept)
+                options = [options[i] for i in kept]
+            cache[cache_key] = [(child, actions, sum(1 << id_index[a['source']] for a in actions)) for child, actions in options]
+            return cache[cache_key]
+
+        def visit(depth: int, available: int, state: Position, actions: list[Json], late_done: bool) -> None:
+            # AI_NOTE: 攻撃先ごとの割当を深さ優先で合成し、巨大な途中盤面の一覧を保持しない。
+            nonlocal nodes
+            if not complete:
+                return
+            if state.win:
+                retain(state, actions)
+                return
+            if depth == len(order):
+                own = list(state.own)
+                face = state.face
+                for i, body in enumerate(own):
+                    if body and not body.attacks and body.ready and body.attack > 0:
+                        face = max(0, face-body.attack)
+                        own[i] = body._replace(attacks=1)
+                        actions = actions+[{'type': 'attack', 'source': own_ids[i], 'target': f'leader:{1-owner}'}]
+                if late_index is not None and not late_done:
+                    body = own[late_index]
+                    if body is None:
+                        return
+                    assert late_action is not None
+                    amount = 2 if late_action['type'] == 'evolve' else 3
+                    own[late_index] = body._replace(attack=body.attack+amount, health=body.health+amount,
+                        max_health=body.max_health+amount, evolved=amount-1)
+                    actions = actions+[late_action]
+                retain(state._replace(own=tuple(own), face=face, win=face == 0), actions)
+                return
+            target = order[depth]
+            for local, attacks, spent in choices(target, available):
+                nodes += 1
+                own, enemy = list(state.own), list(state.enemy)
+                for i in range(len(own)):
+                    if spent & (1 << i):
+                        own[i] = local.own[i]
+                enemy[target] = local.enemy[target]
+                child_done = late_done
+                if late_index is not None and not late_done and spent & (1 << late_index):
+                    body = own[late_index]
+                    if body is None:
+                        continue
+                    assert late_action is not None
+                    amount = 2 if late_action['type'] == 'evolve' else 3
+                    own[late_index] = body._replace(attack=body.attack+amount, health=body.health+amount,
+                        max_health=body.max_health+amount, evolved=amount-1)
+                    # Its post-attack evolution can be placed after this independent target's other attacks.
+                    attacks = attacks+[late_action]
+                    child_done = True
+                face = max(0, state.face-(root.face-local.face))
+                visit(depth+1, available & ~spent, state._replace(own=tuple(own), enemy=tuple(enemy), face=face,
+                      win=face == 0), actions+attacks, child_done)
+                if not complete:
+                    break
+        visit(0, mask, root, opening, False)
+    return results, complete, {'states': len(results), 'transitions': nodes, 'duplicates': duplicates,
+                              'group_pruned': pruned, 'allocations': allocations,
+                              'budget_unit': 'unique completed endpoints'}
 
 
 def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000,

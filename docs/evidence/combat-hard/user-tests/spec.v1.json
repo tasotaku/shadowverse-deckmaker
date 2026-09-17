@@ -1,0 +1,119 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "combat-hard-complete-frontier",
+  "version": 1,
+  "goal": "利用者が能力なし戦闘の難しい攻撃割当・複数体の犠牲・基本進化の選択を、独立に確定した全解との一致と実行可能な手順を伴う結果として受け取り、時間とメモリを評価できる。",
+  "persona": "Windows上で戦闘計算の正確さと難しい5対5盤面への実用性を確認する利用者",
+  "public_entry": "C:/Users/tasog/source/shadowverse-deckmaker の .venv/Scripts/python.exe -X utf8 -m svdeck.combat_benchmark --list-cases および http://127.0.0.1:8767/api/combat、/api/replay",
+  "test_data": [
+    "製品の公開catalogまたは納品された --cases ファイルに掲載された、独立認証済みの難しい5対5ケースを3件以上。各陣営の攻撃力・体力が一様でない異なる盤面を用い、ケース説明と認証資料を伴うこと。",
+    "既存の varied5v5 ケースも独立認証済みの全解とともに今回の難問検証対象へ含める。3件の最低数へ数えてよいが、同じ盤面のID変更で水増ししない。",
+    "選択したケース群で複数の敵への攻撃割当、複数の味方による1体の敵の処理と犠牲、基本進化の対象選択を覆う。カード使用・能力キーワードは禁止。通常の攻撃・基本進化のみ。",
+    "各ケースの入力、完全な期待frontier、frontier要素の公開表現または正規化規則、独立認証の生成方法と完了記録を納品する。期待値は製品計算結果そのもののコピーを認証扱いしない。",
+    "公開Battle構築・record exportまたは納品されたrecord fixtureでHTTP入力を作れること。公開説明から選んだ難問の全候補を既存の /api/replay で再生できる入力を得ること。"
+  ],
+  "minimal_test_count_rationale": "CLIで難問集合の全解一致と測定資料を利用するjourneyと、通常HTTP設定で同じ難問の結果を受け取り手順を再生するjourneyの2件。大きい探索予算のCLIだけが成功して通常APIが不完全になるリスクを分離する最小構成。",
+  "execution_policy": {
+    "runs_per_test": 1,
+    "continue_after_failure": true,
+    "parallelize_independent_tests": true
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "title": "認証済み難問を公開CLIから実行し全解と計測を利用する",
+      "user_task": "難しい5対5の正確さと必要資源を、自分で再実行できる結果資料で判断する。",
+      "setup": [
+        "Windows PowerShell terminal、repo cwd、既存venv。ログイン不要。検証専用の空の出力ディレクトリを使用する。製品source・diff・過去の判定を読まない。",
+        "納品された難問catalog・認証資料だけをfixtureとして取得する。実行対象は3件以上の難しい5対5と varied5v5。最小構成で3件、varied5v5が別なら4件とする。",
+        "--cases ファイルを使う場合は納品物の公開実行例を使用してよい。認証の事前生成はsetupであり、製品solverの測定時間とは区別する。"
+      ],
+      "actions": [
+        "--list-cases と必要なら --help、および納品の認証ケース説明を読み、ID・入力・難しさ・期待値の参照先を記録する。納品の --cases ファイルが別suiteの場合はその公開利用手順から同様に発見する。",
+        "選んだ各ケースについて --case ID --repeat 1 --output DIR を1回実行する。別suite指定に必要な公開 --cases 引数は許可する。各solver実行は外部単調時計で開始から正常終了または60秒timeoutまで観測する。",
+        "生成JSON/Markdownと認証資料を読み、返された全frontierを期待集合と双方向に比較する。候補数だけの比較や代表候補だけの比較に置き換えない。公開正規化規則以外で差分を捨てない。",
+        "全候補のwitnessを公開replay入口で再生するか、実行artifactに保存された全候補の公開replay応答を確認する。各手順が合法で、その最終結果が対応する候補と一致することを確認する。",
+        "結果資料を使いケース別の完全性・一致判定・経過時間・peak memoryを表へまとめる。truncated、timeout、未認証、参照不完全をPASSとしていないことを確かめる。"
+      ],
+      "functional_expectations": [
+        "最低3件の異なる非一様な難しい5対5と varied5v5 が検証され、能力なし・基本進化ありのfixture制約を満たす。ケース説明と認証資料から要求した3種類の判断がどのケースで試されるか特定できる。",
+        "全対象で独立参照の探索完了が明示され、参照frontier全体が参照可能。製品の complete=true と全frontierの集合一致が成立し、欠落・余分な候補がともに0件。",
+        "全候補のwitnessが合法に再生でき、再生最終状態または公開評価値が当該候補と一致する。",
+        "公開JSONとMarkdownがケースID、正確性判定、製品と参照の完全性、全解参照先、経過時間、peak memoryとその単位・測定範囲を記録する。測定値は有限で時間は0以上、peak memoryは0より大きい。",
+        "不完全・打切り・未認証の実行を完全一致のPASSと解釈させる表記がない。対象がtimeoutになった場合はその事実を残して当該対象を不合格とする。"
+      ],
+      "ux_checks": [
+        "CLI一覧または納品suiteの公開手順からケースIDと再実行commandを取得でき、製品sourceを読む必要が0回。観測はコマンドと参照した文書パスを記録する。",
+        "生成Markdownだけから各対象の完全性・正確性・時間・peak memoryの4項目と全解の参照先を識別できる。JSONでしか分からない必須項目があれば不合格。",
+        "CLI呼出し開始から終了まで単調時計で測定し、各solver実行は60秒以内に終了すること。これはhangを区切る検証予算であり速度改善率や厳しい性能目標を追加するものではない。",
+        "CLI/APIの機械利用journeyなのでクリック数・focus・viewport・scroll条件は適用しない。"
+      ],
+      "impossible_if": [
+        "検証環境のPython実行自体が利用不能で、製品とは無関係な環境障害により公開commandを開始できない。欠けたcase・認証資料・製品crash・timeoutは実行不能ではなく製品不合格。"
+      ],
+      "isolation_requirements": "専用artifactディレクトリ。APIを並行利用する場合は状態を共有しない独立recordを送信する。製品sourceや過去評価を参照しないfresh executorが担当する。",
+      "budget": {
+        "public_steps_minutes": 7,
+        "expected_external_wait_minutes": 5,
+        "total_minutes": 12,
+        "basis": "公開利用資料と認証集合の確認、比較・資料化7分。最大4件の各60秒solver実行と全witness replayに5分。"
+      }
+    },
+    {
+      "id": "T2",
+      "title": "通常APIの難問結果を完全参照と照合して手順を再生する",
+      "user_task": "通常の戦闘計算APIから難しい盤面の完全な選択肢を取得し、選択肢を実際の合法な操作として利用する。",
+      "setup": [
+        "http://127.0.0.1:8767 が通常設定で稼働したWindows環境。HTTP client専用sessionと独立recordを使用する。",
+        "公開catalogの説明から基本進化対象選択と複数敵への割当または複数体犠牲を含む、独立認証済みの非一様5対5を1件選ぶ。T1の結果を選択根拠にせず入力と説明だけから選びIDを固定して実行する。",
+        "通常公開Battle構築・exportまたは納品fixtureでrecordとcursorを用意する。大きな探索予算を追加した設定や一時的なserver overrideは使用しない。"
+      ],
+      "actions": [
+        "選んだfixtureについて /api/combat に record、cursor、通常の公開modeを指定して1回POSTする。非公開引数や予算拡大を付加しない。送信から完全response受信まで単調時計で計測する。",
+        "HTTP応答の全frontierを固定された独立参照全体と集合比較し、complete値・候補数・余分と欠落の件数を記録する。",
+        "返された全候補のwitnessを公開recordへ適用して /api/replay {record,cursor} で再生する。合法性と候補の最終結果一致を確認し、生HTTP応答を保存する。"
+      ],
+      "functional_expectations": [
+        "通常設定の /api/combat が成功responseを返し complete=true。期待frontierとの完全一致で、欠落・余分な候補が0件。",
+        "全候補についてreplayが成功し、能力・カード使用を混ぜず通常攻撃と基本進化だけで当該結果に到達する。",
+        "選択したfixture、HTTP request/response、全集合比較結果、replay結果、wall timeが証拠として残る。製品不完全時にCLIだけの成功でこのjourneyをPASSへ置き換えない。"
+      ],
+      "ux_checks": [
+        "HTTP clientから通常公開requestのみで結果を得られ、探索予算調整が0回。request bodyとserver起動条件を直接記録する。",
+        "POST開始から完全HTTP応答受信まで外部単調時計で60秒以内。timeoutは不合格として記録する。",
+        "responseの完全性状態と候補手順を公開schemaまたは納品利用説明から解釈でき、製品sourceの参照が0回。CLI/API利用のためGUI操作・focus・scroll条件は適用しない。"
+      ],
+      "impossible_if": [
+        "外部環境障害でHTTP serverの公開入口へ一切到達できず、製品の起動手順によっても実行環境を用意できない。API内のerror・timeout・不完全な結果は製品不合格。"
+      ],
+      "isolation_requirements": "専用HTTP client sessionとfixture record。実装・T1実行・過去判定を知らないfresh executorが、公開入口とfixtureだけで観測する。",
+      "budget": {
+        "public_steps_minutes": 4,
+        "expected_external_wait_minutes": 2,
+        "total_minutes": 6,
+        "basis": "fixture選択・request作成・集合比較の確認に4分、combat 60秒と全witness replayに最大1分。"
+      }
+    }
+  ],
+  "reporting": {
+    "separate_functional_and_ux": true,
+    "include_unexpected_findings": true,
+    "evidence_level": "concise"
+  },
+  "coverage": {
+    "covered_risks": [
+      "複数敵への割当、協力攻撃での犠牲、基本進化の対象選択による全解欠落",
+      "非一様5対5と既存varied5v5の未認証を残したまま正確と報告すること",
+      "不完全な参照・打切り結果・候補数だけの一致を全解一致と誤認すること",
+      "到達不能な候補や違法なwitnessを返すこと",
+      "時間・peak memoryの欠落、およびCLI用の大きい予算だけでAPI完全性を代替すること"
+    ],
+    "blind_spots": [
+      "任意盤面全体の数学的な正確性証明ではなく、独立認証済みの代表難問に限定する。",
+      "能力キーワード・カード使用・GUIレイアウトと操作負担は対象外。",
+      "固定された速度改善率やメモリ上限のユーザー要求がないため、値と測定範囲を確認し性能優劣の閾値を追加しない。",
+      "認証資料の独立性・完了記録を確認するが、受入実行中に高価な参照全探索を再生成することは必須にしない。"
+    ]
+  },
+  "revision": null
+}

@@ -276,3 +276,17 @@ def test_lower_attack_can_preserve_super_finishing_blow() -> None:
     reference = analyze(battle, 'attack', strategy='exhaustive')
     assert {key(c) for c in result['candidates']} == {key(c) for c in reference['candidates']}
     assert any(not c['enemy_board'] and c['enemy_health'] == 19 for c in result['candidates'])
+
+
+def test_evolve_after_attack_preserves_another_super_ping() -> None:
+    # AI_NOTE: 進化前の小打点で削って超進化に最後を任せた後、削った個体を進化する正解を固定する。
+    battle = game([body('a', 1, 4), body('s', 1, 4, evolved=2, entered_turn=7)],
+                  [body('x', 0, 2)], ep=1, sep=0)
+    result = checked(battle, 'evolve')
+    raw = exhaustive(project(battle), 'evolve')
+    unique = {key(c): c for c in raw}
+    expected = {k for k, b in unique.items() if not any(k != j and no_worse(a, b) for j, a in unique.items())}
+    assert {key(c) for c in result['candidates']} == expected
+    assert any(not c['enemy_board'] and c['enemy_health'] == 19 and c['ep'] == 0 and
+               sorted((b['attack'], b['health'], b['evolved']) for b in c['own_board']) == [(1, 4, 2), (3, 6, 1)]
+               for c in result['candidates'])

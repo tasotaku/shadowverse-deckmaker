@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 
 import pytest
@@ -77,3 +78,41 @@ def test_interrupted_record_preserves_last_complete_json(tmp_path: Path, monkeyp
     with pytest.raises(OSError):
         bench.save_result(destination, {'status': 'PASS'})
     assert json.loads(destination.read_text(encoding='utf-8')) == {'status': 'RUNNING', 'peak_rss_bytes': 123}
+
+
+def test_certificate_rejects_stale_inputs_and_incomplete_reference(tmp_path: Path) -> None:
+    # AI_NOTE: 名前が同じでも入力変更・未完了・正解差替えがあれば、独立正解の認証を通さない。
+    case = json.loads(bench.CATALOG.read_text(encoding='utf-8'))[0]
+    expected = bench.oracle(bench.make_battle(case), case['mode'])['expected']
+    entry = {'id': case['id'], 'status': 'PASS', 'complete': True, 'expected': expected,
+             'case_sha256': hashlib.sha256(json.dumps(case, sort_keys=True).encode()).hexdigest(),
+             'expected_sha256': hashlib.sha256(json.dumps(expected).encode()).hexdigest()}
+    data = {'status': 'PASS', 'complete': True, 'cases': [entry],
+            'engine_sha256': hashlib.sha256(Path(bench.__file__).with_name('battle.py').read_bytes()).hexdigest()}
+    path = tmp_path/'reference.json'
+    bench.save_result(path, data)
+    assert bench.certified_references(path, [case])[case['id']]['expected'] == expected
+    with pytest.raises(ValueError, match='ケース入力'):
+        bench.certified_references(path, [{**case, 'face': 1}])
+    entry['complete'] = False
+    bench.save_result(path, data)
+    with pytest.raises(ValueError, match='未完了'):
+        bench.certified_references(path, [case])
+    entry['complete'] = True
+    entry['expected'] = ['forged']
+    bench.save_result(path, data)
+    with pytest.raises(ValueError, match='ハッシュ'):
+        bench.certified_references(path, [case])
+
+
+@pytest.mark.parametrize('case_id', ['varied-5v5', 'allocation-5v5', 'timing-finisher-5v5'])
+def test_hard_frontiers_match_independently_certified_answers(case_id: str) -> None:
+    # AI_NOTE: 生産実装を使わず作成した固定全解と、標準予算での結果を双方向に照合する。
+    fixtures = Path(__file__).parent/'fixtures'
+    cases = json.loads((fixtures/'combat_hard_cases.json').read_text(encoding='utf-8'))
+    case = next(value for value in cases if value['id'] == case_id)
+    reference = bench.certified_references(fixtures/'combat_hard_answers.json', [case])[case_id]
+    result = analyze(bench.make_battle(case), case['mode'])
+    assert result['complete'] is True
+    actual = {bench.signature(candidate) for candidate in result['candidates']}
+    assert actual == set(reference['expected'])

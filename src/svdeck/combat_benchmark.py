@@ -121,7 +121,8 @@ def oracle(battle: Battle, mode: str) -> Json:
     return {'status': 'PASS', 'expected': sorted(expected), 'sequences': sequences, 'endpoints': len(states)}
 
 
-def measure(case: Json, strategy: str, max_states: int, checkpoint: Path | None = None) -> Json:
+def measure(case: Json, strategy: str, max_states: int, checkpoint: Path | None = None,
+            record_answers: bool = False) -> Json:
     # AI_NOTE: メモリ・時間を解析直後に確定し、再生検査のコストは測定値へ含めない。
     battle = make_battle(case)
     original = battle.export()
@@ -136,6 +137,7 @@ def measure(case: Json, strategy: str, max_states: int, checkpoint: Path | None 
     if checkpoint is not None:
         save_result(checkpoint, {**metrics, 'status': 'RUNNING', 'phase': 'replay_check'})
     errors = []
+    replay_answers: list[Json] = []
     candidates = result['candidates']
     signatures = [signature(candidate) for candidate in candidates]
     checked_indices = list(range(len(candidates))) if case['oracle'] or len(candidates) <= 32 else [
@@ -148,6 +150,8 @@ def measure(case: Json, strategy: str, max_states: int, checkpoint: Path | None 
             errors.append(f'candidate {index}: illegal replay: {error}')
             continue
         state = outcome(actual)
+        if record_answers:
+            replay_answers.append({'index': index, 'actual': signature(state)})
         if any(state[k] != candidate[k] for k in ('enemy_health', 'ep', 'sep', 'win')):
             errors.append(f'candidate {index}: replay mismatch')
         for zone in ('own_board', 'enemy_board'):
@@ -161,7 +165,8 @@ def measure(case: Json, strategy: str, max_states: int, checkpoint: Path | None 
             errors.append(f'missing required survivors: {required}')
     if battle.export() != original:
         errors.append('input mutated')
-    return {**metrics, 'status': 'PASS' if not errors else 'FAIL', 'phase': 'finished', 'signatures': sorted(set(signatures)),
+    evidence = {'candidates': candidates, 'replay_answers': replay_answers} if record_answers else {}
+    return {**metrics, **evidence, 'status': 'PASS' if not errors else 'FAIL', 'phase': 'finished', 'signatures': sorted(set(signatures)),
             'replay_checked': len(checked_indices), 'replay_indices': checked_indices,
             'replay_coverage': 'all' if len(checked_indices) == len(candidates) else 'sample', 'errors': errors}
 
@@ -211,11 +216,43 @@ def markdown(report: Json) -> str:
             execution = '/'.join(sorted({r['status'] for r in rows}))
             lines.append(f"| {case['id']} | {strategy} | {execution} | {verdict} | {timing} | {peak} | "
                          f"{sum(bool(r.get('complete')) for r in rows)}/{len(rows)} |")
+    if report.get('reference_file'):
+        lines.extend(['', '独立参照: [認証済み全解](reference.json)。参照の完了・入力ハッシュを検査済み。',
+                      '各回の全候補・再生後の終了状態は次のファイルに保存しています。', ''])
+        for case in report['cases']:
+            for row in case['runs']:
+                if row.get('answers_file'):
+                    lines.append(f"- {case['id']} {row['strategy']} #{row['iteration']}: [{row['answers_file']}]({row['answers_file']})")
     return '\n'.join(lines)+'\n'
 
 
-def run(cases: list[Json], output: Path, repeat: int, strategies: list[str], timeout: float, max_states: int) -> Json:
+def certified_references(path: Path, cases: list[Json]) -> dict[str, Json]:
+    # AI_NOTE: 入力が異なる・未完了・内容が変わった証明書を、正解として流用しない。
+    certificate = json.loads(path.read_text(encoding='utf-8'))
+    if certificate.get('status') != 'PASS' or certificate.get('complete') is not True:
+        raise ValueError('独立参照が完了していません')
+    if certificate.get('engine_sha256') != hashlib.sha256(Path(__file__).with_name('battle.py').read_bytes()).hexdigest():
+        raise ValueError('独立参照の対戦エンジンが現在と異なります')
+    indexed = {entry['id']: entry for entry in certificate['cases']}
+    selected = {}
+    for case in cases:
+        reference = indexed.get(case['id'])
+        digest = hashlib.sha256(json.dumps(case, sort_keys=True).encode()).hexdigest()
+        if reference is None or reference.get('case_sha256') != digest:
+            raise ValueError(f"独立参照とケース入力が一致しません: {case['id']}")
+        if reference.get('status') != 'PASS' or reference.get('complete') is not True:
+            raise ValueError(f"独立参照が未完了: {case['id']}")
+        expected = reference['expected']
+        if reference.get('expected_sha256') != hashlib.sha256(json.dumps(expected).encode()).hexdigest():
+            raise ValueError(f"独立参照の回答ハッシュが一致しません: {case['id']}")
+        selected[case['id']] = reference
+    return selected
+
+
+def run(cases: list[Json], output: Path, repeat: int, strategies: list[str], timeout: float, max_states: int,
+        reference_file: Path | None = None) -> Json:
     # AI_NOTE: 途中結果をケースごとに保存し、不正解やタイムアウトがあっても後続ケースの測定を続ける。
+    references = certified_references(reference_file, cases) if reference_file else {}
     output.mkdir(parents=True, exist_ok=False)
     report: Json = {'schema_version': 1, 'created_at': datetime.now(timezone.utc).isoformat(),
                     'environment': {'python': sys.version, 'platform': platform.platform(), 'machine': platform.machine(),
@@ -228,13 +265,22 @@ def run(cases: list[Json], output: Path, repeat: int, strategies: list[str], tim
                     'source_sha256': hashlib.sha256(Path(__file__).with_name('battle_combat.py').read_bytes()).hexdigest(),
                     'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                     'cases_sha256': hashlib.sha256(json.dumps(cases, sort_keys=True).encode()).hexdigest()}
+    if reference_file:
+        report['reference_file'] = str(reference_file.resolve())
+        save_result(output/'reference.json', json.loads(reference_file.read_text(encoding='utf-8')))
     (output/'cases.json').write_text(json.dumps(cases, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    for case in cases:
-        reference = isolated({'kind': 'oracle', 'case': case}, timeout) if case['oracle'] else {'status': 'NOT_REQUESTED'}
+    for case_index, case in enumerate(cases):
+        reference = references[case['id']] if case['id'] in references else (
+            isolated({'kind': 'oracle', 'case': case}, timeout) if case['oracle'] else {'status': 'NOT_REQUESTED'})
         rows = []
         for strategy in strategies:
             for iteration in range(repeat):
-                result = isolated({'kind': 'measure', 'case': case, 'strategy': strategy, 'max_states': max_states}, timeout)
+                result = isolated({'kind': 'measure', 'case': {**case, 'oracle': True} if reference_file else case,
+                                   'strategy': strategy, 'max_states': max_states, 'record_answers': bool(reference_file)}, timeout)
+                if 'candidates' in result:
+                    filename = f'answers-{case_index+1}-{strategy}-{iteration+1}.json'
+                    save_result(output/filename, {'candidates': result.pop('candidates'), 'replay_answers': result.pop('replay_answers')})
+                    result['answers_file'] = filename
                 correct = 'UNKNOWN'
                 if result['status'] == 'FAIL':
                     correct = 'FAIL'
@@ -252,7 +298,8 @@ def run(cases: list[Json], output: Path, repeat: int, strategies: list[str], tim
                     result['answers_sha256'] = hashlib.sha256(json.dumps(answers).encode()).hexdigest()
                     result['answer_samples'] = answers[:10]
                 rows.append({**result, 'strategy': strategy, 'iteration': iteration+1, 'correctness': correct})
-        report['cases'].append({'id': case['id'], 'description': case['description'], 'reference': reference,
+        report_reference = {k: v for k, v in reference.items() if k != 'witnesses'}
+        report['cases'].append({'id': case['id'], 'description': case['description'], 'reference': report_reference,
                                 'strategies': strategies, 'runs': rows})
         print(f"{case['id']}: {', '.join(r['correctness'] for r in rows)}", flush=True)
         (output/'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
@@ -269,6 +316,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description='盤面候補の正解・時間・最大常駐メモリを記録')
     parser.add_argument('--worker', nargs=2, help=argparse.SUPPRESS)
     parser.add_argument('--cases', type=Path, default=CATALOG)
+    parser.add_argument('--reference-file', type=Path, help='難問の独立認証済み全解JSON。入力と完了状態を照合')
     parser.add_argument('--list-cases', action='store_true')
     parser.add_argument('--case', action='append', default=[])
     parser.add_argument('--output', type=Path, help='新しい保存先。report.json / report.md / cases.json を作成')
@@ -281,7 +329,7 @@ def main() -> None:
         request, response = map(Path, args.worker)
         job = json.loads(request.read_text(encoding='utf-8'))
         result = oracle(make_battle(job['case']), job['case']['mode']) if job['kind'] == 'oracle' else measure(
-            job['case'], job['strategy'], job['max_states'], response)
+            job['case'], job['strategy'], job['max_states'], response, job.get('record_answers', False))
         save_result(response, result)
         return
     try:
@@ -307,7 +355,8 @@ def main() -> None:
         if args.output is None or args.output.exists():
             raise ValueError('--output に新しい保存先ディレクトリを指定してください')
         selected = [c for c in cases if not args.case or c['id'] in args.case]
-        report = run(selected, args.output, args.repeat, list(dict.fromkeys(args.strategy or ['grouped'])), args.timeout, args.max_states)
+        report = run(selected, args.output, args.repeat, list(dict.fromkeys(args.strategy or ['grouped'])), args.timeout,
+                     args.max_states, args.reference_file)
     except (OSError, ValueError, KeyError, TypeError, IndexError) as error:
         parser.error(str(error))
     print(f"JSON: {(args.output/'report.json').resolve()}\nMarkdown: {(args.output/'report.md').resolve()}")
