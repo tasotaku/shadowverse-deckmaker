@@ -1,0 +1,467 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-17T07:05:30.069901+00:00",
+  "environment": {
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "cpu_count": 12
+  },
+  "repeat": 2,
+  "timeout_seconds": 30.0,
+  "max_states": 50000,
+  "cases": [
+    {
+      "id": "incomparable",
+      "description": "攻撃力と体力の優劣が逆なら両方残す",
+      "reference": {
+        "status": "PASS",
+        "expected": [
+          "[[[2,4,4,0],[4,2,2,0]],[[5,2,2,0]],14,2,2]",
+          "[[[2,4,4,0]],[],18,2,2]",
+          "[[[4,2,2,0]],[],16,2,2]"
+        ],
+        "sequences": 11,
+        "endpoints": 8
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "elapsed_ms": 1.029600010951981,
+          "peak_rss_bytes": 22048768,
+          "baseline_peak_rss_bytes": 22007808,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 7,
+            "transitions": 6,
+            "duplicates": 0,
+            "endpoints": 3,
+            "dominated": 0,
+            "search_ms": 0.662,
+            "elapsed_ms": 1.022,
+            "group_pruned": 0
+          },
+          "candidate_count": 3,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 3,
+          "replay_indices": [
+            0,
+            1,
+            2
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "9afa5f185230545fd7a3c8851998d4059fb714ca436b7e5b07498dfe06a076f1",
+          "answer_samples": [
+            "[[[2,4,4,0],[4,2,2,0]],[[5,2,2,0]],14,2,2]",
+            "[[[2,4,4,0]],[],18,2,2]",
+            "[[[4,2,2,0]],[],16,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "PASS"
+        },
+        {
+          "elapsed_ms": 1.1203000030945987,
+          "peak_rss_bytes": 22417408,
+          "baseline_peak_rss_bytes": 22310912,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 7,
+            "transitions": 6,
+            "duplicates": 0,
+            "endpoints": 3,
+            "dominated": 0,
+            "search_ms": 0.748,
+            "elapsed_ms": 1.111,
+            "group_pruned": 0
+          },
+          "candidate_count": 3,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 3,
+          "replay_indices": [
+            0,
+            1,
+            2
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "9afa5f185230545fd7a3c8851998d4059fb714ca436b7e5b07498dfe06a076f1",
+          "answer_samples": [
+            "[[[2,4,4,0],[4,2,2,0]],[[5,2,2,0]],14,2,2]",
+            "[[[2,4,4,0]],[],18,2,2]",
+            "[[[4,2,2,0]],[],16,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 2,
+          "correctness": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "tall-wide",
+      "description": "大型一体と小型二体、複数体での相打ち",
+      "reference": {
+        "status": "PASS",
+        "expected": [
+          "[[[2,1,1,0],[2,1,1,0],[4,1,1,0]],[[4,4,4,0]],12,2,2]",
+          "[[[2,1,1,0],[2,1,1,0]],[],16,2,2]",
+          "[[[2,1,1,0],[4,1,1,0]],[[4,2,4,0]],14,2,2]",
+          "[[[4,1,1,0]],[],16,2,2]"
+        ],
+        "sequences": 65,
+        "endpoints": 16
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "elapsed_ms": 1.4021000097272918,
+          "peak_rss_bytes": 22470656,
+          "baseline_peak_rss_bytes": 22409216,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 13,
+            "transitions": 14,
+            "duplicates": 0,
+            "endpoints": 4,
+            "dominated": 0,
+            "search_ms": 0.928,
+            "elapsed_ms": 1.393,
+            "group_pruned": 1
+          },
+          "candidate_count": 4,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 4,
+          "replay_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "081a7b4f9ba9cf071a7f7efc797d2c00b865bb42cfc7a4f86e92b2766fe764a9",
+          "answer_samples": [
+            "[[[2,1,1,0],[2,1,1,0],[4,1,1,0]],[[4,4,4,0]],12,2,2]",
+            "[[[2,1,1,0],[2,1,1,0]],[],16,2,2]",
+            "[[[2,1,1,0],[4,1,1,0]],[[4,2,4,0]],14,2,2]",
+            "[[[4,1,1,0]],[],16,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "PASS"
+        },
+        {
+          "elapsed_ms": 1.5876999968895689,
+          "peak_rss_bytes": 22175744,
+          "baseline_peak_rss_bytes": 22114304,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 13,
+            "transitions": 14,
+            "duplicates": 0,
+            "endpoints": 4,
+            "dominated": 0,
+            "search_ms": 1.088,
+            "elapsed_ms": 1.577,
+            "group_pruned": 1
+          },
+          "candidate_count": 4,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 4,
+          "replay_indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "081a7b4f9ba9cf071a7f7efc797d2c00b865bb42cfc7a4f86e92b2766fe764a9",
+          "answer_samples": [
+            "[[[2,1,1,0],[2,1,1,0],[4,1,1,0]],[[4,4,4,0]],12,2,2]",
+            "[[[2,1,1,0],[2,1,1,0]],[],16,2,2]",
+            "[[[2,1,1,0],[4,1,1,0]],[[4,2,4,0]],14,2,2]",
+            "[[[4,1,1,0]],[],16,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 2,
+          "correctness": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "super-finish",
+      "description": "小さい打点を残して超進化の最後の一撃を取る",
+      "reference": {
+        "status": "PASS",
+        "expected": [
+          "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,1,3,0],[4,1,2,0]],17,0,0]",
+          "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,2,3,0],[4,2,2,0]],15,0,0]",
+          "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,3,3,0],[4,1,2,0]],15,0,0]",
+          "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,1,2,0]],18,0,0]",
+          "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,2,2,0]],16,0,0]",
+          "[[[1,4,4,2],[2,1,1,0]],[],19,0,0]",
+          "[[[1,4,4,2],[3,1,1,0]],[[0,2,3,0]],17,0,0]",
+          "[[[1,4,4,2],[3,1,1,0]],[],20,0,0]"
+        ],
+        "sequences": 114,
+        "endpoints": 35
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "elapsed_ms": 4.534000006970018,
+          "peak_rss_bytes": 21975040,
+          "baseline_peak_rss_bytes": 21860352,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 37,
+            "transitions": 46,
+            "duplicates": 0,
+            "endpoints": 14,
+            "dominated": 6,
+            "search_ms": 3.597,
+            "elapsed_ms": 4.523,
+            "group_pruned": 9
+          },
+          "candidate_count": 8,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 8,
+          "replay_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "f238587c99e9d565c30b756b971ed966a806b5b29d320c1d065cd61c6831a525",
+          "answer_samples": [
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,1,3,0],[4,1,2,0]],17,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,2,3,0],[4,2,2,0]],15,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,3,3,0],[4,1,2,0]],15,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,1,2,0]],18,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,2,2,0]],16,0,0]",
+            "[[[1,4,4,2],[2,1,1,0]],[],19,0,0]",
+            "[[[1,4,4,2],[3,1,1,0]],[[0,2,3,0]],17,0,0]",
+            "[[[1,4,4,2],[3,1,1,0]],[],20,0,0]"
+          ],
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "PASS"
+        },
+        {
+          "elapsed_ms": 5.112400001962669,
+          "peak_rss_bytes": 22384640,
+          "baseline_peak_rss_bytes": 22269952,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 37,
+            "transitions": 46,
+            "duplicates": 0,
+            "endpoints": 14,
+            "dominated": 6,
+            "search_ms": 3.91,
+            "elapsed_ms": 5.102,
+            "group_pruned": 9
+          },
+          "candidate_count": 8,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 8,
+          "replay_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "f238587c99e9d565c30b756b971ed966a806b5b29d320c1d065cd61c6831a525",
+          "answer_samples": [
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,1,3,0],[4,1,2,0]],17,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,2,3,0],[4,2,2,0]],15,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[0,3,3,0],[4,1,2,0]],15,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,1,2,0]],18,0,0]",
+            "[[[1,4,4,2],[2,1,1,0],[3,1,1,0]],[[4,2,2,0]],16,0,0]",
+            "[[[1,4,4,2],[2,1,1,0]],[],19,0,0]",
+            "[[[1,4,4,2],[3,1,1,0]],[[0,2,3,0]],17,0,0]",
+            "[[[1,4,4,2],[3,1,1,0]],[],20,0,0]"
+          ],
+          "strategy": "grouped",
+          "iteration": 2,
+          "correctness": "PASS"
+        }
+      ]
+    },
+    {
+      "id": "empty",
+      "description": "空盤面",
+      "reference": {
+        "status": "PASS",
+        "expected": [
+          "[[],[],20,2,2]"
+        ],
+        "sequences": 1,
+        "endpoints": 1
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "elapsed_ms": 0.37599999632220715,
+          "peak_rss_bytes": 21729280,
+          "baseline_peak_rss_bytes": 21684224,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 1,
+            "transitions": 0,
+            "duplicates": 0,
+            "endpoints": 1,
+            "dominated": 0,
+            "search_ms": 0.161,
+            "elapsed_ms": 0.37,
+            "group_pruned": 0
+          },
+          "candidate_count": 1,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 1,
+          "replay_indices": [
+            0
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "3ea62c636734481c4be48a9b6d389232f0029c005b54c96a8efc3a2ab124be3b",
+          "answer_samples": [
+            "[[],[],20,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "PASS"
+        },
+        {
+          "elapsed_ms": 0.3944999916711822,
+          "peak_rss_bytes": 21917696,
+          "baseline_peak_rss_bytes": 21823488,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 1,
+            "transitions": 0,
+            "duplicates": 0,
+            "endpoints": 1,
+            "dominated": 0,
+            "search_ms": 0.162,
+            "elapsed_ms": 0.388,
+            "group_pruned": 0
+          },
+          "candidate_count": 1,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 1,
+          "replay_indices": [
+            0
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "3ea62c636734481c4be48a9b6d389232f0029c005b54c96a8efc3a2ab124be3b",
+          "answer_samples": [
+            "[[],[],20,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 2,
+          "correctness": "PASS"
+        }
+      ]
+    }
+  ],
+  "status": "PASS",
+  "measurement": {
+    "isolation": "new child process for each run",
+    "time": "analyze only; milliseconds",
+    "memory": "process peak resident bytes captured before replay verification",
+    "reference": "independent Battle legal-action enumeration in separate process",
+    "timeout": "whole child including startup and replay; phase identifies interrupted work"
+  },
+  "source_sha256": "95734caa52b7b82bfeed920d6ef80a3f91371753074e23963b724032dd436a84",
+  "runner_sha256": "ece054bec41b0d76296ca39922d55a77c36d192448f3dec28f76c185326c0b01",
+  "cases_sha256": "802a6c2be428a6b416f26ee5dce64a9d4fd24203f1f5bcabe3a0b7ab606917ed"
+}

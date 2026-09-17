@@ -1,0 +1,76 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "combat-benchmark-public-cli",
+  "version": 1,
+  "goal": "A developer can reuse a named ability-free combat fixture catalog and obtain trustworthy correctness, analysis time, and peak process memory records without manually editing Python.",
+  "persona": "Developer using the project's configured Python environment from a Windows PowerShell terminal.",
+  "public_entry": "python -m svdeck.combat_benchmark --help; python -m svdeck.combat_benchmark --list-cases",
+  "test_data": [
+    "Use the delivered public default fixture catalog; do not inspect implementation, source, diffs, or private APIs.",
+    "Catalog must expose stable selectable case IDs and descriptions covering incomparable attack/health stats, tall versus wide boards, multiple sacrifices, and super-evolution ping. At least one small fixture must support exhaustive independent reference verification.",
+    "Use fresh output directories under the executor's evidence directory: normal and timeout. Do not overwrite existing user benchmark results.",
+    "Public report contract: JSON and Markdown; each requested repetition runs in an isolated child process; elapsed measurement covers analysis only; sampled peak process memory ends before correctness checking; independent reference enumeration and result replay are distinct from the measured analysis. Large cases must not claim exhaustive correctness without exhaustive verification."
+  ],
+  "minimal_test_count_rationale": "One terminal journey follows the same discovered catalog from selection through repeat records, report comparison, error recovery, and bounded timeout. It covers the reusable runner's main user-facing risks without duplicate setup or requiring a GUI.",
+  "execution_policy": {"runs_per_test": 1, "continue_after_failure": true, "parallelize_independent_tests": true},
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Discover, measure, read results, and recognize failed runs",
+      "user_task": "Use the delivered CLI to benchmark reusable combat examples twice, identify which results are correctness-verified, compare their resource records, and recognize invalid requests and a timed-out run.",
+      "setup": [
+        "Windows PowerShell terminal in C:/Users/tasog/source/shadowverse-deckmaker, using the project's documented configured Python environment; fresh terminal usage of this CLI with no prior benchmark output directory.",
+        "Capture command arguments, exit status, stdout/stderr, and generated artifacts directly. A shell harness may inspect report JSON/Markdown and observe process completion but must not import private implementation helpers.",
+        "Use a monotonic shell/harness clock for timeout command wall duration; no exact performance comparison across machines is required."
+      ],
+      "actions": [
+        "Run the public --help and --list-cases commands once. Record stable IDs and descriptions. Select the catalog's smallest independently verifiable fixture plus the smallest available fixtures needed to cover incomparable stats, tall versus wide, multiple sacrifices, and super ping; deduplicate selected IDs.",
+        "Invoke python -m svdeck.combat_benchmark --output NORMAL_DIR --repeat 2 --timeout 30 with one --case ID option for each selected ID. Capture completion and output paths. If the command has not completed by 180 seconds, stop its process tree safely, preserve evidence, and record the unfinished operation rather than retrying.",
+        "Read the produced JSON and Markdown using normal file reading. Match requested case IDs and both repetitions, compare correctness outcomes across repetitions, and use the fields and units to identify a recorded elapsed analysis time and peak memory for each successful run. Inspect verification method and measurement scope descriptions.",
+        "Run separate public invocations with --case definitely-missing-case, --repeat 0, and --timeout -1, each with a fresh unique output destination. Record diagnostics and exit status. These are distinct requests in this single error-recovery step, not retries.",
+        "Run one selected case once with --output TIMEOUT_DIR --repeat 1 --timeout 0.000001. Start the monotonic clock immediately before process launch and stop it when the parent CLI exits. Inspect its JSON and Markdown for explicit timeout/incomplete status and absence of an invented correctness pass or fabricated successful measurement. Stop remaining process trees if this command exceeds 30 seconds."
+      ],
+      "functional_expectations": [
+        "--help and --list-cases exit successfully. The catalog presents selectable stable IDs and descriptions representing all four required fixture families, and selection needs no product source edits.",
+        "The normal run produces valid JSON and readable Markdown. Reports contain exactly two attempted runs per selected case, with case identity, repetition identity, run status, correctness status, elapsed time with units, and peak process memory with units or an explicit measurement-unavailable reason. Successful supported measurements are finite and non-negative; memory must not be silently substituted with Python-only allocation counts.",
+        "At least the small exhaustive fixture has a successful correctness result backed by independent actual Battle engine endpoint enumeration and replay checks. Any mismatch is clearly a correctness failure; large or partial reference checks explicitly show incomplete/unverified coverage rather than an exhaustive pass. Correctness outcomes for identical small fixtures agree across repetitions.",
+        "JSON and Markdown agree on case/run statuses and measurements, allowing documented rounding and unit conversion. Reports describe analysis-only timing, isolated measured child runs, peak memory capture before checking, and reference work outside the analysis measurement.",
+        "Missing case ID, zero repeats, and negative timeout are each rejected with a nonzero exit code and actionable input-specific diagnostics, without being represented as successful benchmark runs.",
+        "The extremely short positive timeout produces a recorded timeout/incomplete attempt rather than a crash or a success. The parent CLI exits within 30 seconds from process launch, and no child benchmark process from this attempt remains after cleanup. The report preserves case identity and distinguishes missing measurements from zero-valued successful measurements."
+      ],
+      "ux_checks": [
+        "From first invocation through reading the normal reports, the user can discover required options and usable case IDs using at most two discovery commands (--help and --list-cases); direct captured stdout provides evidence. No editing source or consulting private files is needed.",
+        "The completed run prints usable output locations, or --help unambiguously documents deterministic filenames within the chosen directory. The tester locates both reports with at most one directory listing after command completion.",
+        "A reader can identify case, correctness status, analysis time unit, and memory unit from the Markdown report itself without consulting JSON or source; timeout and unverified results cannot reasonably be read as correctness passes. Assess from actual report content, recording the largest comprehension issue if any.",
+        "Invalid-input messages name the invalid argument or requested case and supply enough correction guidance via the diagnostic or CLI usage; measure from captured stderr/stdout, not inferred implementation behavior.",
+        "This is a CLI/file journey with no requested GUI, viewport, focus, scrolling, or automatic surface-transition contract; these UI metrics are inapplicable. Count discovery commands and file-location operations directly from the terminal transcript."
+      ],
+      "impossible_if": [
+        "The configured project Python runtime cannot be launched or the executor cannot write any isolated evidence/output directory due to external environment permissions. A missing product module, broken dependency declaration, incorrect CLI argument handling, or product hang is a finding, not an impossibility."
+      ],
+      "isolation_requirements": "Use executor-owned output directories and only terminate process trees launched by this journey. Preserve output and transcript. Do not alter implementation, fixture files, dependency versions, or any other agent's benchmark output.",
+      "budget": {
+        "public_steps_minutes": 5,
+        "expected_external_wait_minutes": 4,
+        "total_minutes": 9,
+        "basis": "Two discovery commands, one multi-case repeated run, two report reads, three invalid requests, and one timeout request; allow up to 180 seconds for the normal run and 30 seconds for timeout handling plus process launch overhead."
+      }
+    }
+  ],
+  "reporting": {"separate_functional_and_ux": true, "include_unexpected_findings": true, "evidence_level": "concise"},
+  "coverage": {
+    "covered_risks": [
+      "Required fixture discoverability and reusable selection",
+      "Repeated correctness/time/memory records and JSON/Markdown consistency",
+      "Honest verification coverage and measurement scope",
+      "Invalid request rejection and explicit bounded timeout recording"
+    ],
+    "blind_spots": [
+      "Black-box report inspection can verify the disclosed timing/memory/reference scope but cannot prove internal clock boundaries, sampling implementation, child isolation, or reference algorithm independence. These require separate implementation tests or public telemetry, not source inspection by this executor.",
+      "The exhaustive reference engine may share rule defects with the analyzer; fixture mathematical expectations and engine correctness require separate independent tests.",
+      "No exhaustive correctness assertion is made for large cases, and this journey does not impose hardware-dependent speed or memory thresholds.",
+      "Injected worker crashes, process memory sampler failures, arbitrary fixture inputs, concurrency, and non-Windows platforms are outside this minimal journey."
+    ]
+  },
+  "revision": null
+}

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "incomparable",
+    "description": "攻撃力と体力の優劣が逆なら両方残す",
+    "own": [
+      [
+        4,
+        2
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "enemy": [
+      [
+        5,
+        2
+      ]
+    ],
+    "mode": "attack",
+    "oracle": true,
+    "required_clear_survivors": [
+      [
+        [
+          4,
+          2
+        ]
+      ],
+      [
+        [
+          2,
+          4
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "tall-wide",
+    "description": "大型一体と小型二体、複数体での相打ち",
+    "own": [
+      [
+        4,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "enemy": [
+      [
+        4,
+        4
+      ]
+    ],
+    "mode": "attack",
+    "oracle": true,
+    "required_clear_survivors": [
+      [
+        [
+          4,
+          1
+        ]
+      ],
+      [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "super-finish",
+    "description": "小さい打点を残して超進化の最後の一撃を取る",
+    "own": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      {
+        "attack": 1,
+        "health": 4,
+        "evolved": 2,
+        "entered_turn": 7
+      }
+    ],
+    "enemy": [
+      [
+        4,
+        2
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    "mode": "attack",
+    "oracle": true,
+    "ep": 0,
+    "sep": 0,
+    "used": true
+  },
+  {
+    "id": "empty",
+    "description": "空盤面",
+    "own": [],
+    "enemy": [],
+    "mode": "super",
+    "oracle": true
+  }
+]

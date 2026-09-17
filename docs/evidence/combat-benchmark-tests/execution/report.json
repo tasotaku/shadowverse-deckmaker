@@ -1,0 +1,57 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-benchmark-public-cli",
+  "spec_version": 1,
+  "spec_sha256": "3e2876702d6c455cc487e2cf9ae111ad7e010a6bb579a0b930f2e349ab0f700e",
+  "executor_id": "fresh-benchmark-acceptance-T1",
+  "started_at": "2026-09-17T07:05:13.3758219Z",
+  "finished_at": "2026-09-17T07:07:10.055623+00:00",
+  "scheduling": {
+    "available_executor_slots": 1,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-benchmark-tests\\execution",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-benchmark-tests\\execution\\report.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T07:05:13.3758219Z",
+      "journey_stopped_at": "2026-09-17T07:05:59.7970351Z",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: help and catalog each exit 0 (help-exit.txt/catalog-exit.txt). 12 selectable IDs. Selected empty (smallest empty fixture), incomparable, tall-wide (also multiple sacrifices), super-finish from descriptions, without source inspection or edits.",
+        "F2 PASS: normal-command.json exit 0 in 2.125 seconds. Public normal/report.json contains exactly four selected cases with iterations 1 and 2, all eight PASS. elapsed_ms 0.376–5.1124; peak_rss_bytes 21729280–22470656; all finite/nonnegative. Memory method explicitly Windows PeakWorkingSetSize.",
+        "F3 PASS at disclosed black-box scope: all four reference records report PASS with sequence/endpoint counts, replay_coverage all, no missing/extra answers, matching answer hashes across repetitions. Empty reference has one sequence/endpoint and each run replays its one candidate. JSON identifies independent Battle legal-action enumeration in separate process. Internal independence remains a stated blind spot, not inferred proof.",
+        "F4 PASS: comparison.txt verifies every Markdown row against JSON median elapsed_ms rounded to 3 decimals and max bytes converted to MiB rounded to 2 decimals. Markdown explicitly labels median/max. JSON and Markdown disclose new child per measurement, analysis-only time, peak before replay, and reference/replay work outside measurement. No large fixture or partial reference claimed exhaustive in these selected reports.",
+        "F5 PASS: invalid-case.json/invalid-repeat.json/invalid-timeout.json each exit 2 with usage. Missing case diagnostic names definitely-missing-case; numeric diagnostic requires positive repeat/timeout and valid max-states. No successful run presented.",
+        "F6 PASS: timeout-command.json launched empty once with 0.000001 seconds; monotonic subprocess clock measured 0.422 seconds until exit 1. Both timeout reports show TIMEOUT and UNKNOWN correctness; JSON omits elapsed/memory, Markdown shows em dashes and 0/1 completion. cleanup.json observes no remaining owned Python process by unique output directory command-line identity.",
+        "UX1 PASS: directly counted two discovery commands, --help and --list-cases, no source edits or private-file consultation.",
+        "UX2 PASS: normal command stdout gives absolute JSON and Markdown paths; zero directory listings used to locate reports.",
+        "UX3 GO: directly read Markdown. Case/status/units and 2/2 completion are clear; timeout is TIMEOUT/UNKNOWN with missing-value dashes. UNVERIFIED explained in prose. No material comprehension issue.",
+        "UX4 PASS: direct captured stderr contains usage and requested missing ID or positive-value correction guidance; all three invalid inputs rejected.",
+        "UX5: CLI/file journey; GUI click/focus/scroll/surface transitions inapplicable. Discovery commands 2, report-location directory listings 0; normal report reads one JSON and one Markdown, timeout reads one each.",
+        "Budget: journey completed within 9 minutes; normal run 2.125 s below 180 s, timeout 0.422 s below 30 s. One test in one isolated output directory, one batch, one execution. No retries."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T07:05:59.8313098Z",
+        "evidence": "All launched parents exited; read-only Windows process observation found zero Python processes referencing this executor-owned output directory. No process kill necessary. Evidence and outputs preserved under C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-benchmark-tests\\execution"
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Black-box output inspection verifies disclosed scope but cannot prove internal timing boundaries, memory sampling boundaries, child isolation, or reference algorithm independence; separate implementation tests required.",
+    "Battle engine and analyzer may share rule defects; no mathematical engine proof in this journey.",
+    "No large/partial case executed, no hardware-specific performance threshold. Injected crashes, unavailable sampler, arbitrary fixtures, concurrency, non-Windows platforms outside fixed journey."
+  ]
+}

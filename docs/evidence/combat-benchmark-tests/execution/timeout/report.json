@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-17T07:05:50.778905+00:00",
+  "environment": {
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "cpu_count": 12
+  },
+  "repeat": 1,
+  "timeout_seconds": 1e-06,
+  "max_states": 50000,
+  "cases": [
+    {
+      "id": "empty",
+      "description": "空盤面",
+      "reference": {
+        "phase": "oracle",
+        "status": "TIMEOUT",
+        "timeout_seconds": 1e-06
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "phase": "measure",
+          "status": "TIMEOUT",
+          "timeout_seconds": 1e-06,
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "UNKNOWN"
+        }
+      ]
+    }
+  ],
+  "status": "FAIL",
+  "measurement": {
+    "isolation": "new child process for each run",
+    "time": "analyze only; milliseconds",
+    "memory": "process peak resident bytes captured before replay verification",
+    "reference": "independent Battle legal-action enumeration in separate process",
+    "timeout": "whole child including startup and replay; phase identifies interrupted work"
+  },
+  "source_sha256": "95734caa52b7b82bfeed920d6ef80a3f91371753074e23963b724032dd436a84",
+  "runner_sha256": "ece054bec41b0d76296ca39922d55a77c36d192448f3dec28f76c185326c0b01",
+  "cases_sha256": "61ea2389176007799cf597fa107b1ab25b5a6b5e5baddbe136166873ca6d281a"
+}
