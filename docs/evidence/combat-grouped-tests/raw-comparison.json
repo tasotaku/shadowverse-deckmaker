@@ -1,0 +1,807 @@
+{
+  "grouped": {
+    "max_states": 50000,
+    "response": {
+      "mode": "attack",
+      "strategy": "grouped",
+      "complete": true,
+      "record": {
+        "version": 1,
+        "engine_version": "battle-2",
+        "cards": {
+          "test-body": {
+            "cost": 1,
+            "attack": 2,
+            "health": 3,
+            "keywords": [],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "能力なし（検証用カード）",
+            "name": "検証用フォロワー",
+            "card_id": "test-body"
+          },
+          "test-barrier": {
+            "cost": 2,
+            "attack": 2,
+            "health": 3,
+            "keywords": [
+              "バリア"
+            ],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "バリア（検証用カード）",
+            "name": "バリアの検証用フォロワー",
+            "card_id": "test-barrier"
+          },
+          "test-damage-5": {
+            "cost": 2,
+            "attack": 0,
+            "health": 0,
+            "keywords": [],
+            "kind": "spell",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "相手フォロワー1体を選び5ダメージ。",
+            "name": "選択5ダメージ（検証用）",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 5
+              }
+            ],
+            "card_id": "test-damage-5"
+          },
+          "combat-0-0": {
+            "card_id": "combat-0-0",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 4,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-0-1": {
+            "card_id": "combat-0-1",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 2,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-0-2": {
+            "card_id": "combat-0-2",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 2,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-1-0": {
+            "card_id": "combat-1-0",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 4,
+            "health": 4,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          }
+        },
+        "cards_hash": "4ca68525bd9f3145d3962d429d55db44f921be663f9238c4fe74fceedb102888",
+        "initial": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 8,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "T",
+                  "card_id": "combat-0-0",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                },
+                {
+                  "id": "S1",
+                  "card_id": "combat-0-1",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                },
+                {
+                  "id": "S2",
+                  "card_id": "combat-0-2",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 8,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "X",
+                  "card_id": "combat-1-0",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "actions": [],
+        "frames": []
+      },
+      "candidates": [
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S1",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S2",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "X",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "evolved": 0
+            }
+          ],
+          "enemy_health": 12,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S2",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "X",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 2,
+              "max_health": 4,
+              "evolved": 0
+            }
+          ],
+          "enemy_health": 14,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "S1",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S2",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [],
+          "enemy_health": 16,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [],
+          "enemy_health": 16,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        }
+      ],
+      "stats": {
+        "states": 13,
+        "transitions": 14,
+        "duplicates": 0,
+        "endpoints": 4,
+        "dominated": 0,
+        "search_ms": 0.916,
+        "elapsed_ms": 1.316,
+        "group_pruned": 1
+      }
+    },
+    "input_state_unchanged": true,
+    "input_export_unchanged": true
+  },
+  "exhaustive": {
+    "max_states": 50000,
+    "response": {
+      "mode": "attack",
+      "strategy": "exhaustive",
+      "complete": true,
+      "record": {
+        "version": 1,
+        "engine_version": "battle-2",
+        "cards": {
+          "test-body": {
+            "cost": 1,
+            "attack": 2,
+            "health": 3,
+            "keywords": [],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "能力なし（検証用カード）",
+            "name": "検証用フォロワー",
+            "card_id": "test-body"
+          },
+          "test-barrier": {
+            "cost": 2,
+            "attack": 2,
+            "health": 3,
+            "keywords": [
+              "バリア"
+            ],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "バリア（検証用カード）",
+            "name": "バリアの検証用フォロワー",
+            "card_id": "test-barrier"
+          },
+          "test-damage-5": {
+            "cost": 2,
+            "attack": 0,
+            "health": 0,
+            "keywords": [],
+            "kind": "spell",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "相手フォロワー1体を選び5ダメージ。",
+            "name": "選択5ダメージ（検証用）",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 5
+              }
+            ],
+            "card_id": "test-damage-5"
+          },
+          "combat-0-0": {
+            "card_id": "combat-0-0",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 4,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-0-1": {
+            "card_id": "combat-0-1",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 2,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-0-2": {
+            "card_id": "combat-0-2",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 2,
+            "health": 1,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          },
+          "combat-1-0": {
+            "card_id": "combat-1-0",
+            "kind": "follower",
+            "name": "検証用フォロワー",
+            "cost": 1,
+            "attack": 4,
+            "health": 4,
+            "text": "能力なしの検証用。基本の進化・超進化だけを適用。",
+            "synthetic": true
+          }
+        },
+        "cards_hash": "4ca68525bd9f3145d3962d429d55db44f921be663f9238c4fe74fceedb102888",
+        "initial": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 8,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "T",
+                  "card_id": "combat-0-0",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                },
+                {
+                  "id": "S1",
+                  "card_id": "combat-0-1",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                },
+                {
+                  "id": "S2",
+                  "card_id": "combat-0-2",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 1,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 8,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "X",
+                  "card_id": "combat-1-0",
+                  "name": "検証用フォロワー",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 1,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "actions": [],
+        "frames": []
+      },
+      "candidates": [
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S1",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S2",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "X",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "evolved": 0
+            }
+          ],
+          "enemy_health": 12,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "X"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S1",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "X",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 2,
+              "max_health": 4,
+              "evolved": 0
+            }
+          ],
+          "enemy_health": 14,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "leader:1"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "S1",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            },
+            {
+              "id": "S2",
+              "name": "検証用フォロワー",
+              "attack": 2,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [],
+          "enemy_health": 16,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        },
+        {
+          "actions": [
+            {
+              "type": "attack",
+              "source": "T",
+              "target": "leader:1"
+            },
+            {
+              "type": "attack",
+              "source": "S1",
+              "target": "X"
+            },
+            {
+              "type": "attack",
+              "source": "S2",
+              "target": "X"
+            }
+          ],
+          "own_board": [
+            {
+              "id": "T",
+              "name": "検証用フォロワー",
+              "attack": 4,
+              "health": 1,
+              "max_health": 1,
+              "evolved": 0
+            }
+          ],
+          "enemy_board": [],
+          "enemy_health": 16,
+          "ep": 0,
+          "sep": 0,
+          "win": false
+        }
+      ],
+      "stats": {
+        "states": 17,
+        "transitions": 31,
+        "duplicates": 15,
+        "endpoints": 16,
+        "dominated": 12,
+        "search_ms": 0.494,
+        "elapsed_ms": 1.723
+      }
+    },
+    "input_state_unchanged": true,
+    "input_export_unchanged": true
+  }
+}

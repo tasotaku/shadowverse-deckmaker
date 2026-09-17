@@ -1,0 +1,65 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "combat-grouped-candidate-acceptance",
+  "version": 1,
+  "goal": "Obtain replayable ability-free combat choices that remove wasteful sacrifices while preserving genuinely different surviving boards, face attacks, and evolution choices, with reduced exploration work.",
+  "persona": "Battle-lab user comparing combat outcomes; independent executor may use the public HTTP API to inspect exact board states.",
+  "public_entry": "http://127.0.0.1:8767; POST /api/combat with {record,cursor,mode}; POST /api/replay; public Battle construction/export and analyze(battle,mode,max_states) may prepare fixtures or observe public counters.",
+  "test_data": [
+    "Create isolated legal synthetic Battle records using only public construction/export. All followers are ability-free, unevolved, owned by their respective side, present since before the current turn, undamaged, and able to attack. Empty hands, no cards played, no skills, no automatic effects, both leaders at 20 health, enough deck cards to avoid unrelated game termination. Cursor is at the prepared current-turn board. F1-F3 have no available normal/super evolution resources. Document actual serialized fixtures before execution; stat notation is attack/current health.",
+    "F1 cheap sacrifice: friendly A=2/1 and B=3/1; opposing X=1/2. A or B can individually remove X and die. Compare cleared boards with identical face damage, evolution resources, and remaining attack availability whenever applicable.",
+    "F2 incomparable stats: friendly A=4/2 and B=2/4; opposing X=5/2. Either friendly follower can remove X and die, leaving the other. The survivor with more attack must not automatically displace the survivor with more health.",
+    "F3 tall versus wide and grouped attackers: friendly T=4/1, S1=2/1, S2=2/1; opposing X=4/4. Sacrifice T to retain S1+S2, or sacrifice S1+S2 to retain T. Both clear X. Attack order permutations of S1/S2 do not change the resulting board. These two surviving board shapes must remain alternatives.",
+    "F4 face/evolution: friendly A=1/1, no opposing followers; one available normal evolution and one available super evolution, legal current turn for both, no other evolution used this turn. A was present before the turn and can attack the leader. Public engine rules determine exact evolution stat increases; all three paths (no evolution, normal evolution, super evolution) are legally available. This fixture isolates resource-versus-damage alternatives.",
+    "Public response schema and supported mode values may be learned from public documentation or API/UI usage. Do not inspect product implementation, source, diffs, internal monkeypatches, or implementation tests. Missing public fixture construction/schema access is a harness limitation, not permission to invent results."
+  ],
+  "minimal_test_count_rationale": "One API analysis-to-replay journey is sufficient because the user changes candidate generation rather than UI operations. Four small board fixtures exercise distinct dominance risks that cannot be inferred from a single board; all share the same public entry and replay workflow.",
+  "execution_policy": {"runs_per_test": 1, "continue_after_failure": true, "parallelize_independent_tests": true},
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Compare useful combat boards and replay their actual moves",
+      "user_task": "Find efficient exchanges without losing worthwhile board shapes or resource choices, then use the returned steps to reproduce each choice.",
+      "setup": [
+        "Use a dedicated local HTTP client session against the battle-lab service at http://127.0.0.1:8767 on Windows; no shared browser state, authentication, or preexisting replay state is required. The API is the tested surface. Browser viewport 1280x720 is contextual only because no UI or surface transition is exercised.",
+        "Prepare F1-F4 and save immutable canonical serialized record/cursor copies plus public Battle snapshots. Use mode attack for F1-F3; use each public mode attack, evolve, and super for F4. Public counters are stats.states, stats.transitions, stats.duplicates, and stats.elapsed_ms. complete indicates no search-budget exhaustion, not an optimality guarantee. Set a sufficiently high public max_states for these tiny fixtures where that parameter is available; record the actual value and completeness/truncation flags. Do not change fixtures in response to candidate output."
+      ],
+      "actions": [
+        "For F1-F3, POST /api/combat once per fixture with its immutable record/cursor and mode attack. For F4, POST once in each mode attack, evolve, and super. Save request, response, candidate steps, result boards, resources, and any public exploration counters. Continue all fixtures even if one fails.",
+        "Partition returned choices by opposing board, leader health, evolution resources, and available attacks where necessary to compare genuinely equivalent circumstances. Assess the specifically required survivors and alternatives below; candidate ordering or displayed IDs are not correctness criteria.",
+        "Replay every returned candidate for these tiny fixtures through POST /api/replay, using its returned public replay data/steps and the original record as required by the public contract. Inspect the actual final board and leader/resource state returned by replay and match it to the advertised candidate. Save concise evidence keyed to candidate and fixture.",
+        "After all replays, compare original serialized fixture records/cursors and public Battle snapshots with their saved copies. Where public analyze is used, compare its input battle snapshot immediately before and after each analysis.",
+        "For F3 only, call public analyze with the same fixture, mode attack, and max_states once using default candidate generation and once using strategy=exhaustive. Compare stats.states and stats.transitions with complete=true in both runs. Require fewer states or transitions in default generation, without losing either required surviving board shape. Save all public counters; elapsed_ms is diagnostic only. These comparison calls are part of this single journey, not retries of a failed execution."
+      ],
+      "functional_expectations": [
+        "All F1-F4 requests produce successful complete analysis for these tiny boards, with no invalid-move or unexpected server error. Truncation or budget exhaustion is a functional failure for the fixed tiny fixtures, not a reason to relax expectations.",
+        "F1 includes a cleared-enemy outcome retaining B=3/1. No cleared-enemy outcome retaining only A=2/1 remains when an otherwise comparable candidate retains B=3/1 with at least as much leader damage and no extra resource use. Loss of attack availability must be included in comparability rather than silently treated as equivalent.",
+        "F2 includes cleared-enemy outcomes retaining A=4/2 and retaining B=2/4. Either survivor may have spent its remaining attack on the leader; evaluate actual leader health and attack availability. The attack/health tradeoff alone cannot justify dropping one shape.",
+        "F3 includes cleared-enemy outcomes retaining T=4/1 and retaining both S1=2/1 plus S2=2/1. Replay for the T survivor shows both small followers attacking X. Replay for the wide survivor shows T attacking X. Neither board shape is pruned solely because the other has the same total attack or a greater total health. Equivalent S1/S2 attack-order permutations need not both be returned.",
+        "Across its three mode responses, F4 includes legal leader-damaging paths with no evolution (attack), with normal evolution (evolve), and with super evolution (super). Candidate/replay state accurately reflects the corresponding damage and evolution resource expenditure. Face alternatives are not replaced entirely by follower-trade or evolution-only steps.",
+        "Every returned candidate replays legally and reaches its advertised final friendly/opposing board, leader health, and normal/super evolution resources. No candidate uses a card play or skill. Original input records, cursors, and any public Battle object passed to analyze remain equal to saved originals after analysis/replay.",
+        "F3 default public analyze has strictly fewer stats.states or stats.transitions than strategy=exhaustive, with complete=true in both runs, the same mode and max_states, and both required surviving board shapes still available. Exact counts and wall-clock speed are not predetermined."
+      ],
+      "ux_checks": [
+        "API result usability: each returned candidate contains public data sufficient to invoke /api/replay without manually reconstructing hidden engine state; zero edits to candidate moves are allowed between successful analysis and replay. Observe directly from saved HTTP requests/responses.",
+        "Choice clarity at API level: the actual survivor stats and evolution/leader outcomes needed to distinguish the required alternatives are obtainable from returned candidate/replay data. No UI click, focus, tab-switch, scroll, or transition-time claim is made by this API journey."
+      ],
+      "impossible_if": [
+        "The specified local service cannot be reached despite one ordinary readiness check, or a required public constructor/export/replay contract is unavailable to the independent executor. Record the exact failed public operation; do not classify unexpected product response or missing expected candidates as impossible."
+      ],
+      "isolation_requirements": "Use dedicated immutable F1-F4 records and a dedicated HTTP session. Do not edit product source or reuse another test's battle/replay state. Fixture preparation and the paired default/exhaustive comparison are allowed only through public APIs.",
+      "budget": {
+        "public_steps_minutes": 12,
+        "expected_external_wait_minutes": 1,
+        "total_minutes": 13,
+        "basis": "Four small fixture analyses, bounded candidate replays, exact snapshot comparisons, and a paired public analyze comparison; local requests should consume under one minute combined. Fixture construction is included in the 12-minute public-step allocation."
+      }
+    }
+  ],
+  "reporting": {"separate_functional_and_ux": true, "include_unexpected_findings": true, "evidence_level": "concise"},
+  "coverage": {
+    "covered_risks": ["Inferior sacrifice survives pruning", "Single-stat ranking deletes incomparable survivors", "Tall versus wide alternatives disappear", "Multiple attackers cannot jointly clear a defender", "Face or basic evolution paths disappear", "Candidates cannot be replayed or misreport final outcomes", "Analysis mutates original battle", "Reduced public states or transitions versus exhaustive analysis on the same fixture"],
+    "blind_spots": ["Visual layout and the existing 盤面の候補 → 調べる → 手順を再生 UI are not exercised; no new UI interaction requirement was supplied.", "Skills, card plays, automatic card effects, complex keywords, and broad performance scaling are outside the ability-free fixture scope.", "Large-board scaling is not established by the small F3 comparison; elapsed time is diagnostic, not the performance acceptance criterion."]
+  },
+  "revision": null
+}

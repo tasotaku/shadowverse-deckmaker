@@ -1,4 +1,4 @@
-"""Exact-state combat enumeration in an explicitly ability-free, current-turn model.
+"""Combat combinations in an explicitly ability-free, current-turn model.
 
 No intermediate score/beam pruning. Endpoint dominance describes the declared
 board/resource criteria, not strategic dominance against future card effects.
@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from collections import deque
 from functools import lru_cache
+from itertools import combinations
 from time import perf_counter
 from typing import Callable, Iterator, NamedTuple
 
@@ -117,14 +118,17 @@ def canonical(state: Position) -> Position:
 
 
 @lru_cache(maxsize=100000)
-def board_dominates(larger: tuple[Body | None, ...], smaller: tuple[Body | None, ...]) -> bool:
+def board_dominates(larger: tuple[Body | None, ...], smaller: tuple[Body | None, ...],
+                    continuation: bool = False, preserve_damage: bool = False) -> bool:
     # AI_NOTE: 個体を重複利用せず対応付ける。貪欲に一体ずつ選ぶと正しい対応を見逃すため全組合せで確認。
     supplies = [b for b in larger if b]
     demands = [b for b in smaller if b]
     if len(supplies) < len(demands):
         return False
     choices = [sum(1 << i for i, a in enumerate(supplies) if a.evolved == b.evolved and
-                   a.attack >= b.attack and a.health >= b.health and a.max_health >= b.max_health)
+                   a.attack >= b.attack and a.health >= b.health and a.max_health >= b.max_health and
+                   (not continuation or (a.attacks <= b.attacks and a.ready >= b.ready)) and
+                   (not preserve_damage or b.attacks > 0 or a.attack == b.attack))
                for b in demands]
     choices.sort(key=int.bit_count)
     available = {0}
@@ -142,12 +146,16 @@ def board_dominates(larger: tuple[Body | None, ...], smaller: tuple[Body | None,
     return True
 
 
-def dominates(a: Position, b: Position) -> bool:
+def dominates(a: Position, b: Position, continuation: bool = False) -> bool:
     # AI_NOTE: 大型一体と小型複数やEPとSEPを合計点で潰さず、個体同士の対応がある場合だけ除く。
     if a.win or b.win:
         return a.win
+    # AI_NOTE: 超進化の最後の一撃を残す場面では、打点増加で先に倒してしまう取り方も別候補にする。
+    preserve_damage = continuation and any(body and body.evolved == 2 and not body.attacks
+                                          for body in (*a.own, *b.own))
     return (a.face <= b.face and a.ep >= b.ep and a.sep >= b.sep and
-            board_dominates(a.own, b.own) and board_dominates(b.enemy, a.enemy))
+            (not continuation or (a.used == b.used and a.enemy == b.enemy)) and
+            board_dominates(a.own, b.own, continuation, preserve_damage) and board_dominates(b.enemy, a.enemy))
 
 
 def masks(states: list[Position], value: Callable[[Position], int], cumulative: bool = False) -> dict[int, int]:
@@ -167,7 +175,7 @@ def masks(states: list[Position], value: Callable[[Position], int], cumulative: 
     return result
 
 
-def frontier(states: list[Position]) -> list[int]:
+def frontier(states: list[Position], continuation: bool = False) -> list[int]:
     # AI_NOTE: 数値の必要条件を集合演算で絞り、最後に個体同士の対応を厳密に検査する。近似枝刈りはしない。
     if not states:
         return []
@@ -206,7 +214,7 @@ def frontier(states: list[Position]) -> list[int]:
         while possible:
             bit = possible & -possible
             j = bit.bit_length()-1
-            if dominates(states[j], state):
+            if dominates(states[j], state, continuation) and (j < i or not dominates(state, states[j], continuation)):
                 beaten = True
                 break
             possible ^= bit
@@ -215,10 +223,122 @@ def frontier(states: list[Position]) -> list[int]:
     return kept
 
 
-def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000) -> Json:
+def target_combinations(state: Position, target_index: int, own_ids: tuple[str, ...],
+                        enemy_ids: tuple[str, ...]) -> Iterator[tuple[Position, list[Json]]]:
+    # AI_NOTE: 敵一体への攻撃を組合せで生成。倒す場合だけ最後の一体を区別し、途中の並べ替えを省く。
+    yield state, []
+    target = state.enemy[target_index]
+    if target is None or state.win:
+        return
+    available = [i for i, b in enumerate(state.own) if b and b.attack > 0 and
+                 not b.attacks and (b.ready or b.evolved)]
+    seen: set[Position] = {canonical(state)}
+    for size in range(1, len(available)+1):
+        for selected in combinations(available, size):
+            bodies = [state.own[i] for i in selected]
+            damage = sum(b.attack for b in bodies if b)
+            # A lethal prefix must not be followed by another attack on the removed target.
+            lasts = [i for i in selected if (b := state.own[i]) is not None and
+                     damage-b.attack < target.health] if damage >= target.health else [selected[-1]]
+            for last in lasts:
+                own, enemy = list(state.own), list(state.enemy)
+                order = [i for i in selected if i != last] + [last]
+                for i in order:
+                    body = own[i]
+                    assert body is not None
+                    health = body.health-(0 if body.evolved == 2 else target.attack)
+                    own[i] = body._replace(health=health, attacks=1) if health > 0 else None
+                enemy[target_index] = target._replace(health=target.health-damage) if damage < target.health else None
+                last_body = state.own[last]
+                face = max(0, state.face-int(damage >= target.health and last_body is not None and last_body.evolved == 2))
+                child = state._replace(own=tuple(own), enemy=tuple(enemy), face=face, win=face == 0)
+                key = canonical(child)
+                if key in seen:
+                    continue
+                seen.add(key)
+                yield child, [{'type': 'attack', 'source': own_ids[i], 'target': enemy_ids[target_index]} for i in order]
+
+
+def grouped_search(initial: Position, owner: int, turn: int, mode: str,
+                   own_ids: tuple[str, ...], enemy_ids: tuple[str, ...], max_states: int | None
+                   ) -> tuple[dict[Position, tuple[Position, list[Json]]], bool, Json]:
+    # AI_NOTE: 進化を先に選び、敵ごとに処理。比較不能な残存個体・攻撃権は次の敵の検討へ両方渡す。
+    paths: dict[Position, tuple[Position, list[Json]]] = {canonical(initial): (initial, [])}
+    count, transitions, duplicates, pruned = 1, 0, 0, 0
+    complete = True
+    for child, action in successors(initial, owner, turn, mode, own_ids, enemy_ids):
+        if action['type'] == 'attack':
+            continue
+        transitions += 1
+        key = canonical(child)
+        if key in paths:
+            duplicates += 1
+            continue
+        if max_states is not None and count >= max_states:
+            complete = False
+            break
+        paths[key] = (child, [action])
+        count += 1
+    # Low-health targets first makes useful complete removals available early under a budget.
+    order = sorted(range(len(initial.enemy)), key=lambda i: b.health if (b := initial.enemy[i]) else 0)
+    for target_index in order:
+        if not complete:
+            break
+        following: dict[Position, tuple[Position, list[Json]]] = {}
+        for current, actions in paths.values():
+            for child, attacks in target_combinations(current, target_index, own_ids, enemy_ids):
+                transitions += len(attacks)
+                key = canonical(child)
+                if key in following:
+                    duplicates += 1
+                    continue
+                if attacks:
+                    if max_states is not None and count >= max_states:
+                        complete = False
+                        break
+                    count += 1
+                following[key] = (child, actions+attacks)
+            if not complete:
+                break
+        if not complete:
+            following = {**paths, **following}
+        # Only compare exactly the same enemies; this does not erase future super-evolution targets.
+        groups: dict[tuple[Body | None, ...], list[Position]] = {}
+        for key in following:
+            groups.setdefault(key.enemy, []).append(key)
+        retained = [keys[i] for keys in groups.values() for i in frontier(keys, continuation=True)]
+        pruned += len(following)-len(retained)
+        paths = {key: following[key] for key in retained}
+    results: dict[Position, tuple[Position, list[Json]]] = {}
+    for current, actions in paths.values():
+        # At the final stop boundary unused face attacks have no downside in the declared endpoint criteria.
+        for source, body in enumerate(current.own):
+            if body is None or body.attacks or not body.ready or not body.attack:
+                continue
+            if current.win:
+                break
+            if max_states is not None and count >= max_states:
+                complete = False
+                break
+            count += 1
+            transitions += 1
+            own = list(current.own)
+            own[source] = body._replace(attacks=1)
+            face = max(0, current.face-body.attack)
+            current = current._replace(own=tuple(own), face=face, win=face == 0)
+            actions = actions+[{'type': 'attack', 'source': own_ids[source], 'target': f'leader:{1-owner}'}]
+        results.setdefault(canonical(endpoint(current)), (current, actions))
+    return results, complete, {'states': count, 'transitions': transitions, 'duplicates': duplicates,
+                              'group_pruned': pruned}
+
+
+def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000,
+            strategy: str = 'grouped') -> Json:
     # AI_NOTE: 件数上限は結果の完全性フラグに反映する。上限内の候補を全候補と偽らない。
     if mode not in ('attack', 'evolve', 'super'):
         raise ValueError('探索範囲は attack / evolve / super です')
+    if strategy not in ('grouped', 'exhaustive'):
+        raise ValueError('探索方式は grouped / exhaustive です')
     if max_states is not None:
         integer(max_states, 'max_states', 1, 200000)
     if battle.state['winner'] is not None or any(p['health'] <= 0 for p in battle.state['players']):
@@ -229,10 +349,16 @@ def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000)
     own, enemy = (projected.state['players'][i] for i in (owner, 1-owner))
     own_ids, enemy_ids = (tuple(e['id'] for e in p['board']) for p in (own, enemy))
     initial = position(projected)
+    grouped: dict[Position, tuple[Position, list[Json]]] = {}
+    group_stats: Json = {}
+    if strategy == 'grouped':
+        grouped, complete, group_stats = grouped_search(initial, owner, own['turn'], mode, own_ids, enemy_ids, max_states)
     parents: dict[Position, tuple[Position, Json] | None] = {canonical(initial): None}
-    queue = deque([initial])
+    queue = deque([initial] if strategy == 'exhaustive' else [])
     endpoints: dict[Position, Position] = {canonical(endpoint(initial)): initial}
-    complete, transitions, duplicates = True, 0, 0
+    if strategy == 'exhaustive':
+        complete = True
+    transitions, duplicates = 0, 0
     while queue and complete:
         current = queue.popleft()
         for child, action in successors(current, owner, own['turn'], mode, own_ids, enemy_ids):
@@ -248,6 +374,8 @@ def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000)
             queue.append(child)
             endpoints.setdefault(canonical(endpoint(child)), child)
     search_ms = (perf_counter()-started)*1000
+    if strategy == 'grouped':
+        endpoints = {key: value[0] for key, value in grouped.items()}
     states = list(endpoints)
     kept = frontier(states)
     candidates: list[Json] = []
@@ -256,10 +384,12 @@ def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000)
         end = endpoint(representative)
         cursor = canonical(representative)
         actions = []
-        while (parent := parents[cursor]) is not None:
+        while strategy == 'exhaustive' and (parent := parents[cursor]) is not None:
             cursor, action = parent
             actions.append(action)
         actions.reverse()
+        if strategy == 'grouped':
+            actions = grouped[states[index]][1]
         boards = [[{'id': source['id'], 'name': source['name'], 'attack': b.attack,
                     'health': b.health, 'max_health': b.max_health, 'evolved': b.evolved}
                    for source, b in zip(p['board'], bodies) if b]
@@ -267,7 +397,8 @@ def analyze(battle: Battle, mode: str = 'super', max_states: int | None = 50000)
         candidates.append({'actions': actions, 'own_board': boards[0], 'enemy_board': boards[1],
                            'enemy_health': end.face, 'ep': end.ep, 'sep': end.sep, 'win': end.win})
     candidates.sort(key=lambda c: (not c['win'], c['enemy_health'], -len(c['own_board']), len(c['actions'])))
-    return {'mode': mode, 'complete': complete, 'record': projected.export(), 'candidates': candidates,
+    return {'mode': mode, 'strategy': strategy, 'complete': complete, 'record': projected.export(), 'candidates': candidates,
             'stats': {'states': len(parents), 'transitions': transitions, 'duplicates': duplicates,
                       'endpoints': len(states), 'dominated': len(states)-len(kept),
-                      'search_ms': round(search_ms, 3), 'elapsed_ms': round((perf_counter()-started)*1000, 3)}}
+                      'search_ms': round(search_ms, 3), 'elapsed_ms': round((perf_counter()-started)*1000, 3),
+                      **group_stats}}

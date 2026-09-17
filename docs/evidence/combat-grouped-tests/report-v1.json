@@ -1,0 +1,56 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-grouped-candidate-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "58d3a3edcc4611e97d029dd8ac7a12f28d9675781e209638fbbb5f2b320167fe",
+  "executor_id": "fresh-agent-/root/acceptance_run",
+  "started_at": "2026-09-17T06:48:41.706339+00:00",
+  "finished_at": "2026-09-17T06:50:15.595472+00:00",
+  "scheduling": {
+    "available_executor_slots": 1,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-grouped-tests",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-grouped-tests\\candidate-evidence.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-17T06:48:41.706339+00:00",
+      "journey_stopped_at": "2026-09-17T06:50:15.595472+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "PASS complete analysis: six /api/combat requests returned HTTP 200 and complete=true; F1/F2/F3/F4 attack/evolve/super candidate counts 2/3/4/1/2/3. raw-combat.json preserves exact requests and responses.",
+        "PASS F1: only cleared-enemy candidate retains B=3/1, attacks=1, enemy leader health=17; no cleared outcome retaining A. EP/SEP=0/0. Direct /api/replay state.",
+        "PASS F2: cleared alternatives retain A=4/2 with enemy leader=16 and B=2/4 with enemy leader=18; both attacks=1 and EP/SEP=0/0. Direct /api/replay states.",
+        "PASS F3: cleared alternatives retain T=4/1 or S1+S2 each 2/1, both enemy leader=16, all survivors attacks=1, EP/SEP=0/0. Tall steps S2->X, S1->X, T->leader; wide steps T->X, S1->leader, S2->leader. Direct /api/replay states and unedited actions.",
+        "PASS F4: no evolution gives 1 damage, 1/1 follower, EP/SEP=1/1; normal gives 3 damage, 3/3 follower, EP/SEP=0/1; super gives 4 damage, 4/4 follower, EP/SEP=1/0. Face path present in every mode. Direct /api/replay states.",
+        "PASS legal replay and immutability: all 15 candidates replay HTTP 200 and board fields id/name/attack/health/max_health/evolved plus own/enemy leader and EP/SEP match. Moves contain only attack/evolve/super_evolve. All six submitted original record/cursors equal immutable fixtures; reconstructed Battle snapshots equal saved snapshots. Public analyze state and export unchanged before/after both calls. raw-replays.json, immutability.json, raw-comparison.json.",
+        "PASS work reduction: F3 default strategy grouped versus exhaustive, mode attack, max_states=50000, both complete=true and both tall/wide shapes present. Grouped states=13 transitions=14 duplicates=0 elapsed_ms=1.316; exhaustive states=17 transitions=31 duplicates=15 elapsed_ms=1.723. 4 fewer states and 17 fewer transitions. elapsed_ms diagnostic only.",
+        "PASS API usability: each of 15 replays used the returned record with candidate.actions copied exactly and frames=[]; cursor=len(actions). Zero edits to moves and no hidden state reconstruction.",
+        "PASS API choice clarity: candidate boards show survivor attack/health, leader health and EP/SEP; replay adds attacks availability. API surface GO. Visual UI assessment not applicable.",
+        "Interaction counts directly logged: readiness GET=1, combat POST=6, replay POST=15, public analyze=2. UI clicks/keys/manual surface switches/scrolls=0 (none invoked); automatic UI transitions/focus/viewport not exercised and no claim made.",
+        "One isolated client journey in one batch. Immutable fixtures prepared before any combat output. Dedicated HTTP opener/processes exited normally; no product source, diff or internal test read; no retry. Fixed budget 13 minutes."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-17T06:50:15.595472+00:00",
+        "evidence": "Dedicated HTTP client scripts exited successfully; no browser or background process created. Fixture/report workspace preserved. Shared service intentionally left running as instructed."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Visual layout and the existing 盤面の候補 → 調べる → 手順を再生 UI are not exercised; no new UI interaction requirement was supplied.",
+    "Skills, card plays, automatic card effects, complex keywords, and broad performance scaling are outside the ability-free fixture scope.",
+    "Large-board scaling is not established by the small F3 comparison; elapsed time is diagnostic, not the performance acceptance criterion."
+  ]
+}

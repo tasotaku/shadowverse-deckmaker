@@ -101,7 +101,11 @@ def test_all_small_board_paths_match_independent_engine(mode: str) -> None:
         unique = {key(r): r for r in raw}
         expected = {k for k, b in unique.items() if not any(k != j and no_worse(a, b) for j, a in unique.items())}
         assert {key(c) for c in result['candidates']} == expected
-        assert result['stats']['endpoints'] == len(unique)
+        # AI_NOTE: 組合せ方式は劣位の途中結果を作らない。結果集合は独立総当たりと一致することを要求する。
+        reference = analyze(battle, mode, strategy='exhaustive')
+        assert reference['stats']['endpoints'] == len(unique)
+        assert {key(c) for c in reference['candidates']} == expected
+        assert result['stats']['endpoints'] <= len(unique)
 
 
 def test_new_follower_super_ping_lethal_and_sickness() -> None:
@@ -118,7 +122,8 @@ def test_combined_sacrifice_survives_bad_intermediate_score() -> None:
     result = checked(game([body('a', 1, 1), body('b', 3, 3)], [body('x', 4, 4)]), 'attack')
     assert any(c['own_board'] == c['enemy_board'] == [] and len(c['actions']) == 2 for c in result['candidates'])
     assert any(c['enemy_health'] == 16 and len(c['own_board']) == 2 for c in result['candidates'])
-    assert result['stats']['duplicates'] > 0
+    # AI_NOTE: 攻撃順の重複を最初から作らないため、重複検出件数そのものは要求しない。
+    assert result['strategy'] == 'grouped'
 
 
 def test_enemy_super_takes_damage_and_has_no_ping() -> None:
@@ -210,3 +215,64 @@ def test_five_identical_bodies_merge_symmetry_with_replay_witnesses() -> None:
 def test_equal_winning_lines_keep_one_representative() -> None:
     result = checked(game([body('a', 3, 3), body('b', 2, 2)], [], face=1))
     assert len(result['candidates']) == 1 and result['candidates'][0]['win']
+
+
+@pytest.mark.parametrize('units,required,excluded', [
+    ([(1, 1), (2, 2), (2, 3)], [((2, 3),)], [((2, 2),)]),
+    ([(1, 1), (2, 2), (3, 3)], [((3, 3),), ((1, 1), (2, 2))], []),
+    ([(2, 3), (3, 2)], [((2, 3),), ((3, 2),)], []),
+])
+def test_grouped_sacrifices_keep_incomparable_survivors(
+        units: list[tuple[int, int]], required: list[tuple[tuple[int, int], ...]],
+        excluded: list[tuple[tuple[int, int], ...]]) -> None:
+    # AI_NOTE: 合計スタッツで比較せず、安い犠牲・攻防差・単体と横展開を別々に確認する。
+    target = (3, 2) if len(units) == 2 else (4, 3)
+    result = checked(game([body(str(i), *v) for i, v in enumerate(units)], [body('x', *target)]), 'attack')
+    survivors = {tuple(sorted((b['attack'], b['health']) for b in c['own_board']))
+                 for c in result['candidates'] if not c['enemy_board']}
+    assert all(value in survivors for value in required)
+    assert all(value not in survivors for value in excluded)
+
+
+def test_grouped_partial_damage_and_search_reduction() -> None:
+    # AI_NOTE: 倒せない敵を削る選択も残し、同条件の全探索より操作数が減ることを確認する。
+    partial = checked(game([body('a', 2, 2)], [body('x', 5, 5)]), 'attack')
+    assert any(not c['own_board'] and c['enemy_board'][0]['health'] == 3 for c in partial['candidates'])
+    battle = game([body('a', 4, 1), body('b', 2, 1), body('c', 2, 1)], [body('x', 4, 4)])
+    grouped = checked(battle, 'attack')
+    full = analyze(battle, 'attack', strategy='exhaustive')
+    assert {key(c) for c in grouped['candidates']} == {key(c) for c in full['candidates']}
+    assert grouped['stats']['transitions'] < full['stats']['transitions']
+    with pytest.raises(ValueError):
+        analyze(battle, strategy='wrong')
+
+
+def test_continuation_matching_keeps_attack_and_face_rights() -> None:
+    # AI_NOTE: 次の敵を処理する前は、同じ数値でも攻撃済み・顔へ攻撃不可を同一視しない。
+    from svdeck.battle_combat import Body, Position, canonical, dominates, frontier
+    small = Body(2, 2, 2, 0, 0, True)
+    base = canonical(Position((small,), (), 20, 1, 1, False, False))
+    spent = base._replace(own=(small._replace(attacks=1),))
+    sick = base._replace(own=(small._replace(ready=False),))
+    assert dominates(base, spent, True) and not dominates(spent, base, True)
+    assert dominates(base, sick, True) and not dominates(sick, base, True)
+    assert frontier([base, spent, sick], continuation=True) == [0]
+    strong_spent = base._replace(own=(small._replace(attack=3, health=3, max_health=3, attacks=1),))
+    assert frontier([base, strong_spent], continuation=True) == [0, 1]
+
+
+def test_lower_attack_can_preserve_super_finishing_blow() -> None:
+    # AI_NOTE: 大きい攻撃力が先に敵を倒すと、召喚酔いの超進化による顔1点を失うため両方残す。
+    from svdeck.battle_combat import Body, Position, canonical, frontier
+    normal = Body(1, 4, 4, 0, 0, True)
+    super_body = Body(1, 4, 4, 2, 0, False)
+    target = Body(0, 2, 2, 0, 0, False)
+    low = canonical(Position((normal, super_body), (target,), 20, 0, 0, True, False))
+    high = canonical(low._replace(own=(normal._replace(attack=2), super_body)))
+    assert frontier([low, high], continuation=True) == [0, 1]
+    battle = game([body('a', 2, 1), body('b', 3, 1), body('s', 1, 4, evolved=2, entered_turn=7)],
+                  [body('x', 4, 2), body('y', 0, 3)], ep=0, sep=0, evolved_this_turn=True)
+    result = checked(battle, 'attack')
+    reference = analyze(battle, 'attack', strategy='exhaustive')
+    assert {key(c) for c in result['candidates']} == {key(c) for c in reference['candidates']}
+    assert any(not c['enemy_board'] and c['enemy_health'] == 19 for c in result['candidates'])
