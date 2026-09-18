@@ -1,0 +1,127 @@
+{
+  "id": "slot-pp-evolve",
+  "description": "Small must trade into guard to free fifth slot",
+  "cards": {
+    "small": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": []
+    },
+    "idle": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "runner": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "疾走"
+      ],
+      "evolve": [
+        {
+          "op": "buff",
+          "target": "self",
+          "attack": 1
+        }
+      ]
+    },
+    "expensive": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 20
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 1,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "card_id": "small",
+            "id": "small"
+          },
+          {
+            "card_id": "idle",
+            "id": "idle0",
+            "attacks": 1
+          },
+          {
+            "card_id": "idle",
+            "id": "idle1",
+            "attacks": 1
+          },
+          {
+            "card_id": "idle",
+            "id": "idle2",
+            "attacks": 1
+          },
+          {
+            "card_id": "idle",
+            "id": "idle3",
+            "attacks": 1
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "runner",
+            "id": "runner"
+          },
+          {
+            "card_id": "expensive",
+            "id": "expensive"
+          }
+        ]
+      },
+      {
+        "health": 5,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Small must trade into guard to free fifth slot. Runner spends the only PP and evolves for 2 plus buff 1 attack, reaching 5; expensive spell cannot be played.",
+    "unique_best_first_action": {
+      "type": "attack",
+      "source": "small",
+      "target": "g"
+    }
+  }
+}

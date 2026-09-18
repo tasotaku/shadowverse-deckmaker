@@ -1,0 +1,16 @@
+{
+  "created_before_search": true,
+  "random-half-anchor": "Only legal damaging choices: attack ward uses sole attacker (0 win), or r then attack. r hits g with 1/2 -> g removed -> a face wins; hits d with 1/2 -> d health2, g survives -> a clears g, no face attack. Optimal 1/2.",
+  "random-two-ward-adaptive-anchor": "r removes left/right with 1/2 each. On each result attack observed surviving ward with one a, other a hits face: win1. Stop0. Attacking ward before r can also win because sole remaining ward must be hit, so optimal first action may tie; random-first continuation targets must differ.",
+  "objective-preserve-versus-win": "No hand or EP. Stop preserves health20+1=21 and win0. Face into guard kills face and guard -> big face wins, remaining health20. Big into guard kills big and guard -> face face wins, health1. Thus lethal first face->guard gives probability1, value20; value objective uniquely stops, value21 probability0. Weights all0 except own_board_health1.",
+  "barrier-target-order": "Ping consumes barrier, blast kills g, a4 hits face4. Reverse consumes blast on barrier leaves ward health2. Optimum1.",
+  "bane-barrier-rush": "b rush bane attacks guard, bane destroys despite barrier; s storm4 face4. Rush cannot face on entry. Optimum1.",
+  "split-oldest-first": "Chronological array old,new opposes lexical new,old. Split3 first assigns all3 to old barrier and consumes barrier, both health3 unchanged. Ping old then split kills old and a4 face4. Optimum1.",
+  "fanfare-self-storm": "Play runner cost1 kills guard2 by fanfare damage2 then self grant storm; attack4 face4 ->1.",
+  "ally-keyword-grant": "Fresh ally cannot attack until grant rush/bane; then destroys barrier guard preserving ready a4 for face4 ->1.",
+  "slot-pp-evolve": "Full five slots prevents runner play. small1/1 trades guard1/1 -> slot. runner cost1 of1PP, evolve +2 and buff+1 makes5 attack; storm face5. No other attack unused and expensive2 unavailable. Optimum1.",
+  "random-adaptive-target": "Random left/right1/2. Ping wounded ward and destroy intact ward, a4 face4 =>1; destroy first also guarantees random remaining ward then ping.",
+  "rng-cheating-choice": "Safe hits 2 distinct among3: ward included2/3, risk one among3 =>1/3. Attack first spends sole attacker =>0. Safe optimum2/3.",
+  "summon-repeat-super-evolve": "Summon token without fanfare face damage. Repeat2 removes barrier then health1 guard. SEP1 super evolve token +3 attack and storm -> face3. Optimum1.",
+  "spent-attack-pp-shortage": "Already attacked; cost2 spell with1PP; EP/SEP0 -> no damage legal, win0."
+}

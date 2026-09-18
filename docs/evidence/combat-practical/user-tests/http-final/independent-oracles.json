@@ -1,0 +1,61 @@
+{
+  "random-half-anchor": {
+    "win": "1/2",
+    "derivation": "Only r first can win: uniform target g removes ward allowing a to hit face, target d leaves ward and sole attack cannot both clear ward and hit face. Each branch has probability 1/2. Attacking ward first spends a and cannot win.",
+    "first": {
+      "type": "play",
+      "card": "r"
+    }
+  },
+  "random-two-ward-adaptive-anchor": {
+    "win": "1",
+    "derivation": "r uniformly kills left or right (1/2 each); a1 or a2 must attack observed surviving ward; other hits face. No random outcome exceeds 1 and this achieves 1. An attack before r can also guarantee victory; whichever policy is returned must obey observed state."
+  },
+  "slot-pp-evolve": {
+    "win": "1",
+    "derivation": "Full board blocks runner; expensive costs2 with1PP; idle attackers spent. Small attacks guard and both die, opening slot. Runner costs1, base attack2 plus normal evolve2 plus effect1 =5; storm permits face lethal. Evolving small first retains full board after defeating guard, preventing runner, so cannot reach 5 face damage.",
+    "first": {
+      "type": "attack",
+      "source": "small",
+      "target": "g"
+    }
+  },
+  "split-oldest-first": {
+    "win": "1",
+    "derivation": "Board chronology is old then new although lexical new comes first. Split3 first allocates all3 to old barrier: neither damaged, barrier removed, remaining ping1 cannot kill old3. Ping old first removes barrier then split3 kills old; a hits face4.",
+    "first": {
+      "type": "play",
+      "card": "ping",
+      "target": "old"
+    }
+  },
+  "objective-preserve-versus-win-lethal": {
+    "win": "1",
+    "value": "20",
+    "derivation": "Only attacks available; either ally kills ward but dies to20 retaliation. Sacrificing face leaves big health20 and1 face lethal. Sacrificing big leaves health1. With own_board_health1 and all others0, lethal optimum (1,20).",
+    "first": {
+      "type": "attack",
+      "source": "face",
+      "target": "guard"
+    }
+  },
+  "objective-preserve-versus-win-value": {
+    "win": "0",
+    "value": "21",
+    "derivation": "Stop preserves20+1=21 health. Any attack loses at least1 health body, maximum afterwards20. Value optimum21 by stopping; enemy leader remains1 so win0.",
+    "first": null
+  },
+  "bounded": {
+    "derivation": "max_states1 cannot finish half fixture: complete and optimal must be false, cutoff reason states."
+  },
+  "invalid": {
+    "derivation": "max_states0 outside documented1..50000 range; HTTP400 error should name max_states."
+  },
+  "recovery": {
+    "win": "0",
+    "derivation": "No own board or hand or evolution resources; stop only; both leaders alive."
+  },
+  "legacy": {
+    "derivation": "cheap-trade own2/1+3/1 versus enemy1/2. Sacrifice2/1 trades and leaves3/1; sacrificing3/1 leaves2/1 and is dominated. Required clear survivor3/1."
+  }
+}

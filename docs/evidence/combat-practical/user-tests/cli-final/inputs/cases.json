@@ -1,0 +1,1286 @@
+[
+  {
+    "id": "barrier-target-order",
+    "description": "Only ping then blast clears the barrier ward while preserving 4 face damage",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 3,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "ping": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "blast": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 2,
+          "max_pp": 2,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "ping",
+              "id": "ping"
+            },
+            {
+              "card_id": "blast",
+              "id": "blast"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Only ping then blast clears the barrier ward while preserving 4 face damage. Reverse order leaves ward alive.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "ping",
+        "target": "g"
+      }
+    }
+  },
+  {
+    "id": "bane-barrier-rush",
+    "description": "Bane destroys the ward through barrier; rush cannot hit face on entry",
+    "cards": {
+      "b": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": [
+          "突進",
+          "必殺"
+        ]
+      },
+      "s": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": [
+          "疾走"
+        ]
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 9,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 0,
+          "max_pp": 0,
+          "board": [
+            {
+              "card_id": "b",
+              "id": "b",
+              "entered_turn": 7
+            },
+            {
+              "card_id": "s",
+              "id": "s",
+              "entered_turn": 7
+            }
+          ],
+          "hand": []
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Bane destroys the ward through barrier; rush cannot hit face on entry. Storm must preserve its attack for face.",
+      "unique_best_first_action": {
+        "type": "attack",
+        "source": "b",
+        "target": "g"
+      }
+    }
+  },
+  {
+    "id": "split-oldest-first",
+    "description": "Ping the oldest barrier ward then split kills it",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": []
+      },
+      "old": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "new": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": []
+      },
+      "ping": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "split": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 2,
+          "max_pp": 2,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "ping",
+              "id": "ping"
+            },
+            {
+              "card_id": "split",
+              "id": "split"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "old",
+              "id": "old"
+            },
+            {
+              "card_id": "new",
+              "id": "new"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Ping the oldest barrier ward then split kills it. Split first spends its entire total on the old barrier and cannot remove the ward.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "ping",
+        "target": "old"
+      },
+      "replay_anchors": [
+        {
+          "actions": [
+            {
+              "type": "play",
+              "card": "split"
+            }
+          ],
+          "enemy_board_ids": [
+            "old",
+            "new"
+          ],
+          "enemy_health": {
+            "old": 3,
+            "new": 3
+          },
+          "enemy_keywords": {
+            "old": [
+              "守護"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "fanfare-self-storm",
+    "description": "Hand follower fanfare removes ward then grants itself storm",
+    "cards": {
+      "runner": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": [],
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          },
+          {
+            "op": "grant",
+            "target": "self",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [],
+          "hand": [
+            {
+              "card_id": "runner",
+              "id": "runner"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Hand follower fanfare removes ward then grants itself storm. It can then hit face immediately.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "runner",
+        "target": "g"
+      }
+    }
+  },
+  {
+    "id": "ally-keyword-grant",
+    "description": "Grant rush and bane to fresh ally to preserve the ready 4 attack for lethal",
+    "cards": {
+      "fresh": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": []
+      },
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 8,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "grant": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "突進",
+              "必殺"
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "fresh",
+              "id": "fresh",
+              "entered_turn": 7
+            },
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "grant",
+              "id": "grant"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Grant rush and bane to fresh ally to preserve the ready 4 attack for lethal. Grant to ready attacker spends its only attack on ward.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "grant",
+        "target": "fresh"
+      }
+    }
+  },
+  {
+    "id": "slot-pp-evolve",
+    "description": "Small must trade into guard to free fifth slot",
+    "cards": {
+      "small": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": []
+      },
+      "idle": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "runner": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "疾走"
+        ],
+        "evolve": [
+          {
+            "op": "buff",
+            "target": "self",
+            "attack": 1
+          }
+        ]
+      },
+      "expensive": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 20
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 1,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "small",
+              "id": "small"
+            },
+            {
+              "card_id": "idle",
+              "id": "idle0",
+              "attacks": 1
+            },
+            {
+              "card_id": "idle",
+              "id": "idle1",
+              "attacks": 1
+            },
+            {
+              "card_id": "idle",
+              "id": "idle2",
+              "attacks": 1
+            },
+            {
+              "card_id": "idle",
+              "id": "idle3",
+              "attacks": 1
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "runner",
+              "id": "runner"
+            },
+            {
+              "card_id": "expensive",
+              "id": "expensive"
+            }
+          ]
+        },
+        {
+          "health": 5,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Small must trade into guard to free fifth slot. Runner spends the only PP and evolves for 2 plus buff 1 attack, reaching 5; expensive spell cannot be played.",
+      "unique_best_first_action": {
+        "type": "attack",
+        "source": "small",
+        "target": "g"
+      }
+    }
+  },
+  {
+    "id": "random-adaptive-target",
+    "description": "Random first wins surely by pinging the damaged ward and destroying the other",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "random": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 0,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "ping": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "kill": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 2,
+          "max_pp": 2,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "random",
+              "id": "random"
+            },
+            {
+              "card_id": "ping",
+              "id": "ping"
+            },
+            {
+              "card_id": "kill",
+              "id": "kill"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "left"
+            },
+            {
+              "card_id": "g",
+              "id": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Random first wins surely by pinging the damaged ward and destroying the other. The ping target depends on observed outcome; destroy first also guarantees lethal.",
+      "adaptive_after_action": {
+        "type": "play",
+        "card": "random"
+      }
+    }
+  },
+  {
+    "id": "rng-cheating-choice",
+    "description": "Safe samples two distinct enemies, removing sole ward with probability 2/3",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "d": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 100,
+        "keywords": []
+      },
+      "safe": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 2,
+            "count": 2
+          }
+        ]
+      },
+      "risk": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "random_ally",
+            "keywords": [
+              "バリア"
+            ]
+          },
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "safe",
+              "id": "safe"
+            },
+            {
+              "card_id": "risk",
+              "id": "risk"
+            }
+          ]
+        },
+        {
+          "health": 4,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            },
+            {
+              "card_id": "d",
+              "id": "d1"
+            },
+            {
+              "card_id": "d",
+              "id": "d2"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "2/3",
+      "proof": "Safe samples two distinct enemies, removing sole ward with probability 2/3. Risk samples one with probability 1/3; its preceding one-target ally roll changes fixed RNG, permitting a seed-dependent wrong preference.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "safe"
+      },
+      "action_values": [
+        {
+          "action": {
+            "type": "play",
+            "card": "safe"
+          },
+          "win_probability": "2/3"
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "risk"
+          },
+          "win_probability": "1/3"
+        }
+      ],
+      "seed_independence": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        19,
+        100,
+        4294967295,
+        60
+      ],
+      "fixed_rng_counterexample": {
+        "seed": 60,
+        "losing_higher_probability_action": {
+          "type": "play",
+          "card": "safe"
+        },
+        "winning_lower_probability_action": {
+          "type": "play",
+          "card": "risk"
+        }
+      }
+    }
+  },
+  {
+    "id": "random-half-anchor",
+    "description": "Random damage removes the ward in exactly one of two equally likely outcomes",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "d": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": []
+      },
+      "r": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "r",
+              "id": "r"
+            }
+          ]
+        },
+        {
+          "health": 1,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "g"
+            },
+            {
+              "card_id": "d",
+              "id": "d"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1/2",
+      "proof": "Random damage removes the ward in exactly one of two equally likely outcomes. Attacking the ward spends the sole face attacker.",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "r"
+      }
+    }
+  },
+  {
+    "id": "random-two-ward-adaptive-anchor",
+    "description": "Random removes either ward, then one attacker clears observed survivor and the other deals lethal face damage",
+    "cards": {
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": []
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "r": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a1"
+            },
+            {
+              "card_id": "a",
+              "id": "a2"
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "r",
+              "id": "r"
+            }
+          ]
+        },
+        {
+          "health": 1,
+          "board": [
+            {
+              "card_id": "g",
+              "id": "left"
+            },
+            {
+              "card_id": "g",
+              "id": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Random removes either ward, then one attacker clears observed survivor and the other deals lethal face damage. A fixed attack target cannot represent both outcomes.",
+      "adaptive_after_action": {
+        "type": "play",
+        "card": "r"
+      }
+    }
+  },
+  {
+    "id": "summon-repeat-super-evolve",
+    "description": "Summon skips fanfare; repeated hits clear barrier and super evolution grants storm",
+    "cards": {
+      "token": {
+        "name": "Fixture token",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 20
+          }
+        ],
+        "super_evolve": [
+          {
+            "op": "grant",
+            "target": "self",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ]
+      },
+      "guard": {
+        "name": "Fixture guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "summoner": {
+        "name": "Fixture summoner",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "card_id": "token"
+          },
+          {
+            "op": "repeat",
+            "count": 2,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "all_enemy",
+                "amount": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 1,
+          "pp": 1,
+          "max_pp": 1,
+          "hand": [
+            {
+              "card_id": "summoner",
+              "id": "summoner"
+            }
+          ]
+        },
+        {
+          "health": 3,
+          "board": [
+            {
+              "card_id": "guard",
+              "id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "unique_best_first_action": {
+        "type": "play",
+        "card": "summoner"
+      },
+      "proof": "Summon does not trigger token fanfare, so the leader remains on 3 health. The repeated hits consume barrier then kill ward. Super evolution adds 3 attack and its own phase grants storm, permitting lethal face damage.",
+      "replay_anchors": [
+        {
+          "actions": [
+            {
+              "type": "play",
+              "card": "summoner"
+            }
+          ],
+          "enemy_board_ids": [],
+          "enemy_leader_health": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "objective-preserve-versus-win",
+    "description": "Winning sacrifices a valuable body; own-board-only value prefers stopping",
+    "cards": {
+      "big": {
+        "name": "Valuable body",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 20
+      },
+      "face": {
+        "name": "Face attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1
+      },
+      "guard": {
+        "name": "Lethal ward",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 20,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "board": [
+            {
+              "card_id": "big",
+              "id": "big"
+            },
+            {
+              "card_id": "face",
+              "id": "face"
+            }
+          ]
+        },
+        {
+          "health": 1,
+          "board": [
+            {
+              "card_id": "guard",
+              "id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "1",
+      "proof": "Either ally can trade into the 1-health ward, then the other hits face for lethal. Stopping preserves both bodies, with total own health 21; every attack loses a body so own-health-only value uniquely prefers stop.",
+      "value_objective_anchor": {
+        "semantic_weights": {
+          "own_board_health": 1,
+          "all_other_terms": 0
+        },
+        "best_action": {
+          "type": "stop"
+        },
+        "optimal_value": 21,
+        "maximum_lethal_line_value": 20,
+        "proof": "Own board health starts at20+1=21. Sacrificing face to ward leaves big health20 for winning; sacrificing big leaves1. Thus maximum value21 and maximum winprobability1 require different policies."
+      }
+    }
+  },
+  {
+    "id": "spent-attack-pp-shortage",
+    "description": "Spent attacker and unaffordable spell cannot finish this turn",
+    "cards": {
+      "a": {
+        "name": "Spent body",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 5,
+        "health": 2
+      },
+      "spell": {
+        "name": "Too expensive",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    "state": {
+      "rng": 1,
+      "players": [
+        {
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "card_id": "a",
+              "id": "a",
+              "attacks": 1
+            }
+          ],
+          "hand": [
+            {
+              "card_id": "spell",
+              "id": "spell"
+            }
+          ]
+        },
+        {
+          "health": 5
+        }
+      ]
+    },
+    "expected": {
+      "win_probability": "0",
+      "proof": "The attacker already attacked and the only spell costs2 with1PP. No legal current-turn action can deal damage; stop leaves enemy health5."
+    }
+  }
+]

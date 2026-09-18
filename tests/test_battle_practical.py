@@ -100,13 +100,20 @@ def test_unsupported_effects_and_invalid_options_fail_explicitly() -> None:
             analyze(battle, **options)
 
 
-def test_opponent_hand_triggers_cannot_bypass_scope_check() -> None:
+@pytest.mark.parametrize('alternate', [False, True])
+def test_opponent_hand_triggers_cannot_bypass_scope_check(alternate: bool) -> None:
     # AI_NOTE: 相手の非公開手札にある未対応誘発が、完全探索の推奨手へ混ざる経路を拒否する。
     case = copy.deepcopy(CASES[0])
     case['cards']['reactive'] = {'name': 'Reactive', 'kind': 'follower', 'cost': 1, 'attack': 1, 'health': 1,
                                 'hand_triggers': [{'event': 'enter', 'scope': 'enemy',
                                                    'effects': [{'op': 'damage', 'target': 'enemy_leader', 'amount': 20}]}]}
     case['state']['players'][1]['hand'] = ['reactive']
+    if alternate:
+        reactive = case['cards']['reactive']
+        variant = {k: v for k, v in reactive.items() if k != 'card_id'}
+        reactive.pop('hand_triggers')
+        reactive['forms'] = {'accelerate': variant}
+        case['state']['players'][1]['hand'] = [{'card_id': 'reactive', 'form': 'accelerate'}]
     with pytest.raises(ValueError, match='手札誘発'):
         analyze(Battle(case['state'], case['cards']))
 

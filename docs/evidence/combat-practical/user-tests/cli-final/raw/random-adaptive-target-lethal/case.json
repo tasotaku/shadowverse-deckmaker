@@ -1,0 +1,112 @@
+{
+  "id": "random-adaptive-target",
+  "description": "Random first wins surely by pinging the damaged ward and destroying the other",
+  "cards": {
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "random": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 0,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "ping": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "kill": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_enemy"
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 2,
+        "max_pp": 2,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "random",
+            "id": "random"
+          },
+          {
+            "card_id": "ping",
+            "id": "ping"
+          },
+          {
+            "card_id": "kill",
+            "id": "kill"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "left"
+          },
+          {
+            "card_id": "g",
+            "id": "right"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Random first wins surely by pinging the damaged ward and destroying the other. The ping target depends on observed outcome; destroy first also guarantees lethal.",
+    "adaptive_after_action": {
+      "type": "play",
+      "card": "random"
+    }
+  }
+}

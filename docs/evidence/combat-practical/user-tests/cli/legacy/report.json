@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-18T00:59:09.992090+00:00",
+  "environment": {
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "cpu_count": 12
+  },
+  "repeat": 1,
+  "timeout_seconds": 60,
+  "max_states": 50000,
+  "cases": [
+    {
+      "id": "cheap-trade",
+      "description": "小さい個体の犠牲で済ませる",
+      "reference": {
+        "status": "PASS",
+        "expected": [
+          "[[[2,1,1,0],[3,1,1,0]],[[1,2,2,0]],15,2,2]",
+          "[[[3,1,1,0]],[],17,2,2]"
+        ],
+        "sequences": 11,
+        "endpoints": 8
+      },
+      "strategies": [
+        "grouped"
+      ],
+      "runs": [
+        {
+          "elapsed_ms": 0.8597999985795468,
+          "peak_rss_bytes": 21413888,
+          "baseline_peak_rss_bytes": 21364736,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "complete": true,
+          "stats": {
+            "states": 2,
+            "transitions": 2,
+            "duplicates": 0,
+            "endpoints": 2,
+            "dominated": 0,
+            "search_ms": 0.595,
+            "elapsed_ms": 0.853,
+            "group_pruned": 1,
+            "allocations": 2,
+            "budget_unit": "unique completed endpoints"
+          },
+          "candidate_count": 2,
+          "status": "PASS",
+          "phase": "finished",
+          "replay_checked": 2,
+          "replay_indices": [
+            0,
+            1
+          ],
+          "replay_coverage": "all",
+          "errors": [],
+          "answer_diff": {
+            "missing_count": 0,
+            "extra_count": 0,
+            "missing_samples": [],
+            "extra_samples": []
+          },
+          "answers_sha256": "462a58c034695f78ca47192a5e8e3916c83e638570ec48c7aa81e74630b03c91",
+          "answer_samples": [
+            "[[[2,1,1,0],[3,1,1,0]],[[1,2,2,0]],15,2,2]",
+            "[[[3,1,1,0]],[],17,2,2]"
+          ],
+          "strategy": "grouped",
+          "iteration": 1,
+          "correctness": "PASS"
+        }
+      ]
+    }
+  ],
+  "status": "PASS",
+  "measurement": {
+    "isolation": "new child process for each run",
+    "time": "analyze only; milliseconds",
+    "memory": "process peak resident bytes captured before replay verification",
+    "reference": "independent Battle legal-action enumeration in separate process",
+    "timeout": "whole child including startup and replay; phase identifies interrupted work"
+  },
+  "source_sha256": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+  "runner_sha256": "90869082dc6f0cbb3eccad396c2882c79f8774e865900099e43fb79e0cc2fab2",
+  "cases_sha256": "82de7fc44e3af19702dd9e3ca8f4028a3c015bd414ed0183dd5742974d02735b"
+}

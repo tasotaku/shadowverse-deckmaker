@@ -1,0 +1,19 @@
+{
+  "recorded_before_search": "2026-09-18T00:58:42.196476+00:00",
+  "proofs": {
+    "random-half-anchor": "Root stop or attacking ward consumes the only attacker and cannot win. Playing r has two uniform targets: g removed (1/2), then a attacks leader for 1, win; d goes 3->2 (1/2), g remains, sole attacker must clear it and cannot hit face, loss. Upper bound and achievable optimum =1/2.",
+    "random-two-ward-adaptive-anchor": "Root stop loses. Playing r removes left or right each 1/2. In each child first attack must clear the surviving ward (right or left respectively), second ready 1-attack ally hits leader for 1. Sum=1/2*1+1/2*1=1, global upper bound. Attacking one ward first and r afterwards can also win; root tie need not force randomness first, so additionally examine returned random candidate.",
+    "objective-preserve-versus-win": "No resources to play/evolve. Root stop: own health20+1=21, win0. Big attacks guard: both die, remaining face1 can win with health1. Face attacks guard: both die, remaining big20 can win with health20. Thus lethal with own-health tie-break picks face into guard then big face: (win1,value20). Value objective picks stop: (win0,value21). All weights zero except own_board_health1.",
+    "barrier-target-order": "Ping spends barrier, blast removes ward3, attacker4 lethal; reverse spells leave ward2, so probability1 requires ping first.",
+    "bane-barrier-rush": "Fresh rush bane1 hits ward9 through barrier: bane destroys it, attacker survives opposing attack0. Fresh storm4 then face lethal. Rush cannot face this turn; preserving storm is necessary.",
+    "split-oldest-first": "Array documents chronological order old,new; IDs lexical order is new,old. Split3 first assigns3 to old barrier, consumes barrier but neither health changes. Ping old first spends barrier then split3 kills old; attacker4 can face. Attacker cannot clear health3 barrier ward alone and still face. Optimum1.",
+    "fanfare-self-storm": "PP1 plays runner, targeted fanfare2 kills ward2, self grant storm gives immediate face4 lethal. Stop loses. Optimum1.",
+    "ally-keyword-grant": "Fresh cannot attack until rush. Grant rush/bane to fresh clears barrier ward8 with bane; ready4 then face. Grant to ready loses its sole face attack. Optimum1.",
+    "slot-pp-evolve": "Board full: runner cannot play; expensive costs2>PP1. Small1/1 trades with guard1/1 to free slot, runner2/2 uses1PP, evolve adds2 plus own evolve buff1 =>attack5 and face5 lethal. Evolving small first uses EP without freeing a slot; evolving spent idle cannot restore attack. Optimum1.",
+    "random-adaptive-target": "Random hits left/right 2-health ward each1/2; ping damaged ward1 then destroy intact other for2PP, attack4 face lethal. Each child win1. Destroy first also yields certainty. Every action before random outcome common across branches.",
+    "rng-cheating-choice": "Safe chooses two distinct of3: six ordered pairs each1/6, four contain ward =>win2/3. Risk chooses sole ally then one enemy of3=>ward removal1/3. Only1PP so cannot combine. Attack ward consumes sole face attacker =>0. Maximum2/3 independent of seed.",
+    "summon-repeat-super-evolve": "Spell1 summons token0/1 without its fanfare, so leader remains3. Two all-enemy damage1 hits remove barrier then ward1. Super evolve uses sole SEP, adds3/3 and storm =>3face lethal. Optimum1.",
+    "spent-attack-pp-shortage": "Attacks1 used and cost2>PP1, EP=SEP=0. Only stop relevant; probability0.",
+    "legacy-cheap-trade": "Own2/1 and3/1 versus enemy1/2. Either attacker trades; eliminating enemy with2/1 preserves3/1 and dominates preserving2/1. Required clear survivor3/1."
+  }
+}

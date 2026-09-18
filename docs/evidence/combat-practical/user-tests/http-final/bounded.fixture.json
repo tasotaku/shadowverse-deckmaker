@@ -1,0 +1,89 @@
+{
+  "id": "random-half-anchor",
+  "description": "Random damage removes the ward in exactly one of two equally likely outcomes",
+  "cards": {
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "d": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 3,
+      "keywords": []
+    },
+    "r": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "r",
+            "id": "r"
+          }
+        ]
+      },
+      {
+        "health": 1,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          },
+          {
+            "card_id": "d",
+            "id": "d"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1/2",
+    "proof": "Random damage removes the ward in exactly one of two equally likely outcomes. Attacking the ward spends the sole face attacker.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "r"
+    }
+  }
+}

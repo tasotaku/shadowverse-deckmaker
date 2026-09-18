@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\tasog\source\shadowverse-deckmaker\src\svdeck\battle_practical.py", line 363, in <module>
+    main()
+  File "C:\Users\tasog\source\shadowverse-deckmaker\src\svdeck\battle_practical.py", line 342, in main
+    result = analyze(Battle(case['state'], case['cards']), objective=args.objective, weights=args.weights,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tasog\source\shadowverse-deckmaker\src\svdeck\battle_practical.py", line 156, in analyze
+    integer(max_states, 'max_states', 1, 50000)
+  File "C:\Users\tasog\source\shadowverse-deckmaker\src\svdeck\battle.py", line 32, in integer
+    raise ValueError(f'{label}: 整数 {low}〜{high} が必要です')
+ValueError: max_states: 整数 1〜50000 が必要です

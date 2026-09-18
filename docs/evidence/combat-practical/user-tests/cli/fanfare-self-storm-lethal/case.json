@@ -1,0 +1,75 @@
+{
+  "id": "fanfare-self-storm",
+  "description": "Hand follower fanfare removes ward then grants itself storm",
+  "cards": {
+    "runner": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": [],
+      "fanfare": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 2
+        },
+        {
+          "op": "grant",
+          "target": "self",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [],
+        "hand": [
+          {
+            "card_id": "runner",
+            "id": "runner"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Hand follower fanfare removes ward then grants itself storm. It can then hit face immediately.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "runner",
+      "target": "g"
+    }
+  }
+}

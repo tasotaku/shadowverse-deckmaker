@@ -1,0 +1,456 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "ally-keyword-grant-lethal",
+      "all_edges": 10,
+      "actions": 10,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 10,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10041",
+      "complete": true,
+      "memory": {
+        "states": 10,
+        "transitions": 10,
+        "chance_nodes": 0,
+        "duplicates": 1,
+        "elapsed_ms": 2.1501000155694783,
+        "peak_rss_bytes": 21618688,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "bane-barrier-rush-lethal",
+      "all_edges": 4,
+      "actions": 4,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 4,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10043",
+      "complete": true,
+      "memory": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.9024000028148293,
+        "peak_rss_bytes": 21516288,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "barrier-target-order-lethal",
+      "all_edges": 12,
+      "actions": 12,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 12,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10033",
+      "complete": true,
+      "memory": {
+        "states": 11,
+        "transitions": 12,
+        "chance_nodes": 0,
+        "duplicates": 2,
+        "elapsed_ms": 1.8610000261105597,
+        "peak_rss_bytes": 21577728,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "fanfare-self-storm-lethal",
+      "all_edges": 2,
+      "actions": 2,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 2,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10034",
+      "complete": true,
+      "memory": {
+        "states": 3,
+        "transitions": 2,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.6089000089559704,
+        "peak_rss_bytes": 21520384,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "objective-preserve-versus-win-lethal",
+      "all_edges": 4,
+      "actions": 4,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 4,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "20",
+      "complete": true,
+      "memory": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.7776999846100807,
+        "peak_rss_bytes": 21573632,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "objective-preserve-versus-win-value",
+      "all_edges": 4,
+      "actions": 4,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 4,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "value",
+      "win": "0",
+      "value": "21",
+      "complete": true,
+      "memory": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.9080000163521618,
+        "peak_rss_bytes": 21508096,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "random-adaptive-target-lethal",
+      "all_edges": 91,
+      "actions": 88,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 91,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10032",
+      "complete": true,
+      "memory": {
+        "states": 39,
+        "transitions": 91,
+        "chance_nodes": 15,
+        "duplicates": 53,
+        "elapsed_ms": 10.183999984292313,
+        "peak_rss_bytes": 21909504,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "random-half-anchor-lethal",
+      "all_edges": 7,
+      "actions": 6,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 7,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1/2",
+      "value": "5021",
+      "complete": true,
+      "memory": {
+        "states": 6,
+        "transitions": 7,
+        "chance_nodes": 2,
+        "duplicates": 2,
+        "elapsed_ms": 1.349999976810068,
+        "peak_rss_bytes": 21557248,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "random-half-anchor-limited",
+      "all_edges": 0,
+      "actions": 0,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 0,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "0",
+      "value": "19",
+      "complete": false,
+      "memory": {
+        "states": 1,
+        "transitions": 0,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.42279998888261616,
+        "peak_rss_bytes": 21528576,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 1,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "random-two-ward-adaptive-anchor-lethal",
+      "all_edges": 21,
+      "actions": 20,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 21,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10032",
+      "complete": true,
+      "memory": {
+        "states": 12,
+        "transitions": 21,
+        "chance_nodes": 5,
+        "duplicates": 10,
+        "elapsed_ms": 3.2617000106256455,
+        "peak_rss_bytes": 21680128,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "rng-cheating-choice-lethal",
+      "all_edges": 26,
+      "actions": 17,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 26,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "2/3",
+      "value": "6499",
+      "complete": true,
+      "memory": {
+        "states": 20,
+        "transitions": 26,
+        "chance_nodes": 11,
+        "duplicates": 7,
+        "elapsed_ms": 4.745000012917444,
+        "peak_rss_bytes": 21651456,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "slot-pp-evolve-lethal",
+      "all_edges": 36,
+      "actions": 36,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 36,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10057",
+      "complete": true,
+      "memory": {
+        "states": 25,
+        "transitions": 36,
+        "chance_nodes": 0,
+        "duplicates": 12,
+        "elapsed_ms": 6.378799997037277,
+        "peak_rss_bytes": 21803008,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "spent-attack-pp-shortage-lethal",
+      "all_edges": 0,
+      "actions": 0,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 0,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "0",
+      "value": "33",
+      "complete": true,
+      "memory": {
+        "states": 1,
+        "transitions": 0,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.30590000096708536,
+        "peak_rss_bytes": 21553152,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "split-oldest-first-lethal",
+      "all_edges": 22,
+      "actions": 22,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 22,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10027",
+      "complete": true,
+      "memory": {
+        "states": 16,
+        "transitions": 22,
+        "chance_nodes": 0,
+        "duplicates": 7,
+        "elapsed_ms": 3.3152000105474144,
+        "peak_rss_bytes": 21618688,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    },
+    {
+      "case": "summon-repeat-super-evolve-lethal",
+      "all_edges": 3,
+      "actions": 3,
+      "stop_scores_and_probability_sums_and_resource_legality": "PASS",
+      "public_CLI_all_outcome_replay": {
+        "status": "PASS",
+        "edges_checked": 3,
+        "coverage": "all exported action outcomes"
+      },
+      "objective": "lethal",
+      "win": "1",
+      "value": "10034",
+      "complete": true,
+      "memory": {
+        "states": 4,
+        "transitions": 3,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.8435000199824572,
+        "peak_rss_bytes": 21241856,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      }
+    }
+  ],
+  "anchors": "split barrier consumes all3; summon skips fanfare; adaptive targets left/right verified"
+}

@@ -1,0 +1,129 @@
+{
+  "id": "split-oldest-first",
+  "description": "Ping the oldest barrier ward then split kills it",
+  "cards": {
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": []
+    },
+    "old": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 3,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "new": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 3,
+      "keywords": []
+    },
+    "ping": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "split": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "split_damage",
+          "amount": 3
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 2,
+        "max_pp": 2,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "ping",
+            "id": "ping"
+          },
+          {
+            "card_id": "split",
+            "id": "split"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "old",
+            "id": "old"
+          },
+          {
+            "card_id": "new",
+            "id": "new"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Ping the oldest barrier ward then split kills it. Split first spends its entire total on the old barrier and cannot remove the ward.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "ping",
+      "target": "old"
+    },
+    "replay_anchors": [
+      {
+        "actions": [
+          {
+            "type": "play",
+            "card": "split"
+          }
+        ],
+        "enemy_board_ids": [
+          "old",
+          "new"
+        ],
+        "enemy_health": {
+          "old": 3,
+          "new": 3
+        },
+        "enemy_keywords": {
+          "old": [
+            "守護"
+          ]
+        }
+      }
+    ]
+  }
+}

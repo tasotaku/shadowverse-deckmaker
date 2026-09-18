@@ -10,6 +10,7 @@ from time import perf_counter
 from typing import Any
 
 from .battle import Battle, Json, integer, replay
+from .battle_rules import definition
 from .combat_benchmark import peak_memory, save_result
 
 KEYWORDS = {'バリア', '必殺', '疾走', '突進', '守護'}
@@ -71,7 +72,7 @@ def validate_scope(battle: Battle) -> None:
     for who, player in enumerate(battle.state['players']):
         if player.get('crests') or player.get('damage_shield'):
             raise ValueError('実戦探索はクレスト・リーダー保護に未対応です')
-        if any(battle.cards[entity['card_id']].get('hand_triggers') for entity in player['hand']):
+        if any(definition(battle, entity).get('hand_triggers') for entity in player['hand']):
             raise ValueError('実戦探索は両者の手札誘発に未対応です')
         for entity in player['board'] + (player['hand'] if who == owner else []):
             if set(entity['keywords']) - KEYWORDS:

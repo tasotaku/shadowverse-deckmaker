@@ -1,0 +1,752 @@
+{
+  "version": 1,
+  "strategy": "practical-expectimax",
+  "objective": "lethal",
+  "weights": {
+    "leader": 1,
+    "attack": 2,
+    "health": 1,
+    "body": 2,
+    "hand": 3,
+    "pp": 1,
+    "ep": 3,
+    "sep": 5,
+    "keyword": 2,
+    "win": 10000,
+    "own_board_health": 0
+  },
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "scope": "current turn before end-turn effects; uniform independent random choices; heuristic value, not full-game win rate",
+  "root": 0,
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "token": {
+        "name": "Fixture token",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 20
+          }
+        ],
+        "super_evolve": [
+          {
+            "op": "grant",
+            "target": "self",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ],
+        "card_id": "token"
+      },
+      "guard": {
+        "name": "Fixture guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護",
+          "バリア"
+        ],
+        "card_id": "guard"
+      },
+      "summoner": {
+        "name": "Fixture summoner",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "card_id": "token"
+          },
+          {
+            "op": "repeat",
+            "count": 2,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "all_enemy",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "card_id": "summoner"
+      }
+    },
+    "cards_hash": "58afb7e411a3bd5bcb345c1a59d9340748455d897bb3d0b81fa1826670a3ceee",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 1,
+          "max_pp": 1,
+          "turn": 7,
+          "ep": 0,
+          "sep": 1,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "summoner",
+              "card_id": "summoner",
+              "name": "Fixture summoner",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [],
+          "destroyed": []
+        },
+        {
+          "health": 3,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard",
+              "name": "Fixture guard",
+              "cost": 1,
+              "attack": 0,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [
+                "守護",
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "policy": [
+    {
+      "id": 0,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 1,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "summoner",
+                "card_id": "summoner",
+                "name": "Fixture summoner",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [],
+            "board": [],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "guard",
+                "card_id": "guard",
+                "name": "Fixture guard",
+                "cost": 1,
+                "attack": 0,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [
+                  "守護",
+                  "バリア"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "position": {
+        "own_board": [],
+        "enemy_board": [
+          {
+            "id": "guard",
+            "card_id": "guard",
+            "name": "Fixture guard",
+            "cost": 1,
+            "attack": 0,
+            "health": 1,
+            "max_health": 1,
+            "keywords": [
+              "守護",
+              "バリア"
+            ],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [
+          {
+            "id": "summoner",
+            "card_id": "summoner",
+            "name": "Fixture summoner",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_health": 20,
+        "enemy_health": 3,
+        "pp": 1,
+        "ep": 0,
+        "sep": 1,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "play",
+            "card": "summoner"
+          },
+          "outcomes": [
+            {
+              "node": 1,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 1.0,
+          "win_probability_exact": "1",
+          "expected_value": 10034.0,
+          "expected_value_exact": "10034"
+        }
+      ],
+      "best_action": 0,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 19.0,
+        "expected_value_exact": "19"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10034.0,
+        "expected_value_exact": "10034"
+      }
+    },
+    {
+      "id": 1,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 2,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 1,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "e1",
+                "card_id": "token",
+                "name": "Fixture token",
+                "cost": 1,
+                "attack": 0,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 7,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": [
+              "guard"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "e1",
+            "card_id": "token",
+            "name": "Fixture token",
+            "cost": 1,
+            "attack": 0,
+            "health": 1,
+            "max_health": 1,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 7,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 3,
+        "pp": 0,
+        "ep": 0,
+        "sep": 1,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "super_evolve",
+            "source": "e1"
+          },
+          "outcomes": [
+            {
+              "node": 2,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 1.0,
+          "win_probability_exact": "1",
+          "expected_value": 10034.0,
+          "expected_value_exact": "10034"
+        }
+      ],
+      "best_action": 0,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 25.0,
+        "expected_value_exact": "25"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10034.0,
+        "expected_value_exact": "10034"
+      }
+    },
+    {
+      "id": 2,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 2,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": true,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "e1",
+                "card_id": "token",
+                "name": "Fixture token",
+                "cost": 1,
+                "attack": 3,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "疾走"
+                ],
+                "evolved": 2,
+                "attacks": 0,
+                "entered_turn": 7,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": [
+              "guard"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "e1",
+            "card_id": "token",
+            "name": "Fixture token",
+            "cost": 1,
+            "attack": 3,
+            "health": 4,
+            "max_health": 4,
+            "keywords": [
+              "疾走"
+            ],
+            "evolved": 2,
+            "attacks": 0,
+            "entered_turn": 7,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 3,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "attack",
+            "source": "e1",
+            "target": "leader:1"
+          },
+          "outcomes": [
+            {
+              "node": 3,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 1.0,
+          "win_probability_exact": "1",
+          "expected_value": 10034.0,
+          "expected_value_exact": "10034"
+        }
+      ],
+      "best_action": 0,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 31.0,
+        "expected_value_exact": "31"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10034.0,
+        "expected_value_exact": "10034"
+      }
+    },
+    {
+      "id": 3,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": 0,
+        "rng": 1,
+        "next_id": 2,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": true,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "e1",
+                "card_id": "token",
+                "name": "Fixture token",
+                "cost": 1,
+                "attack": 3,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "疾走"
+                ],
+                "evolved": 2,
+                "attacks": 1,
+                "entered_turn": 7,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 0,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": [
+              "guard"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "e1",
+            "card_id": "token",
+            "name": "Fixture token",
+            "cost": 1,
+            "attack": 3,
+            "health": 4,
+            "max_health": 4,
+            "keywords": [
+              "疾走"
+            ],
+            "evolved": 2,
+            "attacks": 1,
+            "entered_turn": 7,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 0,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": true
+      },
+      "actions": [],
+      "best_action": null,
+      "stop": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10034.0,
+        "expected_value_exact": "10034"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10034.0,
+        "expected_value_exact": "10034"
+      }
+    }
+  ],
+  "recommended_action": {
+    "type": "play",
+    "card": "summoner"
+  },
+  "win_probability": 1.0,
+  "win_probability_exact": "1",
+  "expected_value": 10034.0,
+  "expected_value_exact": "10034",
+  "stats": {
+    "states": 4,
+    "transitions": 3,
+    "chance_nodes": 0,
+    "duplicates": 0,
+    "elapsed_ms": 0.7621000113431364,
+    "peak_rss_bytes": 21528576,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak, including prior requests",
+    "max_states": 10000,
+    "max_outcomes": 4096,
+    "max_depth": 64,
+    "seconds": 10,
+    "budget_unit": "policy state nodes"
+  },
+  "case_id": "summon-repeat-super-evolve",
+  "replay": {
+    "status": "PASS",
+    "edges_checked": 3,
+    "coverage": "all exported action outcomes"
+  }
+}

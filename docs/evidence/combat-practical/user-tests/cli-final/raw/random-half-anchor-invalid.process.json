@@ -1,0 +1,24 @@
+{
+  "name": "random-half-anchor-invalid",
+  "command": [
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "svdeck.battle_practical",
+    "--cases",
+    "docs\\evidence\\combat-practical\\user-tests\\cli-final\\inputs\\cases.json",
+    "--case",
+    "random-half-anchor",
+    "--objective",
+    "lethal",
+    "--output",
+    "docs\\evidence\\combat-practical\\user-tests\\cli-final\\raw\\random-half-anchor-invalid",
+    "--max-states",
+    "0"
+  ],
+  "elapsed_seconds": 0.11000000001513399,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_practical.py\", line 364, in <module>\n    main()\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_practical.py\", line 343, in main\n    result = analyze(Battle(case['state'], case['cards']), objective=args.objective, weights=args.weights,\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_practical.py\", line 157, in analyze\n    integer(max_states, 'max_states', 1, 50000)\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle.py\", line 32, in integer\n    raise ValueError(f'{label}: 整数 {low}〜{high} が必要です')\nValueError: max_states: 整数 1〜50000 が必要です\n"
+}

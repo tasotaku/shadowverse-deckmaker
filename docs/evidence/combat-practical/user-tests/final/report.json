@@ -1,0 +1,87 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-practical-public-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "43f8bf12c7bbb4697bc847f3ce4b3f71c9885f5b4326f985ada6e9782cd5daae",
+  "executor_id": "fresh-practical-cli-final | fresh-practical-http-final",
+  "started_at": "2026-09-18T01:05:45Z",
+  "finished_at": "2026-09-18T01:10:59.764168+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\cli-final | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\http-final",
+    "completed_record": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\cli-final\\report.json | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\http-final\\completed.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-18T01:05:45Z",
+      "journey_stopped_at": "2026-09-18T01:10:00.041803Z",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Discovery PASS: README.md -> docs/combat-practical.md; consulted docs/rules.md and docs/combat-benchmark.md and its explicitly linked public data src/svdeck/data/combat_benchmark_cases.json (cheap-trade only). No production Python source, diffs or previous reports inspected. --help identified module/options. spec lock verified before execution.",
+        "Clock: conservative journey start 2026-09-18T01:05:45Z, first executor UTC observation01:06:03 before documentation discovery. Dedicated cli-final inputs/raw. All configurations executed exactly once.",
+        "Oracle evidence: oracle-before-results.json archived before search calls; enumerates every relevant decision of half/adaptive/objective examples, and constructive deterministic optima. Independent documented scripts/practical_reference.py executed once, all13 lethal exact references agree.",
+        "Functional mechanics PASS: all13 fixture inputs executed; all named barrier/bane/storm/rush/ward/evolve/damage/split/destroy/fanfare/summon/grant present. Public CLI replay confirms all242 returned positive-probability edges; independent-checks.json inspects every edge probability and resource legality, all node stop scores from disclosed weights and objective maximization. PP/EP consumed once, full board blocks play, spent attacks never reused, ward/entry/evolution constraints checked.",
+        "Order PASS: slot-pp-evolve recommended small attack guard -> runner play -> runner evolve -> face5. Split oldest old before new is opposite lexical identity order; split-first removes old barrier while both health3 remain; ping-old then split then face wins. Summon-repeat result leaves leader3 and no enemy followers, showing fanfare skipped and barrier consumed before ward killed.",
+        "Stochastic PASS: half1/2 and adaptive1 exact; adaptive root random branches1/2 each recommend targets right versus left matching observed survivor. rng-cheating-choice selects safe2/3 rather than risk1/3. Every action probability sum1; weighted win/value equations checked with fractions. Pre-outcome root action fixed before branch; draw indices only replay outcomes.",
+        "Objectives PASS: all weights0 except own_board_health1. Lethal picks face into guard then big face, win1/value20; value stops with null action, win0/value21. Independent hand oracle matches exactly. Output scope explicitly current-turn heuristic, not full-game win rate.",
+        "Completeness PASS: 14 normal case/configurations complete=true optimal=true. max_states1 returns complete=false optimal=false cutoffs=[states]. Invalid max_states0 exits1 in0.110s and names max_states integer1..50000 constraint; traceback is noisy but correction is directly actionable.",
+        "Legacy PASS: documented combat_benchmark cheap-trade grouped repeat1 exits0 in2.437s; complete=true, reference/replay/correctness PASS, all2 candidates replayed and missing/extra0. Public expected surviving own3/1 after sacrificing2/1 agrees. Legacy raw/legacy/cases.json and report preserve inputs/results.",
+        "Performance PASS: raw/*.process.json and processes.json preserve exact commands, runtime Python3.12.1 Windows, stdout/stderr and monotonic process-start-to-exit seconds. All16 practical commands0.109..2.156s <60s; reference1.203s, legacy2.437s. Every successful search reports Windows PeakWorkingSetSize process-lifetime peak bytes, approximately21.2..21.9MB, including startup; not incremental request memory. Invalid rejected before search has no search memory report.",
+        "UX GO (terminal workflow): reproducible public invocations, actionable validation, result objective/recommended_action/numeric win and value/complete/optimal/cutoffs/policy fields sufficient. No graphical UI requested; clicks, viewport, focus, manual screen switching and scrolling not applicable.",
+        "Artifacts: inputs/cases.json, oracle-before-results.json, raw/*/case.json and report.json/report.md, raw/reference.json, processes.json, independent-checks.json. All outputs including invalid traceback retained. CLI documented replay is public facility used; independent reference shares Battle rules, so it does not prove a separately implemented game engine.",
+        "No product/spec changes or retries performed. All synchronous subprocess.run calls exited; no owned services or persistent processes created. Overall budget25minutes respected."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-18T01:10:00.041803Z",
+        "evidence": "All dedicated subprocesses exited; no server started. Dedicated inputs/raw/report retained under C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\cli-final"
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-18T01:06:28Z",
+      "journey_stopped_at": "2026-09-18T01:10:08Z",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: ordinary http://127.0.0.1:8767 GET / HTTP200 readiness0.0284218s; process16500 observed via Get-NetTCPConnection and Win32_Process, command Python312/python.exe -X utf8 -m svdeck.battle_server --port8767; no test-only server or alternate port.",
+        "F2 PASS: independently recorded pre-response oracles in independent-oracles.json; half fixture1/2; adaptive fixture1; order fixture1; chronological split fixture1. All94 positive-probability edges across all returned candidates replayed through HTTP, exact state equality except rng and exact Fraction probability/expected-value equality. Full request and response files archived per edge; checks.json has zero failures.",
+        "F2 PASS: independent-rule-checks.json records158 checks without failure: PP/board capacity, attack count, ward targets, summon/evolution legality, PP/EP consumed once, independent terminal heuristic/probability aggregation. Adaptive branches target right after left removed and left after right removed. Split first consumes3 on old barrier, both old/new health3, barrier removed; optimal ping old then split then face. Slot optimal small attacks guard, runner play consumes1PP, evolve consumes1EP and gives5 attack, face health5->0.",
+        "F3 PASS: lethal objective with all weights0 except own_board_health1 returns probability1 score20 and face->guard first; value objective returns probability0 score21 and recommended_action null. Both full weight maps/objective fields disclosed. Same pre-random r action precedes both chance outcomes; draws are outcome replay data, no seed-specific future action branch was selected before random outcome.",
+        "F4 PASS: max_states1 returns200, complete=false optimal=false cutoffs=[states]. max_states0 returns400 error max_states: integer1..50000 required. Immediately following trivial valid request returns200 complete=true probability0. Legacy documented cheap-trade sample /api/combat returns200 complete=true with required cleared enemy and remaining3/1; only public documented factory bench.make_battle used.",
+        "F5 PASS:105 total HTTP requests including readiness and94 replay edges; all raw payload/response/status/time archived. Peak memory observer GetProcessMemoryInfo PeakWorkingSetSize recorded for every request,27725824..29720576 bytes, serving-process lifetime peak including prior requests; search stats additionally preserve documented scope and method. Requests.json preserves objective/completeness where applicable; invalid/replay/readiness/legacy do not have practical-objective fields by protocol, explicitly null.",
+        "U1 PASS: consulted README.md, docs/combat-practical.md, docs/battle.md, docs/rules.md, docs/combat-benchmark.md, docs/battle-ai.md, tests/fixtures/combat_practical_cases.json and explicitly doc-linked public data src/svdeck/data/combat_benchmark_cases.json. No production-code/diff/other-executor results read; public Battle and benchmark factory imports only; no implementer clarification.",
+        "U2 PASS: dispatch-to-final-byte monotonic perf_counter measured every request, maximum0.0311617s, under60s; URL open timeout60s. Readiness measured separately; journey began01:06:28UTC before public documentation discovery and stopped01:10:08UTC (220s <1200s budget).",
+        "U3 PASS: objective, weights, win_probability_exact, expected_value_exact, recommended_action, policy actions/outcomes/draws, complete/optimal/cutoffs directly readable in each practical result. Documentation explicitly calls probability current-turn only and heuristic score manually weighted; no full-game probability claim.",
+        "U4 PASS: incorrect max_states constraint named in400 feedback; public table gives1..50000 and allowed correction, following valid request succeeds. API/terminal only: clicks/taps/focus/viewport/scroll/surface-switch metrics not applicable; usability GO for documented caller workflow.",
+        "Execution once per fixture/configuration; each positive-probability replay edge once; no product/spec edits; parent merges separate T1 result. Runtime identity and exact reproducible client commands preserved in runtime.json and execute.py."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-18T01:10:59.764168+00:00",
+        "evidence": "Dedicated HTTP client exited0, response contexts closed, process memory observer handle closed. No service restart/kill/state modification. Dedicated workspace C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\http-final; completed record C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical\\user-tests\\http-final\\completed.json preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "固定した現在ターン・小盤面の検証であり、任意の実戦盤面の完了・最適性や全ゲーム勝率は保証しない。GUIと通常の自動対戦AIへの接続は対象外。各担当の独立した部分報告を統合した。"
+  ]
+}

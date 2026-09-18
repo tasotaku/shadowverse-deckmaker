@@ -1,0 +1,182 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "big": {
+        "name": "Valuable body",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 20,
+        "card_id": "big"
+      },
+      "face": {
+        "name": "Face attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "card_id": "face"
+      },
+      "guard": {
+        "name": "Lethal ward",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 20,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ],
+        "card_id": "guard"
+      }
+    },
+    "cards_hash": "1a0891b53e3af708556ec850dc282b4dabe6c37af0ce3479bcb6fe3dfc6e2e10",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "big",
+              "card_id": "big",
+              "name": "Valuable body",
+              "cost": 1,
+              "attack": 1,
+              "health": 20,
+              "max_health": 20,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "face",
+              "card_id": "face",
+              "name": "Face attacker",
+              "cost": 1,
+              "attack": 1,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 1,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard",
+              "name": "Lethal ward",
+              "cost": 1,
+              "attack": 20,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "attack",
+        "source": "face",
+        "target": "guard"
+      },
+      "draws": []
+    }
+  ]
+}

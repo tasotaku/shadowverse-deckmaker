@@ -1,0 +1,1208 @@
+{
+  "findings": [
+    "ally-keyword-grant-lethal valid follower target",
+    "bane-barrier-rush-lethal valid follower target",
+    "barrier-target-order-lethal valid follower target",
+    "fanfare-self-storm-lethal valid follower target",
+    "objective-preserve-versus-win-lethal valid follower target",
+    "objective-preserve-versus-win-lethal valid follower target",
+    "objective-preserve-versus-win-value valid follower target",
+    "objective-preserve-versus-win-value valid follower target",
+    "random-adaptive-target-lethal valid follower target",
+    "random-half-anchor-lethal valid follower target",
+    "random-two-ward-adaptive-anchor-lethal valid follower target",
+    "random-two-ward-adaptive-anchor-lethal valid follower target",
+    "rng-cheating-choice-lethal valid follower target",
+    "rng-cheating-choice-lethal valid follower target",
+    "rng-cheating-choice-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "slot-pp-evolve-lethal valid follower target",
+    "split-oldest-first-lethal valid follower target",
+    "summon-repeat-super-evolve-lethal valid follower target"
+  ],
+  "cases": [
+    {
+      "case": "ally-keyword-grant-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "grant",
+        "target": "fresh"
+      },
+      "win": "1",
+      "value": "10041",
+      "edges_checked": 10,
+      "stats": {
+        "states": 10,
+        "transitions": 10,
+        "chance_nodes": 0,
+        "duplicates": 1,
+        "elapsed_ms": 2.099900011671707,
+        "peak_rss_bytes": 21663744,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 3,
+          "win": true,
+          "expected_value": "10041",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "grant",
+                "target": "fresh"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "fresh",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "bane-barrier-rush-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "attack",
+        "source": "b",
+        "target": "g"
+      },
+      "win": "1",
+      "value": "10043",
+      "edges_checked": 4,
+      "stats": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 1.0793000110425055,
+        "peak_rss_bytes": 21606400,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 2,
+          "win": true,
+          "expected_value": "10043",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "attack",
+                "source": "b",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "s",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "barrier-target-order-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "ping",
+        "target": "g"
+      },
+      "win": "1",
+      "value": "10033",
+      "edges_checked": 12,
+      "stats": {
+        "states": 11,
+        "transitions": 12,
+        "chance_nodes": 0,
+        "duplicates": 2,
+        "elapsed_ms": 2.183600008720532,
+        "peak_rss_bytes": 21393408,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 3,
+          "win": true,
+          "expected_value": "10033",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "play",
+                "card": "blast",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "fanfare-self-storm-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "runner",
+        "target": "g"
+      },
+      "win": "1",
+      "value": "10034",
+      "edges_checked": 2,
+      "stats": {
+        "states": 3,
+        "transitions": 2,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.6088000081945211,
+        "peak_rss_bytes": 21635072,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 2,
+          "win": true,
+          "expected_value": "10034",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "runner",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "runner",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "limited",
+      "objective": "lethal",
+      "complete": false,
+      "optimal": false,
+      "cutoffs": [
+        "states"
+      ],
+      "recommended_action": null,
+      "win": "0",
+      "value": "19",
+      "edges_checked": 0,
+      "stats": {
+        "states": 1,
+        "transitions": 0,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.36780000664293766,
+        "peak_rss_bytes": 21516288,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 1,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 0,
+          "win": false,
+          "expected_value": "19",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "case": "objective-preserve-versus-win-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "attack",
+        "source": "face",
+        "target": "guard"
+      },
+      "win": "1",
+      "value": "20",
+      "edges_checked": 4,
+      "stats": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 1.2605999945662916,
+        "peak_rss_bytes": 21614592,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 4,
+          "win": true,
+          "expected_value": "20",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "attack",
+                "source": "face",
+                "target": "guard"
+              },
+              "draws": [],
+              "next_node": 3
+            },
+            {
+              "node": 3,
+              "action": {
+                "type": "attack",
+                "source": "big",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "objective-preserve-versus-win-value",
+      "objective": "value",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": null,
+      "win": "0",
+      "value": "21",
+      "edges_checked": 4,
+      "stats": {
+        "states": 5,
+        "transitions": 4,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.8002000104170293,
+        "peak_rss_bytes": 21532672,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 0,
+          "win": false,
+          "expected_value": "21",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "case": "random-adaptive-target-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "random"
+      },
+      "win": "1",
+      "value": "10032",
+      "edges_checked": 91,
+      "stats": {
+        "states": 39,
+        "transitions": 91,
+        "chance_nodes": 15,
+        "duplicates": 53,
+        "elapsed_ms": 10.891800018725917,
+        "peak_rss_bytes": 21950464,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1/2",
+          "node": 4,
+          "win": true,
+          "expected_value": "10032",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "random"
+              },
+              "draws": [
+                0
+              ],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "left"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "play",
+                "card": "kill",
+                "target": "right"
+              },
+              "draws": [],
+              "next_node": 3
+            },
+            {
+              "node": 3,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        },
+        {
+          "probability": "1/2",
+          "node": 4,
+          "win": true,
+          "expected_value": "10032",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "random"
+              },
+              "draws": [
+                1
+              ],
+              "next_node": 17
+            },
+            {
+              "node": 17,
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "right"
+              },
+              "draws": [],
+              "next_node": 18
+            },
+            {
+              "node": 18,
+              "action": {
+                "type": "play",
+                "card": "kill",
+                "target": "left"
+              },
+              "draws": [],
+              "next_node": 3
+            },
+            {
+              "node": 3,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "random-half-anchor-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "r"
+      },
+      "win": "1/2",
+      "value": "5021",
+      "edges_checked": 7,
+      "stats": {
+        "states": 6,
+        "transitions": 7,
+        "chance_nodes": 2,
+        "duplicates": 2,
+        "elapsed_ms": 1.463000022340566,
+        "peak_rss_bytes": 21573632,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1/2",
+          "node": 3,
+          "win": true,
+          "expected_value": "10021",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "r"
+              },
+              "draws": [
+                0
+              ],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        },
+        {
+          "probability": "1/2",
+          "node": 2,
+          "win": false,
+          "expected_value": "21",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "r"
+              },
+              "draws": [
+                1
+              ],
+              "next_node": 4
+            },
+            {
+              "node": 4,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "random-two-ward-adaptive-anchor-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "r"
+      },
+      "win": "1",
+      "value": "10032",
+      "edges_checked": 21,
+      "stats": {
+        "states": 12,
+        "transitions": 21,
+        "chance_nodes": 5,
+        "duplicates": 10,
+        "elapsed_ms": 3.0989999941084534,
+        "peak_rss_bytes": 21655552,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1/2",
+          "node": 3,
+          "win": true,
+          "expected_value": "10032",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "r"
+              },
+              "draws": [
+                0
+              ],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "a1",
+                "target": "right"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "a2",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        },
+        {
+          "probability": "1/2",
+          "node": 3,
+          "win": true,
+          "expected_value": "10032",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "r"
+              },
+              "draws": [
+                1
+              ],
+              "next_node": 5
+            },
+            {
+              "node": 5,
+              "action": {
+                "type": "attack",
+                "source": "a1",
+                "target": "left"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "a2",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "rng-cheating-choice-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "safe"
+      },
+      "win": "2/3",
+      "value": "6499",
+      "edges_checked": 26,
+      "stats": {
+        "states": 20,
+        "transitions": 26,
+        "chance_nodes": 11,
+        "duplicates": 7,
+        "elapsed_ms": 5.732599995099008,
+        "peak_rss_bytes": 21704704,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1/6",
+          "node": 4,
+          "win": true,
+          "expected_value": "9833",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                0,
+                0
+              ],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        },
+        {
+          "probability": "1/6",
+          "node": 8,
+          "win": true,
+          "expected_value": "9833",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                0,
+                1
+              ],
+              "next_node": 5
+            },
+            {
+              "node": 5,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 8
+            }
+          ]
+        },
+        {
+          "probability": "1/6",
+          "node": 4,
+          "win": true,
+          "expected_value": "9833",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                1,
+                0
+              ],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        },
+        {
+          "probability": "1/6",
+          "node": 10,
+          "win": false,
+          "expected_value": "-169",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                1,
+                1
+              ],
+              "next_node": 9
+            },
+            {
+              "node": 9,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 10
+            }
+          ]
+        },
+        {
+          "probability": "1/6",
+          "node": 8,
+          "win": true,
+          "expected_value": "9833",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                2,
+                0
+              ],
+              "next_node": 5
+            },
+            {
+              "node": 5,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 8
+            }
+          ]
+        },
+        {
+          "probability": "1/6",
+          "node": 10,
+          "win": false,
+          "expected_value": "-169",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "safe"
+              },
+              "draws": [
+                2,
+                1
+              ],
+              "next_node": 9
+            },
+            {
+              "node": 9,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "slot-pp-evolve-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "attack",
+        "source": "small",
+        "target": "g"
+      },
+      "win": "1",
+      "value": "10057",
+      "edges_checked": 36,
+      "stats": {
+        "states": 25,
+        "transitions": 36,
+        "chance_nodes": 0,
+        "duplicates": 12,
+        "elapsed_ms": 6.058099999791011,
+        "peak_rss_bytes": 21618688,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 14,
+          "win": true,
+          "expected_value": "10057",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "attack",
+                "source": "small",
+                "target": "g"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "play",
+                "card": "runner"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "evolve",
+                "source": "runner"
+              },
+              "draws": [],
+              "next_node": 13
+            },
+            {
+              "node": 13,
+              "action": {
+                "type": "attack",
+                "source": "runner",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "spent-attack-pp-shortage-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": null,
+      "win": "0",
+      "value": "33",
+      "edges_checked": 0,
+      "stats": {
+        "states": 1,
+        "transitions": 0,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.2936999953817576,
+        "peak_rss_bytes": 21499904,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 0,
+          "win": false,
+          "expected_value": "33",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "case": "split-oldest-first-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "ping",
+        "target": "old"
+      },
+      "win": "1",
+      "value": "10027",
+      "edges_checked": 22,
+      "stats": {
+        "states": 16,
+        "transitions": 22,
+        "chance_nodes": 0,
+        "duplicates": 7,
+        "elapsed_ms": 3.956200001994148,
+        "peak_rss_bytes": 21684224,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 4,
+          "win": true,
+          "expected_value": "10027",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "old"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "play",
+                "card": "split"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "a",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "summon-repeat-super-evolve-lethal",
+      "objective": "lethal",
+      "complete": true,
+      "optimal": true,
+      "cutoffs": [],
+      "recommended_action": {
+        "type": "play",
+        "card": "summoner"
+      },
+      "win": "1",
+      "value": "10034",
+      "edges_checked": 3,
+      "stats": {
+        "states": 4,
+        "transitions": 3,
+        "chance_nodes": 0,
+        "duplicates": 0,
+        "elapsed_ms": 0.7621000113431364,
+        "peak_rss_bytes": 21528576,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak, including prior requests",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "max_depth": 64,
+        "seconds": 10,
+        "budget_unit": "policy state nodes"
+      },
+      "terminal_paths": [
+        {
+          "probability": "1",
+          "node": 3,
+          "win": true,
+          "expected_value": "10034",
+          "steps": [
+            {
+              "node": 0,
+              "action": {
+                "type": "play",
+                "card": "summoner"
+              },
+              "draws": [],
+              "next_node": 1
+            },
+            {
+              "node": 1,
+              "action": {
+                "type": "super_evolve",
+                "source": "e1"
+              },
+              "draws": [],
+              "next_node": 2
+            },
+            {
+              "node": 2,
+              "action": {
+                "type": "attack",
+                "source": "e1",
+                "target": "leader:1"
+              },
+              "draws": [],
+              "next_node": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

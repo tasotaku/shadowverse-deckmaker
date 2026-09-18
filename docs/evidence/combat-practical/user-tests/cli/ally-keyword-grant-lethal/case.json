@@ -1,0 +1,95 @@
+{
+  "id": "ally-keyword-grant",
+  "description": "Grant rush and bane to fresh ally to preserve the ready 4 attack for lethal",
+  "cards": {
+    "fresh": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": []
+    },
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 8,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "grant": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "突進",
+            "必殺"
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "card_id": "fresh",
+            "id": "fresh",
+            "entered_turn": 7
+          },
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "grant",
+            "id": "grant"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Grant rush and bane to fresh ally to preserve the ready 4 attack for lethal. Grant to ready attacker spends its only attack on ward.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "grant",
+      "target": "fresh"
+    }
+  }
+}

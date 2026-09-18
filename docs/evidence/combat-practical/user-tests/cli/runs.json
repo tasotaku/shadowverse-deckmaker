@@ -1,0 +1,382 @@
+{
+  "runtime": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "platform": "Windows-11-10.0.26220-SP0",
+  "runs": [
+    {
+      "name": "reference",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/practical_reference.py",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\reference.json"
+      ],
+      "started_at": "2026-09-18T00:58:43.359140+00:00",
+      "elapsed_seconds": 1.2030000000086147,
+      "exit_code": 0
+    },
+    {
+      "name": "barrier-target-order-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "barrier-target-order",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\barrier-target-order-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:44.637429+00:00",
+      "elapsed_seconds": 1.7960000000020955,
+      "exit_code": 0
+    },
+    {
+      "name": "bane-barrier-rush-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "bane-barrier-rush",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\bane-barrier-rush-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:46.440269+00:00",
+      "elapsed_seconds": 2.1410000000032596,
+      "exit_code": 0
+    },
+    {
+      "name": "split-oldest-first-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "split-oldest-first",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\split-oldest-first-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:48.580950+00:00",
+      "elapsed_seconds": 0.15599999998812564,
+      "exit_code": 0
+    },
+    {
+      "name": "fanfare-self-storm-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "fanfare-self-storm",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\fanfare-self-storm-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:48.732535+00:00",
+      "elapsed_seconds": 0.485000000015134,
+      "exit_code": 0
+    },
+    {
+      "name": "ally-keyword-grant-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "ally-keyword-grant",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\ally-keyword-grant-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:49.213676+00:00",
+      "elapsed_seconds": 1.514999999984866,
+      "exit_code": 0
+    },
+    {
+      "name": "slot-pp-evolve-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "slot-pp-evolve",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\slot-pp-evolve-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:50.740901+00:00",
+      "elapsed_seconds": 1.5160000000032596,
+      "exit_code": 0
+    },
+    {
+      "name": "random-adaptive-target-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "random-adaptive-target",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\random-adaptive-target-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:52.254775+00:00",
+      "elapsed_seconds": 1.5780000000086147,
+      "exit_code": 0
+    },
+    {
+      "name": "rng-cheating-choice-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "rng-cheating-choice",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\rng-cheating-choice-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:53.830273+00:00",
+      "elapsed_seconds": 1.5309999999881256,
+      "exit_code": 0
+    },
+    {
+      "name": "random-half-anchor-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "random-half-anchor",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\random-half-anchor-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:55.357780+00:00",
+      "elapsed_seconds": 1.5320000000065193,
+      "exit_code": 0
+    },
+    {
+      "name": "random-two-ward-adaptive-anchor-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "random-two-ward-adaptive-anchor",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\random-two-ward-adaptive-anchor-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:56.896256+00:00",
+      "elapsed_seconds": 1.5309999999881256,
+      "exit_code": 0
+    },
+    {
+      "name": "summon-repeat-super-evolve-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "summon-repeat-super-evolve",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\summon-repeat-super-evolve-lethal"
+      ],
+      "started_at": "2026-09-18T00:58:58.416947+00:00",
+      "elapsed_seconds": 1.5,
+      "exit_code": 0
+    },
+    {
+      "name": "objective-preserve-versus-win-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "objective-preserve-versus-win",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\objective-preserve-versus-win-lethal",
+        "--weights",
+        "{\"leader\": 0, \"attack\": 0, \"health\": 0, \"body\": 0, \"hand\": 0, \"pp\": 0, \"ep\": 0, \"sep\": 0, \"keyword\": 0, \"win\": 0, \"own_board_health\": 1}"
+      ],
+      "started_at": "2026-09-18T00:58:59.922577+00:00",
+      "elapsed_seconds": 1.547000000020489,
+      "exit_code": 0
+    },
+    {
+      "name": "objective-preserve-versus-win-value",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "objective-preserve-versus-win",
+        "--objective",
+        "value",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\objective-preserve-versus-win-value",
+        "--weights",
+        "{\"leader\": 0, \"attack\": 0, \"health\": 0, \"body\": 0, \"hand\": 0, \"pp\": 0, \"ep\": 0, \"sep\": 0, \"keyword\": 0, \"win\": 0, \"own_board_health\": 1}"
+      ],
+      "started_at": "2026-09-18T00:59:01.468963+00:00",
+      "elapsed_seconds": 1.514999999984866,
+      "exit_code": 0
+    },
+    {
+      "name": "spent-attack-pp-shortage-lethal",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "spent-attack-pp-shortage",
+        "--objective",
+        "lethal",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\spent-attack-pp-shortage-lethal"
+      ],
+      "started_at": "2026-09-18T00:59:02.981925+00:00",
+      "elapsed_seconds": 1.485000000015134,
+      "exit_code": 0
+    },
+    {
+      "name": "limited",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "random-half-anchor",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\limited",
+        "--max-states",
+        "1"
+      ],
+      "started_at": "2026-09-18T00:59:04.476490+00:00",
+      "elapsed_seconds": 1.514999999984866,
+      "exit_code": 0
+    },
+    {
+      "name": "invalid",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_practical",
+        "--cases",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\cases.json",
+        "--case",
+        "random-half-anchor",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\invalid",
+        "--max-states",
+        "0"
+      ],
+      "started_at": "2026-09-18T00:59:05.991381+00:00",
+      "elapsed_seconds": 1.8440000000118744,
+      "exit_code": 1
+    },
+    {
+      "name": "legacy",
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.combat_benchmark",
+        "--case",
+        "cheap-trade",
+        "--repeat",
+        "1",
+        "--strategy",
+        "grouped",
+        "--output",
+        "docs\\evidence\\combat-practical\\user-tests\\cli\\legacy"
+      ],
+      "started_at": "2026-09-18T00:59:07.837225+00:00",
+      "elapsed_seconds": 5.452999999979511,
+      "exit_code": 0
+    }
+  ]
+}

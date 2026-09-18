@@ -1,0 +1,3085 @@
+[
+  {
+    "name": "readiness",
+    "route": "/",
+    "status": 200,
+    "elapsed_seconds": 0.02842179997242056,
+    "memory": {
+      "peak_rss_bytes": 27725824,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Content-Length": "9157",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.02319019997958094,
+    "memory": {
+      "peak_rss_bytes": 28725248,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "17186",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 6,
+      "transitions": 7,
+      "chance_nodes": 2,
+      "duplicates": 2,
+      "elapsed_ms": 1.528399996459484,
+      "peak_rss_bytes": 28651520,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "1/2",
+    "expected_value_exact": "5021",
+    "recommended_action": {
+      "type": "play",
+      "card": "r"
+    }
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.010137600009329617,
+    "memory": {
+      "peak_rss_bytes": 28848128,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "35046",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 12,
+      "transitions": 21,
+      "chance_nodes": 5,
+      "duplicates": 10,
+      "elapsed_ms": 3.5578000242821872,
+      "peak_rss_bytes": 28823552,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "1",
+    "expected_value_exact": "10032",
+    "recommended_action": {
+      "type": "play",
+      "card": "r"
+    }
+  },
+  {
+    "name": "slot-pp-evolve",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.031161699997028336,
+    "memory": {
+      "peak_rss_bytes": 29466624,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "103185",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 25,
+      "transitions": 36,
+      "chance_nodes": 0,
+      "duplicates": 12,
+      "elapsed_ms": 5.766899994341657,
+      "peak_rss_bytes": 29175808,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "1",
+    "expected_value_exact": "10057",
+    "recommended_action": {
+      "type": "attack",
+      "source": "small",
+      "target": "g"
+    }
+  },
+  {
+    "name": "split-oldest-first",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.009198900021146983,
+    "memory": {
+      "peak_rss_bytes": 29601792,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "44718",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 16,
+      "transitions": 22,
+      "chance_nodes": 0,
+      "duplicates": 7,
+      "elapsed_ms": 3.004499973030761,
+      "peak_rss_bytes": 29593600,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "1",
+    "expected_value_exact": "10027",
+    "recommended_action": {
+      "type": "play",
+      "card": "ping",
+      "target": "old"
+    }
+  },
+  {
+    "name": "objective-preserve-versus-win-lethal",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.011869799986016005,
+    "memory": {
+      "peak_rss_bytes": 29622272,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "12025",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 5,
+      "transitions": 4,
+      "chance_nodes": 0,
+      "duplicates": 0,
+      "elapsed_ms": 0.970599998254329,
+      "peak_rss_bytes": 29609984,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "1",
+    "expected_value_exact": "20",
+    "recommended_action": {
+      "type": "attack",
+      "source": "face",
+      "target": "guard"
+    }
+  },
+  {
+    "name": "objective-preserve-versus-win-value",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.030428099998971447,
+    "memory": {
+      "peak_rss_bytes": 29663232,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "11977",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "value",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 5,
+      "transitions": 4,
+      "chance_nodes": 0,
+      "duplicates": 0,
+      "elapsed_ms": 0.7538000063505024,
+      "peak_rss_bytes": 29655040,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "0",
+    "expected_value_exact": "21",
+    "recommended_action": null
+  },
+  {
+    "name": "bounded",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.011204899987205863,
+    "memory": {
+      "peak_rss_bytes": 29696000,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "6321",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": false,
+    "optimal": false,
+    "cutoffs": [
+      "states"
+    ],
+    "stats": {
+      "states": 1,
+      "transitions": 0,
+      "chance_nodes": 0,
+      "duplicates": 0,
+      "elapsed_ms": 0.3513999981805682,
+      "peak_rss_bytes": 29671424,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 1,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "0",
+    "expected_value_exact": "19",
+    "recommended_action": null
+  },
+  {
+    "name": "invalid",
+    "route": "/api/combat-practical",
+    "status": 400,
+    "elapsed_seconds": 0.01376849997905083,
+    "memory": {
+      "peak_rss_bytes": 29696000,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "57",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "recovery",
+    "route": "/api/combat-practical",
+    "status": 200,
+    "elapsed_seconds": 0.015122000011615455,
+    "memory": {
+      "peak_rss_bytes": 29696000,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3458",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": "lethal",
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 1,
+      "transitions": 0,
+      "chance_nodes": 0,
+      "duplicates": 0,
+      "elapsed_ms": 0.17710000975057483,
+      "peak_rss_bytes": 29696000,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "win_probability_exact": "0",
+    "expected_value_exact": "0",
+    "recommended_action": null
+  },
+  {
+    "name": "legacy",
+    "route": "/api/combat",
+    "status": 200,
+    "elapsed_seconds": 0.002491899998858571,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3916",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": true,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": {
+      "states": 2,
+      "transitions": 2,
+      "duplicates": 0,
+      "endpoints": 2,
+      "dominated": 0,
+      "search_ms": 0.552,
+      "elapsed_ms": 0.885,
+      "group_pruned": 1,
+      "allocations": 2,
+      "budget_unit": "unique completed endpoints"
+    },
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013456899992888793,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1492",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-0-0-1",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0022957999899517745,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1891",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0020518999954219908,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1866",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.008043199981329963,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1490",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-1-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01904620000277646,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1486",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-4-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014718099992023781,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1490",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-half-anchor.replay-5-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.00224910001270473,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1490",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.011534000019310042,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1906",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-0-1",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0025319000124000013,
+    "memory": {
+      "peak_rss_bytes": 29716480,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1904",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0023532999912276864,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2280",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002306699985638261,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2278",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002057500008959323,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2280",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-0-4-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.016232900001341477,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2278",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01446040000882931,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-1-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0025030999968294054,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-2-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.010173899994697422,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1499",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-4-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0021120999881532043,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1499",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-5-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002066199987893924,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-5-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002102099999319762,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-6-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.020449800009373575,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-6-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014231499982997775,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1879",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-7-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014353899983689189,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-9-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014862999989418313,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-9-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014088299998547882,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1879",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-10-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014751799986697733,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-10-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01474040001630783,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1879",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-11-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014353100006701425,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1503",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "random-two-ward-adaptive-anchor.replay-11-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014785400009714067,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1879",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013514799997210503,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3159",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002665799984242767,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3948",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.010263499978464097,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3948",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014982099994085729,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3948",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-4-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01443540002219379,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3948",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-0-5-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013914200011640787,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3948",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014167999994242564,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3159",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-1-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.00247430001036264,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-1-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0029759000171907246,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-1-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0023474000045098364,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-1-4-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.018320899980608374,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013086700026178733,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014365500013809651,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014033999992534518,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0025345000030938536,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-4-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0022393000253941864,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3159",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-2-5-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.005958699999609962,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-3-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013901300000725314,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-5-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01440710001043044,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-7-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002235599997220561,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-9-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.010508900013519451,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-11-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014059399982215837,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-11-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014742500003194436,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-11-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002380299993092194,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-11-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.025035200000274926,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-11-4-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01537909999024123,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-13-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002308800001628697,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3154",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-15-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0022049999970477074,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-16-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.020244999992428347,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-17-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014652399986516684,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-18-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01320399998803623,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-19-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013811999990139157,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3553",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-21-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013563799991970882,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-22-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002496599976439029,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-23-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.009285599982831627,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "slot-pp-evolve.replay-24-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01388410001527518,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "3158",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002070600021397695,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2297",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.025221700023394078,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:50 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2323",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-0-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013138599984813482,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2293",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-0-3-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0021428000181913376,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2689",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0020431999873835593,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-1-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.02227610000409186,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1892",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-2-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013472699996782467,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1117",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-2-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01382339998963289,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1496",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-5-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01309880000189878,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1117",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-6-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.014499399985652417,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1905",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-6-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01414800001657568,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2297",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-7-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013512699981220067,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-9-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0021493000094778836,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-10-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.002187600010074675,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1905",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-10-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.022008100000675768,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1905",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-10-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013245199981611222,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1888",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-11-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.001906499994220212,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-13-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0019853000121656805,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-14-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.021919799997704104,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2297",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-14-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.013749600009759888,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "2297",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-14-2-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01373289999901317,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1888",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "split-oldest-first.replay-15-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0021624999935738742,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1500",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-lethal.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0019060000195167959,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1123",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-lethal.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.019790200021816418,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1124",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-lethal.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01384109997889027,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1119",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-lethal.replay-3-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0018764999986160547,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1120",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-value.replay-0-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.009316000010585412,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1123",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-value.replay-0-1-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.01409740000963211,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1124",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-value.replay-1-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.0021841999841853976,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1119",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  },
+  {
+    "name": "objective-preserve-versus-win-value.replay-3-0-0",
+    "route": "/api/combat-practical-replay",
+    "status": 200,
+    "elapsed_seconds": 0.001994499994907528,
+    "memory": {
+      "peak_rss_bytes": 29720576,
+      "memory_scope": "serving process lifetime peak including earlier requests",
+      "memory_method": "Windows GetProcessMemoryInfo PeakWorkingSetSize"
+    },
+    "headers": {
+      "Server": "BaseHTTP/0.6 Python/3.12.1",
+      "Date": "Fri, 18 Sep 2026 01:08:51 GMT",
+      "Content-Type": "application/json; charset=utf-8",
+      "Content-Length": "1120",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'"
+    },
+    "objective": null,
+    "complete": null,
+    "optimal": null,
+    "cutoffs": null,
+    "stats": null,
+    "win_probability_exact": null,
+    "expected_value_exact": null,
+    "recommended_action": null
+  }
+]
