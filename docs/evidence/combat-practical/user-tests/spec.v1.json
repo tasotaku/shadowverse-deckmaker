@@ -1,0 +1,86 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "combat-practical-public-acceptance",
+  "version": 1,
+  "goal": "Use a documented practical current-turn combat search through Python CLI and the normal localhost:8767 HTTP service, obtaining legal contingent play decisions and honest current-turn lethal probabilities or explicitly configured heuristic values.",
+  "persona": "Windows user comfortable running Python and HTTP JSON requests, who knows combat rules but has not read implementation source.",
+  "public_entry": "Repository public README/docs identifying the new Python module CLI, input fixtures and localhost:8767 endpoint; resolve exact module and route from delivered public documentation only.",
+  "test_data": [
+    "Delivered public input schema, rule semantics, executable fixture inputs and commands must suffice without production source inspection. Missing public documentation or fixtures is a product finding, not an independence excuse.",
+    "Small deterministic fixture set must collectively exercise barrier, bane, storm, rush, ward, legal evolution, targeted damage, chronological oldest-first split damage, destroy, follower fanfare, summon and keyword grants. Include PP shortage, full board, spent attacks, summoning restrictions and evolution restrictions as legal-action boundary cases.",
+    "Include order-sensitive combinations where attacking frees a board slot before a hand play, removal opens face attacks, and play/evolve/attack ordering changes the optimal achievable result. Chronological split damage must include distinguishable targets whose summon chronology differs from identity or displayed position, plus barrier interaction.",
+    "Include a hand-checkable random-outcome counterexample: one uniform random 1-damage hit among two enemy followers, one 1-health ward and one surviving non-ward, one ready friendly 1-attack follower, enemy leader at 1 health and no other usable resources. Current-turn maximum lethal probability is 1/2, not 0 or 1. Encode equivalent public rules if schema requires additional harmless fields.",
+    "Include an adaptive-policy case: random 1 damage uniformly removes one of two 1-health enemy wards, then two ready friendly 1-attack followers can clear the remaining ward and deal 1 lethal face damage. Probability is 1 and the first post-random target must depend on observed survivor identity. No further effects/resources may alter this derivation.",
+    "Include an objective-divergence case with a documented exact small oracle: maximizing current-turn lethal probability and maximizing a configured board/resource heuristic have different optimal decisions. Disclose heuristic weights and ensure the evaluator independently derives both expected values.",
+    "Include a small bounded-search request that exhausts an explicit documented search budget and an invalid request; include a public legacy ability-free sample with its documented expected result. Inputs and oracle derivations must be archived with results."
+  ],
+  "minimal_test_count_rationale": "Two independent journeys are the minimum because CLI discovery/execution and normal HTTP delivery are separate user entry points; each journey groups its state-dependent checks and exercises useful returned decisions.",
+  "execution_policy": {"runs_per_test": 1, "continue_after_failure": true, "parallelize_independent_tests": true},
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Discover CLI and use a complete stochastic combat policy",
+      "user_task": "From public documentation, solve the small combat fixture suite with the new CLI and use the recommended decisions in every possible outcome branch.",
+      "setup": ["Fresh independent executor in repository working directory with an isolated temporary input/output directory under docs/evidence/combat-practical/user-tests; no production-source, diff or past-result inspection.", "Python/runtime dependencies may already be installed. Read only public usage docs and fixture inputs; treat fixture expected answers as claims to independently verify."],
+      "actions": [
+        "Locate the public new-module invocation and schema, copy inputs to the dedicated directory, and record exact invocations, runtime identity and raw outputs.",
+        "Before consulting search results, hand-enumerate legal decisions and random branches for the small probability, adaptive-policy and objective-divergence cases. Record branch probabilities and exact optimal values independently of production search.",
+        "Run the deterministic mechanic/boundary/order fixtures and both objectives on the objective-divergence input, once per case/configuration. Record wall time and peak memory with a public process observer or documented search metrics, including measurement scope and units.",
+        "Run each stochastic case; replay every returned positive-probability outcome branch using the documented public replay facility or independent public-rule interpreter. Check each continuation after observing its outcome, aggregate terminal values with branch probabilities, and compare against independent exact enumeration.",
+        "Exercise the documented budget limit and invalid-input path; run the documented legacy ability-free sample. Preserve all raw outcomes including failures."
+      ],
+      "functional_expectations": [
+        "All named mechanics appear in executed inputs and show their documented behavior. Every replay action respects current PP, board capacity, valid targets, ward, attack count, summon and evolution legality; resources are consumed once. Returned branches end in the reported states.",
+        "Order-sensitive cases attain the independently justified optimum; chronology, barrier and destroy semantics are respected rather than substituting card identity or array order for age.",
+        "Random branch probabilities sum to 1, exact small-reference lethal probabilities/expected heuristic values match within 1e-9, and the two explicit stochastic examples produce 1/2 and 1 respectively. All returned positive-probability branches replay legally. Decisions before an outcome cannot depend on that unrevealed outcome.",
+        "Current-turn lethal probability and board/resource heuristic are explicitly separate objective configurations; objective-divergence decisions match the relevant exact oracle. No result is labeled full-game win probability.",
+        "Completed small searches report complete status honestly. Budget exhaustion is explicitly incomplete/truncated with a reason and cannot silently claim an exact optimum. Invalid input gives a useful validation failure; legacy ability-free sample preserves its documented behavior.",
+        "Evidence includes exact input, output, reference derivation, replay outcomes, elapsed time, peak-memory scope/units, objective and completeness for every case; missing evidence cannot be counted as PASS."
+      ],
+      "ux_checks": [
+        "From public docs and CLI help alone, executor finds the invocation, schema, fixtures, objective meanings and budget/completeness semantics without opening production source or asking the implementer; record consulted paths.",
+        "Each small public command completes or returns an explicit bounded-search status within 60 seconds, measured from process start to exit by a monotonic clock; kill and report a finding if this hang budget is exceeded.",
+        "Result directly identifies the objective, proposed first action/contingent continuation, numeric value and completeness so a user can distinguish a proved result from a partial estimate; record fields/text supporting each identification.",
+        "No graphical UI is requested: click, viewport, focus, screen-switch and scroll metrics are not applicable to this terminal/API workflow. Judge usability by reproducible invocation, actionable validation and interpretable result."
+      ],
+      "impossible_if": ["Required Python runtime cannot be executed due to an external host failure or permissions independent of the delivered product; record the exact failure. Product import errors, bad docs, missing fixtures or incorrect output are findings."],
+      "isolation_requirements": "Dedicated T1 files and subprocesses; no dependence on HTTP journey state, no changes to fixtures/source, and terminate only processes created by this journey.",
+      "budget": {"public_steps_minutes": 17, "expected_external_wait_minutes": 8, "total_minutes": 25, "basis": "Public-doc discovery and compact independent oracle/replay work plus fixture batch. Eight minutes allows several bounded small commands; each command retains its 60-second hang budget. No network downloads are expected."}
+    },
+    {
+      "id": "T2",
+      "title": "Use the normal HTTP service and recover from bounded or invalid requests",
+      "user_task": "Use the documented new endpoint on localhost:8767 to obtain and follow a combat recommendation, then distinguish exact results, bounded partial results and invalid input.",
+      "setup": ["Separate fresh executor with a dedicated T2 request/response directory and stateless HTTP client; normal documented application service at localhost:8767, started by the owner if necessary.", "Use public docs and fixture inputs only. Do not inspect implementation, CLI journey outputs or prior acceptance reports. Service readiness is measured separately from individual requests."],
+      "actions": [
+        "Discover the normal service start command, new endpoint and request schema in public docs. Record service identity/readiness using public information, then send valid requests to localhost:8767 with an independent client.",
+        "Send the exact small 1/2 stochastic fixture, adaptive-policy fixture and an order-sensitive play/evolve/attack fixture. Independently derive expected values from public rules and replay each returned positive-probability branch; archive full request/response bodies and status codes.",
+        "Send the objective-divergence fixture under both documented objective configurations and compare independently derived values and chosen policy.",
+        "Send the bounded-search and invalid-input requests, then one valid trivial request to verify recovery. Access the documented existing ability-free public entry with its sample without changing application settings.",
+        "Record each request's elapsed time, objective and completeness. Measure memory through documented metrics or a safe observer of the serving process, stating whether measurements cover the process, request or search allocations."
+      ],
+      "functional_expectations": [
+        "The ordinary localhost:8767 application route serves the new search; a test-only server, direct internal function call or alternate port does not satisfy delivery.",
+        "HTTP requests return parseable documented output and legal usable policies with exact stochastic values 1/2 and 1 on the fixed examples; all replay branches and chronological/resource legality checks agree with public rules and independent reference calculations.",
+        "Both objective configurations are accepted, identified in output and yield their independently justified values/policies. No hidden RNG sequence is exposed or used as foreknowledge by pre-outcome actions.",
+        "Budget exhaustion explicitly reports incompleteness/reason; malformed or invalid input yields a documented client error instead of success or an unhandled server failure. The next valid request succeeds, and the existing ability-free entry preserves its documented sample result.",
+        "Every result is accompanied in evidence by raw input/output, status, reference/replay result, elapsed time, measured memory scope/units, objective and completeness; inability to measure a required item is reported explicitly rather than invented."
+      ],
+      "ux_checks": [
+        "Public docs alone identify service launch, route, request schema, objectives and incomplete-result handling; no internal Python import or implementer clarification is required.",
+        "Each small HTTP request produces a complete response or explicit bounded-search result within 60 seconds from request dispatch to final response byte, measured with a monotonic client clock; timeout is a finding, not silent success.",
+        "Responses distinguish current-turn lethal chance from heuristic score and show the first action, continuation/outcome information and completion state without requiring another diagnostic endpoint.",
+        "Record whether validation feedback identifies the incorrect field/constraint and allows forming a corrected request using the public docs. Graphical click/focus/scroll metrics are not applicable because no UI change is requested."
+      ],
+      "impossible_if": ["An external host/network restriction makes localhost:8767 unavailable despite the correct documented service being ready, or another owner occupies the port and safe coordination cannot resolve it; record observation. A service that fails to start or lacks its documented route is a product finding."],
+      "isolation_requirements": "Independent T2 request files/client session; no shared mutable combat state or dependence on T1 outputs. Use the normal service read-only; do not kill/restart a user-owned process without coordination.",
+      "budget": {"public_steps_minutes": 12, "expected_external_wait_minutes": 8, "total_minutes": 20, "basis": "Public endpoint discovery, independent small-oracle/replay checking and roughly eight bounded requests, including recovery. Service setup is documented; each individual request has a 60-second hang budget."}
+    }
+  ],
+  "reporting": {"separate_functional_and_ux": true, "include_unexpected_findings": true, "evidence_level": "concise"},
+  "coverage": {
+    "covered_risks": ["CLI and normal HTTP delivery and discoverability", "All requested mechanics, resource/evolution constraints and meaningful interleavings", "Chance-weighted exact small references, adaptive continuation and hidden-outcome counterexamples", "Replay of every positive-probability branch", "Objective disclosure, honest completeness, time/memory reporting, failure recovery and legacy sample regression"],
+    "blind_spots": ["No visual UI was requested, so graphical layout, focus, click count and scrolling are outside scope.", "Small exhaustive examples do not establish full-game win probability, support for unlisted card text, or performance on arbitrary large positions.", "Public tests cannot prove source immutability of the legacy solver; they check its documented public sample behavior.", "Memory measurements depend on available safe process/search observers; record scope explicitly and report inability as missing required evidence, never a fabricated PASS."]
+  },
+  "revision": null
+}

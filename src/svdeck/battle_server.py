@@ -12,6 +12,7 @@ from .battle import Battle, catalog, default_state, demo_state, load_cases, repl
 from .battle_decks import load_decks, presets as deck_presets
 from .battle_ai import Player
 from .battle_combat import analyze as analyze_combat
+from .battle_practical import analyze as analyze_practical, replay_branch
 
 MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
@@ -130,6 +131,19 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if not isinstance(body.get("state"), dict):
                     raise ValueError("開始状態が必要です。")
                 self.send_json(snapshot(Battle(body["state"], cards=body.get("cards"))))
+            elif path == '/api/combat-practical':
+                # AI_NOTE: 能力を保持した現在ターン探索。抽選seedを有利な未来として利用しない。
+                if not isinstance(body.get('record'), dict):
+                    raise ValueError('recordが必要です')
+                options = body.get('options', {})
+                if not isinstance(options, dict) or set(options)-{'objective', 'weights', 'max_states', 'max_outcomes', 'max_depth', 'seconds'}:
+                    raise ValueError('探索optionsが不正です')
+                self.send_json(analyze_practical(replay(body['record'], cursor=body.get('cursor')), **options))
+            elif path == '/api/combat-practical-replay':
+                # AI_NOTE: 条件付きの抽選証跡を再計算し、通常対戦の抽選操作とは明確に区別する。
+                if not isinstance(body.get('record'), dict):
+                    raise ValueError('recordが必要です')
+                self.send_json(replay_branch(body['record'], body.get('steps', [])))
             elif path in {"/api/replay", "/api/step", "/api/ai-step", "/api/combat"}:
                 record = body.get("record")
                 if not isinstance(record, dict) or not isinstance(record.get("actions"), list):

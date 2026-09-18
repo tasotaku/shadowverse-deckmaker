@@ -1,0 +1,75 @@
+{
+  "id": "objective-preserve-versus-win",
+  "description": "Winning sacrifices a valuable body; own-board-only value prefers stopping",
+  "cards": {
+    "big": {
+      "name": "Valuable body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 20
+    },
+    "face": {
+      "name": "Face attacker",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1
+    },
+    "guard": {
+      "name": "Lethal ward",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 20,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "board": [
+          {
+            "card_id": "big",
+            "id": "big"
+          },
+          {
+            "card_id": "face",
+            "id": "face"
+          }
+        ]
+      },
+      {
+        "health": 1,
+        "board": [
+          {
+            "card_id": "guard",
+            "id": "guard"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Either ally can trade into the 1-health ward, then the other hits face for lethal. Stopping preserves both bodies, with total own health 21; every attack loses a body so own-health-only value uniquely prefers stop.",
+    "value_objective_anchor": {
+      "semantic_weights": {
+        "own_board_health": 1,
+        "all_other_terms": 0
+      },
+      "best_action": {
+        "type": "stop"
+      },
+      "optimal_value": 21,
+      "maximum_lethal_line_value": 20,
+      "proof": "Own board health starts at20+1=21. Sacrificing face to ward leaves big health20 for winning; sacrificing big leaves1. Thus maximum value21 and maximum winprobability1 require different policies."
+    }
+  }
+}

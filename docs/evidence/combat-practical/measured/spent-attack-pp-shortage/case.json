@@ -1,0 +1,57 @@
+{
+  "id": "spent-attack-pp-shortage",
+  "description": "Spent attacker and unaffordable spell cannot finish this turn",
+  "cards": {
+    "a": {
+      "name": "Spent body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 5,
+      "health": 2
+    },
+    "spell": {
+      "name": "Too expensive",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 5
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a",
+            "attacks": 1
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "spell",
+            "id": "spell"
+          }
+        ]
+      },
+      {
+        "health": 5
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "0",
+    "proof": "The attacker already attacked and the only spell costs2 with1PP. No legal current-turn action can deal damage; stop leaves enemy health5."
+  }
+}

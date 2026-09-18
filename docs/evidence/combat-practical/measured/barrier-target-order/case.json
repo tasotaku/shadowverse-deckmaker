@@ -1,0 +1,95 @@
+{
+  "id": "barrier-target-order",
+  "description": "Only ping then blast clears the barrier ward while preserving 4 face damage",
+  "cards": {
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 3,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 3,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "ping": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "blast": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 3
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 2,
+        "max_pp": 2,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "ping",
+            "id": "ping"
+          },
+          {
+            "card_id": "blast",
+            "id": "blast"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Only ping then blast clears the barrier ward while preserving 4 face damage. Reverse order leaves ward alive.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "ping",
+      "target": "g"
+    }
+  }
+}

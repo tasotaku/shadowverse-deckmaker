@@ -1,0 +1,81 @@
+{
+  "id": "bane-barrier-rush",
+  "description": "Bane destroys the ward through barrier; rush cannot hit face on entry",
+  "cards": {
+    "b": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": [
+        "突進",
+        "必殺"
+      ]
+    },
+    "s": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": [
+        "疾走"
+      ]
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 9,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 0,
+        "max_pp": 0,
+        "board": [
+          {
+            "card_id": "b",
+            "id": "b",
+            "entered_turn": 7
+          },
+          {
+            "card_id": "s",
+            "id": "s",
+            "entered_turn": 7
+          }
+        ],
+        "hand": []
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "1",
+    "proof": "Bane destroys the ward through barrier; rush cannot hit face on entry. Storm must preserve its attack for face.",
+    "unique_best_first_action": {
+      "type": "attack",
+      "source": "b",
+      "target": "g"
+    }
+  }
+}

@@ -1,0 +1,1293 @@
+{
+  "version": 1,
+  "strategy": "practical-expectimax",
+  "objective": "lethal",
+  "weights": {
+    "leader": 1,
+    "attack": 2,
+    "health": 1,
+    "body": 2,
+    "hand": 3,
+    "pp": 1,
+    "ep": 3,
+    "sep": 5,
+    "keyword": 2,
+    "win": 10000,
+    "own_board_health": 0
+  },
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "scope": "current turn before end-turn effects; uniform independent random choices; heuristic value, not full-game win rate",
+  "root": 0,
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [],
+        "card_id": "a"
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護"
+        ],
+        "card_id": "g"
+      },
+      "d": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": [],
+        "card_id": "d"
+      },
+      "r": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ],
+        "card_id": "r"
+      }
+    },
+    "cards_hash": "dceee4e1f8fbd37ff171f2b3be46abc4ad72e0eb57fd0ce95c8717861c24fc9c",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 1,
+          "max_pp": 1,
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "r",
+              "card_id": "r",
+              "name": "Fixture spell",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "a",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 1,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "g",
+              "card_id": "g",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 0,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "d",
+              "card_id": "d",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 0,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "policy": [
+    {
+      "id": 0,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "r",
+                "card_id": "r",
+                "name": "Fixture spell",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "g",
+                "card_id": "g",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "g",
+            "card_id": "g",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 1,
+            "max_health": 1,
+            "keywords": [
+              "守護"
+            ],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          },
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 3,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [
+          {
+            "id": "r",
+            "card_id": "r",
+            "name": "Fixture spell",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_health": 20,
+        "enemy_health": 1,
+        "pp": 1,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "play",
+            "card": "r"
+          },
+          "outcomes": [
+            {
+              "node": 1,
+              "probability": "1/2",
+              "draws": [
+                0
+              ]
+            },
+            {
+              "node": 4,
+              "probability": "1/2",
+              "draws": [
+                1
+              ]
+            }
+          ],
+          "win_probability": 0.5,
+          "win_probability_exact": "1/2",
+          "expected_value": 5021.0,
+          "expected_value_exact": "5021"
+        },
+        {
+          "action": {
+            "type": "attack",
+            "source": "a",
+            "target": "g"
+          },
+          "outcomes": [
+            {
+              "node": 5,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": 24.0,
+          "expected_value_exact": "24"
+        }
+      ],
+      "best_action": 0,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 19.0,
+        "expected_value_exact": "19"
+      },
+      "value": {
+        "win_probability": 0.5,
+        "win_probability_exact": "1/2",
+        "expected_value": 5021.0,
+        "expected_value_exact": "5021"
+      }
+    },
+    {
+      "id": 1,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "g"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 3,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 1,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "attack",
+            "source": "a",
+            "target": "d"
+          },
+          "outcomes": [
+            {
+              "node": 2,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": 21.0,
+          "expected_value_exact": "21"
+        },
+        {
+          "action": {
+            "type": "attack",
+            "source": "a",
+            "target": "leader:1"
+          },
+          "outcomes": [
+            {
+              "node": 3,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 1.0,
+          "win_probability_exact": "1",
+          "expected_value": 10021.0,
+          "expected_value_exact": "10021"
+        }
+      ],
+      "best_action": 1,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 20.0,
+        "expected_value_exact": "20"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10021.0,
+        "expected_value_exact": "10021"
+      }
+    },
+    {
+      "id": 2,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 1,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 2,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "g"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 1,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 2,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 1,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [],
+      "best_action": null,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 21.0,
+        "expected_value_exact": "21"
+      },
+      "value": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 21.0,
+        "expected_value_exact": "21"
+      }
+    },
+    {
+      "id": 3,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": 0,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 1,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 0,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "g"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 1,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 3,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 0,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": true
+      },
+      "actions": [],
+      "best_action": null,
+      "stop": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10021.0,
+        "expected_value_exact": "10021"
+      },
+      "value": {
+        "win_probability": 1.0,
+        "win_probability_exact": "1",
+        "expected_value": 10021.0,
+        "expected_value_exact": "10021"
+      }
+    },
+    {
+      "id": 4,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "g",
+                "card_id": "g",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 2,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "g",
+            "card_id": "g",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 1,
+            "max_health": 1,
+            "keywords": [
+              "守護"
+            ],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          },
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 2,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [],
+        "own_health": 20,
+        "enemy_health": 1,
+        "pp": 0,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "attack",
+            "source": "a",
+            "target": "g"
+          },
+          "outcomes": [
+            {
+              "node": 2,
+              "probability": "1",
+              "draws": []
+            }
+          ],
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": 21.0,
+          "expected_value_exact": "21"
+        }
+      ],
+      "best_action": 0,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 16.0,
+        "expected_value_exact": "16"
+      },
+      "value": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 21.0,
+        "expected_value_exact": "21"
+      }
+    },
+    {
+      "id": 5,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 7,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "r",
+                "card_id": "r",
+                "name": "Fixture spell",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [],
+            "board": [
+              {
+                "id": "a",
+                "card_id": "a",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 1,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "d",
+                "card_id": "d",
+                "name": "Fixture follower",
+                "cost": 1,
+                "attack": 0,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "g"
+            ]
+          }
+        ]
+      },
+      "position": {
+        "own_board": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 2,
+            "max_health": 2,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 1,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "enemy_board": [
+          {
+            "id": "d",
+            "card_id": "d",
+            "name": "Fixture follower",
+            "cost": 1,
+            "attack": 0,
+            "health": 3,
+            "max_health": 3,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_hand": [
+          {
+            "id": "r",
+            "card_id": "r",
+            "name": "Fixture spell",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "own_health": 20,
+        "enemy_health": 1,
+        "pp": 1,
+        "ep": 0,
+        "sep": 0,
+        "win": false
+      },
+      "actions": [
+        {
+          "action": {
+            "type": "play",
+            "card": "r"
+          },
+          "outcomes": [
+            {
+              "node": 2,
+              "probability": "1",
+              "draws": [
+                0
+              ]
+            }
+          ],
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": 21.0,
+          "expected_value_exact": "21"
+        }
+      ],
+      "best_action": null,
+      "stop": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 24.0,
+        "expected_value_exact": "24"
+      },
+      "value": {
+        "win_probability": 0.0,
+        "win_probability_exact": "0",
+        "expected_value": 24.0,
+        "expected_value_exact": "24"
+      }
+    }
+  ],
+  "recommended_action": {
+    "type": "play",
+    "card": "r"
+  },
+  "win_probability": 0.5,
+  "win_probability_exact": "1/2",
+  "expected_value": 5021.0,
+  "expected_value_exact": "5021",
+  "stats": {
+    "states": 6,
+    "transitions": 7,
+    "chance_nodes": 2,
+    "duplicates": 2,
+    "elapsed_ms": 1.4415000041481107,
+    "peak_rss_bytes": 21499904,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak, including prior requests",
+    "max_states": 10000,
+    "max_outcomes": 4096,
+    "max_depth": 64,
+    "seconds": 10,
+    "budget_unit": "policy state nodes"
+  },
+  "case_id": "random-half-anchor",
+  "replay": {
+    "status": "PASS",
+    "edges_checked": 7,
+    "coverage": "all exported action outcomes"
+  }
+}

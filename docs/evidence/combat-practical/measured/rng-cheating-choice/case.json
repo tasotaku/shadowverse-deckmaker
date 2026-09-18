@@ -1,0 +1,155 @@
+{
+  "id": "rng-cheating-choice",
+  "description": "Safe samples two distinct enemies, removing sole ward with probability 2/3",
+  "cards": {
+    "a": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 2,
+      "keywords": []
+    },
+    "g": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "d": {
+      "name": "Fixture follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 100,
+      "keywords": []
+    },
+    "safe": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 2,
+          "count": 2
+        }
+      ]
+    },
+    "risk": {
+      "name": "Fixture spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "random_ally",
+          "keywords": [
+            "バリア"
+          ]
+        },
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 2
+        }
+      ]
+    }
+  },
+  "state": {
+    "rng": 1,
+    "players": [
+      {
+        "turn": 7,
+        "ep": 0,
+        "sep": 0,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "card_id": "a",
+            "id": "a"
+          }
+        ],
+        "hand": [
+          {
+            "card_id": "safe",
+            "id": "safe"
+          },
+          {
+            "card_id": "risk",
+            "id": "risk"
+          }
+        ]
+      },
+      {
+        "health": 4,
+        "board": [
+          {
+            "card_id": "g",
+            "id": "g"
+          },
+          {
+            "card_id": "d",
+            "id": "d1"
+          },
+          {
+            "card_id": "d",
+            "id": "d2"
+          }
+        ]
+      }
+    ]
+  },
+  "expected": {
+    "win_probability": "2/3",
+    "proof": "Safe samples two distinct enemies, removing sole ward with probability 2/3. Risk samples one with probability 1/3; its preceding one-target ally roll changes fixed RNG, permitting a seed-dependent wrong preference.",
+    "unique_best_first_action": {
+      "type": "play",
+      "card": "safe"
+    },
+    "action_values": [
+      {
+        "action": {
+          "type": "play",
+          "card": "safe"
+        },
+        "win_probability": "2/3"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "risk"
+        },
+        "win_probability": "1/3"
+      }
+    ],
+    "seed_independence": [
+      1,
+      2,
+      3,
+      4,
+      7,
+      19,
+      100,
+      4294967295,
+      60
+    ],
+    "fixed_rng_counterexample": {
+      "seed": 60,
+      "losing_higher_probability_action": {
+        "type": "play",
+        "card": "safe"
+      },
+      "winning_lower_probability_action": {
+        "type": "play",
+        "card": "risk"
+      }
+    }
+  }
+}
