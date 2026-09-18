@@ -1,0 +1,122 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "combat-practical-limits",
+  "version": 1,
+  "goal": "Solve the recorded ability 5v5 plus two hand cards position at default budgets with certified exact probabilistic optimal choices, measure real time and process peak memory, and preserve public combat mechanics and honest cutoff reporting.",
+  "persona": "Windows PowerShell user consuming practical current-turn combat policies through the documented CLI and localhost HTTP API.",
+  "public_entry": "Repository-root .venv/Scripts/python.exe -m svdeck.battle_practical and POST http://localhost:8767/api/combat-practical, with /api/combat-practical-replay; guide docs/combat-practical.md.",
+  "test_data": [
+    "Unchanged docs/evidence/combat-practical/stress/input.json: SHA256 443c1e67c9ad7c1485b20e59149b862e92f7a987b3b9097ca8c84e8e208d9226. Wrap its object in a one-element array for --cases; do not alter cards, health, capabilities, hand, order, or resources.",
+    "Unchanged tests/fixtures/combat_practical_cases.json: SHA256 a19507720cdefee7272b680529b793e971d8f2d0e947c45ae2c1b7eff2d44843. These public fixture expectations supply small-case exact oracles.",
+    "Prepare an independent stress certificate before acceptance: either exhaustive rational reference evaluation using only public Battle transitions (not the practical search/evaluation routines), or a written rigorous upper bound on the objective tuple plus a fully replayable policy attaining the bound. Derive default scoring directly from the public documented weights. Certify both probability and secondary expected score and optimal continuation after every random outcome. A product output, replay alone, or the probability-zero bound alone is not an optimality certificate.",
+    "For chronology only, make two additional split-oldest-first copies: consistently rename old to z_old and new to a_new without changing their array order; then reverse the enemy board array of that renamed copy. Do not modify entered_turn or any combat fields.",
+    "Each execution creates new evidence paths, stores input and output JSON, stderr/stdout and independent certificate, and records runtime/build identity. No production source or diff is provided to the fresh executor.",
+    "Acceptance uses final shipped default budgets, which may differ from earlier defaults if their limits and accounting units are publicly disclosed. Preserve prior measured stress baseline as a comparison artifact; a mere rise in caps with no demonstrated practical completion does not meet the goal. No user-specified hard RSS ceiling exists."
+  ],
+  "minimal_test_count_rationale": "Two independent journeys cover the distinct public contracts: completing and consuming the unchanged large CLI result, and HTTP behavioral preservation including constrained-result interpretation. Related HTTP cases share one server/session and are sequential actions within one journey.",
+  "execution_policy": {
+    "runs_per_test": 1,
+    "continue_after_failure": true,
+    "parallelize_independent_tests": true
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Default-budget stress solve yields a certified usable policy",
+      "user_task": "Obtain the optimal current-turn decision for the exact recorded 5v5 position and follow its conditional policy, with trustworthy cost measurements.",
+      "setup": [
+        "Windows PowerShell at repository root, documented Python environment ready, no login required; a fresh CLI child process and an absent output directory.",
+        "Verify the fixture hash; prepare the one-element cases array and independent certificate without reading production code. The certificate preparation is test-data setup, not a second product execution.",
+        "Use no objective, weight or budget overrides: objective is lethal and weights are the documented defaults. Record the final shipped default budget numbers, units and public descriptions before execution; they must match what the unmodified CLI actually uses."
+      ],
+      "actions": [
+        "Invoke the documented CLI exactly once for mixed-keywords-5v5 with only --cases, --case and a new --output path. Start a monotonic external clock immediately before process creation and stop it after process exit; retain its exit code, stdout and stderr.",
+        "Read case.json, report.md and report.json from that output. Record external wall milliseconds, stats.elapsed_ms, peak_rss_bytes, memory_method, memory_scope, cutoff information and policy size; keep CLI process identity and any concurrently running test workload in evidence.",
+        "Compare the exact root objective tuple and all selected continuations against the independent stress certificate. Traverse each selected policy edge, check all random outcomes and exact rational probabilities, and consume the resulting action/target choices as a user would. Use the CLI replay evidence for all emitted candidate edges; independently recompute selected-policy outcome expectation with rational arithmetic."
+      ],
+      "functional_expectations": [
+        "CLI exits successfully, retains the unchanged stress input semantics, and produces all three documented artifacts. Result complete=true and optimal=true, with no cutoff at final shipped defaults. Changed budget limits or accounting units must be disclosed in the public guide and report/evidence. A smaller or deterministic substitute, or requiring the user to tune budgets, is a failure.",
+        "The exact win probability is 0: the enemy starts at 100 HP and five initial attackers plus at most one ordinary/super evolution cannot reach that total, while both spells target followers. The expected_value_exact and recommended action/continuations must also attain the independent exact maximum under the documented default scoring. Probability zero by itself does not pass.",
+        "Every selected random branch is present with positive exact probability, each candidate's edge probabilities sum to 1, and selected-policy expectations equal the root report exactly. Returned IDs, order, health, attack rights and resources match replay, ignoring only rng state. CLI replay.status reports successful verification and edges_checked covers every emitted candidate outcome.",
+        "All reported performance numbers are numeric and nonnegative; peak_rss_bytes is positive, and memory_method/memory_scope identify actual process peak measurement. The saved evidence distinguishes search-only elapsed time from external process wall time and does not call process peak memory incremental allocation. Preserve and compare the previous recorded stress time, memory and completion status; disclose differences in process scope, machine or concurrent load that limit comparison. No hard memory ceiling is imposed, but measured resource use must be reported, not omitted."
+      ],
+      "ux_checks": [
+        "From prepared input to saved decision, exactly one solve command is sufficient; no interactive prompt, budget tuning, source edit, browser action or manual application switch is required. Observe process stdin/stdout and actual command log.",
+        "The CLI must return within 60 seconds of process creation, measured by a monotonic clock including serialization, file saving and replay. Search must complete within the final publicly documented default search budget without hidden extension. Save actual external and search durations alongside the earlier recorded stress result.",
+        "Without opening source, the user can distinguish exact completed result from a provisional result and obtain both root decision and conditional next choices from the saved reports. Inspect actual report fields and summary text; record the largest readability or interpretation issue. Window focus, viewport and scrolling are not relevant to this file/CLI interface."
+      ],
+      "impossible_if": [
+        "The required Python runtime or unchanged fixture is unavailable, or the independent exact certificate cannot be established from public behavior; mark unverified rather than PASS. A timeout, cutoff or wrong answer is a product failure, not an impossibility."
+      ],
+      "isolation_requirements": "Dedicated fresh CLI child and unique artifact folder, read-only fixtures, no shared mutable battle state; may run independently of T2, with concurrent workload recorded alongside timing.",
+      "budget": {
+        "public_steps_minutes": 4,
+        "expected_external_wait_minutes": 1,
+        "total_minutes": 5,
+        "basis": "One CLI invocation with a one-minute end-to-end deadline plus four minutes for artifact and preprepared-certificate checks; reference generation occurs in setup."
+      }
+    },
+    {
+      "id": "T2",
+      "title": "HTTP mechanics, adaptive choices, chronology and honest small limits remain usable",
+      "user_task": "Use the live practical API to obtain and replay reliable conditional choices, and recognize an intentionally incomplete search.",
+      "setup": [
+        "A compatible build is running at http://localhost:8767; record its identity. Use a new client session and a dedicated evidence directory; server process peak memory may include earlier requests and must be labelled accordingly.",
+        "Create records using the documented public Battle(state, cards).export() procedure from every frozen fixture. Keep returned state and action IDs; no private search entry points or production imports beyond this documented public Battle constructor/export interface.",
+        "Prepare the two chronology variants, all listed rng-cheating-choice seed variants, and own-board-health-only weights with every other documented weight set explicitly to zero."
+      ],
+      "actions": [
+        "POST every frozen fixture once to /api/combat-practical at default settings; save each response. For rng-cheating-choice, additionally test each listed seed other than the already tested original seed once. These are distinct fixed inputs, not retry runs.",
+        "For each response, compare expected.win_probability and each published unique_best_first_action. For the two adaptive fixtures, locate the explicitly named adaptive_after_action candidate even if a different equal-optimal action is recommended at root. Traverse every outcome and follow the returned continuation policy to terminal decisions via /api/combat-practical-replay.",
+        "Replay both published replay_anchors and both chronology variants through the replay endpoint. For renamed chronology retain the old-before-new array; then separately replay split first with the reversed array.",
+        "POST objective-preserve-versus-win twice with own_board_health=1 and all other weights=0, once for lethal and once for value, and consume their recommended decision.",
+        "POST random-half-anchor once with max_states=1 and all remaining defaults; save the response and compare its completion status with the completed default response."
+      ],
+      "functional_expectations": [
+        "All ordinary default-budget fixture results complete optimally and exactly match every frozen probability and unique first action expectation, including barrier, bane, rush/storm, fanfare/grant, slot/PP/evolution, summon/repeat/super evolution and spent-attack behavior.",
+        "random-half-anchor returns 1/2. rng-cheating-choice returns 2/3 and recommends safe for every listed seed; safe and risk candidate values are exactly 2/3 and 1/3, independent of the hidden rng seed including seed 60.",
+        "Both adaptive anchors return probability 1. After their named random action every branch remains represented with correct probabilities and replayed continuation achieves the reported result. For random-two-ward-adaptive-anchor the next attack targets the surviving ward (left versus right), then face; for random-adaptive-target the policy clears both wards by pinging the damaged one and destroying the other, in either legal order. A single fixed target reused across incompatible outcomes fails.",
+        "Published replay anchors match exactly. With old renamed z_old and new renamed a_new, split first preserves both HP3 followers and removes only old's barrier. Reversing that board array makes split kill a_new while z_old survives with HP3 and its original barrier; lexical IDs and entered_turn must not override board chronology.",
+        "For own-health-only weights, lethal gives exact win probability 1 and expected score 20; value stops with recommended_action=null, exact score 21 and win probability 0. No implicit end_turn is performed.",
+        "The deliberate max_states=1 random-half-anchor result has complete=false and optimal=false and a states cutoff. It is not represented as a proven optimal answer, even if a provisional value happens to equal the completed answer."
+      ],
+      "ux_checks": [
+        "Each solve or replay is one HTTP request without opening the UI or switching windows; requests and responses are captured directly, and no retry or manual re-entry is needed. Every request returns within 60 seconds of send, measured by a monotonic client clock and timeout; an actual timeout is a product failure.",
+        "The saved JSON alone identifies complete versus limited results, exact current-turn probabilities, and the next action after the observed random outcome. The tiny-budget response must expose both false flags and the cutoff reason without requiring server-log or source inspection. Record the largest interpretation issue.",
+        "Save total journey wall time and per-solve search time/peak-memory metadata when present; do not present server lifetime peak memory as per-request incremental memory. This API-only surface has no click, focus, viewport or scroll requirement."
+      ],
+      "impossible_if": [
+        "The localhost public API cannot be made reachable using its documented startup command, or fixtures/runtime are missing. Reachable API errors, wrong semantics, misleading cutoff flags or timeouts are product failures."
+      ],
+      "isolation_requirements": "All requests operate on self-contained exported records, with no concurrent changes to the shared server build; sequential requests within this journey preserve clear timing/evidence attribution. T1 uses a separate process and folder.",
+      "budget": {
+        "public_steps_minutes": 8,
+        "expected_external_wait_minutes": 4,
+        "total_minutes": 12,
+        "basis": "A scripted batch of the thirteen small fixture solves, eight additional seed variants, two objective variants and one tiny-budget solve, plus bounded branch replays and chronology checks; no large stress search occurs on this server journey."
+      }
+    }
+  ],
+  "reporting": {
+    "separate_functional_and_ux": true,
+    "include_unexpected_findings": true,
+    "evidence_level": "concise"
+  },
+  "coverage": {
+    "covered_risks": [
+      "Unchanged 5v5 plus two hand cards completes at disclosed final shipped default budgets within 60 seconds end-to-end",
+      "Exact secondary score and optimal random continuation rather than trivial zero lethal probability",
+      "Public CLI replay and honest time/RSS reporting",
+      "HTTP random probabilities, rng independence, mechanics and chronology",
+      "Objective priority and honest tiny-budget incompletion"
+    ],
+    "blind_spots": [
+      "No browser GUI is in the public practical-search scope",
+      "The independent oracle may share public Battle combat transitions and therefore cannot independently prove every underlying combat rule; hand-derived fixture anchors cover the named rules",
+      "This specification proves this recorded stress input and fixed regressions, not all large positions or match-level win rate",
+      "No universal RSS ceiling or machine-independent speed claim was supplied; require measured cost, comparison with prior recorded results and practical default-budget completion instead",
+      "Acceptance requires a separately prepared independent exact stress certificate; absent that certificate, optimality remains unverified"
+    ]
+  },
+  "revision": null
+}

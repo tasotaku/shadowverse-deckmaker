@@ -11,6 +11,7 @@ from typing import Any
 
 from .battle import Battle, Json, integer, replay
 from .battle_rules import definition
+from .battle_compact import Compact, eligible
 from .combat_benchmark import peak_memory, save_result
 
 KEYWORDS = {'バリア', '必殺', '疾走', '突進', '守護'}
@@ -149,12 +150,13 @@ def metrics(pair: tuple[Fraction, Fraction]) -> Json:
 
 
 def analyze(battle: Battle, *, objective: str = 'lethal', weights: dict[str, int] | None = None,
-            max_states: int = 10000, max_outcomes: int = 4096, max_depth: int = 64,
+            max_states: int | None = None, max_outcomes: int = 4096, max_depth: int = 64,
             seconds: float = 10.0) -> Json:
     # AI_NOTE: 状態ごとの意思決定と抽選を分離し、抽選後だけ次の最善手を選ぶexpectimaxを行う。
     if objective not in OBJECTIVES:
         raise ValueError('objectiveはlethalまたはvalueです')
-    integer(max_states, 'max_states', 1, 50000)
+    if max_states is not None:
+        integer(max_states, 'max_states', 1, 1000000)
     integer(max_outcomes, 'max_outcomes', 1, 10000)
     integer(max_depth, 'max_depth', 1, 128)
     if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 60:
@@ -169,6 +171,10 @@ def analyze(battle: Battle, *, objective: str = 'lethal', weights: dict[str, int
     validate_scope(battle)
     if battle.state['winner'] is not None:
         raise ValueError('対戦中の盤面を選んでください')
+    compact = sum(len(p['board']) for p in battle.state['players']) >= 7 and eligible(battle)
+    max_states = max_states if max_states is not None else 500000 if compact else 10000
+    if compact:
+        return analyze_compact(battle, chosen_weights, objective, max_states, max_depth, max_outcomes, seconds, started)
     initial = copy.deepcopy(battle.state)
     initial['rng'] = 1
     root = ChanceBattle(initial, battle.cards, record=False)
@@ -275,6 +281,91 @@ def analyze(battle: Battle, *, objective: str = 'lethal', weights: dict[str, int
                                      'seconds': seconds, 'budget_unit': 'policy state nodes'}}
 
 
+def analyze_compact(battle: Battle, weights: dict[str, int], objective: str, max_states: int,
+                    max_depth: int, max_outcomes: int, seconds: float, started: float) -> Json:
+    # AI_NOTE: 計算用メモと公開方策を分離する。最適な条件別手順だけを通常Battleで再構成し全状態を正確に保存する。
+    initial = copy.deepcopy(battle.state)
+    initial['rng'] = 1
+    root = ChanceBattle(initial, battle.cards, record=False)
+    solver = Compact(root, weights, objective, max_states, max_depth, max_outcomes, started+seconds)
+    try:
+        best = solver.solve(solver.initial)
+    except RuntimeError:
+        if not solver.cutoffs:
+            raise
+        best = solver.score(solver.initial)
+    nodes: list[Json] = []
+    exported: dict[tuple[str, int], int] = {}
+    policy_limit = min(max_states, 10000)
+
+    def export(current: ChanceBattle, state: tuple[int, ...], depth: int) -> int:
+        # AI_NOTE: 実状態が完全一致する枝だけ合流し、条件別方策の展開にも時間・出力状態上限を適用する。
+        marker = (state_key(current.state), depth)
+        if marker in exported:
+            return exported[marker]
+        if not solver.cutoffs:
+            if perf_counter() >= started+seconds:
+                raise Limit('time')
+            if len(nodes) >= policy_limit:
+                raise Limit('policy states')
+        index = len(nodes)
+        pair = solver.score(state) if solver.cutoffs else solver.cache[state if max_depth >= solver.horizon else state+(depth,)][0]
+        node: Json = {'id': index, 'state': copy.deepcopy(current.state), 'position': summary(current),
+                      'actions': [], 'best_action': None, 'stop': metrics(value(current, weights)), 'value': metrics(pair)}
+        nodes.append(node)
+        exported[marker] = index
+        if solver.cutoffs:
+            node['cutoff'] = True
+            return index
+        selected = solver.choice(state, depth)
+        if selected is None:
+            return index
+        action = solver.public_action(selected)
+        if action not in current.legal_actions():
+            raise ValueError('高速探索の操作が公開エンジンで不正です')
+        branches = solver.children(state, selected)
+        edges = []
+        is_random = selected[0] == 0 and selected[2] == -1
+        for number, child_state in enumerate(branches):
+            draws = (number,) if is_random and any(state[i] > 0 for i in range(solver.n, solver.count)) else ()
+            child = current.branch(action, draws)
+            encoded = solver.encode(child)
+            # The selected evolution may already have died; its resource cost remains in the memo key.
+            adjusted = list(encoded)
+            adjusted[solver.count+2] = child_state[solver.count+2]
+            if tuple(adjusted) != child_state or solver.score(child_state) != value(child, weights):
+                raise ValueError('高速探索の遷移または評価が公開エンジンと一致しません')
+            target = export(child, child_state, depth+1)
+            edges.append({'node': target, 'probability': str(Fraction(1, len(branches))), 'draws': list(draws)})
+        node['best_action'] = 0
+        node['actions'] = [{'action': action, 'outcomes': edges, **metrics(pair)}]
+        return index
+
+    try:
+        export(root, solver.initial, 0)
+    except Limit as reason:
+        # AI_NOTE: 出力途中の確率分布を返さず、完全な停止方策と未完了理由へ戻す。
+        solver.cutoffs.add(str(reason))
+        nodes.clear()
+        exported.clear()
+        best = solver.score(solver.initial)
+        export(root, solver.initial, 0)
+    elapsed = (perf_counter()-started)*1000
+    peak, method = peak_memory()
+    return {'version': 1, 'strategy': 'practical-compact-expectimax', 'objective': objective, 'weights': weights,
+            'complete': not solver.cutoffs, 'optimal': not solver.cutoffs, 'cutoffs': sorted(solver.cutoffs),
+            'scope': 'current turn before end-turn effects; uniform independent random choices; heuristic value, not full-game win rate',
+            'policy_scope': 'selected optimal policy only; all legal alternatives evaluated in compact memo',
+            'root': 0, 'record': root.export(), 'policy': nodes,
+            'recommended_action': nodes[0]['actions'][0]['action'] if nodes[0]['actions'] else None,
+            **metrics(best), 'stats': {'states': len(solver.cache), 'transitions': solver.transitions,
+                'duplicates': solver.hits, 'policy_nodes': len(nodes), 'elapsed_ms': elapsed, 'peak_rss_bytes': peak,
+                'memory_method': method, 'memory_scope': 'whole process peak, including prior requests',
+                'max_states': max_states, 'max_outcomes': max_outcomes, 'max_depth': max_depth,
+                'max_policy_nodes': policy_limit,
+                'seconds': seconds, 'budget_unit': 'compact evaluated state records'}}
+
+
 def replay_branch(record: Json, steps: list[Json]) -> Json:
     # AI_NOTE: 抽選結果は利用者が選べる操作ではなく条件付き再生資料。合法手と各抽選の範囲を再検査する。
     base = replay(record)
@@ -329,12 +420,14 @@ def main() -> None:
     parser.add_argument('--objective', choices=OBJECTIVES, default='lethal')
     parser.add_argument('--weights', type=json.loads, help='評価重みのJSONオブジェクト。省略項目は既定値')
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--max-states', type=int, default=10000)
+    parser.add_argument('--max-states', type=int, help='状態上限。省略時は一般探索10000、高速探索500000')
     parser.add_argument('--max-outcomes', type=int, default=4096)
     parser.add_argument('--max-depth', type=int, default=64)
     parser.add_argument('--seconds', type=float, default=10)
     args = parser.parse_args()
     cases = json.loads(args.cases.read_text(encoding='utf-8'))
+    if isinstance(cases, dict):
+        cases = [cases]
     case = next((case for case in cases if case['id'] == args.case), None)
     if case is None:
         parser.error('指定ケースがありません')
