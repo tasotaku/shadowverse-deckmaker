@@ -1,0 +1,165 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "runner": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": [],
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          },
+          {
+            "op": "grant",
+            "target": "self",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ],
+        "card_id": "runner"
+      },
+      "g": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ],
+        "card_id": "g"
+      }
+    },
+    "cards_hash": "e48d1c182cf8967b1071f5d181a0f265bda47fe5eed7480d0e80e1a67b5c00be",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 1,
+          "max_pp": 1,
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "runner",
+              "card_id": "runner",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 4,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [],
+          "destroyed": []
+        },
+        {
+          "health": 4,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "g",
+              "card_id": "g",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 0,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  }
+}

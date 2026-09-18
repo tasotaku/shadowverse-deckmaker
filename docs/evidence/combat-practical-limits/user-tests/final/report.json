@@ -1,0 +1,84 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-practical-limits",
+  "spec_version": 1,
+  "spec_sha256": "607f370f5f08ae4bf9caacc28e177d807502309a2e886e2603b665f4107f65c7",
+  "executor_id": "fresh-limit-cli-acceptance | limit_http_acceptance",
+  "started_at": "2026-09-18T05:12:31Z",
+  "finished_at": "2026-09-18T05:17:19.056821+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\cli-final | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\http-final",
+    "completed_record": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\cli-final\\process.json | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\http-final\\completed.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-18T05:12:31Z",
+      "journey_stopped_at": "2026-09-18T05:14:32.175458+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: unchanged input SHA256 verified, case.json equality verified, three output artifacts read. Single CLI exit 0; complete=true, optimal=true, cutoffs=[]. Default weights and budgets match public guide (compact 500000 states / outcomes4096 / depth64 / 10sec).",
+        "F2 PASS: precomputed exhaustive reference certificate preserved with script/result hashes in process.json. Reference independently computes score using documented weights and all legal public Battle transitions; root 0,-4 matches. Reference shares Battle and ChanceBattle random transition enumeration, not search/evaluation. 293116 states / 1155607 transitions. Existing provenance records prior independent run; not rerun here.",
+        "F2 continuation proof: independent rational terminal scoring and selected-policy expectation equal certified root optimum -4; every visited edge has positive probability, therefore any strictly improving reachable continuation would strictly improve root and contradict exhaustive optimum. This certifies selected continuations, including any random outcomes, without requiring equal tie-breaking to reference.",
+        "F3 PASS: all 8 policy nodes traversed; 7 emitted candidate outcomes have positive exact probability and sums of 1. All selected expectation equations agree with recomputed terminal scores; CLI replay PASS checks all 7 emitted edges including IDs/order/rights/resources ignoring rng. This particular selected policy contains no random draw edges; random spell is retained, so no missing selected random branches.",
+        "F4 PASS: external wall 4281.21889999602ms, search elapsed 4102.518100000452ms, peak RSS 130363392 bytes (Windows PeakWorkingSetSize; whole process peak, including prior requests). Dedicated fresh CLI process PID24768; no prior requests in that child. Numeric stats nonnegative. Prior incomplete result: 3745.968700008234ms,165310464 bytes,10000 states,states cutoff; comparison.json preserves full baseline and scope limitations.",
+        "UX1 PASS: command list and stdin DEVNULL observed; exactly one solve invocation, 0 prompts needing response, 0 budget tuning, 0 browser actions/manual app switches/clicks/scrolls. Exit0 without stdin input.",
+        "UX2 PASS: monotonic process timing 4.281sec including process startup/save/replay is below60sec; search4.103sec below published10sec. No timeout or extensions.",
+        "UX3 PASS: report.md clearly labels completion/optimality, 0 probability and -4 score plus replay PASS; linked report.json exposes root recommended_action and best_action/outcomes/node continuation. Largest interpretation burden: summary does not print first move; user must follow linked JSON and use instance ID e5 to identify Target damage. Guide documents mapping, adequate for CLI/API persona. File/CLI surface has no focus/viewport requirement. Shipping usability judgement GO for documented technical persona.",
+        "Independence: executor read fixed spec/lock/public guide/reference and output artifacts only; no production source/diff/previous user-test reports. One execution, no retry. Build base commit and platform in process.json."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-18T05:14:32.175458+00:00",
+        "evidence": "Dedicated subprocess PID24768 exited0 and was reaped by communicate(). No child persists; no server stopped. Evidence workspace preserved in cli-final; completed record process.json."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-18T05:12:58+00:00",
+      "journey_stopped_at": "2026-09-18T05:16:10.187025+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: All 13 unmodified fixtures returned HTTP 200 and complete=true, optimal=true; all 13 frozen exact win probabilities and all 9 unique first action expectations matched. Fixture SHA256 a19507720cdefee7272b680529b793e971d8f2d0e947c45ae2c1b7eff2d44843. Checks and raw JSON retained.",
+        "F2 PASS: random-half-anchor exact 1/2; rng-cheating-choice exact 2/3, recommended safe, safe 2/3 and risk 1/3 for all nine published seeds including 60. Eight extra seeds each submitted once.",
+        "F3 PASS: Named random candidates selected explicitly in both adaptive fixtures. Four branches each probability 1/2; 14 conditional edge replays matched full returned states except rng and exact probabilities. random-adaptive-target pinged damaged left/right then destroyed the other; two-ward fixture attacked surviving right/left then leader. All terminal states winner=0; adaptive-paths.json.",
+        "F4 PASS: Both published replay anchors matched IDs/HP/keywords/leader HP. Renamed old-before-new leaves z_old and a_new HP3 with only old barrier removed; reversed order kills a_new and preserves z_old HP3 with original barrier. Raw responses 036-039.",
+        "F5 PASS: Explicit own_board_health=1 and every other documented weight=0: lethal exact win 1 score 20 recommends face attacking guard; value exact win 0 score21 recommends null. Root turn preserved; no end_turn executed.",
+        "F6 PASS: max_states=1 random-half-anchor returned complete=false, optimal=false, cutoffs=[states], compared to completed ordinary response. Raw response 042.",
+        "U1 PASS: 42 sequential HTTP requests, one each with direct request/response capture and monotonic timeout=60; no retries. Maximum request wall 2083.483900001738 ms. No browser/GUI actions or manual window switching.",
+        "U2 PASS: Saved JSON exposes flags/cutoffs, exact rational strings and root/node/action/outcome links sufficient to consume next decisions. Largest interpretation burden: follow numerical outcome.node and best_action indexes through a verbose policy array; documented and successfully consumed for both adaptive trees, no gating readability issue. API suitability GO.",
+        "U3 PASS: Journey from clock before public documentation discovery through final response 192.187025 seconds, within 720-second budget. Per-request monotonic wall and per-solve stats saved in requests.json. Search elapsed range [0.2961999853141606, 11.156099993968382] ms; server lifetime peak RSS [28798976, 31072256] bytes. Windows PeakWorkingSetSize explicitly whole process including prior requests; not incremental/per-request memory.",
+        "Runtime identity: server PID16952 started 2026-09-18T14:12:11.607611+09:00, Python312 python.exe -X utf8 -m svdeck.battle_server --port 8767; checkout HEAD 099d5fded67e8123ba33660b48fc3da3d12d76d4; no source or diff inspected. Runtime process identity in server-identity.json.",
+        "Interaction counts: clicks=0, surface switches=0, scrolls=0, retries=0; focus/viewport not applicable to API-only journey. Dedicated client processes exited 0; urllib response contexts closed every connection.",
+        "Coordinator later disclosed a separate request around 05:17 UTC; this was after T2 stopped at 05:16:10.187025 UTC and its outcome was not consumed. Process lifetime memory caveat remains."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-18T05:17:19.056821+00:00",
+        "evidence": "Dedicated HTTP client processes completed with exit 0; all response contexts closed, no sockets/processes retained. Normal server PID16952 left running. Workspace C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\http-final; completed record completed.json."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Fixed stress input and fixed small regressions only; not all large boards or full-game win rates. CLI and HTTP independent partial reports merged without changing observations."
+  ]
+}

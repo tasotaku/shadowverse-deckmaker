@@ -1,0 +1,191 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "token": {
+        "name": "Fixture token",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "fanfare": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 20
+          }
+        ],
+        "super_evolve": [
+          {
+            "op": "grant",
+            "target": "self",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ],
+        "card_id": "token"
+      },
+      "guard": {
+        "name": "Fixture guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "keywords": [
+          "守護",
+          "バリア"
+        ],
+        "card_id": "guard"
+      },
+      "summoner": {
+        "name": "Fixture summoner",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "card_id": "token"
+          },
+          {
+            "op": "repeat",
+            "count": 2,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "all_enemy",
+                "amount": 1
+              }
+            ]
+          }
+        ],
+        "card_id": "summoner"
+      }
+    },
+    "cards_hash": "58afb7e411a3bd5bcb345c1a59d9340748455d897bb3d0b81fa1826670a3ceee",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 1,
+          "max_pp": 1,
+          "turn": 7,
+          "ep": 0,
+          "sep": 1,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "summoner",
+              "card_id": "summoner",
+              "name": "Fixture summoner",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [],
+          "destroyed": []
+        },
+        {
+          "health": 3,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard",
+              "name": "Fixture guard",
+              "cost": 1,
+              "attack": 0,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [
+                "守護",
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  }
+}

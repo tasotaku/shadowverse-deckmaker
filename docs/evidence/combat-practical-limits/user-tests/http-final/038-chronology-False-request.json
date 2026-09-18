@@ -1,0 +1,239 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "a": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 2,
+        "keywords": [],
+        "card_id": "a"
+      },
+      "old": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": [
+          "守護",
+          "バリア"
+        ],
+        "card_id": "old"
+      },
+      "new": {
+        "name": "Fixture follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "keywords": [],
+        "card_id": "new"
+      },
+      "ping": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ],
+        "card_id": "ping"
+      },
+      "split": {
+        "name": "Fixture spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "amount": 3
+          }
+        ],
+        "card_id": "split"
+      }
+    },
+    "cards_hash": "86bf75732729b4c1b597f122f4c98fc67442823a2995f0d345ef384c60a07a93",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 2,
+          "max_pp": 2,
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "ping",
+              "card_id": "ping",
+              "name": "Fixture spell",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "split",
+              "card_id": "split",
+              "name": "Fixture spell",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "a",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 4,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 4,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [
+            {
+              "id": "z_old",
+              "card_id": "old",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 0,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [
+                "守護",
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a_new",
+              "card_id": "new",
+              "name": "Fixture follower",
+              "cost": 1,
+              "attack": 0,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "steps": [
+    {
+      "action": {
+        "type": "play",
+        "card": "split"
+      },
+      "draws": []
+    }
+  ]
+}

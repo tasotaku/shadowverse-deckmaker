@@ -1,0 +1,146 @@
+[
+  {
+    "case": "random-adaptive-target",
+    "probability": "1/2",
+    "steps": [
+      {
+        "action": {
+          "type": "play",
+          "card": "random"
+        },
+        "draws": [
+          0
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "left"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "kill",
+          "target": "right"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a",
+          "target": "leader:1"
+        },
+        "draws": []
+      }
+    ],
+    "terminal": 4
+  },
+  {
+    "case": "random-adaptive-target",
+    "probability": "1/2",
+    "steps": [
+      {
+        "action": {
+          "type": "play",
+          "card": "random"
+        },
+        "draws": [
+          1
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "right"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "kill",
+          "target": "left"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a",
+          "target": "leader:1"
+        },
+        "draws": []
+      }
+    ],
+    "terminal": 4
+  },
+  {
+    "case": "random-two-ward-adaptive-anchor",
+    "probability": "1/2",
+    "steps": [
+      {
+        "action": {
+          "type": "play",
+          "card": "r"
+        },
+        "draws": [
+          0
+        ]
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a1",
+          "target": "right"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a2",
+          "target": "leader:1"
+        },
+        "draws": []
+      }
+    ],
+    "terminal": 3
+  },
+  {
+    "case": "random-two-ward-adaptive-anchor",
+    "probability": "1/2",
+    "steps": [
+      {
+        "action": {
+          "type": "play",
+          "card": "r"
+        },
+        "draws": [
+          1
+        ]
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a1",
+          "target": "left"
+        },
+        "draws": []
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "a2",
+          "target": "leader:1"
+        },
+        "draws": []
+      }
+    ],
+    "terminal": 3
+  }
+]

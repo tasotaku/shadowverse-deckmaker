@@ -1,0 +1,150 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "a": {
+        "name": "Spent body",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 5,
+        "health": 2,
+        "card_id": "a"
+      },
+      "spell": {
+        "name": "Too expensive",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 5
+          }
+        ],
+        "card_id": "spell"
+      }
+    },
+    "cards_hash": "786f50427df57bf30ae6381469d04901bae4b8d8275d4902a7cba5500ed9bfe9",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 20,
+          "max_health": 20,
+          "pp": 1,
+          "max_pp": 1,
+          "turn": 7,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "spell",
+              "card_id": "spell",
+              "name": "Too expensive",
+              "cost": 2,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [],
+          "board": [
+            {
+              "id": "a",
+              "card_id": "a",
+              "name": "Spent body",
+              "cost": 1,
+              "attack": 5,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 5,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 2,
+          "sep": 2,
+          "evolved_this_turn": false,
+          "extra_pp_used": false,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [],
+          "board": [],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  }
+}

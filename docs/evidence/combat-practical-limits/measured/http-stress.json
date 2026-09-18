@@ -1,0 +1,3570 @@
+{
+  "wall_seconds": 4.044720299978508,
+  "request": {
+    "record": {
+      "version": 1,
+      "engine_version": "battle-2",
+      "cards": {
+        "test-body": {
+          "cost": 1,
+          "attack": 2,
+          "health": 3,
+          "keywords": [],
+          "kind": "follower",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "能力なし（検証用カード）",
+          "name": "検証用フォロワー",
+          "card_id": "test-body"
+        },
+        "test-barrier": {
+          "cost": 2,
+          "attack": 2,
+          "health": 3,
+          "keywords": [
+            "バリア"
+          ],
+          "kind": "follower",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "バリア（検証用カード）",
+          "name": "バリアの検証用フォロワー",
+          "card_id": "test-barrier"
+        },
+        "test-damage-5": {
+          "cost": 2,
+          "attack": 0,
+          "health": 0,
+          "keywords": [],
+          "kind": "spell",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "相手フォロワー1体を選び5ダメージ。",
+          "name": "選択5ダメージ（検証用）",
+          "effects": [
+            {
+              "op": "damage",
+              "target": "chosen_enemy",
+              "amount": 5
+            }
+          ],
+          "card_id": "test-damage-5"
+        },
+        "body": {
+          "kind": "follower",
+          "name": "Stress body",
+          "cost": 1,
+          "attack": 1,
+          "health": 1,
+          "card_id": "body"
+        },
+        "ping": {
+          "kind": "spell",
+          "name": "Target damage",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "target": "chosen_enemy",
+              "amount": 2
+            }
+          ],
+          "card_id": "ping"
+        },
+        "random": {
+          "kind": "spell",
+          "name": "Random damage",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "target": "random_enemy",
+              "amount": 2
+            }
+          ],
+          "card_id": "random"
+        }
+      },
+      "cards_hash": "1ab60ee7457d1bcfef14aa2659eb3b37dce712539198455dddb9dcc5fecbb302",
+      "initial": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 7,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 2,
+            "max_pp": 2,
+            "turn": 7,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e5",
+                "card_id": "ping",
+                "name": "Target damage",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "random",
+                "name": "Random damage",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [],
+            "board": [
+              {
+                "id": "a0",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [
+                  "バリア"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a1",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 2,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [
+                  "必殺"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a2",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 3,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a3",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 4,
+                "health": 5,
+                "max_health": 5,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a4",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 5,
+                "health": 6,
+                "max_health": 6,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 100,
+            "max_health": 100,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "e0",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 2,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [
+                  "守護",
+                  "バリア"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e1",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 3,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 4,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 5,
+                "health": 5,
+                "max_health": 5,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 6,
+                "health": 6,
+                "max_health": 6,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "actions": [],
+      "frames": []
+    }
+  },
+  "response": {
+    "version": 1,
+    "strategy": "practical-compact-expectimax",
+    "objective": "lethal",
+    "weights": {
+      "leader": 1,
+      "attack": 2,
+      "health": 1,
+      "body": 2,
+      "hand": 3,
+      "pp": 1,
+      "ep": 3,
+      "sep": 5,
+      "keyword": 2,
+      "win": 10000,
+      "own_board_health": 0
+    },
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "scope": "current turn before end-turn effects; uniform independent random choices; heuristic value, not full-game win rate",
+    "policy_scope": "selected optimal policy only; all legal alternatives evaluated in compact memo",
+    "root": 0,
+    "record": {
+      "version": 1,
+      "engine_version": "battle-2",
+      "cards": {
+        "test-body": {
+          "cost": 1,
+          "attack": 2,
+          "health": 3,
+          "keywords": [],
+          "kind": "follower",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "能力なし（検証用カード）",
+          "name": "検証用フォロワー",
+          "card_id": "test-body"
+        },
+        "test-barrier": {
+          "cost": 2,
+          "attack": 2,
+          "health": 3,
+          "keywords": [
+            "バリア"
+          ],
+          "kind": "follower",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "バリア（検証用カード）",
+          "name": "バリアの検証用フォロワー",
+          "card_id": "test-barrier"
+        },
+        "test-damage-5": {
+          "cost": 2,
+          "attack": 0,
+          "health": 0,
+          "keywords": [],
+          "kind": "spell",
+          "synthetic": true,
+          "class_name": "検証用",
+          "text": "相手フォロワー1体を選び5ダメージ。",
+          "name": "選択5ダメージ（検証用）",
+          "effects": [
+            {
+              "op": "damage",
+              "target": "chosen_enemy",
+              "amount": 5
+            }
+          ],
+          "card_id": "test-damage-5"
+        },
+        "body": {
+          "kind": "follower",
+          "name": "Stress body",
+          "cost": 1,
+          "attack": 1,
+          "health": 1,
+          "card_id": "body"
+        },
+        "ping": {
+          "kind": "spell",
+          "name": "Target damage",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "target": "chosen_enemy",
+              "amount": 2
+            }
+          ],
+          "card_id": "ping"
+        },
+        "random": {
+          "kind": "spell",
+          "name": "Random damage",
+          "cost": 1,
+          "effects": [
+            {
+              "op": "damage",
+              "target": "random_enemy",
+              "amount": 2
+            }
+          ],
+          "card_id": "random"
+        }
+      },
+      "cards_hash": "1ab60ee7457d1bcfef14aa2659eb3b37dce712539198455dddb9dcc5fecbb302",
+      "initial": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 7,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 2,
+            "max_pp": 2,
+            "turn": 7,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e5",
+                "card_id": "ping",
+                "name": "Target damage",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "random",
+                "name": "Random damage",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [],
+            "board": [
+              {
+                "id": "a0",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 1,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [
+                  "バリア"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a1",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 2,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [
+                  "必殺"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a2",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 3,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a3",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 4,
+                "health": 5,
+                "max_health": 5,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "a4",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 5,
+                "health": 6,
+                "max_health": 6,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 100,
+            "max_health": 100,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 2,
+            "sep": 2,
+            "evolved_this_turn": false,
+            "extra_pp_used": false,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "e0",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 2,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [
+                  "守護",
+                  "バリア"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e1",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 3,
+                "health": 3,
+                "max_health": 3,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 4,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 5,
+                "health": 5,
+                "max_health": 5,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "body",
+                "name": "Stress body",
+                "cost": 1,
+                "attack": 6,
+                "health": 6,
+                "max_health": 6,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "actions": [],
+      "frames": []
+    },
+    "policy": [
+      {
+        "id": 0,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 2,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [
+                {
+                  "id": "e5",
+                  "card_id": "ping",
+                  "name": "Target damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "守護",
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "守護",
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e5",
+              "card_id": "ping",
+              "name": "Target damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 2,
+          "ep": 2,
+          "sep": 2,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "play",
+              "card": "e5",
+              "target": "e1"
+            },
+            "outcomes": [
+              {
+                "node": 1,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -68.0,
+          "expected_value_exact": "-68"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 1,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "守護",
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 3,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "守護",
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 1,
+          "ep": 2,
+          "sep": 2,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "a1",
+              "target": "e0"
+            },
+            "outcomes": [
+              {
+                "node": 2,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -70.0,
+          "expected_value_exact": "-70"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 2,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": [
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 1,
+          "ep": 2,
+          "sep": 2,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "super_evolve",
+              "source": "a2"
+            },
+            "outcomes": [
+              {
+                "node": 3,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -60.0,
+          "expected_value_exact": "-60"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 3,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 1,
+              "evolved_this_turn": true,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 7,
+                  "max_health": 7,
+                  "keywords": [],
+                  "evolved": 2,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": [
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 7,
+              "max_health": 7,
+              "keywords": [],
+              "evolved": 2,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 1,
+          "ep": 2,
+          "sep": 1,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "a4",
+              "target": "e3"
+            },
+            "outcomes": [
+              {
+                "node": 4,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -56.0,
+          "expected_value_exact": "-56"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 4,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 1,
+              "evolved_this_turn": true,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 7,
+                  "max_health": 7,
+                  "keywords": [],
+                  "evolved": 2,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 1,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 2,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": [
+                "body",
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [
+                "バリア"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 7,
+              "max_health": 7,
+              "keywords": [],
+              "evolved": 2,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 1,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 1,
+          "ep": 2,
+          "sep": 1,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "a0",
+              "target": "e1"
+            },
+            "outcomes": [
+              {
+                "node": 5,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -42.0,
+          "expected_value_exact": "-42"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 5,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 1,
+              "evolved_this_turn": true,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 7,
+                  "max_health": 7,
+                  "keywords": [],
+                  "evolved": 2,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 1,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 100,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 3,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "e4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 6,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": [
+                "body",
+                "body",
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 7,
+              "max_health": 7,
+              "keywords": [],
+              "evolved": 2,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 1,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 6,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 100,
+          "pp": 1,
+          "ep": 2,
+          "sep": 1,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "a2",
+              "target": "e4"
+            },
+            "outcomes": [
+              {
+                "node": 6,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -35.0,
+          "expected_value_exact": "-35"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 6,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 1,
+              "evolved_this_turn": true,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 7,
+                  "max_health": 7,
+                  "keywords": [],
+                  "evolved": 2,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 1,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 99,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 4,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "e2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": [
+                "body",
+                "body",
+                "body",
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 7,
+              "max_health": 7,
+              "keywords": [],
+              "evolved": 2,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 5,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 1,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [
+            {
+              "id": "e2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 99,
+          "pp": 1,
+          "ep": 2,
+          "sep": 1,
+          "win": false
+        },
+        "actions": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "a3",
+              "target": "e2"
+            },
+            "outcomes": [
+              {
+                "node": 7,
+                "probability": "1",
+                "draws": []
+              }
+            ],
+            "win_probability": 0.0,
+            "win_probability_exact": "0",
+            "expected_value": -4.0,
+            "expected_value_exact": "-4"
+          }
+        ],
+        "best_action": 0,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -14.0,
+          "expected_value_exact": "-14"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      },
+      {
+        "id": 7,
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 7,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 1,
+              "max_pp": 2,
+              "turn": 7,
+              "ep": 2,
+              "sep": 1,
+              "evolved_this_turn": true,
+              "extra_pp_used": false,
+              "graveyard": 1,
+              "combo": 1,
+              "hand": [
+                {
+                  "id": "e6",
+                  "card_id": "random",
+                  "name": "Random damage",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "a0",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a1",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 1,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a2",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 6,
+                  "health": 7,
+                  "max_health": 7,
+                  "keywords": [],
+                  "evolved": 2,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a3",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 4,
+                  "health": 1,
+                  "max_health": 5,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "a4",
+                  "card_id": "body",
+                  "name": "Stress body",
+                  "cost": 1,
+                  "attack": 5,
+                  "health": 1,
+                  "max_health": 6,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 1,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 99,
+              "max_health": 100,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 1,
+              "ep": 2,
+              "sep": 2,
+              "evolved_this_turn": false,
+              "extra_pp_used": false,
+              "graveyard": 5,
+              "combo": 0,
+              "hand": [],
+              "deck": [],
+              "board": [],
+              "destroyed": [
+                "body",
+                "body",
+                "body",
+                "body",
+                "body"
+              ]
+            }
+          ]
+        },
+        "position": {
+          "own_board": [
+            {
+              "id": "a0",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 1,
+              "health": 2,
+              "max_health": 2,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a1",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 2,
+              "health": 1,
+              "max_health": 3,
+              "keywords": [
+                "必殺"
+              ],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a2",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 6,
+              "health": 7,
+              "max_health": 7,
+              "keywords": [],
+              "evolved": 2,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a3",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 4,
+              "health": 1,
+              "max_health": 5,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "a4",
+              "card_id": "body",
+              "name": "Stress body",
+              "cost": 1,
+              "attack": 5,
+              "health": 1,
+              "max_health": 6,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 1,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "enemy_board": [],
+          "own_hand": [
+            {
+              "id": "e6",
+              "card_id": "random",
+              "name": "Random damage",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "own_health": 20,
+          "enemy_health": 99,
+          "pp": 1,
+          "ep": 2,
+          "sep": 1,
+          "win": false
+        },
+        "actions": [],
+        "best_action": null,
+        "stop": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        },
+        "value": {
+          "win_probability": 0.0,
+          "win_probability_exact": "0",
+          "expected_value": -4.0,
+          "expected_value_exact": "-4"
+        }
+      }
+    ],
+    "recommended_action": {
+      "type": "play",
+      "card": "e5",
+      "target": "e1"
+    },
+    "win_probability": 0.0,
+    "win_probability_exact": "0",
+    "expected_value": -4.0,
+    "expected_value_exact": "-4",
+    "stats": {
+      "states": 293553,
+      "transitions": 1156296,
+      "duplicates": 862744,
+      "policy_nodes": 8,
+      "elapsed_ms": 4002.8187000134494,
+      "peak_rss_bytes": 138178560,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 500000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "max_policy_nodes": 10000,
+      "seconds": 10.0,
+      "budget_unit": "compact evaluated state records"
+    }
+  }
+}

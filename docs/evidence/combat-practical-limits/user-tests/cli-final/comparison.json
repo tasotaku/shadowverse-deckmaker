@@ -1,0 +1,45 @@
+{
+  "prior": {
+    "complete": false,
+    "optimal": false,
+    "cutoffs": [
+      "states"
+    ],
+    "win_probability_exact": "0",
+    "expected_value_exact": "-68",
+    "stats": {
+      "states": 10000,
+      "transitions": 28121,
+      "chance_nodes": 1,
+      "duplicates": 18122,
+      "elapsed_ms": 3745.968700008234,
+      "peak_rss_bytes": 165310464,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak, including prior requests",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "max_depth": 64,
+      "seconds": 10.0,
+      "budget_unit": "policy state nodes"
+    },
+    "correctness": "UNVERIFIED: stress/resource measurement only, no complete independent oracle or whole-policy replay"
+  },
+  "new_stats": {
+    "states": 293553,
+    "transitions": 1156296,
+    "duplicates": 862744,
+    "policy_nodes": 8,
+    "elapsed_ms": 4102.518100000452,
+    "peak_rss_bytes": 130363392,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak, including prior requests",
+    "max_states": 500000,
+    "max_outcomes": 4096,
+    "max_depth": 64,
+    "max_policy_nodes": 10000,
+    "seconds": 10,
+    "budget_unit": "compact evaluated state records"
+  },
+  "external_wall_ms": 4281.21889999602,
+  "scope_notes": "Both measurements are process peak RSS, not allocation delta. Old external wall time and exact machine/concurrent workload unavailable. New CLI isolated process; parallel T2 HTTP test and ordinary host processes may overlap."
+}

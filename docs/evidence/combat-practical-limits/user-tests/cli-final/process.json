@@ -1,0 +1,42 @@
+{
+  "discovery_started_at": "2026-09-18T05:12:31Z",
+  "process_started_at": "2026-09-18T05:13:16.332847+00:00",
+  "process_stopped_at": "2026-09-18T05:13:20.605124+00:00",
+  "wall_ms": 4281.21889999602,
+  "pid": 24768,
+  "exit_code": 0,
+  "timed_out": false,
+  "command": [
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "svdeck.battle_practical",
+    "--cases",
+    "docs\\evidence\\combat-practical-limits\\user-tests\\cli-final\\cases.json",
+    "--case",
+    "mixed-keywords-5v5",
+    "--output",
+    "docs\\evidence\\combat-practical-limits\\user-tests\\cli-final\\solve"
+  ],
+  "stdin": "DEVNULL; no input or interactive response",
+  "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26220-SP0",
+  "concurrent_workload": "T2 HTTP fixture acceptance in separate executor/server may overlap; parent coordination and ordinary host workload also exist",
+  "solve_commands": 1,
+  "manual_surface_switches": 0,
+  "clicks": 0,
+  "scrolls": 0,
+  "fixture_sha256": "443c1e67c9ad7c1485b20e59149b862e92f7a987b3b9097ca8c84e8e208d9226",
+  "reference_sha256": "cede796b8ac70b97196d7f2476648bb5345fca0f6e8d38111c0a37609ab38402",
+  "reference_result_sha256": "dac39f2daff5dbb47558cca81ab8b10303715626659b6e268ebde1bbd5712cef",
+  "build_commit": "099d5fded67e8123ba33660b48fc3da3d12d76d4",
+  "build_scope": "current working tree; commit identifies base, not uncommitted build contents",
+  "documented_defaults": {
+    "max_states": 500000,
+    "max_outcomes": 4096,
+    "max_depth": 64,
+    "seconds": 10,
+    "units": "compact computation states; policy output limit 10000 nodes"
+  }
+}

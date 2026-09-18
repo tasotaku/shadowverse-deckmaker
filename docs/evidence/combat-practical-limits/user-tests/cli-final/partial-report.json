@@ -1,0 +1,54 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "combat-practical-limits",
+  "spec_version": 1,
+  "spec_sha256": "607f370f5f08ae4bf9caacc28e177d807502309a2e886e2603b665f4107f65c7",
+  "executor_id": "fresh-limit-cli-acceptance",
+  "started_at": "2026-09-18T05:12:31Z",
+  "finished_at": "2026-09-18T05:14:32.175458+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\cli-final",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\combat-practical-limits\\user-tests\\cli-final\\process.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-18T05:12:31Z",
+      "journey_stopped_at": "2026-09-18T05:14:32.175458+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: unchanged input SHA256 verified, case.json equality verified, three output artifacts read. Single CLI exit 0; complete=true, optimal=true, cutoffs=[]. Default weights and budgets match public guide (compact 500000 states / outcomes4096 / depth64 / 10sec).",
+        "F2 PASS: precomputed exhaustive reference certificate preserved with script/result hashes in process.json. Reference independently computes score using documented weights and all legal public Battle transitions; root 0,-4 matches. Reference shares Battle and ChanceBattle random transition enumeration, not search/evaluation. 293116 states / 1155607 transitions. Existing provenance records prior independent run; not rerun here.",
+        "F2 continuation proof: independent rational terminal scoring and selected-policy expectation equal certified root optimum -4; every visited edge has positive probability, therefore any strictly improving reachable continuation would strictly improve root and contradict exhaustive optimum. This certifies selected continuations, including any random outcomes, without requiring equal tie-breaking to reference.",
+        "F3 PASS: all 8 policy nodes traversed; 7 emitted candidate outcomes have positive exact probability and sums of 1. All selected expectation equations agree with recomputed terminal scores; CLI replay PASS checks all 7 emitted edges including IDs/order/rights/resources ignoring rng. This particular selected policy contains no random draw edges; random spell is retained, so no missing selected random branches.",
+        "F4 PASS: external wall 4281.21889999602ms, search elapsed 4102.518100000452ms, peak RSS 130363392 bytes (Windows PeakWorkingSetSize; whole process peak, including prior requests). Dedicated fresh CLI process PID24768; no prior requests in that child. Numeric stats nonnegative. Prior incomplete result: 3745.968700008234ms,165310464 bytes,10000 states,states cutoff; comparison.json preserves full baseline and scope limitations.",
+        "UX1 PASS: command list and stdin DEVNULL observed; exactly one solve invocation, 0 prompts needing response, 0 budget tuning, 0 browser actions/manual app switches/clicks/scrolls. Exit0 without stdin input.",
+        "UX2 PASS: monotonic process timing 4.281sec including process startup/save/replay is below60sec; search4.103sec below published10sec. No timeout or extensions.",
+        "UX3 PASS: report.md clearly labels completion/optimality, 0 probability and -4 score plus replay PASS; linked report.json exposes root recommended_action and best_action/outcomes/node continuation. Largest interpretation burden: summary does not print first move; user must follow linked JSON and use instance ID e5 to identify Target damage. Guide documents mapping, adequate for CLI/API persona. File/CLI surface has no focus/viewport requirement. Shipping usability judgement GO for documented technical persona.",
+        "Independence: executor read fixed spec/lock/public guide/reference and output artifacts only; no production source/diff/previous user-test reports. One execution, no retry. Build base commit and platform in process.json."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-18T05:14:32.175458+00:00",
+        "evidence": "Dedicated subprocess PID24768 exited0 and was reaped by communicate(). No child persists; no server stopped. Evidence workspace preserved in cli-final; completed record process.json."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Documented precomputed reference provenance accepted; exhaustive reference generation not repeated during acceptance. Public Battle and chance enumeration shared by oracle and product.",
+    "Old external wall time / precise machine identity / concurrency unavailable; do not infer a universal speed or RSS guarantee.",
+    "This partial report covers T1 only and requires merge with fresh T2 report before full-spec lint."
+  ]
+}
