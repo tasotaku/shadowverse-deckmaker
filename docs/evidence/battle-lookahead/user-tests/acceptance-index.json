@@ -1,0 +1,45 @@
+{
+  "kind": "cross-revision-evidence-index",
+  "final_spec": "spec-v3.json",
+  "status": "all three journeys independently passed",
+  "entries": [
+    {
+      "journey": "T1",
+      "status": "PASS",
+      "source_report": "docs\\evidence\\battle-lookahead\\user-tests\\final-t1\\report.json",
+      "executor": "fresh-turn-final-cli-T1",
+      "source_spec_version": 2,
+      "final_requirements_identical": true,
+      "started_at": "2026-09-24T11:07:57.972032+00:00",
+      "stopped_at": "2026-09-24T11:09:30.411991+00:00"
+    },
+    {
+      "journey": "T2",
+      "status": "PASS",
+      "source_report": "docs\\evidence\\battle-lookahead\\user-tests\\final-t2\\report.json",
+      "executor": "fresh-turn-final-chance-T2",
+      "source_spec_version": 2,
+      "final_requirements_identical": true,
+      "started_at": "2026-09-24T11:08:39.098662+00:00",
+      "stopped_at": "2026-09-24T11:10:46.752181+00:00"
+    },
+    {
+      "journey": "T3",
+      "status": "PASS",
+      "source_report": "docs\\evidence\\battle-lookahead\\user-tests\\ui-v3\\report.json",
+      "executor": "fresh-turn-ui-v3",
+      "source_spec_version": 3,
+      "final_requirements_identical": true,
+      "started_at": "2026-09-24T11:14:46.357Z",
+      "stopped_at": "2026-09-24T11:16:18.653Z"
+    }
+  ],
+  "scheduling_note": "T1 and T2 ran together under v2. T3 ran later under v3 after observation-channel preflight repair. This index does not rewrite source reports or claim all three executions overlapped.",
+  "preservation": "preservation.json",
+  "superseded_incomplete_evidence": [
+    "t1/report.json",
+    "t2/report.json",
+    "t3/report-partial.json",
+    "final-t3/report.json"
+  ]
+}

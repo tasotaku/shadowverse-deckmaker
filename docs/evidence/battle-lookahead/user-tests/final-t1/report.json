@@ -1,0 +1,96 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 2,
+  "spec_sha256": "62c65f4e60f1d5414c7b960b2ab802bbc35371164b4011fb4a5981eaf27ff382",
+  "executor_id": "fresh-turn-final-cli-T1",
+  "started_at": "2026-09-24T11:07:57.972032+00:00",
+  "finished_at": "2026-09-24T11:10:28.922641+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\final-t1\\raw.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T11:07:57.972032+00:00",
+      "journey_stopped_at": "2026-09-24T11:09:30.411991+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: help accepted cases/case/turns/output. Four output case.json/report.json/report.md identify the case; turns are 1,3,3,3, complete=true. Policy turns_remaining reaches 0 for one-turn and nonterminal three-turn case, and winner=0 in the third acting turn for a/b. Recommendations and candidates are present. See checks.json and preserved product outputs.",
+        "F2 PASS: a-one recommends Single removal on Small distraction (score 27.9 vs pass 22.8; both win probability 0); a-three recommends end_turn with win probability 1 vs immediate removal 0. Public Battle independently replayed pass, enemy guard, enemy bait face attack, enemy end, removal on guard, own face attack; winner 0, health [3,0]. Every reference first-action probability matches, including the independently exhaustive reference guarantee. No search implementation source was read.",
+        "F3 PASS: b-three candidates include end_turn and legal sacrifice. End_turn is recommended with win 1 versus sacrifice 0. Public replay retains Sacrifice your future lethal attacker and wins next own turn with the existing attacker.",
+        "F4 PASS: c-three preserves [], [heal], [wall] patterns with human card names. Public Battle applying each first action directly observes retained [heal,wall]/PP1, [wall]/PP0, [heal]/PP0 respectively; candidate loss probabilities 1,1,0 match reference. Recommended wall continuation blocks 7 attack, then heals to health 7 with wall health 1. See checks.json.",
+        "F5 PASS: all four have complete=true, optimal=true, cutoffs=[] for finite known scenarios; all candidate values match independent reference and all 18 exported policy edges replay legally to the exact reported next state. Scope explicitly limits optimality to fixed hand/deck scenario.",
+        "U1 PASS: exactly four analysis subprocesses in manifest order and one help invocation. CLI interaction log directly records zero clicks, scrolls and manual terminal/window switches; no retries.",
+        "U2 PASS: process start through exit and output presence measured using perf_counter: 0.149219, 0.159396, 0.141173, 0.164422 seconds. Each is below 30 seconds. Top-level turns, complete and recommended_action are available together in JSON; no product source needed. Entire executed journey 92.440105 seconds, below 360-second budget.",
+        "U3 PASS: win_probability_exact, loss_probability_exact, expected_value are distinct; public guide explicitly calls evaluation points heuristic. Used patterns carry names (Single removal, Heal four, Eight-health wall), and initial/policy state carries named retained cards, so interpretation does not rely only on internal IDs.",
+        "Supplementary memory: product reports Windows whole-process PeakWorkingSetSize 22609920/23027712/22867968/23105536 bytes (21.56–22.04 MiB). Independent 5ms sampler observed launch process peaks 4427776/4423680/4497408/4427776 bytes; these are launcher-only and are not a verification of actual Python child peak.",
+        "CLI release judgment GO for these fixed cases. Largest residual convenience issue: full retained cards require correlating initial/policy state with named hand_patterns; this stays within the fixed JSON reading acceptance and is not a gating finding."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:28.922641+00:00",
+        "evidence": "All five owned CLI processes exited with return code 0 and were waited; no running owned process remains. No server or browser was created or stopped; parent port 8767 was untouched. Workspace: C:\\Users\\tasog\\source\\shadowverse-deckmaker; records: C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\final-t1"
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Placeholder only: this executor was assigned T1. No T2 environment was created."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:28.922641+00:00",
+        "evidence": "No environment created by this executor; no shared environment altered."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Placeholder only: this executor was assigned T1. No T3 environment was created."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:28.922641+00:00",
+        "evidence": "No environment created by this executor; no shared environment altered."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Supplementary independent memory sampling measured the venv launcher only; actual child peak is product-reported. No T1 fixed functional or UX expectation is unobserved.",
+    "T2/T3 are outside this executor assignment; their NOT_RUN placeholders must be replaced by independent executor reports during aggregation."
+  ]
+}

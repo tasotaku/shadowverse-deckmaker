@@ -1,0 +1,660 @@
+[
+  {
+    "id": "T1a-one",
+    "requested_turns": 1,
+    "reported_turns": 1,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "play",
+      "card": "remove",
+      "target": "bait"
+    },
+    "recommendation_matches_reference": true,
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "remove",
+            "name": "Single removal"
+          }
+        ],
+        "remaining_pp": 1,
+        "win": "0",
+        "loss": "0"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "bait"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [],
+        "remaining_pp": 0,
+        "win": "0",
+        "loss": "0"
+      }
+    ],
+    "hand_patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "remove"
+        ],
+        "names": [
+          "Single removal"
+        ],
+        "positions": 1
+      }
+    ],
+    "policy_edges_public_Battle_replay": [
+      {
+        "node": 0,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "bait"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          0,
+          0
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 1,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          0,
+          2
+        ],
+        "post_winner": null
+      }
+    ],
+    "exported_replay": {
+      "status": "PASS",
+      "edges_checked": 2,
+      "coverage": "all exported policy edges"
+    },
+    "reported_process_peak_bytes": 22609920,
+    "reported_memory_method": "Windows PeakWorkingSetSize"
+  },
+  {
+    "id": "T1a-three",
+    "requested_turns": 3,
+    "reported_turns": 3,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "end_turn"
+    },
+    "recommendation_matches_reference": true,
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "remove",
+            "name": "Single removal"
+          }
+        ],
+        "remaining_pp": 1,
+        "win": "1",
+        "loss": "0"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "bait"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [],
+        "remaining_pp": 0,
+        "win": "0",
+        "loss": "0"
+      }
+    ],
+    "hand_patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "remove"
+        ],
+        "names": [
+          "Single removal"
+        ],
+        "positions": 1
+      }
+    ],
+    "policy_edges_public_Battle_replay": [
+      {
+        "node": 0,
+        "active_player": 0,
+        "turns_remaining": 3,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          1,
+          2
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 1,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "play",
+          "card": "guard"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          1,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 2,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "attack",
+          "source": "bait",
+          "target": "leader:0"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          3
+        ],
+        "post_pp": [
+          1,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 3,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          3
+        ],
+        "post_pp": [
+          2,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 4,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "guard"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          3
+        ],
+        "post_pp": [
+          1,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 5,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "attack",
+          "source": "own",
+          "target": "leader:1"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          0
+        ],
+        "post_pp": [
+          1,
+          1
+        ],
+        "post_winner": 0
+      }
+    ],
+    "exported_replay": {
+      "status": "PASS",
+      "edges_checked": 6,
+      "coverage": "all exported policy edges"
+    },
+    "reported_process_peak_bytes": 23027712,
+    "reported_memory_method": "Windows PeakWorkingSetSize"
+  },
+  {
+    "id": "T1b-three",
+    "requested_turns": 3,
+    "reported_turns": 3,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "end_turn"
+    },
+    "recommendation_matches_reference": true,
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "remove",
+            "name": "Sacrifice your future lethal attacker"
+          }
+        ],
+        "remaining_pp": 1,
+        "win": "1",
+        "loss": "0"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "own"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [],
+        "remaining_pp": 0,
+        "win": "0",
+        "loss": "0"
+      }
+    ],
+    "hand_patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "remove"
+        ],
+        "names": [
+          "Sacrifice your future lethal attacker"
+        ],
+        "positions": 1
+      }
+    ],
+    "policy_edges_public_Battle_replay": [
+      {
+        "node": 0,
+        "active_player": 0,
+        "turns_remaining": 3,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          1,
+          2
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 1,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          3
+        ],
+        "post_pp": [
+          2,
+          2
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 2,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "attack",
+          "source": "own",
+          "target": "leader:1"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          4,
+          0
+        ],
+        "post_pp": [
+          2,
+          2
+        ],
+        "post_winner": 0
+      }
+    ],
+    "exported_replay": {
+      "status": "PASS",
+      "edges_checked": 3,
+      "coverage": "all exported policy edges"
+    },
+    "reported_process_peak_bytes": 22867968,
+    "reported_memory_method": "Windows PeakWorkingSetSize"
+  },
+  {
+    "id": "T1c-three",
+    "requested_turns": 3,
+    "reported_turns": 3,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "play",
+      "card": "wall"
+    },
+    "recommendation_matches_reference": true,
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "heal",
+            "name": "Heal four"
+          },
+          {
+            "id": "wall",
+            "name": "Eight-health wall"
+          }
+        ],
+        "remaining_pp": 1,
+        "win": "0",
+        "loss": "1"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "heal"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "wall",
+            "name": "Eight-health wall"
+          }
+        ],
+        "remaining_pp": 0,
+        "win": "0",
+        "loss": "1"
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "wall"
+        },
+        "probabilities_match_reference": true,
+        "remaining_hand_after_action": [
+          {
+            "id": "heal",
+            "name": "Heal four"
+          }
+        ],
+        "remaining_pp": 0,
+        "win": "0",
+        "loss": "0"
+      }
+    ],
+    "hand_patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "heal"
+        ],
+        "names": [
+          "Heal four"
+        ],
+        "positions": 1
+      },
+      {
+        "used": [
+          "wall"
+        ],
+        "names": [
+          "Eight-health wall"
+        ],
+        "positions": 1
+      }
+    ],
+    "policy_edges_public_Battle_replay": [
+      {
+        "node": 0,
+        "active_player": 0,
+        "turns_remaining": 3,
+        "action": {
+          "type": "play",
+          "card": "wall"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          20
+        ],
+        "post_pp": [
+          0,
+          0
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 1,
+        "active_player": 0,
+        "turns_remaining": 3,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          20
+        ],
+        "post_pp": [
+          0,
+          2
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 2,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "play",
+          "card": "threat"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          20
+        ],
+        "post_pp": [
+          0,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 3,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "attack",
+          "source": "threat",
+          "target": "wall"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          20
+        ],
+        "post_pp": [
+          0,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 4,
+        "active_player": 1,
+        "turns_remaining": 2,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          3,
+          20
+        ],
+        "post_pp": [
+          2,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 5,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "play",
+          "card": "heal"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          7,
+          20
+        ],
+        "post_pp": [
+          1,
+          1
+        ],
+        "post_winner": null
+      },
+      {
+        "node": 6,
+        "active_player": 0,
+        "turns_remaining": 1,
+        "action": {
+          "type": "end_turn"
+        },
+        "legal": true,
+        "next_state_matches": true,
+        "post_health": [
+          7,
+          20
+        ],
+        "post_pp": [
+          1,
+          3
+        ],
+        "post_winner": null
+      }
+    ],
+    "exported_replay": {
+      "status": "PASS",
+      "edges_checked": 7,
+      "coverage": "all exported policy edges"
+    },
+    "reported_process_peak_bytes": 23105536,
+    "reported_memory_method": "Windows PeakWorkingSetSize"
+  }
+]

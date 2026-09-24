@@ -1,0 +1,80 @@
+[
+  {
+    "name": "random",
+    "command": [
+      ".venv/Scripts/python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "svdeck.battle_lookahead",
+      "--cases",
+      "tests/fixtures/battle_lookahead_cases.json",
+      "--case",
+      "random_then_observe_and_adapt",
+      "--turns",
+      "3",
+      "--output",
+      "docs\\evidence\\battle-lookahead\\user-tests\\t2\\random"
+    ],
+    "elapsed_seconds": 0.375,
+    "exit_code": 0,
+    "stdout": "# random_then_observe_and_adapt\n\n3ターン / 完了: True / 固定シナリオ最適性: True\n\n勝率 1 / 敗率 0 / 評価 661/10\n\n60.19 ms / プロセス最大 22.26 MiB\n\n全出力辺再生: PASS (7)\n\n非公開情報を推定する通常AIの最適性保証ではありません。\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "incomparable_hand_burn",
+    "http_status": 200,
+    "elapsed_seconds": 2.125
+  },
+  {
+    "name": "incomparable_hand_storm",
+    "http_status": 200,
+    "elapsed_seconds": 2.0939999999827705
+  },
+  {
+    "name": "budget",
+    "command": [
+      ".venv/Scripts/python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "svdeck.battle_lookahead",
+      "--cases",
+      "tests/fixtures/battle_lookahead_cases.json",
+      "--case",
+      "save_removal_for_next_turn",
+      "--turns",
+      "3",
+      "--output",
+      "docs\\evidence\\battle-lookahead\\user-tests\\t2\\budget",
+      "--max-states",
+      "1"
+    ],
+    "elapsed_seconds": 0.32800000003771856,
+    "exit_code": 0,
+    "stdout": "# save_removal_for_next_turn\n\n3ターン / 完了: False / 固定シナリオ最適性: False\n\n勝率 0 / 敗率 0 / 評価 271/10\n\n2.58 ms / プロセス最大 21.78 MiB\n\n全出力辺再生: PASS (0)\n\n非公開情報を推定する通常AIの最適性保証ではありません。\n\n",
+    "stderr": ""
+  },
+  {
+    "name": "unsupported",
+    "command": [
+      ".venv/Scripts/python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "svdeck.battle_lookahead",
+      "--cases",
+      "docs\\evidence\\battle-lookahead\\user-tests\\t2\\unsupported-input.json",
+      "--case",
+      "unsupported_effect",
+      "--turns",
+      "3",
+      "--output",
+      "docs\\evidence\\battle-lookahead\\user-tests\\t2\\unsupported"
+    ],
+    "elapsed_seconds": 1.25,
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_lookahead.py\", line 346, in <module>\n    main()\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_lookahead.py\", line 334, in main\n    result = analyze(Battle(case['state'], case['cards']), turns=args.turns, max_states=args.max_states,\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle.py\", line 91, in __init__\n    self.validate_cards()\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle.py\", line 126, in validate_cards\n    validate_effect(effect, self.cards)\n  File \"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle.py\", line 44, in validate_effect\n    raise ValueError(f'未対応の効果です: {effect}')\nValueError: 未対応の効果です: {'op': 'unrecognized_effect', 'target': 'chosen_enemy'}\n"
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "id": 0,
+    "active": 0,
+    "remaining": 3,
+    "action": {
+      "type": "end_turn"
+    },
+    "own_health": 4,
+    "enemy_health": 3,
+    "own_pp": 1,
+    "enemy_pp": 0,
+    "own_hand": "Single removal",
+    "enemy_board": "Small distraction",
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 1,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "active": 1,
+    "remaining": 2,
+    "action": {
+      "type": "play",
+      "card": "guard"
+    },
+    "own_health": 4,
+    "enemy_health": 3,
+    "own_pp": 1,
+    "enemy_pp": 2,
+    "own_hand": "Single removal",
+    "enemy_board": "Small distraction",
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 2,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "active": 1,
+    "remaining": 2,
+    "action": {
+      "type": "attack",
+      "source": "bait",
+      "target": "leader:0"
+    },
+    "own_health": 4,
+    "enemy_health": 3,
+    "own_pp": 1,
+    "enemy_pp": 1,
+    "own_hand": "Single removal",
+    "enemy_board": [
+      "Small distraction",
+      "Large guard"
+    ],
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 3,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "active": 1,
+    "remaining": 2,
+    "action": {
+      "type": "end_turn"
+    },
+    "own_health": 3,
+    "enemy_health": 3,
+    "own_pp": 1,
+    "enemy_pp": 1,
+    "own_hand": "Single removal",
+    "enemy_board": [
+      "Small distraction",
+      "Large guard"
+    ],
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 4,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "active": 0,
+    "remaining": 1,
+    "action": {
+      "type": "play",
+      "card": "remove",
+      "target": "guard"
+    },
+    "own_health": 3,
+    "enemy_health": 3,
+    "own_pp": 2,
+    "enemy_pp": 1,
+    "own_hand": [
+      "Single removal",
+      "Unplayable draw filler"
+    ],
+    "enemy_board": [
+      "Small distraction",
+      "Large guard"
+    ],
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 5,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "active": 0,
+    "remaining": 1,
+    "action": {
+      "type": "attack",
+      "source": "own",
+      "target": "leader:1"
+    },
+    "own_health": 3,
+    "enemy_health": 3,
+    "own_pp": 1,
+    "enemy_pp": 1,
+    "own_hand": "Unplayable draw filler",
+    "enemy_board": "Small distraction",
+    "winner": null,
+    "outcomes": [
+      {
+        "node": 6,
+        "probability": "1",
+        "draws": []
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "active": 0,
+    "remaining": 1,
+    "action": null,
+    "own_health": 3,
+    "enemy_health": 0,
+    "own_pp": 1,
+    "enemy_pp": 1,
+    "own_hand": "Unplayable draw filler",
+    "enemy_board": "Small distraction",
+    "winner": 0,
+    "outcomes": []
+  }
+]

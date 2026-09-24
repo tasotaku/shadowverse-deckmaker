@@ -1,0 +1,122 @@
+- banner:
+  - text: SHADOWVERSE · BATTLE LAB
+  - heading "対戦ラボ 動かして、確かめる。" [level=1]
+  - button "盤面の候補"
+  - button "条件・検査"
+  - button "記録を保存"
+  - generic: 記録を開く
+- main:
+  - region "保存済みの一試合":
+    - button "一試合のリプレイを開く"
+    - button "AI対戦例を開く"
+    - generic: ランプドラゴン（先攻） vs ラストワードナイトメア（後攻）
+  - status: 手札候補から3ターン先読み（試作）が一手実行しました。右側の「この手のAI判断」で理由を確認できます。
+  - region "対戦盤面":
+    - generic: プレイヤー2 のターン · 2ターン目
+    - checkbox "両者の手札を見る" [checked]
+    - text: 両者の手札を見る
+    - generic: 後攻 · P2 ▶ 手番
+    - generic: ♥ 3
+    - generic: PP 2/2
+    - generic: 進化 0 / 超進化 0
+    - generic: 山札 3 · 墓場 0
+    - generic: ▤ 手札 · 2枚
+    - button "1 Large guard ⚔ 8 ♥ 8/8":
+      - generic: "1"
+      - text: Large guard
+      - generic: ⚔ 8
+      - generic: ♥ 8/8
+    - button "99 Unplayable draw filler":
+      - generic: "99"
+      - text: Unplayable draw filler
+    - generic: ▦ 盤面 · 1/5
+    - button "1 Small distraction ⚔ 1 ♥ 1/1":
+      - generic: "1"
+      - text: Small distraction
+      - generic: ⚔ 1
+      - generic: ♥ 1/1
+    - generic: 先攻 · P1
+    - generic: ♥ 4
+    - generic: PP 1/1
+    - generic: 進化 0 / 超進化 0
+    - generic: 山札 4 · 墓場 0
+    - generic: ▦ 盤面 · 1/5
+    - button "1 Next-turn lethal attacker ⚔ 3 ♥ 5/5":
+      - generic: "1"
+      - text: Next-turn lethal attacker
+      - generic: ⚔ 3
+      - generic: ♥ 5/5
+    - generic: ▤ 手札 · 1枚
+    - button "1 Single removal":
+      - generic: "1"
+      - text: Single removal
+    - generic: 可能な操作
+    - combobox "可能な操作":
+      - option "ターン終了" [selected]
+      - option "使用：Large guard [guard]"
+      - option "攻撃：Small distraction [bait] → Next-turn lethal attacker [own]"
+      - option "攻撃：Small distraction [bait] → プレイヤー1"
+    - button "実行"
+    - button "ケースを一手進める" [disabled]
+    - generic "OSで動きを減らす設定を有効にしている場合は演出を省略します":
+      - checkbox "演出を表示"
+      - text: 演出を表示
+    - generic: AI
+    - combobox "AIの選び方":
+      - option "先読みAI"
+      - option "手札候補から3ターン先読み（試作）" [selected]
+      - option "相手の返しを読む（試作）"
+      - option "調整版（比較用）"
+      - option "一手評価"
+      - option "無作為"
+    - button "AIが一手実行"
+    - button "自動対戦"
+    - generic: 間隔
+    - combobox "間隔":
+      - option "ゆっくり" [selected]
+      - option "速い"
+      - option "待ちなし"
+  - complementary:
+    - heading "リプレイ・処理を確認" [level=2]
+    - generic: 1 / 1 手
+    - button "最初"
+    - button "← 一手戻る"
+    - button "一手進む →" [disabled]
+    - button "最後" [disabled]
+    - generic: ターンへ移動
+    - combobox "ターンへ移動":
+      - option "先攻 1ターン目 · 0手目"
+      - option "後攻 2ターン目 · 1手目" [selected]
+    - generic: 1手目 · ターン終了
+    - slider "再生位置": "1"
+    - paragraph: 「一手進む」で再生。カードを押すと効果の全文を確認できます。
+    - generic "この手のAI判断 手札候補から3ターン先読み（試作）" [active]:
+      - text: この手のAI判断
+      - generic: 手札候補から3ターン先読み（試作）
+    - paragraph: 手札の使用候補を残し、3/3ターン先まで比較。相手手札・ドローは公開情報から2通りを仮定
+    - paragraph: 評価 25.6 · 試した手 750 · 先読み 3ターン · 0.15秒
+    - paragraph: 評価値は勝率ではありません。相手の実際の手札・山札順は見ていません。
+    - paragraph: 未確定の結果を含むため、先読みの評価には限界があります。
+    - generic "調べた手札の使い方（2通り）"
+    - table "比べた候補":
+      - caption: 比べた候補
+      - row "操作 評価":
+        - columnheader "操作"
+        - columnheader "評価"
+      - row "ターン終了 25.6":
+        - cell "ターン終了"
+        - cell "25.6"
+      - row "使用：Single removal [remove] → Small distraction [bait] -60.2":
+        - cell "使用：Single removal [remove] → Small distraction [bait]"
+        - cell "-60.2"
+    - strong: 1. プレイヤー2の2ターン目
+    - generic "対象・数値の詳細"
+    - strong: "2. ターン開始: カードを引く"
+    - generic "対象・数値の詳細"
+    - strong: 3. Unplayable draw fillerを手札に加えた
+    - generic "対象・数値の詳細"
+    - generic "直前の操作で変わった状態"
+    - generic "テスト結果 期待結果なし":
+      - text: テスト結果
+      - generic: 期待結果なし
+  - generic: 対応済みのカード・効果だけを実行します。未対応の効果はエラーで停止します。自動テスト合格は公式ゲームとの完全一致を保証しません。

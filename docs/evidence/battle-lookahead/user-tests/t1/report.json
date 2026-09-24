@@ -1,0 +1,103 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "f52435e82fce18e93af57e0aca662fd6bae164caba5cc918b9ce45e03d0feed3",
+  "executor_id": "fresh-turn-accept-cli-T1",
+  "started_at": "2026-09-24T10:56:59Z",
+  "finished_at": "2026-09-24T11:01:00.8872170Z",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/battle-lookahead/user-tests/t1",
+    "completed_record": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/battle-lookahead/user-tests/t1/command-measurements.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-24T10:56:59Z",
+      "journey_stopped_at": "2026-09-24T10:59:05Z",
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Setup: clock before public discovery 10:56:59 UTC; locked spec lint PASS with matching sha256. Public docs/battle-lookahead.md, CLI --help, and selected independent fixture definitions read. No production source, diffs, or prior reports read. Independent reference source was expressly allowed.",
+        "F1 observed PASS for tested depths: all four CLI exit codes 0 and case.json/report.json/report.md exist. report.md identifies case and turns; report.json turns=1,3,1,2, complete=true, optimal=true, cutoffs=[], recommended_action and candidates. a1 is clearly one turn; a3 policy exposes turns_remaining 3,2,1 with terminal winner. No claim that a1 reached three turns.",
+        "F2 PASS: a1 recommends play Single removal on Small distraction (evaluation 27.9 versus pass 22.8; win probabilities both 0). a3 recommends end_turn with win probability 1; immediate removal candidate remains with win probability 0. Independent exhaustive reference verifies unique winning first action end_turn, value [1,0], 37 states.",
+        "F2 legal trace directly read from a3 output: own end_turn; opponent plays Large guard costing 1 of 2 PP; Small distraction attacks leader for 1 leaving own health 3; opponent ends; own PP becomes 2, Single removal destroys Large guard costing 1; Next-turn lethal attacker attacks opposing leader for 3, winner=0. Exported sequence has correct active sides and targets; remaining turns 3 -> 2 -> 1. Own attacker was entered current turn, so passing initially respects summoning restriction. Public CLI replay independently reports PASS for all 6 exported edges. Compact states retained in a3-observed-trace.json.",
+        "F3 observed PASS at fixture depth 1 only: empty-use pattern and end_turn candidate both present; end_turn recommends win probability 1. Playing Sacrifice ally on End-turn lethal source has win probability 0. Independent reference confirms end_turn uniquely wins. Locked depth 3 not observed due stated execution-preparation issue.",
+        "F4 observed PASS at fixture depth 2 only: candidates end_turn, Heal four, Eight-health wall all retained. hand_patterns supplies names and used lists for none/heal/wall, so remaining starting cards are distinguishable. Healing uses the 1 PP and preserves wall; playing wall preserves heal. Known six-damage burn produces loss probability 0 after heal and 1 after wall or no play. Independent reference matches all three values. The storm counterpart and locked three-turn continuation were not executed.",
+        "F5 PASS for observed small scenarios: complete=true, optimal=true, cutoffs=[] for all four, explicitly fixed-known-hand/deck scope rather than hidden-information game guarantee; independent terminal probabilities match. No incomplete branch claim was observed in these complete cases.",
+        "U1 PASS: exactly 4 product analysis invocations excluding help, 0 manual terminal/window/tab switches, 0 clicks, 0 GUI key operations, 0 scrolls. Commands emitted in one dedicated PowerShell execution; command strings and process IDs preserved. Reference verification is a separate allowed oracle, not a fifth product analysis command.",
+        "U2 observed PASS: external Stopwatch process start-to-exit times a1=0.3418264 s, a3=2.2265138 s, b1=0.2025216 s, c2=0.2334177 s; output files confirmed at exit; all below 30 s. JSON fields made recommendation, turns and completeness identifiable without production source. Fixed b3/c3 timing not observed.",
+        "U3 PASS for observed output: exact win/loss probabilities are separate from expected_value and report.md labels evaluation separately. hand_patterns includes readable card names, and policy states include card names alongside IDs. Initial hands and used sets let a reader identify retained cards. No sampled output labels evaluation as win probability.",
+        "Memory: CLI directly reports Windows PeakWorkingSetSize whole-process peaks a1=22,863,872 B (21.8047 MiB), a3=23,187,456 B (22.1133 MiB), b1=22,867,968 B (21.8086 MiB), c2=22,847,488 B (21.7891 MiB). These are product-reported OS metrics. External polling measured only the Windows venv launcher PID (4,419,584 / 4,423,680 / 4,415,488 / 4,427,776 B); launcher peaks are preserved but are not presented as the interpreter memory footprint.",
+        "CLI-only UX verdict GO for tested inputs: commands are discoverable from help/guide, finish promptly, and retained candidate names are readable. Largest limitation is the guide/fixture versus locked-depth mismatch, recorded as an execution-preparation issue rather than product UX failure. Browser/focus assessment is outside T1.",
+        "Journey 126 seconds from pre-discovery clock to observation stop, within locked 360-second budget. No retries, fixture modifications, product changes, browser actions, or normal server changes occurred. T1 report is strict partial evidence and does not establish global acceptance.",
+        "Execution-preparation issue clarified by coordinator: dispatch instruction to match n_turns contradicted locked b3/c3 steps. Locked spec remains unchanged. This is not a product failure and no TEST_SPEC_ISSUE is claimed; only incomplete coverage.",
+        "Stop reason impossible means the exact locked journey cannot be completed in this single run after the four permitted analysis calls were consumed under inconsistent dispatch; additional calls would violate fixed count and no-retry rules. It does not mean the product cannot execute turns 3."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T10:59:06.5986478Z",
+        "evidence": "All owned analysis PIDs 1492,31520,9660,21276 exited naturally with code 0 and were confirmed absent by Get-Process; reference subprocess returned normally. Dedicated PowerShell calls returned. No server or unrelated process stopped. Raw outputs preserved under T1 workspace; cleanup.json contains PID checks."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "This partial executor report makes no claim about this journey; separate independent executor is responsible."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:00:36.1169252Z",
+        "evidence": "No environment or process for this journey was created by this T1 executor."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "This partial executor report makes no claim about this journey; separate independent executor is responsible."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:00:36.1169252Z",
+        "evidence": "No environment or process for this journey was created by this T1 executor."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Locked T1(b)/(c) require turns 3; supplied guide/fixture execution used turns 1/2. Mandatory depth coverage incomplete; never promote this partial report to PASS.",
+    "Reference is independent of search but shares public Battle rules; it does not independently prove all engine rules.",
+    "External memory polling covers venv launcher only; interpreter memory is the public CLI OS peak report, not a second independent interpreter measurement.",
+    "No browser UI, production source, hidden information behavior, or other journeys inspected. Only the known-burn half of the incomparable pair ran within the four-analysis allocation."
+  ]
+}

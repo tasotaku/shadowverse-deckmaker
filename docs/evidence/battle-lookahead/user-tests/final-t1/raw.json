@@ -1,0 +1,133 @@
+{
+  "started_at": "2026-09-24T11:07:57.972032+00:00",
+  "analysis_finished_at": "2026-09-24T11:07:58.722452+00:00",
+  "journey_start_perf": 443952.4805485,
+  "analysis_elapsed_seconds": 0.7502861999673769,
+  "records": [
+    {
+      "id": "help",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--help"
+      ],
+      "pid": 24272,
+      "exit_code": 0,
+      "elapsed_seconds": 0.13433339999755844,
+      "peak_working_set_bytes_observed": 4431872,
+      "timeout": false,
+      "output_exists": null,
+      "process_exited": true
+    },
+    {
+      "id": "T1a-one",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_save_removal",
+        "--turns",
+        "1",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t1/T1a-one"
+      ],
+      "pid": 28660,
+      "exit_code": 0,
+      "elapsed_seconds": 0.14921920001506805,
+      "peak_working_set_bytes_observed": 4427776,
+      "timeout": false,
+      "output_exists": true,
+      "process_exited": true
+    },
+    {
+      "id": "T1a-three",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_save_removal",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t1/T1a-three"
+      ],
+      "pid": 17704,
+      "exit_code": 0,
+      "elapsed_seconds": 0.15939610003260896,
+      "peak_working_set_bytes_observed": 4423680,
+      "timeout": false,
+      "output_exists": true,
+      "process_exited": true
+    },
+    {
+      "id": "T1b-three",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_no_play_next_turn",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t1/T1b-three"
+      ],
+      "pid": 3316,
+      "exit_code": 0,
+      "elapsed_seconds": 0.14117289998102933,
+      "peak_working_set_bytes_observed": 4497408,
+      "timeout": false,
+      "output_exists": true,
+      "process_exited": true
+    },
+    {
+      "id": "T1c-three",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_incomparable_hands",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t1/T1c-three"
+      ],
+      "pid": 31732,
+      "exit_code": 0,
+      "elapsed_seconds": 0.1644224000046961,
+      "peak_working_set_bytes_observed": 4427776,
+      "timeout": false,
+      "output_exists": true,
+      "process_exited": true
+    }
+  ],
+  "analysis_calls": 4,
+  "manual_surface_switches": 0,
+  "clicks": 0,
+  "scrolls": 0,
+  "method": "Dedicated subprocesses; perf_counter; Windows GetProcessMemoryInfo sampled 5ms; only owned process killed on timeout",
+  "journey_stopped_at": "2026-09-24T11:09:30.411991+00:00",
+  "journey_elapsed_seconds": 92.44010469998466
+}

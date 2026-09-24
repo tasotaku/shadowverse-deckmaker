@@ -1,0 +1,100 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "f52435e82fce18e93af57e0aca662fd6bae164caba5cc918b9ce45e03d0feed3",
+  "executor_id": "fresh-turn_accept_chance",
+  "started_at": "2026-09-24T10:57:07Z",
+  "finished_at": "2026-09-24T10:59:34.229990Z",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\t2",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\t2\\operations.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not executed by T2-only executor; this is a partial report for root aggregation.",
+        "Stop detail: Outside this fresh executor assignment; separate executor owns journey."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T10:59:34.229990Z",
+        "evidence": "No clients or state were created for this unassigned journey."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-24T10:57:07Z",
+      "journey_stopped_at": "2026-09-24T10:59:34.229990Z",
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [
+        "Supplied independent fixtures contain random and hand-contrast cases but no frozen API pair varying deck order and RNG or fixed unsupported-effect case. Full F3 cannot be certified from the executed hand-only pair."
+      ],
+      "evidence": [
+        "F1 PASS: random/report.json complete=true, optimal=true; policy node 2 has distinct outcomes 1/2 and 1/2, sum exactly 1; left/right survivor is removed conditionally in nodes 3/6. Probability matches fixture rule.",
+        "F2 PASS within observed fixed scenario: both conditional branches win after 3-damage leader attack; weighted win=1/2*1+1/2*1=1 matches output. Recommendation end_turn is legal at turns=3 and reaches the same chance node next own turn. Fixture first-action expectation was authored for turns=1, so not treated as contradiction.",
+        "F3 PARTIAL: API 200 for burn/storm hand pair, same normalized public state and settings; all decision fields excluding elapsed_ms equal. Both recommend heal, depth=3, complete=true, optimal=false, proven_win=false, uncertain=true, sampled-world approximation scope. Actual applied heal raises health 3 to 7 in both. Deck-order/RNG variation unobserved.",
+        "F4 PASS for budget case: --max-states 1 ends in 0.328 s, complete=false, optimal=false, cutoffs=[states], fallback=true, legal end_turn recommendation in main JSON. Unsupported synthetic unknown op returns exit 1 and explicit ValueError in stderr; this invalid input was supplementary, not a fixed independently supported out-of-scope effect case.",
+        "U1 PASS: total 5 analysis/HTTP calls, no retries, 0 manual surface switches; measured monotonic durations 0.375, 2.125, 2.094, 0.328, 1.250 seconds, all below 30 seconds. Dedicated execution script and output only.",
+        "U2 PASS for fixed valid cases: budget incompleteness and limit reason appear with recommendation in report.json. Supplemental malformed unknown-op input provides only traceback; no general unsupported-effect UX conclusion claimed.",
+        "U3 PASS: guide distinguishes fixed-scenario probability, heuristic expected_value and two hypothesized hidden worlds; API scope/reason explicitly mark approximation. No UI surface is part of T2; shipping decision for CLI/API is withheld because F3 is incomplete.",
+        "Lock lint PASS before execution. No production source, diff, prior report, or implementation changes were used.",
+        "Stop detail: Required deck-order/RNG contrast was not observed; five permitted calls exhausted without retry."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T10:59:34.229990Z",
+        "evidence": "All subprocess.run children exited; HTTP response context managers closed; shared server left running. Preserved C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\t2 and operations.json."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not executed by T2-only executor; this is a partial report for root aggregation.",
+        "Stop detail: Outside this fresh executor assignment; separate executor owns journey."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T10:59:34.229990Z",
+        "evidence": "No clients or state were created for this unassigned journey."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Actual hidden deck-order and internal RNG invariance were not tested; hand-only pair is insufficient for full F3.",
+    "No fixed valid unsupported-effect fixture was supplied; synthetic unrecognized_effect is malformed input and does not establish absence of unsupported public effects.",
+    "The fixed random fixture validates exact branch weights and adaptive targets, but does not test an optimal line whose aggregate success probability is strictly between 0 and 1."
+  ]
+}

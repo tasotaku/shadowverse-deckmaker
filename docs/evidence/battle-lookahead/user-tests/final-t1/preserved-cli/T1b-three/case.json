@@ -1,0 +1,121 @@
+{
+  "id": "acceptance_no_play_next_turn",
+  "n_turns": 3,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Next-turn lethal attacker",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 5
+    },
+    "bait": {
+      "name": "Small distraction",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1
+    },
+    "guard": {
+      "name": "Large guard",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 8,
+      "health": 8,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "remove": {
+      "name": "Sacrifice your future lethal attacker",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_ally"
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 4,
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "entered_turn": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "remove",
+            "card_id": "remove"
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 3,
+        "max_pp": 1,
+        "board": [],
+        "hand": []
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "end_turn"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "own"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      }
+    ]
+  },
+  "reason": "Newly entered 3/5 cannot attack now. Pass preserves it through an empty enemy return, then attack the 3-health leader. Legal sacrifice removes our only winning resource.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+}

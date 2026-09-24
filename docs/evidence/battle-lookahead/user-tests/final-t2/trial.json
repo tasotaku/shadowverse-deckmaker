@@ -1,0 +1,108 @@
+{
+  "started_at": "2026-09-24T11:08:39.098662+00:00",
+  "start_monotonic": 443984.64,
+  "calls": [
+    {
+      "id": "T2-random-three",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_random_now_then_adapt",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t2/T2-random-three"
+      ],
+      "started_at": "2026-09-24T11:08:39.105171+00:00",
+      "elapsed_seconds": 0.17199999996228144,
+      "returncode": 0,
+      "peak_working_set_bytes": 4423680,
+      "output": "output/lookahead-acceptance-v1-final-t2/T2-random-three"
+    },
+    {
+      "id": "T2-api-a",
+      "started_at": "2026-09-24T11:08:39.277792+00:00",
+      "url": "http://localhost:8767/api/ai-step",
+      "payload": "docs/evidence/battle-lookahead/acceptance-inputs/api-a.json",
+      "http_status": 200,
+      "elapsed_seconds": 2.297000000020489
+    },
+    {
+      "id": "T2-api-b",
+      "started_at": "2026-09-24T11:08:41.570572+00:00",
+      "url": "http://localhost:8767/api/ai-step",
+      "payload": "docs/evidence/battle-lookahead/acceptance-inputs/api-b.json",
+      "http_status": 200,
+      "elapsed_seconds": 2.2339999999967404
+    },
+    {
+      "id": "T2-state-limit",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_save_removal",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t2/T2-state-limit",
+        "--max-states",
+        "1"
+      ],
+      "started_at": "2026-09-24T11:08:43.809320+00:00",
+      "elapsed_seconds": 0.15700000000651926,
+      "returncode": 0,
+      "peak_working_set_bytes": 4423680,
+      "output": "output/lookahead-acceptance-v1-final-t2/T2-state-limit"
+    },
+    {
+      "id": "T2-unsupported",
+      "argv": [
+        ".venv/Scripts/python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_lookahead",
+        "--cases",
+        "tests/fixtures/battle_lookahead_acceptance.json",
+        "--case",
+        "acceptance_three_target_slots_unsupported",
+        "--turns",
+        "3",
+        "--output",
+        "output/lookahead-acceptance-v1-final-t2/T2-unsupported"
+      ],
+      "started_at": "2026-09-24T11:08:43.961268+00:00",
+      "elapsed_seconds": 0.14000000001396984,
+      "returncode": 1,
+      "peak_working_set_bytes": 4423680,
+      "output": "output/lookahead-acceptance-v1-final-t2/T2-unsupported"
+    }
+  ],
+  "manual_surface_switches": 0,
+  "clicks": 0,
+  "keys": 0,
+  "scrolls": 0,
+  "channel": "PowerShell public CLI/HTTP; no foreground UI interactions",
+  "calls_finished_at": "2026-09-24T11:08:44.104926+00:00",
+  "call_phase_seconds": 5.0,
+  "journey_stopped_at": "2026-09-24T11:10:46.752181+00:00",
+  "journey_elapsed_seconds": 127.64100000000326,
+  "cleanup": {
+    "completed_at": "2026-09-24T11:10:46.752181+00:00",
+    "all_cli_children_exited": true,
+    "shared_server_8767_left_running": true,
+    "no_browser_or_saved_user_state_touched": true
+  }
+}

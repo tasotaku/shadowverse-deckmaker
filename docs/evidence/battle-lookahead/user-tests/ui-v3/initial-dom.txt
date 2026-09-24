@@ -1,0 +1,93 @@
+- banner:
+  - text: SHADOWVERSE · BATTLE LAB
+  - heading "対戦ラボ 動かして、確かめる。" [level=1]
+  - button "盤面の候補"
+  - button "条件・検査"
+  - button "記録を保存"
+  - generic: 記録を開く
+- main:
+  - region "保存済みの一試合":
+    - button "一試合のリプレイを開く"
+    - button "AI対戦例を開く"
+    - generic: ランプドラゴン（先攻） vs ラストワードナイトメア（後攻）
+  - status: 対戦記録 · 全0手。「一手進む」または「ターンへ移動」で再生できます。
+  - region "対戦盤面":
+    - generic: プレイヤー1 のターン · 1ターン目
+    - checkbox "両者の手札を見る" [checked]
+    - text: 両者の手札を見る
+    - generic: 後攻 · P2
+    - generic: ♥ 3
+    - generic: PP 0/1
+    - generic: 進化 0 / 超進化 0
+    - generic: 山札 4 · 墓場 0
+    - generic: ▤ 手札 · 1枚
+    - button "1 Large guard ⚔ 8 ♥ 8/8":
+      - generic: "1"
+      - text: Large guard
+      - generic: ⚔ 8
+      - generic: ♥ 8/8
+    - generic: ▦ 盤面 · 1/5
+    - button "1 Small distraction ⚔ 1 ♥ 1/1":
+      - generic: "1"
+      - text: Small distraction
+      - generic: ⚔ 1
+      - generic: ♥ 1/1
+    - generic: 先攻 · P1 ▶ 手番
+    - generic: ♥ 4
+    - generic: PP 1/1
+    - generic: 進化 0 / 超進化 0
+    - generic: 山札 4 · 墓場 0
+    - generic: ▦ 盤面 · 1/5
+    - button "1 Next-turn lethal attacker ⚔ 3 ♥ 5/5":
+      - generic: "1"
+      - text: Next-turn lethal attacker
+      - generic: ⚔ 3
+      - generic: ♥ 5/5
+    - generic: ▤ 手札 · 1枚
+    - button "1 Single removal":
+      - generic: "1"
+      - text: Single removal
+    - generic: 可能な操作
+    - combobox "可能な操作":
+      - option "ターン終了" [selected]
+      - option "使用：Single removal [remove] → Small distraction [bait]"
+    - button "実行"
+    - button "ケースを一手進める" [disabled]
+    - generic "OSで動きを減らす設定を有効にしている場合は演出を省略します":
+      - checkbox "演出を表示" [active]
+      - text: 演出を表示
+    - generic: AI
+    - combobox "AIの選び方":
+      - option "先読みAI" [selected]
+      - option "手札候補から3ターン先読み（試作）"
+      - option "相手の返しを読む（試作）"
+      - option "調整版（比較用）"
+      - option "一手評価"
+      - option "無作為"
+    - button "AIが一手実行"
+    - button "自動対戦"
+    - generic: 間隔
+    - combobox "間隔":
+      - option "ゆっくり" [selected]
+      - option "速い"
+      - option "待ちなし"
+  - complementary:
+    - heading "リプレイ・処理を確認" [level=2]
+    - generic: 0 / 0 手
+    - button "最初" [disabled]
+    - button "← 一手戻る" [disabled]
+    - button "一手進む →" [disabled]
+    - button "最後" [disabled]
+    - generic: ターンへ移動
+    - combobox "ターンへ移動":
+      - option "先攻 1ターン目 · 0手目" [selected]
+    - generic: 開始状態 · 「一手進む」で記録された操作を再生します。
+    - slider "再生位置": "0"
+    - paragraph: 「一手進む」で再生。カードを押すと効果の全文を確認できます。
+    - generic "この手のAI判断": この手のAI判断
+    - generic: 開始状態です。操作すると効果の処理順がここに表示されます。
+    - generic "直前の操作で変わった状態"
+    - generic "テスト結果 期待結果なし":
+      - text: テスト結果
+      - generic: 期待結果なし
+  - generic: 対応済みのカード・効果だけを実行します。未対応の効果はエラーで停止します。自動テスト合格は公式ゲームとの完全一致を保証しません。

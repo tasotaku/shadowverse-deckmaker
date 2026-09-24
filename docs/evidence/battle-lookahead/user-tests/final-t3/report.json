@@ -1,0 +1,51 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 2,
+  "spec_sha256": "62c65f4e60f1d5414c7b960b2ab802bbc35371164b4011fb4a5981eaf27ff382",
+  "executor_id": "turn_final_ui",
+  "started_at": "2026-09-24T11:09:54.2009185Z",
+  "finished_at": "2026-09-24T11:09:54.2009185Z",
+  "scheduling": {
+    "batch_count": 1,
+    "available_executor_slots": 3
+  },
+  "execution_artifacts": {
+    "completed_record": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/battle-lookahead/user-tests/final-t3/preflight.json",
+    "preserved_workspace": "C:/Users/tasog/source/shadowverse-deckmaker"
+  },
+  "tests": [
+    {
+      "test_spec_issues": [
+        "T3 U3 requires a timestamped visibilitychange observer, but the permitted IAB read-only DOM evaluate exposes document.visibilityState and does not expose document.addEventListener (typeof = undefined). Required continuous observation cannot be performed on the allowed public channel."
+      ],
+      "functional_findings": [],
+      "batch": 1,
+      "cleanup": {
+        "status": "completed",
+        "evidence": "Closed only executor-created about:blank tab 1. browser.tabs.list returned []. No viewport override needed reset. Did not stop or mutate any server.",
+        "finished_at": "2026-09-24T11:09:54.2009185Z"
+      },
+      "unexpected_findings": [],
+      "status": "NOT_RUN",
+      "evidence": [
+        "Spec v2 lint PASS; hash verified.",
+        "Preflight only: dedicated http://localhost.:8767/ tab creation failed with net::ERR_BLOCKED_BY_CLIENT; resulting tab remained about:blank.",
+        "On about:blank, read-only DOM probe returned visibilityState=visible, typeof document.addEventListener=undefined, typeof performance=undefined.",
+        "F1/F2/F3/F4 and U1/U2/U3/U4: NOT_RUN; no journey actions or API request performed, no product judgment made.",
+        "No viewport override or zoom change performed. Parent prepared alternate port 8793; executor did not access it."
+      ],
+      "execution_count": 0,
+      "id": "T3",
+      "ux_findings": [],
+      "journey_stopped_at": null,
+      "journey_started_at": null,
+      "stop_reason": "preflight_observation_unavailable"
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Required continuous document visibilitychange observation is unavailable through the permitted IAB read-only DOM scope.",
+    "No product UI or API behavior was tested."
+  ]
+}

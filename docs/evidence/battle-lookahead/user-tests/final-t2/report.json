@@ -1,0 +1,94 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 2,
+  "spec_sha256": "62c65f4e60f1d5414c7b960b2ab802bbc35371164b4011fb4a5981eaf27ff382",
+  "executor_id": "fresh-turn-final-chance-T2",
+  "started_at": "2026-09-24T11:08:39.098662+00:00",
+  "finished_at": "2026-09-24T11:10:46.767543+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\final-t2",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\final-t2\\trial.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not assigned to this executor; no environment started."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:46.767543+00:00",
+        "evidence": "No environment created by this executor."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T11:08:39.098662+00:00",
+      "journey_stopped_at": "2026-09-24T11:10:46.752181+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: random CLI turns=3 complete=true/optimal=true; root dice outcomes are 1/2 and 1/2. All 6 policy nodes with outgoing edges have nonnegative weights and exact sum 1. Independently fixed reference agrees; checks.json and raw/T2-random-three/report.json.",
+        "F2 PASS: play dice wins with probability 1; pass loses with probability 1. Each branch removes a different guard, then generated removal targets the surviving guard; both legal paths reach winner=0. Independent calculation 1/2*1+1/2*1=1; weighted evaluation 1/2*149/5+1/2*149/5=149/5. API marks uncertain=true, proven_win=false, scope=sampled hidden worlds/future per-world responses are an approximation; guide explains finite samples and no imperfect-information optimality.",
+        "F3 PASS: public Battle.observation(0) equal; actual enemy hands, both deck orders and internal RNG differ; identical options and seed. API decisions equal excluding elapsed_ms, including recommendation, all 4 candidates, score, probabilities, settings and depth=3. Both returned HTTP 200. Actual applied random outcome leaves left in A and right in B, legitimately distinct from identical analysis. input-checks.json and checks.json.",
+        "F4 PASS: max-states=1 returned complete=false, optimal=false, cutoffs=[states], fallback=true and legal end_turn, 0.157 s. Battle-valid 3-slot card returned exit 1 and one-line JSON complete=false/optimal=false/error naming target-slot limit 2; no false solution or omitted effect. No recommendation for unsupported case; reason identifies why.",
+        "U1 PASS: Exactly 5 total analysis/API calls (random, API A, API B, limit, unsupported), each once. Monotonic wall times 0.172, 2.297, 2.234, 0.157, 0.140 s, all <=30 s. Manual surface switches=0; no UI clicks/keys/scrolls. trial.json logs every call; CLI help excluded.",
+        "U2 PASS: complete/optimal/cutoffs and recommendation share same result object for limit. Unsupported message is the entire one-line diagnostic object and nonzero exit, not buried in logs. No source lookup needed to find limitation.",
+        "U3 PASS: win_probability_exact/loss_probability_exact are separate from expected_value and score; guide explicitly defines win/loss priority then board/resource evaluation. API reason states 2 assumed hands/draws, uncertain=true and scope labels approximate sampled worlds. Fixed-scenario report scope distinguishes known hands/decks from live hidden information.",
+        "Memory observation: actual CLI process lifetime peaks exposed by public output: random 23,171,072 bytes; limit 22,749,184 bytes. Shared API server lifetime peak after requests 34,406,400 bytes; not a per-request measurement. Harness parent/launcher sampling is not treated as actual CLI peak.",
+        "CLI/API usability verdict GO for T2: probability, incomplete status and assumptions distinguishable in public outputs/documentation. Browser/OS focus not part of this CLI/API journey and was not inferred."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:46.767543+00:00",
+        "evidence": "T2 dedicated subprocesses all exited; no browser created; own artifacts preserved; shared server 8767 untouched."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not assigned to this executor; no environment started."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:10:46.767543+00:00",
+        "evidence": "No environment created by this executor."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Non-gating supplemental memory: unsupported CLI actual child process peak and API per-request memory peak were not measured; shared server lifetime peak and successful CLI lifetime peaks are recorded separately."
+  ]
+}

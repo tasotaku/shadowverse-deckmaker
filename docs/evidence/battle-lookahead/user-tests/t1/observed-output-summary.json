@@ -1,0 +1,295 @@
+[
+  {
+    "case": "a1",
+    "turns": 1,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "play",
+      "card": "remove",
+      "target": "bait"
+    },
+    "win": "0",
+    "loss": "0",
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "114/5",
+        "expected_value": 22.8
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "bait"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "279/10",
+        "expected_value": 27.9
+      }
+    ],
+    "patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "remove"
+        ],
+        "names": [
+          "Single removal"
+        ],
+        "positions": 1
+      }
+    ],
+    "stats": {
+      "states": 4,
+      "transitions": 3,
+      "duplicates": 0,
+      "elapsed_ms": 3.176800033543259,
+      "peak_rss_bytes": 22863872,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 2,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "a3",
+    "turns": 3,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "end_turn"
+    },
+    "win": "1",
+    "loss": "0",
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "win_probability_exact": "1",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "151/5",
+        "expected_value": 30.2
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "bait"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "-709999999999999997/5000000000000000",
+        "expected_value": -142.0
+      }
+    ],
+    "patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "remove"
+        ],
+        "names": [
+          "Single removal"
+        ],
+        "positions": 1
+      }
+    ],
+    "stats": {
+      "states": 75,
+      "transitions": 78,
+      "duplicates": 4,
+      "elapsed_ms": 17.418299976270646,
+      "peak_rss_bytes": 23187456,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 6,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "b1",
+    "turns": 1,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "end_turn"
+    },
+    "win": "1",
+    "loss": "0",
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "win_probability_exact": "1",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "304/5",
+        "expected_value": 60.8
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "sacrifice",
+          "target": "clock"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "2367/50",
+        "expected_value": 47.34
+      }
+    ],
+    "patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "sacrifice"
+        ],
+        "names": [
+          "Sacrifice ally"
+        ],
+        "positions": 1
+      }
+    ],
+    "stats": {
+      "states": 4,
+      "transitions": 3,
+      "duplicates": 0,
+      "elapsed_ms": 2.5579999783076346,
+      "peak_rss_bytes": 22867968,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "c2",
+    "turns": 2,
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "recommendation": {
+      "type": "play",
+      "card": "heal"
+    },
+    "win": "0",
+    "loss": "0",
+    "candidates": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "1",
+        "expected_value_exact": "-2071/50",
+        "expected_value": -41.42
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "heal"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "0",
+        "expected_value_exact": "-67/2",
+        "expected_value": -33.5
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "wall"
+        },
+        "win_probability_exact": "0",
+        "loss_probability_exact": "1",
+        "expected_value_exact": "-169600000000000003/5000000000000000",
+        "expected_value": -33.92
+      }
+    ],
+    "patterns": [
+      {
+        "used": [],
+        "names": [],
+        "positions": 1
+      },
+      {
+        "used": [
+          "heal"
+        ],
+        "names": [
+          "Heal four"
+        ],
+        "positions": 1
+      },
+      {
+        "used": [
+          "wall"
+        ],
+        "names": [
+          "Eight-health wall"
+        ],
+        "positions": 1
+      }
+    ],
+    "stats": {
+      "states": 13,
+      "transitions": 12,
+      "duplicates": 0,
+      "elapsed_ms": 4.933500022161752,
+      "peak_rss_bytes": 22847488,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 4,
+      "coverage": "all exported policy edges"
+    }
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "public_equivalent_after_hiding_opponent_hand": true,
+  "decision_equal_excluding_elapsed_ms": true,
+  "chance_nodes": [
+    {
+      "id": 2,
+      "probabilities": [
+        "1/2",
+        "1/2"
+      ],
+      "sum": "1"
+    }
+  ],
+  "weighted_win_probability": "1/2 * 1 + 1/2 * 1 = 1",
+  "branch_adaptation": "left removed -> target right; right removed -> target left; both attack leader for 3 and win",
+  "actual_applied_action": [
+    [
+      {
+        "type": "play",
+        "card": "heal"
+      }
+    ],
+    [
+      {
+        "type": "play",
+        "card": "heal"
+      }
+    ]
+  ],
+  "actual_health_after": [
+    7,
+    7
+  ],
+  "manual_surface_switches": 0,
+  "analysis_calls": 5,
+  "cleanup": "All subprocess.run children exited; HTTP response context managers closed; shared server left running."
+}

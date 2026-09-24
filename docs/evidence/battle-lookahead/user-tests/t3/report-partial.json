@@ -1,0 +1,54 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "f52435e82fce18e93af57e0aca662fd6bae164caba5cc918b9ce45e03d0feed3",
+  "executor_id": "fresh-turn-accept-ui",
+  "started_at": "2026-09-24T10:58:29.902Z",
+  "finished_at": "2026-09-24T11:00:53.992409+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\t3",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\t3\\ui-log.json"
+  },
+  "tests": [
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-24T10:58:29.902Z",
+      "journey_stopped_at": "2026-09-24T10:59:48.262Z",
+      "stop_reason": "completed available observations; foreground requirement unobserved",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: AI方式欄を1クリック、Down、Returnで「手札候補から3ターン先読み（試作）」へ変更。AIが一手実行を1クリック。更新後の成功文と判断パネルが同方式を識別。AXとスクリーンショットで確認。",
+        "F2 PASS: 初期の合法手欄にターン終了と除去使用を表示。一手後は1/1手、ターン終了、P2の2ターン目、PP2/2、山札4→3、手札1→2。P1の除去・両盤面・体力維持。公開判断パネルの候補ターン終了と整合。",
+        "F3 PASS: 別複製recordをPOST /api/ai-stepへpolicy lookaheadで1回送信。HTTP200、2.2400505秒。decision.policy=lookahead、action=end_turn、record.actions=[end_turn]、cursor=1、P2手番/turn2/PP2/山札3。http-request.json/http-response.json参照。",
+        "F4 PASS: 判断欄に3/3ターン、相手手札・ドローは公開情報から2通りを仮定、評価値は勝率ではない、未確定の結果を含む限界、と可視表示。HTTPはcomplete=trueかつoptimal=false/proven_win=false/uncertain=true。",
+        "U1 PASS: fixture読込・演出OFF後からAI実行まで4操作（click, Down, Return, click）。判断の展開を含め5操作。手動タブ・ウィンドウ切替0回。ui-log.jsonに発生時の単調時計記録。",
+        "U2 PASS: 1366x768 viewport override、Control+0で100%に設定。AI方式とAIが一手実行は初期画面内。更新盤面と次操作も画面内。scroll操作0回、量0画面。スクリーンショットは補助証拠。",
+        "U3 PARTIAL: click開始から更新AX取得まで単調時計317.0714ms、同callのenabled観測でAI一手実行が有効。lookahead選択保持。reload/別タブ遷移なし。終了時DOM visibilityState=visible、activeElementは判断欄SUMMARY、browser selectedTab=testTab=1。OS前面ウィンドウは観測不能のため未確認。",
+        "U4 GO（観測可能な画面の範囲）: 方式・一手結果・次操作・限界が同一画面に表示され、通常利用を妨げるUX問題は観測せず。最大の非gating留意点は右欄の候補表下部が内部スクロール領域に入ること。主要な手番結果・限界は可視で、追加scroll不要。",
+        "Setup limitation: alias127.0.0.1の初期表示は前回記録を復元したため、新規保存状態なしを保証できなかった。公開記録を開くで固定fixtureへ完全に置換し、演出OFFで開始。既存の対戦を進めず、専用tab内でfixtureのみ実行。",
+        "Budget: setup後のjourney 78.3591192秒、上限5分以内。UI/API各1回のみ。製品source/diff/過去reportは未読。"
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T10:59:58.401Z",
+        "evidence": "T3専用IAB tab 1をclose、viewport override reset。サーバーや他タブは停止・変更しない。HTTPクライアント終了。保存証拠 docs/evidence/battle-lookahead/user-tests/t3。"
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "U3 OS foreground retention is unobserved: visible:true is unsupported in subagent IAB; DOM visible and selected tab do not prove OS foreground.",
+    "Setup did not start with no saved state: existing 127.0.0.1 saved record restored before fixed fixture upload."
+  ]
+}

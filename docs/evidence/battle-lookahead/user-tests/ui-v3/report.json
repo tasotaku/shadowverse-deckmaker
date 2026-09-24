@@ -1,0 +1,97 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "battle-lookahead-user-acceptance",
+  "spec_version": 3,
+  "spec_sha256": "3d77bbae90e0815006139980985f4e03c37d9271af43107d3a1ca44769bd6835",
+  "executor_id": "fresh-turn-ui-v3",
+  "started_at": "2026-09-24T11:14:46.357Z",
+  "finished_at": "2026-09-24T11:16:18.664Z",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\ui-v3",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\ui-v3\\interaction-log.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not assigned to this executor."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:16:18.664Z",
+        "evidence": "No environment created for this journey."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Not assigned to this executor."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:16:18.664Z",
+        "evidence": "No environment created for this journey."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T11:14:46.357Z",
+      "journey_stopped_at": "2026-09-24T11:16:18.653Z",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: Visible existing AI combobox contained 手札候補から3ターン先読み（試作）. Selection value lookahead, success status and decision label identified this policy after exactly one AI step.",
+        "F2 PASS: Before: P1 turn1 HP4 PP1/1, own 3/5 entered this turn, removal in hand; opponent HP3 bait1/1 guard in hand. Initial UI legal options were end_turn and remove bait. Executed end_turn, history 1/1 ターン終了, P2 turn2 PP2/2 and one drawn filler (deck4→3, hand1→2); P1 removal retained. UI history and decision candidate match. Nonterminal next state offers legal actions and enabled execute/AI buttons.",
+        "F3 PASS: One independent POST /api/ai-step policy lookahead, HTTP200 in 2.252000 seconds (Python perf_counter), decision.policy lookahead and decision.action end_turn; cursor1, winner null, active_player1 with same public turn/draw/PP update. Raw request/response and timing are preserved.",
+        "F4 PASS: Expanded visible AI judgment states 3/3ターン, two hypothetical hand/draw worlds, evaluation is not win rate, real hidden state not inspected, and 未確定の結果を含むため、先読みの評価には限界があります. API complete true, limited false, optimal false, proven_win false. No assertion of strict universal optimum.",
+        "U1 PASS: From loaded fixture, 2 clicks + 2 keys = 4 operations (policy click, ArrowDown, Return, AI step). 0 manual tab/window switches. One later decision disclosure click. No second AI execution or reload.",
+        "U2 PASS: 1366x768, Control_L+0 in setup. Initial visual screenshot directly showed both policy control and AI step at bottom of viewport. Actual scroll actions before/after =0. Updated board and enabled next actions remain visible. Decision container can scroll; its depth/uncertainty text is already visible.",
+        "U3 PASS: Outer runtime performance.now measured AI click to updated DOM and enabled control direct observation =302.8197ms. Pre-click, response, updated-board, decision response, final observations each recorded browser selectedTab1 / target1, document.visibilityState visible, select.value lookahead. No observed auto navigation or manual reload. No inference of continuity between points.",
+        "U4 GO: Actual screen shows turn change, retained hand, history ターン終了, policy identity and finite/approximate limits together. No blocking UX issue observed. Long selected policy text is visually truncated in compact select, but chosen mode appears in full status and readable judgment; no action/result ambiguity.",
+        "Harness observations, not product findings: hidden file input click timed out awaiting chooser and reset runtime during setup; visible public label succeeded. Exact text locator for judgment failed because policy label was appended; fresh AX locator opened it. Neither failed locator issued a product AI action. Setup recovery is recorded separately and no outcome retry occurred.",
+        "Journey measured 92.295 seconds from loaded fixture; setup incl. chooser recovery preceded that and overall test interactions remained under 5 minutes. UI/API each executed once. Spec/lock lint PASS."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T11:16:18.664Z",
+        "evidence": "Viewport override reset; executor-created IAB tab1 closed; browser.tabs.list returned []. Parent-owned localhost8793 server deliberately left for parent cleanup. Artifacts retained in C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\battle-lookahead\\user-tests\\ui-v3"
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "OS foreground / keyboard focus and instantaneous changes between observation points were not observed, as fixed in spec v3.",
+    "No storage internals read: pristine-origin prerequisite supplied by coordinator; initial visible status was 自由対戦を開始しました with no resume prompt.",
+    "Fixture-specific T3 does not demonstrate all cards or competitive win rate."
+  ]
+}

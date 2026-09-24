@@ -1,0 +1,203 @@
+{
+  "api_decisions_equal_excluding_elapsed_ms": true,
+  "api_actual_next_states_different": true,
+  "api_actual_opponent_boards": [
+    [
+      "left"
+    ],
+    [
+      "right"
+    ]
+  ],
+  "root_probabilities": [
+    "1/2",
+    "1/2"
+  ],
+  "probability_checks": [
+    {
+      "node": 0,
+      "nonnegative": true,
+      "sum": "1"
+    },
+    {
+      "node": 1,
+      "nonnegative": true,
+      "sum": "1"
+    },
+    {
+      "node": 2,
+      "nonnegative": true,
+      "sum": "1"
+    },
+    {
+      "node": 3,
+      "nonnegative": true,
+      "sum": "1"
+    },
+    {
+      "node": 4,
+      "nonnegative": true,
+      "sum": "1"
+    },
+    {
+      "node": 6,
+      "nonnegative": true,
+      "sum": "1"
+    }
+  ],
+  "policy_legal_actions": [
+    {
+      "node": 0,
+      "legal": true
+    },
+    {
+      "node": 1,
+      "legal": true
+    },
+    {
+      "node": 2,
+      "legal": true
+    },
+    {
+      "node": 3,
+      "legal": true
+    },
+    {
+      "node": 4,
+      "legal": true
+    },
+    {
+      "node": 6,
+      "legal": true
+    }
+  ],
+  "random_paths": [
+    {
+      "probability": "1/2",
+      "path": [
+        {
+          "id": 1,
+          "action": {
+            "type": "play",
+            "card": "e9",
+            "target": "right"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 2,
+          "action": {
+            "type": "end_turn"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 3,
+          "action": {
+            "type": "end_turn"
+          },
+          "winner": null,
+          "active_player": 1
+        },
+        {
+          "id": 4,
+          "action": {
+            "type": "attack",
+            "source": "own",
+            "target": "leader:1"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 5,
+          "action": null,
+          "winner": 0,
+          "active_player": 0
+        }
+      ]
+    },
+    {
+      "probability": "1/2",
+      "path": [
+        {
+          "id": 6,
+          "action": {
+            "type": "play",
+            "card": "e9",
+            "target": "left"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 2,
+          "action": {
+            "type": "end_turn"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 3,
+          "action": {
+            "type": "end_turn"
+          },
+          "winner": null,
+          "active_player": 1
+        },
+        {
+          "id": 4,
+          "action": {
+            "type": "attack",
+            "source": "own",
+            "target": "leader:1"
+          },
+          "winner": null,
+          "active_player": 0
+        },
+        {
+          "id": 5,
+          "action": null,
+          "winner": 0,
+          "active_player": 0
+        }
+      ]
+    }
+  ],
+  "weighted_win": "1",
+  "weighted_evaluation": "149/5",
+  "cli_process_lifetime_peak_bytes": {
+    "T2-random-three": 23171072,
+    "T2-state-limit": 22749184
+  },
+  "limit_fallback_legal": true,
+  "unsupported_Battle_legal_actions": [
+    {
+      "type": "end_turn"
+    },
+    {
+      "type": "play",
+      "card": "remove",
+      "choices": {
+        "first": "bait",
+        "second": "bait",
+        "third": "bait"
+      }
+    }
+  ],
+  "api_action_legal": [
+    true,
+    true
+  ],
+  "api_server_process_memory": {
+    "pid": 22588,
+    "peak_working_set_bytes": 34406400,
+    "working_set_bytes": 31715328,
+    "method": "Get-NetTCPConnection owner then Get-Process after both requests",
+    "scope": "shared server lifetime; not per request"
+  },
+  "memory_caveat": "Harness sampled spawned venv launcher at 4423680 bytes; actual CLI Python process peak is the public report stats Windows PeakWorkingSetSize (23171072 and 22749184 bytes). Unsupported process actual child peak and API per-request peak not available."
+}

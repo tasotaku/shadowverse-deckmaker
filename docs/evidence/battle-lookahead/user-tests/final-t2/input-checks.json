@@ -1,0 +1,139 @@
+{
+  "same_public_observation": true,
+  "options_equal": true,
+  "enemy_hand_different": true,
+  "both_deck_orders_different": [
+    true,
+    true
+  ],
+  "rng_different": true,
+  "observation": {
+    "version": 1,
+    "active_player": 0,
+    "winner": null,
+    "players": [
+      {
+        "health": 1,
+        "max_health": 20,
+        "pp": 2,
+        "max_pp": 2,
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "evolved_this_turn": false,
+        "extra_pp_used": true,
+        "graveyard": 0,
+        "combo": 0,
+        "hand": [
+          {
+            "id": "dice",
+            "card_id": "dice",
+            "name": "Random removal then generate targeted removal",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "deck": {
+          "count": 2
+        },
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "name": "Lethal attacker",
+            "cost": 1,
+            "attack": 3,
+            "health": 1,
+            "max_health": 1,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "destroyed": []
+      },
+      {
+        "health": 3,
+        "max_health": 20,
+        "pp": 0,
+        "max_pp": 0,
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "evolved_this_turn": false,
+        "extra_pp_used": true,
+        "graveyard": 0,
+        "combo": 0,
+        "hand": {
+          "count": 1
+        },
+        "deck": {
+          "count": 2
+        },
+        "board": [
+          {
+            "id": "left",
+            "card_id": "guard",
+            "name": "Randomly removable guard",
+            "cost": 1,
+            "attack": 1,
+            "health": 4,
+            "max_health": 4,
+            "keywords": [
+              "守護"
+            ],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          },
+          {
+            "id": "right",
+            "card_id": "guard",
+            "name": "Randomly removable guard",
+            "cost": 1,
+            "attack": 1,
+            "health": 4,
+            "max_health": 4,
+            "keywords": [
+              "守護"
+            ],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "destroyed": []
+      }
+    ],
+    "legal_actions": [
+      {
+        "type": "end_turn"
+      },
+      {
+        "type": "play",
+        "card": "dice"
+      },
+      {
+        "type": "attack",
+        "source": "own",
+        "target": "left"
+      },
+      {
+        "type": "attack",
+        "source": "own",
+        "target": "right"
+      }
+    ]
+  }
+}

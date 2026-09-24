@@ -1,0 +1,1898 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "dice"
+  },
+  "fallback": false,
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": [],
+        "card_id": "filler"
+      },
+      "own": {
+        "name": "Lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 1,
+        "card_id": "own"
+      },
+      "guard": {
+        "name": "Randomly removable guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 4,
+        "keywords": [
+          "守護"
+        ],
+        "card_id": "guard"
+      },
+      "finish": {
+        "name": "Generated targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ],
+        "card_id": "finish"
+      },
+      "dice": {
+        "name": "Random removal then generate targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "random_enemy"
+          },
+          {
+            "op": "generate",
+            "card_id": "finish"
+          }
+        ],
+        "card_id": "dice"
+      }
+    },
+    "cards_hash": "524aba0a20602e91079722fce1eea4068ee870a3e50a4524ed49359ce363dd7a",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 9,
+      "players": [
+        {
+          "health": 1,
+          "max_health": 20,
+          "pp": 2,
+          "max_pp": 2,
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": true,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice",
+              "name": "Random removal then generate targeted removal",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [
+            {
+              "id": "e1",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e2",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e3",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e4",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "name": "Lethal attacker",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 3,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": true,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [],
+          "deck": [
+            {
+              "id": "e5",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e6",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e7",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "e8",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "board": [
+            {
+              "id": "left",
+              "card_id": "guard",
+              "name": "Randomly removable guard",
+              "cost": 1,
+              "attack": 1,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "right",
+              "card_id": "guard",
+              "name": "Randomly removable guard",
+              "cost": 1,
+              "attack": 1,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "policy": [
+    {
+      "id": 0,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 9,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 2,
+            "max_pp": 2,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "dice",
+                "card_id": "dice",
+                "name": "Random removal then generate targeted removal",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 0,
+            "combo": 0,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "left",
+                "card_id": "guard",
+                "name": "Randomly removable guard",
+                "cost": 1,
+                "attack": 1,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "right",
+                "card_id": "guard",
+                "name": "Randomly removable guard",
+                "cost": 1,
+                "attack": 1,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          }
+        ]
+      },
+      "turns_remaining": 3,
+      "action": {
+        "type": "play",
+        "card": "dice"
+      },
+      "outcomes": [
+        {
+          "node": 1,
+          "probability": "1/2",
+          "draws": [
+            0
+          ]
+        },
+        {
+          "node": 6,
+          "probability": "1/2",
+          "draws": [
+            1
+          ]
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 1,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 2,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [
+              {
+                "id": "e9",
+                "card_id": "finish",
+                "name": "Generated targeted removal",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "right",
+                "card_id": "guard",
+                "name": "Randomly removable guard",
+                "cost": 1,
+                "attack": 1,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 3,
+      "action": {
+        "type": "play",
+        "card": "e9",
+        "target": "right"
+      },
+      "outcomes": [
+        {
+          "node": 2,
+          "probability": "1",
+          "draws": []
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 2,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 2,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 2,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [],
+            "destroyed": [
+              "guard",
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 3,
+      "action": {
+        "type": "end_turn"
+      },
+      "outcomes": [
+        {
+          "node": 3,
+          "probability": "1",
+          "draws": []
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 3,
+      "state": {
+        "version": 1,
+        "active_player": 1,
+        "winner": null,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 2,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 2,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 2,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [],
+            "destroyed": [
+              "guard",
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 2,
+      "action": {
+        "type": "end_turn"
+      },
+      "outcomes": [
+        {
+          "node": 4,
+          "probability": "1",
+          "draws": []
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 4,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 3,
+            "max_pp": 3,
+            "turn": 2,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 2,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [],
+            "destroyed": [
+              "guard",
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 1,
+      "action": {
+        "type": "attack",
+        "source": "own",
+        "target": "leader:1"
+      },
+      "outcomes": [
+        {
+          "node": 5,
+          "probability": "1",
+          "draws": []
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 5,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": 0,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 3,
+            "max_pp": 3,
+            "turn": 2,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 1,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 0,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 1,
+            "turn": 2,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [],
+            "destroyed": [
+              "guard",
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 1,
+      "action": null,
+      "outcomes": [],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "id": 6,
+      "state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 10,
+        "players": [
+          {
+            "health": 1,
+            "max_health": 20,
+            "pp": 1,
+            "max_pp": 2,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 1,
+            "combo": 1,
+            "hand": [
+              {
+                "id": "e9",
+                "card_id": "finish",
+                "name": "Generated targeted removal",
+                "cost": 1,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "deck": [
+              {
+                "id": "e1",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e2",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e3",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e4",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "own",
+                "card_id": "own",
+                "name": "Lethal attacker",
+                "cost": 1,
+                "attack": 3,
+                "health": 1,
+                "max_health": 1,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": []
+          },
+          {
+            "health": 3,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 1,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [
+              {
+                "id": "e5",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e6",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e7",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              },
+              {
+                "id": "e8",
+                "card_id": "filler",
+                "name": "Unplayable draw filler",
+                "cost": 99,
+                "attack": 0,
+                "health": 0,
+                "max_health": 0,
+                "keywords": [],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "board": [
+              {
+                "id": "left",
+                "card_id": "guard",
+                "name": "Randomly removable guard",
+                "cost": 1,
+                "attack": 1,
+                "health": 4,
+                "max_health": 4,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "guard"
+            ]
+          }
+        ]
+      },
+      "turns_remaining": 3,
+      "action": {
+        "type": "play",
+        "card": "e9",
+        "target": "left"
+      },
+      "outcomes": [
+        {
+          "node": 2,
+          "probability": "1",
+          "draws": []
+        }
+      ],
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    }
+  ],
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "1",
+      "expected_value_exact": "-25791/200",
+      "expected_value": -128.955
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "dice"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "149/5",
+      "expected_value": 29.8
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "own",
+        "target": "left"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "308/25",
+      "expected_value": 12.32
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "own",
+        "target": "right"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "308/25",
+      "expected_value": 12.32
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 3
+    },
+    {
+      "used": [
+        "dice"
+      ],
+      "names": [
+        "Random removal then generate targeted removal"
+      ],
+      "positions": 8
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "1",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "149/5",
+  "expected_value": 29.8,
+  "stats": {
+    "states": 102,
+    "transitions": 143,
+    "duplicates": 42,
+    "elapsed_ms": 25.570199999492615,
+    "peak_rss_bytes": 23171072,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "replay": {
+    "status": "PASS",
+    "edges_checked": 7,
+    "coverage": "all exported policy edges"
+  }
+}

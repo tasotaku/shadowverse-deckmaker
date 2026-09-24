@@ -1,0 +1,144 @@
+{
+  "id": "acceptance_random_now_then_adapt",
+  "n_turns": 3,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Lethal attacker",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 1
+    },
+    "guard": {
+      "name": "Randomly removable guard",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 4,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "finish": {
+      "name": "Generated targeted removal",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_enemy"
+        }
+      ]
+    },
+    "dice": {
+      "name": "Random removal then generate targeted removal",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "random_enemy"
+        },
+        {
+          "op": "generate",
+          "card_id": "finish"
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "pp": 2,
+        "max_pp": 2,
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own"
+          }
+        ],
+        "hand": [
+          {
+            "id": "dice",
+            "card_id": "dice"
+          }
+        ],
+        "health": 1
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 3,
+        "board": [
+          {
+            "id": "left",
+            "card_id": "guard"
+          },
+          {
+            "id": "right",
+            "card_id": "guard"
+          }
+        ]
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "dice"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      }
+    ]
+  },
+  "reason": "Leader and lethal attacker each have 1 health, guards each have 1 attack. Waiting loses. Attacking first kills our attacker. Dice removes either guard with probability 1/2; generated removal must target the survivor, then attack leader now.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "adaptive_expectations": [
+    {
+      "removed": "left",
+      "next_target": "right"
+    },
+    {
+      "removed": "right",
+      "next_target": "left"
+    }
+  ]
+}
