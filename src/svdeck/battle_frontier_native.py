@@ -10,16 +10,15 @@ from collections.abc import Iterator, Sequence
 from dataclasses import dataclass
 from math import isfinite
 from time import perf_counter
-from typing import Any, Callable, overload
+from typing import Callable, overload
 
 import numpy as np
 from numpy.typing import NDArray
-from numba import types
-from numba.typed import Dict
 
 from .battle import Battle, Json
 from .battle_frontier_fast import Kernel, State, _mask, eligible
 from .battle_frontier_native_core import _batch, _pack, _unpack
+from .battle_frontier_native_index import _hash, _locate
 
 UInts = NDArray[np.uint64]
 Ints = NDArray[np.int64]
@@ -180,13 +179,12 @@ def enumerate_native(battle: Battle, *, max_states: int = 100000, max_outcomes: 
     prepared = prepare(kernel)
     layout = prepared[0]
     initial = np.array(kernel.initial, dtype=np.int64)
-    key_type = types.UniTuple(types.uint64, 3)  # type: ignore[no-untyped-call]
-    seen: Any = Dict.empty(key_type=key_type, value_type=types.int64)
     first = tuple(np.uint64(value) for value in _pack(initial, layout))
     # AI_NOTE: A one-row warmup compiles every branch but cannot add any child or affect the real traversal.
     warm_keys = np.array([first], dtype=np.uint64)
     warm_witnesses = np.zeros((1, 3), dtype=np.int32)
-    seen[first] = 0
+    seen = np.zeros(2048, dtype=np.uint64)
+    seen[_locate(seen, warm_keys, first)] = (_hash(first) & 0xffffffff00000000) | 1
     _batch(warm_keys, warm_witnesses, seen, 1, 0, 1, max_outcomes, *prepared)
     ready = perf_counter()
     keys = np.empty((max_states, 3), dtype=np.uint64)
@@ -195,7 +193,7 @@ def enumerate_native(battle: Battle, *, max_states: int = 100000, max_outcomes: 
     size, cursor, status, choices, outcomes, duplicates = 1, 0, 0, 0, 0, 0
     deadline = ready+seconds
     while cursor < size and not status and perf_counter() < deadline:
-        size, cursor, status, added_choices, added_outcomes, added_duplicates = _batch(
+        size, cursor, status, added_choices, added_outcomes, added_duplicates, seen = _batch(
             keys, witnesses, seen, size, cursor, batch_size, max_outcomes, *prepared)
         choices += added_choices
         outcomes += added_outcomes
@@ -205,11 +203,13 @@ def enumerate_native(battle: Battle, *, max_states: int = 100000, max_outcomes: 
                       'elapsed_seconds': perf_counter()-ready})
     done = perf_counter()
     cutoffs = ['states'] if status == 1 else ['chance outcomes'] if status == 2 else ['time'] if cursor < size else []
-    # AI_NOTE: Discard the numeric dictionary in one NRT release; clear() needlessly pops millions of entries one by one.
+    index_bytes = seen.nbytes
+    # AI_NOTE: The hash index stores only row references and releases independently of returned packed states.
     del seen
     released = perf_counter()
     stats: Json = {'backend': 'native', 'states': size, 'expanded_states': cursor,
                    'choices': choices, 'outcomes': outcomes, 'duplicate_outcomes': duplicates,
                    'warmup_ms': (ready-started)*1000, 'search_ms': (done-ready)*1000,
-                   'cleanup_ms': (released-done)*1000, 'total_ms': (released-started)*1000, 'state_words': 3}
+                   'cleanup_ms': (released-done)*1000, 'total_ms': (released-started)*1000,
+                   'state_words': 3, 'index_bytes': index_bytes}
     return NativeSearch(kernel, keys[:size], layout, witnesses[:size], cursor, not cutoffs, cutoffs, stats)

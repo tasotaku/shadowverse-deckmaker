@@ -14,6 +14,7 @@ from svdeck.battle import Battle, Json
 from svdeck.battle_frontier_fast import Kernel, eligible
 from svdeck.battle_frontier_native import NativeSearch, _numeric_id, enumerate_native, prepare
 from svdeck.battle_frontier_native_core import _actions, _pack, _transition, _unpack
+from svdeck.battle_frontier_native_delta import _combat_key, _spell_key
 from svdeck.battle_practical import ChanceBattle
 from test_battle_frontier_fast import scenario, semantic
 
@@ -46,6 +47,15 @@ def test_native_all_transitions(seed: int) -> None:
                 result = _transition(native_state, kind, source, target, random_target,
                                      prototypes, spells, config, static, hand_ids)
                 assert tuple(map(int, result)) == child, (seed, action, draws)
+                if kind != 1:
+                    delta_key = tuple(np.uint64(value) for value in
+                                      _combat_key(native_state, packed, kind, source, target, layout, prototypes, config))
+                    assert tuple(map(int, _unpack(delta_key, layout))) == child, (seed, action, draws)
+                else:
+                    delta_key = tuple(np.uint64(value) for value in
+                                      _spell_key(native_state, packed, source, target, random_target, layout,
+                                                 prototypes, spells, config, static, hand_ids))
+                    assert tuple(map(int, _unpack(delta_key, layout))) == child, (seed, action, draws)
                 choices.append(child)
         if not choices:
             break

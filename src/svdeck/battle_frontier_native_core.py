@@ -9,6 +9,9 @@ from __future__ import annotations
 import numpy as np
 from numba import njit
 
+from .battle_frontier_native_index import _grow, _hash, _locate
+from .battle_frontier_native_delta import _combat_key, _spell_key
+
 
 @njit(cache=True)
 def _pack(state, layout):
@@ -32,6 +35,13 @@ def _unpack(key, layout):
     for i in range(len(layout)):
         state[i] = np.int64((key[layout[i, 0]] >> np.uint64(layout[i, 1])) & np.uint64(layout[i, 2]))-layout[i, 3]
     return state
+
+
+@njit(cache=True, inline='always')
+def _unpack_into(key, layout, state):
+    # AI_NOTE: Each BFS batch owns one decoded buffer instead of allocating one per visited node.
+    for i in range(len(layout)):
+        state[i] = np.int64((key[layout[i, 0]] >> np.uint64(layout[i, 1])) & np.uint64(layout[i, 2]))-layout[i, 3]
 
 
 @njit(cache=True, inline='always')
@@ -205,10 +215,12 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
     branch_keys = np.empty((5, 3), dtype=np.uint64)
     branch_draws = np.empty(5, dtype=np.int64)
     branch_fresh = np.empty(5, dtype=np.bool_)
+    state = np.empty(len(layout), dtype=np.int64)
     n, count = config[:2]
     total_choices, total_outcomes, duplicates = 0, 0, 0
     while cursor < size and cursor < stop:
-        state = _unpack((keys[cursor, 0], keys[cursor, 1], keys[cursor, 2]), layout)
+        state_key = (keys[cursor, 0], keys[cursor, 1], keys[cursor, 2])
+        _unpack_into(state_key, layout, state)
         count_actions = _actions(state, prototypes, spells, config, actions)
         for action_index in range(count_actions):
             kind, source, target = actions[action_index]
@@ -216,17 +228,20 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
             if kind == 1 and spells[source, 2] == 3:
                 for slot in range(n, count):
                     if state[slot] > 0:
-                        child = _transition(state, kind, source, target, slot, prototypes, spells, config, static_ids, hand_ids)
-                        branch_keys[branches] = _pack(child, layout)
+                        branch_keys[branches] = _spell_key(state, state_key, source, target, slot, layout,
+                                                          prototypes, spells, config, static_ids, hand_ids)
                         branch_draws[branches] = branches
                         branches += 1
             if branches == 0:
-                child = _transition(state, kind, source, target, -1, prototypes, spells, config, static_ids, hand_ids)
-                branch_keys[0] = _pack(child, layout)
+                if kind == 1:
+                    branch_keys[0] = _spell_key(state, state_key, source, target, -1, layout,
+                                              prototypes, spells, config, static_ids, hand_ids)
+                else:
+                    branch_keys[0] = _combat_key(state, state_key, kind, source, target, layout, prototypes, config)
                 branch_draws[0] = -1
                 branches = 1
             if branches > max_outcomes:
-                return size, cursor, 2, total_choices, total_outcomes, duplicates
+                return size, cursor, 2, total_choices, total_outcomes, duplicates, seen
             fresh = 0
             for branch in range(branches):
                 key = (branch_keys[branch, 0], branch_keys[branch, 1], branch_keys[branch, 2])
@@ -236,16 +251,18 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
                             and branch_keys[prior, 2] == key[2]):
                         repeated = True
                 # AI_NOTE: Retain the atomic budget check's lookup; no other action mutates seen before insertion.
-                branch_fresh[branch] = not repeated and key not in seen
+                branch_fresh[branch] = not repeated and seen[_locate(seen, keys, key)] == 0
                 if branch_fresh[branch]:
                     fresh += 1
             if size+fresh > len(keys):
-                return size, cursor, 1, total_choices, total_outcomes, duplicates
+                return size, cursor, 1, total_choices, total_outcomes, duplicates, seen
+            if (size+fresh)*10 > len(seen)*7:
+                seen = _grow(seen, keys, size)
             code = kind*256+source*16+target+1
             for branch in range(branches):
                 key = (branch_keys[branch, 0], branch_keys[branch, 1], branch_keys[branch, 2])
                 if branch_fresh[branch]:
-                    seen[key] = size
+                    seen[_locate(seen, keys, key)] = (_hash(key) & np.uint64(0xffffffff00000000)) | np.uint64(size+1)
                     keys[size] = key
                     witnesses[size] = (cursor, code, branch_draws[branch])
                     size += 1
@@ -254,4 +271,4 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
             total_choices += 1
             total_outcomes += branches
         cursor += 1
-    return size, cursor, 0, total_choices, total_outcomes, duplicates
+    return size, cursor, 0, total_choices, total_outcomes, duplicates, seen
