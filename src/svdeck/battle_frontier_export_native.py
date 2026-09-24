@@ -23,9 +23,13 @@ WINNER = np.frombuffer(b'],"winner":', dtype=np.uint8)
 NULL = np.frombuffer(b'null', dtype=np.uint8)
 
 
+class HashUnavailable(RuntimeError):
+    """A present crypto symbol failed to produce a digest."""
+
+
 @lru_cache(maxsize=1)
 def sha256_provider() -> tuple[Any, Any] | None:
-    # AI_NOTE: Use an already installed crypto library; retain its handle and fall back when no compatible symbol exists.
+    # AI_NOTE: Check a known vector: a present OpenSSL symbol may still fail when its provider disables SHA256.
     paths = [str(Path(sys.base_prefix)/'DLLs/libcrypto-3.dll')]
     found = ctypes.util.find_library('crypto')
     if found:
@@ -38,6 +42,10 @@ def sha256_provider() -> tuple[Any, Any] | None:
             continue
         function.argtypes = [ctypes.c_void_p, ctypes.c_size_t, ctypes.c_void_p]
         function.restype = ctypes.c_void_p
+        sample, digest = ctypes.create_string_buffer(b'abc'), ctypes.create_string_buffer(32)
+        if not function(sample, 3, digest) or digest.raw != bytes.fromhex(
+                'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'):
+            continue
         return library, function
     return None
 
@@ -86,6 +94,7 @@ def project_and_hash(keys: NDArray[np.uint64], indices: NDArray[np.int64], layou
     tail = 2*count
     states = np.empty((len(indices), len(layout)), dtype=np.int64)
     hashes = np.empty((len(indices), 32), dtype=np.uint8)
+    address = np.empty(1, dtype=np.uintp)
     buffer = np.empty(192+67*count+hands.shape[1]+21*(5+3*count), dtype=np.uint8)
     for row in range(len(indices)):
         state = states[row]
@@ -139,7 +148,9 @@ def project_and_hash(keys: NDArray[np.uint64], indices: NDArray[np.int64], layou
         else:
             offset = _append(buffer, offset, NULL)
         buffer[offset] = 125
-        function(buffer.ctypes, offset+1, hashes[row].ctypes)
+        address[0] = function(buffer.ctypes, offset+1, hashes[row].ctypes)
+        if address[0] == 0:
+            raise HashUnavailable('SHA256 calculation failed')
     return states, hashes
 
 

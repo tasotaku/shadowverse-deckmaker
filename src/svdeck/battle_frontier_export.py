@@ -115,7 +115,7 @@ def materialize(search: NativeSearch, candidates: list[int], *, batch_size: int 
     hand_json = [_json(sorted(value for bit, value in enumerate(hands) if mask & (1 << bit)))
                  for mask in range(1 << len(hands))]
     if backend != 'python':
-        from .battle_frontier_export_native import sha256_provider, CompiledStates
+        from .battle_frontier_export_native import sha256_provider, CompiledStates, HashUnavailable
         provider = sha256_provider()
         if provider is not None:
             marker_bytes = np.zeros((len(markers)+1, 64), dtype=np.uint8)
@@ -128,13 +128,19 @@ def materialize(search: NativeSearch, candidates: list[int], *, batch_size: int 
             rows, hashes = CompiledStates(len(kernel.initial)), []
             arguments = (search.layout, table, prototypes, kernel.n, kernel.owner, kernel.own['health'],
                          kernel.own['ep'], kernel.own['sep'], marker_bytes, hand_bytes, lengths, provider[1])
-            for decoded, hashed in _native_batches(search, candidates, batch_size, workers, arguments):
-                if decoded.size and decoded.min() >= -32768 and decoded.max() <= 32767:
-                    rows.data.extend(decoded.astype('<i2').view(f'V{rows.width*2}').ravel().tolist())
-                else:
-                    rows.data.extend(rows.key(tuple(row)) for row in decoded.tolist())
-                hashes.extend(hashed.view('V32').ravel().tolist())
-            return rows, hashes
+            try:
+                for decoded, hashed in _native_batches(search, candidates, batch_size, workers, arguments):
+                    if decoded.size and decoded.min() >= -32768 and decoded.max() <= 32767:
+                        rows.data.extend(decoded.astype('<i2').view(f'V{rows.width*2}').ravel().tolist())
+                    else:
+                        rows.data.extend(rows.key(tuple(row)) for row in decoded.tolist())
+                    hashes.extend(hashed.view('V32').ravel().tolist())
+            except HashUnavailable:
+                if backend == 'compiled':
+                    raise
+                # AI_NOTE: Discard the entire partial batch result and redo exact hashes through the previous Python path.
+            else:
+                return rows, hashes
         if backend == 'compiled':
             raise RuntimeError('no compatible SHA256 library available')
     boards: dict[int, bytes] = {0: b'[]'}

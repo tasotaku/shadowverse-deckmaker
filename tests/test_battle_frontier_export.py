@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import ctypes
 import json
 from pathlib import Path
 
@@ -95,3 +96,29 @@ def test_missing_crypto_fallback(monkeypatch: pytest.MonkeyPatch) -> None:
     for workers in (0, 65, True, 1.5):
         with pytest.raises(ValueError, match='workers'):
             materialize(search, indices, workers=workers)  # type: ignore[arg-type]
+
+
+@pytest.mark.parametrize('workers,successful_calls', ((1, 0), (4, 0), (1, 2), (4, 2)))
+def test_failed_crypto_call_never_exports_uninitialized_hashes(monkeypatch: pytest.MonkeyPatch,
+                                                            workers: int, successful_calls: int) -> None:
+    # AI_NOTE: Exercise a present but failing C symbol inside compiled code, including concurrent batches and strict mode.
+    from svdeck import battle_frontier_export_native as native
+    calls = 0
+
+    def compute(source: int, length: int, target: int) -> int | None:
+        # AI_NOTE: Fail after valid hashes to ensure auto fallback discards every partial compiled result.
+        nonlocal calls
+        calls += 1
+        if calls > successful_calls:
+            return None
+        ctypes.memmove(target, hashlib.sha256(ctypes.string_at(source, length)).digest(), 32)
+        return target
+
+    broken = ctypes.CFUNCTYPE(ctypes.c_void_p, ctypes.c_void_p, ctypes.c_size_t, ctypes.c_void_p)(compute)
+    search = enumerate_native(scenario(3), max_states=100000, seconds=60)
+    indices = list(range(len(search.keys)))
+    expected = materialize(search, indices, backend='python')
+    monkeypatch.setattr(native, 'sha256_provider', lambda: (broken, broken))
+    assert materialize(search, indices, batch_size=2, workers=workers) == expected
+    with pytest.raises(native.HashUnavailable, match='SHA256'):
+        materialize(search, indices, backend='compiled', batch_size=2, workers=workers)

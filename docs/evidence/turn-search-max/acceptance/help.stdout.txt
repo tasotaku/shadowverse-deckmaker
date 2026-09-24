@@ -1,0 +1,29 @@
+usage: battle_frontier_compare.py [-h] [--cases CASES] --output OUTPUT
+                                  [--algorithms ALGORITHMS] [--trials TRIALS]
+                                  [--seconds SECONDS]
+                                  [--max-states MAX_STATES]
+                                  [--debug-threshold DEBUG_THRESHOLD]
+                                  [--witness-samples WITNESS_SAMPLES]
+                                  [--load-note LOAD_NOTE] [--expand EXPAND]
+                                  [--candidate CANDIDATE | --steps STEPS | --state STATE]
+
+Compare exact own-turn candidate algorithms in serial fresh processes.
+
+options:
+  -h, --help            show this help message and exit
+  --cases CASES
+  --output OUTPUT
+  --algorithms ALGORITHMS
+  --trials TRIALS
+  --seconds SECONDS
+  --max-states MAX_STATES
+  --debug-threshold DEBUG_THRESHOLD
+  --witness-samples WITNESS_SAMPLES
+  --load-note LOAD_NOTE
+  --expand EXPAND       Saved result.json to expand conditionally (root unless
+                        candidate/steps/state supplied).
+  --candidate CANDIDATE
+  --steps STEPS         Conditional replay steps JSON from the saved record
+                        root.
+  --state STATE         Full state JSON returned by an earlier conditional
+                        expansion.

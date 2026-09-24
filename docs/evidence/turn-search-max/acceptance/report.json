@@ -1,0 +1,55 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-search-native-max",
+  "spec_version": 1,
+  "spec_sha256": "5ec22b2ed753ea09648087703e21a6417d71cb2659c02114995153b3e01466b6",
+  "executor_id": "fresh-max-acceptance",
+  "started_at": "2026-09-25T05:15:03.185206+09:00",
+  "finished_at": "2026-09-25T05:20:10.733906+09:00",
+  "scheduling": {
+    "available_executor_slots": 1,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-max\\acceptance\\commands.jsonl"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-25T05:15:03.185206+09:00",
+      "journey_stopped_at": "2026-09-25T05:18:15.2917622+09:00",
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1: PARTIAL; 18 small normal trials complete/native; all nine delivered state/candidate sets and all legal action/outcome/draw distributions equal the fixed independent oracle. Medium/hard not run.",
+        "F2: OBSERVED_SMALL_ONLY; All nine small fixtures preserve independently projected endpoint candidate sets, all incomparable alternatives in these fixtures, and current-own-turn state/action scope.",
+        "F3: PASS; Every tested random group has exact rational mass 1. All 42 public candidate witnesses replay; two adaptive branches choose different targets and --steps matches independent replay.",
+        "F4: NOT_RUN; Medium/hard complete integer-row multiset comparisons not started before external withdrawal.",
+        "F5: NOT_RUN; No medium/hard performance invocation started. No speed decision or hard score exists.",
+        "F6: INCOMPLETE; Pinned inputs and source/runtime preflight passed; one journey only, 18 small measured workers plus 18 excluded small warmups, no retry/product edit. Required medium/hard schedule not run because root withdrew delivered snapshot.",
+        "F7: NOT_RUN; Development ledger not opened; independent observations were incomplete when delivered snapshot was withdrawn.",
+        "U1: PASS; Exactly help plus one delivered nine-case suite produced ordinary-use output. Commands directly logged in commands.jsonl.",
+        "U2: PARTIAL; Both saved small summaries and all 18 raw report/result paths resolved with a separate JSON reader. No medium/hard comparison table or score available.",
+        "U3: PASS; Documented --expand, --state and --steps decoded/continued both adaptive branches without product edits; 42 saved small candidate rows publicly decoded. CLI-only spec has no click/focus/scroll/viewport SLA. Small CLI usage is usable; largest general documented burden is loading saved JSON for repeated expansion, not measured here as a gating flaw.",
+        "Report schema classification: stop_reason=impossible denotes external withdrawal of the authorized delivered snapshot after journey start, not product impossibility. Actual stop cause is externally_withdrawn_delivered_snapshot."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-25T05:18:15.2917622+09:00",
+        "evidence": "Current decoder command completed exit 0. All 51 owned launch PIDs checked; none running. No deletion, no unrelated process touched. All output and source/runtime/input provenance retained."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Delivered snapshot was externally withdrawn by root for a required correctness fix. Executor was not given and did not read the source-level finding. This is not an independently observed product failure.",
+    "Medium/hard fresh performance, complete-row historical comparison, roots and development-ledger audit were not run. No overall PASS/FAIL correctness or speed conclusion."
+  ]
+}

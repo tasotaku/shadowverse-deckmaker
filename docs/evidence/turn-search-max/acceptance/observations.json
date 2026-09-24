@@ -1,0 +1,2237 @@
+{
+  "observations": [
+    {
+      "case": "hand_none_a_b_ab",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 4,
+      "oracle_states": 4,
+      "actual_candidates": 4,
+      "oracle_candidates": 4,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "none",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "a",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "a",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  },
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "b",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "b",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 2,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 0,
+                    "card_id": "wall",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 4,
+                    "id": "wall",
+                    "keywords": [],
+                    "max_health": 4,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "a",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "b",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "b",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 1,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 0,
+                    "card_id": "wall",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "wall",
+                    "keywords": [],
+                    "max_health": 4,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "b",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "a",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "a",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 1,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 0,
+                    "card_id": "wall",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "wall",
+                    "keywords": [],
+                    "max_health": 4,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "ab",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "wall"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "ba",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "wall"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 4,
+      "witness_replays": 4,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-000\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "62a63cc97f6b0d8c151effbfb4f0ef0596957e8599817714f677e234e07422e1"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 8,
+      "oracle_states": 8,
+      "actual_candidates": 6,
+      "oracle_candidates": 6,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "keep",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "bane",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 1,
+                    "id": "bane",
+                    "keywords": [
+                      "必殺"
+                    ],
+                    "max_health": 1,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 1,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "ping",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "ping",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 1,
+                "sep": 0,
+                "turn": 5
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "ward",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 8,
+                    "id": "ward",
+                    "keywords": [
+                      "バリア",
+                      "守護"
+                    ],
+                    "max_health": 8,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "barrier_trade",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "bane"
+                ],
+                "ep": 1,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "ping",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "ping",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 1,
+                "sep": 0,
+                "turn": 5
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "ward"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "ping_trade",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [
+                  "bane"
+                ],
+                "ep": 1,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 5
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "ward"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": false
+        },
+        {
+          "id": "ping_keep",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "bane",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 1,
+                    "id": "bane",
+                    "keywords": [
+                      "必殺"
+                    ],
+                    "max_health": 1,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 1,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 5
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "ward",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 8,
+                    "id": "ward",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 8,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "evolve_trade",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 1,
+                    "card_id": "bane",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 1,
+                    "health": 2,
+                    "id": "bane",
+                    "keywords": [
+                      "必殺"
+                    ],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": true,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "ping",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "ping",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 1,
+                "sep": 0,
+                "turn": 5
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "ward"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 8,
+      "witness_replays": 8,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-001\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "21d120aded897744e4cf43cc02e008170b8bd88da964712a2c6962fb70df7048"
+    },
+    {
+      "case": "different_enemy_abilities",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 3,
+      "oracle_states": 3,
+      "actual_candidates": 3,
+      "oracle_candidates": 3,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "remove_ward",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "bane",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "bane",
+                    "keywords": [
+                      "必殺"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "ward"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "remove_bane",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "ward",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "ward",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "bane"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 2,
+      "witness_replays": 3,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-002\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "04d207bbc4bfd54fd230e38c575b54f9bfa4ec7a26f0703f42662f482581b4ac"
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 3,
+      "oracle_states": 3,
+      "actual_candidates": 3,
+      "oracle_candidates": 3,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "high_health_left",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "wide",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 8,
+                    "id": "wide",
+                    "keywords": [],
+                    "max_health": 8,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "tall"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "high_attack_left",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 8,
+                    "attacks": 0,
+                    "card_id": "tall",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "tall",
+                    "keywords": [],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "wide"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 2,
+      "witness_replays": 3,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-003\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "f29687f46ebfee848620a0cbe4a220003471f6dca6cf2f2c3e72e7f7d65e126e"
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 3,
+      "oracle_states": 3,
+      "actual_candidates": 3,
+      "oracle_candidates": 3,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "barrier_hit",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "protected",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "protected",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  },
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "exposed",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "exposed",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "kill_exposed",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 2,
+                    "attacks": 0,
+                    "card_id": "protected",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "protected",
+                    "keywords": [
+                      "バリア",
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "exposed"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 1,
+      "witness_replays": 3,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-004\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "1bb52960a41a084a2eaaee40ab0de5996550f79c320d8721368cf97cc84a7150"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 7,
+      "oracle_states": 7,
+      "actual_candidates": 6,
+      "oracle_candidates": 6,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "ping_split",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "old",
+                  "young"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "split_ping",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "old",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 1,
+                    "evolved": 0,
+                    "health": 1,
+                    "id": "old",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "young"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "split_only",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "ping",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "ping",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 1,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "old",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 1,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "old",
+                    "keywords": [
+                      "守護"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "young"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 6,
+      "witness_replays": 7,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-005\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "a7b6f56c0b03704d3fced7ed1654f6235b93be990b9ea8973fb8620fb4deaf71"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 9,
+      "oracle_states": 9,
+      "actual_candidates": 6,
+      "oracle_candidates": 6,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "summon_only",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 2,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 0,
+                    "card_id": "token",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 3,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "e1",
+                    "keywords": [
+                      "突進"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "storm",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "storm",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 1,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "target",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "target",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "rush_trade",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 2,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 1,
+                    "card_id": "token",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 3,
+                    "evolved": 0,
+                    "health": 1,
+                    "id": "e1",
+                    "keywords": [
+                      "突進"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [
+                  {
+                    "attack": 0,
+                    "attacks": 0,
+                    "card_id": "storm",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 0,
+                    "id": "storm",
+                    "keywords": [],
+                    "max_health": 0,
+                    "name": "Reference spell"
+                  }
+                ],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 1,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [
+                  "target"
+                ],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "summon_storm_face",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 2,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 1,
+                    "card_id": "token",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 3,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "e1",
+                    "keywords": [
+                      "疾走",
+                      "突進"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "target",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "target",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 17,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "storm_summon",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 2,
+            "players": [
+              {
+                "board": [
+                  {
+                    "attack": 3,
+                    "attacks": 0,
+                    "card_id": "token",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 3,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "e1",
+                    "keywords": [
+                      "突進"
+                    ],
+                    "max_health": 2,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 2,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 2,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 2,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "target",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "target",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": false
+        }
+      ],
+      "conditional_groups": 9,
+      "witness_replays": 9,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-006\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "5bc348721a5648bb0fb46eaef4fb8993002cb30870438d37df6ad6f1e5b94f83"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 4,
+      "oracle_states": 4,
+      "actual_candidates": 4,
+      "oracle_candidates": 4,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [
+        {
+          "id": "ll",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "left",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "left",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  },
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "right",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "right",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "lr",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "left",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "left",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  },
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "right",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "right",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "rl",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "left",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "left",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  },
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "right",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 2,
+                    "id": "right",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        },
+        {
+          "id": "rr",
+          "public_path_equals_oracle": true,
+          "target_state": {
+            "active_player": 0,
+            "next_id": 1,
+            "players": [
+              {
+                "board": [],
+                "combo": 1,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 1,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              },
+              {
+                "board": [
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "left",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 3,
+                    "id": "left",
+                    "keywords": [
+                      "バリア"
+                    ],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  },
+                  {
+                    "attack": 1,
+                    "attacks": 0,
+                    "card_id": "right",
+                    "cost": 1,
+                    "countdown": null,
+                    "entered_turn": 0,
+                    "evolved": 0,
+                    "health": 1,
+                    "id": "right",
+                    "keywords": [],
+                    "max_health": 3,
+                    "name": "Reference follower"
+                  }
+                ],
+                "combo": 0,
+                "deck": [],
+                "destroyed": [],
+                "ep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "hand": [],
+                "health": 20,
+                "max_health": 20,
+                "max_pp": 0,
+                "pp": 0,
+                "sep": 0,
+                "turn": 3
+              }
+            ],
+            "version": 1,
+            "winner": null
+          },
+          "endpoint_is_candidate": true
+        }
+      ],
+      "conditional_groups": 1,
+      "witness_replays": 4,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-007\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "8b4c7e2cf840b6a7e4c8fa8602f3c5515d63df925c6495e63ab31c200fa0115a"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "checks": {
+        "complete": true,
+        "all_states_exact": true,
+        "candidate_set_exact": true,
+        "all_action_outcome_distributions_exact": true,
+        "all_draw_paths_exact": true,
+        "every_action_mass_one": true,
+        "every_debug_witness_replays": true,
+        "every_fixture_witness_replays": true,
+        "root_present": true,
+        "own_turn_only": true
+      },
+      "actual_states": 8,
+      "oracle_states": 8,
+      "actual_candidates": 7,
+      "oracle_candidates": 7,
+      "missing_states": [],
+      "extra_states": [],
+      "missing_candidates": [],
+      "extra_candidates": [],
+      "witnesses": [],
+      "conditional_groups": 8,
+      "witness_replays": 8,
+      "result_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance\\small-delivered\\case-008\\native\\trial-1\\result.json",
+      "candidate_semantic_sha256": "0edbd7b2d00fe91813a4eff468d3d0d353da7d4ce6a2ff11e78386600a3a51d0"
+    }
+  ],
+  "failures": []
+}
