@@ -1,0 +1,38 @@
+{
+  "role": "fresh-independent-test-spec-revision-designer",
+  "spec_id": "turn-search-native-speed",
+  "version": 2,
+  "task_input": "Parent supplied original goal and raw public-execution observations only; no implementation, diffs, timing results, acceptance verdict or production source read. v2 is a fresh journey with no v1 observation carryover.",
+  "inputs": [
+    {
+      "path": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/turn-search-speed/spec.v1.json",
+      "sha256": "9241c13162ae37afea0ee1a8c5be931af0ecf7bc49188484bc10fb4543c88cf2"
+    },
+    {
+      "path": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/turn-search-speed/spec.v1.lock.json",
+      "sha256": "a34229a5e8c64476faf24766d0e9aecfef642a1cbac9ff8b073d154c26de215d"
+    },
+    {
+      "path": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/turn-search-speed/fixture-manifest.v1.json",
+      "sha256": "a359f7ee633d175157c3823b95bb12b9a58d16ace60cb69ae8a4f08482b57b26"
+    },
+    {
+      "path": "C:/Users/tasog/source/shadowverse-deckmaker/docs/battle-frontier-compare.md",
+      "sha256": "5d9ba81ebfc07d914253cc1bf67daf212b2970fcf11a7a70ce2226ce4360ba4a"
+    },
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/SKILL.md",
+      "sha256": "312c628d37b781853a65c524dbcf416e45e3808fccb6387a61f994f4a8da7772"
+    },
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/references/test-spec-contract.md",
+      "sha256": "a9cd85d1799521be1292a51d04edc5c5a521c9bb1e039eb5d6647eab8ed00a6b"
+    }
+  ],
+  "output": "C:/Users/tasog/source/shadowverse-deckmaker/docs/evidence/turn-search-speed/spec.v2.json",
+  "product_source_read": false,
+  "new_measurements_read": false,
+  "prior_verdict_read": false,
+  "revision_kind": "TEST_SPEC_ISSUE",
+  "raw_observation": "Executor reports: public --trials 3 always executes one excluded one-state warmup followed by three measured fresh child processes for each case/version; there is no public skip-warmup option or documented standalone single-trial worker. Timed measurements have not started. Candidate result.json uses fixed-slots-v1 integer arrays plus a self-contained record, but no standalone decoder schema is supplied. The previously available large-result reader compares product-supplied semantic digest fields rather than independently recomputing them from actual saved rows. These are public scheduling/verification specification defects, not observed performance failures. v1 executor will preserve its observations and close that journey; v2 uses a fresh executor and reexecutes unchanged small/public steps once."
+}

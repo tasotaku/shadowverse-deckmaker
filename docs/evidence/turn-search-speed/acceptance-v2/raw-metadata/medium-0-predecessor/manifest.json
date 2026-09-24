@@ -1,0 +1,59 @@
+{
+  "revision": "e4520c044df5e8672b106f1ce29d6fd53d67458b",
+  "source_sha256": "e50a71e10e4a80946b7efe49d8b4a6d558cee7abcb01e2ed398f00e2e287c6b1",
+  "files": {
+    "src/svdeck/battle.py": "f29babceee50a9fe6ab3bc100e8e0d69dc7a5ffe8b56b185ba3b55bff45a63d3",
+    "src/svdeck/battle_ai.py": "1a40272bd4dc51b8113a37bc7a50d98c10e9d7b965fc24d771965806def5d876",
+    "src/svdeck/battle_cards.py": "70fd0d4cbfae7ba84ca7ac9cc2c5be3f480f736bb7e0aff4c547bad9bc8c1a9b",
+    "src/svdeck/battle_combat.py": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+    "src/svdeck/battle_compact.py": "45eb54b915f81c255d46a94c1452fd2bf9df218d858575e80e1a2f839931ed91",
+    "src/svdeck/battle_decks.py": "c4a3c02e16410c0afcbb9c9b59f934dcd3393615f2713ea376e014025f24c1ae",
+    "src/svdeck/battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+    "src/svdeck/battle_frontier_cache.py": "0560886a3cf3d44970a4c6eaaf08c68ff69ee983482c2aeb6c7ce5bc1d23067e",
+    "src/svdeck/battle_frontier_catalog.py": "78f223dfe181a31049358fd84d549793002fe7292e309e9ef5d5dccd52b0a7e7",
+    "src/svdeck/battle_frontier_compare.py": "6161409cc06936a71bab0170220ddb9ae00abcf2e4018a9e81061e4cec3ed3ca",
+    "src/svdeck/battle_frontier_fast.py": "f323f18a878caa386d48a76e0bae0093372c599666be1ef31d61ede1ff6bd296",
+    "src/svdeck/battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+    "src/svdeck/battle_frontier_native.py": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+    "src/svdeck/battle_frontier_native_core.py": "ddfb59818c973539bd9204663006f28305f6542f9c6bbe84d46fe0aec7eea46b",
+    "src/svdeck/battle_frontier_packed.py": "58106610e7f48746df9cd2fa6ca7ebdc8f895bd28922292bc93a63de240ef07b",
+    "src/svdeck/battle_frontier_por.py": "550a3f72c267b65ab302d642c02e4454b031c6f294581730cf76aa65758580ef",
+    "src/svdeck/battle_frontier_skyline.py": "26ce9b98387321486214da715122b6a4907bf27a3cd921b29e3fc95663eedb23",
+    "src/svdeck/battle_lookahead.py": "c6dcc3bb533a19cf3db97d7339d2cb3b3ec520f035c6612dc06b5166d967e92d",
+    "src/svdeck/battle_meta_cards.py": "49b217ae27f972e49c8fb27675264329e23bbee7cf1941f95e17687ed6c385d7",
+    "src/svdeck/battle_practical.py": "e6de25959c2e47bbf13dbf4d7e285de342e6893f528496d92ba1fba0a5aa9ee9",
+    "src/svdeck/battle_response.py": "d094e2ec2a1f2358d9673cd24110a6eecc7dbfd9ce132d606d2cd6afffeb3080",
+    "src/svdeck/battle_rules.py": "78374dab4aa5f748fdc3012980e0bbe4dc27e5670d11b49da740dbfb22c18529",
+    "src/svdeck/battle_server.py": "38ff816094e9dc7f637807b66d309d0ea68773780e5724c434b830e222f099e9",
+    "src/svdeck/battle_training.py": "6e6a5e259960439878b18ed1fa1a9125b72c12329fe53e0c0028900002c95528",
+    "src/svdeck/combat_benchmark.py": "32b3ef2ad860099bec466fab478d960a30e11b01728030b90d1d6c9ead7ac5e5"
+  },
+  "dependencies": {
+    "numpy": "2.5.3",
+    "numba": "0.67.0"
+  },
+  "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26220-SP0",
+  "machine": "AMD64",
+  "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "input_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance-v2\\medium-0.json",
+  "input_sha256": "49ef672981a43e3d0add3050115053d856a0a6fecf17b6a72a875f25a74342f3",
+  "algorithms": [
+    "native"
+  ],
+  "trials": 3,
+  "warmup": "one one-state fresh-process warmup per case and algorithm outside measured trials",
+  "process_policy": "one measured child at a time; no parallel benchmark workers started by this harness",
+  "competing_load_note": "Exclusive reserved host; v2 fixed case-level version alternation; no concurrent workers",
+  "horizon": "own current turn before end_turn",
+  "output_mode": "candidates",
+  "options": {
+    "seconds": 3600.0,
+    "max_states": 100000000,
+    "debug_threshold": 0,
+    "witness_samples": 100
+  },
+  "selection_rule": "Lowest sum of complete per-case median compute time with exact candidate agreement; report overlapping ranges as uncertain.",
+  "options_sha256": "175994fcaa0683339fcb639e9423d26bc81142154a64c3011580b105e154420c"
+}

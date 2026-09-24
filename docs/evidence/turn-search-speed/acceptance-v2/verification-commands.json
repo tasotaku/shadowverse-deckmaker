@@ -1,0 +1,21 @@
+{
+  "cwd": "C:\\Users\\tasog\\source\\shadowverse-deckmaker",
+  "PYTHONPATH": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src",
+  "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "commands": [
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/run.py small",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/consume_small.py",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/followups.py",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/adaptive_tiny.py",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/run.py timings",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/summarize.py",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/audit.py rows",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/audit.py roots",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/audit.py small-candidates",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/probabilities.py",
+    "-X utf8 docs/evidence/turn-search-speed/acceptance-v2/finalize.py"
+  ],
+  "public_cli_commands": "commands.jsonl",
+  "harness_diagnostic_corrections": "harness-events.json",
+  "report_schema_normalization": "Preserved non-schema fields in journey-observations.json and kept contract fields in report.json; final --require-complete lint passes."
+}

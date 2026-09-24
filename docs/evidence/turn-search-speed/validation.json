@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "revision": "ca50628",
+  "checks": [
+    {"command": ".venv/Scripts/python.exe -X utf8 -m pytest tests/ -q -k 'battle or combat' --tb=short --disable-warnings", "passed": 1367, "skipped": 4, "deselected": 211, "seconds": 76.67, "exit_code": 0},
+    {"command": "MYPYPATH=src .venv/Scripts/python.exe -X utf8 -m mypy --follow-imports=silent src/svdeck/battle_frontier_export.py src/svdeck/battle_frontier_compare.py src/svdeck/battle_frontier_native_core.py src/svdeck/battle_frontier_skyline.py tests/test_battle_frontier_export.py tests/test_battle_frontier_skyline_speed.py", "checked_files": 6, "exit_code": 0},
+    {"check": "Actual runtime import", "paths": ["C:/Users/tasog/source/shadowverse-deckmaker/src/svdeck/battle_frontier_export.py", "C:/Users/tasog/source/shadowverse-deckmaker/src/svdeck/battle_frontier_skyline.py"], "mtimes_epoch": [1790269522.5026839, 1790269855.6531706]}
+  ],
+  "skip_scope": "Four existing native/POR compound-effect tests outside their integer subset. Public generic fallback tests remain included and pass.",
+  "coverage": {
+    "normal": ["Exact batch candidate rows and canonical SHA256 bytes vs original and independent full Battle keys", "All reachable candidates, exact actions/chance, conditional continuation", "Native duplicate outcome counts after budget lookup reuse"],
+    "boundaries": ["96 generated reachable closures", "1000 packed comparison pairs at lane boundaries and hand containment", "All 120 arrival permutations of equal, dominating and resource-incomparable candidates", "Signed16 overflow, large stats scalar fallback, owner 1, empty candidate sets"],
+    "errors": ["Atomic chance/state/time budgets", "Invalid materialization batch size", "Native packing limits and supported generic fallback"]
+  },
+  "development_failures": [
+    "Initial export branch annotations caused four mypy diagnostics; declaring shared hashes and candidate_rows types resolved them before tests and final static checking.",
+    "Initial skyline permutation fixture omitted max_pp. Battle rejected the fixture before skyline execution; max_pp was corrected to describe the intended legal resource scenario, then all permutations passed."
+  ],
+  "visual_verification": "Not applicable: no UI, binary artifact generation or external API behavior changes. Public CLI/JSON usability is independently exercised under spec.v1."
+}

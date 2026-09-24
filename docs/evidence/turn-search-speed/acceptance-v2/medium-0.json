@@ -1,0 +1,262 @@
+[
+  {
+    "id": "medium_3v3_target_random",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "a": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "バリア"
+        ]
+      },
+      "b": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "c": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3,
+        "keywords": [
+          "疾走"
+        ]
+      },
+      "d": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "突進"
+        ]
+      },
+      "w": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 5,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "dice": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 3
+          }
+        ]
+      },
+      "split": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "target": "self",
+            "amount": 6
+          }
+        ]
+      },
+      "remove": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "summon": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "token"
+          }
+        ]
+      },
+      "grant": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "バリア",
+              "必殺"
+            ]
+          }
+        ]
+      },
+      "token": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-13-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "ours-a",
+              "card_id": "a"
+            },
+            {
+              "id": "ours-b",
+              "card_id": "b"
+            },
+            {
+              "id": "ours-c",
+              "card_id": "c"
+            }
+          ],
+          "hand": [
+            {
+              "id": "our-ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "our-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "our-remove",
+              "card_id": "remove"
+            }
+          ],
+          "health": 16,
+          "pp": 3,
+          "max_pp": 3
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-14-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "theirs-w",
+              "card_id": "w"
+            },
+            {
+              "id": "theirs-d",
+              "card_id": "d"
+            },
+            {
+              "id": "theirs-c",
+              "card_id": "c"
+            }
+          ],
+          "hand": [
+            {
+              "id": "their-ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "their-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "their-remove",
+              "card_id": "remove"
+            }
+          ],
+          "health": 16,
+          "pp": 3,
+          "max_pp": 3
+        }
+      ]
+    },
+    "purpose": "Independent bounded current-turn benchmark; no next-turn or opponent actions."
+  }
+]

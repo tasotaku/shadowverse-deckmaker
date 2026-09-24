@@ -1,0 +1,40 @@
+from run import *
+import statistics
+
+def digest(x):return hashlib.sha256(json.dumps(x,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf8')).hexdigest()
+rows=[];schedule=[];sources=[];path_checks=[]
+for suite,count,repeat in [('medium',3,3),('hard',2,1)]:
+ cases=read(ROOT/f'docs/evidence/turn-search-compare/independent-{suite}-cases.v1.json')
+ for idx,case in enumerate(cases):
+  for version in ['predecessor','delivered','historical']:
+   base=ROOT/f'output/turn-search-acceptance-t2/{suite}' if version=='historical' else OUT/f'{suite}-{idx}-{version}'
+   summary=read(base/'summary.json');group=next(g for g in summary['groups'] if g['case_id']==case['id'] and g['algorithm']=='native');manifest=read(base/'manifest.json');reports=[]
+   for entry in group['trials']:
+    rawpath=base/entry['report_path'];resultpath=base/entry['result_path'];r=read(rawpath);reports.append(r)
+    path_checks.append({'summary':str(base/'summary.json'),'report_path':str(rawpath),'result_path':str(resultpath),'report_exists':rawpath.exists(),'result_exists':resultpath.exists(),'summary_matches_raw_report':entry==r,'result_bytes_match':resultpath.stat().st_size==r['result_bytes']})
+   values=[r['timings']['compute_seconds'] for r in reports];serial=[r['timings']['serialization_seconds'] for r in reports];rss=[r['peak_rss_bytes'] for r in reports];wall=[r['process_wall_seconds'] for r in reports]
+   row={'suite':suite,'case':case['id'],'case_index':idx,'version':version,'revision':manifest['revision'],'source_sha256':manifest['source_sha256'],'trials':len(reports),'all_complete_native':all(all(r[k] is True for k in ['complete','enumeration_complete','frontier_complete']) and r['actual_backend']=='native' and not r['cutoffs'] and r['exit_code']==0 for r in reports),'candidate_count':reports[0]['candidate_count'],'compute_seconds':values,'median_compute_seconds':statistics.median(values),'compute_range_seconds':[min(values),max(values)],'serialization_seconds':serial,'median_serialization_seconds':statistics.median(serial),'peak_rss_bytes':rss,'median_peak_rss_bytes':statistics.median(rss),'process_wall_seconds':wall,'median_process_wall_seconds':statistics.median(wall),'summary_statistics_match':group['median_compute_seconds']==statistics.median(values) and group['compute_range_seconds']==[min(values),max(values)] and group['median_serialization_seconds']==statistics.median(serial) and group['median_peak_rss_bytes']==statistics.median(rss),'memory_method':reports[0]['memory_method'],'memory_scope':reports[0]['memory_scope'],'raw_reports':[str(base/r['report_path']) for r in reports]}
+   if version!='historical':
+    label=f'{suite}-{idx}-{version}';ledger=read(HERE/(label+'.processes.json'));pythonrows=[p for p in ledger if p['name']=='python.exe'];parents={p['parent_pid'] for p in pythonrows};workers=[p for p in pythonrows if p['pid'] not in parents];workers.sort(key=lambda p:p['os_start_epoch'])
+    inv=next(json.loads(s) for s in (HERE/'commands.jsonl').read_text(encoding='utf8').splitlines() if json.loads(s)['label']==label and 'end' in json.loads(s))
+    warmup=read(base/'case-000/native/warmup/report.json')
+    assert len(workers)==repeat+1,(label,len(workers))
+    for i,p in enumerate(workers):
+     report=warmup if i==0 else reports[i-1]
+     schedule.append({'invocation':label,'version':version,'case':case['id'],'role':'excluded_one_state_warmup' if i==0 else f'measured_trial_{i}','os_start_epoch':p['os_start_epoch'],'os_end_epoch':p['os_end_epoch'],'os_wall_seconds':p['os_wall_seconds'],'external_monotonic_observed_wall_seconds':p['observed_monotonic_end']-p['first_seen_monotonic'],'observer_peak_working_set_bytes':p['peak_rss_bytes'],'reported_peak_rss_bytes':report['peak_rss_bytes'],'reported_process_wall_seconds':report['process_wall_seconds'],'compute_seconds':report['timings']['compute_seconds'],'exit_code':p['exit_code'],'pid':p['pid'],'parent_pid':p['parent_pid']})
+    row['invocation_external_monotonic_wall_seconds']=inv['external_monotonic_wall_seconds']
+   rows.append(row)
+schedule.sort(key=lambda p:p['os_start_epoch']);serial=all(a['os_end_epoch']<=b['os_start_epoch'] for a,b in zip(schedule,schedule[1:]))
+save(HERE/'timing-table.json',rows);save(HERE/'worker-schedule.json',{'workers':schedule,'all_workers_serial':serial,'measured_medium_workers':sum(x['case'].startswith('medium') and x['role'].startswith('measured') for x in schedule),'measured_hard_workers':sum(x['case'].startswith('hard') and x['role'].startswith('measured') for x in schedule),'excluded_warmups':sum(x['role'].startswith('excluded') for x in schedule),'observer_method':'Windows Toolhelp process descendant inventory every 100ms; OS GetProcessTimes creation/exit; external monotonic first/last observations; GetProcessMemoryInfo PeakWorkingSetSize sampled through process exit; all handles closed.'});save(HERE/'summary-path-validation.json',path_checks)
+sums={v:sum(r['compute_seconds'][0] for r in rows if r['suite']=='hard' and r['version']==v) for v in ['predecessor','delivered','historical']}
+reg=[]
+for suite,count in [('medium',3),('hard',2)]:
+ for idx in range(count):
+  old=next(r for r in rows if r['suite']==suite and r['case_index']==idx and r['version']=='predecessor');new=next(r for r in rows if r['suite']==suite and r['case_index']==idx and r['version']=='delivered')
+  reg.append({'suite':suite,'case':old['case'],'compute_ratio_delivered_over_predecessor':new['median_compute_seconds']/old['median_compute_seconds'],'median_rss_ratio_delivered_over_predecessor':new['median_peak_rss_bytes']/old['median_peak_rss_bytes'],'compute_regression':new['median_compute_seconds']>old['median_compute_seconds'],'memory_regression':new['median_peak_rss_bytes']>old['median_peak_rss_bytes']})
+save(HERE/'score.json',{'hard_compute_sum_seconds':sums,'delivered_over_predecessor':sums['delivered']/sums['predecessor'],'strict_speed_pass':sums['delivered']<sums['predecessor'],'per_case_changes':reg})
+lines=['# Fresh v2 complete native comparison','', 'Fresh predecessor: e4520c044df5e8672b106f1ce29d6fd53d67458b. Delivered: ca50628d4d0d88a44b36d2b32b86a7f37e3250ef. Historical rows preserve their original revision and are not fresh timing.','', '|Workload|Evidence / version|Complete|Candidates|Compute s median [range]|Serialization s median|Process wall s median|Peak RSS MiB median|','|---|---|---:|---:|---:|---:|---:|---:|']
+for r in rows:
+ lines.append(f"|{r['case']}|{r['version']}|{r['all_complete_native']}|{r['candidate_count']:,}|{r['median_compute_seconds']:.4f} [{r['compute_range_seconds'][0]:.4f}, {r['compute_range_seconds'][1]:.4f}]|{r['median_serialization_seconds']:.4f}|{r['median_process_wall_seconds']:.4f}|{r['median_peak_rss_bytes']/2**20:.2f}|")
+lines+=['',f"Fresh hard compute sum: predecessor {sums['predecessor']:.6f} s; delivered {sums['delivered']:.6f} s; delivered/predecessor {sums['delivered']/sums['predecessor']:.6f}. Strict speed condition: {sums['delivered']<sums['predecessor']}.",'', 'Memory is whole worker lifetime Windows PeakWorkingSetSize. Raw bytes, all trials, per-case changes and independent process observations are retained in timing-table.json, score.json and worker-schedule.json. Existing JIT caches were preserved and logged. One automatic one-state warmup per case/version is excluded.','', 'Limitations: one trial per hard/version supports host-specific observed improvement only. Three medium trials are consecutive within each invocation; case-level version alternation does not remove within-case temporal drift. An external 100ms process observer ran identically for all fresh performance invocations. Its monotonic interval is quantized at approximately 100ms; OS start/exit times provide a second wall-clock cross-check. Peak RSS reported by the worker can be slightly lower than the observer because the worker saves its report after taking its own peak snapshot. No historical timing is used in the acceptance score.']
+(HERE/'comparison.md').write_text('\n'.join(lines)+'\n',encoding='utf8');print(json.dumps({'score':sums,'serial':serial,'workers':len(schedule)}))

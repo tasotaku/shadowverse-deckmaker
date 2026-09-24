@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "mode": "candidates",
+  "scope": "Every own-turn prefix may STOP before end-turn effects. Candidates are board/resource endpoints, not mutually selectable deterministic plans or state reachability probabilities. Use conditional expansion for all legal choices and exact chance outcomes after observation.",
+  "groups": [
+    {
+      "case_id": "medium_3v3_target_random",
+      "algorithm": "native",
+      "trials": [
+        {
+          "version": 1,
+          "case_id": "medium_3v3_target_random",
+          "algorithm": "native",
+          "actual_backend": "native",
+          "mode": "candidates",
+          "complete": true,
+          "enumeration_complete": true,
+          "frontier_complete": true,
+          "cutoffs": [],
+          "fallback_reason": null,
+          "candidate_count": 489,
+          "state_count": 1050,
+          "candidate_semantic_sha256": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "stats": {
+            "backend": "native",
+            "states": 1050,
+            "expanded_states": 1050,
+            "choices": 3496,
+            "outcomes": 3699,
+            "duplicate_outcomes": 2650,
+            "warmup_ms": 813.9835000038147,
+            "search_ms": 0.6759000243619084,
+            "cleanup_ms": 0.000300002284348011,
+            "total_ms": 814.659700030461,
+            "state_words": 3
+          },
+          "timings": {
+            "setup_seconds": 0.0063266000361181796,
+            "algorithm_setup_seconds": 1.0745507999672554,
+            "enumeration_seconds": 0.0006759000243619084,
+            "pruning_seconds": 0.01353150000795722,
+            "candidate_materialization_seconds": 0.027477100025862455,
+            "cleanup_seconds": 0.024235400022007525,
+            "compute_seconds": 1.1467992000398226,
+            "serialization_seconds": 0.0015477000270038843,
+            "worker_wall_seconds": 1.1486448000068776
+          },
+          "peak_rss_bytes": 131334144,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "memory_scope": "whole worker lifetime",
+          "result_path": "case-000\\native\\trial-1\\result.json",
+          "result_bytes": 47045,
+          "input_sha256": "49ef672981a43e3d0add3050115053d856a0a6fecf17b6a72a875f25a74342f3",
+          "case_sha256": "1d7e27201c30d48f26b53089dca367092c22a91d9a89067d02c876fc1905ded9",
+          "options": {
+            "seconds": 3600.0,
+            "max_states": 100000000,
+            "mode": "candidates",
+            "debug_threshold": 0,
+            "witness_samples": 100
+          },
+          "cold_start_and_exit_seconds": 0.30441720003727823,
+          "trial": 1,
+          "warmup": false,
+          "exit_code": 0,
+          "process_wall_seconds": 1.4530620000441559,
+          "report_path": "case-000\\native\\trial-1\\report.json",
+          "source_sha256": "4e1769cb25bcfc1993c29fa75a61592baf385cd9d018db04f519de927a6b4a08",
+          "options_sha256": "bef91b06c1223d273ed22663989823e974a9d87c458c4fe1025cf7307e3d8771"
+        },
+        {
+          "version": 1,
+          "case_id": "medium_3v3_target_random",
+          "algorithm": "native",
+          "actual_backend": "native",
+          "mode": "candidates",
+          "complete": true,
+          "enumeration_complete": true,
+          "frontier_complete": true,
+          "cutoffs": [],
+          "fallback_reason": null,
+          "candidate_count": 489,
+          "state_count": 1050,
+          "candidate_semantic_sha256": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "stats": {
+            "backend": "native",
+            "states": 1050,
+            "expanded_states": 1050,
+            "choices": 3496,
+            "outcomes": 3699,
+            "duplicate_outcomes": 2650,
+            "warmup_ms": 798.1737999944016,
+            "search_ms": 0.6394999800249934,
+            "cleanup_ms": 0.000200001522898674,
+            "total_ms": 798.8134999759495,
+            "state_words": 3
+          },
+          "timings": {
+            "setup_seconds": 0.006016900006216019,
+            "algorithm_setup_seconds": 1.056896299996879,
+            "enumeration_seconds": 0.0006394999800249934,
+            "pruning_seconds": 0.012987900001462549,
+            "candidate_materialization_seconds": 0.027050499978940934,
+            "cleanup_seconds": 0.025683400046546012,
+            "compute_seconds": 1.1292765999678522,
+            "serialization_seconds": 0.0013295000535435975,
+            "worker_wall_seconds": 1.130853799986653
+          },
+          "peak_rss_bytes": 131268608,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "memory_scope": "whole worker lifetime",
+          "result_path": "case-000\\native\\trial-2\\result.json",
+          "result_bytes": 47045,
+          "input_sha256": "49ef672981a43e3d0add3050115053d856a0a6fecf17b6a72a875f25a74342f3",
+          "case_sha256": "1d7e27201c30d48f26b53089dca367092c22a91d9a89067d02c876fc1905ded9",
+          "options": {
+            "seconds": 3600.0,
+            "max_states": 100000000,
+            "mode": "candidates",
+            "debug_threshold": 0,
+            "witness_samples": 100
+          },
+          "cold_start_and_exit_seconds": 0.2839757999754511,
+          "trial": 2,
+          "warmup": false,
+          "exit_code": 0,
+          "process_wall_seconds": 1.4148295999621041,
+          "report_path": "case-000\\native\\trial-2\\report.json",
+          "source_sha256": "4e1769cb25bcfc1993c29fa75a61592baf385cd9d018db04f519de927a6b4a08",
+          "options_sha256": "bef91b06c1223d273ed22663989823e974a9d87c458c4fe1025cf7307e3d8771"
+        },
+        {
+          "version": 1,
+          "case_id": "medium_3v3_target_random",
+          "algorithm": "native",
+          "actual_backend": "native",
+          "mode": "candidates",
+          "complete": true,
+          "enumeration_complete": true,
+          "frontier_complete": true,
+          "cutoffs": [],
+          "fallback_reason": null,
+          "candidate_count": 489,
+          "state_count": 1050,
+          "candidate_semantic_sha256": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "stats": {
+            "backend": "native",
+            "states": 1050,
+            "expanded_states": 1050,
+            "choices": 3496,
+            "outcomes": 3699,
+            "duplicate_outcomes": 2650,
+            "warmup_ms": 797.4011999904178,
+            "search_ms": 0.6440000142902136,
+            "cleanup_ms": 0.000300002284348011,
+            "total_ms": 798.0455000069924,
+            "state_words": 3
+          },
+          "timings": {
+            "setup_seconds": 0.006127000029664487,
+            "algorithm_setup_seconds": 1.0590163000160828,
+            "enumeration_seconds": 0.0006440000142902136,
+            "pruning_seconds": 0.012516199960373342,
+            "candidate_materialization_seconds": 0.025034099991898984,
+            "cleanup_seconds": 0.024060399970039725,
+            "compute_seconds": 1.1273998999968171,
+            "serialization_seconds": 0.00131130003137514,
+            "worker_wall_seconds": 1.1289579999865964
+          },
+          "peak_rss_bytes": 131256320,
+          "memory_method": "Windows PeakWorkingSetSize",
+          "memory_scope": "whole worker lifetime",
+          "result_path": "case-000\\native\\trial-3\\result.json",
+          "result_bytes": 47045,
+          "input_sha256": "49ef672981a43e3d0add3050115053d856a0a6fecf17b6a72a875f25a74342f3",
+          "case_sha256": "1d7e27201c30d48f26b53089dca367092c22a91d9a89067d02c876fc1905ded9",
+          "options": {
+            "seconds": 3600.0,
+            "max_states": 100000000,
+            "mode": "candidates",
+            "debug_threshold": 0,
+            "witness_samples": 100
+          },
+          "cold_start_and_exit_seconds": 0.29100590001326054,
+          "trial": 3,
+          "warmup": false,
+          "exit_code": 0,
+          "process_wall_seconds": 1.419963899999857,
+          "report_path": "case-000\\native\\trial-3\\report.json",
+          "source_sha256": "4e1769cb25bcfc1993c29fa75a61592baf385cd9d018db04f519de927a6b4a08",
+          "options_sha256": "bef91b06c1223d273ed22663989823e974a9d87c458c4fe1025cf7307e3d8771"
+        }
+      ],
+      "complete": true,
+      "median_compute_seconds": 1.1292765999678522,
+      "compute_range_seconds": [
+        1.1273998999968171,
+        1.1467992000398226
+      ],
+      "median_serialization_seconds": 0.0013295000535435975,
+      "median_peak_rss_bytes": 131268608
+    }
+  ],
+  "selection": {
+    "status": "provisional_performance_leader",
+    "algorithm": "native",
+    "case_scope": [
+      "medium_3v3_target_random"
+    ],
+    "aggregate_median_compute_seconds": {
+      "native": 1.1292765999678522
+    },
+    "aggregate_range_seconds": {
+      "native": [
+        1.1273998999968171,
+        1.1467992000398226
+      ]
+    },
+    "candidate_mismatch_cases": [],
+    "rule": "Among complete equal-output methods, lowest sum of per-case median compute time; overlapping aggregate ranges are uncertain.",
+    "correctness_status": "Cross-method agreement only; independent oracle evidence required before recommendation."
+  },
+  "manifest_path": "manifest.json",
+  "run_complete": true
+}

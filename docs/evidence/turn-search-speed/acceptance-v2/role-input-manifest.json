@@ -1,0 +1,16 @@
+{
+  "executor": "/root/speed_acceptance_v2",
+  "role": "Fresh independent executor; one fixed journey, no production source/diff or prior acceptance verdicts read",
+  "allowed_inputs": [
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\spec.v2.json",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\spec.v2.lock.json",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\fixture-manifest.v1.json",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\battle-frontier.md",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\battle-frontier-compare.md",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\acceptance-t1\\consume.py",
+    "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\acceptance-t1\\oracle.json"
+  ],
+  "independent_consumer_sha256": "d62bb76da73b6ffb690f96645cb625be1885202be96391b8def08136d602faa9",
+  "prepared_before_journey": "Read fixed spec/lock/public docs and verified checkout HEADs; waited for root explicit host release.",
+  "source_access": "Byte hashing only for source manifests; only documented public modules/API were imported; no production source text inspected."
+}

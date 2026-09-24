@@ -1,0 +1,59 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-search-native-speed",
+  "spec_version": 2,
+  "spec_sha256": "4c926af82b3707259e982cc9145f94e426c539e605b38156e266549ca8e69c97",
+  "executor_id": "fresh-independent-speed-acceptance-v2",
+  "started_at": "2026-09-24T17:18:13.979699+00:00",
+  "finished_at": "2026-09-24T17:31:23.807698+00:00",
+  "scheduling": {
+    "available_executor_slots": 1,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance-v2\\final-checks.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T17:18:13.979699+00:00",
+      "journey_stopped_at": "2026-09-24T17:31:23.795151+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: all 9 small, 18 medium, and 4 hard normal measured runs complete with empty cutoffs. All 49 advertised small debug nodes and 42 actual saved candidates (each decoded with --candidate) match the independent oracle projection; every advertised legal action/outcome/draw distribution matches. Small backends are 7 native plus 2 explicitly documented generic fallbacks for supported compound effects (summon_storm_grant_order; random_sequential_duplicate_outcomes); all performance workers identify native. observations.json, small-decoded-candidates.json, public-witnesses.json.",
+        "F2 PASS: the nine pinned fixtures independently verify exact hand alternatives, incomparable stats, ability/evolution/order/attack-right traits, random bad outcomes and current-turn stopping. Complete endpoint sets match the public comparator projection; all debug active-player/turn values preserved and no end_turn action appears. observations.json contains exact endpoint and witness evidence.",
+        "F3 PASS: all random groups in the three specified fixtures retain exact rational probabilities summing to 1 and match independent oracle draw paths; all 49 debug witnesses and 42 candidate witness samples replay. Adaptive random draws [0] and [1] each have mass 1/2; observed branches choose remove exposed and remove protected respectively, and --steps decoded states match both ordinary-JSON expected outcomes and independent replay. random-probabilities.json, adaptive.json, commands.jsonl.",
+        "F4 PASS: all 33 saved medium/hard outputs exhaustively read, every candidate row strictly integer (booleans rejected), same width/encoding/complete canonical record and exact SHA256 of length-prefixed sorted complete JSON row bytes retaining duplicates. All candidate counts and product digest fields also agree; all witness samples are byte-canonically equal. All 15 public decoded roots agree and all explicit fixture card/state values are preserved. This is exact serialized-state equality, not an independently recomputed product semantic digest or a new independent hard oracle. rows.json, row-comparisons.json, roots.json.",
+        "F5 PASS: fresh hard compute sum 176.305096700 -> 76.136095200 s; ratio 0.431842849. Both hard cases improve. All medium medians/ranges, serialization, process wall and whole-worker Windows PeakWorkingSetSize bytes retained. Medium case0 compute +1.49%; medium RSS +1.49%, +2.51%, +6.27%; hard RSS decreases. External Windows OS create/exit and monotonic process observations corroborate serial full-process wall time. timing-table.json, score.json, worker-schedule.json, comparison.md.",
+        "F6 PASS: exactly 18 medium and 4 hard measured fresh processes plus 10 excluded automatic one-state warmups in the prescribed case-level version order. No incomplete/error trial can win; tiny result has complete=false and cutoffs ['states', 'frontier time']. All fixture/historical hashes match pinned manifest, public imports resolve to their intended checkout, manifest source files match independent byte hashes, and source remains frozen. Historical revision remains 61061aa8963f3b87fc759c693088eea38a2b8d4d. Journey completed in 789.8 s (<2700 s), no product/performance retry. input-manifest.json, pinned-inputs.json, source-provenance.json, final-checks.json.",
+        "U1 PASS: ordinary use required precisely help plus one small-suite product invocation (2 total), with no source edits/internal imports. Separate provenance, measurement, independent verification and documented replay calls are outside this ordinary-use count. Full commands/cwd/PYTHONPATH/start/end/exit logs are in commands.jsonl.",
+        "U2 PASS: opened every saved summary.json and resolved all 33 raw-trial report/result paths with ordinary JSON. Summary trial objects and median/range/serialization/peak RSS fields match independently recomputed raw values. comparison.md identifies old/new/historical revisions, completion, candidate agreement, compute seconds, serialization seconds, process wall seconds and peak RSS MiB. summary-path-validation.json and timing-table.json retain fields and paths read.",
+        "U3 PASS / GO: documented --expand, --state and --steps alone decode observed random states, expose legal branch-specific follow-up targets and replay each chosen path. Saved candidate/root outputs are usable as delivered. Largest remaining usability friction is managing long result/state/steps file paths and reloading a multi-million-candidate JSON for each expansion (observed hard root CLI wall 2.738-3.959 s); no fixed interactive SLA is claimed. CLI-only journey: clicks/taps/manual surface switches/scrolls 0, focus/viewport not applicable; commands were invoked programmatically in PowerShell without foreground window changes."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T17:31:23.803693+00:00",
+        "evidence": "All 75 public invocations and their awaited child workers exited with code 0. External Windows observer confirms all 32 performance warmup/measured workers exited and none of those exact process identities remains live. All observer handles closed. No forced cleanup was needed; no unrelated process, server, data or worktree was changed. Dedicated outputs and predecessor worktree are preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "One fresh trial per hard/version yields observed host-specific improvement only, without a hard-case variance estimate or statistical significance.",
+    "Small independent oracle is exhaustive only for its fixed fixtures. Medium/hard saved-set equivalence is regression/cross-version evidence, not an independent exhaustive proof for arbitrary cards.",
+    "The heldout suite from algorithm-selection research is not a new secret holdout and is not required for this bounded predecessor speed comparison; no universal algorithm selection claim follows.",
+    "GPU/distributed training, arbitrary unsupported effects, opponent/next-turn planning and desktop UI interaction are outside this own-current-turn CLI journey.",
+    "Case-level version alternation is executable through the public CLI, but three consecutive medium trials within one invocation cannot remove within-case temporal drift as trial-level alternation could. Report this limitation; it does not change the strict hard compute-sum rule. Exact fixed-slot row equality tests the full saved state representation and pinned record, while small full-state oracle checks provide independent semantic validation; it is not an independent exhaustive oracle for hard fixtures.",
+    "Windows background OS activity is not eliminated. Root coordinated absence of competing benchmarks/oracles/compilation; lightweight external observer ran identically across all fresh performance invocations.",
+    "External monotonic process duration is quantized by approximately 100ms polling; OS GetProcessTimes supplies exact process timestamps. Worker-reported RSS precedes final report writing; observer peak can be slightly higher.",
+    "Two harness-only diagnostic errors were corrected without rerunning product enumeration/performance; retained in harness-events.json."
+  ]
+}

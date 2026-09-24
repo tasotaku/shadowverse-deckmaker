@@ -1,0 +1,587 @@
+{
+  "adaptive": [
+    {
+      "algorithm": "native",
+      "observed_draws": [
+        0
+      ],
+      "probability": "1/2",
+      "chosen_followup": {
+        "type": "play",
+        "card": "remove",
+        "target": "exposed"
+      },
+      "legal_choices": [
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "protected"
+          },
+          "outcomes": [
+            {
+              "state": {
+                "version": 1,
+                "active_player": 0,
+                "winner": null,
+                "rng": 1,
+                "next_id": 1,
+                "players": [
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 2,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 2,
+                    "combo": 2,
+                    "hand": [],
+                    "deck": [],
+                    "board": [],
+                    "destroyed": []
+                  },
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 0,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 1,
+                    "combo": 0,
+                    "hand": [],
+                    "deck": [],
+                    "board": [
+                      {
+                        "id": "exposed",
+                        "card_id": "exposed",
+                        "name": "Reference follower",
+                        "cost": 1,
+                        "attack": 2,
+                        "health": 2,
+                        "max_health": 2,
+                        "keywords": [
+                          "守護"
+                        ],
+                        "evolved": 0,
+                        "attacks": 0,
+                        "entered_turn": 0,
+                        "countdown": null
+                      }
+                    ],
+                    "destroyed": [
+                      "protected"
+                    ]
+                  }
+                ]
+              },
+              "probability": "1",
+              "draws": []
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "exposed"
+          },
+          "outcomes": [
+            {
+              "state": {
+                "version": 1,
+                "active_player": 0,
+                "winner": null,
+                "rng": 1,
+                "next_id": 1,
+                "players": [
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 2,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 2,
+                    "combo": 2,
+                    "hand": [],
+                    "deck": [],
+                    "board": [],
+                    "destroyed": []
+                  },
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 0,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 1,
+                    "combo": 0,
+                    "hand": [],
+                    "deck": [],
+                    "board": [
+                      {
+                        "id": "protected",
+                        "card_id": "protected",
+                        "name": "Reference follower",
+                        "cost": 1,
+                        "attack": 2,
+                        "health": 2,
+                        "max_health": 2,
+                        "keywords": [
+                          "守護"
+                        ],
+                        "evolved": 0,
+                        "attacks": 0,
+                        "entered_turn": 0,
+                        "countdown": null
+                      }
+                    ],
+                    "destroyed": [
+                      "exposed"
+                    ]
+                  }
+                ]
+              },
+              "probability": "1",
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "stop_offered": true,
+      "replayed_equals_observed_followup": true,
+      "remaining_enemy_ids": [
+        "protected"
+      ]
+    },
+    {
+      "algorithm": "native",
+      "observed_draws": [
+        1
+      ],
+      "probability": "1/2",
+      "chosen_followup": {
+        "type": "play",
+        "card": "remove",
+        "target": "protected"
+      },
+      "legal_choices": [
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "protected"
+          },
+          "outcomes": [
+            {
+              "state": {
+                "version": 1,
+                "active_player": 0,
+                "winner": null,
+                "rng": 1,
+                "next_id": 1,
+                "players": [
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 2,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 2,
+                    "combo": 2,
+                    "hand": [],
+                    "deck": [],
+                    "board": [],
+                    "destroyed": []
+                  },
+                  {
+                    "health": 20,
+                    "max_health": 20,
+                    "pp": 0,
+                    "max_pp": 0,
+                    "turn": 3,
+                    "ep": 0,
+                    "sep": 0,
+                    "evolved_this_turn": false,
+                    "extra_pp_used": true,
+                    "graveyard": 2,
+                    "combo": 0,
+                    "hand": [],
+                    "deck": [],
+                    "board": [],
+                    "destroyed": [
+                      "exposed",
+                      "protected"
+                    ]
+                  }
+                ]
+              },
+              "probability": "1",
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "stop_offered": true,
+      "replayed_equals_observed_followup": true,
+      "remaining_enemy_ids": []
+    }
+  ],
+  "candidate_expansion": [
+    {
+      "case": "hand_none_a_b_ab",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-0-native-0.json"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-0-native-1.json"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-0-native-2.json"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-0-native-3.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-0.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-1.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-2.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-3.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 4,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-4.json"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "algorithm": "native",
+      "candidate": 5,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-1-native-5.json"
+    },
+    {
+      "case": "different_enemy_abilities",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-2-native-0.json"
+    },
+    {
+      "case": "different_enemy_abilities",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-2-native-1.json"
+    },
+    {
+      "case": "different_enemy_abilities",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-2-native-2.json"
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-3-native-0.json"
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-3-native-1.json"
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-3-native-2.json"
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-4-native-0.json"
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-4-native-1.json"
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-4-native-2.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-0.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-1.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-2.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-3.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 4,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-4.json"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "algorithm": "native",
+      "candidate": 5,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-5-native-5.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-0.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-1.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-2.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-3.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 4,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-4.json"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "algorithm": "native",
+      "candidate": 5,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-6-native-5.json"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-7-native-0.json"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-7-native-1.json"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-7-native-2.json"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-7-native-3.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 0,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-0.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 1,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-1.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 2,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-2.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 3,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-3.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 4,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-4.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 5,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-5.json"
+    },
+    {
+      "case": "independent_random_then_chosen_remove",
+      "algorithm": "native",
+      "candidate": 6,
+      "equals_witness": true,
+      "stop": true,
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\candidate-8-native-6.json"
+    }
+  ]
+}

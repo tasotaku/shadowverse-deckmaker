@@ -1,0 +1,60 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-search-native-speed",
+  "spec_version": 1,
+  "spec_sha256": "9241c13162ae37afea0ee1a8c5be931af0ecf7bc49188484bc10fb4543c88cf2",
+  "executor_id": "fresh-speed-acceptance",
+  "started_at": "2026-09-24T17:13:30.417266+00:00",
+  "finished_at": "2026-09-24T17:17:24.669283+00:00",
+  "scheduling": {
+    "available_executor_slots": 1,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker | predecessor=C:\\Users\\tasog\\source\\shadowverse-speed-predecessor",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-speed\\acceptance\\raw-artifacts.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-24T17:13:30.417266+00:00",
+      "journey_stopped_at": "2026-09-24T17:17:24.669283+00:00",
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [
+        "S1: v1 requires one warmup per case/version plus interleaved version order across medium trials. Documented public CLI has --trials but no skip-warmup or version scheduler; independent processes each invoke their own warmup. No product source edits/internal worker imports permitted. Timed phase stopped before any trials pending executable contract.",
+        "S2: v1 explicitly requires independently recomputed canonical semantic digest from fixed-slot candidate rows using saved schema. Public result contains record and integer rows but no slot field schema; public documentation gives semantic hash rules but not integer decoding. Supplied prior independent reader compares recorded hashes only. All small states remain observable through debug/--candidate; missing large decoder channel is not evidence of wrong candidates."
+      ],
+      "evidence": [
+        "F1 partial: all 9 small native-command runs complete/enumeration_complete/frontier_complete true with empty cutoffs. Seven identify native; summon_storm_grant_order and random_sequential_duplicate_outcomes identify documented generic fallback (supported compound effects require generic engine). 49 semantic debug states, 42 candidate classes and 41 action groups equal frozen independent oracle exactly; every draw path and exact rational mass compared. Normal medium/hard not executed.",
+        "F2 small PASS: every candidate set exactly equals independent endpoint skyline, covering hand identities, abilities, ordering, resource/stat tradeoffs and current-turn horizon. Saved native candidates unchanged in compact integer-row output mode; all 42 decoded through public --candidate and independently replayed witnesses.",
+        "F3 PASS: unfavorable outcomes retained, every action probability mass sums to 1; repeated-draw paths match oracle. Adaptive draws [0]/[1], each probability 1/2, choose remove exposed/protected respectively. Public --state continuation and --steps replay reach observed follow-up states; remaining enemies protected/none. Full actions and states retained.",
+        "F4 unobserved: medium/hard canonical equality not run because required independent large fixed-slot decoding channel absent. Historical artifact hashes all pinned and matched; never treated as fresh timing or independent hard oracle.",
+        "F5 unobserved: zero medium/hard measured workers launched, no speed or memory improvement asserted. Small raw timing/RSS recorded in small-summary.json only; not a replacement score.",
+        "F6 partial: all fixture/historical hashes match and provenance actual imported module paths/revisions/source hashes saved. 9 small trials and warmups plus tiny budget retained. Tiny result complete=false, enumeration_complete=false, frontier_complete=true, cutoffs=[states]. No product retries; remaining trials absent, so INCOMPLETE.",
+        "U1 PASS: public help plus one suite command (2 ordinary product invocations) produced all nine normal small outputs; no production edits or private imports.",
+        "U2 partial: standard JSON reader opened summary.groups[].trials result_path/report_path, source manifest and timing/RSS fields; all retained small trial paths resolve. Medium/hard comparison table not produced because phase not run.",
+        "U3 observed workflow GO: documented --expand, --state and --steps successfully continue both adaptive observations. 42 public --candidate calls decode all compact candidates. Largest observed usability cost is separate JSON files/commands per branch; within CLI-only contract. Overall acceptance remains INCOMPLETE for S1/S2.",
+        "Interactions observed: terminal/script-only, 0 clicks, 0 manual surface switches, 0 scrolls; viewport/focus SLA not applicable by spec. 2 ordinary product invocations, 47 followup invocations and 1 tiny-budget invocation; repeated worker subprocesses logged by public CLI. No browser/server interactions."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T17:17:24.669283+00:00",
+        "evidence": "All executor synchronous product processes exited normally. No process remains to stop; no server or unrelated process touched. Output and predecessor worktree preserved. Host released to root."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "One fresh trial per hard/version yields observed host-specific improvement only, without a hard-case variance estimate or statistical significance.",
+    "Small independent oracle is exhaustive only for its fixed fixtures. Medium/hard saved-set equivalence is regression/cross-version evidence, not an independent exhaustive proof for arbitrary cards.",
+    "The heldout suite from algorithm-selection research is not a new secret holdout and is not required for this bounded predecessor speed comparison; no universal algorithm selection claim follows.",
+    "GPU/distributed training, arbitrary unsupported effects, opponent/next-turn planning and desktop UI interaction are outside this own-current-turn CLI journey.",
+    "Required medium/hard timing, memory and canonical digest comparisons remain unobserved because v1 phase lacks required public scheduling/schema channels."
+  ]
+}

@@ -1,5 +1,7 @@
 # Compare current-turn candidate algorithms
 
+The native backend now batches candidate conversion and compares packed endpoint values. The JSON and semantic digest contracts are unchanged. [Further speed measurements](evidence/turn-search-speed/README.md) compare the previous and current native versions with complete saved candidate verification, including small-workload regressions.
+
 From the repository root, run one comparison command against a JSON list of `{id,state,cards}` cases:
 
 ```powershell

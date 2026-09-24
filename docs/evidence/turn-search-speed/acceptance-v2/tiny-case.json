@@ -1,0 +1,255 @@
+[
+  {
+    "id": "hand_none_a_b_ab",
+    "purpose": "Preserve the unused hand and both single-card choices; retain combinations and both orders, merging only exactly equal full states.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "a": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "b": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "wall": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 4,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "a",
+              "card_id": "a"
+            },
+            {
+              "id": "b",
+              "card_id": "b"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "wall",
+              "card_id": "wall"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "none",
+        "steps": [],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "b"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ab",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      },
+      {
+        "id": "ba",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "none",
+          "a"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Using a card trades preserved hand/PP for removal progress."
+      },
+      {
+        "witnesses": [
+          "a",
+          "b"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Different unspent cards have different identities."
+      },
+      {
+        "witnesses": [
+          "a",
+          "ab"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Clearing the board spends the remaining card."
+      },
+      {
+        "witnesses": [
+          "ab",
+          "ba"
+        ],
+        "raw_relation": "equal",
+        "semantic_intent": "merge_exact_state",
+        "reason": "Both histories converge to the same full state."
+      }
+    ]
+  }
+]
