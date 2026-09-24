@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "conditional": true,
+  "scope": "Every own-turn prefix may STOP before end-turn effects. Candidates are board/resource endpoints, not mutually selectable deterministic plans or state reachability probabilities. Use conditional expansion for all legal choices and exact chance outcomes after observation.",
+  "state": {
+    "version": 1,
+    "active_player": 0,
+    "winner": null,
+    "rng": 1,
+    "next_id": 1,
+    "players": [
+      {
+        "health": 20,
+        "max_health": 20,
+        "pp": 2,
+        "max_pp": 2,
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "evolved_this_turn": false,
+        "extra_pp_used": true,
+        "graveyard": 0,
+        "combo": 0,
+        "hand": [
+          {
+            "id": "a",
+            "card_id": "a",
+            "name": "Reference spell",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          },
+          {
+            "id": "b",
+            "card_id": "b",
+            "name": "Reference spell",
+            "cost": 1,
+            "attack": 0,
+            "health": 0,
+            "max_health": 0,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "deck": [],
+        "board": [],
+        "destroyed": []
+      },
+      {
+        "health": 20,
+        "max_health": 20,
+        "pp": 0,
+        "max_pp": 0,
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "evolved_this_turn": false,
+        "extra_pp_used": true,
+        "graveyard": 0,
+        "combo": 0,
+        "hand": [],
+        "deck": [],
+        "board": [
+          {
+            "id": "wall",
+            "card_id": "wall",
+            "name": "Reference follower",
+            "cost": 1,
+            "attack": 3,
+            "health": 4,
+            "max_health": 4,
+            "keywords": [],
+            "evolved": 0,
+            "attacks": 0,
+            "entered_turn": 0,
+            "countdown": null
+          }
+        ],
+        "destroyed": []
+      }
+    ]
+  },
+  "stop": true,
+  "choices": [
+    {
+      "action": {
+        "type": "play",
+        "card": "a",
+        "target": "wall"
+      },
+      "outcomes": [
+        {
+          "state": {
+            "version": 1,
+            "active_player": 0,
+            "winner": null,
+            "rng": 1,
+            "next_id": 1,
+            "players": [
+              {
+                "health": 20,
+                "max_health": 20,
+                "pp": 1,
+                "max_pp": 2,
+                "turn": 3,
+                "ep": 0,
+                "sep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "combo": 1,
+                "hand": [
+                  {
+                    "id": "b",
+                    "card_id": "b",
+                    "name": "Reference spell",
+                    "cost": 1,
+                    "attack": 0,
+                    "health": 0,
+                    "max_health": 0,
+                    "keywords": [],
+                    "evolved": 0,
+                    "attacks": 0,
+                    "entered_turn": 0,
+                    "countdown": null
+                  }
+                ],
+                "deck": [],
+                "board": [],
+                "destroyed": []
+              },
+              {
+                "health": 20,
+                "max_health": 20,
+                "pp": 0,
+                "max_pp": 0,
+                "turn": 3,
+                "ep": 0,
+                "sep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "combo": 0,
+                "hand": [],
+                "deck": [],
+                "board": [
+                  {
+                    "id": "wall",
+                    "card_id": "wall",
+                    "name": "Reference follower",
+                    "cost": 1,
+                    "attack": 3,
+                    "health": 2,
+                    "max_health": 4,
+                    "keywords": [],
+                    "evolved": 0,
+                    "attacks": 0,
+                    "entered_turn": 0,
+                    "countdown": null
+                  }
+                ],
+                "destroyed": []
+              }
+            ]
+          },
+          "probability": "1",
+          "draws": []
+        }
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "b",
+        "target": "wall"
+      },
+      "outcomes": [
+        {
+          "state": {
+            "version": 1,
+            "active_player": 0,
+            "winner": null,
+            "rng": 1,
+            "next_id": 1,
+            "players": [
+              {
+                "health": 20,
+                "max_health": 20,
+                "pp": 1,
+                "max_pp": 2,
+                "turn": 3,
+                "ep": 0,
+                "sep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 1,
+                "combo": 1,
+                "hand": [
+                  {
+                    "id": "a",
+                    "card_id": "a",
+                    "name": "Reference spell",
+                    "cost": 1,
+                    "attack": 0,
+                    "health": 0,
+                    "max_health": 0,
+                    "keywords": [],
+                    "evolved": 0,
+                    "attacks": 0,
+                    "entered_turn": 0,
+                    "countdown": null
+                  }
+                ],
+                "deck": [],
+                "board": [],
+                "destroyed": []
+              },
+              {
+                "health": 20,
+                "max_health": 20,
+                "pp": 0,
+                "max_pp": 0,
+                "turn": 3,
+                "ep": 0,
+                "sep": 0,
+                "evolved_this_turn": false,
+                "extra_pp_used": true,
+                "graveyard": 0,
+                "combo": 0,
+                "hand": [],
+                "deck": [],
+                "board": [
+                  {
+                    "id": "wall",
+                    "card_id": "wall",
+                    "name": "Reference follower",
+                    "cost": 1,
+                    "attack": 3,
+                    "health": 2,
+                    "max_health": 4,
+                    "keywords": [],
+                    "evolved": 0,
+                    "attacks": 0,
+                    "entered_turn": 0,
+                    "countdown": null
+                  }
+                ],
+                "destroyed": []
+              }
+            ]
+          },
+          "probability": "1",
+          "draws": []
+        }
+      ]
+    }
+  ]
+}

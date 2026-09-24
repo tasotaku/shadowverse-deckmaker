@@ -1,0 +1,3116 @@
+{
+  "read_at": "2026-09-24T16:59:19.911468+00:00",
+  "scope": "Cold fresh-process candidate output; frozen medium aggregate selects; heldout and hard reported separately. Large equality is cross-method evidence, not an independent exhaustive oracle.",
+  "suites": {
+    "medium": {
+      "all_expected_trials_complete": true,
+      "all_candidate_digests_equal_per_case": true,
+      "groups": [
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.049894000054337084,
+            0.05238639999879524,
+            0.0458881999948062
+          ],
+          "median_compute_seconds": 0.049894000054337084,
+          "range_compute_seconds": [
+            0.0458881999948062,
+            0.05238639999879524
+          ],
+          "median_serialization_seconds": 0.0012990999966859818,
+          "median_process_wall_seconds": 0.2614638999802992,
+          "median_peak_rss_bytes": 31490048,
+          "candidate_digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.05310049996478483,
+            0.04709130001720041,
+            0.046047399984672666
+          ],
+          "median_compute_seconds": 0.04709130001720041,
+          "range_compute_seconds": [
+            0.046047399984672666,
+            0.05310049996478483
+          ],
+          "median_serialization_seconds": 0.001867000013589859,
+          "median_process_wall_seconds": 0.27318119996925816,
+          "median_peak_rss_bytes": 31830016,
+          "candidate_digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            1.0952382999821566,
+            1.0540672999923117,
+            1.0754751999629661
+          ],
+          "median_compute_seconds": 1.0754751999629661,
+          "range_compute_seconds": [
+            1.0540672999923117,
+            1.0952382999821566
+          ],
+          "median_serialization_seconds": 0.0013848000089637935,
+          "median_process_wall_seconds": 1.3861891999840736,
+          "median_peak_rss_bytes": 128851968,
+          "candidate_digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.13358630001312122,
+            0.12655990000348538,
+            0.13327819999540225
+          ],
+          "median_compute_seconds": 0.13327819999540225,
+          "range_compute_seconds": [
+            0.12655990000348538,
+            0.13358630001312122
+          ],
+          "median_serialization_seconds": 0.0028596000047400594,
+          "median_process_wall_seconds": 0.3540721000172198,
+          "median_peak_rss_bytes": 33009664,
+          "candidate_digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.1333526000380516,
+            0.12948970001889393,
+            0.12236390000907704
+          ],
+          "median_compute_seconds": 0.12948970001889393,
+          "range_compute_seconds": [
+            0.12236390000907704,
+            0.1333526000380516
+          ],
+          "median_serialization_seconds": 0.0030203000060282648,
+          "median_process_wall_seconds": 0.3487153999740258,
+          "median_peak_rss_bytes": 33845248,
+          "candidate_digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            1.103949299955275,
+            1.121460800000932,
+            1.0799132999964058
+          ],
+          "median_compute_seconds": 1.103949299955275,
+          "range_compute_seconds": [
+            1.0799132999964058,
+            1.121460800000932
+          ],
+          "median_serialization_seconds": 0.003174500016029924,
+          "median_process_wall_seconds": 1.3960701000178233,
+          "median_peak_rss_bytes": 129536000,
+          "candidate_digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            2.3541722999652848,
+            2.2711788999731652,
+            2.295833800046239
+          ],
+          "median_compute_seconds": 2.295833800046239,
+          "range_compute_seconds": [
+            2.2711788999731652,
+            2.3541722999652848
+          ],
+          "median_serialization_seconds": 0.029053699981886894,
+          "median_process_wall_seconds": 2.5446619000285864,
+          "median_peak_rss_bytes": 62427136,
+          "candidate_digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            2.052968400006648,
+            2.0014119000406936,
+            2.002290299977176
+          ],
+          "median_compute_seconds": 2.002290299977176,
+          "range_compute_seconds": [
+            2.0014119000406936,
+            2.052968400006648
+          ],
+          "median_serialization_seconds": 0.02915509999729693,
+          "median_process_wall_seconds": 2.2520525999716483,
+          "median_peak_rss_bytes": 64086016,
+          "candidate_digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            1.510298699955456,
+            1.5199436000548303,
+            1.5152236999711022
+          ],
+          "median_compute_seconds": 1.5152236999711022,
+          "range_compute_seconds": [
+            1.510298699955456,
+            1.5199436000548303
+          ],
+          "median_serialization_seconds": 0.0283147000009194,
+          "median_process_wall_seconds": 1.831144800002221,
+          "median_peak_rss_bytes": 144601088,
+          "candidate_digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247
+        }
+      ],
+      "aggregate_median_compute_seconds": {
+        "baseline": 2.4790060000959784,
+        "cache": 2.1788713000132702,
+        "native": 3.6946481998893432
+      },
+      "aggregate_range_seconds": {
+        "baseline": [
+          2.443626999971457,
+          2.5401449999772012
+        ],
+        "cache": [
+          2.1698232000344433,
+          2.2394215000094846
+        ],
+        "native": [
+          3.6442792999441735,
+          3.736642700037919
+        ]
+      },
+      "performance_leader": "cache",
+      "ranking_uncertain": false,
+      "public_selection_matches_recomputation": true,
+      "warmup_count": 9,
+      "warmup_policy_verified": true,
+      "alternating_order_verified": true,
+      "manifest": {
+        "revision": "61061aa8963f3b87fc759c693088eea38a2b8d4d",
+        "source_sha256": "bd60fcdcdbcac3df6547182a0856f54c9af3dffee949d7666a189f01506a2026",
+        "files": {
+          "src/svdeck/battle.py": "f29babceee50a9fe6ab3bc100e8e0d69dc7a5ffe8b56b185ba3b55bff45a63d3",
+          "src/svdeck/battle_ai.py": "1acb58dd5c4ee3cedf4551a8b6e5c91aade544c45bc5d8b2c815a53c6690c0a5",
+          "src/svdeck/battle_cards.py": "70fd0d4cbfae7ba84ca7ac9cc2c5be3f480f736bb7e0aff4c547bad9bc8c1a9b",
+          "src/svdeck/battle_combat.py": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+          "src/svdeck/battle_compact.py": "0e7efbcdba6d05e6971b31b2950d97845577c42d91c0f24993af26711db5445a",
+          "src/svdeck/battle_decks.py": "c4a3c02e16410c0afcbb9c9b59f934dcd3393615f2713ea376e014025f24c1ae",
+          "src/svdeck/battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+          "src/svdeck/battle_frontier_cache.py": "0560886a3cf3d44970a4c6eaaf08c68ff69ee983482c2aeb6c7ce5bc1d23067e",
+          "src/svdeck/battle_frontier_catalog.py": "50027d84b8adcc837264bada754bc2109490c870179127bf7a945f09d40cba2a",
+          "src/svdeck/battle_frontier_compare.py": "6161409cc06936a71bab0170220ddb9ae00abcf2e4018a9e81061e4cec3ed3ca",
+          "src/svdeck/battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+          "src/svdeck/battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+          "src/svdeck/battle_frontier_native.py": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+          "src/svdeck/battle_frontier_native_core.py": "ddfb59818c973539bd9204663006f28305f6542f9c6bbe84d46fe0aec7eea46b",
+          "src/svdeck/battle_frontier_packed.py": "c594f997cb7ba7a023a6b71aaafd4ff13c4a7af71ff72bc836c834e732f25334",
+          "src/svdeck/battle_frontier_por.py": "550a3f72c267b65ab302d642c02e4454b031c6f294581730cf76aa65758580ef",
+          "src/svdeck/battle_frontier_skyline.py": "8cc3ea27cc6c83462db1958eef9ec89bb235ad674687a576d5616d1a144d958b",
+          "src/svdeck/battle_lookahead.py": "59b58dec98ad883cc83f901f57c5178cceb5a7733ecb99c394f7d61135eef4ad",
+          "src/svdeck/battle_meta_cards.py": "49b217ae27f972e49c8fb27675264329e23bbee7cf1941f95e17687ed6c385d7",
+          "src/svdeck/battle_practical.py": "64f9dd067a3a4a84f505f328d1341ed6b6058b4a240a5913ff71254f7e614379",
+          "src/svdeck/battle_response.py": "d094e2ec2a1f2358d9673cd24110a6eecc7dbfd9ce132d606d2cd6afffeb3080",
+          "src/svdeck/battle_rules.py": "78374dab4aa5f748fdc3012980e0bbe4dc27e5670d11b49da740dbfb22c18529",
+          "src/svdeck/battle_server.py": "8a3fc54524932f90d0db0ebe9c7acfab6e30ced60d2dee208ce1ef170ec91491",
+          "src/svdeck/battle_training.py": "6e6a5e259960439878b18ed1fa1a9125b72c12329fe53e0c0028900002c95528",
+          "src/svdeck/combat_benchmark.py": "90869082dc6f0cbb3eccad396c2882c79f8774e865900099e43fb79e0cc2fab2"
+        },
+        "dependencies": {
+          "numpy": "2.5.3",
+          "numba": "0.67.0"
+        },
+        "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26220-SP0",
+        "machine": "AMD64",
+        "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+        "input_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-medium-cases.v1.json",
+        "input_sha256": "963e06e6d3930f70d9afd47e149a66954fd2c83ecc47686eab482443240112ee",
+        "algorithms": [
+          "baseline",
+          "cache",
+          "native"
+        ],
+        "trials": 3,
+        "warmup": "one one-state fresh-process warmup per case and algorithm outside measured trials",
+        "process_policy": "one measured child at a time; no parallel benchmark workers started by this harness",
+        "competing_load_note": "Host released by root after T1 and separate resident experiment; no competing benchmark/oracle workers; serial fresh-process T2 trials",
+        "horizon": "own current turn before end_turn",
+        "output_mode": "candidates",
+        "options": {
+          "seconds": 3600.0,
+          "max_states": 100000000,
+          "debug_threshold": 0,
+          "witness_samples": 100
+        },
+        "selection_rule": "Lowest sum of complete per-case median compute time with exact candidate agreement; report overlapping ranges as uncertain.",
+        "options_sha256": "175994fcaa0683339fcb639e9423d26bc81142154a64c3011580b105e154420c"
+      },
+      "trials": [
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.00665990001289174,
+            "algorithm_setup_seconds": 0.0010154999908991158,
+            "enumeration_seconds": 0.022698500019032508,
+            "pruning_seconds": 0.00980519998120144,
+            "candidate_materialization_seconds": 0.006641699990723282,
+            "cleanup_seconds": 0.00307150004664436,
+            "compute_seconds": 0.049894000054337084,
+            "serialization_seconds": 0.001289700041525066,
+            "worker_wall_seconds": 0.05127850000280887
+          },
+          "process_wall_seconds": 0.2614638999802992,
+          "cold_start_and_exit_seconds": 0.2101853999774903,
+          "peak_rss_bytes": 31490048,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:25.544389+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.007165200018789619,
+            "algorithm_setup_seconds": 0.0010106999543495476,
+            "enumeration_seconds": 0.022611799999140203,
+            "pruning_seconds": 0.009700400056317449,
+            "candidate_materialization_seconds": 0.006395699980203062,
+            "cleanup_seconds": 0.005499899969436228,
+            "compute_seconds": 0.05238639999879524,
+            "serialization_seconds": 0.001482799998484552,
+            "worker_wall_seconds": 0.05400410003494471
+          },
+          "process_wall_seconds": 0.2753748000250198,
+          "cold_start_and_exit_seconds": 0.22137069999007508,
+          "peak_rss_bytes": 31461376,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:29.138737+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.005874300026334822,
+            "algorithm_setup_seconds": 0.0007849999819882214,
+            "enumeration_seconds": 0.021120599994901568,
+            "pruning_seconds": 0.009014400013256818,
+            "candidate_materialization_seconds": 0.006341699976474047,
+            "cleanup_seconds": 0.0027510999934747815,
+            "compute_seconds": 0.0458881999948062,
+            "serialization_seconds": 0.0012990999966859818,
+            "worker_wall_seconds": 0.04728579998482019
+          },
+          "process_wall_seconds": 0.25649599998723716,
+          "cold_start_and_exit_seconds": 0.20921020000241697,
+          "peak_rss_bytes": 31641600,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\baseline\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:29.401753+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.005968199984636158,
+            "algorithm_setup_seconds": 0.0009450999787077308,
+            "enumeration_seconds": 0.02200160000938922,
+            "pruning_seconds": 0.01033120002830401,
+            "candidate_materialization_seconds": 0.00903339998330921,
+            "cleanup_seconds": 0.004819799971301109,
+            "compute_seconds": 0.05310049996478483,
+            "serialization_seconds": 0.001867000013589859,
+            "worker_wall_seconds": 0.05510190001223236
+          },
+          "process_wall_seconds": 0.27759000001242384,
+          "cold_start_and_exit_seconds": 0.22248810000019148,
+          "peak_rss_bytes": 31760384,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:25.830297+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.006347000016830862,
+            "algorithm_setup_seconds": 0.0010047999676316977,
+            "enumeration_seconds": 0.019913099997211248,
+            "pruning_seconds": 0.009779300016816705,
+            "candidate_materialization_seconds": 0.006405599997378886,
+            "cleanup_seconds": 0.0036401000106707215,
+            "compute_seconds": 0.04709130001720041,
+            "serialization_seconds": 0.0013558000209741294,
+            "worker_wall_seconds": 0.048603400005958974
+          },
+          "process_wall_seconds": 0.26664079999318346,
+          "cold_start_and_exit_seconds": 0.2180373999872245,
+          "peak_rss_bytes": 31879168,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:28.856092+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.005730500037316233,
+            "algorithm_setup_seconds": 0.000948999950196594,
+            "enumeration_seconds": 0.019757399975787848,
+            "pruning_seconds": 0.009557600016705692,
+            "candidate_materialization_seconds": 0.0064224000088870525,
+            "cleanup_seconds": 0.0036291999858804047,
+            "compute_seconds": 0.046047399984672666,
+            "serialization_seconds": 0.0019919000333175063,
+            "worker_wall_seconds": 0.04820980003569275
+          },
+          "process_wall_seconds": 0.27318119996925816,
+          "cold_start_and_exit_seconds": 0.2249713999335654,
+          "peak_rss_bytes": 31830016,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\cache\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:29.683120+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.005946599994786084,
+            "algorithm_setup_seconds": 1.0373920999118127,
+            "enumeration_seconds": 0.0007004000362940133,
+            "pruning_seconds": 0.014224400045350194,
+            "candidate_materialization_seconds": 0.011175299994647503,
+            "cleanup_seconds": 0.025797299982514232,
+            "compute_seconds": 1.0952382999821566,
+            "serialization_seconds": 0.0014146000030450523,
+            "worker_wall_seconds": 1.0969150000019
+          },
+          "process_wall_seconds": 1.4015254999976605,
+          "cold_start_and_exit_seconds": 0.3046104999957606,
+          "peak_rss_bytes": 128716800,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:27.238066+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.005607200029771775,
+            "algorithm_setup_seconds": 0.9972629999974743,
+            "enumeration_seconds": 0.0006398999830707908,
+            "pruning_seconds": 0.012280099967028946,
+            "candidate_materialization_seconds": 0.01019800000358373,
+            "cleanup_seconds": 0.028077099996153265,
+            "compute_seconds": 1.0540672999923117,
+            "serialization_seconds": 0.0013018000172451138,
+            "worker_wall_seconds": 1.0556153000216
+          },
+          "process_wall_seconds": 1.3352738000103272,
+          "cold_start_and_exit_seconds": 0.27965849998872727,
+          "peak_rss_bytes": 128851968,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:28.582089+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "e49472ab0143b701b76c8a674aa2e4ddccf4f584a61e5853c5568988f2113d13",
+          "candidate_count": 489,
+          "state_count": 1050,
+          "timings_seconds": {
+            "setup_seconds": 0.006131200003437698,
+            "algorithm_setup_seconds": 1.0113843999570236,
+            "enumeration_seconds": 0.0006435000104829669,
+            "pruning_seconds": 0.014989199989940971,
+            "candidate_materialization_seconds": 0.010831299994606525,
+            "cleanup_seconds": 0.0314928000443615,
+            "compute_seconds": 1.0754751999629661,
+            "serialization_seconds": 0.0013848000089637935,
+            "worker_wall_seconds": 1.077071400010027
+          },
+          "process_wall_seconds": 1.3861891999840736,
+          "cold_start_and_exit_seconds": 0.30911779997404665,
+          "peak_rss_bytes": 129044480,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-000\\native\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:31.077925+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.006240100017748773,
+            "algorithm_setup_seconds": 0.0009760999819263816,
+            "enumeration_seconds": 0.06653910002205521,
+            "pruning_seconds": 0.033300000010058284,
+            "candidate_materialization_seconds": 0.020688600023277104,
+            "cleanup_seconds": 0.005840099998749793,
+            "compute_seconds": 0.13358630001312122,
+            "serialization_seconds": 0.0030391999753192067,
+            "worker_wall_seconds": 0.1367352000088431
+          },
+          "process_wall_seconds": 0.3540721000172198,
+          "cold_start_and_exit_seconds": 0.2173369000083767,
+          "peak_rss_bytes": 33103872,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:35.035221+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.005839999997988343,
+            "algorithm_setup_seconds": 0.0008791000000201166,
+            "enumeration_seconds": 0.06697729998268187,
+            "pruning_seconds": 0.02903049997985363,
+            "candidate_materialization_seconds": 0.020820800040382892,
+            "cleanup_seconds": 0.0030104999896138906,
+            "compute_seconds": 0.12655990000348538,
+            "serialization_seconds": 0.002666999993380159,
+            "worker_wall_seconds": 0.1293539999751374
+          },
+          "process_wall_seconds": 0.34432259999448434,
+          "cold_start_and_exit_seconds": 0.21496860001934692,
+          "peak_rss_bytes": 32960512,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:35.386705+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.006121799990069121,
+            "algorithm_setup_seconds": 0.0010036000167019665,
+            "enumeration_seconds": 0.07035340002039447,
+            "pruning_seconds": 0.030551499978173524,
+            "candidate_materialization_seconds": 0.022057699970901012,
+            "cleanup_seconds": 0.0031888000085018575,
+            "compute_seconds": 0.13327819999540225,
+            "serialization_seconds": 0.0028596000047400594,
+            "worker_wall_seconds": 0.13625079998746514
+          },
+          "process_wall_seconds": 0.35643240000354126,
+          "cold_start_and_exit_seconds": 0.22018160001607612,
+          "peak_rss_bytes": 33009664,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\baseline\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:39.274893+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.0068672000197693706,
+            "algorithm_setup_seconds": 0.0015917000127956271,
+            "enumeration_seconds": 0.06476869998732582,
+            "pruning_seconds": 0.028239800012670457,
+            "candidate_materialization_seconds": 0.027259099995717406,
+            "cleanup_seconds": 0.004623799992259592,
+            "compute_seconds": 0.1333526000380516,
+            "serialization_seconds": 0.002773399988655001,
+            "worker_wall_seconds": 0.13625480001792312
+          },
+          "process_wall_seconds": 0.3551887000212446,
+          "cold_start_and_exit_seconds": 0.21893390000332147,
+          "peak_rss_bytes": 33656832,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:34.672654+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.006230800005141646,
+            "algorithm_setup_seconds": 0.001228800043463707,
+            "enumeration_seconds": 0.06355299998540431,
+            "pruning_seconds": 0.030166100012138486,
+            "candidate_materialization_seconds": 0.02310120000038296,
+            "cleanup_seconds": 0.005207700014580041,
+            "compute_seconds": 0.12948970001889393,
+            "serialization_seconds": 0.0030203000060282648,
+            "worker_wall_seconds": 0.13261900003999472
+          },
+          "process_wall_seconds": 0.3487153999740258,
+          "cold_start_and_exit_seconds": 0.21609639993403107,
+          "peak_rss_bytes": 33873920,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:35.742824+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.007175400038249791,
+            "algorithm_setup_seconds": 0.0011705000069923699,
+            "enumeration_seconds": 0.057341700012329966,
+            "pruning_seconds": 0.029379599960520864,
+            "candidate_materialization_seconds": 0.021938699996098876,
+            "cleanup_seconds": 0.005356399982701987,
+            "compute_seconds": 0.12236390000907704,
+            "serialization_seconds": 0.004320800013374537,
+            "worker_wall_seconds": 0.12682740000309423
+          },
+          "process_wall_seconds": 0.3473253999836743,
+          "cold_start_and_exit_seconds": 0.22049799998058006,
+          "peak_rss_bytes": 33845248,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\cache\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:38.909878+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.006105099979322404,
+            "algorithm_setup_seconds": 1.0277708999929018,
+            "enumeration_seconds": 0.0018641999922692776,
+            "pruning_seconds": 0.014258500013966113,
+            "candidate_materialization_seconds": 0.028579399979207665,
+            "cleanup_seconds": 0.025368700036779046,
+            "compute_seconds": 1.103949299955275,
+            "serialization_seconds": 0.003174500016029924,
+            "worker_wall_seconds": 1.107334699947387
+          },
+          "process_wall_seconds": 1.3960701000178233,
+          "cold_start_and_exit_seconds": 0.2887354000704363,
+          "peak_rss_bytes": 129536000,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:34.309576+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.006136400043033063,
+            "algorithm_setup_seconds": 1.0350748999626376,
+            "enumeration_seconds": 0.001831800036597997,
+            "pruning_seconds": 0.01884869998320937,
+            "candidate_materialization_seconds": 0.033348799974191934,
+            "cleanup_seconds": 0.02621699997689575,
+            "compute_seconds": 1.121460800000932,
+            "serialization_seconds": 0.0035139000392518938,
+            "worker_wall_seconds": 1.1252471000188962
+          },
+          "process_wall_seconds": 1.4227407000144012,
+          "cold_start_and_exit_seconds": 0.29749359999550506,
+          "peak_rss_bytes": 130142208,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:37.172655+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "749df3cb227da2e6f917bcad71208b24d34519360e7255ff5e18beb68ff389c8",
+          "candidate_count": 1774,
+          "state_count": 3214,
+          "timings_seconds": {
+            "setup_seconds": 0.005864700011443347,
+            "algorithm_setup_seconds": 1.0032518000225537,
+            "enumeration_seconds": 0.0021165000507608056,
+            "pruning_seconds": 0.014562999946065247,
+            "candidate_materialization_seconds": 0.0283268999774009,
+            "cleanup_seconds": 0.025788300030399114,
+            "compute_seconds": 1.0799132999964058,
+            "serialization_seconds": 0.002578300016466528,
+            "worker_wall_seconds": 1.0827335999929346
+          },
+          "process_wall_seconds": 1.3753707999712788,
+          "cold_start_and_exit_seconds": 0.29263719997834414,
+          "peak_rss_bytes": 129536000,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-001\\native\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:38.555511+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.0059489000122994184,
+            "algorithm_setup_seconds": 0.0009953999542631209,
+            "enumeration_seconds": 1.4696035000379197,
+            "pruning_seconds": 0.5849189999862574,
+            "candidate_materialization_seconds": 0.2878422000212595,
+            "cleanup_seconds": 0.004861900000832975,
+            "compute_seconds": 2.3541722999652848,
+            "serialization_seconds": 0.028803000051993877,
+            "worker_wall_seconds": 2.3831276000128128
+          },
+          "process_wall_seconds": 2.605909200035967,
+          "cold_start_and_exit_seconds": 0.22278160002315417,
+          "peak_rss_bytes": 62291968,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:43.754129+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.005728100019041449,
+            "algorithm_setup_seconds": 0.0008654000121168792,
+            "enumeration_seconds": 1.366684600012377,
+            "pruning_seconds": 0.5938989999704063,
+            "candidate_materialization_seconds": 0.298981299973093,
+            "cleanup_seconds": 0.005018500029109418,
+            "compute_seconds": 2.2711788999731652,
+            "serialization_seconds": 0.029840700037311763,
+            "worker_wall_seconds": 2.3011756999767385
+          },
+          "process_wall_seconds": 2.5171452999929897,
+          "cold_start_and_exit_seconds": 0.2159696000162512,
+          "peak_rss_bytes": 62468096,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:54.535886+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.005940500006545335,
+            "algorithm_setup_seconds": 0.0009356000227853656,
+            "enumeration_seconds": 1.4138479999965057,
+            "pruning_seconds": 0.5851845999713987,
+            "candidate_materialization_seconds": 0.2855162000050768,
+            "cleanup_seconds": 0.004407400032505393,
+            "compute_seconds": 2.295833800046239,
+            "serialization_seconds": 0.029053699981886894,
+            "worker_wall_seconds": 2.325026100035757
+          },
+          "process_wall_seconds": 2.5446619000285864,
+          "cold_start_and_exit_seconds": 0.21963579999282956,
+          "peak_rss_bytes": 62427136,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\baseline\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:57.087768+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.006436499999836087,
+            "algorithm_setup_seconds": 0.0012901999871246517,
+            "enumeration_seconds": 1.141902500006836,
+            "pruning_seconds": 0.6081535000121221,
+            "candidate_materialization_seconds": 0.28933240001788363,
+            "cleanup_seconds": 0.0058518999721854925,
+            "compute_seconds": 2.052968400006648,
+            "serialization_seconds": 0.02830190001986921,
+            "worker_wall_seconds": 2.081413900014013
+          },
+          "process_wall_seconds": 2.2936138000222854,
+          "cold_start_and_exit_seconds": 0.21219990000827238,
+          "peak_rss_bytes": 63717376,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:46.055512+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.006332600023597479,
+            "algorithm_setup_seconds": 0.0013549999566748738,
+            "enumeration_seconds": 1.0866106000030413,
+            "pruning_seconds": 0.6091265000286512,
+            "candidate_materialization_seconds": 0.293173799989745,
+            "cleanup_seconds": 0.004811600025277585,
+            "compute_seconds": 2.0014119000406936,
+            "serialization_seconds": 0.02915509999729693,
+            "worker_wall_seconds": 2.030704600038007
+          },
+          "process_wall_seconds": 2.2520525999716483,
+          "cold_start_and_exit_seconds": 0.2213479999336414,
+          "peak_rss_bytes": 64266240,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:52.009984+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.006153599999379367,
+            "algorithm_setup_seconds": 0.0014714000280946493,
+            "enumeration_seconds": 1.068685700010974,
+            "pruning_seconds": 0.6182781999814324,
+            "candidate_materialization_seconds": 0.3015136999893002,
+            "cleanup_seconds": 0.0061855000094510615,
+            "compute_seconds": 2.002290299977176,
+            "serialization_seconds": 0.031018200039397925,
+            "worker_wall_seconds": 2.0334748000022955
+          },
+          "process_wall_seconds": 2.245372499979567,
+          "cold_start_and_exit_seconds": 0.21189769997727126,
+          "peak_rss_bytes": 64086016,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\cache\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:10:59.341564+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.005796499957796186,
+            "algorithm_setup_seconds": 0.9721431000507437,
+            "enumeration_seconds": 0.0413453999790363,
+            "pruning_seconds": 0.05663449998246506,
+            "candidate_materialization_seconds": 0.4043087000027299,
+            "cleanup_seconds": 0.030068000021856278,
+            "compute_seconds": 1.510298699955456,
+            "serialization_seconds": 0.029726600041612983,
+            "worker_wall_seconds": 1.54032059997553
+          },
+          "process_wall_seconds": 1.8366616999846883,
+          "cold_start_and_exit_seconds": 0.29634110000915825,
+          "peak_rss_bytes": 144719872,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:10:47.900423+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.005604500009212643,
+            "algorithm_setup_seconds": 1.0212187999859452,
+            "enumeration_seconds": 0.05046090000541881,
+            "pruning_seconds": 0.06034530000761151,
+            "candidate_materialization_seconds": 0.3618367000017315,
+            "cleanup_seconds": 0.02047460002359003,
+            "compute_seconds": 1.5199436000548303,
+            "serialization_seconds": 0.028215000056661665,
+            "worker_wall_seconds": 1.5484317000373267
+          },
+          "process_wall_seconds": 1.831144800002221,
+          "cold_start_and_exit_seconds": 0.28271309996489435,
+          "peak_rss_bytes": 143982592,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:10:49.740837+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "d18c9441e193e6dcf4c17b8a047b345c49e493bbd4bcbf4177e0c8ace3a801f8",
+          "candidate_count": 24974,
+          "state_count": 56247,
+          "timings_seconds": {
+            "setup_seconds": 0.005726900009904057,
+            "algorithm_setup_seconds": 0.9941367999417707,
+            "enumeration_seconds": 0.04667340003652498,
+            "pruning_seconds": 0.05311879998771474,
+            "candidate_materialization_seconds": 0.3916907000239007,
+            "cleanup_seconds": 0.023874300008174032,
+            "compute_seconds": 1.5152236999711022,
+            "serialization_seconds": 0.0283147000009194,
+            "worker_wall_seconds": 1.5438287999713793
+          },
+          "process_wall_seconds": 1.8248481000191532,
+          "cold_start_and_exit_seconds": 0.28101930004777387,
+          "peak_rss_bytes": 144601088,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\medium\\case-002\\native\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:01.175041+00:00"
+        }
+      ],
+      "observed_report_write_order": [
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:25.544389+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:25.830297+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:27.238066+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:28.582089+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:28.856092+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:29.138737+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "baseline",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:29.401753+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "cache",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:29.683120+00:00"
+        },
+        {
+          "case": "medium_3v3_target_random",
+          "algorithm": "native",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:31.077925+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:34.309576+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:34.672654+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:35.035221+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:35.386705+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:35.742824+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:37.172655+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "native",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:38.555511+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "cache",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:38.909878+00:00"
+        },
+        {
+          "case": "medium_3v3_summon_grant",
+          "algorithm": "baseline",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:39.274893+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:43.754129+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:46.055512+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:10:47.900423+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:49.740837+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:52.009984+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:10:54.535886+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "baseline",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:57.087768+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "cache",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:10:59.341564+00:00"
+        },
+        {
+          "case": "medium_4v4_order_split",
+          "algorithm": "native",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:01.175041+00:00"
+        }
+      ],
+      "summary_path": "output\\turn-search-acceptance-t2\\medium\\summary.json"
+    },
+    "heldout": {
+      "all_expected_trials_complete": true,
+      "all_candidate_digests_equal_per_case": true,
+      "groups": [
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.038175599998794496,
+            0.040561000001616776,
+            0.044048800016753376
+          ],
+          "median_compute_seconds": 0.040561000001616776,
+          "range_compute_seconds": [
+            0.038175599998794496,
+            0.044048800016753376
+          ],
+          "median_serialization_seconds": 0.0012583000352606177,
+          "median_process_wall_seconds": 0.26292649999959394,
+          "median_peak_rss_bytes": 31309824,
+          "candidate_digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            0.03840630000922829,
+            0.041131699981633574,
+            0.038660400023218244
+          ],
+          "median_compute_seconds": 0.038660400023218244,
+          "range_compute_seconds": [
+            0.03840630000922829,
+            0.041131699981633574
+          ],
+          "median_serialization_seconds": 0.0013164000120013952,
+          "median_process_wall_seconds": 0.2595261999522336,
+          "median_peak_rss_bytes": 31485952,
+          "candidate_digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            1.1395312999957241,
+            1.07837219996145,
+            1.0836305000120774
+          ],
+          "median_compute_seconds": 1.0836305000120774,
+          "range_compute_seconds": [
+            1.07837219996145,
+            1.1395312999957241
+          ],
+          "median_serialization_seconds": 0.0015591999981552362,
+          "median_process_wall_seconds": 1.3888921000179835,
+          "median_peak_rss_bytes": 129392640,
+          "candidate_digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            2.601793700014241,
+            2.553566300019156,
+            2.5929302000440657
+          ],
+          "median_compute_seconds": 2.5929302000440657,
+          "range_compute_seconds": [
+            2.553566300019156,
+            2.601793700014241
+          ],
+          "median_serialization_seconds": 0.031102799985092133,
+          "median_process_wall_seconds": 2.8572278000065126,
+          "median_peak_rss_bytes": 66068480,
+          "candidate_digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            2.2385476999916136,
+            2.241856100037694,
+            2.2812045000027865
+          ],
+          "median_compute_seconds": 2.241856100037694,
+          "range_compute_seconds": [
+            2.2385476999916136,
+            2.2812045000027865
+          ],
+          "median_serialization_seconds": 0.031815199996344745,
+          "median_process_wall_seconds": 2.492192400037311,
+          "median_peak_rss_bytes": 67997696,
+          "candidate_digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 3,
+          "compute_seconds": [
+            1.6245277000125498,
+            1.5992863000137731,
+            1.6298853000043891
+          ],
+          "median_compute_seconds": 1.6245277000125498,
+          "range_compute_seconds": [
+            1.5992863000137731,
+            1.6298853000043891
+          ],
+          "median_serialization_seconds": 0.0347611999604851,
+          "median_process_wall_seconds": 1.9562322999699973,
+          "median_peak_rss_bytes": 146006016,
+          "candidate_digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791
+        }
+      ],
+      "aggregate_median_compute_seconds": {
+        "baseline": 2.6334912000456825,
+        "cache": 2.280516500060912,
+        "native": 2.708158200024627
+      },
+      "aggregate_range_seconds": {
+        "baseline": [
+          2.5917419000179507,
+          2.6458425000309944
+        ],
+        "cache": [
+          2.276954000000842,
+          2.32233619998442
+        ],
+        "native": [
+          2.677658499975223,
+          2.7694166000001132
+        ]
+      },
+      "performance_leader": "cache",
+      "ranking_uncertain": false,
+      "public_selection_matches_recomputation": true,
+      "warmup_count": 6,
+      "warmup_policy_verified": true,
+      "alternating_order_verified": true,
+      "manifest": {
+        "revision": "61061aa8963f3b87fc759c693088eea38a2b8d4d",
+        "source_sha256": "bd60fcdcdbcac3df6547182a0856f54c9af3dffee949d7666a189f01506a2026",
+        "files": {
+          "src/svdeck/battle.py": "f29babceee50a9fe6ab3bc100e8e0d69dc7a5ffe8b56b185ba3b55bff45a63d3",
+          "src/svdeck/battle_ai.py": "1acb58dd5c4ee3cedf4551a8b6e5c91aade544c45bc5d8b2c815a53c6690c0a5",
+          "src/svdeck/battle_cards.py": "70fd0d4cbfae7ba84ca7ac9cc2c5be3f480f736bb7e0aff4c547bad9bc8c1a9b",
+          "src/svdeck/battle_combat.py": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+          "src/svdeck/battle_compact.py": "0e7efbcdba6d05e6971b31b2950d97845577c42d91c0f24993af26711db5445a",
+          "src/svdeck/battle_decks.py": "c4a3c02e16410c0afcbb9c9b59f934dcd3393615f2713ea376e014025f24c1ae",
+          "src/svdeck/battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+          "src/svdeck/battle_frontier_cache.py": "0560886a3cf3d44970a4c6eaaf08c68ff69ee983482c2aeb6c7ce5bc1d23067e",
+          "src/svdeck/battle_frontier_catalog.py": "50027d84b8adcc837264bada754bc2109490c870179127bf7a945f09d40cba2a",
+          "src/svdeck/battle_frontier_compare.py": "6161409cc06936a71bab0170220ddb9ae00abcf2e4018a9e81061e4cec3ed3ca",
+          "src/svdeck/battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+          "src/svdeck/battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+          "src/svdeck/battle_frontier_native.py": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+          "src/svdeck/battle_frontier_native_core.py": "ddfb59818c973539bd9204663006f28305f6542f9c6bbe84d46fe0aec7eea46b",
+          "src/svdeck/battle_frontier_packed.py": "c594f997cb7ba7a023a6b71aaafd4ff13c4a7af71ff72bc836c834e732f25334",
+          "src/svdeck/battle_frontier_por.py": "550a3f72c267b65ab302d642c02e4454b031c6f294581730cf76aa65758580ef",
+          "src/svdeck/battle_frontier_skyline.py": "8cc3ea27cc6c83462db1958eef9ec89bb235ad674687a576d5616d1a144d958b",
+          "src/svdeck/battle_lookahead.py": "59b58dec98ad883cc83f901f57c5178cceb5a7733ecb99c394f7d61135eef4ad",
+          "src/svdeck/battle_meta_cards.py": "49b217ae27f972e49c8fb27675264329e23bbee7cf1941f95e17687ed6c385d7",
+          "src/svdeck/battle_practical.py": "64f9dd067a3a4a84f505f328d1341ed6b6058b4a240a5913ff71254f7e614379",
+          "src/svdeck/battle_response.py": "d094e2ec2a1f2358d9673cd24110a6eecc7dbfd9ce132d606d2cd6afffeb3080",
+          "src/svdeck/battle_rules.py": "78374dab4aa5f748fdc3012980e0bbe4dc27e5670d11b49da740dbfb22c18529",
+          "src/svdeck/battle_server.py": "8a3fc54524932f90d0db0ebe9c7acfab6e30ced60d2dee208ce1ef170ec91491",
+          "src/svdeck/battle_training.py": "6e6a5e259960439878b18ed1fa1a9125b72c12329fe53e0c0028900002c95528",
+          "src/svdeck/combat_benchmark.py": "90869082dc6f0cbb3eccad396c2882c79f8774e865900099e43fb79e0cc2fab2"
+        },
+        "dependencies": {
+          "numpy": "2.5.3",
+          "numba": "0.67.0"
+        },
+        "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26220-SP0",
+        "machine": "AMD64",
+        "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+        "input_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-heldout-cases.v1.json",
+        "input_sha256": "927bc2ba8604441ebc971bcb0894d70b919fa036c166a4e5b9ee69cc029a5487",
+        "algorithms": [
+          "baseline",
+          "cache",
+          "native"
+        ],
+        "trials": 3,
+        "warmup": "one one-state fresh-process warmup per case and algorithm outside measured trials",
+        "process_policy": "one measured child at a time; no parallel benchmark workers started by this harness",
+        "competing_load_note": "Host released by root after T1 and separate resident experiment; no competing benchmark/oracle workers; serial fresh-process T2 trials",
+        "horizon": "own current turn before end_turn",
+        "output_mode": "candidates",
+        "options": {
+          "seconds": 3600.0,
+          "max_states": 100000000,
+          "debug_threshold": 0,
+          "witness_samples": 100
+        },
+        "selection_rule": "Lowest sum of complete per-case median compute time with exact candidate agreement; report overlapping ranges as uncertain.",
+        "options_sha256": "175994fcaa0683339fcb639e9423d26bc81142154a64c3011580b105e154420c"
+      },
+      "trials": [
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.0058296999777667224,
+            "algorithm_setup_seconds": 0.0007868999964557588,
+            "enumeration_seconds": 0.01521899999352172,
+            "pruning_seconds": 0.007319600030314177,
+            "candidate_materialization_seconds": 0.005580499942880124,
+            "cleanup_seconds": 0.003438500047195703,
+            "compute_seconds": 0.038175599998794496,
+            "serialization_seconds": 0.010258800000883639,
+            "worker_wall_seconds": 0.04853269999148324
+          },
+          "process_wall_seconds": 0.26292649999959394,
+          "cold_start_and_exit_seconds": 0.2143938000081107,
+          "peak_rss_bytes": 31215616,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:05.532469+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.00645390001591295,
+            "algorithm_setup_seconds": 0.0010210000327788293,
+            "enumeration_seconds": 0.015581500018015504,
+            "pruning_seconds": 0.007784999965224415,
+            "candidate_materialization_seconds": 0.00599159998819232,
+            "cleanup_seconds": 0.003726599970832467,
+            "compute_seconds": 0.040561000001616776,
+            "serialization_seconds": 0.0012583000352606177,
+            "worker_wall_seconds": 0.04193240002496168
+          },
+          "process_wall_seconds": 0.26012079999782145,
+          "cold_start_and_exit_seconds": 0.21818839997285977,
+          "peak_rss_bytes": 31309824,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:09.158463+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006299400003626943,
+            "algorithm_setup_seconds": 0.0008444000268355012,
+            "enumeration_seconds": 0.019305999972857535,
+            "pruning_seconds": 0.0075511999893933535,
+            "candidate_materialization_seconds": 0.005988400022033602,
+            "cleanup_seconds": 0.004057799989823252,
+            "compute_seconds": 0.044048800016753376,
+            "serialization_seconds": 0.00120310002239421,
+            "worker_wall_seconds": 0.04538470000261441
+          },
+          "process_wall_seconds": 0.2637720000348054,
+          "cold_start_and_exit_seconds": 0.21838730003219098,
+          "peak_rss_bytes": 31481856,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\baseline\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:09.430021+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006615000020246953,
+            "algorithm_setup_seconds": 0.0010992999887093902,
+            "enumeration_seconds": 0.014497700030915439,
+            "pruning_seconds": 0.007563699968159199,
+            "candidate_materialization_seconds": 0.005720899964217097,
+            "cleanup_seconds": 0.002908300026319921,
+            "compute_seconds": 0.03840630000922829,
+            "serialization_seconds": 0.0013164000120013952,
+            "worker_wall_seconds": 0.039841099991463125
+          },
+          "process_wall_seconds": 0.24955579999368638,
+          "cold_start_and_exit_seconds": 0.20971470000222325,
+          "peak_rss_bytes": 31485952,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:05.788627+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.005937999987509102,
+            "algorithm_setup_seconds": 0.0009166999952867627,
+            "enumeration_seconds": 0.01402319996850565,
+            "pruning_seconds": 0.007660500006750226,
+            "candidate_materialization_seconds": 0.007625800033565611,
+            "cleanup_seconds": 0.004965699976310134,
+            "compute_seconds": 0.041131699981633574,
+            "serialization_seconds": 0.0016006000223569572,
+            "worker_wall_seconds": 0.04285389999859035
+          },
+          "process_wall_seconds": 0.2595261999522336,
+          "cold_start_and_exit_seconds": 0.21667229995364323,
+          "peak_rss_bytes": 31453184,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:08.892428+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006419199984520674,
+            "algorithm_setup_seconds": 0.0010035000159405172,
+            "enumeration_seconds": 0.014015000022482127,
+            "pruning_seconds": 0.007534499978646636,
+            "candidate_materialization_seconds": 0.005684299976564944,
+            "cleanup_seconds": 0.004002000030595809,
+            "compute_seconds": 0.038660400023218244,
+            "serialization_seconds": 0.0012347999727353454,
+            "worker_wall_seconds": 0.04001350002363324
+          },
+          "process_wall_seconds": 0.2685738999862224,
+          "cold_start_and_exit_seconds": 0.22856039996258914,
+          "peak_rss_bytes": 31563776,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\cache\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:09.705640+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006889600015711039,
+            "algorithm_setup_seconds": 1.0837558999774046,
+            "enumeration_seconds": 0.0005868999869562685,
+            "pruning_seconds": 0.012474299990572035,
+            "candidate_materialization_seconds": 0.01055210002232343,
+            "cleanup_seconds": 0.025269899982959032,
+            "compute_seconds": 1.1395312999957241,
+            "serialization_seconds": 0.0018232999718748033,
+            "worker_wall_seconds": 1.1416303999722004
+          },
+          "process_wall_seconds": 1.4430834000231698,
+          "cold_start_and_exit_seconds": 0.3014530000509694,
+          "peak_rss_bytes": 129392640,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:07.238789+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006578099972102791,
+            "algorithm_setup_seconds": 1.0182678999844939,
+            "enumeration_seconds": 0.000506900018081069,
+            "pruning_seconds": 0.012251099979039282,
+            "candidate_materialization_seconds": 0.010304700001142919,
+            "cleanup_seconds": 0.030461299989838153,
+            "compute_seconds": 1.07837219996145,
+            "serialization_seconds": 0.0015591999981552362,
+            "worker_wall_seconds": 1.080201999982819
+          },
+          "process_wall_seconds": 1.3791397999739274,
+          "cold_start_and_exit_seconds": 0.2989377999911085,
+          "peak_rss_bytes": 129339392,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:08.625339+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "9a00cfd26977dc39539e8bb8076a4511d8db4dbf94fc29fcb1f6135f0afb0548",
+          "candidate_count": 431,
+          "state_count": 808,
+          "timings_seconds": {
+            "setup_seconds": 0.006016100000124425,
+            "algorithm_setup_seconds": 1.0304368000361137,
+            "enumeration_seconds": 0.00047389999963343143,
+            "pruning_seconds": 0.012116900004912168,
+            "candidate_materialization_seconds": 0.009500299987848848,
+            "cleanup_seconds": 0.025084199965931475,
+            "compute_seconds": 1.0836305000120774,
+            "serialization_seconds": 0.0012067999923601747,
+            "worker_wall_seconds": 1.0850701000308618
+          },
+          "process_wall_seconds": 1.3888921000179835,
+          "cold_start_and_exit_seconds": 0.30382199998712167,
+          "peak_rss_bytes": 129761280,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-000\\native\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:11.102787+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.005992299993522465,
+            "algorithm_setup_seconds": 0.0008008000440895557,
+            "enumeration_seconds": 1.6136420000111684,
+            "pruning_seconds": 0.6505198999657296,
+            "candidate_materialization_seconds": 0.32569489994784817,
+            "cleanup_seconds": 0.005142400041222572,
+            "compute_seconds": 2.601793700014241,
+            "serialization_seconds": 0.03087519999826327,
+            "worker_wall_seconds": 2.632806800014805
+          },
+          "process_wall_seconds": 2.8572278000065126,
+          "cold_start_and_exit_seconds": 0.2244209999917075,
+          "peak_rss_bytes": 65835008,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:20.256519+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.006133500020951033,
+            "algorithm_setup_seconds": 0.0007391999824903905,
+            "enumeration_seconds": 1.5811820999952033,
+            "pruning_seconds": 0.6422013000119478,
+            "candidate_materialization_seconds": 0.31806840002536774,
+            "cleanup_seconds": 0.005239799967966974,
+            "compute_seconds": 2.553566300019156,
+            "serialization_seconds": 0.031102799985092133,
+            "worker_wall_seconds": 2.5847964000422508
+          },
+          "process_wall_seconds": 2.80459630000405,
+          "cold_start_and_exit_seconds": 0.21979989996179938,
+          "peak_rss_bytes": 66224128,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:23.070430+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.0060347000253386796,
+            "algorithm_setup_seconds": 0.000750300008803606,
+            "enumeration_seconds": 1.5859596999944188,
+            "pruning_seconds": 0.6424718999769539,
+            "candidate_materialization_seconds": 0.3519668999942951,
+            "cleanup_seconds": 0.005745200032833964,
+            "compute_seconds": 2.5929302000440657,
+            "serialization_seconds": 0.041999699955340475,
+            "worker_wall_seconds": 2.635067399998661
+          },
+          "process_wall_seconds": 2.8574710999964736,
+          "cold_start_and_exit_seconds": 0.2224036999978125,
+          "peak_rss_bytes": 66068480,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\baseline\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:34.897048+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.00618269998813048,
+            "algorithm_setup_seconds": 0.0012887000339105725,
+            "enumeration_seconds": 1.27092649997212,
+            "pruning_seconds": 0.6379489999962971,
+            "candidate_materialization_seconds": 0.3163533000042662,
+            "cleanup_seconds": 0.005845299980137497,
+            "compute_seconds": 2.2385476999916136,
+            "serialization_seconds": 0.03196890000253916,
+            "worker_wall_seconds": 2.2706572000170127
+          },
+          "process_wall_seconds": 2.4850080999895,
+          "cold_start_and_exit_seconds": 0.21435089997248724,
+          "peak_rss_bytes": 67997696,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:17.390934+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.00609690003329888,
+            "algorithm_setup_seconds": 0.0014171999646350741,
+            "enumeration_seconds": 1.245278300018981,
+            "pruning_seconds": 0.6680134999915026,
+            "candidate_materialization_seconds": 0.31578290002653375,
+            "cleanup_seconds": 0.005265799991320819,
+            "compute_seconds": 2.241856100037694,
+            "serialization_seconds": 0.031815199996344745,
+            "worker_wall_seconds": 2.2738106000469998
+          },
+          "process_wall_seconds": 2.492192400037311,
+          "cold_start_and_exit_seconds": 0.21838179999031126,
+          "peak_rss_bytes": 67993600,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:25.570576+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.005918700015172362,
+            "algorithm_setup_seconds": 0.0014301999472081661,
+            "enumeration_seconds": 1.2876678999746218,
+            "pruning_seconds": 0.6634798000450246,
+            "candidate_materialization_seconds": 0.3176659000455402,
+            "cleanup_seconds": 0.005040200019720942,
+            "compute_seconds": 2.2812045000027865,
+            "serialization_seconds": 0.03174910001689568,
+            "worker_wall_seconds": 2.3130935999797657
+          },
+          "process_wall_seconds": 2.5362100999918766,
+          "cold_start_and_exit_seconds": 0.22311650001211092,
+          "peak_rss_bytes": 68075520,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\cache\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:32.031945+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.006408700020983815,
+            "algorithm_setup_seconds": 1.0383776999660768,
+            "enumeration_seconds": 0.05051260004984215,
+            "pruning_seconds": 0.047181000001728535,
+            "candidate_materialization_seconds": 0.44982490001711994,
+            "cleanup_seconds": 0.032219599932432175,
+            "compute_seconds": 1.6245277000125498,
+            "serialization_seconds": 0.0347611999604851,
+            "worker_wall_seconds": 1.6596450000070035
+          },
+          "process_wall_seconds": 1.9562322999699973,
+          "cold_start_and_exit_seconds": 0.2965872999629937,
+          "peak_rss_bytes": 146006016,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:11:14.898874+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 2,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.0058530999813228846,
+            "algorithm_setup_seconds": 1.0190281000104733,
+            "enumeration_seconds": 0.055110600020270795,
+            "pruning_seconds": 0.0464590999763459,
+            "candidate_materialization_seconds": 0.4436044999747537,
+            "cleanup_seconds": 0.029228100029285997,
+            "compute_seconds": 1.5992863000137731,
+            "serialization_seconds": 0.03986129997065291,
+            "worker_wall_seconds": 1.6395132999750786
+          },
+          "process_wall_seconds": 1.9226359999738634,
+          "cold_start_and_exit_seconds": 0.2831226999987848,
+          "peak_rss_bytes": 146169856,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-2\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-2\\result.json",
+          "report_written_at": "2026-09-24T16:11:27.500588+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 3,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "13c1dacae624bb48cf1eb260bf0926169b8f3eb663bb2f6ed3c32881d731d8e8",
+          "candidate_count": 27673,
+          "state_count": 62791,
+          "timings_seconds": {
+            "setup_seconds": 0.006557999993674457,
+            "algorithm_setup_seconds": 1.0729523000190966,
+            "enumeration_seconds": 0.05066159996204078,
+            "pruning_seconds": 0.04416240000864491,
+            "candidate_materialization_seconds": 0.4230688000097871,
+            "cleanup_seconds": 0.03247989999363199,
+            "compute_seconds": 1.6298853000043891,
+            "serialization_seconds": 0.03384089999599382,
+            "worker_wall_seconds": 1.6640500000212342
+          },
+          "process_wall_seconds": 1.9708071000059135,
+          "cold_start_and_exit_seconds": 0.30675709998467937,
+          "peak_rss_bytes": 145698816,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-3\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\heldout\\case-001\\native\\trial-3\\result.json",
+          "report_written_at": "2026-09-24T16:11:29.488257+00:00"
+        }
+      ],
+      "observed_report_write_order": [
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:05.532469+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:05.788627+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:07.238789+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:08.625339+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:08.892428+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:09.158463+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "baseline",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:09.430021+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "cache",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:09.705640+00:00"
+        },
+        {
+          "case": "heldout_3v3_health_resource",
+          "algorithm": "native",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:11.102787+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:14.898874+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:17.390934+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:11:20.256519+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:23.070430+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:25.570576+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 2,
+          "report_written_at": "2026-09-24T16:11:27.500588+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "native",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:29.488257+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "cache",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:32.031945+00:00"
+        },
+        {
+          "case": "heldout_4v4_reversed_order",
+          "algorithm": "baseline",
+          "trial": 3,
+          "report_written_at": "2026-09-24T16:11:34.897048+00:00"
+        }
+      ],
+      "summary_path": "output\\turn-search-acceptance-t2\\heldout\\summary.json"
+    },
+    "hard": {
+      "all_expected_trials_complete": true,
+      "all_candidate_digests_equal_per_case": true,
+      "groups": [
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            805.9109224000131
+          ],
+          "median_compute_seconds": 805.9109224000131,
+          "range_compute_seconds": [
+            805.9109224000131,
+            805.9109224000131
+          ],
+          "median_serialization_seconds": 3.402676400030032,
+          "median_process_wall_seconds": 809.5932786000194,
+          "median_peak_rss_bytes": 6555066368,
+          "candidate_digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            698.6169490000466
+          ],
+          "median_compute_seconds": 698.6169490000466,
+          "range_compute_seconds": [
+            698.6169490000466,
+            698.6169490000466
+          ],
+          "median_serialization_seconds": 3.6395156999933533,
+          "median_process_wall_seconds": 702.5784770000027,
+          "median_peak_rss_bytes": 6601932800,
+          "candidate_digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            104.46996209997451
+          ],
+          "median_compute_seconds": 104.46996209997451,
+          "range_compute_seconds": [
+            104.46996209997451,
+            104.46996209997451
+          ],
+          "median_serialization_seconds": 3.4935191000113264,
+          "median_process_wall_seconds": 108.34477329999208,
+          "median_peak_rss_bytes": 2430439424,
+          "candidate_digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "baseline",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            585.3795037000091
+          ],
+          "median_compute_seconds": 585.3795037000091,
+          "range_compute_seconds": [
+            585.3795037000091,
+            585.3795037000091
+          ],
+          "median_serialization_seconds": 2.2739729000022635,
+          "median_process_wall_seconds": 587.933403300005,
+          "median_peak_rss_bytes": 4695142400,
+          "candidate_digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "cache",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            505.20594469999196
+          ],
+          "median_compute_seconds": 505.20594469999196,
+          "range_compute_seconds": [
+            505.20594469999196,
+            505.20594469999196
+          ],
+          "median_serialization_seconds": 2.4484193000243977,
+          "median_process_wall_seconds": 507.972592599981,
+          "median_peak_rss_bytes": 4743049216,
+          "candidate_digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "native",
+          "complete": true,
+          "mode": "candidates",
+          "trial_count": 1,
+          "compute_seconds": [
+            68.76051560003543
+          ],
+          "median_compute_seconds": 68.76051560003543,
+          "range_compute_seconds": [
+            68.76051560003543,
+            68.76051560003543
+          ],
+          "median_serialization_seconds": 2.3688134999829344,
+          "median_process_wall_seconds": 71.53308820002712,
+          "median_peak_rss_bytes": 1538207744,
+          "candidate_digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088
+        }
+      ],
+      "aggregate_median_compute_seconds": {
+        "baseline": 1391.2904261000222,
+        "cache": 1203.8228937000385,
+        "native": 173.23047770000994
+      },
+      "aggregate_range_seconds": {
+        "baseline": [
+          1391.2904261000222,
+          1391.2904261000222
+        ],
+        "cache": [
+          1203.8228937000385,
+          1203.8228937000385
+        ],
+        "native": [
+          173.23047770000994,
+          173.23047770000994
+        ]
+      },
+      "performance_leader": "native",
+      "ranking_uncertain": false,
+      "public_selection_matches_recomputation": true,
+      "warmup_count": 6,
+      "warmup_policy_verified": true,
+      "alternating_order_verified": true,
+      "manifest": {
+        "revision": "61061aa8963f3b87fc759c693088eea38a2b8d4d",
+        "source_sha256": "bd60fcdcdbcac3df6547182a0856f54c9af3dffee949d7666a189f01506a2026",
+        "files": {
+          "src/svdeck/battle.py": "f29babceee50a9fe6ab3bc100e8e0d69dc7a5ffe8b56b185ba3b55bff45a63d3",
+          "src/svdeck/battle_ai.py": "1acb58dd5c4ee3cedf4551a8b6e5c91aade544c45bc5d8b2c815a53c6690c0a5",
+          "src/svdeck/battle_cards.py": "70fd0d4cbfae7ba84ca7ac9cc2c5be3f480f736bb7e0aff4c547bad9bc8c1a9b",
+          "src/svdeck/battle_combat.py": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+          "src/svdeck/battle_compact.py": "0e7efbcdba6d05e6971b31b2950d97845577c42d91c0f24993af26711db5445a",
+          "src/svdeck/battle_decks.py": "c4a3c02e16410c0afcbb9c9b59f934dcd3393615f2713ea376e014025f24c1ae",
+          "src/svdeck/battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+          "src/svdeck/battle_frontier_cache.py": "0560886a3cf3d44970a4c6eaaf08c68ff69ee983482c2aeb6c7ce5bc1d23067e",
+          "src/svdeck/battle_frontier_catalog.py": "50027d84b8adcc837264bada754bc2109490c870179127bf7a945f09d40cba2a",
+          "src/svdeck/battle_frontier_compare.py": "6161409cc06936a71bab0170220ddb9ae00abcf2e4018a9e81061e4cec3ed3ca",
+          "src/svdeck/battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+          "src/svdeck/battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+          "src/svdeck/battle_frontier_native.py": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+          "src/svdeck/battle_frontier_native_core.py": "ddfb59818c973539bd9204663006f28305f6542f9c6bbe84d46fe0aec7eea46b",
+          "src/svdeck/battle_frontier_packed.py": "c594f997cb7ba7a023a6b71aaafd4ff13c4a7af71ff72bc836c834e732f25334",
+          "src/svdeck/battle_frontier_por.py": "550a3f72c267b65ab302d642c02e4454b031c6f294581730cf76aa65758580ef",
+          "src/svdeck/battle_frontier_skyline.py": "8cc3ea27cc6c83462db1958eef9ec89bb235ad674687a576d5616d1a144d958b",
+          "src/svdeck/battle_lookahead.py": "59b58dec98ad883cc83f901f57c5178cceb5a7733ecb99c394f7d61135eef4ad",
+          "src/svdeck/battle_meta_cards.py": "49b217ae27f972e49c8fb27675264329e23bbee7cf1941f95e17687ed6c385d7",
+          "src/svdeck/battle_practical.py": "64f9dd067a3a4a84f505f328d1341ed6b6058b4a240a5913ff71254f7e614379",
+          "src/svdeck/battle_response.py": "d094e2ec2a1f2358d9673cd24110a6eecc7dbfd9ce132d606d2cd6afffeb3080",
+          "src/svdeck/battle_rules.py": "78374dab4aa5f748fdc3012980e0bbe4dc27e5670d11b49da740dbfb22c18529",
+          "src/svdeck/battle_server.py": "8a3fc54524932f90d0db0ebe9c7acfab6e30ced60d2dee208ce1ef170ec91491",
+          "src/svdeck/battle_training.py": "6e6a5e259960439878b18ed1fa1a9125b72c12329fe53e0c0028900002c95528",
+          "src/svdeck/combat_benchmark.py": "90869082dc6f0cbb3eccad396c2882c79f8774e865900099e43fb79e0cc2fab2"
+        },
+        "dependencies": {
+          "numpy": "2.5.3",
+          "numba": "0.67.0"
+        },
+        "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+        "platform": "Windows-11-10.0.26220-SP0",
+        "machine": "AMD64",
+        "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+        "input_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-hard-cases.v1.json",
+        "input_sha256": "592b70e9667731796e45e65d47f98084eaecd287ce6de46aa8efeee0428687a6",
+        "algorithms": [
+          "baseline",
+          "cache",
+          "native"
+        ],
+        "trials": 1,
+        "warmup": "one one-state fresh-process warmup per case and algorithm outside measured trials",
+        "process_policy": "one measured child at a time; no parallel benchmark workers started by this harness",
+        "competing_load_note": "Host released by root after T1 and separate resident experiment; no competing benchmark/oracle workers; serial fresh-process T2 trials",
+        "horizon": "own current turn before end_turn",
+        "output_mode": "candidates",
+        "options": {
+          "seconds": 3600.0,
+          "max_states": 100000000,
+          "debug_threshold": 0,
+          "witness_samples": 100
+        },
+        "selection_rule": "Lowest sum of complete per-case median compute time with exact candidate agreement; report overlapping ranges as uncertain.",
+        "options_sha256": "175994fcaa0683339fcb639e9423d26bc81142154a64c3011580b105e154420c"
+      },
+      "trials": [
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220,
+          "timings_seconds": {
+            "setup_seconds": 0.00651470001321286,
+            "algorithm_setup_seconds": 0.0008391999872401357,
+            "enumeration_seconds": 540.4941413000342,
+            "pruning_seconds": 230.48657989996718,
+            "candidate_materialization_seconds": 34.159774800005835,
+            "cleanup_seconds": 0.7630691999802366,
+            "compute_seconds": 805.9109224000131,
+            "serialization_seconds": 3.402676400030032,
+            "worker_wall_seconds": 809.3137955000275
+          },
+          "process_wall_seconds": 809.5932786000194,
+          "cold_start_and_exit_seconds": 0.27948309999192134,
+          "peak_rss_bytes": 6555066368,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:25:14.909235+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220,
+          "timings_seconds": {
+            "setup_seconds": 0.007307799998670816,
+            "algorithm_setup_seconds": 0.016158699989318848,
+            "enumeration_seconds": 451.9596612000023,
+            "pruning_seconds": 211.66360540001187,
+            "candidate_materialization_seconds": 34.29463790002046,
+            "cleanup_seconds": 0.675572199979797,
+            "compute_seconds": 698.6169490000466,
+            "serialization_seconds": 3.6395156999933533,
+            "worker_wall_seconds": 702.2566332000424
+          },
+          "process_wall_seconds": 702.5784770000027,
+          "cold_start_and_exit_seconds": 0.32184379996033385,
+          "peak_rss_bytes": 6601932800,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:36:57.496622+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "b250f65ec849a8e6804bdfa565cb61e503730fb4ea434685dda2919c055be86c",
+          "candidate_count": 2382573,
+          "state_count": 11936220,
+          "timings_seconds": {
+            "setup_seconds": 0.00755909999134019,
+            "algorithm_setup_seconds": 1.0999111999408342,
+            "enumeration_seconds": 25.51308990002144,
+            "pruning_seconds": 34.55845040001441,
+            "candidate_materialization_seconds": 43.15043669997249,
+            "cleanup_seconds": 0.14051090000430122,
+            "compute_seconds": 104.46996209997451,
+            "serialization_seconds": 3.4935191000113264,
+            "worker_wall_seconds": 107.96384819998639
+          },
+          "process_wall_seconds": 108.34477329999208,
+          "cold_start_and_exit_seconds": 0.38092510000569746,
+          "peak_rss_bytes": 2430439424,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-000\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:38:45.867046+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "baseline",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088,
+          "timings_seconds": {
+            "setup_seconds": 0.0069901999668218195,
+            "algorithm_setup_seconds": 0.0008730000117793679,
+            "enumeration_seconds": 393.12411500001326,
+            "pruning_seconds": 169.62439730000915,
+            "candidate_materialization_seconds": 22.185145600000396,
+            "cleanup_seconds": 0.43797709996579215,
+            "compute_seconds": 585.3795037000091,
+            "serialization_seconds": 2.2739729000022635,
+            "worker_wall_seconds": 587.6536581999972
+          },
+          "process_wall_seconds": 587.933403300005,
+          "cold_start_and_exit_seconds": 0.2797451000078581,
+          "peak_rss_bytes": 4695142400,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\baseline\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\baseline\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:58:15.384368+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "cache",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088,
+          "timings_seconds": {
+            "setup_seconds": 0.007235399971250445,
+            "algorithm_setup_seconds": 0.018470400013029575,
+            "enumeration_seconds": 312.63602520001587,
+            "pruning_seconds": 169.96061120001832,
+            "candidate_materialization_seconds": 22.155435300024692,
+            "cleanup_seconds": 0.4281633999780752,
+            "compute_seconds": 505.20594469999196,
+            "serialization_seconds": 2.4484193000243977,
+            "worker_wall_seconds": 507.6545310000074
+          },
+          "process_wall_seconds": 507.972592599981,
+          "cold_start_and_exit_seconds": 0.3180615999735892,
+          "peak_rss_bytes": 4743049216,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\cache\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\cache\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:48:27.443280+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "native",
+          "trial": 1,
+          "complete": true,
+          "mode": "candidates",
+          "digest": "60a95b9bdb923ba816aa25be68a69ef17b154db0c1a60862dea3258a6b8d9cef",
+          "candidate_count": 1643067,
+          "state_count": 8661088,
+          "timings_seconds": {
+            "setup_seconds": 0.0075938000227324665,
+            "algorithm_setup_seconds": 1.1466039000079036,
+            "enumeration_seconds": 17.081845599983353,
+            "pruning_seconds": 20.802731800009497,
+            "candidate_materialization_seconds": 29.62044580001384,
+            "cleanup_seconds": 0.1012899000197649,
+            "compute_seconds": 68.76051560003543,
+            "serialization_seconds": 2.3688134999829344,
+            "worker_wall_seconds": 71.12964689999353
+          },
+          "process_wall_seconds": 71.53308820002712,
+          "cold_start_and_exit_seconds": 0.4034413000335917,
+          "peak_rss_bytes": 1538207744,
+          "checks": {
+            "report_result_digest_equal": true,
+            "all_complete_flags": true,
+            "empty_cutoffs": true,
+            "candidate_count_matches_saved_rows": true,
+            "same_output_mode": true,
+            "case_algorithm_match": true,
+            "input_hash_matches_fixture": true,
+            "source_hash_matches_manifest": true,
+            "frozen_options": true,
+            "whole_lifetime_peak": true,
+            "raw_logs_retained": true
+          },
+          "report_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\native\\trial-1\\report.json",
+          "result_path": "output\\turn-search-acceptance-t2\\hard\\case-001\\native\\trial-1\\result.json",
+          "report_written_at": "2026-09-24T16:39:59.463329+00:00"
+        }
+      ],
+      "observed_report_write_order": [
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:25:14.909235+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:36:57.496622+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_1",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:38:45.867046+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "native",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:39:59.463329+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "cache",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:48:27.443280+00:00"
+        },
+        {
+          "case": "hard_full_board_branching_2",
+          "algorithm": "baseline",
+          "trial": 1,
+          "report_written_at": "2026-09-24T16:58:15.384368+00:00"
+        }
+      ],
+      "summary_path": "output\\turn-search-acceptance-t2\\hard\\summary.json"
+    }
+  },
+  "failures": [],
+  "heldout_aggregate_reversal": false
+}

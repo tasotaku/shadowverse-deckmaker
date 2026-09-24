@@ -5,17 +5,20 @@ from time import perf_counter
 
 import pytest
 
-np = pytest.importorskip('numpy')
+pytest.importorskip('numpy')
 pytest.importorskip('numba')
 
+import numpy as np
+from numpy.typing import NDArray
+
 from svdeck.battle import Battle
-from svdeck.battle_frontier_fast import Kernel
+from svdeck.battle_frontier_fast import Kernel, State
 from svdeck.battle_frontier_packed import frontier as reference
 from svdeck.battle_frontier_skyline import frontier
 from test_battle_frontier_fast import scenario
 
 
-def packed(states):
+def packed(states: list[State]) -> tuple[NDArray[np.uint64], NDArray[np.int64]]:
     # AI_NOTE: 探索実装と独立に列ごとの厳密範囲を詰め、decoderと負の進化値を検査する。
     layout = []
     word, shift = 0, 0
@@ -34,7 +37,7 @@ def packed(states):
     return keys, np.asarray(layout, dtype=np.int64)
 
 
-def reachable(kernel):
+def reachable(kernel: Kernel) -> list[State]:
     # AI_NOTE: 枝刈りなしで全停止点を列挙し、途中状態を選別する実装への循環依存を避ける。
     states = [kernel.initial]
     seen = set(states)
@@ -48,7 +51,7 @@ def reachable(kernel):
 
 
 @pytest.mark.parametrize('seed', range(96))
-def test_complete_candidate_equality(seed):
+def test_complete_candidate_equality(seed: int) -> None:
     # AI_NOTE: 異なる手札・5能力・進化・生成順を持つ全状態について、等価代表を含め完全一致を求める。
     kernel = Kernel(scenario(seed))
     states = reachable(kernel)
@@ -61,7 +64,7 @@ def test_complete_candidate_equality(seed):
     assert np.array_equal(keys, before)
 
 
-def test_identity_equivalence_and_later_dominance():
+def test_identity_equivalence_and_later_dominance() -> None:
     # AI_NOTE: 異なるslotの同能力フォロワーは同形状になる。後から来る上位候補への置換を確かめる。
     cards = {'f': {'name': 'F', 'kind': 'follower', 'cost': 1, 'attack': 2, 'health': 3}}
     battle = Battle({'players': [{'board': [{'id': 'a', 'card_id': 'f'}, {'id': 'b', 'card_id': 'f'}]}, {}]}, cards)
@@ -78,7 +81,7 @@ def test_identity_equivalence_and_later_dominance():
     assert complete and actual == expected and len(actual) == 1
 
 
-def test_large_values_and_timeout():
+def test_large_values_and_timeout() -> None:
     # AI_NOTE: 8bit外の値を切り詰めない。期限切れを完全なPareto候補と表示しない。
     battle = scenario(0)
     battle.state['players'][0]['board'][0].update(health=50000, max_health=50000, attack=60000)

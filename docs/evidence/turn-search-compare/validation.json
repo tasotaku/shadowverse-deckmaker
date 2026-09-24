@@ -1,0 +1,25 @@
+{
+  "verdict": "PASS",
+  "checks": [
+    {"command": ".venv/Scripts/python.exe -X utf8 -m pytest tests/ -q -k 'battle or combat' --tb=short --disable-warnings", "passed": 1102, "skipped": 4, "deselected": 211, "seconds": 57.96, "exit_code": 0},
+    {"command": ".venv/Scripts/python.exe -X utf8 -m pytest tests/test_battle_frontier_compare.py -q --tb=short", "passed": 47, "seconds": 3.39, "exit_code": 0},
+    {"check": "strict mypy", "files": ["battle_frontier_catalog.py", "battle_frontier_packed.py", "battle_frontier_native.py", "battle_frontier_native_core.py", "battle_frontier_skyline.py", "battle_frontier_cache.py", "battle_frontier_por.py", "battle_frontier_compare.py", "scripts/benchmark_frontier_resident.py"], "exit_code": 0},
+    {"check": "resident public API", "complete_calls": 27, "candidate_digests_equal_per_case": true, "raw_reports": "resident/"},
+    {"command": ".venv/Scripts/python.exe -X utf8 -m pytest tests/test_battle_frontier_skyline.py tests/test_battle_frontier_catalog.py -q --tb=short", "passed": 107, "seconds": 3.45, "exit_code": 0, "scope": "Final annotation-only edits; these tests are included in the 1102 above, not additional unique tests."},
+    {"command": "$env:MYPYPATH = 'src'; .venv/Scripts/python.exe -X utf8 -m mypy --follow-imports=silent tests/test_battle_frontier_skyline.py tests/test_battle_frontier_catalog.py scripts/benchmark_frontier_resident.py", "exit_code": 0, "checked_files": 3},
+    {"check": "Actual workspace runtime import", "module": "svdeck.battle_frontier_catalog", "path": "C:/Users/tasog/source/shadowverse-deckmaker/src/svdeck/battle_frontier_catalog.py", "mtime_epoch": 1790265731.9879084}
+  ],
+  "skip_scope": "Two native and two POR tests explicitly skip compound-effect fixtures outside their integer subset. Public catalog and comparison tests separately verify exact generic fallback for those supported effects.",
+  "coverage": {
+    "normal": ["All reachable STOP states and exact endpoint sets", "All legal actions and exact chance branches", "Conditional witnesses and adaptive continuation", "Native/cache/reference public APIs and saved CLI outputs"],
+    "boundaries": ["Identity-equivalent slots and ordered boards", "Later dominating states, incomparable stat/hand/resource dimensions", "Evolution, super evolution, five keywords, summons and ID collisions", "Large integers, zero/negative effect amounts, state/time/outcome budgets"],
+    "errors": ["Unsupported effect rejection", "Native packing bounds and optional-dependency fallback", "Invalid budgets and indices", "Incomplete status never represented as complete"]
+  },
+  "development_failures_retained": [
+    "Initial skyline JIT rejected an OptionalType dictionary.get result; explicit membership lookup fixed it before all 98 skyline tests passed.",
+    "Initial catalogue test incorrectly treated replay_branch's dictionary as an object; consumer corrected to its documented state field.",
+    "Initial oversized-value test expected fallback success for an input invalid under Battle's own maximum; corrected to require rejection, with native-bound fallback tested independently.",
+    "First broad pytest invocation omitted -X utf8 and failed during collection of three existing UTF-8 fixtures under Windows cp932; documented UTF-8 invocation then passed.",
+    "Final isolated test/script mypy invocation omitted MYPYPATH=src and treated editable-installed svdeck as an untyped third-party library (14 import-untyped errors). Setting the project source root resolved imports; all three files then passed without code changes."
+  ]
+}

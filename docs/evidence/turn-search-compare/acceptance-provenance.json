@@ -1,0 +1,17 @@
+{
+  "independent_executors": {
+    "T1": {
+      "id": "fresh-independent-turn-compare-acceptance-t1",
+      "report": "acceptance-t1/report.json",
+      "inputs": "acceptance-t1/role-input-manifest.json"
+    },
+    "T2": {
+      "id": "turn_compare_acceptance_t2",
+      "report": "acceptance-t2/report.json",
+      "inputs": "acceptance-t2/role-input-manifest.json"
+    }
+  },
+  "merge_note": "Only each executor's actually executed test entry is included. Executor-local NOT_RUN placeholders do not describe the other executor's completed work. Review journeys overlapped; timed processes were serialized to avoid resource contention.",
+  "report": "acceptance-report.json",
+  "schema_correction": "Initial merged report failed strict schema due to two extra provenance fields. Moved these fields to this sidecar without changing test evidence or verdicts."
+}

@@ -1,0 +1,37 @@
+{
+  "role": "fresh independent T2 executor",
+  "executor_id": "turn_compare_acceptance_t2",
+  "journey_started_at": "2026-09-24T16:07:35.950754+00:00",
+  "deadline_utc": "2026-09-24T18:07:35.950754+00:00",
+  "code_revision": "61061aa8963f3b87fc759c693088eea38a2b8d4d",
+  "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "machine": "Windows-11-10.0.26220-SP0",
+  "allowed_inputs": [
+    "independent-user-test-spec.v1.json",
+    "independent-user-test-spec.v1.lock.json",
+    "independent-fixtures-manifest.v1.json",
+    "selection-protocol.v1.json",
+    "docs/battle-frontier-compare.md",
+    "docs/battle-frontier.md",
+    "docs/evidence/turn-search-por/README.md",
+    "docs/evidence/turn-search-cache/README.md",
+    "public prior raw measurement JSON"
+  ],
+  "input_hashes": {
+    "independent-user-test-spec.v1.json": "921a9b13d1e4ac02360155646143b5b34759ad611b13eefb12e3496f8bfaf96a",
+    "independent-user-test-spec.v1.lock.json": "95b5d985a1b1a2898d4ef01e0d97caf00874cb3b4922188233efe1c00a776b5b",
+    "independent-fixtures-manifest.v1.json": "b08095f67995ef6f328411d36476c6865e8482cefefa8d4c7aabbe7354752993",
+    "selection-protocol.v1.json": "bb2010e8fde4f547f93c340e2c6467ee2146d3759b51743278f258caaf9f3c29"
+  },
+  "product_source_or_diff_inspected": false,
+  "prior_acceptance_verdict_inspected": false,
+  "scheduling": "Artifact review starts while T1 correctness runs. All timed workers await separate HOST RELEASE. 120-minute budget includes this wait.",
+  "cleanup_scope": "Only owned comparison CLI PID and its descendants at budget; preserve all raw artifacts.",
+  "first_heldout_evaluation": "Not yet performed; timestamp will be persisted before heldout command.",
+  "subsequently_received_public_inputs": [
+    "Current independent T1 raw oracle and observation artifacts under docs/evidence/turn-search-compare/acceptance-t1; supplied by coordinator during this journey; reviewed at timestamp recorded in small-evidence-review.json."
+  ],
+  "heldout_exposure_record": "first-heldout-evaluation.json",
+  "benchmark_host_release": "Coordinator explicitly released exclusive benchmark host after T1 CPU work and resident experiment finished; no timed CLI before release."
+}

@@ -1,0 +1,105 @@
+{
+  "executor_id": "fresh-independent-turn-compare-acceptance-t1",
+  "role": "T1 only; no product implementation/source/diffs/prior verdicts inspected",
+  "inputs": [
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-user-test-spec.v1.json",
+      "sha256": "921a9b13d1e4ac02360155646143b5b34759ad611b13eefb12e3496f8bfaf96a"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-user-test-spec.v1.lock.json",
+      "sha256": "95b5d985a1b1a2898d4ef01e0d97caf00874cb3b4922188233efe1c00a776b5b"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\battle-frontier-compare.md",
+      "sha256": "5d9ba81ebfc07d914253cc1bf67daf212b2970fcf11a7a70ce2226ce4360ba4a"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\battle-frontier.md",
+      "sha256": "1f5075e51272971d48599a52db12684215418c1d505e36d9d47162b6786be86f"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\scripts\\turn_frontier_reference.py",
+      "sha256": "5281282b1d9ae068a51ea7989d389848ddb828f719b05605ad07fe1902262e8e"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-small-cases.v1.json",
+      "sha256": "12ea4f25cd4ad7423c27ef2540074e0cbeaaafc3178d6cb4054f66715ec8a5f2"
+    },
+    {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-fixtures-manifest.v1.json",
+      "sha256": "b08095f67995ef6f328411d36476c6865e8482cefefa8d4c7aabbe7354752993"
+    }
+  ],
+  "entry": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier_compare",
+  "read_surfaces": [
+    "fixed inputs",
+    "public help",
+    "self-produced standard JSON and public error logs"
+  ],
+  "source_provenance_from_public_manifest": {
+    "revision": "61061aa8963f3b87fc759c693088eea38a2b8d4d",
+    "source_sha256": "bd60fcdcdbcac3df6547182a0856f54c9af3dffee949d7666a189f01506a2026",
+    "files": {
+      "src/svdeck/battle.py": "f29babceee50a9fe6ab3bc100e8e0d69dc7a5ffe8b56b185ba3b55bff45a63d3",
+      "src/svdeck/battle_ai.py": "1acb58dd5c4ee3cedf4551a8b6e5c91aade544c45bc5d8b2c815a53c6690c0a5",
+      "src/svdeck/battle_cards.py": "70fd0d4cbfae7ba84ca7ac9cc2c5be3f480f736bb7e0aff4c547bad9bc8c1a9b",
+      "src/svdeck/battle_combat.py": "4fd6f6c5fba55182433cef732f025d784f606e7ff83a178dd9d252997edf7c4b",
+      "src/svdeck/battle_compact.py": "0e7efbcdba6d05e6971b31b2950d97845577c42d91c0f24993af26711db5445a",
+      "src/svdeck/battle_decks.py": "c4a3c02e16410c0afcbb9c9b59f934dcd3393615f2713ea376e014025f24c1ae",
+      "src/svdeck/battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+      "src/svdeck/battle_frontier_cache.py": "0560886a3cf3d44970a4c6eaaf08c68ff69ee983482c2aeb6c7ce5bc1d23067e",
+      "src/svdeck/battle_frontier_catalog.py": "50027d84b8adcc837264bada754bc2109490c870179127bf7a945f09d40cba2a",
+      "src/svdeck/battle_frontier_compare.py": "6161409cc06936a71bab0170220ddb9ae00abcf2e4018a9e81061e4cec3ed3ca",
+      "src/svdeck/battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+      "src/svdeck/battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+      "src/svdeck/battle_frontier_native.py": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+      "src/svdeck/battle_frontier_native_core.py": "ddfb59818c973539bd9204663006f28305f6542f9c6bbe84d46fe0aec7eea46b",
+      "src/svdeck/battle_frontier_packed.py": "c594f997cb7ba7a023a6b71aaafd4ff13c4a7af71ff72bc836c834e732f25334",
+      "src/svdeck/battle_frontier_por.py": "550a3f72c267b65ab302d642c02e4454b031c6f294581730cf76aa65758580ef",
+      "src/svdeck/battle_frontier_skyline.py": "8cc3ea27cc6c83462db1958eef9ec89bb235ad674687a576d5616d1a144d958b",
+      "src/svdeck/battle_lookahead.py": "59b58dec98ad883cc83f901f57c5178cceb5a7733ecb99c394f7d61135eef4ad",
+      "src/svdeck/battle_meta_cards.py": "49b217ae27f972e49c8fb27675264329e23bbee7cf1941f95e17687ed6c385d7",
+      "src/svdeck/battle_practical.py": "64f9dd067a3a4a84f505f328d1341ed6b6058b4a240a5913ff71254f7e614379",
+      "src/svdeck/battle_response.py": "d094e2ec2a1f2358d9673cd24110a6eecc7dbfd9ce132d606d2cd6afffeb3080",
+      "src/svdeck/battle_rules.py": "78374dab4aa5f748fdc3012980e0bbe4dc27e5670d11b49da740dbfb22c18529",
+      "src/svdeck/battle_server.py": "8a3fc54524932f90d0db0ebe9c7acfab6e30ced60d2dee208ce1ef170ec91491",
+      "src/svdeck/battle_training.py": "6e6a5e259960439878b18ed1fa1a9125b72c12329fe53e0c0028900002c95528",
+      "src/svdeck/combat_benchmark.py": "90869082dc6f0cbb3eccad396c2882c79f8774e865900099e43fb79e0cc2fab2"
+    },
+    "dependencies": {
+      "numpy": "2.5.3",
+      "numba": "0.67.0"
+    },
+    "interpreter": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26220-SP0",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+    "input_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-small-cases.v1.json",
+    "input_sha256": "12ea4f25cd4ad7423c27ef2540074e0cbeaaafc3178d6cb4054f66715ec8a5f2",
+    "algorithms": [
+      "baseline",
+      "cache",
+      "native"
+    ],
+    "trials": 1,
+    "warmup": "one one-state fresh-process warmup per case and algorithm outside measured trials",
+    "process_policy": "one measured child at a time; no parallel benchmark workers started by this harness",
+    "competing_load_note": "T1 independent correctness; CPU reserved; no T2 measured workers",
+    "horizon": "own current turn before end_turn",
+    "output_mode": "candidates",
+    "options": {
+      "seconds": 60.0,
+      "max_states": 1000000,
+      "debug_threshold": 1000,
+      "witness_samples": 100
+    },
+    "selection_rule": "Lowest sum of complete per-case median compute time with exact candidate agreement; report overlapping ranges as uncertain.",
+    "options_sha256": "14d8abc75e475a3ec1cde008b0fd5236fa2bfb01515465f3616cc5154b07005b"
+  },
+  "scheduling": "T2 artifact review overlapped; CPU reserved for T1 correctness; released at 2026-09-24T16:08:58Z before root resident measurement/T2 timed trials",
+  "implementation_edits": false,
+  "product_retries": 0,
+  "oracle_enumerations_per_case": 1
+}

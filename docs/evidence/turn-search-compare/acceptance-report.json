@@ -1,0 +1,90 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-search-algorithm-comparison",
+  "spec_version": 1,
+  "spec_sha256": "921a9b13d1e4ac02360155646143b5b34759ad611b13eefb12e3496f8bfaf96a",
+  "executor_id": "coordinator-merge-of-two-fresh-independent-executors",
+  "started_at": "2026-09-24T16:03:00Z",
+  "finished_at": "2026-09-24T16:59:34.241862+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\acceptance-t2\\execution-record.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T16:03:00Z",
+      "journey_stopped_at": "2026-09-24T16:08:58.113Z",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: all 27 case/method results have complete/enumeration_complete/frontier_complete true. Independent JSON consumer compared full canonical state sets, projected Pareto endpoint sets, every source/action/target rational distribution and exact draw paths. Per algorithm: 49 canonical states, 42 endpoints, 41 action groups, 46 outcome edges over nine cases. Oracle has 50 raw states; two destruction-history permutations canonicalize together as explicitly documented. Zero set differences; observations.json records each case and exact missing/extra sets.",
+        "F2 PASS: root state occurs in every graph; all states retain initial active player and both turn counters. Every action key is an own-turn non-end_turn action. All 126 public --candidate expansions offer stop:true. No next-turn state/action appeared in exhaustive independent comparison.",
+        "F3 PASS within fixed-suite scope: independent endpoint projector preserves ordered board behavior/current traits, intrinsic card abilities, current keywords, evolution, cost, attacks, entered_turn, own/enemy attack/health/max-health vectors, leader health, PP/EP/SEP and full remaining hand identities. Exact candidate sets match every method. 27 original hand-authored witnesses per method replay with field checks: unused/a/b/ab/ba hand alternatives, bane/barrier/EP evolution, enemy-ability choices, attack-vs-health tradeoff, ordered damage, summon/grant/face-vs-trade. Detailed resulting states and candidate membership are retained in observations.json.",
+        "F4 PASS: all 123 action groups across methods have exact rational mass 1 and match the independent oracle including unfavorable draws. Random single damage includes both 1/2 branches. Double random includes four 1/4 draw paths, including coincident lr/rl states with separate mass. All 147 debug-state witnesses replay through independent all_outcomes. All 126 saved candidate witnesses were independently replayed and compared to the public --candidate decoded state.",
+        "F5 PASS: top-level scope explicitly says candidates are not mutually selectable deterministic plans or state reachability probabilities. Full small debug conditional graph matched oracle. Public --expand/--state/--steps performed six adaptive branches: after draw 0 choose remove exposed; after draw 1 choose remove protected. Every selected action was legal in that observed branch and public replay matched its resulting state. Paths/actions/probabilities saved in followup-observations.json and adaptive-*-*.json.",
+        "F6 PASS: one max-states=1 suite run produces all nine incomplete statuses with cutoffs [states], enumeration_complete:false, candidate_digest_scope:\"incomplete prefix only\". Summary selection is incomplete, algorithm:null; frontier_complete:true denotes completed prefix projection and does not override overall incomplete. Unsupported-effect probe rejects all three methods with exit_code 1; retained error logs name the exact unsupported effect; no successful result silently removes it.",
+        "UX1 PASS: exactly two documented product invocations (help + one nine-case/three-method comparison) obtained normal candidate output. Remaining commands are independent validation, explicit tiny-budget test, or documented conditional expansion. No production source edits/internal product imports were needed. Exact commands retained in raw-commands.json.",
+        "UX2 PASS: ordinary json.load consumed summary.json and every result. Summary directly exposed scope, mode, case_id, algorithm, complete, trial/result/report paths; all 27 normal result/report paths resolve. Tiny summary distinguishes finished harness run_complete:true from incomplete mathematical results via group complete:false and selection incomplete. No raw graph was needed to identify completion or paths.",
+        "UX3 PASS / CLI usability GO: all interaction used CLI, no UI focus/viewport/scroll acceptance criterion applies. Product command discovery and output consumption succeeded. Largest remaining usability friction: comparator documentation describes behavior/stat exclusions conceptually; readers implementing independent endpoint keys should preserve intrinsic card keywords as abilities. This was a corrected consumer assumption, not a directly observed product defect.",
+        "Budget/scheduling: first measured comparison started at 2026-09-24T16:05:02Z; final public followup completed at 16:08:58Z. Conservative preflight-inclusive start bound 16:03:00Z used in report (under six minutes through public execution versus fixed 20 minutes). CPU released immediately after public validation; no timing claim is derived from this correctness run."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T16:12:20.202206+00:00",
+        "evidence": "All exclusively owned comparison/followup subprocesses exited (sessions 52680 and 85260 exit 0); no live child remains and no process termination was needed. Preserved output/turn-search-acceptance-t1, -tiny, -unsupported and docs/evidence/turn-search-compare/acceptance-t1. No shared files or global processes were deleted/stopped."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T16:07:35.950754+00:00",
+      "journey_stopped_at": "2026-09-24T16:59:34.241862+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 PASS: 3 substantive final methods baseline/cache/native ran. Current independent T1 evidence covers all 9 small cases for each; every exact state/candidate/action/outcome/draw/replay check true. T2 separately reconstructed all 27 documented candidate digests. POR rejection independently recomputed from 18 retained complete raw trials; it is slower on all 3 prior workloads, with equal state and chance digests. See small-evidence-review.json and prior-evidence-review.json.",
+        "F2: all medium complete=True, heldout complete=True; exact per-case canonical candidate digests equal across methods/trials=True/True. Read raw standard JSON plus report; flags/counts alone were not used as equality proof.",
+        "F3 PASS: all final rows use candidates mode, own current turn before end_turn, locked fixture byte hashes, seconds=3600, max_states=100000000, debug_threshold=0, witness_samples=100. Prior POR/full-graph evidence is excluded from final timing scores. Source revision 61061aa8963f3b87fc759c693088eea38a2b8d4d and product source hash remain pinned by each public manifest.",
+        "F4 PASS: directly read setup, algorithm setup, enumeration, pruning, candidate materialization, cleanup, compute and serialization timings in retained reports; worker wall, external process wall and cold start/exit are separate. RSS uses Windows PeakWorkingSetSize in bytes, whole worker lifetime including saving. Phase fields and usable candidate output retained; no heap-only memory proxy used.",
+        "F5 PASS: all 45 medium/heldout measured trial values retained, each in a fresh process, plus one separate one-state warmup per case/method excluded from selection. Raw report write timestamps retain the alternating execution order. Manifests identify interpreter, dependencies, machine, revision, input/options hashes and host reservation. Direct process snapshot found only the owned benchmark chain. T1 and root resident experiment ended before timed workers began; artifact review overlapped T1.",
+        "F6: frozen cold-medium aggregate recomputation={'baseline': 2.4790060000959784, 'cache': 2.1788713000132702, 'native': 3.6946481998893432}, performance leader=cache, observed aggregate-range uncertainty=False. Heldout aggregate={'baseline': 2.6334912000456825, 'cache': 2.280516500060912, 'native': 2.708158200024627}, reversal=False. First heldout evaluation was logged before its invocation. No rule/roster change occurred. Native wins individual 4v4 cases, independently of the cold-medium aggregate choice; finite synthetic evidence is not a universal-fastest claim.",
+        "F7: both full 5v5 inputs requested for all 3 methods in one public command, complete=True, canonical digests equal=True. Hard aggregate={'baseline': 1391.2904261000222, 'cache': 1203.8228937000385, 'native': 173.23047770000994}. This is one trial per hard case/method; no repeated-trial uncertainty estimate or independent exhaustive hard oracle is claimed.",
+        "F8 PASS: execution-record.json retains exact public commands; raw-artifacts.json maps and hashes every measured report/result; recomputed-summary.json preserves all trial timings, source/environment manifests, per-case medians/ranges, hashes and separate workload scopes. The independent reader imports only Python standard-library modules.",
+        "UX1 PASS: read each public summary.json directly. Selection/inconclusive status, workload scope, completion, case/algorithm/mode, compute, serialization, RSS and raw paths are available without opening any raw state graph.",
+        "UX2 PASS: exactly one comparison invocation each for medium, heldout and hard; public docs supplied cases/output/algorithms/trials/budget/debug/witness flags. No production-source edit or internal product import was needed.",
+        "UX3 PASS: separate ordinary JSON reader loaded raw reports/results and recomputed selection. Every report/result/log path resolves and rows identify case, algorithm, candidate mode, completeness, seconds and memory bytes. All raw trial results are retained.",
+        "UX4: command/artifact usable as delivered (GO for this CLI workflow). Largest remaining usability limitation is that independent correctness evidence is separate from each provisional timing summary, so a recommendation must link both; this is made explicit by the saved correctness_status and combined evidence. No window/focus/scroll or interactive SLA is part of the contract.",
+        "Interaction observations: three suite commands; no retries, no discarded trials. CLI-only clicks, scrolling, viewport, automatic transitions and focus transfer are not acceptance conditions. Observation budget is 120 minutes including review and host-release wait; it is not a per-case response-time SLA."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T16:59:34.241862+00:00",
+        "evidence": "Only owned CLI child processes were used. Driver and all child workers exited; no global app/server was stopped and all output/turn-search-acceptance-t2 artifacts remain. Budget cleanup, if any, is restricted to recorded owned PID descendants in execution-record.json."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Frozen cases use SEP=0: exact preservation is covered, nonzero SEP tradeoff behavior is outside observed fixture variation. This report does not certify arbitrary effect/card inputs.",
+    "Preflight start is a conservative reconstructed bound; exact first help timestamp was not separately saved. Measured product-run interval is recorded by artifact timestamps and each public followup command records wall clock.",
+    "Large-case equality is cross-method semantic digest evidence, not an independent exhaustive oracle.",
+    "Synthetic supported fixtures and this Windows host do not establish a universal fastest algorithm.",
+    "One hard trial per case/method provides no repeated-trial range; cold-worker results are separate from long-lived resident training throughput."
+  ]
+}

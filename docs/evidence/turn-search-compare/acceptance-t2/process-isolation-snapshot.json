@@ -1,0 +1,35 @@
+{
+  "observed_at": "2026-09-24T16:14:07.7385304Z",
+  "processes": [
+    {
+      "ProcessId": 32900,
+      "ParentProcessId": 23272,
+      "CommandLine": "\"C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe\" -X utf8 docs/evidence/turn-search-compare/acceptance-t2/run_journey.py"
+    },
+    {
+      "ProcessId": 8764,
+      "ParentProcessId": 32900,
+      "CommandLine": "\"C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" -X utf8 docs/evidence/turn-search-compare/acceptance-t2/run_journey.py"
+    },
+    {
+      "ProcessId": 14048,
+      "ParentProcessId": 8764,
+      "CommandLine": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe -X utf8 -m svdeck.battle_frontier_compare --cases docs/evidence/turn-search-compare/independent-hard-cases.v1.json --output output/turn-search-acceptance-t2/hard --algorithms baseline,cache,native --trials 1 --seconds 3600 --max-states 100000000 --debug-threshold 0 --witness-samples 100 --load-note \"Host released by root after T1 and separate resident experiment; no competing benchmark/oracle workers; serial fresh-process T2 trials\""
+    },
+    {
+      "ProcessId": 25928,
+      "ParentProcessId": 14048,
+      "CommandLine": "\"C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" -X utf8 -m svdeck.battle_frontier_compare --cases docs/evidence/turn-search-compare/independent-hard-cases.v1.json --output output/turn-search-acceptance-t2/hard --algorithms baseline,cache,native --trials 1 --seconds 3600 --max-states 100000000 --debug-threshold 0 --witness-samples 100 --load-note \"Host released by root after T1 and separate resident experiment; no competing benchmark/oracle workers; serial fresh-process T2 trials\""
+    },
+    {
+      "ProcessId": 7108,
+      "ParentProcessId": 25928,
+      "CommandLine": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe -X utf8 -m svdeck.battle_frontier_compare --worker --cases C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-hard-cases.v1.json --case hard_full_board_branching_1 --algorithm baseline --output C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-acceptance-t2\\hard\\case-000\\baseline\\trial-1 --seconds 3600.0 --max-states 100000000 --debug-threshold 0 --witness-samples 100"
+    },
+    {
+      "ProcessId": 6940,
+      "ParentProcessId": 7108,
+      "CommandLine": "\"C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" -X utf8 -m svdeck.battle_frontier_compare --worker --cases C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-search-compare\\independent-hard-cases.v1.json --case hard_full_board_branching_1 --algorithm baseline --output C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-acceptance-t2\\hard\\case-000\\baseline\\trial-1 --seconds 3600.0 --max-states 100000000 --debug-threshold 0 --witness-samples 100"
+    }
+  ]
+}
