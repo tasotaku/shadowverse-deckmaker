@@ -10,12 +10,13 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, Json
+from svdeck.battle import Battle, Json, replay
 from svdeck.battle_ai import Player
 from svdeck.battle_lookahead import analyze, verify_policy, validate_work
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES: list[Json] = json.loads((ROOT/'tests/fixtures/battle_lookahead_cases.json').read_text(encoding='utf-8'))
+ACCEPTANCE: list[Json] = json.loads((ROOT/'tests/fixtures/battle_lookahead_acceptance.json').read_text(encoding='utf-8'))
 
 
 def oracle() -> Any:
@@ -27,7 +28,7 @@ def oracle() -> Any:
     return module
 
 
-@pytest.mark.parametrize('case', CASES, ids=[c['id'] for c in CASES])
+@pytest.mark.parametrize('case', CASES + ACCEPTANCE[:4], ids=[c['id'] for c in CASES + ACCEPTANCE[:4]])
 def test_exact_all_initial_actions_and_policy(case: Json) -> None:
     # AI_NOTE: 選択手だけでなく全初手の勝敗確率を独立参照と照合し、ターン境界込みの全方策辺を再生する。
     expected = oracle().verify(case)
@@ -98,6 +99,22 @@ def test_real_player_secret_state_invariance() -> None:
     assert one['complete'] and not one['optimal'] and not one['proven_win']
     with pytest.raises(ValueError, match='observation'):
         Player(first.cards, policy='lookahead').choose(first.state | {'legal_actions': first.legal_actions()})
+
+
+def test_distinct_hidden_deck_orders_hand_and_rng() -> None:
+    # AI_NOTE: 同名カードのreverseで済ませず、独立fixtureの異なる山札順・相手手札・乱数を実際に照合する。
+    inputs = ROOT/'docs/evidence/battle-lookahead/acceptance-inputs'
+    payloads = [json.loads((inputs/f'api-{suffix}.json').read_text(encoding='utf-8')) for suffix in ('a', 'b')]
+    first, second = [replay(p['record']) for p in payloads]
+    assert first.state['rng'] != second.state['rng']
+    assert first.state['players'][1]['hand'] != second.state['players'][1]['hand']
+    for owner in (0, 1):
+        assert first.state['players'][owner]['deck'] != second.state['players'][owner]['deck']
+    assert first.observation(0) == second.observation(0)
+    one, two = [Player(b.cards, policy='lookahead', **p['options']).choose(b.observation(0))
+                for b, p in zip((first, second), payloads)]
+    for key in ('action', 'candidates', 'depth', 'complete', 'optimal', 'proven_win'):
+        assert one[key] == two[key]
 
 
 def test_runtime_depth_and_legal_fallback() -> None:

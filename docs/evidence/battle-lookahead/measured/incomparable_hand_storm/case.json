@@ -1,0 +1,119 @@
+{
+  "id": "incomparable_hand_storm",
+  "n_turns": 2,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "heal": {
+      "name": "Heal four",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "heal",
+          "target": "own_leader",
+          "amount": 4
+        }
+      ]
+    },
+    "wall": {
+      "name": "Eight-health wall",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 8,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "burn": {
+      "name": "Six face damage",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 6
+        }
+      ]
+    },
+    "storm": {
+      "name": "Seven attack storm",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 7,
+      "health": 1,
+      "keywords": [
+        "疾走"
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 3,
+        "pp": 1,
+        "max_pp": 1,
+        "hand": [
+          {
+            "id": "heal",
+            "card_id": "heal"
+          },
+          {
+            "id": "wall",
+            "card_id": "wall"
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "max_pp": 1,
+        "hand": [
+          {
+            "id": "threat",
+            "card_id": "storm"
+          }
+        ]
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "0",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "wall"
+      }
+    ]
+  },
+  "reason": "Known enemy storm requires wall. Burn bypasses the wall, while seven-attack storm kills even after healing. These known-hand cases are incomparable and must both remain separate opponent patterns.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "pattern_group": "burn_or_storm"
+}

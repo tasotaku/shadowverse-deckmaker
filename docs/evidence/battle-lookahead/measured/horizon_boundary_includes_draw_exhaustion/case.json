@@ -1,0 +1,63 @@
+{
+  "id": "horizon_boundary_includes_draw_exhaustion",
+  "n_turns": 1,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": []
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "end_turn"
+      }
+    ]
+  },
+  "reason": "Even at one-turn horizon full end_turn includes the opponent draw, so their empty deck immediately loses.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "replays": [
+    {
+      "actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "expected_paths": {
+        "winner": 0,
+        "active_player": 1,
+        "players.1.turn": 2,
+        "players.1.max_pp": 1
+      }
+    }
+  ]
+}

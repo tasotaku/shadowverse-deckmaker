@@ -1,0 +1,88 @@
+{
+  "id": "start_lethal_precedes_empty_draw",
+  "n_turns": 1,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "start": {
+      "name": "Start lethal",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "triggers": [
+        {
+          "event": "turn_start",
+          "effects": [
+            {
+              "op": "damage",
+              "target": "enemy_leader",
+              "amount": 20
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [],
+        "board": [
+          {
+            "id": "start",
+            "card_id": "start"
+          }
+        ]
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "0",
+      "-1"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "end_turn"
+      }
+    ]
+  },
+  "reason": "Opponent turn-start damage wins before their empty-deck draw. Empty deck must not overwrite their already established win.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "replays": [
+    {
+      "actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "expected_paths": {
+        "winner": 1,
+        "active_player": 1,
+        "players.1.turn": 2,
+        "players.0.health": 0
+      }
+    }
+  ]
+}

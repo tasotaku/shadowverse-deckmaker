@@ -1,0 +1,267 @@
+[
+  {
+    "case": "greed_loses_to_return",
+    "wall_seconds": 0.41736770002171397,
+    "complete": true,
+    "action": {
+      "type": "attack",
+      "source": "own",
+      "target": "enemy"
+    },
+    "stats": {
+      "states": 14,
+      "transitions": 14,
+      "duplicates": 1,
+      "elapsed_ms": 5.32940000994131,
+      "peak_rss_bytes": 22949888,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 3,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "save_removal_for_next_turn",
+    "wall_seconds": 1.3090690999524668,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 75,
+      "transitions": 78,
+      "duplicates": 4,
+      "elapsed_ms": 17.20559998648241,
+      "peak_rss_bytes": 23121920,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 6,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "no_play_preserves_end_turn_lethal",
+    "wall_seconds": 1.2978657000348903,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 4,
+      "transitions": 3,
+      "duplicates": 0,
+      "elapsed_ms": 2.9042999958619475,
+      "peak_rss_bytes": 22851584,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "incomparable_hand_burn",
+    "wall_seconds": 1.302599899994675,
+    "complete": true,
+    "action": {
+      "type": "play",
+      "card": "heal"
+    },
+    "stats": {
+      "states": 13,
+      "transitions": 12,
+      "duplicates": 0,
+      "elapsed_ms": 5.068300000857562,
+      "peak_rss_bytes": 22900736,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 4,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "incomparable_hand_storm",
+    "wall_seconds": 1.3277635999838822,
+    "complete": true,
+    "action": {
+      "type": "play",
+      "card": "wall"
+    },
+    "stats": {
+      "states": 19,
+      "transitions": 18,
+      "duplicates": 0,
+      "elapsed_ms": 6.712000002153218,
+      "peak_rss_bytes": 23011328,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 5,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "random_then_observe_and_adapt",
+    "wall_seconds": 3.072863999987021,
+    "complete": true,
+    "action": {
+      "type": "play",
+      "card": "dice"
+    },
+    "stats": {
+      "states": 23,
+      "transitions": 28,
+      "duplicates": 6,
+      "elapsed_ms": 7.910899992566556,
+      "peak_rss_bytes": 22753280,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 5,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "end_lethal_precedes_start_and_draw",
+    "wall_seconds": 0.16164930001832545,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 2,
+      "transitions": 1,
+      "duplicates": 0,
+      "elapsed_ms": 2.262099995277822,
+      "peak_rss_bytes": 22835200,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "start_lethal_precedes_empty_draw",
+    "wall_seconds": 0.32254149997606874,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 2,
+      "transitions": 1,
+      "duplicates": 0,
+      "elapsed_ms": 2.23880005069077,
+      "peak_rss_bytes": 22958080,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "horizon_boundary_includes_draw_exhaustion",
+    "wall_seconds": 2.1675709999981336,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 2,
+      "transitions": 1,
+      "duplicates": 0,
+      "elapsed_ms": 2.3160999990068376,
+      "peak_rss_bytes": 22786048,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  },
+  {
+    "case": "normal_end_start_refill_draw",
+    "wall_seconds": 0.1540085999877192,
+    "complete": true,
+    "action": {
+      "type": "end_turn"
+    },
+    "stats": {
+      "states": 2,
+      "transitions": 1,
+      "duplicates": 0,
+      "elapsed_ms": 3.60180001007393,
+      "peak_rss_bytes": 22855680,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "replay": {
+      "status": "PASS",
+      "edges_checked": 1,
+      "coverage": "all exported policy edges"
+    }
+  }
+]

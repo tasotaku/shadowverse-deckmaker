@@ -1,0 +1,126 @@
+{
+  "id": "normal_end_start_refill_draw",
+  "n_turns": 1,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "end": {
+      "name": "End heal",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "end_turn": [
+        {
+          "op": "heal",
+          "target": "own_leader",
+          "amount": 2
+        }
+      ]
+    },
+    "start": {
+      "name": "Start damage",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "triggers": [
+        {
+          "event": "turn_start",
+          "effects": [
+            {
+              "op": "damage",
+              "target": "enemy_leader",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 10,
+        "board": [
+          {
+            "id": "end",
+            "card_id": "end",
+            "attacks": 1
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "drawn",
+            "card_id": "filler"
+          },
+          {
+            "id": "remaining",
+            "card_id": "filler"
+          }
+        ],
+        "max_pp": 2,
+        "board": [
+          {
+            "id": "start",
+            "card_id": "start",
+            "attacks": 1
+          }
+        ]
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "0",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "end_turn"
+      }
+    ]
+  },
+  "reason": "Boundary resolves own end heal (10 to 12), enemy start damage (12 to 9), enemy turn increment, PP refill, attack reset, and exactly one draw.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "replays": [
+    {
+      "actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "expected_paths": {
+        "winner": null,
+        "active_player": 1,
+        "players.0.health": 9,
+        "players.1.turn": 2,
+        "players.1.max_pp": 3,
+        "players.1.pp": 3,
+        "players.1.board.0.attacks": 0,
+        "players.1.hand.0.id": "drawn",
+        "players.1.deck.0.id": "remaining"
+      }
+    }
+  ]
+}

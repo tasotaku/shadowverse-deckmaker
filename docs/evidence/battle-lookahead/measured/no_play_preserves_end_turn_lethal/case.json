@@ -1,0 +1,94 @@
+{
+  "id": "no_play_preserves_end_turn_lethal",
+  "n_turns": 1,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "clock": {
+      "name": "End-turn lethal source",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "end_turn": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 2
+        }
+      ]
+    },
+    "sacrifice": {
+      "name": "Sacrifice ally",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_ally"
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "pp": 1,
+        "max_pp": 1,
+        "board": [
+          {
+            "id": "clock",
+            "card_id": "clock",
+            "attacks": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "sacrifice",
+            "card_id": "sacrifice"
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 2
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "end_turn"
+      }
+    ]
+  },
+  "reason": "Playing the sole card destroys the end-turn lethal source. The empty action sequence followed by end_turn is the only forced win.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+}

@@ -1,0 +1,105 @@
+{
+  "id": "greed_loses_to_return",
+  "n_turns": 2,
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Ready attacker",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 4
+    },
+    "enemy": {
+      "name": "Lethal return attacker",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 3
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 3,
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own"
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "health": 6,
+        "board": [
+          {
+            "id": "enemy",
+            "card_id": "enemy"
+          }
+        ]
+      }
+    ]
+  },
+  "expectations": {
+    "value": [
+      "0",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "attack",
+        "source": "own",
+        "target": "enemy"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "attack",
+          "source": "own",
+          "target": "leader:1"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      }
+    ]
+  },
+  "reason": "Face attack leaves the enemy 3-attack body alive to kill our 3-health leader. Trading removes the only lethal return. At one turn all choices tie on terminal-only utility.",
+  "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+}
