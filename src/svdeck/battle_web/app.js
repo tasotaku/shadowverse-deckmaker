@@ -263,7 +263,7 @@ function render() {
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
 }
-const AI_NAMES = {search:'先読みAI',reply:'相手の返しを読む（試作）',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
+const AI_NAMES = {lookahead:'手札候補から3ターン先読み（試作）',search:'先読みAI',reply:'相手の返しを読む（試作）',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
 function renderDecision(decision, state) {
   // AI_NOTE: 判断は表示中の手に保存されたものだけを示し、現在の選択方式と取り違えない。
   const target = $('ai-decision');
@@ -275,9 +275,16 @@ function renderDecision(decision, state) {
   }
   target.append(node('p','ai-reason',decision.reason || '判断理由の記録はありません。'));
   const score = value => Number.isFinite(value) ? value.toFixed(1) : '—';
-  target.append(node('p','ai-metrics',`評価 ${score(decision.score)} · 試した手 ${decision.nodes ?? '—'} · 先読み ${decision.depth ?? '—'}手 · ${Number.isFinite(decision.elapsed_ms) ? (decision.elapsed_ms / 1000).toFixed(2) + '秒' : '時間未記録'}`));
+  target.append(node('p','ai-metrics',`評価 ${score(decision.score)} · 試した手 ${decision.nodes ?? '—'} · 先読み ${decision.depth ?? '—'}${decision.depth_unit === 'turns' ? 'ターン' : '手'} · ${Number.isFinite(decision.elapsed_ms) ? (decision.elapsed_ms / 1000).toFixed(2) + '秒' : '時間未記録'}`));
   target.append(node('p','hint','評価値は勝率ではありません。相手の実際の手札・山札順は見ていません。' + (decision.response_search?.available ? '公開デッキから手札を仮定しています。' : '')));
   if (decision.uncertain) target.append(node('p','ai-caution','未確定の結果を含むため、先読みの評価には限界があります。'));
+  if (decision.hand_patterns?.length) {
+    // AI_NOTE: 温存も候補として調べたことを示し、抽選後の条件付き到達点を確定した未来と扱わない。
+    const detail = node('details'), list = node('ul');
+    detail.append(node('summary','',`調べた手札の使い方（${decision.hand_patterns.length}通り）`));
+    for (const pattern of decision.hand_patterns) list.append(node('li','',pattern.names.length ? pattern.names.join(' ＋ ') : '手札を使わず温存'));
+    detail.append(list); target.append(detail);
+  }
   if (decision.candidates?.length) {
     const table = node('table','ai-candidates');
     table.append(node('caption','','比べた候補'));

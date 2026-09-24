@@ -213,8 +213,8 @@ class Player:
             raise ValueError(f'未対応のAI方式: {policy}')
         self.cards = cards
         self.policy = policy
-        self.algorithm_version = 3 if policy == 'reply' else (2 if policy in ('search','turn') else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1))
-        if self.algorithm_version not in (1,2,3):
+        self.algorithm_version = 4 if policy == 'lookahead' else (3 if policy == 'reply' else (2 if policy in ('search','turn') else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1)))
+        if self.algorithm_version not in (1,2,3,4):
             raise ValueError('未対応のAI判断バージョンです')
         self.weights = dict(weights if weights is not None else load_weights() if policy == 'trained' else BASE_WEIGHTS)
         if set(self.weights) != set(BASE_WEIGHTS) or any(not math.isfinite(v) for v in self.weights.values()):

@@ -56,6 +56,20 @@ def test_bad_policy_is_rejected(server_url: str, policy: Any) -> None:
     assert raised.value.code==400
 
 
+def test_lookahead_reaches_existing_ai_step(server_url: str) -> None:
+    # AI_NOTE: 診断CLIだけでなく、通常の一手APIが新方式の判断を実行し保存することを確認する。
+    cases = json.loads((Path(__file__).parents[1]/'tests/fixtures/battle_lookahead_cases.json').read_text(encoding='utf-8'))
+    case = next(c for c in cases if c['id'] == 'save_removal_for_next_turn')
+    battle = Battle(case['state'], case['cards'])
+    result = post(server_url, '/api/ai-step', {'record': battle.export(), 'policy': 'lookahead', 'options': {'turns': 3}})
+    assert result['decision']['policy'] == 'lookahead' and result['decision']['depth'] == 3
+    assert result['record']['actions'] == [{'type': 'end_turn'}]
+    assert replay(result['record']).state == result['state']
+    with pytest.raises(urllib.error.HTTPError) as invalid:
+        post(server_url, '/api/ai-step', {'record': battle.export(), 'policy': 'lookahead', 'options': {'turns': 0}})
+    assert invalid.value.code == 400
+
+
 def test_unfinished_games_do_not_become_draws_or_wins() -> None:
     rows = [{'seed':1,'decks':['ramp-dragon','last-words-nightmare'],'seat':i%2,'result':kind,'mean_decision_ms':1}
             for i,kind in enumerate(['win','loss','draw','unfinished'])]

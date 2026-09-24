@@ -4,8 +4,10 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import sys
 from dataclasses import dataclass
 from fractions import Fraction
+from math import comb
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -16,6 +18,33 @@ from .battle_practical import Chance, ChanceBattle, Limit, state_key, summary
 from .combat_benchmark import peak_memory, save_result
 
 Value = tuple[Fraction, Fraction, Fraction]
+
+
+def validate_work(cards: dict[str, Json]) -> None:
+    # AI_NOTE: eagerな合法手の直積と空repeatも事前に制限し、時間検査に到達しない巨大展開を拒否する。
+    for card in cards.values():
+        pending: list[tuple[Any, int]] = [(card, 1)]
+        choices: dict[str, int] = {}
+        work = 0
+        while pending:
+            item, factor = pending.pop()
+            if isinstance(item, dict):
+                if 'op' in item:
+                    work += factor*int(item.get('count', 1) if item['op'] == 'repeat' else 1)
+                    if work > 100000:
+                        raise ValueError('先読みはカードごとの効果展開10万以内です')
+                    if str(item.get('target', '')).startswith('chosen_'):
+                        count = item.get('select_count', 1)
+                        choices[item.get('choice', 'target')] = max(choices.get(item.get('choice', 'target'), 1), comb(9, count) if 0 <= count <= 9 else 1)
+                        size = 1
+                        for number in choices.values():
+                            size *= number
+                        if len(choices) > 2 or size > 4096:
+                            raise ValueError('先読みは対象選択欄2種・選択組合せ4096以内です')
+                multiplier = factor*(item.get('count', 1) if item.get('op') == 'repeat' else 1)
+                pending.extend((child, multiplier) for child in item.values() if isinstance(child, (dict, list)))
+            elif isinstance(item, list):
+                pending.extend((child, factor) for child in item)
 
 
 def value(battle: Battle, owner: int, weights: dict[str, float]) -> Value:
@@ -159,6 +188,7 @@ def analyze(battle: Battle, *, turns: int = 3, max_states: int = 10000, seconds:
             max_actions: int = 20, max_outcomes: int = 128) -> Json:
     # AI_NOTE: 固定手札・固定山札の診断入口。実対戦の非公開情報推定とは明示的に分ける。
     settings(turns, max_states, seconds, max_actions, max_outcomes)
+    validate_work(battle.cards)
     if battle.state['winner'] is not None:
         raise ValueError('対戦中の局面が必要です')
     start = perf_counter()
@@ -191,6 +221,7 @@ def analyze(battle: Battle, *, turns: int = 3, max_states: int = 10000, seconds:
 def choose(player: Player, observation: Json) -> Json:
     # AI_NOTE: 実手札・山札を受け取らず同一の仮定群で全初手を比較。完了した最深段階だけを採用する。
     start = perf_counter()
+    validate_work(player.cards)
     budget = Budget(player.max_nodes, start+player.seconds)
     worlds = [sample_world(observation, player.cards, player.seed+i*7919, use_known=True) for i in range(2)]
     fallback_action = observation['legal_actions'][0]
@@ -242,12 +273,13 @@ def choose(player: Player, observation: Json) -> Json:
     hand = {e['id']: e['name'] for e in observation['players'][observation['active_player']]['hand']}
     reason = f'手札の使用候補を残し、{completed}/{player.turns}ターン先まで比較。相手手札・ドローは公開情報から2通りを仮定'
     if cutoff:
-        reason += '。上限到達：'+', '.join(cutoff)+'。'+('完了済みの深さの判断を使用' if completed else '一手評価へ切替')
+        reason += '。上限到達：'+', '.join(cutoff)+'。'+('完了済みの深さの判断を使用' if completed else '完了した一手評価へ切替' if fallback_score else '評価を完了できなかったため未評価の合法手を使用')
     return {'policy': 'lookahead', 'action': action, 'reason': reason,
             'score': selected['expected_value'] if selected else float(fallback_score[2]) if fallback_score else None, 'plan': [action],
             'nodes': budget.states, 'depth': completed, 'turns_requested': player.turns, 'depth_unit': 'turns',
             'uncertain': True, 'proven_win': False, 'limited': bool(cutoff), 'cutoffs': cutoff,
             'complete': completed == player.turns, 'optimal': False, 'fallback': completed == 0,
+            'fallback_evaluated': fallback_score is not None,
             'candidates': [{'action': r['action'], 'score': r['expected_value'], **r} for r in last],
             'hand_patterns': [{'used': list(p), 'names': [hand.get(i, i) for i in p]} for p in sorted(patterns)],
             'scope': 'sampled hidden worlds; future per-world optimal responses are an approximation',
@@ -312,4 +344,9 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    main()
+    # AI_NOTE: 入力対象外は長いtracebackでなく、完了していないことと原因を同じJSONで通知する。
+    try:
+        main()
+    except (ValueError, KeyError, TypeError) as error:
+        print(json.dumps({'complete': False, 'optimal': False, 'error': str(error)}, ensure_ascii=False), file=sys.stderr)
+        raise SystemExit(1) from None
