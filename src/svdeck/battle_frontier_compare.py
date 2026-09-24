@@ -164,9 +164,14 @@ def run_worker(args: argparse.Namespace) -> None:
                      'frontier_complete': frontier_complete, 'cutoffs': cutoffs,
                      'record': root.export(), 'candidate_count': len(candidates), 'state_count': len(states),
                      'encoding': 'fixed-slots-v1' if kernel is not None else 'full-state-v1'}
-    hashes = []
-    if kernel is not None:
-        candidate_rows: Any = States(len(kernel.initial))
+    hashes: list[bytes] = []
+    candidate_rows: Any
+    if native is not None:
+        # AI_NOTE: Batch conversion preserves the exact existing JSON and canonical digest for native results.
+        from .battle_frontier_export import materialize
+        candidate_rows, hashes = materialize(native, candidates)
+    elif kernel is not None:
+        candidate_rows = States(len(kernel.initial))
         shapes: dict[int, str] = {}
         hands = [digest(freeze(dict(entity, keywords=sorted(entity['keywords'])))) for entity in kernel.hand]
         for index in candidates:

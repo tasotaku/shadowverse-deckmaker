@@ -204,6 +204,7 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
     actions = np.empty((128, 3), dtype=np.int64)
     branch_keys = np.empty((5, 3), dtype=np.uint64)
     branch_draws = np.empty(5, dtype=np.int64)
+    branch_fresh = np.empty(5, dtype=np.bool_)
     n, count = config[:2]
     total_choices, total_outcomes, duplicates = 0, 0, 0
     while cursor < size and cursor < stop:
@@ -234,14 +235,16 @@ def _batch(keys, witnesses, seen, size, cursor, batch_size, max_outcomes,
                     if (branch_keys[prior, 0] == key[0] and branch_keys[prior, 1] == key[1]
                             and branch_keys[prior, 2] == key[2]):
                         repeated = True
-                if not repeated and key not in seen:
+                # AI_NOTE: Retain the atomic budget check's lookup; no other action mutates seen before insertion.
+                branch_fresh[branch] = not repeated and key not in seen
+                if branch_fresh[branch]:
                     fresh += 1
             if size+fresh > len(keys):
                 return size, cursor, 1, total_choices, total_outcomes, duplicates
             code = kind*256+source*16+target+1
             for branch in range(branches):
                 key = (branch_keys[branch, 0], branch_keys[branch, 1], branch_keys[branch, 2])
-                if key not in seen:
+                if branch_fresh[branch]:
                     seen[key] = size
                     keys[size] = key
                     witnesses[size] = (cursor, code, branch_draws[branch])

@@ -1,0 +1,75 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "turn-search-native-speed",
+  "version": 1,
+  "goal": "Further reduce complete own-current-turn exact candidate enumeration time for learning/evaluation compared with native at e4520c044df5e8672b106f1ce29d6fd53d67458b, while preserving every candidate equivalence class, incomparable alternatives, exact random probabilities and decisions conditional on observed outcomes.",
+  "persona": "Python AI engineer consuming complete candidate JSON and conditional actions for learning/evaluation on the prepared Windows host.",
+  "public_entry": "PowerShell at repository root: .venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier_compare --cases JSON --output UNUSED_DIR --algorithms native. Public contracts: docs/battle-frontier.md and docs/battle-frontier-compare.md; conditional continuation uses the documented --expand/--candidate/--steps/--state commands.",
+  "test_data": [
+    "fixture-manifest.v1.json pins the existing independent-small, independent-medium and independent-hard JSON suites, nine small cases, three medium cases and two original 5v5 hard cases. Preserve exact fixture bytes and current-turn stopping horizon.",
+    "The immutable predecessor is Git e4520c044df5e8672b106f1ce29d6fd53d67458b. Prepare it in a separate checkout using the same interpreter/dependency versions as delivered code. Record actual imported source provenance to prevent the editable installation from accidentally running the other checkout.",
+    "Historical native candidate artifacts under output/turn-search-acceptance-t2/medium and /hard and the frozen T1 independent oracle JSON are supporting evidence. Pin their paths/hashes; their old timing is historical, not a fresh predecessor measurement. Historical source manifests name 61061aa8963f3b87fc759c693088eea38a2b8d4d, so do not relabel them e4520c0 without proving source-file hash equivalence.",
+    "Small correctness output uses debug-threshold 1000000, witness-samples 100, max-states 100000000 and seconds 3600. Performance runs use candidate mode, debug-threshold 0, witness-samples 100, max-states 100000000 and seconds 3600 identically for both versions. The journey's 45-minute observation budget still limits the total observation.",
+    "The executor may reuse the frozen independent oracle results after checking their hashes and fixture correspondence, or rerun scripts/turn_frontier_reference.py for small cases. Neither production native nor predecessor native alone is an independent correctness oracle. Do not rerun the slow Python full-graph hard baseline."
+  ],
+  "minimal_test_count_rationale": "One stateful public-CLI journey is sufficient: enumerate, consume and verify small output; compare two versions under one reserved-host measurement schedule; then use their saved report to judge speed and memory. Splitting this sequence would duplicate provenance checks and risk overlapping timed work.",
+  "execution_policy": {"runs_per_test": 1, "continue_after_failure": true, "parallelize_independent_tests": true},
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Use exact candidates and verify further native speed improvement",
+      "user_task": "Use the delivered public CLI to obtain complete reusable candidates and adaptive random continuations, then determine whether the delivered native version reduces complete-work compute time on the two fixed hard workloads compared with the predecessor and report its memory cost.",
+      "setup": [
+        "Fresh PowerShell terminal at the repository root, prepared Python performance environment, no login or browser required; unused output directories for predecessor and delivered runs. Executor receives this lock, fixtures, public docs and oracle/raw artifact locations, but no production source, implementation explanation or intended measured result.",
+        "Reserve the host for one measured child process at a time; pause other benchmark, oracle and compile work. Record machine, interpreter/dependencies, both code revisions/source hashes, fixture bytes, command arguments, process isolation and competing-load note. Existing JIT cache state and separate one-state warmup policy must be recorded for both versions.",
+        "Freeze the workload and decision rule before inspecting new timings: primary speed score is the sum of the two complete hard compute_seconds; delivered score must be strictly lower than fresh predecessor score. Three medium repeats measure ordinary-workload variability; report their median/range and any regression, without substituting medium improvement for missing hard completion."
+      ],
+      "actions": [
+        "Read public help/docs and run the delivered native command once on all nine fixed small cases. Using an independent ordinary-JSON consumer, compare every canonical candidate with the frozen independent oracle projection; compare all advertised debug states and legal action/outcome distributions to the oracle, normalizing semantic states rather than traversal IDs. Replay all available candidate witnesses through the public conditional command or documented replay API.",
+        "On random_bad_outcome_retained, random_sequential_duplicate_outcomes and independent_random_then_chosen_remove, consume all exact rational probabilities. For the adaptive fixture, expand the saved root, retain each observed random branch, and invoke --state or --steps to choose a different legal follow-up target after different observations. Save the actual chosen actions and decoded resulting states. Also make one tiny-budget run and consume its incomplete status.",
+        "Run predecessor and delivered native on every medium case for three fresh-process trials each and every hard case for one fresh-process trial each. One one-state warmup per case/version stays outside measured trials. Alternate version order across medium trials/cases and across the two hard cases; log actual order. A safe external orchestration script may invoke the documented CLI on case subsets without editing production source. Retain every raw trial, including slow or failed trials.",
+        "Read every medium/hard candidate output and verify complete flags, counts and canonical semantic digests agree with the corresponding predecessor and frozen historical candidate result. Independently recompute canonical candidate-set digests from saved rows using the public schema or a reader independent of native implementation; recorded product hashes alone are insufficient if the hashing path changes. Record count/digest equality separately from small independent-oracle correctness.",
+        "Consume top-level summaries and raw reports with a separate ordinary-JSON reader. Recompute each medium median/range, hard compute sum and ratio, per-case serialization/end-to-end wall time, and whole-process peak RSS. Deliver a compact old/new table identifying fresh and historical rows, completion, candidate equality, times, memory and measurement limitations. Stop observation at 45 minutes; unfinished required runs make acceptance incomplete, never PASS."
+      ],
+      "functional_expectations": [
+        "F1: Every normal small, medium and hard required run has complete=true, enumeration_complete=true, frontier_complete=true and empty cutoffs; its native backend is identified. All nine small candidate sets equal the independent oracle projection exactly; all advertised debug state/action/outcome data equal the corresponding oracle semantics. Counts alone are not equality proof.",
+        "F2: Candidate equivalence preserves the documented resource/board relation and all incomparable alternatives: exact remaining hand identities, ability/effect/evolution differences, ordered follower behavior/count, remaining attacks, played turn and PP/EP/SEP or attack/health tradeoffs. No scalar top-k, favorable-outcome filtering, prefix-only work or next-turn/opponent/end_turn action substitutes for complete own-turn stopping candidates.",
+        "F3: Every tested random action retains all favorable and unfavorable outcomes with exact rational mass summing to 1; repeated draws can merge only by exact mass addition. Adaptive random fixture continuation allows different legal subsequent actions after observing different outcomes, and replay reaches the saved branch state. Witnesses remain conditional examples, not selectable luck or unconditional reachability probability.",
+        "F4: Every medium/hard canonical candidate set matches predecessor and historical complete output, verified from actual saved candidate data. Any traversal or witness representative change is harmless only when decoded semantic states and legal conditional replay remain equivalent. Historical evidence is labeled with its original source/environment provenance, not silently promoted to a fresh timing or independent hard oracle.",
+        "F5: Fresh identical-mode hard compute sum is strictly lower for delivered native than predecessor. Compute includes parse/normalization, setup/cached JIT load, enumeration, candidate pruning/materialization, semantic hashing and required cleanup. Serialization and process end-to-end time are separate. All medium trial values and median/range, both hard values, and whole-process peak RSS with method/units are retained. Disclose per-case speed or memory regressions; a single hard trial supports only observed improvement, not a statistical or universal-fastest assertion.",
+        "F6: Reused raw evidence is hash-pinned and traceable. Fresh medium has exactly three retained measured trials per case/version and fresh hard one per case/version, with excluded warmup explicit and serial/balanced order recorded. Incomplete/error results cannot win the score. Tiny-budget output identifies incompleteness and cause; if any required trial or independent comparison remains unfinished within the observation budget, overall acceptance cannot be PASS."
+      ],
+      "ux_checks": [
+        "U1: Starting from the public CLI documentation in the terminal, help plus one suite command (at most two product invocations) produces normal small candidate output without production-source edits or internal imports. Directly log the commands. Repeated benchmark and independent validation commands are a separate measurement workflow and are not counted against this ordinary-use limit.",
+        "U2: A reader opening the saved top-level summary and follow-up comparison table can identify old/new version, workload, completion, candidate agreement, compute seconds, serialization seconds and peak RSS with units without opening a raw state graph. A separate standard JSON reader resolves every retained raw-trial path. Record the fields/paths actually read.",
+        "U3: Using documented --expand plus --state or --steps is sufficient to decode and continue the adaptive fixture with no production-source edits. Record commands and actual outcomes, and state whether the command/artifact is usable as delivered and its largest remaining usability problem. This CLI-only workflow has no viewport/click/scroll/focus or interactive response-time SLA; the explicit performance condition is F5 and is measured from the worker's documented compute interval, cross-checked with an external monotonic process wall clock."
+      ],
+      "impossible_if": [
+        "The prepared runtime, immutable predecessor or pinned fixtures/oracle cannot be supplied before invocation, or no safe timing/whole-process peak-memory observation channel exists. A command crash, timeout, incomplete output, wrong candidates or no speed improvement is an observed product failure or incomplete result, not impossibility."
+      ],
+      "isolation_requirements": "One independent executor with unique output directories and separate predecessor/delivered source provenance; no shared source/fixture edits. All measured workers run serially on the reserved host, with no parallel benchmark/oracle/compilation work. Ordinary validation may resume between measured batches.",
+      "budget": {
+        "public_steps_minutes": 15,
+        "expected_external_wait_minutes": 30,
+        "total_minutes": 45,
+        "basis": "Public setup/output consumption and small-oracle checks plus 18 medium measured workers and four native hard measured workers, separate warmups, saved-data equality and adaptive replay. Historical native hard times around 104/69 seconds make fresh predecessor/new hard observations realistic within this reserve. The 45-minute observation budget is fixed and is not extended for slow code; the separate CLI analysis cap is not a completion guarantee."
+      }
+    }
+  ],
+  "reporting": {"separate_functional_and_ux": true, "include_unexpected_findings": true, "evidence_level": "concise"},
+  "coverage": {
+    "covered_risks": [
+      "Optimization discards exact or incomparable candidates or alters public conditional random semantics.",
+      "Timing omits candidate materialization/hashing, mixes output modes, silently uses another checkout, or compares incomplete prefixes.",
+      "Historical timing mislabeled as fresh evidence, memory omitted, or finite measured improvement generalized to a universal fastest claim.",
+      "Saved candidates cannot be consumed or continued by downstream learning/evaluation code through the public interface."
+    ],
+    "blind_spots": [
+      "One fresh trial per hard/version yields observed host-specific improvement only, without a hard-case variance estimate or statistical significance.",
+      "Small independent oracle is exhaustive only for its fixed fixtures. Medium/hard saved-set equivalence is regression/cross-version evidence, not an independent exhaustive proof for arbitrary cards.",
+      "The heldout suite from algorithm-selection research is not a new secret holdout and is not required for this bounded predecessor speed comparison; no universal algorithm selection claim follows.",
+      "GPU/distributed training, arbitrary unsupported effects, opponent/next-turn planning and desktop UI interaction are outside this own-current-turn CLI journey."
+    ]
+  },
+  "revision": null
+}

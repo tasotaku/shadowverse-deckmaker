@@ -79,6 +79,8 @@ def test_native_complete_reachable_set(case: Json) -> None:
     assert set(result.states) == seen
     assert result.stats['choices'] == choices
     assert result.stats['outcomes'] == outcomes
+    # AI_NOTE: Reusing budget lookups must still count repeated draws and previously seen children exactly once each.
+    assert result.stats['duplicate_outcomes'] == outcomes-(len(seen)-1)
     for node, state in enumerate(result.states):
         current = ChanceBattle(battle.state, battle.cards, record=False)
         for step in result.witness_steps(node):

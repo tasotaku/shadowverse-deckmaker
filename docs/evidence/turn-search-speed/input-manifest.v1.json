@@ -1,0 +1,64 @@
+{
+  "role": "fresh independent acceptance DESIGN only",
+  "agent": "speed_spec",
+  "spec_id": "turn-search-native-speed",
+  "version": 1,
+  "inputs": [
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/SKILL.md",
+      "sha256": "312c628d37b781853a65c524dbcf416e45e3808fccb6387a61f994f4a8da7772"
+    },
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/references/test-spec-contract.md",
+      "sha256": "a9cd85d1799521be1292a51d04edc5c5a521c9bb1e039eb5d6647eab8ed00a6b"
+    },
+    {
+      "path": "docs/battle-frontier.md",
+      "sha256": "9b2623d6b0daa6e0328416bc8670f0731312eabe522863fd58b67bb06021de88"
+    },
+    {
+      "path": "docs/battle-frontier-compare.md",
+      "sha256": "5d9ba81ebfc07d914253cc1bf67daf212b2970fcf11a7a70ce2226ce4360ba4a"
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/independent-user-test-spec.v1.json",
+      "sha256": "921a9b13d1e4ac02360155646143b5b34759ad611b13eefb12e3496f8bfaf96a"
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/independent-fixtures-manifest.v1.json",
+      "sha256": "b08095f67995ef6f328411d36476c6865e8482cefefa8d4c7aabbe7354752993"
+    },
+    {
+      "path": "output/turn-search-acceptance-t2/hard/manifest.json",
+      "sha256": "a14b9c2d3a14694b5b9e626342c6bc2ee515581d9879d51b8f86420ca0c902e8"
+    },
+    {
+      "path": "output/turn-search-acceptance-t2/medium/manifest.json",
+      "sha256": "01356e051794cfa394f9a4cad0836f8de893b9281d60b78991c471d20984147c"
+    },
+    {
+      "path": "output/turn-search-acceptance-t2/hard/case-000/native/trial-1/report.json",
+      "sha256": "bc0511df659aa09f3801067bcf098de98449205c0c56bc83828c2b1fb1f2ff16"
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/acceptance-t1/role-input-manifest.json",
+      "sha256": "b187c6a5b1e4a39eb4947ba6956f14b070b41d25ab6706c192b199d163591824"
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/acceptance-t1/oracle.json",
+      "sha256": "bf7fd8e5931bf3d26a96ef106d7cc55b6c4d8c941be4eca1121eb6c031bda5fb"
+    }
+  ],
+  "allowed_context": "User goal, predecessor revision, public API contracts, frozen fixture requirements and historical raw evidence; inherited global workspace rules and design skill contract",
+  "source_access": "No production source or production diff read. Only linter header read; oracle artifact shape and evidence directory names inspected. Hashing referenced fixture/source-oracle files does not inspect source contents.",
+  "prior_verdict_access": false,
+  "implementation_edits": false,
+  "evidence_note": "Historical raw timing/manifest inspected only as fixture and provenance data, not prior acceptance verdicts. Existing comparison spec is a prior public requirements contract.",
+  "output_files": [
+    "spec.v1.json",
+    "spec.v1.lock.json",
+    "fixture-manifest.v1.json",
+    "input-manifest.v1.json"
+  ],
+  "spec_sha256": "9241c13162ae37afea0ee1a8c5be931af0ecf7bc49188484bc10fb4543c88cf2"
+}
