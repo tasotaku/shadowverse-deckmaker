@@ -1,0 +1,679 @@
+[
+  {
+    "id": "acceptance_save_removal",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Next-turn lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5
+      },
+      "bait": {
+        "name": "Small distraction",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1
+      },
+      "guard": {
+        "name": "Large guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 8,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "remove": {
+        "name": "Single removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 4,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "remove",
+              "card_id": "remove"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "bait",
+              "card_id": "bait"
+            }
+          ],
+          "hand": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "bait"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    "reason": "Pass with removal retained. Opponent can play an 8/8 guard; on our following turn remove it and attack for lethal. Spending removal on the 1/1 lets the guard prevent lethal within three turns.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  },
+  {
+    "id": "acceptance_no_play_next_turn",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Next-turn lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5
+      },
+      "bait": {
+        "name": "Small distraction",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1
+      },
+      "guard": {
+        "name": "Large guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 8,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "remove": {
+        "name": "Sacrifice your future lethal attacker",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_ally"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 4,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "remove",
+              "card_id": "remove"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "max_pp": 1,
+          "board": [],
+          "hand": []
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "own"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    "reason": "Newly entered 3/5 cannot attack now. Pass preserves it through an empty enemy return, then attack the 3-health leader. Legal sacrifice removes our only winning resource.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  },
+  {
+    "id": "acceptance_incomparable_hands",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "heal": {
+        "name": "Heal four",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 4
+          }
+        ]
+      },
+      "wall": {
+        "name": "Eight-health wall",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "burn": {
+        "name": "Six face damage",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 6
+          }
+        ]
+      },
+      "storm": {
+        "name": "Seven attack storm",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 7,
+        "health": 1,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "pp": 1,
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "heal",
+              "card_id": "heal"
+            },
+            {
+              "id": "wall",
+              "card_id": "wall"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "threat",
+              "card_id": "storm"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "wall"
+        }
+      ]
+    },
+    "reason": "Heal and wall are mutually exclusive 1 PP uses. Heal retains wall but seven-attack storm kills our seven-health leader. Wall retains heal, prevents lethal and allows healing next turn. Both hand patterns must remain identifiable.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "pattern_group": "burn_or_storm",
+    "expected_hand_patterns": [
+      {
+        "used": [
+          "heal"
+        ],
+        "retained": [
+          "wall"
+        ],
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "used": [
+          "wall"
+        ],
+        "retained": [
+          "heal"
+        ],
+        "value": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "used": [],
+        "retained": [
+          "heal",
+          "wall"
+        ],
+        "value": [
+          "0",
+          "-1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "acceptance_random_now_then_adapt",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 1
+      },
+      "guard": {
+        "name": "Randomly removable guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 4,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "finish": {
+        "name": "Generated targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "dice": {
+        "name": "Random removal then generate targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "random_enemy"
+          },
+          {
+            "op": "generate",
+            "card_id": "finish"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "pp": 2,
+          "max_pp": 2,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own"
+            }
+          ],
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice"
+            }
+          ],
+          "health": 1
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "board": [
+            {
+              "id": "left",
+              "card_id": "guard"
+            },
+            {
+              "id": "right",
+              "card_id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "dice"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        }
+      ]
+    },
+    "reason": "Leader and lethal attacker each have 1 health, guards each have 1 attack. Waiting loses. Attacking first kills our attacker. Dice removes either guard with probability 1/2; generated removal must target the survivor, then attack leader now.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "adaptive_expectations": [
+      {
+        "removed": "left",
+        "next_target": "right"
+      },
+      {
+        "removed": "right",
+        "next_target": "left"
+      }
+    ]
+  },
+  {
+    "id": "acceptance_three_target_slots_unsupported",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Next-turn lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5
+      },
+      "bait": {
+        "name": "Small distraction",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1
+      },
+      "guard": {
+        "name": "Large guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 8,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "remove": {
+        "name": "Single removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 0,
+            "choice": "first"
+          },
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 0,
+            "choice": "second"
+          },
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 0,
+            "choice": "third"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 4,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "remove",
+              "card_id": "remove"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "bait",
+              "card_id": "bait"
+            }
+          ],
+          "hand": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "engine_valid": true,
+      "analysis_expected_status": "unsupported"
+    },
+    "reason": "Three named target slots are valid in Battle but exceed the public search bound of two.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  }
+]

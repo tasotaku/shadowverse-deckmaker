@@ -1,0 +1,303 @@
+{
+  "record": {
+    "version": 1,
+    "engine_version": "battle-2",
+    "cards": {
+      "test-body": {
+        "cost": 1,
+        "attack": 2,
+        "health": 3,
+        "keywords": [],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "能力なし（検証用カード）",
+        "name": "検証用フォロワー",
+        "card_id": "test-body"
+      },
+      "test-barrier": {
+        "cost": 2,
+        "attack": 2,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ],
+        "kind": "follower",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "バリア（検証用カード）",
+        "name": "バリアの検証用フォロワー",
+        "card_id": "test-barrier"
+      },
+      "test-damage-5": {
+        "cost": 2,
+        "attack": 0,
+        "health": 0,
+        "keywords": [],
+        "kind": "spell",
+        "synthetic": true,
+        "class_name": "検証用",
+        "text": "相手フォロワー1体を選び5ダメージ。",
+        "name": "選択5ダメージ（検証用）",
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 5
+          }
+        ],
+        "card_id": "test-damage-5"
+      },
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": [],
+        "card_id": "filler"
+      },
+      "own": {
+        "name": "Lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 1,
+        "card_id": "own"
+      },
+      "guard": {
+        "name": "Randomly removable guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 4,
+        "keywords": [
+          "守護"
+        ],
+        "card_id": "guard"
+      },
+      "finish": {
+        "name": "Generated targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ],
+        "card_id": "finish"
+      },
+      "dice": {
+        "name": "Random removal then generate targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "random_enemy"
+          },
+          {
+            "op": "generate",
+            "card_id": "finish"
+          }
+        ],
+        "card_id": "dice"
+      },
+      "other-filler": {
+        "name": "Distinct unplayable secret",
+        "kind": "spell",
+        "cost": 98,
+        "effects": [],
+        "card_id": "other-filler"
+      }
+    },
+    "cards_hash": "6dad48b03f27b65a03113d0ba952fedb167d0bdbdd0748dcfec4735c2194e8c8",
+    "initial": {
+      "version": 1,
+      "active_player": 0,
+      "winner": null,
+      "rng": 1,
+      "next_id": 1,
+      "players": [
+        {
+          "health": 1,
+          "max_health": 20,
+          "pp": 2,
+          "max_pp": 2,
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": true,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice",
+              "name": "Random removal then generate targeted removal",
+              "cost": 1,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [
+            {
+              "id": "deck-0-a",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "deck-0-b",
+              "card_id": "other-filler",
+              "name": "Distinct unplayable secret",
+              "cost": 98,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "name": "Lethal attacker",
+              "cost": 1,
+              "attack": 3,
+              "health": 1,
+              "max_health": 1,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        },
+        {
+          "health": 3,
+          "max_health": 20,
+          "pp": 0,
+          "max_pp": 0,
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "evolved_this_turn": false,
+          "extra_pp_used": true,
+          "graveyard": 0,
+          "combo": 0,
+          "hand": [
+            {
+              "id": "secret-hand",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "deck": [
+            {
+              "id": "deck-1-a",
+              "card_id": "filler",
+              "name": "Unplayable draw filler",
+              "cost": 99,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "deck-1-b",
+              "card_id": "other-filler",
+              "name": "Distinct unplayable secret",
+              "cost": 98,
+              "attack": 0,
+              "health": 0,
+              "max_health": 0,
+              "keywords": [],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "board": [
+            {
+              "id": "left",
+              "card_id": "guard",
+              "name": "Randomly removable guard",
+              "cost": 1,
+              "attack": 1,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            },
+            {
+              "id": "right",
+              "card_id": "guard",
+              "name": "Randomly removable guard",
+              "cost": 1,
+              "attack": 1,
+              "health": 4,
+              "max_health": 4,
+              "keywords": [
+                "守護"
+              ],
+              "evolved": 0,
+              "attacks": 0,
+              "entered_turn": 0,
+              "countdown": null
+            }
+          ],
+          "destroyed": []
+        }
+      ]
+    },
+    "actions": [],
+    "frames": []
+  },
+  "policy": "lookahead",
+  "options": {
+    "turns": 3,
+    "max_nodes": 4000,
+    "seconds": 2,
+    "seed": 0
+  }
+}

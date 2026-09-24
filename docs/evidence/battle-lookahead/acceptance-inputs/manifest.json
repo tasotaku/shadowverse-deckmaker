@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "fixed_spec": "docs/evidence/battle-lookahead/user-tests/spec-v1.json",
+  "fixtures": "tests/fixtures/battle_lookahead_acceptance.json",
+  "reference": "docs/evidence/battle-lookahead/acceptance-inputs/reference.json",
+  "new_output_directory_template": "output/lookahead-acceptance-v1-NEW",
+  "output_instruction": "Replace NEW with a fresh run identifier consistently before execution. Execute each listed analysis/API exactly once. Never overwrite old outputs.",
+  "T1": {
+    "cli": [
+      {
+        "id": "T1a-one",
+        "case": "acceptance_save_removal",
+        "turns": 1,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_save_removal",
+          "--turns",
+          "1",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T1a-one"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_save_removal --turns 1 --output output/lookahead-acceptance-v1-NEW/T1a-one",
+        "output": "output/lookahead-acceptance-v1-NEW/T1a-one"
+      },
+      {
+        "id": "T1a-three",
+        "case": "acceptance_save_removal",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_save_removal",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T1a-three"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_save_removal --turns 3 --output output/lookahead-acceptance-v1-NEW/T1a-three",
+        "output": "output/lookahead-acceptance-v1-NEW/T1a-three"
+      },
+      {
+        "id": "T1b-three",
+        "case": "acceptance_no_play_next_turn",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_no_play_next_turn",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T1b-three"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_no_play_next_turn --turns 3 --output output/lookahead-acceptance-v1-NEW/T1b-three",
+        "output": "output/lookahead-acceptance-v1-NEW/T1b-three"
+      },
+      {
+        "id": "T1c-three",
+        "case": "acceptance_incomparable_hands",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_incomparable_hands",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T1c-three"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_incomparable_hands --turns 3 --output output/lookahead-acceptance-v1-NEW/T1c-three",
+        "output": "output/lookahead-acceptance-v1-NEW/T1c-three"
+      }
+    ],
+    "expected_calls": 4,
+    "expectations": {
+      "T1a-one": "No opponent decision; terminal-only reference ties both choices. Public heuristic may favor immediate removal. Do not assert three-turn win.",
+      "T1a-three": "Only end_turn first guarantees win. Preserve removal for guard and attack next turn.",
+      "T1b-three": "Only no-play/end_turn preserves next-turn forced win.",
+      "T1c-three": "Heal-use, wall-use and no-play patterns remain identifiable. Wall retains heal and prevents loss. Heal retains wall but loses to storm."
+    }
+  },
+  "T2": {
+    "cli": [
+      {
+        "id": "T2-random-three",
+        "case": "acceptance_random_now_then_adapt",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_random_now_then_adapt",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T2-random-three"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_random_now_then_adapt --turns 3 --output output/lookahead-acceptance-v1-NEW/T2-random-three",
+        "output": "output/lookahead-acceptance-v1-NEW/T2-random-three"
+      },
+      {
+        "id": "T2-state-limit",
+        "case": "acceptance_save_removal",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_save_removal",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T2-state-limit",
+          "--max-states",
+          "1"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_save_removal --turns 3 --output output/lookahead-acceptance-v1-NEW/T2-state-limit --max-states 1",
+        "output": "output/lookahead-acceptance-v1-NEW/T2-state-limit"
+      },
+      {
+        "id": "T2-unsupported",
+        "case": "acceptance_three_target_slots_unsupported",
+        "turns": 3,
+        "argv": [
+          ".venv/Scripts/python.exe",
+          "-X",
+          "utf8",
+          "-m",
+          "svdeck.battle_lookahead",
+          "--cases",
+          "tests/fixtures/battle_lookahead_acceptance.json",
+          "--case",
+          "acceptance_three_target_slots_unsupported",
+          "--turns",
+          "3",
+          "--output",
+          "output/lookahead-acceptance-v1-NEW/T2-unsupported"
+        ],
+        "command": ".venv/Scripts/python.exe -X utf8 -m svdeck.battle_lookahead --cases tests/fixtures/battle_lookahead_acceptance.json --case acceptance_three_target_slots_unsupported --turns 3 --output output/lookahead-acceptance-v1-NEW/T2-unsupported",
+        "output": "output/lookahead-acceptance-v1-NEW/T2-unsupported"
+      }
+    ],
+    "api": [
+      {
+        "id": "T2-api-a",
+        "method": "POST",
+        "url": "http://localhost:8767/api/ai-step",
+        "payload": "docs/evidence/battle-lookahead/acceptance-inputs/api-a.json",
+        "output": "output/lookahead-acceptance-v1-NEW/T2-api-a.json"
+      },
+      {
+        "id": "T2-api-b",
+        "method": "POST",
+        "url": "http://localhost:8767/api/ai-step",
+        "payload": "docs/evidence/battle-lookahead/acceptance-inputs/api-b.json",
+        "output": "output/lookahead-acceptance-v1-NEW/T2-api-b.json"
+      }
+    ],
+    "expected_total_calls": 5,
+    "expectations": {
+      "random": "Each random removal outcome has probability 1/2 and adaptive continuation wins with probability 1. Root pass loses for certain.",
+      "state_limit": "Limit 1 is below independently counted 37 reference states. Expose incomplete state-budget cause, not global optimality.",
+      "unsupported": "Three target slots valid in Battle exceed public search limit two. Expose unsupported status without exactness claim.",
+      "api_pair": "Identical options, seed and public observation. Compare decisions, candidates, probability semantics and reached scope; ignore timing and actual application effects in different private worlds."
+    }
+  }
+}
