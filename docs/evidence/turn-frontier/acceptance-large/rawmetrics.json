@@ -1,0 +1,201 @@
+{
+  "started_at": "2026-09-24T14:08:47.474221+00:00",
+  "finished_at": "2026-09-24T14:19:42.019884+00:00",
+  "root_requested_stop_after_case1": true,
+  "not_started": [
+    "hard_full_board_branching_2",
+    "limit_states",
+    "limit_seconds"
+  ],
+  "settings": {
+    "max_states": 10000000,
+    "seconds": 600
+  },
+  "exit_code": 0,
+  "process": {
+    "pid": 26168,
+    "parent": 16412,
+    "exe": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+    "peak_working_set_bytes": 4170850304,
+    "rss_bytes": 36864,
+    "cpu_seconds": 651.734375
+  },
+  "last_original_monotonic_elapsed_seconds": 320.2970000000205,
+  "continued_monitor_started_at": "2026-09-24T14:14:41.374652+00:00",
+  "continued_monitor_elapsed_seconds": 300.655999999959,
+  "elapsed_note": "Original scheduler terminated to prevent case2/limits after root cancelled this product revision. Exact CLI start-to-exit monotonic timing unavailable across monitor handoff; do not present as full T2 timing PASS.",
+  "product_report": {
+    "complete": false,
+    "enumeration_complete": false,
+    "frontier_complete": false,
+    "cutoffs": [
+      "frontier time",
+      "time"
+    ],
+    "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+    "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits; not future-game dominance. Full decision graph is unpruned.",
+    "stats": {
+      "states": 2429145,
+      "choices": 15055029,
+      "outcomes": 16061749,
+      "duplicates": 13632605,
+      "candidates": 2429145,
+      "search_ms": 600000.0097999582,
+      "elapsed_ms": 600026.0966999922,
+      "peak_rss_bytes": 4170813440,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000000,
+      "max_outcomes": 4096,
+      "seconds": 600.0
+    },
+    "case_id": "hard_full_board_branching_1"
+  },
+  "graph_artifact": {
+    "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large\\hard_full_board_branching_1\\graph.json",
+    "bytes": 776669221,
+    "sha256": "1e644fcb9346f411971aa81f70b3bedc4c64a6879a37142855ea52f489fa1834",
+    "fields": {
+      "version": {
+        "type": "int",
+        "length": null
+      },
+      "strategy": {
+        "type": "str",
+        "length": 21
+      },
+      "complete": {
+        "type": "bool",
+        "length": null
+      },
+      "enumeration_complete": {
+        "type": "bool",
+        "length": null
+      },
+      "frontier_complete": {
+        "type": "bool",
+        "length": null
+      },
+      "cutoffs": {
+        "type": "list",
+        "length": 2
+      },
+      "scope": {
+        "type": "str",
+        "length": 114
+      },
+      "dominance_scope": {
+        "type": "str",
+        "length": 173
+      },
+      "record": {
+        "type": "dict",
+        "length": 7
+      },
+      "root": {
+        "type": "int",
+        "length": null
+      },
+      "positions": {
+        "type": "list",
+        "length": 2429145
+      },
+      "players": {
+        "type": "list",
+        "length": 144015
+      },
+      "zones": {
+        "type": "list",
+        "length": 5624
+      },
+      "entities": {
+        "type": "list",
+        "length": 73
+      },
+      "metadata": {
+        "type": "list",
+        "length": 353
+      },
+      "actions": {
+        "type": "list",
+        "length": 54
+      },
+      "probabilities": {
+        "type": "list",
+        "length": 5
+      },
+      "draws": {
+        "type": "list",
+        "length": 6
+      },
+      "choices": {
+        "type": "list",
+        "length": 15055029
+      },
+      "outcomes": {
+        "type": "list",
+        "length": 16061749
+      },
+      "witnesses": {
+        "type": "list",
+        "length": 2429145
+      },
+      "expanded": {
+        "type": "list",
+        "length": 2429051
+      },
+      "candidates": {
+        "type": "list",
+        "length": 2429145
+      },
+      "stats": {
+        "type": "dict",
+        "length": 13
+      }
+    },
+    "summary": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": false,
+      "stats": {
+        "states": 2429145,
+        "choices": 15055029,
+        "outcomes": 16061749,
+        "duplicates": 13632605,
+        "candidates": 2429145,
+        "search_ms": 600000.0097999582,
+        "elapsed_ms": 600026.0966999922,
+        "peak_rss_bytes": 4170813440,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000000,
+        "max_outcomes": 4096,
+        "seconds": 600.0
+      }
+    }
+  },
+  "pre_handoff_observation": {
+    "id": "hard_full_board_branching_1",
+    "elapsed_seconds": 320.2970000000205,
+    "processes": [
+      {
+        "pid": 16412,
+        "parent": 19724,
+        "exe": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "peak_working_set_bytes": 4517888,
+        "rss_bytes": 4517888,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 26168,
+        "parent": 16412,
+        "exe": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "peak_working_set_bytes": 2344718336,
+        "rss_bytes": 2344718336,
+        "cpu_seconds": 318.921875
+      }
+    ]
+  },
+  "approximate_utc_start_to_exit_seconds": 654.545663,
+  "cleanup": "Own CLI launcher and actual Python completed naturally; scheduler stopped intentionally to prevent remaining runs; both consumers completed; no server started or altered."
+}

@@ -1,0 +1,1602 @@
+[
+  {
+    "name": "hard_full_board_branching_1",
+    "command": [
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "svdeck.battle_frontier",
+      "--cases",
+      "tests/fixtures/battle_lookahead_hard.json",
+      "--case",
+      "hard_full_board_branching_1",
+      "--output",
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_1",
+      "--max-states",
+      "10000000",
+      "--seconds",
+      "600"
+    ],
+    "settings": {
+      "max_states": 10000000,
+      "seconds": 600
+    },
+    "started_at": "2026-09-24T14:35:55.067437+00:00",
+    "finished_at": "2026-09-24T14:47:08.811114+00:00",
+    "elapsed_seconds": 673.7499359999783,
+    "exit_code": 0,
+    "processes": [
+      {
+        "pid": 6492,
+        "parent_pid": 30524,
+        "image": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "peak_working_set_bytes": 4648960,
+        "last_working_set_bytes": 32768
+      },
+      {
+        "pid": 24804,
+        "parent_pid": 6492,
+        "image": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "peak_working_set_bytes": 9295020032,
+        "last_working_set_bytes": 49152
+      }
+    ],
+    "peak_working_set_bytes": 9295020032,
+    "stdout": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_1.stdout.txt",
+    "stderr": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_1.stderr.txt",
+    "cleanup": "all observed product processes completed",
+    "public_result": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": true,
+      "cutoffs": [
+        "states"
+      ],
+      "stats": {
+        "states": 10000000,
+        "choices": 67279664,
+        "outcomes": 71506729,
+        "duplicates": 61506730,
+        "candidates": 2124230,
+        "search_ms": 387629.6796000097,
+        "elapsed_ms": 578490.7654999988,
+        "peak_rss_bytes": 9295020032,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000000,
+        "max_outcomes": 4096,
+        "seconds": 600.0,
+        "backend": "fixed-slots"
+      }
+    },
+    "progress_json": [
+      {
+        "phase": "enumeration",
+        "states": 100146,
+        "expanded": 100000,
+        "outcomes": 524314,
+        "elapsed_seconds": 2.8969347000238486
+      },
+      {
+        "phase": "enumeration",
+        "states": 200097,
+        "expanded": 200000,
+        "outcomes": 1106700,
+        "elapsed_seconds": 5.97150560002774
+      },
+      {
+        "phase": "enumeration",
+        "states": 300115,
+        "expanded": 300000,
+        "outcomes": 1679291,
+        "elapsed_seconds": 9.091237300017383
+      },
+      {
+        "phase": "enumeration",
+        "states": 400132,
+        "expanded": 400000,
+        "outcomes": 2304337,
+        "elapsed_seconds": 12.465523799997754
+      },
+      {
+        "phase": "enumeration",
+        "states": 500131,
+        "expanded": 500000,
+        "outcomes": 2920704,
+        "elapsed_seconds": 16.00339139997959
+      },
+      {
+        "phase": "enumeration",
+        "states": 600120,
+        "expanded": 600000,
+        "outcomes": 3549022,
+        "elapsed_seconds": 19.3880159999826
+      },
+      {
+        "phase": "enumeration",
+        "states": 700121,
+        "expanded": 700000,
+        "outcomes": 4207223,
+        "elapsed_seconds": 22.916675799991935
+      },
+      {
+        "phase": "enumeration",
+        "states": 800166,
+        "expanded": 800000,
+        "outcomes": 4873526,
+        "elapsed_seconds": 26.38821140001528
+      },
+      {
+        "phase": "enumeration",
+        "states": 900110,
+        "expanded": 900000,
+        "outcomes": 5527188,
+        "elapsed_seconds": 29.852974899986293
+      },
+      {
+        "phase": "enumeration",
+        "states": 1000135,
+        "expanded": 1000000,
+        "outcomes": 6260007,
+        "elapsed_seconds": 33.592853699985426
+      },
+      {
+        "phase": "enumeration",
+        "states": 1100105,
+        "expanded": 1100000,
+        "outcomes": 6808609,
+        "elapsed_seconds": 36.58729439997114
+      },
+      {
+        "phase": "enumeration",
+        "states": 1200087,
+        "expanded": 1200000,
+        "outcomes": 7467638,
+        "elapsed_seconds": 40.14345799997682
+      },
+      {
+        "phase": "enumeration",
+        "states": 1300098,
+        "expanded": 1300000,
+        "outcomes": 8174224,
+        "elapsed_seconds": 43.97406089998549
+      },
+      {
+        "phase": "enumeration",
+        "states": 1400061,
+        "expanded": 1400000,
+        "outcomes": 8843792,
+        "elapsed_seconds": 47.491964099986944
+      },
+      {
+        "phase": "enumeration",
+        "states": 1500135,
+        "expanded": 1500000,
+        "outcomes": 9471445,
+        "elapsed_seconds": 50.85659639997175
+      },
+      {
+        "phase": "enumeration",
+        "states": 1600116,
+        "expanded": 1600000,
+        "outcomes": 10164656,
+        "elapsed_seconds": 54.6164002000005
+      },
+      {
+        "phase": "enumeration",
+        "states": 1700115,
+        "expanded": 1700000,
+        "outcomes": 10806566,
+        "elapsed_seconds": 58.06876230001217
+      },
+      {
+        "phase": "enumeration",
+        "states": 1800083,
+        "expanded": 1800000,
+        "outcomes": 11461984,
+        "elapsed_seconds": 61.522216800018214
+      },
+      {
+        "phase": "enumeration",
+        "states": 1900105,
+        "expanded": 1900000,
+        "outcomes": 12198374,
+        "elapsed_seconds": 65.57983459997922
+      },
+      {
+        "phase": "enumeration",
+        "states": 2000107,
+        "expanded": 2000000,
+        "outcomes": 12957535,
+        "elapsed_seconds": 69.58121999999275
+      },
+      {
+        "phase": "enumeration",
+        "states": 2100140,
+        "expanded": 2100000,
+        "outcomes": 13816737,
+        "elapsed_seconds": 74.22443960001692
+      },
+      {
+        "phase": "enumeration",
+        "states": 2200083,
+        "expanded": 2200000,
+        "outcomes": 14663871,
+        "elapsed_seconds": 78.71738839999307
+      },
+      {
+        "phase": "enumeration",
+        "states": 2300140,
+        "expanded": 2300000,
+        "outcomes": 15294712,
+        "elapsed_seconds": 82.15182819997426
+      },
+      {
+        "phase": "enumeration",
+        "states": 2400106,
+        "expanded": 2400000,
+        "outcomes": 15872491,
+        "elapsed_seconds": 85.4221036999952
+      },
+      {
+        "phase": "enumeration",
+        "states": 2500188,
+        "expanded": 2500000,
+        "outcomes": 16591900,
+        "elapsed_seconds": 89.2660100000212
+      },
+      {
+        "phase": "enumeration",
+        "states": 2600151,
+        "expanded": 2600000,
+        "outcomes": 17165735,
+        "elapsed_seconds": 92.28497119998792
+      },
+      {
+        "phase": "enumeration",
+        "states": 2700104,
+        "expanded": 2700000,
+        "outcomes": 17809404,
+        "elapsed_seconds": 95.74283170001581
+      },
+      {
+        "phase": "enumeration",
+        "states": 2800114,
+        "expanded": 2800000,
+        "outcomes": 18571546,
+        "elapsed_seconds": 99.72250289999647
+      },
+      {
+        "phase": "enumeration",
+        "states": 2900124,
+        "expanded": 2900000,
+        "outcomes": 19119673,
+        "elapsed_seconds": 102.83615360001568
+      },
+      {
+        "phase": "enumeration",
+        "states": 3000100,
+        "expanded": 3000000,
+        "outcomes": 19794316,
+        "elapsed_seconds": 106.37156320002396
+      },
+      {
+        "phase": "enumeration",
+        "states": 3100081,
+        "expanded": 3100000,
+        "outcomes": 20466380,
+        "elapsed_seconds": 110.29089629999362
+      },
+      {
+        "phase": "enumeration",
+        "states": 3200157,
+        "expanded": 3200000,
+        "outcomes": 21148524,
+        "elapsed_seconds": 114.56863290001638
+      },
+      {
+        "phase": "enumeration",
+        "states": 3300121,
+        "expanded": 3300000,
+        "outcomes": 21773321,
+        "elapsed_seconds": 117.95706440001959
+      },
+      {
+        "phase": "enumeration",
+        "states": 3400087,
+        "expanded": 3400000,
+        "outcomes": 22431048,
+        "elapsed_seconds": 121.35582459997386
+      },
+      {
+        "phase": "enumeration",
+        "states": 3500102,
+        "expanded": 3500000,
+        "outcomes": 23115607,
+        "elapsed_seconds": 125.10987819998991
+      },
+      {
+        "phase": "enumeration",
+        "states": 3600087,
+        "expanded": 3600000,
+        "outcomes": 23800796,
+        "elapsed_seconds": 128.71864869998535
+      },
+      {
+        "phase": "enumeration",
+        "states": 3700110,
+        "expanded": 3700000,
+        "outcomes": 24582169,
+        "elapsed_seconds": 132.91785969998455
+      },
+      {
+        "phase": "enumeration",
+        "states": 3800099,
+        "expanded": 3800000,
+        "outcomes": 25408803,
+        "elapsed_seconds": 137.21808080002666
+      },
+      {
+        "phase": "enumeration",
+        "states": 3900156,
+        "expanded": 3900000,
+        "outcomes": 26214030,
+        "elapsed_seconds": 141.6119888999965
+      },
+      {
+        "phase": "enumeration",
+        "states": 4000189,
+        "expanded": 4000000,
+        "outcomes": 26821380,
+        "elapsed_seconds": 144.8939838000224
+      },
+      {
+        "phase": "enumeration",
+        "states": 4100118,
+        "expanded": 4100000,
+        "outcomes": 27472538,
+        "elapsed_seconds": 148.40078710002126
+      },
+      {
+        "phase": "enumeration",
+        "states": 4200122,
+        "expanded": 4200000,
+        "outcomes": 28152044,
+        "elapsed_seconds": 151.9137197000091
+      },
+      {
+        "phase": "enumeration",
+        "states": 4300085,
+        "expanded": 4300000,
+        "outcomes": 28758518,
+        "elapsed_seconds": 155.20829380000941
+      },
+      {
+        "phase": "enumeration",
+        "states": 4400096,
+        "expanded": 4400000,
+        "outcomes": 29464723,
+        "elapsed_seconds": 158.95108039997285
+      },
+      {
+        "phase": "enumeration",
+        "states": 4500084,
+        "expanded": 4500000,
+        "outcomes": 30120093,
+        "elapsed_seconds": 162.53013169998303
+      },
+      {
+        "phase": "enumeration",
+        "states": 4600117,
+        "expanded": 4600000,
+        "outcomes": 30766362,
+        "elapsed_seconds": 166.40916460001608
+      },
+      {
+        "phase": "enumeration",
+        "states": 4700080,
+        "expanded": 4700000,
+        "outcomes": 31451251,
+        "elapsed_seconds": 170.16589800000656
+      },
+      {
+        "phase": "enumeration",
+        "states": 4800121,
+        "expanded": 4800000,
+        "outcomes": 32117905,
+        "elapsed_seconds": 173.65784599998733
+      },
+      {
+        "phase": "enumeration",
+        "states": 4900062,
+        "expanded": 4900000,
+        "outcomes": 32836362,
+        "elapsed_seconds": 177.6587241999805
+      },
+      {
+        "phase": "enumeration",
+        "states": 5000105,
+        "expanded": 5000000,
+        "outcomes": 33635070,
+        "elapsed_seconds": 181.90804110001773
+      },
+      {
+        "phase": "enumeration",
+        "states": 5100162,
+        "expanded": 5100000,
+        "outcomes": 34445779,
+        "elapsed_seconds": 186.4739734000177
+      },
+      {
+        "phase": "enumeration",
+        "states": 5200178,
+        "expanded": 5200000,
+        "outcomes": 35072852,
+        "elapsed_seconds": 189.974693999975
+      },
+      {
+        "phase": "enumeration",
+        "states": 5300149,
+        "expanded": 5300000,
+        "outcomes": 35714297,
+        "elapsed_seconds": 193.47457040002337
+      },
+      {
+        "phase": "enumeration",
+        "states": 5400152,
+        "expanded": 5400000,
+        "outcomes": 36507338,
+        "elapsed_seconds": 197.71153059997596
+      },
+      {
+        "phase": "enumeration",
+        "states": 5500168,
+        "expanded": 5500000,
+        "outcomes": 37334042,
+        "elapsed_seconds": 202.10852619999787
+      },
+      {
+        "phase": "enumeration",
+        "states": 5600148,
+        "expanded": 5600000,
+        "outcomes": 38021117,
+        "elapsed_seconds": 205.93459610000718
+      },
+      {
+        "phase": "enumeration",
+        "states": 5700117,
+        "expanded": 5700000,
+        "outcomes": 38791356,
+        "elapsed_seconds": 210.17610240000067
+      },
+      {
+        "phase": "enumeration",
+        "states": 5800140,
+        "expanded": 5800000,
+        "outcomes": 39502644,
+        "elapsed_seconds": 213.9299011999974
+      },
+      {
+        "phase": "enumeration",
+        "states": 5900136,
+        "expanded": 5900000,
+        "outcomes": 40158112,
+        "elapsed_seconds": 217.42711280001095
+      },
+      {
+        "phase": "enumeration",
+        "states": 6000122,
+        "expanded": 6000000,
+        "outcomes": 40961048,
+        "elapsed_seconds": 221.9537925000186
+      },
+      {
+        "phase": "enumeration",
+        "states": 6100097,
+        "expanded": 6100000,
+        "outcomes": 41784538,
+        "elapsed_seconds": 226.73515329998918
+      },
+      {
+        "phase": "enumeration",
+        "states": 6200130,
+        "expanded": 6200000,
+        "outcomes": 42680693,
+        "elapsed_seconds": 231.4375538000022
+      },
+      {
+        "phase": "enumeration",
+        "states": 6300112,
+        "expanded": 6300000,
+        "outcomes": 43509009,
+        "elapsed_seconds": 235.82659559999593
+      },
+      {
+        "phase": "enumeration",
+        "states": 6400076,
+        "expanded": 6400000,
+        "outcomes": 44513054,
+        "elapsed_seconds": 241.24680919997627
+      },
+      {
+        "phase": "enumeration",
+        "states": 6500111,
+        "expanded": 6500000,
+        "outcomes": 45321050,
+        "elapsed_seconds": 245.62871030002134
+      },
+      {
+        "phase": "enumeration",
+        "states": 6600116,
+        "expanded": 6600000,
+        "outcomes": 45973545,
+        "elapsed_seconds": 249.07667570002377
+      },
+      {
+        "phase": "enumeration",
+        "states": 6700072,
+        "expanded": 6700000,
+        "outcomes": 46628289,
+        "elapsed_seconds": 252.6642180000199
+      },
+      {
+        "phase": "enumeration",
+        "states": 6800116,
+        "expanded": 6800000,
+        "outcomes": 47228776,
+        "elapsed_seconds": 255.92023200000403
+      },
+      {
+        "phase": "enumeration",
+        "states": 6900083,
+        "expanded": 6900000,
+        "outcomes": 47868521,
+        "elapsed_seconds": 259.52604720002273
+      },
+      {
+        "phase": "enumeration",
+        "states": 7000104,
+        "expanded": 7000000,
+        "outcomes": 48513865,
+        "elapsed_seconds": 263.00004279997665
+      },
+      {
+        "phase": "enumeration",
+        "states": 7100062,
+        "expanded": 7100000,
+        "outcomes": 49251906,
+        "elapsed_seconds": 267.0880820999737
+      },
+      {
+        "phase": "enumeration",
+        "states": 7200117,
+        "expanded": 7200000,
+        "outcomes": 50040843,
+        "elapsed_seconds": 271.49547159997746
+      },
+      {
+        "phase": "enumeration",
+        "states": 7300060,
+        "expanded": 7300000,
+        "outcomes": 50865682,
+        "elapsed_seconds": 275.9362130999798
+      },
+      {
+        "phase": "enumeration",
+        "states": 7400098,
+        "expanded": 7400000,
+        "outcomes": 51611655,
+        "elapsed_seconds": 279.7590419999906
+      },
+      {
+        "phase": "enumeration",
+        "states": 7500113,
+        "expanded": 7500000,
+        "outcomes": 52363269,
+        "elapsed_seconds": 284.51409579999745
+      },
+      {
+        "phase": "enumeration",
+        "states": 7600117,
+        "expanded": 7600000,
+        "outcomes": 53034630,
+        "elapsed_seconds": 288.07113360002404
+      },
+      {
+        "phase": "enumeration",
+        "states": 7700101,
+        "expanded": 7700000,
+        "outcomes": 53865866,
+        "elapsed_seconds": 292.62675120000495
+      },
+      {
+        "phase": "enumeration",
+        "states": 7800091,
+        "expanded": 7800000,
+        "outcomes": 54673181,
+        "elapsed_seconds": 296.8458334999741
+      },
+      {
+        "phase": "enumeration",
+        "states": 7900153,
+        "expanded": 7900000,
+        "outcomes": 55483889,
+        "elapsed_seconds": 301.2160980000044
+      },
+      {
+        "phase": "enumeration",
+        "states": 8000121,
+        "expanded": 8000000,
+        "outcomes": 56241987,
+        "elapsed_seconds": 305.23246059997473
+      },
+      {
+        "phase": "enumeration",
+        "states": 8100088,
+        "expanded": 8100000,
+        "outcomes": 56940908,
+        "elapsed_seconds": 309.1161130000255
+      },
+      {
+        "phase": "enumeration",
+        "states": 8200092,
+        "expanded": 8200000,
+        "outcomes": 57767924,
+        "elapsed_seconds": 313.418171599973
+      },
+      {
+        "phase": "enumeration",
+        "states": 8300089,
+        "expanded": 8300000,
+        "outcomes": 58506361,
+        "elapsed_seconds": 317.3572746000136
+      },
+      {
+        "phase": "enumeration",
+        "states": 8400126,
+        "expanded": 8400000,
+        "outcomes": 59355852,
+        "elapsed_seconds": 321.903879599995
+      },
+      {
+        "phase": "enumeration",
+        "states": 8500094,
+        "expanded": 8500000,
+        "outcomes": 60105100,
+        "elapsed_seconds": 326.0632486999966
+      },
+      {
+        "phase": "enumeration",
+        "states": 8600093,
+        "expanded": 8600000,
+        "outcomes": 60809038,
+        "elapsed_seconds": 329.60590020002564
+      },
+      {
+        "phase": "enumeration",
+        "states": 8700112,
+        "expanded": 8700000,
+        "outcomes": 61493840,
+        "elapsed_seconds": 333.2722719999729
+      },
+      {
+        "phase": "enumeration",
+        "states": 8800141,
+        "expanded": 8800000,
+        "outcomes": 62325197,
+        "elapsed_seconds": 337.59334319998743
+      },
+      {
+        "phase": "enumeration",
+        "states": 8900173,
+        "expanded": 8900000,
+        "outcomes": 63063549,
+        "elapsed_seconds": 341.6072439000127
+      },
+      {
+        "phase": "enumeration",
+        "states": 9000054,
+        "expanded": 9000000,
+        "outcomes": 63946031,
+        "elapsed_seconds": 347.20294559997274
+      },
+      {
+        "phase": "enumeration",
+        "states": 9100161,
+        "expanded": 9100000,
+        "outcomes": 64670534,
+        "elapsed_seconds": 351.06044789997395
+      },
+      {
+        "phase": "enumeration",
+        "states": 9200108,
+        "expanded": 9200000,
+        "outcomes": 65442744,
+        "elapsed_seconds": 355.0949855999788
+      },
+      {
+        "phase": "enumeration",
+        "states": 9300096,
+        "expanded": 9300000,
+        "outcomes": 66171215,
+        "elapsed_seconds": 358.8362494999892
+      },
+      {
+        "phase": "enumeration",
+        "states": 9400126,
+        "expanded": 9400000,
+        "outcomes": 66856909,
+        "elapsed_seconds": 362.60207979998086
+      },
+      {
+        "phase": "enumeration",
+        "states": 9500124,
+        "expanded": 9500000,
+        "outcomes": 67727215,
+        "elapsed_seconds": 367.4408752999734
+      },
+      {
+        "phase": "enumeration",
+        "states": 9600135,
+        "expanded": 9600000,
+        "outcomes": 68486468,
+        "elapsed_seconds": 371.40601729997434
+      },
+      {
+        "phase": "enumeration",
+        "states": 9700078,
+        "expanded": 9700000,
+        "outcomes": 69361735,
+        "elapsed_seconds": 376.17214420001255
+      },
+      {
+        "phase": "enumeration",
+        "states": 9800117,
+        "expanded": 9800000,
+        "outcomes": 70073782,
+        "elapsed_seconds": 379.8564566000132
+      },
+      {
+        "phase": "enumeration",
+        "states": 9900107,
+        "expanded": 9900000,
+        "outcomes": 70830416,
+        "elapsed_seconds": 384.06739520002156
+      },
+      {
+        "phase": "frontier",
+        "states": 10000000,
+        "enumeration_complete": false,
+        "elapsed_seconds": 387.73291229997994
+      }
+    ],
+    "graph_or_raw_result": {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_1\\graph.json",
+      "bytes": 3920794695,
+      "sha256": "6c6a54ee50f1eec0db58d57e93fcd97320d99d58dacbbc316e828031e995dd2f"
+    }
+  },
+  {
+    "name": "hard_full_board_branching_2",
+    "command": [
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-m",
+      "svdeck.battle_frontier",
+      "--cases",
+      "tests/fixtures/battle_lookahead_hard.json",
+      "--case",
+      "hard_full_board_branching_2",
+      "--output",
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_2",
+      "--max-states",
+      "10000000",
+      "--seconds",
+      "600"
+    ],
+    "settings": {
+      "max_states": 10000000,
+      "seconds": 600
+    },
+    "started_at": "2026-09-24T14:47:08.811114+00:00",
+    "finished_at": "2026-09-24T14:57:23.073567+00:00",
+    "elapsed_seconds": 614.2557496999507,
+    "exit_code": 0,
+    "processes": [
+      {
+        "pid": 8088,
+        "parent_pid": 30524,
+        "image": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "peak_working_set_bytes": 4718592,
+        "last_working_set_bytes": 28672
+      },
+      {
+        "pid": 29480,
+        "parent_pid": 8088,
+        "image": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "peak_working_set_bytes": 8025923584,
+        "last_working_set_bytes": 45056
+      }
+    ],
+    "peak_working_set_bytes": 8025923584,
+    "stdout": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_2.stdout.txt",
+    "stderr": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_2.stderr.txt",
+    "cleanup": "all observed product processes completed",
+    "public_result": {
+      "complete": true,
+      "enumeration_complete": true,
+      "frontier_complete": true,
+      "cutoffs": [],
+      "stats": {
+        "states": 8661088,
+        "choices": 58511825,
+        "outcomes": 62109857,
+        "duplicates": 53448770,
+        "candidates": 1643067,
+        "search_ms": 352047.17029997846,
+        "elapsed_ms": 528753.9679000038,
+        "peak_rss_bytes": 8025923584,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000000,
+        "max_outcomes": 4096,
+        "seconds": 600.0,
+        "backend": "fixed-slots"
+      }
+    },
+    "progress_json": [
+      {
+        "phase": "enumeration",
+        "states": 100136,
+        "expanded": 100000,
+        "outcomes": 503205,
+        "elapsed_seconds": 2.8432168000144884
+      },
+      {
+        "phase": "enumeration",
+        "states": 200159,
+        "expanded": 200000,
+        "outcomes": 1070315,
+        "elapsed_seconds": 5.894591899996158
+      },
+      {
+        "phase": "enumeration",
+        "states": 300133,
+        "expanded": 300000,
+        "outcomes": 1630303,
+        "elapsed_seconds": 8.96272939996561
+      },
+      {
+        "phase": "enumeration",
+        "states": 400131,
+        "expanded": 400000,
+        "outcomes": 2294972,
+        "elapsed_seconds": 12.504229000012856
+      },
+      {
+        "phase": "enumeration",
+        "states": 500141,
+        "expanded": 500000,
+        "outcomes": 2952881,
+        "elapsed_seconds": 16.083422399999108
+      },
+      {
+        "phase": "enumeration",
+        "states": 600146,
+        "expanded": 600000,
+        "outcomes": 3530581,
+        "elapsed_seconds": 19.1807206000085
+      },
+      {
+        "phase": "enumeration",
+        "states": 700136,
+        "expanded": 700000,
+        "outcomes": 4152404,
+        "elapsed_seconds": 22.675245699996594
+      },
+      {
+        "phase": "enumeration",
+        "states": 800130,
+        "expanded": 800000,
+        "outcomes": 4844173,
+        "elapsed_seconds": 26.315150399983395
+      },
+      {
+        "phase": "enumeration",
+        "states": 900141,
+        "expanded": 900000,
+        "outcomes": 5573451,
+        "elapsed_seconds": 30.18463580001844
+      },
+      {
+        "phase": "enumeration",
+        "states": 1000126,
+        "expanded": 1000000,
+        "outcomes": 6221765,
+        "elapsed_seconds": 33.73216289997799
+      },
+      {
+        "phase": "enumeration",
+        "states": 1100091,
+        "expanded": 1100000,
+        "outcomes": 6879710,
+        "elapsed_seconds": 37.42613199999323
+      },
+      {
+        "phase": "enumeration",
+        "states": 1200143,
+        "expanded": 1200000,
+        "outcomes": 7563323,
+        "elapsed_seconds": 41.2513207999873
+      },
+      {
+        "phase": "enumeration",
+        "states": 1300117,
+        "expanded": 1300000,
+        "outcomes": 8166469,
+        "elapsed_seconds": 44.77489860000787
+      },
+      {
+        "phase": "enumeration",
+        "states": 1400130,
+        "expanded": 1400000,
+        "outcomes": 8881811,
+        "elapsed_seconds": 48.970752399996854
+      },
+      {
+        "phase": "enumeration",
+        "states": 1500105,
+        "expanded": 1500000,
+        "outcomes": 9548681,
+        "elapsed_seconds": 52.759025699982885
+      },
+      {
+        "phase": "enumeration",
+        "states": 1600108,
+        "expanded": 1600000,
+        "outcomes": 10333571,
+        "elapsed_seconds": 57.36624230002053
+      },
+      {
+        "phase": "enumeration",
+        "states": 1700102,
+        "expanded": 1700000,
+        "outcomes": 11048665,
+        "elapsed_seconds": 61.57711740001105
+      },
+      {
+        "phase": "enumeration",
+        "states": 1800090,
+        "expanded": 1800000,
+        "outcomes": 11803047,
+        "elapsed_seconds": 65.98909930000082
+      },
+      {
+        "phase": "enumeration",
+        "states": 1900106,
+        "expanded": 1900000,
+        "outcomes": 12623344,
+        "elapsed_seconds": 70.71237510000356
+      },
+      {
+        "phase": "enumeration",
+        "states": 2000101,
+        "expanded": 2000000,
+        "outcomes": 13454733,
+        "elapsed_seconds": 75.47745499998564
+      },
+      {
+        "phase": "enumeration",
+        "states": 2100150,
+        "expanded": 2100000,
+        "outcomes": 14376460,
+        "elapsed_seconds": 80.79970949998824
+      },
+      {
+        "phase": "enumeration",
+        "states": 2200122,
+        "expanded": 2200000,
+        "outcomes": 15025847,
+        "elapsed_seconds": 84.57258350000484
+      },
+      {
+        "phase": "enumeration",
+        "states": 2300114,
+        "expanded": 2300000,
+        "outcomes": 15740116,
+        "elapsed_seconds": 88.65973499999382
+      },
+      {
+        "phase": "enumeration",
+        "states": 2400137,
+        "expanded": 2400000,
+        "outcomes": 16355195,
+        "elapsed_seconds": 92.1692624000134
+      },
+      {
+        "phase": "enumeration",
+        "states": 2500108,
+        "expanded": 2500000,
+        "outcomes": 16926574,
+        "elapsed_seconds": 95.6751471000025
+      },
+      {
+        "phase": "enumeration",
+        "states": 2600121,
+        "expanded": 2600000,
+        "outcomes": 17534268,
+        "elapsed_seconds": 99.13186119997408
+      },
+      {
+        "phase": "enumeration",
+        "states": 2700162,
+        "expanded": 2700000,
+        "outcomes": 18218251,
+        "elapsed_seconds": 103.14520739996806
+      },
+      {
+        "phase": "enumeration",
+        "states": 2800106,
+        "expanded": 2800000,
+        "outcomes": 18808305,
+        "elapsed_seconds": 106.66793190001044
+      },
+      {
+        "phase": "enumeration",
+        "states": 2900099,
+        "expanded": 2900000,
+        "outcomes": 19517423,
+        "elapsed_seconds": 110.70124989998294
+      },
+      {
+        "phase": "enumeration",
+        "states": 3000120,
+        "expanded": 3000000,
+        "outcomes": 20109999,
+        "elapsed_seconds": 114.086749900016
+      },
+      {
+        "phase": "enumeration",
+        "states": 3100124,
+        "expanded": 3100000,
+        "outcomes": 20783853,
+        "elapsed_seconds": 118.28524100000504
+      },
+      {
+        "phase": "enumeration",
+        "states": 3200115,
+        "expanded": 3200000,
+        "outcomes": 21360366,
+        "elapsed_seconds": 121.76847389998147
+      },
+      {
+        "phase": "enumeration",
+        "states": 3300113,
+        "expanded": 3300000,
+        "outcomes": 22071300,
+        "elapsed_seconds": 126.1068462000112
+      },
+      {
+        "phase": "enumeration",
+        "states": 3400071,
+        "expanded": 3400000,
+        "outcomes": 22744911,
+        "elapsed_seconds": 130.12461389997043
+      },
+      {
+        "phase": "enumeration",
+        "states": 3500097,
+        "expanded": 3500000,
+        "outcomes": 23425277,
+        "elapsed_seconds": 134.100639900018
+      },
+      {
+        "phase": "enumeration",
+        "states": 3600096,
+        "expanded": 3600000,
+        "outcomes": 24121758,
+        "elapsed_seconds": 138.11479000002146
+      },
+      {
+        "phase": "enumeration",
+        "states": 3700089,
+        "expanded": 3700000,
+        "outcomes": 24919848,
+        "elapsed_seconds": 142.55174969998188
+      },
+      {
+        "phase": "enumeration",
+        "states": 3800116,
+        "expanded": 3800000,
+        "outcomes": 25715966,
+        "elapsed_seconds": 146.8688831999898
+      },
+      {
+        "phase": "enumeration",
+        "states": 3900154,
+        "expanded": 3900000,
+        "outcomes": 26483092,
+        "elapsed_seconds": 150.97212990000844
+      },
+      {
+        "phase": "enumeration",
+        "states": 4000144,
+        "expanded": 4000000,
+        "outcomes": 27069691,
+        "elapsed_seconds": 154.14371789997676
+      },
+      {
+        "phase": "enumeration",
+        "states": 4100110,
+        "expanded": 4100000,
+        "outcomes": 27670019,
+        "elapsed_seconds": 157.50459299999056
+      },
+      {
+        "phase": "enumeration",
+        "states": 4200086,
+        "expanded": 4200000,
+        "outcomes": 28294159,
+        "elapsed_seconds": 160.83084309997503
+      },
+      {
+        "phase": "enumeration",
+        "states": 4300065,
+        "expanded": 4300000,
+        "outcomes": 28926765,
+        "elapsed_seconds": 164.38827920000767
+      },
+      {
+        "phase": "enumeration",
+        "states": 4400095,
+        "expanded": 4400000,
+        "outcomes": 29481395,
+        "elapsed_seconds": 167.62712409999222
+      },
+      {
+        "phase": "enumeration",
+        "states": 4500101,
+        "expanded": 4500000,
+        "outcomes": 30098624,
+        "elapsed_seconds": 171.00610070000403
+      },
+      {
+        "phase": "enumeration",
+        "states": 4600078,
+        "expanded": 4600000,
+        "outcomes": 30759200,
+        "elapsed_seconds": 175.040153799986
+      },
+      {
+        "phase": "enumeration",
+        "states": 4700097,
+        "expanded": 4700000,
+        "outcomes": 31480001,
+        "elapsed_seconds": 179.02909929997986
+      },
+      {
+        "phase": "enumeration",
+        "states": 4800077,
+        "expanded": 4800000,
+        "outcomes": 32168553,
+        "elapsed_seconds": 182.82693530002143
+      },
+      {
+        "phase": "enumeration",
+        "states": 4900077,
+        "expanded": 4900000,
+        "outcomes": 32949680,
+        "elapsed_seconds": 187.21803009998985
+      },
+      {
+        "phase": "enumeration",
+        "states": 5000110,
+        "expanded": 5000000,
+        "outcomes": 33747822,
+        "elapsed_seconds": 191.53906179999467
+      },
+      {
+        "phase": "enumeration",
+        "states": 5100138,
+        "expanded": 5100000,
+        "outcomes": 34483105,
+        "elapsed_seconds": 195.53314149996731
+      },
+      {
+        "phase": "enumeration",
+        "states": 5200114,
+        "expanded": 5200000,
+        "outcomes": 35123295,
+        "elapsed_seconds": 199.21142120001605
+      },
+      {
+        "phase": "enumeration",
+        "states": 5300082,
+        "expanded": 5300000,
+        "outcomes": 35720455,
+        "elapsed_seconds": 202.70961129997158
+      },
+      {
+        "phase": "enumeration",
+        "states": 5400113,
+        "expanded": 5400000,
+        "outcomes": 36384764,
+        "elapsed_seconds": 206.47841619997052
+      },
+      {
+        "phase": "enumeration",
+        "states": 5500130,
+        "expanded": 5500000,
+        "outcomes": 37131113,
+        "elapsed_seconds": 210.86193389998516
+      },
+      {
+        "phase": "enumeration",
+        "states": 5600091,
+        "expanded": 5600000,
+        "outcomes": 37865917,
+        "elapsed_seconds": 215.39009369997075
+      },
+      {
+        "phase": "enumeration",
+        "states": 5700103,
+        "expanded": 5700000,
+        "outcomes": 38686692,
+        "elapsed_seconds": 219.95158330001868
+      },
+      {
+        "phase": "enumeration",
+        "states": 5800109,
+        "expanded": 5800000,
+        "outcomes": 39375801,
+        "elapsed_seconds": 224.00995159999002
+      },
+      {
+        "phase": "enumeration",
+        "states": 5900101,
+        "expanded": 5900000,
+        "outcomes": 40023305,
+        "elapsed_seconds": 227.76930649997666
+      },
+      {
+        "phase": "enumeration",
+        "states": 6000110,
+        "expanded": 6000000,
+        "outcomes": 40755680,
+        "elapsed_seconds": 232.02590349997627
+      },
+      {
+        "phase": "enumeration",
+        "states": 6100075,
+        "expanded": 6100000,
+        "outcomes": 41505991,
+        "elapsed_seconds": 236.98522109998157
+      },
+      {
+        "phase": "enumeration",
+        "states": 6200121,
+        "expanded": 6200000,
+        "outcomes": 42250497,
+        "elapsed_seconds": 241.35027439997066
+      },
+      {
+        "phase": "enumeration",
+        "states": 6300092,
+        "expanded": 6300000,
+        "outcomes": 42867526,
+        "elapsed_seconds": 245.00863170000957
+      },
+      {
+        "phase": "enumeration",
+        "states": 6400088,
+        "expanded": 6400000,
+        "outcomes": 43572975,
+        "elapsed_seconds": 249.07151370000793
+      },
+      {
+        "phase": "enumeration",
+        "states": 6500074,
+        "expanded": 6500000,
+        "outcomes": 44277006,
+        "elapsed_seconds": 252.9716453999863
+      },
+      {
+        "phase": "enumeration",
+        "states": 6600110,
+        "expanded": 6600000,
+        "outcomes": 45046345,
+        "elapsed_seconds": 257.17315190000227
+      },
+      {
+        "phase": "enumeration",
+        "states": 6700062,
+        "expanded": 6700000,
+        "outcomes": 45751994,
+        "elapsed_seconds": 261.25053620000836
+      },
+      {
+        "phase": "enumeration",
+        "states": 6800116,
+        "expanded": 6800000,
+        "outcomes": 46388050,
+        "elapsed_seconds": 264.79694209998706
+      },
+      {
+        "phase": "enumeration",
+        "states": 6900053,
+        "expanded": 6900000,
+        "outcomes": 47197407,
+        "elapsed_seconds": 269.4012838000199
+      },
+      {
+        "phase": "enumeration",
+        "states": 7000057,
+        "expanded": 7000000,
+        "outcomes": 47957950,
+        "elapsed_seconds": 273.57628769997973
+      },
+      {
+        "phase": "enumeration",
+        "states": 7100112,
+        "expanded": 7100000,
+        "outcomes": 48657537,
+        "elapsed_seconds": 277.58014480001293
+      },
+      {
+        "phase": "enumeration",
+        "states": 7200050,
+        "expanded": 7200000,
+        "outcomes": 49509850,
+        "elapsed_seconds": 282.2198450000142
+      },
+      {
+        "phase": "enumeration",
+        "states": 7300088,
+        "expanded": 7300000,
+        "outcomes": 50285311,
+        "elapsed_seconds": 286.72773159999633
+      },
+      {
+        "phase": "enumeration",
+        "states": 7400083,
+        "expanded": 7400000,
+        "outcomes": 51096824,
+        "elapsed_seconds": 291.09794040001
+      },
+      {
+        "phase": "enumeration",
+        "states": 7500097,
+        "expanded": 7500000,
+        "outcomes": 51925245,
+        "elapsed_seconds": 295.6838393000071
+      },
+      {
+        "phase": "enumeration",
+        "states": 7600061,
+        "expanded": 7600000,
+        "outcomes": 52787873,
+        "elapsed_seconds": 300.96110860002227
+      },
+      {
+        "phase": "enumeration",
+        "states": 7700091,
+        "expanded": 7700000,
+        "outcomes": 53574383,
+        "elapsed_seconds": 305.4144451000029
+      },
+      {
+        "phase": "enumeration",
+        "states": 7800037,
+        "expanded": 7800000,
+        "outcomes": 54389746,
+        "elapsed_seconds": 309.91986610001186
+      },
+      {
+        "phase": "enumeration",
+        "states": 7900060,
+        "expanded": 7900000,
+        "outcomes": 55176517,
+        "elapsed_seconds": 314.35863799997605
+      },
+      {
+        "phase": "enumeration",
+        "states": 8000084,
+        "expanded": 8000000,
+        "outcomes": 56008807,
+        "elapsed_seconds": 319.0701957999845
+      },
+      {
+        "phase": "enumeration",
+        "states": 8100028,
+        "expanded": 8100000,
+        "outcomes": 56938667,
+        "elapsed_seconds": 324.35731019999366
+      },
+      {
+        "phase": "enumeration",
+        "states": 8200080,
+        "expanded": 8200000,
+        "outcomes": 57746312,
+        "elapsed_seconds": 328.7884340999881
+      },
+      {
+        "phase": "enumeration",
+        "states": 8300090,
+        "expanded": 8300000,
+        "outcomes": 58578766,
+        "elapsed_seconds": 333.19322209997335
+      },
+      {
+        "phase": "enumeration",
+        "states": 8400052,
+        "expanded": 8400000,
+        "outcomes": 59457871,
+        "elapsed_seconds": 338.02343140001176
+      },
+      {
+        "phase": "enumeration",
+        "states": 8500066,
+        "expanded": 8500000,
+        "outcomes": 60414535,
+        "elapsed_seconds": 343.1499404999777
+      },
+      {
+        "phase": "enumeration",
+        "states": 8600049,
+        "expanded": 8600000,
+        "outcomes": 61452987,
+        "elapsed_seconds": 348.67122600000584
+      },
+      {
+        "phase": "frontier",
+        "states": 8661088,
+        "enumeration_complete": true,
+        "elapsed_seconds": 352.13868179998826
+      }
+    ],
+    "graph_or_raw_result": {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\hard_full_board_branching_2\\graph.json",
+      "bytes": 3405675673,
+      "sha256": "d03dbe743f173eff4bfacd55df8512a38c78e74b4ceaf8528ae38a3ce1c72d32"
+    }
+  },
+  {
+    "name": "limit_states",
+    "command": [
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-c",
+      "import json,pathlib; from svdeck.battle import Battle; from svdeck.battle_frontier import analyze; from svdeck.battle_frontier_io import json_default; cases=json.load(open('tests/fixtures/battle_lookahead_hard.json',encoding='utf-8')); case=next(x for x in cases if x['id']=='hard_full_board_branching_1'); result=analyze(Battle(case['state'],case['cards']),max_states=1,seconds=60); pathlib.Path('C:\\\\Users\\\\tasog\\\\source\\\\shadowverse-deckmaker\\\\output\\\\frontier-acceptance-large-final\\\\limit_states.json').write_text(json.dumps(result,default=json_default),encoding='utf-8'); print(json.dumps({k:result.get(k) for k in ('complete','enumeration_complete','frontier_complete','reason','stats')}))"
+    ],
+    "settings": {
+      "max_states": 1,
+      "seconds": 60
+    },
+    "started_at": "2026-09-24T14:57:23.075313+00:00",
+    "finished_at": "2026-09-24T14:57:23.194077+00:00",
+    "elapsed_seconds": 0.11964230000739917,
+    "exit_code": 0,
+    "processes": [
+      {
+        "pid": 25056,
+        "parent_pid": 30524,
+        "image": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "peak_working_set_bytes": 4661248,
+        "last_working_set_bytes": 32768
+      },
+      {
+        "pid": 11876,
+        "parent_pid": 25056,
+        "image": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "peak_working_set_bytes": 22085632,
+        "last_working_set_bytes": 32768
+      }
+    ],
+    "peak_working_set_bytes": 22085632,
+    "stdout": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_states.stdout.txt",
+    "stderr": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_states.stderr.txt",
+    "cleanup": "all observed product processes completed",
+    "public_result": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": true,
+      "cutoffs": [
+        "states"
+      ],
+      "stats": {
+        "states": 1,
+        "choices": 0,
+        "outcomes": 0,
+        "duplicates": 0,
+        "candidates": 1,
+        "search_ms": 1.2582000344991684,
+        "elapsed_ms": 2.801500027999282,
+        "peak_rss_bytes": 21962752,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 1,
+        "max_outcomes": 4096,
+        "seconds": 60,
+        "backend": "fixed-slots"
+      }
+    },
+    "progress_json": [],
+    "graph_or_raw_result": {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_states.json",
+      "bytes": 11124,
+      "sha256": "d5eb651da426a90471b7b31b3b1b4d928b4cceff666e0809361d23fd468c421c"
+    }
+  },
+  {
+    "name": "limit_seconds",
+    "command": [
+      "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-c",
+      "import json,pathlib; from svdeck.battle import Battle; from svdeck.battle_frontier import analyze; from svdeck.battle_frontier_io import json_default; cases=json.load(open('tests/fixtures/battle_lookahead_hard.json',encoding='utf-8')); case=next(x for x in cases if x['id']=='hard_full_board_branching_1'); result=analyze(Battle(case['state'],case['cards']),max_states=10000000,seconds=0.001); pathlib.Path('C:\\\\Users\\\\tasog\\\\source\\\\shadowverse-deckmaker\\\\output\\\\frontier-acceptance-large-final\\\\limit_seconds.json').write_text(json.dumps(result,default=json_default),encoding='utf-8'); print(json.dumps({k:result.get(k) for k in ('complete','enumeration_complete','frontier_complete','reason','stats')}))"
+    ],
+    "settings": {
+      "max_states": 10000000,
+      "seconds": 0.001
+    },
+    "started_at": "2026-09-24T14:57:23.194077+00:00",
+    "finished_at": "2026-09-24T14:57:23.336244+00:00",
+    "elapsed_seconds": 0.14642989996355027,
+    "exit_code": 0,
+    "processes": [
+      {
+        "pid": 22264,
+        "parent_pid": 30524,
+        "image": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "peak_working_set_bytes": 4661248,
+        "last_working_set_bytes": 32768
+      },
+      {
+        "pid": 21556,
+        "parent_pid": 22264,
+        "image": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "peak_working_set_bytes": 22093824,
+        "last_working_set_bytes": 32768
+      }
+    ],
+    "peak_working_set_bytes": 22093824,
+    "stdout": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_seconds.stdout.txt",
+    "stderr": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_seconds.stderr.txt",
+    "cleanup": "all observed product processes completed",
+    "public_result": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": false,
+      "cutoffs": [
+        "frontier time",
+        "time"
+      ],
+      "stats": {
+        "states": 1,
+        "choices": 0,
+        "outcomes": 0,
+        "duplicates": 0,
+        "candidates": 1,
+        "search_ms": 1.4967999886721373,
+        "elapsed_ms": 2.9607999604195356,
+        "peak_rss_bytes": 22016000,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000000,
+        "max_outcomes": 4096,
+        "seconds": 0.001,
+        "backend": "fixed-slots"
+      }
+    },
+    "progress_json": [],
+    "graph_or_raw_result": {
+      "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final\\limit_seconds.json",
+      "bytes": 11151,
+      "sha256": "4a528306c19caf994b4e0dcafcae6bb1114e500491803c75ce9d00c5f4e5dfaf"
+    }
+  }
+]

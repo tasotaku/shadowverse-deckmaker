@@ -1,0 +1,69 @@
+{
+  "started_at": "2026-09-24T14:35:55.033248+00:00",
+  "product_head": "99b8cccfa7fd6968ea54cd00d542c2a17dccce82",
+  "launcher": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "contract": "docs/battle-frontier.md",
+  "files": {
+    "tests/fixtures/battle_lookahead_hard.json": "5cd97dd7d7fdc3ed9cb80b4134ecd2b0ef50789ecea3898f28dd0080f962670b",
+    "docs/battle-frontier.md": "fbdf1c5c10988920ab34b875f8d30ca9e394dff2db0971673bd3816364da78bf",
+    "docs/evidence/turn-frontier/spec-v1.json": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+    "docs/evidence/turn-frontier/spec-v1.lock.json": "212a80d64aa1bd3cc6d76078906bd5f9d6426e12a971bea2a66839ee71da7e27"
+  },
+  "mapping": {
+    "completion": [
+      "complete",
+      "enumeration_complete",
+      "frontier_complete",
+      "reason"
+    ],
+    "candidates": "candidates -> state_at(result,node)",
+    "actions": "witness_steps(result,node), replay_branch(record,steps)",
+    "chance": "choices -> outcomes -> probabilities / draws",
+    "exhaustion": "expanded node IDs versus stats states and positions"
+  },
+  "inputs": [
+    {
+      "id": "hard_full_board_branching_1",
+      "boards": [
+        5,
+        5
+      ],
+      "hands": [
+        6,
+        6
+      ],
+      "n_turns_ignored": 3,
+      "ep": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hard_full_board_branching_2",
+      "boards": [
+        5,
+        5
+      ],
+      "hands": [
+        6,
+        6
+      ],
+      "n_turns_ignored": 3,
+      "ep": [
+        0,
+        0
+      ]
+    }
+  ],
+  "runs_finished_at": "2026-09-24T14:57:23.336244+00:00",
+  "completion_mapping": "complete/enumeration_complete/frontier_complete; cutoffs is machine-readable stop reason",
+  "finished_head": "99b8cccfa7fd6968ea54cd00d542c2a17dccce82",
+  "final_file_sha256": {
+    "tests/fixtures/battle_lookahead_hard.json": "5cd97dd7d7fdc3ed9cb80b4134ecd2b0ef50789ecea3898f28dd0080f962670b",
+    "docs/battle-frontier.md": "fbdf1c5c10988920ab34b875f8d30ca9e394dff2db0971673bd3816364da78bf",
+    "docs/evidence/turn-frontier/spec-v1.json": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+    "docs/evidence/turn-frontier/spec-v1.lock.json": "212a80d64aa1bd3cc6d76078906bd5f9d6426e12a971bea2a66839ee71da7e27"
+  },
+  "fixture_and_contract_unchanged": true,
+  "cleanup_finished_at": "2026-09-24T14:59:09.815043+00:00"
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-frontier-public-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+  "executor_id": "fresh-frontier-acceptance-small-final",
+  "started_at": "2026-09-24T14:16:59.799619+00:00",
+  "finished_at": "2026-09-24T14:19:56.475681+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small-final",
+    "completed_record": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small-final\\comparison.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-24T14:16:59.799619+00:00",
+      "journey_stopped_at": "2026-09-24T14:19:56.475681+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T1-F1 PASS: All 8 CLI results complete/enumeration_complete/frontier_complete=true, expanded equals all node IDs. Independent JSON consumer verified all 41 oracle states and all 37 outcome edges. All states retain original active_player and both turn counters, no end_turn edges. Oracle has 41 stops, 0 victory terminals; no positive victory fixture is present.",
+        "T1-F2 PASS: Public state_at reconstructs every oracle state with only rng ignored, keyword sets sorted, destroyed history sorted. All remaining fields and ordered zones are compared. Shared state of ab/ba and lr/rl retains both action/random paths. Missing/extra states and edges all 0.",
+        "T1-F3 PASS: All fixture retain_both relations remain reachable and endpoint meanings are retained or have independently verified dominating candidate. In barrier case ping_trade is raw node 7, legitimately represented by barrier_trade node 2 retaining ping+PP (T1-F4). All other specified incomparable examples retained. comparison.json records individual relations and witnesses.",
+        "T1-F4 PASS: barrier_trade candidate retains the ping card and one additional PP with same empty result boards; ping_trade excluded from candidate set but present in raw graph. Every excluded node across all 8 cases has an independently verified dominating published candidate preserving ordered nonnumeric board traits and exact hand containment.",
+        "T1-F5 PASS: All 37 outcome edges match oracle by source state, action, destination, random draw sequence, exact Fraction probability; each operation sums to 1. Bad random result retained at probability 1/2. Sequential double draw keeps four 1/4 paths; lr and rl share final state and preserve total mass 1/2.",
+        "T1-F6 PASS: All 27 witness paths and field assertions pass for barrier/bane/storm/rush/ward, damage/destroy/summon/grant, chosen/random/oldest split and evolve. Exact all-edge equality rules out added invalid actions. HTTP 200 result equals CLI by state set, edge/probability multiset, completion and candidate meanings.",
+        "T1-U1 PASS: 8 CLI invocations each created graph.json and report.json; independent JSON consumer parsed every graph and HTTP response and extracted two HTTP candidate examples. Manual formatting 0; CLI8+HTTP1 calls, retries0.",
+        "T1-U2 PASS: Public output plus state_at and witness_steps yielded action,target,remaining hand,board and exact probabilities. HTTP candidates differ after play(random): draw[0] leaves protected+exposed with barrier removed, draw[1] destroys exposed and preserves protected barrier; each 1/2. Complete fields unambiguous. UI viewport/focus/click/scroll not applicable.",
+        "T1-U3 PASS: OS OpenProcess/GetProcessMemoryInfo PeakWorkingSetSize retained process handles and QueryFullProcessImageNameW identified real Python312 child separately from venv launcher for all 8 CLIs and server. Monotonic call elapsed saved. CLI range 0.109-0.141 seconds, peak 21471232-21880832 bytes; HTTP elapsed 0.031 seconds, process peak 28803072 bytes. One hard case in separate agent process concurrently executing on same host; no performance SLA inferred.",
+        "Interaction counters: manual file formatting=0, private API calls=0, retries=0, UI actions not applicable. Dedicated output and localhost8796 used; unrelated processes untouched.",
+        "OS measurement hand_none_a_b_ab: seconds=60,max_states=1000000,complete=true, elapsed=0.109000s, peak_working_set_bytes=21880832; real process path and PIDs in measurements.json",
+        "OS measurement barrier_bane_low_stack_trade: seconds=60,max_states=1000000,complete=true, elapsed=0.140000s, peak_working_set_bytes=21786624; real process path and PIDs in measurements.json",
+        "OS measurement different_enemy_abilities: seconds=60,max_states=1000000,complete=true, elapsed=0.125000s, peak_working_set_bytes=21471232; real process path and PIDs in measurements.json",
+        "OS measurement large_attack_health_tradeoff: seconds=60,max_states=1000000,complete=true, elapsed=0.125000s, peak_working_set_bytes=21716992; real process path and PIDs in measurements.json",
+        "OS measurement random_bad_outcome_retained: seconds=60,max_states=1000000,complete=true, elapsed=0.140000s, peak_working_set_bytes=21811200; real process path and PIDs in measurements.json",
+        "OS measurement oldest_barrier_split_order: seconds=60,max_states=1000000,complete=true, elapsed=0.141000s, peak_working_set_bytes=21782528; real process path and PIDs in measurements.json",
+        "OS measurement summon_storm_grant_order: seconds=60,max_states=1000000,complete=true, elapsed=0.125000s, peak_working_set_bytes=21757952; real process path and PIDs in measurements.json",
+        "OS measurement random_sequential_duplicate_outcomes: seconds=60,max_states=1000000,complete=true, elapsed=0.125000s, peak_working_set_bytes=21532672; real process path and PIDs in measurements.json",
+        "OS measurement HTTP random_bad_outcome_retained: seconds=60,max_states=1000000,complete=true,status=200,elapsed=0.031000s,peak_working_set_bytes=28803072"
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:19:56.475681+00:00",
+        "evidence": "Own server PIDs [30084, 14180] ended, remaining own PIDs [], dedicated port8796 rebind succeeded. CLI processes all exit0. Workspace C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small-final, completed record C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small-final\\comparison.json."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T2 not run by this T1-only executor; separate executor report will be integrated."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:19:56.475681+00:00",
+        "evidence": "This executor created no T2 environment or process."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "T2 deliberately not evaluated by this T1 executor; parent integrates independent T2 report.",
+    "Fixed small oracle contains no victory-terminal case (0 terminals); equality verified for available states, positive victory behavior unexercised.",
+    "PeakWorkingSetSize is process resident memory, not total virtual memory or entire host use."
+  ]
+}

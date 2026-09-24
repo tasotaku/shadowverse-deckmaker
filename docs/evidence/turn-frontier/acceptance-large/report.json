@@ -1,0 +1,79 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-frontier-public-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+  "executor_id": "fresh-/root/frontier_acceptance_large-T2-3e6b550",
+  "started_at": "2026-09-24T14:08:47.474221+00:00",
+  "finished_at": "2026-09-24T14:21:42.438394+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large",
+    "completed_record": "T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-frontier\\acceptance-large\\rawmetrics.json"
+  },
+  "tests": [
+    {
+      "batch": 1,
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "id": "T1",
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "evidence": [
+        "T1 is assigned to a separate independent executor; this T2-only artifact does not judge T1. Replace this placeholder with its independently produced report during aggregation."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:21:42.438394+00:00",
+        "evidence": "No T1 environment was started by this executor."
+      }
+    },
+    {
+      "batch": 1,
+      "functional_findings": [
+        "T2-F1 FAIL for observed hard_full_board_branching_1 on commit 3e6b550: seconds=600 stopped with complete=false, enumeration_complete=false, frontier_complete=false and cutoffs=[frontier time,time]. states=2429145, expanded=2429051 (94 nodes not expanded), choices=15055029, outcomes=16061749. The fixture did not complete within the fixed exploration budget. No generalized performance SLA is inferred."
+      ],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "id": "T2",
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-24T14:08:47.474221+00:00",
+      "journey_stopped_at": "2026-09-24T14:21:42.438394+00:00",
+      "stop_reason": "impossible",
+      "evidence": [
+        "T2-F1: FAIL on hard1 as detailed in functional finding; hard2 NOT_RUN. root cancelled this product revision while hard1 was running and explicitly prohibited starting hard2 and both limit calls. hard1 was allowed to finish as diagnostic evidence. No retry performed.",
+        "T2-F2: PARTIALLY OBSERVED. Fixture inputs independently parsed as boards=[5,5], hands=[6,6] for each hard case. hard1 graph parsed once by an ordinary separate Python JSON consumer: positions=2429145, candidates=2429145, actions=54, choices=15055029, outcomes=16061749. Legal witness replay and full same-turn consistency were not performed after the root cancelled the acceptance journey; no F2 PASS claimed.",
+        "T2-F3: NOT_RUN. max_states=1 and seconds=0.001 calls were not started, as explicitly requested by root when cancelling this revision.",
+        "T2-F4: NOT_RUN. The two prescribed limit result inspections were not started. Observed hard1 explicitly exposes complete=false and expanded count smaller than positions; branch preservation has not been independently checked in this interrupted journey.",
+        "T2-U1: PARTIALLY OBSERVED. Ordinary JSON consumer directly read complete=false/enumeration_complete=false/frontier_complete=false and cutoffs=[frontier time,time] from hard1 graph/report. Remaining two prescribed result types NOT_RUN.",
+        "T2-U2: INCOMPLETE OBSERVATION. OS GetProcessMemoryInfo PeakWorkingSetSize for actual Python PID26168 was 4170850304 bytes (launcher PID16412 tracked separately). CPU=651.734375 seconds. Product search_ms=600000.0097999582 and elapsed_ms=600026.0966999922. Start/end UTC difference=654.545663 seconds, approximate only. Original direct monotonic observation reached320.297 seconds; scheduler-to-monitor handoff lost exact continuous start-to-exit monotonic timing. Do not use UTC difference as a spec-conforming elapsed PASS. Remaining three calls NOT_RUN.",
+        "T2-U3: PASS for observed action only: publicly documented CLI arguments --max-states 10000000 --seconds 600 were used once, private API calls=0, configuration edits=0, manual file reshaping=0. Prescribed Python limit argument checks NOT_RUN.",
+        "Isolation/scheduling: T2 used dedicated process IDs and output/frontier-acceptance-large. T1 could run concurrently on same host. Only this executor own scheduler PID19724 was terminated to prevent prohibited next runs; hard1 actual Python was kept running and monitored until exit0. No existing server was touched.",
+        "Budget/termination: journey was interrupted at root request to replace product revision; all observed activity remains within the fixed 25-minute budget. stop_reason=impossible is the report contract available code for remaining actions no longer authorized after root cancellation, not a product impossibility claim.",
+        "Graph artifact path, SHA256, bytes, table counts, raw product report and resource observations are preserved in rawmetrics.json; public-doc/fixture/spec hashes and product commit are in sourcehash.json. No image/UI criteria apply."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:21:42.438394+00:00",
+        "evidence": "Own CLI launcher and actual Python completed naturally; scheduler stopped intentionally to prevent remaining runs; both consumers completed; no server started or altered. Workspace=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large; completed record=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-frontier\\acceptance-large\\rawmetrics.json"
+      }
+    }
+  ],
+  "product_findings_count": 1,
+  "blind_spots": [
+    "T1 placeholder is NOT_RUN only in this executor report; T1 is assigned independently.",
+    "T2 stopped by root request after one hard case; hard2 and both limit calls were never started, and witness replay was not performed. This report must not be interpreted as full acceptance.",
+    "Exact start-to-exit monotonic timing was not preserved across the monitor handoff required to prevent further scheduled case launches. OS peak is directly measured for the real Python process.",
+    "Large output has no independent all-state oracle; output counts and incomplete flags are directly observed only."
+  ]
+}

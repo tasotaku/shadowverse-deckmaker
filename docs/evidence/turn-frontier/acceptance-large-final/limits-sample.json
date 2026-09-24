@@ -1,0 +1,1567 @@
+{
+  "limit_states": {
+    "raw": {
+      "version": 1,
+      "strategy": "current-turn-frontier",
+      "encoding": "fixed-slots-v1",
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": true,
+      "cutoffs": [
+        "states"
+      ],
+      "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+      "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits including attack rights; not future-game dominance. Full decision graph is unpruned.",
+      "record": {
+        "version": 1,
+        "engine_version": "battle-2",
+        "cards": {
+          "test-body": {
+            "cost": 1,
+            "attack": 2,
+            "health": 3,
+            "keywords": [],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "能力なし（検証用カード）",
+            "name": "検証用フォロワー",
+            "card_id": "test-body"
+          },
+          "test-barrier": {
+            "cost": 2,
+            "attack": 2,
+            "health": 3,
+            "keywords": [
+              "バリア"
+            ],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "バリア（検証用カード）",
+            "name": "バリアの検証用フォロワー",
+            "card_id": "test-barrier"
+          },
+          "test-damage-5": {
+            "cost": 2,
+            "attack": 0,
+            "health": 0,
+            "keywords": [],
+            "kind": "spell",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "相手フォロワー1体を選び5ダメージ。",
+            "name": "選択5ダメージ（検証用）",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 5
+              }
+            ],
+            "card_id": "test-damage-5"
+          },
+          "filler": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 99,
+            "effects": [],
+            "card_id": "filler"
+          },
+          "a": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 4,
+            "keywords": [
+              "バリア"
+            ],
+            "card_id": "a"
+          },
+          "b": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 3,
+            "keywords": [
+              "必殺"
+            ],
+            "card_id": "b"
+          },
+          "c": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 3,
+            "health": 3,
+            "keywords": [
+              "疾走"
+            ],
+            "card_id": "c"
+          },
+          "d": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 4,
+            "keywords": [
+              "突進"
+            ],
+            "card_id": "d"
+          },
+          "w": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 5,
+            "keywords": [
+              "守護"
+            ],
+            "card_id": "w"
+          },
+          "ping": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 2
+              }
+            ],
+            "card_id": "ping"
+          },
+          "dice": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "random_enemy",
+                "amount": 3
+              }
+            ],
+            "card_id": "dice"
+          },
+          "split": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "split_damage",
+                "target": "self",
+                "amount": 6
+              }
+            ],
+            "card_id": "split"
+          },
+          "remove": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "destroy",
+                "target": "chosen_enemy"
+              }
+            ],
+            "card_id": "remove"
+          },
+          "summon": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "summon",
+                "target": "self",
+                "card_id": "token"
+              }
+            ],
+            "card_id": "summon"
+          },
+          "grant": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "grant",
+                "target": "chosen_ally",
+                "keywords": [
+                  "バリア",
+                  "必殺"
+                ]
+              }
+            ],
+            "card_id": "grant"
+          },
+          "token": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 2,
+            "keywords": [
+              "疾走"
+            ],
+            "card_id": "token"
+          }
+        },
+        "cards_hash": "3f84dcb508e8e43875cc4024a099271e9ce164cf7f6dff30bb78654914dacccd",
+        "initial": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 16,
+              "max_health": 20,
+              "pp": 5,
+              "max_pp": 5,
+              "turn": 1,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [
+                {
+                  "id": "our-ping",
+                  "card_id": "ping",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-dice",
+                  "card_id": "dice",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-split",
+                  "card_id": "split",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-remove",
+                  "card_id": "remove",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-summon",
+                  "card_id": "summon",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-grant",
+                  "card_id": "grant",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [
+                {
+                  "id": "draw-13-0",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-1",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-2",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-3",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "board": [
+                {
+                  "id": "ours-a",
+                  "card_id": "a",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-b",
+                  "card_id": "b",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-c",
+                  "card_id": "c",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "疾走"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-d",
+                  "card_id": "d",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "突進"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-w",
+                  "card_id": "w",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 16,
+              "max_health": 20,
+              "pp": 5,
+              "max_pp": 5,
+              "turn": 1,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [
+                {
+                  "id": "their-ping",
+                  "card_id": "ping",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-dice",
+                  "card_id": "dice",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-split",
+                  "card_id": "split",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-remove",
+                  "card_id": "remove",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-summon",
+                  "card_id": "summon",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-grant",
+                  "card_id": "grant",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [
+                {
+                  "id": "draw-14-0",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-1",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-2",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-3",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "board": [
+                {
+                  "id": "theirs-w",
+                  "card_id": "w",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-d",
+                  "card_id": "d",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "突進"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-c",
+                  "card_id": "c",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "疾走"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-b",
+                  "card_id": "b",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-a",
+                  "card_id": "a",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "actions": [],
+        "frames": []
+      },
+      "root": 0,
+      "positions": [
+        [
+          4,
+          3,
+          3,
+          4,
+          5,
+          0,
+          5,
+          4,
+          3,
+          3,
+          4,
+          1,
+          2,
+          4,
+          8,
+          16,
+          0,
+          16,
+          8,
+          4,
+          2,
+          1,
+          0,
+          0,
+          63,
+          5,
+          16,
+          1,
+          1,
+          0
+        ]
+      ],
+      "actions": [],
+      "probabilities": [],
+      "draws": [],
+      "choices": [],
+      "outcomes": [],
+      "witnesses": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "expanded": [],
+      "candidates": [
+        0
+      ],
+      "stats": {
+        "states": 1,
+        "choices": 0,
+        "outcomes": 0,
+        "duplicates": 0,
+        "candidates": 1,
+        "search_ms": 1.2582000344991684,
+        "elapsed_ms": 2.801500027999282,
+        "peak_rss_bytes": 21962752,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 1,
+        "max_outcomes": 4096,
+        "seconds": 60,
+        "backend": "fixed-slots"
+      }
+    },
+    "probability_sums": [],
+    "all_choices_have_full_probability_mass": true,
+    "expanded_count": 0,
+    "positions_count": 1
+  },
+  "limit_seconds": {
+    "raw": {
+      "version": 1,
+      "strategy": "current-turn-frontier",
+      "encoding": "fixed-slots-v1",
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": false,
+      "cutoffs": [
+        "frontier time",
+        "time"
+      ],
+      "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+      "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits including attack rights; not future-game dominance. Full decision graph is unpruned.",
+      "record": {
+        "version": 1,
+        "engine_version": "battle-2",
+        "cards": {
+          "test-body": {
+            "cost": 1,
+            "attack": 2,
+            "health": 3,
+            "keywords": [],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "能力なし（検証用カード）",
+            "name": "検証用フォロワー",
+            "card_id": "test-body"
+          },
+          "test-barrier": {
+            "cost": 2,
+            "attack": 2,
+            "health": 3,
+            "keywords": [
+              "バリア"
+            ],
+            "kind": "follower",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "バリア（検証用カード）",
+            "name": "バリアの検証用フォロワー",
+            "card_id": "test-barrier"
+          },
+          "test-damage-5": {
+            "cost": 2,
+            "attack": 0,
+            "health": 0,
+            "keywords": [],
+            "kind": "spell",
+            "synthetic": true,
+            "class_name": "検証用",
+            "text": "相手フォロワー1体を選び5ダメージ。",
+            "name": "選択5ダメージ（検証用）",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 5
+              }
+            ],
+            "card_id": "test-damage-5"
+          },
+          "filler": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 99,
+            "effects": [],
+            "card_id": "filler"
+          },
+          "a": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 4,
+            "keywords": [
+              "バリア"
+            ],
+            "card_id": "a"
+          },
+          "b": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 1,
+            "health": 3,
+            "keywords": [
+              "必殺"
+            ],
+            "card_id": "b"
+          },
+          "c": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 3,
+            "health": 3,
+            "keywords": [
+              "疾走"
+            ],
+            "card_id": "c"
+          },
+          "d": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 4,
+            "keywords": [
+              "突進"
+            ],
+            "card_id": "d"
+          },
+          "w": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 5,
+            "keywords": [
+              "守護"
+            ],
+            "card_id": "w"
+          },
+          "ping": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "chosen_enemy",
+                "amount": 2
+              }
+            ],
+            "card_id": "ping"
+          },
+          "dice": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "damage",
+                "target": "random_enemy",
+                "amount": 3
+              }
+            ],
+            "card_id": "dice"
+          },
+          "split": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "split_damage",
+                "target": "self",
+                "amount": 6
+              }
+            ],
+            "card_id": "split"
+          },
+          "remove": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "destroy",
+                "target": "chosen_enemy"
+              }
+            ],
+            "card_id": "remove"
+          },
+          "summon": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "summon",
+                "target": "self",
+                "card_id": "token"
+              }
+            ],
+            "card_id": "summon"
+          },
+          "grant": {
+            "name": "Synthetic spell",
+            "kind": "spell",
+            "cost": 1,
+            "effects": [
+              {
+                "op": "grant",
+                "target": "chosen_ally",
+                "keywords": [
+                  "バリア",
+                  "必殺"
+                ]
+              }
+            ],
+            "card_id": "grant"
+          },
+          "token": {
+            "name": "Synthetic follower",
+            "kind": "follower",
+            "cost": 1,
+            "attack": 2,
+            "health": 2,
+            "keywords": [
+              "疾走"
+            ],
+            "card_id": "token"
+          }
+        },
+        "cards_hash": "3f84dcb508e8e43875cc4024a099271e9ce164cf7f6dff30bb78654914dacccd",
+        "initial": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 16,
+              "max_health": 20,
+              "pp": 5,
+              "max_pp": 5,
+              "turn": 1,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [
+                {
+                  "id": "our-ping",
+                  "card_id": "ping",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-dice",
+                  "card_id": "dice",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-split",
+                  "card_id": "split",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-remove",
+                  "card_id": "remove",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-summon",
+                  "card_id": "summon",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "our-grant",
+                  "card_id": "grant",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [
+                {
+                  "id": "draw-13-0",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-1",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-2",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-13-3",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "board": [
+                {
+                  "id": "ours-a",
+                  "card_id": "a",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-b",
+                  "card_id": "b",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-c",
+                  "card_id": "c",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "疾走"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-d",
+                  "card_id": "d",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "突進"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "ours-w",
+                  "card_id": "w",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            },
+            {
+              "health": 16,
+              "max_health": 20,
+              "pp": 5,
+              "max_pp": 5,
+              "turn": 1,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 0,
+              "combo": 0,
+              "hand": [
+                {
+                  "id": "their-ping",
+                  "card_id": "ping",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-dice",
+                  "card_id": "dice",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-split",
+                  "card_id": "split",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-remove",
+                  "card_id": "remove",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-summon",
+                  "card_id": "summon",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "their-grant",
+                  "card_id": "grant",
+                  "name": "Synthetic spell",
+                  "cost": 1,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "deck": [
+                {
+                  "id": "draw-14-0",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-1",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-2",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "draw-14-3",
+                  "card_id": "filler",
+                  "name": "Synthetic spell",
+                  "cost": 99,
+                  "attack": 0,
+                  "health": 0,
+                  "max_health": 0,
+                  "keywords": [],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "board": [
+                {
+                  "id": "theirs-w",
+                  "card_id": "w",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 5,
+                  "max_health": 5,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-d",
+                  "card_id": "d",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "突進"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-c",
+                  "card_id": "c",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 3,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "疾走"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-b",
+                  "card_id": "b",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 1,
+                  "health": 3,
+                  "max_health": 3,
+                  "keywords": [
+                    "必殺"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "theirs-a",
+                  "card_id": "a",
+                  "name": "Synthetic follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 4,
+                  "max_health": 4,
+                  "keywords": [
+                    "バリア"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "destroyed": []
+            }
+          ]
+        },
+        "actions": [],
+        "frames": []
+      },
+      "root": 0,
+      "positions": [
+        [
+          4,
+          3,
+          3,
+          4,
+          5,
+          0,
+          5,
+          4,
+          3,
+          3,
+          4,
+          1,
+          2,
+          4,
+          8,
+          16,
+          0,
+          16,
+          8,
+          4,
+          2,
+          1,
+          0,
+          0,
+          63,
+          5,
+          16,
+          1,
+          1,
+          0
+        ]
+      ],
+      "actions": [],
+      "probabilities": [],
+      "draws": [],
+      "choices": [],
+      "outcomes": [],
+      "witnesses": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "expanded": [],
+      "candidates": [
+        0
+      ],
+      "stats": {
+        "states": 1,
+        "choices": 0,
+        "outcomes": 0,
+        "duplicates": 0,
+        "candidates": 1,
+        "search_ms": 1.4967999886721373,
+        "elapsed_ms": 2.9607999604195356,
+        "peak_rss_bytes": 22016000,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000000,
+        "max_outcomes": 4096,
+        "seconds": 0.001,
+        "backend": "fixed-slots"
+      }
+    },
+    "probability_sums": [],
+    "all_choices_have_full_probability_mass": true,
+    "expanded_count": 0,
+    "positions_count": 1
+  }
+}

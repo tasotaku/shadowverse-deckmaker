@@ -1,0 +1,112 @@
+{
+  "commit": "99b8ccc",
+  "python": "3.12.1",
+  "pytest": {
+    "status": "PASS",
+    "passed": 681,
+    "seconds": 51.58,
+    "selection": "tests/test_battle*.py + tests/test_combat*.py"
+  },
+  "mypy": {
+    "status": "PASS",
+    "files_checked": 8
+  },
+  "delivered_api": [
+    {
+      "url": "http://127.0.0.1:8767/api/turn-frontier",
+      "case_id": "hand_none_a_b_ab",
+      "status": 200,
+      "complete": true,
+      "encoding": "fixed-slots-v1",
+      "stats": {
+        "states": 4,
+        "choices": 4,
+        "outcomes": 4,
+        "duplicates": 1,
+        "candidates": 4,
+        "search_ms": 0.35669998032972217,
+        "elapsed_ms": 1.672099984716624,
+        "peak_rss_bytes": 28774400,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 100000,
+        "max_outcomes": 4096,
+        "seconds": 10.0,
+        "backend": "fixed-slots"
+      },
+      "request_seconds": 0.032816599996294826
+    },
+    {
+      "url": "http://127.0.0.1:8767/api/turn-frontier",
+      "case_id": "summon_storm_grant_order",
+      "status": 200,
+      "complete": true,
+      "encoding": "shared-tables",
+      "stats": {
+        "states": 9,
+        "choices": 9,
+        "outcomes": 9,
+        "duplicates": 1,
+        "candidates": 6,
+        "search_ms": 0.7208000170066953,
+        "elapsed_ms": 0.9805000154301524,
+        "peak_rss_bytes": 28839936,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 100000,
+        "max_outcomes": 4096,
+        "seconds": 10.0
+      },
+      "request_seconds": 0.005781900021247566
+    }
+  ],
+  "frontier_tests": {
+    "passed": 151,
+    "elapsed_seconds": 6.97,
+    "status": "PASS"
+  },
+  "pooling_comparison": {
+    "case_id": "hard_full_board_branching_1",
+    "max_states": 10000,
+    "complete": false,
+    "baseline_seconds": 4.104,
+    "pooled_seconds": 1.515,
+    "speed_ratio": 2.708910891089109,
+    "graph_equality": "all state, action, chance probability and witness data matched",
+    "candidate_change": "5728 to 3537 from exact-hand comparison to hand-superset Pareto comparison",
+    "source": "independent performance agent compare_frontier.py run; observed tool output",
+    "baseline_sha256": "f5380f5285ec015c55ca52453ee37d16c59b24c5057ce082d27059062c2e8c10"
+  },
+  "source_sha256": {
+    "src\\svdeck\\battle_frontier.py": "41bab231d929231b0efa89d7d3a19e1498d1c87808c4d0d1dab6d46a549545ef",
+    "src\\svdeck\\battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+    "src\\svdeck\\battle_server.py": "8a3fc54524932f90d0db0ebe9c7acfab6e30ced60d2dee208ce1ef170ec91491"
+  },
+  "integer_kernel_10000": {
+    "complete": false,
+    "enumeration_complete": false,
+    "frontier_complete": true,
+    "cutoffs": [
+      "states"
+    ],
+    "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+    "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits including attack rights; not future-game dominance. Full decision graph is unpruned.",
+    "stats": {
+      "states": 10000,
+      "choices": 38204,
+      "outcomes": 42598,
+      "duplicates": 32599,
+      "candidates": 4286,
+      "search_ms": 234.91380002815276,
+      "elapsed_ms": 333.7870000395924,
+      "peak_rss_bytes": 32436224,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "max_outcomes": 4096,
+      "seconds": 60.0,
+      "backend": "fixed-slots"
+    },
+    "case_id": "hard_full_board_branching_1"
+  }
+}

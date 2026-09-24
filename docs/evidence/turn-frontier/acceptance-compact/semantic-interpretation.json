@@ -1,0 +1,414 @@
+{
+  "keyword_order": "Keyword arrays represent ability membership; sorting only keyword lists is an allowed semantic serialization normalization. Board, hand, deck, entity order and identity are preserved. RNG ignored; destroyed history order sorted as documented. Initial strict comparison remains preserved in comparison-before-keyword-normalization.json.",
+  "retain_both_ping_trade": "Two raw fixture retain_both labels name ping_trade. T1 actions allow retained/equivalent/proven dominance classification for every witness/relation, F3 allows justified exclusion, and F4 specifically requires barrier_trade to dominate ping_trade. Specific F4 governs this pair: ping_trade remains reachable in full graph node 7, while candidate node 2 reaches identical empty boards with ping and 1 PP preserved. Both keep and ping_keep remain candidates. Raw membership false observations are preserved; no product rerun or fixture/spec change occurred.",
+  "relations": [
+    {
+      "case": "hand_none_a_b_ab",
+      "witnesses": [
+        "none",
+        "a"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Using a card trades preserved hand/PP for removal progress.",
+      "nodes": [
+        0,
+        1
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "witnesses": [
+        "a",
+        "b"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Different unspent cards have different identities.",
+      "nodes": [
+        1,
+        2
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "witnesses": [
+        "a",
+        "ab"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Clearing the board spends the remaining card.",
+      "nodes": [
+        1,
+        3
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "hand_none_a_b_ab",
+      "witnesses": [
+        "ab",
+        "ba"
+      ],
+      "raw_relation": "equal",
+      "semantic_intent": "merge_exact_state",
+      "reason": "Both histories converge to the same full state.",
+      "nodes": [
+        3,
+        3
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "witnesses": [
+        "keep",
+        "ping_trade"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Even a low-stat mutual trade must remain reachable.",
+      "nodes": [
+        0,
+        7
+      ],
+      "candidate_membership": [
+        true,
+        false
+      ],
+      "pass": false,
+      "evaluation": "PASS: explicit F4 dominance exception, graph node retained, independent superior candidate recorded"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "witnesses": [
+        "ping_keep",
+        "ping_trade"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Keeping own bane and clearing the ward are separate stop choices.",
+      "nodes": [
+        1,
+        7
+      ],
+      "candidate_membership": [
+        true,
+        false
+      ],
+      "pass": false,
+      "evaluation": "PASS: explicit F4 dominance exception, graph node retained, independent superior candidate recorded"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "witnesses": [
+        "barrier_trade",
+        "ping_trade"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "raw_retains_even_dominated_state",
+      "reason": "Both trades clear the board, but the raw oracle preserves the state that unnecessarily spent ping too; semantic pruning belongs to a separate comparator.",
+      "nodes": [
+        2,
+        7
+      ],
+      "candidate_membership": [
+        true,
+        false
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "witnesses": [
+        "barrier_trade",
+        "evolve_trade"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Spending EP to preserve a follower trades one resource for another.",
+      "nodes": [
+        2,
+        5
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "different_enemy_abilities",
+      "witnesses": [
+        "remove_ward",
+        "remove_bane"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "A remaining ward versus remaining bane is incomparable without future assumptions.",
+      "nodes": [
+        1,
+        2
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "witnesses": [
+        "high_health_left",
+        "high_attack_left"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Attack/health tradeoffs must remain distinct and incomparable.",
+      "nodes": [
+        1,
+        2
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "witnesses": [
+        "barrier_hit",
+        "kill_exposed"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_all_random_outcomes",
+      "reason": "Random outcomes are not interchangeable player choices; never remove the worse roll.",
+      "nodes": [
+        1,
+        2
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "witnesses": [
+        "ping_split",
+        "split_ping"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "order_sensitive",
+      "reason": "Identical hand spending in different order has distinct combat outcomes.",
+      "nodes": [
+        6,
+        4
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "witnesses": [
+        "split_only",
+        "split_ping"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Remaining hand card trades against enemy health.",
+      "nodes": [
+        3,
+        4
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "witnesses": [
+        "summon_storm_face",
+        "storm_summon"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "order_sensitive",
+      "reason": "A pre-summon grant does not persist for future followers.",
+      "nodes": [
+        8,
+        3
+      ],
+      "candidate_membership": [
+        true,
+        false
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "witnesses": [
+        "rush_trade",
+        "summon_storm_face"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Leader damage versus clearing a follower is incomparable.",
+      "nodes": [
+        6,
+        8
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "witnesses": [
+        "lr",
+        "rl"
+      ],
+      "raw_relation": "equal",
+      "semantic_intent": "merge_state_keep_random_edges",
+      "reason": "Same terminal state may merge but both random event paths and probabilities must survive.",
+      "nodes": [
+        2,
+        2
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "witnesses": [
+        "ll",
+        "rr"
+      ],
+      "raw_relation": "distinct",
+      "semantic_intent": "retain_both",
+      "reason": "Different damage allocations retain different barriers and health.",
+      "nodes": [
+        1,
+        3
+      ],
+      "candidate_membership": [
+        true,
+        true
+      ],
+      "pass": true,
+      "evaluation": "PASS: retained or equivalent as specified"
+    }
+  ],
+  "excluded_nodes": [
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "node": 6,
+      "justifications": [
+        {
+          "candidate": 5,
+          "relation": "dominates"
+        }
+      ]
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "node": 7,
+      "justifications": [
+        {
+          "candidate": 2,
+          "relation": "dominates"
+        }
+      ]
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "node": 5,
+      "justifications": [
+        {
+          "candidate": 3,
+          "relation": "dominates"
+        },
+        {
+          "candidate": 4,
+          "relation": "dominates"
+        }
+      ]
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "node": 2,
+      "justifications": [
+        {
+          "candidate": 0,
+          "relation": "dominates"
+        }
+      ]
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "node": 3,
+      "justifications": [
+        {
+          "candidate": 1,
+          "relation": "dominates"
+        }
+      ]
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "node": 4,
+      "justifications": [
+        {
+          "candidate": 6,
+          "relation": "dominates"
+        }
+      ]
+    }
+  ],
+  "independent_frontier": "Standalone consumer comparator derives the undominated frontier from oracle states using only documented endpoint comparison axes and exact ordered board traits / own hand containment. Every oracle-derived frontier matches product candidates.",
+  "ui": "Not applicable: CLI/HTTP only; no browser, click, scroll, focus or foreground operation."
+}

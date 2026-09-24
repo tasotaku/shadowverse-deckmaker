@@ -1,0 +1,98 @@
+{
+  "commit": "8ff3337084bc94b574eeaa6b50df9de026d01175",
+  "pytest": {
+    "status": "PASS",
+    "passed": 704,
+    "seconds": 54.44
+  },
+  "new_tests": {
+    "status": "PASS",
+    "passed": 174,
+    "seconds": 7.35
+  },
+  "mypy": {
+    "status": "PASS",
+    "files_checked": 9
+  },
+  "prefix_comparison": {
+    "case": "hard_full_board_branching_1",
+    "max_states": 10000,
+    "all_equal": [
+      "positions",
+      "actions",
+      "probabilities",
+      "draws",
+      "choices",
+      "outcomes",
+      "witnesses",
+      "expanded",
+      "candidates"
+    ],
+    "before": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": true,
+      "cutoffs": [
+        "states"
+      ],
+      "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+      "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits including attack rights; not future-game dominance. Full decision graph is unpruned.",
+      "stats": {
+        "states": 10000,
+        "choices": 38204,
+        "outcomes": 42598,
+        "duplicates": 32599,
+        "candidates": 4286,
+        "search_ms": 234.91380002815276,
+        "elapsed_ms": 333.7870000395924,
+        "peak_rss_bytes": 32436224,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "seconds": 60.0,
+        "backend": "fixed-slots"
+      },
+      "case_id": "hard_full_board_branching_1"
+    },
+    "after": {
+      "complete": false,
+      "enumeration_complete": false,
+      "frontier_complete": true,
+      "cutoffs": [
+        "states"
+      ],
+      "scope": "Own current turn before end-turn effects. Every node allows STOP. Uniform chance outcomes, not selectable actions.",
+      "dominance_scope": "Endpoint board stats and own resources, with exact remaining-hand containment and identical ordered board traits including attack rights; not future-game dominance. Full decision graph is unpruned.",
+      "stats": {
+        "states": 10000,
+        "choices": 38204,
+        "outcomes": 42598,
+        "duplicates": 32599,
+        "candidates": 4286,
+        "search_ms": 255.70000003790483,
+        "elapsed_ms": 372.6738000405021,
+        "peak_rss_bytes": 27877376,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 10000,
+        "max_outcomes": 4096,
+        "seconds": 60.0,
+        "backend": "fixed-slots"
+      },
+      "case_id": "hard_full_board_branching_1"
+    }
+  },
+  "vector_only_measurement": {
+    "commit": "afce947654216d352e60ca5faa45ca9c277917db",
+    "states": 20000,
+    "same_candidates": 8304,
+    "before_tracemalloc_peak_bytes": 8329048,
+    "after_tracemalloc_peak_bytes": 4079119,
+    "before_seconds": 1.149,
+    "after_seconds": 1.141,
+    "scope": "isolated frontier phase; not whole-process OS peak; measured by implementation agent"
+  },
+  "delivered_commit": "253620e",
+  "identical_git_tree": "4007f8256a48ddad168e357475e227966b8c2d2a"
+}

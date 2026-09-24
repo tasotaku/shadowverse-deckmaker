@@ -1,0 +1,988 @@
+{
+  "head": "3e6b550a1a894410ca9117f93a75abfd403f5c53",
+  "fixture_sha256": "9aeb8938f322379a6a8f7ab7502137783aa1cf48a94e3c0af5623eb736f063e9",
+  "oracle_sha256": "5281282b1d9ae068a51ea7989d389848ddb828f719b05605ad07fe1902262e8e",
+  "all_states_equal": true,
+  "all_edges_equal": true,
+  "witness_count": 27,
+  "candidate_assessments": [
+    {
+      "case": "hand_none_a_b_ab",
+      "removed": [],
+      "relations": [
+        {
+          "witnesses": [
+            "none",
+            "a"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Using a card trades preserved hand/PP for removal progress.",
+          "nodes": [
+            0,
+            1
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "a",
+            "b"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Different unspent cards have different identities.",
+          "nodes": [
+            1,
+            2
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "a",
+            "ab"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Clearing the board spends the remaining card.",
+          "nodes": [
+            1,
+            3
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "ab",
+            "ba"
+          ],
+          "raw_relation": "equal",
+          "semantic_intent": "merge_exact_state",
+          "reason": "Both histories converge to the same full state.",
+          "nodes": [
+            3,
+            3
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              3
+            ],
+            [
+              3
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "barrier_bane_low_stack_trade",
+      "removed": [
+        {
+          "node": 6,
+          "dominators_preserving_attack_rights": [
+            5
+          ],
+          "endpoint_only_dominators": [
+            5
+          ],
+          "actions_from_removed": [],
+          "pass": true
+        },
+        {
+          "node": 7,
+          "dominators_preserving_attack_rights": [
+            2
+          ],
+          "endpoint_only_dominators": [
+            2
+          ],
+          "actions_from_removed": [],
+          "pass": true
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "keep",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Even a low-stat mutual trade must remain reachable.",
+          "nodes": [
+            0,
+            7
+          ],
+          "candidate": [
+            true,
+            false
+          ],
+          "replacement_candidates": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "ping_keep",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Keeping own bane and clearing the ward are separate stop choices.",
+          "nodes": [
+            1,
+            7
+          ],
+          "candidate": [
+            true,
+            false
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "barrier_trade",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "raw_retains_even_dominated_state",
+          "reason": "Both trades clear the board, but the raw oracle preserves the state that unnecessarily spent ping too; semantic pruning belongs to a separate comparator.",
+          "nodes": [
+            2,
+            7
+          ],
+          "candidate": [
+            true,
+            false
+          ],
+          "replacement_candidates": [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "barrier_trade",
+            "evolve_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Spending EP to preserve a follower trades one resource for another.",
+          "nodes": [
+            2,
+            5
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              2
+            ],
+            [
+              5
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "different_enemy_abilities",
+      "removed": [],
+      "relations": [
+        {
+          "witnesses": [
+            "remove_ward",
+            "remove_bane"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "A remaining ward versus remaining bane is incomparable without future assumptions.",
+          "nodes": [
+            1,
+            2
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "large_attack_health_tradeoff",
+      "removed": [],
+      "relations": [
+        {
+          "witnesses": [
+            "high_health_left",
+            "high_attack_left"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Attack/health tradeoffs must remain distinct and incomparable.",
+          "nodes": [
+            1,
+            2
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "random_bad_outcome_retained",
+      "removed": [],
+      "relations": [
+        {
+          "witnesses": [
+            "barrier_hit",
+            "kill_exposed"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_all_random_outcomes",
+          "reason": "Random outcomes are not interchangeable player choices; never remove the worse roll.",
+          "nodes": [
+            1,
+            2
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "oldest_barrier_split_order",
+      "removed": [
+        {
+          "node": 5,
+          "dominators_preserving_attack_rights": [
+            3,
+            4
+          ],
+          "endpoint_only_dominators": [
+            3,
+            4
+          ],
+          "actions_from_removed": [],
+          "pass": true
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "ping_split",
+            "split_ping"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "order_sensitive",
+          "reason": "Identical hand spending in different order has distinct combat outcomes.",
+          "nodes": [
+            6,
+            4
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              6
+            ],
+            [
+              4
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "split_only",
+            "split_ping"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Remaining hand card trades against enemy health.",
+          "nodes": [
+            3,
+            4
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              3
+            ],
+            [
+              4
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "summon_storm_grant_order",
+      "removed": [
+        {
+          "node": 2,
+          "dominators_preserving_attack_rights": [
+            0
+          ],
+          "endpoint_only_dominators": [
+            0
+          ],
+          "actions_from_removed": [
+            {
+              "type": "play",
+              "card": "summon"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "node": 3,
+          "dominators_preserving_attack_rights": [
+            1
+          ],
+          "endpoint_only_dominators": [
+            1
+          ],
+          "actions_from_removed": [
+            {
+              "type": "attack",
+              "source": "e1",
+              "target": "target"
+            }
+          ],
+          "pass": true
+        },
+        {
+          "node": 4,
+          "dominators_preserving_attack_rights": [
+            6
+          ],
+          "endpoint_only_dominators": [
+            6
+          ],
+          "actions_from_removed": [],
+          "pass": true
+        },
+        {
+          "node": 5,
+          "dominators_preserving_attack_rights": [],
+          "endpoint_only_dominators": [
+            8
+          ],
+          "actions_from_removed": [
+            {
+              "type": "attack",
+              "source": "e1",
+              "target": "target"
+            },
+            {
+              "type": "attack",
+              "source": "e1",
+              "target": "leader:1"
+            }
+          ],
+          "pass": false
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "summon_storm_face",
+            "storm_summon"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "order_sensitive",
+          "reason": "A pre-summon grant does not persist for future followers.",
+          "nodes": [
+            8,
+            3
+          ],
+          "candidate": [
+            true,
+            false
+          ],
+          "replacement_candidates": [
+            [
+              8
+            ],
+            [
+              1
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "rush_trade",
+            "summon_storm_face"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Leader damage versus clearing a follower is incomparable.",
+          "nodes": [
+            6,
+            8
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              6
+            ],
+            [
+              8
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    },
+    {
+      "case": "random_sequential_duplicate_outcomes",
+      "removed": [],
+      "relations": [
+        {
+          "witnesses": [
+            "lr",
+            "rl"
+          ],
+          "raw_relation": "equal",
+          "semantic_intent": "merge_state_keep_random_edges",
+          "reason": "Same terminal state may merge but both random event paths and probabilities must survive.",
+          "nodes": [
+            2,
+            2
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        },
+        {
+          "witnesses": [
+            "ll",
+            "rr"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Different damage allocations retain different barriers and health.",
+          "nodes": [
+            1,
+            3
+          ],
+          "candidate": [
+            true,
+            true
+          ],
+          "replacement_candidates": [
+            [
+              1
+            ],
+            [
+              3
+            ]
+          ],
+          "raw_paths_reconstructed": true
+        }
+      ]
+    }
+  ],
+  "measurements": [
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "hand_none_a_b_ab",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\hand_none_a_b_ab",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 2.15523909998592,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 16400,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4661248,
+          "samples": 183
+        },
+        {
+          "pid": 29760,
+          "parent_pid": 16400,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8536064,
+          "samples": 183
+        },
+        {
+          "pid": 33548,
+          "parent_pid": 16400,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21848064,
+          "samples": 15
+        }
+      ],
+      "peak_working_set_bytes": 21848064,
+      "measured_python_pid": 33548,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "barrier_bane_low_stack_trade",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\barrier_bane_low_stack_trade",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.14940170000772923,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 21516,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4661248,
+          "samples": 17
+        },
+        {
+          "pid": 11588,
+          "parent_pid": 21516,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8531968,
+          "samples": 17
+        },
+        {
+          "pid": 12844,
+          "parent_pid": 21516,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21868544,
+          "samples": 15
+        }
+      ],
+      "peak_working_set_bytes": 21868544,
+      "measured_python_pid": 12844,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "different_enemy_abilities",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\different_enemy_abilities",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.14391290000639856,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 3328,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4657152,
+          "samples": 16
+        },
+        {
+          "pid": 16628,
+          "parent_pid": 3328,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8544256,
+          "samples": 16
+        },
+        {
+          "pid": 17076,
+          "parent_pid": 3328,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21762048,
+          "samples": 15
+        }
+      ],
+      "peak_working_set_bytes": 21762048,
+      "measured_python_pid": 17076,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "large_attack_health_tradeoff",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\large_attack_health_tradeoff",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.14352290000533685,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 19468,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4661248,
+          "samples": 18
+        },
+        {
+          "pid": 21052,
+          "parent_pid": 19468,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8548352,
+          "samples": 18
+        },
+        {
+          "pid": 31832,
+          "parent_pid": 19468,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21798912,
+          "samples": 17
+        }
+      ],
+      "peak_working_set_bytes": 21798912,
+      "measured_python_pid": 31832,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "random_bad_outcome_retained",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\random_bad_outcome_retained",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.14110459998482838,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 32380,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4653056,
+          "samples": 19
+        },
+        {
+          "pid": 11300,
+          "parent_pid": 32380,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8527872,
+          "samples": 19
+        },
+        {
+          "pid": 19168,
+          "parent_pid": 32380,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21868544,
+          "samples": 17
+        }
+      ],
+      "peak_working_set_bytes": 21868544,
+      "measured_python_pid": 19168,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "oldest_barrier_split_order",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\oldest_barrier_split_order",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.13882749999174848,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 23204,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4657152,
+          "samples": 19
+        },
+        {
+          "pid": 16312,
+          "parent_pid": 23204,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8531968,
+          "samples": 19
+        },
+        {
+          "pid": 14364,
+          "parent_pid": 23204,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21889024,
+          "samples": 17
+        }
+      ],
+      "peak_working_set_bytes": 21889024,
+      "measured_python_pid": 14364,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "summon_storm_grant_order",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\summon_storm_grant_order",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.13495789997978136,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 29660,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4657152,
+          "samples": 19
+        },
+        {
+          "pid": 23960,
+          "parent_pid": 29660,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8531968,
+          "samples": 19
+        },
+        {
+          "pid": 29552,
+          "parent_pid": 29660,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21766144,
+          "samples": 17
+        }
+      ],
+      "peak_working_set_bytes": 21766144,
+      "measured_python_pid": 29552,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    },
+    {
+      "command": [
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "svdeck.battle_frontier",
+        "--cases",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\tests\\fixtures\\turn_frontier_cases.json",
+        "--case",
+        "random_sequential_duplicate_outcomes",
+        "--output",
+        "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\random_sequential_duplicate_outcomes",
+        "--seconds",
+        "60",
+        "--max-states",
+        "1000000"
+      ],
+      "elapsed_seconds": 0.1378131999517791,
+      "exit_code": 0,
+      "processes": [
+        {
+          "pid": 33300,
+          "parent_pid": 22664,
+          "executable": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+          "peak_working_set_bytes": 4661248,
+          "samples": 18
+        },
+        {
+          "pid": 26988,
+          "parent_pid": 33300,
+          "executable": "C:\\Windows\\System32\\conhost.exe",
+          "peak_working_set_bytes": 8527872,
+          "samples": 18
+        },
+        {
+          "pid": 22632,
+          "parent_pid": 33300,
+          "executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+          "peak_working_set_bytes": 21753856,
+          "samples": 16
+        }
+      ],
+      "peak_working_set_bytes": 21753856,
+      "measured_python_pid": 22632,
+      "measured_python_executable": "C:\\Users\\tasog\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+    }
+  ],
+  "http": {
+    "status": 200,
+    "elapsed_seconds": 0.03401790000498295,
+    "server_root_pid": 31992,
+    "peak_working_set_bytes": 28684288
+  },
+  "finding": "T1-F3 FAIL: summon_storm_grant_order candidate node 5 (summon → storm, attacks=0) is omitted, while node 8 (summon → storm → attack leader:1, attacks=1) is retained. Node 5 can still attack target or leader; node 8 cannot. Enemy leader HP 20→17 improves, but remaining attack right decreases. No retained candidate dominates node 5 while preserving its abilities/resources. Public docs explicitly define endpoint-only comparison and instruct using the unpruned graph for attack-right differences; that limitation does not satisfy the fixed F3 requirement of preserving the same future abilities. Raw graph retains node 5 and both legal continuations.",
+  "raw_directory": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small"
+}

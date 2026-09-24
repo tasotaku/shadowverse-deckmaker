@@ -1,0 +1,58 @@
+{
+  "commit": "253620e",
+  "equivalent_worktree_commit": "8ff3337",
+  "url": "http://127.0.0.1:8767/api/turn-frontier",
+  "checks": [
+    {
+      "case_id": "hand_none_a_b_ab",
+      "status": 200,
+      "complete": true,
+      "encoding": "fixed-slots-v1",
+      "stats": {
+        "states": 4,
+        "choices": 4,
+        "outcomes": 4,
+        "duplicates": 1,
+        "candidates": 4,
+        "search_ms": 0.5655999993905425,
+        "elapsed_ms": 1.9672000198625028,
+        "peak_rss_bytes": 30384128,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 100000,
+        "max_outcomes": 4096,
+        "seconds": 10.0,
+        "backend": "fixed-slots"
+      },
+      "wall_seconds": 0.0635801000171341
+    },
+    {
+      "case_id": "summon_storm_grant_order",
+      "status": 200,
+      "complete": true,
+      "encoding": "shared-tables",
+      "stats": {
+        "states": 9,
+        "choices": 9,
+        "outcomes": 9,
+        "duplicates": 1,
+        "candidates": 6,
+        "search_ms": 0.7214999641291797,
+        "elapsed_ms": 0.9775999933481216,
+        "peak_rss_bytes": 30420992,
+        "memory_method": "Windows PeakWorkingSetSize",
+        "memory_scope": "whole process peak",
+        "max_states": 100000,
+        "max_outcomes": 4096,
+        "seconds": 10.0
+      },
+      "wall_seconds": 0.019403800019063056
+    }
+  ],
+  "source_sha256": {
+    "src\\svdeck\\battle_frontier.py": "07ee793fe3b99282b683782e04952e205d31b7aeca1d53ca37e479f25760d5e2",
+    "src\\svdeck\\battle_frontier_fast.py": "223aff1a3d87c5501d0f6a3ccf7010bfdcdf5f971c32c5c4a32f2a17c1b26687",
+    "src\\svdeck\\battle_frontier_io.py": "37089cd9b97ac628d3a46132c74360c9ddd8beb66ed58a892ec3ec14f5c60a9d",
+    "src\\svdeck\\battle_frontier_packed.py": "1cf379ec18d0006bfbdb3a8ddd768f1b69337ed7892a3dac59d58e8dc17de2ba"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-frontier-public-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+  "executor_id": "fresh-frontier-acceptance-large-final",
+  "started_at": "2026-09-24T14:35:55.033248+00:00",
+  "finished_at": "2026-09-24T14:59:09.816043+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final",
+    "completed_record": "T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-frontier\\acceptance-large-final\\rawmetrics.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T1 is outside this executor assignment; root will integrate the independent T1 report."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:59:09.815043+00:00",
+        "evidence": "No T1 environment started by this executor."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "FINDINGS",
+      "journey_started_at": "2026-09-24T14:35:55.033248+00:00",
+      "journey_stopped_at": "2026-09-24T14:59:09.815043+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [
+        "T2-F1: hard_full_board_branching_1 stops at max_states=10000000 and fails the fixed full-enumeration requirement."
+      ],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T2-F1 FAIL: hard1 returned complete=false with cutoffs=[states] at 10,000,000 states. Hard2 result is separately recorded below; one required hard case failing already fails the both-cases full-enumeration requirement.",
+        "T2-F2 PASS: both 5v5/6-hand inputs preserved; both graph files passed independent ijson JSON syntax validation. Public positions/expanded/candidates counters agree with stats. Hard1 unexpanded=77; hard2 unexpanded=0. Public action tables contain attack/play and no end_turn. All sampled witness_steps replay through replay_branch with semantic state equality, active player0 and turns[1,1]. Both fixtures have EP0, so no legal evolution exists in these hard inputs.",
+        "T2-F3 PASS: separate fresh Python processes called analyze(max_states=1,seconds=60) and analyze(max_states=10000000,seconds=0.001) once; both returned complete=false with explicit state/time cutoff reasons rather than an exception.",
+        "T2-F4 PASS: each limit result contains one unexpanded root, zero choices/outcomes, explicit cutoffs and false completion; no partial random operation was published. The incomplete hard1 graph retained the root random operation with all5 outcomes at1/5 including barrier targets and total probability1.",
+        "T2-U1 PASS: hard2 complete=true and the state/time-limited complete=false results can be distinguished by machine-readable complete and cutoffs without stderr. Hard1 incomplete result is also unambiguously distinguishable.",
+        "T2-U2 PASS: each call has monotonic process-start-to-exit walltime, settings, explicit completion, and OS GetProcessMemoryInfo PeakWorkingSetSize for both venv launcher and real Python child. Raw metrics include actual child paths/PIDs and progress JSON. CLI serialization time is included in walltime. Same-host T1 and independent consumer activity overlapped portions of the large run.",
+        "T2-U3 PASS: CLI public options and documented analyze/Battle/json_default only; no product or fixture edits and zero private API calls/config changes. Clicks/scroll/focus/manual surface switches are not applicable to this CLI/API journey.",
+        "hard_full_board_branching_1: max_states=10000000, seconds=600; OS wall=673.749936s; actual Python peak=9295020032bytes; exit=0; complete=False; cutoffs=['states']",
+        "hard_full_board_branching_2: max_states=10000000, seconds=600; OS wall=614.255750s; actual Python peak=8025923584bytes; exit=0; complete=True; cutoffs=[]",
+        "limit_states: max_states=1, seconds=60; OS wall=0.119642s; actual Python peak=22085632bytes; exit=0; complete=False; cutoffs=['states']",
+        "limit_seconds: max_states=10000000, seconds=0.001; OS wall=0.146430s; actual Python peak=22093824bytes; exit=0; complete=False; cutoffs=['frontier time', 'time']"
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:59:09.816043+00:00",
+        "evidence": "All four dedicated launcher and real-Python children exited naturally; consumers exited. No server was started or touched. Preserved workspace=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-large-final; completed record=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\docs\\evidence\\turn-frontier\\acceptance-large-final\\rawmetrics.json."
+      }
+    }
+  ],
+  "product_findings_count": 1,
+  "blind_spots": [
+    "Large-fixture completeness has no independent full-state oracle; validation uses public counters, table consistency, and legal replay samples as fixed spec permits."
+  ]
+}

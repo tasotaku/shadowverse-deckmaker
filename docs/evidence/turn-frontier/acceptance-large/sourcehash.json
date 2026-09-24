@@ -1,0 +1,42 @@
+{
+  "product_commit": "3e6b550a1a894410ca9117f93a75abfd403f5c53",
+  "started_at": "2026-09-24T14:08:47.474221+00:00",
+  "python_launcher": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\.venv\\Scripts\\python.exe",
+  "fixture_sha256": "5cd97dd7d7fdc3ed9cb80b4134ecd2b0ef50789ecea3898f28dd0080f962670b",
+  "public_docs_sha256": "fee5b07f122589972d3f2475f8cb447568d8d22a4c6a5ce0faa3fca5b2ac9274",
+  "spec_sha256": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+  "inputs": [
+    {
+      "case": "hard_full_board_branching_1",
+      "boards": [
+        5,
+        5
+      ],
+      "hands": [
+        6,
+        6
+      ]
+    },
+    {
+      "case": "hard_full_board_branching_2",
+      "boards": [
+        5,
+        5
+      ],
+      "hands": [
+        6,
+        6
+      ]
+    }
+  ],
+  "semantic_mapping": {
+    "completion": "complete, enumeration_complete, frontier_complete; actual interruption field is cutoffs list",
+    "candidates": "candidates node identifiers",
+    "state": "state_at(result,node)",
+    "steps": "witness_steps(result,node)",
+    "replay": "replay_branch(result.record, steps)",
+    "distribution": "choices slice of outcomes with probabilities table",
+    "remaining_work": "expanded versus positions node count"
+  },
+  "observation": "OS GetProcessMemoryInfo PeakWorkingSetSize per actual Python process; monotonic CLI start through exit; concurrent T1 same host possible"
+}

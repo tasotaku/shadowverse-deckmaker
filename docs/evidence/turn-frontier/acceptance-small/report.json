@@ -1,0 +1,90 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "turn-frontier-public-acceptance",
+  "spec_version": 1,
+  "spec_sha256": "02fbcea02724d42ab918f47e776a96124385336b25789a047c69b114693a23f6",
+  "executor_id": "fresh-frontier_acceptance_small",
+  "started_at": "2026-09-24T14:08:57.826920+00:00",
+  "finished_at": "2026-09-24T14:12:30.959906+00:00",
+  "scheduling": {
+    "available_executor_slots": 2,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\consumer-summary.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "FINDINGS",
+      "journey_started_at": "2026-09-24T14:08:57.884920+00:00",
+      "journey_stopped_at": "2026-09-24T14:12:30.753883+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [
+        "T1-F3 FAIL: summon_storm_grant_order candidate node 5 (summon → storm, attacks=0) is omitted, while node 8 (summon → storm → attack leader:1, attacks=1) is retained. Node 5 can still attack target or leader; node 8 cannot. Enemy leader HP 20→17 improves, but remaining attack right decreases. No retained candidate dominates node 5 while preserving its abilities/resources. Public docs explicitly define endpoint-only comparison and instruct using the unpruned graph for attack-right differences; that limitation does not satisfy the fixed F3 requirement of preserving the same future abilities. Raw graph retains node 5 and both legal continuations."
+      ],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T1-F1 PASS: all 8 CLI results have complete/enumeration_complete/frontier_complete true, cutoffs empty, all 41 nodes expanded; 41 states and 37 full outcome edges match independent oracle; active_player and player turn counters unchanged. Oracle has zero victory terminals, so no victory-terminal behavior is exercised.",
+        "T1-F2 PASS: all 41 states match after removing rng and sorting keyword lists only. All other full fields, board order, entity IDs, attack rights, hand, deck, resources and history remain in comparison; 37 edges match source/action/target/draw sequence/exact Fraction probability. No private APIs used.",
+        "T1-F3 FAIL: all fixture incomparable pairs are retained directly or by strictly better hand/PP representative, but non-witness node 5 in summon_storm_grant_order is removed despite a remaining attack right. candidate-assessment.json records all 7 omitted nodes and all 17 fixture relations; 6 removals have a dominator preserving attack rights, 1 only has endpoint-stat dominance.",
+        "T1-F4 PASS: barrier_bane_low_stack_trade node 7 ping_trade omitted, node 2 barrier_trade retained; both boards empty and same EP/HP, but node 2 has ping and 1 PP versus empty hand and 0 PP. Evolved equivalent node 6 is also dominated by node 5 preserving ping+PP. Raw nodes remain available.",
+        "T1-F5 PASS: all 37 exact probabilistic outcome edges match oracle and each of 33 choices sums to 1. random_bad_outcome retains both 1/2 branches; sequential double random retains four 1/4 paths, lr and rl converge to one state with total mass 1/2.",
+        "T1-F6 PASS: all 27 witness paths reconstructed from public choices/outcomes and all field checks pass; barrier/bane/storm/rush/ward, chosen/random/oldest split, damage/destroy/summon/grant, board attacks and evolution are represented. Every public edge matches oracle, ruling out added illegal targets/actions in these fixtures. HTTP JSON equals CLI JSON excluding measurement stats.",
+        "T1-U1 PASS: 8 CLI calls each produce graph.json/report.json, exit 0; one POST returns HTTP 200. Separate consumer process uses standard json.loads, public state_at/witness_steps; manual file formatting=0.",
+        "T1-U2 PASS for interpretation: documented complete flags, indexed graph tables and public reconstruction APIs unambiguously recover actions, targets, hand, boards and probabilities. HTTP candidate 1 plays random and draws index 0, consumes barrier on protected while keeping exposed; candidate 2 draws index 1, kills exposed and leaves protected barrier. Both probabilities=1/2. UI conditions not applicable.",
+        "T1-U3 PASS: external monotonic clock and Windows GetProcessMemoryInfo PeakWorkingSetSize recorded for all 9 calls. Python312 child PID/executable explicitly identified apart from venv launcher and conhost. Dedicated HTTP server Python peak includes startup, as process-wide OS peak; no product self-reported value substitutes for measurement.",
+        "Interaction counts: CLI analysis calls=8, HTTP analysis requests=1, retries=0, private API calls=0, manual data edits=0; browser/viewport/focus/click/scroll not applicable. Saved-output consumer was refined for keyword-order normalization without re-running any product call.",
+        "Scheduling: T1 and T2 separate executors in batch 1 on the same Windows host; CPU/resource contention may affect timings. T1 output directory and port 8795 dedicated. Product code/source/diff/past reports were not read.",
+        "UX shipping judgement: GO for documented CLI/HTTP data recovery; product acceptance remains FINDINGS due to F3. Public description candidly states endpoint-only dominance.",
+        "Measurement hand_none_a_b_ab: seconds=60 max_states=1000000 complete=true elapsed=2.155239100s OS_peak=21848064 bytes Python_PID=33548; hand_none_a_b_ab.measurement.json.",
+        "Measurement barrier_bane_low_stack_trade: seconds=60 max_states=1000000 complete=true elapsed=0.149401700s OS_peak=21868544 bytes Python_PID=12844; barrier_bane_low_stack_trade.measurement.json.",
+        "Measurement different_enemy_abilities: seconds=60 max_states=1000000 complete=true elapsed=0.143912900s OS_peak=21762048 bytes Python_PID=17076; different_enemy_abilities.measurement.json.",
+        "Measurement large_attack_health_tradeoff: seconds=60 max_states=1000000 complete=true elapsed=0.143522900s OS_peak=21798912 bytes Python_PID=31832; large_attack_health_tradeoff.measurement.json.",
+        "Measurement random_bad_outcome_retained: seconds=60 max_states=1000000 complete=true elapsed=0.141104600s OS_peak=21868544 bytes Python_PID=19168; random_bad_outcome_retained.measurement.json.",
+        "Measurement oldest_barrier_split_order: seconds=60 max_states=1000000 complete=true elapsed=0.138827500s OS_peak=21889024 bytes Python_PID=14364; oldest_barrier_split_order.measurement.json.",
+        "Measurement summon_storm_grant_order: seconds=60 max_states=1000000 complete=true elapsed=0.134957900s OS_peak=21766144 bytes Python_PID=29552; summon_storm_grant_order.measurement.json.",
+        "Measurement random_sequential_duplicate_outcomes: seconds=60 max_states=1000000 complete=true elapsed=0.137813200s OS_peak=21753856 bytes Python_PID=22632; random_sequential_duplicate_outcomes.measurement.json.",
+        "Measurement HTTP random_bad_outcome_retained: seconds=60 max_states=1000000 status=200 complete=true elapsed=0.034017900s OS_peak=28684288 bytes; metadata.json/http-request.json/http-response.json."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:12:30.959906+00:00",
+        "evidence": "Own server launcher PID31992 plus children terminated; taskkill exit0, owned_pids_still_alive=[]; port8795 closed=True. All CLI children exited. Preserved workspace=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small; completed record=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-acceptance-small\\consumer-summary.json. No user server/process altered."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "T2 belongs to the separate fresh executor; placeholder only to satisfy full-spec lint. Coordinator must merge actual T2 record."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-24T14:12:30.959906+00:00",
+        "evidence": "No T2 environment created or touched by this executor."
+      }
+    }
+  ],
+  "product_findings_count": 1,
+  "blind_spots": [
+    "T2 independently executed elsewhere; this report does not evaluate it.",
+    "No winning terminal exists in fixed small fixtures; terminal comparison is empty-set agreement.",
+    "Fixed small fixtures do not cover all cards or future-game strategic dominance.",
+    "OS peak is Python resident working set, not total host memory."
+  ]
+}

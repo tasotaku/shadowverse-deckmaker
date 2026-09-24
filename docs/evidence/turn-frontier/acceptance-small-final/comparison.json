@@ -1,0 +1,1400 @@
+{
+  "normalization": "Remove rng; sort keyword sets and unreferenced destroyed history; preserve all other fields and list ordering.",
+  "cases": [
+    {
+      "id": "hand_none_a_b_ab",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 4,
+      "outcomes": 4,
+      "choices": 4,
+      "candidates": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "witnesses": [
+        {
+          "id": "none",
+          "node": 0,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": []
+        },
+        {
+          "id": "a",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "a",
+                "target": "wall"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "b",
+                "target": "wall"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "ab",
+          "node": 3,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "b",
+                "target": "wall"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "a",
+                "target": "wall"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "ba",
+          "node": 3,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "b",
+                "target": "wall"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "a",
+                "target": "wall"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "none",
+            "a"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Using a card trades preserved hand/PP for removal progress.",
+          "nodes": [
+            0,
+            1
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "a",
+            "b"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Different unspent cards have different identities.",
+          "nodes": [
+            1,
+            2
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "a",
+            "ab"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Clearing the board spends the remaining card.",
+          "nodes": [
+            1,
+            3
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "ab",
+            "ba"
+          ],
+          "raw_relation": "equal",
+          "semantic_intent": "merge_exact_state",
+          "reason": "Both histories converge to the same full state.",
+          "nodes": [
+            3,
+            3
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "barrier_bane_low_stack_trade",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 8,
+      "outcomes": 8,
+      "choices": 8,
+      "candidates": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "witnesses": [
+        {
+          "id": "keep",
+          "node": 0,
+          "legal_path": true,
+          "field_checks": [],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": []
+        },
+        {
+          "id": "barrier_trade",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "attack",
+                "source": "bane",
+                "target": "ward"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "ping_trade",
+          "node": 7,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": false,
+          "dominating_candidates": [
+            2
+          ],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "ward"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "bane",
+                "target": "ward"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "ping_keep",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "ward"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "evolve_trade",
+          "node": 5,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "evolve",
+                "source": "bane"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "bane",
+                "target": "ward"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "keep",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Even a low-stat mutual trade must remain reachable.",
+          "nodes": [
+            0,
+            7
+          ],
+          "both_candidates": false,
+          "dominating_representatives": {
+            "7": [
+              2
+            ]
+          },
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "ping_keep",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Keeping own bane and clearing the ward are separate stop choices.",
+          "nodes": [
+            1,
+            7
+          ],
+          "both_candidates": false,
+          "dominating_representatives": {
+            "7": [
+              2
+            ]
+          },
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "barrier_trade",
+            "ping_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "raw_retains_even_dominated_state",
+          "reason": "Both trades clear the board, but the raw oracle preserves the state that unnecessarily spent ping too; semantic pruning belongs to a separate comparator.",
+          "nodes": [
+            2,
+            7
+          ],
+          "both_candidates": false,
+          "dominating_representatives": {
+            "7": [
+              2
+            ]
+          },
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "barrier_trade",
+            "evolve_trade"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Spending EP to preserve a follower trades one resource for another.",
+          "nodes": [
+            2,
+            5
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [
+        {
+          "node": 6,
+          "dominating_candidates": [
+            5
+          ]
+        },
+        {
+          "node": 7,
+          "dominating_candidates": [
+            2
+          ]
+        }
+      ],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "different_enemy_abilities",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 3,
+      "outcomes": 2,
+      "choices": 2,
+      "candidates": [
+        0,
+        1,
+        2
+      ],
+      "witnesses": [
+        {
+          "id": "remove_ward",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "destroy",
+                "target": "ward"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "remove_bane",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "destroy",
+                "target": "bane"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "remove_ward",
+            "remove_bane"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "A remaining ward versus remaining bane is incomparable without future assumptions.",
+          "nodes": [
+            1,
+            2
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "large_attack_health_tradeoff",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 3,
+      "outcomes": 2,
+      "choices": 2,
+      "candidates": [
+        0,
+        1,
+        2
+      ],
+      "witnesses": [
+        {
+          "id": "high_health_left",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "destroy",
+                "target": "tall"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "high_attack_left",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "destroy",
+                "target": "wide"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "high_health_left",
+            "high_attack_left"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Attack/health tradeoffs must remain distinct and incomparable.",
+          "nodes": [
+            1,
+            2
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "random_bad_outcome_retained",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 3,
+      "outcomes": 2,
+      "choices": 1,
+      "candidates": [
+        0,
+        1,
+        2
+      ],
+      "witnesses": [
+        {
+          "id": "barrier_hit",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "random"
+              },
+              "draws": [
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kill_exposed",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "random"
+              },
+              "draws": [
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "barrier_hit",
+            "kill_exposed"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_all_random_outcomes",
+          "reason": "Random outcomes are not interchangeable player choices; never remove the worse roll.",
+          "nodes": [
+            1,
+            2
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "oldest_barrier_split_order",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 7,
+      "outcomes": 6,
+      "choices": 6,
+      "candidates": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "witnesses": [
+        {
+          "id": "ping_split",
+          "node": 6,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "old"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "split"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "split_ping",
+          "node": 4,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "split"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "ping",
+                "target": "old"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "split_only",
+          "node": 3,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "split"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "ping_split",
+            "split_ping"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "order_sensitive",
+          "reason": "Identical hand spending in different order has distinct combat outcomes.",
+          "nodes": [
+            6,
+            4
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "split_only",
+            "split_ping"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Remaining hand card trades against enemy health.",
+          "nodes": [
+            3,
+            4
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [
+        {
+          "node": 5,
+          "dominating_candidates": [
+            3,
+            4
+          ]
+        }
+      ],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "summon_storm_grant_order",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 9,
+      "outcomes": 9,
+      "choices": 9,
+      "candidates": [
+        0,
+        1,
+        5,
+        6,
+        7,
+        8
+      ],
+      "witnesses": [
+        {
+          "id": "summon_only",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "summon"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "rush_trade",
+          "node": 6,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "summon"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e1",
+                "target": "target"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "summon_storm_face",
+          "node": 8,
+          "legal_path": true,
+          "field_checks": [
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "summon"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "storm"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "attack",
+                "source": "e1",
+                "target": "leader:1"
+              },
+              "draws": []
+            }
+          ]
+        },
+        {
+          "id": "storm_summon",
+          "node": 3,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": false,
+          "dominating_candidates": [
+            1
+          ],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "storm"
+              },
+              "draws": []
+            },
+            {
+              "action": {
+                "type": "play",
+                "card": "summon"
+              },
+              "draws": []
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "summon_storm_face",
+            "storm_summon"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "order_sensitive",
+          "reason": "A pre-summon grant does not persist for future followers.",
+          "nodes": [
+            8,
+            3
+          ],
+          "both_candidates": false,
+          "dominating_representatives": {
+            "3": [
+              1
+            ]
+          },
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "rush_trade",
+            "summon_storm_face"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Leader damage versus clearing a follower is incomparable.",
+          "nodes": [
+            6,
+            8
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [
+        {
+          "node": 2,
+          "dominating_candidates": [
+            0
+          ]
+        },
+        {
+          "node": 3,
+          "dominating_candidates": [
+            1
+          ]
+        },
+        {
+          "node": 4,
+          "dominating_candidates": [
+            6
+          ]
+        }
+      ],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    },
+    {
+      "id": "random_sequential_duplicate_outcomes",
+      "checks": {
+        "complete": true,
+        "all_states_equal": true,
+        "all_edges_equal": true,
+        "probability_sums_one": true,
+        "same_own_turn": true,
+        "no_end_turn": true,
+        "all_expanded": true,
+        "all_witnesses": true,
+        "all_relations": true,
+        "all_exclusions_justified": true
+      },
+      "states": 4,
+      "outcomes": 4,
+      "choices": 1,
+      "candidates": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "witnesses": [
+        {
+          "id": "ll",
+          "node": 1,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "double"
+              },
+              "draws": [
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lr",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "double"
+              },
+              "draws": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rl",
+          "node": 2,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "double"
+              },
+              "draws": [
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rr",
+          "node": 3,
+          "legal_path": true,
+          "field_checks": [
+            true,
+            true
+          ],
+          "candidate_retained": true,
+          "dominating_candidates": [],
+          "public_witness_steps": [
+            {
+              "action": {
+                "type": "play",
+                "card": "double"
+              },
+              "draws": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "witnesses": [
+            "lr",
+            "rl"
+          ],
+          "raw_relation": "equal",
+          "semantic_intent": "merge_state_keep_random_edges",
+          "reason": "Same terminal state may merge but both random event paths and probabilities must survive.",
+          "nodes": [
+            2,
+            2
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        },
+        {
+          "witnesses": [
+            "ll",
+            "rr"
+          ],
+          "raw_relation": "distinct",
+          "semantic_intent": "retain_both",
+          "reason": "Different damage allocations retain different barriers and health.",
+          "nodes": [
+            1,
+            3
+          ],
+          "both_candidates": true,
+          "dominating_representatives": {},
+          "pass": true
+        }
+      ],
+      "exclusions": [],
+      "missing_states": [],
+      "extra_states": [],
+      "missing_edge_count": 0,
+      "extra_edge_count": 0
+    }
+  ],
+  "http": {
+    "complete_equal": true,
+    "states_equal": true,
+    "edges_equal": true,
+    "candidate_meanings_equal": true,
+    "probability_sums_one": true,
+    "consumer_examples": [
+      {
+        "node": 1,
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "random"
+            },
+            "draws": [
+              0
+            ]
+          }
+        ],
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 1,
+              "turn": 3,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 1,
+              "combo": 1,
+              "destroyed": [],
+              "deck": [],
+              "board": [],
+              "hand": []
+            },
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 3,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 0,
+              "combo": 0,
+              "destroyed": [],
+              "deck": [],
+              "board": [
+                {
+                  "id": "protected",
+                  "card_id": "protected",
+                  "name": "Reference follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                },
+                {
+                  "id": "exposed",
+                  "card_id": "exposed",
+                  "name": "Reference follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "hand": []
+            }
+          ]
+        }
+      },
+      {
+        "node": 2,
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "random"
+            },
+            "draws": [
+              1
+            ]
+          }
+        ],
+        "state": {
+          "version": 1,
+          "active_player": 0,
+          "winner": null,
+          "rng": 1,
+          "next_id": 1,
+          "players": [
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 1,
+              "turn": 3,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 1,
+              "combo": 1,
+              "destroyed": [],
+              "deck": [],
+              "board": [],
+              "hand": []
+            },
+            {
+              "health": 20,
+              "max_health": 20,
+              "pp": 0,
+              "max_pp": 0,
+              "turn": 3,
+              "ep": 0,
+              "sep": 0,
+              "evolved_this_turn": false,
+              "extra_pp_used": true,
+              "graveyard": 1,
+              "combo": 0,
+              "destroyed": [
+                "exposed"
+              ],
+              "deck": [],
+              "board": [
+                {
+                  "id": "protected",
+                  "card_id": "protected",
+                  "name": "Reference follower",
+                  "cost": 1,
+                  "attack": 2,
+                  "health": 2,
+                  "max_health": 2,
+                  "keywords": [
+                    "バリア",
+                    "守護"
+                  ],
+                  "evolved": 0,
+                  "attacks": 0,
+                  "entered_turn": 0,
+                  "countdown": null
+                }
+              ],
+              "hand": []
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "pass": true,
+  "finished_at": "2026-09-24T14:18:39.962867+00:00"
+}
