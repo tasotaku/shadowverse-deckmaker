@@ -28,7 +28,7 @@ Ints = NDArray[np.int64]
 def _numeric_id(value: str) -> int:
     # AI_NOTE: Only canonical eN IDs collide with Battle.fresh; e01 and arbitrary IDs do not.
     number = value[1:]
-    if not value.startswith('e') or not number.isdecimal():
+    if not value.startswith('e') or len(number) > 19 or not number.isdecimal():
         return -1
     parsed = int(number)
     return parsed if parsed < 2**60 and str(parsed) == number else -1
@@ -38,30 +38,35 @@ def prepare(kernel: Kernel) -> tuple[Ints, Ints, Ints, Ints, Ints, Ints]:
     # AI_NOTE: Prove bounded 192-bit storage before JIT, rejecting oversized/unsupported states without truncation.
     if kernel.n > 6 or kernel.count-kernel.n > 5 or len(kernel.hand) > 10:
         raise ValueError('native fixed-slot dimensions are unsupported')
-    prototypes = np.array([[e['attack'], e['evolved'], e['entered_turn'], e['health'],
-                            _mask(e['keywords']), _numeric_id(e['id'])]
-                           for e in kernel.prototypes], dtype=np.int64).reshape((-1, 6))
+    prototype_values = [[e['attack'], e['evolved'], e['entered_turn'], e['health'],
+                         _mask(e['keywords']), _numeric_id(e['id'])]
+                        for e in kernel.prototypes]
     operations = {'damage': 0, 'destroy': 1, 'grant': 2, 'split_damage': 3, 'summon': 4}
     modes = {'self': 0, 'chosen_enemy': 1, 'chosen_ally': 2, 'random_enemy': 3}
-    spells = np.array([[cost, operations[e['op']], modes[e.get('target', 'self')],
-                       _mask(e.get('keywords', [])) if e['op'] == 'grant' else e.get('amount', 0)]
-                      for cost, e in kernel.spells], dtype=np.int64).reshape((-1, 4))
+    spell_values = [[cost, operations[e['op']], modes[e.get('target', 'self')],
+                     _mask(e.get('keywords', [])) if e['op'] == 'grant' else e.get('amount', 0)]
+                    for cost, e in kernel.spells]
     if (any(cost < 0 for cost, _ in kernel.spells)
             or any(e['attack'] < 0 or e['health'] <= 0 for e in kernel.prototypes)):
         raise ValueError('native bounds require nonnegative costs and attacks')
-    config = np.array([kernel.n, kernel.count, kernel.token, kernel.owner, kernel.own['turn'],
-                       kernel.own['ep'], kernel.own['sep'], int(kernel.own['evolved_this_turn'])], dtype=np.int64)
-    static = np.array([_numeric_id(value) for value in kernel.static_ids], dtype=np.int64)
-    hand_ids = np.array([_numeric_id(e['id']) for e in kernel.hand], dtype=np.int64)
+    config_values = [kernel.n, kernel.count, kernel.token, kernel.owner, kernel.own['turn'],
+                     kernel.own['ep'], kernel.own['sep'], int(kernel.own['evolved_this_turn'])]
     upper = [e['health']+3 for e in kernel.prototypes]+[31]*kernel.count
     upper += [(1 << kernel.n)-1, 2*kernel.n+2, (1 << len(kernel.hand))-1, kernel.own['pp']+1,
               kernel.enemy['health'], 1,
               kernel.root['next_id']+len(kernel.static_ids)+kernel.count+len(kernel.hand)+1, 1]
     if any(value < 0 or value >= 2**60 for value in upper):
         raise ValueError('native integer bounds exceeded')
-    for array in (prototypes, spells, config, static, hand_ids):
-        if np.any(array < -(2**60)) or np.any(array >= 2**60):
-            raise ValueError('native transition operands exceeded')
+    # AI_NOTE: Validate Python integers before NumPy conversion, including max_health used later by the compiled skyline.
+    operands = [value for row in prototype_values+spell_values for value in row]
+    operands += config_values+[kernel.own['health']]+[e['max_health'] for e in kernel.prototypes]
+    if any(value < -(2**60) or value >= 2**60 for value in operands):
+        raise ValueError('native transition operands exceeded')
+    prototypes = np.array(prototype_values, dtype=np.int64).reshape((-1, 6))
+    spells = np.array(spell_values, dtype=np.int64).reshape((-1, 4))
+    config = np.array(config_values, dtype=np.int64)
+    static = np.array([_numeric_id(value) for value in kernel.static_ids], dtype=np.int64)
+    hand_ids = np.array([_numeric_id(e['id']) for e in kernel.hand], dtype=np.int64)
     layout = np.empty((len(upper), 4), dtype=np.int64)
     word, offset = 0, 0
     for i, maximum in enumerate(upper):
@@ -200,9 +205,11 @@ def enumerate_native(battle: Battle, *, max_states: int = 100000, max_outcomes: 
                       'elapsed_seconds': perf_counter()-ready})
     done = perf_counter()
     cutoffs = ['states'] if status == 1 else ['chance outcomes'] if status == 2 else ['time'] if cursor < size else []
+    # AI_NOTE: Discard the numeric dictionary in one NRT release; clear() needlessly pops millions of entries one by one.
+    del seen
+    released = perf_counter()
     stats: Json = {'backend': 'native', 'states': size, 'expanded_states': cursor,
                    'choices': choices, 'outcomes': outcomes, 'duplicate_outcomes': duplicates,
                    'warmup_ms': (ready-started)*1000, 'search_ms': (done-ready)*1000,
-                   'total_ms': (done-started)*1000, 'state_words': 3}
-    seen.clear()
+                   'cleanup_ms': (released-done)*1000, 'total_ms': (released-started)*1000, 'state_words': 3}
     return NativeSearch(kernel, keys[:size], layout, witnesses[:size], cursor, not cutoffs, cutoffs, stats)

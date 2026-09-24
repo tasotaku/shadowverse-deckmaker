@@ -12,7 +12,7 @@ import numpy as np
 
 from svdeck.battle import Battle, Json
 from svdeck.battle_frontier_fast import Kernel, eligible
-from svdeck.battle_frontier_native import NativeSearch, enumerate_native, prepare
+from svdeck.battle_frontier_native import NativeSearch, _numeric_id, enumerate_native, prepare
 from svdeck.battle_frontier_native_core import _actions, _pack, _transition, _unpack
 from svdeck.battle_practical import ChanceBattle
 from test_battle_frontier_fast import scenario, semantic
@@ -106,3 +106,48 @@ def test_native_rejects_oversized_packing() -> None:
             entity['health'] = 2**59
     with pytest.raises(ValueError, match='192 bits'):
         prepare(Kernel(battle))
+
+
+@pytest.mark.parametrize('field', ['attack', 'max_health', 'entered_turn'])
+def test_native_rejects_large_prototype_before_numpy(field: str) -> None:
+    # AI_NOTE: Out-of-range Python integers must produce a fallback-compatible ValueError, never NumPy OverflowError.
+    kernel = Kernel(scenario(3))
+    kernel.prototypes[0][field] = 2**80
+    with pytest.raises(ValueError, match='operands'):
+        prepare(kernel)
+
+
+def test_native_rejects_large_spell_before_numpy() -> None:
+    # AI_NOTE: A large imported damage amount is checked before constructing a signed native array.
+    kernel = Kernel(scenario(0))
+    kernel.spells[0][1]['amount'] = 2**80
+    with pytest.raises(ValueError, match='operands'):
+        prepare(kernel)
+
+
+def test_native_very_long_entity_id() -> None:
+    # AI_NOTE: Arbitrary identifiers cannot collide with bounded fresh IDs and must not trigger Python's decimal digit guard.
+    assert _numeric_id('e'+'9'*5000) == -1
+    assert _numeric_id('e0001') == -1
+    assert _numeric_id('e9223372036854775808') == -1
+    assert _numeric_id('e123') == 123
+
+
+@pytest.mark.parametrize('op', ['damage', 'split_damage'])
+@pytest.mark.parametrize('amount', [-2**59, -1, 0])
+def test_native_nonpositive_damage_matches_reference(op: str, amount: int) -> None:
+    # AI_NOTE: Negative and zero amounts are supported by the existing kernel; they must not consume barriers differently.
+    kernel = Kernel(scenario(0))
+    effect: Json = {'op': op, 'amount': amount}
+    if op == 'damage':
+        effect['target'] = 'chosen_enemy'
+    kernel.spells[0] = (0, effect)
+    _, prototypes, spells, config, static, hand_ids = prepare(kernel)
+    target = kernel.n if op == 'damage' else -1
+    state = np.array(kernel.initial, dtype=np.int64)
+    actual = _transition(state, 1, 0, target, -1, prototypes, spells, config, static, hand_ids)
+    action: Json = {'type': 'play', 'card': kernel.hand[0]['id']}
+    if target >= 0:
+        action['target'] = kernel._id(kernel.initial, target)
+    expected = kernel.outcomes(kernel.initial, action)[0][0]
+    assert tuple(map(int, actual)) == expected
