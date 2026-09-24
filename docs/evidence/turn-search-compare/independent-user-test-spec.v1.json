@@ -1,0 +1,126 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "turn-search-algorithm-comparison",
+  "version": 1,
+  "goal": "Select the fastest empirically supported correct algorithm for complete own-current-turn board/resource candidate enumeration and learning/evaluation throughput; preserve incomparable candidates, exact chance probabilities and choices conditional on observed outcomes. There is no interactive response-time SLA.",
+  "persona": "Python AI engineer using the repository CLI and machine-readable artifacts for repeated learning/evaluation workloads.",
+  "public_entry": "From repository root in PowerShell: .venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier_compare --cases JSON --output UNUSED_DIR. Flags and entry spelling may be normalized to the delivered public docs without changing these semantic requirements. Reference: documented svdeck.battle_frontier CLI and scripts/turn_frontier_reference.py.",
+  "test_data": [
+    "docs/evidence/turn-search-compare/independent-fixtures-manifest.v1.json pins byte hashes and case IDs for all four suites.",
+    "docs/evidence/turn-search-compare/independent-small-cases.v1.json: all eight supplied exact fixtures plus one independent random-then-chosen-remove case (9 total).",
+    "docs/evidence/turn-search-compare/independent-medium-cases.v1.json: three bounded 3v3/4v4 derivatives covering targeted/random damage, summon/grant, ordered split damage.",
+    "docs/evidence/turn-search-compare/independent-heldout-cases.v1.json: two independently fixed resource/stat and board-order variations. Do not tune algorithm selection using their timings before final selection is frozen; record first evaluation and any later changes separately.",
+    "docs/evidence/turn-search-compare/independent-hard-cases.v1.json: original state/cards for both real 5v5, six-hand hard cases, with old multi-turn performance metadata removed. Only own-current-turn stopping semantics apply.",
+    "Independent oracle: scripts/turn_frontier_reference.py enumerate_turn / all_outcomes / state_signature; no product frontier algorithm may serve as the sole small-case correctness oracle. Existing analyzer remains a separate comparison reference.",
+    "Fresh output directories and one benchmark child process per algorithm/case/trial; pin interpreter, code revision, input hash, machine and output mode. No other benchmark workers sharing CPU/memory during a measured trial."
+  ],
+  "minimal_test_count_rationale": "Two independent journeys are minimal: T1 verifies the public output can be used correctly, including probability and candidate semantics; T2 independently reproduces the final benchmark artifact and checks that algorithm selection follows complete comparable work. Combining them would make benchmark reuse depend on T1 state and hide output-consumption failures.",
+  "execution_policy": {
+    "runs_per_test": 1,
+    "continue_after_failure": true,
+    "parallelize_independent_tests": true
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "title": "Use complete candidates without converting random outcomes into choices",
+      "user_task": "From the documented public command, enumerate the small suite and use the saved result to identify reachable candidate boards and conditional random branches for downstream evaluation.",
+      "setup": [
+        "Fresh PowerShell terminal at repository root, prepared repository Python environment, no browser/login requirement, unused T1 output directory; executor has public docs, fixed fixtures and independent oracle only, not implementation explanations.",
+        "Record command/help and public schema needed to consume states, candidates, action outcomes and completeness. Candidate-only mode may use a documented conditional representation instead of a full raw graph."
+      ],
+      "actions": [
+        "Read public help/docs and invoke the comparison entry on the frozen small suite in the documented candidate output mode. Run the independent oracle once per small case using the current-turn horizon.",
+        "Consume saved standard JSON using a separate simple reader and compare exact semantic candidate sets against independent Pareto projection of oracle reachable states. For any full-state/debug mode advertised, compare its entire canonical reachable state set to the oracle; compare canonical state/action/outcome rational distributions, not node IDs or traversal order. If a candidate-only algorithm prunes internal states, it is not required to export every internal state, but must still pass exact candidate and conditional-action semantics.",
+        "On the three random fixtures, check every outcome and exact rational mass, replay retained witnesses, and use random-then-chosen-remove to make a different legal follow-up after each observed random outcome. Check all eight original fixture witnesses and documented incomparable-candidate dimensions.",
+        "Run one deliberately tiny documented state/time budget to exercise incomplete output, then read its saved status without treating it as a complete result."
+      ],
+      "functional_expectations": [
+        "Every unlimited small run completes both enumeration and candidate processing; canonical candidate sets exactly equal the independent oracle projection. Full-state modes exactly equal the independent oracle all-state set. No state/edge count alone is an equality proof.",
+        "All own-turn action prefixes including stopping immediately are legal candidates for analysis; no end_turn effects, next-turn draw, opponent action or next-turn decision is executed.",
+        "The candidate comparator follows public board/resource semantics: preserve incomparable attack/health tradeoffs, different remaining hand identities, ability/card effects/evolution, board order/count, remaining attacks and played-turn differences; preserve PP/EP/SEP tradeoffs. Equal candidates may have one representative. No scalar-score top-k substitutes for the full candidate set.",
+        "For every random action, exact rational outcome mass is 1 and its outcomes match the oracle including unfavorable branches. Multiple draws with coincident resulting states may be aggregated only by summing their exact mass without changing conditional continuation choices. Witnesses describe conditional replay, not selectable luck or total state reachability probability.",
+        "Candidate-only output explicitly states that reachable states are not mutually selectable deterministic plans; its documented machine-readable data or companion conditional graph retains all chance outcomes and post-observation legal choices needed for unbiased evaluation. Merely listing favorable survivor boards and calling them complete policies fails.",
+        "Tiny-budget output clearly reports incomplete and its reason; it cannot publish a finished selection or a correctness PASS based on its prefix. Unsupported effects produce a clear error, never silent effect removal."
+      ],
+      "ux_checks": [
+        "From public help/docs to normal candidate output, at most two documented product command invocations are needed (help plus run); independent validation commands do not count. Record actual commands directly. No editing production source or internal imports is needed to consume the saved result.",
+        "Saved summary presents completion, case, algorithm, output semantics and artifact paths without opening raw graph internals. The consuming script can read the output as standard JSON and identify incomplete versus complete using documented fields.",
+        "CLI-only interaction: clicks, viewport, scroll, automatic surface transition and focus transfer are not acceptance conditions. No response-time limit is inferred from this execution budget."
+      ],
+      "impossible_if": [
+        "Prepared Python/runtime or immutable fixture files are unavailable to the executor before the product can be invoked; missing/broken product command or output is a product failure, not impossibility."
+      ],
+      "isolation_requirements": "Independent terminal/process, unique T1 artifacts, no mutation of fixtures or shared source. Correctness work may run alongside T2 artifact review, but must yield CPU/memory during T2 timed trials.",
+      "budget": {
+        "public_steps_minutes": 8,
+        "expected_external_wait_minutes": 12,
+        "total_minutes": 20,
+        "basis": "Four public phases plus independent small oracle comparisons. This is a one-execution observation budget, not a per-case SLA; unfinished calculations are INCOMPLETE/UNKNOWN, not correctness PASS."
+      }
+    },
+    {
+      "id": "T2",
+      "title": "Reproduce and use a fair algorithm selection artifact",
+      "user_task": "Independently reuse the final public benchmark artifact to determine which correct approach gives the best complete-work throughput and its memory cost on the fixed workloads.",
+      "setup": [
+        "Fresh PowerShell terminal, own unused T2 output directory, same documented Python environment. Executor receives the final public report and raw artifact paths, fixed spec/fixtures and public docs, but no intended winning algorithm or prior acceptance verdict.",
+        "Freeze the proposed algorithm roster and selection rule before the heldout timings are opened. At least three substantive approaches must be represented by runnable comparisons or reproducible measured rejection evidence; output renaming or traversal order alone does not count as an approach."
+      ],
+      "actions": [
+        "Inspect final report manifests and invoke the public comparison CLI to independently rerun all three medium and both heldout cases for the selected method and nearest correct rival, in exactly the same candidate output mode. Use one warmup outside timing and three fresh-process measured trials per medium/heldout case, executed serially; retain every trial. Verify the independent small correctness evidence for every contender eligible to win.",
+        "Review raw evidence for all considered approaches; a rejected method must have an actual reproducible counterexample, completed benchmark or explicitly timed incomplete/resource failure. An unsupported guess about cost does not count as empirical consideration.",
+        "Attempt both full 5v5 cases for the two finalists in the same output mode using one fresh-process run each. Reuse final report runs only when input/code/environment/options hashes and raw completion evidence are available; otherwise run them. Stop any run if safety or the fixed total observation budget is reached and report it incomplete.",
+        "Using only saved JSON and documented commands, recompute per-case median complete compute time, peak memory and serialization time, plus the frozen suite-level selection score. Compare recommendation to this recomputation and present exceptions/limits."
+      ],
+      "functional_expectations": [
+        "At least three substantive algorithm approaches were considered with real evidence, and every approach eligible for recommendation passes T1-equivalent exact small semantics. An approach rejected by a correctness counterexample cannot win on speed.",
+        "Complete all three medium and both heldout cases for every surviving finalist; all completed methods produce exactly equal canonical candidate sets per case. For larger cases cross-method equality is additional evidence, not an independent exhaustive oracle proof.",
+        "Each measured comparison uses identical input/horizon/completeness/output mode. Full-graph and candidate-only modes are separate columns or experiments, never a single speed ranking. A fixed prefix/state cap can characterize throughput only as incomplete work; it cannot establish total completion time or fastest complete algorithm.",
+        "Compute timing includes parse/normalization attributable to the algorithm, setup, enumeration, dominance/pruning, candidate materialization and cleanup required for the usable result. Report serialization/output saving separately and also end-to-end wall time. Process peak resident memory covers the whole worker lifetime including output materialization; record measurement method/units, not only a current-memory sample or Python heap allocation.",
+        "Three trial values, median and range are retained for each medium/heldout finalist pair. Run order is balanced/alternated. Record cold startup, warmup policy, machine/interpreter/revision, fixture hashes, options, process isolation and any competing load. Do not discard a slow trial without an explicitly recorded external fault.",
+        "Selection rule is frozen before heldout inspection: among semantically correct complete methods choose the lowest aggregate median compute time across the common medium suite, inspect heldout ranking and report any reversal. Show per-case times and peak-memory tradeoff; if timing ranges overlap enough that ranking is not supported, report a practical tie or uncertainty rather than inventing a winner. No universal-fastest claim follows from this finite synthetic set.",
+        "Both 5v5 cases are attempted for both finalists when within the research budget. Complete measurements are preferred. If any fails to complete, disclose the exact budget/reason and limit the recommendation to completed workloads; do not call the 5v5 comparison complete or give a definitive fastest-hard-case claim.",
+        "Final artifact contains enough raw data and public commands for an independent consumer to reproduce the recommendation. It records all compute/pruning work and distinguishes exhaustive correctness, cross-method agreement, witness replay and incomplete status."
+      ],
+      "ux_checks": [
+        "A reader can find the selected approach (or explicit inconclusive status), measured workload scope, completion status, compute time, serialization time and peak memory in the top-level summary without opening a raw state graph. Verify by reading that artifact directly.",
+        "Public CLI accepts case JSON and output directory and documents any algorithm/mode/budget flags needed for reproduction. At most one invocation per suite is required to request an entire comparison; the harness may spawn isolated child workers internally. No production-source edits are needed.",
+        "Machine-readable results are reusable by a separate short reader with ordinary JSON/CSV tooling. Paths resolve to retained raw trials, and each row identifies case, algorithm, mode, complete status and units.",
+        "Report separately whether the command/artifact is usable as delivered and the largest remaining usability problem. No UI window/focus/scroll requirements or strict response SLA apply."
+      ],
+      "impossible_if": [
+        "Independent benchmark host cannot supply the documented runtime or a safe process measurement channel at all; a method timing out, using too much memory or producing bad data is an observed result, not impossibility."
+      ],
+      "isolation_requirements": "Distinct T2 output directory and observer. Measured workers run one at a time with no parallel oracle or competing benchmark load. Artifact review can run independently; reserve the host for actual timing and record the scheduling decision.",
+      "budget": {
+        "public_steps_minutes": 15,
+        "expected_external_wait_minutes": 105,
+        "total_minutes": 120,
+        "basis": "Artifact review plus 30 measured medium/heldout finalist workers and up to four hard finalist workers. This is a research observation budget, not a fixed case SLA. Reuse matching complete raw hard runs where available; unfinished hard runs remain disclosed limitations, never automatic correctness success. Do not extend the fixed journey budget after observing a slow method."
+      }
+    }
+  ],
+  "reporting": {
+    "separate_functional_and_ux": true,
+    "include_unexpected_findings": true,
+    "evidence_level": "concise"
+  },
+  "coverage": {
+    "covered_risks": [
+      "Unsound numeric pruning or scalar ranking discarding incomparable states",
+      "Chance branches silently promoted to player choices; lost probability mass or adaptive continuation",
+      "Output-mode mismatches, prefix timing masquerading as full completion, pruning/serialization/memory omitted",
+      "Algorithm choice based only on tuned fixtures or unmeasured rejected ideas",
+      "Saved output impossible for downstream learning/evaluation consumers to reuse"
+    ],
+    "blind_spots": [
+      "Synthetic supported-effect fixtures do not prove arbitrary card/effect correctness or fastest behavior for every real game position.",
+      "Independent exhaustive all-state oracle is mandatory on small cases only; full hard-case cross-method equality is not a new independent proof.",
+      "If full hard trials cannot finish within the fixed observation budget, hard-scale ranking remains incomplete and is disclosed.",
+      "Timing and RSS are host-specific; GPU/distributed training integration and next-turn/opponent policy optimization are outside the own-current-turn scope.",
+      "Fixture variations are independently designed and fixed before winner selection; they are not secret from repository readers. First heldout evaluation must be logged before any tuning."
+    ]
+  },
+  "revision": null
+}
