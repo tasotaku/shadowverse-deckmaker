@@ -1,0 +1,79 @@
+{
+  "recorded_at": "2026-09-24T20:40:23.389225+00:00",
+  "recorded_monotonic": 478288.921,
+  "elapsed_seconds": 882.905999999959,
+  "development_ledger_opened": false,
+  "functional": {
+    "F1": false,
+    "F2": true,
+    "F3": true,
+    "F4": true,
+    "F5": true,
+    "F6": true
+  },
+  "ux": {
+    "U1": true,
+    "U2": true,
+    "U3": true
+  },
+  "actual_performance_order": [
+    "medium-0-predecessor",
+    "medium-0-delivered",
+    "medium-1-delivered",
+    "medium-1-predecessor",
+    "medium-2-predecessor",
+    "medium-2-delivered",
+    "hard-0-delivered",
+    "hard-0-predecessor",
+    "hard-1-predecessor",
+    "hard-1-delivered"
+  ],
+  "evidence": {
+    "small_oracle": "observations.json",
+    "decoded_small": "small-decoded-candidates.json",
+    "conditional": "adaptive.json",
+    "witnesses": "public-witnesses.json",
+    "random": "random-probabilities.json",
+    "tiny": "tiny.json",
+    "serialized_rows": "row-comparisons.json",
+    "roots": "roots.json",
+    "timings": "timing-table.json",
+    "score": "score.json",
+    "schedule": "worker-schedule.json",
+    "summary_paths": "summary-path-validation.json",
+    "source_integrity": "final-source-integrity.json"
+  },
+  "functional_findings": [
+    {
+      "id": "F1",
+      "status": "FAIL",
+      "evidence": {
+        "small_oracle": "observations.json",
+        "decoded_small": "small-decoded-candidates.json",
+        "conditional": "adaptive.json",
+        "witnesses": "public-witnesses.json",
+        "random": "random-probabilities.json",
+        "tiny": "tiny.json",
+        "serialized_rows": "row-comparisons.json",
+        "roots": "roots.json",
+        "timings": "timing-table.json",
+        "score": "score.json",
+        "schedule": "worker-schedule.json",
+        "summary_paths": "summary-path-validation.json",
+        "source_integrity": "final-source-integrity.json"
+      }
+    }
+  ],
+  "ux_findings": [],
+  "cli_usability": "NO-GO",
+  "largest_remaining_usability_problem": "Standard JSON expansion reloads the full saved result, so large candidate artifacts impose time and memory cost for each one-off continuation; the public docs disclose this.",
+  "interaction": {
+    "ordinary_product_invocations": 2,
+    "surface": "CLI only",
+    "clicks": null,
+    "scrolls": null,
+    "manual_surface_switches": null,
+    "focus": null,
+    "reason": "Spec has no desktop UI actions or response-time SLA."
+  }
+}

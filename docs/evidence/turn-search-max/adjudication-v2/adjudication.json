@@ -1,0 +1,3821 @@
+{
+  "verdict": "PASS",
+  "reviewer": "fresh-max-retained-adjudicator-v2",
+  "mode": "independent deterministic clarification review of same original T1; no new benchmark/live-use execution",
+  "review_recomputation_started_at": "2026-09-24T20:55:32.384629+00:00",
+  "review_finished_at": "2026-09-24T21:05:52.451336+00:00",
+  "review_recomputation_seconds": 620.066707,
+  "original_interval": {
+    "start": "2026-09-24T20:25:40.480224+00:00",
+    "completion": "2026-09-24T20:47:39.327027+00:00",
+    "report_saved_metadata_at": "2026-09-24T20:47:39.329536+00:00",
+    "seal_elapsed_seconds": 1391.1879999999655,
+    "deadline_minutes": 60
+  },
+  "spec_v1_sha256": "5ec22b2ed753ea09648087703e21a6417d71cb2659c02114995153b3e01466b6",
+  "spec_v2_sha256": "2220a6440f20dfa617f452fc9bc49f9ce73d1856ada3b468ab488c64b0fd933e",
+  "design_protocol_sha256": "7a5faeb7283528b1190f6163c220138e000afde391bb6b6a5674a9f80477d310",
+  "sealed_inventory_sha256": "c095f69095f59a1e7279f0b42ef7a6fdf7e9fc01bb8a8c7166422a5da29f5906",
+  "clarification": "Only F1 requested native versus actual generic backend for summon_storm_grant_order and random_sequential_duplicate_outcomes. F2-F7/U1-U3/actions/trials/budgets unchanged.",
+  "new_product_invocations": 0,
+  "new_measured_workers": 0,
+  "new_warmups": 0,
+  "new_retries": 0,
+  "source_or_fixture_changes": 0,
+  "independence": {
+    "production_source_text_read": false,
+    "production_diffs_read": false,
+    "excluded_original_verdict_paths_read": false,
+    "source_bytes_hashed_only": true,
+    "ledger_read_after_findings": true,
+    "late_ledger_context": "The late development narrative mentions an earlier halted acceptance attempt; this was encountered only after independent F1-F6/U findings were saved and is not verdict authority. No original acceptance-final report/verdict content was read."
+  },
+  "criteria": {
+    "F1": "PASS: 48 normal measured workers complete with empty cutoffs; native requested throughout. 44 actual native plus 4 documented generic results (small cases 6/7 across two versions). All 9 delivered small oracle projections, 49 debug states, 41 legal action distributions and 42 decoded saved candidates exact. Sources: small-review.json, timing-review.json, supplemental-review.json.",
+    "F2": "PASS: Independent endpoint projection compares board behavior/order/count, exact hand identities/multiplicity, attacks/played turn/evolution and resource/stat vectors; all incomparable oracle endpoints retained. No end_turn or next-turn states. Source: small-review.json.",
+    "F3": "PASS: Every small legal action/outcome/draw tuple matches frozen oracle with exact Fraction mass; all 41 action distributions sum to 1. All 49 debug witnesses and 42 available public witness samples replay to oracle states. Both adaptive observations choose distinct legal targets and saved --steps reaches each final state. Sources: small-review.json, original public-witnesses.json and raw adaptive-*.json.",
+    "F4": "PASS: Independently parsed all 41 fresh/historical medium-hard outputs, each full integer row including duplicates. Per case encoding, row width/count/distinct count, full-row multiset SHA256, complete canonical record and witness sample hashes match. All supplied fixture values preserved through normalized Battle records; all 5 public decoded roots agree. This is serialized-state regression equality; product semantic digests were compared, not independently recomputed. Sources: row-review.json, reader-representation-checks.json.",
+    "F5": "PASS: All three measured trials per hard case retained. Hard median sum 77.885375100013 -> 31.831907599990 seconds; delivered/predecessor 0.408701987493. Aggregate observed ranges {'predecessor': [77.30508159997407, 79.12740230001509], 'delivered': [31.620230100059416, 32.004608499933966]}; no overlap. All phase/compute/serialization/worker/process/startup-exit seconds and whole-lifetime PeakWorkingSetSize bytes retained. Two small generic cases regress descriptively by 10.54% and 33.30%; no median RSS regression. Sources: timing-review.json, supplemental-review.json, comparison.md.",
+    "F6": "PASS: All 745 sealed files and fixed inputs match; delivered c178cae225e2cecc986fb88df2941391bd342c64, fresh predecessor 47eb2ef8d843dcc7c20d13f70a2a51eabf21a087, 123 original source hashes unchanged. Historical ca50628d retains historical-only attribution. Original workers: 18 small + 18 medium + 12 hard measured, 18 small + 10 performance warmups; fixed serial order; tiny diagnostic explicitly incomplete. All original observations/comparisons/audit completed at 1318.844s and inventory sealed at 1391.188s under 3600s. Original report metadata also within deadline. No retries, edits or reset. Sources: integrity.json, reader-representation-checks.json, supplemental-review.json, final-preservation.json.",
+    "F7": "PASS: Four materially different optimization families retain source identities, reproducible harness/commands, correctness and time/memory observations, adopted/rejected decisions. 10 complete traversal observations preserve keys/witness hashes. Comparable NRT allocation counters 297893 -> 255, whole-process profile RSS 225075200 -> 118525952 bytes. NRT is not total native/Python/OpenSSL traffic or bytes. Remaining dominant phase is enumeration (hard medians 11.809 and 7.700s). GPU/distributed/proven action-order equivalence untested. Source: ledger-review.json; audit occurred after independent findings.",
+    "U1": "PASS: The first two original product invocations are public --help and one small suite, with no production edits or internal imports required. Original commands retained in timing-review.json.",
+    "U2": "PASS: Public summaries resolve all 48 raw trial/report paths and reproduce medians/ranges/serialization/RSS exactly. comparison.md contains sources, completion, candidate agreement, hard ratio, all medium/hard/small time/RSS pairs and regressions without raw graph navigation. Sources: timing-review.json, supplemental-review.json.",
+    "U3": "PASS / usable: Saved --expand root, both --state continuations and both --steps replays establish adaptive conditional use. Largest remaining usability burden is memory/time to reload large result JSON for one expansion; public docs recommend in-process catalog for long-lived training. CLI-only journey has no click/viewport/focus SLA. Original external monotonic and Windows memory observations retained; no new measurements."
+  },
+  "checks_count": 667,
+  "checks": [
+    {
+      "check": "sealed_inventory_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "v2_spec_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "v2_protocol_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_sealed_files",
+      "pass": true,
+      "detail": {
+        "files": 745,
+        "bytes": 1596064114
+      }
+    },
+    {
+      "check": "all_fixed_inputs",
+      "pass": true,
+      "detail": 53
+    },
+    {
+      "check": "revision_delivered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "module_path_delivered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "revision_predecessor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "module_path_predecessor",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "source_current_and_original_git_identity",
+      "pass": true,
+      "detail": "123 original source hashes remain byte-identical; Git source identity matches after LF normalization (six delivered files had mixed endings). No source text read."
+    },
+    {
+      "check": "dependencies_same",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original_source_after_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original_clock_and_seal_within_budget",
+      "pass": true,
+      "detail": {
+        "completed_seconds": 1318.8439999999828,
+        "sealed_seconds": 1391.1879999999655
+      }
+    },
+    {
+      "check": "command_roster_unique_complete",
+      "pass": true,
+      "detail": 76
+    },
+    {
+      "check": "fixed_performance_invocation_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_invocations_serial",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "U1_help_then_one_suite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-predecessor_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-predecessor_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-predecessor_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-predecessor_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_3_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_4_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_5_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_6_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_7_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_small-delivered_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_small-delivered_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_small-delivered_8_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_small-delivered_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-predecessor_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-predecessor_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-predecessor_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-predecessor_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-predecessor_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-predecessor_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-predecessor_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-2-predecessor_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-delivered_2_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-delivered_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-delivered_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-delivered_2_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_medium-2-delivered_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_medium-2-delivered_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_medium-2-delivered_2_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_medium-2-delivered_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-predecessor_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-predecessor_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-predecessor_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_hard-0-predecessor_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-predecessor_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-predecessor_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-predecessor_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_hard-1-predecessor_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-delivered_0_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-delivered_0_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-0-delivered_0_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_hard-0-delivered_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "manifest_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "fixture_subset_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "options_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-delivered_1_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-delivered_1_2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_raw_link_hard-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "normal_complete_hard-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "backend_hard-1-delivered_1_3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_trial_numbers_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "summary_aggregates_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_leaf_count_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "warmup_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "trial_timing_memory_hard-1-delivered_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "raw_worker_serial",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "worker_roster",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "tiny_explicit_incomplete",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "F5_hard_score",
+      "pass": true,
+      "detail": {
+        "predecessor": 77.88537510001333,
+        "delivered": 31.83190759998979
+      }
+    },
+    {
+      "check": "small_all_states_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_hand_none_a_b_ab",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_barrier_bane_low_stack_trade",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_different_enemy_abilities",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_large_attack_health_tradeoff",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_random_bad_outcome_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_oldest_barrier_split_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_mandatory_fallback_summon_storm_grant_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_mandatory_fallback_random_sequential_duplicate_outcomes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_states_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_candidates_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_actions_draws_outcomes_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_probability_masses_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_debug_witnesses_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_all_public_witnesses_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_every_saved_candidate_expanded_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "small_own_current_turn_independent_random_then_chosen_remove",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "adaptive_branch_0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "adaptive_branch_1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "adaptive_distinct_legal_followups",
+      "pass": true,
+      "detail": [
+        {
+          "type": "play",
+          "card": "remove",
+          "target": "exposed"
+        },
+        {
+          "type": "play",
+          "card": "remove",
+          "target": "protected"
+        }
+      ]
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_fresh_historical_equal_medium_3v3_target_random",
+      "pass": true,
+      "detail": 9
+    },
+    {
+      "check": "public_decoded_roots_medium_3v3_target_random",
+      "pass": true,
+      "detail": {
+        "case": "medium_3v3_target_random",
+        "all_supplied_values_preserved": true,
+        "decoded_roots_equal": true,
+        "stop": true,
+        "no_end_turn": true
+      }
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_fresh_historical_equal_medium_3v3_summon_grant",
+      "pass": true,
+      "detail": 9
+    },
+    {
+      "check": "public_decoded_roots_medium_3v3_summon_grant",
+      "pass": true,
+      "detail": {
+        "case": "medium_3v3_summon_grant",
+        "all_supplied_values_preserved": true,
+        "decoded_roots_equal": true,
+        "stop": true,
+        "no_end_turn": true
+      }
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\medium-2-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_fresh_historical_equal_medium_4v4_order_split",
+      "pass": true,
+      "detail": 9
+    },
+    {
+      "check": "public_decoded_roots_medium_4v4_order_split",
+      "pass": true,
+      "detail": {
+        "case": "medium_4v4_order_split",
+        "all_supplied_values_preserved": true,
+        "decoded_roots_equal": true,
+        "stop": true,
+        "no_end_turn": true
+      }
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-0-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-0-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_fresh_historical_equal_hard_full_board_branching_1",
+      "pass": true,
+      "detail": 7
+    },
+    {
+      "check": "public_decoded_roots_hard_full_board_branching_1",
+      "pass": true,
+      "detail": {
+        "case": "hard_full_board_branching_1",
+        "all_supplied_values_preserved": true,
+        "decoded_roots_equal": true,
+        "stop": true,
+        "no_end_turn": true
+      }
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-predecessor\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-2\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\hard-1-delivered\\case-000\\native\\trial-3\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "full_integer_rows_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "record_fixture_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": "Public Battle record adds normalized defaults to sparse fixture; every supplied field and list element preserved."
+    },
+    {
+      "check": "medium_hard_result_complete_C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-speed-acceptance-v2\\hard-1-delivered\\case-000\\native\\trial-1\\result.json",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all_fresh_historical_equal_hard_full_board_branching_2",
+      "pass": true,
+      "detail": 7
+    },
+    {
+      "check": "public_decoded_roots_hard_full_board_branching_2",
+      "pass": true,
+      "detail": {
+        "case": "hard_full_board_branching_2",
+        "all_supplied_values_preserved": true,
+        "decoded_roots_equal": true,
+        "stop": true,
+        "no_end_turn": true
+      }
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_small-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_medium-0-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_medium-1-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_medium-2-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_medium-0-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_medium-1-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_medium-2-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_hard-0-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_hard-1-predecessor",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "check": "every_manifest_source_hard-0-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "every_manifest_source_hard-1-delivered",
+      "pass": true,
+      "detail": 29
+    },
+    {
+      "check": "small_saved_result_predecessor0",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-000\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor1",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-001\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor2",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-002\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor3",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-003\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor4",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-004\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor5",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-005\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor6",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-006\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor7",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-007\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_predecessor8",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-predecessor\\case-008\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered0",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-000\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered1",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-001\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered2",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-002\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered3",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-003\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered4",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-004\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered5",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-005\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered6",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-006\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered7",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-007\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "small_saved_result_delivered8",
+      "pass": true,
+      "detail": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\turn-search-max-acceptance-final\\small-delivered\\case-008\\native\\trial-1\\result.json"
+    },
+    {
+      "check": "historical_revision_output/turn-search-speed-acceptance-v2/medium-0-delivered/manifest.json",
+      "pass": true,
+      "detail": "output/turn-search-speed-acceptance-v2/medium-0-delivered/manifest.json"
+    },
+    {
+      "check": "historical_revision_output/turn-search-speed-acceptance-v2/medium-1-delivered/manifest.json",
+      "pass": true,
+      "detail": "output/turn-search-speed-acceptance-v2/medium-1-delivered/manifest.json"
+    },
+    {
+      "check": "historical_revision_output/turn-search-speed-acceptance-v2/medium-2-delivered/manifest.json",
+      "pass": true,
+      "detail": "output/turn-search-speed-acceptance-v2/medium-2-delivered/manifest.json"
+    },
+    {
+      "check": "historical_revision_output/turn-search-speed-acceptance-v2/hard-0-delivered/manifest.json",
+      "pass": true,
+      "detail": "output/turn-search-speed-acceptance-v2/hard-0-delivered/manifest.json"
+    },
+    {
+      "check": "historical_revision_output/turn-search-speed-acceptance-v2/hard-1-delivered/manifest.json",
+      "pass": true,
+      "detail": "output/turn-search-speed-acceptance-v2/hard-1-delivered/manifest.json"
+    },
+    {
+      "check": "all_original_public_commands_arguments",
+      "pass": true,
+      "detail": [
+        {
+          "label": "help",
+          "pass": true
+        },
+        {
+          "label": "small-delivered",
+          "pass": true
+        },
+        {
+          "label": "small-predecessor",
+          "pass": true
+        },
+        {
+          "label": "adaptive-root",
+          "pass": true
+        },
+        {
+          "label": "adaptive-continuation-0",
+          "pass": true
+        },
+        {
+          "label": "adaptive-replay-0",
+          "pass": true
+        },
+        {
+          "label": "adaptive-continuation-1",
+          "pass": true
+        },
+        {
+          "label": "adaptive-replay-1",
+          "pass": true
+        },
+        {
+          "label": "tiny",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-0-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-0-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-0-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-0-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-4",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-1-5",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-2-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-2-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-2-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-3-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-3-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-3-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-4-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-4-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-4-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-4",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-5-5",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-4",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-6-5",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-7-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-7-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-7-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-7-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-0",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-1",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-2",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-3",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-4",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-5",
+          "pass": true
+        },
+        {
+          "label": "small-candidate-8-6",
+          "pass": true
+        },
+        {
+          "label": "medium-0-predecessor",
+          "pass": true
+        },
+        {
+          "label": "medium-0-delivered",
+          "pass": true
+        },
+        {
+          "label": "medium-1-delivered",
+          "pass": true
+        },
+        {
+          "label": "medium-1-predecessor",
+          "pass": true
+        },
+        {
+          "label": "medium-2-predecessor",
+          "pass": true
+        },
+        {
+          "label": "medium-2-delivered",
+          "pass": true
+        },
+        {
+          "label": "hard-0-delivered",
+          "pass": true
+        },
+        {
+          "label": "hard-0-predecessor",
+          "pass": true
+        },
+        {
+          "label": "hard-1-predecessor",
+          "pass": true
+        },
+        {
+          "label": "hard-1-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-medium-0-predecessor",
+          "pass": true
+        },
+        {
+          "label": "root-medium-0-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-medium-0-historical",
+          "pass": true
+        },
+        {
+          "label": "root-medium-1-predecessor",
+          "pass": true
+        },
+        {
+          "label": "root-medium-1-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-medium-1-historical",
+          "pass": true
+        },
+        {
+          "label": "root-medium-2-predecessor",
+          "pass": true
+        },
+        {
+          "label": "root-medium-2-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-medium-2-historical",
+          "pass": true
+        },
+        {
+          "label": "root-hard-0-predecessor",
+          "pass": true
+        },
+        {
+          "label": "root-hard-0-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-hard-0-historical",
+          "pass": true
+        },
+        {
+          "label": "root-hard-1-predecessor",
+          "pass": true
+        },
+        {
+          "label": "root-hard-1-delivered",
+          "pass": true
+        },
+        {
+          "label": "root-hard-1-historical",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "check": "all_original_consumption_sealed_before_deadline",
+      "pass": true,
+      "detail": {
+        "roles": [
+          "adaptive-consumption",
+          "completion-time",
+          "independent-all-row-consumption",
+          "independent-row-comparison",
+          "independent-small-candidate-consumption",
+          "independent-small-consumption",
+          "independent-timing-consumption",
+          "ordinary-summary-path-consumption",
+          "post-observation-ledger-audit",
+          "public-root-consumption",
+          "public-witness-consumption",
+          "rational-distribution-consumption"
+        ],
+        "completed_at": "2026-09-24T20:47:39.327027+00:00",
+        "seal_elapsed_seconds": 1391.1879999999655
+      }
+    },
+    {
+      "check": "original_reports_preserved_unread",
+      "pass": true,
+      "detail": [
+        {
+          "path": "docs/evidence/turn-search-max/acceptance-final/report.json",
+          "exists": true,
+          "bytes": 7745,
+          "sha256_hash_only": "71fb546ba3e7cf71903c14213f8e3b88d599951de975d05920621c5baccca2d9",
+          "content_inspected": false
+        },
+        {
+          "path": "docs/evidence/turn-search-max/acceptance-final/README.md",
+          "exists": true,
+          "bytes": 1353,
+          "sha256_hash_only": "29acc95eea3a07b34de7b8806aa1f159640846c87fe27b4347835837a6460205",
+          "content_inspected": false
+        },
+        {
+          "path": "docs/evidence/turn-search-max/acceptance-final/independent-findings.json",
+          "exists": true,
+          "bytes": 2485,
+          "sha256_hash_only": "1b92381b885f06a139d9500508a5eee16f53699c0cfe1f760b4298417067ee19",
+          "content_inspected": false
+        },
+        {
+          "path": "docs/evidence/turn-search-max/acceptance-final/score.json",
+          "exists": true,
+          "bytes": 4686,
+          "sha256_hash_only": "a5aae44abb0c112ce681e1b694d439c5d1668d74833aef220160277656f20913",
+          "content_inspected": false
+        },
+        {
+          "path": "docs/evidence/turn-search-max/acceptance-final/comparison.md",
+          "exists": true,
+          "bytes": 8440,
+          "sha256_hash_only": "3ad486b3324db0da7fa06aa42968b261762a8817b1fb040f3604069e81641ea4",
+          "content_inspected": false
+        }
+      ]
+    },
+    {
+      "check": "external_process_memory_observations_present",
+      "pass": true,
+      "detail": {
+        "measured_max_abs_process_wall_delta_seconds": 1.1338099000276998,
+        "measured_max_abs_peak_delta_bytes": 32768,
+        "invalid_os_end_timestamps": 8,
+        "invalid_measured_os_end_timestamps": 4,
+        "observer": "Original Windows Toolhelp/GetProcessMemoryInfo sampled at 100 ms; monotonic first/end observations remain valid even where OS end timestamp is invalid. No new threshold imposed."
+      }
+    },
+    {
+      "check": "independent_findings_recorded_before_ledger",
+      "pass": true,
+      "detail": "2026-09-24T20:59:45.335045+00:00"
+    },
+    {
+      "check": "all_final_development_pins",
+      "pass": true,
+      "detail": 68
+    },
+    {
+      "check": "development_manifest_retained_in_original_delivered_commit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "development_native_complete_and_equal",
+      "pass": true,
+      "detail": 10
+    },
+    {
+      "check": "development_skyline_full_ordered_indices",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "development_materialization_equal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "development_writer_same_bytes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "allocation_comparable_workload_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "allocation_raw_counter_arithmetic",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "allocation_source_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "F7_breadth_adopted_and_rejected",
+      "pass": true,
+      "detail": 4
+    },
+    {
+      "check": "final_seal_all_745_unchanged",
+      "pass": true,
+      "detail": 745
+    },
+    {
+      "check": "original_report_saved_inside_original_budget",
+      "pass": true,
+      "detail": {
+        "metadata_only": true,
+        "mtime": "2026-09-24T20:47:39.329536+00:00",
+        "sha256_hash_only": "71fb546ba3e7cf71903c14213f8e3b88d599951de975d05920621c5baccca2d9",
+        "excluded_content_not_read": true
+      }
+    }
+  ],
+  "failures": [],
+  "score": {
+    "sum_of_hard_medians_seconds": {
+      "predecessor": 77.88537510001333,
+      "delivered": 31.83190759998979
+    },
+    "delivered_predecessor_ratio": 0.40870198749269865,
+    "aggregate_ranges_seconds": {
+      "predecessor": [
+        77.30508159997407,
+        79.12740230001509
+      ],
+      "delivered": [
+        31.620230100059416,
+        32.004608499933966
+      ]
+    },
+    "ranges_overlap": false
+  }
+}

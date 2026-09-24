@@ -1,0 +1,175 @@
+{
+  "root_random_mass": "1",
+  "branches": [
+    {
+      "observed_probability": "1/2",
+      "observed_draws": [
+        0
+      ],
+      "chosen_action": {
+        "type": "play",
+        "card": "remove",
+        "target": "exposed"
+      },
+      "steps": [
+        {
+          "action": {
+            "type": "play",
+            "card": "random"
+          },
+          "draws": [
+            0
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "exposed"
+          },
+          "draws": []
+        }
+      ],
+      "final_state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 2,
+            "turn": 3,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 2,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": []
+          },
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 3,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 1,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [
+              {
+                "id": "protected",
+                "card_id": "protected",
+                "name": "Reference follower",
+                "cost": 1,
+                "attack": 2,
+                "health": 2,
+                "max_health": 2,
+                "keywords": [
+                  "守護"
+                ],
+                "evolved": 0,
+                "attacks": 0,
+                "entered_turn": 0,
+                "countdown": null
+              }
+            ],
+            "destroyed": [
+              "exposed"
+            ]
+          }
+        ]
+      },
+      "exact_replay": true
+    },
+    {
+      "observed_probability": "1/2",
+      "observed_draws": [
+        1
+      ],
+      "chosen_action": {
+        "type": "play",
+        "card": "remove",
+        "target": "protected"
+      },
+      "steps": [
+        {
+          "action": {
+            "type": "play",
+            "card": "random"
+          },
+          "draws": [
+            1
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "protected"
+          },
+          "draws": []
+        }
+      ],
+      "final_state": {
+        "version": 1,
+        "active_player": 0,
+        "winner": null,
+        "rng": 1,
+        "next_id": 1,
+        "players": [
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 2,
+            "turn": 3,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 2,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": []
+          },
+          {
+            "health": 20,
+            "max_health": 20,
+            "pp": 0,
+            "max_pp": 0,
+            "turn": 3,
+            "ep": 0,
+            "sep": 0,
+            "evolved_this_turn": false,
+            "extra_pp_used": true,
+            "graveyard": 2,
+            "combo": 0,
+            "hand": [],
+            "deck": [],
+            "board": [],
+            "destroyed": [
+              "exposed",
+              "protected"
+            ]
+          }
+        ]
+      },
+      "exact_replay": true
+    }
+  ]
+}

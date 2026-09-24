@@ -1,0 +1,198 @@
+{
+  "role": "fresh-independent-TEST_SPEC_ISSUE-designer",
+  "spec_id": "turn-search-native-max",
+  "version": 2,
+  "task_input": "Original user goal, fixed v1 specification/lock and fixture constraints, public CLI contracts, and narrowly projected raw observation that two mandatory small native-requested cases use documented generic compound-effect fallback in both versions. No production source, diffs, implementation plan, new performance values or prior verdict read.",
+  "finding": "GENUINE_TEST_SPEC_ISSUE",
+  "finding_basis": "F1 native-backend wording is ambiguous against the existing public native-requested generic-fallback contract. Correct supported generic fallback cannot alone establish a product failure. The correction preserves all nine exact small cases and every native medium/hard requirement.",
+  "inputs": [
+    {
+      "path": "docs/evidence/turn-search-max/spec.v1.json",
+      "sha256": "5ec22b2ed753ea09648087703e21a6417d71cb2659c02114995153b3e01466b6"
+    },
+    {
+      "path": "docs/evidence/turn-search-max/spec.v1.lock.json",
+      "sha256": "f3e2c692fdbc3401bf6c3f46e276496d52c5629f0c32a859257ee9556e426066"
+    },
+    {
+      "path": "docs/evidence/turn-search-max/input-manifest.v1.json",
+      "sha256": "88df072ed75d47bb43a5a6f9f3fc72de2157799b2efd87d44372f2ce95e89d63"
+    },
+    {
+      "path": "docs/battle-frontier.md",
+      "sha256": "9b2623d6b0daa6e0328416bc8670f0731312eabe522863fd58b67bb06021de88"
+    },
+    {
+      "path": "docs/battle-frontier-compare.md",
+      "sha256": "1cf16ced7c5cf86bfc0c538b24c1494df5f2c9f3d78c5234bbeb3de8fc9e7c35"
+    },
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/SKILL.md",
+      "sha256": "312c628d37b781853a65c524dbcf416e45e3808fccb6387a61f994f4a8da7772"
+    },
+    {
+      "path": "C:/Users/tasog/.agents/skills/design-user-tests/references/test-spec-contract.md",
+      "sha256": "a9cd85d1799521be1292a51d04edc5c5a521c9bb1e039eb5d6647eab8ed00a6b"
+    }
+  ],
+  "fixtures": [
+    {
+      "path": "docs/evidence/turn-search-compare/independent-small-cases.v1.json",
+      "sha256": "12ea4f25cd4ad7423c27ef2540074e0cbeaaafc3178d6cb4054f66715ec8a5f2",
+      "case_ids": [
+        "hand_none_a_b_ab",
+        "barrier_bane_low_stack_trade",
+        "different_enemy_abilities",
+        "large_attack_health_tradeoff",
+        "random_bad_outcome_retained",
+        "oldest_barrier_split_order",
+        "summon_storm_grant_order",
+        "random_sequential_duplicate_outcomes",
+        "independent_random_then_chosen_remove"
+      ]
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/independent-medium-cases.v1.json",
+      "sha256": "963e06e6d3930f70d9afd47e149a66954fd2c83ecc47686eab482443240112ee",
+      "case_ids": [
+        "medium_3v3_target_random",
+        "medium_3v3_summon_grant",
+        "medium_4v4_order_split"
+      ]
+    },
+    {
+      "path": "docs/evidence/turn-search-compare/independent-hard-cases.v1.json",
+      "sha256": "592b70e9667731796e45e65d47f98084eaecd287ce6de46aa8efeee0428687a6",
+      "case_ids": [
+        "hard_full_board_branching_1",
+        "hard_full_board_branching_2"
+      ]
+    }
+  ],
+  "backend_raw_observations": [
+    {
+      "path": "output/turn-search-max-acceptance-final/small-delivered/case-006/native/trial-1/result.json",
+      "sha256": "1286864b80367989535149ad14abe9b0f09e9dfec92b2cc8964cde84bf713e11",
+      "case_id": "summon_storm_grant_order",
+      "version": "delivered",
+      "requested_algorithm": "native",
+      "complete": true,
+      "enumeration_complete": true,
+      "frontier_complete": true,
+      "cutoffs": [],
+      "actual_backend": "generic",
+      "fallback_reason": "supported compound effects require generic engine",
+      "encoding": "full-state-v1"
+    },
+    {
+      "path": "output/turn-search-max-acceptance-final/small-delivered/case-007/native/trial-1/result.json",
+      "sha256": "0aefb6c102a77e43b7a7214c9f0577e1093f70b83b912aefdb733b90439403a9",
+      "case_id": "random_sequential_duplicate_outcomes",
+      "version": "delivered",
+      "requested_algorithm": "native",
+      "complete": true,
+      "enumeration_complete": true,
+      "frontier_complete": true,
+      "cutoffs": [],
+      "actual_backend": "generic",
+      "fallback_reason": "supported compound effects require generic engine",
+      "encoding": "full-state-v1"
+    },
+    {
+      "path": "output/turn-search-max-acceptance-final/small-predecessor/case-006/native/trial-1/result.json",
+      "sha256": "1286864b80367989535149ad14abe9b0f09e9dfec92b2cc8964cde84bf713e11",
+      "case_id": "summon_storm_grant_order",
+      "version": "predecessor",
+      "requested_algorithm": "native",
+      "complete": true,
+      "enumeration_complete": true,
+      "frontier_complete": true,
+      "cutoffs": [],
+      "actual_backend": "generic",
+      "fallback_reason": "supported compound effects require generic engine",
+      "encoding": "full-state-v1"
+    },
+    {
+      "path": "output/turn-search-max-acceptance-final/small-predecessor/case-007/native/trial-1/result.json",
+      "sha256": "0aefb6c102a77e43b7a7214c9f0577e1093f70b83b912aefdb733b90439403a9",
+      "case_id": "random_sequential_duplicate_outcomes",
+      "version": "predecessor",
+      "requested_algorithm": "native",
+      "complete": true,
+      "enumeration_complete": true,
+      "frontier_complete": true,
+      "cutoffs": [],
+      "actual_backend": "generic",
+      "fallback_reason": "supported compound effects require generic engine",
+      "encoding": "full-state-v1"
+    }
+  ],
+  "provenance_observation": {
+    "original_evidence_root": "docs/evidence/turn-search-max/acceptance-final",
+    "original_raw_root": "output/turn-search-max-acceptance-final",
+    "journey_start": "2026-09-24T20:25:40.480224Z",
+    "start_monotonic": 477406.015,
+    "deadline_monotonic": 481006.015,
+    "deadline_minutes": 60,
+    "predecessor_revision": "47eb2ef8d843dcc7c20d13f70a2a51eabf21a087",
+    "delivered_revision": "c178cae225e2cecc986fb88df2941391bd342c64",
+    "safe_projection_paths": [
+      "journey.json",
+      "input-manifest.json",
+      "source-provenance.json",
+      "final-source-integrity.json",
+      "worker-schedule.json",
+      "commands.jsonl"
+    ],
+    "safe_projection_scope": "Read metadata field names, original timer, source revision/path/input identity and integrity flags, roster counts and scheduling method only. commands.jsonl field names were inspected only. Performance values, prior findings/report/verdict and production source were not displayed or inspected.",
+    "design_time_eligibility": "Conditional, not adjudicated. Original finalization/seal and all unchanged criteria must be independently verified by the fresh reviewer. No finding here asserts original T1 PASS or deadline compliance."
+  },
+  "preserved_contract": [
+    "The user goal and fixed predecessor, complete current-turn horizon, every fixture/oracle/historical identity, all original public actions and no unsupported-effect removal.",
+    "Every original F1 correctness clause beyond requested-versus-actual-backend interpretation; F2-F7 and U1-U3 unchanged.",
+    "All actual medium/hard backends native; all three measured trials per case/version, required warmups, serial order, complete flags and cutoffs unchanged.",
+    "Exact oracle/debug states/actions/outcomes, all saved candidate rows and multiplicities, random rational mass, conditional continuation and witnesses unchanged.",
+    "Hard score, uncertainty and regression disclosure, whole-process RSS/allocation scope, development breadth, and all timing/memory intervals unchanged.",
+    "Original 60-minute budget and no retry/edit/reset/omission constraints unchanged. Missing original work cannot be repaired by retrospective review."
+  ],
+  "retained_observation_adjudication": {
+    "mode": "independent-deterministic-clarification-review-of-one-original-T1",
+    "original_evidence_root": "docs/evidence/turn-search-max/acceptance-final",
+    "original_raw_root": "output/turn-search-max-acceptance-final",
+    "original_journey_start": "2026-09-24T20:25:40.480224Z",
+    "original_start_monotonic": 477406.015,
+    "original_deadline_monotonic": 481006.015,
+    "original_deadline_minutes": 60,
+    "scope": "This v2 clarifies only the F1 requested/actual-backend clause. All goal, fixtures, public actions, correctness and probability obligations, full-row/historical comparisons, scoring, trial/warmup counts/order, resource budgets, disclosure and evidence-breadth conditions remain unchanged. This is adjudication of the same original observations, not another T1 run and not carryover from a different acceptance.",
+    "eligibility": [
+      "Before review, seal a path/byte-length/SHA256 inventory of the original raw artifacts and consumed evidence, with a completion record identifying when every original required action, comparison, report and evidence audit finished. Preserve the original spec/lock, original report and all artifacts unchanged. A seal can freeze existing completed observations; it cannot retrospectively attest to work whose original completion time is unproven.",
+      "Verify the original journey clock and completion record prove all unchanged requirements were actually observed/consumed within the original 60-minute deadline. No timer reset, budget extension, product edits, missing-output substitution or completion of previously missing work is allowed. If this prerequisite is unproven, retain INCOMPLETE; any independently established product failure remains FAIL.",
+      "Verify fixed fixture/oracle/historical pins and both original source identities, module paths, dependency/options and before/after source hashes. Original predecessor must be 47eb2ef8d843dcc7c20d13f70a2a51eabf21a087; original delivered is c178cae225e2cecc986fb88df2941391bd342c64. Source or input changes make the retained-observation route ineligible.",
+      "Require the entire original roster: 18 normal small measured workers plus 18 small warmups; 18 medium and 12 hard measured workers plus ten performance warmups in the fixed order; tiny-budget diagnostic and all required public follow-ups. Missing, error or incomplete normal trials cannot be dropped or repaired by this clarification."
+    ],
+    "reviewer": "A fresh independent reviewer receives this locked v2, original input pins and the sealed raw observations, but no production source/diffs, implementation intent or prior verdict. The reviewer is a deterministic evidence consumer, not a second measured-worker executor.",
+    "protocol": [
+      "Validate every inventory hash and evidence link before adjudication. Establish source/fixture identity, clock compliance, complete roster, warmup exclusion and serial scheduling from original raw manifests, commands and process observations. Do not infer observed completion from a later narrative.",
+      "Independently read the two mandatory fallback cases in both versions and apply the clarified F1 clause, while retaining their exhaustive oracle/debug-state/action/outcome, probability, candidate and witness evidence. Verify actual_backend=native for every other normal required case.",
+      "Apply all unchanged F1-F7 and U1-U3 checks to the sealed original raw records. Recompute deterministic comparisons or aggregates as necessary with independent ordinary-JSON readers; use every original trial and every required candidate row, exact probability and evidence item. Earlier pass/fail labels or product digest fields alone are not evidence. Preserve the separation between small independent-oracle proof, full serialized-state regression and historical provenance.",
+      "Write a new adjudication report with v1/v2 hashes, the sealed-inventory hash, source/input identities, original observation interval, review interval, criterion-by-criterion raw-evidence links and independently established findings. Identify exactly the F1 interpretation corrected. Any other failing/unproven condition remains failing/unproven; no conclusion is predetermined. Do not describe this as a new timed benchmark or new live-use acceptance."
+    ],
+    "no_new_workers": "Zero product invocations, measured workers, warmups or retries during this clarification review. New public execution is not needed to decide what an unchanged already-observed backend field means. Existing complete observations remain the evidence; a fresh review adds independent adjudication only.",
+    "deadline_interpretation": "The original 60-minute deadline governs completion of every original required action, consumption, comparison and report. Administrative review of that completed record does not restart or extend the observation budget and cannot supply missing original observations. Record the independent review duration separately; do not relabel it as part of a new T1 execution.",
+    "rationale": "The ambiguity changes neither the public action nor its result: requested algorithm and actual backend were already emitted and preserved. A fresh independent deterministic review can resolve their contractual interpretation without rerunning 30 scored workers or changing measured populations. This route is defensible only after the eligibility prerequisites are independently verified."
+  },
+  "product_source_text_read": false,
+  "new_performance_values_read": false,
+  "prior_verdict_read": false,
+  "new_product_invocations": 0,
+  "output": {
+    "spec_path": "docs/evidence/turn-search-max/spec.v2.json",
+    "lock_path": "docs/evidence/turn-search-max/spec.v2.lock.json",
+    "manifest_path": "docs/evidence/turn-search-max/design-input-manifest.v2.json"
+  },
+  "allow_edit": [
+    "docs/evidence/turn-search-max/spec.v2.json",
+    "docs/evidence/turn-search-max/spec.v2.lock.json",
+    "docs/evidence/turn-search-max/design-input-manifest.v2.json"
+  ]
+}

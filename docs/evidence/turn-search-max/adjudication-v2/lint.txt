@@ -1,0 +1,7 @@
+Spec validation: PASS spec turn-search-native-max v2 sha256=2220a6440f20dfa617f452fc9bc49f9ce73d1856ada3b468ab488c64b0fd933e
+Report validation: PASS report findings=0 incomplete=0
+Diagnostic input validation: PASS tiny pinned hard0 subset and excluded warmup
+
+Commands (independent artifact validation only; no product invocation):
+.venv/Scripts/python.exe -X utf8 C:/Users/tasog/.agents/skills/design-user-tests/scripts/lint_user_test_artifact.py spec docs/evidence/turn-search-max/spec.v2.json --previous docs/evidence/turn-search-max/spec.v1.json --verify-lock docs/evidence/turn-search-max/spec.v2.lock.json
+.venv/Scripts/python.exe -X utf8 C:/Users/tasog/.agents/skills/design-user-tests/scripts/lint_user_test_artifact.py report docs/evidence/turn-search-max/adjudication-v2/report.json --spec docs/evidence/turn-search-max/spec.v2.json --verify-lock docs/evidence/turn-search-max/spec.v2.lock.json --require-complete

@@ -1,0 +1,50 @@
+"""Separate ordinary JSON timing, path, and operating-system observation reader."""
+from run import *
+import statistics
+rows=[];schedule=[];path_checks=[];metadata=HERE/'raw-metadata'
+for suite,count,repeat in [('small',9,1),('medium',3,3),('hard',2,3)]:
+ cases=read(ROOT/f'docs/evidence/turn-search-compare/independent-{suite}-cases.v1.json')
+ for idx,case in enumerate(cases):
+  for version in ['predecessor','delivered']:
+   label=f'small-{version}' if suite=='small' else f'{suite}-{idx}-{version}';base=OUT/label
+   summary=read(base/'summary.json');group=next(g for g in summary['groups'] if g['case_id']==case['id'] and g['algorithm']=='native');manifest=read(base/'manifest.json');reports=[]
+   save(metadata/label/'manifest.json',manifest);save(metadata/label/'summary.json',summary)
+   for entry in group['trials']:
+    rawpath=base/entry['report_path'];resultpath=base/entry['result_path'];r=read(rawpath);reports.append(r)
+    save(metadata/label/entry['report_path'],r)
+    path_checks.append({'summary':str(base/'summary.json'),'report_path':str(rawpath),'result_path':str(resultpath),'report_exists':rawpath.exists(),'result_exists':resultpath.exists(),'summary_matches_raw_report':entry==r,'result_bytes_match':resultpath.stat().st_size==r['result_bytes']})
+   values=[r['timings']['compute_seconds'] for r in reports];serial=[r['timings']['serialization_seconds'] for r in reports];rss=[r['peak_rss_bytes'] for r in reports];wall=[r['process_wall_seconds'] for r in reports]
+   row={'suite':suite,'case':case['id'],'case_index':idx,'version':version,'revision':manifest['revision'],'source_sha256':manifest['source_sha256'],'trials':len(reports),'all_complete_native':all(all(r[k] is True for k in ['complete','enumeration_complete','frontier_complete']) and r['actual_backend']=='native' and not r['cutoffs'] and r['exit_code']==0 for r in reports),'candidate_count':reports[0]['candidate_count'],'compute_seconds':values,'median_compute_seconds':statistics.median(values),'compute_range_seconds':[min(values),max(values)],'serialization_seconds':serial,'median_serialization_seconds':statistics.median(serial),'peak_rss_bytes':rss,'median_peak_rss_bytes':statistics.median(rss),'process_wall_seconds':wall,'median_process_wall_seconds':statistics.median(wall),'all_timings':[r['timings'] for r in reports],'cold_start_and_exit_seconds':[r['cold_start_and_exit_seconds'] for r in reports],'summary_statistics_match':group['median_compute_seconds']==statistics.median(values) and group['compute_range_seconds']==[min(values),max(values)] and group['median_serialization_seconds']==statistics.median(serial) and group['median_peak_rss_bytes']==statistics.median(rss),'memory_method':reports[0]['memory_method'],'memory_scope':reports[0]['memory_scope'],'raw_reports':[str(base/r['report_path']) for r in reports]}
+   ledger=read(HERE/(label+'.processes.json'));pythonrows=[p for p in ledger if p['name'].lower()=='python.exe']
+   # A Windows PID may be reused later; identify a parent only during its observed lifetime.
+   workers=[p for p in pythonrows if not any(c['parent_pid']==p['pid'] and p['first_seen_monotonic']<=c['first_seen_monotonic']<=p['observed_monotonic_end'] for c in pythonrows)]
+   workers.sort(key=lambda p:p['os_start_epoch'])
+   expected_workers=18 if suite=='small' else repeat+1
+   assert len(workers)==expected_workers,(label,len(workers),expected_workers)
+   selected=workers[idx*2:idx*2+2] if suite=='small' else workers
+   for i,p in enumerate(selected):
+    warmup_path=base/f'case-{idx if suite=="small" else 0:03d}/native/warmup/report.json'
+    report=read(warmup_path) if i==0 else reports[i-1]
+    if i==0:save(metadata/label/warmup_path.relative_to(base),report)
+    valid=p['os_end_epoch']>=p['os_start_epoch']
+    schedule.append({'suite':suite,'invocation':label,'version':version,'case':case['id'],'role':'excluded_one_state_warmup' if i==0 else f'measured_trial_{i}','os_start_epoch':p['os_start_epoch'],'os_end_epoch':p['os_end_epoch'] if valid else None,'os_wall_seconds':p['os_wall_seconds'] if valid else None,'os_exit_timestamp_valid':valid,'first_seen_monotonic':p['first_seen_monotonic'],'observed_monotonic_end':p['observed_monotonic_end'],'external_monotonic_observed_wall_seconds':p['observed_monotonic_end']-p['first_seen_monotonic'],'observer_peak_working_set_bytes':p['peak_rss_bytes'],'reported_peak_rss_bytes':report['peak_rss_bytes'],'reported_process_wall_seconds':report['process_wall_seconds'],'compute_seconds':report['timings']['compute_seconds'],'worker_wall_seconds':report['timings']['worker_wall_seconds'],'exit_code':p['exit_code'],'pid':p['pid'],'parent_pid':p['parent_pid']})
+   inv=next(json.loads(s) for s in (HERE/'commands.jsonl').read_text(encoding='utf8').splitlines() if json.loads(s)['label']==label and 'end' in json.loads(s));row['invocation_external_monotonic_wall_seconds']=inv['external_monotonic_wall_seconds']
+   row['all_complete']=all(all(r[k] is True for k in ['complete','enumeration_complete','frontier_complete']) and not r['cutoffs'] and r['exit_code']==0 for r in reports)
+   row['actual_backends']=sorted({r['actual_backend'] for r in reports})
+   row['fallback_reasons']=sorted({r['fallback_reason'] for r in reports if r['fallback_reason']})
+   rows.append(row)
+schedule.sort(key=lambda p:p['os_start_epoch']);serial=all(a['os_end_epoch']<=b['os_start_epoch'] if a['os_exit_timestamp_valid'] else a['observed_monotonic_end']<=b['first_seen_monotonic']+0.11 for a,b in zip(schedule,schedule[1:]))
+save(HERE/'timing-table.json',rows);save(HERE/'worker-schedule.json',{'workers':schedule,'all_workers_serial':serial,'measured_small_workers':sum(x['suite']=='small' and x['role'].startswith('measured') for x in schedule),'measured_medium_workers':sum(x['suite']=='medium' and x['role'].startswith('measured') for x in schedule),'measured_hard_workers':sum(x['suite']=='hard' and x['role'].startswith('measured') for x in schedule),'excluded_performance_warmups':sum(x['suite']!='small' and x['role'].startswith('excluded') for x in schedule),'excluded_small_warmups':sum(x['suite']=='small' and x['role'].startswith('excluded') for x in schedule),'observer_method':'Windows Toolhelp process descendant inventory every 100 ms; GetProcessTimes creation/exit; external monotonic first/last observations; GetProcessMemoryInfo PeakWorkingSetSize sampled through process exit. All handles closed.'});save(HERE/'summary-path-validation.json',path_checks)
+sums={v:sum(r['median_compute_seconds'] for r in rows if r['suite']=='hard' and r['version']==v) for v in ['predecessor','delivered']}
+ranges={v:[sum(r['compute_range_seconds'][i] for r in rows if r['suite']=='hard' and r['version']==v) for i in [0,1]] for v in sums}
+reg=[]
+for suite,count in [('small',9),('medium',3),('hard',2)]:
+ for idx in range(count):
+  old=next(r for r in rows if r['suite']==suite and r['case_index']==idx and r['version']=='predecessor');new=next(r for r in rows if r['suite']==suite and r['case_index']==idx and r['version']=='delivered')
+  reg.append({'suite':suite,'case':old['case'],'compute_ratio_delivered_over_predecessor':new['median_compute_seconds']/old['median_compute_seconds'],'median_rss_ratio_delivered_over_predecessor':new['median_peak_rss_bytes']/old['median_peak_rss_bytes'],'compute_regression':new['median_compute_seconds']>old['median_compute_seconds'],'memory_regression':new['median_peak_rss_bytes']>old['median_peak_rss_bytes']})
+score={'hard_compute_sum_of_medians_seconds':sums,'hard_sum_of_observed_ranges_seconds':ranges,'ranges_overlap':not(ranges['delivered'][1]<ranges['predecessor'][0] or ranges['predecessor'][1]<ranges['delivered'][0]),'delivered_over_predecessor':sums['delivered']/sums['predecessor'],'strict_speed_pass':sums['delivered']<sums['predecessor'],'per_case_changes':reg};save(HERE/'score.json',score)
+lines=['# Independent native acceptance comparison','', '|Workload|Version|Complete|Actual backend|Candidates|Compute s median [min, max]|Serialization s median|Process wall s median|Peak RSS MiB median|','|---|---|---:|---|---:|---:|---:|---:|---:|']
+for r in rows:
+ lines.append(f"|{r['case']}|{r['version']}|{r['all_complete']}|{','.join(r['actual_backends'])}|{r['candidate_count']:,}|{r['median_compute_seconds']:.4f} [{r['compute_range_seconds'][0]:.4f}, {r['compute_range_seconds'][1]:.4f}]|{r['median_serialization_seconds']:.4f}|{r['median_process_wall_seconds']:.4f}|{r['median_peak_rss_bytes']/2**20:.2f}|")
+versions=read(HERE/'input-manifest.json')['versions'];lines+=['',f"Fresh predecessor: {versions['predecessor']['revision']}. Delivered: {versions['delivered']['revision']}. Source hashes/import paths are in input-manifest.json and source-provenance.json.",'',f"Hard sum of medians: predecessor {sums['predecessor']:.6f} s; delivered {sums['delivered']:.6f} s; delivered/predecessor {score['delivered_over_predecessor']:.6f}. Strict speed condition: {score['strict_speed_pass']}. Sum of observed ranges: {ranges}. Overlap: {score['ranges_overlap']}.",'','Small values are single-trial descriptive observations. Per-case time/RSS regressions appear in score.json. Whole-worker lifetime memory uses Windows PeakWorkingSetSize, in bytes in JSON and MiB here. All phase, saving, worker/process wall and startup/exit timing is retained in timing-table.json.','', 'Finite host-specific observations do not establish statistical significance, universal superiority or absolute optimality. Consecutive per-case trials may have temporal drift. The 100 ms independent observer has corresponding quantization; OS creation/exit times provide another check. Historical outputs retain ca50628d4d0d88a44b36d2b32b86a7f37e3250ef provenance and supply serialized-output regression evidence only; historical timings are excluded.']
+(HERE/'comparison.md').write_text('\n'.join(lines)+'\n',encoding='utf8');print(json.dumps({'score':score,'serial':serial,'workers':len(schedule)}))

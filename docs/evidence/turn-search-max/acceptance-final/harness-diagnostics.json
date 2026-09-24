@@ -1,0 +1,58 @@
+{
+  "product_retries": 0,
+  "product_edits": 0,
+  "pid_reuse": "Initial summary reader classified parents by PID alone and rejected 17 instead of 18 small-predecessor workers. The raw observations retained all actual workers. Classifying parenthood by PID AND observed lifetime recovered all 76 warmup/trial workers without rerunning a product command.",
+  "invalid_os_exit_timestamps": [
+    {
+      "invocation": "small-delivered",
+      "case": "hand_none_a_b_ab",
+      "role": "excluded_one_state_warmup",
+      "pid": 13612
+    },
+    {
+      "invocation": "small-delivered",
+      "case": "barrier_bane_low_stack_trade",
+      "role": "excluded_one_state_warmup",
+      "pid": 31060
+    },
+    {
+      "invocation": "small-delivered",
+      "case": "different_enemy_abilities",
+      "role": "measured_trial_1",
+      "pid": 21160
+    },
+    {
+      "invocation": "small-predecessor",
+      "case": "hand_none_a_b_ab",
+      "role": "measured_trial_1",
+      "pid": 17696
+    },
+    {
+      "invocation": "small-predecessor",
+      "case": "different_enemy_abilities",
+      "role": "excluded_one_state_warmup",
+      "pid": 23800
+    },
+    {
+      "invocation": "small-predecessor",
+      "case": "large_attack_health_tradeoff",
+      "role": "excluded_one_state_warmup",
+      "pid": 11308
+    },
+    {
+      "invocation": "hard-1-predecessor",
+      "case": "hard_full_board_branching_2",
+      "role": "measured_trial_1",
+      "pid": 18012
+    },
+    {
+      "invocation": "hard-1-predecessor",
+      "case": "hard_full_board_branching_2",
+      "role": "measured_trial_2",
+      "pid": 9964
+    }
+  ],
+  "timestamp_handling": "Raw logs are unchanged. Invalid OS exit timestamps are null in the table; direct monotonic first/last observations and PeakWorkingSet are retained. The observer samples at 100 ms; this resolution and Python launcher startup explain small wall differences. No invalid negative OS duration is treated as real.",
+  "supplemental_semantic_hash_diagnostic": "An optional reader attempted to reconstruct board semantic digest format from high-level public prose; its guessed board serialization did not match. Hand serialization did match. No production source was inspected and no such digest is claimed independently recomputed. These supplemental files are not equality evidence. Fixed small correctness is established from full decoded state/action/outcome semantics and exhaustive candidate expansion; medium/hard correctness evidence is exact full-row/record/encoding regression equality as the fixed spec explicitly permits.",
+  "comparison_correction": "The first table label Complete incorrectly displayed complete AND actual_backend==native. It now displays actual completion separately from actual_backend; both generic-fallback cases were always complete. No raw trial value changed."
+}
