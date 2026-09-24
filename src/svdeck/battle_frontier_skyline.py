@@ -14,6 +14,7 @@ from numba import njit, types
 from numba.typed import Dict
 
 from .battle_frontier_fast import Kernel, WORDS, _freeze
+from .battle_frontier_packed import _byte_vectors
 
 F = TypeVar('F', bound=Callable[..., Any])
 
@@ -83,19 +84,29 @@ def _group(state: NDArray[np.int64], table: NDArray[np.int64], prototypes: NDArr
 
 
 @_compiled
-def _dominates(a: NDArray[np.int64], b: NDArray[np.int64], prototypes: NDArray[np.int64], n: int) -> bool:
-    # AI_NOTE: 同じ形状内で全スタッツ・PP・進化資源・手札包含を比較し、大小不明の組を落とさない。
+def _decode_into(key: NDArray[np.uint64], layout: NDArray[np.int64], state: NDArray[np.int64]) -> None:
+    # AI_NOTE: Reuse two buffers per batch instead of allocating an array for every skyline comparison.
+    for i in range(len(layout)):
+        word, shift, mask, bias = layout[i]
+        state[i] = np.int64((key[word] >> np.uint64(shift)) & np.uint64(mask))-bias
+
+
+@_compiled
+def _relation(a: NDArray[np.int64], b: NDArray[np.int64], prototypes: NDArray[np.int64], n: int) -> int:
+    # AI_NOTE: Compare both directions once; equality keeps existing a, while incomparable states return zero.
     count = len(prototypes)
     tail = 2*count
     ae, be = a[tail+1], b[tail+1]
-    if a[tail+2] & b[tail+2] != b[tail+2] or a[tail+3] < b[tail+3] or a[tail+4] > b[tail+4]:
-        return False
+    ad = a[tail+2] & b[tail+2] == b[tail+2] and a[tail+3] >= b[tail+3] and a[tail+4] <= b[tail+4]
+    bd = b[tail+2] & a[tail+2] == a[tail+2] and b[tail+3] >= a[tail+3] and b[tail+4] <= a[tail+4]
     aep, bep = ae == -1 or ae > 0 and ae % 2 == 1, be == -1 or be > 0 and be % 2 == 1
     asp, bsp = ae == -2 or ae > 0 and ae % 2 == 0, be == -2 or be > 0 and be % 2 == 0
-    if aep > bep or asp > bsp:
-        return False
+    ad = ad and aep <= bep and asp <= bsp
+    bd = bd and bep <= aep and bsp <= asp
+    if not ad and not bd:
+        return 0
     for side in range(2):
-        start, end, sign = (0, n, 1) if side == 0 else (n, count, -1)
+        start, end = (0, n) if side == 0 else (n, count)
         ai, bi = start, start
         while ai < end:
             if a[ai] <= 0:
@@ -104,42 +115,42 @@ def _dominates(a: NDArray[np.int64], b: NDArray[np.int64], prototypes: NDArray[n
             while bi < end and b[bi] <= 0:
                 bi += 1
             if bi == end:
-                return False
+                return 0
             ab, bb = _boost(ai, ae), _boost(bi, be)
-            if sign == 1:
-                if (a[ai] < b[bi] or prototypes[ai, 0]+ab < prototypes[bi, 0]+bb
-                        or prototypes[ai, 1]+ab < prototypes[bi, 1]+bb):
-                    return False
-            elif (a[ai] > b[bi] or prototypes[ai, 0]+ab > prototypes[bi, 0]+bb
-                  or prototypes[ai, 1]+ab > prototypes[bi, 1]+bb):
-                return False
+            age = (a[ai] >= b[bi] and prototypes[ai, 0]+ab >= prototypes[bi, 0]+bb
+                   and prototypes[ai, 1]+ab >= prototypes[bi, 1]+bb)
+            bge = (b[bi] >= a[ai] and prototypes[bi, 0]+bb >= prototypes[ai, 0]+ab
+                   and prototypes[bi, 1]+bb >= prototypes[ai, 1]+ab)
+            ad = ad and (age if side == 0 else bge)
+            bd = bd and (bge if side == 0 else age)
+            if not ad and not bd:
+                return 0
             ai += 1
             bi += 1
-    return True
+    return -1 if ad else (1 if bd else 0)
 
 
 @_compiled
 def _batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: NDArray[np.int64],
            prototypes: NDArray[np.int64], n: int, bits: int, heads: Any,
            following: NDArray[np.int32], kept: NDArray[np.uint8], start: int, end: int) -> None:
-    # AI_NOTE: shapeごとの連結skylineで新旧双方の支配を判定する。等価なら最初の代表を残す。
+    # AI_NOTE: An existing skyline is an antichain: dominating one old row precludes rejection by another.
+    state = np.empty(len(layout), dtype=np.int64)
+    prior = np.empty(len(layout), dtype=np.int64)
     for index in range(start, end):
-        state = _decode(keys[index], layout)
+        _decode_into(keys[index], layout, state)
         group = _group(state, table, prototypes, n, bits)
         head = heads[group] if group in heads else -1
-        current = head
+        current, previous = head, -1
         rejected = False
         while current >= 0:
-            if _dominates(_decode(keys[current], layout), state, prototypes, n):
+            nxt = following[current]
+            _decode_into(keys[current], layout, prior)
+            relation = _relation(prior, state, prototypes, n)
+            if relation < 0:
                 rejected = True
                 break
-            current = following[current]
-        if rejected:
-            continue
-        current, previous = head, -1
-        while current >= 0:
-            nxt = following[current]
-            if _dominates(state, _decode(keys[current], layout), prototypes, n):
+            if relation > 0:
                 kept[current] = 0
                 if previous < 0:
                     head = nxt
@@ -148,9 +159,93 @@ def _batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: NDArray[n
             else:
                 previous = current
             current = nxt
-        following[index] = head
-        kept[index] = 1
-        heads[group] = index
+        if not rejected:
+            following[index] = head
+            kept[index] = 1
+            heads[group] = index
+
+
+@_compiled
+def _lane(vector: NDArray[np.uint64], offset: int, value: int) -> None:
+    # AI_NOTE: Eight value bits plus one guard bit make subtraction compare seven independent lanes exactly.
+    vector[offset//7] |= np.uint64(value) << np.uint64((offset % 7)*9)
+
+
+@_compiled
+def _features(state: NDArray[np.int64], prototypes: NDArray[np.int64], n: int,
+              vector: NDArray[np.uint64]) -> None:
+    # AI_NOTE: The range proof is shared with the reference byte-vector path; larger values use scalar comparison.
+    vector[:] = 0
+    count = len(prototypes)
+    tail = 2*count
+    evolution = state[tail+1]
+    _lane(vector, 0, state[tail+3])
+    _lane(vector, 1, 128-state[tail+4])
+    _lane(vector, 2, int(not (evolution == -1 or evolution > 0 and evolution % 2 == 1)))
+    _lane(vector, 3, int(not (evolution == -2 or evolution > 0 and evolution % 2 == 0)))
+    offset = 4
+    for slot in range(count):
+        if state[slot] <= 0:
+            continue
+        boost = _boost(slot, evolution)
+        health, attack, maximum = state[slot], prototypes[slot, 0]+boost, prototypes[slot, 1]+boost
+        if slot >= n:
+            health, attack, maximum = 128-health, 128-attack, 128-maximum
+        _lane(vector, offset, health)
+        _lane(vector, offset+1, attack)
+        _lane(vector, offset+2, maximum)
+        offset += 3
+    vector[-1] = np.uint64(state[tail+2])
+
+
+@_compiled
+def _packed_relation(a: NDArray[np.uint64], b: NDArray[np.uint64]) -> int:
+    # AI_NOTE: Guard bits prevent inter-lane borrowing, so each word tests seven component inequalities at once.
+    guard = np.uint64(0x4020100804020100)
+    ad, bd = a[-1] & b[-1] == b[-1], b[-1] & a[-1] == a[-1]
+    for word in range(len(a)-1):
+        ad = ad and ((a[word] | guard)-b[word]) & guard == guard
+        bd = bd and ((b[word] | guard)-a[word]) & guard == guard
+        if not ad and not bd:
+            return 0
+    return -1 if ad else (1 if bd else 0)
+
+
+@_compiled
+def _packed_batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: NDArray[np.int64],
+                  prototypes: NDArray[np.int64], n: int, bits: int, heads: Any,
+                  following: NDArray[np.int32], kept: NDArray[np.uint8], features: NDArray[np.uint64],
+                  start: int, end: int) -> None:
+    # AI_NOTE: Cache numeric comparison vectors only; exact group keys still protect behavior, traits and board order.
+    state = np.empty(len(layout), dtype=np.int64)
+    vector = np.empty(features.shape[1], dtype=np.uint64)
+    for index in range(start, end):
+        _decode_into(keys[index], layout, state)
+        group = _group(state, table, prototypes, n, bits)
+        head = heads[group] if group in heads else -1
+        current, previous = head, -1
+        rejected = False
+        _features(state, prototypes, n, vector)
+        while current >= 0:
+            nxt = following[current]
+            relation = _packed_relation(features[current], vector)
+            if relation < 0:
+                rejected = True
+                break
+            if relation > 0:
+                kept[current] = 0
+                if previous < 0:
+                    head = nxt
+                else:
+                    following[previous] = nxt
+            else:
+                previous = current
+            current = nxt
+        if not rejected:
+            features[index] = vector
+            following[index] = head
+            kept[index] = 1
+            heads[group] = index
 
 
 def frontier(kernel: Kernel, keys: NDArray[np.uint64], layout: NDArray[np.int64], deadline: float,
@@ -166,11 +261,17 @@ def frontier(kernel: Kernel, keys: NDArray[np.uint64], layout: NDArray[np.int64]
     heads = Dict.empty(key_type=types.UniTuple(types.uint64, 3), value_type=types.int64)  # type: ignore[no-untyped-call]
     following = np.full(len(keys), -1, dtype=np.int32)
     kept = np.zeros(len(keys), dtype=np.uint8)
+    compact = _byte_vectors(kernel)
+    features = np.empty((len(keys) if compact else 0, (3*kernel.count+10)//7+1), dtype=np.uint64)
     for start in range(0, len(keys), batch_size):
         if perf_counter() >= deadline:
             return list(range(len(keys))), False
-        _batch(keys, layout, table, prototypes, kernel.n, bits, heads, following, kept,
-               start, min(start+batch_size, len(keys)))
+        if compact:
+            _packed_batch(keys, layout, table, prototypes, kernel.n, bits, heads, following, kept, features,
+                          start, min(start+batch_size, len(keys)))
+        else:
+            _batch(keys, layout, table, prototypes, kernel.n, bits, heads, following, kept,
+                   start, min(start+batch_size, len(keys)))
     if perf_counter() >= deadline:
         return list(range(len(keys))), False
     return np.flatnonzero(kept).tolist(), True
