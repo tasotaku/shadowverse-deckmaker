@@ -200,3 +200,30 @@ def test_useless_ping_does_not_survive_pareto_but_random_edges_do() -> None:
 def test_existing_hard_cases_one_turn(case: Json) -> None:
     # AI_NOTE: 既存の複合能力fixtureも境界を現在ターン停止へ変えて独立全列挙と照合する。
     check_graph(case)
+
+
+@pytest.mark.parametrize('variant', ['second_player', 'super_evolve'])
+def test_other_owner_and_super_evolution(variant: str) -> None:
+    # AI_NOTE: 手番側の添字と超進化の攻撃権・反撃無効・追加打点を全分岐で照合する。
+    case = copy.deepcopy(CASES[0 if variant == 'second_player' else 1])
+    case.pop('witnesses', None)
+    case.pop('relations', None)
+    if variant == 'second_player':
+        case['state']['players'].reverse()
+        case['state']['active_player'] = 1
+    else:
+        case['state']['players'][0].update(turn=7, sep=1)
+    result = check_graph(case)
+    if variant == 'super_evolve':
+        assert any(a['type'] == 'super_evolve' for a in result['actions'])
+
+
+def test_unspent_attack_is_not_dominated_by_face_damage() -> None:
+    # AI_NOTE: 独立受入で検出。敵の体力を減らしても攻撃権を使った結果は、未攻撃状態の上位互換でない。
+    case = next(c for c in CASES if c['id'] == 'summon_storm_grant_order')
+    result = analyze(Battle(case['state'], case['cards']))
+    observed = {(p['players'][1]['health'], tuple(e['attacks'] for e in p['players'][0]['board']))
+                for i in result['candidates'] for p in [state_at(result, i)]
+                if not p['players'][0]['hand']}
+    assert (20, (0,)) in observed
+    assert (17, (1,)) in observed

@@ -171,8 +171,9 @@ def endpoint_key(current: Battle) -> tuple[Any, tuple[int, ...]]:
         for entity in player['board']:
             card = current.cards[entity['card_id']]
             behavior = {k: v for k, v in card.items() if k not in ('card_id', 'name', 'text', 'attack', 'health', 'synthetic')}
+            # AI_NOTE: 未攻撃・召喚酔いも比較条件に残す。顔打点を増やす代わりに失う行動権は優越ではない。
             traits = {k: v for k, v in entity.items()
-                      if k not in ('id', 'card_id', 'name', 'attack', 'health', 'max_health', 'attacks', 'entered_turn')}
+                      if k not in ('id', 'card_id', 'name', 'attack', 'health', 'max_health')}
             traits['keywords'] = sorted(traits['keywords'])
             board.append((freeze(behavior), freeze(traits)))
             values.extend(sign*entity[k] for k in ('attack', 'health', 'max_health'))
@@ -220,8 +221,9 @@ def pareto(positions: Positions, deadline: float) -> tuple[list[int], bool]:
                 if cid not in behaviors:
                     behaviors[cid] = freeze({k: v for k, v in positions.root.cards[cid].items()
                                             if k not in ('card_id', 'name', 'text', 'attack', 'health', 'synthetic')})
+                # AI_NOTE: 共有表で比較するときも公開endpoint_keyと同じ攻撃権・登場ターンを保持する。
                 traits = {k: v for k, v in entity.items()
-                          if k not in ('id', 'card_id', 'name', 'attack', 'health', 'max_health', 'attacks', 'entered_turn')}
+                          if k not in ('id', 'card_id', 'name', 'attack', 'health', 'max_health')}
                 traits['keywords'] = sorted(traits['keywords'])
                 shape = body_shapes.add((behaviors[cid], freeze(traits)))
                 body = shape, tuple(entity[k] for k in ('attack', 'health', 'max_health'))
