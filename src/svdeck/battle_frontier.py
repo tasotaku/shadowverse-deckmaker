@@ -8,14 +8,16 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import sys
 from fractions import Fraction
 from pathlib import Path
 from time import perf_counter
-from typing import Any
+from typing import Any, Callable
 
 from .battle import Battle, Json, integer
 from .battle_practical import Chance, ChanceBattle, Limit, validate_scope
 from .combat_benchmark import peak_memory
+from .battle_frontier_io import dump_graph
 
 ENTITY_FIELDS = frozenset(('id', 'card_id', 'name', 'cost', 'attack', 'health', 'max_health',
                           'keywords', 'evolved', 'attacks', 'entered_turn', 'countdown'))
@@ -262,13 +264,23 @@ def pareto(positions: Positions, deadline: float) -> tuple[list[int], bool]:
 
 
 def analyze(battle: Battle, *, max_states: int = 100000, max_outcomes: int = 4096,
-            seconds: float = 10.0) -> Json:
+            seconds: float = 10.0, backend: str = 'auto', progress: Callable[[Json], None] | None = None) -> Json:
     # AI_NOTE: end_turnは実行せず全nodeを停止可能とする。深さ制限や評価点のbeamで合法な候補を落とさない。
     integer(max_states, 'max_states', 1, 10000000)
     integer(max_outcomes, 'max_outcomes', 1, 10000)
     if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 600:
         raise ValueError('secondsは0より大きく600以下です')
+    if backend not in ('auto', 'generic', 'fixed-slots'):
+        raise ValueError('backendはauto/generic/fixed-slotsです')
     validate_scope(battle)
+    if backend != 'generic':
+        from .battle_frontier_fast import eligible
+        if eligible(battle):
+            from .battle_frontier_packed import analyze_packed
+            return analyze_packed(battle, max_states=max_states, max_outcomes=max_outcomes,
+                                  seconds=seconds, progress=progress)
+        if backend == 'fixed-slots':
+            raise ValueError('この入力は整数kernelの対象外です。autoまたはgenericを指定してください')
     started = perf_counter()
     root = TurnBattle(battle.state, battle.cards, record=False)
     root.deadline = started + seconds
@@ -351,6 +363,10 @@ def analyze(battle: Battle, *, max_states: int = 100000, max_outcomes: int = 409
 def state_at(result: Json, index: int) -> Json:
     # AI_NOTE: 共有表の番号を復元し、呼出側が編集しても解析結果に波及させない。
     integer(index, 'node', 0, len(result['positions'])-1)
+    if result.get('encoding') == 'fixed-slots-v1':
+        from .battle import replay
+        from .battle_frontier_fast import Kernel
+        return Kernel(replay(result['record'])).state(tuple(result['positions'][index]))
     state: Json = copy.deepcopy(result['record']['initial'])
     winner, next_id, first, second, knowledge = result['positions'][index]
     state.update(winner=winner, next_id=next_id)
@@ -386,16 +402,17 @@ def main() -> None:
     parser.add_argument('--max-states', type=int, default=100000)
     parser.add_argument('--max-outcomes', type=int, default=4096)
     parser.add_argument('--seconds', type=float, default=10)
+    parser.add_argument('--backend', choices=('auto', 'generic', 'fixed-slots'), default='auto')
     args = parser.parse_args()
     cases = json.loads(args.cases.read_text(encoding='utf-8'))
     case = next((c for c in cases if c['id'] == args.case), None)
     if case is None or args.output.exists():
         parser.error('ケースIDと未使用の出力ディレクトリを指定してください')
     result = analyze(Battle(case['state'], case['cards']), max_states=args.max_states,
-                     max_outcomes=args.max_outcomes, seconds=args.seconds)
+                     max_outcomes=args.max_outcomes, seconds=args.seconds, backend=args.backend,
+                     progress=lambda event: print(json.dumps(event), file=sys.stderr, flush=True))
     args.output.mkdir(parents=True)
-    with (args.output/'graph.json').open('w', encoding='utf-8') as stream:
-        json.dump(result, stream, ensure_ascii=False, separators=(',', ':'))
+    dump_graph(result, args.output/'graph.json')
     report = {k: result[k] for k in ('complete', 'enumeration_complete', 'frontier_complete', 'cutoffs', 'scope', 'dominance_scope', 'stats')}
     report['case_id'] = case['id']
     (args.output/'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

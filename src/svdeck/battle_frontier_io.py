@@ -1,0 +1,74 @@
+"""Compact in-memory edge tables, emitted as ordinary JSON row arrays."""
+from __future__ import annotations
+
+import json
+from array import array
+from collections.abc import Iterator, Sequence
+from pathlib import Path
+from typing import Any, overload
+
+
+class Rows(Sequence[tuple[int, ...]]):
+    def __init__(self, width: int) -> None:
+        # AI_NOTE: 数千万辺をPython tupleの束で保持せず、固定幅の整数配列で保存する。
+        self.width = width
+        self.data = array('I')
+
+    def append(self, row: tuple[int, ...]) -> None:
+        # AI_NOTE: 行境界を固定し、通常JSONへ戻すときの列ずれを防ぐ。
+        if len(row) != self.width:
+            raise ValueError('Invalid row width')
+        self.data.extend(row)
+
+    def __len__(self) -> int:
+        # AI_NOTE: 呼出側のnode/edge件数は整数要素数でなく行数を表す。
+        return len(self.data)//self.width
+
+    @overload
+    def __getitem__(self, index: int) -> tuple[int, ...]: ...
+    @overload
+    def __getitem__(self, index: slice) -> list[tuple[int, ...]]: ...
+
+    def __getitem__(self, index: int | slice) -> tuple[int, ...] | list[tuple[int, ...]]:
+        # AI_NOTE: 公開APIでは従来の行配列と同じ添字・sliceで扱える。
+        if isinstance(index, slice):
+            return [self[i] for i in range(*index.indices(len(self)))]
+        if index < 0:
+            index += len(self)
+        if not 0 <= index < len(self):
+            raise IndexError(index)
+        offset = index*self.width
+        return tuple(self.data[offset:offset+self.width])
+
+    def __iter__(self) -> Iterator[tuple[int, ...]]:
+        # AI_NOTE: 行を必要なときだけ復元し、全配列の同時コピーを避ける。
+        for offset in range(0, len(self.data), self.width):
+            yield tuple(self.data[offset:offset+self.width])
+
+
+def json_default(value: Any) -> Any:
+    # AI_NOTE: HTTPなど通常JSON encoderから共有整数表を標準の配列へ変換する。
+    if isinstance(value, Rows):
+        return list(value)
+    raise TypeError(f'Not JSON serializable: {type(value).__name__}')
+
+
+def dump_graph(result: dict[str, Any], path: Path) -> None:
+    # AI_NOTE: 大きい表は小分けにC製JSON encoderへ渡し、巨大文字列と全行コピーを作らない。
+    with path.open('w', encoding='utf-8') as stream:
+        stream.write('{')
+        for number, (key, value) in enumerate(result.items()):
+            if number:
+                stream.write(',')
+            stream.write(json.dumps(key)+':')
+            if isinstance(value, (list, Rows)):
+                stream.write('[')
+                for offset in range(0, len(value), 8192):
+                    if offset:
+                        stream.write(',')
+                    stream.write(json.dumps(value[offset:offset+8192], ensure_ascii=False,
+                                            separators=(',', ':'), default=json_default)[1:-1])
+                stream.write(']')
+            else:
+                stream.write(json.dumps(value, ensure_ascii=False, separators=(',', ':'), default=json_default))
+        stream.write('}')

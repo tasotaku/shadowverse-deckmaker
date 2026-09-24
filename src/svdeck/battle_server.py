@@ -14,6 +14,7 @@ from .battle_ai import Player
 from .battle_combat import analyze as analyze_combat
 from .battle_practical import analyze as analyze_practical, replay_branch
 from .battle_frontier import analyze as analyze_frontier
+from .battle_frontier_io import json_default
 
 MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
@@ -62,8 +63,8 @@ class BattleHandler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     def send_json(self, data: object, status: int = 200) -> None:
-        # AI_NOTE: ユーザー入力をHTMLへ埋め込まずJSON境界で返す。
-        self.send_data(json.dumps(data, ensure_ascii=False, allow_nan=False).encode(), status)
+        # AI_NOTE: ユーザー入力をHTMLへ埋め込まずJSON境界で返し、packed表も通常のJSON配列へ変換する。
+        self.send_data(json.dumps(data, ensure_ascii=False, allow_nan=False, default=json_default).encode(), status)
 
     def valid_host(self) -> bool:
         # AI_NOTE: DNS rebindingで別サイトからローカルサービスへ到達させない。
@@ -137,7 +138,7 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if not isinstance(body.get('record'), dict):
                     raise ValueError('recordが必要です')
                 options = body.get('options', {})
-                if not isinstance(options, dict) or set(options)-{'max_states', 'max_outcomes', 'seconds'}:
+                if not isinstance(options, dict) or set(options)-{'max_states', 'max_outcomes', 'seconds', 'backend'}:
                     raise ValueError('候補生成optionsが不正です')
                 duration = options.get('seconds', 10)
                 if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not 0 < duration <= 60:

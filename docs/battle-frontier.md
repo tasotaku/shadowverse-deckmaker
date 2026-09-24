@@ -33,6 +33,10 @@ if result['complete']:
 
 `positions`・`players`・`zones`・`entities`・`metadata` は状態の共有表です。直接編集せず `state_at` で復元します。`expanded` は全操作を調べ終えたnode番号で、全nodeが停止候補です。盤面順・個体ID・攻撃権・手札内容・資源・公開デッキ情報を保存し、乱数seedと現対象効果では参照されない破壊履歴の順番だけを同一視します。実際の破壊順が必要なら到達例を再生します。
 
+単独効果のスペルと基本能力だけで表せる入力は、`encoding=fixed-slots-v1` の整数表で計算します。この形式には `players` などの補助表はありませんが、`state_at`・`witness_steps` は同じように使えます。複合効果などは自動的に汎用処理へ戻します。`backend='generic'` で汎用処理を指定して比較することもできます。
+
+Python上の大きな辺の表は `Rows` という省メモリの行配列です。通常の添字・slice・反復に対応します。自分でJSON保存する場合は `svdeck.battle_frontier_io.dump_graph(result, Path(...))`、`json.dumps` には同モジュールの `json_default` を `default=` に指定してください。CLI・HTTPの出力は標準JSONの配列なので、受取側に専用decoderは不要です。
+
 ## 計測CLIとHTTP
 
 ```powershell
@@ -40,6 +44,12 @@ if result['complete']:
 ```
 
 未使用の保存先に `graph.json`（全候補・全操作・全確率）と `report.json`（完了状態・時間・メモリ）を保存します。大きいケースのグラフは大容量になります。`stats.elapsed_ms` は解析時間でファイル保存は含まず、メモリはPythonプロセス全体の最大常駐量です。比較計測はケースごとに新しいCLIプロセスで行います。
+
+既定は10万状態・10秒・1操作4096出目です。`--max-states` は最大1000万、`--seconds` は最大600、`--max-outcomes` は最大10000まで指定できます。整数処理のCLIは10万展開ごとにstderrへ進捗JSONを出し、最終結果だけをstdoutへ出します。大盤面の測定例は次のとおりです。
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 10000000 --seconds 600 --output output/frontier-hard-one
+```
 
 `POST http://localhost:8767/api/turn-frontier` も同じ結果を返します。
 
