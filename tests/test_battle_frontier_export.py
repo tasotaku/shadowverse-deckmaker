@@ -2,6 +2,10 @@
 from __future__ import annotations
 
 import hashlib
+import json
+from pathlib import Path
+
+import numpy as np
 
 import pytest
 
@@ -12,6 +16,8 @@ from svdeck.battle_frontier_compare import digest, kernel_key, semantic_key
 from svdeck.battle_frontier_export import materialize
 from svdeck.battle_frontier_fast import Kernel, _freeze
 from svdeck.battle_frontier_native import enumerate_native
+from svdeck.battle_frontier_export_native import CompiledStates, encode_rows
+from svdeck.battle_frontier_io import States, dump_graph
 from test_battle_frontier_fast import scenario
 
 
@@ -21,7 +27,7 @@ def test_all_reachable_rows_and_hashes(seed: int) -> None:
     search = enumerate_native(scenario(seed), max_states=100000, seconds=60)
     assert search.complete
     candidates = list(range(len(search.keys)))
-    rows, hashes = materialize(search, candidates, batch_size=7)
+    rows, hashes = materialize(search, candidates, batch_size=7, workers=4 if seed % 2 else 1)
     kernel = search.kernel
     shapes: dict[int, str] = {}
     hands = [digest(_freeze(dict(e, keywords=sorted(e['keywords'])))) for e in kernel.hand]
@@ -44,3 +50,48 @@ def test_large_integer_rows_and_empty_candidates() -> None:
     assert len(empty) == 0 and empty_hashes == []
     with pytest.raises(ValueError, match='batch_size'):
         materialize(search, [0], batch_size=0)
+
+
+@pytest.mark.parametrize('width', (0, 1, 5))
+def test_numeric_json_roundtrip_and_mutation(tmp_path: Path, width: int) -> None:
+    # AI_NOTE: Compare both writers against ordinary JSON across signed16 bounds, large fallback values and mutations.
+    expected = [tuple([value]*width) for value in (-32768, 0, 32767, 10**40)]
+    for cls in (States, CompiledStates):
+        rows = cls(width)
+        rows.data.extend(rows.key(row) for row in expected)
+        for batch in (1, 3, 8192):
+            assert json.loads('['+','.join(rows.json_chunks(batch))+']') == [list(row) for row in expected]
+        replacement = tuple([-19]*width)
+        rows.data[0] = rows.key(replacement)
+        output = tmp_path/f'{cls.__name__}.json'
+        dump_graph({'rows': rows, 'meta': '日本語'}, output)
+        assert json.loads(output.read_text(encoding='utf-8')) == {'rows': [list(replacement), *map(list, expected[1:])], 'meta': '日本語'}
+        rows.data.clear()
+        dump_graph({'rows': rows}, output)
+        assert json.loads(output.read_text(encoding='utf-8')) == {'rows': []}
+        with pytest.raises(ValueError, match='positive'):
+            list(rows.json_chunks(0))
+
+
+def test_decimal_encoder_signed64_boundaries() -> None:
+    # AI_NOTE: Native JSON must handle the signed64 minimum as well as zero, without overflow or precision loss.
+    values = [[-(2**63), -1, 0, 1, 2**63-1], [10**18, -10**18, 10, -10, 100]]
+    encoded = encode_rows(np.array(values, dtype=np.int64)).tobytes().decode('ascii')
+    assert encoded == json.dumps(values, separators=(',', ':'))[1:-1]
+
+
+def test_missing_crypto_fallback(monkeypatch: pytest.MonkeyPatch) -> None:
+    # AI_NOTE: Machines without the optional crypto symbol retain exact old output, with an explicit strict-mode error.
+    from svdeck import battle_frontier_export_native as native
+    search = enumerate_native(scenario(3), max_states=100000, seconds=60)
+    indices = list(range(len(search.keys)))
+    old = materialize(search, indices, backend='python')
+    monkeypatch.setattr(native, 'sha256_provider', lambda: None)
+    assert materialize(search, indices) == old
+    with pytest.raises(RuntimeError, match='SHA256'):
+        materialize(search, indices, backend='compiled')
+    with pytest.raises(ValueError, match='backend'):
+        materialize(search, indices, backend='invalid')
+    for workers in (0, 65, True, 1.5):
+        with pytest.raises(ValueError, match='workers'):
+            materialize(search, indices, workers=workers)  # type: ignore[arg-type]

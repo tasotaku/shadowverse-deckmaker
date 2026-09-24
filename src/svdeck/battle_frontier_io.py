@@ -54,6 +54,13 @@ class States(Sequence[tuple[int, ...]]):
             return len(self) == len(other) and all(a == b for a, b in zip(self, other))
         return NotImplemented
 
+    def json_chunks(self, batch_size: int = 8192) -> Iterator[str]:
+        # AI_NOTE: A typed chunk boundary permits faster numeric writers while retaining ordinary JSON and mutable rows.
+        if batch_size < 1:
+            raise ValueError('batch_size must be positive')
+        for offset in range(0, len(self), batch_size):
+            yield json.dumps(self[offset:offset+batch_size], ensure_ascii=False, separators=(',', ':'))[1:-1]
+
 
 class Rows(Sequence[tuple[int, ...]]):
     def __init__(self, width: int) -> None:
@@ -108,7 +115,14 @@ def dump_graph(result: dict[str, Any], path: Path) -> None:
             if number:
                 stream.write(',')
             stream.write(json.dumps(key)+':')
-            if isinstance(value, (list, Rows, States)):
+            if isinstance(value, States):
+                stream.write('[')
+                for offset, chunk in enumerate(value.json_chunks()):
+                    if offset:
+                        stream.write(',')
+                    stream.write(chunk)
+                stream.write(']')
+            elif isinstance(value, (list, Rows)):
                 stream.write('[')
                 for offset in range(0, len(value), 8192):
                     if offset:

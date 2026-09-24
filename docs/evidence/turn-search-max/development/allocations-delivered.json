@@ -1,0 +1,68 @@
+{
+  "version": "delivered",
+  "case_id": "medium_4v4_order_split",
+  "fixture_sha256": "963e06e6d3930f70d9afd47e149a66954fd2c83ecc47686eab482443240112ee",
+  "source_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\src\\svdeck\\battle_frontier_native.py",
+  "source_sha256": "63270ae8ece895a51e8ec94ba38f1c373b785ebef7aaa253bf576265ccb0fa1b",
+  "scope": "public analyze_catalog: exact enumeration plus skyline, excluding CLI export, warmup excluded; cProfile and NRT stats enabled; not scored timing",
+  "allocation_method": "NUMBA_NRT_STATS=1 / numba.core.runtime.rtsys.get_allocation_stats",
+  "allocation_scope": "Numba NRT allocation/free and MemInfo counts, not bytes or total process/native-library allocation traffic",
+  "before": {
+    "alloc": 56,
+    "free": 56,
+    "mi_alloc": 56,
+    "mi_free": 56
+  },
+  "returned": {
+    "alloc": 311,
+    "free": 311,
+    "mi_alloc": 311,
+    "mi_free": 311
+  },
+  "after_cleanup": {
+    "alloc": 311,
+    "free": 311,
+    "mi_alloc": 311,
+    "mi_free": 311
+  },
+  "delta_returned": {
+    "alloc": 255,
+    "free": 255,
+    "mi_alloc": 255,
+    "mi_free": 255
+  },
+  "delta_after_cleanup": {
+    "alloc": 255,
+    "free": 255,
+    "mi_alloc": 255,
+    "mi_free": 255
+  },
+  "complete": true,
+  "stats": {
+    "backend": "native",
+    "states": 56247,
+    "expanded_states": 56247,
+    "choices": 219191,
+    "outcomes": 241432,
+    "duplicate_outcomes": 185186,
+    "warmup_ms": 3.476099984254688,
+    "search_ms": 19.896099984180182,
+    "cleanup_ms": 0.03509997623041272,
+    "total_ms": 23.407299944665283,
+    "state_words": 3,
+    "index_bytes": 1048576,
+    "pruning_ms": 27.646400034427643,
+    "candidates": 24974,
+    "skyline_initialization_ms": 17.670700035523623,
+    "elapsed_ms": 69.03990003047511,
+    "peak_rss_bytes": 118525952,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "fallback_reason": null
+  },
+  "instrumented_seconds": 0.0707473999937065,
+  "peak_memory": [
+    118525952,
+    "Windows PeakWorkingSetSize"
+  ]
+}

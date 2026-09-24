@@ -85,8 +85,8 @@ def _group(state: NDArray[np.int64], table: NDArray[np.int64], prototypes: NDArr
 
 @_compiled
 def _decode_into(key: NDArray[np.uint64], layout: NDArray[np.int64], state: NDArray[np.int64]) -> None:
-    # AI_NOTE: Reuse two buffers per batch instead of allocating an array for every skyline comparison.
-    for i in range(len(layout)):
+    # AI_NOTE: Decode the requested prefix into reusable storage; skyline never consumes the final bookkeeping fields.
+    for i in range(len(state)):
         word, shift, mask, bias = layout[i]
         state[i] = np.int64((key[word] >> np.uint64(shift)) & np.uint64(mask))-bias
 
@@ -135,11 +135,12 @@ def _batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: NDArray[n
            prototypes: NDArray[np.int64], n: int, bits: int, heads: Any,
            following: NDArray[np.int32], kept: NDArray[np.uint8], start: int, end: int) -> None:
     # AI_NOTE: An existing skyline is an antichain: dominating one old row precludes rejection by another.
-    state = np.empty(len(layout), dtype=np.int64)
-    prior = np.empty(len(layout), dtype=np.int64)
+    state = np.empty(2*len(prototypes)+5, dtype=np.int64)
+    prior = np.empty(len(state), dtype=np.int64)
     for index in range(start, end):
         _decode_into(keys[index], layout, state)
-        group = _group(state, table, prototypes, n, bits)
+        own, enemy, lethal = _group(state, table, prototypes, n, bits)
+        group = own, enemy | (lethal << np.uint64(63))
         head = heads[group] if group in heads else -1
         current, previous = head, -1
         rejected = False
@@ -212,20 +213,55 @@ def _packed_relation(a: NDArray[np.uint64], b: NDArray[np.uint64]) -> int:
 
 
 @_compiled
+def _group_features(state: NDArray[np.int64], table: NDArray[np.int64], prototypes: NDArray[np.int64],
+                    n: int, bits: int, vector: NDArray[np.uint64]) -> tuple[np.uint64, np.uint64]:
+    # AI_NOTE: One live-slot walk builds both shape and stats; enemy shape uses at most 60 bits, leaving bit63 for lethal.
+    vector[:] = 0
+    count = len(prototypes)
+    tail = 2*count
+    spent, evolution = state[tail], state[tail+1]
+    _lane(vector, 0, state[tail+3])
+    _lane(vector, 1, 128-state[tail+4])
+    _lane(vector, 2, int(not (evolution == -1 or evolution > 0 and evolution % 2 == 1)))
+    _lane(vector, 3, int(not (evolution == -2 or evolution > 0 and evolution % 2 == 0)))
+    own, enemy, offset = np.uint64(0), np.uint64(0), 4
+    changed = (evolution-1)//2 if evolution > 0 else -1
+    boost = (2 if evolution % 2 else 3) if evolution > 0 else 0
+    for slot in range(count):
+        if state[slot] <= 0:
+            continue
+        evolved = (1 if evolution % 2 else 2) if slot == changed else prototypes[slot, 2]
+        shape = np.uint64(table[slot, state[count+slot], evolved, int(bool(spent & (1 << slot)))])
+        gain = boost if slot == changed else 0
+        health, attack, maximum = state[slot], prototypes[slot, 0]+gain, prototypes[slot, 1]+gain
+        if slot < n:
+            own = (own << np.uint64(bits)) | shape
+        else:
+            enemy = (enemy << np.uint64(bits)) | shape
+            health, attack, maximum = 128-health, 128-attack, 128-maximum
+        _lane(vector, offset, health)
+        _lane(vector, offset+1, attack)
+        _lane(vector, offset+2, maximum)
+        offset += 3
+    vector[-1] = np.uint64(state[tail+2])
+    return own, enemy | (np.uint64(state[tail+4] <= 0) << np.uint64(63))
+
+
+@_compiled
 def _packed_batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: NDArray[np.int64],
                   prototypes: NDArray[np.int64], n: int, bits: int, heads: Any,
                   following: NDArray[np.int32], kept: NDArray[np.uint8], features: NDArray[np.uint64],
+                  originals: NDArray[np.int32], allocation: NDArray[np.int64],
                   start: int, end: int) -> None:
-    # AI_NOTE: Cache numeric comparison vectors only; exact group keys still protect behavior, traits and board order.
-    state = np.empty(len(layout), dtype=np.int64)
+    # AI_NOTE: Recycle removed skyline nodes; original state indices still decide equality representatives and output order.
+    state = np.empty(2*len(prototypes)+5, dtype=np.int64)
     vector = np.empty(features.shape[1], dtype=np.uint64)
     for index in range(start, end):
         _decode_into(keys[index], layout, state)
-        group = _group(state, table, prototypes, n, bits)
+        group = _group_features(state, table, prototypes, n, bits, vector)
         head = heads[group] if group in heads else -1
         current, previous = head, -1
         rejected = False
-        _features(state, prototypes, n, vector)
         while current >= 0:
             nxt = following[current]
             relation = _packed_relation(features[current], vector)
@@ -233,19 +269,28 @@ def _packed_batch(keys: NDArray[np.uint64], layout: NDArray[np.int64], table: ND
                 rejected = True
                 break
             if relation > 0:
-                kept[current] = 0
+                kept[originals[current]] = 0
                 if previous < 0:
                     head = nxt
                 else:
                     following[previous] = nxt
+                following[current] = allocation[1]
+                allocation[1] = current
             else:
                 previous = current
             current = nxt
         if not rejected:
-            features[index] = vector
-            following[index] = head
+            node = allocation[1]
+            if node < 0:
+                node = allocation[0]
+                allocation[0] += 1
+            else:
+                allocation[1] = following[node]
+            originals[node] = index
+            features[node] = vector
+            following[node] = head
             kept[index] = 1
-            heads[group] = index
+            heads[group] = node
 
 
 def frontier(kernel: Kernel, keys: NDArray[np.uint64], layout: NDArray[np.int64], deadline: float,
@@ -258,17 +303,19 @@ def frontier(kernel: Kernel, keys: NDArray[np.uint64], layout: NDArray[np.int64]
     if len(keys) and (kernel.n > 6 or kernel.count-kernel.n > 5):
         raise ValueError('Board exceeds supported fixed slots')
     table, prototypes, bits = _shapes(kernel)
-    heads = Dict.empty(key_type=types.UniTuple(types.uint64, 3), value_type=types.int64)  # type: ignore[no-untyped-call]
-    following = np.full(len(keys), -1, dtype=np.int32)
+    heads = Dict.empty(key_type=types.UniTuple(types.uint64, 2), value_type=types.int64)  # type: ignore[no-untyped-call]
+    following = np.empty(len(keys), dtype=np.int32)
     kept = np.zeros(len(keys), dtype=np.uint8)
     compact = _byte_vectors(kernel)
     features = np.empty((len(keys) if compact else 0, (3*kernel.count+10)//7+1), dtype=np.uint64)
+    originals = np.empty(len(keys) if compact else 0, dtype=np.int32)
+    allocation = np.array([0, -1], dtype=np.int64)
     for start in range(0, len(keys), batch_size):
         if perf_counter() >= deadline:
             return list(range(len(keys))), False
         if compact:
             _packed_batch(keys, layout, table, prototypes, kernel.n, bits, heads, following, kept, features,
-                          start, min(start+batch_size, len(keys)))
+                          originals, allocation, start, min(start+batch_size, len(keys)))
         else:
             _batch(keys, layout, table, prototypes, kernel.n, bits, heads, following, kept,
                    start, min(start+batch_size, len(keys)))

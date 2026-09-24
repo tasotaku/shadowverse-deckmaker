@@ -1,0 +1,67 @@
+{
+  "version": "predecessor",
+  "case_id": "medium_4v4_order_split",
+  "fixture_sha256": "963e06e6d3930f70d9afd47e149a66954fd2c83ecc47686eab482443240112ee",
+  "source_path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\max-baseline-worktree\\src\\svdeck\\battle_frontier_native.py",
+  "source_sha256": "9264622f373a88671c43ed29eb9406f4e324db72e537b9d2a6adb2d6a7280648",
+  "scope": "public analyze_catalog: exact enumeration plus skyline, excluding CLI export, warmup excluded; cProfile and NRT stats enabled; not scored timing",
+  "allocation_method": "NUMBA_NRT_STATS=1 / numba.core.runtime.rtsys.get_allocation_stats",
+  "allocation_scope": "Numba NRT allocation/free and MemInfo counts, not bytes or total process/native-library allocation traffic",
+  "before": {
+    "alloc": 51,
+    "free": 51,
+    "mi_alloc": 51,
+    "mi_free": 51
+  },
+  "returned": {
+    "alloc": 297944,
+    "free": 297944,
+    "mi_alloc": 297944,
+    "mi_free": 297944
+  },
+  "after_cleanup": {
+    "alloc": 297944,
+    "free": 297944,
+    "mi_alloc": 297944,
+    "mi_free": 297944
+  },
+  "delta_returned": {
+    "alloc": 297893,
+    "free": 297893,
+    "mi_alloc": 297893,
+    "mi_free": 297893
+  },
+  "delta_after_cleanup": {
+    "alloc": 297893,
+    "free": 297893,
+    "mi_alloc": 297893,
+    "mi_free": 297893
+  },
+  "complete": true,
+  "stats": {
+    "backend": "native",
+    "states": 56247,
+    "expanded_states": 56247,
+    "choices": 219191,
+    "outcomes": 241432,
+    "duplicate_outcomes": 185186,
+    "warmup_ms": 3.6900999839417636,
+    "search_ms": 44.64069998357445,
+    "cleanup_ms": 0.15700003132224083,
+    "total_ms": 48.487799998838454,
+    "state_words": 3,
+    "pruning_ms": 28.36830000160262,
+    "candidates": 24974,
+    "skyline_initialization_ms": 17.710099986288697,
+    "elapsed_ms": 94.88789999159053,
+    "peak_rss_bytes": 225075200,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "fallback_reason": null
+  },
+  "instrumented_seconds": 0.09607349999714643,
+  "peak_memory": [
+    225075200,
+    "Windows PeakWorkingSetSize"
+  ]
+}

@@ -3,6 +3,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+from collections.abc import Iterator
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 import numpy as np
@@ -73,20 +76,70 @@ def _project(keys: NDArray[np.uint64], indices: NDArray[np.int64], layout: NDArr
     return states, groups, values, lengths
 
 
-def materialize(search: NativeSearch, candidates: list[int], *, batch_size: int = 8192) -> tuple[States, list[bytes]]:
+def _native_batches(search: NativeSearch, candidates: list[int], batch_size: int, workers: int,
+                    arguments: tuple[Any, ...]) -> Iterator[tuple[NDArray[np.int64], NDArray[np.uint8]]]:
+    # AI_NOTE: Keep at most workers batches in flight and consume in original order; each SHA buffer is thread-local.
+    from .battle_frontier_export_native import project_and_hash
+    if workers == 1:
+        for start in range(0, len(candidates), batch_size):
+            yield project_and_hash(search.keys, np.asarray(candidates[start:start+batch_size], dtype=np.int64),
+                                   *arguments)
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            for window in range(0, len(candidates), batch_size*workers):
+                pending = [pool.submit(project_and_hash, search.keys,
+                                       np.asarray(candidates[start:start+batch_size], dtype=np.int64), *arguments)
+                           for start in range(window, min(window+batch_size*workers, len(candidates)), batch_size)]
+                for future in pending:
+                    yield future.result()
+
+
+def materialize(search: NativeSearch, candidates: list[int], *, batch_size: int = 8192,
+                backend: str = 'auto', workers: int | None = None) -> tuple[States, list[bytes]]:
     # AI_NOTE: Keep the old JSON rows and SHA256 contract while avoiding per-row Python state/endpoint construction.
     if batch_size < 1:
         raise ValueError('batch_size must be positive')
+    if backend not in ('auto', 'python', 'compiled'):
+        raise ValueError('unsupported export backend')
+    if workers is not None and (isinstance(workers, bool) or not isinstance(workers, int) or not 1 <= workers <= 64):
+        raise ValueError('workers must be an integer between 1 and 64')
+    if workers is None:
+        workers = min(4, os.cpu_count() or 1) if len(candidates) >= 131072 else 1
     kernel = search.kernel
+    rows: States
+    hashes: list[bytes]
     table, prototypes, bits = _shapes(kernel)
     markers = _markers(kernel, table)
     hands = [hashlib.sha256(_json(_freeze(dict(e, keywords=sorted(e['keywords']))))).hexdigest()
              for e in kernel.hand]
     hand_json = [_json(sorted(value for bit, value in enumerate(hands) if mask & (1 << bit)))
                  for mask in range(1 << len(hands))]
+    if backend != 'python':
+        from .battle_frontier_export_native import sha256_provider, CompiledStates
+        provider = sha256_provider()
+        if provider is not None:
+            marker_bytes = np.zeros((len(markers)+1, 64), dtype=np.uint8)
+            for number, marker in markers.items():
+                marker_bytes[number] = np.frombuffer(marker.encode('ascii'), dtype=np.uint8)
+            hand_bytes = np.zeros((len(hand_json), max(map(len, hand_json))), dtype=np.uint8)
+            lengths = np.array([len(value) for value in hand_json], dtype=np.int64)
+            for number, value in enumerate(hand_json):
+                hand_bytes[number, :len(value)] = np.frombuffer(value, dtype=np.uint8)
+            rows, hashes = CompiledStates(len(kernel.initial)), []
+            arguments = (search.layout, table, prototypes, kernel.n, kernel.owner, kernel.own['health'],
+                         kernel.own['ep'], kernel.own['sep'], marker_bytes, hand_bytes, lengths, provider[1])
+            for decoded, hashed in _native_batches(search, candidates, batch_size, workers, arguments):
+                if decoded.size and decoded.min() >= -32768 and decoded.max() <= 32767:
+                    rows.data.extend(decoded.astype('<i2').view(f'V{rows.width*2}').ravel().tolist())
+                else:
+                    rows.data.extend(rows.key(tuple(row)) for row in decoded.tolist())
+                hashes.extend(hashed.view('V32').ravel().tolist())
+            return rows, hashes
+        if backend == 'compiled':
+            raise RuntimeError('no compatible SHA256 library available')
     boards: dict[int, bytes] = {0: b'[]'}
     rows = States(len(kernel.initial))
-    hashes: list[bytes] = []
+    hashes = []
     winner_json = (b'null}', str(kernel.owner).encode('ascii')+b'}')
     mask = (1 << bits)-1
     for start in range(0, len(candidates), batch_size):
