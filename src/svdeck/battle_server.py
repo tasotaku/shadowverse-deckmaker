@@ -159,7 +159,10 @@ class BattleHandler(BaseHTTPRequestHandler):
                     self.send_json(analyze_combat(battle, mode=body.get('mode', 'super')))
                 elif path == "/api/ai-step":
                     # AI_NOTE: 観戦の手札表示に関係なく、判断の入力は手番側の観測に限定する。
-                    player = Player(battle.cards, policy=body.get('policy', 'search'))
+                    options = body.get('options', {})
+                    if not isinstance(options, dict) or set(options)-{'turns', 'max_nodes', 'seconds', 'seed'}:
+                        raise ValueError('AI optionsが不正です')
+                    player = Player(battle.cards, policy=body.get('policy', 'search'), **options)
                     decision = player.choose(ai_observation(battle))
                     battle.step(decision['action'])
                     battle.frames[-1]['decision'] = decision
