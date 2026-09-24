@@ -1,0 +1,1698 @@
+[
+  {
+    "id": "hand_none_a_b_ab",
+    "purpose": "Preserve the unused hand and both single-card choices; retain combinations and both orders, merging only exactly equal full states.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "a": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "b": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "wall": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 4,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "a",
+              "card_id": "a"
+            },
+            {
+              "id": "b",
+              "card_id": "b"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "wall",
+              "card_id": "wall"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "none",
+        "steps": [],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "b"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      },
+      {
+        "id": "b",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "hand"
+            ],
+            "equals_ids": [
+              "a"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ab",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      },
+      {
+        "id": "ba",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "b",
+              "target": "wall"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "a",
+              "target": "wall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "none",
+          "a"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Using a card trades preserved hand/PP for removal progress."
+      },
+      {
+        "witnesses": [
+          "a",
+          "b"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Different unspent cards have different identities."
+      },
+      {
+        "witnesses": [
+          "a",
+          "ab"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Clearing the board spends the remaining card."
+      },
+      {
+        "witnesses": [
+          "ab",
+          "ba"
+        ],
+        "raw_relation": "equal",
+        "semantic_intent": "merge_exact_state",
+        "reason": "Both histories converge to the same full state."
+      }
+    ]
+  },
+  {
+    "id": "barrier_bane_low_stack_trade",
+    "purpose": "A 1/1 bane follower exchanges into a much larger barrier ward under the public Battle rules. Retain this low-stat mutual trade and every optional ping sequence. Evolving first consumes EP but lets the bane follower survive the attack.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "bane": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "ward": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 8,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "ping": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 5,
+          "ep": 1,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "bane",
+              "card_id": "bane"
+            }
+          ],
+          "hand": [
+            {
+              "id": "ping",
+              "card_id": "ping"
+            }
+          ],
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "ward",
+              "card_id": "ward"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "keep",
+        "steps": [],
+        "checks": []
+      },
+      {
+        "id": "barrier_trade",
+        "steps": [
+          {
+            "action": {
+              "type": "attack",
+              "source": "bane",
+              "target": "ward"
+            }
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board"
+            ],
+            "equals_ids": []
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      },
+      {
+        "id": "ping_trade",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "ping",
+              "target": "ward"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "bane",
+              "target": "ward"
+            }
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board"
+            ],
+            "equals_ids": []
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      },
+      {
+        "id": "ping_keep",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "ping",
+              "target": "ward"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board"
+            ],
+            "equals_ids": [
+              "bane"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "keywords"
+            ],
+            "equals": [
+              "守護"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "evolve_trade",
+        "steps": [
+          {
+            "action": {
+              "type": "evolve",
+              "source": "bane"
+            }
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "bane",
+              "target": "ward"
+            }
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board"
+            ],
+            "equals_ids": [
+              "bane"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              0,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          },
+          {
+            "path": [
+              "players",
+              0,
+              "ep"
+            ],
+            "equals": 0
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "keep",
+          "ping_trade"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Even a low-stat mutual trade must remain reachable."
+      },
+      {
+        "witnesses": [
+          "ping_keep",
+          "ping_trade"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Keeping own bane and clearing the ward are separate stop choices."
+      },
+      {
+        "witnesses": [
+          "barrier_trade",
+          "ping_trade"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "raw_retains_even_dominated_state",
+        "reason": "Both trades clear the board, but the raw oracle preserves the state that unnecessarily spent ping too; semantic pruning belongs to a separate comparator."
+      },
+      {
+        "witnesses": [
+          "barrier_trade",
+          "evolve_trade"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Spending EP to preserve a follower trades one resource for another."
+      }
+    ]
+  },
+  {
+    "id": "different_enemy_abilities",
+    "purpose": "Choosing which enemy to remove leaves different abilities; do not conflate equal-sized survivors with different keywords.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "destroy": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "ward": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "bane": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "必殺"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "destroy",
+              "card_id": "destroy"
+            }
+          ],
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "ward",
+              "card_id": "ward"
+            },
+            {
+              "id": "bane",
+              "card_id": "bane"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "remove_ward",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "destroy",
+              "target": "ward"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "bane"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "remove_bane",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "destroy",
+              "target": "bane"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "ward"
+            ]
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "remove_ward",
+          "remove_bane"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "A remaining ward versus remaining bane is incomparable without future assumptions."
+      }
+    ]
+  },
+  {
+    "id": "large_attack_health_tradeoff",
+    "purpose": "High attack and high health are competing dimensions; neither survivor may disappear through a summed-stat score.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "destroy": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "tall": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 8,
+        "health": 2,
+        "keywords": []
+      },
+      "wide": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 8,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "destroy",
+              "card_id": "destroy"
+            }
+          ],
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "tall",
+              "card_id": "tall"
+            },
+            {
+              "id": "wide",
+              "card_id": "wide"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "high_health_left",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "destroy",
+              "target": "tall"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "attack"
+            ],
+            "equals": 2
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 8
+          }
+        ]
+      },
+      {
+        "id": "high_attack_left",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "destroy",
+              "target": "wide"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "attack"
+            ],
+            "equals": 8
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "high_health_left",
+          "high_attack_left"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Attack/health tradeoffs must remain distinct and incomparable."
+      }
+    ]
+  },
+  {
+    "id": "random_bad_outcome_retained",
+    "purpose": "A random 2-damage hit can kill the exposed ward or merely consume a barrier. Both are required branches of one action.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "random": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "protected": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "exposed": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "random",
+              "card_id": "random"
+            }
+          ],
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "protected",
+              "card_id": "protected"
+            },
+            {
+              "id": "exposed",
+              "card_id": "exposed"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "barrier_hit",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "random"
+            },
+            "choices": [
+              0
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "protected",
+              "exposed"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "keywords"
+            ],
+            "equals": [
+              "守護"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kill_exposed",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "random"
+            },
+            "choices": [
+              1
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "protected"
+            ]
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "barrier_hit",
+          "kill_exposed"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_all_random_outcomes",
+        "reason": "Random outcomes are not interchangeable player choices; never remove the worse roll."
+      }
+    ]
+  },
+  {
+    "id": "oldest_barrier_split_order",
+    "purpose": "Board list order is creation age: split damage spends the oldest follower share even if a barrier absorbs it. Ping and split order changes the result.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "old": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "young": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "ping": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "split": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "target": "self",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "split",
+              "card_id": "split"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "old",
+              "card_id": "old",
+              "entered_turn": 1
+            },
+            {
+              "id": "young",
+              "card_id": "young",
+              "entered_turn": 2
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "ping_split",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "ping",
+              "target": "old"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "split"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          }
+        ]
+      },
+      {
+        "id": "split_ping",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "split"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "ping",
+              "target": "old"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "old"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 1
+          }
+        ]
+      },
+      {
+        "id": "split_only",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "split"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": [
+              "old"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "ping_split",
+          "split_ping"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "order_sensitive",
+        "reason": "Identical hand spending in different order has distinct combat outcomes."
+      },
+      {
+        "witnesses": [
+          "split_only",
+          "split_ping"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Remaining hand card trades against enemy health."
+      }
+    ]
+  },
+  {
+    "id": "summon_storm_grant_order",
+    "purpose": "A global storm grant only affects followers already in play; a newly summoned rush follower can hit a follower but cannot hit the leader until storm is granted.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "token": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 2,
+        "keywords": [
+          "突進"
+        ]
+      },
+      "summon": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "token"
+          }
+        ]
+      },
+      "storm": {
+        "name": "Reference spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "all_ally",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ]
+      },
+      "target": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "storm",
+              "card_id": "storm"
+            }
+          ],
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "target",
+              "card_id": "target"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "summon_only",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "summon"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board",
+              0,
+              "keywords"
+            ],
+            "equals": [
+              "突進"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rush_trade",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "summon"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e1",
+              "target": "target"
+            }
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board"
+            ],
+            "equals_ids": []
+          },
+          {
+            "path": [
+              "players",
+              0,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 1
+          }
+        ]
+      },
+      {
+        "id": "summon_storm_face",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "summon"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "storm"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "attack",
+              "source": "e1",
+              "target": "leader:1"
+            }
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "health"
+            ],
+            "equals": 17
+          }
+        ]
+      },
+      {
+        "id": "storm_summon",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "storm"
+            },
+            "choices": []
+          },
+          {
+            "action": {
+              "type": "play",
+              "card": "summon"
+            },
+            "choices": []
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              0,
+              "board",
+              0,
+              "keywords"
+            ],
+            "equals": [
+              "突進"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "health"
+            ],
+            "equals": 20
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "summon_storm_face",
+          "storm_summon"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "order_sensitive",
+        "reason": "A pre-summon grant does not persist for future followers."
+      },
+      {
+        "witnesses": [
+          "rush_trade",
+          "summon_storm_face"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Leader damage versus clearing a follower is incomparable."
+      }
+    ]
+  },
+  {
+    "id": "random_sequential_duplicate_outcomes",
+    "purpose": "Two random pings expand at each draw. A barrier absorbs the first hit. Different random paths that reach one state still remain separate edges with their exact probabilities.",
+    "contract": "All legal own-turn prefixes and all random outcomes; end_turn is an unexecuted stop marker. No semantic pruning.",
+    "cards": {
+      "double": {
+        "name": "Two random pings",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          },
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "left": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "バリア"
+        ]
+      },
+      "right": {
+        "name": "Reference follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [],
+          "hand": [
+            {
+              "id": "double",
+              "card_id": "double"
+            }
+          ],
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 3,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "board": [
+            {
+              "id": "left",
+              "card_id": "left"
+            },
+            {
+              "id": "right",
+              "card_id": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "witnesses": [
+      {
+        "id": "ll",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "double"
+            },
+            "choices": [
+              0,
+              0
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 2
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              1,
+              "health"
+            ],
+            "equals": 3
+          }
+        ]
+      },
+      {
+        "id": "lr",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "double"
+            },
+            "choices": [
+              0,
+              1
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 3
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              1,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      },
+      {
+        "id": "rl",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "double"
+            },
+            "choices": [
+              1,
+              0
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "health"
+            ],
+            "equals": 3
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              1,
+              "health"
+            ],
+            "equals": 2
+          }
+        ]
+      },
+      {
+        "id": "rr",
+        "steps": [
+          {
+            "action": {
+              "type": "play",
+              "card": "double"
+            },
+            "choices": [
+              1,
+              1
+            ]
+          }
+        ],
+        "checks": [
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              0,
+              "keywords"
+            ],
+            "equals": [
+              "バリア"
+            ]
+          },
+          {
+            "path": [
+              "players",
+              1,
+              "board",
+              1,
+              "health"
+            ],
+            "equals": 1
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "witnesses": [
+          "lr",
+          "rl"
+        ],
+        "raw_relation": "equal",
+        "semantic_intent": "merge_state_keep_random_edges",
+        "reason": "Same terminal state may merge but both random event paths and probabilities must survive."
+      },
+      {
+        "witnesses": [
+          "ll",
+          "rr"
+        ],
+        "raw_relation": "distinct",
+        "semantic_intent": "retain_both",
+        "reason": "Different damage allocations retain different barriers and health."
+      }
+    ]
+  }
+]
