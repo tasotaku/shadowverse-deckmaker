@@ -1,0 +1,239 @@
+{
+  "id": "hard_random_barrier_remove",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 4,
+      "keywords": []
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "threat": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 2,
+      "keywords": []
+    },
+    "dice": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "remove": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_enemy"
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-7-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-7-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-7-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-7-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "entered_turn": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "dice",
+            "card_id": "dice"
+          },
+          {
+            "id": "remove",
+            "card_id": "remove"
+          }
+        ],
+        "health": 4,
+        "pp": 1,
+        "max_pp": 1
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-8-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-8-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-8-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-8-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "guard",
+            "card_id": "guard"
+          },
+          {
+            "id": "threat",
+            "card_id": "threat"
+          }
+        ],
+        "hand": [],
+        "health": 3,
+        "pp": 0,
+        "max_pp": 0
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "A random barrier hit and deterministic removal have different future survival; preserve the unplayed second card until the next PP refill.",
+    "enabled_abilities": [
+      "random_damage",
+      "barrier",
+      "ward",
+      "targeted_destroy"
+    ],
+    "future_turn_difference": "Turn 2 threat attacks can kill or trade; turn 3 remaining removal may open lethal. Random outcomes must be reoptimized separately.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "0",
+        "0"
+      ],
+      "2": [
+        "0",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "elapsed_seconds": 0.5310000000172295,
+    "states": 233,
+    "verification_elapsed_seconds": 0.375,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "remove",
+        "target": "guard"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "dice"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "guard"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "remove",
+          "target": "threat"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      }
+    ]
+  }
+}

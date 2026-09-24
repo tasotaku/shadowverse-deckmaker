@@ -1,0 +1,276 @@
+{
+  "id": "hard_barrier_bane_return",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "bane": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 4,
+      "keywords": [
+        "必殺"
+      ]
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "ping": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "protect": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "バリア"
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-1-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-1-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-1-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-1-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "bane",
+            "card_id": "bane"
+          }
+        ],
+        "hand": [
+          {
+            "id": "ping",
+            "card_id": "ping"
+          },
+          {
+            "id": "protect",
+            "card_id": "protect"
+          }
+        ],
+        "health": 2,
+        "pp": 2,
+        "max_pp": 2
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-2-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-2-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-2-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-2-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "guard",
+            "card_id": "guard"
+          }
+        ],
+        "hand": [],
+        "health": 3,
+        "pp": 0,
+        "max_pp": 0
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Bane removes the barrier ward during combat under the current Battle rules even when damage is blocked; targeted ping consumes the barrier first, and protection changes retaliation damage. Do not infer that barrier blocks bane.",
+    "enabled_abilities": [
+      "barrier",
+      "bane",
+      "ward",
+      "targeted_damage",
+      "grant_barrier"
+    ],
+    "future_turn_difference": "Turn 2 guard can kill our leader; turn 3 surviving bane attacker can win.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "0",
+        "0"
+      ],
+      "2": [
+        "0",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "elapsed_seconds": 0.2029999999795109,
+    "states": 50,
+    "verification_elapsed_seconds": 0.07800000003771856,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "ping",
+        "target": "guard"
+      },
+      {
+        "type": "play",
+        "card": "protect",
+        "target": "bane"
+      },
+      {
+        "type": "attack",
+        "source": "bane",
+        "target": "guard"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "guard"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "protect",
+          "target": "bane"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "attack",
+          "source": "bane",
+          "target": "guard"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      }
+    ]
+  },
+  "replays": [
+    {
+      "id": "barrier_consumed_by_ping",
+      "actions": [
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "guard"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board.0.health": 4,
+        "players.1.board.0.keywords": [
+          "守護"
+        ]
+      }
+    },
+    {
+      "id": "bane_destroys_through_barrier_current_engine",
+      "actions": [
+        {
+          "type": "attack",
+          "source": "bane",
+          "target": "guard"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board": [],
+        "players.0.board.0.health": 2,
+        "players.0.board.0.attacks": 1
+      }
+    }
+  ]
+}

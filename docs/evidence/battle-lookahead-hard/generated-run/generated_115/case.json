@@ -1,0 +1,131 @@
+{
+  "id": "generated_115",
+  "seed": 115,
+  "classification": "exact",
+  "n_turns": 1,
+  "features": [
+    "active:1",
+    "bane_rush_grant",
+    "board:opponent:0",
+    "board:root:1",
+    "chosen_destroy",
+    "hand:1",
+    "mixed_keywords",
+    "pp:0",
+    "pp:2",
+    "turns:1",
+    "バリア",
+    "必殺"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "hand_0_0": {
+      "name": "bane_rush_grant",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "必殺",
+            "突進"
+          ]
+        }
+      ]
+    },
+    "body_1_0": {
+      "name": "body_1_0",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "keywords": [
+        "バリア",
+        "必殺"
+      ]
+    },
+    "hand_1_0": {
+      "name": "chosen_destroy",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_enemy"
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 1,
+    "rng": 116,
+    "players": [
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 5,
+        "pp": 0,
+        "max_pp": 0,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": []
+      },
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 6,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_1_0",
+            "card_id": "body_1_0",
+            "entered_turn": 2,
+            "attacks": 0
+          }
+        ]
+      }
+    ]
+  }
+}

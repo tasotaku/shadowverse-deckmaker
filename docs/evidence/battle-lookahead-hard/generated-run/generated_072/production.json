@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "hand_0_0",
+    "target": "body_0_0"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "681/40",
+      "expected_value": 17.025
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_0",
+        "target": "body_0_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "663599999999999997/20000000000000000",
+      "expected_value": 33.18
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_1"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "1279949999999999991/40000000000000000",
+      "expected_value": 31.99875
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 1
+    },
+    {
+      "used": [
+        "hand_0_0"
+      ],
+      "names": [
+        "bane_rush_grant"
+      ],
+      "positions": 2
+    },
+    {
+      "used": [
+        "hand_0_0",
+        "hand_0_1"
+      ],
+      "names": [
+        "bane_rush_grant",
+        "summon_barrier"
+      ],
+      "positions": 5
+    },
+    {
+      "used": [
+        "hand_0_1"
+      ],
+      "names": [
+        "summon_barrier"
+      ],
+      "positions": 1
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "0",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "663599999999999997/20000000000000000",
+  "expected_value": 33.18,
+  "stats": {
+    "states": 700,
+    "transitions": 851,
+    "duplicates": 152,
+    "elapsed_ms": 165.91480001807213,
+    "peak_rss_bytes": 26054656,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 19,
+  "chance_nodes": 1,
+  "turns_remaining_seen": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 19,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 184.30739996256307
+}

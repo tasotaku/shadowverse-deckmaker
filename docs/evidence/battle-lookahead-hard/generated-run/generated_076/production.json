@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "hand_0_1",
+    "target": "body_1_0"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "57/2",
+      "expected_value": 28.5
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_1",
+        "target": "body_1_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "181/5",
+      "expected_value": 36.2
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "181/5",
+      "expected_value": 36.2
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 1
+    },
+    {
+      "used": [
+        "hand_0_0"
+      ],
+      "names": [
+        "enter_grant"
+      ],
+      "positions": 1
+    },
+    {
+      "used": [
+        "hand_0_0",
+        "hand_0_1"
+      ],
+      "names": [
+        "enter_grant",
+        "chosen_destroy"
+      ],
+      "positions": 1
+    },
+    {
+      "used": [
+        "hand_0_1"
+      ],
+      "names": [
+        "chosen_destroy"
+      ],
+      "positions": 1
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "0",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "181/5",
+  "expected_value": 36.2,
+  "stats": {
+    "states": 88,
+    "transitions": 94,
+    "duplicates": 7,
+    "elapsed_ms": 24.04370001750067,
+    "peak_rss_bytes": 23977984,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 7,
+  "chance_nodes": 0,
+  "turns_remaining_seen": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 6,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 35.6484999647364
+}

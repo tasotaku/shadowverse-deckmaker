@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "summon"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-11183/100",
+      "expected_value": -111.83
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "summon"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "1777/50",
+      "expected_value": 35.54
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "storm"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-11183/100",
+      "expected_value": -111.83
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 1
+    },
+    {
+      "used": [
+        "storm"
+      ],
+      "names": [
+        "Synthetic spell"
+      ],
+      "positions": 1
+    },
+    {
+      "used": [
+        "storm",
+        "summon"
+      ],
+      "names": [
+        "Synthetic spell",
+        "Synthetic spell"
+      ],
+      "positions": 2
+    },
+    {
+      "used": [
+        "summon"
+      ],
+      "names": [
+        "Synthetic spell"
+      ],
+      "positions": 1
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "1",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "1777/50",
+  "expected_value": 35.54,
+  "stats": {
+    "states": 192,
+    "transitions": 210,
+    "duplicates": 19,
+    "elapsed_ms": 38.54270000010729,
+    "peak_rss_bytes": 24395776,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 4,
+  "chance_nodes": 0,
+  "turns_remaining_seen": [
+    3
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 3,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 47.29780001798645
+}

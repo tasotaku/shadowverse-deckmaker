@@ -1,0 +1,242 @@
+{
+  "id": "hard_rush_grant_bane",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "rush": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "bane": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "必殺"
+          ]
+        }
+      ]
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 4,
+      "health": 5,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "own": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 5,
+      "keywords": []
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-9-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-9-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-9-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-9-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "entered_turn": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "rush",
+            "card_id": "rush"
+          },
+          {
+            "id": "bane",
+            "card_id": "bane"
+          }
+        ],
+        "health": 4,
+        "pp": 2,
+        "max_pp": 2
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-10-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-10-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-10-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-10-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "guard",
+            "card_id": "guard"
+          }
+        ],
+        "hand": [],
+        "health": 3,
+        "pp": 0,
+        "max_pp": 0
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Play rush then grant bane to trade into an otherwise unkillable guard; both cards and chosen ally identity matter.",
+    "enabled_abilities": [
+      "rush",
+      "grant_bane",
+      "bane",
+      "ward"
+    ],
+    "future_turn_difference": "Turn 2 unremoved guard threatens lethal; turn 3 own established follower can attack leader after rush-bane removal.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "0",
+        "0"
+      ],
+      "2": [
+        "0",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "elapsed_seconds": 0.2809999999590218,
+    "states": 114,
+    "verification_elapsed_seconds": 0.15600000001722947,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "rush"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "rush"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "bane",
+          "target": "own"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      }
+    ]
+  },
+  "replays": [
+    {
+      "id": "rush_then_bane_trades_into_guard",
+      "actions": [
+        {
+          "type": "play",
+          "card": "rush"
+        },
+        {
+          "type": "play",
+          "card": "bane",
+          "target": "rush"
+        },
+        {
+          "type": "attack",
+          "source": "rush",
+          "target": "guard"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board": [],
+        "players.0.board.0.id": "own",
+        "players.0.graveyard": 2,
+        "players.1.graveyard": 1
+      }
+    }
+  ]
+}

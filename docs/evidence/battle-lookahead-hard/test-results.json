@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-24",
+  "platform": "Windows / Python 3.12",
+  "pytest": {
+    "selection": "tests/test_battle*.py and tests/test_combat*.py, expanded by PowerShell",
+    "command_prefix": ".venv/Scripts/python.exe -X utf8 -m pytest -q",
+    "status": "PASS",
+    "passed": 530,
+    "elapsed_seconds": 49.70,
+    "new_tests": 150,
+    "scope": "battle and combat tests, not the unrelated discovery subsystem"
+  },
+  "mypy": {
+    "command": "MYPYPATH=src python -m mypy --explicit-package-bases scripts/lookahead_stress.py scripts/lookahead_generated_cases.py tests/test_battle_lookahead_hard.py",
+    "status": "PASS",
+    "files_checked": 3
+  },
+  "exact_differential_checks": {
+    "cases": 134,
+    "all_initial_actions": 389,
+    "status": "PASS"
+  },
+  "full_board_three_turn_completion": {
+    "cases": 2,
+    "completed": 0,
+    "budgets": ["10000 states / 10 seconds", "100000 states / 30 seconds"],
+    "status": "INCOMPLETE",
+    "correctness": "UNKNOWN",
+    "runtime_depth_completed": [0, 0],
+    "runtime_fallback": "evaluated single action"
+  }
+}

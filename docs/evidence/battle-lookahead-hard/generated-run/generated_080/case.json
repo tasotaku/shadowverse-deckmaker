@@ -1,0 +1,188 @@
+{
+  "id": "generated_080",
+  "seed": 80,
+  "classification": "exact",
+  "n_turns": 2,
+  "features": [
+    "active:1",
+    "barrier_buff",
+    "board:opponent:1",
+    "board:root:1",
+    "board_end_turn_damage",
+    "chosen_damage",
+    "entered_this_turn",
+    "hand:1",
+    "hand:2",
+    "mixed_keywords",
+    "pp:2",
+    "summon_and_grant",
+    "turns:2",
+    "two_card_order",
+    "守護",
+    "疾走",
+    "突進"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 4,
+      "keywords": [
+        "疾走",
+        "守護"
+      ],
+      "end_turn": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 1
+        }
+      ]
+    },
+    "hand_0_0": {
+      "name": "summon_and_grant",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "summon",
+          "card_id": "token",
+          "count": 1
+        },
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    },
+    "body_1_0": {
+      "name": "body_1_0",
+      "kind": "follower",
+      "cost": 2,
+      "attack": 1,
+      "health": 4,
+      "keywords": [
+        "突進",
+        "守護"
+      ]
+    },
+    "hand_1_0": {
+      "name": "chosen_damage",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_any_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "hand_1_1": {
+      "name": "barrier_buff",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "バリア"
+          ]
+        },
+        {
+          "op": "buff",
+          "target": "chosen_ally",
+          "attack": 1,
+          "health": 1
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 1,
+    "rng": 81,
+    "players": [
+      {
+        "turn": 2,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 6,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 1,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 2,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 5,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          },
+          {
+            "id": "hand_1_1",
+            "card_id": "hand_1_1"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_1_0",
+            "card_id": "body_1_0",
+            "entered_turn": 2,
+            "attacks": 0
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "id": "hard_full_board_branching_2",
+  "n_turns": 3,
+  "classification": "stress",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "a": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "バリア"
+      ]
+    },
+    "b": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "keywords": [
+        "必殺"
+      ]
+    },
+    "c": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 3,
+      "keywords": [
+        "疾走"
+      ]
+    },
+    "d": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "w": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 5,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "ping": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 2
+        }
+      ]
+    },
+    "dice": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 3
+        }
+      ]
+    },
+    "split": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "split_damage",
+          "target": "self",
+          "amount": 6
+        }
+      ]
+    },
+    "remove": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "chosen_enemy"
+        }
+      ]
+    },
+    "summon": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "summon",
+          "target": "self",
+          "card_id": "token"
+        }
+      ]
+    },
+    "grant": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "バリア",
+            "必殺"
+          ]
+        }
+      ]
+    },
+    "token": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "疾走"
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-15-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-15-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-15-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-15-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "ours-w",
+            "card_id": "w"
+          },
+          {
+            "id": "ours-d",
+            "card_id": "d"
+          },
+          {
+            "id": "ours-a",
+            "card_id": "a"
+          },
+          {
+            "id": "ours-c",
+            "card_id": "c"
+          },
+          {
+            "id": "ours-b",
+            "card_id": "b"
+          }
+        ],
+        "hand": [
+          {
+            "id": "our-grant",
+            "card_id": "grant"
+          },
+          {
+            "id": "our-summon",
+            "card_id": "summon"
+          },
+          {
+            "id": "our-remove",
+            "card_id": "remove"
+          },
+          {
+            "id": "our-split",
+            "card_id": "split"
+          },
+          {
+            "id": "our-dice",
+            "card_id": "dice"
+          },
+          {
+            "id": "our-ping",
+            "card_id": "ping"
+          }
+        ],
+        "health": 16,
+        "pp": 5,
+        "max_pp": 5
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-16-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-16-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-16-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-16-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "theirs-b",
+            "card_id": "b"
+          },
+          {
+            "id": "theirs-c",
+            "card_id": "c"
+          },
+          {
+            "id": "theirs-a",
+            "card_id": "a"
+          },
+          {
+            "id": "theirs-d",
+            "card_id": "d"
+          },
+          {
+            "id": "theirs-w",
+            "card_id": "w"
+          }
+        ],
+        "hand": [
+          {
+            "id": "their-grant",
+            "card_id": "grant"
+          },
+          {
+            "id": "their-summon",
+            "card_id": "summon"
+          },
+          {
+            "id": "their-remove",
+            "card_id": "remove"
+          },
+          {
+            "id": "their-split",
+            "card_id": "split"
+          },
+          {
+            "id": "their-dice",
+            "card_id": "dice"
+          },
+          {
+            "id": "their-ping",
+            "card_id": "ping"
+          }
+        ],
+        "health": 16,
+        "pp": 5,
+        "max_pp": 5
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Genuine five-versus-five: every body has positive attack and can attack on its turn. Six distinct playable hand cards per side create target, order, resource, random and newly-opened board-slot branches.",
+    "enabled_abilities": [
+      "barrier",
+      "bane",
+      "storm",
+      "rush",
+      "ward",
+      "targeted_damage",
+      "random_damage",
+      "oldest_first_split_damage",
+      "targeted_destroy",
+      "summon",
+      "grant_barrier",
+      "grant_bane"
+    ],
+    "future_turn_difference": "Turn 2 opponent has all five active attackers and six hand options; turn 3 includes surviving bodies, tokens, and leftover cards. No frozen or zero-attack padding.",
+    "synthetic": true,
+    "branching_checks": [
+      {
+        "player": 0,
+        "legal_actions": 24,
+        "attack_ready_sources": [
+          "ours-a",
+          "ours-b",
+          "ours-c",
+          "ours-d",
+          "ours-w"
+        ],
+        "hand_count": 6
+      },
+      {
+        "player": 1,
+        "legal_actions": 24,
+        "attack_ready_sources": [
+          "theirs-a",
+          "theirs-b",
+          "theirs-c",
+          "theirs-d",
+          "theirs-w"
+        ],
+        "hand_count": 6
+      }
+    ]
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "timeout",
+    "timeout_seconds": 30,
+    "stderr": "",
+    "pid": 24188,
+    "elapsed_seconds": 30.01600000000326,
+    "returncode_after_stop": 1,
+    "process_terminated": true,
+    "meaning": "No oracle answer obtained. This case supports bounded runtime and replay checks only; it is not an exact correctness PASS."
+  }
+}

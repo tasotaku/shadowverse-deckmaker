@@ -1,0 +1,198 @@
+{
+  "id": "generated_116",
+  "seed": 116,
+  "classification": "exact",
+  "n_turns": 1,
+  "features": [
+    "active:1",
+    "already_attacked",
+    "board:opponent:2",
+    "board:root:1",
+    "entered_this_turn",
+    "hand:1",
+    "hand:2",
+    "mixed_keywords",
+    "pp:2",
+    "random_destroy",
+    "reversed_hand_order",
+    "storm_grant",
+    "turn_start_damage",
+    "turns:1",
+    "two_card_order",
+    "バリア",
+    "守護",
+    "必殺",
+    "疾走",
+    "突進"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "疾走",
+        "守護"
+      ]
+    },
+    "body_0_1": {
+      "name": "body_0_1",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "バリア",
+        "必殺"
+      ]
+    },
+    "hand_0_0": {
+      "name": "storm_grant",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    },
+    "body_1_0": {
+      "name": "body_1_0",
+      "kind": "follower",
+      "cost": 2,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "突進",
+        "守護"
+      ]
+    },
+    "hand_1_0": {
+      "name": "random_destroy",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "random_enemy"
+        }
+      ]
+    },
+    "hand_1_1": {
+      "name": "turn_start_damage",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "突進"
+      ],
+      "triggers": [
+        {
+          "event": "turn_start",
+          "scope": "ally",
+          "effects": [
+            {
+              "op": "damage",
+              "target": "enemy_leader",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 1,
+    "rng": 117,
+    "players": [
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 1,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 2,
+            "attacks": 0
+          },
+          {
+            "id": "body_0_1",
+            "card_id": "body_0_1",
+            "entered_turn": 3,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 4,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_1",
+            "card_id": "hand_1_1"
+          },
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_1_0",
+            "card_id": "body_1_0",
+            "entered_turn": 3,
+            "attacks": 1
+          }
+        ]
+      }
+    ]
+  }
+}

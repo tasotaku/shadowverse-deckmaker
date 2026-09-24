@@ -1,0 +1,300 @@
+{
+  "id": "hard_oldest_barrier_split",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 4,
+      "keywords": []
+    },
+    "old": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "keywords": [
+        "バリア",
+        "守護"
+      ]
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "ping": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "split": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "split_damage",
+          "target": "self",
+          "amount": 4
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-3-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-3-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-3-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-3-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "entered_turn": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "ping",
+            "card_id": "ping"
+          },
+          {
+            "id": "split",
+            "card_id": "split"
+          }
+        ],
+        "health": 2,
+        "pp": 2,
+        "max_pp": 2
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-4-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-4-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-4-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-4-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "old",
+            "card_id": "old"
+          },
+          {
+            "id": "guard",
+            "card_id": "guard"
+          }
+        ],
+        "hand": [],
+        "health": 3,
+        "pp": 0,
+        "max_pp": 0
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Ping the oldest barrier before allocating four damage across two wards; a blocked share is still consumed. Reversing spell order leaves the old ward alive. Board list is oldest first.",
+    "enabled_abilities": [
+      "barrier",
+      "ward",
+      "targeted_damage",
+      "oldest_first_split_damage"
+    ],
+    "future_turn_difference": "Turn 3 fresh own attacker reaches the leader only if the blockers have been cleared; turn 1 has no own attack.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "0",
+        "0"
+      ],
+      "2": [
+        "0",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "states": 229,
+    "verification_elapsed_seconds": 0.3440000000409782,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "ping",
+        "target": "old"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "old"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "guard"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "split"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      }
+    ]
+  },
+  "replays": [
+    {
+      "id": "ping_then_split_clears_both",
+      "actions": [
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "old"
+        },
+        {
+          "type": "play",
+          "card": "split"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board": [],
+        "players.1.graveyard": 2,
+        "players.0.pp": 0
+      }
+    },
+    {
+      "id": "split_wastes_old_share_on_barrier",
+      "actions": [
+        {
+          "type": "play",
+          "card": "split"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board.0.id": "old",
+        "players.1.board.0.health": 2,
+        "players.1.board.0.keywords": [
+          "守護"
+        ],
+        "players.1.graveyard": 1
+      }
+    },
+    {
+      "id": "reverse_order_leaves_one_health_ward",
+      "actions": [
+        {
+          "type": "play",
+          "card": "split"
+        },
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "old"
+        }
+      ],
+      "expected_paths": {
+        "players.1.board.0.id": "old",
+        "players.1.board.0.health": 1,
+        "players.1.board.0.keywords": [
+          "守護"
+        ]
+      }
+    }
+  ]
+}

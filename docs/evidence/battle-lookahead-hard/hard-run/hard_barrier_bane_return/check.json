@@ -1,0 +1,57 @@
+{
+  "id": "hard_barrier_bane_return",
+  "classification": "exact",
+  "turns": 3,
+  "production_process": {
+    "status": "OK",
+    "returncode": 0,
+    "pid": 29748,
+    "elapsed_seconds": 0.18412599997827783,
+    "deadline_seconds": 25,
+    "process_exited": true
+  },
+  "production": {
+    "complete": true,
+    "optimal": true,
+    "cutoffs": [],
+    "stats": {
+      "states": 90,
+      "transitions": 96,
+      "duplicates": 7,
+      "elapsed_ms": 19.4280999712646,
+      "peak_rss_bytes": 23814144,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10.0,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "policy_nodes": 5,
+    "chance_nodes": 0,
+    "legal_recommendation": true,
+    "verification": {
+      "status": "PASS",
+      "edges_checked": 4,
+      "coverage": "all exported policy edges"
+    }
+  },
+  "reference_process": {
+    "status": "OK",
+    "returncode": 0,
+    "pid": 9148,
+    "elapsed_seconds": 0.21962620003614575,
+    "deadline_seconds": 30,
+    "process_exited": true
+  },
+  "reference_stats": {
+    "elapsed_ms": 72.39990000380203,
+    "peak_rss_bytes": 23711744,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak",
+    "states": 50
+  },
+  "status": "PASS",
+  "errors": [],
+  "initial_actions_checked": 4
+}

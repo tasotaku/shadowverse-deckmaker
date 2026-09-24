@@ -1,0 +1,190 @@
+{
+  "id": "generated_024",
+  "seed": 24,
+  "classification": "exact",
+  "n_turns": 3,
+  "features": [
+    "active:1",
+    "bane_rush_grant",
+    "board:opponent:1",
+    "board:root:1",
+    "board_end_turn_damage",
+    "entered_this_turn",
+    "hand:1",
+    "hand:2",
+    "mixed_keywords",
+    "pp:0",
+    "pp:2",
+    "summon_barrier",
+    "turns:3",
+    "two_card_order",
+    "two_random_hits",
+    "バリア",
+    "守護",
+    "疾走"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 2,
+      "attack": 3,
+      "health": 1,
+      "keywords": [
+        "バリア",
+        "守護"
+      ],
+      "end_turn": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 1
+        }
+      ]
+    },
+    "hand_0_0": {
+      "name": "two_random_hits",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        },
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        }
+      ]
+    },
+    "body_1_0": {
+      "name": "body_1_0",
+      "kind": "follower",
+      "cost": 0,
+      "attack": 2,
+      "health": 4,
+      "keywords": [
+        "疾走",
+        "守護"
+      ]
+    },
+    "hand_1_0": {
+      "name": "bane_rush_grant",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "chosen_ally",
+          "keywords": [
+            "必殺",
+            "突進"
+          ]
+        }
+      ]
+    },
+    "hand_1_1": {
+      "name": "summon_barrier",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "summon",
+          "card_id": "token",
+          "count": 1
+        },
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "バリア"
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 1,
+    "rng": 25,
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 2,
+        "pp": 0,
+        "max_pp": 0,
+        "deck": [
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 1,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 6,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          },
+          {
+            "id": "hand_1_1",
+            "card_id": "hand_1_1"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_1_0",
+            "card_id": "body_1_0",
+            "entered_turn": 0,
+            "attacks": 0
+          }
+        ]
+      }
+    ]
+  }
+}

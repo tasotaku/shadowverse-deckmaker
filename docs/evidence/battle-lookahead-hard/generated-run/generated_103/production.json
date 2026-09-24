@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 2,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "hand_0_0",
+    "target": "body_0_1"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "1",
+      "expected_value_exact": "-26151/200",
+      "expected_value": -130.755
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_0",
+        "target": "body_0_0"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "5469/200",
+      "expected_value": 27.345
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_0",
+        "target": "body_0_1"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "2787/100",
+      "expected_value": 27.87
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_0",
+        "target": "body_1_0"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "643/25",
+      "expected_value": 25.72
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_0",
+        "target": "leader:1"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "1023/40",
+      "expected_value": 25.575
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_1",
+        "target": "body_1_0"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-2494/25",
+      "expected_value": -99.76
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_1",
+        "target": "leader:1"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "1023/40",
+      "expected_value": 25.575
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 4
+    },
+    {
+      "used": [
+        "hand_0_0"
+      ],
+      "names": [
+        "barrier_buff"
+      ],
+      "positions": 7
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "1",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "2787/100",
+  "expected_value": 27.87,
+  "stats": {
+    "states": 89,
+    "transitions": 102,
+    "duplicates": 14,
+    "elapsed_ms": 24.09970003645867,
+    "peak_rss_bytes": 23953408,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 3,
+  "chance_nodes": 0,
+  "turns_remaining_seen": [
+    2
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 2,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 32.48910000547767
+}

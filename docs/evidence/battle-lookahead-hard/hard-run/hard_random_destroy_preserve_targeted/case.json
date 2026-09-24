@@ -1,0 +1,242 @@
+{
+  "id": "hard_random_destroy_preserve_targeted",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "own": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 5,
+      "keywords": []
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "keywords": [
+        "守護",
+        "バリア"
+      ]
+    },
+    "threat": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 2,
+      "keywords": [
+        "必殺"
+      ]
+    },
+    "dice": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "random_enemy"
+        }
+      ]
+    },
+    "ping": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "chosen_enemy",
+          "amount": 2
+        }
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-11-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-11-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-11-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-11-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "own",
+            "card_id": "own",
+            "entered_turn": 1
+          }
+        ],
+        "hand": [
+          {
+            "id": "dice",
+            "card_id": "dice"
+          },
+          {
+            "id": "ping",
+            "card_id": "ping"
+          }
+        ],
+        "health": 3,
+        "pp": 1,
+        "max_pp": 1
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-12-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-12-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-12-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-12-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [
+          {
+            "id": "guard",
+            "card_id": "guard"
+          },
+          {
+            "id": "threat",
+            "card_id": "threat"
+          }
+        ],
+        "hand": [],
+        "health": 3,
+        "pp": 0,
+        "max_pp": 0
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Random destruction bypasses barrier, but the surviving target changes whether retained targeted damage can save the next turn.",
+    "enabled_abilities": [
+      "random_destroy",
+      "targeted_damage",
+      "barrier",
+      "bane",
+      "ward"
+    ],
+    "future_turn_difference": "Turn 2 surviving bane threatens leader or own follower; turn 3 retained ping has different value after each random outcome.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "0",
+        "0"
+      ],
+      "2": [
+        "0",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "elapsed_seconds": 0.3279999999795109,
+    "states": 125,
+    "verification_elapsed_seconds": 0.20300000003771856,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "ping",
+        "target": "threat"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "dice"
+        },
+        "value": [
+          "0",
+          "-1/2"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "guard"
+        },
+        "value": [
+          "0",
+          "-1"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "ping",
+          "target": "threat"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      }
+    ]
+  }
+}

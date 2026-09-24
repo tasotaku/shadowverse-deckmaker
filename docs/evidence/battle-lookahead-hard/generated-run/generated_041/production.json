@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "attack",
+    "source": "body_0_0",
+    "target": "leader:1"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "1",
+      "expected_value_exact": "-5411/40",
+      "expected_value": -135.275
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_0",
+        "target": "body_1_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "1",
+      "expected_value_exact": "-5069/40",
+      "expected_value": -126.725
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_0_0",
+        "target": "leader:1"
+      },
+      "win_probability_exact": "1",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-2123/20",
+      "expected_value": -106.15
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 2
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "1",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "-2123/20",
+  "expected_value": -106.15,
+  "stats": {
+    "states": 49,
+    "transitions": 54,
+    "duplicates": 6,
+    "elapsed_ms": 13.646700012031943,
+    "peak_rss_bytes": 23875584,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 2,
+  "chance_nodes": 0,
+  "turns_remaining_seen": [
+    3
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 1,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 21.07890002662316
+}

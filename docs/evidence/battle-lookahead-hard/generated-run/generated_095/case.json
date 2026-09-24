@@ -1,0 +1,136 @@
+{
+  "id": "generated_095",
+  "seed": 95,
+  "classification": "exact",
+  "n_turns": 2,
+  "features": [
+    "active:1",
+    "board:opponent:1",
+    "board:root:0",
+    "hand:1",
+    "mixed_keywords",
+    "pp:0",
+    "pp:2",
+    "random_destroy",
+    "summon_barrier",
+    "turns:2",
+    "バリア",
+    "疾走"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 0,
+      "attack": 3,
+      "health": 3,
+      "keywords": [
+        "疾走",
+        "バリア"
+      ]
+    },
+    "hand_0_0": {
+      "name": "random_destroy",
+      "kind": "spell",
+      "cost": 0,
+      "effects": [
+        {
+          "op": "destroy",
+          "target": "random_enemy"
+        }
+      ]
+    },
+    "hand_1_0": {
+      "name": "summon_barrier",
+      "kind": "spell",
+      "cost": 0,
+      "effects": [
+        {
+          "op": "summon",
+          "card_id": "token",
+          "count": 1
+        },
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "バリア"
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 1,
+    "rng": 96,
+    "players": [
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 2,
+        "pp": 0,
+        "max_pp": 0,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 2,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 6,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": []
+      }
+    ]
+  }
+}

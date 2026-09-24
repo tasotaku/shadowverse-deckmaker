@@ -1,0 +1,271 @@
+{
+  "id": "hard_summon_then_grant_storm",
+  "n_turns": 3,
+  "classification": "exact",
+  "cards": {
+    "filler": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 3,
+      "keywords": []
+    },
+    "summon": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "summon",
+          "target": "self",
+          "card_id": "token"
+        }
+      ]
+    },
+    "storm": {
+      "name": "Synthetic spell",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    },
+    "guard": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "rush": {
+      "name": "Synthetic follower",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 1,
+      "keywords": [
+        "突進"
+      ]
+    }
+  },
+  "state": {
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-5-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-5-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-5-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-5-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [],
+        "hand": [
+          {
+            "id": "summon",
+            "card_id": "summon"
+          },
+          {
+            "id": "storm",
+            "card_id": "storm"
+          }
+        ],
+        "health": 3,
+        "pp": 2,
+        "max_pp": 2
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "deck": [
+          {
+            "id": "draw-6-0",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-6-1",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-6-2",
+            "card_id": "filler"
+          },
+          {
+            "id": "draw-6-3",
+            "card_id": "filler"
+          }
+        ],
+        "board": [],
+        "hand": [
+          {
+            "id": "guard",
+            "card_id": "guard"
+          },
+          {
+            "id": "rush",
+            "card_id": "rush"
+          }
+        ],
+        "health": 3,
+        "pp": 1,
+        "max_pp": 1
+      }
+    ]
+  },
+  "metadata": {
+    "purpose": "Summon before global storm grant gives immediate lethal; granting on the empty board wastes storm and exposes the summon to the opponent rush.",
+    "enabled_abilities": [
+      "summon",
+      "grant_storm",
+      "storm",
+      "rush",
+      "ward"
+    ],
+    "future_turn_difference": "Wrong order allows turn 2 rush to trade into the token or ward to block; correct order wins on turn 1.",
+    "synthetic": true,
+    "horizon_values": {
+      "1": [
+        "1",
+        "0"
+      ],
+      "2": [
+        "1",
+        "0"
+      ],
+      "3": [
+        "1",
+        "0"
+      ]
+    }
+  },
+  "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+  "reference": {
+    "status": "complete",
+    "elapsed_seconds": 0.2970000000204891,
+    "states": 105,
+    "verification_elapsed_seconds": 0.15700000000651926,
+    "independent_of": "src/svdeck/battle_lookahead.py",
+    "shared_transition_engine": "svdeck.battle.Battle"
+  },
+  "expectations": {
+    "value": [
+      "1",
+      "0"
+    ],
+    "optimal_first_actions": [
+      {
+        "type": "play",
+        "card": "summon"
+      }
+    ],
+    "action_values": [
+      {
+        "action": {
+          "type": "end_turn"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "summon"
+        },
+        "value": [
+          "1",
+          "0"
+        ]
+      },
+      {
+        "action": {
+          "type": "play",
+          "card": "storm"
+        },
+        "value": [
+          "0",
+          "0"
+        ]
+      }
+    ]
+  },
+  "replays": [
+    {
+      "id": "summon_grant_immediate_attack",
+      "actions": [
+        {
+          "type": "play",
+          "card": "summon"
+        },
+        {
+          "type": "play",
+          "card": "storm"
+        },
+        {
+          "type": "attack",
+          "source": "e1",
+          "target": "leader:1"
+        }
+      ],
+      "expected_paths": {
+        "winner": 0,
+        "players.0.board.0.keywords": [
+          "疾走"
+        ],
+        "players.0.board.0.entered_turn": 1,
+        "players.0.pp": 0
+      }
+    },
+    {
+      "id": "grant_before_summon_does_not_persist",
+      "actions": [
+        {
+          "type": "play",
+          "card": "storm"
+        },
+        {
+          "type": "play",
+          "card": "summon"
+        }
+      ],
+      "expected_paths": {
+        "winner": null,
+        "players.0.board.0.keywords": [],
+        "players.0.board.0.entered_turn": 1
+      }
+    }
+  ]
+}

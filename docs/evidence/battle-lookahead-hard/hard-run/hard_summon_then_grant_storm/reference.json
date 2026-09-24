@@ -1,0 +1,51 @@
+{
+  "id": "hard_summon_then_grant_storm",
+  "value": [
+    "1",
+    "0"
+  ],
+  "optimal_first_actions": [
+    {
+      "type": "play",
+      "card": "summon"
+    }
+  ],
+  "actions": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "value": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "summon"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "storm"
+      },
+      "value": [
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "states": 105,
+  "stats": {
+    "elapsed_ms": 151.92219999153167,
+    "peak_rss_bytes": 23891968,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak"
+  }
+}

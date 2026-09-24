@@ -1,0 +1,49 @@
+{
+  "decision": {
+    "policy": "lookahead",
+    "action": {
+      "type": "play",
+      "card": "our-split"
+    },
+    "reason": "手札の使用候補を残し、0/3ターン先まで比較。相手手札・ドローは公開情報から2通りを仮定。上限到達：time。完了した一手評価へ切替",
+    "score": 16.78,
+    "plan": [
+      {
+        "type": "play",
+        "card": "our-split"
+      }
+    ],
+    "nodes": 3842,
+    "depth": 0,
+    "turns_requested": 3,
+    "depth_unit": "turns",
+    "uncertain": true,
+    "proven_win": false,
+    "limited": true,
+    "cutoffs": [
+      "time"
+    ],
+    "complete": false,
+    "optimal": false,
+    "fallback": true,
+    "fallback_evaluated": true,
+    "candidates": [],
+    "hand_patterns": [],
+    "scope": "sampled hidden worlds; future per-world optimal responses are an approximation",
+    "settings": {
+      "policy_version": 4,
+      "turns": 3,
+      "max_nodes": 4000,
+      "seconds": 2.0,
+      "seed": 0,
+      "hand_samples": 2
+    },
+    "elapsed_ms": 2000.2409999724478
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "peak_rss_bytes": 44208128,
+  "memory_method": "Windows PeakWorkingSetSize",
+  "memory_scope": "runtime process lifetime peak",
+  "elapsed_ms": 2010.59229997918
+}

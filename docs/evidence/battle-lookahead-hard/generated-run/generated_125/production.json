@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 1,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "attack",
+    "source": "body_1_0",
+    "target": "body_0_1"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-5227/40",
+      "expected_value": -130.675
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_1_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "-11223/200",
+      "expected_value": -56.115
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "body_1_0",
+        "target": "body_0_1"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "101/10",
+      "expected_value": 10.1
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 2
+    },
+    {
+      "used": [
+        "hand_1_0"
+      ],
+      "names": [
+        "two_random_hits"
+      ],
+      "positions": 6
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "0",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "101/10",
+  "expected_value": 10.1,
+  "stats": {
+    "states": 16,
+    "transitions": 17,
+    "duplicates": 2,
+    "elapsed_ms": 7.254399999510497,
+    "peak_rss_bytes": 23732224,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 4,
+  "chance_nodes": 0,
+  "turns_remaining_seen": [
+    0,
+    1
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 3,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 15.874700038693845
+}

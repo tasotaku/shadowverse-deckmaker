@@ -1,0 +1,141 @@
+{
+  "id": "generated_069",
+  "seed": 69,
+  "classification": "exact",
+  "n_turns": 3,
+  "features": [
+    "active:0",
+    "board:opponent:0",
+    "board:root:1",
+    "end_turn_damage",
+    "entered_this_turn",
+    "hand:1",
+    "mixed_keywords",
+    "pp:0",
+    "pp:2",
+    "summon_and_grant",
+    "turns:3",
+    "バリア",
+    "必殺"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 3,
+      "health": 4,
+      "keywords": [
+        "バリア",
+        "必殺"
+      ]
+    },
+    "hand_0_0": {
+      "name": "summon_and_grant",
+      "kind": "spell",
+      "cost": 1,
+      "effects": [
+        {
+          "op": "summon",
+          "card_id": "token",
+          "count": 1
+        },
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    },
+    "hand_1_0": {
+      "name": "end_turn_damage",
+      "kind": "follower",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "keywords": [
+        "守護"
+      ],
+      "end_turn": [
+        {
+          "op": "damage",
+          "target": "enemy_leader",
+          "amount": 1
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 0,
+    "rng": 70,
+    "players": [
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 1,
+        "pp": 0,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 3,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 3,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 4,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": []
+      }
+    ]
+  }
+}

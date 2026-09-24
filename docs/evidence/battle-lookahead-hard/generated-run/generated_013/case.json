@@ -1,0 +1,169 @@
+{
+  "id": "generated_013",
+  "seed": 13,
+  "classification": "exact",
+  "n_turns": 3,
+  "features": [
+    "active:0",
+    "board:opponent:2",
+    "board:root:1",
+    "entered_this_turn",
+    "hand:1",
+    "mixed_keywords",
+    "oldest_split",
+    "pp:2",
+    "turns:3",
+    "two_random_hits",
+    "バリア",
+    "守護",
+    "必殺",
+    "突進"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "突進"
+      ]
+    },
+    "body_0_0": {
+      "name": "body_0_0",
+      "kind": "follower",
+      "cost": 0,
+      "attack": 3,
+      "health": 2,
+      "keywords": [
+        "必殺",
+        "突進"
+      ]
+    },
+    "hand_0_0": {
+      "name": "two_random_hits",
+      "kind": "spell",
+      "cost": 0,
+      "effects": [
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 1
+        },
+        {
+          "op": "damage",
+          "target": "random_enemy",
+          "amount": 3
+        }
+      ]
+    },
+    "body_1_0": {
+      "name": "body_1_0",
+      "kind": "follower",
+      "cost": 2,
+      "attack": 1,
+      "health": 3,
+      "keywords": [
+        "バリア",
+        "必殺"
+      ]
+    },
+    "body_1_1": {
+      "name": "body_1_1",
+      "kind": "follower",
+      "cost": 0,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "突進",
+        "守護"
+      ]
+    },
+    "hand_1_0": {
+      "name": "oldest_split",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "split_damage",
+          "amount": 4
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 0,
+    "rng": 14,
+    "players": [
+      {
+        "turn": 2,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 6,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_0_0",
+            "card_id": "hand_0_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_0_0",
+            "card_id": "body_0_0",
+            "entered_turn": 1,
+            "attacks": 0
+          }
+        ]
+      },
+      {
+        "turn": 2,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 2,
+        "pp": 2,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": [
+          {
+            "id": "body_1_0",
+            "card_id": "body_1_0",
+            "entered_turn": 1,
+            "attacks": 0
+          },
+          {
+            "id": "body_1_1",
+            "card_id": "body_1_1",
+            "entered_turn": 2,
+            "attacks": 0
+          }
+        ]
+      }
+    ]
+  }
+}

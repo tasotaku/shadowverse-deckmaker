@@ -1,0 +1,99 @@
+{
+  "id": "generated_000",
+  "seed": 0,
+  "classification": "exact",
+  "n_turns": 3,
+  "features": [
+    "active:0",
+    "board:opponent:0",
+    "board:root:0",
+    "chosen_damage",
+    "hand:0",
+    "hand:1",
+    "mixed_keywords",
+    "pp:0",
+    "pp:1",
+    "summon_and_grant",
+    "turns:3"
+  ],
+  "cards": {
+    "filler": {
+      "name": "Unplayable draw filler",
+      "kind": "spell",
+      "cost": 99,
+      "effects": []
+    },
+    "token": {
+      "name": "Small summoned body",
+      "kind": "follower",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "keywords": [
+        "守護"
+      ]
+    },
+    "hand_1_0": {
+      "name": "summon_and_grant",
+      "kind": "spell",
+      "cost": 2,
+      "effects": [
+        {
+          "op": "summon",
+          "card_id": "token",
+          "count": 1
+        },
+        {
+          "op": "grant",
+          "target": "all_ally",
+          "keywords": [
+            "疾走"
+          ]
+        }
+      ]
+    }
+  },
+  "state": {
+    "active_player": 0,
+    "rng": 1,
+    "players": [
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 3,
+        "pp": 0,
+        "max_pp": 2,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [],
+        "board": []
+      },
+      {
+        "turn": 1,
+        "ep": 0,
+        "sep": 0,
+        "extra_pp_used": true,
+        "health": 3,
+        "pp": 1,
+        "max_pp": 1,
+        "deck": [
+          "filler",
+          "filler",
+          "filler"
+        ],
+        "hand": [
+          {
+            "id": "hand_1_0",
+            "card_id": "hand_1_0"
+          }
+        ],
+        "board": []
+      }
+    ]
+  }
+}

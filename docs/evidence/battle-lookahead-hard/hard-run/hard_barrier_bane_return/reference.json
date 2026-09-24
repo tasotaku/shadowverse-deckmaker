@@ -1,0 +1,75 @@
+{
+  "id": "hard_barrier_bane_return",
+  "value": [
+    "1",
+    "0"
+  ],
+  "optimal_first_actions": [
+    {
+      "type": "play",
+      "card": "ping",
+      "target": "guard"
+    },
+    {
+      "type": "play",
+      "card": "protect",
+      "target": "bane"
+    },
+    {
+      "type": "attack",
+      "source": "bane",
+      "target": "guard"
+    }
+  ],
+  "actions": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "ping",
+        "target": "guard"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "protect",
+        "target": "bane"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "attack",
+        "source": "bane",
+        "target": "guard"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    }
+  ],
+  "states": 50,
+  "stats": {
+    "elapsed_ms": 72.39990000380203,
+    "peak_rss_bytes": 23711744,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak"
+  }
+}

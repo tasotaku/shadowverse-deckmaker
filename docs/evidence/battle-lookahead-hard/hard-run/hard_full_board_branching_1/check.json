@@ -1,0 +1,63 @@
+{
+  "id": "hard_full_board_branching_1",
+  "classification": "stress",
+  "turns": 3,
+  "production_process": {
+    "status": "OK",
+    "returncode": 0,
+    "pid": 11444,
+    "elapsed_seconds": 4.512357399973553,
+    "deadline_seconds": 25,
+    "process_exited": true
+  },
+  "production": {
+    "complete": false,
+    "optimal": false,
+    "cutoffs": [
+      "states"
+    ],
+    "stats": {
+      "states": 10000,
+      "transitions": 18079,
+      "duplicates": 8091,
+      "elapsed_ms": 4327.700499969069,
+      "peak_rss_bytes": 70209536,
+      "memory_method": "Windows PeakWorkingSetSize",
+      "memory_scope": "whole process peak",
+      "max_states": 10000,
+      "seconds": 10.0,
+      "max_actions": 20,
+      "max_outcomes": 128
+    },
+    "policy_nodes": 0,
+    "chance_nodes": 0,
+    "legal_recommendation": true,
+    "verification": {
+      "status": "NOT_RUN",
+      "reason": "incomplete policy"
+    }
+  },
+  "status": "INCOMPLETE",
+  "correctness": "NOT_CHECKED: branching stress, no independent solution",
+  "runtime_process": {
+    "status": "OK",
+    "returncode": 0,
+    "pid": 11732,
+    "elapsed_seconds": 1.8564587000291795,
+    "deadline_seconds": 17,
+    "process_exited": true
+  },
+  "runtime": {
+    "legal_recommendation": true,
+    "peak_rss_bytes": 44011520,
+    "elapsed_ms": 1707.708299974911,
+    "depth": 0,
+    "turns_requested": 3,
+    "limited": true,
+    "cutoffs": [
+      "states"
+    ],
+    "fallback": true,
+    "fallback_evaluated": true
+  }
+}

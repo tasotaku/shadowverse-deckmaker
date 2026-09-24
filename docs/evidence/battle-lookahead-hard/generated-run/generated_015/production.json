@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "strategy": "turn-expectiminimax",
+  "scope": "fixed hand and deck scenario; not hidden-information game optimality",
+  "turns": 3,
+  "boundary": "full end_turn including next turn start and draw",
+  "complete": true,
+  "optimal": true,
+  "cutoffs": [],
+  "recommended_action": {
+    "type": "play",
+    "card": "hand_0_0"
+  },
+  "fallback": false,
+  "candidates": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "123/25",
+      "expected_value": 4.92
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "hand_0_0"
+      },
+      "win_probability_exact": "0",
+      "loss_probability_exact": "0",
+      "expected_value_exact": "1401/100",
+      "expected_value": 14.01
+    }
+  ],
+  "hand_patterns": [
+    {
+      "used": [],
+      "names": [],
+      "positions": 1
+    },
+    {
+      "used": [
+        "hand_0_0"
+      ],
+      "names": [
+        "summon_barrier"
+      ],
+      "positions": 2
+    }
+  ],
+  "hand_patterns_scope": "reachable conditional turn endings; no immediate-score pruning",
+  "win_probability_exact": "0",
+  "loss_probability_exact": "0",
+  "expected_value_exact": "1401/100",
+  "expected_value": 14.01,
+  "stats": {
+    "states": 257,
+    "transitions": 307,
+    "duplicates": 51,
+    "elapsed_ms": 50.92569999396801,
+    "peak_rss_bytes": 24489984,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "whole process peak",
+    "max_states": 10000,
+    "seconds": 10.0,
+    "max_actions": 20,
+    "max_outcomes": 128
+  },
+  "legal_recommendation": true,
+  "input_unchanged": true,
+  "policy_nodes": 13,
+  "chance_nodes": 1,
+  "turns_remaining_seen": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "verification": {
+    "status": "PASS",
+    "edges_checked": 12,
+    "coverage": "all exported policy edges"
+  },
+  "worker_elapsed_ms": 63.51529998937622
+}

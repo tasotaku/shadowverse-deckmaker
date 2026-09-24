@@ -1,0 +1,64 @@
+{
+  "id": "hard_random_barrier_remove",
+  "value": [
+    "1",
+    "0"
+  ],
+  "optimal_first_actions": [
+    {
+      "type": "play",
+      "card": "remove",
+      "target": "guard"
+    }
+  ],
+  "actions": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "dice"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "remove",
+        "target": "guard"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "remove",
+        "target": "threat"
+      },
+      "value": [
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "states": 233,
+  "stats": {
+    "elapsed_ms": 439.7459999890998,
+    "peak_rss_bytes": 24412160,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak"
+  }
+}

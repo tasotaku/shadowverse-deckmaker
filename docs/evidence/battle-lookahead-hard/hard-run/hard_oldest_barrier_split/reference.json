@@ -1,0 +1,64 @@
+{
+  "id": "hard_oldest_barrier_split",
+  "value": [
+    "1",
+    "0"
+  ],
+  "optimal_first_actions": [
+    {
+      "type": "play",
+      "card": "ping",
+      "target": "old"
+    }
+  ],
+  "actions": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "ping",
+        "target": "old"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "ping",
+        "target": "guard"
+      },
+      "value": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "split"
+      },
+      "value": [
+        "0",
+        "0"
+      ]
+    }
+  ],
+  "states": 229,
+  "stats": {
+    "elapsed_ms": 370.49699999624863,
+    "peak_rss_bytes": 24354816,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak"
+  }
+}

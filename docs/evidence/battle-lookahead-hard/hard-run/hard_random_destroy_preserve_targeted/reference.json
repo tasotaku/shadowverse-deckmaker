@@ -1,0 +1,64 @@
+{
+  "id": "hard_random_destroy_preserve_targeted",
+  "value": [
+    "1",
+    "0"
+  ],
+  "optimal_first_actions": [
+    {
+      "type": "play",
+      "card": "ping",
+      "target": "threat"
+    }
+  ],
+  "actions": [
+    {
+      "action": {
+        "type": "end_turn"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "dice"
+      },
+      "value": [
+        "0",
+        "-1/2"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "ping",
+        "target": "guard"
+      },
+      "value": [
+        "0",
+        "-1"
+      ]
+    },
+    {
+      "action": {
+        "type": "play",
+        "card": "ping",
+        "target": "threat"
+      },
+      "value": [
+        "1",
+        "0"
+      ]
+    }
+  ],
+  "states": 125,
+  "stats": {
+    "elapsed_ms": 219.19829997932538,
+    "peak_rss_bytes": 23814144,
+    "memory_method": "Windows PeakWorkingSetSize",
+    "memory_scope": "reference process lifetime peak"
+  }
+}
