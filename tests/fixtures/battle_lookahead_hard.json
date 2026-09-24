@@ -1,0 +1,2286 @@
+[
+  {
+    "id": "hard_barrier_bane_return",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "bane": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 4,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "protect": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "バリア"
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-1-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-1-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-1-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-1-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "bane",
+              "card_id": "bane"
+            }
+          ],
+          "hand": [
+            {
+              "id": "ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "protect",
+              "card_id": "protect"
+            }
+          ],
+          "health": 2,
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-2-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-2-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-2-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-2-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ],
+          "hand": [],
+          "health": 3,
+          "pp": 0,
+          "max_pp": 0
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Bane removes the barrier ward during combat under the current Battle rules even when damage is blocked; targeted ping consumes the barrier first, and protection changes retaliation damage. Do not infer that barrier blocks bane.",
+      "enabled_abilities": [
+        "barrier",
+        "bane",
+        "ward",
+        "targeted_damage",
+        "grant_barrier"
+      ],
+      "future_turn_difference": "Turn 2 guard can kill our leader; turn 3 surviving bane attacker can win.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "0",
+          "0"
+        ],
+        "2": [
+          "0",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "elapsed_seconds": 0.2029999999795109,
+      "states": 50,
+      "verification_elapsed_seconds": 0.07800000003771856,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "guard"
+        },
+        {
+          "type": "play",
+          "card": "protect",
+          "target": "bane"
+        },
+        {
+          "type": "attack",
+          "source": "bane",
+          "target": "guard"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "ping",
+            "target": "guard"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "protect",
+            "target": "bane"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "attack",
+            "source": "bane",
+            "target": "guard"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        }
+      ]
+    },
+    "replays": [
+      {
+        "id": "barrier_consumed_by_ping",
+        "actions": [
+          {
+            "type": "play",
+            "card": "ping",
+            "target": "guard"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board.0.health": 4,
+          "players.1.board.0.keywords": [
+            "守護"
+          ]
+        }
+      },
+      {
+        "id": "bane_destroys_through_barrier_current_engine",
+        "actions": [
+          {
+            "type": "attack",
+            "source": "bane",
+            "target": "guard"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board": [],
+          "players.0.board.0.health": 2,
+          "players.0.board.0.attacks": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "hard_oldest_barrier_split",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 4,
+        "keywords": []
+      },
+      "old": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [
+          "バリア",
+          "守護"
+        ]
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "split": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "target": "self",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-3-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-3-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-3-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-3-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "split",
+              "card_id": "split"
+            }
+          ],
+          "health": 2,
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-4-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-4-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-4-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-4-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "old",
+              "card_id": "old"
+            },
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ],
+          "hand": [],
+          "health": 3,
+          "pp": 0,
+          "max_pp": 0
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Ping the oldest barrier before allocating four damage across two wards; a blocked share is still consumed. Reversing spell order leaves the old ward alive. Board list is oldest first.",
+      "enabled_abilities": [
+        "barrier",
+        "ward",
+        "targeted_damage",
+        "oldest_first_split_damage"
+      ],
+      "future_turn_difference": "Turn 3 fresh own attacker reaches the leader only if the blockers have been cleared; turn 1 has no own attack.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "0",
+          "0"
+        ],
+        "2": [
+          "0",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "states": 229,
+      "verification_elapsed_seconds": 0.3440000000409782,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "old"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "ping",
+            "target": "old"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "ping",
+            "target": "guard"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "split"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    "replays": [
+      {
+        "id": "ping_then_split_clears_both",
+        "actions": [
+          {
+            "type": "play",
+            "card": "ping",
+            "target": "old"
+          },
+          {
+            "type": "play",
+            "card": "split"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board": [],
+          "players.1.graveyard": 2,
+          "players.0.pp": 0
+        }
+      },
+      {
+        "id": "split_wastes_old_share_on_barrier",
+        "actions": [
+          {
+            "type": "play",
+            "card": "split"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board.0.id": "old",
+          "players.1.board.0.health": 2,
+          "players.1.board.0.keywords": [
+            "守護"
+          ],
+          "players.1.graveyard": 1
+        }
+      },
+      {
+        "id": "reverse_order_leaves_one_health_ward",
+        "actions": [
+          {
+            "type": "play",
+            "card": "split"
+          },
+          {
+            "type": "play",
+            "card": "ping",
+            "target": "old"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board.0.id": "old",
+          "players.1.board.0.health": 1,
+          "players.1.board.0.keywords": [
+            "守護"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "hard_summon_then_grant_storm",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "token": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3,
+        "keywords": []
+      },
+      "summon": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "token"
+          }
+        ]
+      },
+      "storm": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "all_ally",
+            "keywords": [
+              "疾走"
+            ]
+          }
+        ]
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "rush": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 1,
+        "keywords": [
+          "突進"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-5-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-5-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-5-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-5-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [],
+          "hand": [
+            {
+              "id": "summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "storm",
+              "card_id": "storm"
+            }
+          ],
+          "health": 3,
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-6-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-6-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-6-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-6-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [],
+          "hand": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            },
+            {
+              "id": "rush",
+              "card_id": "rush"
+            }
+          ],
+          "health": 3,
+          "pp": 1,
+          "max_pp": 1
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Summon before global storm grant gives immediate lethal; granting on the empty board wastes storm and exposes the summon to the opponent rush.",
+      "enabled_abilities": [
+        "summon",
+        "grant_storm",
+        "storm",
+        "rush",
+        "ward"
+      ],
+      "future_turn_difference": "Wrong order allows turn 2 rush to trade into the token or ward to block; correct order wins on turn 1.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "1",
+          "0"
+        ],
+        "2": [
+          "1",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "elapsed_seconds": 0.2970000000204891,
+      "states": 105,
+      "verification_elapsed_seconds": 0.15700000000651926,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "summon"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "summon"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "storm"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    "replays": [
+      {
+        "id": "summon_grant_immediate_attack",
+        "actions": [
+          {
+            "type": "play",
+            "card": "summon"
+          },
+          {
+            "type": "play",
+            "card": "storm"
+          },
+          {
+            "type": "attack",
+            "source": "e1",
+            "target": "leader:1"
+          }
+        ],
+        "expected_paths": {
+          "winner": 0,
+          "players.0.board.0.keywords": [
+            "疾走"
+          ],
+          "players.0.board.0.entered_turn": 1,
+          "players.0.pp": 0
+        }
+      },
+      {
+        "id": "grant_before_summon_does_not_persist",
+        "actions": [
+          {
+            "type": "play",
+            "card": "storm"
+          },
+          {
+            "type": "play",
+            "card": "summon"
+          }
+        ],
+        "expected_paths": {
+          "winner": null,
+          "players.0.board.0.keywords": [],
+          "players.0.board.0.entered_turn": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "hard_random_barrier_remove",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 4,
+        "keywords": []
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "threat": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 2,
+        "keywords": []
+      },
+      "dice": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 1
+          }
+        ]
+      },
+      "remove": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-7-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-7-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-7-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-7-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "remove",
+              "card_id": "remove"
+            }
+          ],
+          "health": 4,
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-8-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-8-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-8-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-8-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            },
+            {
+              "id": "threat",
+              "card_id": "threat"
+            }
+          ],
+          "hand": [],
+          "health": 3,
+          "pp": 0,
+          "max_pp": 0
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "A random barrier hit and deterministic removal have different future survival; preserve the unplayed second card until the next PP refill.",
+      "enabled_abilities": [
+        "random_damage",
+        "barrier",
+        "ward",
+        "targeted_destroy"
+      ],
+      "future_turn_difference": "Turn 2 threat attacks can kill or trade; turn 3 remaining removal may open lethal. Random outcomes must be reoptimized separately.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "0",
+          "0"
+        ],
+        "2": [
+          "0",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "elapsed_seconds": 0.5310000000172295,
+      "states": 233,
+      "verification_elapsed_seconds": 0.375,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "remove",
+          "target": "guard"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "dice"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "guard"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "threat"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "hard_rush_grant_bane",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "rush": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "突進"
+        ]
+      },
+      "bane": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "必殺"
+            ]
+          }
+        ]
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 5,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "own": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "keywords": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-9-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-9-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-9-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-9-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "rush",
+              "card_id": "rush"
+            },
+            {
+              "id": "bane",
+              "card_id": "bane"
+            }
+          ],
+          "health": 4,
+          "pp": 2,
+          "max_pp": 2
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-10-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-10-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-10-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-10-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ],
+          "hand": [],
+          "health": 3,
+          "pp": 0,
+          "max_pp": 0
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Play rush then grant bane to trade into an otherwise unkillable guard; both cards and chosen ally identity matter.",
+      "enabled_abilities": [
+        "rush",
+        "grant_bane",
+        "bane",
+        "ward"
+      ],
+      "future_turn_difference": "Turn 2 unremoved guard threatens lethal; turn 3 own established follower can attack leader after rush-bane removal.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "0",
+          "0"
+        ],
+        "2": [
+          "0",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "elapsed_seconds": 0.2809999999590218,
+      "states": 114,
+      "verification_elapsed_seconds": 0.15600000001722947,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "rush"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "rush"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "bane",
+            "target": "own"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        }
+      ]
+    },
+    "replays": [
+      {
+        "id": "rush_then_bane_trades_into_guard",
+        "actions": [
+          {
+            "type": "play",
+            "card": "rush"
+          },
+          {
+            "type": "play",
+            "card": "bane",
+            "target": "rush"
+          },
+          {
+            "type": "attack",
+            "source": "rush",
+            "target": "guard"
+          }
+        ],
+        "expected_paths": {
+          "players.1.board": [],
+          "players.0.board.0.id": "own",
+          "players.0.graveyard": 2,
+          "players.1.graveyard": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "hard_random_destroy_preserve_targeted",
+    "n_turns": 3,
+    "classification": "exact",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5,
+        "keywords": []
+      },
+      "guard": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "keywords": [
+          "守護",
+          "バリア"
+        ]
+      },
+      "threat": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 2,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "dice": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "random_enemy"
+          }
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-11-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-11-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-11-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-11-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "ping",
+              "card_id": "ping"
+            }
+          ],
+          "health": 3,
+          "pp": 1,
+          "max_pp": 1
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-12-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-12-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-12-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-12-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            },
+            {
+              "id": "threat",
+              "card_id": "threat"
+            }
+          ],
+          "hand": [],
+          "health": 3,
+          "pp": 0,
+          "max_pp": 0
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Random destruction bypasses barrier, but the surviving target changes whether retained targeted damage can save the next turn.",
+      "enabled_abilities": [
+        "random_destroy",
+        "targeted_damage",
+        "barrier",
+        "bane",
+        "ward"
+      ],
+      "future_turn_difference": "Turn 2 surviving bane threatens leader or own follower; turn 3 retained ping has different value after each random outcome.",
+      "synthetic": true,
+      "horizon_values": {
+        "1": [
+          "0",
+          "0"
+        ],
+        "2": [
+          "0",
+          "0"
+        ],
+        "3": [
+          "1",
+          "0"
+        ]
+      }
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "complete",
+      "elapsed_seconds": 0.3279999999795109,
+      "states": 125,
+      "verification_elapsed_seconds": 0.20300000003771856,
+      "independent_of": "src/svdeck/battle_lookahead.py",
+      "shared_transition_engine": "svdeck.battle.Battle"
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "ping",
+          "target": "threat"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "dice"
+          },
+          "value": [
+            "0",
+            "-1/2"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "ping",
+            "target": "guard"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "play",
+            "card": "ping",
+            "target": "threat"
+          },
+          "value": [
+            "1",
+            "0"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "hard_full_board_branching_1",
+    "n_turns": 3,
+    "classification": "stress",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "a": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "バリア"
+        ]
+      },
+      "b": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "c": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3,
+        "keywords": [
+          "疾走"
+        ]
+      },
+      "d": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "突進"
+        ]
+      },
+      "w": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 5,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "dice": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 3
+          }
+        ]
+      },
+      "split": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "target": "self",
+            "amount": 6
+          }
+        ]
+      },
+      "remove": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "summon": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "token"
+          }
+        ]
+      },
+      "grant": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "バリア",
+              "必殺"
+            ]
+          }
+        ]
+      },
+      "token": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-13-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-13-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "ours-a",
+              "card_id": "a"
+            },
+            {
+              "id": "ours-b",
+              "card_id": "b"
+            },
+            {
+              "id": "ours-c",
+              "card_id": "c"
+            },
+            {
+              "id": "ours-d",
+              "card_id": "d"
+            },
+            {
+              "id": "ours-w",
+              "card_id": "w"
+            }
+          ],
+          "hand": [
+            {
+              "id": "our-ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "our-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "our-split",
+              "card_id": "split"
+            },
+            {
+              "id": "our-remove",
+              "card_id": "remove"
+            },
+            {
+              "id": "our-summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "our-grant",
+              "card_id": "grant"
+            }
+          ],
+          "health": 16,
+          "pp": 5,
+          "max_pp": 5
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-14-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-14-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "theirs-w",
+              "card_id": "w"
+            },
+            {
+              "id": "theirs-d",
+              "card_id": "d"
+            },
+            {
+              "id": "theirs-c",
+              "card_id": "c"
+            },
+            {
+              "id": "theirs-b",
+              "card_id": "b"
+            },
+            {
+              "id": "theirs-a",
+              "card_id": "a"
+            }
+          ],
+          "hand": [
+            {
+              "id": "their-ping",
+              "card_id": "ping"
+            },
+            {
+              "id": "their-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "their-split",
+              "card_id": "split"
+            },
+            {
+              "id": "their-remove",
+              "card_id": "remove"
+            },
+            {
+              "id": "their-summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "their-grant",
+              "card_id": "grant"
+            }
+          ],
+          "health": 16,
+          "pp": 5,
+          "max_pp": 5
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Genuine five-versus-five: every body has positive attack and can attack on its turn. Six distinct playable hand cards per side create target, order, resource, random and newly-opened board-slot branches.",
+      "enabled_abilities": [
+        "barrier",
+        "bane",
+        "storm",
+        "rush",
+        "ward",
+        "targeted_damage",
+        "random_damage",
+        "oldest_first_split_damage",
+        "targeted_destroy",
+        "summon",
+        "grant_barrier",
+        "grant_bane"
+      ],
+      "future_turn_difference": "Turn 2 opponent has all five active attackers and six hand options; turn 3 includes surviving bodies, tokens, and leftover cards. No frozen or zero-attack padding.",
+      "synthetic": true,
+      "branching_checks": [
+        {
+          "player": 0,
+          "legal_actions": 24,
+          "attack_ready_sources": [
+            "ours-a",
+            "ours-b",
+            "ours-c",
+            "ours-d",
+            "ours-w"
+          ],
+          "hand_count": 6
+        },
+        {
+          "player": 1,
+          "legal_actions": 24,
+          "attack_ready_sources": [
+            "theirs-a",
+            "theirs-b",
+            "theirs-c",
+            "theirs-d",
+            "theirs-w"
+          ],
+          "hand_count": 6
+        }
+      ]
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "timeout",
+      "timeout_seconds": 30,
+      "stderr": "",
+      "pid": 1680,
+      "elapsed_seconds": 30.01600000000326,
+      "returncode_after_stop": 1,
+      "process_terminated": true,
+      "meaning": "No oracle answer obtained. This case supports bounded runtime and replay checks only; it is not an exact correctness PASS."
+    }
+  },
+  {
+    "id": "hard_full_board_branching_2",
+    "n_turns": 3,
+    "classification": "stress",
+    "cards": {
+      "filler": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "a": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "バリア"
+        ]
+      },
+      "b": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 3,
+        "keywords": [
+          "必殺"
+        ]
+      },
+      "c": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3,
+        "keywords": [
+          "疾走"
+        ]
+      },
+      "d": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 4,
+        "keywords": [
+          "突進"
+        ]
+      },
+      "w": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 5,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "ping": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "chosen_enemy",
+            "amount": 2
+          }
+        ]
+      },
+      "dice": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "random_enemy",
+            "amount": 3
+          }
+        ]
+      },
+      "split": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "split_damage",
+            "target": "self",
+            "amount": 6
+          }
+        ]
+      },
+      "remove": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "summon": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "summon",
+            "target": "self",
+            "card_id": "token"
+          }
+        ]
+      },
+      "grant": {
+        "name": "Synthetic spell",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "grant",
+            "target": "chosen_ally",
+            "keywords": [
+              "バリア",
+              "必殺"
+            ]
+          }
+        ]
+      },
+      "token": {
+        "name": "Synthetic follower",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 2,
+        "health": 2,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-15-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-15-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-15-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-15-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "ours-w",
+              "card_id": "w"
+            },
+            {
+              "id": "ours-d",
+              "card_id": "d"
+            },
+            {
+              "id": "ours-a",
+              "card_id": "a"
+            },
+            {
+              "id": "ours-c",
+              "card_id": "c"
+            },
+            {
+              "id": "ours-b",
+              "card_id": "b"
+            }
+          ],
+          "hand": [
+            {
+              "id": "our-grant",
+              "card_id": "grant"
+            },
+            {
+              "id": "our-summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "our-remove",
+              "card_id": "remove"
+            },
+            {
+              "id": "our-split",
+              "card_id": "split"
+            },
+            {
+              "id": "our-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "our-ping",
+              "card_id": "ping"
+            }
+          ],
+          "health": 16,
+          "pp": 5,
+          "max_pp": 5
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "draw-16-0",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-16-1",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-16-2",
+              "card_id": "filler"
+            },
+            {
+              "id": "draw-16-3",
+              "card_id": "filler"
+            }
+          ],
+          "board": [
+            {
+              "id": "theirs-b",
+              "card_id": "b"
+            },
+            {
+              "id": "theirs-c",
+              "card_id": "c"
+            },
+            {
+              "id": "theirs-a",
+              "card_id": "a"
+            },
+            {
+              "id": "theirs-d",
+              "card_id": "d"
+            },
+            {
+              "id": "theirs-w",
+              "card_id": "w"
+            }
+          ],
+          "hand": [
+            {
+              "id": "their-grant",
+              "card_id": "grant"
+            },
+            {
+              "id": "their-summon",
+              "card_id": "summon"
+            },
+            {
+              "id": "their-remove",
+              "card_id": "remove"
+            },
+            {
+              "id": "their-split",
+              "card_id": "split"
+            },
+            {
+              "id": "their-dice",
+              "card_id": "dice"
+            },
+            {
+              "id": "their-ping",
+              "card_id": "ping"
+            }
+          ],
+          "health": 16,
+          "pp": 5,
+          "max_pp": 5
+        }
+      ]
+    },
+    "metadata": {
+      "purpose": "Genuine five-versus-five: every body has positive attack and can attack on its turn. Six distinct playable hand cards per side create target, order, resource, random and newly-opened board-slot branches.",
+      "enabled_abilities": [
+        "barrier",
+        "bane",
+        "storm",
+        "rush",
+        "ward",
+        "targeted_damage",
+        "random_damage",
+        "oldest_first_split_damage",
+        "targeted_destroy",
+        "summon",
+        "grant_barrier",
+        "grant_bane"
+      ],
+      "future_turn_difference": "Turn 2 opponent has all five active attackers and six hand options; turn 3 includes surviving bodies, tokens, and leftover cards. No frozen or zero-attack padding.",
+      "synthetic": true,
+      "branching_checks": [
+        {
+          "player": 0,
+          "legal_actions": 24,
+          "attack_ready_sources": [
+            "ours-a",
+            "ours-b",
+            "ours-c",
+            "ours-d",
+            "ours-w"
+          ],
+          "hand_count": 6
+        },
+        {
+          "player": 1,
+          "legal_actions": 24,
+          "attack_ready_sources": [
+            "theirs-a",
+            "theirs-b",
+            "theirs-c",
+            "theirs-d",
+            "theirs-w"
+          ],
+          "hand_count": 6
+        }
+      ]
+    },
+    "horizon": "A turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "reference": {
+      "status": "timeout",
+      "timeout_seconds": 30,
+      "stderr": "",
+      "pid": 24188,
+      "elapsed_seconds": 30.01600000000326,
+      "returncode_after_stop": 1,
+      "process_terminated": true,
+      "meaning": "No oracle answer obtained. This case supports bounded runtime and replay checks only; it is not an exact correctness PASS."
+    }
+  }
+]
