@@ -1,0 +1,1094 @@
+[
+  {
+    "id": "greed_loses_to_return",
+    "n_turns": 2,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Ready attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 4,
+        "health": 4
+      },
+      "enemy": {
+        "name": "Lethal return attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 6,
+          "board": [
+            {
+              "id": "enemy",
+              "card_id": "enemy"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "attack",
+          "source": "own",
+          "target": "enemy"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "attack",
+            "source": "own",
+            "target": "leader:1"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        },
+        {
+          "action": {
+            "type": "end_turn"
+          },
+          "value": [
+            "0",
+            "-1"
+          ]
+        }
+      ]
+    },
+    "reason": "Face attack leaves the enemy 3-attack body alive to kill our 3-health leader. Trading removes the only lethal return. At one turn all choices tie on terminal-only utility.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  },
+  {
+    "id": "save_removal_for_next_turn",
+    "n_turns": 3,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Next-turn lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 5
+      },
+      "bait": {
+        "name": "Small distraction",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 1,
+        "health": 1
+      },
+      "guard": {
+        "name": "Large guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 8,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "remove": {
+        "name": "Single removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 4,
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own",
+              "entered_turn": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "remove",
+              "card_id": "remove"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "bait",
+              "card_id": "bait"
+            }
+          ],
+          "hand": [
+            {
+              "id": "guard",
+              "card_id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ],
+      "action_values": [
+        {
+          "action": {
+            "type": "play",
+            "card": "remove",
+            "target": "bait"
+          },
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    "reason": "Pass with removal retained. Opponent can play an 8/8 guard; on our following turn remove it and attack for lethal. Spending removal on the 1/1 lets the guard prevent lethal within three turns.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  },
+  {
+    "id": "no_play_preserves_end_turn_lethal",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "clock": {
+        "name": "End-turn lethal source",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "end_turn": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 2
+          }
+        ]
+      },
+      "sacrifice": {
+        "name": "Sacrifice ally",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_ally"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "pp": 1,
+          "max_pp": 1,
+          "board": [
+            {
+              "id": "clock",
+              "card_id": "clock",
+              "attacks": 1
+            }
+          ],
+          "hand": [
+            {
+              "id": "sacrifice",
+              "card_id": "sacrifice"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 2
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ]
+    },
+    "reason": "Playing the sole card destroys the end-turn lethal source. The empty action sequence followed by end_turn is the only forced win.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary."
+  },
+  {
+    "id": "incomparable_hand_burn",
+    "n_turns": 2,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "heal": {
+        "name": "Heal four",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 4
+          }
+        ]
+      },
+      "wall": {
+        "name": "Eight-health wall",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "burn": {
+        "name": "Six face damage",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 6
+          }
+        ]
+      },
+      "storm": {
+        "name": "Seven attack storm",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 7,
+        "health": 1,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "pp": 1,
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "heal",
+              "card_id": "heal"
+            },
+            {
+              "id": "wall",
+              "card_id": "wall"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "threat",
+              "card_id": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "heal"
+        }
+      ]
+    },
+    "reason": "Known enemy burn requires heal. Burn bypasses the wall, while seven-attack storm kills even after healing. These known-hand cases are incomparable and must both remain separate opponent patterns.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "pattern_group": "burn_or_storm"
+  },
+  {
+    "id": "incomparable_hand_storm",
+    "n_turns": 2,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "heal": {
+        "name": "Heal four",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 4
+          }
+        ]
+      },
+      "wall": {
+        "name": "Eight-health wall",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 8,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "burn": {
+        "name": "Six face damage",
+        "kind": "spell",
+        "cost": 2,
+        "effects": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 6
+          }
+        ]
+      },
+      "storm": {
+        "name": "Seven attack storm",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 7,
+        "health": 1,
+        "keywords": [
+          "疾走"
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "pp": 1,
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "heal",
+              "card_id": "heal"
+            },
+            {
+              "id": "wall",
+              "card_id": "wall"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "max_pp": 1,
+          "hand": [
+            {
+              "id": "threat",
+              "card_id": "storm"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "wall"
+        }
+      ]
+    },
+    "reason": "Known enemy storm requires wall. Burn bypasses the wall, while seven-attack storm kills even after healing. These known-hand cases are incomparable and must both remain separate opponent patterns.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "pattern_group": "burn_or_storm"
+  },
+  {
+    "id": "random_then_observe_and_adapt",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "own": {
+        "name": "Lethal attacker",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 3,
+        "health": 3
+      },
+      "guard": {
+        "name": "Randomly removable guard",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 4,
+        "keywords": [
+          "守護"
+        ]
+      },
+      "finish": {
+        "name": "Generated targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "chosen_enemy"
+          }
+        ]
+      },
+      "dice": {
+        "name": "Random removal then generate targeted removal",
+        "kind": "spell",
+        "cost": 1,
+        "effects": [
+          {
+            "op": "destroy",
+            "target": "random_enemy"
+          },
+          {
+            "op": "generate",
+            "card_id": "finish"
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "pp": 2,
+          "max_pp": 2,
+          "board": [
+            {
+              "id": "own",
+              "card_id": "own"
+            }
+          ],
+          "hand": [
+            {
+              "id": "dice",
+              "card_id": "dice"
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "board": [
+            {
+              "id": "left",
+              "card_id": "guard"
+            },
+            {
+              "id": "right",
+              "card_id": "guard"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "play",
+          "card": "dice"
+        }
+      ]
+    },
+    "reason": "Dice removes either guard with probability 1/2 and generates removal. After observing the outcome, aim generated removal at the surviving guard, then attack the leader. A precommitted target fails in one branch.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "adaptive_expectations": [
+      {
+        "removed": "left",
+        "next_target": "right"
+      },
+      {
+        "removed": "right",
+        "next_target": "left"
+      }
+    ]
+  },
+  {
+    "id": "end_lethal_precedes_start_and_draw",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "end": {
+        "name": "End lethal",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "end_turn": [
+          {
+            "op": "damage",
+            "target": "enemy_leader",
+            "amount": 3
+          }
+        ]
+      },
+      "start": {
+        "name": "Start lethal",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "triggers": [
+          {
+            "event": "turn_start",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "enemy_leader",
+                "amount": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "board": [
+            {
+              "id": "end",
+              "card_id": "end",
+              "attacks": 1
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 3,
+          "board": [
+            {
+              "id": "start",
+              "card_id": "start"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ]
+    },
+    "reason": "End-turn damage wins before active player switches, so opponent turn_start and draw must never execute.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "replays": [
+      {
+        "actions": [
+          {
+            "type": "end_turn"
+          }
+        ],
+        "expected_paths": {
+          "winner": 0,
+          "active_player": 0,
+          "players.1.turn": 1,
+          "players.0.health": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": "start_lethal_precedes_empty_draw",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "start": {
+        "name": "Start lethal",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "triggers": [
+          {
+            "event": "turn_start",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "enemy_leader",
+                "amount": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [],
+          "board": [
+            {
+              "id": "start",
+              "card_id": "start"
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "-1"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ]
+    },
+    "reason": "Opponent turn-start damage wins before their empty-deck draw. Empty deck must not overwrite their already established win.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "replays": [
+      {
+        "actions": [
+          {
+            "type": "end_turn"
+          }
+        ],
+        "expected_paths": {
+          "winner": 1,
+          "active_player": 1,
+          "players.1.turn": 2,
+          "players.0.health": 0
+        }
+      }
+    ]
+  },
+  {
+    "id": "horizon_boundary_includes_draw_exhaustion",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": []
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "1",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ]
+    },
+    "reason": "Even at one-turn horizon full end_turn includes the opponent draw, so their empty deck immediately loses.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "replays": [
+      {
+        "actions": [
+          {
+            "type": "end_turn"
+          }
+        ],
+        "expected_paths": {
+          "winner": 0,
+          "active_player": 1,
+          "players.1.turn": 2,
+          "players.1.max_pp": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "normal_end_start_refill_draw",
+    "n_turns": 1,
+    "cards": {
+      "filler": {
+        "name": "Unplayable draw filler",
+        "kind": "spell",
+        "cost": 99,
+        "effects": []
+      },
+      "end": {
+        "name": "End heal",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "end_turn": [
+          {
+            "op": "heal",
+            "target": "own_leader",
+            "amount": 2
+          }
+        ]
+      },
+      "start": {
+        "name": "Start damage",
+        "kind": "follower",
+        "cost": 1,
+        "attack": 0,
+        "health": 1,
+        "triggers": [
+          {
+            "event": "turn_start",
+            "effects": [
+              {
+                "op": "damage",
+                "target": "enemy_leader",
+                "amount": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "state": {
+      "players": [
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            "filler",
+            "filler",
+            "filler",
+            "filler"
+          ],
+          "health": 10,
+          "board": [
+            {
+              "id": "end",
+              "card_id": "end",
+              "attacks": 1
+            }
+          ]
+        },
+        {
+          "turn": 1,
+          "ep": 0,
+          "sep": 0,
+          "extra_pp_used": true,
+          "deck": [
+            {
+              "id": "drawn",
+              "card_id": "filler"
+            },
+            {
+              "id": "remaining",
+              "card_id": "filler"
+            }
+          ],
+          "max_pp": 2,
+          "board": [
+            {
+              "id": "start",
+              "card_id": "start",
+              "attacks": 1
+            }
+          ]
+        }
+      ]
+    },
+    "expectations": {
+      "value": [
+        "0",
+        "0"
+      ],
+      "optimal_first_actions": [
+        {
+          "type": "end_turn"
+        }
+      ]
+    },
+    "reason": "Boundary resolves own end heal (10 to 12), enemy start damage (12 to 9), enemy turn increment, PP refill, attack reset, and exactly one draw.",
+    "horizon": "Each counted turn ends with full Battle.step(end_turn), including next start effects and draw; no next-player decision after final boundary.",
+    "replays": [
+      {
+        "actions": [
+          {
+            "type": "end_turn"
+          }
+        ],
+        "expected_paths": {
+          "winner": null,
+          "active_player": 1,
+          "players.0.health": 9,
+          "players.1.turn": 2,
+          "players.1.max_pp": 3,
+          "players.1.pp": 3,
+          "players.1.board.0.attacks": 0,
+          "players.1.hand.0.id": "drawn",
+          "players.1.deck.0.id": "remaining"
+        }
+      }
+    ]
+  }
+]
