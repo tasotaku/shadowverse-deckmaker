@@ -1,0 +1,437 @@
+{
+  "measurement": "additional high-budget public CLI full enumeration",
+  "status": "PASS",
+  "fixed_spec_verdict": "UNCHANGED; this measurement does not replace spec-v1 seconds600/max_states10000000 acceptance",
+  "budgets": {
+    "max_states": 100000000,
+    "seconds": 3600,
+    "whole_experiment_seconds": 7500,
+    "performance_sla": null
+  },
+  "commit_start": "8ff3337084bc94b574eeaa6b50df9de026d01175",
+  "commit_end": "8ff3337084bc94b574eeaa6b50df9de026d01175",
+  "overlap_seconds": 644.0792834758759,
+  "case2_launch_available_physical_bytes": 19428728832,
+  "cases": [
+    {
+      "case": "hard_full_board_branching_1",
+      "status": "PASS",
+      "checks": {
+        "full_flags": true,
+        "expanded_all": true,
+        "witnesses_equal": true,
+        "same_current_turn": true,
+        "probabilities": true,
+        "random_sampled": true,
+        "input_root_equal": true,
+        "counts_match_report": true,
+        "cli_exit_zero": true,
+        "no_end_turn_in_sample": true
+      },
+      "complete": {
+        "complete": true,
+        "enumeration_complete": true,
+        "frontier_complete": true,
+        "cutoffs": [],
+        "encoding": "fixed-slots-v1"
+      },
+      "counts": {
+        "cutoffs": 0,
+        "positions": 11936220,
+        "actions": 54,
+        "probabilities": 5,
+        "draws": 6,
+        "choices": 83535563,
+        "outcomes": 88767067,
+        "witnesses": 11936220,
+        "expanded": 11936220,
+        "candidates": 2382573
+      },
+      "expanded_check": {
+        "nodes": 11936220,
+        "expanded": 11936220,
+        "unique": 11936220,
+        "duplicates": 0,
+        "out_of_range": 0,
+        "all_expanded": true
+      },
+      "launch_to_exit_seconds": 888.5844818000332,
+      "wall_sampling_resolution_seconds": 0.5,
+      "search_seconds": 547.3960273999837,
+      "analysis_seconds": 770.027048399963,
+      "actual_python_pid": 23660,
+      "os_peak_working_set_bytes": 6545989632,
+      "launcher_pid": 11612,
+      "start_epoch": 1790261856.2851374,
+      "completed_epoch": 1790262744.797728,
+      "returncode": 0,
+      "initial_memory": {
+        "total": 33454391296,
+        "available": 20531195904
+      },
+      "minimum_observed_available_physical_bytes": 8397864960,
+      "graph": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1\\graph.json",
+        "bytes": 4865638993,
+        "sha256": "f9d9ee99b314fd0e0046a531933768e00f5b5429626122bbd5200a928b38cc92"
+      },
+      "report": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1\\report.json",
+        "bytes": 973,
+        "sha256": "1282486fce7e3685896723a893e7d14e6f539316b775e77d9e8e4b335e90a580"
+      },
+      "raw_metrics": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1.metrics.raw.json",
+        "bytes": 128333,
+        "sha256": "96fcc986919d2af264c4c164f29c840e1ab3ba8c91fedcd7dde93585496b6072"
+      },
+      "raw_consumer": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1.consumer.raw.json",
+        "bytes": 393334,
+        "sha256": "bff0318cff3d6a0046c38d90f3bf0b7576425bc430412dc348b5603a8c22fad9"
+      },
+      "stdout": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1.stdout.txt",
+        "bytes": 873,
+        "sha256": "525411c5f1fff6ff42841ba4b66dfd0bdba3eb9d4bbdfdf3510033021fb5d621"
+      },
+      "stderr": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_1.stderr.txt",
+        "bytes": 15164,
+        "sha256": "dac9bbe5a13caa490b4730e04c12b006d1027ce2f676c1ff7a762aabede2374f"
+      },
+      "consumer_elapsed_seconds": 139.73359229997732,
+      "witness_samples": [
+        {
+          "node": 0,
+          "steps": 0,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "2a809810ba6aa2ef99d5689dfa4cfb6502d515e9d796284afbd8c9a5f18a42da",
+          "replay_sha256": "2a809810ba6aa2ef99d5689dfa4cfb6502d515e9d796284afbd8c9a5f18a42da"
+        },
+        {
+          "node": 1967423,
+          "steps": 7,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/4",
+          "state_sha256": "ec91c7311873f4f40b885b3be88f6755bc55cdddc104412acb8ff59fae41db06",
+          "replay_sha256": "8fd4d0050d2b6220fa22bda1c1a812af8e64e1fbe373dd69cf23440bb3b034d7"
+        },
+        {
+          "node": 2180234,
+          "steps": 8,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "2e9b624716d04c85aadb8822871fad846753951cb3327413040fbbf4b360817d",
+          "replay_sha256": "2e9b624716d04c85aadb8822871fad846753951cb3327413040fbbf4b360817d"
+        },
+        {
+          "node": 4640367,
+          "steps": 10,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1/5",
+          "state_sha256": "759f4f06e907fb330c2e92744e5ca21ef2bc8e9e3ec61b2f0447b8d548905007",
+          "replay_sha256": "6cccabe8d1af1ce6c1705489083810fad8f27a4c0d56e5c165f5ff332fe7064d"
+        },
+        {
+          "node": 5526744,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "64660c751f79dd19e6e199ef30b345c55fdd4bf4a2ff9cd61e9485677d67ba9a",
+          "replay_sha256": "cdd85c38e7e7813bdc5d828ef093d2d8a7b2aeb9d3e017df33b6dd4eb7dbd93d"
+        },
+        {
+          "node": 5968110,
+          "steps": 6,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "67b15df8cf67f4013d34544c28ed20aa18aef7573ae92a325fd490b44d740e0a",
+          "replay_sha256": "bf780bc40de23e78c6b5cbf8532b61b6c5492dc063f2a9c2b83286aecf00dc35"
+        },
+        {
+          "node": 7242318,
+          "steps": 10,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1",
+          "state_sha256": "5758a94af9cee59be387fded709c4ee44fb20abcb6b0f2a5bea039604b05b07b",
+          "replay_sha256": "0ef01b3bf4783b4d43224216873b5910325c384887a05164ca7a8b3ed8fc6762"
+        },
+        {
+          "node": 7289762,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "2ad9e4d5a670566988e5cf3667d83874ebde6fc40db2f36200c0666fc2643f20",
+          "replay_sha256": "65041a94a97563882ab6dd9db98af13b43bbda4fcc5c806541ce1b42ed5eeaac"
+        },
+        {
+          "node": 8559465,
+          "steps": 6,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1",
+          "state_sha256": "4e9d7419fc550555fd71c52f6088ce3c831d54a08928bdad8169ecc8928bc281",
+          "replay_sha256": "593b1df6fb60fb598f1d34add1ea2026efa77118c2957b06ecdc4a7d442b91cc"
+        },
+        {
+          "node": 9475300,
+          "steps": 6,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1/4",
+          "state_sha256": "0f26782d15d8455f505e94a5f6f273f77c98279a6d1b042bf4640bc61c02d9f9",
+          "replay_sha256": "b112b01c4ac30983b9ab3a6a2a20e20932902a304971d3d1d90b488982276e2a"
+        },
+        {
+          "node": 11918706,
+          "steps": 2,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "75302368b58eb1bd659e0669c4fd5607850c8040e7309c0d07b7299925aafee0",
+          "replay_sha256": "75302368b58eb1bd659e0669c4fd5607850c8040e7309c0d07b7299925aafee0"
+        },
+        {
+          "node": 11936219,
+          "steps": 6,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "e7543c7e98ff29a19931e44bd95b777b6a621c7fa0c6a9dbbc66d6f932221bf4",
+          "replay_sha256": "54ba54ede47dd48198399572bf45804def2c4dc1682df141bc6227df0d924613"
+        }
+      ],
+      "probability_sample_count": 32,
+      "multi_outcome_sample_count": 12,
+      "normalization": "Exclude rng; compare keywords as unordered ability sets; compare destroyed as unordered history per public semantic contract. Preserve board/hand/deck order, IDs, all other fields. Strict raw mismatch evidence retained."
+    },
+    {
+      "case": "hard_full_board_branching_2",
+      "status": "PASS",
+      "checks": {
+        "full_flags": true,
+        "expanded_all": true,
+        "witnesses_equal": true,
+        "same_current_turn": true,
+        "probabilities": true,
+        "random_sampled": true,
+        "input_root_equal": true,
+        "counts_match_report": true,
+        "cli_exit_zero": true,
+        "no_end_turn_in_sample": true
+      },
+      "complete": {
+        "complete": true,
+        "enumeration_complete": true,
+        "frontier_complete": true,
+        "cutoffs": [],
+        "encoding": "fixed-slots-v1"
+      },
+      "counts": {
+        "cutoffs": 0,
+        "positions": 8661088,
+        "actions": 54,
+        "probabilities": 5,
+        "draws": 6,
+        "choices": 58511825,
+        "outcomes": 62109857,
+        "witnesses": 8661088,
+        "expanded": 8661088,
+        "candidates": 1643067
+      },
+      "expanded_check": {
+        "nodes": 8661088,
+        "expanded": 8661088,
+        "unique": 8661088,
+        "duplicates": 0,
+        "out_of_range": 0,
+        "all_expanded": true
+      },
+      "launch_to_exit_seconds": 644.0815317999804,
+      "wall_sampling_resolution_seconds": 0.5,
+      "search_seconds": 390.05563349998556,
+      "analysis_seconds": 556.8179155000253,
+      "actual_python_pid": 29600,
+      "os_peak_working_set_bytes": 4686004224,
+      "launcher_pid": 33236,
+      "start_epoch": 1790262018.3790329,
+      "completed_epoch": 1790262662.4583163,
+      "returncode": 0,
+      "initial_memory": {
+        "total": 33454391296,
+        "available": 19428728832
+      },
+      "minimum_observed_available_physical_bytes": 8359305216,
+      "graph": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2\\graph.json",
+        "bytes": 3405675675,
+        "sha256": "1db2d05c3d5309b78a1d8b4c16869cdf5babde82c6520f921370706c0f4b8e97"
+      },
+      "report": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2\\report.json",
+        "bytes": 974,
+        "sha256": "93e508dd9ed0ec81032f88669e3ea5d636e8f933e2c4999b5128f8073a0f1426"
+      },
+      "raw_metrics": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2.metrics.raw.json",
+        "bytes": 91842,
+        "sha256": "8fc03b76ddb3a6a76e401721504663f432d20072e98cc81196e9b2ec0c92ea66"
+      },
+      "raw_consumer": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2.consumer.raw.json",
+        "bytes": 378870,
+        "sha256": "e44012c4a760b526b3e19f4bac0f126b5add92ba98986bce6b5bc11454f9ea50"
+      },
+      "stdout": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2.stdout.txt",
+        "bytes": 874,
+        "sha256": "3812401927530e87d600c8d8e4579617263df18e16d40aa481c8bb6df7a9f6cb"
+      },
+      "stderr": {
+        "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\hard_full_board_branching_2.stderr.txt",
+        "bytes": 10958,
+        "sha256": "2a73667592daf212ce176fc96ac1d7992012cc768743c27a21afed6f172806c6"
+      },
+      "consumer_elapsed_seconds": 101.37379230000079,
+      "witness_samples": [
+        {
+          "node": 0,
+          "steps": 0,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "c1f4a3cc79d17b08e40a94d04636b829fb79ebf8d2e1a8e5ace751f03961efec",
+          "replay_sha256": "c1f4a3cc79d17b08e40a94d04636b829fb79ebf8d2e1a8e5ace751f03961efec"
+        },
+        {
+          "node": 1815523,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "e8de48f80083ab5ddc80df53b3c7f3a0713df8f88799129fb2e217e124001465",
+          "replay_sha256": "821adf88b3112ff45eb662baf88834fbc16a5f62566a71a7b2fc47eaf8fe49d3"
+        },
+        {
+          "node": 1967423,
+          "steps": 7,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/3",
+          "state_sha256": "18f38fc963acb7eebb95f71da7633d1387227f7b62653330038366ef55c1ab6d",
+          "replay_sha256": "f1eedce3c251223ae92df514454d17ccc437c821a7c266cca86719d12a9b5f88"
+        },
+        {
+          "node": 2180234,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1/4",
+          "state_sha256": "5c957a65b7af0b2f22b17faa8d1c4c6c0587ede5e94ab5b63fc412f4b6dc02e9",
+          "replay_sha256": "e63306404f16c2151a6c93555317a3880fdc7f1577ea11282d2b97e997444a91"
+        },
+        {
+          "node": 4330544,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "436b1cc55378dd8d93fe6adbf66e0cd04d0c908189a8a9af25a3408457ac4fd0",
+          "replay_sha256": "0f9550d503c121424a2bcadef87586fb748977cf58f5ad7457591b2b1583728c"
+        },
+        {
+          "node": 5437977,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "761fb7a5d23d2467045277cd8de85c86580984961af13121cf853c436a3f198f",
+          "replay_sha256": "0dce62976cd9111a3c268f4242aad913e2d1e8410c9409d5144db060baf6c5f8"
+        },
+        {
+          "node": 5526744,
+          "steps": 9,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1/5",
+          "state_sha256": "a704a9d7427ca629da215963d2778c1243811458add32628beedac899f060395",
+          "replay_sha256": "0c749a9b7a482a76cedfc23e6613c1b7279621bf2d1bca458114505b5857be4b"
+        },
+        {
+          "node": 7242318,
+          "steps": 10,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1/5",
+          "state_sha256": "8d8316e3e2fc32ec4e508ae785892e5448300cb075e72516146763d28d5122c9",
+          "replay_sha256": "6edd4f391d21bea3a38541ecde35d01ec433d8a43f64184a917d7c19248db8ae"
+        },
+        {
+          "node": 7362985,
+          "steps": 7,
+          "normalized_equal": true,
+          "initial_strict_comparison": false,
+          "conditional_probability": "1",
+          "state_sha256": "7ccb05774e552f36b34835d1de841bcc94878b84291abaeda69829525de3a436",
+          "replay_sha256": "ce31985b6f0f2d9023f70e3346df5f8c7a4214cf3238213dbcb90e127ab3288f"
+        },
+        {
+          "node": 8559465,
+          "steps": 7,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "ebd5ce433cee35667e7847c878c33f2f5976b2ff1a862b042e4931edbfd4857d",
+          "replay_sha256": "4ba118fcaba0c1077315ff7750480230ecc9403dacac98dae64d8a2f664488b2"
+        },
+        {
+          "node": 8661083,
+          "steps": 7,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "2c2ea9530167bc006b2e9fe6501946e03dc4e4ddff61bec83766f8b318315bd7",
+          "replay_sha256": "5edf0d4fa70dc0f1f14713b6eb62bf355f2e7eb68387999e30e73ae4f6ec63c2"
+        },
+        {
+          "node": 8661087,
+          "steps": 6,
+          "normalized_equal": true,
+          "initial_strict_comparison": true,
+          "conditional_probability": "1",
+          "state_sha256": "b4657e0b3d229fb23ce76ebfffc6635801633ed673efdabf04829b771caad088",
+          "replay_sha256": "33fca2092c394e42c696e823639f729eaddd1cb92d67939bada3e044c3b7e5ff"
+        }
+      ],
+      "probability_sample_count": 32,
+      "multi_outcome_sample_count": 13,
+      "normalization": "Exclude rng; compare keywords as unordered ability sets; compare destroyed as unordered history per public semantic contract. Preserve board/hand/deck order, IDs, all other fields. Strict raw mismatch evidence retained."
+    }
+  ],
+  "consumer_source": {
+    "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\consume.py",
+    "bytes": 6558,
+    "sha256": "22f5393d7ba11fff6d4b6c71289187e7a18e9139692d3391c6f036c2eb8e4e00"
+  },
+  "finalization_source": {
+    "path": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\frontier-full-measurement\\finalize.py",
+    "bytes": 8226,
+    "sha256": "b1d61119d78f90abeb57fe94f99f860e94467371fc7527d699955da7a3d2e202"
+  },
+  "limitations": [
+    "Hard cases have no independent full-state oracle; evidence checks product completion flags, every expanded node ID, all table counts, sampled legal replay witnesses and exact rational distributions.",
+    "OS PeakWorkingSetSize is actual Python process peak, not host total or virtual memory.",
+    "CLI exit detection and memory polling use 0.5second intervals; reported wall times include startup and JSON output plus polling delay.",
+    "The first strict replay comparison retained array ordering for keywords and flagged semantic-only ordering differences. The final comparison normalizes only documented history order and unordered ability membership; raw evidence is retained."
+  ]
+}

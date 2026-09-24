@@ -48,7 +48,7 @@ Python上の大きな表は省メモリの行配列です（辺は `Rows`、整�
 既定は10万状態・10秒・1操作4096出目です。PythonとCLIでは `max_states`／`--max-states` は最大1億、`seconds`／`--seconds` は最大3600、`--max-outcomes` は最大10000まで指定できます。HTTPの時間上限は60秒のままです。整数処理のCLIは10万展開ごとにstderrへ進捗JSONを出し、最終結果だけをstdoutへ出します。大盤面の測定例は次のとおりです。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 10000000 --seconds 600 --output output/frontier-hard-one
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 100000000 --seconds 3600 --output output/frontier-hard-one
 ```
 
 この5対5ケースは、既存の1000万状態・600秒という計測予算では未完了でした。その結果は上限を拡大しても完了には変わりません。より大きい予算で全数を調べる場合は、別の保存先で新しく計測します。許容上限の拡大は高速化ではなく、使用できる時間・メモリを増やすための変更です。
@@ -64,3 +64,5 @@ Python上の大きな表は省メモリの行配列です（辺は `Rows`、整�
 状態数・時間・1操作内の抽選数の上限で停止すると `complete=false` と理由が返ります。`enumeration_complete` と `frontier_complete` で列挙・候補整理を区別します。途中の抽選分布は出力しません。上限に達した結果を「候補を全部出した」と判断してはいけません。
 
 独立した公開Battle全列挙との状態集合・全操作・全出目・確率照合、到達例の再生は `tests/test_battle_frontier.py` で検査します。
+
+5対5・手札6枚の2ケースは、上の拡大予算で全件完了を確認しました。約1,194万／866万状態で、保存込み約14.8／10.7分、最大常駐約6.10／4.36GiBです。即時応答用としては重い処理です。[正確性の検証・時間・メモリの記録](evidence/turn-frontier/README.md)に、元の1,000万状態上限での未完了結果も含めて保存しています。
