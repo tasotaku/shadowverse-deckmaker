@@ -7,6 +7,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "mypy>=1"]
+performance = ["numba>=0.67,<0.68", "numpy>=2,<2.6"]
 
 [project.scripts]
 svdeck-battle = "svdeck.battle:main"

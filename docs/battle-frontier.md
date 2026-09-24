@@ -25,6 +25,30 @@ if result['complete']:
 
 残り攻撃権・登場ターンが違う結果も別候補として残します。顔への打点と攻撃権温存は交換条件であり、一方を下位互換として除きません。将来登場する全カードに対する戦略的な下位互換の証明ではないため、履歴などの全状態を使って続けて評価するときには、全操作を含むグラフを使います。探索途中では数値比較による枝刈りを行いません。
 
+## 学習・評価用の省メモリAPI
+
+全操作の辺を先に保存する必要がなければ、`analyze_catalog` で全停止状態と候補を作り、評価する局面の操作・抽選分布をその都度復元できます。整数化できる入力はNumbaで処理し、対応範囲外は既存の解析へ自動的に戻ります。既存の全グラフAPIの出力形式は変わりません。
+
+```powershell
+.venv/Scripts/python.exe -m pip install -e ".[performance]"
+```
+
+```python
+from svdeck.battle_frontier_catalog import analyze_catalog
+
+catalog = analyze_catalog(battle, max_states=100000000, seconds=3600)
+if catalog.complete:
+    state = catalog.state_at(catalog.candidates[0])
+    for choice in catalog.expand(0):
+        # choice['outcomes']の全stateをprobability（有理数文字列）で平均する。
+        # 観測されたstateごとに、その後の操作を選び直せる。
+        print(choice['action'], choice['outcomes'])
+```
+
+`candidates` はnode番号、`state_at(node)` は局面、`witness_steps(node)` は条件付きの到達例です。`expand(node)` は各合法操作と全出目の `state`・`probability`・`draws` を返します。候補だけから好きな抽選結果を選んで期待値を計算することはできません。全停止状態を内部に保持しているので、候補整理で外れた途中局面の操作も復元できます。
+
+`backend='reference'` は従来方式、`backend='native'` は対応範囲を厳密に指定する方式です。既定の `auto` は任意依存が未導入の場合にも従来方式を使い、`stats.fallback_reason` に理由を記録します。`complete`・`enumeration_complete`・`frontier_complete`・`cutoffs` を必ず確認してください。初回のJIT準備は別途記録し、`stats.elapsed_ms` は準備・探索・表の解放・候補整理を含みます。小さい入力では初回準備の費用が支配的になります。
+
 ## ランダム結果と操作を区別する
 
 不利な出目を除いて再正規化することはありません。操作ごとに全出目と正確な有理数確率を保存し、抽選結果を見てから選べる次の操作も残します。**抽選後の候補を、好きな確率結果を選べる手順として扱わないでください。** `witness_steps` はその局面への到達例であり、複数の経路を合計した到達確率や最適方策ではありません。
