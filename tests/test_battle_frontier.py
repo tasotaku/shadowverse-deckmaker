@@ -248,3 +248,11 @@ def test_unspent_attack_is_not_dominated_by_face_damage() -> None:
                 if not p['players'][0]['hand']}
     assert (20, (0,)) in observed
     assert (17, (1,)) in observed
+
+
+def test_compact_states_large_integer_fallback() -> None:
+    # AI_NOTE: 生成IDだけsigned16を超えた場合も通常の全状態照合を通し、圧縮の範囲で状態を欠落させない。
+    case = copy.deepcopy(next(c for c in CASES if c['id'] == 'hand_none_a_b_ab'))
+    case['state']['next_id'] = 100000
+    result = check_graph(case)
+    assert all(state_at(result, node)['next_id'] == 100000 for node in range(len(result['positions'])))

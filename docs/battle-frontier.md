@@ -35,7 +35,7 @@ if result['complete']:
 
 単独効果のスペルと基本能力だけで表せる入力は、`encoding=fixed-slots-v1` の整数表で計算します。この形式には `players` などの補助表はありませんが、`state_at`・`witness_steps` は同じように使えます。複合効果などは自動的に汎用処理へ戻します。`backend='generic'` で汎用処理を指定して比較することもできます。
 
-Python上の大きな辺の表は `Rows` という省メモリの行配列です。通常の添字・slice・反復に対応します。自分でJSON保存する場合は `svdeck.battle_frontier_io.dump_graph(result, Path(...))`、`json.dumps` には同モジュールの `json_default` を `default=` に指定してください。CLI・HTTPの出力は標準JSONの配列なので、受取側に専用decoderは不要です。
+Python上の大きな表は省メモリの行配列です（辺は `Rows`、整数状態は `States`）。通常の添字・slice・反復に対応します。自分でJSON保存する場合は `svdeck.battle_frontier_io.dump_graph(result, Path(...))`、`json.dumps` には同モジュールの `json_default` を `default=` に指定してください。CLI・HTTPの出力は標準JSONの配列なので、受取側に専用decoderは不要です。
 
 ## 計測CLIとHTTP
 

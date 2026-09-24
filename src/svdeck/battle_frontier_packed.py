@@ -1,11 +1,12 @@
 """Exhaustive graph traversal for the closed fixed-slot battle kernel."""
 from __future__ import annotations
 
+from collections.abc import Sequence
 from time import perf_counter
 from typing import TYPE_CHECKING, Any, Callable
 
 from .battle import Battle, Json
-from .battle_frontier_io import Rows
+from .battle_frontier_io import Rows, States
 from .combat_benchmark import peak_memory
 
 if TYPE_CHECKING:
@@ -37,7 +38,7 @@ def _byte_vectors(kernel: Kernel) -> bool:
     return True
 
 
-def frontier(kernel: Kernel, states: list[tuple[int, ...]], deadline: float) -> tuple[list[int], bool]:
+def frontier(kernel: Kernel, states: Sequence[tuple[int, ...]], deadline: float) -> tuple[list[int], bool]:
     # AI_NOTE: 全停止状態を比較する。確率辺や探索済み状態はPareto整理で削除しない。
     compact = _byte_vectors(kernel)
     groups: dict[Any, dict[tuple[Vector, int], int]] = {}
@@ -70,8 +71,10 @@ def analyze_packed(battle: Battle, *, max_states: int, max_outcomes: int, second
     deadline = started+seconds
     root = Battle(battle.state, battle.cards, record=False)
     kernel = Kernel(root)
-    states = [kernel.initial]
-    seen = {kernel.initial: 0}
+    states = States(len(kernel.initial))
+    initial_key = states.key(kernel.initial)
+    states.data.append(initial_key)
+    seen = {initial_key: 0}
     actions, probabilities, tapes = Pool(), Pool(), Pool()
     choices, outcomes, witnesses = Rows(4), Rows(3), Rows(3)
     witnesses.append((0, 0, 0))
@@ -90,19 +93,20 @@ def analyze_packed(battle: Battle, *, max_states: int, max_outcomes: int, second
             if len(branches) > max_outcomes:
                 cutoffs.add('chance outcomes')
                 break
-            fresh_keys = {child for child, _, _ in branches if child not in seen}
+            keys = [states.key(child) for child, _, _ in branches]
+            fresh_keys = {key for key in keys if key not in seen}
             if len(states)+len(fresh_keys) > max_states:
                 cutoffs.add('states')
                 break
             action_id = actions.add(freeze(action), action)
             offset = len(outcomes)
-            for child, probability, draws in branches:
-                target = seen.get(child)
+            for key, (_, probability, draws) in zip(keys, branches):
+                target = seen.get(key)
                 tape = tapes.add(draws)
                 if target is None:
                     target = len(states)
-                    seen[child] = target
-                    states.append(child)
+                    seen[key] = target
+                    states.data.append(key)
                     witnesses.append((index, action_id, tape))
                     pending.append(target)
                 else:

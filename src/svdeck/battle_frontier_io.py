@@ -5,7 +5,54 @@ import json
 from array import array
 from collections.abc import Iterator, Sequence
 from pathlib import Path
+from struct import Struct, error as StructError
 from typing import Any, overload
+
+
+class States(Sequence[tuple[int, ...]]):
+    def __init__(self, width: int) -> None:
+        # AI_NOTE: 通常値の状態はsigned16のbytesへ格納する。任意の大きい整数は元のtupleへ退避する。
+        self.codec = Struct('<'+'h'*width)
+        self.width = width
+        self.data: list[bytes | tuple[int, ...]] = []
+
+    def key(self, row: tuple[int, ...]) -> bytes | tuple[int, ...]:
+        # AI_NOTE: 値だけで一意に保存形式を決めるので、範囲外の混在でも同値状態の統合結果は変わらない。
+        if len(row) != self.width:
+            raise ValueError('Invalid state width')
+        try:
+            return self.codec.pack(*row)
+        except StructError:
+            return row
+
+    def __len__(self) -> int:
+        # AI_NOTE: 行数は保存形式によらず従来のnode数で返す。
+        return len(self.data)
+
+    @overload
+    def __getitem__(self, index: int) -> tuple[int, ...]: ...
+    @overload
+    def __getitem__(self, index: slice) -> list[tuple[int, ...]]: ...
+
+    def __getitem__(self, index: int | slice) -> tuple[int, ...] | list[tuple[int, ...]]:
+        # AI_NOTE: 公開入口では整数行へ復元し、JSONとstate_atの既存形式を維持する。
+        if isinstance(index, slice):
+            return [self[i] for i in range(*index.indices(len(self)))]
+        row = self.data[index]
+        return tuple(self.codec.unpack(row)) if isinstance(row, bytes) else row
+
+    def __iter__(self) -> Iterator[tuple[int, ...]]:
+        # AI_NOTE: 展開・書出しする1状態だけ復元し、全状態のtupleを同時に保持しない。
+        for row in self.data:
+            yield tuple(self.codec.unpack(row)) if isinstance(row, bytes) else row
+
+    def __eq__(self, other: object) -> bool:
+        # AI_NOTE: 同じ保存幅の状態列はbytes比較で、通常の行配列とは復元値で等値比較する。
+        if isinstance(other, States) and self.width == other.width:
+            return self.data == other.data
+        if isinstance(other, Sequence):
+            return len(self) == len(other) and all(a == b for a, b in zip(self, other))
+        return NotImplemented
 
 
 class Rows(Sequence[tuple[int, ...]]):
@@ -48,7 +95,7 @@ class Rows(Sequence[tuple[int, ...]]):
 
 def json_default(value: Any) -> Any:
     # AI_NOTE: HTTPなど通常JSON encoderから共有整数表を標準の配列へ変換する。
-    if isinstance(value, Rows):
+    if isinstance(value, (Rows, States)):
         return list(value)
     raise TypeError(f'Not JSON serializable: {type(value).__name__}')
 
@@ -61,7 +108,7 @@ def dump_graph(result: dict[str, Any], path: Path) -> None:
             if number:
                 stream.write(',')
             stream.write(json.dumps(key)+':')
-            if isinstance(value, (list, Rows)):
+            if isinstance(value, (list, Rows, States)):
                 stream.write('[')
                 for offset in range(0, len(value), 8192):
                     if offset:

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.battle_frontier_io import Rows, dump_graph, json_default
+from svdeck.battle_frontier_io import Rows, States, dump_graph, json_default
 
 
 def test_chunked_graph_roundtrip(tmp_path: Path) -> None:
@@ -35,3 +35,26 @@ def test_rows_invalid_access() -> None:
         _ = rows[0]
     with pytest.raises(TypeError):
         json_default(object())
+
+
+def test_state_storage_mixed_width_roundtrip(tmp_path: Path) -> None:
+    # AI_NOTE: signed16境界と任意精度整数を同じ表に混ぜても、キー・JSON・行比較が元の値へ一致する。
+    expected = [(-32768, 32767, 0), (-32769, 32768, 10**100), (1, -2, 3)] * 2734
+    states = States(3)
+    states.data.extend(states.key(row) for row in expected)
+    assert isinstance(states.data[0], bytes)
+    assert isinstance(states.data[1], tuple)
+    assert states == expected
+    assert states[-1] == expected[-1]
+    assert states[8190:8200] == expected[8190:8200]
+    assert len(set(states.data)) == len(set(expected))
+    assert len(states.data[0]) == 6
+    path = tmp_path/'states.json'
+    dump_graph({'positions': states}, path)
+    decoded = json.loads(path.read_text(encoding='utf-8'))
+    assert decoded['positions'] == [list(row) for row in expected]
+    assert decoded == json.loads(json.dumps({'positions': states}, default=json_default))
+    with pytest.raises(ValueError):
+        states.key((1, 2))
+    with pytest.raises(IndexError):
+        _ = states[len(states)]
