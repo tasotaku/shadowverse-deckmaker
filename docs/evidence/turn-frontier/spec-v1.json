@@ -1,0 +1,122 @@
+{
+  "schema_version": "user-test-spec/v1",
+  "spec_id": "turn-frontier-public-acceptance",
+  "version": 1,
+  "goal": "自分の現在の1ターンについて、手札を使わない・1枚・組合せ・順序、盤面攻撃、進化を含む合法候補とランダム結果の確率を列挙し、意味が同じ状態の統合と確実な下位互換の除外だけで比較不能な候補を残す。5対5・手札6枚でも完了を確認し、上限に達した場合は未完了と明示する。",
+  "persona": "Windows上で対戦AIを開発するPython利用者。CLI出力とHTTP JSONを別プログラムに読み込み、候補の行動・結果・確率を比較して利用する。",
+  "public_entry": "Python svdeck.battle_frontier.analyze(Battle, max_states=..., seconds=...); python -m svdeck.battle_frontier --cases JSON --case ID --output DIR; HTTP POST /api/turn-frontier with record and options. 実行対象の公開README・CLI --helpに従ってBattleの構築、HTTPサーバーの起動、オプション表記を解決する。private関数は呼ばない。",
+  "test_data": [
+    "Windows、C:/Users/tasog/source/shadowverse-deckmakerの最終届け先checkout、既存 .venv/Scripts/python.exe。実行前に製品commit、Python実体、fixture SHA256、公開契約の版を記録する。executorは実装・差分・過去の判定を読まず、spec、fixture、独立oracle、公開利用説明のみを受け取る。",
+    "tests/fixtures/turn_frontier_cases.json と独立oracle scripts/turn_frontier_reference.py。少なくとも hand_none_a_b_ab, barrier_bane_low_stack_trade, different_enemy_abilities, large_attack_health_tradeoff, random_bad_outcome_retained, oldest_barrier_split_order, summon_storm_grant_order, random_sequential_duplicate_outcomes を含む全小ケースを対象にする。fixtureは実行開始前にSHA256で固定し、実行結果に合わせて変更しない。",
+    "小fixtureは barrier/bane/storm/rush/ward、targeted/random/oldest-first split、damage/destroy/summon/grant、盤面攻撃、通常進化を少なくとも各1回観測できる。固定fixture SHA256=9aeb8938f322379a6a8f7ab7502137783aa1cf48a94e3c0af5623eb736f063e9、独立oracle SHA256=5281282b1d9ae068a51ea7989d389848ddb828f719b05605ad07fe1902262e8e。独立作成commit=1752782529fffae3bf486b6769c8fee1e67530fb、8cases/41states/37edges/27witnesses。",
+    "独立oracleは全合法手と全確率枝を列挙し、end_turnを実行せず停止候補として記録する。raw状態比較ではrng以外のBattle状態を保ち、fixtureの手計算witnessと候補間relationsも確認する。製品のsemanticな統合・除外とは別の期待値である。",
+    "tests/fixtures/battle_lookahead_hard.jsonの hard_full_board_branching_1 と hard_full_board_branching_2。初期盤面は各陣営5体、自分の手札6枚であることを入力から確認し、n_turnsがあっても本試験は現在の1ターンのみを扱う。",
+    "出力フィールド名や状態IDは未確定なので固定しない。実行前に公開利用説明から、完了状態、候補、行動順序、結果状態、確率、計測値への意味対応表を保存する。対応表はrename・serialization差の吸収のみ許可し、候補・状態・確率の欠落を補う推測や製品private APIの使用は禁止する。"
+  ],
+  "minimal_test_count_rationale": "正確さと出力の利用を小fixtureの1 journey、5対5の完了と上限時の扱いを1 journeyにまとめる。各journeyは専用プロセス・出力先を持ち並列実行できる。UIは変更されないためクリック・focus・scrollの試験を追加しない。",
+  "execution_policy": {
+    "runs_per_test": 1,
+    "continue_after_failure": true,
+    "parallelize_independent_tests": true
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "title": "小ケースの全候補をCLIから取得しHTTPでも利用する",
+      "user_task": "現在の1ターンで選べる候補を取得し、手札・盤面・確率の異なる結果を失わずに後続プログラムで比較できることを確かめる。",
+      "setup": [
+        "専用のPowerShell非対話プロセスと空のT1出力directoryから開始する。サーバーは専用localhostポートで起動し、既存ユーザーサーバーに変更を加えない。ログインやbrowserは使用しない。",
+        "小fixtureと独立oracle出力を実行前に固定する。公開利用説明だけを読み、CLIとHTTPの入出力の意味対応表を記録する。全small fixtureの起動を1回ずつ行うことを1 journeyの直列actionsとして扱う。"
+      ],
+      "actions": [
+        "固定した小fixtureの各caseにつき公開CLIを1回起動する。seconds=60、max_states=1000000に相当する公開オプションを指定し、個別output directory、stdout、stderr、exit codeを保存する。プロセス起動直前から終了まで単調時計で経過秒を測り、OSの対象プロセスのpeak working setをbytesで記録する。",
+        "CLIが保存したmachine-readable結果を別のJSON consumerから開く。独立oracleの全停止状態・勝利終端・行動枝・確率と意味ベースで照合し、fixtureの全witnessとrelationsについて保持・同値統合・正当な優越除外のいずれかを根拠付きで記録する。",
+        "random_bad_outcome_retainedをHTTP POST /api/turn-frontierに1回送る。recordは同じfixture、optionsはseconds=60、max_states=1000000に相当する公開値を使う。HTTPのraw request/response/statusと単調時計による送信直前から応答本文受信完了までの時間を保存する。",
+        "HTTP JSONを別consumerでparseし、CLIの同一caseに対して完了状態、候補の意味、ランダム全枝と確率が一致するかを比較する。返された候補から行動順序と結果を1件読み取り、別の候補と残り手札または結果盤面がどう異なるかを結果だけから示す。"
+      ],
+      "functional_expectations": [
+        "T1-F1: 小caseはすべて全数完了を示す。合法な手札不使用・各1枚・複数枚・異なる順序・盤面攻撃・進化から得られる停止候補と勝利終端を独立oracleと照合する。現在のターンを終えた相手手番・次ターンのdraw等を候補に混ぜない。",
+        "T1-F2: oracleの全raw状態や全履歴を同じ形式で公開する必要はない。rngや探索IDを除いて戦闘上同値な状態は統合でき、graphの格納順も問わない。ただし統合後も合法な結果、必要な行動順序、ランダム分布を復元できる。意味の異なる手札・能力・盤面順序を単なる攻撃力と体力の合計で同一視しない。",
+        "T1-F3: 小fixtureのretain_both指定を満たす。特に手札none/a/b/ab、残存ward対bane、敵の高攻撃低体力対低攻撃高体力、自リーダーダメージ対盤面除去など比較不能な候補をすべて残す。下位互換を除いた候補集合では、同じ将来の能力を保ち資源・結果の各比較軸で劣らず少なくとも1軸で勝る対応候補だけが除外根拠になり、残り手札の差や能力差を無視しない。",
+        "T1-F4: barrier_bane_low_stack_tradeのbarrier_trade対ping_tradeのように、同じ結果盤面でpingとPPを無駄に消費した候補は優越候補と区別でき、公開された候補集合で正当な下位互換除去を確認できる。raw graphに検証用の下位候補が残ること自体は失敗としない。",
+        "T1-F5: 各確率行動の全結果が独立oracleと一致し確率の和が1になる。不利なrandom枝を候補比較で消さない。連続抽選の確率積を保ち、同じ終状態への複数random経路を統合する場合は確率質量を加算して失わない。決定的なseedの1結果だけを全結果扱いしない。",
+        "T1-F6: 全小fixtureの手計算witnessで5keywordsと各効果、対象選択、古い順split、進化の合法性と結果を確認する。順序が結果を変えるwitnessを落とさず、無効対象や不可能な攻撃を追加しない。CLIとHTTPは同じ入力について同じ意味の候補・確率・完了状態を返す。"
+      ],
+      "ux_checks": [
+        "T1-U1: CLI1実行で指定output directoryから機械可読結果を取得できる。HTTP1 requestでも本文だけで候補・確率・完了状態を判別できる。通常のJSON consumerによるparse成功と、別consumerによる候補1件の取り出しを直接の証拠とする。手動のファイル整形は0回。",
+        "T1-U2: 完了状態、行動列、対象、残り手札、結果盤面、確率を、公開結果と公開説明から一意に解釈できる。内部IDだけで結果が復元できない、成功JSONと途中結果が区別できない場合はUX FAIL。これはUI試験ではないためviewport・focus・クリック・scrollは適用しない。",
+        "T1-U3: 各callのelapsed secondsとpeak working set bytesをraw evidenceに記録する。時間は単調時計の実測、メモリはOSプロセス観測で取り、製品自己申告値だけで代用しない。性能SLAは未指定なので数値に任意の合否閾値を加えず、60秒は指定した探索予算として扱う。"
+      ],
+      "impossible_if": [
+        "Python実体や固定fixtureが環境から利用できず、製品の公開入口を1回も起動できない。fixtureに必須能力の観測例が欠けている場合はTEST_SPEC_ISSUEとして欠落を記録する。",
+        "OS側の外部要因により専用localhostポートまたは出力先を用意できない。製品CLI不存在、server起動失敗、結果parse失敗、不完全列挙はimpossibleではなく製品FAILとして記録する。"
+      ],
+      "isolation_requirements": "T1専用process/server/localhost port/output directoryを使用し、T2と出力を共有しない。fixtureはread-only。自分が起動したserverだけを終了し、既存プロセスとユーザー作業を変更しない。",
+      "budget": {
+        "public_steps_minutes": 5,
+        "expected_external_wait_minutes": 11,
+        "total_minutes": 16,
+        "basis": "fixture固定・公開説明による対応表・結果照合に5分。small8件とHTTP1件の各seconds=60および起動準備を最大11分で見積もる。各callは1回のみ。実行が予算を超えた場合、製品都合で再実行や予算延長をせず観測済み結果と未確認部分を報告する。"
+      }
+    },
+    {
+      "id": "T2",
+      "title": "5対5・手札6枚を完了し探索上限を正しく伝える",
+      "user_task": "実戦規模の1ターン候補をすべて取得し、探索を途中で止めた場合に完全な結果と誤認せず後続処理で扱えることを確かめる。",
+      "setup": [
+        "T2専用PowerShell非対話プロセス、空のoutput directory、固定済みhard fixtureから開始する。T1のserverや出力は使わない。",
+        "hard2caseの初期盤面5対5と自分の手札6枚を入力から記録する。公開CLIの時間・状態上限オプション、Python Battle構築入口、結果の完了状態と中断理由の読み方を公開説明から確認する。"
+      ],
+      "actions": [
+        "hard_full_board_branching_1とhard_full_board_branching_2を各1回公開CLIで実行する。各caseはseconds=600、max_states=10000000相当を指定し、別output directoryに保存する。起動直前から終了まで単調時計で時間を測り、OSから対象プロセスのpeak working set bytesを記録する。",
+        "保存結果を別JSON consumerで開き、完了状態、実際の入力規模、候補件数、1ターンの範囲、合法な手札・攻撃・進化の行動列を確認する。完了の自己申告だけを証拠にせず、残り探索workがないことを示す公開統計があれば整合性を照合する。",
+        "hard_full_board_branching_1を新しいPython processで構築し、公開analyze(Battle, max_states=1, seconds=60)を1回呼ぶ。別の新しいprocessで同じcaseをanalyze(Battle, max_states=10000000, seconds=0.001)に1回渡す。2回は別の制約検査であり、前の結果を見て上限を調整するretryは禁止する。",
+        "上限制約2結果について、raw結果・終了理由・経過秒・peak working setを保存し、consumerが未完了として分岐できることを確認する。結果や進捗が返る場合は部分結果として扱い、hard完了結果の代わりに採用しない。"
+      ],
+      "functional_expectations": [
+        "T2-F1: hard2caseはいずれも現在の自分の1ターンの全数列挙を完了し、完全な候補集合を取得できる。状態数や時間の上限に達して未完了なら、この要件はFAILとして記録する。600秒は本試験の事前固定探索予算であり、ユーザーが指定していない一般的な性能SLAへ読み替えない。",
+        "T2-F2: hard出力はJSONとして読め、元の5対5・手札6枚の入力に対応し、行動列が同一の自分のターンに収まる。nターン先の結果を全数列挙の証拠に使わない。下位互換除去とsemantic統合で件数が減ることは許容する。",
+        "T2-F3: max_states=1検査とseconds=0.001検査はそれぞれ探索途中の停止を機械可読に示す。complete=falseに相当する明示状態と停止理由があり、完全列挙を表す値を返さない。途中で例外終了しただけ、空の候補を完全結果として返すだけでは合格にしない。",
+        "T2-F4: 上限時に候補・確率枝を返すなら未展開領域があることを隠さず、既に得られた不利random枝を捨てて確率を再正規化しない。残り候補だけを最適または全件と断定しない。"
+      ],
+      "ux_checks": [
+        "T2-U1: 完了と未完了をconsumerのmachine-readable分岐だけで判別できる。stderrの曖昧な警告を読まないと区別できない場合はUX FAIL。3種類の結果（hard完了、状態上限、時間上限）をraw出力で直接比較する。",
+        "T2-U2: 各caseと上限検査について時間・peak working set・探索設定・完了状態を同じevidence行へ記録し、利用者が資源消費と網羅性を比較できる。elapsedは起動直前から終了までの単調時計、memoryはOS peak working set bytesを用いる。メモリ上限の製品要件は未指定のため恣意的な閾値を置かない。",
+        "T2-U3: 上限は公開引数の変更だけで指定でき、private関数呼出しや設定ファイル編集を0回で済ませる。CLI/APIのみのjourneyなのでUIのクリック・scroll・focus条件を課さない。"
+      ],
+      "impossible_if": [
+        "固定hard fixtureが存在しない、または指定入力が5対5・自分の手札6枚でない。入力不一致はTEST_SPEC_ISSUEとして記録する。",
+        "試験開始前にOS資源枯渇やPython実体の欠落で専用processを起動できない。起動後の製品例外、メモリ枯渇、hang、上限到達、上限の無視は製品FAILとして記録する。"
+      ],
+      "isolation_requirements": "T2専用process/output directoryを使用する。各CLIと上限検査は新しいprocessで実行し、状態を持ち越さない。T1と並行可能だが同一hostで競合した場合はその条件を性能記録に添える。自分のprocessのみcleanupする。",
+      "budget": {
+        "public_steps_minutes": 4,
+        "expected_external_wait_minutes": 21,
+        "total_minutes": 25,
+        "basis": "hard2件の探索予算600秒ずつで20分、上限検査2件に合計1分、入力・結果確認と資源記録に4分。製品が遅いことを理由に予算延長しない。journey全体の期限で停止した場合も未完了として観測を残す。"
+      }
+    }
+  ],
+  "reporting": {
+    "separate_functional_and_ux": true,
+    "include_unexpected_findings": true,
+    "evidence_level": "concise"
+  },
+  "coverage": {
+    "covered_risks": [
+      "自分の1ターンの合法な手札不使用・単独・組合せ・順序・攻撃・進化の候補欠落と次ターン混入。",
+      "同値状態統合と下位互換除去による残り手札・能力・大小比較不能状態の誤削除。",
+      "5keywords、対象選択、damage/destroy/summon/grant、古い順split、複数random抽選と不利枝の確率欠落。",
+      "CLIから後続consumerへの結果受渡し、HTTPの意味的一致、Python公開入口での上限制御。",
+      "5対5・手札6枚の完了可否、実測時間とpeak memory、未完了を完全結果と誤認する危険。"
+    ],
+    "blind_spots": [
+      "全カード・全能力・全組合せの正確性を網羅しない。固定された小fixtureと手計算witnessが対象。",
+      "hard2caseの全数性は小fixtureの独立oracle同値比較ほど強い独立証明ではない。大規模入力について製品の完了申告と公開統計・候補の整合を観測するが、独立の全状態oracleは要求しない。",
+      "厳密な下位互換関係すべての形式的証明は本受入の対象外。fixtureの明示した比較不能関係と明らかな資源浪費の除外を検査する。",
+      "OSのpeak working setはPythonプロセスの常駐メモリ指標であり、全仮想メモリやhost全体消費を意味しない。",
+      "UI変更なし。browser操作、viewport、focus、scroll、nターン先探索は本仕様の対象外。"
+    ]
+  },
+  "revision": null
+}
