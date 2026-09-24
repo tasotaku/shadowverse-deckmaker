@@ -1,0 +1,54 @@
+# 自分の1ターン内の候補を列挙する
+
+`svdeck.battle_frontier` は、現在の手番の中で到達できる局面を列挙します。手札を使わない、1枚だけ使う、複数枚を使う、使用順を変える、攻撃・進化を間に挟む候補を扱います。相手の応答や次ターンは探索しません。各局面で止めることができ、`end_turn` の終了時効果・次手番の開始処理・ドローは実行しません。
+
+バリア・必殺・疾走・突進・守護、指定／ランダム／古い順の割り振りダメージ、確定除去、召喚、能力付与、スタッツ変更、繰り返しを扱います。未対応の効果を除去して計算せず、エラーで知らせます。ラストワード・誘発・クレストなど、既存の `battle_practical.validate_scope` が拒否する機能は対象外です。対戦エンジン自体の全カード対応を意味しません。
+
+## Pythonから使う
+
+```python
+from svdeck.battle import Battle
+from svdeck.battle_frontier import analyze, state_at, witness_steps
+from svdeck.battle_practical import replay_branch
+
+result = analyze(Battle(case['state'], case['cards']),
+                 max_states=100000, seconds=10)
+if result['complete']:
+    for node in result['candidates']:
+        state = state_at(result, node)
+        steps = witness_steps(result, node)
+        # ランダムを含む場合は、指定された出目が生じた条件での再生。
+        verified = replay_branch(result['record'], steps)
+```
+
+`candidates` は盤面・資源のPareto候補です。自身の攻撃力・体力・最大体力・リーダー体力・PP・EP・SEPが全て同等以上、敵側の数値が全て同等以下となり、残り手札も全て同じ状態で保持できる結果がある場合にだけ、比較対象を除きます。余分な手札を残せる側は優越できます。能力、カード効果、進化状態、盤面の順番、個体数の違いは比較群を分けます。別々の手札を残す結果や、高攻撃／低体力と低攻撃／高体力は両方残ります。同等の停止盤面は代表1件にまとめます。
+
+これは停止盤面の数値比較です。将来登場する全カードに対する戦略的な下位互換の証明ではありません。攻撃権や履歴が異なる局面を続けて評価するときには、`candidates` のみでなく全状態・全操作を含むグラフを使います。探索途中では数値比較による枝刈りを行いません。
+
+## ランダム結果と操作を区別する
+
+不利な出目を除いて再正規化することはありません。操作ごとに全出目と正確な有理数確率を保存し、抽選結果を見てから選べる次の操作も残します。**抽選後の候補を、好きな確率結果を選べる手順として扱わないでください。** `witness_steps` はその局面への到達例であり、複数の経路を合計した到達確率や最適方策ではありません。
+
+グラフの各操作は `choices = [開始node, action番号, outcomes開始位置, outcomes終了位置]` で表します。対応する `outcomes` の各行は `[到達node, probability番号, draws番号]` です。`actions`・`probabilities`・`draws` の各共有表を参照します。1操作の全outcomeの確率の和は1です。将来の期待値評価では各操作の全outcomeを平均し、操作同士を比較します。
+
+`positions`・`players`・`zones`・`entities`・`metadata` は状態の共有表です。直接編集せず `state_at` で復元します。`expanded` は全操作を調べ終えたnode番号で、全nodeが停止候補です。盤面順・個体ID・攻撃権・手札内容・資源・公開デッキ情報を保存し、乱数seedと現対象効果では参照されない破壊履歴の順番だけを同一視します。実際の破壊順が必要なら到達例を再生します。
+
+## 計測CLIとHTTP
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier --cases tests/fixtures/turn_frontier_cases.json --case hand_none_a_b_ab --output output/frontier-example
+```
+
+未使用の保存先に `graph.json`（全候補・全操作・全確率）と `report.json`（完了状態・時間・メモリ）を保存します。大きいケースのグラフは大容量になります。`stats.elapsed_ms` は解析時間でファイル保存は含まず、メモリはPythonプロセス全体の最大常駐量です。比較計測はケースごとに新しいCLIプロセスで行います。
+
+`POST http://localhost:8767/api/turn-frontier` も同じ結果を返します。
+
+```json
+{"record": "Battle.export()で得たオブジェクト", "options": {"max_states": 100000, "seconds": 10}}
+```
+
+`record` には文字列ではなく実際の記録オブジェクトを渡します。任意で `cursor` を指定できます。HTTPでは `seconds` は最大60秒、長い測定にはCLIを使います。現在のAI対戦の一手選択や、画面の「能力なしの盤面候補」とは別のAPIです。
+
+状態数・時間・1操作内の抽選数の上限で停止すると `complete=false` と理由が返ります。`enumeration_complete` と `frontier_complete` で列挙・候補整理を区別します。途中の抽選分布は出力しません。上限に達した結果を「候補を全部出した」と判断してはいけません。
+
+独立した公開Battle全列挙との状態集合・全操作・全出目・確率照合、到達例の再生は `tests/test_battle_frontier.py` で検査します。

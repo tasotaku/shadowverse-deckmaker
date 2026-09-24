@@ -1,5 +1,7 @@
 # 手札候補から複数ターンを読むAI
 
+現在の実装対象は[自分の1ターン内の候補列挙](battle-frontier.md)です。このページの複数ターン先読みは別の試作機能です。
+
 [正解照合・時間・メモリ・実対戦の検証記録](evidence/battle-lookahead/validation.md)
 
 [追加検証: 複合能力134局面は一致、5対5の2局面は未完了](evidence/battle-lookahead-hard/README.md)

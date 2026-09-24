@@ -13,6 +13,7 @@ Shadowverse: Worlds Beyondで、独自性があり、そこそこ戦えるデッ
 
 盤面候補の正解・処理時間・最大メモリを繰り返し記録する方法は、[検証ランナー](docs/combat-benchmark.md)を参照。
 能力・手札使用・ランダム結果ごとの判断を含む計算は、[実戦向けの現在ターン探索](docs/combat-practical.md)のCLI/APIから利用できます。
+自分の1ターン内の手札使用・攻撃順・抽選結果を全件残す[候補列挙APIと測定CLI](docs/battle-frontier.md)も利用できます。
 
 手札の使い方を残して相手の返し・自分の次ターンまで読む[複数ターンAI](docs/battle-lookahead.md)は、通常画面のAI選択欄・一手API・診断CLIから利用できます。
 

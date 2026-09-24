@@ -13,6 +13,7 @@ from .battle_decks import load_decks, presets as deck_presets
 from .battle_ai import Player
 from .battle_combat import analyze as analyze_combat
 from .battle_practical import analyze as analyze_practical, replay_branch
+from .battle_frontier import analyze as analyze_frontier
 
 MAX_BODY = 4 * 1024 * 1024
 WEB_ROOT = Path(__file__).with_name("battle_web")
@@ -131,6 +132,17 @@ class BattleHandler(BaseHTTPRequestHandler):
                 if not isinstance(body.get("state"), dict):
                     raise ValueError("開始状態が必要です。")
                 self.send_json(snapshot(Battle(body["state"], cards=body.get("cards"))))
+            elif path == '/api/turn-frontier':
+                # AI_NOTE: 評価で一手を選ばず、現在ターンの全候補と確率辺を返す。HTTPは60秒以内に限定する。
+                if not isinstance(body.get('record'), dict):
+                    raise ValueError('recordが必要です')
+                options = body.get('options', {})
+                if not isinstance(options, dict) or set(options)-{'max_states', 'max_outcomes', 'seconds'}:
+                    raise ValueError('候補生成optionsが不正です')
+                duration = options.get('seconds', 10)
+                if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not 0 < duration <= 60:
+                    raise ValueError('HTTPのsecondsは0より大きく60以下です')
+                self.send_json(analyze_frontier(replay(body['record'], cursor=body.get('cursor')), **options))
             elif path == '/api/combat-practical':
                 # AI_NOTE: 能力を保持した現在ターン探索。抽選seedを有利な未来として利用しない。
                 if not isinstance(body.get('record'), dict):
