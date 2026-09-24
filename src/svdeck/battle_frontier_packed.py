@@ -11,25 +11,53 @@ from .combat_benchmark import peak_memory
 if TYPE_CHECKING:
     from .battle_frontier_fast import Kernel
 
+Vector = bytes | tuple[int, ...]
+
+
+def _byte_vectors(kernel: Kernel) -> bool:
+    # AI_NOTE: このkernelには回復・数値buff・PP回復がない。初期値と最大進化分から全比較値の範囲を証明する。
+    own = kernel.own
+    extra = int(kernel.owner == 1 and not own['extra_pp_used'])
+    if (max(own['health'], own['pp']+extra, own['ep'], own['sep']) > 127
+            or kernel.enemy['health'] > 128):
+        return False
+    boost = 0
+    if not own['evolved_this_turn']:
+        if own['ep'] > 0 and own['turn'] >= 5-kernel.owner:
+            boost = 2
+        if own['sep'] > 0 and own['turn'] >= 7-kernel.owner:
+            boost = 3
+    for slot, entity in enumerate(kernel.prototypes):
+        maximum = max(entity['attack'], entity['health'], entity['max_health'])
+        if slot < kernel.n:
+            if maximum + (boost if not entity['evolved'] else 0) > 127:
+                return False
+        elif maximum > 128:
+            return False
+    return True
+
 
 def frontier(kernel: Kernel, states: list[tuple[int, ...]], deadline: float) -> tuple[list[int], bool]:
     # AI_NOTE: 全停止状態を比較する。確率辺や探索済み状態はPareto整理で削除しない。
-    groups: dict[Any, dict[tuple[tuple[int, ...], int], int]] = {}
+    compact = _byte_vectors(kernel)
+    groups: dict[Any, dict[tuple[Vector, int], int]] = {}
     for index, state in enumerate(states):
         if perf_counter() >= deadline:
             return list(range(len(states))), False
         shape, values, hand = kernel.endpoint(state)
-        groups.setdefault(shape, {}).setdefault((values, hand), index)
+        # AI_NOTE: 全成分へ同じ128を足すので辞書順も成分ごとの大小も保存される。範囲外は元の整数tupleを保つ。
+        vector: Vector = bytes(v+128 for v in values) if compact else values
+        groups.setdefault(shape, {}).setdefault((vector, hand), index)
     selected = []
     for group in groups.values():
-        skyline: list[tuple[tuple[int, ...], int]] = []
-        for values, hand in sorted(group, key=lambda item: (item[0], item[1].bit_count()), reverse=True):
+        skyline: list[tuple[Vector, int]] = []
+        for vector, hand in sorted(group, key=lambda item: (item[0], item[1].bit_count()), reverse=True):
             if perf_counter() >= deadline:
                 return list(range(len(states))), False
-            if not any(prior_hand & hand == hand and all(a >= b for a, b in zip(prior, values))
+            if not any(prior_hand & hand == hand and all(a >= b for a, b in zip(prior, vector))
                        for prior, prior_hand in skyline):
-                skyline.append((values, hand))
-                selected.append(group[values, hand])
+                skyline.append((vector, hand))
+                selected.append(group[vector, hand])
     return sorted(selected), True
 
 

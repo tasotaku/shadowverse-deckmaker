@@ -266,10 +266,10 @@ def pareto(positions: Positions, deadline: float) -> tuple[list[int], bool]:
 def analyze(battle: Battle, *, max_states: int = 100000, max_outcomes: int = 4096,
             seconds: float = 10.0, backend: str = 'auto', progress: Callable[[Json], None] | None = None) -> Json:
     # AI_NOTE: end_turnは実行せず全nodeを停止可能とする。深さ制限や評価点のbeamで合法な候補を落とさない。
-    integer(max_states, 'max_states', 1, 10000000)
+    integer(max_states, 'max_states', 1, 100000000)
     integer(max_outcomes, 'max_outcomes', 1, 10000)
-    if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 600:
-        raise ValueError('secondsは0より大きく600以下です')
+    if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 3600:
+        raise ValueError('secondsは0より大きく3600以下です')
     if backend not in ('auto', 'generic', 'fixed-slots'):
         raise ValueError('backendはauto/generic/fixed-slotsです')
     validate_scope(battle)

@@ -45,11 +45,13 @@ Python上の大きな辺の表は `Rows` という省メモリの行配列です
 
 未使用の保存先に `graph.json`（全候補・全操作・全確率）と `report.json`（完了状態・時間・メモリ）を保存します。大きいケースのグラフは大容量になります。`stats.elapsed_ms` は解析時間でファイル保存は含まず、メモリはPythonプロセス全体の最大常駐量です。比較計測はケースごとに新しいCLIプロセスで行います。
 
-既定は10万状態・10秒・1操作4096出目です。`--max-states` は最大1000万、`--seconds` は最大600、`--max-outcomes` は最大10000まで指定できます。整数処理のCLIは10万展開ごとにstderrへ進捗JSONを出し、最終結果だけをstdoutへ出します。大盤面の測定例は次のとおりです。
+既定は10万状態・10秒・1操作4096出目です。PythonとCLIでは `max_states`／`--max-states` は最大1億、`seconds`／`--seconds` は最大3600、`--max-outcomes` は最大10000まで指定できます。HTTPの時間上限は60秒のままです。整数処理のCLIは10万展開ごとにstderrへ進捗JSONを出し、最終結果だけをstdoutへ出します。大盤面の測定例は次のとおりです。
 
 ```powershell
 .venv/Scripts/python.exe -X utf8 -m svdeck.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 10000000 --seconds 600 --output output/frontier-hard-one
 ```
+
+この5対5ケースは、既存の1000万状態・600秒という計測予算では未完了でした。その結果は上限を拡大しても完了には変わりません。より大きい予算で全数を調べる場合は、別の保存先で新しく計測します。許容上限の拡大は高速化ではなく、使用できる時間・メモリを増やすための変更です。
 
 `POST http://localhost:8767/api/turn-frontier` も同じ結果を返します。
 

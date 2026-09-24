@@ -120,6 +120,27 @@ def test_invalid_budget(options: Json) -> None:
         analyze(Battle(CASES[0]['state'], CASES[0]['cards']), **options)
 
 
+@pytest.mark.parametrize('backend', ['generic', 'fixed-slots'])
+def test_large_budget_preserves_small_complete_result(backend: str) -> None:
+    # AI_NOTE: 許容予算だけを広げても小ケースの全状態・全辺・候補が変わらず、既定値も変わらない。
+    battle = Battle(CASES[0]['state'], CASES[0]['cards'])
+    reference = analyze(battle, backend=backend)
+    result = analyze(battle, backend=backend, max_states=100000000, seconds=3600)
+    assert result['complete'] and reference['complete']
+    assert reference['stats']['max_states'] == 100000
+    assert reference['stats']['seconds'] == 10
+    for field in ('positions', 'choices', 'outcomes', 'witnesses', 'actions', 'probabilities', 'draws', 'expanded', 'candidates'):
+        assert list(result[field]) == list(reference[field]), field
+
+
+@pytest.mark.parametrize('backend', ['generic', 'fixed-slots'])
+@pytest.mark.parametrize('options', [{'max_states': 100000001}, {'seconds': 3601}])
+def test_large_budget_upper_boundary_is_rejected(backend: str, options: Json) -> None:
+    # AI_NOTE: 許容上限の直後を両backendで拒否し、無制限探索へ変わっていないことを検査する。
+    with pytest.raises(ValueError):
+        analyze(Battle(CASES[0]['state'], CASES[0]['cards']), backend=backend, **options)
+
+
 def test_weakest_sufficient_mutual_trade_survives_frontier() -> None:
     # AI_NOTE: 大小が決まる二つの相打ちは、残る3/3を残し2/2だけ残る下位互換を除く。
     cards = {cid: {'name': cid, 'kind': 'follower', 'cost': 1, 'attack': attack, 'health': health,
