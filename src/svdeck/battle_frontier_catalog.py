@@ -83,12 +83,12 @@ def analyze_catalog(battle: Battle, *, max_states: int = 100000, max_outcomes: i
     integer(max_outcomes, 'max_outcomes', 1, 10000)
     if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 3600:
         raise ValueError('seconds must be greater than zero and at most 3600')
-    if backend not in ('auto', 'native', 'reference'):
-        raise ValueError('backend must be auto, native, or reference')
+    if backend not in ('auto', 'native', 'reference', 'cache'):
+        raise ValueError('backend must be auto, native, reference, or cache')
     validate_scope(battle)
     fallback = ''
     native = None
-    if backend != 'reference':
+    if backend in ('auto', 'native'):
         if not eligible(battle):
             fallback = 'Input requires the generic supported-effect engine'
         else:
@@ -125,7 +125,14 @@ def analyze_catalog(battle: Battle, *, max_states: int = 100000, max_outcomes: i
                        cutoffs, stats, native.kernel.battle.export(), native=native)
     if backend == 'native':
         raise ValueError(fallback)
-    graph = analyze(battle, max_states=max_states, max_outcomes=max_outcomes, seconds=seconds, progress=progress)
+    if backend == 'cache' and eligible(battle):
+        from .battle_frontier_cache import CachedKernel
+        from .battle_frontier_packed import analyze_packed
+        graph = analyze_packed(battle, max_states=max_states, max_outcomes=max_outcomes, seconds=seconds,
+                               progress=progress, kernel_factory=CachedKernel)
+        graph['stats']['backend'] = 'cache'
+    else:
+        graph = analyze(battle, max_states=max_states, max_outcomes=max_outcomes, seconds=seconds, progress=progress)
     graph['stats']['fallback_reason'] = fallback or None
     graph['stats']['elapsed_ms'] = (perf_counter()-started)*1000
     return Catalog(graph['candidates'], graph['complete'], graph['enumeration_complete'],

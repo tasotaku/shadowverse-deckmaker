@@ -47,7 +47,7 @@ if catalog.complete:
 
 `candidates` はnode番号、`state_at(node)` は局面、`witness_steps(node)` は条件付きの到達例です。`expand(node)` は各合法操作と全出目の `state`・`probability`・`draws` を返します。候補だけから好きな抽選結果を選んで期待値を計算することはできません。全停止状態を内部に保持しているので、候補整理で外れた途中局面の操作も復元できます。
 
-`backend='reference'` は従来方式、`backend='native'` は対応範囲を厳密に指定する方式です。既定の `auto` は任意依存が未導入の場合にも従来方式を使い、`stats.fallback_reason` に理由を記録します。`complete`・`enumeration_complete`・`frontier_complete`・`cutoffs` を必ず確認してください。初回のJIT準備は別途記録し、`stats.elapsed_ms` は準備・探索・表の解放・候補整理を含みます。小さい入力では初回準備の費用が支配的になります。
+`backend='reference'` は従来方式、`backend='cache'` は局所的な計算を再利用する方式、`backend='native'` はコンパイル方式の対応範囲を厳密に指定する方式です。既定の `auto` は任意依存が未導入の場合にも従来方式を使い、`stats.fallback_reason` に理由を記録します。`complete`・`enumeration_complete`・`frontier_complete`・`cutoffs` を必ず確認してください。初回のJIT準備は別途記録し、`stats.elapsed_ms` は準備・探索・表の解放・候補整理を含みます。小さい入力では初回準備の費用が支配的になります。
 
 ## ランダム結果と操作を区別する
 

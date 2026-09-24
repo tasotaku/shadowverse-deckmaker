@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "frozen_at_utc": "2026-09-24T16:04:00Z",
+  "heldout_opened": false,
+  "final_roster": ["baseline", "cache", "native"],
+  "rejected_approach": {
+    "method": "sleep-set partial-order reduction",
+    "reason": "All three complete development workloads were slower; reopening states outweighed skipped orders. Reduced deterministic edges additionally need lazy reconstruction for policy evaluation.",
+    "evidence": "../turn-search-por/README.md"
+  },
+  "reason_for_three_finalists": "Keep both close Python methods and the compiled method: development shows cold-start overhead reverses the ranking on small inputs while the larger medium case benefits from compilation. Three includes the selected cold method and its closest correct rival; the third measures the user's large learning workload.",
+  "fixed_selection_rule": "Among semantically correct, complete, equal-output methods, use the lowest sum of per-case median complete compute time on the three frozen medium cases. Report overlapping aggregate ranges as uncertainty. Do not replace this rule after inspecting heldout results.",
+  "scope_of_recommendation": "Report cold-medium selection, heldout reversals, full-hard results, and any separately measured resident-process throughput independently. No universal fastest method is asserted; the learning API exposes reference, cache, and native choices.",
+  "measured_trials": 3,
+  "suites": ["independent-medium-cases.v1.json", "independent-heldout-cases.v1.json"],
+  "hard_trials": 1,
+  "hard_suite": "independent-hard-cases.v1.json",
+  "measurement_mode": "candidates",
+  "options": {"seconds": 3600, "max_states": 100000000, "debug_threshold": 0, "witness_samples": 100},
+  "isolation": "Fresh child process per algorithm/case/trial, serial, alternating order; one separate one-state warmup. Reserve host during measurements. Include parsing, setup, cached JIT, enumeration, skyline, materialization, hashing and cleanup in compute; save time and complete process wall separately.",
+  "memory": "Whole child lifetime OS peak resident memory in bytes, including serialization.",
+  "hard_budget": "Attempt all three approaches on both full cases within the independent T2 observation budget of 120 minutes. Preserve incomplete results without ranking their prefixes."
+}

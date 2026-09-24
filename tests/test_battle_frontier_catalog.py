@@ -27,8 +27,11 @@ def test_public_candidate_states_and_conditional_decisions(seed):
     battle = scenario(seed)
     native = analyze_catalog(battle, seconds=30)
     reference = analyze_catalog(battle, backend='reference', seconds=30)
+    cached = analyze_catalog(battle, backend='cache', seconds=30)
     assert native.complete and reference.complete
     assert {signature(native, n) for n in native.candidates} == {signature(reference, n) for n in reference.candidates}
+    assert cached.complete and cached.stats['backend'] == 'cache'
+    assert {signature(cached, n) for n in cached.candidates} == {signature(reference, n) for n in reference.candidates}
     for node in range(native.stats['states']):
         replayed = replay_branch(native.record, native.witness_steps(node))
         assert semantic(replayed['state']) == semantic(native.state_at(node))

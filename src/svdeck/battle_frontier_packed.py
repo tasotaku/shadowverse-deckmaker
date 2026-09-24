@@ -63,14 +63,15 @@ def frontier(kernel: Kernel, states: Sequence[tuple[int, ...]], deadline: float)
 
 
 def analyze_packed(battle: Battle, *, max_states: int, max_outcomes: int, seconds: float,
-                   progress: Callable[[Json], None] | None = None) -> Json:
+                   progress: Callable[[Json], None] | None = None,
+                   kernel_factory: Callable[[Battle], Kernel] | None = None) -> Json:
     # AI_NOTE: 整数kernelの全合法手を列挙し、グラフだけをpacked保存する。beamや深さ制限は使わない。
     from .battle_frontier import Pool, freeze
     from .battle_frontier_fast import Kernel
     started = perf_counter()
     deadline = started+seconds
     root = Battle(battle.state, battle.cards, record=False)
-    kernel = Kernel(root)
+    kernel = (kernel_factory or Kernel)(root)
     states = States(len(kernel.initial))
     initial_key = states.key(kernel.initial)
     states.data.append(initial_key)
