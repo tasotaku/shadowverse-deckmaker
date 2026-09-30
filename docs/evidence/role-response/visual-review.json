@@ -1,0 +1,36 @@
+{
+  "review_type": "fresh screenshot-only visual review",
+  "verdict": "PASS",
+  "evidence": [
+    {"path": "output/roles-acceptance-t3-session/before.png", "dimensions": "1229x768", "scope": "cropped board view"},
+    {"path": "output/roles-acceptance-t3-session/after.png", "dimensions": "1229x768", "scope": "cropped board view"},
+    {"path": "output/roles-acceptance-t3-session/after-full.png", "dimensions": "1366x768", "scope": "completed full-page visible result"}
+  ],
+  "checks": [
+    {
+      "id": "ai-selector-label",
+      "status": "OK",
+      "evidence": "after-full.png bottom-left selector reads 役割から相手の返しを読む. The complete label is legible within its control with no clipping."
+    },
+    {
+      "id": "board-and-execute-control",
+      "status": "OK",
+      "evidence": "after-full.png is 1366x768. Both players' boards and hands are visible, and the AIが一手実行 button appears beside the AI selector at the bottom."
+    },
+    {
+      "id": "chosen-action-result-and-caveat",
+      "status": "OK",
+      "evidence": "after-full.png replay panel reads 1/1手 and 1手目・ターン終了; the board heading reads プレイヤー2のターン・1ターン目. The expanded この手のAI判断 area shows the selected reasoning label, an explanation including 近似 and 勝率や最善手の保証ではありません, and visible warnings about unconfirmed results and search cutoff."
+    },
+    {
+      "id": "visible-error-or-overlap",
+      "status": "OK",
+      "evidence": "after-full.png shows separate board and sidebar regions, readable controls and judgment text, and no visible error or overlapping element that obscures normal-use controls."
+    }
+  ],
+  "limits": [
+    "The first two images omit the sidebar and cannot alone establish selector, control, or judgment visibility; the final image supplies that evidence.",
+    "No product source, prior tests, or prior reports were inspected.",
+    "Screenshots do not establish click counts, focus, timing, storage, reopen behavior, or underlying decision correctness."
+  ]
+}

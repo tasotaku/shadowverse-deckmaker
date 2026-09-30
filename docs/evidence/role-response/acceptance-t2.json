@@ -1,0 +1,58 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "role-response-ai",
+  "spec_version": 1,
+  "spec_sha256": "2d85be6f1ec80a874f89d4db30a1cc846990a5bd3361dd8522752268dd9dc51d",
+  "executor_id": "/root/roles_acceptance_t2",
+  "started_at": "2026-09-30T04:59:00.334533+00:00",
+  "finished_at": "2026-09-30T05:08:18.904831+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t2",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t2\\validation-results.json"
+  },
+  "tests": [
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-30T04:59:00.334533+00:00",
+      "journey_stopped_at": "2026-09-30T05:05:51.866701+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Lock verified by the design-user-tests linter before public execution. input-manifest.json saved before either game launch; Python 3.12.1, svdeck distribution 0.1.0, engine battle-2, search version 2, reply version 3, roles decision policy_version 5.",
+        "Exact fixed pair, seed 93001, executed once each: evaluate --workers 1 --seeds 1 --decks ramp-dragon last-words-nightmare --seat 0; replay --decks last-words-nightmare ramp-dragon --seat 1. Both use roles versus search with role_k=5, turns=3, max_nodes=6000, seconds=8; public max_actions default reported as 500. Exact argv stored in input-manifest.json.",
+        "F1 terminal/legal play PASS: game1 roles seat0 vs search seat1 ended at 61 actions, winner seat1, leaders [0,12]; game2 search seat0 vs roles seat1 ended at 59 actions, winner seat0, leaders [9,0]. Both report completed=true and stop_reason=terminal, before max_actions=500. Final damage events and leaders are retained. Initial states match independent public new_match calls for the frozen seed/decks, each with two 40-card originals.",
+        "F1 legality PASS: each of all 120 recorded actions was directly present in Battle.observation(active_player).legal_actions before Battle.step, and all 120 computed intermediate states and frame actions exactly matched saved frames. No post-terminal action, illegal action, crash, synthetic limit win, or unfinished game observed.",
+        "F2 replay PASS: both normal svdeck.battle replay CLI outputs exactly match full saved final states; public replay(record).state and a separate ordinary Battle.step walk also match. Equality includes winner, leaders, boards, hands/decks, RNG, IDs and knowledge fields. 61 and 59 frame judgments survive replay/export with identical canonical SHA256 values; game1 evaluation judgments additionally match its saved replay judgments.",
+        "F2 integration PASS: evaluate produced exactly one selected game and its replay; replay produced exactly the second selected game. Policy/action identity agrees at every saved step: 25 and 23 roles decisions in the requested seats, and 36 search decisions in each game.",
+        "F3 resource/depth/coverage PASS: process launch-to-exit monotonic elapsed was 157.0071874 seconds (evaluate) and 146.3140222 seconds (replay generation). CLI game-loop times were 154.639 and 144.518 seconds; these differ intentionally from whole-process elapsed. Product-reported Windows PeakWorkingSetSize was 83,468,288 and 79,400,960 bytes, whole worker lifetime, not combined concurrent memory or retained heap; independent OS process-tree samples retained.",
+        "F3 requested/completed comparison PASS: roles requested 3 turns. Game1 had 24 decisions at common depth2 and 1 at depth1; game2 had 22 at depth2 and 1 at depth1. Every own_candidates comparison_depth equals the chosen judgment depth. Candidate ranges were 10–41 and 19–43. Full per-step roles/goals/coverage fractions and cutoffs are saved. Beam, role types/hands, nodes/time, unknown/future draws, common horizon and other stopping reasons remain explicit.",
+        "F3 interpretation PASS: evaluation summary separates wins/losses/draws/unfinished and says outcomes alone do not establish strength; both games are observed roles losses, not an estimate of superiority or a guaranteed win rate. Every roles judgment keeps complete=false, optimal=false, proven_win=false and explains approximate residual-card hand modeling.",
+        "U1 readable headless output PASS: stdout and JSON identify deck names, seats, roles/search, terminal winners, action counts, replay paths, resource scope and cutoffs; chosen actions and Japanese approximate explanations are saved per step in gameN-actions-and-decisions.json. No product source needed. No concrete headless usability issue observed.",
+        "U2 interaction/timing PASS: CLI-only journey, 0 browser clicks, 0 manual surface switches, 0 scroll actions, no focus/navigation requirement. Total game CLI times measured with time.perf_counter from subprocess launch to observed exit (0.2-second polling resolution); individual decision times kept separately. Game1 has external public-call wall_ms for all61 decisions; both replays preserve elapsed_ms for each decision. Roles saved elapsed_ms means 6036.276 and 6155.966; maxima 8008.149 and 8005.144. These are observations, no latency SLA.",
+        "Budget PASS: journey lasted 411.532168 seconds within 900 seconds. The two game processes overlapped; other independent journeys could contend for host CPU. Timing is a single concurrent run, not an isolated performance benchmark."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:06:31.5377086Z",
+        "evidence": "Dedicated game launchers, child workers and monitor exited. Checked owned PIDs [14580, 15476, 26520, 28352, 33568]; no live owned process remained. All raw records/logs and dormant helper files retained in output/roles-acceptance-t2; shared server and unrelated state untouched."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Two games demonstrate legal complete play only; they do not establish strength, statistical win rates, optimality or all engine rules.",
+    "Game2 replay records per-decision elapsed_ms and mean public-call decision time; unlike game1 evaluation it does not retain each outer public-call wall_ms. Report distinguishes these timing scopes.",
+    "Executor initially assumed game1 replay meta contained evaluation, but evaluate stores that summary separately. This adapter error occurred after game1 normal replay CLI returned final-state JSON. It was corrected without rerunning either game or that replay CLI. That first validation CLI exit code/elapsed were not retained; its captured final-state JSON exactly matches the saved final state and stderr is empty. Both actual game CLI exit codes and elapsed were retained.",
+    "Per-process OS peaks include interpreter/worker lifetime and other preceding work in the same worker, if any; sampled descendant peaks are not a combined instantaneous memory peak."
+  ]
+}

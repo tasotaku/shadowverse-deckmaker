@@ -1,0 +1,60 @@
+{
+  "schema_version": "test-spec-revision-equivalence/v1",
+  "spec_id": "role-response-ai",
+  "from_version": 1,
+  "to_version": 2,
+  "decision": "VALID_TEST_SPEC_ISSUE",
+  "rationale": "The failed prerequisite was the available browser control channel, before T3 began. A newly allocated public session provides the intended empty persistent state and protects existing user data. The public contract states that display and battle handling are shared with the ordinary URL. The blocked alternate hostname is not used.",
+  "changed_paths": [
+    "version",
+    "public_entry (append dedicated T3 session URL)",
+    "tests[T3].setup[0]",
+    "tests[T3].isolation_requirements",
+    "revision"
+  ],
+  "equivalence_mapping": {
+    "T1": {
+      "v1_test": "T1",
+      "v2_test": "T1",
+      "comparison": "verbatim block and full parsed test equal",
+      "unchanged_block_sha256": "464b21dce6abc2db0a2093d326e3e3b6323e8fd7526165e68960f4e48399c327",
+      "execution_reuse": "Reuse its existing once-only v1 execution with original evidence, timestamps and verdict; do not relabel it as a new execution or rerun because of this setup-only revision."
+    },
+    "T2": {
+      "v1_test": "T2",
+      "v2_test": "T2",
+      "comparison": "verbatim block and full parsed test equal",
+      "unchanged_block_sha256": "a03427fc9932a0bade3d7fdf8f1fe5709896868703a09e52ebfc704c33502cf3",
+      "execution_reuse": "Reuse its existing once-only v1 execution with original evidence, timestamps and verdict; do not relabel it as a new execution or rerun because of this setup-only revision."
+    }
+  },
+  "t3_equivalence": {
+    "before": "Dedicated tab, clean ordinary-origin storage, no saved replay, then registered condition and animation off.",
+    "after": "Dedicated tab, never-used UUID storage namespace on the same ordinary origin, documented empty/default state, no saved replay, then the identical registered condition and animation-off setup.",
+    "preserved_verbatim": [
+      "title",
+      "user_task",
+      "setup[1]",
+      "actions",
+      "functional_expectations",
+      "ux_checks",
+      "impossible_if",
+      "budget"
+    ],
+    "execution_reuse": "The v1 preflight has execution_count=0, so T3 still requires exactly one real execution under v2. No finding or PASS is inferred from setup readiness."
+  },
+  "preserved_criteria_sha256": "1fa0919be3ed64909079aaea7ce5fb1460a18f3c51f6bbdcc8afc9d9a5f7ee81",
+  "criteria_hash_scope": "Canonical sorted JSON of every test id, actions, functional_expectations, ux_checks, impossible_if and budget, identical in v1/v2.",
+  "preserved_global_contract": [
+    "goal",
+    "persona",
+    "test_data",
+    "minimal_test_count_rationale",
+    "execution_policy",
+    "reporting",
+    "coverage"
+  ],
+  "oracle": "independent-fixtures.v1.json unchanged",
+  "report_binding": "Keep original v1 T1/T2 reports immutable and reference this equivalence mapping when composing v2 evidence. A spec-version change does not authorize more test runs or turn prior findings into passes.",
+  "limitations": "The designer validated specification equivalence and the documented setup contract only. A fresh T3 executor must observe actual public behavior; missing session support, interaction failures, UX problems or incomplete save/reopen remain findings under unchanged criteria."
+}

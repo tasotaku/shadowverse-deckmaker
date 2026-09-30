@@ -1,0 +1,58 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "role-response-ai",
+  "spec_version": 1,
+  "spec_sha256": "2d85be6f1ec80a874f89d4db30a1cc846990a5bd3361dd8522752268dd9dc51d",
+  "executor_id": "roles_acceptance_t1-fresh-independent-20260930",
+  "started_at": "2026-09-30T05:00:09.640559+00:00",
+  "finished_at": "2026-09-30T05:07:11.846937+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t1",
+    "completed_record": "C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t1\\journey.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-30T05:00:09.640559+00:00",
+      "journey_stopped_at": "2026-09-30T05:00:12.551268+00:00",
+      "stop_reason": "impossible",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Lock verification before execution: PASS role-response-ai v1 sha256=2d85be6f1ec80a874f89d4db30a1cc846990a5bd3361dd8522752268dd9dc51d. Input manifest lists frozen contract, public documentation, public signature/setup inspection only.",
+        "Functional expectation 1: F1 selects play h-burn and executes winner=0, opponent life 0 and PP 0; F2 selects attack own->enemy and executes own health 1 on board, no enemy body, leaders 3/6. All K=3,5,10; direct Player output and normal Battle.step; PASS.",
+        "Functional expectation 1, F3: each K retains all five structural roles heal/remove_one/defense/develop/remove_all in 5 candidates. Relief yields life 6 and one 3/2 enemy; ward yields life 3 and a 0/7 ward with both enemies; sweep yields life 3 and no enemy. Each nonempty required set costs 2 PP and uses one original card from a 2-card witness. All 15 F3 witnesses replay legally; PASS.",
+        "Functional expectation 2: direct independent enumeration of [relief,ward], [relief,sweep], [ward,sweep] matches all 10 arithmetic checks. Each single=2/3, specific pair=1/3, relief-or-ward=1, any-of-three=1, all-three=0. Duplicate relief role requirement receives exclusive weights 2/3,0, residual 1/3; F3 candidate weights sum to 1 and coverage_exact=1. PASS.",
+        "Functional expectation 3: F4 at every K plays maker then generated burn3, requires original maker only, availability 1/3, costs 0+1 PP and wins at opposing life 0. Sequence identified from saved initial and per-action frames, not guessed from display labels. F5 max_pp=6 has no lethal and life remains 3; max_pp=7 contains lethal with life 0. Direct public diagnostics and 18 witness replays; PASS.",
+        "Functional expectation 4: both metadata checks pass at each K. 10742310 has unconditional heal and awakening-only draw 1; 10544110 retains ward play/removal on evolve, end-turn random_enemy count 2 plus heal conditional on unevolved, and end-turn enemy-leader damage conditional on evolved. Public card_roles profiles preserve the conditions and timing; PASS.",
+        "Functional expectation 5: frozen registered starting observation has opposing hidden hand count 4 and deck count 36. Hidden membership permutation and both deck-order/RNG/next-id mutation preserve observation exactly. Player comparisons and API comparisons each preserve all semantic judgment fields after removing only elapsed_ms/timing/memory. Every action is end_turn; role/candidate/availability fields also match. Fixed seeds are Player=1 and API public default=0 per returned settings. No actual engine step occurs on these source inputs before comparison; PASS.",
+        "Functional expectation 5 and UX check 1: public judgments identify chosen action, role names, approximate model, selected response count, 2-turn comparison, requested depth 3 and cutoff codes. They explicitly disclaim win-rate/optimality guarantees and set complete/optimal/proven_win=false. The registered API result reports 10 candidate responses, coverage 3903/9139 and beam/future_unknown_draw/role_hands/role_types cutoffs. All synthetic diagnostics say structural role labels still require engine conditions; PASS.",
+        "Functional expectation 6: K comparison retains actual candidate counts, scope, depth, nodes, cutoffs, wrapper wall time and process peak. F1/F2 compare depth 2 of requested 3; response diagnostics complete the modeled 1-turn witness scope, with complete=false for the approximation. No greater-strength/faster-K claim is made. Existing search accepts the same registered observation and returns a legal end_turn. PASS for correctness/coverage/depth integration; timing scope caveat below.",
+        "UX check 2: wall times use time.perf_counter; synthetic Player/diagnostic calls range 2.093–7.986 ms, metadata 7.864–11.473 ms, registered Player 348.152–362.671 ms, API round trip 468.043–545.047 ms. Process peak uses Windows GetProcessMemoryInfo.PeakWorkingSetSize, observed after each callback: 29.992–44.851 MiB across the executor lifetime. It includes previous local calls and excludes API server/concurrent journeys. Exact choose-only boundary was not recorded; INCOMPLETE for that narrow measurement condition.",
+        "Interaction observations: headless only, clicks=0, keys=0, manual surface switches=0, scrolls=0. Auto transitions/focus/viewport are not applicable. No browser or other UI surface was manipulated. Headless explanation readability GO; no concrete product UX defect observed.",
+        "Journey completed its public calls in 2.911 s against the fixed 720 s budget. All 77 calls returned, no time/node-budget failure or exception. 96 saved-result checks pass; 33/33 candidate witnesses are legal and reproduce declared outcomes. Parallel T2/T3 work may overlap on the same CPU/server; these are single-run shared-machine observations.",
+        "Harness correction only: the first assessment incorrectly expected the generated card display label to contain its proper name; product uses the generic label 生成カード. The assessor was corrected to inspect saved action frames, which show maker then burn3. Before-correction assessment retained; no product/spec/fixture edits or product reruns.",
+        "The public calls completed, but the unrecorded exact timer boundary cannot be recovered from preserved data without repeating successful calls. Therefore stop_reason=impossible refers only to completing that required measurement, and status=INCOMPLETE is not a product failure.",
+        "Detailed measured values and independent assertions: output/roles-acceptance-t1/assessment.json, extended-report.json, input-manifest.json and summary.txt. This per-executor T1-only report is intended for aggregation with independent T2/T3 entries; the full-spec validator requires all three entries."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:07:11.846937+00:00",
+        "evidence": "No helper process/server was started. Dedicated executor exits; API server remains running; raw files preserved. Read-only Get-Process check confirms executor PID 33192 no longer exists."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "The independent perf_counter starts at the adapter callback entry. For Player calls it includes Battle.observation and Player construction before choose; diagnostic calls include Counter construction. Exact choose-entry-only timing was not independently recorded. No product calls were repeated to improve this measurement. Public elapsed_ms is preserved but is not substituted for independently measured exact-boundary time."
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "role-response-ai",
+  "spec_version": 1,
+  "spec_sha256": "2d85be6f1ec80a874f89d4db30a1cc846990a5bd3361dd8522752268dd9dc51d",
+  "executor_id": "fresh-roles-acceptance-t3",
+  "started_at": "2026-09-30T04:58:32.687Z",
+  "finished_at": "2026-09-30T05:01:12.846Z",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "output/roles-acceptance-t3",
+    "completed_record": "output/roles-acceptance-t3/trial-record.json"
+  },
+  "tests": [
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 0,
+      "status": "NOT_RUN",
+      "journey_started_at": null,
+      "journey_stopped_at": null,
+      "stop_reason": "preflight_observation_channel",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Spec lock verification: PASS before browser setup; SHA-256 2d85be6f1ec80a874f89d4db30a1cc846990a5bd3361dd8522752268dd9dc51d.",
+        "Preflight public UI: dedicated Chrome tab 1412624734 at http://127.0.0.1:8767/, DOM and screenshot available. DOM measured innerWidth=1366 and innerHeight=768.",
+        "Isolation prerequisite: fresh local storage could not be established using the documented cua browser API. Available browser capability was viewport only; read-only evaluate did not expose localStorage/sessionStorage. Initial public UI shows 0/0 actions, but this is not treated as storage-isolation proof.",
+        "No journey action was performed: clicks=0, keys=0, scrolls=0, manual surface switches=0; selection of registered condition, roles selection, AI execution, save/open, and judgment comparison remain unobserved.",
+        "Functional expectations F1/F2: NOT_OBSERVED because journey not started. No evidence of product failure.",
+        "UX checks U1/U2/U3/U4: NOT_OBSERVED for the registered condition and roles flow. Only default initial page was viewed; no GO/NO-GO product ship judgment is justified.",
+        "Setup-only screenshot preserved at output/roles-acceptance-t3/00-initial.png; accessibility state at initial-ax.txt. Screenshots not used to infer action counts.",
+        "A direct isolated Playwright runtime was suggested during setup, but it was not used because current browser-tool guidance requires UI actions through cua_repl and no documented cua connection to that runtime was available."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:01:12.846Z",
+        "evidence": "Reset temporary viewport; closed only disposable cua tab 1412624734. Kept server running and unrelated tabs untouched. Workspace output/roles-acceptance-t3 and trial-record.json retained."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "T3 mandatory fresh-origin storage isolation could not be established through the available documented UI channel before journey start; therefore the fixed journey is NOT_RUN, not PASS or a product FAIL.",
+    "No UI/API-step transition, save/reopen, preserved judgment, intermediate focus or elapsed journey measurement was observed."
+  ]
+}

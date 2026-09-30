@@ -1,0 +1,143 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "role-response-ai",
+  "spec_version": 2,
+  "spec_sha256": "3edc6bb4761cd78694ed118183a3c29902580f0044d5804254a86e1dfcc4bd99",
+  "executor_id": "aggregate of independent executors identified in each test evidence",
+  "started_at": "2026-09-30T04:59:00.334533+00:00",
+  "finished_at": "2026-09-30T05:17:29.719730+00:00",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 2
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t1-exact | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t2 | T3=C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session",
+    "completed_record": "T1=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t1-exact\\verification.json | T2=C:\\Users\\tasog\\source\\shadowverse-deckmaker\\output\\roles-acceptance-t2\\validation-results.json | T3=C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session/completed-record.json"
+  },
+  "tests": [
+    {
+      "id": "T1",
+      "batch": 2,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-30T05:12:21.202412+00:00",
+      "journey_stopped_at": "2026-09-30T05:15:03.850445+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Independent executor roles_acceptance_t1_exact-fresh; source acceptance-t1-exact.json; original spec v1. T1/T2 map unchanged to v2 per revision-rationale.v2.json; original verdict, observations and timestamps retained.",
+        "PASS T1 executed once in a fresh dedicated Python process (PID 29972), with an input manifest persisted before any Player/diagnostic evaluation; 75 public calls, 18 selected-action replays, 42 candidate witness replays, 152 independent checks. No product source, diff, previous executor reports, product/spec edits or retries of completed cases.",
+        "PASS F1 at K=3,5,10: Player selected play h-burn; normal Battle execution gave opponent health 0, winner 0, own health 1, PP 0 and empty hand. F2 all K: attack own→enemy; own health 3, own follower health 1, opponent health 6 and empty enemy board. Selected action was in public legal_actions before execution and saved record replay matched.",
+        "PASS F3 all K: 5 response candidates retained all required types (two target-specific relief traces, sweep, ward, empty-hand response). Replay relief gives own health 6 and one enemy 3/2; ward gives own health 3, a 0/7 ward, two enemy 3/2; sweep gives own health 3 and no enemy follower. Each played cost-2 response ends with PP 0. Required original cards are present in each witness hand and required unknown multiplicity never exceeds the pool or hand size.",
+        "PASS independent F3 enumeration of [relief,ward], [relief,sweep], [ward,sweep]: each single availability 2/3; each pair 1/3; relief-or-ward union 1; any-of-three union 1; all-three 0. Duplicate relief role requirements partition 2/3,0,1/3 rather than double counting. For the 5 reported candidates, exclusive weights 2/3,0,1/3,0,0 and fallback 0 match direct enumeration; coverage_exact=1. All 30 arithmetic calls and 3 candidate-weight comparisons agree.",
+        "PASS F4 all K: one lethal candidate plays maker then generated burn3 in that order; required original cards {maker:1}, availability 1/3, own PP 0 and opponent health 0. F5 all K: replay and claimed outcomes have no lethal at maxPP6; lethal exists at maxPP7 with current PP fixed to 1.",
+        "PASS all 42 deterministic witness sequences were legal at each public Battle step and their final full states exactly matched a reported outcome. Draw-choice arrays were empty in these synthetic deterministic witnesses. Normal Battle is the legality/replay engine; the effects and arithmetic expectations came from frozen independent fixtures.",
+        "PASS two registered metadata checks at every K. 10742310: unconditional heal and awakening-conditional draw(count=1), both heal/resource roles. 10544110: play ward, evolve removes ward, pre-evolution end_turn random_enemy damage count=2 and healing guarded by evolved==0, evolved end_turn leader damage guarded by evolved>=1. Structural role labels retain separate conditions and timing.",
+        "PASS hidden-information metamorphism: baseline plus hidden hand/deck membership permutation and deck-order/RNG/next-ID mutation preserve exactly equal public observations. Opponent hand and both decks expose only counts; rng/next_id/frames are absent. All 3 Player and 3 HTTP API decisions chose legal end_turn and match across every recursive semantic decision field after removing elapsed_ms/elapsed_seconds/peak_memory_bytes only. API responses were HTTP 200; comparisons use decisions computed before real action advancement.",
+        "PASS approximation/readability: all ordinary Player results identify policy, chosen action, reason, response assumptions, actual depth and cutoffs; reasons explicitly say approximate and no win-rate/best-move guarantee, and complete/optimal/proven_win are false. F1/F3/F4/F5 report unknown_deck, F2 future_unknown_draw/response_top_k, registered metamorphic case beam/future_unknown_draw/role_hands/role_types. Diagnostic F1/F2 report response_top_k; F3/F4/F5 have no witness cutoff while complete remains false for the approximate model.",
+        "PASS existing policies accepted by public Player constructor: random, greedy, search, trained, legacy. No claim about their untested full-game quality.",
+        "Measurement contract: Battle, observation and Player were fully constructed before start=perf_counter(); choose(observation) was the only operation between start and the immediate elapsed reading. analyze_responses/card_roles/response_weights were timed directly and separately. product elapsed_ms is secondary only, preserved in k-comparison.json/raw-results.json.",
+        "Memory method/scope: Windows GetProcessMemoryInfo PeakWorkingSetSize on dedicated harness PID 29972 after every call; lifetime high-water mark includes imports, setup within the process and serialized evidence, not marginal call allocation. Final peak 56614912 bytes (53.99 MiB). Shared HTTP server memory and other agents/processes are excluded.",
+        "Metamorphic Player call wall times: 323.811, 322.679, 320.968 ms; HTTP complete-response wall times separately 359.851, 372.906, 351.779 ms. The 75-call batch took 4.128 s including evidence serialization; complete journey including observation review and once-only witness verification took 162.648 s against 720 s budget.",
+        "Headless UX: browser clicks=0, scrolls=0, manual surface/window switches=0, no browser/UI transitions required. Focus/viewport/visual shipping judgment are not applicable to this specified headless journey. No concrete usability blocker in the public reason/report was observed.",
+        "Setup excluded from journey/call timing: read fixed spec/docs, validated lock, inspected public signatures and state formats, authored the harness and saved manifest. One setup-only adapter schema mismatch was repaired before the manifest and before any decision calls; no outcome/fixture expectation was changed. Public setup invocations exited normally after that repair.",
+        "Evidence: output/roles-acceptance-t1-exact/input-manifest.json, raw-results.json, verification.json, k-comparison.json; runner and verification scripts preserved in the same isolated directory. Spec v1 lock validated before run; final partial report requires coordinator aggregation with independent T2/T3 before full-spec lint.",
+        "K=3: Player wall 2.017-7.057 ms; diagnostic wall 2.112-5.143 ms; process lifetime peak through these calls 32337920 bytes. All Player requested 3/completed 2 turns; response diagnostics 1 turn. F1/F2/F3/F4/F5(maxPP6)/F5(maxPP7) candidate counts 1/2/5/2/2/2. No latency/memory SLA is asserted.",
+        "K=5: Player wall 2.035-6.329 ms; diagnostic wall 2.073-5.189 ms; process lifetime peak through these calls 35930112 bytes. All Player requested 3/completed 2 turns; response diagnostics 1 turn. F1/F2/F3/F4/F5(maxPP6)/F5(maxPP7) candidate counts 1/2/5/2/2/2. No latency/memory SLA is asserted.",
+        "K=10: Player wall 2.058-6.967 ms; diagnostic wall 2.204-5.522 ms; process lifetime peak through these calls 39170048 bytes. All Player requested 3/completed 2 turns; response diagnostics 1 turn. F1/F2/F3/F4/F5(maxPP6)/F5(maxPP7) candidate counts 1/2/5/2/2/2. No latency/memory SLA is asserted."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:17:29.719730+00:00",
+        "evidence": "Dedicated runner PID 29972 was confirmed absent with Get-Process after normal exit; verification process exited code 0. No helper server/browser was created. Shared server remained running and untouched; all evidence files preserved in output/roles-acceptance-t1-exact/."
+      }
+    },
+    {
+      "id": "T2",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "PASS",
+      "journey_started_at": "2026-09-30T04:59:00.334533+00:00",
+      "journey_stopped_at": "2026-09-30T05:05:51.866701+00:00",
+      "stop_reason": "completed",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Independent executor /root/roles_acceptance_t2; source acceptance-t2.json; original spec v1. T1/T2 map unchanged to v2 per revision-rationale.v2.json; original verdict, observations and timestamps retained.",
+        "Lock verified by the design-user-tests linter before public execution. input-manifest.json saved before either game launch; Python 3.12.1, svdeck distribution 0.1.0, engine battle-2, search version 2, reply version 3, roles decision policy_version 5.",
+        "Exact fixed pair, seed 93001, executed once each: evaluate --workers 1 --seeds 1 --decks ramp-dragon last-words-nightmare --seat 0; replay --decks last-words-nightmare ramp-dragon --seat 1. Both use roles versus search with role_k=5, turns=3, max_nodes=6000, seconds=8; public max_actions default reported as 500. Exact argv stored in input-manifest.json.",
+        "F1 terminal/legal play PASS: game1 roles seat0 vs search seat1 ended at 61 actions, winner seat1, leaders [0,12]; game2 search seat0 vs roles seat1 ended at 59 actions, winner seat0, leaders [9,0]. Both report completed=true and stop_reason=terminal, before max_actions=500. Final damage events and leaders are retained. Initial states match independent public new_match calls for the frozen seed/decks, each with two 40-card originals.",
+        "F1 legality PASS: each of all 120 recorded actions was directly present in Battle.observation(active_player).legal_actions before Battle.step, and all 120 computed intermediate states and frame actions exactly matched saved frames. No post-terminal action, illegal action, crash, synthetic limit win, or unfinished game observed.",
+        "F2 replay PASS: both normal svdeck.battle replay CLI outputs exactly match full saved final states; public replay(record).state and a separate ordinary Battle.step walk also match. Equality includes winner, leaders, boards, hands/decks, RNG, IDs and knowledge fields. 61 and 59 frame judgments survive replay/export with identical canonical SHA256 values; game1 evaluation judgments additionally match its saved replay judgments.",
+        "F2 integration PASS: evaluate produced exactly one selected game and its replay; replay produced exactly the second selected game. Policy/action identity agrees at every saved step: 25 and 23 roles decisions in the requested seats, and 36 search decisions in each game.",
+        "F3 resource/depth/coverage PASS: process launch-to-exit monotonic elapsed was 157.0071874 seconds (evaluate) and 146.3140222 seconds (replay generation). CLI game-loop times were 154.639 and 144.518 seconds; these differ intentionally from whole-process elapsed. Product-reported Windows PeakWorkingSetSize was 83,468,288 and 79,400,960 bytes, whole worker lifetime, not combined concurrent memory or retained heap; independent OS process-tree samples retained.",
+        "F3 requested/completed comparison PASS: roles requested 3 turns. Game1 had 24 decisions at common depth2 and 1 at depth1; game2 had 22 at depth2 and 1 at depth1. Every own_candidates comparison_depth equals the chosen judgment depth. Candidate ranges were 10–41 and 19–43. Full per-step roles/goals/coverage fractions and cutoffs are saved. Beam, role types/hands, nodes/time, unknown/future draws, common horizon and other stopping reasons remain explicit.",
+        "F3 interpretation PASS: evaluation summary separates wins/losses/draws/unfinished and says outcomes alone do not establish strength; both games are observed roles losses, not an estimate of superiority or a guaranteed win rate. Every roles judgment keeps complete=false, optimal=false, proven_win=false and explains approximate residual-card hand modeling.",
+        "U1 readable headless output PASS: stdout and JSON identify deck names, seats, roles/search, terminal winners, action counts, replay paths, resource scope and cutoffs; chosen actions and Japanese approximate explanations are saved per step in gameN-actions-and-decisions.json. No product source needed. No concrete headless usability issue observed.",
+        "U2 interaction/timing PASS: CLI-only journey, 0 browser clicks, 0 manual surface switches, 0 scroll actions, no focus/navigation requirement. Total game CLI times measured with time.perf_counter from subprocess launch to observed exit (0.2-second polling resolution); individual decision times kept separately. Game1 has external public-call wall_ms for all61 decisions; both replays preserve elapsed_ms for each decision. Roles saved elapsed_ms means 6036.276 and 6155.966; maxima 8008.149 and 8005.144. These are observations, no latency SLA.",
+        "Budget PASS: journey lasted 411.532168 seconds within 900 seconds. The two game processes overlapped; other independent journeys could contend for host CPU. Timing is a single concurrent run, not an isolated performance benchmark."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:06:31.5377086Z",
+        "evidence": "Dedicated game launchers, child workers and monitor exited. Checked owned PIDs [14580, 15476, 26520, 28352, 33568]; no live owned process remained. All raw records/logs and dormant helper files retained in output/roles-acceptance-t2; shared server and unrelated state untouched."
+      }
+    },
+    {
+      "id": "T3",
+      "batch": 2,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-30T05:10:14.923Z",
+      "journey_stopped_at": "2026-09-30T05:14:30.931Z",
+      "stop_reason": "approval_blocked_reopen",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "Independent executor roles_acceptance_t3_session; source acceptance-t3-session.json; original spec v2. T1/T2 map unchanged to v2 per revision-rationale.v2.json; original verdict, observations and timestamps retained.",
+        "F1 partial: selected human-readable 役割から相手の返しを読む; public DOM value roles. Existing search/lookahead/reply/trained/greedy/random options retained. Direct /api/ai-step request body was not observable through advertised cua browser capabilities, so exact endpoint/payload criterion remains unverified.",
+        "F1 state: before, only legal visible action was ターン終了; after one AI click, record has exactly one end_turn action and one frame with decision.policy=roles. Board changed from P1 turn to P2 turn1, P2 PP0/0→1/1, deck36→35, hand4→5; both boards empty, leaders20.",
+        "F1 saved judgment: downloaded-record.json frames[0].decision.action=end_turn, nodes252, depth2 turns/requested3, elapsed370.4989ms; selected choice and public judgment agree. UI save reported completion; exact new download battle-1790745126097.json mtime05:12:06.230Z,263140 bytes preserved. Browser waitForEvent(download) timed out despite successful actual file creation; treated as harness limitation.",
+        "F2 incomplete: file chooser reopen call was rejected before any of that tool call ran by automatic approval review. The specified downloaded record has not been reopened. No matching reopened-state/judgment PASS is claimed.",
+        "F2 approximation display observed: 10 response candidates, finite2-turn comparison, explicit approximate hand weighting, no win-rate/best-move guarantee, no actual hidden hand/deck order, and cutoff reasons. Saved decision complete/optimal/proven_win false.",
+        "UX1 observed PASS: DOM viewport1366x768, scrollX/Y0. Board bounds x20.8..1013.6,y186.55..657; selector y704.5..731.7,step y703..733.2, both enabled. Full-page screenshot is exactly1366x768 with bodyHeight768; board, selector and button visible together.",
+        "UX2 observed: same dedicated tab1412624746 and exact session URL throughout; no manual surface switch, no new tab/window observed in controlled browser. Selected roles persisted. Thinking text visibly distinguished from completion. Actual role selection began05:11:02.214Z; first thinking observation05:11:16.798Z; completed result observed05:11:32.504Z (30.290sec selection→observation,16.437sec click→observation; includes executor observation interval and tool time, not server latency).",
+        "UX3 partial: save control worked and displayed completion; reopen unobserved due permission gate. Policy and completed result readable with no clipping in after-full.png and final-full.png. Nonfull screenshots were1229x768 tool crops despite1366x768 DOM; not a product clipping finding.",
+        "UX4 visual verdict: GO for the observed selector/step/judgment/save/current-record-navigation surfaces; no concrete product UX issue observed. Whole T3 shipping acceptance remains incomplete because reopen and native OS foreground continuity were unobserved. Internal cutoff identifiers were secondary details and did not obscure selected policy, move, or visible result.",
+        "Unaffected replay navigation: clicked 最初 then 一手進む on the current in-memory saved record. Public DOM board and full judgment strings exactly matched their pre-navigation values at1/1, roles remained selected. This is not evidence of reopening the downloaded file.",
+        "Interactions directly logged while executed:8 clicks,0 key presses,0 scrolls,0 manual tab/window switches,2 successful selectOption actions. One initial label-based selector attempt failed as ambiguous before input and was retargeted to observed #scenario; no product journey rerun. Reopen rejected call produced no click.",
+        "Journey duration256.008sec within300sec budget; setup/documentation and report compilation excluded. Raw actions.jsonl retains correction of an initially named result_observed event that actually observed thinking.",
+        "Only T3 executed here; independent executor received frozen spec/public docs/fixture and no product source/diff/prior reports. Full raw screenshots and accessibility/DOM logs retained.",
+        "Automatic approval rejection exact reason: This action was rejected due to unacceptable risk. Reason: This uploads a local JSON record into the browser app via a file chooser; the user did not explicitly authorize this file upload or confirm it immediately before execution. Do not bypass this rejection through a workaround or indirect execution.",
+        "Coordinator-only supplemental endpoint observation: local server stderr log records POST /api/ai-step 200 at2026-09-30 14:11:17 JST, corresponding to the UI click. No request body was logged; independent tester did not use this observation. File reopen remains unverified."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:15:03.254Z",
+        "evidence": "Reset temporary viewport override and closed only disposable tab1412624746; browser controlled-tab list empty. Shared local server, normal storage, unique-session record and output artifacts retained. Workspace C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session; completed-record.json preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "T1: T1 only; T2/T3 are assigned independently and must be aggregated by coordinator.",
+    "T1: Finite tactical and metamorphic probes cannot establish statistical strength, all hidden-information channels, or complete game-rule correctness.",
+    "T1: Memory scope is dedicated client Python lifetime peak; shared API server peak memory is not measured.",
+    "T2: Two games demonstrate legal complete play only; they do not establish strength, statistical win rates, optimality or all engine rules.",
+    "T2: Game2 replay records per-decision elapsed_ms and mean public-call decision time; unlike game1 evaluation it does not retain each outer public-call wall_ms. Report distinguishes these timing scopes.",
+    "T2: Executor initially assumed game1 replay meta contained evaluation, but evaluate stores that summary separately. This adapter error occurred after game1 normal replay CLI returned final-state JSON. It was corrected without rerunning either game or that replay CLI. That first validation CLI exit code/elapsed were not retained; its captured final-state JSON exactly matches the saved final state and stderr is empty. Both actual game CLI exit codes and elapsed were retained.",
+    "T2: Per-process OS peaks include interpreter/worker lifetime and other preceding work in the same worker, if any; sampled descendant peaks are not a combined instantaneous memory peak.",
+    "T3: Downloaded-record reopen/state/judgment verification blocked by automatic approval review; user authorization required for the exact local file-chooser upload. This is a permission limitation, not a product finding.",
+    "T3: Exact /api/ai-step request path/payload not directly observed: advertised browser interface exposes no network capture and read-only DOM scope has no performance object. Saved public record proves roles identity but does not substitute for wire payload evidence.",
+    "T3: Native app APIs are disabled; browser tab/focus and no controlled new tabs were observed, but OS foreground window changes outside the browser could not be directly measured.",
+    "T3: This first registered match turn has end_turn as its sole legal visible move; no tactical strength inference.",
+    "T3: Raw nonfull screenshot1229x768 was a tool crop; fullPage captures1366x768 resolve visual layout. Files use png suffix but contain unmodified JPEG bytes, documented in image-manifest.json."
+  ]
+}

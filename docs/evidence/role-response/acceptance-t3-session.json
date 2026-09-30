@@ -1,0 +1,61 @@
+{
+  "schema_version": "user-test-report/v1",
+  "spec_id": "role-response-ai",
+  "spec_version": 2,
+  "spec_sha256": "3edc6bb4761cd78694ed118183a3c29902580f0044d5804254a86e1dfcc4bd99",
+  "executor_id": "roles_acceptance_t3_session",
+  "started_at": "2026-09-30T05:10:14.919Z",
+  "finished_at": "2026-09-30T05:16:19.601Z",
+  "scheduling": {
+    "available_executor_slots": 3,
+    "batch_count": 1
+  },
+  "execution_artifacts": {
+    "preserved_workspace": "C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session",
+    "completed_record": "C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session/completed-record.json"
+  },
+  "tests": [
+    {
+      "id": "T3",
+      "batch": 1,
+      "execution_count": 1,
+      "status": "INCOMPLETE",
+      "journey_started_at": "2026-09-30T05:10:14.923Z",
+      "journey_stopped_at": "2026-09-30T05:14:30.931Z",
+      "stop_reason": "approval_blocked_reopen",
+      "functional_findings": [],
+      "ux_findings": [],
+      "unexpected_findings": [],
+      "test_spec_issues": [],
+      "evidence": [
+        "F1 partial: selected human-readable 役割から相手の返しを読む; public DOM value roles. Existing search/lookahead/reply/trained/greedy/random options retained. Direct /api/ai-step request body was not observable through advertised cua browser capabilities, so exact endpoint/payload criterion remains unverified.",
+        "F1 state: before, only legal visible action was ターン終了; after one AI click, record has exactly one end_turn action and one frame with decision.policy=roles. Board changed from P1 turn to P2 turn1, P2 PP0/0→1/1, deck36→35, hand4→5; both boards empty, leaders20.",
+        "F1 saved judgment: downloaded-record.json frames[0].decision.action=end_turn, nodes252, depth2 turns/requested3, elapsed370.4989ms; selected choice and public judgment agree. UI save reported completion; exact new download battle-1790745126097.json mtime05:12:06.230Z,263140 bytes preserved. Browser waitForEvent(download) timed out despite successful actual file creation; treated as harness limitation.",
+        "F2 incomplete: file chooser reopen call was rejected before any of that tool call ran by automatic approval review. The specified downloaded record has not been reopened. No matching reopened-state/judgment PASS is claimed.",
+        "F2 approximation display observed: 10 response candidates, finite2-turn comparison, explicit approximate hand weighting, no win-rate/best-move guarantee, no actual hidden hand/deck order, and cutoff reasons. Saved decision complete/optimal/proven_win false.",
+        "UX1 observed PASS: DOM viewport1366x768, scrollX/Y0. Board bounds x20.8..1013.6,y186.55..657; selector y704.5..731.7,step y703..733.2, both enabled. Full-page screenshot is exactly1366x768 with bodyHeight768; board, selector and button visible together.",
+        "UX2 observed: same dedicated tab1412624746 and exact session URL throughout; no manual surface switch, no new tab/window observed in controlled browser. Selected roles persisted. Thinking text visibly distinguished from completion. Actual role selection began05:11:02.214Z; first thinking observation05:11:16.798Z; completed result observed05:11:32.504Z (30.290sec selection→observation,16.437sec click→observation; includes executor observation interval and tool time, not server latency).",
+        "UX3 partial: save control worked and displayed completion; reopen unobserved due permission gate. Policy and completed result readable with no clipping in after-full.png and final-full.png. Nonfull screenshots were1229x768 tool crops despite1366x768 DOM; not a product clipping finding.",
+        "UX4 visual verdict: GO for the observed selector/step/judgment/save/current-record-navigation surfaces; no concrete product UX issue observed. Whole T3 shipping acceptance remains incomplete because reopen and native OS foreground continuity were unobserved. Internal cutoff identifiers were secondary details and did not obscure selected policy, move, or visible result.",
+        "Unaffected replay navigation: clicked 最初 then 一手進む on the current in-memory saved record. Public DOM board and full judgment strings exactly matched their pre-navigation values at1/1, roles remained selected. This is not evidence of reopening the downloaded file.",
+        "Interactions directly logged while executed:8 clicks,0 key presses,0 scrolls,0 manual tab/window switches,2 successful selectOption actions. One initial label-based selector attempt failed as ambiguous before input and was retargeted to observed #scenario; no product journey rerun. Reopen rejected call produced no click.",
+        "Journey duration256.008sec within300sec budget; setup/documentation and report compilation excluded. Raw actions.jsonl retains correction of an initially named result_observed event that actually observed thinking.",
+        "Only T3 executed here; independent executor received frozen spec/public docs/fixture and no product source/diff/prior reports. Full raw screenshots and accessibility/DOM logs retained.",
+        "Automatic approval rejection exact reason: This action was rejected due to unacceptable risk. Reason: This uploads a local JSON record into the browser app via a file chooser; the user did not explicitly authorize this file upload or confirm it immediately before execution. Do not bypass this rejection through a workaround or indirect execution."
+      ],
+      "cleanup": {
+        "status": "completed",
+        "finished_at": "2026-09-30T05:15:03.254Z",
+        "evidence": "Reset temporary viewport override and closed only disposable tab1412624746; browser controlled-tab list empty. Shared local server, normal storage, unique-session record and output artifacts retained. Workspace C:/Users/tasog/source/shadowverse-deckmaker/output/roles-acceptance-t3-session; completed-record.json preserved."
+      }
+    }
+  ],
+  "product_findings_count": 0,
+  "blind_spots": [
+    "Downloaded-record reopen/state/judgment verification blocked by automatic approval review; user authorization required for the exact local file-chooser upload. This is a permission limitation, not a product finding.",
+    "Exact /api/ai-step request path/payload not directly observed: advertised browser interface exposes no network capture and read-only DOM scope has no performance object. Saved public record proves roles identity but does not substitute for wire payload evidence.",
+    "Native app APIs are disabled; browser tab/focus and no controlled new tabs were observed, but OS foreground window changes outside the browser could not be directly measured.",
+    "This first registered match turn has end_turn as its sole legal visible move; no tactical strength inference.",
+    "Raw nonfull screenshot1229x768 was a tool crop; fullPage captures1366x768 resolve visual layout. Files use png suffix but contain unmodified JPEG bytes, documented in image-manifest.json."
+  ]
+}
