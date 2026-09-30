@@ -6,6 +6,7 @@ import json
 import math
 import random
 import time
+from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from typing import Any
@@ -54,7 +55,8 @@ def game(job: Json) -> Json:
         nodes += decision['nodes']
         depths.setdefault(decision.get('depth_unit', 'actions'), []).append(decision['depth'])
         limited += bool(decision.get('limited'))
-        for kind, amount in decision.get('cutoffs', {}).items():
+        limits = decision.get('cutoffs', [])
+        for kind, amount in (limits if isinstance(limits, dict) else Counter(limits)).items():
             cutoffs[kind] = cutoffs.get(kind, 0)+amount
         role_search = decision.get('role_search')
         if role_search:

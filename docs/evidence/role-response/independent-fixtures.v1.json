@@ -1,0 +1,90 @@
+{
+  "schema_version": "role-response-independent-fixtures/v1",
+  "purpose": "Independent finite oracles for approximate role-guided opponent response search; expected results derived before product execution.",
+  "adapter_contract": "Each state/cards case uses the public Battle fixture schema. A small executor may map known_remaining and hidden_hand_count to the documented public-deck observation format; it must not modify expected outcomes or use actual hidden hands for roles decisions. Response probes may call the documented role-response diagnostic entry rather than infer omitted responses from the selected first action. Synthetic reduced pools model a 40-card deck after public consumption; they are not legal new_game decklists.",
+  "common_cards": {
+    "blank": {"name": "Unplayable filler", "kind": "spell", "cost": 99, "effects": []},
+    "burn3": {"name": "Three face damage", "kind": "spell", "cost": 1, "effects": [{"op": "damage", "target": "enemy_leader", "amount": 3}]},
+    "own4": {"name": "Ready four attack", "kind": "follower", "cost": 1, "attack": 4, "health": 4},
+    "enemy3": {"name": "Three attack", "kind": "follower", "cost": 1, "attack": 3, "health": 3},
+    "enemy32": {"name": "Three attack two health", "kind": "follower", "cost": 1, "attack": 3, "health": 2},
+    "relief": {"name": "Remove one and heal", "kind": "spell", "cost": 2, "effects": [{"op": "damage", "target": "chosen_enemy", "amount": 2}, {"op": "heal", "target": "own_leader", "amount": 3}]},
+    "ward": {"name": "Seven health ward", "kind": "follower", "cost": 2, "attack": 0, "health": 7, "keywords": ["守護"]},
+    "sweep": {"name": "Two damage to all enemy followers", "kind": "spell", "cost": 2, "effects": [{"op": "damage", "target": "all_enemy", "amount": 2}]},
+    "maker": {"name": "Create a finisher", "kind": "spell", "cost": 0, "effects": [{"op": "generate", "target": "self", "card_id": "burn3", "count": 1}]},
+    "conditional": {"name": "Awakening face damage", "kind": "spell", "cost": 1, "effects": [{"op": "damage", "target": "enemy_leader", "amount": 3, "condition": "awakening"}]}
+  },
+  "state_defaults": {"active_player": 0, "winner": null, "each_player": {"turn": 1, "ep": 0, "sep": 0, "extra_pp_used": true, "deck": ["blank", "blank", "blank"]}},
+  "cases": [
+    {
+      "id": "F1-current-lethal",
+      "kind": "choose-and-execute",
+      "state_overrides": {"players": [{"health": 1, "pp": 1, "max_pp": 1, "hand": [{"id": "h-burn", "card_id": "burn3"}]}, {"health": 3, "board": [{"id": "enemy", "card_id": "enemy3"}]}]},
+      "expected_first_action": {"type": "play", "card": "h-burn"},
+      "expected_after": {"winner": 0, "players": [{"health": 1, "pp": 0, "hand": []}, {"health": 0}]},
+      "oracle": "The available spell deals exactly the opponent's three remaining life immediately; passing loses to the visible attacker. No hidden-card assumption is needed."
+    },
+    {
+      "id": "F2-trade-prevents-visible-lethal",
+      "kind": "choose-and-execute",
+      "state_overrides": {"players": [{"health": 3, "pp": 0, "max_pp": 0, "board": [{"id": "own", "card_id": "own4"}]}, {"health": 6, "board": [{"id": "enemy", "card_id": "enemy3"}]}]},
+      "known_remaining": {"blank": 3},
+      "hidden_hand_count": 0,
+      "expected_first_action": {"type": "attack", "source": "own", "target": "enemy"},
+      "expected_after": {"winner": null, "players": [{"health": 3, "board": [{"id": "own", "health": 1}]}, {"health": 6, "board": []}]},
+      "oracle": "Face damage leaves the opponent alive at two and their three attack kills us. Trading removes that attacker and leaves our body at one life."
+    },
+    {
+      "id": "F3-diverse-overlapping-responses",
+      "kind": "response-candidate-probe",
+      "state_overrides": {"players": [{"health": 3, "pp": 2, "max_pp": 2}, {"health": 20, "board": [{"id": "e1", "card_id": "enemy32"}, {"id": "e2", "card_id": "enemy32"}]}]},
+      "responding_player": 0,
+      "known_remaining": {"relief": 1, "ward": 1, "sweep": 1},
+      "hidden_hand_count": 2,
+      "sampling_model": "Uniform unordered two-card subset of the three remaining physical cards.",
+      "enumerated_hands": [["relief", "ward"], ["relief", "sweep"], ["ward", "sweep"]],
+      "expected_candidates": [
+        {"required_cards": {"relief": 1}, "roles": ["healing", "single_removal"], "outcome": "Responder life 6; exactly one enemy 3/2 remains."},
+        {"required_cards": {"ward": 1}, "roles": ["defense", "development"], "outcome": "Responder life 3; a 0/7 ward is in play; both enemy 3/2 remain."},
+        {"required_cards": {"sweep": 1}, "roles": ["area_removal"], "outcome": "Responder life 3; both enemy followers removed."}
+      ],
+      "expected_availability": {"each_single_card": "2/3", "each_specific_pair": "1/3", "at_least_one_of_relief_or_ward": "1", "at_least_one_of_all_three": "1", "all_three": "0"},
+      "oracle": "Enumerating the three equiprobable hands gives the fractions. A card having two roles is still one physical card. Healing leaves more life, ward leaves a defender, sweep leaves an empty enemy board: keep all three response types at K=3,5,10 rather than pruning on one immediate score. Two cost-2 cards cannot both be played with 2 PP. Candidate traces must replay to the stated distinct outcomes."
+    },
+    {
+      "id": "F4-generation-enabler-and-order",
+      "kind": "response-candidate-probe",
+      "state_overrides": {"players": [{"health": 3, "pp": 1, "max_pp": 1}, {"health": 3}]},
+      "responding_player": 0,
+      "known_remaining": {"maker": 1, "blank": 2},
+      "hidden_hand_count": 1,
+      "expected_sequence": ["play maker", "play generated burn3"],
+      "expected_required_original_cards": {"maker": 1},
+      "expected_availability": "1/3",
+      "expected_after": {"winner": 0, "players": [{"pp": 0}, {"health": 0}]},
+      "oracle": "The only lethal originates from the resource/generation enabler, costs 0+1, and must create the damage spell before using it. burn3 is not required in the original hand/deck. An algorithm filtering only original damage cards misses the response."
+    },
+    {
+      "id": "F5-conditional-effect-not-always-active",
+      "kind": "paired-response-candidate-probe",
+      "state_overrides": {"players": [{"health": 3, "pp": 1, "max_pp": 6}, {"health": 3}]},
+      "responding_player": 0,
+      "known_remaining": {"conditional": 1},
+      "hidden_hand_count": 1,
+      "variants": [{"max_pp": 6, "expected_lethal_response": false}, {"max_pp": 7, "expected_lethal_response": true}],
+      "oracle": "Awakening is inactive below maximum PP seven. Identical role labels cannot make the damage unconditional. At seven maximum PP, the spell deals three and wins. Current PP remains one in both variants."
+    }
+  ],
+  "registered_card_metadata_checks": [
+    {"card_id": "10742310", "required_semantics": "Healing is unconditional; drawing one card is a resource role conditional on awakening."},
+    {"card_id": "10544110", "required_semantics": "Before evolution: ward/defense, end-turn random two-target removal and healing. After evolution: end-turn face damage, with ward removed. Preserve timing, target count/randomness and evolved condition; do not promise all effects at once."}
+  ],
+  "hidden_information_metamorphism": {
+    "base": "A registered-deck live Battle observation with opponent hand size at least two and a nonempty deck, captured before a roles decision.",
+    "variants": ["Permute actual opponent hidden hand/deck membership while keeping original public deck multiset, public history, counts and all visible state equal.", "Permute actual hidden deck order and alter engine RNG and next entity ID while keeping visible observation equal."],
+    "fixed_inputs": ["Player public observation", "public card definitions", "roles configuration", "roles seed"],
+    "expected": "Selected legal action and semantic role/candidate/availability diagnostics equal, ignoring elapsed time/memory and opaque execution IDs. The engine is not advanced before comparison. New policy inputs never contain actual opponent hidden cards, either deck order, engine RNG or future replay frames."
+  },
+  "full_game_pair": {"seed": 93001, "policy": "roles", "opponent": "search", "games": [{"seat0": "ramp-dragon", "seat1": "last-words-nightmare", "roles_seat": 0}, {"seat0": "last-words-nightmare", "seat1": "ramp-dragon", "roles_seat": 1}], "require": "Two terminal games, every action legal, export/import replay final state equal; report winner/steps but make no strength or statistical win-rate claim."},
+  "measurement_contract": {"k_values": [3, 5, 10], "repeat_policy": "One run of each fixed case/variant per K, identical public input and seed.", "record": ["correct expected outcomes", "candidate response type coverage and omitted types/cutoffs", "candidate counts", "requested/completed depth or action depth with units", "decision wall time measured around public call", "process peak memory with measurement method", "replay legality"], "limits": "Use documented finite resource budgets, record them and actual stopping reason. No invented latency/memory SLA; an incomplete run is incomplete, not an optimality or correctness proof."}
+}

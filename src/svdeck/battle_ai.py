@@ -22,7 +22,7 @@ Json = dict[str, Any]
 BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
-POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn', 'reply', 'lookahead')
+POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn', 'reply', 'lookahead', 'roles')
 POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
@@ -207,20 +207,22 @@ class Node:
 class Player:
     def __init__(self, cards: dict[str, Json], policy: str = 'search', weights: dict[str, float] | None = None,
                  max_nodes: int | None = None, width: int = 6, depth: int = 6, seed: int = 0,
-                 turns: int = 3, seconds: float = 2.0):
+                 turns: int = 3, seconds: float | None = None, role_k: int = 5):
         # AI_NOTE: 同じ共通処理に探索量・評価重みだけを差し替えて比較できる。
         if policy not in POLICIES:
             raise ValueError(f'未対応のAI方式: {policy}')
         self.cards = cards
         self.policy = policy
-        self.algorithm_version = 4 if policy == 'lookahead' else (3 if policy == 'reply' else (2 if policy in ('search','turn') else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1)))
-        if self.algorithm_version not in (1,2,3,4):
+        self.algorithm_version = 5 if policy == 'roles' else (4 if policy == 'lookahead' else (3 if policy == 'reply' else (2 if policy in ('search','turn') else (json.loads(MODEL_PATH.read_text()).get('policy_version',1) if policy=='trained' else 1))))
+        if self.algorithm_version not in (1,2,3,4,5):
             raise ValueError('未対応のAI判断バージョンです')
         self.weights = dict(weights if weights is not None else load_weights() if policy == 'trained' else BASE_WEIGHTS)
         if set(self.weights) != set(BASE_WEIGHTS) or any(not math.isfinite(v) for v in self.weights.values()):
             raise ValueError('評価重みが不正です')
-        self.max_nodes = integer(max_nodes if max_nodes is not None else 4000 if policy == 'lookahead' else 160, 'max_nodes', 1, 10000)
+        self.max_nodes = integer(max_nodes if max_nodes is not None else 6000 if policy == 'roles' else 4000 if policy == 'lookahead' else 160, 'max_nodes', 1, 100000 if policy == 'roles' else 10000)
         self.turns = integer(turns, 'turns', 1, 5)
+        self.role_k = integer(role_k, 'role_k', 1, 20)
+        seconds = (8.0 if policy == 'roles' else 2.0) if seconds is None else seconds
         if isinstance(seconds, bool) or not isinstance(seconds, (int, float)) or not 0 < seconds <= 60:
             raise ValueError('secondsは0より大きく60以下です')
         self.seconds = seconds
@@ -238,6 +240,9 @@ class Player:
         if self.policy == 'lookahead':
             from .battle_lookahead import choose
             return choose(self, observation)
+        if self.policy == 'roles':
+            from .battle_role_ai import choose as choose_roles
+            return choose_roles(self, observation)
         if self.policy == 'random':
             action = copy.deepcopy(self.random.choice(legal))
             return {'action': action, 'policy': self.policy, 'reason': '合法手から無作為に選択',

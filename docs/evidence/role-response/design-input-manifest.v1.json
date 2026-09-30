@@ -1,0 +1,24 @@
+{
+  "schema_version": "independent-design-inputs/v1",
+  "designer": "/root/roles_acceptance_design",
+  "independence": "Fresh context-free delegated designer. No product source, diff, new candidate results, or implementer algorithm explanations were inspected. Expectations precede any new product execution.",
+  "task_input": "User objective/public requirements, policy name roles, public Player/API/CLI/battle-lab entry points, registered two-deck snapshots, approximate modeling and hidden-information boundary, K=3/5/10 comparison, bounded independent tests.",
+  "read_sources": [
+    "C:/Users/tasog/.agents/skills/design-user-tests/SKILL.md",
+    "C:/Users/tasog/.agents/skills/design-user-tests/references/test-spec-contract.md",
+    "C:/Users/tasog/.agents/skills/loop-engineering/SKILL.md",
+    "C:/Users/tasog/source/agent-lab/rules/{values,communication,explain,parallel,design,coding,workflow,knowledge,models/gpt-5-6-terra}.md",
+    "docs/battle.md",
+    "docs/battle-ai.md",
+    "docs/battle-lookahead.md",
+    "docs/battle-development.md",
+    "src/svdeck/data/battle_decks.json",
+    "src/svdeck/data/battle_cases.json (first three public cases; schema)",
+    "tests/fixtures/battle_lookahead_cases.json (first public fixture; schema)",
+    "src/svdeck/data/battle_example_replay.json (public exported schema and card definitions; one-line serialization also emitted existing random replay frames unintentionally, not new candidate output)",
+    "C:/Users/tasog/source/agent-lab/skills/design-user-tests/scripts/lint_user_test_artifact.py (artifact schema validator only)"
+  ],
+  "oracle_sources": "Public declarative card effects and elementary hand-subset enumeration; no existing policy verdict or output is used as the expected answer.",
+  "write_allowlist": ["docs/evidence/role-response/spec*", "docs/evidence/role-response/design-input-manifest*", "docs/evidence/role-response/independent-fixtures*"],
+  "design_limits": "Three journeys, five synthetic probes, two registered-card metadata checks, one hidden-state metamorphic pair, two complete-game seat checks. Product source audit belongs to engineering validation; independent acceptance uses public behavior."
+}
