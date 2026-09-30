@@ -263,7 +263,7 @@ function render() {
   showDifferences($('changes'),view.cursor && previous ? differences(previous,state) : []);
   controls();
 }
-const AI_NAMES = {lookahead:'手札候補から3ターン先読み（試作）',search:'先読みAI',reply:'相手の返しを読む（試作）',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
+const AI_NAMES = {roles:'役割から相手の返しを読む',lookahead:'手札候補から3ターン先読み（試作）',search:'先読みAI',reply:'相手の返しを読む（試作）',trained:'調整版（比較用）',greedy:'一手評価',random:'無作為'};
 function renderDecision(decision, state) {
   // AI_NOTE: 判断は表示中の手に保存されたものだけを示し、現在の選択方式と取り違えない。
   const target = $('ai-decision');
@@ -278,6 +278,29 @@ function renderDecision(decision, state) {
   target.append(node('p','ai-metrics',`評価 ${score(decision.score)} · 試した手 ${decision.nodes ?? '—'} · 先読み ${decision.depth ?? '—'}${decision.depth_unit === 'turns' ? 'ターン' : '手'} · ${Number.isFinite(decision.elapsed_ms) ? (decision.elapsed_ms / 1000).toFixed(2) + '秒' : '時間未記録'}`));
   target.append(node('p','hint','評価値は勝率ではありません。相手の実際の手札・山札順は見ていません。' + (decision.response_search?.available ? '公開デッキから手札を仮定しています。' : '')));
   if (decision.uncertain) target.append(node('p','ai-caution','未確定の結果を含むため、先読みの評価には限界があります。'));
+  if (decision.limited) {
+    const limits = {nodes:'探索数',time:'時間',seconds:'時間',depth:'先読みの深さ',turns:'先読みターン数'};
+    const cutoffs = Object.entries(decision.cutoffs || {}).filter(([,count]) => count).map(([kind,count]) => `${limits[kind] || kind}: ${count}`);
+    target.append(node('p','ai-caution',`探索上限で打切り${cutoffs.length ? '（' + cutoffs.join('・') + '）' : ''}。未確認の手順があります。`));
+  }
+  const roles = decision.role_search;
+  if (roles) {
+    // AI_NOTE: 一様な手札仮定での保有率と、近似した応手評価・勝率を区別して表示する。
+    const detail = node('details'), list = node('ul');
+    const names = {healing:'回復',heal:'回復',single_removal:'単体除去',removal:'除去',area_removal:'全体除去',aoe:'全体除去',defense:'防御',development:'展開',damage:'打点',draw:'ドロー',generation:'カード生成',lethal:'決着を狙う',ward:'守護',attack:'攻撃',ramp:'PP加速'};
+    const label = role => names[role] || role;
+    detail.append(node('summary','',`役割から仮定した相手の返し（${roles.candidates?.length || 0}候補）`));
+    detail.append(node('p','hint','公開デッキと盤面から返しを近似しています。実際の手札や最善手を特定したものではありません。保有率は「残りのカードを一様に引く」仮定で、勝率ではありません。'));
+    if (roles.goals?.length) detail.append(node('p','',`探した役割：${roles.goals.map(label).join('・')}`));
+    detail.append(node('p','hint',roles.available ? `候補上限 ${roles.role_k} · いずれかの返しを持てる手札の割合 ${roles.coverage_exact ?? '未記録'}（重複除外）` : '公開デッキ情報が足りないため、相手の保有率は計算していません。'));
+    for (const candidate of roles.candidates || []) {
+      const required = Object.entries(candidate.required_cards || {}).map(([id,count]) => `${(view.record.cards?.[id] || bootstrap.cards[id])?.name || id} ×${count}`).join(' ＋ ') || '追加の手札なし';
+      const item = node('li','',`${(candidate.roles || []).map(label).join('・') || '応手'}：${required} · 保有率 ${candidate.availability_exact ?? '未記録'} · 評価 ${score(candidate.score)}`);
+      if (candidate.labels?.length) item.append(node('p','hint',candidate.labels.join(' → ')));
+      list.append(item);
+    }
+    detail.append(list); target.append(detail);
+  }
   if (decision.hand_patterns?.length) {
     // AI_NOTE: 温存も候補として調べたことを示し、抽選後の条件付き到達点を確定した未来と扱わない。
     const detail = node('details'), list = node('ul');
