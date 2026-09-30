@@ -1,8 +1,11 @@
 'use strict';
 // AI_NOTE: 盤面の結果と合法手は常に対戦エンジンから受け取り、画面にはルールを複製しない。
 const $ = id => document.getElementById(id);
-const STORE = 'svdeck-battle-v1';
-const ANIMATION_STORE = 'svdeck-battle-animation';
+// AI_NOTE: A named experiment gets its own saved match/preferences without touching the ordinary lab's data.
+const session = new URLSearchParams(location.search).get('session');
+const storageSuffix = session ? ':session:' + encodeURIComponent(session) : '';
+const STORE = 'svdeck-battle-v1' + storageSuffix;
+const ANIMATION_STORE = 'svdeck-battle-animation' + storageSuffix;
 const animation = new BattleAnimation($('board'),$('animation-caption'));
 let operation = 0, autoRun = 0;
 let bootstrap, view, selectedCase = null, busy = false, running = false, selectedSource = null, builderDraft = null;

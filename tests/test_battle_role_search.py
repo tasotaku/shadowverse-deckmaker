@@ -12,6 +12,7 @@ from svdeck.battle_roles import card_roles
 
 
 def test_random_action_is_discarded_when_only_one_sibling_can_close() -> None:
+    # AI_NOTE: One affordable sibling cannot make an incompletely evaluated random action selectable.
     cards = {'blank': {'name': 'blank', 'kind': 'spell', 'cost': 99},
              'dice': {'name': 'dice', 'kind': 'spell', 'cost': 0, 'effects': [{'op': 'damage', 'target': 'random_enemy', 'amount': 1}]},
              'body': {'name': 'body', 'kind': 'follower', 'cost': 1, 'attack': 0, 'health': 2}}
@@ -25,6 +26,7 @@ def test_random_action_is_discarded_when_only_one_sibling_can_close() -> None:
 
 
 def test_unknown_natural_draw_cannot_be_played_as_a_known_finisher() -> None:
+    # AI_NOTE: A hypothetical top card must not become evidence of a guaranteed future win.
     cards = {'blank': {'name': 'blank', 'kind': 'spell', 'cost': 99},
              'burn': {'name': 'burn', 'kind': 'spell', 'cost': 0, 'effects': [{'op': 'damage', 'target': 'enemy_leader', 'amount': 20}]}}
     battle = Battle({'active_player': 1, 'players': [{'deck': ['burn', 'blank']}, {'deck': ['blank']*3}]}, cards)
@@ -40,6 +42,7 @@ def test_unknown_natural_draw_cannot_be_played_as_a_known_finisher() -> None:
 
 
 def test_no_usable_card_event_has_a_legal_closed_turn() -> None:
+    # AI_NOTE: The one zzz hand out of twenty belongs to a real no-card reply, not an unclosed fallback score.
     cards = {cid: {'name': cid, 'kind': 'spell', 'cost': cost, 'effects': [{'op': 'damage', 'target': 'enemy_leader', 'amount': 3}]}
              for cid, cost in [('a', 1), ('b', 1), ('c', 1), ('z', 99)]}
     battle = Battle({'players': [{'pp': 1, 'max_pp': 1, 'extra_pp_used': True}, {'deck': ['z']*3}]}, cards)
@@ -53,6 +56,7 @@ def test_no_usable_card_event_has_a_legal_closed_turn() -> None:
 
 
 def test_overflow_is_removed_from_public_residual_pool() -> None:
+    # AI_NOTE: A burned original is publicly consumed and cannot reappear in a reconstructed witness deck.
     cards = {'blank': {'name': 'blank', 'kind': 'spell', 'cost': 99}}
     battle = Battle({'players': [{'deck': ['blank']*3}, {'hand': ['blank']*9, 'deck': ['blank']*2}],
                      'deck_knowledge': [{'deck_list': {'blank': 3}, 'revealed': {}, 'known_hand': []},
@@ -67,6 +71,7 @@ def test_overflow_is_removed_from_public_residual_pool() -> None:
 
 
 def test_budget_limited_candidates_share_the_same_comparison_boundary() -> None:
+    # AI_NOTE: Tight budgets may reduce depth, but must not compare candidates before and after different replies.
     battle = Battle({'players': [{'board': [{'id': 'body', 'card_id': 'test-body'}], 'deck': ['test-body']*3},
                                 {'board': ['test-body'], 'deck': ['test-body']*3}]})
     for nodes in (10, 40, 150):
@@ -77,6 +82,7 @@ def test_budget_limited_candidates_share_the_same_comparison_boundary() -> None:
 
 
 def test_missing_public_deck_cannot_invent_a_hidden_spell() -> None:
+    # AI_NOTE: Unknown cards preserve counts without turning an absent deck model into fabricated removal.
     battle = Battle({'players': [{'deck': ['test-body']*3},
                                 {'hand': ['test-damage-5'], 'pp': 10, 'max_pp': 10, 'deck': ['test-body']*3}]})
     world = public_world(battle.observation(0), battle.cards)
