@@ -14,7 +14,7 @@
 - `battle_frontier_skyline._features`: 現行コード・テスト・補助スクリプトから参照のない旧変換処理。現行の `_group_features` を保持。
 - `battle_frontier_fast.Kernel.initial_own`: 初期化後に読み出さない属性。
 - `battle_ai.POLICY_VERSION`、`battle_roles.ROLES`: 読み出しも公開画面での利用もない定義。
-- 7ファイルの不要なimport 9件。別ファイルによる再公開名の利用も確認して除外。
+- 6ファイルの不要なimport 9件。別ファイルによる再公開名の利用も確認して除外。
 - `battle.py` の未使用変数 `received` は保持。代入だけを外しても独立参照の証明書のエンジンハッシュが変わり、保存済み正解を受理できなくなるため、今回は対戦エンジンを変更しない。
 
 `battle_frontier_skyline._decode` は `battle_frontier_export` が使用、`battle_frontier_native_core._unpack` は数値表現の往復検査が使用するため保持。
