@@ -17,7 +17,7 @@ from numpy.typing import NDArray
 
 from .battle import Battle, Json
 from .battle_frontier_fast import Kernel, State, _mask, eligible
-from .battle_frontier_native_core import _batch, _pack, _unpack
+from .battle_frontier_native_core import _batch, _pack
 from .battle_frontier_native_index import _hash, _locate
 
 UInts = NDArray[np.uint64]

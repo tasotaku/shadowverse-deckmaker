@@ -17,11 +17,6 @@ from typing import Any
 from .battle_rules import PHASES
 
 Json = dict[str, Any]
-ROLES = {
-    'heal': '回復', 'remove_one': '単体除去', 'remove_multi': '複数除去',
-    'remove_all': '全体除去', 'damage': '打点', 'resource': '資源',
-    'defense': '防御', 'develop': '展開', 'support': '補助', 'unknown': '未分類',
-}
 ENEMY_TARGETS = {'chosen_enemy', 'chosen_any_enemy', 'random_enemy', 'all_enemy',
                  'all_enemy_characters', 'all'}
 AREA_TARGETS = {'all_enemy', 'all_enemy_characters', 'all'}

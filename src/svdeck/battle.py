@@ -702,7 +702,9 @@ class Battle:
             if target and self.find(entity['id']) and self.state['winner'] is None:
                 _, zone, other = target
                 dealt = self.damage(action['target'], entity['attack'], entity)
-                received = self.damage(entity['id'], other['attack'], other) if zone == 'board' else 0
+                # AI_NOTE: 反撃の戻り値は使わず、盤面へのダメージ処理だけを保つ。
+                if zone == 'board':
+                    self.damage(entity['id'], other['attack'], other)
                 if dealt and 'ドレイン' in entity['keywords']:
                     before_health = p['health']
                     p['health'] = min(p['max_health'], p['health']+dealt)

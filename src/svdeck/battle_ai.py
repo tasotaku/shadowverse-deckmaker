@@ -23,7 +23,6 @@ BASE_WEIGHTS = {'health': 1.0, 'pressure': 1.7, 'attack': 1.3, 'body': 0.65,
                 'hand': 1.5, 'ramp': 2.8, 'reserve': 1.4, 'guard': 1.5,
                 'ability': 1.2, 'danger': 4.0, 'grave': 0.12}
 POLICIES = ('random', 'greedy', 'search', 'trained', 'legacy', 'turn', 'reply', 'lookahead', 'roles')
-POLICY_VERSION = 1
 MODEL_PATH = Path(__file__).with_name('data') / 'battle_ai_model.json'
 
 

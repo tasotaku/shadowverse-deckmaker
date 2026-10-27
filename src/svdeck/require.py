@@ -21,7 +21,6 @@ from typing import Any, NamedTuple
 
 from svdeck.bench import (
     CategoryLookup,
-    FulfillmentMap,
     Tag,
     _matches,
     _token_supply_tags,

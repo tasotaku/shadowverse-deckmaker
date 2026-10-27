@@ -15,7 +15,6 @@ import re
 import sqlite3
 import sys
 from tempfile import TemporaryDirectory
-from typing import Any
 
 from svdeck.db import DB_PATH
 from svdeck.discovery_compare import compare_decks

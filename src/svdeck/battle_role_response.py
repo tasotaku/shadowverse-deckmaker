@@ -9,13 +9,11 @@ from __future__ import annotations
 import copy
 import json
 from collections import Counter
-from fractions import Fraction
 from time import perf_counter
-from typing import Any
 
 from .battle import Battle, Json, integer
 from .battle_ai import BASE_WEIGHTS, evaluate
-from .battle_role_search import Budget, Leaf, Plan, Turn, goals
+from .battle_role_search import Budget, Turn, goals
 from .battle_roles import card_roles, response_weights
 
 

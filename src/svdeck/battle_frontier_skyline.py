@@ -173,33 +173,6 @@ def _lane(vector: NDArray[np.uint64], offset: int, value: int) -> None:
 
 
 @_compiled
-def _features(state: NDArray[np.int64], prototypes: NDArray[np.int64], n: int,
-              vector: NDArray[np.uint64]) -> None:
-    # AI_NOTE: The range proof is shared with the reference byte-vector path; larger values use scalar comparison.
-    vector[:] = 0
-    count = len(prototypes)
-    tail = 2*count
-    evolution = state[tail+1]
-    _lane(vector, 0, state[tail+3])
-    _lane(vector, 1, 128-state[tail+4])
-    _lane(vector, 2, int(not (evolution == -1 or evolution > 0 and evolution % 2 == 1)))
-    _lane(vector, 3, int(not (evolution == -2 or evolution > 0 and evolution % 2 == 0)))
-    offset = 4
-    for slot in range(count):
-        if state[slot] <= 0:
-            continue
-        boost = _boost(slot, evolution)
-        health, attack, maximum = state[slot], prototypes[slot, 0]+boost, prototypes[slot, 1]+boost
-        if slot >= n:
-            health, attack, maximum = 128-health, 128-attack, 128-maximum
-        _lane(vector, offset, health)
-        _lane(vector, offset+1, attack)
-        _lane(vector, offset+2, maximum)
-        offset += 3
-    vector[-1] = np.uint64(state[tail+2])
-
-
-@_compiled
 def _packed_relation(a: NDArray[np.uint64], b: NDArray[np.uint64]) -> int:
     # AI_NOTE: Guard bits prevent inter-lane borrowing, so each word tests seven component inequalities at once.
     guard = np.uint64(0x4020100804020100)

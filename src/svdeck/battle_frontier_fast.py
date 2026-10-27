@@ -105,7 +105,6 @@ class Kernel:
         self.hand = self.own['hand']
         self.spells = [(e['cost'], battle.cards[e['card_id']]['effects'][0]) for e in self.hand]
         self.hand_ids = {e['id']: i for i, e in enumerate(self.hand)}
-        self.initial_own = len(self.own['board'])
         self.token = -1
         self.prototypes = copy.deepcopy(self.own['board'])
         for _, effect in self.spells:

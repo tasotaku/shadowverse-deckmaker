@@ -14,7 +14,7 @@ from typing import Any
 
 from .battle import Battle, Json, integer
 from .battle_ai import BASE_WEIGHTS, Player, features, sample_world
-from .battle_practical import Chance, ChanceBattle, Limit, state_key, summary
+from .battle_practical import Chance, ChanceBattle, Limit, state_key
 from .combat_benchmark import peak_memory, save_result
 
 Value = tuple[Fraction, Fraction, Fraction]
