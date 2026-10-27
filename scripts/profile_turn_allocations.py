@@ -14,10 +14,10 @@ os.environ['NUMBA_NRT_STATS'] = '1'
 
 from numba.core.runtime import rtsys
 
-from svdeck.battle import Battle
-from svdeck.battle_frontier_catalog import analyze_catalog
-from svdeck.battle_frontier_compare import peak_memory
-import svdeck.battle_frontier_native as native
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_frontier_catalog import analyze_catalog
+from svdeck.battle_env.battle_frontier_compare import peak_memory
+import svdeck.battle_env.battle_frontier_native as native
 
 
 def main() -> None:

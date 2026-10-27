@@ -5,8 +5,8 @@ import json
 from pathlib import Path
 from random import Random
 
-from svdeck.battle import Battle, replay
-from svdeck.battle_combat import Position, analyze, canonical, endpoint, position
+from svdeck.battle_env.battle import Battle, replay
+from svdeck.battle_env.battle_combat import Position, analyze, canonical, endpoint, position
 
 
 def check() -> None:

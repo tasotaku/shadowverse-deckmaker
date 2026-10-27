@@ -15,8 +15,8 @@ from urllib.request import Request, urlopen
 
 import pytest
 
-from svdeck.experiments import make_server
-from svdeck.journal_store import Conflict, Journal, template
+from svdeck.common.experiments import make_server
+from svdeck.common.journal_store import Conflict, Journal, template
 
 
 def record() -> dict[str, Any]:
@@ -141,7 +141,7 @@ def test_backup_and_restore_cli(journal: Journal, tmp_path: Path) -> None:
     with pytest.raises(FileExistsError):
         journal.backup(backup)
     target = tmp_path / 'other-pc'
-    result = subprocess.run([sys.executable, '-m', 'svdeck.experiments', '--root', str(target), 'restore', str(backup)], capture_output=True, text=True)
+    result = subprocess.run([sys.executable, '-m', 'svdeck.common.experiments', '--root', str(target), 'restore', str(backup)], capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
     restored = Journal(target)
     assert restored.get(r['id'])['record'] == r
@@ -152,7 +152,7 @@ def test_backup_and_restore_cli(journal: Journal, tmp_path: Path) -> None:
 def test_public_cli_lifecycle(journal: Journal, tmp_path: Path) -> None:
     # AI_NOTE: 作業担当の公開コマンドで開始・工程・採否・終了までを往復する。
     def cli(*args: str) -> dict[str, Any]:
-        result = subprocess.run([sys.executable, '-m', 'svdeck.experiments', '--root', str(journal.root), *args], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, '-m', 'svdeck.common.experiments', '--root', str(journal.root), *args], capture_output=True, text=True)
         assert result.returncode == 0, result.stderr
         return json.loads(result.stdout)
     r = record()

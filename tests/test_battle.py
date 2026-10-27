@@ -12,9 +12,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, catalog, default_state, load_cases, replay, run_case
+from svdeck.battle_env.battle import Battle, catalog, default_state, load_cases, replay, run_case
 
-CASES = json.loads((Path(__file__).parents[1] / 'src/svdeck/data/battle_cases.json').read_text())
+CASES = json.loads((Path(__file__).parents[1] / 'src/svdeck/battle_env/data/battle_cases.json').read_text())
 
 
 @pytest.mark.parametrize('case', CASES, ids=lambda case: case['id'])

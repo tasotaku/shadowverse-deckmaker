@@ -8,12 +8,12 @@ from time import perf_counter
 
 import numpy as np
 
-from svdeck.battle import Battle
-from svdeck.battle_frontier_fast import Kernel
-from svdeck.battle_frontier_native import NativeSearch
-from svdeck.battle_frontier_export import materialize
-from svdeck.battle_frontier_export_native import encode_rows
-from svdeck.battle_frontier_io import States, dump_graph
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_frontier_fast import Kernel
+from svdeck.battle_env.battle_frontier_native import NativeSearch
+from svdeck.battle_env.battle_frontier_export import materialize
+from svdeck.battle_env.battle_frontier_export_native import encode_rows
+from svdeck.battle_env.battle_frontier_io import States, dump_graph
 
 
 def main() -> None:

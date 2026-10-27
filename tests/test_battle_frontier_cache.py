@@ -5,9 +5,9 @@ from fractions import Fraction
 
 import pytest
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_frontier_cache import CachedKernel
-from svdeck.battle_frontier_fast import Kernel
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_frontier_cache import CachedKernel
+from svdeck.battle_env.battle_frontier_fast import Kernel
 from test_battle_frontier import CASES, check_graph
 from test_battle_frontier_fast import scenario
 
@@ -15,7 +15,7 @@ from test_battle_frontier_fast import scenario
 @pytest.mark.parametrize('case', CASES, ids=lambda c: c['id'])
 def test_independent_small_graph(case: Json, monkeypatch: pytest.MonkeyPatch) -> None:
     # AI_NOTE: 公開グラフの独立oracle検証をcache差し替えでも実施し、非対応入力の汎用経路を残す。
-    monkeypatch.setattr('svdeck.battle_frontier_fast.Kernel', CachedKernel)
+    monkeypatch.setattr('svdeck.battle_env.battle_frontier_fast.Kernel', CachedKernel)
     check_graph(case)
 
 

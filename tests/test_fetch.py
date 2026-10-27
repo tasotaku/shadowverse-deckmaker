@@ -6,8 +6,8 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from svdeck.db import connect  # noqa: E402
-from svdeck.fetch import _effect_changed, find_changed_card_ids, insert_card, update_card  # noqa: E402
+from svdeck.common.db import connect  # noqa: E402
+from svdeck.data_access.fetch import _effect_changed, find_changed_card_ids, insert_card, update_card  # noqa: E402
 
 
 CARD_ID = 10632310

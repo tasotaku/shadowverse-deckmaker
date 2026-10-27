@@ -3,12 +3,12 @@ from collections import Counter
 from fractions import Fraction
 from time import perf_counter
 
-from svdeck.battle import Battle
-from svdeck.battle_ai import BASE_WEIGHTS, Player, evaluate
-from svdeck.battle_role_ai import continuation
-from svdeck.battle_role_response import analyze_responses, public_world, remaining
-from svdeck.battle_role_search import Budget, Turn
-from svdeck.battle_roles import card_roles
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_ai import BASE_WEIGHTS, Player, evaluate
+from svdeck.battle_env.battle_role_ai import continuation
+from svdeck.battle_env.battle_role_response import analyze_responses, public_world, remaining
+from svdeck.battle_env.battle_role_search import Budget, Turn
+from svdeck.battle_env.battle_roles import card_roles
 
 
 def test_random_action_is_discarded_when_only_one_sibling_can_close() -> None:

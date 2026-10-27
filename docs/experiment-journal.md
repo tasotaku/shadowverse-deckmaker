@@ -8,8 +8,8 @@
 Python 3.10以上で、インストール済みのリポジトリのルートから実行します。
 
 ```bash
-python -m svdeck.experiments init
-python -m svdeck.experiments serve
+python -m svdeck.common.experiments init
+python -m svdeck.common.experiments serve
 ```
 
 [探索の記録を開く](http://127.0.0.1:8765/)。サーバーを起動している間、このPCから使えます。
@@ -31,7 +31,7 @@ python -m svdeck.experiments serve
 現在の本体を使う例:
 
 ```bash
-python -m svdeck.experiments \
+python -m svdeck.common.experiments \
   --root /Users/miyauchitsubasa/Desktop/github/shadowverse-deckmaker serve
 ```
 
@@ -48,9 +48,9 @@ python -m svdeck.experiments \
 CLIを使う担当は、ひな形を書き出して編集します。
 
 ```bash
-python -m svdeck.experiments template > /tmp/experiment.json
+python -m svdeck.common.experiments template > /tmp/experiment.json
 # /tmp/experiment.json に実際の内容を記入した後:
-python -m svdeck.experiments create /tmp/experiment.json \
+python -m svdeck.common.experiments create /tmp/experiment.json \
   --actor '担当名' --reason '入力と判断基準を固定して開始前に登録'
 ```
 
@@ -68,15 +68,15 @@ python -m svdeck.experiments create /tmp/experiment.json \
 CLIでは最初に現在の版番号を確認します。
 
 ```bash
-python -m svdeck.experiments show trial-02
+python -m svdeck.common.experiments show trial-02
 
-python -m svdeck.experiments stage trial-02 proposal-1 \
+python -m svdeck.common.experiments stage trial-02 proposal-1 \
   --title '初回の考案' --status running --at now \
   --experiment-status running --budget-minutes 25 \
   --note '固定した資料で考案を開始' \
   --expect 1 --actor '担当名' --reason '初回工程の開始を記録'
 
-python -m svdeck.experiments stage trial-02 proposal-1 \
+python -m svdeck.common.experiments stage trial-02 proposal-1 \
   --status completed --at now --note '回答と操作記録を保存' \
   --expect 2 --actor '担当名' --reason '初回工程の終了を記録'
 ```
@@ -101,9 +101,9 @@ CLIの `--at` はタイムゾーン付きの日時（例 `2026-09-08T19:20:00+09
 CLIで報告全体を更新する場合:
 
 ```bash
-python -m svdeck.experiments show trial-02 --record-only > /tmp/experiment.json
+python -m svdeck.common.experiments show trial-02 --record-only > /tmp/experiment.json
 # 実施内容、結果、残る問題、採否と理由、実施時刻を編集した後:
-python -m svdeck.experiments update /tmp/experiment.json \
+python -m svdeck.common.experiments update /tmp/experiment.json \
   --expect 3 --actor '担当名' --reason '独立評価を受けて結果と採否を記録'
 ```
 
@@ -118,7 +118,7 @@ python -m svdeck.experiments update /tmp/experiment.json \
 区切りや移行前に次を実行し、生成したファイルを別の保存場所へ保管してください。
 
 ```bash
-python -m svdeck.experiments backup /保存先/experiments-20260908.sqlite3
+python -m svdeck.common.experiments backup /保存先/experiments-20260908.sqlite3
 ```
 
 この操作は更新中でも整合したコピーを作ります。同名の既存ファイルは上書きしません。
@@ -126,8 +126,8 @@ python -m svdeck.experiments backup /保存先/experiments-20260908.sqlite3
 [READMEの準備](../README.md#準備)に従い、新しいリポジトリで仮想環境を作って `python -m pip install -e .` を実行してから復元します。
 
 ```bash
-python -m svdeck.experiments restore /移した場所/experiments-20260908.sqlite3
-python -m svdeck.experiments serve
+python -m svdeck.common.experiments restore /移した場所/experiments-20260908.sqlite3
+python -m svdeck.common.experiments serve
 ```
 
 `restore` は既存の台帳を上書きしません。既存の記録がある場所では、まず別の `--store` へ復元して内容を確認します。
@@ -148,6 +148,6 @@ SQLite（1ファイルに記録を永続保存するデータベース）に、�
 新しい記録は `create`、全体更新は `update`、工程更新は `stage`、読出しは `list` / `show`、退避と復元は `backup` / `restore` を使います。
 画面も同じ保存処理を使い、HTTP入口は `GET /api/experiments` と `POST /api/experiments` です。HTTPの更新には画面が取得するトークンが必要です。
 
-初期登録内容は `src/svdeck/data/experiment_catalog.json`、出典の照合記録は `evals/journal/catalog-provenance.json` に残します。
+初期登録内容は `src/svdeck/common/data/experiment_catalog.json`、出典の照合記録は `evals/journal/catalog-provenance.json` に残します。
 過去の試行結果は当時の検査範囲の結果で、探索方式全体の性能や実戦勝率を示しません。
 この画面の開発だけを理由に、探索方式を採用へ変更していません。

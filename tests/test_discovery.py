@@ -11,8 +11,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.db import connect
-from svdeck.discovery import packet, report, review, start, submit
+from svdeck.common.db import connect
+from svdeck.search.discovery import packet, report, review, start, submit
 
 
 def make_db(path: Path) -> None:
@@ -77,7 +77,7 @@ def assessment(p: dict[str, Any]) -> dict[str, Any]:
 def test_public_review_example_describes_usable_web_check_fields(session: Path) -> None:
     # AI_NOTE: 初利用で必要キーを2度推測した失敗を再現し、公開例だけから作った回答が一度で保存されるか確認する。
     submit(session, proposal(packet(session, 0, 'develop')))
-    command = [sys.executable, '-m', 'svdeck.discovery']
+    command = [sys.executable, '-m', 'svdeck.search.discovery']
     output = subprocess.run(command + ['packet', str(session), '--stage', 'review', '--summary'],
                             capture_output=True, text=True, check=True)
     summary = json.loads(output.stdout)
@@ -218,7 +218,7 @@ def test_cli_start_packet_submit_report(tmp_path: Path) -> None:
     db = tmp_path / 'cards.db'
     make_db(db)
     dest = tmp_path / 'cli-run'
-    base = [sys.executable, '-m', 'svdeck.discovery']
+    base = [sys.executable, '-m', 'svdeck.search.discovery']
     first = subprocess.run(base + ['start', str(dest), '--db', str(db), '--class', 'ウィッチ',
                                   '--objective', '手順の検証'], capture_output=True, text=True, check=True)
     assert json.loads(first.stdout)['eligible_cards'] == 2

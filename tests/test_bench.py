@@ -2,7 +2,7 @@
 
 import pytest
 
-from svdeck.bench import DEADLINE_CUM_PP, DEADLINE_TURN, cumulative_pp_for_turn
+from svdeck.search.bench import DEADLINE_CUM_PP, DEADLINE_TURN, cumulative_pp_for_turn
 
 
 @pytest.mark.parametrize(('turn', 'expected'), [(1, 2), (5, 16), (6, 23), (10, 57), (11, 67)])

@@ -10,10 +10,10 @@ pytest.importorskip('numba')
 
 import numpy as np
 
-from svdeck.battle import Battle
-from svdeck.battle_frontier_fast import Kernel
-from svdeck.battle_frontier_packed import frontier as reference
-from svdeck.battle_frontier_skyline import _packed_relation, frontier
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_frontier_fast import Kernel
+from svdeck.battle_env.battle_frontier_packed import frontier as reference
+from svdeck.battle_env.battle_frontier_skyline import _packed_relation, frontier
 from test_battle_frontier_skyline import packed
 
 

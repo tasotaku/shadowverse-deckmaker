@@ -7,8 +7,8 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.discovery import attach, packet, review, start, submit
-from svdeck.discovery_evidence import digest
+from svdeck.search.discovery import attach, packet, review, start, submit
+from svdeck.search.discovery_evidence import digest
 from test_discovery import assessment, make_db, proposal
 from test_discovery_read import read_all
 

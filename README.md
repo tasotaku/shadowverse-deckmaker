@@ -6,7 +6,7 @@ Shadowverse: Worlds Beyondで、独自性があり、そこそこ戦えるデッ
 勝率予測・学習済みの対戦AIは含みません。
 
 ```bash
-.venv/bin/python -m svdeck.battle_server --port 8767
+.venv/bin/python -m svdeck.battle_env.battle_server --port 8767
 ```
 
 [対戦ラボを開く](http://127.0.0.1:8767/)（初回準備は[起動手順](docs/battle.md#開く)を参照）。
@@ -27,8 +27,8 @@ Shadowverse: Worlds Beyondで、独自性があり、そこそこ戦えるデッ
 画面からもCLIからも更新でき、訂正前の報告と根拠は残ります。
 
 ```bash
-python -m svdeck.experiments init
-python -m svdeck.experiments serve
+python -m svdeck.common.experiments init
+python -m svdeck.common.experiments serve
 ```
 
 [探索の記録を開く](http://127.0.0.1:8765/)。複数の作業コピーでは同じ本体を `--root` で指定します。
@@ -44,8 +44,8 @@ source .venv/bin/activate
 python -m pip install -e .
 ```
 
-カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.fetch` で公式データを取得します。
-通常の取得は新規追加分を保存し、既存カードの能力変更を反映する場合は `python -m svdeck.fetch --refresh` を使います。
+カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.data_access.fetch` で公式データを取得します。
+通常の取得は新規追加分を保存し、既存カードの能力変更を反映する場合は `python -m svdeck.data_access.fetch --refresh` を使います。
 ユーザーの注記は公式データの更新で上書きしません。
 
 ## AIと探索を進める
@@ -61,8 +61,8 @@ python -m pip install -e .
 時間を区切る考案・評価は、担当のコマンドを `worker` 経由で起動します。例えば、既存の探索のレポートを10秒以内に読む場合は次のとおりです。
 
 ```bash
-python -m svdeck.worker --output data/runs/report-01 --timeout 10 --grace 2 -- \
-  python -m svdeck.discovery report data/discovery/trial-01
+python -m svdeck.common.worker --output data/runs/report-01 --timeout 10 --grace 2 -- \
+  python -m svdeck.search.discovery report data/discovery/trial-01
 ```
 
 AIの担当を起動する場合も、`--` 以降へそのコマンドを指定します。`--stdin FILE` で指示ファイル、
@@ -86,18 +86,18 @@ POSIX環境で、同じプロセス群に残る子処理も終了対象にしま
 
 ```bash
 # 新しい保存先を指定して開始。特定の主役カードの登録は不要です。
-python -m svdeck.discovery start data/discovery/trial-01 \
+python -m svdeck.search.discovery start data/discovery/trial-01 \
   --class エルフ --format rotation \
   --objective '後半の補充を別のカードに任せ、序盤の採用配分を変える可能性を調べる'
 
 # 対象全文、生成物、両側の注記、ルール、回答形式を出す
-python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-packet.json
+python -m svdeck.search.discovery packet data/discovery/trial-01 > /tmp/discovery-packet.json
 
 # 資料を読んだAIが /tmp/discovery-answer.json を作成した後に取り込む
-python -m svdeck.discovery submit data/discovery/trial-01 /tmp/discovery-answer.json
+python -m svdeck.search.discovery submit data/discovery/trial-01 /tmp/discovery-answer.json
 
 # 仮説に残った問いを再検索し、次の改訂用の資料を出す
-python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-next.json
+python -m svdeck.search.discovery packet data/discovery/trial-01 > /tmp/discovery-next.json
 ```
 
 回答は資料の `data.response_example` の形式に従い、`packet_hash` へ資料の `sha256` を入れます。
@@ -107,10 +107,10 @@ python -m svdeck.discovery packet data/discovery/trial-01 > /tmp/discovery-next.
 資料が長くて一度に読めない場合は、全文出力の代わりに概要と区分の一覧を出します。
 
 ```bash
-python -m svdeck.discovery packet data/discovery/trial-01 --summary
+python -m svdeck.search.discovery packet data/discovery/trial-01 --summary
 # 上で返されたsha256をPACKET_HASHに指定。カードは2枚ずつ、ルールは30行ずつ読む例です。
-python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH cards --offset 0 --limit 2
-python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH rules --offset 0 --limit 30
+python -m svdeck.search.discovery read data/discovery/trial-01 PACKET_HASH cards --offset 0 --limit 2
+python -m svdeck.search.discovery read data/discovery/trial-01 PACKET_HASH rules --offset 0 --limit 30
 ```
 
 概要には保存先、指示、回答例、区分ごとの総数が入ります。`cards`、`rules`、`keywords`、`principles`、
@@ -143,9 +143,9 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH rules --offs
 ```
 
 ```bash
-python -m svdeck.discovery attach data/discovery/trial-01 /tmp/discovery-sources.json
-python -m svdeck.discovery packet data/discovery/trial-01 --summary
-python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --offset 0 --limit 20
+python -m svdeck.search.discovery attach data/discovery/trial-01 /tmp/discovery-sources.json
+python -m svdeck.search.discovery packet data/discovery/trial-01 --summary
+python -m svdeck.search.discovery read data/discovery/trial-01 PACKET_HASH sources --offset 0 --limit 20
 ```
 
 6項目はすべて必要です。`kind` は資料の種類を自由に書き、`location` はURLや手元の記録の場所を示します。
@@ -157,8 +157,8 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH sources --of
 `recall` は別の探索の正式案・評価を読み取り専用で探します。保存先を知らなくても、カード名や役割、残った問題から参照できます。
 
 ```bash
-python -m svdeck.discovery recall data/discovery --query 'リッター 12点'
-python -m svdeck.discovery recall data/discovery --card-id 10423310 --card-id 10421130
+python -m svdeck.search.discovery recall data/discovery --query 'リッター 12点'
+python -m svdeck.search.discovery recall data/discovery --card-id 10423310 --card-id 10421130
 ```
 
 複数のカードIDは、すべてがその案の `roles` にある条件です。全文資料のカード一覧にあるだけでは一致しません。
@@ -188,7 +188,7 @@ python -m svdeck.discovery recall data/discovery --card-id 10423310 --card-id 10
 既に調査報告をUTF-8のJSONやMarkdownファイルに保存している場合は、本文を手でJSON文字列へ詰め直さずに取り込めます。
 
 ```bash
-python -m svdeck.discovery attach-file data/discovery/trial-01 /tmp/research-report.json \
+python -m svdeck.search.discovery attach-file data/discovery/trial-01 /tmp/research-report.json \
   --title '条件と未確認事項の調査' --kind '調査の要約' \
   --location '実際の出典URLや元の記録の場所' \
   --observed-at '2026-09-09T10:00:00+09:00' \
@@ -218,8 +218,8 @@ python -m svdeck.discovery attach-file data/discovery/trial-01 /tmp/research-rep
 同じ入力版に対する異なる評価もすべて保持します。評価・対応情報の配列の並びは日時順や優先順位ではありません。
 
 ```bash
-python -m svdeck.discovery packet data/discovery/trial-01 --summary
-python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH review_contexts --offset 0 --limit 20
+python -m svdeck.search.discovery packet data/discovery/trial-01 --summary
+python -m svdeck.search.discovery read data/discovery/trial-01 PACKET_HASH review_contexts --offset 0 --limit 20
 ```
 
 ここでいう差分は評価の**入力版に含まれなかった資料**です。実際に読んだ証明や、評価を提出した後に追加された
@@ -233,7 +233,7 @@ python -m svdeck.discovery read data/discovery/trial-01 PACKET_HASH review_conte
 `name` は省略できます。省略記号は使わず、既知のカードIDと枚数で両側とも40枚すべてを記してください。
 
 ```bash
-python -m svdeck.discovery compare data/discovery/trial-01 BEFORE_SOURCE_HASH AFTER_SOURCE_HASH
+python -m svdeck.search.discovery compare data/discovery/trial-01 BEFORE_SOURCE_HASH AFTER_SOURCE_HASH
 ```
 
 `before` / `after` に全札と種類別・コスト別の枚数、`delta.added` / `delta.removed` に実際の交換札が出ます。
@@ -263,10 +263,10 @@ python -m svdeck.discovery compare data/discovery/trial-01 BEFORE_SOURCE_HASH AF
 推薦する前は、提案担当とは別のAIセッションで評価します。
 
 ```bash
-python -m svdeck.discovery packet data/discovery/trial-01 --stage review > /tmp/discovery-review-packet.json
+python -m svdeck.search.discovery packet data/discovery/trial-01 --stage review > /tmp/discovery-review-packet.json
 # 別担当が資料と案を読み、/tmp/discovery-review.json を作成
-python -m svdeck.discovery review data/discovery/trial-01 /tmp/discovery-review.json
-python -m svdeck.discovery report data/discovery/trial-01
+python -m svdeck.search.discovery review data/discovery/trial-01 /tmp/discovery-review.json
+python -m svdeck.search.discovery report data/discovery/trial-01
 ```
 
 評価は「手順」「検討・試行の価値」「既出状況」を分けます。古い案への評価は改訂案へ引き継ぎません。
@@ -284,12 +284,12 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 
 | コマンド | 用途 |
 |---|---|
-| `python -m svdeck.explore CARD_ID --format rotation` | 登録済みの主役から要求に型が合う候補を調べる。数量概算は手順成立の判定ではない |
-| `python -m svdeck.reverse CARD_ID --format rotation` | 供給する効果から登録済みの要求を逆引きする |
-| `python -m svdeck.require recheck` | 新弾取得後、以前供給がなかった要求を再検索する。DB変更なし |
-| `python -m svdeck.profile decks` | 保存した環境デッキを一覧する。数値資料は強さ点数として使わない |
-| `python -m svdeck.meta --db data/cards.db` | 環境デッキを取得し、全件の整合確認後に保存済み一覧を置き換える |
-| `python -m svdeck.meta --article URL --format rotation --db data/cards.db` | 指定記事だけを読み、各40枚リストと取得情報を資料JSONとして出力する。DBは変更しない |
+| `python -m svdeck.search.explore CARD_ID --format rotation` | 登録済みの主役から要求に型が合う候補を調べる。数量概算は手順成立の判定ではない |
+| `python -m svdeck.search.reverse CARD_ID --format rotation` | 供給する効果から登録済みの要求を逆引きする |
+| `python -m svdeck.search.require recheck` | 新弾取得後、以前供給がなかった要求を再検索する。DB変更なし |
+| `python -m svdeck.search.profile decks` | 保存した環境デッキを一覧する。数値資料は強さ点数として使わない |
+| `python -m svdeck.data_access.meta --db data/cards.db` | 環境デッキを取得し、全件の整合確認後に保存済み一覧を置き換える |
+| `python -m svdeck.data_access.meta --article URL --format rotation --db data/cards.db` | 指定記事だけを読み、各40枚リストと取得情報を資料JSONとして出力する。DBは変更しない |
 
 Game8の記事は、主レシピ節の見出しごとにある**デッキコピー用リンクの対象リスト**を取得します。
 記事の表示表とコピー対象が違う場合は、枚数と札の差・コピー先をログに明示します。
@@ -300,10 +300,10 @@ Game8の記事は、主レシピ節の見出しごとにある**デッキコピ�
 コピーリンクがない場合は表示リストを使います。全40枚・正の整数枚数・同名重複なしを満たさないリストや、
 取得・解析の失敗があれば処理を中止し、保存済みの一覧は置き換えません。ログは必要に応じてファイルへ保存してください。
 表示表とコピー対象がともに40枚でも内容が一致するとは限らず、コピー対象を取得したことは記事内の表記の一致や強さの証明ではありません。
-| `python -m svdeck.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
+| `python -m svdeck.data_access.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
 
 必要な記事だけを探索資料へ渡す場合は、`meta --article URL --format rotation --db PATH > article.json` の出力を
-`python -m svdeck.discovery attach SESSION article.json` で取り込みます。GameWithとGame8の記事に対応します。
+`python -m svdeck.search.discovery attach SESSION article.json` で取り込みます。GameWithとGame8の記事に対応します。
 複数の構築は別々の全40枚リストとして保存され、記事更新日時・コピー先・表示表との不一致は各構築の「取得情報」に残ります。
 `packet` の `sources` から種類が「公開記事の全40枚リスト」の識別値を選ぶと、既存の `compare` で比較できます。
 現在のTierや合法性はこの取得では判定せず、保存済みの一覧や既存の固定資料も変えません。

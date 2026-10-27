@@ -1,0 +1,165 @@
+"""保存済みの探索資料を、元の識別値を保って小分けに読む。"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+import re
+from typing import Any, NamedTuple
+
+from svdeck.search.discovery_evidence import JSONDict, digest, read_object
+from svdeck.search.discovery_sources import validate_source
+
+
+class Section(NamedTuple):
+    unit: str
+    content: list[Any]
+    full_packet_path: str | None
+
+
+def _load_packet(session: Path, packet_hash: str) -> JSONDict:
+    # AI_NOTE: 現在の改訂やDBを読み直さず、指定された保存版とファイル名の識別値だけを照合する。
+    if not re.fullmatch(r"[0-9a-f]{64}", packet_hash):
+        raise ValueError("packet_hashには保存済みpacketのsha256を指定してください")
+    envelope = read_object(session / "packets" / f"{packet_hash}.json")
+    data = envelope.get("data")
+    if not isinstance(data, dict) or envelope.get("sha256") != packet_hash or digest(data) != packet_hash:
+        raise ValueError("packet_hashと保存された資料の識別値が一致しません")
+    return data
+
+
+def _lines(value: object, path: str | None) -> Section:
+    # AI_NOTE: 改行を保持して分割するため、ページを順に連結すると元の文章・JSONを復元できる。
+    text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, indent=2)
+    return Section("lines", text.splitlines(keepends=True), path)
+
+
+def source_index(data: JSONDict) -> list[JSONDict]:
+    # AI_NOTE: 索引には本文を載せず、固定packet内で一意な資料の場所と本文の長さだけを返す。
+    sources = data.get("sources", [])
+    if not isinstance(sources, list):
+        raise ValueError("sourcesは資料の配列である必要があります")
+    result = []
+    seen: set[str] = set()
+    for source in sources:
+        if not isinstance(source, dict):
+            raise ValueError("sourceは資料のオブジェクトである必要があります")
+        key = source.get("source_hash")
+        if not isinstance(key, str) or not re.fullmatch(r"[0-9a-f]{64}", key) or key in seen:
+            raise ValueError("source_hashが不正または重複しています")
+        value = validate_source({k: v for k, v in source.items() if k != "source_hash"})
+        if digest(value) != key:
+            raise ValueError("source_hashと固定資料の内容が一致しません")
+        seen.add(key)
+        result.append({k: source[k] for k in ("source_hash", "title", "kind", "location", "observed_at", "limitations")}
+                      | {"line_count": len(value["content"].splitlines(keepends=True)),
+                         "char_count": len(value["content"]), "section": "source:" + key})
+    return result
+
+
+def _sections(data: JSONDict) -> dict[str, Section]:
+    # AI_NOTE: 引き継ぎ対象を直接読める区分も加え、全文と出典を同じ保存版から返す。
+    context: JSONDict = data["context"]
+    context_parts = {"cards", "rules", "principles", "known_decks", "ability_keywords", "fulfillment_map"}
+    packet_parts = {"context", "instruction", "response_example", "search", "proposal", "previous_reviews", "sources", "history",
+                    "review_contexts"}
+    sections = {
+        "cards": Section("cards", context["cards"], "data.context.cards"),
+        "rules": _lines(context["rules"], "data.context.rules"),
+        "keywords": Section("keywords", [{"keyword": key, "text": value}
+                                           for key, value in context["ability_keywords"].items()], "data.context.ability_keywords"),
+        "principles": _lines(context["principles"], "data.context.principles"),
+        "known_decks": Section("decks", context["known_decks"], "data.context.known_decks"),
+        "search": Section("questions", data["search"], "data.search"),
+        "proposal": _lines(data["proposal"], "data.proposal") if data["proposal"] is not None else Section("lines", [], "data.proposal"),
+        "previous_reviews": Section("reviews", data["previous_reviews"], "data.previous_reviews"),
+        "review_contexts": Section("reviews", data.get("review_contexts", []),
+                                   "data.review_contexts" if "review_contexts" in data else None),
+        "history": _lines(data.get("history", []), "data.history" if "history" in data else None),
+        # AI_NOTE: 本文を改行保持の配列へ展開し、長い1資料を1項目・1JSON行へ詰め込まない。
+        "sources": _lines([{**source, "content": source["content"].splitlines(keepends=True)}
+                           for source in data.get("sources", [])], "data.sources" if "sources" in data else None),
+        "context_metadata": _lines({key: value for key, value in context.items() if key not in context_parts}, "data.context"),
+        "fulfillment_map": _lines(context["fulfillment_map"], "data.context.fulfillment_map"),
+        "instruction": _lines(data["instruction"], "data.instruction"),
+        "response_example": _lines(data["response_example"], "data.response_example"),
+        "packet_metadata": _lines({key: value for key, value in data.items() if key not in packet_parts}, "data"),
+    }
+    if "finish_from_source" in data:
+        matches = [(i, source) for i, source in enumerate(data.get("sources", []))
+                   if source["source_hash"] == data["finish_from_source"]]
+        if len(matches) != 1:
+            raise ValueError("提案へまとめる対象資料が保存版に一意に存在しません")
+        index, source = matches[0]
+        sections["finish_source"] = _lines(
+            {**source, "content": source["content"].splitlines(keepends=True)}, f"data.sources[{index}]")
+    return sections
+
+
+def packet_summary(session: Path, packet_hash: str) -> JSONDict:
+    # AI_NOTE: 概要にも引き継ぎ対象を載せ、通常の出力は変えず同じ全文資料を参照させる。
+    data = _load_packet(session, packet_hash)
+    sections = _sections(data)
+    sections["source_index"] = Section("sources", source_index(data), "data.sources" if "sources" in data else None)
+    result = {
+        "sha256": packet_hash,
+        "packet_path": str((session / "packets" / f"{packet_hash}.json").resolve()),
+        "stage": data["stage"],
+        "revision": data["revision"],
+        "context_hash": data["context_hash"],
+        "objective": data["context"]["objective"],
+        "instruction": data["instruction"],
+        "response_example": data["response_example"],
+        "source_usage": data.get("source_usage"),
+        "sections": [{"section": name, "unit": section.unit, "total": len(section.content),
+                      "full_packet_path": section.full_packet_path}
+                     for name, section in sections.items()],
+        "reading": "read SESSION PACKET_HASH SECTION --offset 0 --limit 20。"
+                   "各区分のnext_offsetがnullになるまで、返された位置から読み進めてください。"
+                   "offsetは0始まりです。回答のpacket_hashには上のsha256を使います。"
+                   "資料は最初にsource_indexで必要な資料の場所を選び、示されたsource:HASHで本文だけを読めます。"
+                   "報告の再読は、その報告のsource:HASHだけを全文読んでください。",
+    }
+    if "finish_from_source" in data:
+        result["finish_from_source"] = data["finish_from_source"]
+    return result
+
+
+def read_packet(session: Path, packet_hash: str, section: str, offset: int = 0, limit: int = 20) -> JSONDict:
+    # AI_NOTE: 要素・行の区切りと次の位置を返し、空区分や最終ページでも読み落としを判別できるようにする。
+    if type(offset) is not int or offset < 0 or type(limit) is not int or limit <= 0:
+        raise ValueError("offsetは0以上、limitは1以上の整数を指定してください")
+    data = _load_packet(session, packet_hash)
+    # AI_NOTE: 索引・単一本文ではsources全体の整形JSONを作らず、必要な出力だけをページ化する。
+    if section == "source_index":
+        selected = Section("sources", source_index(data), "data.sources" if "sources" in data else None)
+    elif section.startswith("source:"):
+        key = section.removeprefix("source:")
+        if not re.fullmatch(r"[0-9a-f]{64}", key):
+            raise ValueError("source:HASHには資料のsha256を指定してください")
+        items = source_index(data)
+        matches = [i for i, item in enumerate(items) if item["source_hash"] == key]
+        if len(matches) != 1:
+            raise ValueError("指定した資料が固定packet内に一意に存在しません")
+        index = matches[0]
+        selected = _lines(data["sources"][index]["content"], f"data.sources[{index}].content")
+    else:
+        sections = _sections(data)
+        if section not in sections:
+            raise ValueError(f"未知の区分です: {section}。利用可能: {', '.join(sections)}, source_index, source:HASH")
+        selected = sections[section]
+    total = len(selected.content)
+    if offset > total:
+        raise ValueError(f"offsetが総数{total}を超えています")
+    content = selected.content[offset:offset + limit]
+    end = offset + len(content)
+    return {
+        "sha256": packet_hash,
+        "section": section,
+        "unit": selected.unit,
+        "offset": offset,
+        "limit": limit,
+        "total": total,
+        "next_offset": end if end < total else None,
+        "content": content,
+    }

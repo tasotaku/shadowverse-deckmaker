@@ -10,9 +10,9 @@ import pytest
 from scripts.lookahead_generated_cases import generate_cases
 from scripts.lookahead_reference import solve
 from scripts.lookahead_stress import compare
-from svdeck.battle import Battle, Json
-from svdeck.battle_ai import Player
-from svdeck.battle_lookahead import analyze, verify_policy
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_ai import Player
+from svdeck.battle_env.battle_lookahead import analyze, verify_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT/'tests/fixtures'

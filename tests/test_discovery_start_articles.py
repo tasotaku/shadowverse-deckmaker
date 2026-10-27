@@ -9,7 +9,8 @@ from typing import Any
 
 import pytest
 
-from svdeck import discovery, meta
+from svdeck.search import discovery
+from svdeck.data_access import meta
 from test_discovery import make_db
 from test_discovery_read import read_all
 

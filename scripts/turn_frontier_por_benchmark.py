@@ -6,10 +6,10 @@ import hashlib
 import json
 from pathlib import Path
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_frontier_fast import Kernel
-from svdeck.battle_frontier_por import enumerate_states
-from svdeck.combat_benchmark import peak_memory
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_frontier_fast import Kernel
+from svdeck.battle_env.battle_frontier_por import enumerate_states
+from svdeck.battle_env.combat_benchmark import peak_memory
 
 
 def medium(size: int, mixed: bool) -> Battle:

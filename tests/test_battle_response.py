@@ -5,9 +5,9 @@ from collections import Counter
 from copy import deepcopy
 from typing import Any
 
-from svdeck.battle import Battle
-from svdeck.battle_ai import BASE_WEIGHTS, Player, sample_world
-from svdeck.battle_response import best_reply, finish
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_ai import BASE_WEIGHTS, Player, sample_world
+from svdeck.battle_env.battle_response import best_reply, finish
 
 Json = dict[str, Any]
 CARDS: dict[str,Json] = {

@@ -9,8 +9,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_meta_cards import definitions
-from svdeck.battle_roles import card_roles, response_weights
+from svdeck.battle_env.battle_meta_cards import definitions
+from svdeck.battle_env.battle_roles import card_roles, response_weights
 
 Json = dict[str, Any]
 

@@ -11,9 +11,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.db import connect
-from svdeck.discovery import attach, compare, start
-from svdeck.discovery_sources import load_sources
+from svdeck.common.db import connect
+from svdeck.search.discovery import attach, compare, start
+from svdeck.search.discovery_sources import load_sources
 from test_discovery import assessment, proposal
 
 
@@ -157,7 +157,7 @@ def test_changed_snapshot_is_rejected_before_saving(session: Path) -> None:
 
 def test_public_compare_packet_citation_and_report(tmp_path: Path, session: Path) -> None:
     # AI_NOTE: 公開CLIから計算結果を追加し、次の提案・別評価が引用して記録へ戻るまで通す。
-    base = [sys.executable, "-m", "svdeck.discovery"]
+    base = [sys.executable, "-m", "svdeck.search.discovery"]
 
     def cli(*args: str) -> dict[str, Any]:
         result = subprocess.run(base + list(args), text=True, capture_output=True, check=True)

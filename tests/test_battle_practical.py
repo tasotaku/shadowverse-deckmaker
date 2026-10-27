@@ -10,8 +10,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_practical import WEIGHTS, analyze, replay_branch, verify_policy
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_practical import WEIGHTS, analyze, replay_branch, verify_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES: list[Json] = json.loads((ROOT/'tests/fixtures/combat_practical_cases.json').read_text(encoding='utf-8'))
@@ -120,7 +120,7 @@ def test_opponent_hand_triggers_cannot_bypass_scope_check(alternate: bool) -> No
 
 def test_deadline_interrupts_inside_deterministic_repeat(monkeypatch: pytest.MonkeyPatch) -> None:
     # AI_NOTE: 時計を制御して、1操作内の繰り返し中にもキャンセルを検査する。実機速度に依存しない。
-    from svdeck import battle_practical as practical
+    from svdeck.battle_env import battle_practical as practical
     effect: Json = {'op': 'damage', 'target': 'enemy_leader', 'amount': 0}
     for _ in range(2):
         effect = {'op': 'repeat', 'count': 100, 'effects': [effect]}

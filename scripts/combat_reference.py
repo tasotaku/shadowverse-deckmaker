@@ -21,7 +21,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-from svdeck.battle import Battle  # noqa: E402
+from svdeck.battle_env.battle import Battle  # noqa: E402
 
 
 def build(case: dict[str, Any]) -> Battle:
@@ -261,7 +261,7 @@ def main() -> None:
     args = parser.parse_args()
     cases_path = ROOT/'tests/fixtures/combat_hard_cases.json'
     cases = json.loads(cases_path.read_text(encoding='utf-8-sig'))
-    small_cases = json.loads((ROOT/'src/svdeck/data/combat_benchmark_cases.json').read_text(encoding='utf-8'))
+    small_cases = json.loads((ROOT/'src/svdeck/battle_env/data/combat_benchmark_cases.json').read_text(encoding='utf-8'))
     small_cases = [c for c in small_cases if c['oracle']]
     small_cases.append(dict(id='post-attack-evolution-super-finisher', own=[[1, 4],
                             dict(attack=1, health=4, evolved=2, entered_turn=7)], enemy=[[0, 2]],

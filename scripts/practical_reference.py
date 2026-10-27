@@ -17,7 +17,7 @@ import time
 from typing import Any, cast
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from svdeck.battle import Battle
+from svdeck.battle_env.battle import Battle
 
 
 class NeedRandom(Exception):

@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import pytest
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_frontier_fast import Kernel
-from svdeck import battle_frontier_packed as packed
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_frontier_fast import Kernel
+from svdeck.battle_env import battle_frontier_packed as packed
 
 
 def bounded_battle(change: Json) -> Battle:

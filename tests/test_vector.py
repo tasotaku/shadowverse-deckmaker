@@ -12,10 +12,10 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from svdeck.db import DB_PATH  # noqa: E402
-from svdeck.discovery_evidence import read_only  # noqa: E402
-from svdeck.strength import load_token_stats  # noqa: E402
-from svdeck.vector import _hits, _overlay, _xnum, classify, evaluate_card  # noqa: E402
+from svdeck.common.db import DB_PATH  # noqa: E402
+from svdeck.search.discovery_evidence import read_only  # noqa: E402
+from svdeck.search.strength import load_token_stats  # noqa: E402
+from svdeck.search.vector import _hits, _overlay, _xnum, classify, evaluate_card  # noqa: E402
 
 # AI_NOTE: 検算対象(ユーザー指定): ドラクラ=変化2→4 / サンダルフォン=登場モード / オルトロス=繰り返し×N
 # 追加(2026-07-15): 花園の導き=リソースの変化+融合素材 / 繚乱の庭=トークン別軸 / クオン=体リスト

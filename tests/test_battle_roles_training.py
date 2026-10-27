@@ -8,8 +8,8 @@ from typing import Any
 
 import pytest
 
-from svdeck import battle_training as training
-from svdeck.battle import Battle, replay
+from svdeck.battle_env import battle_training as training
+from svdeck.battle_env.battle import Battle, replay
 
 Json = dict[str, Any]
 

@@ -7,8 +7,8 @@ import random
 from pathlib import Path
 from typing import Any
 
-from svdeck.battle import replay
-from svdeck.battle_decks import new_match
+from svdeck.battle_env.battle import replay
+from svdeck.battle_env.battle_decks import new_match
 
 
 def make_record(seed: int, action_seed: int) -> dict[str, Any]:
@@ -42,7 +42,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--seed', type=int, default=14)
     parser.add_argument('--action-seed', type=int, default=14)
-    parser.add_argument('--output', type=Path, default=Path(__file__).resolve().parents[1] / 'src/svdeck/data/battle_example_replay.json')
+    parser.add_argument('--output', type=Path, default=Path(__file__).resolve().parents[1] / 'src/svdeck/battle_env/data/battle_example_replay.json')
     args = parser.parse_args()
     try:
         record = make_record(args.seed, args.action_seed)

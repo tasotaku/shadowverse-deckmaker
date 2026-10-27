@@ -11,9 +11,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.discovery import attach, packet, report, review, start, submit
-from svdeck.discovery_evidence import digest
-from svdeck.discovery_read import packet_summary, read_packet
+from svdeck.search.discovery import attach, packet, report, review, start, submit
+from svdeck.search.discovery_evidence import digest
+from svdeck.search.discovery_read import packet_summary, read_packet
 from test_discovery import assessment, make_db, proposal
 from test_discovery_read import read_all
 
@@ -179,7 +179,7 @@ def test_false_source_quote_rejected_for_both_answers(session: Path, ref: dict[s
 
 def test_public_cli_attach_and_old_packet_round_trip(tmp_path: Path, session: Path) -> None:
     # AI_NOTE: 実際のコマンドから追加、古い資料の回答、新しい資料の引用評価、記録まで通す。
-    base = [sys.executable, "-m", "svdeck.discovery"]
+    base = [sys.executable, "-m", "svdeck.search.discovery"]
 
     def cli(*args: str) -> dict[str, Any]:
         result = subprocess.run(base + list(args), text=True, capture_output=True, check=True)

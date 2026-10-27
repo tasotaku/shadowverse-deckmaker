@@ -10,16 +10,19 @@ dev = ["pytest>=8", "mypy>=1"]
 performance = ["numba>=0.67,<0.68", "numpy>=2,<2.6"]
 
 [project.scripts]
-svdeck-battle = "svdeck.battle:main"
-svdeck-battle-web = "svdeck.battle_server:main"
-svdeck-battle-ai = "svdeck.battle_training:main"
-svdeck-combat-benchmark = "svdeck.combat_benchmark:main"
+svdeck-battle = "svdeck.battle_env.battle:main"
+svdeck-battle-web = "svdeck.battle_env.battle_server:main"
+svdeck-battle-ai = "svdeck.battle_env.battle_training:main"
+svdeck-combat-benchmark = "svdeck.battle_env.combat_benchmark:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-svdeck = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/experiment_catalog.json", "data/battle_cases.json", "data/battle_supported.json", "data/battle_decks.json", "data/battle_meta_cases.json", "data/battle_example_replay.json", "data/battle_ai_model.json", "data/battle_ai_replay.json", "data/combat_benchmark_cases.json", "battle_web/*.html", "battle_web/*.css", "battle_web/*.js"]
+"svdeck.battle_env" = ["battle_web/*.html", "battle_web/*.css", "battle_web/*.js", "data/*.json"]
+"svdeck.search" = ["data/*.json"]
+"svdeck.data_access" = ["data/*.json"]
+"svdeck.common" = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/*.json"]
 
 [tool.mypy]
 strict = true

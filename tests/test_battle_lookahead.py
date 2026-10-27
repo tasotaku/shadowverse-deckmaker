@@ -10,9 +10,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, Json, replay
-from svdeck.battle_ai import Player
-from svdeck.battle_lookahead import analyze, verify_policy, validate_work
+from svdeck.battle_env.battle import Battle, Json, replay
+from svdeck.battle_env.battle_ai import Player
+from svdeck.battle_env.battle_lookahead import analyze, verify_policy, validate_work
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES: list[Json] = json.loads((ROOT/'tests/fixtures/battle_lookahead_cases.json').read_text(encoding='utf-8'))

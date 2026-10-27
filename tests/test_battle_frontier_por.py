@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_frontier_fast import Kernel, eligible
-from svdeck.battle_frontier_por import Independence, enumerate_states
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_frontier_fast import Kernel, eligible
+from svdeck.battle_env.battle_frontier_por import Independence, enumerate_states
 from test_battle_frontier_fast import scenario
 
 CASES = json.loads((Path(__file__).parent/'fixtures/turn_frontier_cases.json').read_text(encoding='utf-8'))

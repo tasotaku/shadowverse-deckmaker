@@ -10,8 +10,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, replay
-from svdeck.battle_server import create_server
+from svdeck.battle_env.battle import Battle, replay
+from svdeck.battle_env.battle_server import create_server
 
 
 @pytest.fixture

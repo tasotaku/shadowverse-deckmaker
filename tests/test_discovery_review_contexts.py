@@ -10,9 +10,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.discovery import attach, packet, report, review, start, submit
-from svdeck.discovery_evidence import digest
-from svdeck.discovery_read import packet_summary, read_packet
+from svdeck.search.discovery import attach, packet, report, review, start, submit
+from svdeck.search.discovery_evidence import digest
+from svdeck.search.discovery_read import packet_summary, read_packet
 from test_discovery import assessment, make_db, proposal
 from test_discovery_sources import source
 
@@ -30,7 +30,7 @@ def session(tmp_path: Path) -> Path:
 
 def cli(*args: str) -> dict[str, Any]:
     # AI_NOTE: 内部関数だけでなく利用者が読むJSON出力で対応情報を確かめる。
-    result = subprocess.run([sys.executable, "-m", "svdeck.discovery", *args],
+    result = subprocess.run([sys.executable, "-m", "svdeck.search.discovery", *args],
                             capture_output=True, text=True, check=True)
     parsed: dict[str, Any] = json.loads(result.stdout)
     return parsed
@@ -155,7 +155,7 @@ def test_broken_review_input_fails_without_output_or_new_packet(session: Path, c
         review_path.write_text(json.dumps({"sha256": digest(prior), "data": prior}))
     before = {p: p.read_bytes() for p in (session / "packets").glob("*.json")}
     for command in ("report", "packet"):
-        actual = subprocess.run([sys.executable, "-m", "svdeck.discovery", command, str(session)],
+        actual = subprocess.run([sys.executable, "-m", "svdeck.search.discovery", command, str(session)],
                                 capture_output=True, text=True)
         assert actual.returncode == 2, actual.stdout
         assert "探索入力エラー" in actual.stderr and "Traceback" not in actual.stderr

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.battle_frontier_io import Rows, States, dump_graph, json_default
+from svdeck.battle_env.battle_frontier_io import Rows, States, dump_graph, json_default
 
 
 def test_chunked_graph_roundtrip(tmp_path: Path) -> None:

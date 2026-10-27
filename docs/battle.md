@@ -10,7 +10,7 @@ AIが操作できる対戦処理と、人が同じ局面を動かして調べる
 ```sh
 python3 -m venv .venv
 .venv/bin/pip install -e '.[dev]'
-.venv/bin/python -m svdeck.battle_server --port 8767
+.venv/bin/python -m svdeck.battle_env.battle_server --port 8767
 ```
 
 [対戦ラボを開く](http://127.0.0.1:8767/)。この作業で確認した届け先もこのURLです。
@@ -46,7 +46,7 @@ PCでは両者の手札・盤面と再生操作を一画面に表示します（
   読込時には全操作を再実行して保存状態と照合し、開始状態を表示します。画面再読込では直前の再生位置を復元します。
 
 再生例の再生成: `.venv/bin/python scripts/make_battle_replay.py`（対戦・行動選択のseedはともに14）。
-配布記録は `src/svdeck/data/battle_example_replay.json` です。
+配布記録は `src/svdeck/battle_env/data/battle_example_replay.json` です。
 今回の追加確認: 関連192テスト、ターン位置4検査、HTTPの読込・移動・不正入力8検査、型検査3ファイルがPASS。
 届け先 `http://127.0.0.1:8767/` で、一手進む／戻る・先攻／後攻7ターンへの移動・終局・先頭復帰を操作し、表示の全状態を保存記録と照合しました。
 
@@ -59,8 +59,8 @@ PCでは両者の手札・盤面と再生操作を一画面に表示します（
 描画待ちもLLM呼び出しもないPythonの処理です。1行動で連鎖した効果を処理し、次の合法手を返します。
 
 ```python
-from svdeck.battle import Battle
-from svdeck.battle_decks import new_match
+from svdeck.battle_env.battle import Battle
+from svdeck.battle_env.battle_decks import new_match
 
 match = new_match('ramp-dragon', 'last-words-nightmare', seed=14)
 battle = Battle(match.state, match.cards, record=False)
@@ -108,12 +108,12 @@ while battle.state['winner'] is None:
 このエラー指定は処理中のValueError全般に一致するので、特定の拒否理由を固定するなら文字列で指定します。
 
 ```sh
-.venv/bin/python -m svdeck.battle test
-.venv/bin/python -m svdeck.battle run case.json
-.venv/bin/python -m svdeck.battle replay saved-battle.json
-.venv/bin/python -m svdeck.battle search case.json --depth 5 --nodes 10000
-.venv/bin/python -m svdeck.battle benchmark --games 100
-.venv/bin/python -m svdeck.battle catalog
+.venv/bin/python -m svdeck.battle_env.battle test
+.venv/bin/python -m svdeck.battle_env.battle run case.json
+.venv/bin/python -m svdeck.battle_env.battle replay saved-battle.json
+.venv/bin/python -m svdeck.battle_env.battle search case.json --depth 5 --nodes 10000
+.venv/bin/python -m svdeck.battle_env.battle benchmark --games 100
+.venv/bin/python -m svdeck.battle_env.battle catalog
 ```
 
 `search` は `expected` を満たす操作列を探します。`found` は保存した手順で再現できます。

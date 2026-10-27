@@ -12,9 +12,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, Json
-from svdeck.battle_frontier import analyze, endpoint_key, state_at, witness_steps
-from svdeck.battle_practical import replay_branch
+from svdeck.battle_env.battle import Battle, Json
+from svdeck.battle_env.battle_frontier import analyze, endpoint_key, state_at, witness_steps
+from svdeck.battle_env.battle_practical import replay_branch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'scripts'))
 from turn_frontier_reference import enumerate_turn, verify_case, action_signature  # type: ignore[import-not-found]  # noqa: E402
@@ -158,7 +158,7 @@ def test_weakest_sufficient_mutual_trade_survives_frontier() -> None:
 def test_api_frontier_and_http_budget() -> None:
     # AI_NOTE: サーバー実入口からJSON共有表を読み戻し、HTTP固有budgetと未対応optionsも検査する。
     from http.client import HTTPConnection
-    from svdeck.battle_server import create_server
+    from svdeck.battle_env.battle_server import create_server
     server = create_server(port=0)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()

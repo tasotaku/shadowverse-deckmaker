@@ -13,22 +13,9 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from svdeck.bench import CategoryLookup, MeasuredRates, load_fulfillment_map, parse_tag  # noqa: E402
-from svdeck.db import _SCHEMA, connect  # noqa: E402
-from svdeck.explore import (  # noqa: E402
-    ArithmeticResult,
-    Candidate,
-    RequireRow,
-    RequirementReport,
-    check_novelty,
-    compute_arithmetic,
-    find_closures,
-    format_arithmetic,
-    format_closures,
-    format_report,
-    format_scan_pack,
-    tag_search,
-)
+from svdeck.search.bench import CategoryLookup, MeasuredRates, load_fulfillment_map, parse_tag  # noqa: E402
+from svdeck.common.db import _SCHEMA, connect  # noqa: E402
+from svdeck.search.explore import ArithmeticResult, Candidate, RequireRow, RequirementReport, check_novelty, compute_arithmetic, find_closures, format_arithmetic, format_closures, format_report, format_scan_pack, tag_search
 
 
 @pytest.fixture
@@ -182,7 +169,7 @@ def test_public_module_cli_uses_artificial_db(tmp_path: Path, invalid_format: bo
         connection.close()
     env = {**os.environ, "PYTHONPATH": str(tmp_path / "src"), "PYTHONDONTWRITEBYTECODE": "1"}
     result = subprocess.run(
-        [sys.executable, "-m", "svdeck.explore", "1", "--format", "typo" if invalid_format else "rotation"],
+        [sys.executable, "-m", "svdeck.search.explore", "1", "--format", "typo" if invalid_format else "rotation"],
         cwd=tmp_path, env=env, check=False, capture_output=True, text=True,
     )
     if invalid_format:

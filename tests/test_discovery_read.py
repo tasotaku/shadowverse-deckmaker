@@ -10,9 +10,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.discovery import packet, review, start, submit
-from svdeck.discovery_evidence import digest
-from svdeck.discovery_read import packet_summary, read_packet
+from svdeck.search.discovery import packet, review, start, submit
+from svdeck.search.discovery_evidence import digest
+from svdeck.search.discovery_read import packet_summary, read_packet
 from test_discovery import assessment, make_db, proposal
 
 
@@ -45,7 +45,7 @@ def read_all(session: Path, packet_hash: str, section: str, limit: int) -> list[
 
 def test_cli_summary_keeps_original_packet_and_full_output(session: Path) -> None:
     # AI_NOTE: --summary追加後も、標準出力の形と保存される全文の識別値が変わらないことを公開CLIで検査する。
-    base = [sys.executable, "-m", "svdeck.discovery", "packet", str(session)]
+    base = [sys.executable, "-m", "svdeck.search.discovery", "packet", str(session)]
     full_output = subprocess.run(base, capture_output=True, text=True, check=True).stdout
     full = json.loads(full_output)
     summary_output = subprocess.run(base + ["--summary"], capture_output=True, text=True, check=True).stdout
@@ -72,7 +72,7 @@ def test_cli_summary_keeps_original_packet_and_full_output(session: Path) -> Non
     assert resolved["keywords"] == full["data"]["context"]["ability_keywords"]
     assert resolved["response_example"] == summary["response_example"]
     actual = subprocess.run(
-        [sys.executable, "-m", "svdeck.discovery", "read", str(session), summary["sha256"],
+        [sys.executable, "-m", "svdeck.search.discovery", "read", str(session), summary["sha256"],
          "cards", "--offset", "1", "--limit", "2"], capture_output=True, text=True, check=True,
     )
     page = json.loads(actual.stdout)
@@ -193,7 +193,7 @@ def test_modified_or_swapped_packet_is_rejected(session: Path, swap: bool) -> No
 def test_cli_read_errors_have_no_traceback(session: Path, section: str, extra: list[str]) -> None:
     # AI_NOTE: 公開CLIでも入力ミスを終了値2と短い説明に揃える。
     key = packet(session, 0, "develop")["sha256"]
-    actual = subprocess.run([sys.executable, "-m", "svdeck.discovery", "read", str(session), key, section, *extra],
+    actual = subprocess.run([sys.executable, "-m", "svdeck.search.discovery", "read", str(session), key, section, *extra],
                              capture_output=True, text=True)
     assert actual.returncode == 2
     assert "探索入力エラー" in actual.stderr

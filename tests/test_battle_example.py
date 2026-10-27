@@ -6,9 +6,9 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from svdeck.battle import Battle, replay
+from svdeck.battle_env.battle import Battle, replay
 
-DATA = Path(__file__).parents[1] / 'src/svdeck/data'
+DATA = Path(__file__).parents[1] / 'src/svdeck/battle_env/data'
 
 
 def load_record() -> dict[str, Any]:

@@ -9,8 +9,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle import Battle, catalog, demo_state, new_game, replay, run_case, search
-from svdeck.battle_cards import load_catalog
+from svdeck.battle_env.battle import Battle, catalog, demo_state, new_game, replay, run_case, search
+from svdeck.battle_env.battle_cards import load_catalog
 
 
 def test_new_game_deals_and_replays() -> None:
@@ -97,7 +97,7 @@ def test_replay_rejects_changed_cards_and_results() -> None:
 
 def test_catalog_detects_changed_card_source(tmp_path: Path) -> None:
     # AI_NOTE: DBの能力変更時に、旧コードを新しい能力へ適用しない。
-    from svdeck.db import DB_PATH
+    from svdeck.common.db import DB_PATH
     source=sqlite3.connect(DB_PATH)
     target=sqlite3.connect(tmp_path/'cards.db')
     source.backup(target); source.close()
