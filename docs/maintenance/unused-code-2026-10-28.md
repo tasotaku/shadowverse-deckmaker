@@ -27,4 +27,13 @@ HTTP/HTMLParserの処理メソッド、シグナル処理の引数、公開コ�
 - エラー: 不正入力と探索の打切りが従来どおり扱われること。
 
 既存の `tests/` の回帰試験、mypy strict、未使用import・変数の検査で確認する。
-検証結果は作業コミット後の実行結果を会話で報告する。
+検証結果:
+
+- `PYTHONPATH=src:tests .venv/bin/python -m pytest tests --ignore=tests/temp -q`: 1624 passed / 6 skipped / 3 failed。
+- 失敗3件はいずれも `test_combat_benchmark` の独立参照にある `engine_sha256` と現在の対戦エンジンの不一致。開始版 `d6e4791` のソースと固定資料を `/tmp` に展開し、同じ3失敗を再現した。正解資料の識別値は書き換えていない。
+- `tests/temp` はGit管理外の過去の使い捨てテスト。削除済みの `insert_new_cards` を参照し収集に失敗するため、現行の管理対象テストと分けた。
+- 変更した10ソースのmypy strict（import先はsilent）: PASS。全67ソースの型検査には、変更前から `combat_benchmark.py` の `subprocess.CREATE_NO_WINDOW` に1件のエラーあり。
+- 未使用import・再定義の検査: PASS。`battle.py.received` は前述の理由で残し、変数検査の既存指摘も残る。
+- 独立した差分レビュー: 誤削除の指摘なし。UIの変更はない。
+
+届け先は `shadowverse-deckmaker` の現行チェックアウト。実行時の候補列挙・対戦・探索の回帰試験をそこで実行した。
