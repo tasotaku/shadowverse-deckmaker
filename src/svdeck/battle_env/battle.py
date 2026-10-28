@@ -10,7 +10,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from svdeck import battle_rules as rules
+from svdeck.battle_env import battle_rules as rules
 
 Json = dict[str, Any]
 VERSION = 1
@@ -22,7 +22,7 @@ TARGETS = {'chosen_enemy', 'chosen_ally', 'chosen_other_ally', 'chosen_ally_card
 
 def catalog() -> dict[str, Json]:
     # AI_NOTE: 能力の対応は明示登録し、自由文の一部だけを実行して成功に見せない。
-    from svdeck.battle_cards import load_catalog
+    from svdeck.battle_env.battle_cards import load_catalog
     return load_catalog()
 
 
@@ -80,7 +80,7 @@ def validate_effect(effect: Json, cards: dict[str, Json]) -> None:
 class Battle:
     def __init__(self, state: Json, cards: dict[str, Json] | None = None, record: bool = True):
         # AI_NOTE: 入力を複製し、試験ケースや呼び出し元の状態へ副作用を漏らさない。
-        from svdeck.battle_cards import synthetic_cards
+        from svdeck.battle_env.battle_cards import synthetic_cards
         self.cards = copy.deepcopy(catalog() if cards is None else {**synthetic_cards(), **cards})
         self.recording = record
         self.events: list[Json] = []

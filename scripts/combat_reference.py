@@ -270,7 +270,7 @@ def main() -> None:
     report: dict[str, Any] = dict(schema_version=1, status='RUNNING', complete=False, method='complete finite target assignments; all feasible last hitters; pre/post evolution; exact injective dominance',
                   independence='Production battle_combat.py was not read or imported. Expected values never use production solver output.',
                   generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                  engine_sha256=hashlib.sha256((ROOT/'src/svdeck/battle.py').read_bytes()).hexdigest(),
+                  engine_sha256=hashlib.sha256((ROOT/'src/svdeck/battle_env/battle.py').read_bytes()).hexdigest(),
                   fixtures_sha256=hashlib.sha256(cases_path.read_bytes()).hexdigest(), small_validation=[], cases=[])
     output = ROOT/'tests/fixtures/combat_hard_answers.json'
     for case in small_cases if not args.case else []:

@@ -34,6 +34,18 @@ python -m svdeck.common.experiments serve
 [探索の記録を開く](http://127.0.0.1:8765/)。複数の作業コピーでは同じ本体を `--root` で指定します。
 [記録・バックアップ・別PCへの復元手順](docs/experiment-journal.md)を参照してください。
 
+## ソースの構成
+
+| ディレクトリ | 担当 |
+|---|---|
+| `src/svdeck/search/` | デッキの種・アンカー要求・候補の組み合わせ探索 |
+| `src/svdeck/data_access/` | カードや公開デッキの取得、効果・タグの取込と整備 |
+| `src/svdeck/battle_env/` | 対戦エンジン、対戦AI、対戦画面とその検証 |
+| `src/svdeck/common/` | 共有DB、制限時間付き実行、実験記録 |
+
+アンカーから候補を探す入口は `src/svdeck/search/explore.py` です。
+新しい起動名は `python -m svdeck.search.explore` などです。以前の `python -m svdeck.explore` と旧importも同じ実装へ転送するため、保存済みの作業手順から引き続き使えます。
+
 ## 準備
 
 Python 3.10以上。リポジトリのルートで実行します。
@@ -315,7 +327,7 @@ Game8の記事は、主レシピ節の見出しごとにある**デッキコピ�
 ```bash
 python -m pip install pytest mypy
 python -m pytest -q tests --ignore=tests/temp
-python -m mypy --follow-imports=silent src/svdeck/discovery.py src/svdeck/discovery_evidence.py src/svdeck/discovery_read.py src/svdeck/discovery_sources.py src/svdeck/discovery_compare.py src/svdeck/explore.py
+python -m mypy --follow-imports=silent src/svdeck/search/discovery.py src/svdeck/search/discovery_evidence.py src/svdeck/search/discovery_read.py src/svdeck/search/discovery_sources.py src/svdeck/search/discovery_compare.py src/svdeck/search/explore.py
 ```
 
 `tests/temp/` は過去の使い捨て確認用で、配布・回帰テストの対象に含めません。

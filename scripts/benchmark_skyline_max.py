@@ -19,7 +19,7 @@ def main() -> None:
     # AI_NOTE: Snapshot module identity and hash while independently checking every returned candidate index and its order.
     name = sys.argv[1]
     folder = Path('output/turn-search-max/skyline')
-    source = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('src/svdeck/battle_frontier_skyline.py')
+    source = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('src/svdeck/battle_env/battle_frontier_skyline.py')
     spec = importlib.util.spec_from_file_location('svdeck.max_skyline_'+name, source)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
