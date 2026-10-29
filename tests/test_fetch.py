@@ -126,3 +126,24 @@ def test_keyword_failure_preserves_saved_dictionary(tmp_path: Path, monkeypatch:
         assert conn.execute('SELECT text FROM ability_keyword').fetchone()[0] == '保存済み'
     finally:
         conn.close()
+
+
+def test_merged_fetch_cli_selects_card_and_keyword_operations(monkeypatch: Any) -> None:
+    from svdeck.data_access import fetch
+    import pytest
+    calls = []
+    monkeypatch.setattr(fetch, 'run', lambda refresh=False: calls.append(('cards', refresh)))
+    monkeypatch.setattr(fetch, 'run_keywords', lambda: calls.append(('keywords',)))
+    fetch.main([])
+    assert calls == [('cards', False), ('keywords',)]
+    calls.clear()
+    fetch.main(['--refresh'])
+    assert calls == [('cards', True), ('keywords',)]
+    calls.clear()
+    fetch.main(['--keywords-only'])
+    assert calls == [('keywords',)]
+    calls.clear()
+    with pytest.raises(SystemExit) as error:
+        fetch.main(['--unknown'])
+    assert error.value.code == 1
+    assert calls == []

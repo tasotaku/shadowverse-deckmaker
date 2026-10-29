@@ -394,12 +394,16 @@ def run(refresh: bool = False) -> None:
         conn.close()
 
 
-if __name__ == "__main__":
+def main(argv: list[str] | None = None) -> None:
     # AI_NOTE: 引数の打ち間違いを通常更新として実行しない。許可する形を2つに限定する。
-    args = sys.argv[1:]
+    args = sys.argv[1:] if argv is None else argv
     if args not in ([], ["--refresh"], ["--keywords-only"]):
         print("usage: python -m svdeck.data_access.fetch [--refresh | --keywords-only]")
         sys.exit(1)
     if args != ["--keywords-only"]:
         run(refresh=args == ["--refresh"])
     run_keywords()
+
+
+if __name__ == "__main__":
+    main()
