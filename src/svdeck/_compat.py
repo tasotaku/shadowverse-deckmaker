@@ -85,9 +85,9 @@ class _AliasLoader(importlib.abc.InspectLoader):
         implementation = importlib.import_module(self.target)
         if self.name in _KEYWORD_ALIASES:
             # Legacy keyword entry points still mean keyword-only acquisition.
-            module.fetch_keywords = implementation.fetch_keywords
-            module.run = implementation.run_keywords
-            module.API_URL = implementation.KEYWORDS_API_URL
+            setattr(module, "fetch_keywords", implementation.fetch_keywords)
+            setattr(module, "run", implementation.run_keywords)
+            setattr(module, "API_URL", implementation.KEYWORDS_API_URL)
         else:
             sys.modules[self.name] = implementation
 
