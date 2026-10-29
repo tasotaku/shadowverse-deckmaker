@@ -9,9 +9,9 @@ from time import perf_counter
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, Json
-from svdeck.battle_env.battle_compact import Compact, eligible
-from svdeck.battle_env.battle_practical import ChanceBattle, WEIGHTS, analyze, validate_scope, value, verify_policy
+from svdeck.battle.battle import Battle, Json
+from svdeck.battle.battle_compact import Compact, eligible
+from svdeck.battle.battle_practical import ChanceBattle, WEIGHTS, analyze, validate_scope, value, verify_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 STRESS: Json = json.loads((ROOT/'docs/evidence/combat-practical/stress/input.json').read_text(encoding='utf-8'))
@@ -135,7 +135,7 @@ def test_many_random_paths_merge_without_losing_probability() -> None:
 
 def test_export_deadline_cannot_report_optimal(monkeypatch: pytest.MonkeyPatch) -> None:
     # AI_NOTE: 探索終了後に期限を越えた場合も、欠けた方策を完全として返さない。
-    import svdeck.battle_env.battle_practical as practical
+    import svdeck.battle.battle_practical as practical
     calls = 0
     def clock() -> float:
         # AI_NOTE: 開始時だけ実時間を返し、次の出力検査で確実に期限超過へ進める。

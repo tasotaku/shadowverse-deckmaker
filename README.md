@@ -6,7 +6,7 @@ Shadowverse: Worlds Beyondで、独自性があり、そこそこ戦えるデッ
 勝率予測・学習済みの対戦AIは含みません。
 
 ```bash
-.venv/bin/python -m svdeck.battle_env.battle_server --port 8767
+.venv/bin/python -m svdeck.battle.battle_server --port 8767
 ```
 
 [対戦ラボを開く](http://127.0.0.1:8767/)（初回準備は[起動手順](docs/battle.md#開く)を参照）。
@@ -39,9 +39,10 @@ python -m svdeck.common.experiments serve
 | ディレクトリ | 担当 |
 |---|---|
 | `src/svdeck/search/` | デッキの種・アンカー要求・候補の組み合わせ探索 |
-| `src/svdeck/data_access/` | 公式カード・用語と公開デッキの取得 |
-| `src/svdeck/data_prep/` | 探索用の効果・タグ・一覧の作成と修正 |
-| `src/svdeck/battle_env/` | 対戦エンジン、対戦AI、効果データの取込、対戦画面とその検証 |
+| `src/svdeck/data/` | データ取得と探索準備のまとまり |
+| `src/svdeck/data/acquisition/` | 公式カード・用語と公開デッキの取得 |
+| `src/svdeck/data/preparation/` | 探索用の効果・タグ・一覧の作成と修正 |
+| `src/svdeck/battle/` | 対戦エンジン、対戦AI、効果データの取込、対戦画面とその検証 |
 | `src/svdeck/common/` | 共有DB、制限時間付き実行、実験記録 |
 
 アンカーから候補を探す入口は `src/svdeck/search/explore.py` です。
@@ -57,8 +58,8 @@ source .venv/bin/activate
 python -m pip install -e .
 ```
 
-カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.data_access.fetch` でカードと公式用語を取得します。用語だけの更新は `python -m svdeck.data_access.fetch --keywords-only` です。
-通常の取得は新規追加分を保存し、既存カードの能力変更を反映する場合は `python -m svdeck.data_access.fetch --refresh` を使います。
+カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.data.acquisition.fetch` でカードと公式用語を取得します。用語だけの更新は `python -m svdeck.data.acquisition.fetch --keywords-only` です。
+通常の取得は新規追加分を保存し、既存カードの能力変更を反映する場合は `python -m svdeck.data.acquisition.fetch --refresh` を使います。
 ユーザーの注記は公式データの更新で上書きしません。
 
 ## AIと探索を進める
@@ -301,8 +302,8 @@ AIの評価を保存したことは、強さや新発見の証明にはなりま
 | `python -m svdeck.search.reverse CARD_ID --format rotation` | 供給する効果から登録済みの要求を逆引きする |
 | `python -m svdeck.search.require recheck` | 新弾取得後、以前供給がなかった要求を再検索する。DB変更なし |
 | `python -m svdeck.search.profile decks` | 保存した環境デッキを一覧する。数値資料は強さ点数として使わない |
-| `python -m svdeck.data_access.meta --db data/cards.db` | 環境デッキを取得し、全件の整合確認後に保存済み一覧を置き換える |
-| `python -m svdeck.data_access.meta --article URL --format rotation --db data/cards.db` | 指定記事だけを読み、各40枚リストと取得情報を資料JSONとして出力する。DBは変更しない |
+| `python -m svdeck.data.acquisition.meta --db data/cards.db` | 環境デッキを取得し、全件の整合確認後に保存済み一覧を置き換える |
+| `python -m svdeck.data.acquisition.meta --article URL --format rotation --db data/cards.db` | 指定記事だけを読み、各40枚リストと取得情報を資料JSONとして出力する。DBは変更しない |
 
 Game8の記事は、主レシピ節の見出しごとにある**デッキコピー用リンクの対象リスト**を取得します。
 記事の表示表とコピー対象が違う場合は、枚数と札の差・コピー先をログに明示します。
@@ -313,7 +314,7 @@ Game8の記事は、主レシピ節の見出しごとにある**デッキコピ�
 コピーリンクがない場合は表示リストを使います。全40枚・正の整数枚数・同名重複なしを満たさないリストや、
 取得・解析の失敗があれば処理を中止し、保存済みの一覧は置き換えません。ログは必要に応じてファイルへ保存してください。
 表示表とコピー対象がともに40枚でも内容が一致するとは限らず、コピー対象を取得したことは記事内の表記の一致や強さの証明ではありません。
-| `python -m svdeck.data_access.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
+| `python -m svdeck.data.acquisition.meta --db PATH` | 指定DBの環境デッキ資料を再取得する。検査時はカードDBの複製を指定。`--help`は取得しない |
 
 必要な記事だけを探索資料へ渡す場合は、`meta --article URL --format rotation --db PATH > article.json` の出力を
 `python -m svdeck.search.discovery attach SESSION article.json` で取り込みます。GameWithとGame8の記事に対応します。

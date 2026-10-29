@@ -12,10 +12,10 @@ from pathlib import Path
 from time import perf_counter
 from typing import Any
 
-from svdeck.battle_env.battle import Battle, Json
-from svdeck.battle_env.battle_ai import Player
-from svdeck.battle_env.battle_lookahead import analyze, verify_policy
-from svdeck.battle_env.combat_benchmark import peak_memory
+from svdeck.battle.battle import Battle, Json
+from svdeck.battle.battle_ai import Player
+from svdeck.battle.battle_lookahead import analyze, verify_policy
+from svdeck.battle.combat_benchmark import peak_memory
 
 
 def write(path: Path, data: Any) -> None:

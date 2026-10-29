@@ -8,10 +8,10 @@ from fractions import Fraction
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, Json
-from svdeck.battle_env.battle_frontier import analyze, state_at
-from svdeck.battle_env.battle_frontier_fast import Kernel, eligible
-from svdeck.battle_env.battle_practical import ChanceBattle, Chance
+from svdeck.battle.battle import Battle, Json
+from svdeck.battle.battle_frontier import analyze, state_at
+from svdeck.battle.battle_frontier_fast import Kernel, eligible
+from svdeck.battle.battle_practical import ChanceBattle, Chance
 
 
 def semantic(state: Json) -> str:

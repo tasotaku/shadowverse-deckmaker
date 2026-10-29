@@ -7,7 +7,7 @@ import importlib.util
 import sys
 from types import CodeType, ModuleType
 
-_GROUPS = {'battle_env': ('battle',
+_GROUPS = {'battle': ('battle',
                 'battle_ai',
                 'battle_cards',
                 'battle_combat',
@@ -41,8 +41,8 @@ _GROUPS = {'battle_env': ('battle',
                 'battle_training',
                 'combat_benchmark', 'vectorize'),
  'common': ('db', 'experiments', 'inquiry_journal', 'journal_store', 'worker', 'worker_journal'),
- 'data_access': ('article_text', 'fetch', 'meta'),
- 'data_prep': ('atoms', 'memo', 'promote', 'retag'),
+ 'data.acquisition': ('article_text', 'fetch', 'meta'),
+ 'data.preparation': ('atoms', 'memo', 'promote', 'retag'),
  'search': ('augment',
             'bench',
             'discovery',
@@ -66,11 +66,23 @@ _TARGETS = {"svdeck." + name: "svdeck." + group + "." + name
 
 
 # Previous grouped paths remain importable without duplicate implementation files.
-_TARGETS.update({"svdeck.data_access." + name: "svdeck.data_prep." + name
+_TARGETS.update({"svdeck.data_access." + name: "svdeck.data.preparation." + name
                  for name in ("atoms", "memo", "promote", "retag")})
-_TARGETS["svdeck.data_access.vectorize"] = "svdeck.battle_env.vectorize"
+_TARGETS["svdeck.data_access.vectorize"] = "svdeck.battle.vectorize"
 _KEYWORD_ALIASES = {"svdeck.keywords", "svdeck.data_access.keywords"}
-_TARGETS.update({name: "svdeck.data_access.fetch" for name in _KEYWORD_ALIASES})
+_TARGETS.update({name: "svdeck.data.acquisition.fetch" for name in _KEYWORD_ALIASES})
+
+
+# svdeck.battle is now the public package; its facade retains the legacy engine API.
+_TARGETS.pop("svdeck.battle", None)
+_PACKAGE_ALIASES = {"svdeck.battle_env": "svdeck.battle",
+                    "svdeck.data_access": "svdeck.data.acquisition",
+                    "svdeck.data_prep": "svdeck.data.preparation"}
+_TARGETS.update(_PACKAGE_ALIASES)
+for old, new in _PACKAGE_ALIASES.items():
+    for names_group, names in _GROUPS.items():
+        if "svdeck." + names_group == new:
+            _TARGETS.update({old + "." + name: new + "." + name for name in names})
 
 
 class _AliasLoader(importlib.abc.InspectLoader):
@@ -94,7 +106,7 @@ class _AliasLoader(importlib.abc.InspectLoader):
     def get_source(self, fullname: str) -> str:
         # AI_NOTE: Old python -m commands execute the real module's own __main__ path and exit handling.
         if self.name in _KEYWORD_ALIASES:
-            return "from svdeck.data_access.fetch import run_keywords\nrun_keywords()\n"
+            return "from svdeck.data.acquisition.fetch import run_keywords\nrun_keywords()\n"
         return "import runpy\nrunpy.run_module(" + repr(self.target) + ", run_name='__main__', alter_sys=True)\n"
 
     def get_code(self, fullname: str) -> CodeType:
@@ -105,7 +117,7 @@ class _AliasFinder(importlib.abc.MetaPathFinder):
     def find_spec(self, fullname: str, path: object = None, target: ModuleType | None = None) -> importlib.machinery.ModuleSpec | None:
         # AI_NOTE: Only the finite old svdeck module list is redirected; all other imports use Python's loaders.
         destination = _TARGETS.get(fullname)
-        return importlib.util.spec_from_loader(fullname, _AliasLoader(fullname, destination)) if destination else None
+        return importlib.util.spec_from_loader(fullname, _AliasLoader(fullname, destination), is_package=fullname in _PACKAGE_ALIASES) if destination else None
 
 
 def install() -> None:

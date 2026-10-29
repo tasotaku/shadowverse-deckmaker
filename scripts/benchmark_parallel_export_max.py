@@ -10,10 +10,10 @@ from time import perf_counter, process_time
 
 import numpy as np
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_fast import Kernel
-from svdeck.battle_env.battle_frontier_native import NativeSearch
-from svdeck.battle_env.battle_frontier_export import materialize
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_fast import Kernel
+from svdeck.battle.battle_frontier_native import NativeSearch
+from svdeck.battle.battle_frontier_export import materialize
 
 
 def main() -> None:

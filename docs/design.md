@@ -1091,7 +1091,7 @@ novelty壁としては過剰に厳しい**（広まらなかった良デッキ�
    ③の運用: **新弾取得後は `python -m svdeck.search.require recheck` を回す**（2026-07-06追加）。
    anchor_requireのdead/active各行をタグ語彙・fulfillment_map経由で再検索し、「前回dead判定だが
    今は供給が存在する」変化点だけをレポートする（DBは変更しない・判断は人とメインセッションの仕事）。
-   公式の能力変更後は **`python -m svdeck.data_access.fetch --refresh`** を回す（2026-08-26追加）。一覧の全カードを
+   公式の能力変更後は **`python -m svdeck.data.acquisition.fetch --refresh`** を回す（2026-08-26追加）。一覧の全カードを
    手元と突き合わせ、変わった既存カードだけ単体APIの完全な値で更新する。利用者のメモ・タグは保持し、
    効果が変わったカードは古い分析を勝手に消さず、再作成が必要なcard_idとして報告する。
 8. **アイデアの恒久保存（2026-07-07ユーザー指示）**: 台帳の本体 `data/cards.db` は権利物同梱回避で
@@ -1557,10 +1557,10 @@ H. その他     {記述: 自由記述}   ← 最後の受け皿。カテゴリ�
 
 対戦環境・デッキ探索・データ取得を同じディレクトリへ平置きせず、次へ分離する。
 
-- `src/svdeck/battle_env/`: 対戦エンジン、対戦AI、対戦の検証・計測、対戦画面と固定JSON。
+- `src/svdeck/battle/`: 対戦エンジン、対戦AI、対戦の検証・計測、対戦画面と固定JSON。
 - `src/svdeck/search/`: アンカー要求と候補の照合、組み合わせ探索、仮説の改訂・評価。
-- `src/svdeck/data_access/`: 公式カード・用語と外部の公開デッキ情報の取得。
-- `src/svdeck/data_prep/`: 探索用の効果の取込、タグの追加・修正、AIが読む一覧の作成。
+- `src/svdeck/data/acquisition/`: 公式カード・用語と外部の公開デッキ情報の取得。
+- `src/svdeck/data/preparation/`: 探索用の効果の取込、タグの追加・修正、AIが読む一覧の作成。
 - `src/svdeck/common/`: 各機能が共有するDB、時間制限付き実行、実験記録と記録画面。
 
 Pythonの新しい参照・起動先は上記のsubpackageを用いる。旧 `svdeck.explore` 等のimport・`python -m` は単一の互換層で新しい実体へ転送し、実装や状態を二重に持たない。保存済み検証資料と凍結実装コピーは当時の形を保持する。
@@ -1569,3 +1569,7 @@ DB `data/cards.db`、利用者の注記、保存済み探索の場所は変更�
 ### 取得と探索準備の分離（2026-10-29）
 
 公式用語の取得は `data_access.fetch` に統合し、通常取得ではカード取得後に用語も更新する。`--keywords-only` で用語のみ更新できる。`vectorize` は対戦用効果データの入出力なので `battle_env` に置く。探索準備4モジュールと `promoted_tags.json` は同じ深さの `data_prep` にまとめる。DBと出力ファイルの位置は変更しない。旧CLI・旧グループのimportは互換層で転送する。
+
+### データ領域の統合（2026-10-29）
+
+svdeckの下をdata・search・battleとし、共有処理はcommonに置く。dataの下にacquisition（外部情報を取得して保存）とpreparation（保存済み情報から探索用データを作成・修正）を置き、データを用意する一連の仕事をまとめる。Pythonでの名前の衝突を避けるためsvdeckを維持する。旧battle_env・data_access・data_prepのimportと起動は互換層で転送し、DB・出力先・利用者データを維持する。

@@ -8,10 +8,10 @@ import os
 from pathlib import Path
 import sys
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_native import enumerate_native
-from svdeck.battle_env.battle_frontier_export import materialize
-from svdeck.battle_env.battle_frontier_export_native import sha256_provider
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_native import enumerate_native
+from svdeck.battle.battle_frontier_export import materialize
+from svdeck.battle.battle_frontier_export_native import sha256_provider
 
 
 def main() -> None:

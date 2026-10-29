@@ -13,8 +13,8 @@
 リポジトリ内で実行：
 
 ```powershell
-.venv/Scripts/python.exe -m svdeck.battle_env.combat_benchmark --list-cases
-.venv/Scripts/python.exe -m svdeck.battle_env.combat_benchmark --repeat 3 --output output/combat-run-001
+.venv/Scripts/python.exe -m svdeck.battle.combat_benchmark --list-cases
+.venv/Scripts/python.exe -m svdeck.battle.combat_benchmark --repeat 3 --output output/combat-run-001
 ```
 
 保存先は新しいディレクトリを指定する。過去の記録は上書きしない。
@@ -37,9 +37,9 @@
 一覧、1ケース、全3ケースの順に実行できる。保存先は未使用のディレクトリにする。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --list-cases
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --reference-file tests/fixtures/combat_hard_answers.json --case varied-5v5 --repeat 1 --output output/combat-hard-varied-001
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --reference-file tests/fixtures/combat_hard_answers.json --repeat 1 --output output/combat-hard-all-001
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --list-cases
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --reference-file tests/fixtures/combat_hard_answers.json --case varied-5v5 --repeat 1 --output output/combat-hard-varied-001
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.combat_benchmark --cases tests/fixtures/combat_hard_cases.json --reference-file tests/fixtures/combat_hard_answers.json --repeat 1 --output output/combat-hard-all-001
 ```
 
 `report.md` の「正解判定」が `PASS`、完了回数が実行回数と一致することを確認する。
@@ -96,11 +96,11 @@ HTTP応答の構造は [対戦AIのAPI説明](battle-ai.md) を参照する。
 対象を絞り、旧全探索と同条件で比べる：
 
 ```powershell
-.venv/Scripts/python.exe -m svdeck.battle_env.combat_benchmark --case tall-wide --case super-finish --repeat 3 --strategy grouped --strategy exhaustive --timeout 60 --max-states 50000 --output output/combat-comparison-001
+.venv/Scripts/python.exe -m svdeck.battle.combat_benchmark --case tall-wide --case super-finish --repeat 3 --strategy grouped --strategy exhaustive --timeout 60 --max-states 50000 --output output/combat-comparison-001
 ```
 
 各試行は順番に実行する。性能を比較する時は、他の重い作業を止め、同じPC・ケース・上限・繰り返し数を使う。
-ケースを追加する時は [ケース定義](../src/svdeck/battle_env/data/combat_benchmark_cases.json) を参考に別JSONを作り、
+ケースを追加する時は [ケース定義](../src/svdeck/battle/data/combat_benchmark_cases.json) を参考に別JSONを作り、
 `--cases PATH` で指定できる。`own`・`enemy` は `[攻撃力, 体力]`、または `attack`・`health`・
 `evolved`・`attacks`・`entered_turn` などを持つ個体の配列。
 `required_clear_survivors` には、敵を全処理した結果に残るべき味方の `[攻撃力, 体力]` の組合せを書く。

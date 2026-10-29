@@ -11,10 +11,10 @@ pytest.importorskip('numba')
 import numpy as np
 from numpy.typing import NDArray
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_fast import Kernel, State
-from svdeck.battle_env.battle_frontier_packed import frontier as reference
-from svdeck.battle_env.battle_frontier_skyline import frontier
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_fast import Kernel, State
+from svdeck.battle.battle_frontier_packed import frontier as reference
+from svdeck.battle.battle_frontier_skyline import frontier
 from test_battle_frontier_fast import scenario
 
 

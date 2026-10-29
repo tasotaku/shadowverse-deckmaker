@@ -10,8 +10,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, catalog
-from svdeck.battle_env.battle_ai import Player, execute_plan, sample_world
+from svdeck.battle.battle import Battle, catalog
+from svdeck.battle.battle_ai import Player, execute_plan, sample_world
 
 Json = dict[str, Any]
 

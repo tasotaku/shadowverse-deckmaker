@@ -22,7 +22,7 @@ from svdeck.search.discovery_evidence import CLASSES, JSONDict, build_context, c
 from svdeck.search.discovery_read import packet_summary, read_packet
 from svdeck.search.discovery_opponent import opponent_sources
 from svdeck.search.discovery_sources import load_sources, save_sources
-from svdeck.data_access.meta import article_sources
+from svdeck.data.acquisition.meta import article_sources
 
 DOCS = Path(__file__).resolve().parents[3] / "docs"
 

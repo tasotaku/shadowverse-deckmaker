@@ -5,7 +5,7 @@ The native backend now batches candidate conversion and compares packed endpoint
 From the repository root, run one comparison command against a JSON list of `{id,state,cards}` cases:
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier_compare --cases docs/evidence/turn-search-compare/independent-small-cases.v1.json --output output/my-unused-comparison --algorithms baseline,cache,native --trials 3 --seconds 60 --max-states 1000000 --load-note "No competing benchmark workers; host reserved for this run"
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier_compare --cases docs/evidence/turn-search-compare/independent-small-cases.v1.json --output output/my-unused-comparison --algorithms baseline,cache,native --trials 3 --seconds 60 --max-states 1000000 --load-note "No competing benchmark workers; host reserved for this run"
 ```
 
 `--output` must be unused. Each algorithm/case/trial runs in a fresh child process, serially. Order alternates by trial and case. One separate one-state warmup per case/algorithm is outside the measured trials, but fresh-worker imports, cached JIT loading and setup remain in the measured compute time. Warmup initializes signatures/cache files; it does not imply a warmed long-lived training process. The native method requires NumPy/Numba from the optional performance environment. Missing dependencies are recorded as worker errors.
@@ -42,9 +42,9 @@ Canonical semantic keys have `winner`, `boards`, `values`, `hand`. Each board el
 Expand the saved root, an indexed candidate, a conditional replay path, or a full observed state using one command:
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --output output/root-choices.json
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --candidate 0 --output output/candidate-choices.json
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --state output/observed-state.json --output output/next-choices.json
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --output output/root-choices.json
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --candidate 0 --output output/candidate-choices.json
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier_compare --expand output/my-unused-comparison/case-000/native/trial-1/result.json --state output/observed-state.json --output output/next-choices.json
 ```
 
 `--candidate`, `--steps` (JSON list of `{action,draws}`), and `--state` are mutually exclusive. Omit all to start at the record root. The output has the decoded `state`, `stop:true` and `choices:[{action,outcomes:[{state,probability,draws}]}]`. Probabilities are exact rational strings summing to 1 for each action, including unfavorable outcomes and repeated draws. Save one **observed** outcome's `state` as a JSON object and pass it with `--state` to get that branch's legal continuation; different outcomes can choose different subsequent targets. `--state` accepts a supplied state under the embedded rules; use `--steps` when root reachability must be validated. No `end_turn` is executed or offered.

@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
-from svdeck.battle_env.battle import Battle  # noqa: E402
+from svdeck.battle.battle import Battle  # noqa: E402
 
 Json = dict[str, Any]
 

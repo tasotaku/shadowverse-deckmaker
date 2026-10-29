@@ -75,7 +75,7 @@ LLM方式や深層強化学習より強いと実験で示したわけではあ�
 ランプドラゴン23/48勝、ラストワードナイトメア28/48勝で、両方の改善ともいえません。
 したがって**調整版を初期設定には採用していません**。選択欄の「調整版（比較用）」で利用できます。
 デッキごとの別方式も、この結果だけで有利と断定できないため導入していません。
-重みは[保存モデル](../src/svdeck/battle_env/data/battle_ai_model.json)、
+重みは[保存モデル](../src/svdeck/battle/data/battle_ai_model.json)、
 過程は[先読みの学習履歴](evidence/ai-search-training.json)、
 最終比較は[調整前との比較](evidence/ai-trained-vs-search.json)・[一手評価との比較](evidence/ai-trained-vs-greedy.json)に保存しています。
 学習864対戦＋独立評価288対戦＝**1,152対戦**。全て終局し、未終局0でした。
@@ -96,13 +96,13 @@ LLM方式や深層強化学習より強いと実験で示したわけではあ�
 
 ```sh
 # 一手評価の重みを学習（結果を直接採用はしない）
-.venv/bin/python -m svdeck.battle_env.battle_training train --output training.json --workers 4
+.venv/bin/python -m svdeck.battle.battle_training train --output training.json --workers 4
 # 同じ計算量の先読みAIを対戦で調整
-.venv/bin/python -m svdeck.battle_env.battle_training train --training-policy search --output search-training.json --workers 4
+.venv/bin/python -m svdeck.battle.battle_training train --training-policy search --output search-training.json --workers 4
 # 未学習条件で比較
-.venv/bin/python -m svdeck.battle_env.battle_training evaluate --policy search --opponent greedy --seed 10001 --seeds 16 --output evaluation.json
+.venv/bin/python -m svdeck.battle.battle_training evaluate --policy search --opponent greedy --seed 10001 --seeds 16 --output evaluation.json
 # 人が見返せる一試合を保存
-.venv/bin/python -m svdeck.battle_env.battle_training replay --policy search --opponent search --seed 24051 --output replay.json
+.venv/bin/python -m svdeck.battle.battle_training replay --policy search --opponent search --seed 24051 --output replay.json
 ```
 
 `train` に `--model-output candidate.json` を加えると小さな重みファイルも保存します。
@@ -279,8 +279,8 @@ svdeck-battle-ai replay --policy reply --opponent reply --seed 40001 --output re
 Pythonから `max_states=None` を渡せば状態件数の上限なしで完全列挙する。大きい局面の時間・メモリは保証しない。
 
 ```python
-from svdeck.battle_env.battle import replay
-from svdeck.battle_env.battle_combat import analyze
+from svdeck.battle.battle import replay
+from svdeck.battle.battle_combat import analyze
 
 battle = replay(record, cursor=30)
 result = analyze(battle, mode='super', max_states=None)

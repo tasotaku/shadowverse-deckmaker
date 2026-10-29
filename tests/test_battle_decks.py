@@ -8,11 +8,11 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, catalog, replay, run_case
-from svdeck.battle_env.battle_decks import load_decks, new_match, presets
+from svdeck.battle.battle import Battle, catalog, replay, run_case
+from svdeck.battle.battle_decks import load_decks, new_match, presets
 
 DECKS = ('ramp-dragon', 'last-words-nightmare')
-CASES = json.loads((Path(__file__).parents[1] / 'src/svdeck/battle_env/data/battle_meta_cases.json').read_text())
+CASES = json.loads((Path(__file__).parents[1] / 'src/svdeck/battle/data/battle_meta_cases.json').read_text())
 
 
 def test_two_sourced_complete_decks() -> None:

@@ -10,12 +10,12 @@ import subprocess
 import sys
 from time import perf_counter
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_catalog import analyze_catalog
-from svdeck.battle_env.battle_frontier_compare import canonical, kernel_key, semantic_key, source_manifest, digest
-from svdeck.battle_env.battle_frontier import freeze
-from svdeck.battle_env.battle_frontier_fast import Kernel
-from svdeck.battle_env.combat_benchmark import peak_memory
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_catalog import analyze_catalog
+from svdeck.battle.battle_frontier_compare import canonical, kernel_key, semantic_key, source_manifest, digest
+from svdeck.battle.battle_frontier import freeze
+from svdeck.battle.battle_frontier_fast import Kernel
+from svdeck.battle.combat_benchmark import peak_memory
 
 
 def worker(args: argparse.Namespace) -> None:

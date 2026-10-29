@@ -9,8 +9,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env import battle_rules as rules
-from svdeck.battle_env.battle import Battle, new_game, replay
+from svdeck.battle import battle_rules as rules
+from svdeck.battle.battle import Battle, new_game, replay
 
 Json = dict[str, Any]
 CARDS: dict[str, Json] = {
@@ -116,7 +116,7 @@ def test_replay_and_nonrecording_keep_same_public_history() -> None:
 
 
 def test_new_game_registers_recipe_before_hidden_shuffle() -> None:
-    recipes = json.loads((Path(__file__).parents[1] / 'src/svdeck/battle_env/data/battle_decks.json').read_text())
+    recipes = json.loads((Path(__file__).parents[1] / 'src/svdeck/battle/data/battle_decks.json').read_text())
     decks = [[cid for cid, count in recipe['cards'].items() for _ in range(count)] for recipe in recipes[:2]]
     battle = new_game(decks, seed=29)
     assert [entry['deck_list'] for entry in battle.observation(0)['deck_knowledge']] == [dict(Counter(deck)) for deck in decks]

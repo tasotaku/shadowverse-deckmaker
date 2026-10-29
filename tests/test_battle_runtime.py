@@ -9,8 +9,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, catalog, demo_state, new_game, replay, run_case, search
-from svdeck.battle_env.battle_cards import load_catalog
+from svdeck.battle.battle import Battle, catalog, demo_state, new_game, replay, run_case, search
+from svdeck.battle.battle_cards import load_catalog
 
 
 def test_new_game_deals_and_replays() -> None:

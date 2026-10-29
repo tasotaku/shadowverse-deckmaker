@@ -10,12 +10,12 @@ import pytest
 pytest.importorskip('numba')
 import numpy as np
 
-from svdeck.battle_env.battle import Battle, Json
-from svdeck.battle_env.battle_frontier_fast import Kernel, eligible
-from svdeck.battle_env.battle_frontier_native import NativeSearch, _numeric_id, enumerate_native, prepare
-from svdeck.battle_env.battle_frontier_native_core import _actions, _pack, _transition, _unpack
-from svdeck.battle_env.battle_frontier_native_delta import _combat_key, _spell_key
-from svdeck.battle_env.battle_practical import ChanceBattle
+from svdeck.battle.battle import Battle, Json
+from svdeck.battle.battle_frontier_fast import Kernel, eligible
+from svdeck.battle.battle_frontier_native import NativeSearch, _numeric_id, enumerate_native, prepare
+from svdeck.battle.battle_frontier_native_core import _actions, _pack, _transition, _unpack
+from svdeck.battle.battle_frontier_native_delta import _combat_key, _spell_key
+from svdeck.battle.battle_practical import ChanceBattle
 from test_battle_frontier_fast import scenario, semantic
 
 

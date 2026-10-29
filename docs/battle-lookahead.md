@@ -31,7 +31,7 @@
 リポジトリルートで実行し、保存先は未使用の場所を指定します。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_lookahead --cases tests/fixtures/battle_lookahead_cases.json --case save_removal_for_next_turn --turns 3 --output output/lookahead-save-three
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_lookahead --cases tests/fixtures/battle_lookahead_cases.json --case save_removal_for_next_turn --turns 3 --output output/lookahead-save-three
 ```
 
 同じケースを `--turns 1` と別の保存先で調べると、今は除去を使う判断から、3ターンでは温存して勝つ判断へ変わります。`case.json`・`report.json`・`report.md` に入力、全初手の勝敗確率、手札使用パターン、最適方策、時間・メモリを保存し、全出力辺を通常Battleで再生します。`hand_patterns` は抽選後の条件付き到達点も含む使用パターン一覧で、出目を自由に選べる意味ではありません。

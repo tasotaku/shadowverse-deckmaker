@@ -21,7 +21,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-from svdeck.battle_env.battle import Battle  # noqa: E402
+from svdeck.battle.battle import Battle  # noqa: E402
 
 
 def build(case: dict[str, Any]) -> Battle:
@@ -261,7 +261,7 @@ def main() -> None:
     args = parser.parse_args()
     cases_path = ROOT/'tests/fixtures/combat_hard_cases.json'
     cases = json.loads(cases_path.read_text(encoding='utf-8-sig'))
-    small_cases = json.loads((ROOT/'src/svdeck/battle_env/data/combat_benchmark_cases.json').read_text(encoding='utf-8'))
+    small_cases = json.loads((ROOT/'src/svdeck/battle/data/combat_benchmark_cases.json').read_text(encoding='utf-8'))
     small_cases = [c for c in small_cases if c['oracle']]
     small_cases.append(dict(id='post-attack-evolution-super-finisher', own=[[1, 4],
                             dict(attack=1, health=4, evolved=2, entered_turn=7)], enemy=[[0, 2]],
@@ -270,7 +270,7 @@ def main() -> None:
     report: dict[str, Any] = dict(schema_version=1, status='RUNNING', complete=False, method='complete finite target assignments; all feasible last hitters; pre/post evolution; exact injective dominance',
                   independence='Production battle_combat.py was not read or imported. Expected values never use production solver output.',
                   generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                  engine_sha256=hashlib.sha256((ROOT/'src/svdeck/battle_env/battle.py').read_bytes()).hexdigest(),
+                  engine_sha256=hashlib.sha256((ROOT/'src/svdeck/battle/battle.py').read_bytes()).hexdigest(),
                   fixtures_sha256=hashlib.sha256(cases_path.read_bytes()).hexdigest(), small_validation=[], cases=[])
     output = ROOT/'tests/fixtures/combat_hard_answers.json'
     for case in small_cases if not args.case else []:

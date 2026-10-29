@@ -15,7 +15,7 @@ PythonやHTTPから、今のターンにどの順でカード使用・攻撃・�
 以前打ち切られた5対5の入力は、そのまま次で実行できます。ケース配列と単一ケースJSONの両方を受け付けます。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_practical --cases docs/evidence/combat-practical/stress/input.json --case mixed-keywords-5v5 --output output/practical-stress-check
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_practical --cases docs/evidence/combat-practical/stress/input.json --case mixed-keywords-5v5 --output output/practical-stress-check
 ```
 
 この入力の独立した全合法手の総当たりは、今ターン勝利確率0・最適期待評価点−4でした。独立参照の再現スクリプトと計測は [大盤面検証](evidence/combat-practical-limits/validation.md) を参照してください。
@@ -27,8 +27,8 @@ PythonやHTTPから、今のターンにどの順でカード使用・攻撃・�
 ```powershell
 python -m venv .venv
 .venv/Scripts/python.exe -m pip install -e '.[dev]'
-.venv/Scripts/python.exe -m svdeck.battle_env.battle_practical --help
-.venv/Scripts/python.exe -m svdeck.battle_env.battle_practical --cases tests/fixtures/combat_practical_cases.json --case random-half-anchor --output docs/evidence/combat-practical/manual-half
+.venv/Scripts/python.exe -m svdeck.battle.battle_practical --help
+.venv/Scripts/python.exe -m svdeck.battle.battle_practical --cases tests/fixtures/combat_practical_cases.json --case random-half-anchor --output docs/evidence/combat-practical/manual-half
 ```
 
 保存先は**まだ存在しないディレクトリ**を指定します。再実行する場合は別の名前を使ってください。Linux/macOSでは実行ファイルを `.venv/bin/python` に読み替えます。
@@ -60,7 +60,7 @@ import json, subprocess, sys
 weights = dict.fromkeys(["leader", "attack", "health", "body", "hand", "pp", "ep", "sep", "keyword", "win", "own_board_health"], 0)
 weights["own_board_health"] = 1
 for objective in ("lethal", "value"):
-    subprocess.run([sys.executable, "-m", "svdeck.battle_env.battle_practical",
+    subprocess.run([sys.executable, "-m", "svdeck.battle.battle_practical",
         "--cases", "tests/fixtures/combat_practical_cases.json",
         "--case", "objective-preserve-versus-win", "--objective", objective,
         "--weights", json.dumps(weights),
@@ -75,7 +75,7 @@ for objective in ("lethal", "value"):
 別のターミナルで通常のサーバーを起動します。既に8767で動いている場合は、対応版が起動していることを確認してそのまま使います。
 
 ```powershell
-.venv/Scripts/python.exe -m svdeck.battle_env.battle_server --port 8767
+.venv/Scripts/python.exe -m svdeck.battle.battle_server --port 8767
 ```
 
 `POST http://localhost:8767/api/combat-practical` にJSONを送ります。
@@ -90,7 +90,7 @@ for objective in ("lethal", "value"):
 @'
 import json, urllib.request
 from pathlib import Path
-from svdeck.battle_env.battle import Battle
+from svdeck.battle.battle import Battle
 cases = json.loads(Path("tests/fixtures/combat_practical_cases.json").read_text(encoding="utf-8"))
 case = next(c for c in cases if c["id"] == "random-half-anchor")
 record = Battle(case["state"], case["cards"]).export()
@@ -197,7 +197,7 @@ print("全結果の再生・確率・期待値を確認:", checked)
 `complete: true`・`optimal: true` は対応モデル内で探索を完了した結果です。予算に達したら両方が `false` となり、`cutoffs` に `states`・`depth`・`time`・`chance outcomes` などの理由が入ります。このときの推奨手は得られた範囲での候補で、最適性を保証しません。CLIの正常終了やHTTP 200だけを完了判定に使わないでください。
 
 ```powershell
-.venv/Scripts/python.exe -m svdeck.battle_env.battle_practical --cases tests/fixtures/combat_practical_cases.json --case random-half-anchor --max-states 1 --output docs/evidence/combat-practical/manual-limited
+.venv/Scripts/python.exe -m svdeck.battle.battle_practical --cases tests/fixtures/combat_practical_cases.json --case random-half-anchor --max-states 1 --output docs/evidence/combat-practical/manual-limited
 ```
 
 この例は状態数予算による未完了を確認する入力です。必要に応じて予算を増やし、必ず新しい出力先で再計算します。許容範囲外の予算、未知の重み、対応外効果などは入力エラーです。HTTPは `400` と `{"error":"理由"}` を返します。

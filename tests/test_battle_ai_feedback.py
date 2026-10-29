@@ -7,9 +7,9 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_ai import BASE_WEIGHTS, Player, sample_world, turn_value
-from svdeck.battle_env.battle_training import save_model
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_ai import BASE_WEIGHTS, Player, sample_world, turn_value
+from svdeck.battle.battle_training import save_model
 
 FIXTURE = json.loads((Path(__file__).parents[1]/'docs/evidence/ai-play-feedback.json').read_text())
 

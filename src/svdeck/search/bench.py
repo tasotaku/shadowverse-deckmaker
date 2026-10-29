@@ -40,7 +40,7 @@ from pathlib import Path
 from typing import NamedTuple, TypedDict
 
 from svdeck.common.db import connect
-from svdeck.data_access.meta import _normalize_name
+from svdeck.data.acquisition.meta import _normalize_name
 
 FULFILLMENT_MAP_PATH = Path(__file__).resolve().parent / "data" / "fulfillment_map.json"
 REPORT_PATH = Path(__file__).resolve().parents[3] / "data" / "bench_report.txt"

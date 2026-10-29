@@ -10,18 +10,18 @@ dev = ["pytest>=8", "mypy>=1"]
 performance = ["numba>=0.67,<0.68", "numpy>=2,<2.6"]
 
 [project.scripts]
-svdeck-battle = "svdeck.battle_env.battle:main"
-svdeck-battle-web = "svdeck.battle_env.battle_server:main"
-svdeck-battle-ai = "svdeck.battle_env.battle_training:main"
-svdeck-combat-benchmark = "svdeck.battle_env.combat_benchmark:main"
+svdeck-battle = "svdeck.battle.battle:main"
+svdeck-battle-web = "svdeck.battle.battle_server:main"
+svdeck-battle-ai = "svdeck.battle.battle_training:main"
+svdeck-combat-benchmark = "svdeck.battle.combat_benchmark:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"svdeck.battle_env" = ["battle_web/*.html", "battle_web/*.css", "battle_web/*.js", "data/*.json"]
+"svdeck.battle" = ["battle_web/*.html", "battle_web/*.css", "battle_web/*.js", "data/*.json"]
 "svdeck.search" = ["data/*.json"]
-"svdeck.data_prep" = ["data/*.json"]
+"svdeck.data.preparation" = ["data/*.json"]
 "svdeck.common" = ["journal_web/*.html", "journal_web/*.css", "journal_web/*.js", "data/*.json"]
 
 [tool.mypy]

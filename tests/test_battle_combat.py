@@ -8,8 +8,8 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, Json, replay
-from svdeck.battle_env.battle_combat import analyze, project
+from svdeck.battle.battle import Battle, Json, replay
+from svdeck.battle.battle_combat import analyze, project
 
 CARDS: dict[str, Json] = {'v': {'kind': 'follower', 'name': '検証体', 'cost': 1, 'attack': 1, 'health': 1}}
 
@@ -195,7 +195,7 @@ def test_empty_board_and_budget_and_bad_inputs() -> None:
 
 
 def test_matching_is_not_greedy_and_separate_stats_are_not_sufficient() -> None:
-    from svdeck.battle_env.battle_combat import Body, Position, board_dominates, canonical, frontier
+    from svdeck.battle.battle_combat import Body, Position, board_dominates, canonical, frontier
     def b(a: int, h: int) -> Body:
         return Body(a, h, h, 0, 0, False)
     assert board_dominates((b(3, 3), b(3, 1)), (b(3, 1), b(1, 3)))
@@ -249,7 +249,7 @@ def test_grouped_partial_damage_and_search_reduction() -> None:
 
 def test_continuation_matching_keeps_attack_and_face_rights() -> None:
     # AI_NOTE: 次の敵を処理する前は、同じ数値でも攻撃済み・顔へ攻撃不可を同一視しない。
-    from svdeck.battle_env.battle_combat import Body, Position, canonical, dominates, frontier
+    from svdeck.battle.battle_combat import Body, Position, canonical, dominates, frontier
     small = Body(2, 2, 2, 0, 0, True)
     base = canonical(Position((small,), (), 20, 1, 1, False, False))
     spent = base._replace(own=(small._replace(attacks=1),))
@@ -263,7 +263,7 @@ def test_continuation_matching_keeps_attack_and_face_rights() -> None:
 
 def test_lower_attack_can_preserve_super_finishing_blow() -> None:
     # AI_NOTE: 大きい攻撃力が先に敵を倒すと、召喚酔いの超進化による顔1点を失うため両方残す。
-    from svdeck.battle_env.battle_combat import Body, Position, canonical, frontier
+    from svdeck.battle.battle_combat import Body, Position, canonical, frontier
     normal = Body(1, 4, 4, 0, 0, True)
     super_body = Body(1, 4, 4, 2, 0, False)
     target = Body(0, 2, 2, 0, 0, False)

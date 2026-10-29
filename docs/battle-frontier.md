@@ -1,15 +1,15 @@
 # 自分の1ターン内の候補を列挙する
 
-`svdeck.battle_env.battle_frontier` は、現在の手番の中で到達できる局面を列挙します。手札を使わない、1枚だけ使う、複数枚を使う、使用順を変える、攻撃・進化を間に挟む候補を扱います。相手の応答や次ターンは探索しません。各局面で止めることができ、`end_turn` の終了時効果・次手番の開始処理・ドローは実行しません。
+`svdeck.battle.battle_frontier` は、現在の手番の中で到達できる局面を列挙します。手札を使わない、1枚だけ使う、複数枚を使う、使用順を変える、攻撃・進化を間に挟む候補を扱います。相手の応答や次ターンは探索しません。各局面で止めることができ、`end_turn` の終了時効果・次手番の開始処理・ドローは実行しません。
 
 バリア・必殺・疾走・突進・守護、指定／ランダム／古い順の割り振りダメージ、確定除去、召喚、能力付与、スタッツ変更、繰り返しを扱います。未対応の効果を除去して計算せず、エラーで知らせます。ラストワード・誘発・クレストなど、既存の `battle_practical.validate_scope` が拒否する機能は対象外です。対戦エンジン自体の全カード対応を意味しません。
 
 ## Pythonから使う
 
 ```python
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier import analyze, state_at, witness_steps
-from svdeck.battle_env.battle_practical import replay_branch
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier import analyze, state_at, witness_steps
+from svdeck.battle.battle_practical import replay_branch
 
 result = analyze(Battle(case['state'], case['cards']),
                  max_states=100000, seconds=10)
@@ -34,7 +34,7 @@ if result['complete']:
 ```
 
 ```python
-from svdeck.battle_env.battle_frontier_catalog import analyze_catalog
+from svdeck.battle.battle_frontier_catalog import analyze_catalog
 
 catalog = analyze_catalog(battle, max_states=100000000, seconds=3600)
 if catalog.complete:
@@ -59,12 +59,12 @@ if catalog.complete:
 
 単独効果のスペルと基本能力だけで表せる入力は、`encoding=fixed-slots-v1` の整数表で計算します。この形式には `players` などの補助表はありませんが、`state_at`・`witness_steps` は同じように使えます。複合効果などは自動的に汎用処理へ戻します。`backend='generic'` で汎用処理を指定して比較することもできます。
 
-Python上の大きな表は省メモリの行配列です（辺は `Rows`、整数状態は `States`）。通常の添字・slice・反復に対応します。自分でJSON保存する場合は `svdeck.battle_env.battle_frontier_io.dump_graph(result, Path(...))`、`json.dumps` には同モジュールの `json_default` を `default=` に指定してください。CLI・HTTPの出力は標準JSONの配列なので、受取側に専用decoderは不要です。
+Python上の大きな表は省メモリの行配列です（辺は `Rows`、整数状態は `States`）。通常の添字・slice・反復に対応します。自分でJSON保存する場合は `svdeck.battle.battle_frontier_io.dump_graph(result, Path(...))`、`json.dumps` には同モジュールの `json_default` を `default=` に指定してください。CLI・HTTPの出力は標準JSONの配列なので、受取側に専用decoderは不要です。
 
 ## 計測CLIとHTTP
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier --cases tests/fixtures/turn_frontier_cases.json --case hand_none_a_b_ab --output output/frontier-example
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier --cases tests/fixtures/turn_frontier_cases.json --case hand_none_a_b_ab --output output/frontier-example
 ```
 
 未使用の保存先に `graph.json`（全候補・全操作・全確率）と `report.json`（完了状態・時間・メモリ）を保存します。大きいケースのグラフは大容量になります。`stats.elapsed_ms` は解析時間でファイル保存は含まず、メモリはPythonプロセス全体の最大常駐量です。比較計測はケースごとに新しいCLIプロセスで行います。
@@ -72,7 +72,7 @@ Python上の大きな表は省メモリの行配列です（辺は `Rows`、整�
 既定は10万状態・10秒・1操作4096出目です。PythonとCLIでは `max_states`／`--max-states` は最大1億、`seconds`／`--seconds` は最大3600、`--max-outcomes` は最大10000まで指定できます。HTTPの時間上限は60秒のままです。整数処理のCLIは10万展開ごとにstderrへ進捗JSONを出し、最終結果だけをstdoutへ出します。大盤面の測定例は次のとおりです。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 100000000 --seconds 3600 --output output/frontier-hard-one
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_frontier --cases tests/fixtures/battle_lookahead_hard.json --case hard_full_board_branching_1 --max-states 100000000 --seconds 3600 --output output/frontier-hard-one
 ```
 
 この5対5ケースは、既存の1000万状態・600秒という計測予算では未完了でした。その結果は上限を拡大しても完了には変わりません。より大きい予算で全数を調べる場合は、別の保存先で新しく計測します。許容上限の拡大は高速化ではなく、使用できる時間・メモリを増やすための変更です。

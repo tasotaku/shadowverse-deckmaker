@@ -3,7 +3,7 @@
 対戦画面のAI方式で **「役割から相手の返しを読む」** を選び、「AIが一手実行」で使えます。既存のAI方式も選択できます。ローカル起動は次のコマンドです。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_server --port 8767
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_server --port 8767
 ```
 
 画面は http://127.0.0.1:8767/ 。登録済みの「ランプドラゴン」「ラストワードナイトメア」の条件で対戦できます。これはリポジトリに保存されたデッキの対応で、全クラス・最新環境の網羅を意味しません。
@@ -22,7 +22,7 @@
 
 ## 設定と記録
 
-Pythonの公開入口は `Player(cards, 'roles', role_k=5, turns=3, max_nodes=6000, seconds=8, seed=1).choose(battle.observation(active_player))` です。`Player` は `svdeck.battle_env.battle_ai`、`Battle` は `svdeck.battle_env.battle` から取得します。`battle.observation(...)` が公開情報の入力で、全状態を直接渡す用途ではありません。登録デッキの開始状態は `svdeck.battle_env.battle_decks.new_match('ramp-dragon', 'last-words-nightmare', seed=93001)` で作れます。
+Pythonの公開入口は `Player(cards, 'roles', role_k=5, turns=3, max_nodes=6000, seconds=8, seed=1).choose(battle.observation(active_player))` です。`Player` は `svdeck.battle.battle_ai`、`Battle` は `svdeck.battle.battle` から取得します。`battle.observation(...)` が公開情報の入力で、全状態を直接渡す用途ではありません。登録デッキの開始状態は `svdeck.battle.battle_decks.new_match('ramp-dragon', 'last-words-nightmare', seed=93001)` で作れます。
 
 | 設定 | 意味 |
 |---|---|
@@ -38,8 +38,8 @@ APIは `POST /api/ai-step` に `{"record": battle.export(), "policy": "roles", "
 ## 候補を検査する公開診断
 
 ```python
-from svdeck.battle_env.battle_role_response import analyze_responses
-from svdeck.battle_env.battle_roles import card_roles, response_weights
+from svdeck.battle.battle_role_response import analyze_responses
+from svdeck.battle.battle_roles import card_roles, response_weights
 
 profiles = card_roles(battle.cards)
 report = analyze_responses(
@@ -70,8 +70,8 @@ report = analyze_responses(
 ## 対戦・評価・リプレイ
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_training evaluate --output output/roles-eval.json --policy roles --opponent search --workers 1 --seed 93001 --seeds 1 --decks ramp-dragon last-words-nightmare --seat 0 --replay-dir output/roles-replays
-.venv/Scripts/python.exe -X utf8 -m svdeck.battle_env.battle_training replay --output output/roles-game.json --policy roles --opponent search --seed 93001 --decks last-words-nightmare ramp-dragon --seat 1
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_training evaluate --output output/roles-eval.json --policy roles --opponent search --workers 1 --seed 93001 --seeds 1 --decks ramp-dragon last-words-nightmare --seat 0 --replay-dir output/roles-replays
+.venv/Scripts/python.exe -X utf8 -m svdeck.battle.battle_training replay --output output/roles-game.json --policy roles --opponent search --seed 93001 --decks last-words-nightmare ramp-dragon --seat 1
 ```
 
 時間を抑えて反復する設定例は `--role-k 5 --max-nodes 1500 --seconds 3 --turns 3` です。既定予算との強さの優劣は未確定です。

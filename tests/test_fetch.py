@@ -7,7 +7,7 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from svdeck.common.db import connect  # noqa: E402
-from svdeck.data_access.fetch import _effect_changed, find_changed_card_ids, insert_card, update_card  # noqa: E402
+from svdeck.data.acquisition.fetch import _effect_changed, find_changed_card_ids, insert_card, update_card  # noqa: E402
 
 
 CARD_ID = 10632310
@@ -86,7 +86,7 @@ def test_flavour_only_evolution_change_does_not_stale_effect_analysis() -> None:
 
 
 def test_keyword_acquisition_and_database_refresh(tmp_path: Path, monkeypatch: Any) -> None:
-    from svdeck.data_access import fetch
+    from svdeck.data.acquisition import fetch
     db_path = tmp_path / 'cards.db'
     conn = connect(db_path)
     conn.execute("INSERT INTO ability_keyword(title,text) VALUES ('旧語','旧定義')")
@@ -108,7 +108,7 @@ def test_keyword_acquisition_and_database_refresh(tmp_path: Path, monkeypatch: A
 
 
 def test_keyword_failure_preserves_saved_dictionary(tmp_path: Path, monkeypatch: Any) -> None:
-    from svdeck.data_access import fetch
+    from svdeck.data.acquisition import fetch
     import pytest
     db_path = tmp_path / 'cards.db'
     conn = connect(db_path)
@@ -129,7 +129,7 @@ def test_keyword_failure_preserves_saved_dictionary(tmp_path: Path, monkeypatch:
 
 
 def test_merged_fetch_cli_selects_card_and_keyword_operations(monkeypatch: Any) -> None:
-    from svdeck.data_access import fetch
+    from svdeck.data.acquisition import fetch
     import pytest
     calls = []
     monkeypatch.setattr(fetch, 'run', lambda refresh=False: calls.append(('cards', refresh)))

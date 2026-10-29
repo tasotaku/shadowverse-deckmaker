@@ -12,13 +12,13 @@ import pytest
 
 pytest.importorskip('numba')
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_compare import digest, kernel_key, semantic_key
-from svdeck.battle_env.battle_frontier_export import materialize
-from svdeck.battle_env.battle_frontier_fast import Kernel, _freeze
-from svdeck.battle_env.battle_frontier_native import enumerate_native
-from svdeck.battle_env.battle_frontier_export_native import CompiledStates, encode_rows
-from svdeck.battle_env.battle_frontier_io import States, dump_graph
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_compare import digest, kernel_key, semantic_key
+from svdeck.battle.battle_frontier_export import materialize
+from svdeck.battle.battle_frontier_fast import Kernel, _freeze
+from svdeck.battle.battle_frontier_native import enumerate_native
+from svdeck.battle.battle_frontier_export_native import CompiledStates, encode_rows
+from svdeck.battle.battle_frontier_io import States, dump_graph
 from test_battle_frontier_fast import scenario
 
 
@@ -83,7 +83,7 @@ def test_decimal_encoder_signed64_boundaries() -> None:
 
 def test_missing_crypto_fallback(monkeypatch: pytest.MonkeyPatch) -> None:
     # AI_NOTE: Machines without the optional crypto symbol retain exact old output, with an explicit strict-mode error.
-    from svdeck.battle_env import battle_frontier_export_native as native
+    from svdeck.battle import battle_frontier_export_native as native
     search = enumerate_native(scenario(3), max_states=100000, seconds=60)
     indices = list(range(len(search.keys)))
     old = materialize(search, indices, backend='python')
@@ -102,7 +102,7 @@ def test_missing_crypto_fallback(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_failed_crypto_call_never_exports_uninitialized_hashes(monkeypatch: pytest.MonkeyPatch,
                                                             workers: int, successful_calls: int) -> None:
     # AI_NOTE: Exercise a present but failing C symbol inside compiled code, including concurrent batches and strict mode.
-    from svdeck.battle_env import battle_frontier_export_native as native
+    from svdeck.battle import battle_frontier_export_native as native
     calls = 0
 
     def compute(source: int, length: int, target: int) -> int | None:

@@ -10,10 +10,10 @@ from time import perf_counter
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src'))
-from svdeck.battle_env.battle import Battle  # noqa: E402
-from svdeck.battle_env.battle_frontier import analyze  # noqa: E402
-from svdeck.battle_env.battle_frontier_cache import CachedKernel  # noqa: E402
-from svdeck.battle_env.battle_frontier_fast import Kernel  # noqa: E402
+from svdeck.battle.battle import Battle  # noqa: E402
+from svdeck.battle.battle_frontier import analyze  # noqa: E402
+from svdeck.battle.battle_frontier_cache import CachedKernel  # noqa: E402
+from svdeck.battle.battle_frontier_fast import Kernel  # noqa: E402
 
 
 def main() -> None:
@@ -39,7 +39,7 @@ def main() -> None:
         return kernel
 
     started = perf_counter()
-    with patch('svdeck.battle_env.battle_frontier_fast.Kernel', factory if args.variant == 'cache' else Kernel):
+    with patch('svdeck.battle.battle_frontier_fast.Kernel', factory if args.variant == 'cache' else Kernel):
         result = analyze(battle, backend='fixed-slots', seconds=30, max_states=10000000)
     wall = perf_counter()-started
     digest = hashlib.sha256()

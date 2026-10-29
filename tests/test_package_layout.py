@@ -9,10 +9,10 @@ import pytest
 
 
 @pytest.mark.parametrize('old,new', [
-    ('svdeck.battle', 'svdeck.battle_env.battle'),
+    ('svdeck.battle_env.battle', 'svdeck.battle.battle'),
     ('svdeck.discovery', 'svdeck.search.discovery'),
     ('svdeck.explore', 'svdeck.search.explore'),
-    ('svdeck.fetch', 'svdeck.data_access.fetch'),
+    ('svdeck.fetch', 'svdeck.data.acquisition.fetch'),
     ('svdeck.db', 'svdeck.common.db'),
     ('svdeck.worker', 'svdeck.common.worker'),
 ])
@@ -24,7 +24,7 @@ def test_legacy_import_shares_implementation(old: str, new: str) -> None:
 @pytest.mark.parametrize('old,new', [
     ('svdeck.discovery', 'svdeck.search.discovery'),
     ('svdeck.worker', 'svdeck.common.worker'),
-    ('svdeck.battle', 'svdeck.battle_env.battle'),
+    ('svdeck.battle', 'svdeck.battle.battle'),
 ])
 def test_legacy_and_canonical_cli_help(old: str, new: str) -> None:
     # AI_NOTE: Only --help is used; no card collection, database writes, server or worker is started.
@@ -36,10 +36,10 @@ def test_legacy_and_canonical_cli_help(old: str, new: str) -> None:
 
 def test_owned_assets_and_database_location() -> None:
     # AI_NOTE: Moving Python files must not silently create a new card DB or lose shipped browser/data assets.
-    from svdeck.battle_env import battle, battle_server
+    from svdeck.battle import battle, battle_server
     from svdeck.common import db, experiments
     from svdeck.search.bench import FULFILLMENT_MAP_PATH
-    from svdeck.data_prep.promote import PROMOTED_PATH
+    from svdeck.data.preparation.promote import PROMOTED_PATH
     root = Path(__file__).resolve().parents[1]
     assert db.DB_PATH == root / 'data/cards.db'
     assert json.loads((Path(battle.__file__).parent / 'data/battle_cases.json').read_text())
@@ -47,16 +47,18 @@ def test_owned_assets_and_database_location() -> None:
     assert (experiments.ASSETS / 'index.html').is_file()
     assert FULFILLMENT_MAP_PATH.is_file()
     assert PROMOTED_PATH.is_file()
+    from svdeck.data.preparation.retag import REPORT_PATH
+    assert REPORT_PATH == root / 'data/retag_report.txt'
 
 
 @pytest.mark.parametrize('old,new', [
-    ('svdeck.atoms', 'svdeck.data_prep.atoms'),
-    ('svdeck.data_access.atoms', 'svdeck.data_prep.atoms'),
-    ('svdeck.data_access.memo', 'svdeck.data_prep.memo'),
-    ('svdeck.data_access.promote', 'svdeck.data_prep.promote'),
-    ('svdeck.data_access.retag', 'svdeck.data_prep.retag'),
-    ('svdeck.vectorize', 'svdeck.battle_env.vectorize'),
-    ('svdeck.data_access.vectorize', 'svdeck.battle_env.vectorize'),
+    ('svdeck.atoms', 'svdeck.data.preparation.atoms'),
+    ('svdeck.data_access.atoms', 'svdeck.data.preparation.atoms'),
+    ('svdeck.data_access.memo', 'svdeck.data.preparation.memo'),
+    ('svdeck.data_access.promote', 'svdeck.data.preparation.promote'),
+    ('svdeck.data_access.retag', 'svdeck.data.preparation.retag'),
+    ('svdeck.vectorize', 'svdeck.battle.vectorize'),
+    ('svdeck.data_access.vectorize', 'svdeck.battle.vectorize'),
 ])
 def test_relocated_data_modules_share_implementation(old: str, new: str) -> None:
     assert importlib.import_module(old) is importlib.import_module(new)
@@ -64,10 +66,26 @@ def test_relocated_data_modules_share_implementation(old: str, new: str) -> None
 
 def test_legacy_keyword_cli_only_updates_keywords(monkeypatch: pytest.MonkeyPatch) -> None:
     import runpy
-    from svdeck.data_access import fetch
+    from svdeck.data.acquisition import fetch
     calls = []
     monkeypatch.setattr(fetch, 'run_keywords', lambda: calls.append('keywords'))
     monkeypatch.setattr(fetch, 'run', lambda **kwargs: pytest.fail('must not crawl cards'))
     for name in ('svdeck.keywords', 'svdeck.data_access.keywords'):
         runpy.run_module(name, run_name='__main__')
     assert calls == ['keywords', 'keywords']
+
+
+def test_old_battle_engine_api_remains_available() -> None:
+    from svdeck import battle
+    from svdeck.battle.battle import Battle
+    assert battle.Battle is Battle
+
+
+@pytest.mark.parametrize('old,new', [
+    ('svdeck.data_access.fetch', 'svdeck.data.acquisition.fetch'),
+    ('svdeck.data_prep.atoms', 'svdeck.data.preparation.atoms'),
+    ('svdeck.data_access.atoms', 'svdeck.data.preparation.atoms'),
+    ('svdeck.battle_env.vectorize', 'svdeck.battle.vectorize'),
+])
+def test_previous_package_names_share_canonical_modules(old: str, new: str) -> None:
+    assert importlib.import_module(old) is importlib.import_module(new)

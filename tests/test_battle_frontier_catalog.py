@@ -7,10 +7,10 @@ import pytest
 
 pytest.importorskip('numba')
 
-from svdeck.battle_env.battle_frontier_catalog import Catalog, analyze_catalog
-from svdeck.battle_env.battle_frontier import endpoint_key, freeze
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_practical import replay_branch
+from svdeck.battle.battle_frontier_catalog import Catalog, analyze_catalog
+from svdeck.battle.battle_frontier import endpoint_key, freeze
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_practical import replay_branch
 from test_battle_frontier_fast import scenario, semantic
 
 
@@ -64,7 +64,7 @@ def test_invalid_values_and_native_bound_fallback() -> None:
     battle.state['players'][0]['board'][0]['max_health'] = 2**70
     with pytest.raises(ValueError, match='max_health'):
         analyze_catalog(battle, seconds=30)
-    with patch('svdeck.battle_env.battle_frontier_native.prepare', side_effect=ValueError('native integer bounds exceeded')):
+    with patch('svdeck.battle.battle_frontier_native.prepare', side_effect=ValueError('native integer bounds exceeded')):
         result = analyze_catalog(scenario(0), seconds=30)
     assert result.complete and result.native is None
     assert 'bounds' in result.stats['fallback_reason']
@@ -72,6 +72,6 @@ def test_invalid_values_and_native_bound_fallback() -> None:
 
 def test_missing_optional_runtime_uses_reference() -> None:
     # AI_NOTE: 任意依存を入れていない通常環境でも、既存の解析を使い続けられる。
-    with patch.dict('sys.modules', {'svdeck.battle_env.battle_frontier_native': None}):
+    with patch.dict('sys.modules', {'svdeck.battle.battle_frontier_native': None}):
         result = analyze_catalog(scenario(0), seconds=30)
     assert result.complete and result.native is None and 'dependencies' in result.stats['fallback_reason']

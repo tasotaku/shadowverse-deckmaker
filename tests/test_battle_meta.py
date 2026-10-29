@@ -10,7 +10,7 @@ from typing import Any
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, catalog, replay
+from svdeck.battle.battle import Battle, catalog, replay
 
 Json = dict[str, Any]
 

@@ -7,9 +7,9 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.battle_env import combat_benchmark as bench
-from svdeck.battle_env.battle import Json
-from svdeck.battle_env.battle_combat import analyze
+from svdeck.battle import combat_benchmark as bench
+from svdeck.battle.battle import Json
+from svdeck.battle.battle_combat import analyze
 
 
 def test_real_memory_and_independent_answer() -> None:

@@ -9,7 +9,7 @@ from typing import Any
 
 import pytest
 
-from svdeck.data_access import meta
+from svdeck.data.acquisition import meta
 from svdeck.common.db import connect
 from svdeck.search.discovery import packet, start
 from test_discovery import make_db

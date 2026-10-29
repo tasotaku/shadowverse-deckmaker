@@ -10,11 +10,11 @@ from pathlib import Path
 
 import pytest
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_practical import replay_branch
-from svdeck.battle_env.battle_frontier_compare import digest, expand_state, kernel_key, run_worker, semantic_key, summarize
-from svdeck.battle_env.battle_frontier_fast import Kernel
-from svdeck.battle_env.battle_frontier import freeze
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_practical import replay_branch
+from svdeck.battle.battle_frontier_compare import digest, expand_state, kernel_key, run_worker, semantic_key, summarize
+from svdeck.battle.battle_frontier_fast import Kernel
+from svdeck.battle.battle_frontier import freeze
 from test_battle_frontier import action_signature, enumerate_turn, signature  # type: ignore[attr-defined]
 from test_battle_frontier_fast import scenario
 
@@ -79,13 +79,13 @@ def test_public_cli_and_lazy_continuation(tmp_path: Path) -> None:
     source = tmp_path/'cases.json'
     source.write_text(json.dumps(CASES[:1]), encoding='utf-8')
     output = tmp_path/'comparison'
-    subprocess.run([sys.executable, '-X', 'utf8', '-m', 'svdeck.battle_env.battle_frontier_compare', '--cases', str(source),
+    subprocess.run([sys.executable, '-X', 'utf8', '-m', 'svdeck.battle.battle_frontier_compare', '--cases', str(source),
                     '--output', str(output), '--algorithms', 'baseline', '--trials', '1'], check=True, capture_output=True)
     summary = json.loads((output/'summary.json').read_text(encoding='utf-8'))
     row = summary['groups'][0]['trials'][0]
     assert row['complete'] and row['process_wall_seconds'] >= row['timings']['compute_seconds']
     expanded = tmp_path/'expanded.json'
-    subprocess.run([sys.executable, '-X', 'utf8', '-m', 'svdeck.battle_env.battle_frontier_compare', '--expand',
+    subprocess.run([sys.executable, '-X', 'utf8', '-m', 'svdeck.battle.battle_frontier_compare', '--expand',
                     str(output/row['result_path']), '--output', str(expanded)], check=True, capture_output=True)
     result = json.loads(expanded.read_text(encoding='utf-8'))
     assert result['conditional'] and result['stop']

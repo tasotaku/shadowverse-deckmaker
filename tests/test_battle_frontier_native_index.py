@@ -6,7 +6,7 @@ import pytest
 pytest.importorskip('numba')
 import numpy as np
 
-from svdeck.battle_env.battle_frontier_native_index import _grow, _hash, _locate
+from svdeck.battle.battle_frontier_native_index import _grow, _hash, _locate
 
 
 def test_index_collisions_full_words_and_zero() -> None:

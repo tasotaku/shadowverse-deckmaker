@@ -7,7 +7,7 @@ import sys
 
 import pytest
 
-from svdeck.data_access import meta
+from svdeck.data.acquisition import meta
 from svdeck.common.db import connect
 from test_discovery import make_db
 
@@ -54,7 +54,7 @@ def test_selected_database_receives_only_meta_changes(tmp_path: Path, monkeypatc
 def test_public_help_exits_without_creating_database(tmp_path: Path) -> None:
     # AI_NOTE: 問題が起きたpython -mの入口で、未作成のDBを指定してもヘルプだけを返す。
     db = tmp_path / "not-created.db"
-    result = subprocess.run([sys.executable, "-m", "svdeck.data_access.meta", "--db", str(db), "--help"],
+    result = subprocess.run([sys.executable, "-m", "svdeck.data.acquisition.meta", "--db", str(db), "--help"],
                             capture_output=True, text=True, timeout=5)
     assert result.returncode == 0
     assert "--db" in result.stdout and "[meta]" not in result.stdout

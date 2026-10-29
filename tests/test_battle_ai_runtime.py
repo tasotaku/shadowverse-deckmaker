@@ -10,10 +10,10 @@ from typing import Any, Iterator
 
 import pytest
 
-from svdeck.battle_env.battle import Battle, replay
-from svdeck.battle_env.battle_server import ai_observation, create_server
-from svdeck.battle_env.battle_training import summarize
-from svdeck.battle_env.battle_ai import MODEL_PATH, load_weights, model_hash
+from svdeck.battle.battle import Battle, replay
+from svdeck.battle.battle_server import ai_observation, create_server
+from svdeck.battle.battle_training import summarize
+from svdeck.battle.battle_ai import MODEL_PATH, load_weights, model_hash
 
 
 @pytest.fixture
@@ -91,7 +91,7 @@ def test_shipped_model_matches_evaluated_weights() -> None:
 
 def test_old_replay_can_use_known_deck_replies_without_rewriting_history(server_url: str) -> None:
     # AI_NOTE: 利用中の古い保存対戦も、初期構築と現在位置までの操作だけで返しを探索できる。
-    path = Path(__file__).parents[1]/'src/svdeck/battle_env/data/battle_ai_replay.json'
+    path = Path(__file__).parents[1]/'src/svdeck/battle/data/battle_ai_replay.json'
     record = json.loads(path.read_text())
     battle = replay(record,cursor=16)
     before = battle.export()

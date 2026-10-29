@@ -11,15 +11,15 @@ from time import perf_counter
 
 import numpy as np
 
-from svdeck.battle_env.battle import Battle
-from svdeck.battle_env.battle_frontier_fast import Kernel
+from svdeck.battle.battle import Battle
+from svdeck.battle.battle_frontier_fast import Kernel
 
 
 def main() -> None:
     # AI_NOTE: Snapshot module identity and hash while independently checking every returned candidate index and its order.
     name = sys.argv[1]
     folder = Path('output/turn-search-max/skyline')
-    source = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('src/svdeck/battle_env/battle_frontier_skyline.py')
+    source = Path(sys.argv[2]) if len(sys.argv) > 2 else Path('src/svdeck/battle/battle_frontier_skyline.py')
     spec = importlib.util.spec_from_file_location('svdeck.max_skyline_'+name, source)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
@@ -37,7 +37,7 @@ def main() -> None:
     elapsed = perf_counter()-start
     actual = np.array(candidates, dtype=np.int64)
     assert complete and np.array_equal(actual, expected)
-    from svdeck.battle_env.battle_frontier_compare import peak_memory
+    from svdeck.battle.battle_frontier_compare import peak_memory
     result = {'variant': name, 'source_sha256': hashlib.sha256(source.read_bytes()).hexdigest(),
               'candidate_count': len(candidates), 'seconds': elapsed,
               'peak_memory': peak_memory(), 'same_all_ordered_indices': True,
