@@ -1559,8 +1559,13 @@ H. その他     {記述: 自由記述}   ← 最後の受け皿。カテゴリ�
 
 - `src/svdeck/battle_env/`: 対戦エンジン、対戦AI、対戦の検証・計測、対戦画面と固定JSON。
 - `src/svdeck/search/`: アンカー要求と候補の照合、組み合わせ探索、仮説の改訂・評価。
-- `src/svdeck/data_access/`: 公式・外部情報の取得、効果の取込、注記やタグの整備。
+- `src/svdeck/data_access/`: 公式カード・用語と外部の公開デッキ情報の取得。
+- `src/svdeck/data_prep/`: 探索用の効果の取込、タグの追加・修正、AIが読む一覧の作成。
 - `src/svdeck/common/`: 各機能が共有するDB、時間制限付き実行、実験記録と記録画面。
 
 Pythonの新しい参照・起動先は上記のsubpackageを用いる。旧 `svdeck.explore` 等のimport・`python -m` は単一の互換層で新しい実体へ転送し、実装や状態を二重に持たない。保存済み検証資料と凍結実装コピーは当時の形を保持する。
 DB `data/cards.db`、利用者の注記、保存済み探索の場所は変更しない。実装を固定コピーする入口はsubpackageを含むパッケージ全体を保存する。
+
+### 取得と探索準備の分離（2026-10-29）
+
+公式用語の取得は `data_access.fetch` に統合し、通常取得ではカード取得後に用語も更新する。`--keywords-only` で用語のみ更新できる。`vectorize` は対戦用効果データの入出力なので `battle_env` に置く。探索準備4モジュールと `promoted_tags.json` は同じ深さの `data_prep` にまとめる。DBと出力ファイルの位置は変更しない。旧CLI・旧グループのimportは互換層で転送する。

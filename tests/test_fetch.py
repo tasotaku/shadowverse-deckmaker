@@ -83,3 +83,46 @@ def test_flavour_only_evolution_change_does_not_stale_effect_analysis() -> None:
     assert _effect_changed({"evo_json": (old_evo, new_evo)}) is False
     changed_skill = '{"flavour_text":"昨日の私","skill_text":"新しい能力"}'
     assert _effect_changed({"evo_json": (old_evo, changed_skill)}) is True
+
+
+def test_keyword_acquisition_and_database_refresh(tmp_path: Path, monkeypatch: Any) -> None:
+    from svdeck.data_access import fetch
+    db_path = tmp_path / 'cards.db'
+    conn = connect(db_path)
+    conn.execute("INSERT INTO ability_keyword(title,text) VALUES ('旧語','旧定義')")
+    conn.commit()
+    conn.close()
+    urls = []
+    def payload(url: str) -> dict[str, Any]:
+        urls.append(url)
+        return {'data': {'ability_key_word_list': [{'title': '守護', 'text': '公式の説明'}]}}
+    monkeypatch.setattr(fetch, '_get_json', payload)
+    monkeypatch.setattr(fetch, 'connect', lambda: connect(db_path))
+    fetch.run_keywords()
+    conn = connect(db_path)
+    try:
+        assert conn.execute('SELECT title,text FROM ability_keyword').fetchall() == [('守護', '公式の説明')]
+        assert urls == [fetch.KEYWORDS_API_URL + '?lang=ja']
+    finally:
+        conn.close()
+
+
+def test_keyword_failure_preserves_saved_dictionary(tmp_path: Path, monkeypatch: Any) -> None:
+    from svdeck.data_access import fetch
+    import pytest
+    db_path = tmp_path / 'cards.db'
+    conn = connect(db_path)
+    conn.execute("INSERT INTO ability_keyword(title,text) VALUES ('守護','保存済み')")
+    conn.commit()
+    conn.close()
+    monkeypatch.setattr(fetch, 'connect', lambda: connect(db_path))
+    def fail() -> list[tuple[str, str]]:
+        raise OSError('offline')
+    monkeypatch.setattr(fetch, 'fetch_keywords', fail)
+    with pytest.raises(OSError, match='offline'):
+        fetch.run_keywords()
+    conn = connect(db_path)
+    try:
+        assert conn.execute('SELECT text FROM ability_keyword').fetchone()[0] == '保存済み'
+    finally:
+        conn.close()

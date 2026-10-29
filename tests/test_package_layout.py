@@ -39,7 +39,7 @@ def test_owned_assets_and_database_location() -> None:
     from svdeck.battle_env import battle, battle_server
     from svdeck.common import db, experiments
     from svdeck.search.bench import FULFILLMENT_MAP_PATH
-    from svdeck.data_access.promote import PROMOTED_PATH
+    from svdeck.data_prep.promote import PROMOTED_PATH
     root = Path(__file__).resolve().parents[1]
     assert db.DB_PATH == root / 'data/cards.db'
     assert json.loads((Path(battle.__file__).parent / 'data/battle_cases.json').read_text())
@@ -47,3 +47,27 @@ def test_owned_assets_and_database_location() -> None:
     assert (experiments.ASSETS / 'index.html').is_file()
     assert FULFILLMENT_MAP_PATH.is_file()
     assert PROMOTED_PATH.is_file()
+
+
+@pytest.mark.parametrize('old,new', [
+    ('svdeck.atoms', 'svdeck.data_prep.atoms'),
+    ('svdeck.data_access.atoms', 'svdeck.data_prep.atoms'),
+    ('svdeck.data_access.memo', 'svdeck.data_prep.memo'),
+    ('svdeck.data_access.promote', 'svdeck.data_prep.promote'),
+    ('svdeck.data_access.retag', 'svdeck.data_prep.retag'),
+    ('svdeck.vectorize', 'svdeck.battle_env.vectorize'),
+    ('svdeck.data_access.vectorize', 'svdeck.battle_env.vectorize'),
+])
+def test_relocated_data_modules_share_implementation(old: str, new: str) -> None:
+    assert importlib.import_module(old) is importlib.import_module(new)
+
+
+def test_legacy_keyword_cli_only_updates_keywords(monkeypatch: pytest.MonkeyPatch) -> None:
+    import runpy
+    from svdeck.data_access import fetch
+    calls = []
+    monkeypatch.setattr(fetch, 'run_keywords', lambda: calls.append('keywords'))
+    monkeypatch.setattr(fetch, 'run', lambda **kwargs: pytest.fail('must not crawl cards'))
+    for name in ('svdeck.keywords', 'svdeck.data_access.keywords'):
+        runpy.run_module(name, run_name='__main__')
+    assert calls == ['keywords', 'keywords']

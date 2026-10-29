@@ -5,9 +5,9 @@ atom_tagは card_atom からの派生層で再抽出時に作り直されるた�
 data/promoted_tags.json 側に置き(design §8-8 ledger流儀)、再抽出後は --reapply で atom_tag へ戻す。
 
 実行:
-  PYTHONPATH=src python -m svdeck.data_access.promote --tag "守護付与" --cards 10032110,10234120           # 提案(DB無変更)
-  PYTHONPATH=src python -m svdeck.data_access.promote --tag "守護付与" --cards 10032110,10234120 --confirm  # 確定(書込+追記)
-  PYTHONPATH=src python -m svdeck.data_access.promote --reapply                                             # 再抽出後の再適用
+  PYTHONPATH=src python -m svdeck.data_prep.promote --tag "守護付与" --cards 10032110,10234120           # 提案(DB無変更)
+  PYTHONPATH=src python -m svdeck.data_prep.promote --tag "守護付与" --cards 10032110,10234120 --confirm  # 確定(書込+追記)
+  PYTHONPATH=src python -m svdeck.data_prep.promote --reapply                                             # 再抽出後の再適用
 """
 
 import json
@@ -102,8 +102,8 @@ def reapply(conn: sqlite3.Connection) -> None:
 
 _USAGE = (
     "usage:\n"
-    '  python -m svdeck.data_access.promote --tag "<tag>" --cards <id,id,...> [--confirm]\n'
-    "  python -m svdeck.data_access.promote --reapply"
+    '  python -m svdeck.data_prep.promote --tag "<tag>" --cards <id,id,...> [--confirm]\n'
+    "  python -m svdeck.data_prep.promote --reapply"
 )
 
 

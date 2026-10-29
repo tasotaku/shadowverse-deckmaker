@@ -39,17 +39,10 @@ _GROUPS = {'battle_env': ('battle',
                 'battle_rules',
                 'battle_server',
                 'battle_training',
-                'combat_benchmark'),
+                'combat_benchmark', 'vectorize'),
  'common': ('db', 'experiments', 'inquiry_journal', 'journal_store', 'worker', 'worker_journal'),
- 'data_access': ('article_text',
-                 'atoms',
-                 'fetch',
-                 'keywords',
-                 'memo',
-                 'meta',
-                 'promote',
-                 'retag',
-                 'vectorize'),
+ 'data_access': ('article_text', 'fetch', 'meta'),
+ 'data_prep': ('atoms', 'memo', 'promote', 'retag'),
  'search': ('augment',
             'bench',
             'discovery',
@@ -72,6 +65,14 @@ _TARGETS = {"svdeck." + name: "svdeck." + group + "." + name
             for group, names in _GROUPS.items() for name in names}
 
 
+# Previous grouped paths remain importable without duplicate implementation files.
+_TARGETS.update({"svdeck.data_access." + name: "svdeck.data_prep." + name
+                 for name in ("atoms", "memo", "promote", "retag")})
+_TARGETS["svdeck.data_access.vectorize"] = "svdeck.battle_env.vectorize"
+_KEYWORD_ALIASES = {"svdeck.keywords", "svdeck.data_access.keywords"}
+_TARGETS.update({name: "svdeck.data_access.fetch" for name in _KEYWORD_ALIASES})
+
+
 class _AliasLoader(importlib.abc.InspectLoader):
     def __init__(self, name: str, target: str) -> None:
         # AI_NOTE: Alias imports return the canonical object so globals and monkeypatches are shared.
@@ -81,10 +82,19 @@ class _AliasLoader(importlib.abc.InspectLoader):
         return None
 
     def exec_module(self, module: ModuleType) -> None:
-        sys.modules[self.name] = importlib.import_module(self.target)
+        implementation = importlib.import_module(self.target)
+        if self.name in _KEYWORD_ALIASES:
+            # Legacy keyword entry points still mean keyword-only acquisition.
+            module.fetch_keywords = implementation.fetch_keywords
+            module.run = implementation.run_keywords
+            module.API_URL = implementation.KEYWORDS_API_URL
+        else:
+            sys.modules[self.name] = implementation
 
     def get_source(self, fullname: str) -> str:
         # AI_NOTE: Old python -m commands execute the real module's own __main__ path and exit handling.
+        if self.name in _KEYWORD_ALIASES:
+            return "from svdeck.data_access.fetch import run_keywords\nrun_keywords()\n"
         return "import runpy\nrunpy.run_module(" + repr(self.target) + ", run_name='__main__', alter_sys=True)\n"
 
     def get_code(self, fullname: str) -> CodeType:

@@ -39,8 +39,9 @@ python -m svdeck.common.experiments serve
 | ディレクトリ | 担当 |
 |---|---|
 | `src/svdeck/search/` | デッキの種・アンカー要求・候補の組み合わせ探索 |
-| `src/svdeck/data_access/` | カードや公開デッキの取得、効果・タグの取込と整備 |
-| `src/svdeck/battle_env/` | 対戦エンジン、対戦AI、対戦画面とその検証 |
+| `src/svdeck/data_access/` | 公式カード・用語と公開デッキの取得 |
+| `src/svdeck/data_prep/` | 探索用の効果・タグ・一覧の作成と修正 |
+| `src/svdeck/battle_env/` | 対戦エンジン、対戦AI、効果データの取込、対戦画面とその検証 |
 | `src/svdeck/common/` | 共有DB、制限時間付き実行、実験記録 |
 
 アンカーから候補を探す入口は `src/svdeck/search/explore.py` です。
@@ -56,7 +57,7 @@ source .venv/bin/activate
 python -m pip install -e .
 ```
 
-カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.data_access.fetch` で公式データを取得します。
+カードDBは `data/cards.db` を使います。未取得なら `python -m svdeck.data_access.fetch` でカードと公式用語を取得します。用語だけの更新は `python -m svdeck.data_access.fetch --keywords-only` です。
 通常の取得は新規追加分を保存し、既存カードの能力変更を反映する場合は `python -m svdeck.data_access.fetch --refresh` を使います。
 ユーザーの注記は公式データの更新で上書きしません。
 

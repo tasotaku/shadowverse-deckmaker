@@ -8,7 +8,7 @@
 
 判定対象キーワード: 突進・守護・疾走・潜伏・必殺・ドレイン・威圧・オーラ・バリア。
 
-実行: python -m svdeck.data_access.retag
+実行: python -m svdeck.data_prep.retag
 """
 
 import re

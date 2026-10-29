@@ -5,7 +5,7 @@ skill_text忠実(装飾タグのみ除去)＋card_noteを1カード1行のテキ
 効果要約は skill_text の冗長コピーで無価値化したため廃止(design.md §6.1 2026-07-07改訂)。
 全カード分でも約100KBに収まり、LLMが1回で全readして意味検索できる。再取得後に再実行して作り直す。
 
-実行: python -m svdeck.data_access.memo  (data/card_memo.txt を出力)
+実行: python -m svdeck.data_prep.memo  (data/card_memo.txt を出力)
 """
 
 import re

@@ -5,9 +5,9 @@
 dump/load構造に倣うが、こちらは**閉じたスキーマをコードで検証**する(LLM出力のドリフトを弾く=silent禁止の実装)。
 
 実行:
-  python -m svdeck.data_access.vectorize dump [card_id ...]      # 抽出のLLM入力JSON(省略時は全カード)
-  python -m svdeck.data_access.vectorize load extracted.json     # 検証して card_vschema へ取り込み
-  python -m svdeck.data_access.vectorize show <card_id>          # 取り込み済みスキーマを表示
+  python -m svdeck.battle_env.vectorize dump [card_id ...]      # 抽出のLLM入力JSON(省略時は全カード)
+  python -m svdeck.battle_env.vectorize load extracted.json     # 検証して card_vschema へ取り込み
+  python -m svdeck.battle_env.vectorize show <card_id>          # 取り込み済みスキーマを表示
 """
 
 import json
@@ -252,7 +252,7 @@ def main() -> None:
     if len(args) == 2 and args[0] == "show":
         print(show(int(args[1])))
         return
-    print("usage: python -m svdeck.data_access.vectorize dump [card_id ...] | check <json> | load <json> | show <card_id>")
+    print("usage: python -m svdeck.battle_env.vectorize dump [card_id ...] | check <json> | load <json> | show <card_id>")
     sys.exit(1)
 
 

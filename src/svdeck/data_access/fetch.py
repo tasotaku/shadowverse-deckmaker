@@ -1,4 +1,4 @@
-"""公式APIからカードを取得してローカルDB(ミラー層)へ保存する。
+"""公式APIからカードとキーワード用語を取得してローカルDB(ミラー層)へ保存する。
 
 役割分担: 一覧API(cardList)はカードIDの列挙・名称辞書・新弾検出だけに使い、カードの中身
 (本文・能力値・参照先効果)は単体API(card)から1枚=1リクエストで取り込む。一覧のcard_details
@@ -13,7 +13,9 @@
 保存はミラー層のみ。通常取得ではカードは新規だけINSERTし、名称辞書は毎回作り直す。
 公式の能力変更を取り込むときは --refresh で全件を突き合わせ、変わった既存カードだけ更新する。
 
-実行: python -m svdeck.data_access.fetch [--refresh]
+カード取得後に公式用語辞書も更新する。--keywords-only は用語辞書だけを更新する。
+
+実行: python -m svdeck.data_access.fetch [--refresh | --keywords-only]
 """
 
 import json
@@ -25,6 +27,7 @@ from typing import Any
 
 from svdeck.common.db import DB_PATH, connect
 
+KEYWORDS_API_URL = "https://shadowverse-wb.com/web/System/abilityKeywordList"
 LIST_API_URL = "https://shadowverse-wb.com/web/CardList/cardList"
 CARD_API_URL = "https://shadowverse-wb.com/web/CardList/card"
 USER_AGENT = "Mozilla/5.0"
@@ -57,6 +60,38 @@ TYPE_CATEGORIES: dict[int, str] = {
     3: "amulet",
     4: "spell",
 }
+
+
+def _get_json(url: str) -> dict[str, Any]:
+    # AI_NOTE: HTTP境界。取得失敗は握りつぶさず呼び出し元へ伝播させる(meta.py/fetch.pyと同じ作法)。
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(request) as response:
+        payload: dict[str, Any] = json.loads(response.read().decode("utf-8"))
+    return payload
+
+
+def fetch_keywords() -> list[tuple[str, str]]:
+    # AI_NOTE: 応答はdata.ability_key_word_listの{title, text}リスト。lang=jaで日本語版を取る。
+    payload = _get_json(f"{KEYWORDS_API_URL}?lang=ja")
+    items = payload["data"]["ability_key_word_list"]
+    return [(item["title"], item["text"]) for item in items]
+
+
+def run_keywords() -> None:
+    # AI_NOTE: エントリポイント。ability_keywordを毎回作り直す(名称辞書と同じくDELETE→全INSERT)。
+    conn = connect()
+    try:
+        keywords = fetch_keywords()
+        conn.execute("DELETE FROM ability_keyword")
+        conn.executemany(
+            "INSERT INTO ability_keyword (title, text, fetched_at) VALUES (?, ?, datetime('now'))",
+            keywords,
+        )
+        conn.commit()
+        print(f"[keywords] 完了: {len(keywords)}件")
+    finally:
+        conn.close()
+
 
 
 def _get_page(offset: int, card_set: int | None = None) -> dict[str, Any]:
@@ -353,8 +388,8 @@ def run(refresh: bool = False) -> None:
         if stale_ids:
             ids_text = " ".join(str(card_id) for card_id in stale_ids)
             print(f"[refresh] 効果分析の再作成が必要: {ids_text}")
-            print(f"  python -m svdeck.data_access.atoms dump {ids_text}")
-            print(f"  python -m svdeck.data_access.vectorize dump {ids_text}")
+            print(f"  python -m svdeck.data_prep.atoms dump {ids_text}")
+            print(f"  python -m svdeck.battle_env.vectorize dump {ids_text}")
     finally:
         conn.close()
 
@@ -362,7 +397,9 @@ def run(refresh: bool = False) -> None:
 if __name__ == "__main__":
     # AI_NOTE: 引数の打ち間違いを通常更新として実行しない。許可する形を2つに限定する。
     args = sys.argv[1:]
-    if args not in ([], ["--refresh"]):
-        print("usage: python -m svdeck.data_access.fetch [--refresh]")
+    if args not in ([], ["--refresh"], ["--keywords-only"]):
+        print("usage: python -m svdeck.data_access.fetch [--refresh | --keywords-only]")
         sys.exit(1)
-    run(refresh=bool(args))
+    if args != ["--keywords-only"]:
+        run(refresh=args == ["--refresh"])
+    run_keywords()

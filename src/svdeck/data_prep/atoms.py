@@ -4,8 +4,8 @@
 従って行い、このモジュールは入力用JSONの書き出し(dump)と抽出結果JSONの取り込み(load)だけを行う。
 
 実行:
-  python -m svdeck.data_access.atoms dump [card_id ...] > cards.json   # 省略時は全カード
-  python -m svdeck.data_access.atoms load extracted.json
+  python -m svdeck.data_prep.atoms dump [card_id ...] > cards.json   # 省略時は全カード
+  python -m svdeck.data_prep.atoms load extracted.json
 """
 
 import json
@@ -72,7 +72,7 @@ def main() -> None:
         cards, tags = load(Path(args[1]))
         print(f"[atoms] 取り込み: {cards}枚 / タグ{tags}件")
         return
-    print("usage: python -m svdeck.data_access.atoms dump [card_id ...] | load <extracted.json>")
+    print("usage: python -m svdeck.data_prep.atoms dump [card_id ...] | load <extracted.json>")
     sys.exit(1)
 
 
